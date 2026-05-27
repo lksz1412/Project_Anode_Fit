@@ -1,0 +1,183 @@
+{
+  "phase": "E0",
+  "phase_id": "PASS_FOUNDATION_RESET_CHARTER",
+  "step_range": {"from": 19, "to": 80},
+  "date": "2026-05-27",
+  "parent_roadmap": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md",
+  "phase_plan": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e0-charter-plan.md",
+  "charter_objective": "Construct a Chapter 1 of the graphite anode ICA/DVA dynamics document via continuous chemical potential distribution rho(mu;q,T), continuous reactivity kernel S_R(mu;T), and the user's PhD-level Fredholm 2nd kind ratio-substitution method (Refs.6,7+JCP2017) as the canonical solver for the resulting self-consistent integral equation.",
+  "anti_patterns": [
+    {"id": "AP1", "pattern": "max(DeltaG_eff, 0) ReLU step", "evidence_file": "Claude/docs/graphite_ica_dynamic_ver5.tex", "evidence_lines": [240, 241, 242, 243, 244, 245], "role": "barrier clamping"},
+    {"id": "AP2", "pattern": "min(k_j, k_max) saturation", "evidence_file": "Claude/docs/graphite_ica_dynamic_ver5.tex", "evidence_lines": [247, 248, 249], "role": "rate ceiling"},
+    {"id": "AP3", "pattern": "logistic as definitional", "evidence_file": "Claude/docs/graphite_ica_dynamic_ver5.tex", "evidence_lines": [188], "role": "equilibrium progress"},
+    {"id": "AP4", "pattern": "erf as definitional", "evidence_file": "Claude/docs/graphite_ica_dynamic_ver5.tex", "evidence_lines": [195], "role": "equilibrium progress alternative"},
+    {"id": "AP5", "pattern": "discrete N_p as primary state", "evidence_file": "Claude/docs/graphite_ica_dynamic_ver5.tex", "evidence_lines": [137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150], "role": "state decomposition"},
+    {"id": "AP6", "pattern": "logistic retained in rechecked2", "evidence_file": "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex", "evidence_lines": [188, 189, 190, 191, 192, 193], "role": "equilibrium progress"},
+    {"id": "AP7", "pattern": "softplus as definitional in rechecked2", "evidence_file": "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex", "evidence_lines": [250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265], "role": "smooth-ReLU barrier"},
+    {"id": "AP8", "pattern": "discrete N_p retained in rechecked2", "evidence_file": "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex", "evidence_lines": [110, 111, 112, 113, 114], "role": "state decomposition"}
+  ],
+  "allowed_patterns": [
+    {"pattern": "continuous chemical potential mu", "intended_use": "primary distribution coordinate"},
+    {"pattern": "continuous distribution rho(mu;q,T)", "intended_use": "primary state variable"},
+    {"pattern": "continuous reactivity kernel S_R(mu;T)", "intended_use": "replaces discrete k_j"},
+    {"pattern": "continuous cross-kernel K_n(mu,mu';q,T)", "intended_use": "chemical-potential-space transport coupling"},
+    {"pattern": "integration over mu in [mu_min, mu_max]", "intended_use": "charge balance + Fredholm 2nd kind equation"},
+    {"pattern": "Fredholm 2nd kind self-consistent integral equation", "intended_use": "ρ evolution"},
+    {"pattern": "ratio-substitution per Refs. 6, 7", "intended_use": "closed-form analytic solution"}
+  ],
+  "forbidden_patterns": [
+    {"id": "FB1", "pattern": "max(.,0) or Heaviside(.) in definitional eq", "reason": "equivalent to AP1"},
+    {"id": "FB2", "pattern": "min(., constant) in definitional eq", "reason": "equivalent to AP2"},
+    {"id": "FB3", "pattern": "logistic/sigmoid/tanh as definitional shape", "reason": "equivalent to AP3"},
+    {"id": "FB4", "pattern": "erf/erfc as definitional shape", "reason": "equivalent to AP4"},
+    {"id": "FB5", "pattern": "discrete N_p-indexed primary state", "reason": "equivalent to AP5/AP8"},
+    {"id": "FB6", "pattern": "softplus canonical without smooth-limit clause", "reason": "equivalent to AP7 without §5 discipline"},
+    {"id": "FB7", "pattern": "sign/clip/piecewise-linear in definitional eq", "reason": "generalization of step"},
+    {"id": "FB8", "pattern": "discretization of mu without basis-expansion derivation", "reason": "hidden AP5 reintroduction"},
+    {"id": "FB9", "pattern": "silent integral-to-sum approximation", "reason": "same as FB8"},
+    {"id": "FB10", "pattern": "single-state simplification of rho without explicit moment projection", "reason": "reintroduces single-state"}
+  ],
+  "smooth_limit_rules": [
+    {
+      "regularization": "softplus barrier",
+      "symbol": "epsilon_G",
+      "active_domain": "solver only",
+      "smooth_limit_form": "epsilon_G * ln(1 + exp(DeltaG_eff / epsilon_G))",
+      "epsilon_zero_form": "max(DeltaG_eff, 0)",
+      "charter_compliant": "OK iff continuous reactivity kernel construction guarantees DeltaG_eff >= 0 in physical domain"
+    },
+    {
+      "regularization": "Q_bg slope floor",
+      "symbol": "epsilon_Q",
+      "active_domain": "charge-balance solver only",
+      "smooth_limit_form": "dQ_bg/dV_n >= epsilon_Q > 0",
+      "epsilon_zero_form": "dQ_bg/dV_n >= 0",
+      "charter_compliant": "OK (continuous)"
+    }
+  ],
+  "audit_dim_11": {
+    "pass_1_procedure": "Scan document for ASCII keywords (max(, min(, clip(, step(, Heaviside(, sign(, softplus(, relu(), LaTeX commands (\\max, \\min, \\Theta, \\operatorname{sgn}, sigmoid, \\tanh, erf, erfc), and equation patterns (1/(1+exp(...)), discrete N_p sums). Record file, line, eq label, 5-line context.",
+    "pass_2_procedure": "Classify each Pass 1 occurrence: FAIL-definitional (must remove), WARN-regularization-with-smooth-limit (allowed with §5 clause), WARN-empirical-with-disclaimer (allowed), OK-derived (allowed with derivation traceability).",
+    "pass_3_procedure": "Confirm FAIL occurrences removed or reclassified. Confirm WARN occurrences have explicit smooth-limit clause / disclaimer / derivation. Confirm OK occurrences trace to canonical variables.",
+    "reporting_format": "Phase Result must contain Dim #11 table: phase, Pass 1 count, Pass 2 FAIL count, Pass 2 WARN count, Pass 2 OK count, Pass 3 remaining FAIL (must be 0)."
+  },
+  "variable_mapping": {
+    "canonical": [
+      {"symbol": "mu", "latex": "\\mu", "unit": "V (Li/Li+ ref)", "description": "Continuous chemical potential coordinate"},
+      {"symbol": "rho", "latex": "\\rho(\\mu; q, T)", "unit": "C/V", "description": "Continuous distribution density at chemical potential mu"},
+      {"symbol": "S_R", "latex": "S_R(\\mu; T)", "unit": "1/s", "description": "Continuous reactivity kernel at mu"},
+      {"symbol": "K_n", "latex": "K_n(\\mu, \\mu'; q, T)", "unit": "1/(V*s)", "description": "Continuous cross-kernel"},
+      {"symbol": "rho_eq", "latex": "\\rho_{\\eq}(\\mu; q, T)", "unit": "C/V", "description": "Equilibrium distribution"},
+      {"symbol": "Q_bg", "latex": "Q_{\\bg}(V_n, T)", "unit": "C", "description": "Residual chemical capacitance"},
+      {"symbol": "V_n", "latex": "V_n", "unit": "V", "description": "Internal anode potential, implicit solution of charge balance"},
+      {"symbol": "V_n_app", "latex": "V_{n,\\app}", "unit": "V", "description": "Apparent potential V_n + s_I*|I|*R_n"},
+      {"symbol": "V_n_drive", "latex": "V_{n,\\drive}", "unit": "V", "description": "Driving potential, V_{n,app} in reduced model"},
+      {"symbol": "R_n", "latex": "R_n(q, T, |I|)", "unit": "Ohm", "description": "Anode effective resistance"},
+      {"symbol": "Q_cell", "latex": "Q_{\\cell}", "unit": "C", "description": "Cell capacity"},
+      {"symbol": "q", "latex": "q", "unit": "dimensionless", "description": "Discharge progress"},
+      {"symbol": "I", "latex": "I", "unit": "A", "description": "Current magnitude"},
+      {"symbol": "T", "latex": "T", "unit": "K", "description": "Temperature"},
+      {"symbol": "t", "latex": "t", "unit": "s", "description": "Time"},
+      {"symbol": "s_I", "latex": "s_I", "unit": "+/-1", "description": "Current sign"},
+      {"symbol": "s_phi_j", "latex": "s_{\\phi,j}", "unit": "+/-1", "description": "Transition direction sign"}
+    ],
+    "derived": [
+      {"symbol": "xi_j", "latex": "\\xi_j", "derivation": "(1/N_j) * integral over peak_j window of rho(mu;q,t) dmu", "first_used_section": "10 (Fitting)"},
+      {"symbol": "xi_j_eq", "latex": "\\xi_{j,\\eq}", "derivation": "(1/N_j) * integral over peak_j window of rho_eq(mu;q,T) dmu", "first_used_section": "10"},
+      {"symbol": "k_j", "latex": "k_j", "derivation": "S_R(mu approx U_j; T)", "first_used_section": "10"},
+      {"symbol": "U_j", "latex": "U_j(T)", "derivation": "center of rho_eq(mu) peak window j", "first_used_section": "10"},
+      {"symbol": "w_j", "latex": "w_j(T)", "derivation": "FWHM of rho_eq(mu) peak window j", "first_used_section": "10"},
+      {"symbol": "Q_j_tot", "latex": "Q_{j,\\tot}", "derivation": "integral over peak_j window of rho_eq(mu;q,T) integrated over discharge range", "first_used_section": "10"},
+      {"symbol": "V_n_OCV", "latex": "V_{n,\\OCV}", "derivation": "V_n evaluated under rho = rho_eq (boundary of equilibrium distribution)", "first_used_section": "5"},
+      {"symbol": "A_j", "latex": "\\mathcal{A}_j", "derivation": "from S_R(mu;T) kernel + V_{n,drive}", "first_used_section": "7"},
+      {"symbol": "DeltaG_eff_j", "latex": "\\Delta G_{\\eff,j}", "derivation": "embedded in S_R(mu;T)", "first_used_section": "7"}
+    ]
+  },
+  "central_equations": {
+    "eq_48_charge_balance": "Q_{\\cell} q = Q_{\\bg}(V_n, T) + integral from mu_min to mu_max of d mu rho(mu; q, T) n(mu)",
+    "eq_49_fredholm_evolution": "rho(mu; q, t) = rho_0(mu; q, t) + integral from mu_min to mu_max of d mu' K_n(mu, mu'; q, T) S_R(mu'; T) [rho_eq(mu'; q, T) - rho(mu'; q, t)]"
+  },
+  "ref_6_7_application": {
+    "ref_6": {
+      "title": "Communication: Propagator for diffusive dynamics of an interacting molecular pair",
+      "authors": ["S. Lee", "C. Y. Son", "J. Sung", "S. H. Chong"],
+      "journal": "J. Chem. Phys.",
+      "volume": 134,
+      "page": 121102,
+      "year": 2011,
+      "doi": "10.1063/1.3565476",
+      "pubmed_id": "21456635",
+      "wikidata_id": "Q51583050"
+    },
+    "ref_7": {
+      "title": "An accurate expression for the rates of diffusion-influenced bimolecular reactions with long-range reactivity",
+      "authors": ["C. Y. Son", "J. Kim", "J.-H. Kim", "J. S. Kim", "S. Lee"],
+      "journal": "J. Chem. Phys.",
+      "volume": 138,
+      "page": 164123,
+      "year": 2013,
+      "doi": "10.1063/1.4802584",
+      "pubmed_id": "23635127",
+      "wikidata_id": "Q43553001"
+    },
+    "rho_simple_candidate": "rho_eq(mu; q, T) evaluated under V_n = V_{n,OCV}(q, T) legacy assumption (analog of JCP 2017 delta-function-sink solution)",
+    "ratio_substitution_form": "rho(mu_1; q, t) / rho(mu; q, t) approx rho_simple(mu_1; q, T) / rho_simple(mu; q, T)",
+    "validity_conditions": [
+      "Low C-rate (analog of small K external field)",
+      "Large characteristic chemical potential scale (analog of large Onsager distance r_c)",
+      "Small reactivity magnitude (analog of small sigma^3 phi / D)",
+      "Continuous reactivity kernel S_R(mu) smooth in mu (NEW condition from continuous-form rebuild)"
+    ]
+  },
+  "audit_results": {
+    "dim_2_verbatim": "PASS",
+    "dim_3_data_flow": "PASS",
+    "dim_6_convention": "PASS",
+    "dim_7_silent_miss": "PASS",
+    "dim_10_contract": "PASS",
+    "dim_alpha_boundary": "PASS",
+    "dim_beta_handover": "PASS",
+    "dim_gamma_tree": "PASS",
+    "dim_delta_4tier": "PASS",
+    "dim_11_system_fidelity": {
+      "pass_1_occurrences": 1,
+      "pass_2_fail": 0,
+      "pass_2_warn": 1,
+      "pass_2_ok": 0,
+      "pass_3_remaining_fail": 0,
+      "note": "Only §5.1 softplus example, classified WARN with explicit smooth-limit clause. Charter equations in §3.2, §8.1, §8.2, §9.3 are AP/FB-free."
+    },
+    "overall": "PASS — 11/11 dims, 0 FAIL"
+  },
+  "gates": [
+    {"gate_id": "GATE_E0_1", "requirement": "9 sections present", "status": "PASS"},
+    {"gate_id": "GATE_E0_2", "requirement": ">= 5 anti-pattern line evidence", "status": "PASS", "actual_count": 8},
+    {"gate_id": "GATE_E0_3", "requirement": "Allowed-pattern includes new namespace + central eq form", "status": "PASS"},
+    {"gate_id": "GATE_E0_4", "requirement": ">= 2 smooth-limit worked examples", "status": "PASS"},
+    {"gate_id": "GATE_E0_5", "requirement": "Audit Dim #11 Pass 1/2/3 defined", "status": "PASS"},
+    {"gate_id": "GATE_E0_6", "requirement": "Legacy mapping covers ver5 §2 21 + rechecked2 §2 11", "status": "PASS"},
+    {"gate_id": "GATE_E0_7", "requirement": "Central equations valid LaTeX + dimensional + smooth-limit check", "status": "PASS-with-note", "note": "Eq. 49 unit reconciliation deferred to Phase E6"},
+    {"gate_id": "GATE_E0_8", "requirement": "Ref. 6, 7 sketch identifies rho_simple candidate", "status": "PASS"}
+  ],
+  "confirmed_non_changes": [
+    "Claude/docs/graphite_ica_dynamic_ver5.tex",
+    "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "Claude/_local_only/*.pdf",
+    "Codex/* (P2 compliance)"
+  ],
+  "open_issues": [
+    {"id": "OI-E0-1", "item": "Eq. 49 unit reconciliation deferred to Phase E6", "tier": "추정"},
+    {"id": "OI-E0-2", "item": "Quantitative validity bounds deferred to Phase G", "tier": "미검증"},
+    {"id": "OI-E0-3", "item": "DQ-G2 user cross-check of mu semantics, Phase F3 canonical check", "tier": "사용자 결정 대기"},
+    {"id": "OI-E0-4", "item": "DQ-G5 user approval for global audit Dim #11 memory", "tier": "사용자 결정 대기"},
+    {"id": "OI-E0-5", "item": "DQ-G6 Chapter 2 rebuild timing post-Phase F5", "tier": "사용자 결정 대기"},
+    {"id": "OI-E0-6", "item": "DQ1 ChatGPT logical error specifics for §1 amplification, optional", "tier": "사용자 결정 대기 (optional)"}
+  ],
+  "next": {
+    "phase": "E1",
+    "step_range_from": 81,
+    "name": "Spine Redesign And Core Variable Selection",
+    "auto_proceed": true,
+    "note": "Phase E1 enters at the start of next conversation turn due to current response budget. User may inject corrections before Phase E1 starts."
+  }
+}
