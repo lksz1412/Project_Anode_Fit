@@ -1,0 +1,495 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{setspace}
+\setstretch{1.13}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, pdftitle={graphite ICA charge balance dynamic ver1 rechecked}, pdfauthor={OpenAI}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{전하 보존식 기반 흑연 음극 ICA/DVA 해석 ver.1}
+\rhead{\thepage/\pageref{LastPage}}
+\newtheorem*{assumption}{가정}
+\newtheorem*{note}{설명}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\Ah}{\mathrm{Ah}}
+\newcommand{\Cunit}{\mathrm{C}}
+\begin{document}
+\begin{center}
+{\LARGE \textbf{리튬이온전지 흑연 음극의 전하 보존식 기반}}\\[0.25em]
+{\LARGE \textbf{상변이 동역학과 ICA/DVA 해석}}\\[0.8em]
+{\large ver.1 재검수 수정본}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{문서의 목적과 원칙}
+이 문서는 흑연 음극의 staging transition을 \(dQ/dV\), \(dV/dQ\)와 연결하기 위한 기준 문건이다. 이 버전의 핵심은 전압을 단순히 \(V_{n,\OCV}(q,T)\)에서 읽지 않고, 외부에서 흘린 전하량과 음극 내부 상태가 일치하도록 하는 전하 보존식으로 계산하는 것이다.
+
+모든 후속 버전은 이 문서의 기본 구조를 유지해야 한다. 특히 다음 흐름을 중심으로 한다.
+\begin{equation}
+Q_{\ext}=Q_{\cell}q
+\rightarrow
+Q_{\ext}=Q_{\bg}(V_n,T)+\sum_jQ_{j,\tot}\xi_j
+\rightarrow
+V_n
+\rightarrow
+V_{n,\app}
+\rightarrow
+\frac{dQ}{dV},\;\frac{dV}{dQ}.
+\end{equation}
+
+\begin{mdframed}
+이 문서에서는 장벽을 특정 기준값으로 잘라서 반응 완료와 미완료를 나누는 방식을 쓰지 않는다. 상변이는 진행률 \(\xi_j\)의 동역학으로 표현한다.
+\end{mdframed}
+
+\section{기호와 단위 컨벤션}
+\subsection{기본 좌표와 전하량}
+\begin{longtable}{p{0.20\textwidth} p{0.72\textwidth}}
+\toprule
+기호 & 의미 \\
+\midrule
+\endhead
+\(q\) & 방전 진행 좌표. \(q=0\)은 분석 구간 시작, \(q=1\)은 기준 방전 용량만큼 진행된 상태 \\
+\(Q_{\ext}\) & 외부 회로를 통해 실제로 흘린 전하량 \\
+\(Q_{\cell}\) & 기준 셀 용량. 본문 수식에서는 항상 쿨롱 단위로 사용 \\
+\(V_n\) & 전하 보존식으로 계산되는 내부 음극 전위 \\
+\(V_{n,\app}\) & 실험에서 보이는 apparent 음극 전위 \\
+\(V_{n,\drive}\) & 상변이 속도식의 구동력 계산에 쓰는 전위 \\
+\(R_n(q,T)\) & 전압축 이동을 나타내는 음극 유효 저항 또는 유효 분극 계수 \\
+\(\xi_j\) & \(j\)번째 effective graphite transition의 진행률 \\
+\(\xi_{j,\mathrm{eq}}\) & \(j\)번째 transition의 평형 진행률 \\
+\(Q_{j,\tot}\) & \(j\)번째 transition이 방전 용량에 기여하는 양 \\
+\(Q_{\bg}\) & 뚜렷한 staging 피크로 분리되지 않는 배경 용량 함수 \\
+\bottomrule
+\end{longtable}
+
+\subsection{용량 단위}
+본문의 미분방정식에서 전류 \(I\)는 A, 즉 \(\mathrm{C\,s^{-1}}\)로 사용한다. 따라서 \(Q_{\cell}\)은 쿨롱 단위여야 한다.
+\begin{equation}
+Q_{\cell}[\Cunit]=3600\,Q_{\cell}[\Ah].
+\end{equation}
+이 변환을 생략하면 \(dq/dt\)의 차원이 틀어진다.
+
+외부 방전 전하량은
+\begin{equation}
+Q_{\ext}(t)=\int_0^t |I(t')|\,\dd t'
+\end{equation}
+이고,
+\begin{equation}
+q(t)=\frac{Q_{\ext}(t)}{Q_{\cell}}.
+\end{equation}
+정전류 구간에서는
+\begin{equation}
+\frac{dq}{dt}=\frac{|I|}{Q_{\cell}}.
+\label{eq:dqdt}
+\end{equation}
+
+\section{흑연 상변이와 진행률 정의}
+흑연 음극의 실제 staging sequence는 여러 단계로 세분될 수 있지만, 실험적 ICA/DVA에서는 보통 몇 개의 effective transition peak로 합쳐져 보인다. 이 문서에서는 분리 가능한 유효 transition을 \(j=1,2,\ldots,N_p\)로 표시한다.
+
+\begin{assumption}
+ver.1에서 \(\xi_j\)는 방전 진행 좌표 \(q\)와 같은 방향으로 증가하도록 정의한다. 즉 \(\xi_j=0\)은 해당 transition이 방전 방향으로 아직 진행되지 않은 상태이고, \(\xi_j=1\)은 해당 transition이 방전 방향으로 완료된 상태이다. 따라서 ver.1의 기본식에서는 \(Q_{j,\tot}>0\)로 둔다.
+\end{assumption}
+
+충전 branch를 다룰 때는 두 가지 방법 중 하나를 선택해야 한다. 첫째, 실제 시간 방향을 유지하면 충전에서 \(dq/dt<0\)가 된다. 둘째, 충전 데이터를 방전 좌표와 비교하기 위해 \(q\) 증가 방향으로 재정렬할 수 있다. 이 선택은 히스테리시스 문서에서 별도로 고정해야 한다.
+
+\section{전하 보존식: 내부 전위의 결정}
+\subsection{전하 보존식}
+외부에서 흘린 전하량과 음극 내부 상태가 수용한 전하량은 일치해야 한다. 이를 다음과 같이 둔다.
+\begin{equation}
+\boxed{
+Q_{\cell}q=Q_{\bg}(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j.
+}
+\label{eq:charge_balance}
+\end{equation}
+이 식이 ver.1의 중심이다. 여기서 \(V_n\)은 독립적으로 주어지는 함수가 아니라, 주어진 \(q,T,\xi_j\)에서 식 \eqref{eq:charge_balance}를 만족하도록 계산되는 내부 음극 전위이다.
+
+이때 \(Q_{\bg}(V_n,T)\)는 단순한 그래프 기저선이 아니다. 이 함수는 뚜렷한 staging transition으로 분리하지 않은 잔류 용량 저장소이며, \(\xi_j\)가 평형 진행률을 즉시 따라가지 못할 때 전하 보존식을 만족시키기 위해 \(V_n\)이 얼마나 이동해야 하는지를 결정한다. 따라서 \(Q_{\bg}\)는 이 모델에서 잔류 chemical capacitance의 역할을 한다.
+
+식 \eqref{eq:charge_balance}가 실제로 풀리려면 다음 해 존재 조건도 만족해야 한다.
+\begin{equation}
+Q_{\cell}q-\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j
+\in
+\mathrm{Range}\left[Q_{\bg}(\cdot,T)\right].
+\label{eq:solution_existence}
+\end{equation}
+또는 \(Q_{\bg}\)의 가능한 범위를 \(Q_{\bg,\min}(T)\), \(Q_{\bg,\max}(T)\)라고 쓰면,
+\begin{equation}
+Q_{\bg,\min}(T)
+\le
+Q_{\cell}q-\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j
+\le
+Q_{\bg,\max}(T).
+\end{equation}
+이 조건을 만족하지 않는 파라미터 조합은 전압 해가 없는 조합으로 보아 피팅에서 제외하거나 강하게 제약한다.
+
+\subsection{평형 OCV의 의미}
+평형 또는 충분히 느린 조건에서는
+\begin{equation}
+\xi_j=\xi_{j,\mathrm{eq}}(V_n,T)
+\end{equation}
+이다. 그러면 식 \eqref{eq:charge_balance}는
+\begin{equation}
+Q_{\cell}q=Q_{\bg}(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_{j,\mathrm{eq}}(V_n,T)
+\label{eq:ocv_implicit}
+\end{equation}
+가 된다. 이 식을 \(V_n\)에 대해 풀면 평형 음극 전위 곡선이 된다.
+\begin{equation}
+V_n=V_{n,\OCV}(q,T).
+\end{equation}
+따라서 \(V_{n,\OCV}\)는 임의로 주어진 외부 함수가 아니라 전하 보존식의 평형해로 해석된다.
+
+\subsection{총용량 정합 조건}
+방전 구간의 시작 전위를 \(V_{n,0}\), 종료 전위를 \(V_{n,1}\)라고 하면, 모델의 총 용량은 실험 기준 용량과 정합되어야 한다.
+\begin{equation}
+Q_{\cell}=Q_{\bg}(V_{n,1},T)-Q_{\bg}(V_{n,0},T)+\sum_{j=1}^{N_p}Q_{j,\tot}\left[\xi_{j,\mathrm{eq}}(V_{n,1},T)-\xi_{j,\mathrm{eq}}(V_{n,0},T)\right].
+\label{eq:capacity_consistency}
+\end{equation}
+이 식은 평형 또는 매우 저율 조건에서의 총용량 정합식이다. 동역학 경로의 특정 실험 구간을 직접 정합할 때는 시작과 끝의 상태값을 사용해
+\begin{equation}
+Q_{\cell}\Delta q=Q_{\bg}(V_n(t_1),T_1)-Q_{\bg}(V_n(t_0),T_0)+\sum_{j=1}^{N_p}Q_{j,\tot}\left[\xi_j(t_1)-\xi_j(t_0)\right]
+\end{equation}
+로 쓴다. 피팅에서는 이 조건을 만족하도록 \(Q_{\bg}\), \(Q_{j,\tot}\), \(U_j\), \(w_j\)를 함께 제한해야 한다.
+
+\subsection{배경 용량 함수의 수치 조건}
+식 \eqref{eq:charge_balance}에서 \(V_n\)을 안정적으로 풀려면 \(Q_{\bg}\)가 전위에 대해 충분한 기울기를 가져야 한다.
+\begin{equation}
+\frac{\partial Q_{\bg}}{\partial V_n}\ge \epsilon_Q>0.
+\label{eq:bg_slope_floor}
+\end{equation}
+여기서 \(\epsilon_Q\)는 수치적 안정성을 위한 작은 양의 하한값이다. 이 조건이 없으면 \(dV_n/dq\)가 과도하게 커지거나, 피팅 과정에서 특이점이 생길 수 있다.
+
+\section{평형 진행률}
+각 transition의 평형 진행률은 내부 음극 전위 \(V_n\)의 함수로 정의한다.
+\begin{equation}
+\xi_{j,\mathrm{eq}}=\xi_{j,\mathrm{eq}}(V_n,T).
+\end{equation}
+방전 방향으로 증가하는 logistic 예시는 다음과 같다.
+\begin{equation}
+\xi_{j,\mathrm{eq}}(V_n,T)=\frac{1}{1+\exp\left[-\dfrac{V_n-U_j(T)}{w_j(T)}\right]}.
+\label{eq:xi_eq_logistic}
+\end{equation}
+여기서 \(U_j(T)\)는 transition 중심 전위, \(w_j(T)>0\)는 평형 transition 폭이다.
+
+ver.1의 본문 기본식에서는 방전 방향 진행률 정의에 맞추어 전위 증가 방향에서 \(\xi_{j,\mathrm{eq}}\)가 증가하는 형태를 사용한다. 만약 특정 전이를 전위 증가 방향과 반대로 정의해야 한다면 방향 부호를 둔 확장식을 쓸 수 있다.
+\begin{equation}
+\xi_{j,\mathrm{eq}}(V_n,T)=\frac{1}{1+\exp\left[-s_{\xi,j}\dfrac{V_n-U_j(T)}{w_j(T)}\right]}.
+\label{eq:xi_eq_signed}
+\end{equation}
+그러나 \(s_{\xi,j}\neq +1\)을 쓰려면 \(q\), \(Q_{j,\tot}\), \(\xi_j\)의 방향 정의를 함께 재검토해야 한다. 따라서 ver.1 본문 계산에서는 \(s_{\xi,j}=+1\)을 기본으로 둔다.
+
+\section{상변이 속도식}
+\subsection{구동 전위와 apparent 전위의 구분}
+전압에는 세 종류가 있다.
+\begin{longtable}{p{0.24\textwidth} p{0.66\textwidth}}
+\toprule
+기호 & 의미 \\
+\midrule
+\endhead
+\(V_n\) & 전하 보존식으로 계산되는 내부 음극 전위 \\
+\(V_{n,\app}\) & 실험에서 관측되는 apparent 음극 전위 \\
+\(V_{n,\drive}\) & 상변이 속도상수의 구동력 계산에 쓰는 전위 \\
+\bottomrule
+\end{longtable}
+
+측정 또는 apparent 전위는
+\begin{equation}
+V_{n,\app}=V_n+s_I|I|R_n(q,T,|I|)
+\label{eq:Vapp_def}
+\end{equation}
+로 둔다. 방전에서 apparent 전위가 증가하는 convention이면 \(s_I=+1\)이다.
+
+상변이 구동력은
+\begin{equation}
+\mathcal A_j=s_{\phi,j}F\left[V_{n,\drive}-U_j(T)\right]
+\label{eq:A_drive}
+\end{equation}
+로 둔다. reduced model에서는
+\begin{equation}
+V_{n,\drive}\approx V_{n,\app}
+\label{eq:drive_app_approx}
+\end{equation}
+를 사용할 수 있다.
+
+\begin{mdframed}
+식 \eqref{eq:drive_app_approx}는 편의적 근사이다. 이 근사를 쓸 때는 \(R_n\)과 \(k_j\)가 같은 현상을 동시에 설명하지 않도록 제한해야 한다. \(R_n\)은 전압축 이동, \(\xi_j\) 동역학은 상변이 진행 지연을 담당하도록 역할을 분리한다. 특히 \(V_{n,\drive}\approx V_{n,\app}\)를 사용할 경우 \(R_n(q,T,|I|)\)은 독립 실험, pulse, current-interrupt, 또는 선행 피팅으로 먼저 제한하고, \(k_j\)와 같은 데이터에서 동시에 완전히 자유롭게 피팅하지 않는다.
+\end{mdframed}
+
+\subsection{유효 장벽과 속도상수}
+고유 활성화 자유에너지는
+\begin{equation}
+\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}
+\end{equation}
+이다. 전위 보조를 포함한 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}(T)-\chi_j\mathcal A_j.
+\label{eq:Geff}
+\end{equation}
+단순 Arrhenius형 속도상수는
+\begin{equation}
+k_j=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}}{RT}\right]
+\end{equation}
+처럼 쓸 수 있지만, \(\Delta G_{\eff,j}<0\) 영역으로 외삽하면 \(k_j>\nu_j\)가 되어 물리적 의미가 약해진다. 따라서 피팅에서는 다음과 같은 부드러운 양수 장벽을 사용한다.
+\begin{equation}
+\Delta G_{\eff,j}^{+}=\epsilon_G\ln\left[1+\exp\left(\frac{\Delta G_{\eff,j}}{\epsilon_G}\right)\right].
+\label{eq:softplus_barrier}
+\end{equation}
+최종 속도상수는
+\begin{equation}
+\boxed{
+k_j=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right].
+}
+\label{eq:k_single}
+\end{equation}
+여기서 \(\epsilon_G\)는 새로운 물리 장벽이 아니라 \(\Delta G_{\eff,j}<0\) 영역에서 속도상수가 \(\nu_j\)보다 비정상적으로 커지는 것을 막기 위한 부드러운 수치 regularization 매개변수이다.
+
+\section{상변이 진행률 동역학}
+\subsection{시간 영역 기본식}
+상변이는 평형 진행률을 향해 완화된다고 둔다.
+\begin{equation}
+\boxed{
+\frac{d\xi_j}{dt}=k_j(V_n,q,T,I)\left[\xi_{j,\mathrm{eq}}(V_n,T)-\xi_j\right].
+}
+\label{eq:dxidt}
+\end{equation}
+이 식은 \(\xi_j\)가 즉시 평형에 도달하지 못하면 전압 곡선과 ICA/DVA에 tail과 broadening이 생긴다는 해석을 제공한다.
+
+\subsection{정전류 구간의 q 좌표식}
+\(|I|>0\)인 정전류 구간에서만 식 \eqref{eq:dqdt}를 이용해
+\begin{equation}
+\boxed{
+\frac{d\xi_j}{dq}=\frac{Q_{\cell}}{|I|}k_j(V_n,q,T,I)\left[\xi_{j,\mathrm{eq}}(V_n,T)-\xi_j\right]
+}
+\label{eq:dxidq}
+\end{equation}
+를 쓴다.
+
+휴지 구간에서는 \(|I|=0\)이므로 식 \eqref{eq:dxidq}를 쓰지 않는다. 이때는
+\begin{equation}
+\frac{dq}{dt}=0,
+\qquad
+\frac{d\xi_j}{dt}=k_j\left[\xi_{j,\mathrm{eq}}-\xi_j\right]
+\end{equation}
+의 시간식으로 relaxation을 계산한다. 이때 \(q\)는 고정되지만 \(\xi_j(t)\)가 변하므로, 매 시간점에서
+\begin{equation}
+Q_{\cell}q_{\mathrm{rest}}=Q_{\bg}(V_n(t),T)+\sum_jQ_{j,\tot}\xi_j(t)
+\end{equation}
+를 다시 풀어 \(V_n(t)\)를 계산한다. 따라서 휴지 전압 relaxation은 \(\xi_j(t)\)의 완화와 전하 보존식의 동시 만족에서 나온다.
+
+\subsection{초기 조건}
+동역학 계산에는 초기 조건이 필요하다.
+\begin{equation}
+q(0)=q_0,
+\qquad
+T(0)=T_0,
+\qquad
+\xi_j(0)=\xi_{j,0}.
+\end{equation}
+이 값들은 전하 보존식도 만족해야 한다.
+\begin{equation}
+Q_{\cell}q_0=Q_{\bg}(V_n(0),T_0)+\sum_jQ_{j,\tot}\xi_{j,0}.
+\end{equation}
+평형 시작 조건이면
+\begin{equation}
+\xi_{j,0}=\xi_{j,\mathrm{eq}}(V_n(0),T_0)
+\end{equation}
+로 둔다. 이력 있는 셀에서는 \(\xi_{j,0}\)를 이전 branch 계산 결과 또는 별도 피팅값으로 둔다.
+
+\section{장벽 분포 확장}
+장벽 분포를 쓰는 경우에도 진행률을 특정 장벽 기준으로 자르지 않는다. 장벽 \(g\)를 가진 domain의 진행률을 \(\xi_j(g,t)\)로 둔다. 활성화 장벽은 물리적으로 음수가 아니므로
+\begin{equation}
+\int_0^{\infty}\rho_j(g)\,\dd g=1
+\label{eq:rho_support}
+\end{equation}
+로 정규화한다. 여기서 \(\rho_j(g)\)는 kinetic activation barrier 분포이다. 평형 전이 중심의 불균일성은 \(U_j\), \(w_j\), 또는 별도의 전위 분포 \(p_j(U)\)로 표현해야 하며, \(\rho_j(g)\)와 혼동하지 않는다.
+
+각 \(g\) 집단의 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}(g)=g-\chi_j\mathcal A_j
+\end{equation}
+이고, 부드러운 양수 장벽은
+\begin{equation}
+\Delta G_{\eff,j}^{+}(g)=\epsilon_G\ln\left[1+\exp\left(\frac{g-\chi_j\mathcal A_j}{\epsilon_G}\right)\right].
+\end{equation}
+따라서
+\begin{equation}
+k_j(g)=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}^{+}(g)}{RT}\right].
+\end{equation}
+각 장벽 집단은
+\begin{equation}
+\frac{d\xi_j(g,t)}{dt}=k_j(g)\left[\xi_{j,\mathrm{eq}}(V_n,T)-\xi_j(g,t)\right]
+\end{equation}
+를 따른다. 전체 진행률은
+\begin{equation}
+\boxed{
+\xi_j(t)=\int_0^{\infty}\rho_j(g)\xi_j(g,t)\,\dd g
+}
+\label{eq:xi_distribution}
+\end{equation}
+이다.
+
+\section{ICA와 DVA 유도}
+\subsection{내부 전위 미분}
+식 \eqref{eq:charge_balance}를 \(q\)로 미분하면
+\begin{equation}
+Q_{\cell}=\frac{\partial Q_{\bg}}{\partial V_n}\frac{dV_n}{dq}+\frac{\partial Q_{\bg}}{\partial T}\frac{dT}{dq}+\sum_jQ_{j,\tot}\frac{d\xi_j}{dq}.
+\end{equation}
+따라서
+\begin{equation}
+\frac{dV_n}{dq}=\frac{Q_{\cell}-\dfrac{\partial Q_{\bg}}{\partial T}\dfrac{dT}{dq}-\sum_jQ_{j,\tot}\dfrac{d\xi_j}{dq}}{\dfrac{\partial Q_{\bg}}{\partial V_n}}.
+\label{eq:dVdq_general}
+\end{equation}
+등온이면
+\begin{equation}
+\frac{dV_n}{dq}=\frac{Q_{\cell}-\sum_jQ_{j,\tot}\dfrac{d\xi_j}{dq}}{\dfrac{\partial Q_{\bg}}{\partial V_n}}.
+\label{eq:dVdq_iso}
+\end{equation}
+
+단조적인 방전 전위 해석을 유지하려면 피팅 범위 안에서 \(dV_n/dq\)의 부호가 물리적으로 허용되는 방향을 유지해야 한다. 특히 식 \eqref{eq:dVdq_iso}의 분모는 식 \eqref{eq:bg_slope_floor}로 제한하고, 분자도 비물리적 부호 반전을 만들지 않도록 제약한다. 등온 방전에서 \(dV_n/dq\ge0\)를 요구하는 경우에는
+\begin{equation}
+\boxed{
+\sum_{j=1}^{N_p}Q_{j,\tot}\frac{d\xi_j}{dq}\le Q_{\cell}
+}
+\label{eq:monotonic_constraint}
+\end{equation}
+를 피팅 범위에서 만족하도록 제한한다.
+
+\subsection{apparent 전위 미분}
+\begin{equation}
+V_{n,\app}=V_n+s_I|I|R_n(q,T,|I|)
+\end{equation}
+이므로 일반적으로
+\begin{equation}
+\frac{dV_{n,\app}}{dq}=\frac{dV_n}{dq}+s_I|I|\left[\frac{\partial R_n}{\partial q}+\frac{\partial R_n}{\partial T}\frac{dT}{dq}+\frac{\partial R_n}{\partial |I|}\frac{d|I|}{dq}\right].
+\label{eq:dVappdq_general}
+\end{equation}
+등온 정전류 구간에서는
+\begin{equation}
+\frac{dV_{n,\app}}{dq}=\frac{dV_n}{dq}+s_I|I|\frac{\partial R_n}{\partial q}.
+\label{eq:dVappdq_iso}
+\end{equation}
+
+\subsection{ICA와 DVA}
+외부 용량은 \(Q_{\ext}=Q_{\cell}q\)이므로
+\begin{equation}
+\frac{dQ_{\ext}}{dq}=Q_{\cell}.
+\end{equation}
+따라서
+\begin{equation}
+\boxed{
+\frac{dQ_{\ext}}{dV_{n,\app}}=\frac{Q_{\cell}}{\dfrac{dV_{n,\app}}{dq}}
+}
+\label{eq:ica_final}
+\end{equation}
+이고,
+\begin{equation}
+\boxed{
+\frac{dV_{n,\app}}{dQ_{\ext}}=\frac{1}{Q_{\cell}}\frac{dV_{n,\app}}{dq}.
+}
+\label{eq:dva_final}
+\end{equation}
+
+\section{C-rate 효과와 0.2C 기준식}
+C-rate 효과는 두 경향의 경쟁으로 나타난다. 첫째, \(|I|\)가 커질수록 같은 \(dq\) 구간에서 체류 시간이 줄어들어 지연이 커진다. 둘째, 전류가 커지면 \(V_{n,\drive}\) 또는 \(\mathcal A_j\)가 변하여 \(k_j\)가 증가할 수 있다. 따라서 정전류 좌표식에서는
+\begin{equation}
+\frac{d\xi_j}{dq}\propto \frac{k_j(I)}{|I|}
+\end{equation}
+로 해석해야 한다.
+
+0.2C 기준 전위를 사용할 경우,
+\begin{equation}
+V_{n,0.2C}\approx V_n+s_II_{0.2C}R_n(q,T)
+\end{equation}
+이므로
+\begin{equation}
+V_{n,\app}\approx V_{n,0.2C}+s_I\left(|I|-I_{0.2C}\right)R_n(q,T)
+\label{eq:02c}
+\end{equation}
+라고 쓸 수 있다. 이 식은 0.2C에서 상변이 지연이 충분히 작거나, 그 지연을 기준 곡선 안에 흡수해도 되는 경우의 실용 근사이다.
+
+\section{EMG 피팅과의 관계}
+경험적 피팅을 위해서는
+\begin{equation}
+\frac{dQ}{dV}=B(V)+\sum_jA_jg_{\mathrm{EMG}}(V;\mu_j,\sigma_j,\lambda_j)
+\end{equation}
+같은 피크 함수를 쓸 수 있다. 그러나 이 식은 주 모델이 아니라 초기값 추정과 비교용이다. 동역학 모델에서 tail은 \(k_j\), \(\rho_j(g)\), \(R_n\), 전하 보존식의 결합 결과로 나온다.
+
+\section{피팅 순서와 식별성}
+권장 순서는 다음과 같다.
+\begin{enumerate}[label=\arabic*)]
+\item 저율 또는 0.2C 자료에서 \(U_j,w_j,Q_{j,\tot}\)의 초기값을 잡는다.
+\item \(R_n(q,T)\)는 pulse, current-interrupt, 또는 rate shift 자료로 먼저 제한한다.
+\item 고율 및 온도별 tail은 \(k_j(T,I)\)와 필요시 \(\rho_j(g)\)로 설명한다.
+\item \(R_n\)과 \(k_j\)를 동시에 자유롭게 풀지 않는다.
+\item EMG는 초기값 생성 또는 비교 모델로만 사용한다.
+\end{enumerate}
+
+주요 상관성은 다음과 같다.
+\begin{longtable}{p{0.25\textwidth} p{0.62\textwidth}}
+\toprule
+상관되는 항 & 주의점 \\
+\midrule
+\endhead
+\(R_n\) 과 \(k_j\) & 둘 다 peak broadening을 설명할 수 있어 중복 피팅 위험 \\
+\(\nu_j\) 와 \(\Delta G_{a,j}\) & Arrhenius prefactor와 장벽은 강하게 상관됨 \\
+\(w_j\) 와 \(k_j\) & 평형 transition 폭과 동적 지연이 모두 피크 폭에 영향 \\
+\(Q_{j,\tot}\) 와 \(Q_{\bg}\) & 총용량 정합 조건으로 제한 필요 \\
+\bottomrule
+\end{longtable}
+
+\section{ver.2로 전달되는 식}
+발열 문서에서는 \(d\xi_j/dt\)가 직접 입력이다.
+\begin{equation}
+\frac{d\xi_j}{dt}=k_j\left[\xi_{j,\mathrm{eq}}-\xi_j\right].
+\end{equation}
+정전류 구간에서만
+\begin{equation}
+\frac{d\xi_j}{dt}=\frac{|I|}{Q_{\cell}}\frac{d\xi_j}{dq}
+\end{equation}
+를 사용한다. 따라서 가역 열 또는 상변이 관련 발열은 우선 시간 미분형으로 쓰고, 필요한 경우 \(q\) 좌표로 변환한다.
+
+\section{자체 검수표}
+\begin{longtable}{p{0.55\textwidth} p{0.25\textwidth}}
+\toprule
+항목 & 결과 \\
+\midrule
+\endhead
+전하 보존식이 중심식인가 & 통과 \\
+전하 보존식의 해 존재 조건이 있는가 & 통과 \\
+\(Q_{\bg}\)가 잔류 chemical capacitance 역할로 설명되는가 & 통과 \\
+\(V_n\), \(V_{n,\app}\), \(V_{n,\drive}\)가 구분되는가 & 통과 \\
+\(\xi_j\)가 방전 방향으로 증가하도록 정의되었는가 & 통과 \\
+\(Q_{\cell}\) 단위가 C로 고정되었는가 & 통과 \\
+장벽 분포 support가 \(g\ge0\)인가 & 통과 \\
+\(\rho_j(g)\)가 kinetic barrier 분포로 정의되는가 & 통과 \\
+분포형 rate에도 포화 처리가 있는가 & 통과 \\
+\(\epsilon_G\)가 수치 regularization으로 설명되는가 & 통과 \\
+휴지 구간에서 \(V_n(t)\) relaxation이 설명되는가 & 통과 \\
+총용량 정합 조건이 평형 진행률 기준으로 쓰였는가 & 통과 \\
+ICA/DVA가 \(Q_{\ext}\) 기준으로 정의되는가 & 통과 \\
+\bottomrule
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,1974 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{mdframed}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, pdftitle={동역학 기반 흑연 음극 ICA DVA 기본식 ver.1}, pdfauthor={OpenAI}}
+\setstretch{1.14}
+\setlength{\parskip}{0.42em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{동역학 기반 흑연 음극 ICA/DVA 기본식 ver.1}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{assumption}{가정}
+\newtheorem*{note}{설명}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\refe}{\mathrm{ref}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\erfc}{\operatorname{erfc}}
+\newcommand{\SOC}{\mathrm{SOC}}
+
+\title{\Large \textbf{리튬이온전지 흑연 음극의 동역학 기반 ICA/DVA 해석: ver.1 기본식}}
+\author{정리 문서}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+이 문서는 흑연 음극의 상변이 피크와 피크 뒤쪽 꼬리 거동을 \textbf{상변이 진행률 동역학}으로 설명하기 위한 기본식이다. 중심 변수는 각 상변이의 진행률 \(\xi_j\)이고, 피크 개형은 \(\xi_j\) 자체가 아니라 \(\dd\xi_j/\dd q\)에서 나온다. 본 문서는 이후 발열, 반응속도론, 통합 시스템, 히스테리시스 문서의 기준본으로 사용한다.
+\end{minipage}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{문서의 목적과 적용 범위}
+리튬이온전지 흑연 음극의 \(dQ/dV\) 곡선에는 graphite staging transition에 대응하는 피크가 나타난다. 실험적으로는 피크 이후 고전위 방향 꼬리가 온도와 C-rate에 따라 달라질 수 있다. 특히 꼬리가 길게 남는 경우, 상변이를 순간적인 완료 사건으로 보는 해석보다, 실제 상변이 진행률이 평형 진행률을 시간적으로 따라가는 과정으로 보는 편이 더 적절하다.
+
+본 문서의 핵심 흐름은 다음과 같다.
+\begin{equation}
+\Delta G_{\eff,j}
+\rightarrow
+k_j
+\rightarrow
+\frac{\dd\xi_j}{\dd t}
+\rightarrow
+\xi_j(q)
+\rightarrow
+\frac{\dd\xi_j}{\dd q}
+\rightarrow
+\frac{\dd Q}{\dd V},\;\frac{\dd V}{\dd Q}
+\label{eq:main_spine}
+\end{equation}
+
+여기서 \(\Delta G_{\eff,j}\)는 \(j\)번째 상변이에 대한 유효 활성화 자유에너지이고, \(k_j\)는 현재 조건에서 해당 상변이가 평형 진행률을 따라가는 속도상수이다. \(\xi_j\)는 \(j\)번째 상변이의 진행률이다.
+
+본 문서의 적용 범위는 다음이다.
+\begin{itemize}
+\item 흑연 음극의 저율 및 유한 C-rate \(dQ/dV\), \(dV/dQ\) 해석
+\item 온도 변화에 따른 상변이 피크와 꼬리 변화 해석
+\item OCV 기준 모델과 0.2C 기준 응용 모델의 연결
+\item 후속 발열 및 반응속도론 확장을 위한 기본 진행률 모델 수립
+\end{itemize}
+
+\section{공통 컨벤션}
+\subsection{기호 정의}
+\begin{longtable}{p{0.18\textwidth}p{0.34\textwidth}p{0.40\textwidth}}
+\toprule
+기호 & 의미 & 해석상 역할 \\
+\midrule
+\endhead
+\(q\) & 방전 진행 좌표 & \(q=Q_{\dis}/Q_{\cell}\). 방전 시작 0, 방전 종료 1 \\
+\(\SOC_{\cell}\) & 전체 셀 충전 상태 & 대략 \(q=1-\SOC_{\cell}\) \\
+\(V_n\) & 음극 전위 & Li/Li\(^+\) 기준 음극 전위 \\
+\(V_{n,\OCV}\) & 음극 OCV 또는 준평형 전위 & 평형 진행률 \(\xi_{j,\eq}\)의 기준 \\
+\(V_{n,\app}\) & apparent 음극 전위 & 과전압 또는 분극 효과가 포함된 전위 \\
+\(V_{n,0.2C}\) & 0.2C 기준 음극 전위 & 실험적 기준 전위 \\
+\(I\) & 전류 크기 & 본문에서 \(|I|\)는 양의 크기 \\
+\(s_I\) & 전류 방향 부호 & 방전 기준에서 보통 \(+1\) \\
+\(R_n(q,T)\) & 음극 유효 저항 또는 분극 계수 & 전위축 왜곡과 비가역 열에 사용 \\
+\(j\) & 상변이 번호 & 흑연 effective staging transition index \\
+\(N_p\) & 피크 수 & 보통 3 또는 4 \\
+\(U_j(T)\) & \(j\)번째 상변이 대표 전위 & \(\xi_{j,\eq}\)의 중심 전위 \\
+\(w_j(T)\) & 평형 전이 폭 & \(\xi_{j,\eq}\)의 완만함 \\
+\(\xi_j\) & 실제 상변이 진행률 & 0이면 미진행, 1이면 완료 \\
+\(\xi_{j,\eq}\) & 평형 상변이 진행률 & 현재 준평형 전위에서 도달해야 할 목표값 \\
+\(\Delta H_{a,j}\) & 활성화 엔탈피 & 장벽의 엔탈피성 항 \\
+\(\Delta S_{a,j}\) & 활성화 엔트로피 & 장벽의 엔트로피성 보정 \\
+\(\Delta G_{a,j}\) & 고유 활성화 깁스 자유에너지 & \(\Delta H_{a,j}-T\Delta S_{a,j}\) \\
+\(\mathcal A_j\) & 반응 친화도 또는 구동력 & 전위가 상변이를 보조하는 에너지 척도 \\
+\(\chi_j\) & 구동력 결합 계수 & \(\mathcal A_j\)가 장벽을 낮추는 비율 \\
+\(\Delta G_{\eff,j}\) & 유효 활성화 자유에너지 & 현재 조건에서 남아 있는 장벽 \\
+\(\nu_j\) & 시도 빈도 또는 prefactor & 속도상수 앞 계수 \\
+\(k_j\) & 상변이 완화 속도상수 & \(\xi_j\)가 \(\xi_{j,\eq}\)를 따라가는 속도 \\
+\(Q_{j,\tot}\) & \(j\)번째 상변이 용량 & \(j\)번째 ICA 피크 면적과 연결 \\
+\(\rho_j(g)\) & 장벽 분포 & 서로 다른 domain의 장벽 분포 \\
+\(g\) & 장벽 dummy variable & 분포 적분용 변수 \\
+\bottomrule
+\end{longtable}
+
+\subsection{전류와 전위 부호}
+방전 진행 좌표 \(q\)는 방전량을 기준으로 증가한다. 본문에서는 방전 중 음극이 탈리튬화되며 음극 전위가 증가하는 방향을 기본 직관으로 둔다. C-rate나 충전 branch까지 확장할 때는 부호 계수 \(s_I\)와 상변이 방향 계수 \(s_{\phi,j}\)를 명시한다.
+
+\begin{equation}
+V_{n,\app}=V_{n,\OCV}+s_IIR_n(q,T)
+\label{eq:Vapp_general}
+\end{equation}
+
+방전 조건에서 전류 크기 \(I>0\)를 쓰고 음극 전위가 증가하는 convention을 쓰면 보통 \(s_I=+1\)이다.
+
+\section{흑연 staging과 effective transition index}
+흑연 음극은 리튬 함량에 따라 여러 staging 상태를 거친다. 실제 구조는 Stage 1L, Stage 4, Stage 3, Stage 2L, Stage 2, Stage 1처럼 세분될 수 있으나, full cell 또는 분리된 음극 ICA에서는 모든 단계가 완전히 분리되지 않을 수 있다. 따라서 실험 피팅에서는 관찰 가능한 피크 수에 맞추어 effective transition index \(j\)를 둔다.
+
+\begin{longtable}{p{0.12\textwidth}p{0.32\textwidth}p{0.46\textwidth}}
+\toprule
+\(j\) & effective transition 예시 & ICA/DVA 해석 \\
+\midrule
+\endhead
+1 & Stage I \(\leftrightarrow\) Stage II 계열 & 낮은 음극 전위 영역의 dense stage 변화 \\
+2 & Stage II \(\leftrightarrow\) Stage 2L 계열 & dense phase와 liquid-like phase의 전환 \\
+3 & Stage 2L \(\leftrightarrow\) Stage III/IV 계열 & 중간 staging 변화 \\
+4 & dilute/high-stage 계열 & 고전위 쪽 잔류 상변이 또는 완만한 staging 변화 \\
+\bottomrule
+\end{longtable}
+
+이 표는 고정된 phase assignment가 아니라, 피팅을 위한 effective 분해이다. 실제 전위 위치와 피크 대응은 셀 화학, 양음극 분리 방식, 충방전 방향, 온도, C-rate에 따라 달라질 수 있다.
+
+\section{전위 모델: OCV 기준과 0.2C 기준}
+\subsection{OCV 기준 일반식}
+음극 apparent 전위는 준평형 전위와 유효 분극 항의 합으로 둔다.
+\begin{equation}
+V_{n,\app}(q,T,I)=V_{n,\OCV}(q,T)+s_IIR_n(q,T)
+\label{eq:OCV_voltage_model}
+\end{equation}
+여기서 \(R_n(q,T)\)는 순수 ohmic resistance만이 아니라, 전하이동 저항, 농도분극, 확산분극, 상변이 지연 효과가 축약된 유효 분극 계수일 수 있다.
+
+\subsection{0.2C 기준 응용식}
+실제 OCV 측정이 어렵거나 시간이 긴 경우, 0.2C 음극 전위를 기준 곡선으로 사용할 수 있다. 0.2C 기준 전위는 다음과 같이 근사한다.
+\begin{equation}
+V_{n,0.2C}(q,T)\approx V_{n,\OCV}(q,T)+s_II_{0.2C}R_n(q,T)
+\label{eq:V02_relation}
+\end{equation}
+따라서 임의 전류 \(I\)에서 apparent 전위는
+\begin{equation}
+V_{n,\app}(q,T,I)=V_{n,0.2C}(q,T)+s_I\left(I-I_{0.2C}\right)R_n(q,T)
+\label{eq:V02_app}
+\end{equation}
+이다. 식 \eqref{eq:V02_relation}을 식 \eqref{eq:V02_app}에 넣으면 식 \eqref{eq:OCV_voltage_model}로 돌아간다.
+
+\section{평형 진행률 \texorpdfstring{\(\xi_{j,\eq}\)}{xi_eq}}
+상변이 \(j\)의 평형 진행률은 현재 준평형 음극 전위에서 그 상변이가 어느 정도 진행되어야 하는지를 나타낸다. 가장 중요한 점은, 평형 진행률은 과전압이 포함된 apparent 전위가 아니라 \(V_{n,\OCV}\)를 기준으로 정의한다는 것이다.
+
+\begin{equation}
+\boxed{
+\xi_{j,\eq}(q,T)=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+}
+\label{eq:xi_eq_basis}
+\end{equation}
+
+\subsection{Logistic 표현}
+피팅이 쉽고 직관적인 표현은 logistic 함수이다.
+\begin{equation}
+\xi_{j,\eq}(q,T)=\frac{1}{1+\exp\left[-\dfrac{V_{n,\OCV}(q,T)-U_j(T)}{w_j(T)}\right]}
+\label{eq:xi_eq_logistic}
+\end{equation}
+
+\subsection{Erf 표현}
+장벽 또는 전이 중심이 가우시안 분포처럼 퍼져 있다고 볼 때는 erf 표현이 유용하다.
+\begin{equation}
+\xi_{j,\eq}(q,T)=\frac{1}{2}\left[1+\operatorname{erf}\left(\frac{V_{n,\OCV}(q,T)-U_j(T)}{\sqrt{2}w_j(T)}\right)\right]
+\label{eq:xi_eq_erf}
+\end{equation}
+
+\subsection{평형 피크와 실제 피크}
+저율, 고온, 충분한 relaxation 조건에서는 \(\xi_j\approx\xi_{j,\eq}\)이고, 피크는 \(\dd\xi_{j,\eq}/\dd V_{n,\OCV}\)에 가깝다. 그러나 유한 C-rate 또는 낮은 온도에서는 \(\xi_j\)가 \(\xi_{j,\eq}\)를 늦게 따라가며, 그 지연이 피크 broadening과 tail을 만든다.
+
+\section{유효 장벽과 상변이 속도상수}
+\subsection{고유 활성화 자유에너지}
+상변이 \(j\)에 대해 고유 활성화 깁스 자유에너지는
+\begin{equation}
+\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}
+\label{eq:Ga_def}
+\end{equation}
+로 둔다.
+
+\subsection{전위 보조 구동력}
+단순 전위 보조형에서는 반응 친화도 또는 구동력을 다음처럼 둔다.
+\begin{equation}
+\mathcal A_j(q,T,I)=s_{\phi,j}F\left[V_{n,\app}(q,T,I)-U_j(T)\right]
+\label{eq:A_simple}
+\end{equation}
+여기서 \(s_{\phi,j}\)는 해당 상변이 방향에서 전위 증가가 상변이를 보조하는지 억제하는지 나타내는 부호이다.
+
+\subsection{유효 장벽}
+전위 보조를 반영한 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}(q,T,I)=\Delta G_{a,j}(T)-\chi_j\mathcal A_j(q,T,I)
+\label{eq:Geff}
+\end{equation}
+이다.
+
+\subsection{속도상수}
+상변이 진행률이 평형 진행률을 따라가는 속도상수는
+\begin{equation}
+k_j(q,T,I)=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}(q,T,I)}{RT}\right]
+\label{eq:k_basic}
+\end{equation}
+로 둔다.
+
+\subsection{속도 폭주 방지}
+식 \eqref{eq:k_basic}은 reduced-order 식이므로 강한 구동력에서 무리하게 외삽하면 \(k_j\)가 비현실적으로 커질 수 있다. 따라서 실제 피팅에서는 다음 중 하나를 둔다.
+
+\textbf{방법 A: 유효 장벽의 양수부 사용}
+\begin{equation}
+\Delta G_{\eff,j}^{+}=\max\left[\Delta G_{\eff,j},0\right]
+\end{equation}
+\begin{equation}
+k_j=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right]
+\end{equation}
+
+\textbf{방법 B: 속도상수 최대값 사용}
+\begin{equation}
+k_j=\min\left[\nu_j(T)\exp\left(-\frac{\Delta G_{\eff,j}}{RT}\right),k_{j,\max}\right]
+\end{equation}
+
+\section{상변이 진행률 동역학}
+\subsection{시간 영역 식}
+실제 진행률 \(\xi_j\)는 평형 진행률 \(\xi_{j,\eq}\)를 유한 속도로 따라간다고 둔다.
+\begin{equation}
+\boxed{
+\frac{\dd\xi_j}{\dd t}=k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+}
+\label{eq:xi_ode_t}
+\end{equation}
+이 식은 tail을 자연스럽게 만든다. \(k_j\)가 크면 빠르게 따라가고, 작으면 뒤처진다.
+
+\subsection{방전 진행 좌표 식}
+정전류 조건에서
+\begin{equation}
+\frac{\dd q}{\dd t}=\frac{|I|}{Q_{\cell}}
+\end{equation}
+이므로,
+\begin{equation}
+\boxed{
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}}{|I|}k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+}
+\label{eq:xi_ode_q}
+\end{equation}
+이다.
+
+\subsection{해석}
+식 \eqref{eq:xi_ode_q}에서 C-rate 효과는 두 경로로 들어간다.
+\begin{enumerate}[label=\arabic*)]
+\item \(Q_{\cell}/|I|\): 전류가 커지면 같은 \(q\) 구간에 머무는 시간이 짧아진다.
+\item \(k_j(q,T,I)\): 전류가 커지면 \(V_{n,\app}\)와 \(\mathcal A_j\)가 바뀌고, 그 결과 속도상수가 바뀐다.
+\end{enumerate}
+
+온도 효과는 \(RT\), \(\Delta G_{a,j}(T)\), \(\nu_j(T)\), \(V_{n,\OCV}(q,T)\), \(R_n(q,T)\), \(w_j(T)\)에 동시에 들어갈 수 있다.
+
+\section{장벽 분포 평균 동역학}
+긴 tail을 더 잘 표현하려면 하나의 장벽이 아니라 장벽 분포를 둔다. 그러나 이때도 특정 장벽 이하가 한 번에 모두 반응한다고 보지 않는다. 각 장벽 집단이 자기 속도로 평형 진행률을 따라간다고 본다.
+
+\subsection{장벽별 진행률}
+장벽 \(g\)를 가진 domain의 속도상수는
+\begin{equation}
+k_j(g,q,T,I)=\nu_j(T)\exp\left[-\frac{g-\chi_j\mathcal A_j(q,T,I)}{RT}\right]
+\label{eq:k_g}
+\end{equation}
+이다.
+
+해당 집단의 진행률은
+\begin{equation}
+\frac{\dd\xi_j(g,q)}{\dd q}=\frac{Q_{\cell}}{|I|}k_j(g,q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j(g,q)\right]
+\label{eq:xi_g_ode}
+\end{equation}
+을 따른다.
+
+\subsection{분포 평균}
+전체 진행률은
+\begin{equation}
+\boxed{
+\xi_j(q)=\int_{-\infty}^{\infty}\rho_j(g)\xi_j(g,q)\,\dd g
+}
+\label{eq:xi_distribution}
+\end{equation}
+이다.
+
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd\xi_j}{\dd q}=\int_{-\infty}^{\infty}\rho_j(g)\frac{\dd\xi_j(g,q)}{\dd q}\,\dd g
+}
+\label{eq:dxi_distribution}
+\end{equation}
+이다.
+
+이 구조에서는 고장벽 집단이 천천히 따라가므로 피크 뒤쪽 꼬리가 자연스럽게 나타난다. 온도가 높아지면 \(RT\)와 \(\nu_j(T)\) 효과로 고장벽 집단도 더 빠르게 따라가며 꼬리가 짧아질 수 있다.
+
+\section{ICA와 DVA 유도}
+\subsection{용량식}
+전체 음극 용량은 배경 항과 상변이 용량의 합으로 둔다.
+\begin{equation}
+Q_n(q)=Q_{\bg}(q)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j(q)
+\label{eq:Qn}
+\end{equation}
+따라서
+\begin{equation}
+\frac{\dd Q_n}{\dd q}=\frac{\dd Q_{\bg}}{\dd q}+\sum_{j=1}^{N_p}Q_{j,\tot}\frac{\dd\xi_j}{\dd q}
+\label{eq:dQdq}
+\end{equation}
+이다.
+
+\subsection{전위 미분}
+OCV 기준 전위식 \eqref{eq:OCV_voltage_model}을 쓰면
+\begin{equation}
+\frac{\dd V_{n,\app}}{\dd q}=\frac{\dd V_{n,\OCV}}{\dd q}+s_II\frac{\dd R_n(q,T)}{\dd q}
+\label{eq:dVdq}
+\end{equation}
+이다. 온도가 \(q\)에 따라 변하면 추가로 \(\partial V/\partial T\) 및 \(\partial R/\partial T\) 항이 들어간다. ver.1에서는 등온 또는 온도 제어 조건을 기본으로 둔다.
+
+\subsection{ICA}
+매개변수 \(q\)를 이용하면
+\begin{equation}
+\boxed{
+\frac{\dd Q_n}{\dd V_{n,\app}}=\frac{\dfrac{\dd Q_n}{\dd q}}{\dfrac{\dd V_{n,\app}}{\dd q}}
+}
+\label{eq:ICA_param}
+\end{equation}
+이다. 피크 구조는 \(\dd\xi_j/\dd q\)에서 나온다.
+
+\subsection{DVA}
+DVA는
+\begin{equation}
+\boxed{
+\frac{\dd V_{n,\app}}{\dd Q_n}=\frac{\dfrac{\dd V_{n,\app}}{\dd q}}{\dfrac{\dd Q_n}{\dd q}}
+}
+\label{eq:DVA_param}
+\end{equation}
+이다.
+
+\section{C-rate 증가와 피크 평탄화}
+C-rate가 증가하면 두 효과가 동시에 나타난다.
+
+\begin{enumerate}[label=\arabic*)]
+\item 체류 시간 감소: 식 \eqref{eq:xi_ode_q}의 \(Q_{\cell}/|I|\)가 작아져 \(\xi_j\)가 \(\xi_{j,\eq}\)를 덜 따라간다.
+\item 전위축 왜곡: 식 \eqref{eq:dVdq}에서 \(I\dd R_n/\dd q\) 항이 커져 plateau가 기울어진다.
+\end{enumerate}
+
+따라서 고 C-rate에서는 \(\dd\xi_j/\dd q\)가 넓어지고, \(\dd V/\dd q\)가 커질 수 있다. 두 효과 모두 \(dQ/dV\) 피크를 낮추고 넓히며, \(dV/dQ\)에서는 계단성이 약해진다.
+
+\section{온도 효과가 들어가는 위치}
+온도는 다음 항목에 들어간다.
+
+\begin{longtable}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+항 & 역할 \\
+\midrule
+\endhead
+\(\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}\) & 상변이 활성화 자유에너지 자체 변화 \\
+\(RT\) & 지수항의 열적 완화 \\
+\(\nu_j(T)\) & 시도 빈도 또는 local mobility 변화 \\
+\(V_{n,\OCV}(q,T)\) & 평형 전위 및 \(\xi_{j,\eq}\) 이동 \\
+\(R_n(q,T)\) & 과전압과 전위축 왜곡 변화 \\
+\(w_j(T)\) & 평형 전이 폭 변화 \\
+\bottomrule
+\end{longtable}
+
+고온에서 tail이 짧아지는 관찰은 \(k_j\)가 증가하여 실제 진행률이 평형 진행률을 더 빠르게 따라가는 현상으로 해석한다. 반대로 낮은 온도에서는 \(k_j\)가 작아져 진행률 지연이 커지고 tail이 길어진다.
+
+\section{실용 피팅식과 동역학 모델의 관계}
+데이터 전처리나 초기값 추정에는 empirical peak function이 유용할 수 있다. 예를 들어 EMG 형태를 쓸 수 있다.
+\begin{equation}
+\frac{\dd Q}{\dd V}=B(V)+\sum_{j=1}^{N_p}A_jg_{\mathrm{EMG}}(V;\mu_j,\sigma_j,\lambda_j)
+\label{eq:EMG_empirical}
+\end{equation}
+
+여기서 EMG는 최종 물리 모델이 아니라 초기값 추정 또는 비교 모델이다.
+
+\begin{longtable}{p{0.20\textwidth}p{0.68\textwidth}}
+\toprule
+EMG 파라미터 & 동역학 모델과의 대응 \\
+\midrule
+\endhead
+\(A_j\) & \(Q_{j,\tot}\)의 초기 추정 \\
+\(\mu_j\) & \(U_j\), 전위축 왜곡, 동적 지연의 결과 \\
+\(\sigma_j\) & \(w_j\), OCV 불균일성, 도메인 분포 \\
+\(\lambda_j\) & \(k_j^{-1}\), 장벽 분포, 잔류 relaxation tail의 복합 결과 \\
+\bottomrule
+\end{longtable}
+
+\section{피팅 절차}
+권장 절차는 다음이다.
+
+\begin{enumerate}[label=\arabic*)]
+\item 저율 또는 0.2C 음극 전위 곡선에서 \(V_{n,\OCV}\) 또는 \(V_{n,0.2C}\) 기준을 정한다.
+\item 저율 ICA에서 \(U_j\), \(w_j\), \(Q_{j,\tot}\) 초기값을 잡는다.
+\item pulse, current interrupt, 또는 rate shift로 \(R_n(q,T)\)를 추정한다.
+\item 유한 C-rate tail과 피크 지연을 이용해 \(k_j(T,I,q)\) 또는 \(\Delta G_{a,j},\chi_j,\nu_j\)를 추정한다.
+\item tail이 단일 \(k_j\)로 설명되지 않으면 장벽 분포 \(\rho_j(g)\)를 도입한다.
+\item 전압, ICA, DVA를 동시에 비교한다.
+\end{enumerate}
+
+\section{목적 함수와 정규화}
+동시 피팅 목적 함수의 기본형은 다음과 같다.
+\begin{align}
+\mathcal L
+=&\;w_V\sum_i\left[V_{\mathrm{model}}(q_i)-V_{\mathrm{data}}(q_i)\right]^2 \\
+&+w_{\mathrm{ICA}}\sum_i\left[\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{model},i}-\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{data},i}\right]^2 \\
+&+w_{\mathrm{DVA}}\sum_i\left[\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{model},i}-\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{data},i}\right]^2
++\mathcal R_{\mathrm{reg}}.
+\end{align}
+
+정규화 항은 예를 들어
+\begin{equation}
+\mathcal R_{\mathrm{reg}}=\lambda_R\int\left(\frac{\dd^2R_n}{\dd q^2}\right)^2\dd q+\lambda_k\sum_j\int\left(\frac{\dd^2\ln k_j}{\dd q^2}\right)^2\dd q
+\end{equation}
+처럼 둘 수 있다.
+
+\section{식별성 및 제약}
+피팅에서 특히 주의해야 할 상관성은 다음이다.
+
+\begin{longtable}{p{0.30\textwidth}p{0.58\textwidth}}
+\toprule
+상관되는 파라미터 & 주의점 \\
+\midrule
+\endhead
+\(\nu_j\), \(\Delta G_{a,j}\) & 둘 다 \(k_j\)의 크기를 바꾸므로 동시에 자유롭게 두면 불안정 \\
+\(\chi_j\), \(R_n(q,T)\) & 전위 보조와 과전압이 모두 피크 shift를 만들 수 있음 \\
+\(w_j\), \(k_j\) & 평형 전이 폭과 동적 지연이 모두 peak broadening을 만듦 \\
+\(Q_{j,\tot}\), \(\xi_j\) 초기값 & 피크 면적과 진행률 offset이 섞일 수 있음 \\
+\(\rho_j(g)\), \(\nu_j(T)\) & tail 길이를 둘 다 설명할 수 있음 \\
+\bottomrule
+\end{longtable}
+
+권장 제약은 다음이다.
+\begin{itemize}
+\item \(Q_{j,\tot}\)은 저율 ICA 면적으로 먼저 제한한다.
+\item \(U_j,w_j\)는 저율 또는 0.2C 기준에서 먼저 제한한다.
+\item \(R_n(q,T)\)는 가능하면 독립 측정값으로 제한한다.
+\item \(\chi_j\)는 처음에는 bounded 또는 고정한다.
+\item 장벽 분포 \(\rho_j(g)\)는 단일 \(k_j\) 모델이 실패할 때만 도입한다.
+\end{itemize}
+
+\section{모델 수준 선택표}
+\begin{longtable}{p{0.14\textwidth}p{0.34\textwidth}p{0.40\textwidth}}
+\toprule
+수준 & 모델 & 목적 \\
+\midrule
+\endhead
+Level 0 & EMG 등 empirical peak fit & 초기값 및 비교용 \\
+Level 1 & 단일 \(k_j\) 완화식 & 기본 tail 및 온도 의존성 해석 \\
+Level 2 & 장벽 분포 평균 \(\rho_j(g)\) & 긴 tail과 잔류 진행 해석 \\
+Level 3 & forward/backward rate & 충방전 비대칭 확장 \\
+Level 4 & 구조 기억 변수 & 히스테리시스 확장 \\
+Level 5 & 열 결합 & 발열 및 온도 되먹임 확장 \\
+\bottomrule
+\end{longtable}
+
+\section{ver.2로 전달되는 기준식}
+후속 발열 문서에서 사용할 기준식은 다음이다.
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}}{|I|}k_j\left[\xi_{j,\eq}-\xi_j\right]
+\end{equation}
+
+\begin{equation}
+\frac{\dd Q_n}{\dd q}=\frac{\dd Q_{\bg}}{\dd q}+\sum_jQ_{j,\tot}\frac{\dd\xi_j}{\dd q}
+\end{equation}
+
+\begin{equation}
+\frac{\dd Q_n}{\dd V_{n,\app}}=\frac{\dd Q_n/\dd q}{\dd V_{n,\app}/\dd q}
+\end{equation}
+
+발열 문서에서는 \(\dd\xi_j/\dd q\)를 가역 열 basis로 사용하되, 이는 열역학 항등식이 아니라 상변이 기반 reduced-order basis expansion임을 명시해야 한다.
+
+\section{검수 체크리스트}
+\begin{longtable}{p{0.70\textwidth}p{0.15\textwidth}}
+\toprule
+항목 & 상태 \\
+\midrule
+\endhead
+\(\xi_{j,\eq}\)는 \(V_{n,\OCV}\) 기준으로 정의 & 확인 \\
+\(k_j\)는 \(V_{n,\app}\) 또는 \(\mathcal A_j\)를 통해 구동력 반영 & 확인 \\
+장벽 분포는 동역학 평균으로만 사용 & 확인 \\
+ICA/DVA는 매개변수 \(q\) 미분으로 계산 & 확인 \\
+0.2C 기준식은 OCV 기준식의 재표현으로 정리 & 확인 \\
+\bottomrule
+\end{longtable}
+
+\section{참고문헌}
+\begin{enumerate}
+\item J. Asenbauer, T. Eisenmann, M. Kuenzel, A. Kazzazi, Z. Chen, D. Bresser, ``The success story of graphite as a lithium-ion anode material -- fundamentals, remaining challenges, and recent developments including silicon (oxide) composites,'' \emph{Sustainable Energy \& Fuels}, 2020, 4, 5387--5416.
+\item M. Dubarry, D. Ansean, ``Best practices for incremental capacity analysis,'' \emph{Frontiers in Energy Research}, 2022, 10, 1023555.
+\item A. Fly, R. Chen, ``Rate dependency of incremental capacity analysis (dQ/dV) as a diagnostic tool for lithium-ion batteries,'' \emph{Journal of Energy Storage}, 2020, 29, 101329.
+\item Y. Guo, R. B. Smith, Z. Yu, J. Kim, D. T. Cogswell, K. Xu, L. F. Kourkoutis, M. Z. Bazant, L. E. Brus, ``Li Intercalation into Graphite: Direct Optical Imaging and Cahn-Hilliard Reaction Dynamics,'' \emph{The Journal of Physical Chemistry Letters}, 2016, 7, 2151--2156.
+\item M. Rykner, M. Chandesris, ``Free Energy Model for Lithium Intercalation in Graphite: Focusing on the Coupling with Graphene Stacking Sequence,'' \emph{The Journal of Physical Chemistry C}, 2022, 126, 11425--11437.
+\end{enumerate}
+
+\clearpage
+\fancyhead[L]{동역학 기반 흑연 음극 ICA/DVA 발열 계층 ver.2}
+\section{ver.2 발열 근사 및 피팅 계층}
+본 절부터는 ver.1의 동역학 기반 ICA/DVA 기본식을 그대로 유지한 상태에서 발열 해석 계층을 추가한다. 앞 절의 컨벤션, 전위 기준, 진행률 정의, 상변이 속도식은 변경하지 않는다. 발열 계층은 ver.1에서 얻은 \(\xi_j\), \(\dd\xi_j/\dd q\), \(R_n(q,T)\), \(V_{n,\app}\)를 입력으로 받아 비가역 열과 가역 열을 근사하는 단계이다.
+
+\subsection{ver.1에서 전달받는 기준식}
+ver.2에서 사용하는 핵심 입력은 다음 네 묶음이다.
+
+\begin{equation}
+V_{n,\app}(q,T,I)=V_{n,\OCV}(q,T)+s_IIR_n(q,T)
+\label{eq:v2_Vapp_from_v1}
+\end{equation}
+\begin{equation}
+\xi_{j,\eq}(q,T)=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+\label{eq:v2_xieq_from_v1}
+\end{equation}
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}}{|I|}k_j(q,T,I)
+\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+\label{eq:v2_xi_dyn_from_v1}
+\end{equation}
+\begin{equation}
+Q_n(q)=Q_{\bg}(q)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j(q)
+\label{eq:v2_Q_from_v1}
+\end{equation}
+
+장벽 분포를 사용하는 경우에도 ver.1의 정의를 그대로 사용한다.
+\begin{equation}
+\xi_j(q)=\int_{-\infty}^{\infty}\rho_j(g)\xi_j(g,q)\,\dd g
+\label{eq:v2_xi_dist_from_v1}
+\end{equation}
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\int_{-\infty}^{\infty}\rho_j(g)\frac{\dd\xi_j(g,q)}{\dd q}\,\dd g
+\label{eq:v2_dxi_dist_from_v1}
+\end{equation}
+
+\begin{note}
+ver.2의 모든 발열식은 \(\xi_j\)의 정의를 새로 만들지 않는다. 발열식은 ver.1의 진행률 동역학이 만든 \(\dd\xi_j/\dd q\)를 열 발생의 basis로 사용하는 계층이다.
+\end{note}
+
+\section{열 발생 항의 분해}
+리튬이온전지의 단순 lumped heat model에서는 열 발생률을 비가역 열과 가역 열로 나누어 쓴다.
+\begin{equation}
+\dot Q_{\mathrm{heat}}=\dot Q_{\mathrm{irr}}+\dot Q_{\mathrm{rev}}.
+\label{eq:v2_heat_decomp}
+\end{equation}
+여기서 \(\dot Q_{\mathrm{irr}}\)는 저항, 분극, 확산 지연, 상변이 지연 등으로 생기는 손실열을 뜻하고, \(\dot Q_{\mathrm{rev}}\)는 전극 반응의 엔트로피 변화와 연결되는 가역 열을 뜻한다.
+
+본 문서에서는 음극 해석을 중심으로 하므로 음극 기여를 우선 정리한다. full cell 열 해석에서는 양극, 전해질, 집전체, 탭, 셀 외부 열전달이 추가로 필요하다.
+
+\subsection{부호 convention}
+본문에서는 열 발생률의 크기 해석을 기본으로 한다. 즉 비가역 열은 양의 열 발생으로 둔다. 가역 열은 충전과 방전 방향에 따라 발열 또는 흡열이 될 수 있으므로, 부호를 명확히 하려면 signed current convention을 별도로 정해야 한다.
+
+실험 fitting에서는 다음과 같이 두 가지 방식 중 하나를 선택한다.
+\begin{enumerate}[label=\arabic*)]
+\item \textbf{부호 포함 모델}: signed current \(I_s\)를 사용하여 \(I_sT(\partial U/\partial T)\) 꼴로 쓴다.
+\item \textbf{크기 기반 모델}: \(|I|\)와 별도 부호 계수 \(s_{\mathrm{rev}}\)를 사용한다.
+\end{enumerate}
+
+본 절에서는 기존 ver.1과의 일관성을 위해 전류 크기 \(|I|\)를 기본으로 쓰고, 가역 열 부호는 \(s_{\mathrm{rev},n}\)에 흡수한다.
+
+\section{비가역 열 근사}
+\subsection{유효 과전압 기반 표현}
+음극의 apparent 전위와 준평형 전위 차이를 음극 유효 과전압으로 둔다.
+\begin{equation}
+\eta_{\eff,n}(q,T,I)=V_{n,\app}(q,T,I)-V_{n,\OCV}(q,T).
+\label{eq:v2_eta_eff}
+\end{equation}
+식 \eqref{eq:v2_Vapp_from_v1}을 사용하면
+\begin{equation}
+\eta_{\eff,n}=s_IIR_n(q,T).
+\label{eq:v2_eta_eff_R}
+\end{equation}
+
+비가역 열의 reduced 표현은
+\begin{equation}
+\dot Q_{\mathrm{irr},n}\approx |I|\,|\eta_{\eff,n}|
+\label{eq:v2_irr_eta_abs}
+\end{equation}
+또는 방전 크기 convention에서
+\begin{equation}
+\boxed{
+\dot Q_{\mathrm{irr},n}\approx I^2R_n(q,T)
+}
+\label{eq:v2_irr_I2R}
+\end{equation}
+이다.
+
+\begin{note}
+식 \eqref{eq:v2_irr_I2R}에서 \(R_n\)은 반드시 순수 ohmic 저항만을 뜻하지 않는다. 현재 문서의 \(R_n(q,T)\)는 전하이동, 확산분극, 농도분극, 접촉저항, phase delay가 섞인 유효 분극 계수일 수 있다. 따라서 이 항은 엄밀한 의미의 Joule heat만이 아니라 \(I\eta_{\eff}\)를 단순화한 표현이다.
+\end{note}
+
+\subsection{성분 분해형}
+필요하면 비가역 열을 다음처럼 분해한다.
+\begin{equation}
+\eta_{\eff,n}=\eta_{\Omega,n}+\eta_{\mathrm{ct},n}+\eta_{\mathrm{diff},n}+\eta_{\mathrm{phase},n}.
+\label{eq:v2_eta_components}
+\end{equation}
+그러면
+\begin{equation}
+\dot Q_{\mathrm{irr},n}\approx |I|\left(|\eta_{\Omega,n}|+|\eta_{\mathrm{ct},n}|+|\eta_{\mathrm{diff},n}|+|\eta_{\mathrm{phase},n}|\right)
+\label{eq:v2_irr_components_abs}
+\end{equation}
+처럼 쓸 수 있다. 다만 이 분해는 실험적으로 각 항을 독립 측정하거나 강한 제약을 둘 때만 안정적이다.
+
+\section{가역 열의 기본식}
+전극의 가역 열은 entropy coefficient와 연결된다. 전극 전위 \(U\)에 대해 일반적으로
+\begin{equation}
+\dot Q_{\mathrm{rev}}=I_sT\left(\frac{\partial U}{\partial T}\right)
+\label{eq:v2_rev_signed_general}
+\end{equation}
+꼴로 쓸 수 있다. 여기서 \(I_s\)는 부호가 있는 전류이다. 본 문서의 크기 기반 convention으로는
+\begin{equation}
+\dot Q_{\mathrm{rev},n}=s_{\mathrm{rev},n}|I|T h_n(q,T)
+\label{eq:v2_rev_hn}
+\end{equation}
+로 쓴다. 여기서
+\begin{equation}
+h_n(q,T)=\left(\frac{\partial U_n}{\partial T}\right)_q
+\label{eq:v2_hn_def}
+\end{equation}
+이다.
+
+\begin{note}
+가역 열 계산에 사용해야 하는 것은 OCV 또는 준평형 전위의 온도 미분이다. apparent 전위 \(V_{n,\app}=V_{n,\OCV}+s_IIR_n\)의 온도 미분을 그대로 넣으면 \(\partial R_n/\partial T\)에 해당하는 비가역 또는 분극성 효과가 가역 열에 섞인다.
+\end{note}
+
+\section{상변이 진행률 기반 entropy coefficient 근사}
+\subsection{상변이 몰수와 진행률}
+\(j\)번째 상변이가 담당하는 전하량은
+\begin{equation}
+Q_j(q)=Q_{j,\tot}\xi_j(q)
+\label{eq:v2_Qj_xi}
+\end{equation}
+이다. 이때 해당 상변이를 통해 이동한 리튬 몰수의 변화는
+\begin{equation}
+\dd n_j=\frac{Q_{j,\tot}}{F}\dd\xi_j
+\label{eq:v2_dn_xi}
+\end{equation}
+로 둘 수 있다.
+
+\subsection{상변이별 가역 열}
+상변이 \(j\)가 진행될 때의 유효 엔트로피 변화량을 \(\Delta S_{\mathrm{tr},j}\)라고 하자. 그러면 상변이별 가역 열은
+\begin{equation}
+\dot Q_{\mathrm{rev},j}\approx s_{\mathrm{rev},j}T\Delta S_{\mathrm{tr},j}\frac{\dd n_j}{\dd t}
+\label{eq:v2_rev_j_dn}
+\end{equation}
+로 근사할 수 있다. 식 \eqref{eq:v2_dn_xi}를 넣으면
+\begin{equation}
+\dot Q_{\mathrm{rev},j}\approx s_{\mathrm{rev},j}T\frac{\Delta S_{\mathrm{tr},j}}{F}Q_{j,\tot}\frac{\dd\xi_j}{\dd t}.
+\label{eq:v2_rev_j_dxi_dt}
+\end{equation}
+정전류 조건에서
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=\frac{|I|}{Q_{\cell}}\frac{\dd\xi_j}{\dd q}
+\end{equation}
+이므로
+\begin{equation}
+\dot Q_{\mathrm{rev},j}\approx s_{\mathrm{rev},j}|I|T\left(\frac{Q_{j,\tot}}{Q_{\cell}}\right)\left(\frac{\Delta S_{\mathrm{tr},j}}{F}\right)\frac{\dd\xi_j}{\dd q}.
+\label{eq:v2_rev_j_final}
+\end{equation}
+
+\subsection{basis expansion 형태}
+다음 기호를 정의한다.
+\begin{equation}
+w_j=\frac{Q_{j,\tot}}{Q_{\cell}},\qquad s_j=s_{\mathrm{rev},j}\frac{\Delta S_{\mathrm{tr},j}}{F}.
+\label{eq:v2_w_s_def}
+\end{equation}
+그러면 음극 entropy coefficient를 다음 basis expansion으로 근사할 수 있다.
+\begin{equation}
+\boxed{
+h_n(q,T)\approx h_{\bg}(q,T)+\sum_{j=1}^{N_p}w_js_j\frac{\dd\xi_j}{\dd q}
+}
+\label{eq:v2_entropy_basis}
+\end{equation}
+따라서 가역 열은
+\begin{equation}
+\boxed{
+\dot Q_{\mathrm{rev},n}\approx |I|T\left[h_{\bg}(q,T)+\sum_{j=1}^{N_p}w_js_j\frac{\dd\xi_j}{\dd q}\right]
+}
+\label{eq:v2_rev_basis}
+\end{equation}
+로 쓸 수 있다. 부호를 더 명확히 분리하려면 \(s_j\) 안에 부호를 포함하지 않고 별도의 branch 부호 계수를 둔다.
+
+\begin{note}
+식 \eqref{eq:v2_entropy_basis}는 열역학 항등식이 아니라 reduced-order basis expansion이다. 상변이 구간에서 entropy coefficient가 집중적으로 변한다는 가정 아래, \(\dd\xi_j/\dd q\)를 basis function으로 사용하는 피팅식이다. 따라서 \(s_j\)는 문헌값 또는 독립 측정값이 없으면 실험 발열 자료로 보정되는 유효 계수이다.
+\end{note}
+
+\section{최종 발열 근사식}
+식 \eqref{eq:v2_irr_I2R}와 식 \eqref{eq:v2_rev_basis}를 합치면 음극 중심의 reduced heat model은 다음과 같다.
+\begin{equation}
+\boxed{
+\dot Q_{\mathrm{heat},n}
+\approx
+I^2R_n(q,T)
++
+|I|T\left[h_{\bg}(q,T)+\sum_{j=1}^{N_p}w_js_j\frac{\dd\xi_j}{\dd q}\right]
+}
+\label{eq:v2_heat_final}
+\end{equation}
+여기서 \(\dd\xi_j/\dd q\)는 반드시 ver.1의 동역학 식에서 계산한다.
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}}{|I|}k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right].
+\label{eq:v2_heat_uses_dxi}
+\end{equation}
+장벽 분포를 사용하는 경우에는 식 \eqref{eq:v2_dxi_dist_from_v1}을 사용한다.
+
+\section{열 방정식과 온도 되먹임}
+셀을 lumped thermal body로 근사하면
+\begin{equation}
+C_{\mathrm{th}}\frac{\dd T}{\dd t}=\dot Q_{\mathrm{heat}}-H_{\mathrm{th}}\left(T-T_{\mathrm{amb}}\right)
+\label{eq:v2_lumped_heat}
+\end{equation}
+로 쓸 수 있다. 여기서 \(C_{\mathrm{th}}\)는 열용량, \(H_{\mathrm{th}}\)는 유효 열전달 계수, \(T_{\mathrm{amb}}\)는 주변 온도이다.
+
+온도는 다시 다음 항목들에 영향을 준다.
+\begin{itemize}
+\item \(\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}\)
+\item \(k_j(q,T,I)\)
+\item \(R_n(q,T)\)
+\item \(V_{n,\OCV}(q,T)\)
+\item \(\xi_{j,\eq}(q,T)\)
+\item \(h_n(q,T)\)
+\end{itemize}
+따라서 강한 발열 조건에서는 전압, ICA, 진행률, 발열이 서로 되먹임을 가질 수 있다.
+
+\section{가역 열과 비가역 열 분리 전략}
+발열 fitting에서 가장 어려운 점은 \(I^2R_n\) 항과 \(IT(\partial U/\partial T)\) 항을 분리하는 것이다. 두 항은 전류 의존성이 다르다.
+
+\begin{longtable}{p{0.25\textwidth}p{0.30\textwidth}p{0.35\textwidth}}
+\toprule
+항 & 전류 의존성 & 분리 전략 \\
+\midrule
+\endhead
+비가역 열 & 대체로 \(I^2\) 또는 \(|I\eta|\) & 여러 C-rate 비교, pulse 저항 측정 \\
+가역 열 & signed current에 대해 홀수 성분 & 충전/방전 비교, 저율 온도 응답 \\
+열손실 & \(T-T_{\mathrm{amb}}\) & rest cooling 구간으로 추정 \\
+\bottomrule
+\end{longtable}
+
+충전과 방전을 같은 온도와 비슷한 SOC 구간에서 비교하면, 비가역 열은 대체로 같은 부호의 발열로 남고, 가역 열은 방향에 따라 부호가 바뀌는 성분으로 분리될 수 있다. 다만 실제 셀에서는 양극 기여와 열전달 지연이 섞이므로 full cell 해석에는 추가 보정이 필요하다.
+
+\section{발열 피팅 절차}
+권장 피팅 순서는 다음이다.
+
+\begin{enumerate}[label=\arabic*)]
+\item ver.1 절차로 \(V_{n,\OCV}\), \(U_j\), \(w_j\), \(Q_{j,\tot}\), \(R_n(q,T)\), \(k_j\)를 먼저 제한한다.
+\item 전압과 ICA/DVA를 맞춘 뒤, 그 결과로 \(\xi_j(q)\)와 \(\dd\xi_j/\dd q\)를 계산한다.
+\item rest cooling 자료 또는 별도 열 실험으로 \(C_{\mathrm{th}}\), \(H_{\mathrm{th}}\)를 제한한다.
+\item 여러 C-rate 자료로 \(I^2R_n\) 항의 크기를 검증한다.
+\item 온도 응답 잔차에서 \(h_{\bg}\)와 \(s_j\)를 피팅한다.
+\item 충전/방전 자료가 있으면 가역 열의 부호 전환을 확인한다.
+\end{enumerate}
+
+\section{발열 피팅 목적 함수}
+온도 자료를 포함한 목적 함수는 다음처럼 쓸 수 있다.
+\begin{align}
+\mathcal L_{\mathrm{heat}}
+=&\;w_T\sum_i\left[T_{\mathrm{model}}(t_i)-T_{\mathrm{data}}(t_i)\right]^2 \\
+&+w_V\sum_i\left[V_{\mathrm{model}}(q_i)-V_{\mathrm{data}}(q_i)\right]^2 \\
+&+w_{\mathrm{ICA}}\sum_i\left[\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{model},i}-\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{data},i}\right]^2+\mathcal R_{\mathrm{heat}}.
+\label{eq:v2_heat_loss_function}
+\end{align}
+
+정규화 항은 예를 들어
+\begin{equation}
+\mathcal R_{\mathrm{heat}}=\lambda_h\int\left(\frac{\dd^2h_{\bg}}{\dd q^2}\right)^2\dd q+\lambda_s\sum_j s_j^2
+\label{eq:v2_heat_reg}
+\end{equation}
+처럼 둘 수 있다. \(h_{\bg}\)가 지나치게 요동하면 상변이 basis가 설명해야 할 구조를 배경항이 흡수할 수 있으므로 smoothness 제약이 필요하다.
+
+\section{발열 계층의 식별성}
+\begin{longtable}{p{0.31\textwidth}p{0.57\textwidth}}
+\toprule
+상관되는 항 & 주의점 \\
+\midrule
+\endhead
+\(R_n(q,T)\), \(H_{\mathrm{th}}\) & 열손실 계수가 잘못되면 저항열 크기가 왜곡됨 \\
+\(C_{\mathrm{th}}\), \(s_j\) & 열용량 오차는 가역 열 amplitude 오차로 이어짐 \\
+\(s_j\), \(h_{\bg}\) & 상변이 peak형 entropy와 배경 entropy가 서로 보상 가능 \\
+\(k_j\), \(s_j\) & \(d\xi_j/dq\) 폭과 amplitude가 가역 열 peak를 동시에 바꿈 \\
+양극 entropy, 음극 entropy & full cell 온도 자료만으로는 전극별 분리가 어려움 \\
+\bottomrule
+\end{longtable}
+
+따라서 발열 계수는 전압/ICA 피팅이 안정화된 뒤 마지막 단계에서 넣는 것이 좋다. 가능하면 OCV 온도 미분 또는 half-cell 자료로 \(h_n(q,T)\)의 shape를 별도로 제한한다.
+
+\section{ver.3으로 전달되는 기준식}
+ver.3 반응속도론 확장으로 전달되는 식은 다음이다.
+
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-\chi_j\mathcal A_j
+\end{equation}
+
+\begin{equation}
+k_j=\nu_j\exp\left[-\frac{\Delta G_{\eff,j}}{RT}\right]
+\end{equation}
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}}{|I|}k_j\left[\xi_{j,\eq}-\xi_j\right]
+\end{equation}
+
+\begin{equation}
+\dot Q_{\mathrm{heat},n}
+\approx
+I^2R_n(q,T)
++
+|I|T\left[h_{\bg}(q,T)+\sum_jw_js_j\frac{\dd\xi_j}{\dd q}\right]
+\end{equation}
+
+ver.3에서는 \(\mathcal A_j\)를 Butler-Volmer 과전압, 반응 친화도, forward/backward rate와 연결한다.
+
+\section{ver.2 검수 체크리스트}
+\begin{longtable}{p{0.72\textwidth}p{0.15\textwidth}}
+\toprule
+항목 & 상태 \\
+\midrule
+\endhead
+ver.1 본문 앞부분은 변경하지 않음 & 확인 \\
+ver.1의 \(\xi_j\), \(\dd\xi_j/\dd q\) 정의 유지 & 확인 \\
+발열은 \(\dd\xi_j/\dd q\)를 basis로만 사용 & 확인 \\
+가역 열과 비가역 열 구분 명시 & 확인 \\
+\(V_{n,\app}\)의 온도 미분을 가역 열에 직접 쓰지 말라는 경고 포함 & 확인 \\
+별도 확산 계층 미적용 & 확인 \\
+이전 오류 전개 계열 미사용 & 확인 \\
+\bottomrule
+\end{longtable}
+
+
+
+\newpage
+\section{ver.3 전기화학 반응속도론 계층}
+ver.3은 ver.1과 ver.2에서 확정한 진행률 동역학 spine을 유지한 상태에서, 전위 보조 구동력 \(\mathcal A_j\)를 전기화학 반응속도론과 연결한다. 여기서 새로 추가되는 내용은 \(\mathcal A_j\)의 해석, Butler-Volmer식, 저과전압 선형 근사, Tafel 근사, 교환전류밀도, forward/backward rate, 그리고 전류 분배이다.
+
+중요한 원칙은 다음과 같다.
+\begin{equation}
+\xi_{j,\eq}=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+\label{eq:v3_xieq_rule}
+\end{equation}
+평형 진행률은 OCV 또는 준평형 전위에 의해 정해진다. 반면 속도상수는 과전압과 반응 구동력을 포함한 \(\mathcal A_j\)에 의해 정해진다.
+\begin{equation}
+k_j(q,T,I)=\nu_j(T)\exp\left[-\frac{\Delta G_{a,j}(T)-\chi_j\mathcal A_j(q,T,I)}{RT}\right]
+\label{eq:v3_k_basic}
+\end{equation}
+따라서 ver.3은 평형 위치와 동역학 속도를 분리한다. 이 분리를 유지하지 않으면 과전압이 평형 위치와 속도식에 동시에 들어가서 같은 효과를 중복 반영할 수 있다.
+
+\section{전위 보조 구동력의 일반화}
+ver.1에서는 단순 전위 보조형으로 다음 식을 썼다.
+\begin{equation}
+\mathcal A_j(q,T,I)=s_{\phi,j}F\left[V_{n,\app}(q,T,I)-U_j(T)\right]
+\label{eq:v3_A_simple}
+\end{equation}
+여기서 \(s_{\phi,j}\)는 상변이 방향 부호이다. 방전 중 음극 전위 증가가 해당 상변이 진행을 돕는다면 \(s_{\phi,j}=+1\)로 둔다. 반대로 같은 전위 변화가 해당 상변이 진행을 억제한다면 \(s_{\phi,j}=-1\)로 둔다.
+
+전기화학 반응속도론 계층에서는 \(\mathcal A_j\)를 다음처럼 반응 과전압으로 표현할 수 있다.
+\begin{equation}
+\mathcal A_j(q,T,I)=F\eta_j(q,T,I)
+\label{eq:v3_A_eta}
+\end{equation}
+이때 \(\eta_j\)는 \(j\)번째 상변이 또는 삽입 반응이 느끼는 유효 과전압이다. 따라서 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-\chi_jF\eta_j
+\label{eq:v3_Geff_eta}
+\end{equation}
+가 된다.
+
+\begin{note}
+\textbf{중복 반영 방지.} \\
+\(V_{n,\app}=V_{n,\OCV}+s_IIR_n\)를 쓰는 reduced model에서는 \(R_n\) 안에 전하이동, 농도분극, 접촉저항, 확산 지연이 섞일 수 있다. 반면 Butler-Volmer식으로 \(\eta_j\)를 별도로 계산한다면, \(R_n\)에는 같은 전하이동 성분을 다시 넣지 않는 편이 안전하다. 즉, reduced model과 reaction-resolved model을 구분해서 써야 한다.
+\end{note}
+
+\section{Butler-Volmer식과 \texorpdfstring{\(\eta_j\)}{eta j}}
+전기화학 반응속도론의 대표식은 Butler-Volmer식이다. \(j\)번째 반응 또는 상변이 채널의 부분 전류밀도를 \(i_j\)라고 두면,
+\begin{equation}
+i_j=i_{0,j}(q,T)
+\left[
+\exp\left(\frac{\alpha_jF\eta_j}{RT}\right)
+-
+\exp\left(-\frac{(1-\alpha_j)F\eta_j}{RT}\right)
+\right]
+\label{eq:v3_BV_general}
+\end{equation}
+이다. 여기서 \(i_{0,j}\)는 교환전류밀도이고, \(\alpha_j\)는 transfer coefficient이다.
+
+\subsection{저과전압 선형 근사}
+\(F|\eta_j|\ll RT\)이면 지수함수를 1차로 전개할 수 있다.
+\begin{align}
+\exp\left(\frac{\alpha_jF\eta_j}{RT}\right)&\approx 1+\frac{\alpha_jF\eta_j}{RT} \\
+\exp\left(-\frac{(1-\alpha_j)F\eta_j}{RT}\right)&\approx 1-\frac{(1-\alpha_j)F\eta_j}{RT}
+\end{align}
+따라서
+\begin{equation}
+i_j\approx i_{0,j}\frac{F\eta_j}{RT}
+\label{eq:v3_low_eta}
+\end{equation}
+이고,
+\begin{equation}
+\eta_j\approx \frac{RT}{F}\frac{i_j}{i_{0,j}}
+\label{eq:v3_low_eta_inv}
+\end{equation}
+이다. 이 영역에서는 전하이동 저항을
+\begin{equation}
+R_{\mathrm{ct},j}=\frac{RT}{F i_{0,j}}
+\end{equation}
+처럼 볼 수 있다. 실제 전극 면적, specific area, electrode thickness를 포함하면 전류밀도와 총 전류 사이의 변환 계수가 추가된다.
+
+\subsection{대칭 Butler-Volmer의 역함수}
+\(\alpha_j=1/2\)이면 식 \eqref{eq:v3_BV_general}은
+\begin{equation}
+i_j=2i_{0,j}\sinh\left(\frac{F\eta_j}{2RT}\right)
+\end{equation}
+이고, 따라서
+\begin{equation}
+\eta_j=\frac{2RT}{F}\operatorname{asinh}\left(\frac{i_j}{2i_{0,j}}\right)
+\label{eq:v3_asinh_eta}
+\end{equation}
+이다. 이를 식 \eqref{eq:v3_Geff_eta}에 넣으면
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-2\chi_jRT\operatorname{asinh}\left(\frac{i_j}{2i_{0,j}}\right)
+\label{eq:v3_Geff_asinh}
+\end{equation}
+이다.
+
+\subsection{Tafel 근사}
+큰 양의 과전압에서는 역방향 항이 작아져
+\begin{equation}
+i_j\approx i_{0,j}\exp\left(\frac{\alpha_jF\eta_j}{RT}\right)
+\end{equation}
+이고,
+\begin{equation}
+\eta_j\approx \frac{RT}{\alpha_jF}\ln\left(\frac{i_j}{i_{0,j}}\right)
+\end{equation}
+이다. 반대로 큰 음의 과전압에서는
+\begin{equation}
+i_j\approx -i_{0,j}\exp\left(-\frac{(1-\alpha_j)F\eta_j}{RT}\right)
+\end{equation}
+가 된다. 이 근사는 branch 방향과 부호 convention을 명확히 둔 뒤에만 써야 한다.
+
+\section{교환전류밀도와 온도 의존성}
+교환전류밀도는 조성, 온도, 표면상태, 전해질 농도, 활성면적에 따라 변한다. reduced fitting에서는 다음처럼 분리해서 쓸 수 있다.
+\begin{equation}
+i_{0,j}(q,T)=i_{0,j,\refe}\,f_{i,j}(q)\exp\left[-\frac{E_{i,j}}{R}\left(\frac{1}{T}-\frac{1}{T_{\refe}}\right)\right]
+\label{eq:v3_i0_T}
+\end{equation}
+여기서 \(E_{i,j}>0\)이면 온도가 증가할수록 \(i_{0,j}\)는 증가한다. \(f_{i,j}(q)\)는 SOC 또는 방전 진행 좌표에 따른 활성도 함수를 의미한다.
+
+속도상수의 prefactor도 온도 의존성을 가질 수 있다.
+\begin{equation}
+\nu_j(T)=\nu_{j,\refe}\exp\left[-\frac{E_{\nu,j}}{R}\left(\frac{1}{T}-\frac{1}{T_{\refe}}\right)\right]
+\end{equation}
+이때 \(i_{0,j}\), \(\nu_j\), \(\Delta G_{a,j}\), \(\chi_j\)는 서로 강하게 상관될 수 있다. 따라서 모두 자유롭게 동시에 피팅하면 식별성이 나빠진다.
+
+\section{forward/backward rate 표현}
+상변이는 본질적으로 가역 과정이다. 따라서 더 정교한 표현은 진행 방향 rate와 역방향 rate를 나누는 것이다.
+위 식의 첫 항은 아직 전환되지 않은 비율 \((1-\xi_j)\)이 진행 방향으로 변하는 속도이고, 둘째 항은 이미 전환된 비율 \(\xi_j\)이 역방향으로 돌아가는 속도이다. 계산식은 아래와 같이 쓴다.
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^+(1-\xi_j)-k_j^-\xi_j
+\label{eq:v3_forward_backward}
+\end{equation}
+
+진행 방향과 역방향 rate는 예를 들어 다음처럼 쓸 수 있다.
+\begin{align}
+k_j^+&=\nu_j^+\exp\left[-\frac{\Delta G_{a,j}^+-\chi_j^+\mathcal A_j}{RT}\right] \\
+k_j^-&=\nu_j^-\exp\left[-\frac{\Delta G_{a,j}^-+\chi_j^-\mathcal A_j}{RT}\right]
+\end{align}
+이 식에서는 \(\mathcal A_j\)가 진행 방향을 도우면 역방향은 상대적으로 억제된다고 본다.
+
+식 \eqref{eq:v3_forward_backward}은 relaxation form으로 다시 쓸 수 있다.
+\begin{align}
+\frac{\dd\xi_j}{\dd t}
+&=k_j^+-(k_j^++k_j^-)\xi_j \\
+&=(k_j^++k_j^-)\left[\frac{k_j^+}{k_j^++k_j^-}-\xi_j\right]
+\end{align}
+따라서
+\begin{equation}
+\xi_{j,\eq}=\frac{k_j^+}{k_j^++k_j^-}
+\label{eq:v3_xieq_from_rates}
+\end{equation}
+이고,
+\begin{equation}
+k_{j,\mathrm{relax}}=k_j^++k_j^-
+\label{eq:v3_k_relax}
+\end{equation}
+이다. 즉 ver.1의 relaxation model은 forward/backward rate model의 축약형으로 해석할 수 있다.
+
+\section{전류 분배와 상변이 전류}
+상변이 진행률은 용량 변화와 연결된다. \(j\)번째 상변이 용량이 \(Q_{j,\tot}\)이면,
+\begin{equation}
+I_j(t)=Q_{j,\tot}\frac{\dd\xi_j}{\dd t}
+\label{eq:v3_Ij}
+\end{equation}
+로 쓸 수 있다. 전체 전류는 배경 반응과 여러 상변이 채널의 합으로 근사할 수 있다.
+\begin{equation}
+I(t)=I_{\bg}(t)+\sum_{j=1}^{N_p}I_j(t)
+\label{eq:v3_current_partition}
+\end{equation}
+이 식은 전류가 어느 상변이 채널에 얼마나 배분되는지 해석하는 데 유용하다. 다만 실제 전극에서는 전류 분배, 전극 두께 방향 농도구배, 양극 반응, 전해질 분극이 함께 존재하므로, 식 \eqref{eq:v3_current_partition}은 전극 평균 reduced model로 보아야 한다.
+
+\section{reaction-resolved model과 reduced model의 선택}
+전기화학 반응속도론을 넣을 때는 두 가지 층을 구분한다.
+
+\begin{longtable}{p{0.25\textwidth}p{0.33\textwidth}p{0.32\textwidth}}
+\toprule
+모델 & 구동력 표현 & 사용 상황 \\
+\midrule
+\endhead
+Reduced voltage model & \(\mathcal A_j=s_{\phi,j}F(V_{n,\app}-U_j)\) & 전압, ICA, DVA를 적은 파라미터로 맞출 때 \\
+Reaction-resolved model & \(\mathcal A_j=F\eta_j\), \(\eta_j\)는 Butler-Volmer에서 계산 & 반응속도론 해석, 전류 분배, \(i_0\) 해석이 필요할 때 \\
+Hybrid model & ohmic 및 농도분극은 \(R_n\), 전하이동은 \(\eta_j\)로 분리 & 데이터가 충분하고 중복 반영을 피할 수 있을 때 \\
+\bottomrule
+\end{longtable}
+
+최종 피팅에서는 먼저 reduced voltage model을 사용하고, 잔차가 전류 방향과 온도에 체계적으로 남을 때 reaction-resolved model로 확장하는 절차가 안전하다.
+
+\section{반응속도론 계층의 식별성}
+ver.3에서 새로 들어온 파라미터는 서로 강하게 얽힐 수 있다. 아래 표는 대표적인 상관성을 정리한 것이다.
+
+\begin{longtable}{p{0.30\textwidth}p{0.42\textwidth}p{0.20\textwidth}}
+\toprule
+상관 파라미터 & 이유 & 권장 처리 \\
+\midrule
+\endhead
+\(\nu_j\), \(\Delta G_{a,j}\) & 둘 다 \(k_j\)의 절대 크기를 바꿈 & 하나 고정 또는 bounded \\
+\(\chi_j\), \(R_n(q,T)\) & 전위 보조 크기와 전위축 왜곡이 함께 피크 위치를 바꿈 & \(R_n\) 독립 측정 우선 \\
+\(i_{0,j}\), \(\eta_j\), \(\chi_j\) & BV 과전압과 장벽 보조가 같이 속도에 작용 & 단계별 피팅 \\
+\(w_j\), \(k_j\) & 평형 전이 폭과 지연이 모두 피크 폭을 바꿈 & 저율로 \(w_j\) 먼저 결정 \\
+\(Q_{j,\tot}\), \(\xi_j\) & 피크 면적과 진행률 스케일이 연결됨 & 저율 ICA 면적 활용 \\
+\bottomrule
+\end{longtable}
+
+\section{ver.3 피팅 절차}
+권장 절차는 다음과 같다.
+\begin{enumerate}[label=\arabic*)]
+\item ver.1 방식으로 \(V_{n,\OCV}\), \(U_j\), \(w_j\), \(Q_{j,\tot}\)를 먼저 정한다.
+\item ver.2 방식으로 \(R_n(q,T)\)와 발열 항을 따로 정한다.
+\item reduced voltage model로 \(k_j(T,I)\)를 피팅한다.
+\item C-rate 변화에 따라 \(k_j\)가 체계적으로 바뀌면 \(\eta_j\) 또는 \(i_{0,j}\) 표현을 도입한다.
+\item Butler-Volmer를 쓰는 경우 \(R_n\)에서 전하이동 성분을 중복하지 않는다.
+\item forward/backward rate는 충전과 방전 자료를 동시에 맞출 때 도입한다.
+\end{enumerate}
+
+\section{ver.4로 전달되는 기준식}
+ver.4 통합 시스템으로 넘길 식은 다음이다.
+
+\begin{equation}
+V_{n,\app}=V_{n,\OCV}+s_IIR_n(q,T)
+\end{equation}
+
+\begin{equation}
+\xi_{j,\eq}=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+\end{equation}
+
+\begin{equation}
+\mathcal A_j=F\eta_j
+\quad \text{또는} \quad
+\mathcal A_j=s_{\phi,j}F(V_{n,\app}-U_j)
+\end{equation}
+
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-\chi_j\mathcal A_j
+\end{equation}
+
+\begin{equation}
+k_j=\nu_j\exp\left[-\frac{\Delta G_{\eff,j}}{RT}\right]
+\end{equation}
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j(\xi_{j,\eq}-\xi_j)
+\end{equation}
+
+또는 forward/backward 표현으로
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^+(1-\xi_j)-k_j^-\xi_j
+\end{equation}
+를 사용한다.
+
+\section{ver.3 검수 체크리스트}
+\begin{longtable}{p{0.72\textwidth}p{0.15\textwidth}}
+\toprule
+항목 & 상태 \\
+\midrule
+\endhead
+ver.1 및 ver.2 본문 앞부분을 변경하지 않음 & 확인 \\
+기존 컨벤션 유지 & 확인 \\
+평형 진행률은 OCV 기준으로 유지 & 확인 \\
+속도상수는 반응 구동력 또는 과전압으로 확장 & 확인 \\
+Butler-Volmer, 선형 근사, Tafel 근사 포함 & 확인 \\
+forward/backward rate와 relaxation model 연결 포함 & 확인 \\
+전류 분배식 포함 & 확인 \\
+중복 반영 방지 경고 포함 & 확인 \\
+별도 확산 계층 미적용 & 확인 \\
+이전 오류 전개 계열 미사용 & 확인 \\
+\bottomrule
+\end{longtable}
+
+
+
+\newpage
+\part*{ver.4 통합 시스템 적층 확장}
+\addcontentsline{toc}{part}{ver.4 통합 시스템 적층 확장}
+
+\section{ver.4의 목적과 적층 규칙}
+ver.4는 ver.1, ver.2, ver.3의 수식 구조를 바꾸지 않고, 같은 컨벤션을 유지한 상태에서 계산 가능한 통합 시스템으로 묶는 단계이다. ver.1은 상변이 진행률 동역학과 ICA/DVA 계산식을 정의했고, ver.2는 같은 진행률을 발열 근사에 연결했으며, ver.3은 같은 진행률 동역학을 전기화학 반응속도론과 연결했다. ver.4는 이 세 층을 하나의 상태방정식, 관측방정식, 발열방정식, 피팅 순서로 결합한다.
+
+\begin{note}
+ver.4에서 새로 추가하는 것은 통합 계산 절차이다. 앞 버전의 기호, 전위 기준, 진행률 정의, 발열식, 반응속도론식은 변경하지 않는다. 특히 상변이 진행률은 여전히 \(\xi_j\)이고, 평형 진행률은 \(V_{n,\OCV}\) 기준이며, 실제 진행 속도는 \(V_{n,\app}\) 또는 \(\eta_j\)를 통해 들어오는 구동력으로 조절된다.
+\end{note}
+
+\section{ver.1에서 전달받은 기본 동역학}
+ver.4의 첫 번째 층은 ver.1의 상변이 진행률 동역학이다. 전위축은 다음과 같이 정의된다.
+
+\begin{equation}
+V_{n,\app}(q,T,I)=V_{n,\OCV}(q,T)+s_IIR_n(q,T)
+\label{eq:v4_vapp_ocv}
+\end{equation}
+
+0.2C 기준을 쓰는 경우에는 같은 구조를 다음처럼 다시 쓴다.
+
+\begin{equation}
+V_{n,\app}(q,T,I)=V_{n,0.2C}(q,T)+s_I(I-I_{0.2C})R_n(q,T)
+\label{eq:v4_vapp_02c}
+\end{equation}
+
+평형 진행률은 apparent 전위가 아니라 OCV 또는 준평형 전위 기준으로 정의한다.
+
+\begin{equation}
+\xi_{j,\eq}(q,T)=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+\label{eq:v4_xieq}
+\end{equation}
+
+상변이 진행률 동역학은
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+\label{eq:v4_xi_t_basic}
+\end{equation}
+
+이고, 정전류 또는 구간별 정전류 조건에서는
+
+\begin{equation}
+\frac{\dd q}{\dd t}=\frac{|I|}{Q_{\mathrm{cell}}}
+\label{eq:v4_q_t}
+\end{equation}
+
+이므로
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\mathrm{cell}}}{|I|}k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+\label{eq:v4_xi_q_basic}
+\end{equation}
+
+를 사용한다.
+
+\section{ver.2에서 전달받은 발열식}
+ver.2의 발열식은 ver.1의 \(\dd\xi_j/\dd q\)를 그대로 사용한다. 음극 쪽 reduced 발열식은 다음으로 쓴다.
+
+\begin{equation}
+\dot Q_{\mathrm{heat},n}=\dot Q_{\mathrm{irr},n}+\dot Q_{\mathrm{rev},n}
+\label{eq:v4_heat_split}
+\end{equation}
+
+비가역 열은 유효 과전압 또는 유효 저항으로
+
+\begin{equation}
+\dot Q_{\mathrm{irr},n}\approx I\eta_{\eff,n}\approx I^2R_{n,\eff}(q,T)
+\label{eq:v4_qirr}
+\end{equation}
+
+와 같이 둔다. 가역 열은 상변이 진행률 기반 basis expansion으로
+
+\begin{equation}
+\dot Q_{\mathrm{rev},n}\approx |I|T\left[h_{\mathrm{bg}}(q,T)+\sum_{j=1}^{N_p}w_js_j\frac{\dd\xi_j}{\dd q}\right]
+\label{eq:v4_qrev}
+\end{equation}
+
+으로 둔다. 여기서 \(h_{\mathrm{bg}}\)는 완만한 배경 entropy coefficient이고, \(s_j\)는 상변이 \(j\)가 가역 열 형상에 기여하는 유효 계수이다.
+
+\begin{note}
+식 \eqref{eq:v4_qrev}는 열역학 항등식이 아니라 피팅용 축약 표현이다. \(\dd\xi_j/\dd q\)는 상변이가 집중되는 구간을 나타내는 basis로 사용되며, \(s_j\)는 실험적 온도 자료, 열량 자료, 또는 OCV 온도 미분 자료로 보정되어야 한다.
+\end{note}
+
+\section{ver.3에서 전달받은 반응속도론 연결}
+ver.3에서는 전위 보조를 반응 친화도 또는 과전압으로 일반화했다. 기본 구조는 다음과 같다.
+
+\begin{equation}
+\mathcal A_j=F\eta_j
+\label{eq:v4_A_eta}
+\end{equation}
+
+또는 reduced voltage model에서는
+
+\begin{equation}
+\mathcal A_j=s_{\phi,j}F(V_{n,\app}-U_j)
+\label{eq:v4_A_vapp}
+\end{equation}
+
+로 둔다. 이에 따라 유효 장벽은
+
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-\chi_j\mathcal A_j
+\label{eq:v4_Geff}
+\end{equation}
+
+이고 속도상수는
+
+\begin{equation}
+k_j=\nu_j(T)\exp\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right]
+\label{eq:v4_k_reduced}
+\end{equation}
+
+이다. 여기서 \(\Delta G_{\eff,j}^{+}\)는 너무 큰 전위 보조에서 속도식이 폭주하지 않도록 보정한 유효 장벽이다. 한 가지 안정적인 선택은
+
+\begin{equation}
+\Delta G_{\eff,j}^{+}=\max\left(\Delta G_{a,j}-\chi_j\mathcal A_j,0\right)
+\label{eq:v4_Geff_plus}
+\end{equation}
+
+이다. 또는 \(k_j\) 자체에 상한 \(k_{j,\max}\)를 둘 수 있다.
+
+Butler-Volmer를 사용하는 경우 전류와 과전압은
+
+\begin{equation}
+i_j=i_{0,j}\left[\exp\left(\frac{\alpha_jF\eta_j}{RT}\right)-\exp\left(-\frac{(1-\alpha_j)F\eta_j}{RT}\right)\right]
+\label{eq:v4_bv}
+\end{equation}
+
+로 연결된다. 이때 \(R_n(q,T)\)에 전하이동 분극이 이미 포함되어 있다면, 식 \eqref{eq:v4_bv}를 다시 동시에 쓰면 중복 반영이 된다. ver.4의 계산에서는 reduced voltage model과 reaction-resolved model을 구분하여 사용한다.
+
+\section{통합 상태 변수와 입력}
+ver.4에서 계산하는 상태 변수는 다음이다.
+
+\begin{equation}
+\mathbf x(t)=\left[q(t),\xi_1(t),\xi_2(t),\ldots,\xi_{N_p}(t),T(t)\right]^T
+\label{eq:v4_state_vector}
+\end{equation}
+
+장벽 분포를 사용하는 경우에는 각 상변이마다 \(\xi_j(g,t)\)를 내부 상태로 추가할 수 있다. 실용 계산에서는 \(g\)축을 유한한 격자 \(g_{j,m}\)로 나누어
+
+\begin{equation}
+\xi_j(q)=\sum_{m=1}^{M_j}\omega_{j,m}\xi_{j,m}(q)
+\label{eq:v4_xi_quad}
+\end{equation}
+
+으로 근사한다. 여기서 \(\omega_{j,m}\)는 \(\rho_j(g)\)와 적분 가중치를 함께 포함한다.
+
+입력은 전류, 주변 온도, 필요할 경우 냉각 조건이다.
+
+\begin{equation}
+\mathbf u(t)=\left[I(t),T_{\mathrm{amb}}(t),H_{\mathrm{th}}(t)\right]^T
+\label{eq:v4_input}
+\end{equation}
+
+\section{통합 상태방정식}
+\subsection{방전 진행 좌표}
+전류 방향 부호를 별도로 관리하되, 진행 속도는 전류 크기를 사용한다.
+
+\begin{equation}
+\frac{\dd q}{\dd t}=\frac{|I(t)|}{Q_{\mathrm{cell}}}
+\label{eq:v4_state_q}
+\end{equation}
+
+이 식은 정전류뿐 아니라 구간별 전류 프로파일에도 그대로 사용할 수 있다.
+
+\subsection{상변이 진행률}
+가장 단순한 통합형은
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j(q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j\right]
+\label{eq:v4_state_xi}
+\end{equation}
+
+이다. 장벽 분포를 사용하는 경우에는
+
+\begin{equation}
+\frac{\dd\xi_j(g,t)}{\dd t}=k_j(g,q,T,I)\left[\xi_{j,\eq}(q,T)-\xi_j(g,t)\right]
+\label{eq:v4_state_xig}
+\end{equation}
+
+로 쓰고, 전체 진행률은
+
+\begin{equation}
+\xi_j(t)=\int_{-\infty}^{\infty}\rho_j(g)\xi_j(g,t)\,\dd g
+\label{eq:v4_state_xi_avg}
+\end{equation}
+
+로 계산한다.
+
+\subsection{온도 상태방정식}
+단일 lumped thermal model을 쓰면
+
+\begin{equation}
+C_{\mathrm{th}}\frac{\dd T}{\dd t}=\dot Q_{\mathrm{heat}}-H_{\mathrm{th}}(T-T_{\mathrm{amb}})
+\label{eq:v4_state_T}
+\end{equation}
+
+이다. 여기서 \(C_{\mathrm{th}}\)는 셀의 유효 열용량, \(H_{\mathrm{th}}\)는 주변으로의 유효 열전달 계수이다.
+
+\section{통합 관측방정식}
+\subsection{전압 관측식}
+음극 apparent 전위는
+
+\begin{equation}
+V_{n,\app}=V_{n,\OCV}(q,T)+s_IIR_n(q,T)
+\label{eq:v4_obs_vn}
+\end{equation}
+
+이다. 전체 셀 전압을 함께 쓰는 경우에는
+
+\begin{equation}
+V_{\mathrm{cell},\app}=V_{p,\app}-V_{n,\app}
+\label{eq:v4_obs_cellv}
+\end{equation}
+
+로 둔다. 양극을 상세히 다루지 않는 문서에서는 \(V_{p,\app}\)를 별도 입력 또는 보정 함수로 두고, 음극 모델 검증에는 분리된 \(V_n\)을 우선 사용한다.
+
+\subsection{용량 관측식}
+음극 상변이 기반 용량은
+
+\begin{equation}
+Q_n(q)=Q_{\bg}(q)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j(q)
+\label{eq:v4_obs_Qn}
+\end{equation}
+
+이다. 따라서
+
+\begin{equation}
+\frac{\dd Q_n}{\dd q}=\frac{\dd Q_{\bg}}{\dd q}+\sum_{j=1}^{N_p}Q_{j,\tot}\frac{\dd\xi_j}{\dd q}
+\label{eq:v4_obs_dQdq}
+\end{equation}
+
+이다.
+
+\subsection{ICA와 DVA 관측식}
+ICA는
+
+\begin{equation}
+\frac{\dd Q_n}{\dd V_{n,\app}}=\frac{\dfrac{\dd Q_n}{\dd q}}{\dfrac{\dd V_{n,\app}}{\dd q}}
+\label{eq:v4_obs_ica}
+\end{equation}
+
+이고 DVA는
+
+\begin{equation}
+\frac{\dd V_{n,\app}}{\dd Q_n}=\frac{\dfrac{\dd V_{n,\app}}{\dd q}}{\dfrac{\dd Q_n}{\dd q}}
+\label{eq:v4_obs_dva}
+\end{equation}
+
+이다. 전압 기울기는
+
+\begin{equation}
+\frac{\dd V_{n,\app}}{\dd q}=\frac{\partial V_{n,\OCV}}{\partial q}+s_II\frac{\partial R_n}{\partial q}+\frac{\partial V_{n,\OCV}}{\partial T}\frac{\dd T}{\dd q}+s_II\frac{\partial R_n}{\partial T}\frac{\dd T}{\dd q}
+\label{eq:v4_dVdq_temp}
+\end{equation}
+
+로 쓸 수 있다. 등온 분석에서는 마지막 두 온도 항을 생략한다.
+
+\section{통합 계산 절차}
+한 시간 스텝 \(t\to t+\Delta t\)에서 계산 순서는 다음과 같다.
+
+\begin{enumerate}[label=\arabic*)]
+\item 현재 상태 \(q,T,\xi_j\)와 입력 \(I,T_{\mathrm{amb}}\)를 읽는다.
+\item \(V_{n,\OCV}(q,T)\), \(R_n(q,T)\), \(V_{n,\app}\)를 계산한다.
+\item 각 상변이에 대해 \(\xi_{j,\eq}\)를 OCV 기준으로 계산한다.
+\item reduced model이면 \(\mathcal A_j=s_{\phi,j}F(V_{n,\app}-U_j)\)를 계산한다.
+\item reaction-resolved model이면 Butler-Volmer 또는 근사식을 이용해 \(\eta_j\)와 \(\mathcal A_j=F\eta_j\)를 계산한다.
+\item \(\Delta G_{\eff,j}\), \(k_j\), \(\dd\xi_j/\dd t\)를 계산한다.
+\item \(\dot Q_{\mathrm{irr}}\), \(\dot Q_{\mathrm{rev}}\), \(\dot Q_{\mathrm{heat}}\)를 계산한다.
+\item 열 방정식으로 \(T\)를 갱신한다.
+\item 식 \eqref{eq:v4_state_q}와 \eqref{eq:v4_state_xi}로 \(q\)와 \(\xi_j\)를 갱신한다.
+\item 필요 시 \(V\), \(Q\), ICA, DVA를 저장한다.
+\end{enumerate}
+
+\section{피팅 목적함수}
+통합 모델은 전압만 맞추면 충분하지 않다. 전압, ICA, DVA, 온도 자료를 함께 쓰는 것이 안전하다. 한 가지 목적함수는 다음과 같다.
+
+\begin{align}
+\mathcal L
+=&\;w_V\sum_i\left[V_{\mathrm{model}}(q_i)-V_{\mathrm{data}}(q_i)\right]^2 \\
+&+w_{\mathrm{ICA}}\sum_i\left[\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{model},i}-\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{data},i}\right]^2 \\
+&+w_{\mathrm{DVA}}\sum_i\left[\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{model},i}-\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{data},i}\right]^2 \\
+&+w_T\sum_i\left[T_{\mathrm{model}}(t_i)-T_{\mathrm{data}}(t_i)\right]^2+\mathcal R_{\mathrm{reg}} .
+\label{eq:v4_loss}
+\end{align}
+
+정규화 항은 과도한 자유도를 억제하기 위해 사용한다.
+
+\begin{equation}
+\mathcal R_{\mathrm{reg}}=\lambda_R\int\left(\frac{\dd^2R_n}{\dd q^2}\right)^2\dd q+\lambda_k\sum_j\int\left(\frac{\dd^2\ln k_j}{\dd q^2}\right)^2\dd q
+\label{eq:v4_reg}
+\end{equation}
+
+\section{단계별 피팅 순서}
+ver.4에서 권장하는 순서는 다음이다.
+
+\begin{longtable}{p{0.08\textwidth}p{0.35\textwidth}p{0.45\textwidth}}
+\toprule
+단계 & 작업 & 이유 \\
+\midrule
+\endhead
+1 & 저율 또는 0.2C 기준 \(V_{n,\OCV}\), \(U_j\), \(w_j\), \(Q_{j,\tot}\) 추정 & 평형 구조를 먼저 고정 \\
+2 & \(R_n(q,T)\) 추정 & 전위축 왜곡과 속도 지연 분리 \\
+3 & 등온 자료로 \(k_j(q,T,I)\) 또는 \(\Delta G_{a,j},\chi_j\) 추정 & tail과 lag 재현 \\
+4 & 온도별 자료로 \(\Delta H_{a,j},\Delta S_{a,j},\nu_j(T)\) 보정 & 온도 의존성 분리 \\
+5 & 발열 자료가 있으면 \(h_{\mathrm{bg}},s_j,C_{\mathrm{th}},H_{\mathrm{th}}\) 보정 & 열 응답 재현 \\
+6 & 필요할 때 Butler-Volmer 또는 전류 분배 도입 & reduced model 잔차 해소 \\
+\bottomrule
+\end{longtable}
+
+\section{모델 수준 선택표}
+모든 실험에 가장 복잡한 모델을 쓰면 식별성이 나빠진다. 따라서 다음 순서로 올린다.
+
+\begin{longtable}{p{0.12\textwidth}p{0.32\textwidth}p{0.44\textwidth}}
+\toprule
+수준 & 모델 & 사용 목적 \\
+\midrule
+\endhead
+0 & empirical peak fit & 초기값 확보 \\
+1 & 단일 \(k_j\) relaxation model & 기본 tail 및 지연 재현 \\
+2 & 장벽 분포 평균 model & 긴 tail과 domain 분산 재현 \\
+3 & forward/backward rate model & 충전과 방전 비대칭 해석 \\
+4 & 열 결합 model & 온도 되먹임과 발열 해석 \\
+5 & reaction-resolved BV model & 전류 분배와 과전압 성분 분리 \\
+\bottomrule
+\end{longtable}
+
+\section{검증 체크리스트}
+ver.4 모델은 다음 조건을 통과해야 한다.
+
+\begin{longtable}{p{0.72\textwidth}p{0.16\textwidth}}
+\toprule
+검증 항목 & 상태 \\
+\midrule
+\endhead
+저율에서 \(\xi_j\approx\xi_{j,\eq}\)가 되어야 함 & 필요 \\
+고온에서 같은 전류의 tail이 줄어드는 경향을 재현해야 함 & 필요 \\
+고 C-rate에서 \(\xi_j\) lag와 전위축 왜곡이 함께 나타나야 함 & 필요 \\
+\(V_{n,\OCV}\) 기준 평형 진행률과 \(V_{n,\app}\) 기준 속도 조절이 혼동되지 않아야 함 & 필요 \\
+발열식에서 가역 열과 비가역 열이 분리되어야 함 & 필요 \\
+Butler-Volmer를 쓰는 경우 \(R_n\)과 성분 중복이 없어야 함 & 필요 \\
+ICA, DVA, 전압, 온도 중 하나만 맞고 나머지가 틀리면 모델을 통과시키지 않음 & 필요 \\
+\bottomrule
+\end{longtable}
+
+\section{ver.5로 전달되는 기준식}
+ver.5 히스테리시스 확장으로 넘길 기준식은 다음이다.
+
+\begin{equation}
+V_{n,\app}=V_{n,\OCV}+s_IIR_n(q,T)
+\end{equation}
+
+\begin{equation}
+\xi_{j,\eq}=\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right)
+\end{equation}
+
+\begin{equation}
+\Delta G_{\eff,j}=\Delta G_{a,j}-\chi_j\mathcal A_j
+\end{equation}
+
+\begin{equation}
+k_j=\nu_j\exp\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right]
+\end{equation}
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j(\xi_{j,\eq}-\xi_j)
+\end{equation}
+
+또는
+
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^+(1-\xi_j)-k_j^-\xi_j
+\end{equation}
+
+이다. ver.5에서는 이 구조에 branch index와 기억 변수를 추가한다.
+
+\section{ver.4 검수 체크리스트}
+\begin{longtable}{p{0.72\textwidth}p{0.16\textwidth}}
+\toprule
+항목 & 상태 \\
+\midrule
+\endhead
+ver.1, ver.2, ver.3 본문 앞부분을 변경하지 않음 & 확인 \\
+기존 컨벤션 유지 & 확인 \\
+평형 진행률은 OCV 기준으로 유지 & 확인 \\
+속도 조절은 apparent 전위 또는 과전압 기준으로 유지 & 확인 \\
+발열 계층과 반응속도론 계층이 같은 \(\xi_j\)를 공유 & 확인 \\
+통합 상태방정식 포함 & 확인 \\
+전압, ICA, DVA, 온도 관측방정식 포함 & 확인 \\
+목적함수와 정규화 항 포함 & 확인 \\
+별도 확산 계층 미적용 & 확인 \\
+이전 오류 전개 계열 미사용 & 확인 \\
+\bottomrule
+\end{longtable}
+
+
+
+\part*{ver.5 히스테리시스 적층 확장}
+\addcontentsline{toc}{part}{ver.5 히스테리시스 적층 확장}
+
+\section{ver.5의 목적과 적층 규칙}
+ver.5는 ver.1부터 ver.4까지의 동역학 기반 구조를 유지한 상태에서, 충전과 방전에서 나타나는 음극 전위 및 ICA/DVA의 히스테리시스를 해석하고 피팅하기 위한 계층이다. 이 장에서는 새로운 상태 변수와 branch별 식을 추가하지만, 기존의 상변이 진행률 동역학, 발열식, 반응속도론식, 통합 상태방정식은 변경하지 않는다.
+
+ver.5에서 유지해야 할 기준은 다음이다.
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j(\xi_{j,\eq}-\xi_j)
+\end{equation}
+또는 반응속도론 확장형으로
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^+(1-\xi_j)-k_j^-\xi_j
+\end{equation}
+이다. 히스테리시스는 이 진행률 동역학 위에 branch index, 저항성 분극 차이, 구조 기억 변수, 그리고 잔류 동적 지연을 추가하여 표현한다.
+
+\begin{assumption}
+ver.5에서는 히스테리시스를 새로운 독립 OCV 곡선 하나로만 처리하지 않는다. 먼저 ver.1부터 ver.4에서 정의한 진행률 동역학이 충전과 방전에서 서로 다른 궤적을 만들 수 있음을 인정하고, 그 뒤에도 설명되지 않는 branch 차이를 구조 기억 변수로 추가한다.
+\end{assumption}
+
+\section{branch index와 부호 컨벤션}
+충전과 방전 branch를 다음과 같이 쓴다.
+\begin{equation}
+p\in\{\chg,\dis\}
+\end{equation}
+여기서 \(p=\dis\)는 방전 branch, \(p=\chg\)는 충전 branch이다. 전류 크기는 양수로 두고, branch 방향은 부호 인자로 처리한다.
+\begin{equation}
+|I|\geq0
+\end{equation}
+\begin{equation}
+s_I^{\dis}=+1,\qquad s_I^{\chg}=-1
+\end{equation}
+이 부호는 음극 전위 기준에서 방전 방향의 저항성 전위 증가를 양의 방향으로 두기 위한 convention이다. 실제 데이터 처리에서는 장비의 전류 부호 convention과 맞추어 이 정의를 한 번 더 확인해야 한다.
+
+상변이 구동력의 방향은 별도 부호로 둔다.
+\begin{equation}
+s_{\phi,j}^{p}\in\{-1,+1\}
+\end{equation}
+따라서 단순 전위 보조형 반응 친화도는
+\begin{equation}
+\mathcal A_j^{p}(q,T,I)
+=
+s_{\phi,j}^{p}F\left[V_{n,\app}^{p}(q,T,I)-U_j^{p}(T)\right]
+\label{eq:v5_affinity_branch}
+\end{equation}
+로 쓴다. 방전에서 음극 전위 증가가 해당 상변이를 보조하면 \(s_{\phi,j}^{\dis}=+1\)로 둘 수 있다.
+
+\begin{note}
+\(s_I^p\)는 전류 방향에 따른 전압축 이동 부호이고, \(s_{\phi,j}^p\)는 상변이 진행 방향에 대한 구동력 부호이다. 두 부호는 같은 개념이 아니므로 분리해서 쓴다.
+\end{note}
+
+\section{히스테리시스의 성분 분해}
+ver.5에서는 관측되는 branch 차이를 다음 네 성분으로 나눈다.
+\begin{longtable}{p{0.22\textwidth}p{0.66\textwidth}}
+\toprule
+성분 & 의미 \\
+\midrule
+\endhead
+저항성 성분 & 충전과 방전에서 전류 방향이 바뀌면서 생기는 \(s_I^p|I|R_n^p(q,T)\) 항 \\
+동적 지연 성분 & \(\xi_j^p\)가 \(\xi_{j,\eq}^p\)를 즉시 따라가지 못해서 생기는 branch별 진행률 차이 \\
+구조 기억 성분 & graphite domain, stacking 상태, 미세 응력, 잔류 metastable state 등이 branch 이력을 기억하는 효과 \\
+열적 성분 & 충전과 방전의 온도 이력이 달라져 \(R_n\), \(k_j\), \(V_{n,\OCV}\)가 달라지는 효과 \\
+\bottomrule
+\end{longtable}
+
+따라서 관측 음극 전위는 다음과 같이 쓴다.
+\begin{equation}
+V_{n,\mathrm{model}}^{p}(q,T,I,z)
+=
+V_{n,\OCV}(q,T)
++
+s_I^p|I|R_n^{p}(q,T)
++
+V_{n,\mathrm{mem}}^{p}(q,T,z)
++
+V_{n,\mathrm{dyn}}^{p}(q,T,I)
+\label{eq:v5_voltage_full}
+\end{equation}
+여기서 \(V_{n,\mathrm{mem}}^{p}\)는 구조 기억 변수에 의한 전위 성분이고, \(V_{n,\mathrm{dyn}}^{p}\)는 단순 저항이나 구조 기억으로 설명되지 않는 빠른 동적 잔차를 담는 선택 항이다.
+
+가장 단순한 1차 모델에서는
+\begin{equation}
+V_{n,\mathrm{dyn}}^{p}=0
+\end{equation}
+으로 두고, 먼저 \(R_n^p\), \(\xi_j^p\), \(z_j\)만으로 branch 차이를 설명한다.
+
+\section{branch별 진행률 동역학}
+ver.1의 진행률 동역학에 branch index를 붙이면 다음이 된다.
+\begin{equation}
+\frac{\dd\xi_j^{p}}{\dd t}
+=
+k_j^{p}(q,T,I)
+\left[
+\xi_{j,\eq}^{p}(q,T,z)-\xi_j^{p}
+\right]
+\label{eq:v5_xi_branch_time}
+\end{equation}
+정전류 조건에서는
+\begin{equation}
+\frac{\dd\xi_j^{p}}{\dd q}
+=
+\frac{Q_{\cell}}{|I|}
+k_j^{p}(q,T,I)
+\left[
+\xi_{j,\eq}^{p}(q,T,z)-\xi_j^{p}
+\right]
+\label{eq:v5_xi_branch_q}
+\end{equation}
+이다.
+
+평형 진행률은 기본적으로 OCV 기준으로 유지한다.
+\begin{equation}
+\xi_{j,\eq}^{p}(q,T,z)
+=
+\xi_{j,\eq}^{p}\!\left(V_{n,\OCV}(q,T),T,z\right)
+\end{equation}
+구조 기억을 쓰지 않는 1차 모델에서는
+\begin{equation}
+\xi_{j,\eq}^{\dis}(q,T)=\xi_{j,\eq}^{\chg}(q,T)=\xi_{j,\eq}(q,T)
+\end{equation}
+으로 둔다. 이 경우에도 \(k_j^{\dis}\neq k_j^{\chg}\)이면 branch별 동적 지연이 달라진다.
+
+\section{branch별 유효 장벽과 속도상수}
+ver.3의 반응속도론 식에 branch index를 붙이면 다음과 같다.
+\begin{equation}
+\Delta G_{\eff,j}^{p}
+=
+\Delta G_{a,j}^{p}(T)
+-
+\chi_j^{p}\mathcal A_j^{p}(q,T,I)
+\label{eq:v5_Geff_branch}
+\end{equation}
+단순 전위 보조형에서는 식 \eqref{eq:v5_affinity_branch}를 사용한다.
+
+속도상수는
+\begin{equation}
+k_j^{p}(q,T,I)
+=
+\nu_j^{p}(T)
+\exp\left[-\frac{\Delta G_{\eff,j}^{p,+}(q,T,I)}{RT}\right]
+\label{eq:v5_k_branch}
+\end{equation}
+로 쓴다. 여기서 폭주를 막기 위해
+\begin{equation}
+\Delta G_{\eff,j}^{p,+}
+=
+\max\left[\Delta G_{\eff,j}^{p},0\right]
+\end{equation}
+또는 동등하게 \(k_j^{p}\leq k_{j,\max}^{p}\) 제약을 사용할 수 있다.
+
+반응분해형 모델에서는 Butler-Volmer식으로 \(\eta_j^p\)를 구하고,
+\begin{equation}
+\mathcal A_j^p=F\eta_j^p
+\end{equation}
+를 식 \eqref{eq:v5_Geff_branch}에 넣는다. 이때 reduced voltage model의 \(R_n^p\)에 같은 전하이동 성분이 이미 들어 있으면 중복 반영이 되므로, 둘 중 하나의 계층을 고정해야 한다.
+
+\section{forward/backward branch model}
+히스테리시스를 더 명확하게 쓰고 싶다면 forward/backward rate를 branch별로 둔다.
+\begin{equation}
+\frac{\dd\xi_j^{p}}{\dd t}
+=
+k_j^{+,p}(1-\xi_j^{p})-k_j^{-,p}\xi_j^{p}
+\label{eq:v5_fb_branch}
+\end{equation}
+이 식은 다음과 같이 relaxation model로 다시 쓸 수 있다.
+\begin{equation}
+\frac{\dd\xi_j^{p}}{\dd t}
+=
+\left(k_j^{+,p}+k_j^{-,p}\right)
+\left[
+\frac{k_j^{+,p}}{k_j^{+,p}+k_j^{-,p}}-
+\xi_j^{p}
+\right]
+\end{equation}
+따라서
+\begin{equation}
+k_{j,\mathrm{relax}}^{p}=k_j^{+,p}+k_j^{-,p}
+\end{equation}
+이고,
+\begin{equation}
+\xi_{j,\eq}^{p}=\frac{k_j^{+,p}}{k_j^{+,p}+k_j^{-,p}}
+\end{equation}
+이다.
+
+이 표현은 충전과 방전에서 같은 중심 전위를 쓰더라도 forward와 backward 속도가 달라질 수 있음을 표현한다. 따라서 branch 차이를 무조건 다른 OCV 곡선으로 해석하지 않고, 진행률 동역학 차이로 먼저 해석할 수 있다.
+
+\section{구조 기억 변수}
+동적 지연만으로 branch 차이가 설명되지 않는 경우 구조 기억 변수를 도입한다. \(j\)번째 상변이와 관련된 기억 변수를 \(z_j\)로 둔다.
+\begin{equation}
+-1\leq z_j\leq 1
+\end{equation}
+여기서 \(z_j=0\)은 기억 성분이 없는 상태, \(z_j>0\)과 \(z_j<0\)은 서로 다른 branch 이력을 나타내는 상태로 해석한다.
+
+가장 단순한 완화식은 다음이다.
+\begin{equation}
+\frac{\dd z_j}{\dd t}
+=
+\frac{z_{j,\eq}^{p}(q,T)-z_j}{\tau_{z,j}^{p}(q,T,|I|)}
+\label{eq:v5_z_time}
+\end{equation}
+정전류 조건에서는
+\begin{equation}
+\frac{\dd z_j}{\dd q}
+=
+\frac{Q_{\cell}}{|I|}
+\frac{z_{j,\eq}^{p}(q,T)-z_j}{\tau_{z,j}^{p}(q,T,|I|)}
+\label{eq:v5_z_q}
+\end{equation}
+이다.
+
+기억 전압 항은 다음처럼 둔다.
+\begin{equation}
+V_{n,\mathrm{mem}}^{p}(q,T,z)
+=
+\sum_{j=1}^{N_p}h_j(T)z_j\phi_j(q)
+\label{eq:v5_vmem}
+\end{equation}
+여기서 \(h_j(T)\)는 \(j\)번째 상변이의 기억 전압 규모이고, \(\phi_j(q)\)는 해당 상변이가 영향을 주는 SOC 구간을 나타내는 window 함수이다.
+
+\begin{note}
+\(z_j\)는 모든 branch 차이를 설명하기 위한 자유 파라미터가 아니다. 먼저 \(R_n^p\)와 \(\xi_j^p\)의 동적 지연으로 설명 가능한 차이를 제거한 뒤, 남은 구조적 잔차에 대해서만 도입한다.
+\end{note}
+
+\section{장벽 분포를 포함한 branch 동역학}
+긴 tail과 domain 분산이 branch별로 다르면 장벽 분포 평균식에도 branch index를 붙인다.
+\begin{equation}
+\xi_j^{p}(q)
+=
+\int_{-\infty}^{\infty}\rho_j^{p}(g)\xi_j^{p}(g,q)\,\dd g
+\label{eq:v5_dist_branch_xi}
+\end{equation}
+\begin{equation}
+\frac{\dd\xi_j^{p}(g,q)}{\dd q}
+=
+\frac{Q_{\cell}}{|I|}
+\nu_j^{p}(T)
+\exp\left[-\frac{g-\chi_j^{p}\mathcal A_j^{p}(q,T,I)}{RT}\right]
+\left[
+\xi_{j,\eq}^{p}(q,T,z)-\xi_j^{p}(g,q)
+\right]
+\label{eq:v5_dist_branch_ode}
+\end{equation}
+필요하면 속도상수 상한 또는 유효 장벽 하한을 이 식에도 적용한다.
+
+branch별 장벽 분포를 모두 자유롭게 피팅하면 식별성이 나빠진다. 따라서 먼저
+\begin{equation}
+\rho_j^{\dis}(g)=\rho_j^{\chg}(g)=\rho_j(g)
+\end{equation}
+으로 두고, branch별 차이는 \(k_j^p\), \(z_j\), \(R_n^p\)에서 설명하는 것이 안정적이다.
+
+\section{branch별 ICA와 DVA}
+branch \(p\)에서의 음극 용량은
+\begin{equation}
+Q_n^{p}(q)
+=
+Q_{\bg}(q)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j^{p}(q)
+\label{eq:v5_Q_branch}
+\end{equation}
+이다. 따라서
+\begin{equation}
+\frac{\dd Q_n^{p}}{\dd q}
+=
+\frac{\dd Q_{\bg}}{\dd q}
++
+\sum_{j=1}^{N_p}Q_{j,\tot}\frac{\dd\xi_j^{p}}{\dd q}
+\label{eq:v5_dQdq_branch}
+\end{equation}
+이다.
+
+branch별 ICA는
+\begin{equation}
+\left(\frac{\dd Q_n}{\dd V_n}\right)^{p}
+=
+\frac{\dfrac{\dd Q_n^{p}}{\dd q}}
+{\dfrac{\dd V_{n,\mathrm{model}}^{p}}{\dd q}}
+\label{eq:v5_ica_branch}
+\end{equation}
+이고, DVA는
+\begin{equation}
+\left(\frac{\dd V_n}{\dd Q_n}\right)^{p}
+=
+\frac{\dfrac{\dd V_{n,\mathrm{model}}^{p}}{\dd q}}
+{\dfrac{\dd Q_n^{p}}{\dd q}}
+\label{eq:v5_dva_branch}
+\end{equation}
+이다.
+
+이 식은 branch별 피크 위치, 피크 폭, tail, valley 구조를 동시에 비교하는 데 사용한다.
+
+\section{관측 히스테리시스 분해}
+같은 \(q\)에서 측정된 branch 전위 차이를
+\begin{equation}
+\Delta V_{n,\mathrm{obs}}(q)
+=
+V_{n,\mathrm{model}}^{\dis}(q)-V_{n,\mathrm{model}}^{\chg}(q)
+\end{equation}
+라고 두면, 식 \eqref{eq:v5_voltage_full}에 의해
+\begin{align}
+\Delta V_{n,\mathrm{obs}}(q)
+&=
+|I|\left[R_n^{\dis}(q,T)+R_n^{\chg}(q,T)\right]
++
+\left[V_{n,\mathrm{mem}}^{\dis}(q,T,z)-V_{n,\mathrm{mem}}^{\chg}(q,T,z)\right]\\
+&\quad+
+\left[V_{n,\mathrm{dyn}}^{\dis}(q,T,I)-V_{n,\mathrm{dyn}}^{\chg}(q,T,I)\right]
+\end{align}
+이다. 만약 \(R_n^{\dis}=R_n^{\chg}=R_n\)이고 빠른 동적 잔차를 무시하면
+\begin{equation}
+\Delta V_{n,\mathrm{obs}}(q)
+\approx
+2|I|R_n(q,T)
++
+\Delta V_{n,\mathrm{mem}}(q,T,z)
+\end{equation}
+가 된다.
+
+따라서 저항 보정 후 남는 전위 차이는
+\begin{equation}
+\Delta V_{n,\mathrm{res}}(q)
+=
+\Delta V_{n,\mathrm{obs}}(q)-2|I|R_n(q,T)
+\end{equation}
+로 둘 수 있다. 이 잔차가 상변이 구간의 \(\phi_j(q)\)와 같이 움직이면 구조 기억 변수 또는 branch별 상변이 동역학 차이를 의심할 수 있다.
+
+\section{피크 중심과 tail의 branch 비교}
+ICA 피크를 보조적으로 정합할 때 branch별 empirical 피크 중심을 \(\mu_j^{p}\), tail 길이를 \(\lambda_j^{p}\)라고 두자. 이 값은 주 모델의 직접 파라미터가 아니라, 동역학 모델을 검증하거나 초기값을 잡기 위한 관측량이다.
+
+피크 중심 차이는
+\begin{equation}
+\Delta\mu_j=\mu_j^{\dis}-\mu_j^{\chg}
+\end{equation}
+로 쓴다. 단순 대칭 저항 보정 후의 중심 차이는
+\begin{equation}
+\Delta\mu_{j,\mathrm{res}}
+=
+\Delta\mu_j-2|I|R_n(q_j,T)
+\end{equation}
+이다. 여기서 \(q_j\)는 해당 피크가 주로 나타나는 위치이다.
+
+꼬리 차이는
+\begin{equation}
+\Delta\lambda_j=\lambda_j^{\dis}-\lambda_j^{\chg}
+\end{equation}
+로 둘 수 있다. \(\Delta\lambda_j\)가 온도에 강하게 의존하면 \(k_j^p(T)\) 또는 \(\tau_{z,j}^p(T)\)의 차이를 우선 검토한다.
+
+\section{hysteresis energy}
+branch loop의 에너지 손실 지표는 부호 convention 오해를 피하기 위해 양의 면적으로 정의한다.
+\begin{equation}
+E_{\mathrm{hys,loss}}
+=
+\left|\oint V_n\,\dd Q\right|
+\label{eq:v5_loop_energy}
+\end{equation}
+같은 \(q\) 격자에서 충전과 방전 branch를 비교할 수 있다면,
+\begin{equation}
+E_{\mathrm{hys,loss}}
+\approx
+Q_{\cell}
+\int_{q_a}^{q_b}
+\left|
+V_{n,\mathrm{model}}^{\dis}(q)-V_{n,\mathrm{model}}^{\chg}(q)
+\right|\dd q
+\end{equation}
+로 근사할 수 있다.
+
+이 값은 전체 손실의 지표이지, 전부가 열로 즉시 전환된다는 뜻은 아니다. 비가역 열과 구조적 relaxation은 실험 조건과 시간척도에 따라 구분해야 한다.
+
+\section{동시 피팅 목적함수}
+ver.5에서는 전압 branch, ICA branch, DVA branch, 온도 데이터를 동시에 사용할 수 있다.
+\begin{align}
+\mathcal L_{\mathrm{v5}}
+&=
+w_V\sum_{p,i}\left[V_{\mathrm{model}}^{p}(q_i)-V_{\mathrm{data}}^{p}(q_i)\right]^2\\
+&\quad+
+w_{\mathrm{ICA}}\sum_{p,i}\left[
+\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{model},i}^{p}
+-
+\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{data},i}^{p}
+\right]^2\\
+&\quad+
+w_{\mathrm{DVA}}\sum_{p,i}\left[
+\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{model},i}^{p}
+-
+\left(\frac{\dd V}{\dd Q}\right)_{\mathrm{data},i}^{p}
+\right]^2\\
+&\quad+
+w_T\sum_i\left[T_{\mathrm{model}}(t_i)-T_{\mathrm{data}}(t_i)\right]^2
++
+\mathcal R_{\mathrm{v5}}
+\end{align}
+정규화 항은 다음처럼 둘 수 있다.
+\begin{equation}
+\mathcal R_{\mathrm{v5}}
+=
+\lambda_z\sum_j\int z_j(q)^2\,\dd q
++
+\lambda_h\sum_jh_j^2
++
+\lambda_R\int\left(\frac{\dd^2R_n}{\dd q^2}\right)^2\dd q
+\end{equation}
+
+\section{피팅 순서}
+동시에 모든 파라미터를 풀면 식별성이 크게 나빠진다. 권장 순서는 다음이다.
+\begin{longtable}{p{0.08\textwidth}p{0.46\textwidth}p{0.32\textwidth}}
+\toprule
+단계 & 작업 & 고정 또는 피팅 \\
+\midrule
+\endhead
+1 & ver.1 기준 저율 ICA로 \(U_j,w_j,Q_{j,\tot}\) 초기화 & 피팅 후 부분 고정 \\
+2 & ver.1, ver.4 기준으로 \(R_n(q,T)\) 추정 & 가능하면 독립 측정 \\
+3 & branch 구분 없이 \(k_j(T,I)\) 피팅 & 기본 동역학 \\
+4 & 충전과 방전의 \(k_j^p\) 차이만 허용 & 동적 지연 평가 \\
+5 & 남는 전압 잔차에 한해 \(z_j,h_j\) 추가 & 구조 기억 평가 \\
+6 & ICA/DVA branch와 loop energy를 함께 검증 & 최종 검증 \\
+\bottomrule
+\end{longtable}
+
+\section{식별성 주의}
+ver.5에서 가장 중요한 위험은 서로 다른 항이 같은 현상을 중복 설명하는 것이다.
+\begin{longtable}{p{0.30\textwidth}p{0.52\textwidth}}
+\toprule
+상관되는 항 & 주의 사항 \\
+\midrule
+\endhead
+\(R_n^p\)와 \(V_{n,\mathrm{mem}}^p\) & 둘 다 branch 전위 차이를 설명할 수 있음 \\
+\(k_j^p\)와 \(z_j\) & 둘 다 충전/방전 진행률 차이처럼 보일 수 있음 \\
+\(U_j^p\)와 \(h_jz_j\phi_j\) & 둘 다 피크 중심 이동을 설명할 수 있음 \\
+\(\rho_j^p(g)\)와 \(k_j^p\) & 둘 다 tail 차이를 설명할 수 있음 \\
+\(R_n(q,T)\)와 Butler-Volmer \(\eta_j\) & 전하이동 성분을 중복 반영할 수 있음 \\
+\bottomrule
+\end{longtable}
+
+따라서 처음에는 branch별 \(R_n^p\), branch별 \(k_j^p\), 기억 변수 \(z_j\)를 모두 자유롭게 두지 않는다. 간단한 모델에서 설명되지 않는 잔차를 확인한 뒤, 필요한 항만 추가한다.
+
+\section{ver.5 검증 체크리스트}
+\begin{longtable}{p{0.72\textwidth}p{0.16\textwidth}}
+\toprule
+검증 항목 & 상태 \\
+\midrule
+\endhead
+ver.1부터 ver.4 본문 앞부분을 변경하지 않음 & 필요 \\
+기존 컨벤션 유지 & 필요 \\
+평형 진행률은 OCV 기준으로 유지 & 필요 \\
+속도 조절은 apparent 전위, 과전압, 또는 반응 친화도 기준으로 유지 & 필요 \\
+branch index 추가가 기존 진행률 정의를 바꾸지 않음 & 필요 \\
+동적 지연과 구조 기억 변수를 구분함 & 필요 \\
+저항 보정 후 잔차를 구조 기억 변수로 해석함 & 필요 \\
+전압 branch와 ICA/DVA branch를 동시에 검증함 & 필요 \\
+히스테리시스 에너지는 양의 면적으로 계산함 & 필요 \\
+별도 확산 계층 미적용 & 필요 \\
+이전 오류 전개 계열 미사용 & 필요 \\
+\bottomrule
+\end{longtable}
+
+\end{document}
