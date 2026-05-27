@@ -1,0 +1,191 @@
+{
+  "phase": "E1",
+  "phase_id": "PASS_SPINE_REDESIGN",
+  "step_range": {"from": 81, "to": 140},
+  "date": "2026-05-27",
+  "parent_roadmap": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md",
+  "phase_plan": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e1-spine-plan.md",
+  "spine_choice": {
+    "candidates_considered": ["ver5_legacy", "rechecked2_legacy", "new_A_charter_minimal", "new_B_charter_plus_ica_dva"],
+    "rejected": {
+      "ver5_legacy": ["AP1 max(.,0)", "AP3 logistic", "AP5 discrete N_p"],
+      "rechecked2_legacy": ["AP5/AP8 discrete sum retained", "AP6 logistic retained"],
+      "new_A": ["missing explicit ICA/DVA derivation"]
+    },
+    "selected": "new_B_charter_plus_ica_dva",
+    "justification": [
+      "preserves observable target dQ/dV at spine endpoint matching Chapter 1 purpose",
+      "exposes Charter-compliant building blocks in sequence",
+      "allows phase-by-phase left-to-right writing in E2-E12",
+      "matches rechecked2 endpoint for legacy-comparison cross-checks"
+    ]
+  },
+  "spine_components": [
+    {"id": 1, "label": "external_charge_accumulation", "equation": "Q_ext = Q_cell * q", "source": "preserved from rechecked2"},
+    {"id": 2, "label": "charge_balance_central", "equation": "Q_cell * q = Q_bg(V_n, T) + integral from mu_min to mu_max of d mu rho(mu; q, T) n(mu)", "source": "Charter Eq. 48"},
+    {"id": 3, "label": "V_n_implicit", "equation": "V_n = root of (2) for given (q, T, rho)", "source": "new (Loop A)"},
+    {"id": 4, "label": "V_n_app_observable", "equation": "V_{n,app} = V_n + s_I * |I| * R_n(q, T, |I|)", "source": "preserved from rechecked2 §6.1"},
+    {"id": "5a", "label": "rho_evolution_fredholm_2nd_kind", "equation": "rho(mu; q, t) = rho_0(mu; q, t) + integral d mu' K_n(mu, mu'; q, T) S_R(mu'; T) [rho_eq(mu'; q, T) - rho(mu'; q, t)]", "source": "Charter Eq. 49"},
+    {"id": "5b", "label": "ICA_observable", "equation": "dQ_ext / dV_{n,app} = Q_cell / (dV_{n,app} / dq)", "source": "new (continuous-form)"},
+    {"id": "5c", "label": "DVA_observable", "equation": "dV_{n,app} / dQ_ext = (1/Q_cell) * (dV_{n,app} / dq)", "source": "new (continuous-form)"}
+  ],
+  "canonical_variables_count": 17,
+  "canonical_variables": [
+    {"symbol": "mu", "latex": "\\mu", "unit": "V (Li/Li+ ref)"},
+    {"symbol": "rho", "latex": "\\rho(\\mu; q, T)", "unit": "C/V"},
+    {"symbol": "S_R", "latex": "S_R(\\mu; T)", "unit": "pending Phase E6"},
+    {"symbol": "K_n", "latex": "K_n(\\mu, \\mu'; q, T)", "unit": "pending Phase E6"},
+    {"symbol": "rho_eq", "latex": "\\rho_{\\eq}(\\mu; q, T)", "unit": "C/V"},
+    {"symbol": "Q_bg", "latex": "Q_{\\bg}(V_n, T)", "unit": "C"},
+    {"symbol": "V_n", "latex": "V_n", "unit": "V"},
+    {"symbol": "V_n_app", "latex": "V_{n,\\app}", "unit": "V"},
+    {"symbol": "V_n_drive", "latex": "V_{n,\\drive}", "unit": "V"},
+    {"symbol": "R_n", "latex": "R_n(q, T, |I|)", "unit": "Ohm"},
+    {"symbol": "Q_cell", "latex": "Q_{\\cell}", "unit": "C"},
+    {"symbol": "q", "latex": "q", "unit": "dimensionless"},
+    {"symbol": "I", "latex": "I", "unit": "A"},
+    {"symbol": "T", "latex": "T", "unit": "K"},
+    {"symbol": "t", "latex": "t", "unit": "s"},
+    {"symbol": "s_I_phi", "latex": "s_I, s_{\\phi,j}", "unit": "+/-1"},
+    {"symbol": "n_mu", "latex": "n(\\mu)", "unit": "dimensionless", "default": 1}
+  ],
+  "derived_variables": [
+    {"symbol": "Q_ext", "derivation": "Q_cell * q", "first_use": "spine(1)"},
+    {"symbol": "V_n_OCV", "derivation": "V_n under rho = rho_eq", "first_use": "Phase E5/E11 rho_simple"},
+    {"symbol": "xi_j", "derivation": "(1/N_j) * integral over peak_j of rho dmu", "first_use": "Phase E10"},
+    {"symbol": "xi_j_eq", "derivation": "same with rho_eq", "first_use": "Phase E10"},
+    {"symbol": "k_j", "derivation": "S_R(mu approx U_j; T)", "first_use": "Phase E10"},
+    {"symbol": "U_j", "derivation": "center of rho_eq peak window j", "first_use": "Phase E10"},
+    {"symbol": "w_j", "derivation": "FWHM of rho_eq peak window j", "first_use": "Phase E10"},
+    {"symbol": "Q_j_tot", "derivation": "integral over peak_j of [rho_eq(q=1) - rho_eq(q=0)] dmu", "first_use": "Phase E10"},
+    {"symbol": "dxi_j_dq", "derivation": "(1/N_j) integral peak_j of d rho/dq dmu", "first_use": "Phase E10"},
+    {"symbol": "A_j", "derivation": "from S_R kernel + V_drive", "first_use": "Phase E6"},
+    {"symbol": "DeltaG_a_j", "derivation": "Marcus param of S_R", "first_use": "Phase E6"},
+    {"symbol": "DeltaG_eff_j", "derivation": "barrier at mu approx U_j from S_R", "first_use": "Phase E6"},
+    {"symbol": "nu_j", "derivation": "prefactor of S_R at mu approx U_j", "first_use": "Phase E6"},
+    {"symbol": "chi_j", "derivation": "coupling coeff from kernel", "first_use": "Phase E6"},
+    {"symbol": "rho_j_g_ver5", "derivation": "replaced by K_n cross-kernel", "first_use": "Phase E6"},
+    {"symbol": "g_ver5", "derivation": "replaced by mu/mu' integration", "first_use": "—"},
+    {"symbol": "EMG_params", "derivation": "empirical fit, not spine-derived", "first_use": "Phase E9"}
+  ],
+  "self_consistent_loops": [
+    {
+      "id": "A",
+      "name": "Spatial implicit V_n root-find",
+      "structure": "F(V_n; q, T, rho) := Q_bg(V_n, T) + integral rho n dmu - Q_cell q = 0 ⇒ V_n = root",
+      "order": "1-D nonlinear",
+      "solver": "Newton / bisection / Brent",
+      "jcp_2017_analogue": "none (graphite-specific Q_bg coupling)",
+      "ref_6_7_target": false
+    },
+    {
+      "id": "B",
+      "name": "Temporal DAE (Eq. 48 + Eq. 49 coupled)",
+      "structure": "algebraic constraint + dρ/dt + dq/dt at each t",
+      "order": "DAE index-1 in distribution rho",
+      "solver": "method of lines + DAE (IDA)",
+      "jcp_2017_analogue": "partial (JCP is steady-state, graphite has transient)",
+      "ref_6_7_target": false
+    },
+    {
+      "id": "C",
+      "name": "Volterra-like time-integral self-consistency (★ load-bearing)",
+      "structure": "rho(mu; q, t) = rho(mu; q, 0) + int_0^t dt' int dmu' K_n S_R [rho_eq - rho]; pseudo-stationary per q-slice ⇒ Fredholm 2nd kind in rho(·; q, T)",
+      "jcp_2017_mapping": {
+        "W_u_r": "rho(mu; q, T)",
+        "r": "mu",
+        "sigma": "mu_min",
+        "[sigma, inf]": "[mu_min, mu_max]",
+        "D": "kappa (effective relaxation from K_n, S_R)",
+        "S_R_over_e_U1": "K_tilde * S_R / e^U_eff",
+        "1_minus_W_u": "rho_eq - rho"
+      },
+      "ref_6_7_target": true,
+      "application_plan_phase_e11": [
+        "Step 1: formal rearrangement (JCP Eq. 33 analogue)",
+        "Step 2: ratio substitution (JCP Eq. 34 analogue) with rho_simple = rho_eq under V_n = V_n_OCV",
+        "Step 3: closed-form (JCP Eq. 39 analogue)"
+      ]
+    }
+  ],
+  "transfer_to_ch2": {
+    "legacy_ver5_transfer": ["dxi_j/dq", "dQ_n/dq", "dQ_n/dV_n_app"],
+    "legacy_rechecked2_transfer": ["dxi_j/dt", "dxi_j/dt = (|I|/Q_cell) dxi_j/dq"],
+    "new_continuous_form_transfer": [
+      {"id": "T1", "quantity": "rho(mu; q, T)"},
+      {"id": "T2", "quantity": "rho_eq(mu; q, T)"},
+      {"id": "T3", "quantity": "d rho(mu; q, t)/dt"},
+      {"id": "T4", "quantity": "S_R(mu; T)"},
+      {"id": "T5", "quantity": "K_n(mu, mu'; q, T)"},
+      {"id": "T6", "quantity": "V_n(q, t)"},
+      {"id": "T7", "quantity": "V_{n,app}(q, t)"},
+      {"id": "T8", "quantity": "Q_bg(V_n, T)"},
+      {"id": "T9", "quantity": "R_n(q, T, |I|)"}
+    ],
+    "ch2_reformulation_outline": {
+      "Q_rev": "T * integral d mu (entropy_coefficient_density) * d rho/dt — replaces ver5 T * sum_j s_j dxi_j/dq",
+      "Q_irr": "I^2 * R_n(q, T, |I|) — unchanged"
+    },
+    "backward_compat": "rho(mu; q, T) → sum_j Q_j_tot delta(mu - U_j(T)) recovers rechecked2 transfer",
+    "chapter_2_5_followup": "out of scope for Chapter 1 rebuild; flagged for separate roadmaps"
+  },
+  "legacy_mapping_verification": {
+    "ver5_ch1_section_2_count": 21,
+    "ver5_ch1_section_2_all_mapped": true,
+    "rechecked2_section_2_count": 11,
+    "rechecked2_section_2_all_mapped": true,
+    "phase_b_variable_table_count": 23,
+    "phase_b_variable_table_all_mapped": true,
+    "newly_introduced_canonical": ["mu", "rho(mu;q,T)", "S_R(mu;T)", "K_n(mu,mu';q,T)", "rho_eq(mu;q,T)", "n(mu)"]
+  },
+  "audit_results": {
+    "dim_2_verbatim": "PASS",
+    "dim_3_data_flow": "PASS",
+    "dim_6_convention": "PASS",
+    "dim_7_silent_miss": "PASS",
+    "dim_10_contract": "PASS",
+    "dim_alpha_boundary": "PASS",
+    "dim_beta_handover": "PASS",
+    "dim_gamma_tree": "PASS",
+    "dim_delta_4tier": "PASS",
+    "dim_11_system_fidelity": {
+      "pass_1_occurrences_in_spine_canonical_transfer": 0,
+      "pass_1_occurrences_in_loop_classification_anti_pattern_references": "ver5/rechecked2 step-function citations only — not definitional",
+      "pass_2_fail": 0,
+      "pass_2_warn": 0,
+      "pass_2_ok_dirac_limit_demonstration": 1,
+      "pass_3_remaining_fail": 0
+    },
+    "overall": "PASS — 11/11 dims, 0 FAIL"
+  },
+  "gates": [
+    {"gate_id": "GATE_E1_1", "requirement": "New spine explicit, Charter-compliant", "status": "PASS"},
+    {"gate_id": "GATE_E1_2", "requirement": ">=12 canonical with 1-line def", "status": "PASS", "actual": 17},
+    {"gate_id": "GATE_E1_3", "requirement": "derived covers ver5 21 + rechecked2 11 + Phase B 23", "status": "PASS"},
+    {"gate_id": "GATE_E1_4", "requirement": ">=3 loops classified, Ref 6/7 target identified", "status": "PASS", "actual": 3},
+    {"gate_id": "GATE_E1_5", "requirement": "transfer continuous-form, xi_j-based absent", "status": "PASS"},
+    {"gate_id": "GATE_E1_6", "requirement": "Audit 11/11 dims PASS, Dim #11 0 FAIL", "status": "PASS"}
+  ],
+  "confirmed_non_changes": [
+    "Claude/docs/graphite_ica_dynamic_ver5.tex",
+    "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "Claude/_local_only/*.pdf",
+    "Codex/*",
+    "PHASE_E0_..._RESULT.md (Charter)"
+  ],
+  "open_issues": [
+    {"id": "OI-E1-1", "item": "pseudo-stationary projection justification for Loop C", "tier": "추정", "resolution_phase": "E11"},
+    {"id": "OI-E1-2", "item": "n(mu)=1 simplest choice", "tier": "추정", "resolution_phase": "E5"},
+    {"id": "OI-E1-3", "item": "mu_min, mu_max physical boundaries (graphite voltage window)", "tier": "미검증", "resolution_phase": "E5"},
+    {"id": "OI-E0-1 (propagated)", "item": "Eq. 49 unit reconciliation K_n × S_R joint", "tier": "추정", "resolution_phase": "E6"},
+    {"id": "DQ-G2 (propagated)", "item": "mu as Li/Li+ electrochemical potential user cross-check", "tier": "사용자 결정 대기", "resolution_phase": "F3"}
+  ],
+  "next": {
+    "phase": "E2",
+    "step_range_from": 141,
+    "name": "§1, §2 Writing (Purpose, Notation, Units)",
+    "auto_proceed": true,
+    "deferred_to_next_turn": true,
+    "deferral_reason": "current response budget; no DQ blocker, no Charter violation"
+  }
+}
