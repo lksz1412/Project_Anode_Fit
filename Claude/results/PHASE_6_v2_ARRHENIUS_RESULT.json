@@ -1,0 +1,19 @@
+{
+  "phase": "6_v2",
+  "phase_id": "PASS_ARRHENIUS_v2",
+  "cumulative_step_range": {"from": 401, "to": 480, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "§6 Rate constant A4 (k_j = ν_j(T) exp(−ΔG_eff,j/RT)) formally derived via D6 (TST). Two-channel T-dependence (RT denominator + ΔG_a,j(T) numerator) — quantitative basis for O2 tail dependence (formalized in Phase 10_v2).",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 930-1019 added)"],
+  "key_equations": {"A4_boxed": "k_j(T, V_n,app) = ν_j(T) exp(−ΔG_eff,j/(RT))"},
+  "gates": [
+    {"gate_id": "GATE_6_v2_1", "requirement": "TST undergraduate start", "status": "PASS"},
+    {"gate_id": "GATE_6_v2_2", "requirement": "D6 transition j derivation", "status": "PASS"},
+    {"gate_id": "GATE_6_v2_3", "requirement": "A4 (Arrhenius) boxed", "status": "PASS"},
+    {"gate_id": "GATE_6_v2_4", "requirement": "Two-channel T dependence (O2 link)", "status": "PASS"},
+    {"gate_id": "GATE_6_v2_5", "requirement": "DQ-v2-4 (ν_j(T)) status", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "AP2_min_k_avoidance": "PASS", "writing_precision": "PASS"},
+  "decision_queue": [{"id": "DQ-v2-4", "item": "ν_j(T) functional form", "status": "open (fitting phase)"}],
+  "next": {"phase": "7_v2", "cumulative_step_start": 481, "auto_proceed": true}
+}

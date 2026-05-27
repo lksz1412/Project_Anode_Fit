@@ -1,0 +1,19 @@
+{
+  "phase": "8_v2",
+  "phase_id": "PASS_VOLTERRA_v2",
+  "cumulative_step_range": {"from": 541, "to": 600, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "§8 Volterra integral A9 derived via D9 (ODE time-integration). Fredholm vs Volterra distinguished, equation classified as Volterra 2nd kind (linear in unknown ξ_j). Self-consistent meaning explained, bridging to Refs 6/7 ratio substitution need.",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 1122-1212 added)"],
+  "key_equations": {"A9_boxed": "ξ_j(t) = ξ_{j,0} + ∫_0^t k_j(t')[ξ_eq,j(t') − ξ_j(t')] dt'"},
+  "gates": [
+    {"gate_id": "GATE_8_v2_1", "requirement": "D9 ODE→integral", "status": "PASS"},
+    {"gate_id": "GATE_8_v2_2", "requirement": "A9 boxed", "status": "PASS"},
+    {"gate_id": "GATE_8_v2_3", "requirement": "Volterra vs Fredholm", "status": "PASS"},
+    {"gate_id": "GATE_8_v2_4", "requirement": "Volterra 2nd kind classification", "status": "PASS"},
+    {"gate_id": "GATE_8_v2_5", "requirement": "Self-consistent meaning", "status": "PASS"},
+    {"gate_id": "GATE_8_v2_6", "requirement": "Phase 9_v2 bridge", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "writing_precision": "PASS"},
+  "next": {"phase": "9_v2", "cumulative_step_start": 601, "auto_proceed": true, "star_phase": true}
+}

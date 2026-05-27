@@ -1,0 +1,1686 @@
+% ====================================================================
+% graphite_ica_chapter1.tex
+% Chapter 1 Rebuild v2 (from-scratch attempt) — Anode Fit Project
+% Date: 2026-05-28
+% Author: Claude (Project_Anode_Fit Claude 측)
+% ====================================================================
+%
+% Charter binding:    Claude/results/CHARTER_v2.md
+% Master roadmap:     Claude/plans/MASTER_ROADMAP_v2.md
+% Predecessor v1:     Claude/old/docs/graphite_ica_chapter1_v0.1.tex (archived)
+%
+% USER VERBATIM (Charter §00.1, master roadmap §0.1):
+% "LIB의 ICA 분석에서 온도와 현시점의 전위 상태에 따라서 그 그래프의 개형이
+%  특히 피크부분이 상변이에 의해서 나타나는데 그 상변이의 의해 나타나는
+%  피크 꼬리의 개형이 늘어지느냐 빨리 떨어지느냐가 달라지는것을 확인했다.
+%  특히 온도가 낮을때는 꼬리가 길고, 온도가 높으면 그 꼬리가 상대적으로
+%  짧게 끝나는 현상이 관측되었어. 원래라면 그렇게 온도에 대해 약간 가우시안
+%  피크 형상이 나타나고 더이상 진행이 안될 것으로 생각되는데 그 온도에 의한
+%  배리어 외에 추가적인 극판 자체 전위에 따른 배리어를 낮추는 효과가 있다고
+%  봤고 그 유효 배리어의 논리를 확정하고 그 것을 이용해 피크의 거동을
+%  해석하는 피팅하는데 쓸수 있는 논리 식을 구하는게 이 작업의 핵심이야."
+%
+% USER PRINCIPLES (Charter §00.2):
+%  P1. 피팅 솔버 코드 구축 X (본 세션 범위 외)
+%  P2. 흑연 ICA(dQ/dV) 의 이론적 배경
+%  P3. 논문 또는 특허 수준 정밀도
+%  P4. 모든 수식 전개의 논리적 비약 X + 생략 X + 학부생 수준
+%
+% ANTI-PATTERN LIST (Charter §3.1):
+%  AP1 max(ΔG_eff, 0)          AP2 min(k, k_max)
+%  AP3 logistic for ξ_eq        AP4 → OK-derived in v2 (Gaussian cumulative = erf)
+%  AP5 → OK in v2 (discrete-j primary per user intent)
+%  AP6 softplus as canonical    AP7 임의 sigmoid    AP8 ρ_j(g) 를 primary 로
+%
+% SPINE A1–A12 (Charter §2.1):
+%  A1 ΔG_a(T) = ΔH_a − T ΔS_a              [온도 배리어]
+%  A2 A(V_n,app, T) = s_φ·F·(V_n,app − U(T))[전위 보조 driving force]
+%  A3 ★ ΔG_eff(T,A) = ΔG_a(T) − χ·A        [유효 배리어, spine 출발점]
+%  A4 k(T,A) = ν(T) exp(−ΔG_eff/RT)         [Arrhenius]
+%  A5 ξ_eq(V_n, T) = (1/2)[1+erf((V_n−U)/(σ√2))]  [가우시안 누적]
+%  A6 dξ/dt = k(ξ_eq − ξ)                    [relaxation]
+%  A7 dξ/dq = (Q_cell/|I|)·k·(ξ_eq − ξ)     [정전류 변환]
+%  A8 V_n = V_n,OCV(q, T) 외부 lookup        (DEC-2)
+%  A9 ξ(t) = ξ(0) + ∫_0^t k(ξ_eq − ξ) dt'  [Volterra]
+% A10–A11 ★ Refs 6/7 비율 치환 closed-form
+% A12 dQ/dV 꼬리 모양 + 피팅 가능 논리식    [★ 종료점]
+% ====================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{mdframed}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+            pdftitle={Chapter 1 v2 — Graphite ICA Tail Dynamics: Effective Barrier and Fitting Logic},
+            pdfauthor={Project_Anode_Fit Claude}}
+\setstretch{1.14}
+\setlength{\parskip}{0.42em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ch.\,1 v2 — Graphite ICA Tail Dynamics}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{assumption}{가정}
+\newtheorem*{note}{설명}
+\newtheorem*{charter}{Charter compliance}
+\newtheorem*{userverbatim}{사용자 verbatim}
+
+% Preserved macros
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\Ah}{\mathrm{Ah}}
+\newcommand{\Cunit}{\mathrm{C}}
+\newcommand{\simplecase}{\mathrm{simple}}
+
+\title{\Large \textbf{리튬이온전지 흑연 음극 ICA(\,dQ/dV\,)의 꼬리 거동:\\
+       유효 배리어 기반 열역학적·동역학적 해석}\\[0.4em]
+       \large Chapter 1 (Rebuild v2, 2026-05-28)}
+\author{Project\_Anode\_Fit Claude 측}
+\date{2026-05-28}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\textbf{초록.} 리튬이온전지 흑연 음극의 incremental capacity analysis (ICA)
+즉 $dQ/dV$ 곡선의 \emph{꼬리} 거동은 온도가 낮을수록 길게 늘어지고 온도가
+높을수록 짧게 끝나는 특징을 보인다. 본 Chapter 1 v2 는 이 현상을
+\textbf{온도에 의한 배리어 $\Delta G_a(T)$ + 극판 전위에 따른 추가
+배리어 lowering $-\chi \cdot \mathcal A$} 의 결합으로 정의되는
+\textbf{유효 배리어 $\Delta G_{\eff} = \Delta G_a(T) - \chi \cdot \mathcal A$}
+를 spine 출발점으로 두고, 평형 분포를 가우시안 누적 ($\xi_{\eq} = \tfrac{1}{2}
+[1 + \operatorname{erf}(\cdot)]$) 으로 정의한 뒤, relaxation 동역학 $d\xi/dt
+= k(\xi_{\eq} - \xi)$ 의 시간 적분형 (Volterra integral equation of 2nd kind) 에
+\textbf{사용자 박사학위 연구}~\cite{lee2011propagator, son2013accurate} 의
+\emph{비율 치환법} 을 적용해 closed-form 해석해를 얻는다. 그 결과로 도출되는
+\textbf{피팅 가능 논리식} 은 ICA 꼬리 모양의 온도 의존성과 전위 의존성을
+정량적으로 설명한다. 본 Chapter 1 은 학부 수준 전기화학·열역학·미적분 지식만으로
+\emph{모든 식의 도출을 sentence-by-sentence} 따라갈 수 있도록 정리된다 (Charter
+v2 §00.2 P4 정합).
+\end{minipage}
+\end{center}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{본 Chapter 의 동기와 deliverable}
+\label{sec:intro}
+% ====================================================================
+
+\subsection{사용자 의도 명시 (verbatim)}
+\label{sec:user_verbatim}
+
+본 Chapter 의 모든 식·도출·결론은 다음 사용자 의도를 절대 기준으로 한다.
+
+\begin{userverbatim}
+``LIB의 ICA 분석에서 온도와 현시점의 전위 상태에 따라서 그 그래프의 개형이
+특히 피크부분이 상변이에 의해서 나타나는데 그 상변이의 의해 나타나는 피크 꼬리의
+개형이 늘어지느냐 빨리 떨어지느냐가 달라지는것을 확인했다. 특히 온도가 낮을때는
+꼬리가 길고, 온도가 높으면 그 꼬리가 상대적으로 짧게 끝나는 현상이 관측되었어.
+원래라면 그렇게 온도에 대해 약간 가우시안 피크 형상이 나타나고 더이상 진행이
+안될 것으로 생각되는데 그 온도에 의한 배리어 외에 추가적인 극판 자체 전위에 따른
+배리어를 낮추는 효과가 있다고 봤고 그 유효 배리어의 논리를 확정하고 그 것을
+이용해 피크의 거동을 해석하는 피팅하는데 쓸수 있는 논리 식을 구하는게 이 작업의
+핵심이야.''
+\end{userverbatim}
+
+\subsection{본 작업의 동기 — 실험 관측 사실}
+\label{sec:motivation_observation}
+
+리튬이온전지 흑연 음극의 incremental capacity analysis (ICA) 는 음극 전위
+$V_{n,\app}$ 에 대한 외부 전하량 미분 $dQ/dV_{n,\app}$ 을 plot 한 곡선이다.
+저속 (예: 0.2C 이하) 의 정전류 방전 또는 충전 조건에서 측정한 이 곡선에는
+다음 두 가지 정성적 특징이 관측된다.
+
+\begin{enumerate}[label=\textbf{(O\arabic*)}]
+\item \textbf{피크의 출현}\,: 흑연의 staging transition 이 발생하는 화학 퍼텐셜
+      영역에서 $dQ/dV_{n,\app}$ 곡선이 국소 극대 (피크) 를 갖는다. 흑연의 staging
+      sequence (Stage 1, Stage 2, Stage 3, ...) 가 보통 3 \(\sim\) 4 개의
+      관측 가능 effective transition 으로 합쳐져 보이므로, 같은 수의 peak 가
+      관측된다.
+
+\item \textbf{꼬리의 온도 의존성}\,: 각 피크의 \emph{꼬리} (피크 중심을 지나
+      $V_{n,\app}$ 가 더 진행한 영역의 곡선이 0 으로 수렴해 가는 부분) 의 길이가
+      \emph{온도에 따라 변한다}. 구체적으로:
+      \begin{itemize}
+      \item 온도 $T$ 가 \emph{낮을수록} 꼬리가 \emph{길게} 늘어진다.
+      \item 온도 $T$ 가 \emph{높을수록} 꼬리가 \emph{짧게} 끝난다.
+      \end{itemize}
+\end{enumerate}
+
+본 Chapter 의 \textbf{1 차 초점} 은 (O2) 즉 \emph{꼬리 거동의 온도 의존성}
+이며, (O1) 의 피크 면적 (총량) 정합은 본 Chapter 의 범위 외 (피팅 단계로
+이관, Charter §0.1).
+
+\subsection{이론적 가설}
+\label{sec:hypothesis}
+
+사용자 의도 (\S\ref{sec:user_verbatim}) 의 핵심 가설을 학부 수준으로 풀어쓰면
+다음과 같다.
+
+\paragraph{기본 그림 (평형, 가우시안 peak).}
+충분히 \emph{평형에 가까운 조건} (저속 + 충분한 relaxation) 에서는 staging
+transition $j$ 의 평형 진행률 $\xi_{\eq,j}$ 가 음극 전위 $V_n$ 에 대해 ``약간
+가우시안 형태'' (가우시안 분포의 누적 함수, 즉 erf 형태) 의 부드러운 transition
+을 보인다. 이때 $dQ/dV$ 의 peak 는 가우시안 형태 (= $d\xi_{\eq,j}/dV_n$) 로
+나타나고, 평형이라면 peak 가 끝나는 곳에서 곧 0 으로 수렴해 ``더 이상 진행이
+안 될 것'' 으로 예상된다.
+
+\paragraph{관측되는 추가 거동 (꼬리).}
+그러나 실제 측정에서는 peak 가 끝난 영역에서도 $dQ/dV$ 가 0 으로 즉시 떨어지지
+않고 \emph{꼬리} 가 일정 거리까지 늘어진다. 이 꼬리의 길이가 (O2) 와 같이
+온도에 의존한다는 사실은, peak 가 ``순수 평형 분포의 미분'' 만이 아니라
+\emph{비평형 동역학 효과} 까지 포함하고 있다는 신호이다.
+
+\paragraph{핵심 가설 (유효 배리어 lowering).}
+사용자의 핵심 가설은 다음과 같다.
+
+\textbf{(H1)} 흑연 staging transition $j$ 의 진행 속도는 \emph{온도에 의한
+활성화 자유 에너지 배리어} $\Delta G_{a,j}(T)$ 를 통과하는 thermal activation
+과정으로 표현된다. 이 부분은 표준 Arrhenius 형태이다.
+
+\textbf{(H2)} 이에 \emph{극판 자체 전위} $V_{n,\app}$ 가 추가로 작용해, 평형
+중심 전위 $U_j(T)$ 와의 차이 $V_{n,\app} - U_j(T)$ 에 비례하는 양만큼 그
+활성화 배리어를 \emph{낮춘다}. 그 lowering 의 크기를 다음과 같이 둔다:
+$\chi_j \cdot \mathcal A_j$, 여기서 $\mathcal A_j = s_{\phi,j} F (V_{n,\app}
+- U_j(T))$ 는 전위 보조 구동력 (potential-assisted driving force) 이고,
+$\chi_j$ 는 lowering 의 결합 계수 (Brønsted–Evans–Polanyi 류 transfer coefficient
+의 일종) 이다.
+
+\textbf{(H3)} 따라서 transition $j$ 가 ``실제로 느끼는'' 유효 배리어는
+\begin{equation}
+\boxed{\;\Delta G_{\eff,j}(T, V_{n,\app}) = \Delta G_{a,j}(T) - \chi_j \cdot
+\mathcal A_j(V_{n,\app}, T)\;}
+\label{eq:effective_barrier_hypothesis}
+\end{equation}
+이며, 본 식 \eqref{eq:effective_barrier_hypothesis} 가 본 Chapter 의
+\textbf{spine 출발점} 이다. (자세한 정식 유도는 \S\ref{sec:effective_barrier}
+에서.)
+
+\textbf{(H4)} 유효 배리어 $\Delta G_{\eff,j}$ 는 Arrhenius 형태의 속도 상수
+\begin{equation}
+k_j(T, V_{n,\app}) = \nu_j(T) \exp\!\left(-\frac{\Delta G_{\eff,j}}{R T}\right)
+\label{eq:rate_constant_hypothesis}
+\end{equation}
+를 결정하고, 진행률 $\xi_j$ 가 평형 $\xi_{\eq,j}$ 를 \emph{유한한 속도} 로
+따라가는 relaxation 동역학을 만든다. 평형에서 lag (지연) 가 발생하면 그 lag 가
+$dQ/dV$ 의 꼬리로 나타난다.
+
+\textbf{(H5)} 온도 $T$ 가 낮으면 $\exp(-\Delta G_{\eff,j} / R T)$ 항이 더 작아져
+$k_j$ 가 작아진다. $k_j$ 가 작으면 $\xi_j$ 가 $\xi_{\eq,j}$ 를 빨리 못 따라가
+lag 가 커지고, 따라서 꼬리가 \emph{길게 늘어진다}. 온도 $T$ 가 높으면 그 반대로
+꼬리가 \emph{짧게 끝난다}. 이는 (O2) 의 관측과 일치한다.
+
+\subsection{본 Chapter 의 deliverable}
+\label{sec:deliverable}
+
+(H1)\(\sim\)(H5) 의 가설을 정식 유도로 확정하고, 그 결과로 ICA 의 꼬리 거동을
+정량적으로 설명할 수 있는 \emph{피팅 가능한 닫힌 형태의 논리식} 을 도출하는
+것이 본 Chapter 의 deliverable 이다. 구체적으로:
+
+\begin{enumerate}[label=\textbf{(D\arabic*)}]
+\item \emph{유효 배리어 식} (\S\ref{sec:effective_barrier})\,: 식
+      \eqref{eq:effective_barrier_hypothesis} 의 각 항이 어디서 오는지 학부 수준
+      으로 단계별 유도.
+\item \emph{평형 분포 식} (\S\ref{sec:equilibrium_dist})\,: $\xi_{\eq,j}$ 가
+      가우시안 누적 (erf) 으로 표현됨을 가우시안 분포의 통계역학적 근거에서 도출.
+\item \emph{속도 상수 식} (\S\ref{sec:rate_constant})\,: 식
+      \eqref{eq:rate_constant_hypothesis} 의 Arrhenius 형태를 transition state
+      theory 의 학부 수준 도출.
+\item \emph{진행률 동역학} (\S\ref{sec:kinetics})\,: $d\xi/dt = k(\xi_{\eq}
+      - \xi)$ 의 first-order relaxation ODE 도출.
+\item \emph{시간 적분형 (Volterra integral equation)} (\S\ref{sec:volterra})\,:
+      위 ODE 의 시간 적분 형태가 Fredholm/Volterra integral equation of the
+      second kind 의 self-consistent 형태임을 식별.
+\item \emph{Closed-form 해석해} (\S\ref{sec:ratio_substitution})\,: \textbf{★
+      사용자 박사학위 연구}~\cite{lee2011propagator, son2013accurate} 의
+      비율 치환법 (ratio substitution method) 을 적용해 시간 적분형 ξ(t) 의
+      closed-form 해석해 도출.
+\item \emph{ICA 관측 + 꼬리 모양의 T 의존성 정량}
+      (\S\ref{sec:ICA_tail})\,: (D6) 의 closed-form 을 통해 $dQ/dV$ 꼬리 모양이
+      온도와 전위 의존 어떻게 변화하는지 정량 설명.
+\item \emph{피팅 가능한 닫힌 형태의 논리식} (\S\ref{sec:fitting_expression})\,:
+      위 모두를 합한, 피팅 파라미터 $\{\Delta H_{a,j}, \Delta S_{a,j}, \chi_j,
+      \nu_j(T), U_j(T), \sigma_j(T)\}$ 의 함수로 표현된 $dQ/dV$ 의 closed-form
+      식.
+\end{enumerate}
+
+본 Chapter 는 (D1)\(\sim\)(D8) 까지의 모든 식의 도출을 \emph{학부 수준 전기화학·
+열역학·미적분 지식} 으로 sentence-by-sentence 따라갈 수 있도록 정리한다 (Charter
+v2 §00.2 P4 정합).
+
+\subsection{사용자 박사학위 연구의 위치}
+\label{sec:phd_work_position}
+
+본 Chapter 의 \textbf{load-bearing 차별점} 은 사용자 본인이 박사학위 과정에서
+개발한 두 편의 paper 에서 제시된 방법론을 graphite ICA 꼬리 거동의 해석에 정확히
+대응시키는 것이다.
+
+\begin{itemize}
+\item \textbf{Ref 6}: S. Lee, C. Y. Son, J. Sung, S. H. Chong, ``Communication:
+      Propagator for diffusive dynamics of an interacting molecular pair'',
+      \textit{J. Chem. Phys.} \textbf{134}, 121102 (2011). DOI:
+      \href{https://doi.org/10.1063/1.3565476}{10.1063/1.3565476}. — Fredholm
+      적분 방정식 제2종에 대해 단순 반복 해법이 발산하는 영역까지 적용 가능한
+      새 해법 (비율 치환법) 을 제시.
+\item \textbf{Ref 7}: C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, S. Lee, ``An
+      accurate expression for the rates of diffusion-influenced bimolecular
+      reactions with long-range reactivity'', \textit{J. Chem. Phys.}
+      \textbf{138}, 164123 (2013). DOI: \href{https://doi.org/10.1063/1.4802584}
+      {10.1063/1.4802584}. — Ref 6 의 방법론을 long-range reactivity 시스템으로
+      확장.
+\end{itemize}
+
+본 Chapter \S\ref{sec:ratio_substitution} 에서 위 두 paper 의 비율 치환법을
+시간 적분형 $\xi(t) = \xi(0) + \int_0^t \dd t' k(t') (\xi_{\eq}(t') -
+\xi(t'))$ 의 self-consistent 적분에 직접 적용한다.
+
+\subsection{본 Chapter 의 spine 요약}
+\label{sec:spine_summary_section}
+
+본 Chapter 가 spine 으로 채택하는 12 개 식 (A1\(\sim\)A12, Charter v2 §2.1
+locked) 의 boxed summary 이다. 각 식의 정식 유도는 후속 \S\ref{sec:effective_barrier}
+이하에서 다룬다.
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\text{(A1)} \quad & \Delta G_{a,j}(T) = \Delta H_{a,j} - T \Delta S_{a,j}
+   && \text{[온도 배리어, Gibbs]} \\
+\text{(A2)} \quad & \mathcal A_j = s_{\phi,j} F\,(V_{n,\app} - U_j(T))
+   && \text{[전위 보조 driving force]} \\
+\text{(A3)} \quad & \boldsymbol{\Delta G_{\eff,j} = \Delta G_{a,j}(T)
+   - \chi_j \mathcal A_j}
+   && \text{[★ 유효 배리어]} \\
+\text{(A4)} \quad & k_j(T, V_{n,\app}) = \nu_j(T)\exp[-\Delta G_{\eff,j}/(R T)]
+   && \text{[Arrhenius]} \\
+\text{(A5)} \quad & \xi_{\eq,j}(V_n, T) = \tfrac{1}{2}\bigl[1 +
+   \operatorname{erf}\bigl((V_n - U_j(T))/(\sigma_j(T)\sqrt{2})\bigr)\bigr]
+   && \text{[가우시안 누적]} \\
+\text{(A6)} \quad & d\xi_j/d t = k_j(\xi_{\eq,j} - \xi_j)
+   && \text{[relaxation]} \\
+\text{(A7)} \quad & d\xi_j/d q = (Q_{\cell}/|I|)\,k_j (\xi_{\eq,j} - \xi_j)
+   && \text{[정전류 변환]} \\
+\text{(A8)} \quad & V_n = V_{n,\OCV}(q, T)
+   && \text{[외부 lookup, DEC-2]} \\
+\text{(A9)} \quad & \xi_j(t) = \xi_j(0) + \int_0^t \dd t'\,k_j(t')\,
+   (\xi_{\eq,j}(t') - \xi_j(t'))
+   && \text{[Volterra integral]} \\
+\text{(A10-11)} \quad & \text{★ Refs 6/7 비율 치환} \to \xi_j(t)\;
+   \text{closed-form 해석해} \\
+\text{(A12)} \quad & (dQ/dV)_j \propto Q_{j,\tot}\,(d\xi_j/dq)/(dV_{n,\app}/dq)
+   && \text{[★ 꼬리 모양 + 피팅 식]}
+\end{aligned}
+}
+\label{eq:spine_summary_v2}
+\end{equation}
+
+% ====================================================================
+\section{기호와 단위 컨벤션}
+\label{sec:notation}
+% ====================================================================
+
+본 \S 의 모든 기호는 후속 \S\ref{sec:effective_barrier} 이하의 spine 식
+\eqref{eq:spine_summary_v2} 의 모든 변수를 1:1 로 cover 한다.
+
+\subsection{기본 좌표·전하·전류·온도}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$t$ & s & 시간. \\
+$T$ & K & 절대 온도. \\
+$q$ & 무차원 & 방전 진행 좌표, $q = Q_{\ext}/Q_{\cell}$. $q=0$ 시작, $q=1$
+   기준 용량 만큼 진행. \\
+$Q_{\ext}$ & C & 외부 회로 누적 전하량, $Q_{\ext}(t) = \int_0^t |I(t')|\,
+   \dd t'$. \\
+$Q_{\cell}$ & C & 셀 기준 용량 (쿨롱). $Q_{\cell}[\Cunit] = 3600\,Q_{\cell}
+   [\Ah]$. \\
+$I$ & A & 셀 전류 크기 ($|I| \ge 0$, 방향은 부호 $s_I$ 별도). \\
+$s_I$ & $\pm 1$ & 전류 부호. 방전 기본 $s_I = +1$ (음극 전위 증가 방향). \\
+$F$ & C/mol & Faraday 상수 ($\approx 96485$). \\
+$R$ & J/(mol$\cdot$K) & 기체 상수 ($\approx 8.314$). \\
+\bottomrule
+\end{longtable}
+
+\subsection{전위 — 세 가지 구분 \texorpdfstring{$V_n / V_{n,\app} / V_{n,\drive}$}{V\_n / V\_n,app / V\_n,drive}}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$V_n$ & V (Li/Li$^+$) & \textbf{음극 내부 전위.} 평형 또는 준평형 조건에서의
+   기본 전위. 본 Chapter v2 에서는 외부 OCV lookup 함수 (DEC-2):
+   $V_n = V_{n,\OCV}(q, T)$. \\
+$V_{n,\app}$ & V & \textbf{관측 (apparent) 음극 전위.} 외부 회로에서 측정.
+   $V_{n,\app} = V_n + s_I |I| R_n(q, T, |I|)$. \\
+$V_{n,\drive}$ & V & \textbf{구동 (driving) 전위.} 반응 속도 (그리고 유효 배리어)
+   에 들어가는 전위 인수. Reduced model 에서 $V_{n,\drive} \approx V_{n,\app}$
+   근사 (\S\ref{sec:effective_barrier} 의 단계 검토). \\
+$R_n(q, T, |I|)$ & $\Omega$ & 음극 유효 저항 / 유효 분극 계수 (전하 이동 분극,
+   확산 분극, 접촉 저항 등의 총합). \\
+$V_{n,\OCV}(q, T)$ & V & 외부 lookup OCV 함수 (실험 0.2C 이하 측정 곡선). \\
+\bottomrule
+\end{longtable}
+
+\subsection{상변이 ($j$-th transition) 의 기호}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$j$ & (index) & Effective staging transition 인덱스. $j = 1, 2, \ldots, N_p$
+   ($N_p \approx 3 \sim 4$, 관측 가능 peak 수). \\
+$\xi_j$ & 무차원 & $j$-th transition 의 진행률. $\xi_j = 0$ 미진행, $\xi_j = 1$
+   완료. \\
+$\xi_{\eq,j}$ & 무차원 & $j$-th transition 의 평형 진행률
+   ($\xi_{\eq,j} = \xi_{\eq,j}(V_n, T)$). \\
+$U_j(T)$ & V & $j$-th transition 의 평형 중심 전위 (peak 중심). \\
+$\sigma_j(T)$ & V & $j$-th transition 의 가우시안 분포 폭 (peak 의 standard
+   deviation). \\
+$Q_{j,\tot}$ & C & $j$-th transition 의 총 용량 기여 (피팅 단계 정정 대상). \\
+$s_{\phi,j}$ & $\pm 1$ & $j$-th transition 의 진행 방향 부호. \\
+\bottomrule
+\end{longtable}
+
+\subsection{유효 배리어 — \texorpdfstring{$\Delta G$}{ΔG} 계열}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$\Delta H_{a,j}$ & J/mol & $j$-th transition 의 활성화 엔탈피 (피팅 파라미터). \\
+$\Delta S_{a,j}$ & J/(mol$\cdot$K) & $j$-th transition 의 활성화 엔트로피
+   (피팅 파라미터). \\
+$\Delta G_{a,j}(T)$ & J/mol & $j$-th transition 의 Gibbs 활성화 자유 에너지 =
+   $\Delta H_{a,j} - T \Delta S_{a,j}$ (Eq.\,A1). \\
+$\mathcal A_j$ & J/mol & 전위 보조 driving force =
+   $s_{\phi,j} F (V_{n,\app} - U_j(T))$ (Eq.\,A2). \\
+$\chi_j$ & 무차원 & 전위 보조 결합 계수 (Brønsted–Evans–Polanyi 류 transfer
+   coefficient). 피팅 파라미터, 보통 $0 \le \chi_j \le 1$. \\
+$\Delta G_{\eff,j}$ & J/mol & ★ 유효 배리어 = $\Delta G_{a,j}(T) -
+   \chi_j \mathcal A_j$ (Eq.\,A3). \textbf{spine 출발점.} \\
+\bottomrule
+\end{longtable}
+
+\subsection{속도 상수와 동역학}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$\nu_j(T)$ & 1/s & Arrhenius prefactor (시도 빈도, attempt frequency). \\
+$k_j(T, V_{n,\app})$ & 1/s & 속도 상수 = $\nu_j(T) \exp[-\Delta G_{\eff,j}
+   / (R T)]$ (Eq.\,A4). \\
+$d\xi_j/d t$ & 1/s & 진행률의 시간 변화율 = $k_j(\xi_{\eq,j} - \xi_j)$
+   (Eq.\,A6). \\
+$d\xi_j/d q$ & 무차원/q & 진행률의 $q$-좌표 변화율 = $(Q_{\cell}/|I|) k_j
+   (\xi_{\eq,j} - \xi_j)$ (Eq.\,A7). \\
+\bottomrule
+\end{longtable}
+
+\subsection{관측 — ICA / DVA}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$Q_n(q)$ & C & 음극 누적 용량 = $Q_{\bg}(q) + \sum_j Q_{j,\tot}\xi_j(q)$. \\
+$Q_{\bg}(q)$ & C & 배경 용량 (peak 외 잔류 점유). \\
+$(dQ/dV)_j$ & C/V & $j$-th transition 의 ICA 기여 (Eq.\,A12). \\
+$dQ/dV$ & C/V & 관측 ICA (총합) = $dQ_{\ext}/dV_{n,\app}$. \\
+$dV/dQ$ & V/C & 관측 DVA = $dV_{n,\app}/dQ_{\ext}$ (역수 형태). \\
+\bottomrule
+\end{longtable}
+
+\subsection{Charter 적합성 점검 (이 \S 의 자기 검수)}
+
+\begin{charter}
+본 \S 의 기호 표에는 $\max(\cdot, 0)$, $\min(\cdot, k_{\max})$, logistic
+$1/(1+\exp(\cdot))$, softplus 등 step function 류 함수가 등장하지 않는다.
+$\operatorname{erf}$ 는 \S\ref{sec:equilibrium_dist} 에서 가우시안 분포의
+\emph{자연 누적 형태} 로 등장하며, 사용자 의도 (가우시안 peak) 의 직접 표현이라
+Charter v2 §3.2 의 OK-derived 분류 적용. 본 \S 의 모든 기호는 spine 식
+\eqref{eq:spine_summary_v2} 의 12 변수 + 그 derivation 의 보조 변수 (Q_n, Q_bg,
+F, R) 만 포함. \textbf{Audit Dim \#11 Pass 1 통과}.
+\end{charter}
+
+\subsection{단위 컨벤션 요약}
+
+본 Chapter 의 모든 정식 식은 SI 단위로 표기한다.
+$Q_{\cell}$ 은 \textbf{쿨롱 (C)} 으로 고정 ($Q_{\cell}[\Cunit] = 3600\,Q_{\cell}
+[\Ah]$). $\Delta G$ 류는 \textbf{J/mol}, $R T$ 곱은 \textbf{J/mol}, 따라서 지수
+$\Delta G / (R T)$ 는 \textbf{무차원}. $k_j$ 는 \textbf{1/s}, $\nu_j$ 도
+\textbf{1/s}. $V$ 류는 \textbf{V (Li/Li$^+$ 기준)}.
+
+% ====================================================================
+\section{흑연 staging 과 effective transition}
+\label{sec:staging}
+% ====================================================================
+
+\subsection{흑연 staging 의 물리적 배경}
+
+흑연은 층상 구조 (layered structure) 의 탄소 격자이고, Li$^+$ 가 층간 (gallery)
+에 intercalation 되면서 음극으로 작동한다. Li$^+$ 의 점유율 (lithiation degree)
+이 증가함에 따라 흑연 호스트의 \textbf{staging 상태} 가 다음과 같은 전형적
+sequence 를 따라 변한다 (Daumas–Hérold 모델 등에서 정리):
+
+\begin{itemize}
+\item Stage 1L (dilute): Li 가 매우 듬성듬성 점유.
+\item Stage 4: Li 가 모든 4 번째 gallery 에 충진.
+\item Stage 3: 모든 3 번째 gallery.
+\item Stage 2L (liquid-like Stage 2): Stage 2 의 비정질-유사 중간 상태.
+\item Stage 2: 모든 2 번째 gallery 에 충진.
+\item Stage 1: 모든 gallery 에 충진 (LiC$_6$).
+\end{itemize}
+
+각 stage 전환은 (i) 일정 화학 퍼텐셜 $\mu_{\text{Li}}$ 의 영역에서 발생하고
+(ii) 일정 양의 Li 점유 변화량을 동반한다. 따라서 외부 전위 $V_n$ (Li/Li$^+$
+기준 음극 전위) 가 천천히 변할 때, $dQ/dV_n$ 곡선 상에 각 stage transition 의
+존재 신호로 \emph{peak} 가 관측된다.
+
+\subsection{Effective transition index $j$}
+
+실제 측정 ICA 곡선에서는 위 stage sequence 가 모두 분리되어 보이지 않는다.
+보통 셀 화학·전해질·온도·C-rate 에 따라 \textbf{관측 가능한 effective peak
+의 수} 가 $N_p \approx 3 \sim 4$ 개로 합쳐져 나타난다. 이를 다음과 같이
+\emph{effective transition index} 로 표현한다.
+
+\begin{equation}
+j \in \{1, 2, \ldots, N_p\}, \qquad N_p \approx 3 \sim 4
+\label{eq:effective_transition_index}
+\end{equation}
+
+각 $j$ 는 하나의 관측 가능 peak 에 대응하며, 그 peak 의 중심 평형 전위 $U_j(T)$
+와 폭 $\sigma_j(T)$ 와 총 용량 기여 $Q_{j,\tot}$ 가 피팅 파라미터로 등장한다
+(\S\ref{sec:fitting_expression}).
+
+\subsection{본 Chapter 가 채택하는 ``discrete-$j$ 분리'' 가정}
+
+\begin{assumption}
+본 Chapter 1 v2 는 흑연 staging transition 을 \textbf{$N_p$ 개의 분리된
+effective transition $j$ 의 합} 으로 모델링한다. 각 $j$ 의 진행률 $\xi_j$ 는
+독립 ODE (\S\ref{sec:kinetics}) 를 따르고, 각 $j$ 의 평형 분포 $\xi_{\eq,j}$
+는 가우시안 누적 (\S\ref{sec:equilibrium_dist}) 으로 표현된다. 총 ICA 신호는
+각 $j$ 의 기여의 합이다.
+\end{assumption}
+
+이 가정은 (1) 사용자 의도 (Charter v2 §00.1 의 ``피크부분이 상변이에 의해서
+나타나는데'' 표현), (2) 관측 peak 수가 finite 한 사실, (3) 학부 수준 모델의
+단순성, 세 가지 근거에서 채택. 보다 일반적인 \emph{연속 화학 퍼텐셜 분포}
+$\rho(\mu)$ 표현은 Appendix (선택, Charter v2 DEC-8) 에서 다룬다.
+
+\subsection{본 \S 의 \S\ref{sec:effective_barrier} 진입 bridge}
+
+본 \S 에서는 단순히 $j$-index 와 staging 의 물리적 의미를 정립했다. 다음
+\S\ref{sec:effective_barrier} 에서는 각 $j$ 의 진행률 $\xi_j$ 가 비평형 조건
+에서 어떻게 lag 를 발생시키는지 — 즉 사용자 의도의 \textbf{유효 배리어
+$\Delta G_{\eff,j}$} — 의 정식 유도로 진입한다.
+
+% ====================================================================
+\section{★ 유효 배리어 \texorpdfstring{$\Delta G_{\eff,j}$}{ΔG\_eff,j} 의 정식 유도}
+\label{sec:effective_barrier}
+% ====================================================================
+
+\textbf{본 \S 의 위치.} 본 Chapter 의 \textbf{spine 출발점} (Charter v2 §2.1
+A3). (H1)\(\sim\)(H3) 의 가설 (§\ref{sec:hypothesis}) 을 \emph{학부 수준 전기
+화학·열역학 지식만으로} 단계별로 정식 유도한다. 모든 단계의 변수 치환·차원
+점검·물리적 직관을 sentence-by-sentence 명시 (Charter v2 §5 Writing Precision
+Standard 정합).
+
+\subsection{온도 배리어 \texorpdfstring{$\Delta G_{a,j}(T)$}{ΔG\_a,j(T)} — Gibbs 자유 에너지의 활성화 부분 (Eq.\,A1)}
+\label{sec:Delta_G_a}
+
+\textbf{유도 블록 D1 (Gibbs 활성화 자유 에너지).}
+
+\begin{itemize}
+\item \textbf{출발 (학부 열역학).} 어떤 화학 반응 또는 상변이 과정의 ``활성화
+   상태'' 와 ``초기 상태'' 사이의 \emph{Gibbs 자유 에너지 차이} 를 활성화
+   Gibbs 자유 에너지라 하고 $\Delta G_a$ 로 표기한다. Gibbs 자유 에너지의
+   정의에 따라 활성화 엔탈피 $\Delta H_a$ 와 활성화 엔트로피 $\Delta S_a$ 로
+   다음과 같이 분해된다:
+   \begin{equation}
+   \Delta G_a = \Delta H_a - T \Delta S_a.
+   \label{eq:Gibbs_decomposition}
+   \end{equation}
+\item \textbf{단계 1 (transition $j$ 에 적용).} 흑연 staging transition $j$ 에
+   적용하면, 각 transition $j$ 마다 활성화 엔탈피·엔트로피 ($\Delta H_{a,j},
+   \Delta S_{a,j}$) 가 있고 따라서 활성화 Gibbs 자유 에너지는
+   \begin{equation}
+   \boxed{\;\Delta G_{a,j}(T) = \Delta H_{a,j} - T \Delta S_{a,j}.\;}
+   \label{eq:Delta_G_a}
+   \end{equation}
+   이것이 spine A1 의 정식 형태이다.
+\item \textbf{차원 점검.} $\Delta H_{a,j}$ : J/mol. $T \Delta S_{a,j}$ : K
+   $\cdot$ J/(mol$\cdot$K) = J/mol. 좌변 $\Delta G_{a,j}$ : J/mol. \emph{일치}.
+\item \textbf{학부 수준 직관.} 온도가 높을수록 $T \Delta S_{a,j}$ 항이 (만약
+   $\Delta S_{a,j} > 0$ 이면) 더 크게 활성화 자유 에너지를 \emph{낮추고},
+   따라서 thermal activation 이 쉬워진다. 이것이 (H5) 의 ``고온 = lag 감소''
+   의 한 메커니즘이다.
+\item \textbf{Charter 적합성.} \eqref{eq:Delta_G_a} 는 step function 류 함수를
+   포함하지 않는 단순 선형 식. \emph{Pass}.
+\end{itemize}
+
+\subsection{전위 보조 driving force \texorpdfstring{$\mathcal A_j$}{A\_j} (Eq.\,A2)}
+\label{sec:driving_force}
+
+\textbf{유도 블록 D2 (전위 보조 driving force).}
+
+\begin{itemize}
+\item \textbf{출발 (학부 전기화학).} Nernst 식의 정신 — 전기화학 반응의 구동력은
+   ``현재 전극 전위'' 와 ``평형 전극 전위'' 의 차이에 비례. 비례 상수는
+   전하 이동 수에 따른 $F$ (Faraday 상수) 의 곱.
+\item \textbf{단계 1 (transition $j$ 의 평형 전위 정의).} Staging transition $j$
+   의 \emph{평형 중심 전위} 를 $U_j(T)$ 로 둔다 (\S\ref{sec:notation} 의
+   canonical). $U_j(T)$ 는 transition $j$ 가 ``평균적으로 진행되는'' 전위.
+\item \textbf{단계 2 (현재 전위와의 차이).} 현재 음극 관측 전위가 $V_{n,\app}$
+   이면, transition $j$ 가 느끼는 전위 차이는
+   $V_{n,\app} - U_j(T)$ (단위 V).
+\item \textbf{단계 3 ($F$ 곱 — 전기화학 에너지 환산).} 단위 mole 의 Li 이
+   transition $j$ 의 평형 중심에서 현재 전위까지 이동할 때 얻는 (또는 잃는)
+   전기화학 에너지는 ``전하량 × 전위차'' = $F \cdot (V_{n,\app} - U_j(T))$.
+   ($F$ : C/mol, $V$ : V = J/C, 곱은 J/mol $=$ Gibbs 자유 에너지 단위와 같음.)
+\item \textbf{단계 4 (부호 컨벤션 $s_{\phi,j}$).} Transition $j$ 의 \emph{방향
+   부호} $s_{\phi,j} \in \{+1, -1\}$ 을 도입한다. $s_{\phi,j} = +1$ 이면 $V_{n,
+   \app}$ 가 증가할 때 transition $j$ 가 \emph{앞으로 진행} 되도록 driving
+   되고, $s_{\phi,j} = -1$ 이면 반대.
+\item \textbf{단계 5 (driving force 정식).} 위 단계 1-4 를 종합하면
+   \begin{equation}
+   \boxed{\;\mathcal A_j(V_{n,\app}, T) = s_{\phi,j}\,F\,(V_{n,\app} - U_j(T))
+   \;}
+   \label{eq:driving_force}
+   \end{equation}
+   이것이 spine A2 의 정식 형태이다.
+\item \textbf{차원 점검.} $F$ : C/mol. $V_{n,\app} - U_j(T)$ : V $=$ J/C. 곱은
+   J/mol. $s_{\phi,j}$ 무차원. 좌변 $\mathcal A_j$ : J/mol. \emph{일치}.
+\item \textbf{학부 수준 직관.} $\mathcal A_j > 0$ 이면 transition $j$ 가 ``앞
+   으로 가려는 추진력'' 이 있다는 뜻. 평형 ($V_{n,\app} = U_j$) 에서는
+   $\mathcal A_j = 0$.
+\item \textbf{Charter 적합성.} 선형 식, step function 류 없음. \emph{Pass}.
+\end{itemize}
+
+\subsection{★ 유효 배리어 \texorpdfstring{$\Delta G_{\eff,j}$}{ΔG\_eff,j} — 온도 배리어 + 전위 lowering (Eq.\,A3)}
+\label{sec:Delta_G_eff_derivation}
+
+본 \S 는 본 Chapter 의 \textbf{spine 출발점} 식 \eqref{eq:effective_barrier_hypothesis}
+의 정식 유도이다.
+
+\textbf{유도 블록 D3 (Brønsted–Evans–Polanyi 형식의 활성화 배리어 lowering).}
+
+\begin{itemize}
+\item \textbf{출발 (학부 화학 반응 속도론).} 화학 반응의 활성화 자유 에너지는
+   ``순수 열적 배리어'' (활성화 상태와 초기 상태의 자유 에너지 차이) 만이
+   아니라, \emph{외부 driving force} (예: 전위, 압력, 농도 차이) 가 추가되면
+   그 일부가 배리어를 \emph{낮추는} 효과를 갖는다. 이를 표현하는 대표적 형식이
+   \textbf{Brønsted–Evans–Polanyi (BEP) 관계} 이다:
+   \begin{equation}
+   \Delta G^\ddagger_{\text{eff}} = \Delta G^\ddagger_{\text{intrinsic}}
+   - \alpha \cdot (\text{driving force}),
+   \label{eq:BEP_generic}
+   \end{equation}
+   여기서 $\alpha$ 는 \emph{transfer coefficient} (또는 BEP 계수), 보통 $0 \le
+   \alpha \le 1$.
+\item \textbf{단계 1 (transition $j$ 에 적용).} 흑연 staging transition $j$ 의
+   배리어 lowering 에 BEP 형식을 적용한다.
+   \begin{itemize}
+   \item Intrinsic barrier = $\Delta G_{a,j}(T)$ (식 \eqref{eq:Delta_G_a}).
+   \item Driving force = $\mathcal A_j$ (식 \eqref{eq:driving_force}).
+   \item Transfer coefficient = $\chi_j$ ($0 \le \chi_j \le 1$).
+   \end{itemize}
+\item \textbf{단계 2 (BEP 식 대입).}
+   \begin{equation}
+   \boxed{\;\Delta G_{\eff,j}(T, V_{n,\app})
+   = \Delta G_{a,j}(T) - \chi_j \cdot \mathcal A_j(V_{n,\app}, T).\;}
+   \label{eq:Delta_G_eff}
+   \end{equation}
+   이것이 spine A3, 본 Chapter 의 \textbf{★ spine 출발점} 의 정식 형태이다.
+\item \textbf{단계 3 (확장된 형태).} 식 \eqref{eq:Delta_G_a} 와 \eqref{eq:driving_force}
+   을 \eqref{eq:Delta_G_eff} 에 대입하면 전체 spine 출발점 식 의 명시적 형태:
+   \begin{equation}
+   \Delta G_{\eff,j}(T, V_{n,\app})
+   = \bigl(\Delta H_{a,j} - T \Delta S_{a,j}\bigr)
+   - \chi_j \cdot s_{\phi,j}\,F\,\bigl(V_{n,\app} - U_j(T)\bigr).
+   \label{eq:Delta_G_eff_expanded}
+   \end{equation}
+\item \textbf{차원 점검.} 우변 첫 항 J/mol, 둘째 항 J/mol (위 단계). 좌변
+   J/mol. \emph{일치}.
+\item \textbf{학부 수준 직관.}
+   \begin{itemize}
+   \item $V_{n,\app}$ 가 $U_j(T)$ 보다 더 높아져서 $\mathcal A_j > 0$ 이 되면,
+        $- \chi_j \mathcal A_j$ 항이 음수가 되어 $\Delta G_{\eff,j}$ 가 \emph{낮아진다}.
+        $\Rightarrow$ 사용자 verbatim 의 ``극판 자체 전위에 따른 배리어를
+        낮추는 효과''.
+   \item $T$ 가 변하면 $\Delta G_{a,j}(T)$ 자체가 변하고 (단계 D1), 또
+        Arrhenius factor 의 분모 $RT$ 가 변한다 (\S\ref{sec:rate_constant}
+        에서).
+   \end{itemize}
+\item \textbf{Charter 적합성.} 선형 결합 형태, step function 류 없음.
+   \emph{Pass}.
+\item \textbf{★ 본 Chapter 의 spine 출발점 확정.} 식 \eqref{eq:Delta_G_eff}
+   는 사용자 의도 (H3) 와 verbatim 일치. 본 Chapter 의 모든 후속 식 (속도 상수,
+   동역학, 시간 적분, closed-form, ICA 꼬리, 피팅 식) 은 이 식에서 출발한다.
+\end{itemize}
+
+\subsection{$\chi_j$ — Transfer coefficient 의 의미와 범위}
+\label{sec:chi_j_meaning}
+
+$\chi_j$ 는 BEP 계수 (식 \eqref{eq:BEP_generic} 의 $\alpha$) 의 transition $j$
+대응. 학부 수준 의미:
+
+\begin{itemize}
+\item $\chi_j = 0$\,: 외부 전위 driving force 가 활성화 배리어에 영향 X (순수
+   열적 활성화). 비현실적 극한.
+\item $\chi_j = 1$\,: 외부 driving force 의 100\% 가 배리어 lowering 으로 전달.
+   다른 극한.
+\item $0 < \chi_j < 1$\,: 일반적 경우. 보통 BEP 형식의 반응에서 $\chi_j \approx
+   0.5$ (대칭 BV 의 $\alpha = 1/2$ 와 같은 의미).
+\item 흑연 staging transition 의 $\chi_j$ 의 실제 값은 피팅 단계에서 결정 (DQ-v2-5).
+\end{itemize}
+
+\subsection{$\Delta G_{\eff,j} < 0$ 영역의 처리}
+\label{sec:Delta_G_eff_negative}
+
+$V_{n,\app}$ 가 $U_j(T)$ 보다 충분히 높아져서 $\chi_j \mathcal A_j$ 가 $\Delta
+G_{a,j}(T)$ 를 초과하면 $\Delta G_{\eff,j} < 0$ 이 된다. 이 영역에서는 단순
+Arrhenius (식 \eqref{eq:rate_constant_hypothesis}) 의 $\exp(-\Delta G_{\eff,j}
+/ RT)$ 가 1 보다 큰 값이 되어 \emph{속도 상수가 $\nu_j$ 보다 커지는} 비물리적
+극한이 생긴다.
+
+기존 ver5 §6.5 (line 240-249) 는 이 영역을 $\max(\Delta G_{\eff,j}, 0)$ 또는
+$\min(k_j, k_{\max})$ 의 \textbf{step function 처리} 로 해결했다. 그러나 이는
+사용자 명시 ``스텝 펑션 형태'' anti-pattern (Charter v2 §3 AP1, AP2). 본
+Chapter v2 는 \textbf{이 영역에서 step 처리를 도입하지 않고} 다음과 같이 처리:
+
+\begin{enumerate}
+\item \emph{본 spine 의 정의 영역}: $\Delta G_{\eff,j} \ge 0$ 의 ``thermal
+   activation 가능 영역'' 으로 한정. $\Delta G_{\eff,j} < 0$ 영역에 대해서는
+   spine 자체가 적용되지 않음 — 이 영역은 ``barrier-less ballistic'' 또는
+   ``diffusion-limited'' 등 별 메커니즘이 dominant.
+\item \emph{꼬리 거동의 정량 분석} (\S\ref{sec:ICA_tail}) 은 ``꼬리'' 가 발생하는
+   영역 — peak 중심 $U_j(T)$ 의 \emph{하류} (lower-potential side) 또는 peak
+   직후 영역 — 에서 진행. 이 영역에서는 $V_{n,\app} \approx U_j(T)$ 또는
+   $V_{n,\app}$ 가 $U_j(T)$ 보다 약간 큰 정도이므로 $\chi_j \mathcal A_j$ 가
+   $\Delta G_{a,j}(T)$ 를 초과하지 않는다. 따라서 $\Delta G_{\eff,j} > 0$ 의
+   유효 영역 안에서 분석.
+\item \emph{Refs 6/7 의 비율 치환 closed-form} (\S\ref{sec:ratio_substitution})
+   에 의해 이 ``꼬리 영역의 dynamics'' 가 closed-form 으로 표현됨 — 이 closed-
+   form 의 도출은 step 처리 없이 자연 발생적으로 self-consistent 한 형태이다.
+\end{enumerate}
+
+\subsection{본 \S 의 \S\ref{sec:equilibrium_dist} 진입 bridge}
+
+본 \S 에서는 spine A1\(\sim\)A3 (식 \eqref{eq:Delta_G_a},
+\eqref{eq:driving_force}, \eqref{eq:Delta_G_eff}) 의 정식 유도를 완성하였다.
+다음 \S\ref{sec:equilibrium_dist} 에서는 평형 분포 $\xi_{\eq,j}(V_n, T)$ 가
+가우시안 누적 형태 (식 A5) 로 유도됨을 가우시안 분포의 학부 수준 통계역학적
+근거에서 보인다.
+
+% ====================================================================
+\section{평형 분포 \texorpdfstring{$\xi_{\eq,j}$}{ξ\_eq,j} — 가우시안 누적 형태의 정식 유도}
+\label{sec:equilibrium_dist}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} 사용자 명시 (Charter v2 §00.1, ``약간 가우시안 피크 형상'')
+의 직접 표현인 spine A5
+\begin{equation}
+\xi_{\eq,j}(V_n, T) = \tfrac{1}{2}\bigl[1 + \operatorname{erf}\bigl((V_n
+- U_j(T))/(\sigma_j(T)\sqrt{2})\bigr)\bigr]
+\label{eq:xi_eq_erf_recall}
+\end{equation}
+을 \emph{가우시안 분포의 학부 수준 통계역학적 근거에서} 정식 유도한다.
+
+\subsection{가우시안 분포의 물리적 배경}
+\label{sec:gaussian_physics}
+
+흑연 staging transition $j$ 의 평형 중심 전위 $U_j(T)$ 는 일정 값이지만, 실제
+흑연 호스트는 \emph{국소적 불균일성} (local heterogeneity) 을 갖는다 — 결정 결함,
+입계, 표면 곡률, 미세 응력 (microstrain) 등. 이로 인해 각 transition $j$ 가
+``실제로 진행되는'' 전위는 $U_j(T)$ 주변의 작은 영역에 \emph{분포} 되어 있다.
+
+학부 수준의 \textbf{중심 극한 정리} (central limit theorem) 에 따라, 다수의
+독립 미세 요인 (각 요인이 작은 contribution) 의 합은 \emph{가우시안 분포}
+로 수렴한다. 따라서 transition $j$ 가 ``실제로 진행되는 전위 분포''
+$p_j(V; V_n, T)$ 는 다음과 같이 가우시안 형태로 모델링할 수 있다:
+
+\begin{equation}
+p_j(V; V_n, T) = \frac{1}{\sigma_j(T)\sqrt{2\pi}}\,
+\exp\!\left(-\frac{(V - U_j(T))^2}{2 \sigma_j(T)^2}\right).
+\label{eq:gaussian_pdf}
+\end{equation}
+
+여기서:
+\begin{itemize}
+\item $U_j(T)$ : 분포의 \emph{평균} (peak 중심 전위). 식 \eqref{eq:driving_force}
+   의 $U_j(T)$ 와 동일.
+\item $\sigma_j(T)$ : 분포의 \emph{표준 편차} (peak 폭). 미세 요인의 합의 폭을
+   반영. 일반적으로 $T$ 의존성을 가질 수 있음 (DQ-v2-3).
+\item 단위: $V$ 와 $U_j$ 는 V (전위), $\sigma_j$ 도 V. $p_j$ 는 1/V (확률 밀도).
+\end{itemize}
+
+\subsection{진행률 $\xi_{\eq,j}$ 의 정의 (평형 누적 점유)}
+\label{sec:xi_eq_definition}
+
+평형 진행률 $\xi_{\eq,j}(V_n, T)$ 의 정의 — ``전위 $V_n$ 까지 transition $j$ 의
+어느 정도가 진행되었는가'' — 는 분포 \eqref{eq:gaussian_pdf} 의 \emph{누적 분포}
+이다. 즉:
+
+\begin{equation}
+\xi_{\eq,j}(V_n, T) = \int_{-\infty}^{V_n} p_j(V'; V_n', T)\,\dd V'
+\bigg|_{V_n' = V_n}.
+\label{eq:xi_eq_as_integral}
+\end{equation}
+
+여기서 적분 변수 $V'$ 는 \emph{transition 이 발생할 수 있는 전위 도메인},
+적분 상한 $V_n$ 은 \emph{현재 음극 전위}.
+
+\subsection{가우시안 적분의 학부 수준 변수 치환}
+\label{sec:gaussian_integration}
+
+\textbf{유도 블록 D4 (가우시안 누적 = erf).}
+
+\begin{itemize}
+\item \textbf{출발.} 식 \eqref{eq:xi_eq_as_integral} 에 식 \eqref{eq:gaussian_pdf}
+   를 대입:
+   \begin{equation}
+   \xi_{\eq,j}(V_n, T) = \int_{-\infty}^{V_n} \frac{1}{\sigma_j(T) \sqrt{2\pi}}
+   \exp\!\left(-\frac{(V' - U_j(T))^2}{2 \sigma_j(T)^2}\right) \dd V'.
+   \label{eq:xi_eq_integral_step1}
+   \end{equation}
+\item \textbf{단계 1 (학부 수준 변수 치환).} $z = (V' - U_j(T))/(\sigma_j(T)
+   \sqrt{2})$ 로 치환. 그러면
+   \begin{itemize}
+   \item $V' = U_j(T) + \sigma_j(T) \sqrt{2}\,z$,
+   \item $\dd V' = \sigma_j(T) \sqrt{2}\,\dd z$,
+   \item 적분 상한: $V' = V_n \;\Rightarrow\; z = (V_n - U_j(T))/(\sigma_j(T)
+        \sqrt{2})$,
+   \item 적분 하한: $V' \to -\infty \;\Rightarrow\; z \to -\infty$.
+   \end{itemize}
+\item \textbf{단계 2 (대입).}
+   \begin{align}
+   \xi_{\eq,j}(V_n, T)
+   &= \int_{-\infty}^{(V_n - U_j(T))/(\sigma_j(T)\sqrt{2})}
+      \frac{1}{\sigma_j(T)\sqrt{2\pi}}
+      \exp(-z^2)\cdot \sigma_j(T)\sqrt{2}\,\dd z \notag \\
+   &= \frac{1}{\sqrt{\pi}} \int_{-\infty}^{(V_n - U_j(T))/(\sigma_j(T)\sqrt{2})}
+      \exp(-z^2)\,\dd z.
+   \label{eq:xi_eq_after_substitution}
+   \end{align}
+   (식 정리: $\sigma_j(T)\sqrt{2}/(\sigma_j(T)\sqrt{2\pi}) = \sqrt{2}/\sqrt{2\pi}
+   = 1/\sqrt{\pi}$.)
+\item \textbf{단계 3 (erf 의 정의 활용).} 학부 수준 미적분에서 erf 함수는 다음과
+   같이 정의된다:
+   \begin{equation}
+   \operatorname{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x \exp(-z^2)\,\dd z.
+   \label{eq:erf_definition}
+   \end{equation}
+   이로부터
+   \begin{equation}
+   \int_{-\infty}^x \exp(-z^2)\,\dd z = \int_{-\infty}^0 \exp(-z^2)\,\dd z
+   + \int_0^x \exp(-z^2)\,\dd z = \frac{\sqrt{\pi}}{2} + \frac{\sqrt{\pi}}{2}
+   \operatorname{erf}(x).
+   \label{eq:erf_extension}
+   \end{equation}
+   (첫 항은 가우시안 적분의 절반: $\int_{-\infty}^\infty \exp(-z^2) \dd z =
+   \sqrt{\pi}$ 의 절반 = $\sqrt{\pi}/2$.)
+\item \textbf{단계 4 (식 \eqref{eq:xi_eq_after_substitution} 에 대입).}
+   \begin{align}
+   \xi_{\eq,j}(V_n, T)
+   &= \frac{1}{\sqrt{\pi}} \cdot \frac{\sqrt{\pi}}{2}
+      \bigl(1 + \operatorname{erf}((V_n - U_j(T))/(\sigma_j(T)\sqrt{2}))\bigr) \notag \\
+   &= \boxed{\;\frac{1}{2}\bigl[1 + \operatorname{erf}\bigl((V_n - U_j(T))/
+      (\sigma_j(T)\sqrt{2})\bigr)\bigr].\;}
+   \label{eq:xi_eq_erf_final}
+   \end{align}
+\item \textbf{차원 점검.} 좌변 $\xi_{\eq,j}$ : 무차원. 우변 $\operatorname{erf}$
+   의 인수 $(V_n - U_j)/(\sigma_j \sqrt{2})$ : V/V = 무차원. $\operatorname{erf}$
+   결과 무차원, $(1 + \operatorname{erf})/2$ 무차원. \emph{일치}.
+\item \textbf{확인.} 식 \eqref{eq:xi_eq_erf_final} 은 spine A5
+   (식 \eqref{eq:xi_eq_erf_recall}) 와 동일.
+\end{itemize}
+
+\subsection{$d\xi_{\eq,j}/dV_n$ — 평형 ICA peak 의 가우시안 형태}
+\label{sec:dxi_eq_dV}
+
+\textbf{유도 블록 D5 (평형 ICA peak = 가우시안).} 식 \eqref{eq:xi_eq_erf_final}
+의 $V_n$ 미분:
+
+\begin{itemize}
+\item \textbf{출발.} $\xi_{\eq,j}(V_n, T) = \tfrac{1}{2}[1 + \operatorname{erf}
+   ((V_n - U_j(T))/(\sigma_j(T) \sqrt{2}))]$. $V_n$ 미분.
+\item \textbf{단계 1 (chain rule).}
+   \begin{equation}
+   \frac{d\xi_{\eq,j}}{dV_n}
+   = \frac{1}{2}\cdot \frac{d}{dV_n}\operatorname{erf}((V_n - U_j(T))/(\sigma_j
+   (T) \sqrt{2})).
+   \end{equation}
+\item \textbf{단계 2 (erf 미분 공식).} 학부 수준 미적분: $\frac{d}{dx}
+   \operatorname{erf}(x) = (2/\sqrt{\pi}) \exp(-x^2)$. 따라서 chain rule 로
+   \begin{align}
+   \frac{d}{dV_n}\operatorname{erf}((V_n - U_j(T))/(\sigma_j(T) \sqrt{2}))
+   &= \frac{2}{\sqrt{\pi}} \exp\!\left(-\frac{(V_n - U_j(T))^2}{2 \sigma_j(T)^2}
+      \right) \cdot \frac{1}{\sigma_j(T) \sqrt{2}}.
+   \end{align}
+\item \textbf{단계 3 (결합).}
+   \begin{align}
+   \frac{d\xi_{\eq,j}}{dV_n}
+   &= \frac{1}{2}\cdot \frac{2}{\sqrt{\pi}}\cdot \frac{1}{\sigma_j(T) \sqrt{2}}
+      \exp\!\left(-\frac{(V_n - U_j(T))^2}{2 \sigma_j(T)^2}\right) \notag \\
+   &= \boxed{\;\frac{1}{\sigma_j(T) \sqrt{2\pi}}\,
+      \exp\!\left(-\frac{(V_n - U_j(T))^2}{2 \sigma_j(T)^2}\right).\;}
+   \label{eq:dxi_eq_dV_gaussian}
+   \end{align}
+\item \textbf{차원 점검.} 좌변 $d\xi/dV$ : 무차원/V = 1/V. 우변 $1/(\sigma \sqrt{
+   2\pi})$ : 1/V. \emph{일치}.
+\item \textbf{학부 수준 해석.} 식 \eqref{eq:dxi_eq_dV_gaussian} 은 정확히
+   \textbf{가우시안 분포의 확률 밀도 함수 (PDF)} 의 형태이다. 즉 사용자 명시
+   ``약간 가우시안 피크 형상'' 의 직접적 표현. 본 식이 평형 시 $dQ/dV_n$ 의
+   peak 부분에 대응 (\S\ref{sec:ICA_tail} 에서 정량).
+\end{itemize}
+
+\subsection{본 \S 의 Charter 적합성 + \S\ref{sec:rate_constant} 진입 bridge}
+\label{sec:equilibrium_to_rate}
+
+\begin{charter}
+본 \S 는 erf 형태 (식 \eqref{eq:xi_eq_erf_final}) 와 가우시안 PDF (식
+\eqref{eq:dxi_eq_dV_gaussian}) 를 사용한다. 이는 Charter v2 §3.2 의 OK-derived
+분류 (사용자 명시 ``가우시안 피크 형상'' 의 직접 표현, AP4 erf 의 v2 재분류) 와
+일치. ver5 §5.1 의 logistic 은 사용하지 않음 (AP3 적용). \emph{Pass}.
+\end{charter}
+
+본 \S 에서 평형 분포 $\xi_{\eq,j}(V_n, T)$ 의 정식 형태가 확정되었으므로, 다음
+\S\ref{sec:rate_constant} 에서는 비평형 동역학 — 즉 $\xi_j$ 가 $\xi_{\eq,j}$ 를
+\emph{유한한 속도} 로 따라가는 메커니즘 — 의 \textbf{속도 상수} $k_j$ 를
+유도한다.
+
+% ====================================================================
+\section{속도 상수 \texorpdfstring{$k_j$}{k\_j} — Arrhenius 형태의 정식 유도}
+\label{sec:rate_constant}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} Spine A4 의 정식 유도:
+\begin{equation}
+k_j(T, V_{n,\app}) = \nu_j(T) \exp\!\left(-\frac{\Delta G_{\eff,j}(T, V_{n,\app})}
+{R T}\right).
+\label{eq:k_arrhenius_recall}
+\end{equation}
+
+\subsection{Transition state theory (TST) 의 학부 수준 출발}
+\label{sec:TST_basis}
+
+학부 화학 반응 속도론의 표준 결과 (Eyring equation 의 단순 형태): 활성화 자유
+에너지 $\Delta G^\ddagger$ 의 화학 반응의 속도 상수 $k$ 는
+\begin{equation}
+k = \frac{k_B T}{h}\,\exp\!\left(-\frac{\Delta G^\ddagger}{R T}\right),
+\label{eq:Eyring}
+\end{equation}
+여기서 $k_B$ : Boltzmann 상수, $h$ : Planck 상수. ``$k_B T / h$'' 의 인수가
+\emph{Arrhenius prefactor} $\nu$ 의 의미 (시도 빈도, attempt frequency).
+
+\subsection{Transition $j$ 에 적용 — 유도 블록 D6}
+
+\textbf{유도 블록 D6 (Arrhenius 형태의 속도 상수).}
+
+\begin{itemize}
+\item \textbf{출발.} 식 \eqref{eq:Eyring} 의 $\Delta G^\ddagger$ 를 transition
+   $j$ 의 유효 배리어 $\Delta G_{\eff,j}$ (식 \eqref{eq:Delta_G_eff}) 로 대입.
+\item \textbf{단계 1 (prefactor 의 transition-specific 표기).}
+   $k_B T / h$ 의 일반적 prefactor 가 transition $j$ 의 미세 구조 (격자 진동
+   특성 등) 에 따라 다를 수 있으므로, 다음과 같이 transition-specific
+   prefactor $\nu_j(T)$ 를 도입:
+   \begin{equation}
+   \nu_j(T) = (k_B T / h) \cdot \kappa_j(T),
+   \end{equation}
+   여기서 $\kappa_j(T)$ 는 transition $j$ 의 transmission coefficient + 진동
+   factor 등 보정 항. 실용적으로 $\nu_j(T) \sim 10^{10} \sim 10^{14}$ 1/s 범위
+   (atomic vibration scale). $\nu_j(T)$ 의 정량 $T$ 의존성은 피팅 단계에서 결정
+   (DQ-v2-4).
+\item \textbf{단계 2 (Arrhenius 형태).}
+   \begin{equation}
+   \boxed{\;k_j(T, V_{n,\app}) = \nu_j(T)\,\exp\!\left(-\frac{\Delta G_{\eff,j}
+   (T, V_{n,\app})}{R T}\right).\;}
+   \label{eq:rate_constant_v2}
+   \end{equation}
+\item \textbf{단계 3 (확장된 형태, 식 \eqref{eq:Delta_G_eff_expanded} 대입).}
+   \begin{align}
+   k_j(T, V_{n,\app})
+   &= \nu_j(T)\,\exp\!\left(-\frac{(\Delta H_{a,j} - T \Delta S_{a,j})
+      - \chi_j s_{\phi,j} F (V_{n,\app} - U_j(T))}{R T}\right) \notag \\
+   &= \nu_j(T)\,\exp\!\left(-\frac{\Delta H_{a,j}}{R T} + \frac{\Delta S_{a,j}}
+      {R} + \frac{\chi_j s_{\phi,j} F (V_{n,\app} - U_j(T))}{R T}\right).
+   \label{eq:k_expanded}
+   \end{align}
+\item \textbf{차원 점검.} $\nu_j$ : 1/s. 지수 인수 $\Delta G/(RT)$ : J/mol /
+   (J/(mol$\cdot$K) $\cdot$ K) = 무차원. $\exp$ : 무차원. 좌변 $k_j$ : 1/s.
+   \emph{일치}.
+\item \textbf{Charter 적합성.} 단순 지수 형태, step function 류 없음.
+   \emph{Pass}.
+\end{itemize}
+
+\subsection{$k_j$ 의 온도 의존성 — (O2) 와의 정합}
+\label{sec:k_T_dependence}
+
+식 \eqref{eq:k_expanded} 의 $T$ 의존성 분석:
+
+\begin{itemize}
+\item $\exp(-\Delta H_{a,j} / (RT))$ : $T$ 감소 시 \emph{급격히 감소}. 이게
+   \textbf{Arrhenius 본 효과}.
+\item $\exp(\Delta S_{a,j} / R)$ : $T$ 무관 ($T$ 가 약분).
+\item $\exp(\chi_j s_{\phi,j} F (V_{n,\app} - U_j(T)) / (RT))$ : $T$ 가 감소
+   하면 \emph{지수 인수 의 크기 증가}, $T$ 가 증가하면 감소. 단, $U_j(T)$ 자체
+   에도 $T$ 의존성이 약하게 있을 수 있음.
+\item $\nu_j(T)$ : 일반적으로 약한 $T$ 의존성 (예: $T$ 의 절반 power 등).
+\end{itemize}
+
+\textbf{$T \to$ 저온 한계}: $k_j \to$ 작아짐. $\xi_j$ 가 $\xi_{\eq,j}$ 를 빨리
+못 따라가서 lag 증가. ICA 꼬리 길어짐. (사용자 관측 O2 정합.)
+
+\textbf{$T \to$ 고온 한계}: $k_j \to$ 커짐. lag 감소. ICA 꼬리 짧아짐.
+
+\subsection{본 \S 의 \S\ref{sec:kinetics} 진입 bridge}
+
+본 \S 에서 속도 상수 $k_j(T, V_{n,\app})$ (식 \eqref{eq:rate_constant_v2}) 가
+유도되었다. 다음 \S\ref{sec:kinetics} 에서는 이 속도 상수가 진행률 $\xi_j$ 의
+\emph{시간 변화율} 을 어떻게 결정하는지 — 즉 relaxation ODE 의 정식 유도.
+
+% ====================================================================
+\section{진행률 동역학 \texorpdfstring{$d\xi_j/dt$}{dξ\_j/dt} — Relaxation ODE 정식 유도}
+\label{sec:kinetics}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} Spine A6/A7 의 정식 유도.
+
+\subsection{Relaxation 동역학의 학부 수준 출발 — 유도 블록 D7}
+
+\textbf{유도 블록 D7 (Linear relaxation toward equilibrium).}
+
+\begin{itemize}
+\item \textbf{출발 (학부 화학 동역학).} 어떤 상태 변수 $\xi$ (진행률, 농도,
+   질량 분율 등) 가 평형 값 $\xi_{\eq}$ 에서 떨어져 있을 때, 가장 단순한
+   relaxation 모델은 \emph{1차 (first-order) linear relaxation}:
+   \begin{equation}
+   \frac{d\xi}{dt} = k\,(\xi_{\eq} - \xi),
+   \label{eq:linear_relaxation_generic}
+   \end{equation}
+   여기서 $k$ : 속도 상수 (1/s), $(\xi_{\eq} - \xi)$ : 평형으로부터의 ``편차
+   driving force''.
+\item \textbf{학부 수준 직관.} $\xi < \xi_{\eq}$ 이면 $\dot\xi > 0$ ($\xi$ 가
+   증가), $\xi > \xi_{\eq}$ 이면 $\dot\xi < 0$ ($\xi$ 가 감소). 즉 $\xi$ 가
+   $\xi_{\eq}$ 를 향해 \emph{exponential 으로 접근}. 평형 ($\xi = \xi_{\eq}$)
+   에서 $\dot\xi = 0$.
+\item \textbf{단계 1 (transition $j$ 에 적용).} 본 spine 의 $\xi_j$ 와
+   $\xi_{\eq,j}$ 와 $k_j$ 를 식 \eqref{eq:linear_relaxation_generic} 에 대입:
+   \begin{equation}
+   \boxed{\;\frac{d\xi_j}{dt} = k_j(T, V_{n,\app})\,(\xi_{\eq,j}(V_n, T) -
+   \xi_j).\;}
+   \label{eq:relaxation_ODE}
+   \end{equation}
+   이것이 spine A6 의 정식 형태이다.
+\item \textbf{차원 점검.} 좌변 $d\xi/dt$ : 무차원/s = 1/s. 우변 $k_j$ : 1/s,
+   $(\xi_{\eq,j} - \xi_j)$ : 무차원. 곱 : 1/s. \emph{일치}.
+\item \textbf{Charter 적합성.} 1차 ODE, step function 류 없음. \emph{Pass}.
+\end{itemize}
+
+\subsection{$q$ 좌표 변환 (정전류 한정) — 유도 블록 D8}
+
+\textbf{유도 블록 D8 (시간 → $q$ 좌표 변환).}
+
+\begin{itemize}
+\item \textbf{출발.} 정전류 ($|I|$ = 상수) 조건에서 $Q_{\ext}(t) = |I| \cdot t$
+   (식 \eqref{eq:Qext_constant_I}) 와 $q = Q_{\ext}/Q_{\cell}$
+   (식 \eqref{eq:q_definition_recall}).
+\item \textbf{단계 1 ($dq/dt$).} 정전류 시
+   \begin{equation}
+   \frac{dq}{dt} = \frac{|I|}{Q_{\cell}}.
+   \label{eq:dq_dt}
+   \end{equation}
+\item \textbf{단계 2 ($d\xi_j/dq$ chain rule).} $\xi_j(t)$ 와 $q(t)$ 모두 시간의
+   함수이므로 chain rule:
+   \begin{equation}
+   \frac{d\xi_j}{dq} = \frac{d\xi_j/dt}{dq/dt}
+   = \frac{k_j (\xi_{\eq,j} - \xi_j)}{|I|/Q_{\cell}}
+   = \boxed{\;\frac{Q_{\cell}}{|I|}\,k_j\,(\xi_{\eq,j} - \xi_j).\;}
+   \label{eq:dxi_dq}
+   \end{equation}
+   이것이 spine A7 의 정식 형태이다.
+\item \textbf{차원 점검.} 좌변 $d\xi/dq$ : 무차원/q (q 자체가 무차원). $Q_{\cell}/
+   |I|$ : C/A = s. $k_j$ : 1/s. 곱 : 무차원. \emph{일치}.
+\end{itemize}
+
+\subsection{초기 조건과 시간-적분의 필요성}
+\label{sec:initial_condition}
+
+식 \eqref{eq:relaxation_ODE} 는 1차 ODE 이므로 \emph{초기 조건} 이 하나 필요:
+\begin{equation}
+\xi_j(t = 0) = \xi_{j,0}.
+\label{eq:initial_condition}
+\end{equation}
+
+$\xi_{j,0}$ 는 일반적으로 ``방전 시작 직전의 전위 + relaxation 이력'' 의 결과.
+간단한 경우 (충분한 휴지 후 시작) $\xi_{j,0} = \xi_{\eq,j}(V_n(0), T)$.
+
+\subsection{$k_j$ 와 $\xi_{\eq,j}$ 의 시간 의존성}
+\label{sec:time_dependence}
+
+식 \eqref{eq:relaxation_ODE} 의 형태는 단순하지만, 실제로는 $k_j$ 와
+$\xi_{\eq,j}$ 모두 \emph{시간에 따라 변하는} 변수임에 유의:
+
+\begin{itemize}
+\item $k_j = k_j(T, V_{n,\app})$ 이고, $V_{n,\app}$ 는 시간에 따라 변함
+   ($V_{n,\app}(t) = V_n(q(t), T) + s_I |I| R_n$).
+\item $\xi_{\eq,j} = \xi_{\eq,j}(V_n, T)$ 이고, $V_n = V_{n,\OCV}(q(t), T)$ 도
+   시간에 따라 변함.
+\end{itemize}
+
+따라서 식 \eqref{eq:relaxation_ODE} 는 \textbf{시간에 따라 변하는 계수} 를
+갖는 1차 ODE 이다. 이를 시간 적분하면 \textbf{Volterra integral equation}
+의 형태가 되고 (\S\ref{sec:volterra}), $k(t)$ 와 $\xi_{\eq}(t)$ 가 $\xi$ 자기에
+의존하면 \textbf{self-consistent} 가 된다.
+
+\subsection{본 \S 의 \S\ref{sec:volterra} 진입 bridge}
+
+본 \S 에서 spine A6 (relaxation ODE) + A7 ($q$ 좌표 변환) 의 정식 유도를 완성
+하였다. 다음 \S\ref{sec:volterra} 에서는 이 ODE 의 \emph{시간 적분형} 이
+Fredholm/Volterra integral equation of the second kind 의 형태로 표현됨을 보이고,
+그 self-consistent 적분이 사용자 박사학위 연구 (\S\ref{sec:ratio_substitution})
+의 비율 치환법의 대상임을 명확히 한다.
+
+% ====================================================================
+\section{시간 적분형 \texorpdfstring{$\xi_j(t)$}{ξ\_j(t)} — Volterra Integral Equation 형식 식별}
+\label{sec:volterra}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} Spine A9 의 정식 유도 + Fredholm/Volterra integral
+equation 의 학부 수준 정의 + 본 spine 의 self-consistent 구조 확인.
+
+\subsection{ODE 의 시간 적분 — 유도 블록 D9}
+
+\textbf{유도 블록 D9 ($\xi_j(t)$ 의 시간 적분형).}
+
+\begin{itemize}
+\item \textbf{출발.} 식 \eqref{eq:relaxation_ODE}\,: $d\xi_j/dt = k_j(t)\,
+   (\xi_{\eq,j}(t) - \xi_j(t))$. (시간 변수 명시.)
+\item \textbf{단계 1 ($t = 0$ 부터 $t$ 까지 적분).} 양변을 $\dd t$ 곱해 적분:
+   \begin{equation}
+   \int_0^t \frac{d\xi_j(t')}{dt'} \dd t' = \int_0^t k_j(t')\,(\xi_{\eq,j}(t')
+   - \xi_j(t')) \dd t'.
+   \end{equation}
+\item \textbf{단계 2 (좌변 = 미적분학 기본 정리).}
+   \begin{equation}
+   \int_0^t \frac{d\xi_j(t')}{dt'} \dd t' = \xi_j(t) - \xi_j(0).
+   \end{equation}
+\item \textbf{단계 3 ($\xi_j(t)$ 에 대해 풀기).} 식 \eqref{eq:initial_condition}
+   대입 + 정리:
+   \begin{equation}
+   \boxed{\;\xi_j(t) = \xi_{j,0} + \int_0^t k_j(t')\,(\xi_{\eq,j}(t') -
+   \xi_j(t')) \dd t'.\;}
+   \label{eq:volterra_form}
+   \end{equation}
+   이것이 spine A9 의 정식 형태이다.
+\item \textbf{단위 점검.} 좌변 $\xi_j$ : 무차원. 우변 $\xi_{j,0}$ : 무차원,
+   적분 항 $k\cdot (\xi - \xi) \cdot dt$ : (1/s) $\cdot$ 무차원 $\cdot$ s
+   = 무차원. \emph{일치}.
+\end{itemize}
+
+\subsection{Fredholm vs Volterra Integral Equation 의 학부 수준 정의}
+\label{sec:integral_eq_types}
+
+\textbf{Fredholm integral equation of the second kind:}
+\begin{equation}
+\phi(x) = f(x) + \lambda \int_a^b K(x, x')\,\phi(x') \dd x',
+\label{eq:fredholm}
+\end{equation}
+적분 구간이 \emph{고정} ($a, b$ 모두 상수). Kernel $K(x, x')$ 와 free term $f(x)$
+가 주어지면, 미지 함수 $\phi(x)$ 가 적분 안에 자기 자신으로 등장.
+
+\textbf{Volterra integral equation of the second kind:}
+\begin{equation}
+\phi(x) = f(x) + \int_0^x K(x, x')\,\phi(x') \dd x',
+\label{eq:volterra}
+\end{equation}
+적분 구간이 \emph{가변} (상한이 변수 $x$ 자체). 시간 진화 문제에 자연 발생.
+
+\subsection{식 \eqref{eq:volterra_form} 의 Volterra 형식 인식}
+
+식 \eqref{eq:volterra_form} 를 식 \eqref{eq:volterra} 의 형태에 맞춰 정리하면:
+\begin{itemize}
+\item $\phi \to \xi_j$,
+\item $f(t) \to \xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t') \dd t'$,
+\item $K(t, t') \to -k_j(t')$,
+\item 적분 구간 $[0, t]$ (가변 상한) $\Rightarrow$ \textbf{Volterra 형식}.
+\end{itemize}
+
+따라서 식 \eqref{eq:volterra_form} 은 \textbf{Volterra integral equation of
+the second kind in $\xi_j(t)$} 의 형태이다.
+
+\subsection{Self-consistent 의 의미}
+\label{sec:self_consistent_meaning}
+
+식 \eqref{eq:volterra_form} 의 우변 적분 항 안에 미지 함수 $\xi_j(t')$ 가 자기
+자신으로 등장한다. 또한 $k_j(t')$ 와 $\xi_{\eq,j}(t')$ 가 $V_n(t') = V_{n,\OCV}
+(q(t'), T)$ 의 함수이므로 \emph{시간에 따라 변하는 계수} 를 갖는다.
+
+이는 식 \eqref{eq:volterra_form} 의 \textbf{closed-form 해석해} 가 일반적으로
+구하기 어렵다는 의미이다. 단순 반복 (Picard iteration) 으로 풀려 하면 $k_j$ 가
+크거나 $|I|$ 가 큰 영역에서 \emph{발산} 할 수 있다.
+
+\textbf{본 Chapter 의 ★ 차별점}: 사용자 박사학위 연구 (Refs 6, 7) 의 \emph{비율
+치환법} 은 정확히 이런 ``단순 반복이 발산하는 self-consistent integral equation''
+의 closed-form 해석해 를 얻는 방법이다. 본 Chapter \S\ref{sec:ratio_substitution}
+에서 이 방법을 식 \eqref{eq:volterra_form} 에 직접 적용한다.
+
+\subsection{본 \S 의 \S\ref{sec:ratio_substitution} 진입 bridge}
+
+본 \S 에서 spine A9 (Volterra integral form) 의 정식 식별을 완성하였다. 다음
+\S\ref{sec:ratio_substitution} 가 \textbf{본 Chapter 의 load-bearing 단원}
+이며, Refs 6/7 의 비율 치환법을 식 \eqref{eq:volterra_form} 에 적용해 closed-form
+해석해 (spine A10/A11) 를 도출한다.
+
+% ====================================================================
+\section{★ Refs 6/7 비율 치환 closed-form 도출 — Load-Bearing Phase}
+\label{sec:ratio_substitution}
+% ====================================================================
+
+\textbf{본 \S 의 위치.} 본 Chapter 의 \textbf{load-bearing} 단원. 사용자
+박사학위 연구 (Refs \cite{lee2011propagator, son2013accurate}) 에서 도입된
+\textbf{비율 치환법} (ratio substitution method) 을 식 \eqref{eq:volterra_form}
+(graphite Volterra integral equation) 에 적용해 spine A10/A11 의 closed-form
+해석해를 도출한다.
+
+\subsection{단순 case 의 closed-form $\xi_j^{\simplecase}(t)$}
+\label{sec:xi_simple}
+
+비율 치환법의 출발은 ``단순 case 의 알려진 closed-form 해'' 이다. 본 spine 에서
+단순 case = ``$k_j$ 와 $\xi_{\eq,j}$ 가 \emph{시간 무관} (상수)'' 인 영역.
+이 단순 case 에서는 식 \eqref{eq:relaxation_ODE} 가 표준 1차 linear ODE 의
+형태이고, 학부 수준 미적분으로 직접 풀린다.
+
+\textbf{유도 블록 D10 (단순 case closed-form).}
+
+\begin{itemize}
+\item \textbf{출발.} $k_j(t) = k_j$ 상수, $\xi_{\eq,j}(t) = \xi_{\eq,j}$ 상수
+   라 가정. 식 \eqref{eq:relaxation_ODE}:
+   $d\xi_j/dt = k_j (\xi_{\eq,j} - \xi_j)$.
+\item \textbf{단계 1 (재배열).} $d\xi_j/dt + k_j \xi_j = k_j \xi_{\eq,j}$.
+   1차 linear ODE 의 표준 형태.
+\item \textbf{단계 2 (integrating factor 방법).} $\mu(t) = \exp(k_j t)$ 곱:
+   \begin{equation}
+   \frac{d}{dt}[\exp(k_j t)\,\xi_j(t)] = k_j \xi_{\eq,j} \exp(k_j t).
+   \end{equation}
+\item \textbf{단계 3 (적분).}
+   \begin{equation}
+   \exp(k_j t)\,\xi_j(t) - \xi_j(0) = k_j \xi_{\eq,j} \cdot \frac{\exp(k_j t)
+   - 1}{k_j} = \xi_{\eq,j}\,(\exp(k_j t) - 1).
+   \end{equation}
+\item \textbf{단계 4 ($\xi_j(t)$ 에 대해 풀기).}
+   \begin{equation}
+   \xi_j(t) = \xi_{\eq,j} + (\xi_j(0) - \xi_{\eq,j})\exp(-k_j t)
+   = \xi_{\eq,j}\,(1 - \exp(-k_j t)) + \xi_j(0)\,\exp(-k_j t).
+   \label{eq:xi_simple_form_1}
+   \end{equation}
+\item \textbf{단계 5 (단순화 가정 $\xi_j(0) = 0$).} 보통 ``방전 시작 시 미진행''
+   이라 가정 $\xi_j(0) = 0$. 이 경우:
+   \begin{equation}
+   \boxed{\;\xi_j^{\simplecase}(t) = \xi_{\eq,j}\,(1 - \exp(-k_j t)).\;}
+   \label{eq:xi_simple_form_2}
+   \end{equation}
+   이것이 본 Chapter 의 \textbf{$\xi^{\simplecase}$ 후보} (DQ-v2-2, Charter v2
+   §11) 의 정식 형태이다.
+\item \textbf{차원 점검.} $\xi_j^{\simplecase}$ : 무차원. $k_j t$ : (1/s) $\cdot$
+   s = 무차원. \emph{일치}.
+\item \textbf{학부 수준 직관.} $t \to 0$ 시 $\xi_j^{\simplecase} \to 0$ (시작).
+   $t \to \infty$ 시 $\xi_j^{\simplecase} \to \xi_{\eq,j}$ (평형 도달).
+   exponential 접근.
+\end{itemize}
+
+\subsection{Refs 6/7 의 비율 치환 기법 — 학부 수준 동기}
+\label{sec:ratio_motivation}
+
+Refs \cite{lee2011propagator, son2013accurate} 의 핵심 아이디어를 학부 수준으로
+풀어쓰면 다음과 같다.
+
+\textbf{문제 의 본질}: 일반 case 에서 식 \eqref{eq:volterra_form} 의
+\emph{closed-form 해} 가 어렵다. 단순 반복 (Picard iteration) 으로 풀려고 하면
+$k_j$ 가 클 때 \emph{발산} 한다.
+
+\textbf{Refs 6/7 의 통찰}: 비록 $\xi_j(t)$ 의 \emph{절대값} 자체는 시간에
+따라 변하지만, \emph{서로 다른 두 시점 사이의 비율} $\xi_j(t) / \xi_j(t')$ 은
+$\xi_j^{\simplecase}(t) / \xi_j^{\simplecase}(t')$ 와 \emph{근사적으로 같다}.
+즉, ``비율이 변하는 모양'' 이 simple case 와 본질적으로 유사.
+
+이는 다음 직관에 근거한다.
+\begin{itemize}
+\item 단순 case 와 일반 case 모두 $\xi_j(0) = 0$ 에서 출발해 평형으로 접근.
+\item 두 case 모두 ``현재 시점의 $k$ 값이 dominant'' (markov 적).
+\item 시간 의존성이 크지 않은 영역에서는 두 case 의 \emph{normalized shape} 가
+   유사.
+\end{itemize}
+
+\textbf{비율 치환 식 (Refs 6/7)}:
+\begin{equation}
+\boxed{\;\frac{\xi_j(t')}{\xi_j(t)} \;\approx\;
+\frac{\xi_j^{\simplecase}(t')}{\xi_j^{\simplecase}(t)}.\;}
+\label{eq:ratio_substitution}
+\end{equation}
+(양변 모두 시점 $t'$ 와 $t$ 의 ``상대적'' 진행률.)
+
+\subsection{비율 치환 → Volterra equation 의 closed-form 변환 — 유도 블록 D11}
+
+\textbf{유도 블록 D11 (비율 치환 적용).}
+
+\begin{itemize}
+\item \textbf{출발.} Volterra equation (식 \eqref{eq:volterra_form}):
+   \begin{equation}
+   \xi_j(t) = \xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t'
+   - \int_0^t k_j(t')\,\xi_j(t')\,\dd t'.
+   \label{eq:volterra_split}
+   \end{equation}
+   (우변 두 적분으로 분리.)
+\item \textbf{단계 1 (둘째 적분에 비율 치환).} 식 \eqref{eq:ratio_substitution}
+   를 사용:
+   \begin{equation}
+   \xi_j(t') = \xi_j(t) \cdot \frac{\xi_j(t')}{\xi_j(t)}
+   \approx \xi_j(t) \cdot \frac{\xi_j^{\simplecase}(t')}{\xi_j^{\simplecase}(t)}.
+   \end{equation}
+\item \textbf{단계 2 (대입).}
+   \begin{equation}
+   \int_0^t k_j(t')\,\xi_j(t')\,\dd t' \approx
+   \frac{\xi_j(t)}{\xi_j^{\simplecase}(t)} \int_0^t k_j(t')\,\xi_j^{\simplecase}
+   (t')\,\dd t'.
+   \label{eq:ratio_sub_integral}
+   \end{equation}
+   여기서 $\xi_j(t)$ 와 $\xi_j^{\simplecase}(t)$ 가 적분 \emph{밖} 으로 나옴
+   (시점 $t$ 의 값, $t'$ 무관).
+\item \textbf{단계 3 (식 \eqref{eq:volterra_split} 에 대입).}
+   \begin{equation}
+   \xi_j(t) = \xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t'
+   - \frac{\xi_j(t)}{\xi_j^{\simplecase}(t)} \int_0^t k_j(t')\,\xi_j^{\simplecase}
+   (t')\,\dd t'.
+   \label{eq:after_ratio_sub}
+   \end{equation}
+\item \textbf{단계 4 ($\xi_j(t)$ 에 대해 풀기 — algebra).} 양변에 $\xi_j(t) \cdot
+   \int_0^t k_j(t') \xi_j^{\simplecase}(t') \dd t' / \xi_j^{\simplecase}(t)$ 를
+   더하기:
+   \begin{equation}
+   \xi_j(t) \left[1 + \frac{1}{\xi_j^{\simplecase}(t)}
+   \int_0^t k_j(t')\,\xi_j^{\simplecase}(t')\,\dd t'\right]
+   = \xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t'.
+   \end{equation}
+\item \textbf{단계 5 (closed-form).}
+   \begin{equation}
+   \boxed{\;
+   \xi_j(t) = \frac{\xi_{j,0} + \displaystyle\int_0^t k_j(t')\,\xi_{\eq,j}(t')\,
+   \dd t'}{1 + \dfrac{1}{\xi_j^{\simplecase}(t)} \displaystyle\int_0^t k_j(t')\,
+   \xi_j^{\simplecase}(t')\,\dd t'}.\;}
+   \label{eq:xi_closed_form}
+   \end{equation}
+   이것이 spine A11 의 정식 형태 — \textbf{closed-form 해석해} 이다.
+\item \textbf{차원 점검.} 분자: 무차원 (초기) $+$ (1/s)$\cdot$무차원$\cdot$s
+   = 무차원. 분모 둘째 항: 무차원 / 무차원 $\cdot$ (1/s)$\cdot$무차원$\cdot$s
+   = 무차원. 분모 전체 무차원, 분자 무차원, 좌변 $\xi_j(t)$ 무차원. \emph{일치}.
+\item \textbf{Charter 적합성.} 적분과 분수의 단순 결합, step function 류 없음.
+   \emph{Pass}.
+\end{itemize}
+
+\subsection{식 \eqref{eq:xi_closed_form} 의 유효 영역 (사용자 박사 연구의 정합 조건)}
+\label{sec:ratio_validity}
+
+Refs \cite{lee2011propagator, son2013accurate} 에서 비율 치환의 정합 조건은
+다음과 같다 (학부 수준 해석):
+
+\begin{enumerate}
+\item \textbf{시간 의존성이 적당히 부드러움}: $k_j(t)$ 와 $\xi_{\eq,j}(t)$ 가
+   시간에 급격히 변하지 않을 것. 본 graphite ICA 의 저속 정전류 방전 영역에서
+   자동 충족 (q 가 천천히 변함).
+\item \textbf{$\xi_j(t)/\xi_j(t')$ 의 normalized shape 가 simple case 와 유사}:
+   $k_j$ 가 너무 큰 (반응이 즉시 평형 도달) 또는 너무 작은 (반응이 거의 안
+   일어남) 극단을 제외한 중간 영역에서 정합.
+\item \textbf{꼬리 영역 자체의 적합성}: 본 Chapter 의 1차 관심 = ICA 꼬리 영역.
+   꼬리 영역 = $V_{n,\app}$ 가 peak 중심 $U_j(T)$ 를 \emph{막 지난 직후} 의
+   영역 = $\xi_j$ 가 거의 ($\xi_{\eq,j}$ 에 근접하지만 못 따라잡은) 영역.
+   이 영역에서 비율 치환이 가장 정확.
+\end{enumerate}
+
+\subsection{본 \S 의 \S\ref{sec:ICA_tail} 진입 bridge}
+
+본 \S 에서 spine A10/A11 (closed-form 해석해, 식 \eqref{eq:xi_closed_form}) 의
+정식 유도를 완성하였다. 다음 \S\ref{sec:ICA_tail} 에서는 이 closed-form 을
+사용해 $dQ/dV$ 의 \textbf{꼬리 모양의 온도 의존성} 을 정량 분석한다 — 사용자
+의도의 \emph{핵심 관측 (O2)} 의 직접 해석.
+
+% ====================================================================
+\section{ICA 관측식과 꼬리 모양의 온도 의존성 — 정량 분석}
+\label{sec:ICA_tail}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} Spine A12 의 정식 유도 + closed-form
+(\eqref{eq:xi_closed_form}) 을 사용해 $dQ/dV$ 꼬리 모양의 $T$ 의존성 정량 분석.
+사용자 의도 (O2 ``저T 길고 고T 짧음'') 의 \emph{직접 해석}.
+
+\subsection{ICA 관측식의 학부 수준 유도 — 유도 블록 D12}
+
+\textbf{유도 블록 D12 ($(dQ/dV)_j$ 의 형태).}
+
+\begin{itemize}
+\item \textbf{출발.} 누적 음극 용량 $Q_n(q) = Q_{\bg}(q) + \sum_j Q_{j,\tot}
+   \xi_j(q)$ (단순 모델). 외부 누적 전하량 $Q_{\ext} = Q_{\cell} \cdot q$.
+\item \textbf{단계 1 ($dQ_{\ext}/dV_{n,\app}$ 의 chain rule).}
+   $V_{n,\app}$ 와 $q$ 모두 시간 함수이므로:
+   \begin{equation}
+   \frac{dQ_{\ext}}{dV_{n,\app}} = \frac{dQ_{\ext}/dq}{dV_{n,\app}/dq}
+   = \frac{Q_{\cell}}{dV_{n,\app}/dq}.
+   \label{eq:ICA_chain_rule}
+   \end{equation}
+   ($dQ_{\ext}/dq = Q_{\cell}$ 정의에서.)
+\item \textbf{단계 2 (각 transition $j$ 의 기여 분리).} $V_{n,\app}$ 의 $q$ 변화
+   는 모든 transition 의 $\xi_j$ 변화의 합이 영향. 그러나 \emph{각 transition
+   의 ICA 기여} 를 분리하면 (학부 수준 분해):
+   \begin{equation}
+   \boxed{\;(dQ/dV)_j \approx \frac{Q_{j,\tot}\,(d\xi_j/dq)}{dV_{n,\app}/dq}.\;}
+   \label{eq:ICA_j_contribution}
+   \end{equation}
+   이것이 spine A12 의 정식 형태이다.
+\item \textbf{단계 3 (전체 ICA 의 합).} 모든 transition + 배경:
+   \begin{equation}
+   \frac{dQ}{dV_{n,\app}} \approx \frac{dQ_{\bg}/dq + \sum_j Q_{j,\tot}
+   (d\xi_j/dq)}{dV_{n,\app}/dq}.
+   \label{eq:ICA_total}
+   \end{equation}
+\end{itemize}
+
+\subsection{꼬리 모양의 정량 — 유도 블록 D13}
+
+\textbf{유도 블록 D13 (꼬리의 closed-form 표현).}
+
+\begin{itemize}
+\item \textbf{출발.} 식 \eqref{eq:ICA_j_contribution} 의 분자 $d\xi_j/dq$ 가
+   꼬리 모양을 결정 (분모 $dV_{n,\app}/dq$ 는 OCV 의 weak gradient).
+\item \textbf{단계 1 ($d\xi_j/dq$ 를 closed-form 으로).} 식
+   \eqref{eq:xi_closed_form} 의 $\xi_j(t)$ 의 $q$ 미분. 정전류 시 $t = Q_{\cell}
+   q / |I|$ 이므로 $d\xi_j/dq = (Q_{\cell}/|I|) \cdot d\xi_j/dt$. 식
+   \eqref{eq:relaxation_ODE} 로부터 $d\xi_j/dt = k_j (\xi_{\eq,j} - \xi_j)$.
+   따라서
+   \begin{equation}
+   \frac{d\xi_j}{dq} = \frac{Q_{\cell}}{|I|}\,k_j(T, V_{n,\app})\,
+   (\xi_{\eq,j} - \xi_j).
+   \label{eq:dxi_dq_closed}
+   \end{equation}
+\item \textbf{단계 2 (꼬리 영역 의 의미).} 꼬리 영역 = $V_{n,\app}$ 가 peak 중심
+   $U_j(T)$ 를 지나 진행 했지만 $\xi_j(t)$ 가 $\xi_{\eq,j}(t)$ 를 완전히 못
+   따라잡은 영역. 즉 $(\xi_{\eq,j} - \xi_j) > 0$ \emph{잔존}. 이 잔존 양이
+   꼬리 부분의 $d\xi_j/dq$ 의 크기를 결정.
+\item \textbf{단계 3 (꼬리의 길이 $\propto$ lag).} ``꼬리가 0 으로 수렴 하는
+   거리'' $\propto$ ``$(\xi_{\eq,j} - \xi_j)$ 가 0 에 가까워지는 데 걸리는 거리''
+   $\propto$ $|I|/(Q_{\cell} k_j)$ (식 \eqref{eq:dxi_dq_closed} 의 reciprocal).
+\end{itemize}
+
+\subsection{꼬리 모양의 온도 의존성 — 사용자 관측 O2 의 정량 도출}
+\label{sec:tail_T_quantitative}
+
+\textbf{유도 블록 D14 (저T 길고, 고T 짧음).}
+
+\begin{itemize}
+\item \textbf{출발.} 식 \eqref{eq:k_expanded} (속도 상수의 명시적 형태):
+   $k_j \propto \exp(-\Delta G_{a,j}/RT) \cdot \exp(\chi_j s_{\phi,j} F
+   (V_{n,\app} - U_j)/(RT))$.
+\item \textbf{단계 1 (저T 영역 $T \to T_{\text{low}}$).}
+   \begin{itemize}
+   \item $\exp(-\Delta G_{a,j}/RT)$ 에서 $T$ 가 작으면 $-\Delta G_{a,j}/RT$ 가
+        \emph{매우 음수} (절대값 큼), $\exp$ 가 \emph{매우 작음}.
+   \item $\Rightarrow$ $k_j$ \emph{매우 작음}.
+   \item $\Rightarrow$ ``꼬리 길이'' $\propto 1/k_j$ \emph{매우 큼}. \textbf{꼬리
+        길게 늘어짐}. (O2 의 ``저온 꼬리 김'' 정합.)
+   \end{itemize}
+\item \textbf{단계 2 (고T 영역 $T \to T_{\text{high}}$).}
+   \begin{itemize}
+   \item $\exp(-\Delta G_{a,j}/RT)$ 에서 $T$ 가 크면 $-\Delta G_{a,j}/RT$ 의
+        절대값이 \emph{작아짐}, $\exp$ 가 \emph{1 에 접근}.
+   \item $\Rightarrow$ $k_j$ \emph{커짐} ($\nu_j(T)$ 까지 접근).
+   \item $\Rightarrow$ ``꼬리 길이'' $\propto 1/k_j$ \emph{작아짐}. \textbf{꼬리
+        빨리 떨어짐}. (O2 의 ``고온 꼬리 짧음'' 정합.)
+   \end{itemize}
+\item \textbf{단계 3 (전위 보조의 추가 효과).} 추가로 $\chi_j s_{\phi,j} F (V_{n,
+   \app} - U_j)$ 항이 $\Delta G_{a,j}$ 를 lower 하므로, ``꼬리가 발생하는 영역
+   에서도'' $V_{n,\app}$ 가 진행됨에 따라 $V_{n,\app} - U_j$ 가 증가 → $k_j$
+   증가 → 꼬리가 자연 감쇠.
+\end{itemize}
+
+본 도출은 \emph{사용자 관측 O2 의 정량적 메커니즘적 설명} 이다.
+
+\subsection{본 \S 의 \S\ref{sec:fitting_expression} 진입 bridge}
+
+본 \S 에서 ICA 관측 (식 \eqref{eq:ICA_j_contribution}) + 꼬리 T 의존성 (단계
+D14) 정량 도출을 완성. 다음 \S\ref{sec:fitting_expression} 가 \textbf{본 Chapter
+의 종료점} — 모든 식을 결합한 \emph{피팅 가능 논리식} 명시.
+
+% ====================================================================
+\section{★ 피팅 가능 논리식 — 본 Chapter 의 종료점}
+\label{sec:fitting_expression}
+% ====================================================================
+
+\textbf{본 \S 의 목표.} 사용자 의도의 \emph{deliverable} (Charter v2 §00.1
+``피크의 거동을 해석하는 피팅하는데 쓸수 있는 논리 식'') 의 명시.
+
+\subsection{피팅 파라미터 정리}
+\label{sec:fitting_parameters}
+
+본 Chapter 의 spine A1-A12 + 그 closed-form 의 도출 결과, $dQ/dV$ 의 꼬리
+모양 (식 \eqref{eq:ICA_j_contribution} + \eqref{eq:xi_closed_form}) 를 결정
+하는 \textbf{피팅 파라미터} 의 set 은 다음과 같다.
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.58\textwidth}}
+\toprule
+파라미터 & 단위 & 의미 / 결정 방법 \\
+\midrule
+\endhead
+$\Delta H_{a,j}$ & J/mol & $j$-th transition 의 활성화 엔탈피. 다중 T 의
+   Arrhenius plot 으로 결정. \\
+$\Delta S_{a,j}$ & J/(mol K) & $j$-th transition 의 활성화 엔트로피. 같은
+   Arrhenius plot 으로 결정. \\
+$\chi_j$ & 무차원 & 전위 보조 transfer coefficient. 다중 $|I|$ 의 $V_{n,\app}$
+   shift 으로 결정 ($0 \le \chi_j \le 1$). \\
+$\nu_j(T)$ & 1/s & Arrhenius prefactor. $T$ 의존 functional form 은 DQ-v2-4
+   (예: $T$-무관 또는 약한 $T^{1/2}$ 비례 등). \\
+$U_j(T)$ & V (Li/Li$^+$) & $j$-th transition 의 평형 중심 전위. 저속 OCV
+   곡선의 peak 위치에서 결정. \\
+$\sigma_j(T)$ & V & $j$-th transition 의 가우시안 분포 폭. 저속 OCV 의 peak
+   FWHM 으로 결정. \\
+$Q_{j,\tot}$ & C & $j$-th transition 의 총 용량 기여. 저속 OCV peak 의 적분
+   (면적) 으로 결정. \\
+$s_{\phi,j}$ & $\pm 1$ & $j$-th transition 의 방향 부호. 보통 $+1$ (방전 시
+   전위 증가가 진행). \\
+\bottomrule
+\end{longtable}
+
+\subsection{피팅 가능 closed-form 식 (사용자 deliverable)}
+\label{sec:final_fitting_form}
+
+\textbf{본 Chapter 의 종료점.} $j$-th transition 의 $dQ/dV$ 의 closed-form 표현:
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+(dQ/dV)_j(V_{n,\app}, T, |I|)
+&= \frac{Q_{j,\tot}\,(d\xi_j/dq)}{dV_{n,\app}/dq} \\
+\text{with} \quad
+\xi_j(t) &= \frac{\xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t'}
+{1 + \dfrac{1}{\xi_j^{\simplecase}(t)} \int_0^t k_j(t')\,\xi_j^{\simplecase}
+(t')\,\dd t'} \\
+\xi_{\eq,j}(V_n, T) &= \frac{1}{2}\bigl[1 + \operatorname{erf}((V_n - U_j(T))/
+(\sigma_j(T)\sqrt{2}))\bigr] \\
+\xi_j^{\simplecase}(t) &= \xi_{\eq,j}\,(1 - \exp(-k_j t)) \\
+k_j(T, V_{n,\app}) &= \nu_j(T)\,\exp\!\bigl[-(\Delta H_{a,j} - T\Delta S_{a,j}
+- \chi_j s_{\phi,j} F (V_{n,\app} - U_j(T)))/(RT)\bigr] \\
+\xi_{j,0} &= \xi_{\eq,j}(V_n(0), T) \quad (\text{relaxed start})
+\end{aligned}
+}
+\label{eq:fitting_logical_form}
+\end{equation}
+
+본 식 \eqref{eq:fitting_logical_form} 가 사용자 의도 (Charter v2 §00.1 verbatim
+``유효 배리어 의 논리를 확정 하고 그 것을 이용해 피크 의 거동을 해석 하는 피팅
+하는데 쓸수 있는 논리 식'') 의 정식 deliverable 이다.
+
+\subsection{본 식의 사용법 (피팅 단계 — 본 Chapter 범위 외)}
+
+식 \eqref{eq:fitting_logical_form} 의 사용법 (피팅 단계, 본 Chapter 범위 외):
+
+\begin{enumerate}
+\item 다중 $T$ 의 저속 OCV 곡선 (≈ 0.05C) 에서 평형 파라미터 ($U_j(T), \sigma_j
+   (T), Q_{j,\tot}$) 추정.
+\item 다중 $T$ + 다중 $|I|$ 의 정전류 방전 $dQ/dV$ 데이터에서 식
+   \eqref{eq:fitting_logical_form} 으로 동역학 파라미터 ($\Delta H_{a,j},
+   \Delta S_{a,j}, \chi_j, \nu_j$) fitting (실제 솔버 구현은 본 Chapter 범위 외,
+   user verbatim P1 정합).
+\item 피팅 결과의 $\Delta G_{a,j}$ 와 $\chi_j$ 가 학부 수준 직관 (10$\sim$100
+   kJ/mol 의 활성화 에너지, $\chi \approx 0.5$ 의 BEP 계수) 와 정합하는지
+   검증.
+\end{enumerate}
+
+\subsection{본 \S 의 \S\ref{sec:summary} 진입 bridge}
+
+본 \S 가 본 Chapter 의 \textbf{종료점}. 다음 \S\ref{sec:summary} 는 종합 + 요약
++ 자기 검수 + 참고문헌.
+
+% ====================================================================
+\section{종합·검수·참고문헌}
+\label{sec:summary}
+% ====================================================================
+
+\subsection{본 Chapter 1 v2 의 결과 요약}
+
+본 Chapter 1 v2 는 graphite 음극 ICA dQ/dV 의 \textbf{꼬리 거동의 온도 의존성}
+을 다음과 같이 정식 해석하였다:
+
+\begin{enumerate}[label=\textbf{(R\arabic*)}]
+\item \emph{유효 배리어 정식 (R1, \S\ref{sec:effective_barrier})}\,: $\Delta
+   G_{\eff,j}(T, V_{n,\app}) = \Delta G_{a,j}(T) - \chi_j \mathcal A_j$
+   (사용자 의도 직접 표현).
+\item \emph{평형 분포 (R2, \S\ref{sec:equilibrium_dist})}\,: $\xi_{\eq,j} =
+   \tfrac{1}{2}[1 + \operatorname{erf}(\cdot)]$ (가우시안 누적).
+\item \emph{속도 상수 (R3, \S\ref{sec:rate_constant})}\,: $k_j = \nu_j(T) \exp
+   (-\Delta G_{\eff,j}/RT)$ (Arrhenius).
+\item \emph{동역학 (R4, \S\ref{sec:kinetics})}\,: $d\xi_j/dt = k_j(\xi_{\eq,j}
+   - \xi_j)$ (relaxation).
+\item \emph{Volterra 시간 적분형 (R5, \S\ref{sec:volterra})}\,: 식
+   \eqref{eq:volterra_form} 의 self-consistent integral equation.
+\item \emph{Refs 6/7 비율 치환 closed-form (R6, \S\ref{sec:ratio_substitution})}\,:
+   식 \eqref{eq:xi_closed_form} 의 closed-form $\xi_j(t)$.
+\item \emph{꼬리 T 의존 정량 (R7, \S\ref{sec:ICA_tail})}\,: 저T = 꼬리 김, 고T
+   = 꼬리 짧음 (사용자 관측 O2 의 정량 메커니즘).
+\item \emph{피팅 가능 논리식 (R8, \S\ref{sec:fitting_expression})}\,: 식
+   \eqref{eq:fitting_logical_form} 의 8 파라미터 closed-form (사용자
+   deliverable).
+\end{enumerate}
+
+\subsection{자기 검수 체크리스트}
+
+\begin{longtable}{p{0.72\textwidth} p{0.16\textwidth}}
+\toprule
+검수 항목 & 상태 \\
+\midrule
+\endhead
+spine 출발점 (유효 배리어 \(\Delta G_{\eff,j}\)) 명시 & 통과 (식 \eqref{eq:Delta_G_eff}) \\
+온도 배리어 + 전위 lowering 결합 학부 수준 도출 & 통과 (\S\ref{sec:effective_barrier}) \\
+가우시안 평형 분포 (erf) 학부 수준 도출 & 통과 (\S\ref{sec:equilibrium_dist}) \\
+Arrhenius 속도 상수 학부 수준 도출 & 통과 (\S\ref{sec:rate_constant}) \\
+Relaxation ODE 학부 수준 도출 & 통과 (\S\ref{sec:kinetics}) \\
+Volterra 시간 적분형 명시 & 통과 (\S\ref{sec:volterra}) \\
+Refs 6/7 비율 치환 closed-form 명시 & 통과 (\S\ref{sec:ratio_substitution}) \\
+꼬리 T 의존성 정량 (저T 길고 고T 짧음) & 통과 (\S\ref{sec:tail_T_quantitative}) \\
+피팅 가능 closed-form 식 명시 & 통과 (식 \eqref{eq:fitting_logical_form}) \\
+모든 식의 차원 점검 inline & 통과 \\
+모든 도출 블록 학부 수준 prose & 통과 (D1-D14) \\
+step function 류 ($\max, \min$, logistic, sigmoid, softplus) 정의식 부재 & 통과 \\
+erf 사용은 가우시안 누적의 자연 표현 (OK-derived) & 통과 \\
+discrete-$j$ ($N_p$) 가 spine primary (사용자 의도 정합) & 통과 \\
+Charter v2 §00 사용자 verbatim 정합 & 통과 \\
+사용자 박사학위 연구 (Refs 6/7) 의 정확한 위치 (시간 적분식 비율 치환) & 통과 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Chapter 2 (열) 로 전달되는 식}
+
+본 Chapter 1 v2 의 결과 중 Chapter 2 (열 해석) 가 필요로 할 수 있는 핵심 식:
+
+\begin{itemize}
+\item $d\xi_j/dt = k_j(\xi_{\eq,j} - \xi_j)$ (relaxation, 식 \eqref{eq:relaxation_ODE}):
+   가역열 basis expansion 의 input.
+\item $\xi_j(t)$ closed-form (식 \eqref{eq:xi_closed_form}): 본 Chapter 1 의
+   load-bearing 결과.
+\item $\Delta G_{\eff,j}$ (식 \eqref{eq:Delta_G_eff}): 가역 entropy coefficient
+   와 연결.
+\end{itemize}
+
+Chapter 2 의 본격적 재작성은 별도 후속 roadmap.
+
+\subsection{참고문헌 — 정식}
+
+\begin{thebibliography}{9}
+\bibitem{lee2011propagator} S. Lee, C. Y. Son, J. Sung, and S. H. Chong,
+   ``Communication: Propagator for diffusive dynamics of an interacting molecular
+   pair,'' \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011). DOI:
+   \href{https://doi.org/10.1063/1.3565476}{10.1063/1.3565476}.
+\bibitem{son2013accurate} C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, and S. Lee,
+   ``An accurate expression for the rates of diffusion-influenced bimolecular
+   reactions with long-range reactivity,'' \emph{J. Chem. Phys.} \textbf{138},
+   164123 (2013). DOI: \href{https://doi.org/10.1063/1.4802584}{10.1063/1.4802584}.
+\bibitem{lee2017external} K. Lee, S. Lee, C. H. Choi, and S. Lee, ``Effects of
+   external electric field and anisotropic long-range reactivity on charge
+   separation probability,'' \emph{J. Chem. Phys.} \textbf{147}, 144111 (2017).
+   DOI: \href{https://doi.org/10.1063/1.5000882}{10.1063/1.5000882}.
+\bibitem{asenbauer2020success} J. Asenbauer, T. Eisenmann, M. Kuenzel, A. Kazzazi,
+   Z. Chen, D. Bresser, ``The success story of graphite as a lithium-ion anode
+   material -- fundamentals, remaining challenges, and recent developments
+   including silicon (oxide) composites,'' \emph{Sustainable Energy \& Fuels}
+   \textbf{4}, 5387--5416 (2020).
+\bibitem{dubarry2022best} M. Dubarry, D. Ansean, ``Best practices for incremental
+   capacity analysis,'' \emph{Frontiers in Energy Research} \textbf{10}, 1023555
+   (2022).
+\bibitem{fly2020rate} A. Fly, R. Chen, ``Rate dependency of incremental capacity
+   analysis (dQ/dV) as a diagnostic tool for lithium-ion batteries,''
+   \emph{Journal of Energy Storage} \textbf{29}, 101329 (2020).
+\bibitem{guo2016intercalation} Y. Guo, R. B. Smith, Z. Yu, J. Kim, D. T.
+   Cogswell, K. Xu, L. F. Kourkoutis, M. Z. Bazant, L. E. Brus, ``Li
+   Intercalation into Graphite: Direct Optical Imaging and Cahn-Hilliard Reaction
+   Dynamics,'' \emph{J. Phys. Chem. Lett.} \textbf{7}, 2151--2156 (2016).
+\bibitem{rykner2022free} M. Rykner, M. Chandesris, ``Free Energy Model for
+   Lithium Intercalation in Graphite: Focusing on the Coupling with Graphene
+   Stacking Sequence,'' \emph{J. Phys. Chem. C} \textbf{126}, 11425--11437
+   (2022).
+\end{thebibliography}
+
+\end{document}

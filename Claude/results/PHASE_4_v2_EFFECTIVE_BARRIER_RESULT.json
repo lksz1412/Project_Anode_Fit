@@ -1,0 +1,32 @@
+{
+  "phase": "4_v2",
+  "phase_id": "PASS_EFFECTIVE_BARRIER_v2",
+  "star_phase": true,
+  "cumulative_step_range": {"from": 241, "to": 320, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "★ §4 Effective Barrier — spine starting point ΔG_eff,j = ΔG_a,j(T) − χ_j·A_j formally derived. D1+D2+D3 derivation blocks (Gibbs activation / Nernst driving force / BEP). Direct match with user verbatim 'electrode potential lowering barrier' intent. χ_j range explained, ΔG_eff<0 region handled without step functions.",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 555-752 added)"],
+  "key_equations": {
+    "A1": "ΔG_{a,j}(T) = ΔH_{a,j} − T·ΔS_{a,j}",
+    "A2": "A_j(V_n,app, T) = s_φ,j·F·(V_n,app − U_j(T))",
+    "A3_boxed_spine_start": "ΔG_eff,j(T, V_n,app) = ΔG_{a,j}(T) − χ_j·A_j"
+  },
+  "gates": [
+    {"gate_id": "GATE_4_v2_1", "requirement": "D1 (A1) undergraduate derivation", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_2", "requirement": "D2 (A2) Nernst→driving force", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_3", "requirement": "★ D3 (A3) BEP boxed derivation", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_4", "requirement": "χ_j meaning + range", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_5", "requirement": "ΔG_eff<0 without step function", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_6", "requirement": "Spine starting point declared", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_7", "requirement": "User verbatim direct match", "status": "PASS"},
+    {"gate_id": "GATE_4_v2_8", "requirement": "Dimensional checks inline", "status": "PASS"}
+  ],
+  "audit_results": {
+    "dim_11_definitional_step_count": 0,
+    "AP1_max_avoidance": "PASS (domain restriction, not max)",
+    "writing_precision": "PASS",
+    "DEC_consistency": "DEC-1 + DEC-3 OK, user verbatim OK"
+  },
+  "decision_queue": [{"id": "DQ-v2-5", "item": "χ_j estimation", "status": "open (fitting phase)"}],
+  "next": {"phase": "5_v2", "cumulative_step_start": 321, "auto_proceed": true}
+}

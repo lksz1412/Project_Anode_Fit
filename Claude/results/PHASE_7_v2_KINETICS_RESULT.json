@@ -1,0 +1,22 @@
+{
+  "phase": "7_v2",
+  "phase_id": "PASS_KINETICS_v2",
+  "cumulative_step_range": {"from": 481, "to": 540, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "§7 Kinetics A6 (dξ_j/dt = k_j(ξ_eq − ξ_j)) + A7 (q-coordinate) derived via D7 (linear relaxation undergraduate) + D8 (constant current substitution). Time-dependence of k_j(t) + ξ_eq(t) declared, motivating Volterra form.",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 1020-1121 added)"],
+  "key_equations": {
+    "A6_boxed": "dξ_j/dt = k_j(T(t),V_n,app(t))·[ξ_eq,j(t) − ξ_j(t)]",
+    "A7_boxed": "dξ_j/dq = (Q_cell/|I|)·k_j·(ξ_eq,j − ξ_j)"
+  },
+  "gates": [
+    {"gate_id": "GATE_7_v2_1", "requirement": "D7 undergraduate relaxation", "status": "PASS"},
+    {"gate_id": "GATE_7_v2_2", "requirement": "A6 boxed", "status": "PASS"},
+    {"gate_id": "GATE_7_v2_3", "requirement": "D8 q-coord (constant I)", "status": "PASS"},
+    {"gate_id": "GATE_7_v2_4", "requirement": "A7 boxed", "status": "PASS"},
+    {"gate_id": "GATE_7_v2_5", "requirement": "Initial condition + time deps", "status": "PASS"},
+    {"gate_id": "GATE_7_v2_6", "requirement": "Volterra need declared", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "writing_precision": "PASS"},
+  "next": {"phase": "8_v2", "cumulative_step_start": 541, "auto_proceed": true}
+}

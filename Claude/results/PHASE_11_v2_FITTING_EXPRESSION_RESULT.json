@@ -1,0 +1,30 @@
+{
+  "phase": "11_v2",
+  "phase_id": "PASS_FITTING_EXPRESSION_v2",
+  "star_phase": true,
+  "chapter_endpoint": true,
+  "cumulative_step_range": {"from": 821, "to": 900, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "★ §11 Fitting expression — chapter endpoint. User deliverable (verbatim 'fittable logical expression') formalized as boxed closed-form eq:fitting_logical_form combining spine A1-A12 results. 8 fitting parameters tabulated. Usage guide aligned with P1 (no solver in this Chapter).",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 1490-1577 added)"],
+  "fitting_parameters": [
+    {"name": "ΔH_{a,j}", "unit": "J/mol", "estimation": "multi-T Arrhenius plot"},
+    {"name": "ΔS_{a,j}", "unit": "J/(mol K)", "estimation": "same Arrhenius plot"},
+    {"name": "χ_j", "unit": "dimensionless", "estimation": "multi-|I| V_n,app shift"},
+    {"name": "ν_j(T)", "unit": "1/s", "estimation": "Arrhenius prefactor (DQ-v2-4)"},
+    {"name": "U_j(T)", "unit": "V vs Li/Li+", "estimation": "slow-OCV peak position"},
+    {"name": "σ_j(T)", "unit": "V", "estimation": "slow-OCV FWHM (DQ-v2-3)"},
+    {"name": "Q_{j,tot}", "unit": "C", "estimation": "slow-OCV peak integral"},
+    {"name": "s_{φ,j}", "unit": "±1", "estimation": "direction sign (usually +1)"}
+  ],
+  "gates": [
+    {"gate_id": "GATE_11_v2_1", "requirement": "8 fitting parameters longtable", "status": "PASS"},
+    {"gate_id": "GATE_11_v2_2", "requirement": "★ closed-form fitting boxed", "status": "PASS"},
+    {"gate_id": "GATE_11_v2_3", "requirement": "5 sub-equations included", "status": "PASS"},
+    {"gate_id": "GATE_11_v2_4", "requirement": "User verbatim direct match", "status": "PASS"},
+    {"gate_id": "GATE_11_v2_5", "requirement": "Usage steps (P1 aligned)", "status": "PASS"},
+    {"gate_id": "GATE_11_v2_6", "requirement": "Undergraduate sanity check guide", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "erf_instances": 1, "erf_classification": "OK-derived (A5 reference)", "writing_precision": "PASS"},
+  "next": {"phase": "12_v2", "cumulative_step_start": 901, "auto_proceed": true}
+}

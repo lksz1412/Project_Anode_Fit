@@ -1,0 +1,24 @@
+{
+  "phase": "5_v2",
+  "phase_id": "PASS_EQUILIBRIUM_ERF_v2",
+  "cumulative_step_range": {"from": 321, "to": 400, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "§5 Equilibrium ξ_eq,j = (1/2)[1 + erf(...)] formally derived. D4 (Gaussian cumulative substitution) + D5 (dξ_eq/dV_n = Gaussian PDF). erf classified OK-derived (v2 reclassification of AP4) — direct match with user verbatim 'Gaussian peak shape'.",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 753-929 added)"],
+  "key_equations": {
+    "A5_boxed": "ξ_eq,j(V_n, T) = (1/2)[1 + erf((V_n − U_j(T))/(σ_j(T)√2))]",
+    "D5": "dξ_eq,j/dV_n = (1/(σ_j √(2π))) exp(−(V_n − U_j)^2/(2σ_j^2))"
+  },
+  "gates": [
+    {"gate_id": "GATE_5_v2_1", "requirement": "Gaussian undergraduate origin (CLT)", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_2", "requirement": "Substitution step D4", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_3", "requirement": "A5 (erf) boxed", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_4", "requirement": "Gaussian PDF D5", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_5", "requirement": "erf OK-derived classification", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_6", "requirement": "User verbatim 'Gaussian peak' match", "status": "PASS"},
+    {"gate_id": "GATE_5_v2_7", "requirement": "DQ-v2-3 (σ_j(T)) status declared", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "erf_instances": 1, "erf_classification": "OK-derived", "writing_precision": "PASS"},
+  "decision_queue": [{"id": "DQ-v2-3", "item": "σ_j(T) functional form", "status": "open (fitting phase)"}],
+  "next": {"phase": "6_v2", "cumulative_step_start": 401, "auto_proceed": true}
+}

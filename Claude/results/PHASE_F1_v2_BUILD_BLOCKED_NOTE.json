@@ -1,0 +1,30 @@
+{
+  "phase": "F1_v2",
+  "phase_id": "BLOCKED_BUILD_v2",
+  "cumulative_step_range": {"from": 1001, "to": 1040, "expansion": false},
+  "date": "2026-05-28",
+  "status": "BLOCKED",
+  "blocker": "No LaTeX engine installed on the local machine",
+  "tools_checked": {
+    "xelatex": "NOT FOUND",
+    "pdflatex": "NOT FOUND",
+    "lualatex": "NOT FOUND",
+    "tlmgr": "NOT FOUND",
+    "latexmk": "NOT FOUND"
+  },
+  "build_recommendation": {
+    "preferred_engine": "xelatex",
+    "preferred_distribution": "TeX Live full or MiKTeX",
+    "online_alternative": "Overleaf with XeLaTeX compiler",
+    "command_sequence": ["cd D:\\Projects\\Project_Anode_Fit\\Claude\\docs", "xelatex graphite_ica_chapter1.tex", "xelatex graphite_ica_chapter1.tex"],
+    "rationale": "kotex (Korean) package present; xelatex required for Korean rendering"
+  },
+  "expected_output": {
+    "filename": "graphite_ica_chapter1.pdf",
+    "estimated_pages": "35-45",
+    "boxed_equations": 14,
+    "longtables": "approx 16",
+    "references": 8
+  },
+  "next": {"phase": "F2_v2", "status": "BLOCKED (until F1_v2 attempt)"}
+}

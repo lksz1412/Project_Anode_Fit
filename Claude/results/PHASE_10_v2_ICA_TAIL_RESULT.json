@@ -1,0 +1,23 @@
+{
+  "phase": "10_v2",
+  "phase_id": "PASS_ICA_TAIL_v2",
+  "cumulative_step_range": {"from": 741, "to": 820, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "§10 ICA observation + tail T-dependence (O2) quantitatively derived. D12 (chain rule ICA decomposition), A12 boxed, D13 (tail = lag region, tail length ∝ |I|/(Q_cell k_j)), D14 (★ O2 mechanism: low T → small k → large lag → long tail; high T → large k → small lag → short tail). Double-channel T-dependence (ΔG_a(T) + RT denominator).",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 1384-1489 added)"],
+  "key_equations": {
+    "A12_boxed": "(dQ/dV)_j ≈ Q_{j,tot}·(dξ_j/dq) / (dV_{n,app}/dq)",
+    "tail_length_proportionality": "tail length ∝ |I|/(Q_cell · k_j)"
+  },
+  "gates": [
+    {"gate_id": "GATE_10_v2_1", "requirement": "D12 ICA chain rule", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_2", "requirement": "A12 boxed", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_3", "requirement": "D13 tail analysis", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_4", "requirement": "D14 O2 quantitative", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_5", "requirement": "User O2 direct match", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_6", "requirement": "T double-channel", "status": "PASS"},
+    {"gate_id": "GATE_10_v2_7", "requirement": "Phase 11_v2 bridge", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "writing_precision": "PASS"},
+  "next": {"phase": "11_v2", "cumulative_step_start": 821, "auto_proceed": true, "star_phase": true}
+}

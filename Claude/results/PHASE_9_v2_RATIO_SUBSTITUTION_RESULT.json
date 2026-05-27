@@ -1,0 +1,31 @@
+{
+  "phase": "9_v2",
+  "phase_id": "PASS_RATIO_SUBSTITUTION_v2",
+  "star_phase": true,
+  "load_bearing": true,
+  "cumulative_step_range": {"from": 601, "to": 740, "expansion": false},
+  "date": "2026-05-28",
+  "summary": "★ §9 Refs 6/7 ratio substitution closed-form derived. D10 (simple case ξ^simple = ξ_eq(1−exp(−kt))) + D11 (★ ratio substitution applied to Volterra → closed-form A11 boxed). User PhD work (Refs 6/7) located at the precise step where time-integral ratio substitution converts Volterra 2nd kind into algebraic closed-form. DQ-v2-2 closed.",
+  "files_updated": ["Claude/docs/graphite_ica_chapter1.tex (lines 1213-1383 added)"],
+  "key_equations": {
+    "D10_simple": "ξ_j^simple(t) = ξ_eq,j(1 − exp(−k_j t))",
+    "A11_closed_form_boxed": "ξ_j(t) = [ξ_{j,0} + ∫_0^t k_j(t')ξ_eq,j(t') dt'] / [1 + (1/ξ_j^simple(t)) ∫_0^t k_j(t')ξ_j^simple(t') dt']"
+  },
+  "user_phd_references": {
+    "Ref6_Lee2011": {"DOI": "10.1063/1.3565476", "title": "Communication: Propagator for diffusive dynamics of an interacting molecular pair", "journal": "J. Chem. Phys. 134, 121102 (2011)"},
+    "Ref7_Son2013": {"DOI": "10.1063/1.4802584", "title": "An accurate expression for the rates of diffusion-influenced bimolecular reactions with long-range reactivity", "journal": "J. Chem. Phys. 138, 164123 (2013)"}
+  },
+  "gates": [
+    {"gate_id": "GATE_9_v2_1", "requirement": "D10 simple case closed-form", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_2", "requirement": "Refs 6/7 ratio substitution motivation", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_3", "requirement": "★ D11 ratio substitution algebra (5 steps)", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_4", "requirement": "★ A11 closed-form boxed", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_5", "requirement": "Dimensional check inline", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_6", "requirement": "Refs 6/7 validity conditions stated", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_7", "requirement": "★ User PhD work precise location declared", "status": "PASS"},
+    {"gate_id": "GATE_9_v2_8", "requirement": "No definitional step functions", "status": "PASS"}
+  ],
+  "audit_results": {"dim_11_definitional_step_count": 0, "writing_precision": "PASS"},
+  "decision_queue_closed": [{"id": "DQ-v2-2", "resolution": "ξ^simple = ξ_eq(1−exp(−kt)) confirmed in D10"}],
+  "next": {"phase": "10_v2", "cumulative_step_start": 741, "auto_proceed": true}
+}
