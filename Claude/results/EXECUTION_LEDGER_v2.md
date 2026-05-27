@@ -12,7 +12,7 @@
 
 | Phase/Subphase | Planned Steps | Actual Steps | Block | Purpose | Status | Plan | Result | Machine Artifacts | Validation | Gate | Next Step |
 |---|---:|---:|---|---|---|---|---|---|---|---|---:|
-| **Phase 0_v2** | 1-60 | 1-? (in progress) | foundation | Charter v2 audit + Master roadmap v2 + Ledger v2 init + v1 산출 old/ 이동 + spine A1-A12 lock | **IN_PROGRESS** | (Charter v2 자체가 본 phase 의 plan 역할) | `results/CHARTER_v2.md`, `plans/MASTER_ROADMAP_v2.md` | (this file) | Charter v2 9 sections present · Master roadmap v2 17 phases defined · v1 산출 모두 Claude/old/ 이동 확인 · 본 phase 의 audit 는 다음 turn (Phase 0_v2 audit Result 작성 시) | (pending) | 61 |
+| **Phase 0_v2** | 1-60 | 1-60 | foundation | Charter v2 (12§ + §00 verbatim + §00.6-§00.8) audit + Master roadmap v2 (22§ + §0 verbatim + §0.6-§0.8) audit + Ledger v2 init + v1 35 파일 old/ 이동 + spine A1-A12 lock + DEC-1~DEC-8 + 2 신규 글로벌 메모리 (anti-compaction + step flexibility) | **PASS** | `plans/PHASE_0_v2_FOUNDATION_PLAN.md` | `results/PHASE_0_v2_FOUNDATION_RESULT.md` | `results/PHASE_0_v2_FOUNDATION_RESULT.json` | Gates 1-8 PASS (8/8) · Audit Dim #11 Pass 1 on governance docs 0 FAIL (erf 가 OK-derived 재분류 명시) · Writing Precision §5 self-check 0 FAIL · Ralph Wiggum loop 1 round PASS · 2 신규 메모리 글로벌 + 프로젝트 사본 동기화 | `PASS_FOUNDATION_v2` | **61** |
 | Phase 1_v2 | 61-120 | — | body §0+§1 | 머리말 + 작업 동기 (I1-I6 + O1-O3 + spine boxed) | (pending) | (above) | (pending) | (pending) | (pending) | (pending) | 121 |
 | Phase 2_v2 | 121-180 | — | body §2 | 기호와 단위 컨벤션 | (pending) | (above) | (pending) | (pending) | (pending) | (pending) | 181 |
 | Phase 3_v2 | 181-240 | — | body §3 | 흑연 staging effective transition | (pending) | (above) | (pending) | (pending) | (pending) | (pending) | 241 |
@@ -49,3 +49,5 @@
 | 일자 | Phase | 변경 |
 |---|---|---|
 | 2026-05-28 | Phase 0_v2 | 본 v2 series 시작 (사용자 verbatim "이전까지의 작업물을 old 폴더 하나 만들어서 밀어넣고, 다시 처음부터 시작하자" 수신 후). v1 산출물 모두 Claude/old/ 이동 완료. ver5.tex + ver1_rechecked2.tex 원본 + _local_only + _claude 보존. CHARTER_v2.md + MASTER_ROADMAP_v2.md + (this) EXECUTION_LEDGER_v2.md 작성. Phase 0_v2 의 step 1-60 진행 중 — Phase 0_v2 의 정식 Result 는 다음 turn 작성 + commit. |
+| 2026-05-28 | Charter v2 + Master Roadmap v2 §0.6-§0.8 / §00.6-§00.8 | 사용자 5-28 추가 지시 (phase/step 유연성 + 컴팩션 환각 방지 복구 절차 + 랄프위검 루프) 영구 반영. 신규 글로벌 메모리 2 개 (feedback_phase_result_anti_compaction_hallucination + feedback_step_granularity_flexibility) + 프로젝트 사본 동기화. |
+| 2026-05-28 | Phase 0_v2 | PASS 등재. 사용자 GO "작업 ㄱㄱ" 수신 후 동 turn 진입·종료. 8 Gates 모두 PASS. Audit 11/11 dims PASS (Dim #11 + Writing Precision §5 + Ralph Wiggum 1 round 모두 PASS). v1 archive + v2 governance 확립 + 2 신규 메모리. 다음 Phase 1_v2 (Step 61) 자동 진입 — 본 turn budget 으로 다음 turn deferral. |

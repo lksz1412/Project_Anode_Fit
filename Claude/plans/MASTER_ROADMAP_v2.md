@@ -47,6 +47,62 @@
 - 본 §0 과 모순되는 모든 식·문장·spine·결정은 **즉시 invalid** 처리.
 - 본 §0 외 추가 사용자 verbatim 이 들어오면 본 §0 에 immediate append.
 
+### §0.6 Phase/Step 유연성 — 본 roadmap 의 step 은 ``최소 기준점'' (사용자 verbatim 2026-05-28)
+
+> "phase 나 step은 계획이 저렇게 있는것이지 작업 진행하다가 추가로 더 검토가 필요하면 늘려도 된다. 저기에 무조건 맞춰야한다는게 아니고, 최소 저것은 해야한다의 기준점으로 잡으라고."
+
+본 roadmap §2 의 17 phase × cumulative step 1-1220 은 **최소 기준점**.
+
+- 작업 진행 중 추가 검토·증명·식 도출이 필요하면 step 늘리기 OK.
+- 새로운 phase 가 필요하면 본 roadmap §2 의 phase 목록 갱신 + ledger 행 추가.
+- ``계획서에 N step 으로 되어 있으니 N step 안에 끝내야 한다'' 식 압력 → 누락·간소화 트리거 → 본 roadmap §0.5 의 §0 정합 의무 위반 → **즉시 step 확장 우선**.
+
+상세: [[feedback_step_granularity_flexibility]] (글로벌 메모리).
+
+### §0.7 Phase Result 저장 의 컴팩션 환각 방지 + 복구 절차 (사용자 verbatim 2026-05-28)
+
+> "내가 페이즈마다 결과물을 저장하기를 바라는 이유는 니가 작업중 컴팩션이 일어나도 훼손된 기억을 이용해서 환각 증상을 일으키지 말고, 해당되는 과거 페이즈 저장 문건을 찾아가서 보고 내용을 정확히 파악하고 제대로 작업하길 바래서다. 컴팩션 이후 해당 되는 내용이 확인이 필요한 경우 이 계획서를 보고 해당 페이즈 문건을 찾아가서 다시 확인하고 그것을 기반으로 작업하라는 의미이다."
+
+**복구 절차 (절대 의무)**:
+
+1. 컴팩션 후 또는 ``이전 phase 에서 어떻게 정의했더라'' 류 정보 확인 필요 시 — 추정 / 추측 / ``내가 기억하기로는'' 류 **절대 금지**.
+2. 본 master roadmap (이 파일) 의 §2 phase 목록 보기 — 어느 phase 산출에 정보가 있는지 식별.
+3. 해당 phase 의 result 파일 직접 Read — `Claude/results/PHASE_<N>_v2_..._RESULT.md` 또는 `.json`.
+4. Read 결과를 기반으로 정확 답변·작업 — read 후 그 내용 cite 또는 직접 인용.
+5. Read 안 됐거나 부재하면 ``근거 미발견'' 명시 — 추정 대체 X.
+
+매 phase Result 저장이 본 복구 절차의 input. **Result 저장 + master roadmap/ledger 갱신 + commit 셋 모두 한 phase 의 완성 조건**.
+
+상세: [[feedback_phase_result_anti_compaction_hallucination]] (글로벌 메모리).
+
+### §0.8 Ralph Wiggum 검증 루프 — 논리 완성 때까지 반복 검증 (사용자 verbatim 2026-05-28)
+
+> "논리 완성 때까지 랄프위검 루프 식의 검증 루프를 돌려서 제대로된 논리를 완성해오길 바란다."
+
+본 roadmap 의 매 phase (특히 ★ Phase 4_v2 유효 배리어, 9_v2 Refs 6/7 closed-form, 11_v2 피팅 가능 논리식) 의 audit 단계 = Ralph Wiggum loop 적용.
+
+**Ralph Wiggum loop 절차** (글로벌 `~/.claude/governance/06-ralph-wiggum-loop.md` + 본 작업 특화):
+
+```
+[Phase 작업물 commit]
+  → [audit Pass 1 (발견)]
+  → [audit Pass 2 (확정·수정)]
+  → [audit Pass 3 (재검증)]
+  → IF FAIL or 논리 완성 미달:
+       → 추가 step 확장 (§0.6 적용)
+       → 정정 commit
+       → audit 재시도 (Pass 1 부터)
+       → 반복 ... 최대 5 회 상한 (governance §6 정합)
+  → IF 5 회에도 FAIL: stop + 사용자 보고 + DQ 등재
+  → IF PASS + 논리 완성: phase 종료, 다음 phase 진입
+```
+
+**``논리 완성'' 의 판단 기준** (본 작업 특화):
+
+- Charter v2 §5 Writing Precision Standard 의 §5.1-§5.4 모두 PASS (논리 비약 0 + 생략 0 + 학부 prose + Dim #11 0 FAIL).
+- 본 §0 의 사용자 verbatim 정합 (특히 §0.1 의 ``유효 배리어 논리 확정'', §0.2 의 ``피팅 가능 논리식'' 등).
+- 본 phase 의 deliverable 식 (예: Phase 4_v2 의 ΔG_eff 정의식) 이 학부 수준 reader 가 sentence-by-sentence 따라갈 수 있도록 자기 일관성.
+
 ---
 
 ## §1. Roadmap Objective

@@ -48,6 +48,42 @@
 - 본 §00 과 모순되는 모든 식·문장·spine·결정은 **즉시 invalid** 처리.
 - 본 §00 외 추가 사용자 verbatim 이 들어오면 본 §00 에 immediate append.
 
+### §00.6 Phase/Step 유연성 (사용자 verbatim 2026-05-28)
+
+> "phase 나 step은 계획이 저렇게 있는것이지 작업 진행하다가 추가로 더 검토가 필요하면 늘려도 된다. 저기에 무조건 맞춰야한다는게 아니고, 최소 저것은 해야한다의 기준점으로 잡으라고."
+
+- Master Roadmap v2 §2 의 17 phase × 1220 step = **최소 기준점**.
+- 추가 검토 필요 시 step 확장 OK. Master roadmap 의 phase 목록 갱신.
+- 무조건 fit 강제 X (간소화 압력 = 누락 트리거).
+
+상세: [[feedback_step_granularity_flexibility]] (글로벌 메모리).
+
+### §00.7 Phase Result 저장 + 컴팩션 환각 방지 복구 절차 (사용자 verbatim 2026-05-28)
+
+> "내가 페이즈마다 결과물을 저장하기를 바라는 이유는 니가 작업중 컴팩션이 일어나도 훼손된 기억을 이용해서 환각 증상을 일으키지 말고, 해당되는 과거 페이즈 저장 문건을 찾아가서 보고 내용을 정확히 파악하고 제대로 작업하길 바래서다."
+
+복구 절차 (절대 의무):
+1. ``기억으로는 …'' / ``추정컨대 …'' 류 절대 금지.
+2. Master Roadmap v2 → 해당 phase 식별.
+3. Phase result 파일 직접 Read.
+4. Read 결과 기반 작업.
+5. Read 안 됨 / 부재 시 ``근거 미발견'' 명시.
+
+매 Phase Result 저장 + master roadmap/ledger 갱신 + commit = 한 phase 완성 조건.
+
+상세: [[feedback_phase_result_anti_compaction_hallucination]] (글로벌 메모리).
+
+### §00.8 Ralph Wiggum 검증 루프 (사용자 verbatim 2026-05-28)
+
+> "논리 완성 때까지 랄프위검 루프 식의 검증 루프를 돌려서 제대로된 논리를 완성해오길 바란다."
+
+매 phase audit 단계 = Ralph Wiggum loop 적용. Pass 1+2+3 + 필요 시 추가 step 확장 + 정정 commit + 재시도, 최대 5 회 (governance §6 정합).
+
+``논리 완성'' 기준:
+- §5 Writing Precision Standard 의 §5.1-§5.4 모두 PASS.
+- §00 사용자 verbatim 정합.
+- Phase deliverable 식이 학부 수준 reader 가 sentence-by-sentence 따라갈 수 있는 자기 일관성.
+
 ---
 
 ## §0. v1 폐기와 v2 시작의 사유
