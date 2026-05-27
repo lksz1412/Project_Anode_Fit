@@ -1,0 +1,147 @@
+{
+  "phase": "E4",
+  "phase_id": "PASS_CHARGE_BALANCE_CENTRAL",
+  "step_range": {"from": 261, "to": 340},
+  "date": "2026-05-28",
+  "parent_roadmap": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md",
+  "phase_plan": "Claude/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e4-charge-balance-plan.md",
+  "charter_addendum_1_binding": "Claude/results/PHASE_E0_foundation_reset_charter_RESULT_ADDENDUM_1.md",
+  "first_phase_under_writing_precision_standard": true,
+  "source_file_extension": {
+    "path": "Claude/docs/graphite_ica_chapter1_v0.1.tex",
+    "line_count_before": 663,
+    "line_count_after": 1203,
+    "delta": 540,
+    "new_section_added": "§5 전하 보존식: 중심식의 정식 유도",
+    "new_subsections": 9,
+    "new_equation_labels": [
+      "eq:Qext_time_integral",
+      "eq:Qext_constant_I",
+      "eq:q_definition_recall",
+      "eq:dQ_rho_def",
+      "eq:Q_rho_total",
+      "eq:Q_int_decomposition",
+      "eq:conservation_raw",
+      "eq:charge_balance",
+      "eq:Qbg_equals_residual",
+      "eq:Qbg_range",
+      "eq:existence_condition",
+      "eq:Qbg_slope_floor",
+      "eq:Qbg_smooth_limit",
+      "eq:cb_q1",
+      "eq:cb_q0",
+      "eq:capacity_consistency",
+      "eq:lhs_dq",
+      "eq:rhs_term1_dq",
+      "eq:rhs_term2_dq",
+      "eq:cb_dq_combined",
+      "eq:dVn_dq",
+      "eq:monotonic_constraint",
+      "eq:rechecked2_cb",
+      "eq:dirac_comb_limit"
+    ],
+    "new_equation_label_count": 24
+  },
+  "derivation_blocks": [
+    {"id": "B1", "subsection": "5.1", "title": "Q_ext 시간 적분 정의", "start": "전류 정의 (motivation)", "end": "eq:q_definition_recall", "intermediate_steps": 3, "dim_checks": 2, "notes_count": 0},
+    {"id": "B2", "subsection": "5.2", "title": "∫ρn dμ 의미", "start": "eq:rho_meaning 참조", "end": "eq:Q_rho_total", "intermediate_steps": 2, "dim_checks": 2, "notes_count": 0},
+    {"id": "B3", "subsection": "5.2", "title": "내부 점유 분해 합", "start": "분해 가정", "end": "eq:Q_int_decomposition", "intermediate_steps": 1, "dim_checks": 1, "notes_count": 1},
+    {"id": "B4", "subsection": "5.3", "title": "전하 보존식 도출 (Eq.48 중심식)", "start": "보존 원리 (Faraday's law)", "end": "eq:charge_balance", "intermediate_steps": 2, "dim_checks": 1, "notes_count": 1, "key_equation": true},
+    {"id": "B5", "subsection": "5.4", "title": "해 존재 조건", "start": "eq:charge_balance 재정리", "end": "eq:existence_condition", "intermediate_steps": 3, "dim_checks": 1, "notes_count": 1},
+    {"id": "B6", "subsection": "5.5", "title": "수치 안정성 + smooth-limit", "start": "발산 motivation", "end": "eq:Qbg_smooth_limit", "intermediate_steps": 2, "dim_checks": 1, "notes_count": 1, "smooth_limit_explicit": true},
+    {"id": "B7", "subsection": "5.6", "title": "총용량 정합", "start": "eq:charge_balance 양 끝점", "end": "eq:capacity_consistency", "intermediate_steps": 3, "dim_checks": 1, "notes_count": 0},
+    {"id": "B8", "subsection": "5.7", "title": "dV_n/dq 표현 (등온)", "start": "eq:charge_balance q-미분 시도", "end": "eq:dVn_dq", "intermediate_steps": 5, "dim_checks": 1, "notes_count": 1},
+    {"id": "B9", "subsection": "5.7", "title": "단조성 제약 도출", "start": "eq:dVn_dq 부호 분석", "end": "eq:monotonic_constraint", "intermediate_steps": 2, "dim_checks": 1, "notes_count": 1},
+    {"id": "B-comp1", "subsection": "5.8.1", "title": "Dirac comb 한계로 rechecked2 회복", "start": "eq:dirac_comb_limit 가정", "end": "eq:rechecked2_cb 회복", "intermediate_steps": 3, "dim_checks": "intro 인용", "notes_count": 1}
+  ],
+  "totals": {
+    "derivation_blocks": 10,
+    "intermediate_steps_total": 26,
+    "dimensional_checks_total": 11,
+    "notes_total": 7
+  },
+  "writing_precision_audit_§11.4": {
+    "trivially_obviously_clearly_alone": 0,
+    "it_can_be_shown_that_without_derivation": 0,
+    "two_equations_no_prose_between": 0,
+    "definition_inside_block_without_pre_declaration": 0,
+    "start_of_block_dim_check_absent": 1,
+    "start_of_block_dim_check_absent_block": "B6",
+    "start_of_block_dim_check_absent_resolution": "B6 starts from smooth-limit motivation (not from a starting equation); end-of-block dim check sufficient",
+    "end_of_block_dim_check_absent": 0,
+    "limit_recovery_without_explicit_computation": 0,
+    "fail_count": 0,
+    "warn_count": 1,
+    "warn_all_resolved": true
+  },
+  "narrative_completeness_§11.1_to_§11.3": {
+    "11_1_no_logical_jump": "PASS",
+    "11_2_no_omission": "PASS",
+    "11_3_undergraduate_prose": "PASS"
+  },
+  "gates": [
+    {"gate_id": "GATE_E4_§5_subsections", "status": "PASS", "actual": 9, "required": 9},
+    {"gate_id": "GATE_E4_derivation_blocks", "status": "PASS", "actual": "9 B-blocks + 1 comparison", "required": "9 + 1"},
+    {"gate_id": "GATE_E4_central_eq", "status": "PASS", "equation": "eq:charge_balance from B4"},
+    {"gate_id": "GATE_E4_smooth_limit", "status": "PASS", "block": "B6, eq:Qbg_smooth_limit"},
+    {"gate_id": "GATE_E4_dirac_comb", "status": "PASS", "block": "B-comp1, recovers eq:rechecked2_cb"},
+    {"gate_id": "GATE_E4_§11.4_pass1", "status": "PASS", "fail": 0, "warn": 1, "warn_resolved": true},
+    {"gate_id": "GATE_E4_dim11", "status": "PASS"},
+    {"gate_id": "GATE_E4_forward_refs_resolved", "status": "PASS"},
+    {"gate_id": "GATE_E4_no_external_files", "status": "PASS"}
+  ],
+  "audit_results": {
+    "dim_2_verbatim": "PASS",
+    "dim_3_data_flow": "PASS",
+    "dim_6_convention": "PASS",
+    "dim_7_silent_miss": "PASS",
+    "dim_10_contract": "PASS",
+    "dim_alpha_boundary": "PASS",
+    "dim_beta_handover": "PASS",
+    "dim_gamma_tree": "PASS",
+    "dim_delta_4tier": "PASS",
+    "dim_11_system_fidelity": {
+      "max_min_Heaviside_sign_softplus_sigmoid_tanh_relu_clip_definitional_occurrences": 0,
+      "inf_sup_in_eq_Qbg_range": 2,
+      "inf_sup_classification": "OK-derived (range definitions for existence condition)",
+      "delta_function_in_dirac_comb_limit": 1,
+      "delta_classification": "OK-derived (limit recovery demonstration only)",
+      "pass_2_fail_count": 0,
+      "pass_2_warn_count": 0,
+      "pass_2_ok_count": 3,
+      "pass_3_remaining_fail": 0
+    },
+    "overall": "PASS — 11/11 dims, 0 FAIL"
+  },
+  "files_created": [
+    "Claude/results/PHASE_E0_foundation_reset_charter_RESULT_ADDENDUM_1.md (Charter Addendum 1, 119 lines)",
+    "Claude/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e4-charge-balance-plan.md (215 lines)",
+    "Claude/results/PHASE_E4_charge_balance_central_equation_RESULT.md (this file)",
+    "Claude/results/PHASE_E4_charge_balance_central_equation_RESULT.json"
+  ],
+  "files_updated": [
+    "Claude/docs/graphite_ica_chapter1_v0.1.tex (663 → 1203 lines)",
+    "Claude/results/PHASE_E_F_EXECUTION_LEDGER.md (Phase E4 row, Charter Addendum 1 row)"
+  ],
+  "files_not_accessed": [
+    "Claude/docs/graphite_ica_dynamic_ver5.tex",
+    "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "Claude/_local_only/*",
+    "Codex/*"
+  ],
+  "open_issues": [
+    {"id": "OI-E4-1", "item": "B6 start-of-block dim check conceptually absent (block starts from smooth-limit motivation)", "tier": "WARN resolved", "resolution": "end-of-block dim check sufficient per §11.4"},
+    {"id": "OI-E3-2 (propagated)", "item": "ρ_eq functional form", "tier": "추정", "resolution_phase": "E5"},
+    {"id": "OI-E0-1 (propagated)", "item": "Eq.49 S_R/K_n unit reconciliation", "tier": "추정", "resolution_phase": "E6"},
+    {"id": "OI-E1-1 (propagated)", "item": "pseudo-stationary projection Loop C", "tier": "추정", "resolution_phase": "E11"},
+    {"id": "DQ-G2 (propagated)", "item": "μ semantics user cross-check", "tier": "사용자 결정 대기", "resolution_phase": "F3"}
+  ],
+  "next": {
+    "phase": "E5",
+    "step_range_from": 341,
+    "name": "§6 Writing (Continuous Distribution ρ(μ; q, T) functional form + μ_min/μ_max boundaries)",
+    "auto_proceed": true,
+    "deferred_to_next_turn": true,
+    "deferral_reason": "current response budget"
+  }
+}
