@@ -378,4 +378,286 @@ Q_{\bg}, V_n, \rhomu, \nmu, V_{n,\app}, s_I, |I|, R_n, \rhomut, \rho_0, \Kncross
 \Sreact, \rhoeq$ 는 본 \S 2 의 canonical 표 \ref{sec:symbols} 에 모두 등재되어
 있다. 따라서 후속 \S 의 본문은 \S 2 의 정의 위에서 자유롭게 전개될 수 있다.
 
+% ====================================================================
+\section{흑연 staging 과 연속 화학 퍼텐셜}
+\label{sec:effective_transition}
+% ====================================================================
+
+\subsection{$N_p$ 이산 분해에서 연속 분포로의 전환}
+\label{sec:np_to_continuous}
+
+기존 \texttt{ver5} Chapter 1 \S 3 (line 137--150) 와 \texttt{ver1\_rechecked2}
+\S 3 (line 109--116) 은 흑연 음극의 staging transition 을 $N_p$ 개 (보통 3 또는 4)
+의 \emph{이산 effective transition} 으로 분해하고, 각 transition $j$ 에 대해 진행률
+$\xi_j$ 를 primary state 로 두었다. 이 결정은 평형 진행률 $\xi_{j,\eq}$ 의 정의를
+logistic 또는 erf 형태로 강제하고 (Charter \S 2 AP3, AP4, AP6), 결과적으로 spine
+전체가 step function 의 합 형태로 환원되는 본질적 결함을 만들었다.
+
+본 Chapter 1 v0.1 은 이 이산 분해를 \textbf{primary state 에서 제거} 하고, 흑연
+staging 을 화학 퍼텐셜 좌표 $\mucont$ 에 대한 \textbf{연속 분포} $\rhomu$ 로
+모델링한다. $N_p$ 개 peak 가 관측되는 사실은 $\rhomu$ 가 $\mucont$-공간에서
+$N_p$ 개의 국소 집중 (peak) 을 갖는다는 형태로 자연스럽게 표현되며, 분리 가능 여부
+는 peak 의 폭과 간격에 의해 결정되는 \emph{연속 모델의 결과} 이다.
+
+\begin{assumption}
+$\mucont$ 는 음극 내부 Li 원자의 (Li/Li$^+$ 기준) 전기화학 퍼텐셜로 해석한다.
+$\rhomu \, \dd\mucont$ 는 $\mucont$ 주변 단위 화학 퍼텐셜 구간에서 흑연 호스트가
+수용하는 Li 점유량의 전하 밀도 (단위 C/V) 이다. 이 해석은 사용자 검토 항목
+(\textbf{DQ-G2}) 이며, 본 Chapter 1 의 모든 정의식은 이 해석 하에서 일관된다.
+\end{assumption}
+
+\subsection{$\rhomu$ 의 정의와 의미}
+\label{sec:rho_definition}
+
+연속 분포 $\rhomu$ 는 다음 의미를 갖는다.
+
+\begin{equation}
+\rhomu \, \dd\mucont \;=\;
+\text{화학 퍼텐셜 구간 } [\mucont,\, \mucont + \dd\mucont] \text{ 에서의 Li
+점유 전하 밀도}
+\label{eq:rho_meaning}
+\end{equation}
+
+따라서 화학 퍼텐셜 구간 $[\mucont_a, \mucont_b]$ 에 누적된 Li 전하량은
+\begin{equation}
+Q_{[\mucont_a, \mucont_b]}(q, T)
+\;=\;
+\int_{\mucont_a}^{\mucont_b} \dd\mucont \; \rhomu \cdot \nmu
+\label{eq:rho_window_integration}
+\end{equation}
+이며, 전체 화학 퍼텐셜 범위 $[\mucont_{\min}, \mucont_{\max}]$ 에서 누적된 Li
+전하량은 식 \eqref{eq:spine_summary} (2) 의 우변 적분 항과 같다. 즉 본 spine 의
+중심식 (전하 보존식, \S\ref{sec:charge_balance} 에서 정식 유도) 은 식
+\eqref{eq:rho_window_integration} 을 전 범위에 적용한 형태이다.
+
+$\rhomu$ 의 정의는 다음 3 가지 자유도를 갖는다.
+\begin{enumerate}[label=(\alph*)]
+\item $\mucont$-공간 분포의 형태 — Gaussian, Marcus 류, Cahn-Hilliard 류 또는
+      그 혼합. 본 \S 3 에서는 형태를 특정하지 않으며, 형태의 선택은
+      \S\ref{sec:rho_eq} (Phase E5) 에서 다룬다.
+\item 분포의 $q$-의존성 — Li 채움이 진행될수록 어느 $\mucont$ 영역에 점유가
+      증가하는지. 본 \S 3 에서는 정성적 설명만 두며, 정량은 \S\ref{sec:rho_eq}
+      에서.
+\item 분포의 $T$-의존성 — 온도가 peak 의 폭과 위치를 어떻게 바꾸는지. 본 \S 3
+      에서는 형태에 대한 가정만 두며, 정량은 \S\ref{sec:rho_eq} 에서.
+\end{enumerate}
+
+\subsection{연속 모델의 물리적 근거}
+\label{sec:physical_grounding}
+
+흑연 음극의 Li 인터칼레이션을 연속 화학 퍼텐셜 분포로 모델링하는 접근은 다음 두
+선행 연구에서 정당화된다.
+
+\begin{itemize}
+\item \textbf{Cahn-Hilliard reaction dynamics for graphite} (Guo, Bazant, et al.,
+      \emph{J. Phys. Chem. Lett.} \textbf{7}, 2151 (2016)) — 흑연 인터칼레이션 시
+      Li 화학 퍼텐셜이 공간적으로 연속이며, 상변이가 phase coexistence + chemical
+      potential gradient 의 형태로 진행됨을 직접 광학 이미징으로 보임.
+\item \textbf{Free energy model coupled to graphene stacking}
+      (Rykner, Chandesris, \emph{J. Phys. Chem. C} \textbf{126}, 11425 (2022)) —
+      자유 에너지가 stacking sequence 와 결합되어 chemical potential 의 연속
+      변화를 만들며, 단순 $N_p$ 이산 staging 으로 분해되지 않음을 보임.
+\end{itemize}
+
+두 연구는 본 Chapter 1 의 연속 spine 의 \textbf{물리적 근거} 이며, ver5 의 이산
+$N_p$ 분해가 부분적 근사일 수 있음을 시사한다.
+
+\subsection{연속 → 이산 일방 유도}
+\label{sec:continuous_to_discrete}
+
+본 spine 은 \textbf{연속 분포 $\rhomu$ 를 primary state 로 두지만}, 기존
+\texttt{ver5} 와 \texttt{ver1\_rechecked2} 에서 사용되어 온 이산 $\xi_j$ 양과의
+호환을 위해 다음 \emph{일방 유도} 를 명시한다.
+
+각 peak window $j$ 를 화학 퍼텐셜 구간 $[\mucont_{j,\mathrm{lo}}(T),\,
+\mucont_{j,\mathrm{hi}}(T)]$ 로 정의 하면 ($j = 1, 2, \ldots, N_p$, $N_p$ 는
+관측에 따라 결정되는 정성적 분류 수), 해당 peak 의 누적 Li 전하량은
+\begin{equation}
+Q_j(q, T)
+\;=\;
+\int_{\mucont_{j,\mathrm{lo}}(T)}^{\mucont_{j,\mathrm{hi}}(T)} \dd\mucont \;
+\rhomu \cdot \nmu
+\label{eq:peak_charge}
+\end{equation}
+이고, 진행률은
+\begin{equation}
+\xi_j(q, T)
+\;=\;
+\frac{Q_j(q, T) - Q_j(q_0, T)}{Q_{j,\tot}(T)},
+\qquad
+Q_{j,\tot}(T) = Q_j(q = 1, T) - Q_j(q = 0, T)
+\label{eq:xi_from_rho}
+\end{equation}
+로 정의된다 ($q_0$ 은 진행률의 기준 시점, 보통 $q_0 = 0$).
+
+\begin{note}
+식 \eqref{eq:xi_from_rho} 는 \emph{일방 유도} 이다. 즉 $\rhomu$ 가 주어지면 $\xi_j$
+가 결정되지만, 역방향 (이산 $\xi_j$ 만 주어졌을 때 연속 $\rhomu$ 를 복원) 은 본
+spine 에서 사용되지 않는다. 역방향 복원은 정보 손실을 동반하며, Charter \S 4 FB8
+(silent $\mucont$ 이산화) 에 해당하므로 정의식에서 배제된다.
+
+따라서 본 Chapter 1 에서 $\xi_j$ 가 등장하는 모든 위치 (\S 13 피팅 절차 등) 는
+연속 $\rhomu$ 모델의 결과를 이산 형태로 \emph{보고} 하는 단계일 뿐, 모델 자체의
+state 가 아니다.
+\end{note}
+
+\subsection{peak window 의 운용적 정의}
+\label{sec:peak_window_operational}
+
+식 \eqref{eq:peak_charge}--\eqref{eq:xi_from_rho} 에서 peak window
+$[\mucont_{j,\mathrm{lo}}, \mucont_{j,\mathrm{hi}}]$ 의 정의는 \emph{운용적
+(operational)} 이다. 즉, $\rhomu$ 의 형태가 결정된 뒤에 peak 의 valley 사이
+중간점, FWHM-기반 영역, 또는 모멘트-기반 영역 등으로 정의할 수 있다. 구체적
+선택은 \S\ref{sec:fitting_procedure} (Phase E10 피팅 절차) 에서 다룬다.
+
+\textbf{본 \S 3 의 핵심 결론.} 본 Chapter 1 의 primary state 는 연속 분포 $\rhomu$
+이며, 이산 $\xi_j$ 와 그에 부속된 $U_j, w_j, k_j, Q_{j,\tot}$ 등은 모두 식
+\eqref{eq:xi_from_rho} 와 그 변형으로 \emph{유도되는} 양이다. 이 일방향 정의가
+사용자가 지적한 ``적분을 모 아니면 도 스텝 펑션 형태로 가정'' 한 결함의 근본 회피
+점이다.
+
+% ====================================================================
+\section{음극 전위의 세 가지 구분: $V_n$, $V_{n,\app}$, $V_{n,\drive}$}
+\label{sec:three_potentials}
+% ====================================================================
+
+본 Chapter 1 은 \texttt{ver1\_rechecked2} \S 6.1 (line 204--238) 의 세 가지 전위
+구분을 정신적으로 보존하면서, 새 연속 $\rhomu$ spine 위에 적합하게 재정의한다.
+
+\subsection{$V_n$: 음극 내부 전위 (Eq.\,\ref{eq:spine_summary} (2) 의 implicit 해)}
+\label{sec:V_n_internal}
+
+음극 내부 전위 $V_n$ 은 주어진 $(q, T, \rhomu)$ 에서 식 \eqref{eq:spine_summary} (2)
+의 \emph{implicit 해} 로 정의된다. 즉,
+
+\begin{equation}
+V_n
+\;=\;
+\bigl\{
+V_n \in \mathbb{R} \;\big|\;
+Q_{\cell}\, q
+\;=\;
+Q_{\bg}(V_n, T)
+\;+\;
+\int_{\mucont_{\min}}^{\mucont_{\max}} \dd\mucont \;
+\rhomu \cdot \nmu
+\bigr\}.
+\label{eq:V_n_implicit}
+\end{equation}
+
+$V_n$ 은 외부에서 lookup 으로 주어지는 함수가 아니다 (ver5 의 $V_{n,\OCV}(q, T)$
+방식 폐기). 또한 $V_n$ 은 단일 boundary 값이고, $\rhomu$ 의 분포 내부 좌표
+$\mucont$ 와 \emph{개념적으로 구분} 된다 (자세한 대응 관계는
+\S\ref{sec:mu_V_n_correspondence}).
+
+식 \eqref{eq:V_n_implicit} 의 root-find 는 매 timestep 에서 수치적으로 수행되며,
+이를 \textbf{Loop A} (Phase E1 \S D 분류) 라 부른다. Loop A 의 해 존재 조건과
+수치 안정성 조건은 \S\ref{sec:charge_balance} (Phase E4) 에서 다룬다.
+
+\subsection{$V_{n,\app}$: 관측 전위}
+\label{sec:V_n_app}
+
+실험에서 측정되는 apparent 음극 전위는 식 \eqref{eq:Vapp_def} 으로 이미 정의되어
+있다. 본 \S 4.2 는 그 식의 역할을 재확인한다.
+
+\begin{equation}
+V_{n,\app}(q, T, |I|)
+\;=\;
+V_n(q, T, \rhomu) \;+\; s_I |I|\, R_n(q, T, |I|).
+\label{eq:V_n_app_role}
+\end{equation}
+
+여기서 두 가지가 새롭다.
+
+\begin{itemize}
+\item $V_n$ 의 의존성에 $\rhomu$ 가 명시적으로 등장한다 (Eq.\,\ref{eq:V_n_implicit}
+      의 해 의존성). ver5 와 달리 $V_n$ 자체가 분포 $\rhomu$ 의 함수이다.
+\item $R_n$ 의 $|I|$ 의존성은 \texttt{ver1\_rechecked2} 에서 이미 도입된 형태로
+      유지된다. ver5 의 $R_n(q, T)$ 보다 일반적이며, 분극 효과의 비선형성을
+      포함한다.
+\end{itemize}
+
+\subsection{$V_{n,\drive}$: 반응 커널의 구동 전위}
+\label{sec:V_n_drive}
+
+연속 반응성 커널 $\Sreact$ 의 구동력 계산에 사용되는 전위는 $V_{n,\drive}$ 로
+표기한다. Reduced model 에서는
+
+\begin{equation}
+V_{n,\drive} \;\approx\; V_{n,\app}
+\label{eq:V_n_drive_reduced}
+\end{equation}
+
+근사를 사용한다. 이 근사는 다음 조건이 동시에 충족될 때 유효하다.
+
+\begin{enumerate}
+\item $R_n$ 에 전하 이동 분극 성분이 \emph{이미 포함} 되어 있으며, $\Sreact$ 가
+      그 성분을 \emph{다시 포함하지 않는다} (중복 반영 금지).
+\item 외부 회로의 전류 분배가 단일 음극 반응 채널로 통합되어 다룰 수 있다
+      (다중 채널 분리 표현은 Phase E6 reaction-resolved 확장에서 다룸).
+\end{enumerate}
+
+Reaction-resolved 확장형 ($V_{n,\drive}$ 가 Butler-Volmer 과전압 또는 다른
+구체 형태로 분리 표현되는 경우) 은 Phase E6 (\S\ref{sec:continuous_reactivity}
+신단원) 에서 정의되며, 본 \S 4.3 에서는 reduced approximation 만 명시한다.
+
+\subsection{세 전위의 역할 차이}
+\label{sec:three_potentials_roles}
+
+\begin{mdframed}
+\textbf{역할 요약.}
+
+\begin{tabular}{p{0.18\textwidth} p{0.74\textwidth}}
+\toprule
+전위 & 역할 \\
+\midrule
+$V_n$ & 모델의 내부 상태. 식 \eqref{eq:V_n_implicit} 의 implicit 해. $\rhomu$ 와
+        $Q_{\bg}$ 와 결합되어 정의됨. \\
+$V_{n,\app}$ & 외부 관측량. $V_n$ 과 옴성 분극 항의 합. ICA/DVA 관측식
+        (\S\ref{sec:ICA_DVA}) 의 미분 좌표. \\
+$V_{n,\drive}$ & 반응성 커널 $\Sreact$ 의 구동 좌표. Reduced 에서 $V_{n,\app}$
+        근사. \\
+\bottomrule
+\end{tabular}
+\end{mdframed}
+
+세 전위를 혼동하지 않는 것은 본 Chapter 1 의 자기 일관성 (Charter \S 6 audit
+Dim \#11 의 system-fidelity 검증) 의 핵심이다. 예를 들어 평형 분포 $\rhoeq$ 는
+$V_n$ 의 함수로 정의되어야 하며 (반응의 구동력이 아닌 평형 위치), 반응성 커널
+$\Sreact$ 는 $V_{n,\drive}$ 의 함수로 정의되어야 한다 (Phase E6).
+
+\subsection{$\mucont$ 와 $V_n$ 의 boundary 대응}
+\label{sec:mu_V_n_correspondence}
+
+연속 화학 퍼텐셜 좌표 $\mucont$ 는 \emph{분포 $\rhomu$ 의 내부 좌표} 이고,
+$V_n$ 은 분포 전체에 대해 정의되는 \emph{단일 boundary 값} 이다. 두 양은 다음
+의미에서 연결된다.
+
+평형 ($\rhomu = \rhoeq$) 조건에서 본 spine 의 charge balance
+(Eq.\,\ref{eq:V_n_implicit}) 를 만족하는 $V_n$ 의 값은 $\rhoeq$ 의 분포가 최대로
+점유된 $\mucont$ 영역의 \emph{대표값} (boundary, 또는 chemical potential 의 평형
+조건의 결과) 으로 해석된다. 비평형 ($\rhomu \neq \rhoeq$) 조건에서도 동일한 식
+이 $V_n$ 을 정의한다.
+
+\begin{mdframed}
+\textbf{새 boundary 대응 = 기존 $V_{n,\OCV}$ 외부 함수의 대체.}
+
+\texttt{ver5} 의 $V_{n,\OCV}(q, T)$ 는 외부 lookup 함수로 가정되었고, 평형 진행률
+$\xi_{j,\eq}$ 의 정의에 직접 인입되었다. 이는 charge balance 가 모델 외부에서
+이미 풀린 것으로 가정한 셈이다.
+
+본 Chapter 1 v0.1 에서는 $V_n$ 이 식 \eqref{eq:V_n_implicit} 의 implicit 해로
+\emph{내부적으로 결정} 되며, 평형 시 그 값이 자연스럽게 $V_{n,\OCV}(q, T)$ 의 역할
+을 한다 (derived quantity, Phase E1 \S C 참조). 따라서 $V_{n,\OCV}$ 는 더 이상
+모델의 입력이 아니라, 모델이 평형 조건 하에서 \emph{만들어내는} 양이다.
+\end{mdframed}
+
+\subsection{본 \S 의 \S 1 spine 과의 연결 및 \S 5 진입}
+\label{sec:section_4_to_5_bridge}
+
+본 \S 4 는 \S 1 식 \eqref{eq:spine_summary} 의 성분 (3) ($V_n$ 의 implicit 해 정의)
+와 성분 (4) ($V_{n,\app}$ 정의) 를 본문화하였다. 다음 \S 5 (charge balance 중심식,
+Phase E4 작성) 에서는 성분 (2) 의 정식 유도와 해 존재 조건, 수치 안정성, 총용량
+정합, 단조성 제약을 다룬다.
+
 \end{document}

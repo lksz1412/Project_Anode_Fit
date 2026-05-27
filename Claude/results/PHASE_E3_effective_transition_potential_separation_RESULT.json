@@ -1,0 +1,115 @@
+{
+  "phase": "E3",
+  "phase_id": "PASS_TRANSITION_POTENTIAL_SEPARATION",
+  "step_range": {"from": 201, "to": 260},
+  "date": "2026-05-28",
+  "parent_roadmap": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md",
+  "phase_plan": "Claude/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e3-effective-transition-plan.md",
+  "source_file_extension": {
+    "path": "Claude/docs/graphite_ica_chapter1_v0.1.tex",
+    "line_count_before": 381,
+    "line_count_after": 663,
+    "delta": 282,
+    "new_sections_added": ["§3 흑연 staging과 연속 화학 퍼텐셜", "§4 음극 전위의 세 가지 구분"],
+    "new_equation_labels": [
+      "eq:rho_meaning",
+      "eq:rho_window_integration",
+      "eq:peak_charge",
+      "eq:xi_from_rho",
+      "eq:V_n_implicit",
+      "eq:V_n_app_role",
+      "eq:V_n_drive_reduced"
+    ]
+  },
+  "section_3": {
+    "title": "흑연 staging 과 연속 화학 퍼텐셜",
+    "subsections": [
+      {"id": "3.1", "title": "N_p 이산 분해에서 연속 분포로의 전환", "key_content": "ver5/rechecked2 N_p discrete critique + continuous μ adoption + assumption block on μ = Li/Li+ electrochemical potential (DQ-G2 tagged)"},
+      {"id": "3.2", "title": "ρ(μ; q, T) 의 정의와 의미", "key_content": "Eq. rho_meaning + Eq. rho_window_integration + 3 degrees of freedom for distribution form (a/b/c)"},
+      {"id": "3.3", "title": "연속 모델의 물리적 근거", "citations": ["Guo, Bazant et al., J. Phys. Chem. Lett. 7, 2151 (2016)", "Rykner, Chandesris, J. Phys. Chem. C 126, 11425 (2022)"]},
+      {"id": "3.4", "title": "연속 → 이산 일방 유도", "key_content": "Eq. peak_charge for Q_j + Eq. xi_from_rho for ξ_j + one-way derivation mdframed (reverse direction forbidden per Charter FB8)"},
+      {"id": "3.5", "title": "peak window 의 운용적 정의", "key_content": "operational definition deferred to §13 (Phase E10 fitting procedure)"}
+    ],
+    "core_conclusion": "Primary state is continuous ρ(μ; q, T). Discrete ξ_j and related U_j, w_j, k_j, Q_j_tot are derived via Eq. xi_from_rho. Reverse direction forbidden."
+  },
+  "section_4": {
+    "title": "음극 전위의 세 가지 구분: V_n, V_{n,app}, V_{n,drive}",
+    "subsections": [
+      {"id": "4.1", "title": "V_n: 음극 내부 전위 (implicit 해)", "equation_label": "eq:V_n_implicit", "loop_reference": "Loop A (Phase E1 §D)"},
+      {"id": "4.2", "title": "V_{n,app}: 관측 전위", "equation_label": "eq:V_n_app_role", "new_aspects": ["ρ-dependence explicit", "R_n(|I|) preserved from rechecked2"]},
+      {"id": "4.3", "title": "V_{n,drive}: 반응 커널의 구동 전위", "equation_label": "eq:V_n_drive_reduced", "validity_conditions": ["R_n 에 전하이동 분극 포함, S_R 가 중복 X", "단일 채널 통합"], "reaction_resolved_deferral": "Phase E6"},
+      {"id": "4.4", "title": "세 전위의 역할 차이", "format": "mdframed table"},
+      {"id": "4.5", "title": "μ 와 V_n 의 boundary 대응", "key_content": "μ = distribution interior coordinate (range [μ_min, μ_max]), V_n = single boundary value attached to distribution"},
+      {"id": "4.6", "title": "새 boundary 대응 = ver5 V_{n,OCV} 외부 함수의 대체", "format": "mdframed", "key_content": "V_{n,OCV} from external lookup to derived quantity (Phase E1 §C)"},
+      {"id": "4.7", "title": "§5 진입 bridge", "next_section": "§5 charge balance Phase E4"}
+    ]
+  },
+  "gates": [
+    {"gate_id": "GATE_E3_§3", "requirement": "§3 with 5 subsections + Bazant/Rykner citations + one-way derivation mdframed", "status": "PASS"},
+    {"gate_id": "GATE_E3_§4", "requirement": "§4 with 7 subsections + Loop A reference + V_{n,OCV} replacement mdframed", "status": "PASS"},
+    {"gate_id": "GATE_E3_one_way", "requirement": "§3.4 derivation explicitly one-way (continuous → discrete only)", "status": "PASS"},
+    {"gate_id": "GATE_E3_dim11", "requirement": "Audit Dim #11 Pass 1: 0 FAIL in definitional contexts", "status": "PASS"},
+    {"gate_id": "GATE_E3_legacy_compat", "requirement": "§4 references rechecked2 §6.1 spirit with new ρ-spine semantics", "status": "PASS"},
+    {"gate_id": "GATE_E3_no_external_files", "requirement": "No `Claude/_local_only/` or `Codex/` access", "status": "PASS"}
+  ],
+  "audit_results": {
+    "dim_2_verbatim": "PASS",
+    "dim_3_data_flow": "PASS",
+    "dim_6_convention": "PASS",
+    "dim_7_silent_miss": "PASS",
+    "dim_10_contract": "PASS",
+    "dim_alpha_boundary": "PASS",
+    "dim_beta_handover": "PASS",
+    "dim_gamma_tree": "PASS",
+    "dim_delta_4tier": "PASS",
+    "dim_11_system_fidelity": {
+      "pass_1_keyword_scan_in_section_3_4": {
+        "max_min_Heaviside_sign_softplus_sigmoid_tanh_relu_clip_occurrences": 0,
+        "step_function_text_occurrences": 1,
+        "step_function_classification": "OK-derived (§3.1 ver5 anti-pattern critique)",
+        "logistic_text_occurrences": 1,
+        "logistic_classification": "OK-derived (§3.1)",
+        "erf_text_occurrences": 1,
+        "erf_classification": "OK-derived (§3.1)",
+        "xi_j_eq_latex_occurrences": 1,
+        "xi_j_eq_classification": "OK-derived (§4.6 mdframed, ver5 anti-pattern ref, NOT definitional)"
+      },
+      "pass_2_fail_count": 0,
+      "pass_2_warn_count": 0,
+      "pass_2_ok_count": 4,
+      "pass_3_remaining_fail": 0
+    },
+    "overall": "PASS — 11/11 dims, 0 FAIL"
+  },
+  "files_created": [
+    "Claude/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e3-effective-transition-plan.md",
+    "Claude/results/PHASE_E3_effective_transition_potential_separation_RESULT.md",
+    "Claude/results/PHASE_E3_effective_transition_potential_separation_RESULT.json"
+  ],
+  "files_updated": [
+    "Claude/docs/graphite_ica_chapter1_v0.1.tex (381 → 663 lines)",
+    "Claude/results/PHASE_E_F_EXECUTION_LEDGER.md (Phase E3 row)"
+  ],
+  "files_not_accessed": [
+    "Claude/docs/graphite_ica_dynamic_ver5.tex",
+    "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "Claude/_local_only/*",
+    "Codex/*"
+  ],
+  "open_issues": [
+    {"id": "OI-E3-1", "item": "peak window operational definition formal specification", "tier": "추정", "resolution_phase": "E10"},
+    {"id": "OI-E3-2", "item": "ρ(μ;q,T) functional form (Gaussian / Marcus / Bazant-CH / mixture)", "tier": "추정", "resolution_phase": "E5"},
+    {"id": "OI-E3-3", "item": "reaction-resolved extension for V_{n,drive}", "tier": "추정", "resolution_phase": "E6"},
+    {"id": "OI-E1-1 (propagated)", "item": "pseudo-stationary projection Loop C justification", "tier": "추정", "resolution_phase": "E11"},
+    {"id": "OI-E0-1 (propagated)", "item": "Eq.49 unit reconciliation", "tier": "추정", "resolution_phase": "E6"},
+    {"id": "DQ-G2 (propagated)", "item": "μ semantics user cross-check, tagged in §3.1 assumption block", "tier": "사용자 결정 대기", "resolution_phase": "F3"}
+  ],
+  "next": {
+    "phase": "E4",
+    "step_range_from": 261,
+    "name": "§5 Writing (Charge Balance — Central Equation, Continuous Reformulation)",
+    "auto_proceed": true,
+    "deferred_to_next_turn": true,
+    "deferral_reason": "current response budget"
+  }
+}
