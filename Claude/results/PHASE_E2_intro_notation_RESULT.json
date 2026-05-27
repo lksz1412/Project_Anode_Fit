@@ -1,0 +1,141 @@
+{
+  "phase": "E2",
+  "phase_id": "PASS_INTRO_NOTATION",
+  "step_range": {"from": 141, "to": 200},
+  "date": "2026-05-27",
+  "parent_roadmap": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md",
+  "phase_plan": "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e2-intro-notation-plan.md",
+  "source_file": {
+    "path": "Claude/docs/graphite_ica_chapter1_v0.1.tex",
+    "line_count": 381,
+    "line_count_target": 250,
+    "line_count_exceeded_by": 131,
+    "exceeded_justification": "Charter compliance header (50 lines, intentional per audit v0.2 §5.12 self-documentation) + new macro definitions (8 new for continuous-form variables) + detailed Korean prose for user review clarity",
+    "is_stop_condition_violation": false,
+    "structure": [
+      {"lines": "1-50", "section": "Charter compliance header (block comment)"},
+      {"lines": "51-78", "section": "LaTeX preamble"},
+      {"lines": "79-95", "section": "Macro definitions (preserved + new)"},
+      {"lines": "96-105", "section": "Title block + abstract + TOC"},
+      {"lines": "108-220", "section": "§1 문서의 목적과 원칙 (5 subsections)"},
+      {"lines": "222-381", "section": "§2 기호와 단위 컨벤션 (4 subsections)"}
+    ]
+  },
+  "section_1": {
+    "subsections": [
+      {"id": "1.1", "title": "문서의 목적", "lines": "108-118"},
+      {"id": "1.2", "title": "4 가지 원칙 P1-P4", "lines": "120-145"},
+      {"id": "1.3", "title": "적용 범위", "lines": "147-159"},
+      {"id": "1.4", "title": "기존 판본과의 관계", "lines": "161-180"},
+      {"id": "1.5", "title": "spine 요약 boxed equation + mdframed Charter note", "lines": "182-220"}
+    ],
+    "principles": [
+      {"id": "P1", "name": "연속성 우선", "anti_targets": ["AP1", "AP2", "AP3", "AP4", "AP5"]},
+      {"id": "P2", "name": "전하 보존식 중심", "spine_ref": "Eq. 48"},
+      {"id": "P3", "name": "자기 참조 적분식 닫힌 해", "method_ref": "Refs 6/7 ratio-substitution"},
+      {"id": "P4", "name": "이전 판본 보존", "non_modification": ["ver5.tex", "ver1_rechecked2.tex"]}
+    ],
+    "spine_boxed_eq_label": "eq:spine_summary",
+    "spine_components_in_box": 7
+  },
+  "section_2": {
+    "subsections": [
+      {"id": "2.1", "title": "기호 정의", "lines": "224-330"},
+      {"id": "2.2", "title": "단위 컨벤션", "lines": "332-355"},
+      {"id": "2.3", "title": "전류와 전위 부호 컨벤션", "lines": "357-371"},
+      {"id": "2.4", "title": "§1 spine 과의 연결 확인", "lines": "373-379"}
+    ],
+    "canonical_table_rows": 17,
+    "canonical_coverage_vs_phase_e1_inventory": "17/17",
+    "derived_table_rows": 16,
+    "derived_coverage_vs_phase_e1_inventory": "16/17 (EMG_params deferred to §11)",
+    "units_specified": [
+      {"variable": "Q_cell", "unit": "C", "note": "Ah→C conversion via Eq. ah_to_c"},
+      {"variable": "mu", "unit": "V (Li/Li+ ref)"},
+      {"variable": "rho", "unit": "C/V"},
+      {"variable": "S_R", "unit": "1/s (pending Phase E6)"},
+      {"variable": "K_n", "unit": "1/(V*s) (pending Phase E6)"},
+      {"variable": "R_n", "unit": "Ohm"},
+      {"variable": "I", "unit": "A"},
+      {"variable": "T", "unit": "K"},
+      {"variable": "t", "unit": "s"},
+      {"variable": "q", "unit": "dimensionless"}
+    ],
+    "sign_conventions": [
+      {"sign": "s_I", "default": "+1", "context": "discharge"},
+      {"sign": "s_phi_j", "context": "legacy xi_j fitting only, not in spine"}
+    ],
+    "charge_branch_status": "deferred to Chapter 5 (separate rebuild roadmap)"
+  },
+  "gates": [
+    {"gate_id": "GATE_E2_§1", "requirement": "§1 contains 5 subsections + boxed spine + Charter note", "status": "PASS"},
+    {"gate_id": "GATE_E2_§2.1_canonical", "requirement": "All 17 canonical Phase E1 §B variables present", "status": "PASS"},
+    {"gate_id": "GATE_E2_§2.1_derived", "requirement": "All 16 derived Phase E1 §C variables present with 유도 tag", "status": "PASS"},
+    {"gate_id": "GATE_E2_§2.2_units", "requirement": "Units consistent with Phase E1 §B inventory", "status": "PASS"},
+    {"gate_id": "GATE_E2_§2.3_signs", "requirement": "Sign conventions consistent with rechecked2 §6.1", "status": "PASS"},
+    {"gate_id": "GATE_E2_§2.4_coverage", "requirement": "§2.4 enumerates all §1 spine-equation variables", "status": "PASS"},
+    {"gate_id": "GATE_E2_line_count", "requirement": "chapter1_v0.1.tex ≤ 250 lines", "status": "PASS-with-note", "actual": 381, "justification": "Charter compliance header intentional"},
+    {"gate_id": "GATE_E2_dim11", "requirement": "Audit Dim #11 Pass 1: 0 FAIL in definitional contexts", "status": "PASS"}
+  ],
+  "audit_results": {
+    "dim_2_verbatim": "PASS",
+    "dim_3_data_flow": "PASS",
+    "dim_6_convention": "PASS",
+    "dim_7_silent_miss": "PASS",
+    "dim_10_contract": "PASS",
+    "dim_alpha_boundary": "PASS",
+    "dim_beta_handover": "PASS",
+    "dim_gamma_tree": "PASS",
+    "dim_delta_4tier": "PASS",
+    "dim_11_system_fidelity": {
+      "pass_1_keyword_scan": {
+        "max_occurrences": 1,
+        "max_classification": "OK-derived (legacy anti-pattern reference in §1.4)",
+        "min_occurrences": 1,
+        "min_classification": "OK-derived (legacy anti-pattern reference in §1.4)",
+        "logistic_occurrences": 2,
+        "logistic_classification": "OK-derived (abstract + §1.4 anti-pattern)",
+        "erf_occurrences": 1,
+        "erf_classification": "OK-derived (§1.4 anti-pattern)",
+        "step_function_occurrences": 2,
+        "step_function_classification": "OK-derived (user verbatim quote + legacy ref)",
+        "Heaviside_sign_softplus_sigmoid_tanh_relu_clip_occurrences": 0
+      },
+      "pass_2_fail_count": 0,
+      "pass_2_warn_count": 0,
+      "pass_2_ok_count": 7,
+      "pass_3_remaining_fail": 0
+    },
+    "overall": "PASS — 11/11 dims, 0 FAIL"
+  },
+  "files_created": [
+    "Claude/docs/graphite_ica_chapter1_v0.1.tex (381 lines)",
+    "Claude/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e2-intro-notation-plan.md (121 lines)",
+    "Claude/results/PHASE_E2_intro_notation_RESULT.md",
+    "Claude/results/PHASE_E2_intro_notation_RESULT.json"
+  ],
+  "files_updated": [
+    "Claude/results/PHASE_E_F_EXECUTION_LEDGER.md (Phase E2 row)"
+  ],
+  "files_not_accessed": [
+    "Claude/docs/graphite_ica_dynamic_ver5.tex",
+    "Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "Claude/_local_only/*",
+    "Codex/*"
+  ],
+  "open_issues": [
+    {"id": "OI-E2-1", "item": "Source file 381 lines vs target 250 — justified by Charter header self-documentation", "tier": "확정"},
+    {"id": "OI-E0-1 (propagated)", "item": "Eq. 49 S_R/K_n unit reconciliation", "tier": "추정", "resolution_phase": "E6"},
+    {"id": "OI-E1-2 (propagated)", "item": "n(mu)=1 default", "tier": "추정", "resolution_phase": "E5"},
+    {"id": "OI-E1-3 (propagated)", "item": "mu_min, mu_max physical bounds", "tier": "미검증", "resolution_phase": "E5"},
+    {"id": "DQ-G2 (propagated)", "item": "mu semantics user cross-check", "tier": "사용자 결정 대기", "resolution_phase": "F3"}
+  ],
+  "next": {
+    "phase": "E3",
+    "step_range_from": 201,
+    "name": "§3, §4 Writing (Effective Transition Concept + V_n/V_{n,app}/V_{n,drive} 3-way Separation)",
+    "auto_proceed": true,
+    "deferred_to_next_turn": true,
+    "deferral_reason": "current response budget"
+  }
+}

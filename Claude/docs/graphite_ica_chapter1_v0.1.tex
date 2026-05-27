@@ -1,0 +1,381 @@
+% ====================================================================
+% graphite_ica_chapter1_v0.1.tex
+% Chapter 1 Rebuild (from scratch) — Anode Fit Project
+% Date: 2026-05-27
+% Author: Claude (Project_Anode_Fit Claude 측)
+% ====================================================================
+%
+% CHARTER COMPLIANCE
+% ------------------
+% This file is governed by the Chapter 1 Rebuild Charter:
+%   Claude/results/PHASE_E0_foundation_reset_charter_RESULT.md
+%
+% Anti-pattern list (Charter §2 — MUST NOT appear in definitional eqs):
+%   AP1 max(ΔG_eff, 0)   AP2 min(., k_max)        AP3 logistic
+%   AP4 erf as definitional   AP5 discrete N_p as primary state
+%   AP6 logistic in rechecked2   AP7 softplus as canonical   AP8 N_p retained
+%
+% Forbidden-pattern list (Charter §4):
+%   FB1 max/Heaviside, FB2 min/clip, FB3 sigmoid/tanh, FB4 erf/erfc,
+%   FB5 discrete N_p primary, FB6 softplus without smooth-limit,
+%   FB7 sign/clip/piecewise, FB8 silent μ discretization,
+%   FB9 silent integral→sum, FB10 single-state simplification
+%
+% Smooth-limit consistency rule (Charter §5):
+%   Every regularization parameter ε>0 has an explicit ε→0 form
+%   recovering a Charter-compliant continuous expression.
+%
+% Audit Dim #11 (Charter §6) — system-fidelity:
+%   Pass 1: enumerate every max/min/clip/step/Heaviside/sign/softplus/
+%           logistic/erf/sigmoid/tanh/relu occurrence.
+%   Pass 2: classify FAIL-definitional / WARN-regularization /
+%           WARN-empirical / OK-derived.
+%   Pass 3: confirm 0 remaining FAIL.
+%
+% Spine (Phase E1 §A.3):
+%   (1) Q_ext = Q_cell q
+%   (2) Q_cell q = Q_bg(V_n, T) + ∫dμ ρ(μ; q, T) n(μ)                    [Eq. 48]
+%   (3) V_n = root of (2)                                                  [Loop A]
+%   (4) V_{n,app} = V_n + s_I |I| R_n
+%   (5a) ρ(μ; q, t) = ρ_0 + ∫dμ' K_n S_R [ρ_eq - ρ]                      [Eq. 49]
+%   (5b) ICA = Q_cell / (dV_{n,app}/dq)
+%   (5c) DVA = (1/Q_cell)(dV_{n,app}/dq)
+% ====================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{mdframed}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+            pdftitle={Chapter 1 Rebuild — Continuous Chemical Potential ICA/DVA},
+            pdfauthor={Project_Anode_Fit Claude}}
+\setstretch{1.14}
+\setlength{\parskip}{0.42em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Chapter 1 (Rebuild v0.1) — 연속 화학 퍼텐셜 기반 ICA/DVA}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{assumption}{가정}
+\newtheorem*{note}{설명}
+\newtheorem*{charter}{Charter compliance}
+
+% Preserved macros (ver5 + rechecked2 common subset)
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\Ah}{\mathrm{Ah}}
+\newcommand{\Cunit}{\mathrm{C}}
+
+% New macros for continuous-form variables (Phase E0 §3.1, Phase E1 §B)
+\newcommand{\mucont}{\mu}
+\newcommand{\rhomu}{\rho(\mucont;\, q, T)}
+\newcommand{\rhoeq}{\rho_{\eq}(\mucont;\, q, T)}
+\newcommand{\rhomut}{\rho(\mucont;\, q, t)}
+\newcommand{\Sreact}{S_R(\mucont;\, T)}
+\newcommand{\Kncross}{K_n(\mucont, \mucont';\, q, T)}
+\newcommand{\nmu}{n(\mucont)}
+
+\title{\Large \textbf{리튬이온전지 흑연 음극의 연속 화학 퍼텐셜 기반 ICA/DVA 동역학:
+       Chapter 1 (Rebuild v0.1)}}
+\author{Project\_Anode\_Fit Claude 측}
+\date{2026-05-27}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\textbf{초록.} 이 문서는 리튬이온전지 흑연 음극의 ICA($dQ/dV$)와 DVA($dV/dQ$)를
+\textbf{연속 화학 퍼텐셜 분포} $\rhomu$와 \textbf{연속 반응성 커널} $\Sreact$로
+모델링하는 Chapter 1의 처음부터 다시 쓴 판본이다. 자기 참조 적분식의 해는 사용자
+박사학위 연구에서 비롯된 \textbf{Fredholm 적분 방정식 제2종의 비율 치환법}
+(Refs.~\cite{lee2011propagator,son2013accurate}, JCP 2017)을 적용한다. 본 Chapter 1
+은 기존 \texttt{ver5} 와 \texttt{ver1\_rechecked2} 의 본문을 수정하지 않고 참조
+자료로만 사용하며, 사용자가 지적한 ``적분을 모 아니면 도 즉 스텝 펑션의 형태로
+가정'' 한 근본 결함을 회피하기 위해 진행률 변수 $\xi_j$를 본 spine 의 primary
+state 에서 배제하고 $\rhomu$ 로부터의 \emph{유도} 양으로 격하한다.
+\end{minipage}
+\end{center}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{문서의 목적과 원칙}
+% ====================================================================
+
+\subsection*{1.1 문서의 목적}
+
+본 문서는 흑연 음극의 staging transition 거동을 외부 관측량 $dQ/dV$, $dV/dQ$에
+연결하기 위한 Chapter 1의 \textbf{재작성판 v0.1} 이다. 모델의 중심 상태 변수로
+\textbf{연속 화학 퍼텐셜 분포} $\rhomu$ 를 두며, 반응성을 \textbf{연속 커널}
+$\Sreact$ 로 표현하고, 그로부터 발생하는 자기 참조 적분 방정식의 해를
+\textbf{Fredholm 적분 방정식 제2종의 비율 치환법} 으로 닫힌 형태로 구한다.
+
+\subsection*{1.2 4 가지 원칙}
+
+본 Chapter 1 의 모든 정의식과 유도식은 다음 4 가지 원칙을 따른다.
+
+\begin{enumerate}[label=\textbf{(P\arabic*)}]
+\item \textbf{연속성 우선.} 본 spine 의 모든 정의식은 화학 퍼텐셜 좌표 $\mucont$
+      에 대해 \emph{연속} 이다. 이산적 $N_p$ 전이 분해, logistic/erf/sigmoid/softplus
+      을 사용한 평형 분포 정의, $\max(\cdot, 0)$ 또는 $\min(\cdot, k_{\max})$
+      형태의 단단한 절단을 정의식에 사용하지 않는다. 수치 안정성을 위한 정규화는
+      허용하되, 명시적 $\varepsilon \to 0$ smooth-limit 절을 함께 둔다.
+
+\item \textbf{전하 보존식 중심.} 음극 내부 전위 $V_n$ 은 외부 함수 lookup 으로
+      주어지지 않고, 본 Chapter 의 중심식인 전하 보존식 (\S\ref{sec:charge_balance})
+      의 \emph{implicit 해} 로 정의된다. $V_n$ 은 분포 $\rhomu$ 의 화학 퍼텐셜
+      공간 경계값으로 해석된다.
+
+\item \textbf{자기 참조 적분식의 닫힌 해.} 본 모델에서 발생하는 자기 참조 적분
+      방정식 (Fredholm 제2종) 은 사용자 본인의 박사학위 연구
+      \cite{lee2011propagator, son2013accurate} 에서 제시된 \emph{비율 치환법}
+      으로 닫힌 형태의 해석해를 얻는다. 단순 반복 해법이 발산하는 영역까지 적용
+      가능한 방법이다.
+
+\item \textbf{이전 판본 보존.} 기존 \texttt{ver5} (Chapter 1 \(\sim\) Chapter 5
+      통합 적층본) 와 \texttt{ver1\_rechecked2} (Chapter 1 재작성 시도판) 의 본문은
+      \emph{수정하지 않는다}. 본 Chapter 1 v0.1 은 그 둘을 참조 자료 (특히
+      anti-pattern 의 근거 위치 및 평형 한계의 비교) 로만 사용한다.
+\end{enumerate}
+
+\subsection*{1.3 적용 범위}
+
+본 Chapter 1 의 적용 범위는 다음과 같다.
+
+\begin{itemize}
+\item 흑연 음극의 저율 (OCV 근사) 부터 유한 C-rate 까지의 $dQ/dV$, $dV/dQ$ 해석
+\item OCV 기준 또는 0.2C 기준 전위 곡선과의 연결
+\item 등온 조건이 기본이며, 온도 의존성은 $\rhomu, \rhoeq, \Sreact, R_n$ 의 $T$
+      파라미터로 inline 반영 (별도 ``온도 효과'' 단원 없음)
+\item 충전 branch 의 히스테리시스는 본 Chapter 1 범위 외 — Chapter 5 (재작성 시
+      별 로드맵) 로 이관
+\end{itemize}
+
+\subsection*{1.4 기존 판본과의 관계}
+
+본 Chapter 1 v0.1 은 \texttt{ver5} 와 \texttt{ver1\_rechecked2} 의 \emph{디벨롭이
+아니라} 처음부터의 \emph{재작성} 이다.
+
+\begin{itemize}
+\item \texttt{ver5} 의 본질적 결함: 진행률 $\xi_j$ 의 평형값 $\xi_{j,\eq}$ 를
+      logistic 또는 erf 로 정의하여 staging 을 본질적으로 step function 의 합으로
+      가정하고, 활성화 장벽을 $\max(\Delta G_{\eff,j}, 0)$ 또는
+      $\min(k_j, k_{\max})$ 로 절단하는 등, 사용자가 지적한
+      ``적분을 모 아니면 도 즉 스텝 펑션 형태'' 의 가정이 spine 자체에 박혀 있다.
+\item \texttt{ver1\_rechecked2} 의 부분 개선과 잔존 문제: $V_n$ 을 전하 보존식의
+      implicit 해로 격상하고 softplus 정규화를 도입했으나, $\xi_{j,\eq}$ logistic
+      과 $N_p$ 이산 분해는 그대로 유지되어 본질이 변경되지 않았다. 10 회 이상의
+      검토 과정에서 ``특정 변수가 되먹이는 수식'' 등 잔존 문제가 반복 검출되어
+      디벨롭으로는 해결 불가하다고 사용자가 판단한 상태이다.
+\item 본 Chapter 1 v0.1 의 출발점: 위 두 판본의 결함이 \emph{spine 자체} 에
+      있으므로, spine 을 처음부터 새로 설계한다. 진행률 $\xi_j$ 는 primary
+      state 에서 폐기되고, 연속 분포 $\rhomu$ 가 그 자리를 대신한다.
+\end{itemize}
+
+\subsection*{1.5 본 Chapter 1 의 spine 요약}
+
+본 spine 은 5 개 성분으로 구성된다 (자세한 정의는 후속 \S 들에서).
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+\text{(1)} \quad & Q_{\ext} = Q_{\cell}\, q \\
+\text{(2)} \quad & Q_{\cell}\, q = Q_{\bg}(V_n, T) +
+                   \int_{\mucont_{\min}}^{\mucont_{\max}} \dd\mucont \;
+                   \rhomu \cdot \nmu \\
+\text{(3)} \quad & V_n = \text{(2) 의 } V_n \text{ 에 대한 implicit 해} \\
+\text{(4)} \quad & V_{n,\app} = V_n + s_I |I|\, R_n(q, T, |I|) \\
+\text{(5a)} \quad & \rhomut = \rho_0(\mucont; q, t) +
+                   \int_{\mucont_{\min}}^{\mucont_{\max}} \dd\mucont'\;
+                   \Kncross \cdot S_R(\mucont'; T) \cdot
+                   \bigl[\rhoeq - \rho(\mucont'; q, t)\bigr] \\
+\text{(5b)} \quad & \frac{\dd Q_{\ext}}{\dd V_{n,\app}}
+                   = \frac{Q_{\cell}}{\dd V_{n,\app}/\dd q} \\
+\text{(5c)} \quad & \frac{\dd V_{n,\app}}{\dd Q_{\ext}}
+                   = \frac{1}{Q_{\cell}}\, \frac{\dd V_{n,\app}}{\dd q}
+\end{aligned}
+}
+\label{eq:spine_summary}
+\end{equation}
+
+\begin{note}
+본 spine 의 (5a) 는 $\rhomut$ 에 대한 \textbf{Fredholm 적분 방정식 제2종} 이다.
+$q$ 슬라이스 별로 보았을 때 그 구조는 사용자 본인의 JCP 2017 논문 식 (32) 과
+1:1 대응되며, 비율 치환법으로 닫힌 형태의 해를 얻을 수 있다. 자세한 적용은
+\S 17 (Phase E11 작성 단원) 에서 다룬다.
+\end{note}
+
+\begin{mdframed}
+\textbf{이 문서는 진행률 변수 $\xi_j$ 를 primary state 로 사용하지 않는다.}
+$\xi_j$ 는 연속 분포 $\rhomu$ 의 $j$ 번째 peak window 적분 으로부터 \emph{유도}
+되는 양으로 격하된다. 이 격하는 사용자가 지적한 step function 가정의 본질적 회피
+이며, 본 Charter (Phase E0 §3, §4) 의 핵심이다.
+\end{mdframed}
+
+% ====================================================================
+\section{기호와 단위 컨벤션}
+% ====================================================================
+
+\subsection{기호 정의}
+\label{sec:symbols}
+
+본 Chapter 1 의 기호는 \textbf{canonical}, \textbf{derived}, \textbf{parameter}
+3 종으로 분류된다. Canonical 기호는 spine 의 정의에 직접 등장하는 primary state
+또는 입력 변수이고, derived 기호는 canonical 로부터 적분 또는 한계로 정의되는
+보조량이며, parameter 는 외부에서 주어지거나 피팅 대상이 되는 상수 또는 함수
+파라미터이다.
+
+\subsubsection*{2.1.1 Canonical 기호 (17)}
+
+\begin{longtable}{p{0.18\textwidth} p{0.16\textwidth} p{0.62\textwidth}}
+\toprule
+기호 & 단위 & 의미 \\
+\midrule
+\endhead
+$\mucont$ & V (Li/Li$^+$ 기준) & 연속 화학 퍼텐셜 좌표. 본 spine 의 primary
+    distribution axis. \\
+$\rhomu$ & C/V & 화학 퍼텐셜 $\mucont$ 에서의 전하 밀도 (Li 점유량 밀도). 본
+    spine 의 primary state variable. \\
+$\Sreact$ & (단위 Phase E6 확정) & $\mucont$ 위치의 연속 반응성 커널. 이산 $k_j$
+    를 대체한다. \\
+$\Kncross$ & (단위 Phase E6 확정) & $\mucont$ 와 $\mucont'$ 사이의 연속 교차 커널
+    (이산 $\rho_j(g)$ 를 대체). \\
+$\rhoeq$ & C/V & 주어진 $(q, T)$ 에서의 평형 분포. $\rhomut$ 의 완화 표적이다. \\
+$Q_{\bg}(V_n, T)$ & C & 잔류 chemical capacitance 함수. \texttt{ver1\_rechecked2}
+    §4.1 의 역할을 보존한다. \\
+$V_n$ & V & 음극 내부 전위. 식 \eqref{eq:spine_summary} (2) 의 $V_n$ 에 대한
+    implicit 해. \\
+$V_{n,\app}$ & V & 외부 관측 음극 전위. $V_n + s_I |I| R_n$. \\
+$V_{n,\drive}$ & V & 반응성 커널의 구동 전위. reduced model 에서는 $V_{n,\app}$
+    근사. \\
+$R_n(q, T, |I|)$ & $\Omega$ & 음극 유효 저항 또는 유효 분극 계수. \\
+$Q_{\cell}$ & C & 셀 기준 용량 (쿨롱 단위 고정). \\
+$q$ & 무차원 & 방전 진행 좌표, $Q_{\ext}/Q_{\cell}$. \\
+$I$ & A & 셀 전류 크기. \\
+$T$ & K & 절대 온도. \\
+$t$ & s & 시간. \\
+$s_I,\, s_{\phi,j}$ & $\pm 1$ & 부호 컨벤션 (전류 방향, 상변이 방향). 충전 branch
+    처리는 Chapter 5 로 이관. \\
+$\nmu$ & 무차원 & 화학 퍼텐셜 단위 당 Li 점유 multiplier. 기본 선택 $\nmu = 1$
+    (Phase E5 재검토 가능). \\
+\bottomrule
+\end{longtable}
+
+\subsubsection*{2.1.2 Derived 기호 (legacy compatibility)}
+
+다음 기호는 spine 의 canonical 변수로부터 적분 또는 한계로 \emph{유도} 되는 양이며,
+주로 기존 \texttt{ver5}/\texttt{ver1\_rechecked2} 와의 호환성 또는 피팅 단계
+(\S 13) 에서 사용된다. \textbf{본 spine 의 정의식에는 등장하지 않는다.}
+
+\begin{longtable}{p{0.18\textwidth} p{0.62\textwidth} p{0.18\textwidth}}
+\toprule
+기호 & 유도식 & 최초 사용 \S \\
+\midrule
+\endhead
+$Q_{\ext}$ & $Q_{\cell} \cdot q$ & §1 \\
+$V_{n,\OCV}(q, T)$ & $\rho = \rhoeq$ 하에서의 $V_n$ (평형 분포의 경계값) & §11
+    ($\rho^{\text{simple}}$ 구성) \\
+$\xi_j$ & $(1/N_j) \int_{\mucont \in \text{peak}_j} \dd\mucont\, \rhomut$ & §10
+    (피팅) \\
+$\xi_{j,\eq}$ & $\rhomut \to \rhoeq$ 치환 & §10 \\
+$k_j$ & $\Sreact|_{\mucont \approx U_j}$ & §10 \\
+$U_j(T)$ & $\rhoeq$ 의 peak $j$ 중심 & §10 \\
+$w_j(T)$ & $\rhoeq$ 의 peak $j$ FWHM & §10 \\
+$Q_{j,\tot}$ & peak $j$ window 의 $q$ 진행 적분 & §10 \\
+$\dd\xi_j/\dd q$ & $(1/N_j) \int_{\text{peak}_j} \dd\mucont\, \partial \rho / \partial q$ & §10 \\
+$\mathcal A_j$ & $\Sreact$ 와 $V_{n,\drive}$ 의 결합으로부터 & §7 \\
+$\Delta G_{a,j}$ & $\Sreact$ 의 Marcus 류 파라미터 & §7 \\
+$\Delta G_{\eff,j}$ & $\mucont \approx U_j$ 에서 evaluated barrier & §7 \\
+$\nu_j(T)$ & $\Sreact$ 의 prefactor at $\mucont \approx U_j$ & §7 \\
+$\chi_j$ & 커널의 coupling coefficient & §7 \\
+$\rho_j(g)$ (\texttt{ver5}) & $\Kncross$ 로 대체 & §7 \\
+$g$ (\texttt{ver5}) & $\mucont, \mucont'$ 로 대체 & — \\
+\bottomrule
+\end{longtable}
+
+\begin{charter}
+위 derived 표의 모든 행은 \emph{유도} 양으로 명시되어 있다. 본 spine 의 정의식
+(\S 4, \S 5, \S 6, \S 7) 에서는 derived 기호가 등장하지 않는다. 만약 후속 \S 에서
+derived 기호가 정의식에 사용된다면, Audit Dim \#11 Pass 2 의 FAIL 조건 (Charter
+\S 6.2) 에 해당한다.
+\end{charter}
+
+\subsection{단위 컨벤션}
+
+본 Chapter 의 미분 방정식은 모두 SI 단위로 표기된다.
+
+\begin{itemize}
+\item $Q_{\cell}$ 은 \textbf{쿨롱 (C)} 단위로 고정한다. 셀 데이터가 Ah 단위로
+      주어진 경우 다음 변환을 사용한다.
+      \begin{equation}
+      Q_{\cell}[\Cunit] = 3600 \cdot Q_{\cell}[\Ah].
+      \label{eq:ah_to_c}
+      \end{equation}
+      이 변환을 생략하면 $\dd q/\dd t = |I|/Q_{\cell}$ 의 차원이 깨진다.
+\item $\mucont$ 는 \textbf{V (Li/Li$^+$ 기준)} 단위이다. 외부 절대 전극 기준을
+      바꾸는 경우 본 Chapter 의 모든 $\mucont$ 값에 동일한 평행 이동을 적용한다.
+\item $\rhomu$ 는 \textbf{C/V} 단위이다. 즉
+      $\int \dd\mucont\, \rhomu \cdot \nmu$ 의 차원이 \textbf{C} 가 되어 식
+      \eqref{eq:spine_summary} (2) 의 양변 차원이 일치한다.
+\item $\Sreact$ 와 $\Kncross$ 의 정확한 단위는 \S 7 의 커널 구성 단계 (Phase
+      E6 작성) 에서 확정된다. 본 Phase E2 에서는 plausibly $\Sreact \sim 1/$s,
+      $\Kncross \sim 1/$(V$\cdot$s) 로 표기하되, 최종 단위 정합성은 \S 7 본문에서
+      재검토한다 (OI-E0-1).
+\item $R_n$ 은 $\Omega$, $I$ 는 A, $T$ 는 K, $t$ 는 s 로 한다. $q$ 는 무차원이다.
+\end{itemize}
+
+\subsection{전류와 전위 부호 컨벤션}
+
+방전 방향에서 음극 탈리튬화로 음극 전위가 증가하는 컨벤션을 사용한다. 전류 크기는
+양수 $|I| \ge 0$ 로 두고, 방향은 부호 인자 $s_I$ 로 처리한다.
+
+\begin{equation}
+V_{n,\app} = V_n + s_I\, |I|\, R_n(q, T, |I|),
+\qquad s_I = +1 \;\text{(방전 기본)}.
+\label{eq:Vapp_def}
+\end{equation}
+
+상변이 방향 부호 $s_{\phi,j}$ 는 (legacy $\xi_j$ 기반 피팅 단계에서만) peak $j$
+의 진행 방향과 전위 변화 방향의 결합 부호로 사용된다. \textbf{spine 의 정의식
+에서는 $s_{\phi,j}$ 가 등장하지 않는다.}
+
+충전 branch 의 처리 (양방향 $s_I$, 비대칭 $\rhoeq$ 등) 는 Chapter 5 (히스테리시스)
+의 재작성 로드맵에서 별도 정의된다. 본 Chapter 1 v0.1 은 방전 branch 단일 처리만
+다룬다.
+
+\subsection*{2.4 본 \S 의 \S 1 spine 과의 연결}
+
+본 \S 2 의 기호 정의는 \S 1 식 \eqref{eq:spine_summary} 의 모든 변수를 1:1 로
+포괄한다. \S 1 의 spine (1) $\sim$ (5c) 에 등장하는 기호 $Q_{\ext}, Q_{\cell}, q,
+Q_{\bg}, V_n, \rhomu, \nmu, V_{n,\app}, s_I, |I|, R_n, \rhomut, \rho_0, \Kncross,
+\Sreact, \rhoeq$ 는 본 \S 2 의 canonical 표 \ref{sec:symbols} 에 모두 등재되어
+있다. 따라서 후속 \S 의 본문은 \S 2 의 정의 위에서 자유롭게 전개될 수 있다.
+
+\end{document}
