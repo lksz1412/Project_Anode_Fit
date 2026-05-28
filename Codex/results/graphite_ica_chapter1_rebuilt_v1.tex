@@ -1,0 +1,910 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\tail}{\mathrm{tail}}
+
+\title{Chapter 1. Graphite Negative Electrode ICA Tail의 Thermodynamic-Kinetic Background}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+본 장의 목표는 graphite negative electrode의 ICA(incremental capacity analysis, \(dQ/dV\))에서
+phase-transition-related peak 뒤에 나타나는 tail을 해석하기 위한 물리적 배경을 세우는 것이다.
+관측 대상은 peak area가 아니라 post-peak tail의 거동이다. 특히 low temperature에서 tail이 길어지고,
+higher temperature에서 tail이 상대적으로 짧아지는 현상을 설명해야 한다. 본 장은 activation
+free-energy barrier를 버리지 않는다. 다만 barrier를 ``특정 지점을 넘으면 phase가 갑자기 완료되는''
+threshold로 쓰지 않는다. Barrier는 state completion을 직접 결정하는 양이 아니라 rate constant를
+결정하는 양이다. Present electrode potential은 이 barrier를 smooth하게 낮추는
+electrode-potential assistance로 들어가며, 그 결과 rate constant와 relaxation length가 변한다.
+
+핵심 chain은 다음과 같다.
+\[
+\text{activation free-energy barrier distribution}
+\rightarrow
+\text{rate constant distribution}
+\rightarrow
+\text{relaxation-length spectrum}
+\rightarrow
+\text{kernel integral}
+\rightarrow
+\text{observed ICA tail}.
+\]
+따라서 measured tail은 barrier distribution 자체의 모양이 아니다. 각 local mode가 만드는
+exponential relaxation kernel들이 relaxation-length spectrum에 따라 중첩된 결과다.
+\end{abstract}
+
+\tableofcontents
+
+\section{Convention and Scope}\label{sec:convention}
+
+본 문건은 설명 문장은 한국어로 쓰되, 학술 term은 가능한 한 English term으로 유지한다. 예를 들어
+``활성화 자유에너지 장벽''이라고 번역하기보다 activation free-energy barrier라고 쓴다. 이는 이후
+fitting, 논문 작성, 특허 문안에서 term drift를 줄이기 위한 convention이다.
+
+\begin{longtable}{p{0.25\textwidth} p{0.67\textwidth}}
+\toprule
+Term & Meaning in this chapter \\
+\midrule
+\endhead
+ICA & incremental capacity analysis, \(dQ/dV\). Voltage coordinate에서 capacity response를 보는 진단량. \\
+DVA & differential voltage analysis, \(dV/dQ\). ICA의 inverse-type observable. \\
+Graphite staging & Li가 graphite layer 사이에 intercalation되면서 stage structure가 변하는 현상. \\
+Phase-transition-like progress & 실제 bulk first-order transition 여부와 무관하게, 특정 staging transition의 진행 정도를 smooth state variable로 표현한 것. \\
+State variable \(\xi_j\) & transition \(j\)의 local progress. \(\xi_j=0\)은 미진행 reference, \(\xi_j=1\)은 완료 reference를 뜻하지만, 진행은 kinetic equation을 통해 smooth하게 일어난다. \\
+Equilibrium target \(\xi_{\eq,j}\) & 주어진 internal potential \(V_n\)과 temperature \(T\)에서 state variable이 향하려는 thermodynamic target. \\
+Activation free-energy barrier & thermally activated progress의 rate constant를 결정하는 free-energy barrier. \\
+Electrode-potential assistance & present electrode potential이 activation barrier를 낮추는 smooth work-like contribution. \\
+Relaxation length \(L\) & charge coordinate \(Q\)에서 local kinetic lag가 감소하는 characteristic scale. \\
+Relaxation-length spectrum \(A_L\) & 여러 local modes의 \(L\) 분포와 amplitude weight를 합친 spectrum. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Forbidden completion model}\label{subsec:forbidden}
+
+본 장에서 금지하는 것은 activation barrier 자체가 아니다. 금지하는 것은 barrier를
+state-completion threshold로 오용하는 것이다. 즉 어떤 scalar가 특정 값을 넘으면
+\(\xi_j\)가 instantaneously \(0\)에서 \(1\)로 바뀌는 model은 사용하지 않는다. 그런 model은
+phase progress를 smooth thermodynamics와 smooth kinetics로 다루려는 목적과 충돌한다.
+
+본 장의 규칙은 다음과 같다.
+
+\begin{enumerate}[label=\textbf{C\arabic*.}]
+\item Barrier lowering은 rate constant를 바꾼다. Barrier lowering이 state variable을 직접 완료시키지 않는다.
+\item Local mode는 first-order relaxation 또는 그 일반화로 equilibrium target을 따라간다.
+\item Single exponential은 local kernel일 뿐이다. Measured tail 전체를 single exponential로 확정하지 않는다.
+\item Measured broad tail은 relaxation-length spectrum 위의 kernel integral로 다룬다.
+\item Activated-regime expression이 유효범위를 벗어나는 경우, artificial clipping으로 고치지 않고 model validity boundary로 표시한다.
+\end{enumerate}
+
+\subsection{Chapter scope}\label{subsec:scope}
+
+Chapter 1은 theoretical background를 세우는 장이다. Solver construction, numerical fitting workflow,
+parameter optimization, heat-generation model, charge/discharge hysteresis fitting은 후속 장의 범위다.
+다만 Chapter 2--5에서 사용할 수 있도록 어떤 식이 어떤 물리량을 전달하는지는 마지막 절에 정리한다.
+
+\section{Observation and Required Explanation}\label{sec:observation}
+
+사용자가 제시한 핵심 관측은 다음과 같다. Graphite negative electrode의 ICA에서
+phase-transition-related peak가 나타나며, peak 이후 tail의 decay가 temperature에 따라 달라진다.
+Low temperature에서는 tail이 길게 늘어지고, higher temperature에서는 tail이 상대적으로 빠르게
+감소한다. 본 장에서 설명해야 하는 대상은 이 post-peak tail이다.
+
+이 관측을 설명할 때 먼저 분리해야 하는 것이 있다.
+
+\begin{enumerate}[label=\textbf{O\arabic*.}]
+\item Peak area는 해당 transition에 배정되는 capacity scale과 fitting model의 문제다. 본 장의 중심 target은 area가 아니라 tail shape이다.
+\item Equilibrium peak broadening만으로 low-temperature long tail을 설명하기 어렵다. Ideal lattice-gas equilibrium에서는 width scale이 \(RT/F\)와 함께 감소하므로, \(T\)가 낮아지면 reversible equilibrium peak는 오히려 좁아지는 방향을 갖는다.
+\item Long tail은 state가 equilibrium target을 즉시 따라가지 못하는 kinetic lag로 해석해야 한다.
+\item Present electrode potential은 local progress를 돕는 방향일 때 activation barrier를 낮춰 rate constant를 키우며, 그 결과 relaxation length를 줄일 수 있다.
+\item Real electrode는 단일 local mode가 아니므로, observed tail은 여러 relaxation lengths의 superposition으로 보는 것이 자연스럽다.
+\end{enumerate}
+
+따라서 본 장의 최소 설명 조건은 다음 문장으로 요약된다.
+
+\[
+\text{low }T
+\Rightarrow
+\text{smaller }k
+\Rightarrow
+\text{larger }L
+\Rightarrow
+\text{longer tail},
+\]
+그리고
+\[
+\text{positive electrode-potential assistance}
+\Rightarrow
+\text{lower }\Delta G_{\eff}
+\Rightarrow
+\text{larger }k
+\Rightarrow
+\text{shorter }L.
+\]
+
+\section{State Variable and Smooth Equilibrium Target}\label{sec:equilibrium}
+
+\subsection{State variable}\label{subsec:state}
+
+Transition \(j\)의 progress를 \(\xi_j\)로 둔다. \(\xi_j\)는 local domain, particle ensemble,
+or effective staging transition을 대표하는 reduced state variable이다. \(\xi_j=0\)과
+\(\xi_j=1\)은 reference endpoints이지, 실제 진행이 두 endpoint 사이를 불연속적으로 jump한다는
+뜻이 아니다. 실제 진행은 \(\xi_j(t)\) 또는 \(\xi_j(Q)\)가 differential equation을 따라 변하는
+process다.
+
+\subsection{Lattice-gas / regular-solution equilibrium}\label{subsec:lattice}
+
+Graphite staging transition의 detailed thermodynamics는 복잡하지만, graphite staging 자체가
+distinct voltage features와 연결된다는 점은 graphite intercalation literature의 기본 관찰이다
+\cite{dahn1991,ohzuku1993}. Smooth equilibrium target을
+세우기 위한 최소 model은 lattice-gas 또는 regular-solution chemical potential이다
+\cite{mckinnon1983,bazant2013}. Site fraction 형태의 progress variable에 대해 chemical
+potential을
+\begin{equation}
+\mu_j(\xi_j,T)
+=
+\mu_j^0(T)
++RT\ln\frac{\xi_j}{1-\xi_j}
++\Omega_j(1-2\xi_j)
+\label{eq:mu_lattice}
+\end{equation}
+로 둔다. 여기서 \(RT\ln[\xi/(1-\xi)]\)는 configurational entropy에서 오는 term이고,
+\(\Omega_j(1-2\xi_j)\)는 nearest-neighbor interaction 또는 effective non-ideality를 담는
+regular-solution term이다.
+
+Internal negative-electrode potential \(V_n\)이 transition \(j\)의 center potential
+\(U_j(T)\)에서 얼마나 벗어났는지를 thermodynamic driving coordinate로 쓰기 위해 부호
+\(s_j=\pm1\)를 둔다. \(s_j(V_n-U_j)>0\)이면 transition \(j\)의 forward progress를 돕는
+direction이다. Equilibrium condition은
+\begin{equation}
+RT\ln\frac{\xi_{\eq,j}}{1-\xi_{\eq,j}}
++\Omega_j(1-2\xi_{\eq,j})
+=
+s_jF\,[V_n-U_j(T)] .
+\label{eq:eq_condition}
+\end{equation}
+이 식은 일반적으로 implicit equation이다. 그러나 중요한 점은 implicit라는 사실이 아니라,
+\(\xi_{\eq,j}\)가 \(V_n\)에 대해 smooth하게 변한다는 사실이다.
+
+\subsection{Ideal limit and peak width}\label{subsec:ideal}
+
+\(\Omega_j=0\)인 ideal limit에서는 식 \eqref{eq:eq_condition}을 explicit하게 풀 수 있다.
+\begin{equation}
+\boxed{
+\xi_{\eq,j}(V_n,T)
+=
+\frac{1}{1+\exp[-s_j(V_n-U_j(T))/w_T]},
+\qquad
+w_T=\frac{RT}{F}.
+}
+\label{eq:xi_eq}
+\end{equation}
+이는 logistic function이다. \(V_n=U_j\)에서 \(\xi_{\eq,j}=1/2\)이고, 그 주변에서
+\(\xi_{\eq,j}\)는 연속적으로 변한다. 따라서 이 식은 old threshold completion model이 아니다.
+
+식 \eqref{eq:xi_eq}를 \(V_n\)으로 미분하면
+\begin{equation}
+\frac{\partial \xi_{\eq,j}}{\partial V_n}
+=
+\frac{s_j}{w_T}\,
+\xi_{\eq,j}(1-\xi_{\eq,j}),
+\qquad
+\left|
+\frac{\partial \xi_{\eq,j}}{\partial V_n}
+\right|
+=
+\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_T}.
+\label{eq:dxi_eq}
+\end{equation}
+Magnitude는 \(V_n=U_j\)에서 최대가 되고, 그 주변에서 smooth bell-shaped peak를 만든다.
+Ideal homogeneous equilibrium peak의 voltage width scale은 \(w_T=RT/F\)이다. 그러므로
+temperature가 낮아지면 equilibrium peak는 넓어지는 것이 아니라 좁아지는 방향을 갖는다. 이것이
+post-peak long tail을 equilibrium width만으로 설명하면 안 되는 첫 번째 이유다.
+
+\subsection{Heterogeneity and Gaussian caution}\label{subsec:heterogeneity}
+
+실제 electrode에서는 \(U_j\), \(\Omega_j\), particle size, stress, defect, local transport
+environment가 domain마다 다를 수 있다. 이런 heterogeneity는 peak broadening을 만든다. 예를 들어
+center potential \(U_j\)의 distribution을 가정하면 measured equilibrium response는 여러 smooth
+isotherm의 convolution이 된다. 그러나 이것은 곧바로 Gaussian peak가 thermodynamic necessity라는
+뜻이 아니다. Gaussian은 empirical ansatz일 수 있지만, 본 장의 기본 thermodynamic baseline은
+식 \eqref{eq:mu_lattice}--\eqref{eq:xi_eq}의 lattice-gas/regular-solution logic이다.
+
+\section{Charge Conservation and Internal Potential}\label{sec:charge}
+
+\subsection{Why \(V_n\) is implicit}\label{subsec:implicit}
+
+Measured voltage axis만 보고 graphite internal state를 바로 읽을 수는 없다. Graphite negative
+electrode의 internal potential \(V_n\)은 charge balance와 state variables가 함께 결정한다.
+Dimensional charge coordinate \(Q\)를 쓰면 가장 단순한 balance는
+\begin{equation}
+\boxed{
+Q
+=
+Q_{\bg}(V_n,T)
++
+\sum_j Q_{j,\tot}\,\xi_j(Q).
+}
+\label{eq:charge_balance}
+\end{equation}
+여기서 \(Q_{\bg}\)는 smooth background storage, \(Q_{j,\tot}\)는 transition \(j\)에 배정된
+capacity scale이다. 식 \eqref{eq:charge_balance}는 \(V_n\)을 explicit lookup으로 주지 않는다.
+\(\xi_j\)가 \(V_n\)과 \(T\)에 의존하는 equilibrium target 및 kinetics를 통해 변하므로,
+\(V_n(Q)\)는 implicit하게 정해진다.
+
+이 implicit structure는 논리 오류가 아니다. 오히려 graphite ICA에서 internal potential과 phase
+progress가 서로 묶이는 자연스러운 closure다. Electrochemical porous-electrode 또는 single-particle
+model에서도 potential, concentration, interfacial reaction은 coupled variables로 결정된다
+\cite{dfn1993,newman}.
+
+\subsection{Differential form}\label{subsec:charge_diff}
+
+식 \eqref{eq:charge_balance}를 \(Q\)에 대해 미분하면
+\begin{equation}
+1
+=
+C_{\bg}(V_n,T)\frac{\dd V_n}{\dd Q}
++
+\sum_j Q_{j,\tot}\frac{\dd \xi_j}{\dd Q},
+\qquad
+C_{\bg}(V_n,T)=\frac{\partial Q_{\bg}}{\partial V_n}.
+\label{eq:charge_diff}
+\end{equation}
+따라서
+\begin{equation}
+\frac{\dd V_n}{\dd Q}
+=
+\frac{
+1-\sum_j Q_{j,\tot}\,\dd\xi_j/\dd Q
+}{
+C_{\bg}(V_n,T)
+}.
+\label{eq:dvn_dq}
+\end{equation}
+이 식은 later ICA/DVA mapping의 시작점이다. \(C_{\bg}>0\)인 region에서는 denominator가
+background differential capacity로 작동한다. Transition progress term
+\(\sum_j Q_{j,\tot}\dd\xi_j/\dd Q\)가 커지면 \(\dd V_n/\dd Q\)가 작아지고, 그 inverse인
+\(\dd Q/\dd V_n\)가 peak처럼 커질 수 있다.
+
+\subsection{\(V_{\app}\) bridge}\label{subsec:vapp_bridge}
+
+이론의 primary potential은 \(V_n\)이다. 실험에서 직접 보는 것은 full-cell 또는 half-cell의
+measured voltage \(V_{\app}\)일 수 있다. Reduced bridge는 schematically
+\begin{equation}
+V_{\app}(Q)
+=
+V_p(Q)-V_n(Q)-I R_{\Omega}(Q,T)-\eta_{\mathrm{tr}}(Q,T)-\eta_{\mathrm{ct}}(Q,T)
+\label{eq:vapp_bridge}
+\end{equation}
+처럼 쓸 수 있다. 여기서 \(V_p\)는 positive-electrode contribution, \(IR_\Omega\)는 ohmic drop,
+\(\eta_{\mathrm{tr}}\)은 transport polarization, \(\eta_{\mathrm{ct}}\)는 charge-transfer
+polarization을 대표한다. Chapter 1의 thermodynamic-kinetic derivation은 \(V_n\)을 기준으로 쓰고,
+measured fitting에서는 식 \eqref{eq:vapp_bridge} 같은 bridge를 통해 \(V_{\app}\) axis와 연결해야
+한다. 이 구분을 놓치면 equilibrium shift, kinetic acceleration, polarization shift를 서로
+double counting할 수 있다.
+
+\section{Local Relaxation Toward Equilibrium}\label{sec:relax}
+
+\subsection{Forward/backward rates and local linearization}\label{subsec:fb_rates}
+
+State variable \(\xi_j\)가 smooth하게 equilibrium target으로 접근한다는 것을 rate equation으로
+쓴다. 가장 단순한 two-state-like local form은
+\begin{equation}
+\frac{\dd \xi_j}{\dd t}
+=
+(1-\xi_j)r_{+,j}-\xi_j r_{-,j}.
+\label{eq:forward_backward}
+\end{equation}
+Equilibrium에서는 \(\dd\xi_j/\dd t=0\)이므로
+\begin{equation}
+\xi_{\eq,j}
+=
+\frac{r_{+,j}}{r_{+,j}+r_{-,j}}.
+\label{eq:stationary_ratio}
+\end{equation}
+식 \eqref{eq:forward_backward}를 정리하면
+\begin{equation}
+\frac{\dd \xi_j}{\dd t}
+=
+(r_{+,j}+r_{-,j})
+\left[
+\xi_{\eq,j}-\xi_j
+\right].
+\label{eq:rate_from_ratio}
+\end{equation}
+따라서 local mobility 또는 relaxation rate를
+\begin{equation}
+k_j(T,V_n,\ldots)=r_{+,j}+r_{-,j}
+\label{eq:k_sum}
+\end{equation}
+로 정의하면
+\begin{equation}
+\boxed{
+\frac{\dd \xi_j}{\dd t}
+=
+k_j(T,V_n,\ldots)
+\left[
+\xi_{\eq,j}(V_n,T)-\xi_j
+\right].
+}
+\label{eq:relax_time}
+\end{equation}
+이 식에서 \(\xi_{\eq,j}\)와 \(k_j\)는 서로 다른 역할을 한다. \(\xi_{\eq,j}\)는 target이고,
+\(k_j\)는 target으로 접근하는 speed다. 같은 \(V_n\)이 target과 rate에 모두 들어갈 수 있지만,
+그것은 double counting이 아니다. Target은 stationary ratio를 정하고, rate constant는 relaxation
+time scale을 정한다.
+
+\subsection{Charge-coordinate residual equation}\label{subsec:residual}
+
+정전류 또는 quasi-constant current segment에서는 charge coordinate가 시간보다 ICA 해석에 더
+편하다. 본 장에서는 분석하는 transition direction으로 \(Q\)가 증가하도록 coordinate를 잡아
+\(v_Q=\dd Q/\dd t>0\)로 둔다. 반대 branch를 다룰 때는 \(v_Q=|\dd Q/\dd t|\)를 쓰고 방향성은
+\(s_j\)와 branch-specific spectrum에 넣는다. 그러면
+\begin{equation}
+\frac{\dd \xi_j}{\dd Q}
+=
+\frac{k_j}{v_Q}
+\left[
+\xi_{\eq,j}-\xi_j
+\right].
+\label{eq:relax_q}
+\end{equation}
+Kinetic lag를
+\begin{equation}
+r_j(Q)=\xi_{\eq,j}(Q)-\xi_j(Q)
+\label{eq:residual_def}
+\end{equation}
+로 정의한다. 양변을 \(Q\)로 미분하면
+\begin{equation}
+\frac{\dd r_j}{\dd Q}
+=
+\frac{\dd \xi_{\eq,j}}{\dd Q}
+-
+\frac{\dd \xi_j}{\dd Q}.
+\label{eq:residual_diff_1}
+\end{equation}
+식 \eqref{eq:relax_q}를 대입하면
+\begin{equation}
+\boxed{
+\frac{\dd r_j}{\dd Q}
++
+\frac{k_j}{v_Q}r_j
+=
+\frac{\dd \xi_{\eq,j}}{\dd Q}.
+}
+\label{eq:residual_ode}
+\end{equation}
+이 식의 의미는 직관적이다. 오른쪽 \(\dd\xi_{\eq,j}/\dd Q\)는 moving target이 얼마나 빠르게
+움직이는지를 나타낸다. 왼쪽의 \((k_j/v_Q)r_j\)는 lag가 relaxation으로 줄어드는 term이다.
+
+\subsection{Local post-peak kernel}\label{subsec:local_kernel}
+
+Post-peak tail region에서는 equilibrium target의 변화가 peak center 주변보다 작아진다. 첫 근사로
+\(\dd\xi_{\eq,j}/\dd Q\simeq0\)인 구간을 보면 식 \eqref{eq:residual_ode}는
+\begin{equation}
+\frac{\dd r_j}{\dd Q}
+=
+-
+\frac{k_j}{v_Q}r_j
+\label{eq:residual_decay}
+\end{equation}
+이고, \(k_j/v_Q\)가 local region에서 거의 일정하면
+\begin{equation}
+\boxed{
+r_j(Q)
+\simeq
+r_j(Q_a)
+\exp\!\left[-\frac{Q-Q_a}{L_j}\right],
+\qquad
+L_j=\frac{v_Q}{k_j}.
+}
+\label{eq:local_exponential}
+\end{equation}
+\(Q_a\)는 tail 시작 reference point다. 식 \eqref{eq:local_exponential}는 measured tail이
+single exponential이라는 뜻이 아니다. 이것은 하나의 local mode가 만드는 kernel이다. 실제 electrode는
+여러 \(k_j\), 여러 \(L_j\), 여러 amplitude를 가지므로 observed tail은 spectrum integral로 가야 한다.
+
+\section{Effective Activation Barrier With Electrode-Potential Assistance}\label{sec:barrier}
+
+\subsection{Activation free energy}\label{subsec:activation}
+
+Transition-state theory에서 thermally activated rate는 activation free energy에 지수적으로 의존한다
+\cite{eyring1935,evanspolanyi1935}. Transition \(j\)의 intrinsic activation free energy를
+\begin{equation}
+\Delta G_{a,j}(T)
+=
+\Delta H_{a,j}-T\Delta S_{a,j}
+\label{eq:delta_ga}
+\end{equation}
+로 둔다. 여기서 \(\Delta H_{a,j}\)와 \(\Delta S_{a,j}\)는 activation enthalpy와 activation
+entropy다. 이 식은 temperature dependence를 Arrhenius/Eyring form으로 해석할 수 있게 한다.
+
+\subsection{Potential-assisted lowering}\label{subsec:potential_assist}
+
+Present electrode potential이 transition을 돕는 방향으로 작용하면 reaction coordinate의 transition
+state까지 가는 effective work가 줄어든다. Tail region 근방의 leading-order reduced form으로
+\begin{equation}
+\psi_j(V_n,T)=s_j[V_n-U_j(T)]
+\label{eq:psi}
+\end{equation}
+를 정의한다. \(\psi_j>0\)이면 transition \(j\)의 forward progress를 돕는 방향이다. Molar
+electrical work scale은 \(F\psi_j\)이고, 이 중 activated coordinate에 투영되는 fraction을
+\(\chi_j\)로 두면
+\begin{equation}
+W_{\mathrm{el},j}(V_n,T)
+=
+\chi_j F\psi_j(V_n,T),
+\qquad
+0\le\chi_j\le1.
+\label{eq:wel}
+\end{equation}
+따라서 effective activation barrier는
+\begin{equation}
+\boxed{
+\Delta G_{\eff,j}(T,V_n)
+=
+\Delta G_{a,j}(T)
+-
+W_{\mathrm{el},j}(V_n,T).
+}
+\label{eq:geff}
+\end{equation}
+차원은 모두 J mol\(^{-1}\)이다. \(\psi_j>0\)이면 \(W_{\mathrm{el},j}>0\)이고
+\(\Delta G_{\eff,j}\)가 낮아진다. 이것이 사용자가 말한 ``극판 자체 전위에 따른 barrier를 낮추는
+효과''의 Chapter 1 expression이다.
+
+식 \eqref{eq:geff}는 global law가 아니라 tail region 근방의 leading-order expression이다.
+큰 driving force에서는 Marcus-type curvature, transport limitation, site availability, phase-boundary
+motion, current conservation 같은 다른 bottleneck이 rate를 제한할 수 있다 \cite{marcus1956,bardfaulkner}.
+그 영역을 artificial clipping으로 고치지 않는다. 즉 \(\Delta G_{\eff}\) expression이 activated-regime
+의미를 잃으면, 그것은 model validity boundary이지 state completion rule이 아니다.
+
+\subsection{Rate constant}\label{subsec:rate}
+
+Eyring form을 쓰면
+\begin{equation}
+\boxed{
+k_j(T,V_n)
+=
+\nu_j(T)
+\exp\!\left[
+-\frac{\Delta G_{\eff,j}(T,V_n)}{RT}
+\right],
+\qquad
+\nu_j(T)=\kappa_j(T)\frac{k_BT}{h}.
+}
+\label{eq:rate}
+\end{equation}
+\(\kappa_j(T)\)는 transmission coefficient 또는 local prefactor correction이다. 식
+\eqref{eq:geff}를 대입하면
+\begin{equation}
+k_j
+=
+\nu_j(T)
+\exp\!\left[
+-\frac{\Delta H_{a,j}-T\Delta S_{a,j}-\chi_jF s_j(V_n-U_j)}
+{RT}
+\right].
+\label{eq:rate_explicit}
+\end{equation}
+여기서 \(V_n\)이 forward assistance 방향으로 증가하면 exponent가 커지고 \(k_j\)가 증가한다.
+따라서 local relaxation length \(L_j=v_Q/k_j\)는 짧아진다. 이 logic은 state jump가 아니라
+rate-controlled continuous progress다.
+
+\section{Barrier-To-Rate-To-Length Mapping}\label{sec:mapping}
+
+\subsection{Why a spectrum is needed}\label{subsec:why_spectrum}
+
+식 \eqref{eq:local_exponential}는 하나의 local mode에 대한 결과다. 실제 graphite electrode에는
+particle size, local staging environment, domain boundary, defect, stress, surface film,
+local transport path, contact condition이 모두 분포한다. 따라서 activation free-energy barrier도
+단일 값이라기보다 distribution으로 나타나는 것이 자연스럽다. 이 distribution을
+\begin{equation}
+\rho_G(G;T,\psi)
+\label{eq:rho_g}
+\end{equation}
+로 둔다. 여기서 \(\psi\)는 식 \eqref{eq:psi}와 같은 potential-assistance coordinate의 generic
+표기다.
+
+중요한 점은 observed ICA tail의 shape이 \(\rho_G(G)\)와 같지 않다는 것이다. \(G\)는 먼저 rate
+constant로 변환되고, rate constant는 다시 charge-coordinate relaxation length로 변환된다.
+
+\subsection{Barrier to rate}\label{subsec:g_to_k}
+
+Local barrier value \(G\)와 potential assistance work \(W_\psi=\Lambda_\psi F\psi\)를 쓰면
+\begin{equation}
+\boxed{
+k(G,T,\psi)
+=
+k_0(T)
+\exp\!\left[
+-\frac{G-W_\psi}{RT}
+\right].
+}
+\label{eq:k_g}
+\end{equation}
+\(G-W_\psi>0\)인 activated regime에서 이 expression은 rate-limiting barrier를 뜻한다.
+\(W_\psi\)가 커지면 \(k\)는 증가한다.
+
+\subsection{Rate to relaxation length}\label{subsec:k_to_l}
+
+Local relaxation length는
+\begin{equation}
+L=\frac{v_Q}{k}
+\label{eq:l_def}
+\end{equation}
+이므로 식 \eqref{eq:k_g}에서
+\begin{equation}
+\boxed{
+L(G,T,\psi)
+=
+\frac{v_Q}{k_0(T)}
+\exp\!\left[
+\frac{G-W_\psi}{RT}
+\right].
+}
+\label{eq:l_g}
+\end{equation}
+Barrier의 작은 차이는 \(L\)에서 exponential difference로 확대될 수 있다. 이것이 broad or stretched
+tail이 생기는 핵심 수학적 이유다. Long tail은 barrier distribution이 tail처럼 생겼기 때문에만
+나오는 것이 아니라, \(G\rightarrow L\) mapping 자체가 exponential이기 때문에 생긴다.
+
+식 \eqref{eq:l_g}를 뒤집으면
+\begin{equation}
+G(L,T,\psi)
+=
+W_\psi
++
+RT\ln\!\left[
+\frac{k_0(T)L}{v_Q}
+\right],
+\label{eq:g_l}
+\end{equation}
+이고 Jacobian은
+\begin{equation}
+\left|
+\frac{\dd G}{\dd L}
+\right|
+=
+\frac{RT}{L}.
+\label{eq:jacobian}
+\end{equation}
+
+\subsection{Relaxation-length spectrum}\label{subsec:length_spectrum}
+
+Barrier distribution을 length domain으로 변수변환하면
+\begin{equation}
+\boxed{
+A_L(L;T,\psi)
+=
+\rho_G(G(L,T,\psi);T,\psi)
+\frac{RT}{L}
+A_0(L;T,\psi).
+}
+\label{eq:a_l}
+\end{equation}
+\(A_0\)는 해당 local mode의 population weight, initial lag amplitude, accessible capacity
+weight, geometry factor를 포함하는 amplitude factor다. \(A_L\)는 \(\rho_G\)와 동일한 함수가
+아니다. \(\rho_G\)가 barrier axis에서 정의된 density라면, \(A_L\)는 measured tail을 만드는
+relaxation-length axis의 weighted spectrum이다.
+
+\section{Relaxation-Length Spectrum and ICA Tail Kernel}\label{sec:tail}
+
+\subsection{Local progress contribution}\label{subsec:local_progress}
+
+Post-peak region에서 하나의 local mode가 남긴 lag가 식 \eqref{eq:local_exponential}처럼
+감소한다고 하자. Actual progress rate는 식 \eqref{eq:relax_q}에서
+\begin{equation}
+\frac{\dd \xi}{\dd Q}
+=
+\frac{1}{L}
+r(Q_a)\exp\!\left[-\frac{Q-Q_a}{L}\right]
+\label{eq:local_progress_kernel}
+\end{equation}
+처럼 쓸 수 있다. 여기서 sign과 capacity contribution은 transition direction convention과 amplitude에
+흡수한다. 따라서 local mode가 ICA tail에 주는 기본 kernel은
+\begin{equation}
+K(Q-Q_a;L)
+=
+\frac{1}{L}
+\exp\!\left[-\frac{Q-Q_a}{L}\right],
+\qquad
+Q\ge Q_a.
+\label{eq:kernel}
+\end{equation}
+
+\subsection{Observed tail as kernel integral}\label{subsec:kernel_integral}
+
+여러 local modes를 relaxation-length spectrum으로 합치면 transition \(j\)의 post-peak tail
+contribution은
+\begin{equation}
+\boxed{
+\mathcal T_j(Q;T,\psi)
+=
+\int_0^\infty
+A_{L,j}(L;T,\psi)
+\frac{1}{L}
+\exp\!\left[-\frac{Q-Q_{a,j}}{L}\right]
+\dd L .
+}
+\label{eq:tail_integral}
+\end{equation}
+이 식이 Chapter 1의 중심 tail equation이다. Single-mode relaxation length는 kernel 하나의
+parameter일 뿐이며, measured tail의 long decay는 \(A_L\)의 large-\(L\) weight에 의해 결정된다.
+
+\subsection{Temperature and potential trends}\label{subsec:t_potential_trend}
+
+식 \eqref{eq:l_g}에서 activated regime \(G-W_\psi>0\)를 보면, temperature가 낮아질수록
+\((G-W_\psi)/(RT)\)가 커져 \(L\)이 커지는 방향을 갖는다. 또한 \(k_0(T)\) 자체도 Eyring/Arrhenius
+prefactor 및 activated mobility를 통해 low \(T\)에서 작아질 수 있으므로 \(L=v_Q/k\)는 더 커진다.
+따라서 low \(T\)에서는 \(A_L(L;T,\psi)\)의 effective weight가 larger \(L\) 쪽으로 이동하고,
+식 \eqref{eq:tail_integral}의 tail이 길어진다.
+
+반대로 higher \(T\)에서는 activated rate가 커지기 쉬우며 \(L\)은 shorter side로 이동한다. 그 결과
+post-peak tail이 빠르게 감소한다.
+
+Potential assistance는 \(\psi\)에 대해 더 직접적인 signature를 준다. \(W_\psi=\Lambda_\psi F\psi\)라면
+\begin{equation}
+\frac{\partial \ln L}{\partial \psi}
+=
+-
+\frac{\Lambda_\psi F}{RT}.
+\label{eq:dlnl_dpsi}
+\end{equation}
+즉 positive assistance는 relaxation-length spectrum을 shorter \(L\) 쪽으로 shift시킨다. 이 역시
+state variable의 discontinuous completion이 아니라 spectrum shift다.
+
+\section{Self-Consistent Integral Layer and Refs 6/7 Placement}\label{sec:self_consistent}
+
+\subsection{Local Volterra form}\label{subsec:volterra}
+
+식 \eqref{eq:relax_q}를 \(Q_0\)에서 \(Q\)까지 적분하면
+\begin{equation}
+\xi_j(Q)
+=
+\xi_j(Q_0)
++
+\int_{Q_0}^{Q}
+\frac{k_j(s)}{v_Q(s)}
+\left[
+\xi_{\eq,j}(s)-\xi_j(s)
+\right]
+\dd s.
+\label{eq:volterra_q}
+\end{equation}
+오른쪽 적분 안에 unknown function \(\xi_j(s)\)가 다시 들어가므로 self-consistent integral
+equation이다. 적분 상한이 \(Q\)이므로 이것은 Volterra-type second-kind equation이다.
+
+이 self-consistency는 Chapter 1의 logical defect가 아니다. 미분형 식 \eqref{eq:relax_q}와 동일한
+물리 내용을 적분형으로 쓴 것이다. 또한 \(k_j(s)\)와 \(\xi_{\eq,j}(s)\)는 \(V_n(s)\)에 의존하고,
+\(V_n(s)\)는 charge balance 식 \eqref{eq:charge_balance}에 의해 \(\xi_j(s)\)와 다시 연결된다.
+따라서 graphite ICA 문제는 자연스럽게 implicit coupled system이 된다.
+
+\subsection{Refs 6/7 as a method boundary}\label{subsec:refs67}
+
+사용자의 JCP 2017 paper에서 refs. 6 and 7은 Fredholm integral equation of the second kind를
+효율적으로 다루는 ratio-substitution 또는 propagator-type method의 source로 쓰인 것으로 확인되어
+있다 \cite{lee2011,son2013}. 해당 method의 conceptual move는 다음과 같이 요약된다.
+\[
+\text{self-referential integral equation}
+\rightarrow
+\text{ratio expression exposing unknown-function ratios}
+\rightarrow
+\text{controlled approximation of those ratios}
+\rightarrow
+\text{analytic estimate checked against numerical solution}.
+\]
+
+이 method는 본 Chapter 1에서 중요한 methodological guardrail을 준다. Self-consistent integral을
+만났을 때 unknown function을 조용히 양쪽에서 cancel하거나 circular하게 대입하면 안 된다. Unknown
+ratio나 kernel approximation을 명시하고, 그 approximation이 어떤 limit에서 유효한지 검증해야 한다.
+
+그러나 Chapter 1의 core tail theory는 식 \eqref{eq:residual_ode}의 local relaxation equation과
+식 \eqref{eq:tail_integral}의 relaxation-length spectrum으로 이미 구성된다. Refs. 6/7 method는
+다음 경우에 본격적으로 들어온다.
+
+\begin{enumerate}[label=\textbf{M\arabic*.}]
+\item Charge-balance feedback과 barrier spectrum을 고정 적분구간의 Fredholm-type equation으로 재정식화한 경우.
+\item \(A_L\), \(\xi_j\), \(V_n\) 사이의 self-consistent kernel을 analytic closure하려는 경우.
+\item Direct numerical integration을 reference로 두고 ratio closure의 error를 검증할 수 있는 경우.
+\end{enumerate}
+
+따라서 본 장에서는 refs. 6/7을 battery-specific physical assumption으로 쓰지 않는다. 그것은
+self-consistent integral을 다루는 mathematical method 후보이며, Chapter 1의 물리 chain과는 구분된다.
+
+\section{ICA/DVA Observable Mapping}\label{sec:ica}
+
+\subsection{Internal-potential ICA}\label{subsec:internal_ica}
+
+식 \eqref{eq:charge_diff}에서 바로 DVA-type relation을 얻었다.
+\[
+\frac{\dd V_n}{\dd Q}
+=
+\frac{
+1-\sum_j Q_{j,\tot}\dd\xi_j/\dd Q
+}{
+C_{\bg}(V_n,T)
+}.
+\]
+따라서 internal-potential 기준 ICA는
+\begin{equation}
+\boxed{
+\frac{\dd Q}{\dd V_n}
+=
+\frac{
+C_{\bg}(V_n,T)
+}{
+1-\sum_j Q_{j,\tot}\dd\xi_j/\dd Q
+}.
+}
+\label{eq:ica_internal}
+\end{equation}
+\(\dd\xi_j/\dd Q\)에는 equilibrium peak contribution과 kinetic tail contribution이 모두 들어갈 수
+있다. Tail region에서는 식 \eqref{eq:tail_integral}의 \(\mathcal T_j\)가
+\(\dd\xi_j/\dd Q\)의 post-peak part로 작동한다.
+
+\subsection{Measured-voltage caution}\label{subsec:measured_voltage}
+
+Measured \(dQ/dV_{\app}\)는 식 \eqref{eq:ica_internal}을 그대로 읽은 것이 아닐 수 있다. 식
+\eqref{eq:vapp_bridge}의 ohmic, transport, charge-transfer polarization이 voltage axis를 shift하거나
+stretch할 수 있기 때문이다. 따라서 experimental fitting에서는
+\[
+\frac{\dd Q}{\dd V_{\app}}
+=
+\frac{\dd Q}{\dd V_n}
+\frac{\dd V_n}{\dd V_{\app}}
+\]
+형태의 bridge가 필요하다. Chapter 1은 이 bridge를 solver로 구현하지 않는다. 다만 \(V_n\)과
+\(V_{\app}\)를 구분하지 않으면 potential assistance와 polarization shift를 혼동할 수 있음을 명시한다.
+
+\section{Falsification and Competing Mechanisms}\label{sec:falsification}
+
+본 장의 theory는 ``그럴듯한 이야기''로 끝나면 안 된다. Tail을 activation-barrier-assisted kinetic
+lag와 relaxation-length spectrum으로 해석하려면 competing mechanisms를 분리해야 한다
+\cite{dubarry2022,fly2020}.
+
+\subsection{Equilibrium-width test}\label{subsec:eq_width_test}
+
+Ideal lattice-gas equilibrium width는 \(RT/F\) scale을 갖는다. Low \(T\)에서 reversible equilibrium
+peak가 좁아지는지, 넓어지는지 먼저 확인해야 한다. 만약 low-rate near-equilibrium data에서도 tail이
+동일하게 길다면, kinetic lag가 아니라 static heterogeneity 또는 thermodynamic phase coexistence
+model을 더 검토해야 한다.
+
+\subsection{Current-rate test}\label{subsec:current_test}
+
+Local length는 \(L=v_Q/k\)이므로 current 또는 charge sweep rate가 커지면 tail은 길어지는 방향을
+갖는다. 그러나 이 signature는 diffusion limitation이나 polarization broadening과도 퇴화될 수 있다.
+따라서 current dependence 하나만으로 activation-barrier spectrum을 확정하면 안 된다.
+
+\subsection{Temperature and potential-assistance test}\label{subsec:arrhenius_test}
+
+식 \eqref{eq:l_g}에서
+\begin{equation}
+\ln L
+=
+\ln\frac{v_Q}{k_0(T)}
++
+\frac{G-W_\psi}{RT}.
+\label{eq:ln_l}
+\end{equation}
+따라서 동일 transition region에서 \(1/T\)에 대한 \(\ln L\) slope가 activation barrier scale을
+반영해야 한다. 또한 식 \eqref{eq:dlnl_dpsi}에 의해 potential assistance가 큰 region에서는
+tail length가 shorter side로 이동해야 한다. 이 potential-dependent shift가 polarization correction 후에도
+남는지가 중요한 discriminator다.
+
+\subsection{Diffusion and transport test}\label{subsec:transport_test}
+
+Solid diffusion, electrolyte transport, contact resistance, SEI resistance, particle cracking 등은
+tail-like broadening을 만들 수 있다. 이 경우 length scale은 activation barrier spectrum보다
+diffusion time, transport path, resistance distribution에 의해 결정될 수 있다. 따라서 pulse/GITT/EIS
+또는 rate-dependent relaxation data로 transport contribution을 분리해야 한다.
+
+\subsection{Non-unique inverse warning}\label{subsec:non_unique}
+
+식 \eqref{eq:tail_integral}에서 measured tail로부터 \(A_L\)를 역으로 추정하는 문제는 generally
+non-unique다. Dispersive kinetics literature에서도 stretched relaxation은 여러 microscopic
+mechanisms로 재현될 수 있다 \cite{plonka2001}. 따라서 Chapter 1의 equation은 forward model의
+논리적 배경이지, measured tail 하나만으로 unique microscopic distribution을 증명하는 도구가 아니다.
+
+\section{Deliverables To Later Chapters}\label{sec:deliverables}
+
+Chapter 1이 후속 장에 넘기는 것은 solver가 아니라 물리적으로 정리된 equation chain이다.
+
+\begin{enumerate}[label=\textbf{D\arabic*.}]
+\item Chapter 2는 \(U_j(T)\), \(\xi_{\eq,j}(V_n,T)\), \(V_n(Q,T)\)의 temperature dependence를 이용해 \(dV/dT\), reversible heat, entropic contribution을 전개할 수 있다.
+\item Chapter 3은 \(k_j(T,V_n)\), \(\Delta G_{\eff,j}\), \(W_{\mathrm{el},j}\)를 electrochemical reaction kinetics, transfer coefficient, overpotential language와 연결할 수 있다.
+\item Chapter 4는 Chapter 3의 kinetic loss와 irreversible heat generation을 결합할 수 있다.
+\item Chapter 5는 charge/discharge direction에 따라 \(s_j\), \(W_{\mathrm{el},j}\), \(A_L\), branch-dependent hysteresis가 어떻게 달라지는지 다룰 수 있다.
+\end{enumerate}
+
+본 Chapter 1의 최종 요지는 다음과 같다.
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+Graphite ICA post-peak tail은 activation barrier가 state를 갑자기 완료시키기 때문에 생기는 것이 아니다.
+Activation free-energy barrier와 electrode-potential assistance는 local rate constant를 정하고,
+local rate constant는 charge-coordinate relaxation length를 정한다. Real electrode의 heterogeneous
+local modes는 relaxation-length spectrum을 만들며, measured ICA tail은 그 spectrum 위의 exponential
+kernel integral로 나타난다.
+}}
+\end{center}
+
+\begin{thebibliography}{99}
+
+\bibitem{eyring1935}
+H. Eyring, ``The activated complex in chemical reactions,'' \emph{The Journal of Chemical Physics}
+3, 107--115 (1935).
+
+\bibitem{evanspolanyi1935}
+M. G. Evans and M. Polanyi, ``Some applications of the transition state method to the calculation of
+reaction velocities, especially in solution,'' \emph{Transactions of the Faraday Society} 31, 875--894
+(1935).
+
+\bibitem{marcus1956}
+R. A. Marcus, ``On the theory of oxidation-reduction reactions involving electron transfer. I,''
+\emph{The Journal of Chemical Physics} 24, 966--978 (1956).
+
+\bibitem{bardfaulkner}
+A. J. Bard and L. R. Faulkner, \emph{Electrochemical Methods: Fundamentals and Applications},
+2nd ed., Wiley (2001).
+
+\bibitem{mckinnon1983}
+W. R. McKinnon and R. R. Haering, ``Physical mechanisms of intercalation,'' in
+\emph{Modern Aspects of Electrochemistry}, Vol. 15, Plenum Press (1983).
+
+\bibitem{bazant2013}
+M. Z. Bazant, ``Theory of chemical kinetics and charge transfer based on nonequilibrium
+thermodynamics,'' \emph{Accounts of Chemical Research} 46, 1144--1160 (2013).
+
+\bibitem{dahn1991}
+J. R. Dahn, ``Phase diagram of \(\mathrm{Li_xC_6}\),'' \emph{Physical Review B} 44, 9170--9177
+(1991).
+
+\bibitem{ohzuku1993}
+T. Ohzuku, Y. Iwakoshi, and K. Sawai, ``Formation of lithium-graphite intercalation compounds in
+nonaqueous electrolytes and their application as a negative electrode for a lithium ion battery,''
+\emph{Journal of The Electrochemical Society} 140, 2490--2498 (1993).
+
+\bibitem{dfn1993}
+M. Doyle, T. F. Fuller, and J. Newman, ``Modeling of galvanostatic charge and discharge of the
+lithium/polymer/insertion cell,'' \emph{Journal of The Electrochemical Society} 140, 1526--1533
+(1993).
+
+\bibitem{newman}
+J. Newman and K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
+
+\bibitem{dubarry2022}
+M. Dubarry and D. Ansean, ``Best practices for incremental capacity analysis,'' \emph{Frontiers in
+Energy Research} 10, 1023555 (2022).
+
+\bibitem{fly2020}
+G. W. Fly and R. Chen, ``Rate dependency of incremental capacity analysis for lithium-ion batteries,''
+\emph{Journal of Energy Storage} 29, 101329 (2020).
+
+\bibitem{plonka2001}
+A. Plonka, \emph{Dispersive Kinetics}, Kluwer Academic Publishers (2001).
+
+\bibitem{lee2011}
+S. Lee, C. Y. Son, J. Sung, and S. Chong, \emph{The Journal of Chemical Physics} 134, 121102
+(2011).
+
+\bibitem{son2013}
+C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, and S. Lee, \emph{The Journal of Chemical Physics} 138,
+164123 (2013).
+
+\end{thebibliography}
+
+\end{document}

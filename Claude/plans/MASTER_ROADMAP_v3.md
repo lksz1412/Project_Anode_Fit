@@ -208,6 +208,49 @@ Dahn, Lee/Son SNU·AIP, Dubarry, Fly, Plonka, De Groot-Mazur, Bässler GDM, DFN.
 
 ---
 
+## §9bis. ★ Synthesis 개정 (Codex 강점 통합, 2026-05-28)
+
+Codex Chapter 1 (`Codex/results/graphite_ica_chapter1_activation_barrier_spectrum_v1.tex`)
+와의 대조 (`Claude/results/COMPARISON_CLAUDE_vs_CODEX_CH1.md`) 결과, tail 메커니즘을
+**단일 relaxation length → relaxation-length spectrum kernel integral 로 격상**한다.
+Codex 의 강점(stretched tail 설명력, equilibrium 형태 보수) + Claude 의 rigor(grounding
+tier, ★ 사용자 PhD Refs 6/7, falsification+χ-discriminator, charge-balance V_n,
+Marcus bound) 을 통합. ★ 핵심 join: \textbf{사용자 PhD Refs 6/7 (propagator / integral-
+equation) 이 spectrum kernel integral 을 닫는 도구}가 된다.
+
+### 통합 spine (S1–S14 개정)
+| ID | 골격 | 상태 [AL] | 출처 |
+|---|---|---|---|
+| S1 | charge conservation → implicit $V_n$ ($\varphi$) | GROUNDED \[9\] | Claude |
+| S2 | equilibrium target $\theta_\eq(\varphi,T)$ **일반형 (smooth)**; lattice-gas 는 grounded 특수해; 형태 data 결정 (DQ-v3-1) | GROUNDED \[3a\] | 공통 (Codex 보수성 채택) |
+| S4 | activation free energy $\Delta G_a(T)$ | GROUNDED \[1\] | 공통 |
+| S5 | ★ effective barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A$ ($=G-W_\psi$), Marcus-bounded | BOUNDED \[2\] | Claude(Marcus) |
+| S6 | single local mode relaxation $\dot\theta=k(\theta_\eq-\theta)$, $k=r_++r_-$ | BOUNDED \[5\] | 공통 |
+| S7 | single-mode exponential kernel $L=v_Q/k$ ($Q$ 좌표) | GROUNDED \[1\] | 공통 |
+| **S8** | ★ barrier distribution $\rho_G$ → rate dist → **relaxation-length spectrum $A_L$** (barrier→length 지수 매핑 + Jacobian) | BOUNDED \[6\]→**승격** | **Codex 강점** |
+| **S9** | ★ **kernel integral** $d\Theta_{tail}/dQ=\int A_L(L)\frac1L e^{-(Q-Q_a)/L}dL$ | BOUNDED \[6\] | **Codex 중심식** |
+| **S10** | ★ **Refs 6/7 propagator/ratio-substitution = self-consistent spectrum integral 의 closure** | GROUNDED+DQ \[7\] | **Claude rigor × join** |
+| S11 | ICA mapping $dQ/d\varphi=C_b/(1-Q_p\,d\Theta/dQ)$ | GROUNDED \[9\] | 공통 |
+| **S12** | ★ spectrum 의 $T/\psi$ 의존: 저T → large-$L$ 이동 → long **stretched** tail; $\psi$ → short-$L$ ($\partial\ln L/\partial\psi=-\Lambda_\psi F/RT$) | FLAGGED novel \[8\] | 공통(정량) |
+| **S13** | ★ falsification: χ-discriminator + **spectrum-shift signature** + **non-uniqueness 처리(forward prediction, ρ_G 역산 금지)** | method \[10\] | **Claude(Codex gap 보완)** |
+| S14 | fitting model + identifiability(spectrum params) + validation protocol | GROUNDED \[10\] | Claude |
+
+### Phase 매핑 개정 (기존 §9 표 위에 적용)
+- §5 (구 equilibrium erf 중심) → **θ_e 일반형 + lattice-gas 특수해** (형태 미확정).
+- §8 신설 (barrier distribution → relaxation-length spectrum, S8).
+- §9 (구 Volterra) → **kernel integral (S9) + Refs 6/7 closure (S10)** 로 확장.
+- §10 (구 단일 tail) → **spectrum 의 T/ψ shift = stretched tail** (S12).
+- §11 falsification 에 **spectrum-shift signature + non-uniqueness 처리** 추가 (S13).
+
+### Codex 대비 보완점 (반드시 포함)
+1. Refs 6/7 으로 kernel integral 닫기 (Codex 미사용).
+2. falsification + χ-discriminator + null-result 규칙 (Codex 부재).
+3. ρ_G → A_L inverse 의 **non-uniqueness (Plonka)** 를 명시하고, 모델을 **forward
+   prediction** 으로 한정 (ρ_G 를 tail 에서 역산하지 않음). Codex 가 닫지 않은 구멍.
+4. Assumption Ledger grounding tier 유지.
+
+---
+
 ## §10. Gates (verifiable only, `feedback_gate_design_principle`)
 
 - 정성 "적절해 보임" 류 gate 금지. 예: "erf 가 ansatz 로 *명시되었는가*"(확인 가능) ○ /
@@ -259,6 +302,8 @@ Dahn, Lee/Son SNU·AIP, Dubarry, Fly, Plonka, De Groot-Mazur, Bässler GDM, DFN.
 | 2026-05-28 | v3 신설. 사용자 "챕터1 처음부터 재작성 + v2 old 로 + 계획서부터" 수신. v2 전체 `Claude/old/v2/` 아카이브. 문헌 grounding 리서치 통합 → Assumption Ledger §8. AGP(가정 grounding 표준) 1급 격상. v2 대비 과학적 pivot 5건 명시(§7). cross-check·self-review 를 근거 입력으로 유지. **계획 상태 — GO 대기, 본문 작성 X.** |
 | 2026-05-28 | 사용자 정정 "가우시안 관측은 뾰족한 피크 예시일 뿐 가우시안 확정 아님" 반영. §0·§6 S3·§7 pivot 1·§8 AL-3b·§11 DQ-v3-1·§13 갱신: 평형 isotherm 함수 형태를 사용자 제약이 아닌 grounding+데이터 결정 사안으로 명확화. erf 는 목표 아닌 FLAGGED 옵션. v3 의 erf→lattice-gas pivot 이 이 정정으로 강화됨. |
 | 2026-05-28 | ★ 사용자 정정 2: "활성 장벽(activation energy barrier)은 맞다. 쓸모없다 한 건 ChatGPT 의 '특정 지점 넘으면 0→1 로 갑자기 점프'하는 step-function 식 비약을 가리킨 것." → activation barrier spine(S4-S6) **유지 확정**. 적(敵)은 discontinuous step jump = 기존 anti-pattern(AGP-3, Dim #11, AP1-3)과 동일. equilibrium isotherm 은 **smooth (0→1 급점프 금지)**. ★ 사용자 GO: "제대로 챕터1 작성하고 10회 검토." → 실행 진입. ★ 작성 규칙: 한글 prose + 영어 학술 용어 (`feedback_korean_prose_english_terms`). |
+| 2026-05-28 | Chapter 1 v3 (single tail-length) 작성 + 10-round 검토 완료 (`REVIEW_LEDGER_v3_CH1.md`), commit cb12a44. 이후 Codex 산출물 대조(`COMPARISON_CLAUDE_vs_CODEX_CH1.md`). |
+| 2026-05-28 | ★ 사용자 지시: "Codex 강점 염두에 두고 계획 세워 Chapter 1 재작성 진입." → §9bis Synthesis 개정: tail 메커니즘 = **relaxation-length spectrum kernel integral** (Codex 강점) + Claude rigor(Refs6/7 closure·falsification·grounding·charge-balance). single-length v3 는 `Claude/old/v3_single_length/` 아카이브. 사용자 PhD Refs 6/7 = kernel integral closure 도구로 위치. **재작성 실행 진입** (계획+재작성 동일 directive). |
 
 ---
 

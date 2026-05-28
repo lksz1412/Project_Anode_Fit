@@ -1,15 +1,15 @@
 % ====================================================================
-% graphite_ica_chapter1.tex  —  Chapter 1 (v3, from-scratch)
-% Graphite anode ICA (dQ/dV) tail: effective-barrier kinetic theory
+% graphite_ica_chapter1.tex  —  Chapter 1 (v4, synthesis)
+% Graphite anode ICA (dQ/dV) tail: effective-barrier + relaxation-length
+%   spectrum kernel-integral theory, closed by Refs 6/7 propagator method.
 % Date: 2026-05-28   Author: Project_Anode_Fit (Claude 측)
 % --------------------------------------------------------------------
-% Governance:
-%   Charter           : Claude/results/CHARTER_v3.md
-%   Master roadmap    : Claude/plans/MASTER_ROADMAP_v3.md
-%   Assumption Ledger : Claude/results/ASSUMPTION_LEDGER_v3.md  (AL-#)
-% Writing rule: Korean prose + English academic terms.
-% Standard (AGP): 모든 assumption 은 AL-# 인용. FLAGGED 는 established 로 쓰지 않음.
-%   step-function / 0->1 급점프 / max,min,Heaviside,hard-switch 정의식 금지 (smooth only).
+% Synthesis of (a) Codex 강점: relaxation-length spectrum kernel integral
+%   (stretched tail), (b) Claude rigor: grounding tier (Assumption Ledger),
+%   사용자 PhD Refs 6/7 closure, falsification + χ-discriminator,
+%   charge-balance implicit V_n, Marcus bound.
+% Governance: Charter v3 / MASTER_ROADMAP_v3 §9bis / ASSUMPTION_LEDGER_v3 (AL-#)
+% Rule: Korean prose + English academic terms. smooth only (no 0->1 step jump).
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
@@ -18,7 +18,6 @@
 \usepackage{booktabs,longtable,array,tabularx}
 \usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage{xcolor}
 \usepackage{amsthm}
 \usepackage{mdframed}
 \usepackage{fancyhdr}
@@ -29,12 +28,11 @@
 \setlength{\parindent}{0pt}
 \setlength{\headheight}{14pt}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
-  pdftitle={Graphite ICA tail: effective-barrier kinetic theory (Ch.1 v3)}}
+  pdftitle={Graphite ICA tail: barrier-spectrum kernel-integral theory (Ch.1 v4)}}
 \pagestyle{fancy}\fancyhf{}
-\lhead{Graphite ICA tail — Ch.1 (v3)}\rhead{\thepage/\pageref{LastPage}}
+\lhead{Graphite ICA tail — Ch.1 (v4 synthesis)}\rhead{\thepage/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 
-\newtheorem*{assumptionbox}{Assumption}
 \newtheorem*{groundingbox}{Grounding}
 \newtheorem*{boundbox}{Validity bound}
 \newtheorem*{flagbox}{Flagged (미확정)}
@@ -45,7 +43,6 @@
 \newcommand{\eq}{\mathrm{eq}}
 \newcommand{\app}{\mathrm{app}}
 \newcommand{\dimedrive}{\mathrm{drive}}
-\newcommand{\OCV}{\mathrm{OCV}}
 \newcommand{\tot}{\mathrm{tot}}
 \newcommand{\bg}{\mathrm{bg}}
 \newcommand{\cell}{\mathrm{cell}}
@@ -54,8 +51,8 @@
 \newcommand{\AL}[1]{\textsf{[AL-#1]}}
 
 \title{\textbf{리튬이온전지 graphite anode 의 ICA(\,$dQ/dV$\,) tail 거동:\\
-effective-barrier 기반 kinetic 이론}\\[0.4em]
-\large Chapter 1 (v3, from-scratch, 2026-05-28)}
+effective barrier 와 relaxation-length spectrum kernel-integral 이론}\\[0.4em]
+\large Chapter 1 (v4 synthesis, 2026-05-28)}
 \author{Project\_Anode\_Fit}
 \date{2026-05-28}
 
@@ -63,26 +60,27 @@ effective-barrier 기반 kinetic 이론}\\[0.4em]
 \maketitle
 
 \begin{center}\begin{minipage}{0.93\textwidth}
-\small \textbf{Abstract.} 리튬이온전지 graphite anode 의 incremental capacity
-analysis (ICA), 즉 $dQ/dV$ 곡선의 \emph{peak tail} 은 temperature 가 낮을수록
-길게 늘어지고 높을수록 짧게 끝나는 거동을 보인다. 본 Chapter 1 은 이 tail 을
-\textbf{equilibrium 진행률 $\xi_\eq$ 를 finite rate 로 따라가는 relaxation
-dynamics 의 lag} 로 해석한다. 그 rate 는 thermal activation barrier $\Delta G_a(T)$
-에 electrode potential 에 의한 추가 barrier-lowering $-\chi\,\mathcal A$ 가 결합된
-\textbf{effective barrier $\Delta G_\eff = \Delta G_a - \chi\mathcal A$} (Brønsted--
-Evans--Polanyi / Butler--Volmer 형식, Marcus 이론으로 유효범위 한정) 를 통한
-Arrhenius/Eyring rate 로 주어진다. Equilibrium 분포는 graphite intercalation 의
-grounded thermodynamics 인 \textbf{lattice-gas / regular-solution chemical
-potential} 로 두며 (\emph{smooth}, $0\!\to\!1$ 급점프 없음), $V_n$ 은 외부 lookup 이
-아니라 \textbf{charge conservation} 으로 implicit 하게 결정한다. relaxation 의 시간
-적분이 만드는 self-consistent integral equation 에는 \textbf{사용자 박사 연구
-(Refs~\cite{lee2011,son2013}) 의 ratio-substitution / propagator 기법}을 적용해
-closed-form 근사를 얻는다. 본 Chapter 의 모든 assumption 은 Assumption Ledger
-(AL-\#) 에 grounding 되며, 출판 문헌·이론 근거가 없는 항목은 \emph{flagged
-hypothesis/ansatz} 로만 표기한다. tail 의 temperature 의존을 effective barrier 에
-귀속하기에 앞서, polarization($R_n$)·heterogeneous width·transport 등 competing tail
-source 를 구별하는 \emph{falsification protocol} 을 제시한다 (실제 data 판별은
-fitting/실험 단계).
+\small \textbf{Abstract.} 리튬이온전지 graphite anode 의 incremental capacity analysis
+(ICA), $dQ/dV$ 곡선에서 staging transition peak 뒤의 \emph{post-peak tail} 은 temperature
+가 낮을수록 길게 늘어지고(stretched) 높을수록 짧게 끝난다. 본 Chapter 1 은 이 tail 을
+\textbf{단일 relaxation length 가 아니라 relaxation-length spectrum 의 kernel integral}
+로 해석한다. 출발은 \textbf{activation free-energy barrier 가 state 를 $0\!\to\!1$ 로
+점프시키는 threshold 가 아니라 rate constant 를 정하는 hidden variable} 이라는 점이다
+(step-function completion 금지). 각 local mode 는 effective barrier $\Delta G_\eff =
+\Delta G_a - \chi\,\mathcal A$ (Brønsted--Evans--Polanyi / Butler--Volmer; Marcus 로 유효
+범위 한정) 가 정하는 Eyring rate 로 equilibrium target 을 향해 relaxation 하며, 하나의
+exponential kernel ($L=v_Q/k$) 을 만든다. 관측 tail 은 barrier distribution $\rho_G$ 가
+\emph{지수적 barrier$\to$length 매핑}을 통해 만드는 relaxation-length spectrum $A_L$ 에
+대한 kernel integral 이다. 이 self-consistent spectrum integral 의 closed-form 은
+\textbf{사용자 박사학위 연구 (Refs~\cite{lee2011,son2013}) 의 propagator / ratio-
+substitution 기법}으로 닫는다. low temperature 는 spectrum 을 large-$L$ 로, electrode-
+potential assistance 는 short-$L$ 로 이동시켜 관측 tail 길이를 설명한다. equilibrium
+target 의 함수 형태는 특정하지 않고(보수적; grounded lattice-gas 를 특수해로만), $V_n$ 은
+외부 lookup 이 아니라 charge conservation 으로 implicit 결정한다. 모든 assumption 은
+Assumption Ledger (AL-\#) 에 grounding 되며, 근거 없는 항목은 flagged 로만 둔다. tail 을
+effective barrier 에 귀속하기에 앞서 polarization·transport·heterogeneous width 등 competing
+source 를 구별하는 falsification protocol 과, barrier distribution 의 \emph{non-unique}
+역산을 피하는 forward-prediction 원칙을 제시한다.
 \end{minipage}\end{center}
 
 \tableofcontents
@@ -93,7 +91,6 @@ fitting/실험 단계).
 % ====================================================================
 
 \subsection{사용자 의도 (verbatim)}\label{sec:verbatim}
-본 Chapter 의 모든 식·derivation·결론은 다음 사용자 의도를 절대 기준으로 한다.
 \begin{uservb}
 ``LIB의 ICA 분석에서 온도와 현시점의 전위 상태에 따라서 그 그래프의 개형이 특히
 피크부분이 상변이에 의해서 나타나는데 그 상변이의 의해 나타나는 피크 꼬리의 개형이
@@ -105,671 +102,486 @@ fitting/실험 단계).
 거동을 해석하는 피팅하는데 쓸수 있는 논리 식을 구하는게 이 작업의 핵심이야.''
 \end{uservb}
 
-\textbf{해석 정정 (사용자 2026-05-28).} 위 ``약간 가우시안 피크 형상''의 ``Gaussian''은
-\emph{뾰족하게 솟은 (sharp) peak} 를 가리키는 예시 표현이며, equilibrium distribution
-이 Gaussian(erf) 이라고 형태를 확정한 것이 \emph{아니다}. 따라서 본 Chapter 는 equilibrium
-isotherm 의 함수 형태를 grounding 과 data 로 결정하며 (\S\ref{sec:equilibrium}), Gaussian
-을 재현 목표로 삼지 않는다. 또한 ``activation energy barrier''는 본 이론의 핵심으로
-\emph{유지}하되, ``특정 지점을 넘으면 $0\!\to\!1$ 로 갑자기 점프''하는 step-function 식
-\emph{discontinuous leap 은 금지}한다 (모든 transition 은 smooth).
+\textbf{해석 정정 (사용자 2026-05-28).} (1) ``가우시안''은 \emph{sharp peak} 를 가리키는
+예시이며 equilibrium 형태를 Gaussian 으로 확정한 것이 아니다 → 형태는 grounding 과 data
+로 결정. (2) ``activation energy barrier''는 본 이론의 핵심으로 \emph{유지}하되, ``특정
+지점을 넘으면 $0\!\to\!1$ 로 갑자기 점프''하는 step-function 식 \emph{비약은 금지} (모든
+transition 은 smooth). 본 chapter 는 이 두 정정을 절대 기준으로 한다.
 
 \subsection{관측 사실 (observation)}\label{sec:observation}
-저속 (예: $\le$ 0.2C, 또는 GITT 준평형) 정전류 조건에서 측정한 graphite anode 의 ICA
-곡선 $dQ/dV_{n,\app}$ 에는 다음 두 정성적 특징이 있다.
 \begin{enumerate}[label=\textbf{(O\arabic*)}]
-\item \textbf{Peak 의 출현.} graphite staging transition 이 일어나는 전위 영역에서
-  $dQ/dV_{n,\app}$ 가 sharp 한 local maximum (peak) 을 갖는다. staging sequence 가
-  observable 하게 합쳐져 $N_p\approx 3\sim4$ 개의 effective transition peak 로 나타난다
-  (\S\ref{sec:staging}, \AL{4}).
-\item \textbf{Peak tail 의 temperature 의존.} 각 peak 의 \emph{tail} (peak 중심을 지나
-  $V_{n,\app}$ 가 더 진행한 영역이 0 으로 수렴해 가는 부분) 의 길이가 temperature 에
-  따라 변한다: $T$ 가 \emph{낮을수록 tail 이 길게} 늘어지고, $T$ 가 \emph{높을수록 짧게}
-  끝난다.
+\item \textbf{Peak 출현.} graphite staging transition 영역에서 $dQ/dV_{n,\app}$ 가 sharp
+  peak 를 갖는다 (staging sequence 가 $N_p\approx3\sim4$ effective transition 으로 fusion).
+\item \textbf{Peak tail 의 stretched temperature 의존.} 각 peak 의 tail 이 $T$ 가
+  낮을수록 길게 늘어지고(흔히 단일 exponential 보다 \emph{stretched}) 높을수록 짧게
+  끝난다. \emph{단일 equilibrium peak width 만으로는} 이 $T$/potential 의존 tail 을
+  설명하기 어렵다.
 \end{enumerate}
-본 Chapter 의 \emph{1차 초점}은 (O2) 즉 tail 의 temperature 의존이다. (O1) 의 peak area
-(총량) 정합은 fitting 단계로 이관한다 (본 Chapter 범위 외, P1).
+본 Chapter 의 1차 초점은 (O2). peak area 정합은 fitting 단계로 이관 (P1).
 
 \subsection{가설 (hypothesis)}\label{sec:hypothesis}
-사용자 의도를 학부 수준 물리로 풀면 다음과 같다. 핵심은 tail 이 \emph{equilibrium
-분포 자체의 형태}가 아니라 \emph{equilibrium 을 따라가지 못하는 kinetic lag} 에서
-온다는 것이다.
+\textbf{(H1)} equilibrium target $\theta_{\eq,j}(V_n,T)$ 는 $V_n$ 에 대해 smooth 하게
+변한다 ($0\!\to\!1$ 급점프 아님; \S\ref{sec:equilibrium}).
 
-\textbf{(H1)} transition $j$ 의 equilibrium 진행률 $\xi_{\eq,j}(V_n,T)$ 는 $V_n$ 에 대해
-\emph{smooth} 하게 0 에서 1 로 증가한다 (grounded lattice-gas isotherm, \S\ref{sec:equilibrium};
-$0\!\to\!1$ 급점프 아님).
+\textbf{(H2)} 각 local mode 의 진행 속도는 activation barrier $\Delta G_{a}$ 를 통과하는
+thermally activated 과정이다 (\AL{1}).
 
-\textbf{(H2)} transition 의 진행 속도는 thermal activation barrier $\Delta G_{a,j}(T)$ 를
-통과하는 thermally activated 과정이다 (\AL{1}).
+\textbf{(H3, ★)} electrode potential $V_{n,\dimedrive}$ 가 그 barrier 를 $\chi\,\mathcal A$
+만큼 낮춘다: $\Delta G_\eff = \Delta G_a - \chi\mathcal A$, $\mathcal A=s_\phi F(V_{n,\dimedrive}-U)$
+(\AL{2}; 정식 \S\ref{sec:barrier}).
 
-\textbf{(H3, ★)} 여기에 electrode potential $V_{n,\app}$ 가 추가로 작용해, equilibrium
-중심 전위 $U_j(T)$ 와의 차이에 비례하는 만큼 그 activation barrier 를 \emph{낮춘다}:
-lowering $= \chi_j\,\mathcal A_j$, $\mathcal A_j = s_{\phi,j}F(V_{n,\app}-U_j(T))$. 따라서
-\begin{equation}
-\boxed{\;\Delta G_{\eff,j}(T,V_{n,\app}) = \Delta G_{a,j}(T) - \chi_j\,\mathcal A_j\;}
-\label{eq:Geff_hyp}
-\end{equation}
-가 본 Chapter 의 \emph{spine 출발점}이다 (정식 derivation \S\ref{sec:barrier}, \AL{2}).
+\textbf{(H4)} barrier 는 rate constant $k=\nu\exp(-\Delta G_\eff/RT)$ 를 정하고 (\AL{1}),
+$\theta_j$ 는 target $\theta_{\eq,j}$ 를 finite rate 로 따라가 lag 를 만든다 (\AL{5}).
+하나의 mode 는 length $L=v_Q/k$ 의 \emph{단일 exponential kernel} 을 만든다.
 
-\textbf{(H4)} $\Delta G_{\eff,j}$ 는 Eyring/Arrhenius rate $k_j = \nu_j(T)\exp(-\Delta
-G_{\eff,j}/RT)$ 를 결정하고 (\AL{1}), 진행률 $\xi_j$ 가 $\xi_{\eq,j}$ 를 \emph{finite
-rate} 로 따라가는 relaxation dynamics 를 만든다 (\AL{5}). $\xi_j$ 가 $\xi_{\eq,j}$ 를
-못 따라잡은 lag 가 $dQ/dV$ 의 tail 로 나타난다.
+\textbf{(H5, ★ 핵심)} 실제 electrode 는 단일 barrier 가 아니라 \emph{barrier
+distribution} $\rho_G$ 를 가진다. barrier$\to$length 의 \emph{지수} 매핑이 그 분산을
+크게 확대하여 \emph{relaxation-length spectrum} $A_L$ 을 만들고, 관측 tail 은 그 spectrum
+의 \textbf{kernel integral} 이다 (\S\ref{sec:spectrum}--\ref{sec:kernel}). 따라서 관측
+tail 은 일반적으로 stretched 이다.
 
-\textbf{(H5)} $T$ 가 낮으면 $k_j$ 가 작아져 lag 가 커지고 tail 이 길어진다; $T$ 가
-높으면 그 반대다. 이것이 (O2) 의 메커니즘이다 (정량 derivation \S\ref{sec:tail}).
+\textbf{(H6)} $T$ 가 낮으면 spectrum 이 large-$L$ 로 이동해 tail 이 길어지고, $T$ 가
+높거나 potential assistance 가 크면 short-$L$ 로 이동해 tail 이 짧아진다 (O2; \S\ref{sec:tailT}).
 
 \subsection{Deliverable}\label{sec:deliverable}
-(H1)$\sim$(H5) 를 grounded derivation 으로 확정하고, ICA tail 거동을 정량 설명하는
-\emph{fitting 가능한 closed-form 논리식}을 도출한다. 단 (i) 모든 assumption 은 AL-\#
-grounding, (ii) FLAGGED 항목은 established 로 쓰지 않음, (iii) tail 의 barrier 귀속
-전에 competing source 의 falsification protocol 제시 (\S\ref{sec:falsify}), (iv)
-fitting solver 구현은 범위 외 (P1).
+(H1)$\sim$(H6) 을 grounded derivation 으로 확정하고, ICA tail 의 $T$/potential 의존을
+설명하는 \emph{fitting 가능한 closed-form 논리식}(spectrum kernel integral, Refs 6/7 로
+closure)을 도출한다. 단 (i) 모든 assumption 은 AL-\# grounding, (ii) FLAGGED 는 established
+로 쓰지 않음, (iii) tail 의 barrier 귀속 전에 competing source 의 falsification protocol
+제시 + barrier distribution 의 non-unique 역산 회피, (iv) fitting solver 구현은 범위 외 (P1).
 
-\subsection{사용자 박사 연구의 위치 (Refs 6/7)}\label{sec:phd}
-relaxation 의 시간 적분은 미지 함수 $\xi_j$ 가 적분 안팎에 동시에 나타나는
-self-consistent integral equation 을 만든다 (\S\ref{sec:integral}). 사용자 박사 연구
-\cite{lee2011,son2013} 가 도입한 \emph{ratio-substitution / propagator} 기법은 이런
-적분방정식을 closed-form 으로 닫는 방법이며, 본 Chapter 의 load-bearing 도구다.
-\textbf{단 grounding 주의 (\AL{7})}: Refs 6/7 의 기법은 \emph{Fredholm} integral
-equation of the second kind 를 대상으로 하고, 본 시간 적분은 상한이 $t$ 인
-\emph{Volterra} 형식이므로, 그 적용성은 \S\ref{sec:integral} 에서 검증 대상(DQ-v3-2)
-으로 다룬다.
+\subsection{사용자 박사 연구의 위치 (Refs 6/7) = kernel integral 의 closure}\label{sec:phd}
+spectrum kernel integral 과 self-consistent relaxation 은 미지 함수가 적분 안팎에 동시에
+나타나는 integral equation 을 만든다. 사용자 박사 연구 \cite{lee2011,son2013} 의
+\emph{propagator / ratio-substitution} 기법은 이런 적분방정식을 closed-form 으로 닫는
+도구이며 (\S\ref{sec:closure}), 본 Chapter 의 load-bearing 수단이다. \textbf{grounding 주의
+(\AL{7})}: 그 기법은 \emph{Fredholm} integral equation of the second kind 를 대상으로
+하므로, 본 형식이 \emph{Volterra} 인지 Fredholm 인지에 따른 적용성을 검증 대상(DQ-v3-2)
+으로 둔다.
 
-\subsection{Grounded spine 요약 (S1--S13)}\label{sec:spine}
-\begin{longtable}{p{0.06\textwidth} p{0.62\textwidth} p{0.24\textwidth}}
-\toprule
-ID & 골격 & 상태 [AL] \\ \midrule \endhead
+\subsection{Grounded spine 요약 (S1--S14, synthesis)}\label{sec:spine}
+\begin{longtable}{p{0.06\textwidth} p{0.66\textwidth} p{0.2\textwidth}}
+\toprule ID & 골격 & 상태 [AL] \\ \midrule \endhead
 S1 & charge conservation $\Rightarrow$ implicit $V_n$ & GROUNDED \AL{9} \\
-S2 & equilibrium isotherm = lattice-gas $\mu(\xi)$ (smooth) & GROUNDED \AL{3a} \\
-S3 & broadening (homog.\ interaction / heterog.\ disorder) & FLAGGED \AL{3b} \\
+S2 & equilibrium target $\theta_\eq$ (일반형, smooth; lattice-gas 특수해) & GROUNDED \AL{3a} \\
 S4 & activation free energy $\Delta G_a(T)$ & GROUNDED \AL{1} \\
-S5 & ★ effective barrier $\Delta G_\eff = \Delta G_a-\chi\mathcal A$ & BOUNDED \AL{2} \\
-S6 & rate constant Eyring/Arrhenius & GROUNDED \AL{1} \\
-S7 & relaxation $\dot\xi = k(\xi_\eq-\xi)$ & BOUNDED \AL{5} \\
-S8 & (옵션) barrier distribution $\rho(g)$ & BOUNDED \AL{6} \\
-S9 & integral equation + ratio substitution & GROUNDED+DQ \AL{7} \\
-S10 & ICA observable $(dQ/dV)_j$ & GROUNDED \AL{9} \\
-S11 & ★ tail $T$-dependence = kinetic lag & FLAGGED novel \AL{8} \\
-S12 & ★ falsification of competing tail sources & method \AL{10} \\
-S13 & fitting model + identifiability + validation & GROUNDED \AL{10} \\
+S5 & ★ effective barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A$ & BOUNDED \AL{2} \\
+S6 & single-mode relaxation $\dot\theta=k(\theta_\eq-\theta)$ & BOUNDED \AL{5} \\
+S7 & single-mode exponential kernel $L=v_Q/k$ & GROUNDED \AL{1} \\
+S8 & ★ barrier dist.\ $\rho_G\to$ relaxation-length spectrum $A_L$ & BOUNDED \AL{6} \\
+S9 & ★ kernel integral for observed tail & BOUNDED \AL{6} \\
+S10 & ★ Refs 6/7 propagator = spectrum integral closure & GROUNDED+DQ \AL{7} \\
+S11 & ICA mapping $dQ/dV_n$ & GROUNDED \AL{9} \\
+S12 & ★ spectrum 의 $T/\psi$ shift = stretched tail & FLAGGED novel \AL{8} \\
+S13 & ★ falsification + non-uniqueness 처리 & method \AL{10} \\
+S14 & fitting model + identifiability + validation & GROUNDED \AL{10} \\
 \bottomrule
 \end{longtable}
+\textbf{AGP.} 모든 assumption 은 AL-\# 인용. FLAGGED 는 established 로 사용 금지; BOUNDED
+는 유효범위 병기. step-function·$0\!\to\!1$ 급점프·$\max$·$\min$·Heaviside·hard-switch
+정의식 금지 (smooth only).
 
 % ====================================================================
 \section{Notation 과 convention}\label{sec:notation}
 % ====================================================================
-\subsection{Coordinate, charge, current, temperature}\label{sec:notation_basic}
 \begin{longtable}{p{0.16\textwidth} p{0.14\textwidth} p{0.62\textwidth}}
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-$q$ & --- & 정규화 진행 좌표 (normalized progress coordinate), $q=Q_\ext/Q_\cell$ \\
-$Q_\ext$ & C & 외부 회로로 흐른 누적 charge, $Q_\ext(t)=\int_0^t|I|\dd t'$ \\
-$Q_\cell$ & C & 기준 cell capacity (Coulomb 고정) \\
-$I$ & A & 전류 (A $=$ C\,s$^{-1}$) \\
-$T$ & K & temperature \\
-$F,R$ & --- & Faraday 상수, gas constant \\
-$k_B,h$ & --- & Boltzmann, Planck 상수 \\
+$q$ & --- & 정규화 진행 좌표 $q=Q_\ext/Q_\cell$ \\
+$Q_\ext$ & C & 외부 누적 charge; $v_Q\equiv dQ_\ext/dt=|I|>0$ (scan speed) \\
+$Q_\cell$ & C & 기준 cell capacity \\
+$T,F,R,k_B,h$ & --- & temperature, Faraday, gas const, Boltzmann, Planck \\
+$V_n$ & V & internal anode (analysis) potential; charge conservation 의 root \\
+$V_{n,\app}$ & V & apparent(measured) potential $=V_n+s_I|I|R_n$ \\
+$V_{n,\dimedrive}$ & V & driving potential (rate/barrier 인수); 기본 $=V_n$, reduced $\approx V_{n,\app}$ \\
+$R_n(q,T,|I|)$ & $\Omega$ & 유효 polarization 계수 \\
+$j,\,N_p$ & --- & effective transition index, 개수 \\
+$\theta_j,\ \theta_{\eq,j}$ & --- & local mode 진행률, equilibrium target ($0\!\le\!\theta\!\le\!1$) \\
+$r_j$ & --- & kinetic lag $=\theta_{\eq,j}-\theta_j$ \\
+$U_j(T),w_j(T)$ & V & equilibrium 중심 전위, isotherm width \\
+$\Delta H_{a},\Delta S_{a},\Delta G_a$ & J/mol & activation enthalpy/entropy/free energy \\
+$\mathcal A_j$ & J/mol & driving force $=s_{\phi,j}F(V_{n,\dimedrive}-U_j)$ \\
+$\chi_j$ & --- & transfer coefficient (BEP), $0\le\chi_j\le1$ \\
+$W_\psi$ & J/mol & potential barrier-lowering work $=\chi_j\mathcal A_j$ \\
+$\Delta G_{\eff}$ & J/mol & ★ effective barrier $=\Delta G_a-\chi\mathcal A=G-W_\psi$ \\
+$G$ & J/mol & local activation barrier (mode 별; hidden rate variable) \\
+$\nu(T),\kappa(T),k_0(T)$ & 1/s,--,1/s & Eyring prefactor $\nu=(k_BT/h)\kappa$ \\
+$k$ & 1/s & rate constant \\
+$L$ & --- & local relaxation length (in $q$) $=v_Q/k$ (단, $q$ 정규화) \\
+$\rho_G(G;T,\psi)$ & 1/(J/mol) & activation barrier distribution \\
+$A_L(L;T,\psi)$ & 1/L & relaxation-length spectral \emph{density} (in $L$; $\int A_L\,dL$ 가 weight) \\
+$\Theta$ & --- & 전체 effective phase progress; $Q_p$ = 그 capacity scale \\
+$C_\bg(V_n,T)$ & C/V & background chemical capacitance \\
 \bottomrule
 \end{longtable}
-
-\subsection{세 가지 potential ($V_n / V_{n,\app} / V_{n,\dimedrive}$)}\label{sec:notation_pot}
-\begin{longtable}{p{0.18\textwidth} p{0.12\textwidth} p{0.62\textwidth}}
-\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-$V_n$ & V & internal anode potential. 외부 lookup 이 아니라 charge conservation
-  (\S\ref{sec:charge}) 으로 결정되는 thermodynamic state coordinate \\
-$V_{n,\app}$ & V & apparent (measured) anode potential. $V_{n,\app}=V_n+s_I|I|R_n$ \\
-$V_{n,\dimedrive}$ & V & driving potential (rate/barrier 에 들어가는 인수). 기본
-  가정 $V_{n,\dimedrive}=V_n$; reduced model 에서 $\approx V_{n,\app}$ \\
-$R_n(q,T,|I|)$ & $\Omega$ & 유효 polarization 계수 (charge-transfer/transport/film 총합) \\
-$V_{n,\OCV}(q,T)$ & V & equilibrium ($\xi_j=\xi_{\eq,j}$) 에서의 $V_n$ (\S\ref{sec:charge} 의 해) \\
-\bottomrule
-\end{longtable}
-
-\subsection{Transition, barrier, rate, observation 기호}\label{sec:notation_rest}
-\begin{longtable}{p{0.16\textwidth} p{0.14\textwidth} p{0.62\textwidth}}
-\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-$j,\,N_p$ & --- & effective transition index, 개수 ($N_p\approx3\sim4$) \\
-$\xi_j$ & --- & transition $j$ 의 진행률 (progress / phase fraction), $0\le\xi_j\le1$ \\
-$\xi_{\eq,j}$ & --- & equilibrium 진행률 $\xi_{\eq,j}(V_n,T)$ \\
-$U_j(T)$ & V & transition $j$ 의 equilibrium 중심 전위 (peak center) \\
-$w_j(T)$ & V & equilibrium isotherm width (lattice-gas; ideal $=RT/F$) \\
-$\Omega_j$ & J/mol & regular-solution interaction parameter (lattice-gas, \S\ref{sec:equilibrium}) \\
-$Q_{j,\tot}$ & C & transition $j$ 의 총 capacity 기여 \\
-$s_{\phi,j}$ & $\pm1$ & 방향 부호 \\
-$\Delta H_{a,j},\Delta S_{a,j}$ & J/mol, J/mol\,K & activation enthalpy, entropy \\
-$\Delta G_{a,j}(T)$ & J/mol & activation free energy $=\Delta H_{a,j}-T\Delta S_{a,j}$ \\
-$\mathcal A_j$ & J/mol & potential-assisted driving force $=s_{\phi,j}F(V_{n,\dimedrive}-U_j)$ \\
-$\chi_j$ & --- & transfer coefficient (Brønsted--Evans--Polanyi), $0\le\chi_j\le1$ \\
-$\Delta G_{\eff,j}$ & J/mol & ★ effective barrier $=\Delta G_{a,j}-\chi_j\mathcal A_j$ \\
-$\nu_j(T),\kappa_j(T)$ & 1/s, --- & Arrhenius prefactor $\nu_j=(k_BT/h)\kappa_j$ \\
-$k_j$ & 1/s & rate constant \\
-$Q_n(q),Q_\bg(q)$ & C & 누적 anode capacity, background capacity \\
-$(dQ/dV)_j$ & C/V & transition $j$ 의 ICA 기여 \\
-$\ell_{\mathrm{tail},j}$ & --- & tail 의 characteristic decay length (in $q$) \\
-\bottomrule
-\end{longtable}
-
 \begin{groundingbox}
-\textbf{Convention (smooth-only).} 본 Chapter 의 모든 정의식은 smooth function 이며,
-$\max(\cdot,0)$, $\min(\cdot,k_{\max})$, Heaviside, hard switch, ``특정 지점에서 $0\!\to\!1$
-급점프'' 등 step-function/discontinuous form 을 정의식으로 사용하지 않는다 (사용자
-2026-05-28; AGP-3). 단위: $\Delta G$ 류 J/mol, $RT$ J/mol $\Rightarrow$ $\Delta G/RT$
-무차원; $k,\nu$ 1/s; $V$ 류 V (vs Li/Li$^+$).
+\textbf{Smooth-only.} 모든 정의식은 smooth. 금지 모델의 대표 예: $\theta=H(G_c-G)$
+(Heaviside threshold completion) — barrier 를 넘으면 state 가 급점프한다는 모델. 본 chapter
+는 이를 채택하지 않는다 (사용자 2026-05-28; AGP-3). 단위: $\Delta G$ J/mol, $\Delta G/RT$
+무차원, $k,\nu$ 1/s, $V$ V.
 \end{groundingbox}
 
 % ====================================================================
 \section{Graphite staging 과 effective transition}\label{sec:staging}
 % ====================================================================
-Graphite 의 lithiation 은 stage 4 $\to$ 3 $\to$ 2L $\to$ 2 $\to$ 1 의 staging
-sequence 로 진행하며, 각 stage transition 은 일정 chemical potential 영역에서 일어나
-$dQ/dV_n$ 에 peak 신호를 남긴다 \cite{dahn1991,ohzuku1993,asenbauer2020} (\AL{4}). 여기서 stage 1 은
-LiC$_6$, stage 2 는 LiC$_{12}$ 에 대응하고, 2L 은 별도 stage 번호가 아니라 stage 2 의
-liquid-like 중간 상태다.
-
-\textbf{Effective transition index.} 실제 측정에서는 인접한 두 stage 의 중심 전위 차이
-$|U_i-U_j|$ 가 그 peak 의 width 와 비슷하거나 작으면 두 peak 가 겹쳐 하나의 observable
-peak 로 fusion 된다. 정량적으로 $|U_i-U_j|\lesssim 2(w_i+w_j)$ 이면 fusion. 그 결과
-graphite 에서는 평균 $N_p\approx3\sim4$ 개의 effective transition peak 가 관측되며, 본
-Chapter 는 이를 index $j=1,\dots,N_p$ 로 둔다.
-
-\begin{assumptionbox}
-\textbf{Discrete-$j$ 분리 (\AL{4}).} 본 Chapter 는 staging 을 $N_p$ 개의 분리된
-effective transition 의 합으로 모델링한다. 각 $j$ 의 진행률 $\xi_j$ 는 독립 relaxation
-ODE (\S\ref{sec:kinetics}) 를 따르고, 총 ICA 신호는 각 기여의 합이다. 더 일반적인
-continuous chemical-potential 분포 표현은 appendix 수준 확장으로 남긴다.
-\end{assumptionbox}
+Graphite lithiation 은 stage 4 $\to$ 3 $\to$ 2L $\to$ 2 $\to$ 1 sequence 로 진행하며 각
+transition 이 $dQ/dV_n$ 에 peak 를 남긴다 \cite{dahn1991,ohzuku1993,funabiki1999} (\AL{4}).
+인접 stage 의 중심 전위 차가 width 이하이면 fusion 되어 observable peak 수가 $N_p\approx
+3\sim4$ 가 된다. 본 Chapter 는 이를 effective transition $j=1,\dots,N_p$ 로 둔다. 단 각
+effective transition 내부에도 particle/domain/boundary 다양성에 의한 \emph{local mode 분포}
+가 존재하며, 이것이 \S\ref{sec:spectrum} 의 spectrum 의 물리적 근원이다.
 
 % ====================================================================
 \section{Charge conservation 과 implicit $V_n$}\label{sec:charge}
 % ====================================================================
-\textbf{물리 의미 먼저.} anode 내부에 들어간 charge 는 외부 회로로 흐른 charge 와
-같아야 한다 (charge conservation). 이 conservation 이 internal potential $V_n$ 을
-결정한다 — $V_n$ 은 임의로 주어지는 외부 함수가 아니다 (\AL{9}).
+\textbf{물리.} anode 내부 charge = 외부 charge (conservation). 이것이 $V_n$ 을 결정한다
+(외부 함수 아님; \AL{9}).
 
-\textbf{Derivation D1 (charge balance).} 누적 anode capacity 를 background 기여와 각
-transition 기여의 합으로 쓰면
+\textbf{Derivation D1.} background 와 phase progress 기여의 합
 \begin{equation}
-Q_n(q) = Q_\bg(V_n,T) + \sum_{j=1}^{N_p} Q_{j,\tot}\,\xi_j,
-\label{eq:Qn}
-\end{equation}
-이고, 외부 charge 와의 conservation $Q_n = Q_\ext = Q_\cell\,q$ 로부터
-\begin{equation}
-\boxed{\;Q_\cell\,q = Q_\bg(V_n,T) + \sum_{j=1}^{N_p} Q_{j,\tot}\,\xi_j.\;}
+Q_\cell\,q = Q_\bg(V_n,T) + Q_p\,\Theta(V_n,q,T),\qquad \Theta=\frac1{N_p}\sum_j w^\Theta_j\theta_j,
 \label{eq:charge_balance}
 \end{equation}
-주어진 $(q,T,\{\xi_j\})$ 에서 식~\eqref{eq:charge_balance} 를 $V_n$ 에 대해 풀어 $V_n$
-을 얻는다. 이 구조는 single-particle / porous-electrode 모델에서 표면 농도가 OCV
-(chemical potential) 관계로 전위를 implicit 하게 정하는 것과 동일하다
-\cite{doyle1993,newman} (\AL{9}).
-
-\textbf{해 존재·유일성 (smooth, no jump).} $V_n$ 에 대한 unique smooth 해가 존재하려면
-$Q_\bg$ 가 $V_n$ 에 대해 충분한 monotonic gradient 를 가져야 한다:
+를 $V_n$ 에 대해 풀어 $V_n$ 을 얻는다 (single-particle/porous-electrode 의 implicit $\mu$
+관계와 동형 \cite{doyle1993,newman}). unique smooth 해 조건:
 \begin{equation}
-\frac{\partial Q_\bg}{\partial V_n} \ge \epsilon_Q > 0.
+\frac{\partial Q_\bg}{\partial V_n}\ge\epsilon_Q>0.
 \label{eq:monotone}
 \end{equation}
-이 조건이 만족되면 우변은 $V_n$ 의 strictly increasing smooth 함수이므로, 좌변이
-range 안에 있는 한 unique 한 $V_n$ 이 smooth 하게 결정된다 ($0\!\to\!1$ 급점프 없음).
-$\partial Q_\bg/\partial V_n$ 은 background chemical capacitance 에 해당한다.
-
-\textbf{Equilibrium 극한.} $\xi_j=\xi_{\eq,j}(V_n,T)$ 이면 식~\eqref{eq:charge_balance}
-는 $V_n$ 에 대한 implicit equation 이 되고 그 해를 $V_n=V_{n,\OCV}(q,T)$ 로 정의한다.
-즉 외부 OCV lookup 은 본 charge-balance 의 equilibrium 특수해이며, 비평형에서는
-식~\eqref{eq:charge_balance} 가 그것을 보정한다.
+$\theta_j=\theta_{\eq,j}$ 이면 그 해를 $V_n=V_{n,\mathrm{OCV}}(q,T)$ 로 정의 — 외부 OCV
+lookup 은 이 charge-balance 의 equilibrium 특수해다.
 
 % ====================================================================
-\section{Equilibrium isotherm $\xi_\eq$ (lattice-gas, smooth)}\label{sec:equilibrium}
+\section{Equilibrium target $\theta_\eq$ (일반형, smooth)}\label{sec:equilibrium}
 % ====================================================================
-\textbf{물리 의미.} $\xi_{\eq,j}(V_n,T)$ 는 ``$V_n$ 에서 transition $j$ 가 equilibrium
-에서 어느 정도 진행되어 있는가''다. graphite intercalation 의 grounded thermodynamics
-는 \emph{lattice-gas / regular-solution} chemical potential 이다 \cite{mckinnon1983,
-bazant2013} (\AL{3a}).
-
-\textbf{Derivation D2 (lattice-gas isotherm).} site fraction $\xi$ 의 lattice-gas
-chemical potential 은 configurational entropy 항 $RT\ln[\xi/(1-\xi)]$ 와 interaction
-항 $\Omega_j(1-2\xi)$ 의 합으로
+\textbf{보수적 입장.} 본 Chapter 는 equilibrium target 의 함수 형태를 특정하지 않는다.
+요구 조건은 (i) smooth, (ii) $0\le\theta_\eq\le1$, (iii) $V_n$ 의 단조 함수뿐이다:
 \begin{equation}
-\mu(\xi) = \mu^0 + RT\ln\frac{\xi}{1-\xi} + \Omega_j\,(1-2\xi),
-\label{eq:mu_latticegas}
+\theta_{\eq,j}=\theta_{\eq,j}(V_n,T),\qquad 0\le\theta_{\eq,j}\le1.
+\label{eq:thetae}
 \end{equation}
-electrochemical equilibrium 조건은 chemical potential 을 electrode potential 에
-잇는다: $\mu(\xi_{\eq,j}) = s_{\phi,j}\,F\,(V_n-U_j^0)$. 여기서 $s_{\phi,j}=\pm1$ 은
-\S\ref{sec:notation_rest} 의 방향 부호로, 이를 풀어 얻은 isotherm 의 단조 방향이
-\eqref{eq:Aj} 의 driving force $\mathcal A_j$ 의 부호와 \emph{동일한} convention 을
-공유하도록 한다. $\Omega_j=0$ (ideal/dilute) limit 에서
-\begin{equation}
-\boxed{\;\xi_{\eq,j}(V_n,T) = \frac{1}{1+\exp\!\big[-s_{\phi,j}(V_n-U_j(T))/w_j(T)\big]},\qquad
-w_j=\frac{RT}{F}\;}
-\label{eq:xi_eq_latticegas}
-\end{equation}
-이며, 부호 점검: $\mu=s_{\phi,j}F(V_n-U_j)$, $\Omega_j=0$ 에서 $RT\ln[\xi/(1-\xi)]=
-s_{\phi,j}F(V_n-U_j)$ $\Rightarrow$ $\xi_{\eq,j}=[1+\exp(-s_{\phi,j}(V_n-U_j)/w_j)]^{-1}$
-로 \emph{내부 정합}한다 (조건과 결과의 부호 일치). 본 Chapter 의 discharge-reference
-convention 에서는 $s_{\phi,j}=+1$ 로, transition 이 진행($\xi_j\!\to\!1$)할수록 $V_n$ 이
-증가하는 방향이다. 이는 smooth 한 logistic 으로, $V_n$ 이 $U_j$ 를 지날 때 $\xi_\eq$ 가
-0 에서 1 로 \emph{연속적으로} 변한다 — ``특정 지점에서 $0\!\to\!1$ 급점프''가 아니다
-(사용자 2026-05-28 정합). $\Omega_j\ne0$ 이면 width·형태가 보정되지만 smooth 성은 유지된다.
+(사용자 정정: ``가우시안''은 sharp peak 예시일 뿐 형태 확정 아님 → 특정 형태 강제 X.)
 
+\textbf{Grounded 특수해 (lattice-gas, \AL{3a}).} 명시적 형태가 필요하면, graphite
+intercalation 의 grounded thermodynamics 인 lattice-gas / regular-solution chemical
+potential \cite{mckinnon1983,bazant2013} 을 쓴다: $\mu(\theta)=\mu^0+RT\ln[\theta/(1-\theta)]
++\Omega_j(1-2\theta)$, electrochemical equilibrium $\mu=s_{\phi,j}F(V_n-U_j^0)$ 에서
+($\Omega_j=0$ ideal limit)
+\begin{equation}
+\theta_{\eq,j}=\big[1+\exp(-s_{\phi,j}(V_n-U_j)/w_j)\big]^{-1},\qquad w_j=RT/F,
+\label{eq:latticegas}
+\end{equation}
+즉 smooth logistic ($0\!\to\!1$ 급점프 아님). $\Omega_j\ne0$ 이면 width/형태 보정, smooth
+유지.
 \begin{flagbox}
-\textbf{Broadening 형태는 미확정 (\AL{3b}, DQ-v3-1).} 식~\eqref{eq:xi_eq_latticegas}
-은 \emph{homogeneous} 단일 transition 의 형태다. 실제 peak 의 추가 broadening 은 (i)
-regular-solution interaction ($\Omega_j$), 또는 (ii) 입자/도메인 간 중심 전위의
-\emph{heterogeneous} 분포 $p(U_j)$ 에서 올 수 있다. 후자를 Gaussian 으로 두면 erf-유사
-누적이 창발하지만, graphite intercalation 에 대한 \emph{Gaussian-disorder isotherm 의
-thermodynamic derivation 은 문헌에 없으며}, organic-semiconductor 의 Gaussian Disorder
-Model \cite{basssler1993} 과의 analogy + 경험적 peak-fit 수준이다. 따라서 본 Chapter 는
-erf/Gaussian 을 \emph{ansatz} 로만 두고, equilibrium baseline 으로는 grounded
-lattice-gas (식~\eqref{eq:xi_eq_latticegas}) 를 사용한다. 사용자 ``가우시안''은 sharp
-peak 의 예시였을 뿐 형태 확정이 아니므로 (\S\ref{sec:verbatim}) 재현 목표가 아니다.
-실제 형태 (lattice-gas vs disorder-broadened; 지수형 vs Gaussian-형 tail) 는 저속 OCV
-peak 의 near-peak 감쇠 plot 으로 판별한다 (\S\ref{sec:falsify}).
+\textbf{형태는 data 결정 (DQ-v3-1).} erf/Gaussian-cumulative isotherm 은 graphite
+intercalation 에 대한 thermodynamic derivation 이 문헌에 없으므로 (organic-semiconductor
+Gaussian Disorder Model \cite{baessler1993} 과의 analogy + 경험 peak-fit 수준) FLAGGED
+ansatz 로만 둔다 (\AL{3b}). 실제 형태는 저속 OCV peak 의 near-peak lineshape 으로 판별
+(\S\ref{sec:falsify}). 본 Chapter 의 tail 결론은 $\theta_\eq$ 의 \emph{구체 형태에
+의존하지 않는다} — post-peak 에서 $d\theta_\eq/dq\simeq0$ 만 쓰기 때문 (\S\ref{sec:kernel}).
 \end{flagbox}
 
-\textbf{Derivation D3 (equilibrium peak 형태).} $dQ/dV$ 의 equilibrium 기여는
-$|d\xi_\eq/dV_n|$ 에 비례한다. 식~\eqref{eq:xi_eq_latticegas} 미분에서
-\begin{equation}
-\frac{d\xi_{\eq,j}}{dV_n} = s_{\phi,j}\,\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j(T)},
-\qquad
-\Big|\frac{d\xi_{\eq,j}}{dV_n}\Big| = \frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j(T)},
-\label{eq:dxi_eq}
-\end{equation}
-이며 그 magnitude 는 $V_n=U_j$ 에서 최대인 smooth 한 bell-shape (sech$^2$ 형) 이다. \emph{tail
-거동의 단서}: 이 equilibrium peak 의 width 는 ideal lattice-gas 에서 $w_j=RT/F$ 이므로
-$T$ 가 \emph{낮을수록 좁아진다}. 즉 equilibrium 만으로는 ``저온에서 tail 이 길어지는''
-관측 (O2) 를 설명할 수 없다 (오히려 반대). 이 사실이 tail 을 \emph{kinetic} 효과로
-귀속하는 핵심 근거다 (\S\ref{sec:tail}).
-
 % ====================================================================
-\section{★ Effective barrier $\Delta G_\eff$ (activation + potential lowering)}\label{sec:barrier}
+\section{★ Effective barrier $\Delta G_\eff$}\label{sec:barrier}
 % ====================================================================
-\textbf{물리 의미.} transition 의 진행 속도는 activation barrier 를 통과하는
-thermally activated 과정이며 (\AL{1}), 여기에 electrode potential 이 추가로 barrier 를
-낮춘다 (\AL{2}). 이 절은 사용자 의도의 핵심인 effective barrier
-식~\eqref{eq:Geff_hyp} 의 정식 derivation 이다. \textbf{activation barrier 는 본
-이론의 핵심으로 유지된다} (사용자 2026-05-28).
+\textbf{Derivation D2 (activation free energy, \AL{1}).} transition-state theory
+\cite{eyring1935,eyringchemrev1935} 에서 $\Delta G_a(T)=\Delta H_a-T\Delta S_a$.
 
-\textbf{Derivation D4 (activation free energy, \AL{1}).} transition state theory
-\cite{eyring1935,evanspolanyi1935} 에서 activation free energy 는
+\textbf{Derivation D3 (potential lowering, BEP; \AL{2}).} 외부 driving force 가 barrier 를
+부분적으로 낮춘다는 것은 reaction-coordinate 상 transition state 위치(Hammond)에 따른
+비율 $\chi$ 로 표현된다 (Brønsted--Evans--Polanyi \cite{evanspolanyi1938}; Butler--Volmer
+transfer coefficient \cite{bardfaulkner}). driving force $\mathcal A_j=s_{\phi,j}F(V_{n,\dimedrive}
+-U_j)$ 에 대해 lowering work $W_\psi=\chi_j\mathcal A_j$, 따라서
 \begin{equation}
-\Delta G_{a,j}(T) = \Delta H_{a,j} - T\,\Delta S_{a,j}.
-\label{eq:Ga}
-\end{equation}
-
-\textbf{Derivation D5 (potential-assisted driving force).} transition $j$ 의
-equilibrium 은 $V_n=U_j(T)$ 에서 성립한다 (\S\ref{sec:equilibrium}). barrier 를 모는
-driving potential 을 $V_{n,\dimedrive}$ 로 두면 (기본 $V_{n,\dimedrive}=V_n$; reduced
-model 에서 $\approx V_{n,\app}$, \S\ref{sec:notation_pot}), 그 차이를 J/mol 단위 driving
-force 로 환산한 것이
-\begin{equation}
-\mathcal A_j(V_{n,\dimedrive},T) = s_{\phi,j}\,F\,(V_{n,\dimedrive}-U_j(T)),
-\label{eq:Aj}
-\end{equation}
-이며, $\mathcal A_j>0$ 이면 forward (방전) 방향으로 미는 driving force 다.
-
-\textbf{Derivation D6 (★ effective barrier, Brønsted--Evans--Polanyi).} 외부 driving
-force 가 activation barrier 를 \emph{부분적으로} 낮춘다는 것은 reaction-coordinate
-단면에서 transition state 의 위치(Hammond postulate)에 따른 비율 $\chi$ 로 표현된다
-(Brønsted--Evans--Polanyi 관계 \cite{evanspolanyi1938}; 전기화학에서는 Butler--Volmer
-transfer coefficient \cite{bardfaulkner}). 즉
-\begin{equation}
-\boxed{\;\Delta G_{\eff,j}(T,V_{n,\app}) = \Delta G_{a,j}(T) - \chi_j\,\mathcal A_j,
-\qquad 0\le\chi_j\le1.\;}
+\boxed{\;\Delta G_{\eff}=\Delta G_a-\chi_j\,\mathcal A_j\;=\;G-W_\psi.\;}
 \label{eq:Geff}
 \end{equation}
-$V_{n,\app}$ 가 $U_j$ 보다 높아져 $\mathcal A_j>0$ 이면 $-\chi_j\mathcal A_j<0$ 이라
-barrier 가 낮아진다 — 이것이 사용자 verbatim 의 ``극판 전위에 따른 배리어를 낮추는
-효과''다. 차원: 양 항 J/mol, 일치.
-
+여기서 $G\equiv\Delta G_a$ (mode 의 intrinsic barrier; \S\ref{sec:spectrum} 에서 분포),
+$W_\psi=\chi_j\mathcal A_j$ (uniform potential lowering). $\mathcal A_j>0$ 이면 barrier 가
+낮아진다 — 사용자 verbatim 의 ``극판 전위에 따른 배리어를 낮추는 효과''.
 \begin{boundbox}
-\textbf{선형 lowering 의 유효범위 (\AL{2}, Marcus bound).} 식~\eqref{eq:Geff} 의
-선형 lowering 은 small driving force 에서의 leading-order 근사다. Marcus 이론
-\cite{marcus1956} 은 barrier 가 driving force 의 \emph{2차(quadratic)} 함수임을 보이며,
-$|\mathcal A_j|$ 가 커지면 곡률과 inverted region 으로 선형 근사가 깨진다. 따라서 본
-선형식은 $V_{n,\app}\approx U_j$ 인 \emph{tail 영역}에서 유효하며 (그 영역이 본
-Chapter 의 관심), 큰 $|V_{n,\app}-U_j|$ 로의 외삽에는 Marcus 보정이 필요하다. ``Marcus
-가 선형을 전역 정당화한다''고 주장하지 않는다.
+\textbf{Marcus bound (\AL{2}).} 선형 lowering 은 small driving force 의 leading-order
+근사다. Marcus 이론 \cite{marcus1956} 은 barrier 가 driving force 의 2차 함수임을 보이며
+큰 $|\mathcal A_j|$ 에서 곡률/inverted region 으로 선형 근사가 깨진다. 본 선형식은
+$V_{n,\dimedrive}\approx U_j$ 인 tail 영역에서 유효; 전역 정당화 아님.
 \end{boundbox}
-
-\textbf{$\Delta G_\eff<0$ 영역 (step 처리 금지).} $\chi_j\mathcal A_j$ 가
-$\Delta G_{a,j}$ 를 초과하면 형식상 $\Delta G_\eff<0$ 이 된다. 본 Chapter 는 이를
-$\max(\Delta G_\eff,0)$ 같은 step/clip 으로 처리하지 \emph{않는다} (사용자 금지). 대신
-(i) spine 의 정의 영역을 thermally activated 영역으로 한정하고, (ii) tail 분석은
-$V_{n,\app}\approx U_j$ 근방 ($\Delta G_\eff>0$) 에서 수행하며, (iii) 더 큰 driving
-force 영역은 transport-limited 등 별 메커니즘이 dominant 한 것으로 본다
-(\S\ref{sec:falsify}).
+\textbf{$\Delta G_\eff$ 가 작아지는 영역 (step 금지).} $W_\psi$ 가 $G$ 에 근접해 activation
+이 더 이상 rate-limiting 이 아니면, 식~\eqref{eq:Geff} 를 $\max(\cdot,0)$/clip 으로 고치지
+\emph{않는다}. 그 영역에서는 attempt frequency, site availability, phase-boundary motion,
+diffusion, transport, current conservation 같은 \emph{다른 physical bottleneck} 이 rate 를
+제한한다 (\S\ref{sec:falsify}).
 
 % ====================================================================
-\section{Rate constant (Eyring/Arrhenius)}\label{sec:rate}
+\section{Rate constant 과 single-mode exponential kernel}\label{sec:rate}
 % ====================================================================
-\textbf{Derivation D7 (\AL{1}).} transition state theory 의 Eyring 식
-\cite{eyring1935} 에서 rate 는 $k=(k_BT/h)\exp(-\Delta G^\ddagger/RT)$. transition $j$
-에 $\Delta G^\ddagger=\Delta G_{\eff,j}$ 를 대입하고 transition-specific 보정
-$\kappa_j(T)$ ($O(1)$ transmission/vibrational factor) 를 두면
+\textbf{Derivation D4 (Eyring rate, \AL{1}).}
 \begin{equation}
-\boxed{\;k_j(T,V_{n,\app}) = \nu_j(T)\exp\!\Big(-\frac{\Delta G_{\eff,j}}{RT}\Big),
-\qquad \nu_j(T)=\frac{k_BT}{h}\,\kappa_j(T).\;}
+k(G,T,\psi)=k_0(T)\exp\!\Big[-\frac{G-W_\psi}{RT}\Big],\qquad k_0(T)=\frac{k_BT}{h}\kappa(T).
 \label{eq:rate}
 \end{equation}
-상온 $T=300$\,K 에서 $k_BT/h\approx6\times10^{12}$\,s$^{-1}$ 로 atomic vibration scale
-($\sim$ps$^{-1}$) 와 같은 차수이므로 $\nu_j\sim10^{10}\!\sim\!10^{14}$\,s$^{-1}$ 범위가
-물리적이다. \textbf{주의 (\AL{1})}: prefactor 는 $k_BT/h$ (Eyring) 이며 임의 상수가
-아니다; $\nu_j$ 의 정량 $T$-의존은 fitting 단계에서 결정 (DQ-v3-5).
+prefactor 는 $k_BT/h$ (Eyring) 이며 임의 상수가 아니다.
 
-식~\eqref{eq:Ga}, \eqref{eq:Geff} 대입한 명시적 형태:
-\begin{equation}
-k_j = \nu_j(T)\exp\!\Big(-\frac{\Delta H_{a,j}-T\Delta S_{a,j}-\chi_j s_{\phi,j}F(V_{n,\dimedrive}-U_j)}{RT}\Big).
-\label{eq:rate_explicit}
-\end{equation}
-$T$ 가 낮으면 $\exp(-\Delta H_{a,j}/RT)$ 가 급격히 작아져 $k_j$ 가 작아진다 — 이것이
-(O2) 의 핵심 동인이며 \S\ref{sec:tail} 에서 정량화한다.
-
-% ====================================================================
-\section{Relaxation dynamics}\label{sec:kinetics}
-% ====================================================================
-\textbf{Derivation D8 (linear relaxation, \AL{5}).} 진행률 $\xi_j$ 가 equilibrium
-$\xi_{\eq,j}$ 에서 떨어져 있으면 그쪽으로 완화한다. 임의의 rate law $\dot\xi_j=f(\xi_j)$
-를 equilibrium 근처에서 1차 Taylor 전개하면 $f(\xi_j)\approx f(\xi_{\eq,j})+f'(\xi_{\eq,j})
-(\xi_j-\xi_{\eq,j})=-k_j(\xi_j-\xi_{\eq,j})$ ($f(\xi_\eq)=0$, $f'(\xi_\eq)=-k_j<0$).
-따라서
-\begin{equation}
-\boxed{\;\frac{d\xi_j}{dt} = k_j(T,V_{n,\app})\,\big[\xi_{\eq,j}(V_n,T)-\xi_j\big].\;}
-\label{eq:relax}
-\end{equation}
+\textbf{Derivation D5 (single-mode relaxation, \AL{5}).} 한 local mode 의 lag $r=\theta_\eq-\theta$.
+forward/backward rate $r_+,r_-$ 의 net flux $\dot\theta=r_+(1-\theta)-r_-\theta$ 는 stationary
+target $\theta_\eq=r_+/(r_++r_-)$ 근처에서 $\dot\theta=k(\theta_\eq-\theta)$, $k=r_++r_-$ 로
+환원된다. 즉 $\theta_\eq$ 는 target, $k$ 는 그 target 으로 접근하는 mobility — 이 구분이
+double counting 을 막는다 (target 과 mobility 를 동시에 자유 fitting 하지 않음).
 \begin{boundbox}
-\textbf{유효범위 (\AL{5}).} 식~\eqref{eq:relax} 는 \emph{equilibrium 근처} 선형화이며,
-본 Chapter 의 1차 관심인 tail 영역 ($\xi_j\approx\xi_{\eq,j}$) 에서 일반성을 잃지
-않는다. 평형에서 멀면 비선형 보정이 필요하고, $k_j$ 는 일반적으로 $\xi_{\eq,j},T$ 에
-의존한다 (상수 아님). De Donder affinity / linear irreversible thermodynamics
-\cite{degrootmazur1962,onsager1931} 의 표준 결과.
+\textbf{유효범위 (\AL{5}).} 선형 relaxation 은 equilibrium 근처 1차 Taylor 이며 tail 영역
+($\theta\approx\theta_\eq$) 에서 일반성을 잃지 않는다 \cite{degrootmazur1962,onsager1931}.
 \end{boundbox}
 
-\textbf{Derivation D9 ($q$-coordinate, 정전류).} 정전류에서 $Q_\ext=|I|t$, $q=|I|t/Q_\cell$
-이므로 $dq/dt=|I|/Q_\cell$, chain rule 로
+\textbf{Derivation D6 ($q$-coordinate, single-mode kernel).} $v_Q=|I|$, $dq/dt=|I|/Q_\cell$
+에서 $d\theta/dq=(Q_\cell k/|I|)\,r$, 그리고
 \begin{equation}
-\frac{d\xi_j}{dq} = \frac{Q_\cell}{|I|}\,k_j\,(\xi_{\eq,j}-\xi_j).
-\label{eq:dxi_dq}
+\frac{dr}{dq}+\frac{Q_\cell k}{|I|}\,r=\frac{d\theta_\eq}{dq}.
+\label{eq:r_ode}
 \end{equation}
-차원: $(C/A)(1/s)=$ 무차원, $q$ 도 무차원. 일치.
+post-peak 에서 $d\theta_\eq/dq\simeq0$ 이면
+\begin{equation}
+\boxed{\;r(q)\simeq r(q_a)\exp\!\Big[-\frac{q-q_a}{L}\Big],\qquad L=\frac{|I|}{Q_\cell\,k}.\;}
+\label{eq:single_kernel}
+\end{equation}
+이것은 관측 tail 전체가 단일 exponential 이라는 뜻이 \emph{아니다} — \textbf{하나의 local
+mode 가 만드는 exponential kernel} 이다. 차원: $L$ 은 무차원 ($q$ 단위). $|I|/(Q_\cell k)=$
+A/(C$\cdot$1/s)$=$무차원. 일치.
 
 % ====================================================================
-\section{시간 적분형: integral equation 과 ratio substitution}\label{sec:integral}
+\section{★ Barrier distribution $\to$ relaxation-length spectrum}\label{sec:spectrum}
 % ====================================================================
-\textbf{Derivation D10 (시간 적분).} 식~\eqref{eq:relax} 를 $0\to t$ 적분하면
-\begin{equation}
-\xi_j(t) = \xi_{j,0} + \int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t' - \int_0^t k_j(t')\,\xi_j(t')\,\dd t'.
-\label{eq:volterra}
-\end{equation}
-여기서 첫 적분의 피적분은 외부 입력 ($V_n(t'),T(t')\Rightarrow\xi_{\eq,j},k_j$) 으로
-부터 알려진 함수이고, 둘째 적분은 미지 함수 $\xi_j$ 를 포함한다 (self-consistent).
+\textbf{물리.} 실제 electrode 에는 단일 $G$ 가 아니라, particle size·local staging
+environment·domain boundary·defect·stress·surface·transport 차이로 인한 \emph{barrier
+distribution} $\rho_G(G;T,\psi)$ 가 있다. 그러나 관측 tail 의 shape 은 $\rho_G$ 와 같지
+않다 — $G$ 가 먼저 rate 로, 다시 length 로 변환되기 때문이다.
 
-\textbf{Fredholm vs Volterra 구분 (\AL{7}).} 적분의 상한이 변수 $t$ 이므로
-식~\eqref{eq:volterra} 는 \emph{Volterra} integral equation of the second kind 이다.
-반면 사용자 박사 연구 \cite{lee2011,son2013} 의 ratio-substitution / propagator 기법은
-\emph{Fredholm} integral equation of the second kind (고정 적분 한계, steady-state)
-를 대상으로 한다. 따라서 그 기법을 본 Volterra 형식에 직접 쓰려면 적용성 검증이
-필요하다 (DQ-v3-2). 본 Chapter 는 아래 ratio-substitution closed-form 을 \emph{근사·
-검증-tier} 결과로 제시하고, direct numerical 적분을 reference 로 둔다.
-
-\textbf{Derivation D11 (simple-case reference).} $k_j,\xi_{\eq,j}$ 가 시간 무관인
-\emph{수학적 reference} (실제 측정에서 충족되지 않음) 에서 식~\eqref{eq:relax} 는 1차
-선형 ODE 이고 $\xi_j(0)=0$ reference 로
+\textbf{Derivation D7 (barrier$\to$length 지수 매핑).} 식~\eqref{eq:rate} 와 $L=|I|/(Q_\cell k)$
+에서
 \begin{equation}
-\xi_j^{\simplecase}(t;k_j,\xi_{\eq,j}) = \xi_{\eq,j}\,(1-e^{-k_j t}).
-\label{eq:simple}
+\boxed{\;L(G,T,\psi)=\frac{|I|}{Q_\cell\,k_0(T)}\exp\!\Big[\frac{G-W_\psi}{RT}\Big].\;}
+\label{eq:L_of_G}
 \end{equation}
-이는 ratio substitution 의 normalization reference 로만 쓰이며, 평가 시점 $t$ 의
-instantaneous $k_j,\xi_{\eq,j}$ 로 정의한다.
-
-\textbf{Derivation D12 (ratio substitution, \AL{7}).} Refs 6/7 의 핵심은 서로 다른 두
-시점의 \emph{비율}이 simple-case 와 근사적으로 같다는 것이다:
-$\xi_j(t')/\xi_j(t)\approx\xi_j^{\simplecase}(t')/\xi_j^{\simplecase}(t)$. 이를
-식~\eqref{eq:volterra} 의 둘째 적분에 넣으면 $\xi_j(t)$ 가 적분 밖으로 나온다:
+$G$ 의 작은 변화가 $L$ 에서 \emph{지수적으로 확대}된다 — 이것이 stretched tail 의 핵심
+근원이다 (long tail 은 $\rho_G$ 자체가 길어서가 아니라 barrier$\to$length 매핑이 지수이기
+때문일 수 있다). 역변환 $G(L)=W_\psi+RT\ln[Q_\cell k_0 L/|I|]$, Jacobian $|dG/dL|=RT/L$.
+따라서 relaxation-length spectrum:
 \begin{equation}
-\xi_j(t) = \xi_{j,0} + \int_0^t k_j\,\xi_{\eq,j}\,\dd t' - \frac{\xi_j(t)}{\xi_j^{\simplecase}(t)}\int_0^t k_j\,\xi_j^{\simplecase}\,\dd t'.
-\label{eq:after_sub}
+A_L(L;T,\psi)=\rho_G\big(G(L,T,\psi);T,\psi\big)\,\frac{RT}{L}\,A_0(L;T,\psi),
+\label{eq:spectrum}
 \end{equation}
-$\xi_j(t)$ 항을 좌변으로 모아 풀면 closed-form:
+$A_0$ 는 각 mode 의 initial residual amplitude·population weight·accessibility (무차원
+per-mode factor). $A_L$ 의 $1/L$ 차원은 $RT/L$ Jacobian 에서 오며, $A_L$ 은 weight 가
+아니라 $L$ 에 대한 \emph{density} 다 ($\int A_L\,dL=$ 총 weight).
+\begin{boundbox}
+\textbf{Non-uniqueness (\AL{6}).} barrier distribution $\to$ stretched kinetics 의 역매핑은
+\emph{유일하지 않다} (Plonka \cite{plonka2001}; retrapping 등 다른 메커니즘도 동일 stretched
+tail 재현). 따라서 본 Chapter 는 $\rho_G$ 를 관측 tail 에서 \emph{역산하지 않고},
+주어진 (또는 독립 측정한) $\rho_G$ 로부터 tail 을 \emph{forward 예측}하는 데에만 쓴다
+(\S\ref{sec:falsify}).
+\end{boundbox}
+
+% ====================================================================
+\section{★ Kernel integral for the observed tail}\label{sec:kernel}
+% ====================================================================
+전체 phase progress 의 post-peak tail 기여는 local exponential kernel 의 mixture:
 \begin{equation}
-\boxed{\;\xi_j(t) = \frac{\xi_{j,0} + \displaystyle\int_0^t k_j(t')\,\xi_{\eq,j}(t')\,\dd t'}{1 + \dfrac{1}{\xi_j^{\simplecase}(t)}\displaystyle\int_0^t k_j(t')\,\xi_j^{\simplecase}(t')\,\dd t'}.\;}
+\boxed{\;\frac{d\Theta_\mathrm{tail}}{dq}\simeq\int_0^\infty A_L(L;T,\psi)\,\frac1L\,
+\exp\!\Big[-\frac{q-q_a}{L}\Big]\,dL.\;}
+\label{eq:kernel_integral}
+\end{equation}
+이것이 본 Chapter 의 중심식이다 (Codex 산출물과의 대조에서 채택한 spectrum 관점). single-
+mode 식~\eqref{eq:single_kernel} 은 kernel 하나일 뿐이며, 관측 stretched tail 은 spectrum
+$A_L$ 의 large-$L$ 영역이 결정한다. 식~\eqref{eq:kernel_integral} 은 Laplace-type mixture
+이므로 $\rho_G$ 의 형태에 따라 단일 지수~stretched~power-law 사이를 연속적으로 잇는다
+(smooth). 일반적인 두 시점 kernel 로 쓰면
+\begin{equation}
+\mathcal K(q,q')=\int_0^\infty A_L(L;T,\psi)\,\frac1L\,\exp\!\Big[-\frac{q-q'}{L}\Big]\,dL,
+\label{eq:K_def}
+\end{equation}
+이고 식~\eqref{eq:kernel_integral} 은 $\mathcal K(q,q_a)$ 에 해당한다 (이 $\mathcal K$ 가
+\S\ref{sec:closure} 의 closure 에 들어가는 kernel).
+
+\textbf{상태 주의 (\AL{6}).} 본 spectrum/kernel 관점은 Assumption Ledger 에서 BOUNDED
+이며, 식~\eqref{eq:kernel_integral} 을 본 Chapter 의 중심으로 쓰는 것은 \emph{spectrum
+hypothesis 가 \S\ref{sec:falsify} 의 N3/N4 falsification 을 통과한다는 전제} 하에서다
+(single-mode 식~\eqref{eq:single_kernel} 은 $A_L=\delta(L-L_0)$ 특수해로 항상 포함).
+
+% ====================================================================
+\section{★ Refs 6/7 propagator: spectrum integral 의 closure}\label{sec:closure}
+% ====================================================================
+\textbf{왜 필요한가.} 식~\eqref{eq:kernel_integral} 은 $A_L$ 을 알면 forward 평가 가능
+하지만, $\theta_j$ 와 $V_n$ 이 charge balance (식~\eqref{eq:charge_balance}) 로 결합되어
+있어 일반적으로 $\Theta$ 가 적분 안팎에 동시에 나타나는 \emph{self-consistent integral
+equation} 이 된다. 사용자 박사 연구 \cite{lee2011,son2013} 의 propagator / ratio-
+substitution 이 이를 닫는다.
+
+\textbf{Derivation D8 (ratio-substitution closure).} 시간 적분형
+$\Theta(q)=\Theta_0+\int_0^q \mathcal K(q,q')[\Theta_\eq(q')-\Theta(q')]\,dq'$ 에서 미지
+$\Theta(q')$ 에 비율 ansatz $\Theta(q')/\Theta(q)\approx\Theta^{\simplecase}(q')/\Theta^{\simplecase}(q)$
+($\Theta^{\simplecase}$ = single reference mode 의 해, $L$ 고정) 를 적용하면 $\Theta(q)$ 가
+적분 밖으로 나와
+\begin{equation}
+\boxed{\;\Theta(q)=\frac{\Theta_0+\int_0^q \mathcal K\,\Theta_\eq\,dq'}
+{1+\dfrac{1}{\Theta^{\simplecase}(q)}\int_0^q \mathcal K\,\Theta^{\simplecase}\,dq'}.\;}
 \label{eq:closed}
 \end{equation}
+$\mathcal K(q,q')$ 는 식~\eqref{eq:K_def} 의 spectrum kernel (식~\eqref{eq:kernel_integral}
+이 $\mathcal K(q,q_a)$).
 \begin{boundbox}
-\textbf{유효성 (\AL{7}, DQ-v3-2).} 식~\eqref{eq:closed} 는 (i) $k_j,\xi_{\eq,j}$ 의
-시간 변화가 완만하고, (ii) Volterra$\to$Fredholm 근사가 성립하는 영역에서 유효하다.
-저속 정전류 + tail 영역에서 충족될 것으로 기대되나, 본 Chapter 는 이를 \emph{direct
-numerical integration of} 식~\eqref{eq:volterra} \emph{대비 오차로 검증}해야 함을
-명시한다 (가정으로 확정하지 않음). 또한 ratio ansatz
-$\xi_j(t')/\xi_j(t)\approx\xi_j^{\simplecase}(t')/\xi_j^{\simplecase}(t)$ 는
-$\xi_j^{\simplecase}(0)=0$ 인 zero-IC reference 를 쓰므로, 식~\eqref{eq:closed} 가
-self-consistent 한 것은 master 의 초기 조건이 $\xi_{j,0}=0$ 일 때이다. 본 Chapter 의
-discharge-reference (transition 시작 시 미진행) 에서는 $\xi_{j,0}=0$ 이 자연스러우며,
-$\xi_{j,0}\ne0$ (relaxed start) 인 경우는 별도 보정 항으로 다룬다 (본 Chapter 범위 외).
+\textbf{적용성 (\AL{7}, DQ-v3-2).} Refs 6/7 의 기법은 \emph{Fredholm} 2nd-kind 를 대상으로
+한다. 본 형식이 시간 상한 $q$ 의 \emph{Volterra} 인 한, 식~\eqref{eq:closed} 는 근사·검증-
+tier 결과이며 \emph{direct numerical integration of} 식~\eqref{eq:kernel_integral} \emph{대비
+오차로 검증}해야 한다 (가정으로 확정하지 않음). ratio ansatz 는 $\Theta_0=0$ reference 에서
+self-consistent.
 \end{boundbox}
 
 % ====================================================================
-\section{ICA 관측식과 ★ tail 의 temperature 의존}\label{sec:tail}
+\section{ICA mapping}\label{sec:ica}
 % ====================================================================
-\textbf{Derivation D13 (ICA observable, \AL{9}).} 식~\eqref{eq:charge_balance} 를
-미분하면 ($Q_\ext=Q_\cell q$, chain rule),
+background storage $dQ_\bg=C_\bg(V_n,T)\,dV_n$ 와 phase progress $Q_p\,d\Theta$ 의 합
+$dQ=C_\bg dV_n+Q_p d\Theta$ 에서
 \begin{equation}
-\frac{dQ_\ext}{dV_{n,\app}} = \frac{Q_\cell}{\,dV_{n,\app}/dq\,},\qquad
-(dQ/dV)_j \approx \frac{Q_{j,\tot}\,(d\xi_j/dq)}{dV_{n,\app}/dq}.
+\boxed{\;\frac{dQ}{dV_n}=\frac{C_\bg(V_n,T)}{1-Q_p\,(d\Theta/dQ)}.\;}
 \label{eq:ica}
 \end{equation}
-peak 들이 충분히 분리된 영역 ($|U_i-U_j|\gtrsim2(w_i+w_j)$) 에서 transition $j$ 의 ICA
-기여가 위와 같이 분리된다. 분모 $dV_{n,\app}/dq$ 는 background 의 smooth gradient
-이며, tail 영역에서는 $V_{n,\app}=V_n+s_I|I|R_n$ 의 $q$-변화가 완만하다고 본다
-(분모의 강한 변동은 \S\ref{sec:falsify} 의 $R_n$-기여로 별도 분리). 따라서 tail 형상은
-분자 $d\xi_j/dq$ 가 지배한다.
-
-\textbf{Derivation D14 (★ tail = kinetic lag, novel; \AL{8}).} tail 영역에서
-lag $\Delta_j(q)\equiv\xi_{\eq,j}-\xi_j>0$ (잔존) 를 정의한다. 식~\eqref{eq:dxi_dq} 에서
-$d\Delta_j/dq = d\xi_{\eq,j}/dq - d\xi_j/dq = d\xi_{\eq,j}/dq - (Q_\cell k_j/|I|)\Delta_j$
-이다. 여기서 \emph{kinetic-broadening-dominated regime} 을 가정한다: kinetic decay
-length $\ell_{\mathrm{tail},j}=|I|/(Q_\cell k_j)$ 가 equilibrium width (in $q$) 보다
-훨씬 길면 ($\ell_{\mathrm{tail},j}\gg w_j\cdot|dq/dV_{n}|$), source 항 $d\xi_{\eq,j}/dq$
-는 relaxation 항에 비해 무시 가능하다. 이 regime 에서만 tail 이 equilibrium 형태가
-아니라 kinetic lag 으로 지배된다 (\S\ref{sec:equilibrium} 의 width-shrink 논의와 정합;
-이 가정 자체가 \S\ref{sec:falsify} 의 판별 대상). 그러면
-\begin{equation}
-\frac{d\Delta_j}{dq}\approx-\frac{d\xi_j}{dq}=-\frac{Q_\cell\,k_j}{|I|}\,\Delta_j
-\;\Rightarrow\;
-\Delta_j(q)\approx\Delta_j(q_0)\,\exp\!\Big[-\frac{Q_\cell k_j}{|I|}(q-q_0)\Big].
-\label{eq:tail_env}
-\end{equation}
-이는 lag 의 \emph{smooth exponential decay envelope} 이다 (step jump 아님). characteristic
-decay length (in $q$):
-\begin{equation}
-\boxed{\;\ell_{\mathrm{tail},j} = \frac{|I|}{Q_\cell\,k_j(T,V_{n,\app})}.\;}
-\label{eq:tail_len}
-\end{equation}
-\textbf{(O2) 의 정량 메커니즘.} 식~\eqref{eq:rate_explicit} 에서 $T$ 가 낮으면 $k_j$ 가
-작아지므로 $\ell_{\mathrm{tail},j}\propto1/k_j$ 가 \emph{커진다} $\Rightarrow$ tail 이
-길게 늘어진다. $T$ 가 높으면 $k_j$ 가 커져 tail 이 짧게 끝난다. 이는 사용자 관측 (O2)
-와 일치한다.
-
-\textbf{Equilibrium-width 가설의 부분 배제 (주의: 부분적).} \S\ref{sec:equilibrium}
-에서 본 대로 \emph{homogeneous lattice-gas} width 는 $w_j=RT/F$ 라 저온에서 오히려
-좁아진다. 따라서 ``저온 긴 tail''은 \emph{homogeneous lattice-gas equilibrium} 효과로는
-설명되지 않는다. \textbf{단 이것이 모든 equilibrium 효과를 배제하지는 않는다}:
-heterogeneous site-disorder broadening (\AL{3b}) 의 width 는 static 분산이 정하므로
-$T$-무관(또는 약의존)이라, 저온서 좁아지지 않는다. 따라서 disorder-broadening 가설은
-width-shrink 논증만으로 배제되지 않으며, lineshape test (지수형 vs Gaussian-형 tail,
-\S\ref{sec:falsify}) 로 별도 판별해야 한다. 결론적으로 본 절은 kinetic-lag 메커니즘이
-관측 (O2) 와 \emph{정합함을 강하게 시사}하되, 그 \emph{확정}은 \S\ref{sec:falsify} 의
-competing-source falsification 통과를 전제로 한다 (본 Chapter 는 그 protocol 을
-제공하며, 실제 data 판별은 fitting/실험 단계).
+식~\eqref{eq:kernel_integral} 의 tail 기여가 $d\Theta/dQ$ 에 들어가 ICA tail 로 나타난다.
+관측은 $V_{n,\app}$ 축이므로 voltage-axis tail scale 은 $L_\varphi\simeq|dV_n/dQ|_{q_a}L$
+로 local DVA mapping 에 의해 변형된다. $V_{n,\app}=V_n+s_I|I|R_n$, $V_n$ = charge-balance
+root (식~\eqref{eq:charge_balance}); rate/barrier 인수 $V_{n,\dimedrive}=V_n$ (기본).
 
 % ====================================================================
-\section{★ Competing tail source 의 falsification}\label{sec:falsify}
+\section{★ Spectrum 의 $T/\psi$ 의존 = stretched tail (O2)}\label{sec:tailT}
 % ====================================================================
-\textbf{왜 필요한가.} 관측된 tail 을 effective barrier (kinetic lag) 에 귀속하려면,
-같은 tail 을 만들 수 있는 다른 물리 (competing source) 를 \emph{배제}해야 한다 (\AL{10};
-P3 논문 수준). ICA 가 rate 에 따라 broadening 된다는 것은 잘 알려져 있으므로
-\cite{dubarry2022,fly2020}, 단순 rate-broadening 과 effective-barrier signature 를
-구별하는 것이 핵심이다. 본 Chapter 는 다음 discrimination 을 요구한다.
+\textbf{Derivation D9 (novel; \AL{8}).} 식~\eqref{eq:L_of_G} 에서:
+\begin{itemize}
+\item \textbf{Low $T$}: $\exp[(G-W_\psi)/RT]$ 가 커지고 $k_0(T)$ 가 작아져 같은 $G-W_\psi$
+  에 대해 $L$ 이 커진다 $\Rightarrow$ $A_L$ weight 가 large-$L$ 로 이동 $\Rightarrow$
+  식~\eqref{eq:kernel_integral} 의 long-$q$ tail 이 길어진다 (저온 긴 tail).
+\item \textbf{High $T$}: $RT$ 증가로 $L$ 이 작아져 $A_L$ 이 short-$L$ 로 이동 $\Rightarrow$
+  tail 이 짧게 끝난다.
+\item \textbf{Potential assistance}: $W_\psi=\chi_j\mathcal A_j$ 증가 시 $L$ 감소,
+  \begin{equation}
+  \frac{\partial\ln L}{\partial V_{n,\dimedrive}}=-\frac{\chi_j s_{\phi,j}F}{RT}<0\ (\text{forward}),
+  \label{eq:psi_shift}
+  \end{equation}
+  즉 potential 이 spectrum 을 short-$L$ 로 shift $\Rightarrow$ tail 단축. 이는 state jump
+  가 아니라 \emph{spectrum shift} 다.
+\end{itemize}
+\textbf{Equilibrium-width 와의 구별.} homogeneous lattice-gas width 는 $w_j=RT/F$ 라 저온서
+오히려 좁아진다. 따라서 ``저온 긴 tail''은 homogeneous-equilibrium 효과로 설명되지 않으며
+\emph{kinetic spectrum shift} 가 필요하다 (단, heterogeneous disorder width 는 $T$-약의존
+이므로 별도 — \S\ref{sec:falsify} lineshape test). 본 절은 kinetic-spectrum 메커니즘이
+(O2) 와 \emph{강하게 시사(consistent)} 됨을 보이며, \emph{확정}은 falsification 통과 전제.
 
-\begin{longtable}{p{0.26\textwidth} p{0.40\textwidth} p{0.28\textwidth}}
-\toprule
-Competing source & tail 기여 방식 & 판별 (falsification) \\ \midrule \endhead
-Equilibrium width ($w_j$) & lattice-gas/disorder broadening 이 tail 형성 &
-  저속 OCV(준평형) peak 의 near-peak 감쇠 형상: $\log(dQ/dV)$ vs $(V-U)$ (지수) /
-  vs $(V-U)^2$ (Gaussian). 저온서 좁아지면 kinetic 아님 확인 \\
-Polarization $R_n$ & $V_{n,\app}=V_n+s_I|I|R_n$ 의 voltage shift 가 peak 이동/broadening &
-  pulse / current-interrupt / 다중 $|I|$: $R_n$ 의 $|I|$-의존 분리 \\
-Solid/transport diffusion & 저온서 느린 확산이 lag $\Rightarrow$ tail &
-  GITT relaxation time signature + 다중 rate; $D(T)$ 의 Arrhenius vs $k_j(T)$ 분리 \\
-Barrier distribution $\rho(g)$ & dispersive/stretched kinetics 가 tail \cite{plonka2001} &
-  \emph{비유일} 매핑(\AL{6}) — stretched 만으로 확정 금지; 독립 실험 필요 \\
+% ====================================================================
+\section{★ Falsification 과 non-uniqueness 처리}\label{sec:falsify}
+% ====================================================================
+\textbf{왜 필요한가.} 관측 tail 을 barrier-spectrum 에 귀속하려면 competing source 를
+배제해야 한다 (\AL{10}; ICA 가 rate 로 broadening 된다는 것은 알려져 있으므로
+\cite{dubarry2022,fly2020} 단순 rate-broadening 과 구별이 핵심).
+\begin{longtable}{p{0.24\textwidth} p{0.40\textwidth} p{0.30\textwidth}}
+\toprule Competing source & tail 기여 & 판별 \\ \midrule \endhead
+Equilibrium width & homogeneous/disorder broadening & 저속 OCV peak near-peak lineshape; 저온서 좁아지면 kinetic 아님 (homogeneous 한정) \\
+Polarization $R_n$ & $V_{n,\app}$ shift & pulse/current-interrupt/다중 $|I|$ \\
+Transport/diffusion & 저온 느린 확산 lag & GITT relaxation signature; $D(T)$ Arrhenius vs barrier slope \\
+Barrier distribution $\rho_G$ \cite{plonka2001} & spectrum kernel & \emph{비유일} 역매핑 — forward prediction 만; 역산 금지 \\
 \bottomrule
 \end{longtable}
 
-\textbf{판별 논리 (★ degeneracy 주의).} effective-barrier kinetic 모델
-(식~\eqref{eq:tail_len}) 은 $\ell_{\mathrm{tail}}\propto|I|/(Q_\cell k_j)$ 로 $|I|$ 에
-선형 의존한다. \textbf{그러나 $|I|$-선형성은 판별자가 되지 못한다}: solid-diffusion
-lag 도 정전류 ramp 대비 1차 relaxation 이므로 동일하게 $\ell_{\mathrm{tail}}\propto|I|$
-를 준다 (두 경우 모두 ``constant-rate driving vs first-order relaxation'' 구조).
-polarization($R_n$) 도 $V_{n,\app}$ shift 를 통해 $|I|$ 의존을 공유한다. 따라서
-$|I|$-scaling 만으로 effective barrier 를 transport/polarization 과 구별할 수 없다.
+\textbf{★ 비퇴화 discriminator.} tail length scaling 만으로는 부족하다: $L\propto|I|$ 는
+transport lag 도 공유한다 (퇴화). barrier-spectrum 의 고유 signature 는 식~\eqref{eq:L_of_G},
+\eqref{eq:psi_shift} 의 \emph{potential-dependent} 항이다. 즉 (a) tail length 의 Arrhenius
+slope 자체가 $(V_{n,\dimedrive}-U_j)$ 에 의존하고, (b) potential/$|I|$ 증가 시 spectrum 이
+$\chi_j$ (와 $R_n$) 를 통해 short-$L$ 로 shift 한다. transport/단순 polarization 은 이런
+potential-dependent slope 를 갖지 않는다.
 
-\textbf{★ 진짜 discriminator: $\chi$-의존 Arrhenius slope 와 peak-shift.}
-effective barrier 의 고유 signature 는 식~\eqref{eq:rate_explicit} 의 지수 안에 있는
-\emph{potential-dependent 항} $\chi_j s_{\phi,j}F(V_{n,\dimedrive}-U_j)/RT$ 다. reduced
-model ($V_{n,\dimedrive}\approx V_{n,\app}=V_n+s_I|I|R_n$) 에서 이 항은 $|I|$ 에 직접
-의존하게 된다. 즉
-\begin{equation}
-\ln\ell_{\mathrm{tail},j} = \mathrm{const} + \frac{\Delta H_{a,j}}{RT}
-- \frac{\Delta S_{a,j}}{R} - \frac{\chi_j s_{\phi,j}F(V_{n,\dimedrive}-U_j)}{RT} + \ln|I|,
-\label{eq:discriminator}
-\end{equation}
-에서 (a) $\ln\ell_{\mathrm{tail}}$ vs $1/T$ 의 \emph{Arrhenius slope 자체가
-$(V_{n,\dimedrive}-U_j)$ 에 의존}하고, (b) tail/peak 위치가 $|I|$ 증가 시 $\chi_j$ (및
-$R_n$) 를 통해 shift 한다. transport($D(T)$, activation $E_D$) 와 단순 polarization 은
-이런 \emph{potential-dependent Arrhenius slope} 를 갖지 않는다. 이것이 비퇴화
-(non-degenerate) 판별 신호다.
-
-\textbf{정량 null-result 판정 규칙 (decision rules).}
+\textbf{Null-result 규칙.}
 \begin{enumerate}[label=(N\arabic*)]
-\item 다중 $T$ 의 $\ln\ell_{\mathrm{tail}}$ vs $1/T$ Arrhenius slope 가 측정 오차
-  내에서 독립 측정한 diffusion activation $E_D$ 와 일치하고 $(V_{n,\app}-U_j)$ 의존성을
-  보이지 않으면 $\Rightarrow$ effective-barrier 귀속 \emph{기각} (transport-dominant).
-\item peak/tail 이 $|I|$ 에 따라 shift 하지 않으면 $\Rightarrow$ $\chi_j$ 항 부재
-  $\Rightarrow$ potential-lowering 가설 기각 (순수 thermal 또는 polarization).
-\item 저속 OCV(준평형) peak 의 near-peak lineshape 이 저온서 \emph{좁아지지 않으면}
-  $\Rightarrow$ heterogeneous disorder-broadening 기여 (\AL{3b}) 존재 — kinetic 단독
-  귀속 기각, disorder 와 분리 필요.
-\item $\ell_{\mathrm{tail}}$ 의 $|I|$-scaling 은 (위 degeneracy 로) 판별에 사용하지
-  않는다 — 일치해도 effective-barrier 의 증거가 아니다.
+\item tail length 의 $\ln$ vs $1/T$ slope 가 독립 측정 $E_D$ 와 일치하고 potential 의존이
+  없으면 $\Rightarrow$ barrier-spectrum 귀속 기각 (transport-dominant).
+\item potential/$|I|$ 증가 시 spectrum/peak shift 가 없으면 $\Rightarrow$ $\chi_j$ 항 부재
+  $\Rightarrow$ potential-lowering 가설 기각.
+\item 저속 OCV near-peak lineshape 이 저온서 좁아지지 않으면 $\Rightarrow$ heterogeneous
+  disorder 기여 존재 — kinetic 단독 귀속 기각, disorder 와 분리.
+\item $\rho_G$ 를 관측 tail 에서 역산하지 않는다 (non-unique); $\rho_G$ 는 독립 근거
+  (입자분포·EIS·계산) 로 주고 tail 을 forward 예측해 비교만 한다.
 \end{enumerate}
-effective barrier 귀속은 (N1)(N2) 를 \emph{통과}(즉 $V_{n,\app}$-의존 Arrhenius slope
-+ $|I|$-shift 관측)하고 (N3) 의 disorder 기여가 배제될 때에만 성립한다. 본 Chapter 는
-이 falsification \emph{protocol} 을 제공하며, 실제 data 적용은 fitting/실험 단계다.
 
 % ====================================================================
-\section{Fitting 가능 모델, identifiability, validation}\label{sec:fitting}
+\section{Fitting 모델, identifiability, validation}\label{sec:fitting}
 % ====================================================================
-\textbf{Deliverable (논리식).} transition $j$ 의 ICA 는 다음 closed-form 으로 표현된다
-(평가 순서 innermost$\to$outermost): $k_j$ (식~\eqref{eq:rate_explicit}) $\to$
-$\xi_{\eq,j}$ (식~\eqref{eq:xi_eq_latticegas}) $\to$ $\xi_j$ (식~\eqref{eq:closed})
-$\to$ $d\xi_j/dq$ (식~\eqref{eq:dxi_dq}) $\to$ $(dQ/dV)_j$ (식~\eqref{eq:ica}):
-\begin{equation}
-\boxed{
-\begin{aligned}
-(dQ/dV)_j(V_{n,\app},T,|I|) &= \frac{Q_{j,\tot}\,(d\xi_j/dq)}{dV_{n,\app}/dq},\quad
-\frac{d\xi_j}{dq}=\frac{Q_\cell}{|I|}k_j(\xi_{\eq,j}-\xi_j),\\
-\xi_{\eq,j}&=\big[1+e^{-s_{\phi,j}(V_n-U_j)/w_j}\big]^{-1}\ \text{(lattice-gas baseline, \AL{3a})},\\
-k_j&=\nu_j(T)\,e^{-(\Delta H_{a,j}-T\Delta S_{a,j}-\chi_j s_{\phi,j}F(V_{n,\dimedrive}-U_j))/RT},\\
-\xi_j&=\text{식~\eqref{eq:closed} (ratio-substitution closed-form, \AL{7}, 검증-tier)},\\
-V_n &= \text{식~\eqref{eq:charge_balance} 의 root},\quad
-V_{n,\app}=V_n+s_I|I|R_n,\quad V_{n,\dimedrive}=V_n.
-\end{aligned}}
-\label{eq:fitform}
-\end{equation}
-\textbf{Potential 인수의 일관성 (V\_n / V\_{n,app} / V\_{n,drive}).} equilibrium isotherm
-$\xi_{\eq,j}$ 와 driving force 는 \emph{internal} $V_n$ 에 대한 함수다 ($V_{n,\dimedrive}
-=V_n$, 기본 가정, \S\ref{sec:notation_pot}). 관측 변수는 $V_{n,\app}=V_n+s_I|I|R_n$ 이며,
-$V_n$ 은 charge balance 식~\eqref{eq:charge_balance} 의 root 로 닫힌다. 따라서
-식~\eqref{eq:fitform} 은 측정 $V_{n,\app}$ 가 주어지면 $R_n$ 보정으로 $V_n$ 을 얻고,
-그 $V_n$ 으로 $\xi_{\eq,j},k_j$ 를 평가하는 self-consistent 구조다. (reduced model 에서
-$R_n$ 을 무시하면 $V_{n,\dimedrive}\approx V_{n,\app}$ 로 단순화 가능하나, 그때는 $R_n$ 의
-tail 기여를 \S\ref{sec:falsify} 에서 별도로 배제해야 한다.)
+\textbf{Deliverable.} ICA tail 의 closed-form 논리식 (평가 순서 inner$\to$outer):
+$k(G,T,\psi)$ (식~\eqref{eq:rate}) $\to$ $L(G)$ (식~\eqref{eq:L_of_G}) $\to$ spectrum
+$A_L$ (식~\eqref{eq:spectrum}) $\to$ kernel integral $d\Theta_\mathrm{tail}/dq$
+(식~\eqref{eq:kernel_integral}, Refs 6/7 closure 식~\eqref{eq:closed}) $\to$ $dQ/dV_n$
+(식~\eqref{eq:ica}). \textbf{유효범위}: $\Delta G_\eff\ge0$ (Marcus bound), tail 영역
+$V_{n,\dimedrive}\approx U_j+O(w_j)$.
 
-\textbf{유효범위}: $\Delta G_{\eff,j}\ge0$ (thermally activated; \S\ref{sec:barrier} 의
-Marcus bound), tail 영역 $V_{n,\app}\approx U_j+O(w_j)$.
-
-\textbf{Parameter identifiability (\AL{10}).}
-\begin{longtable}{p{0.18\textwidth} p{0.30\textwidth} p{0.46\textwidth}}
+\textbf{Parameter / 실험 매핑 (\AL{10}).}
+\begin{longtable}{p{0.26\textwidth} p{0.30\textwidth} p{0.38\textwidth}}
 \toprule parameter & 의미 & 결정 실험 \\ \midrule \endhead
-$U_j(T),w_j(T),Q_{j,\tot}$ & equilibrium 중심·width·용량 & 저속 OCV / GITT 준평형 peak \\
-$\Delta H_{a,j},\Delta S_{a,j}$ & activation enthalpy/entropy & 다중 $T$ Arrhenius plot \\
-$\chi_j$ & transfer coefficient & 다중 $|I|$ 의 $V_{n,\app}$ shift \\
-$\nu_j(T)$ & prefactor & Arrhenius intercept (DQ-v3-5) \\
+$U_j(T),w_j(T),Q_p$ & equilibrium target & 저속 OCV / GITT 준평형 \\
+$\Delta H_a,\Delta S_a$ & activation & 다중 $T$ Arrhenius \\
+$\chi_j$ (혹은 $\Lambda_\psi$) & potential lowering & 다중 $|I|$/potential shift \\
+$\rho_G$ (외부 입력) & barrier spectrum & 독립 근거(입자분포/EIS/계산)로 \emph{주어짐} — tail 역산 금지 (forward only) \\
+$k_0(T)$ & prefactor & Arrhenius intercept \\
 \bottomrule
 \end{longtable}
-\textbf{경고 (non-identifiability).} $R_n,k_j,w_j,\rho(g)$ 는 모두 broadening 에 기여하므로
-단일 $T$, 제한된 $|I|$ data 로 동시 분리 불가다. 반드시 독립 실험 (pulse/GITT/EIS, 다중
-$T\times|I|$) 으로 제약해야 하며 (\S\ref{sec:falsify}), fitting solver 구현은 본 Chapter
-범위 외다 (P1).
+\textbf{Non-identifiability 경고.} $R_n,\rho_G,w_j,k_0$ 는 모두 broadening 에 기여하므로
+단일 $T$/제한된 $|I|$ 로 동시 분리 불가. 독립 실험(pulse/GITT/EIS, 다중 $T\times|I|$) 으로
+제약 필수. fitting solver 구현은 범위 외 (P1).
 
 % ====================================================================
 \section{종합·grounding 감사·참고문헌}\label{sec:summary}
 % ====================================================================
 \subsection{결과 요약}
 \begin{enumerate}[label=\textbf{(R\arabic*)}]
-\item charge conservation 으로 $V_n$ 을 implicit 결정 (S1, \AL{9}).
-\item equilibrium isotherm 은 grounded lattice-gas (smooth); Gaussian 은 ansatz, 형태는
-  data 로 결정 (S2/S3, \AL{3a},\AL{3b}).
-\item ★ effective barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A$ (Marcus-bounded; S5, \AL{2}).
-\item Eyring rate + near-eq relaxation (S6/S7, \AL{1},\AL{5}).
-\item self-consistent Volterra equation + Refs 6/7 ratio-substitution closed-form
-  (검증-tier; S9, \AL{7}).
-\item ★ tail $T$-의존 = kinetic lag, $\ell_{\mathrm{tail}}\propto|I|/(Q_\cell k_j(T))$
-  (novel; S11, \AL{8}). \emph{homogeneous lattice-gas} equilibrium 효과로는 설명 불가
-  (저온서 width 감소)임을 보였고, kinetic-lag 메커니즘이 (O2) 와 \emph{강하게 시사
-  (consistent)} 됨 — \emph{확정}은 \S\ref{sec:falsify} falsification 통과 전제.
-\item ★ competing tail source (polarization/width/transport/distribution) 의
-  falsification \emph{protocol} 과 비퇴화 discriminator ($\chi$-의존 Arrhenius slope /
-  peak-shift; $|I|$-scaling 은 transport 와 퇴화) + null-result 규칙 (S12, \AL{10}).
-\item fitting 논리식 + identifiability + validation protocol (S13).
+\item charge conservation 으로 $V_n$ implicit (S1, \AL{9}).
+\item equilibrium target 일반형(smooth); lattice-gas grounded 특수해, 형태 data 결정 (S2, \AL{3a}).
+\item ★ effective barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A=G-W_\psi$, Marcus-bounded (S5, \AL{2}).
+\item single-mode relaxation + exponential kernel $L=|I|/(Q_\cell k)$ (S6/S7, \AL{1},\AL{5}).
+\item ★ barrier distribution $\to$ 지수 매핑 $\to$ relaxation-length spectrum $A_L$ (S8, \AL{6}).
+\item ★ 관측 tail = spectrum kernel integral (S9); Refs 6/7 propagator 로 closure (S10, \AL{7}, 검증-tier).
+\item ★ stretched tail 의 $T/\psi$ 의존 = spectrum shift (novel; S12, \AL{8}); homogeneous-equilibrium 으로 설명 불가, kinetic-spectrum 강하게 시사 (확정은 falsification 전제).
+\item ★ falsification protocol + 비퇴화 discriminator + $\rho_G$ non-unique 역산 회피 (S13, \AL{10}).
+\item fitting 논리식 + identifiability + validation (S14).
 \end{enumerate}
 
 \subsection{Grounding 감사 (AGP self-check)}
-\begin{longtable}{p{0.58\textwidth} p{0.34\textwidth}}
+\begin{longtable}{p{0.6\textwidth} p{0.32\textwidth}}
 \toprule 항목 & 상태 \\ \midrule \endhead
-모든 본문 assumption 이 AL-\# 인용 & 통과 (AL-1$\sim$10) \\
-FLAGGED (AL-3b erf, AL-7 적용성, AL-8 tail) 이 established 로 안 쓰임 & 통과 (ansatz/검증/novel 명시) \\
-BOUNDED (AL-2,5,6) 유효범위 병기 & 통과 (Marcus / near-eq / non-unique) \\
-step-function / $0\!\to\!1$ 급점프 / max,min,Heaviside 정의식 부재 & 통과 (smooth only) \\
+모든 본문 assumption 이 AL-\# 인용 & 통과 \\
+FLAGGED(AL-3b erf, AL-7 적용성, AL-8 tail) established 미사용 & 통과 \\
+BOUNDED(AL-2 Marcus,5 near-eq,6 non-unique) 유효범위 병기 & 통과 \\
+step-function/$0\!\to\!1$ 급점프 정의식 부재 & 통과 (smooth only) \\
 activation barrier 유지 (사용자 2026-05-28) & 통과 (\S\ref{sec:barrier}) \\
-``가우시안''을 형태 확정으로 쓰지 않음 & 통과 (\S\ref{sec:verbatim},\ref{sec:equilibrium}) \\
-tail 의 barrier 귀속을 ``확정''이 아닌 ``시사 + falsification protocol''로 표기 & 통과 (\S\ref{sec:tail},\ref{sec:falsify}) \\
-falsification discriminator 비퇴화 ($\chi$-slope/peak-shift; $|I|$-scaling 은 transport 와 퇴화 명시) & 통과 (\S\ref{sec:falsify}) \\
-potential 인수 일관성 ($V_n/V_{n,\app}/V_{n,\dimedrive}$ bridge) & 통과 (\S\ref{sec:fitting}) \\
-모든 boxed eq 차원 점검 & 통과 \\
-사용자 verbatim 정합 & 통과 \\
+``가우시안''을 형태 확정으로 쓰지 않음 & 통과 (\S\ref{sec:equilibrium}) \\
+tail 귀속을 ``확정'' 아닌 ``시사+protocol'' & 통과 (\S\ref{sec:tailT},\ref{sec:falsify}) \\
+$\rho_G$ non-unique 역산 회피 (forward only) & 통과 (\S\ref{sec:spectrum},\ref{sec:falsify}) \\
+사용자 PhD Refs 6/7 = kernel closure 로 사용 & 통과 (\S\ref{sec:closure}) \\
 \bottomrule
 \end{longtable}
 
 \subsection{Chapter 2+ 로 전달}
-$d\xi_j/dt=k_j(\xi_{\eq,j}-\xi_j)$, $\xi_j(t)$ closed-form, $\Delta G_{\eff,j}$ 가 열
-해석(reversible/irreversible heat), 전기화학(Butler--Volmer 전개), 충방전 hysteresis,
-full-cell 의 input 이다 (별도 roadmap; ChatGPT v3 의 ch2--6 구조를 grounding 표준으로
-재작성 예정).
+single-mode relaxation, spectrum kernel, $\Delta G_\eff$ 가 reversible/irreversible heat,
+$dV/dT$, Butler--Volmer kinetics, 충방전 hysteresis(branch-dependent spectrum), full-cell
+의 input (별도 roadmap).
 
 \begin{thebibliography}{99}
 \bibitem{eyring1935} H. Eyring, ``The activated complex in chemical reactions,''
   \emph{J. Chem. Phys.} \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
-\bibitem{evanspolanyi1935} M. G. Evans, M. Polanyi, \emph{Trans. Faraday Soc.}
-  \textbf{31}, 875 (1935). DOI: 10.1039/TF9353100875.
+\bibitem{eyringchemrev1935} S. Glasstone, K. J. Laidler, H. Eyring, ``The activated
+  complex and the absolute rate of chemical reactions,'' \emph{Chem. Rev.} \textbf{17},
+  301 (1935). DOI: 10.1021/cr60056a006.
 \bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and driving force of
   chemical reactions,'' \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI:
   10.1039/TF9383400011.
 \bibitem{marcus1956} R. A. Marcus, ``On the theory of oxidation--reduction reactions
   involving electron transfer,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956). DOI:
   10.1063/1.1742723.
-\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods:
-  Fundamentals and Applications}, Wiley (Ch.~3, Butler--Volmer / transfer coefficient).
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods},
+  Wiley (Ch.~3).
 \bibitem{mckinnon1983} W. R. McKinnon, R. R. Haering, ``Physical mechanisms of
-  intercalation,'' in \emph{Modern Aspects of Electrochemistry} \textbf{15}, 235 (1983).
+  intercalation,'' \emph{Modern Aspects of Electrochemistry} \textbf{15}, 235 (1983).
 \bibitem{bazant2013} M. Z. Bazant, ``Theory of chemical kinetics and charge transfer
   based on nonequilibrium thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144
   (2013). DOI: 10.1021/ar300145c.
@@ -777,34 +589,35 @@ full-cell 의 input 이다 (별도 roadmap; ChatGPT v3 의 ch2--6 구조를 grou
   \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, \emph{J. Electrochem. Soc.}
   \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
+\bibitem{funabiki1999} A. Funabiki, M. Inaba, T. Abe, Z. Ogumi, ``Nucleation and
+  phase-boundary movement upon stage transformation in lithium--graphite intercalation
+  compounds,'' \emph{Electrochim. Acta} \textbf{45}, 865 (1999). DOI:
+  10.1016/S0013-4686(99)00290-X.
 \bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium
-  Thermodynamics}, North-Holland (1962); Dover repr. (1984), Ch.~X.
+  Thermodynamics}, North-Holland (1962); Dover (1984), Ch.~X.
 \bibitem{onsager1931} L. Onsager, ``Reciprocal relations in irreversible processes,''
   \emph{Phys. Rev.} \textbf{37}, 405 (1931).
 \bibitem{plonka2001} A. Plonka, \emph{Dispersive Kinetics}, Springer (2001).
-\bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S. H. Chong, ``Communication:
-  Propagator for diffusive dynamics of an interacting molecular pair,'' \emph{J. Chem.
-  Phys.} \textbf{134}, 121102 (2011). DOI: 10.1063/1.3565476.
+\bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S. H. Chong, ``Communication: Propagator
+  for diffusive dynamics of an interacting molecular pair,'' \emph{J. Chem. Phys.}
+  \textbf{134}, 121102 (2011). DOI: 10.1063/1.3565476.
 \bibitem{son2013} C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, S. Lee, ``An accurate
-  expression for the rates of diffusion-influenced bimolecular reactions with
-  long-range reactivity,'' \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013). DOI:
-  10.1063/1.4802584.
+  expression for the rates of diffusion-influenced bimolecular reactions with long-range
+  reactivity,'' \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013). DOI: 10.1063/1.4802584.
 \bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, ``Modeling of galvanostatic
-  charge and discharge of the lithium/polymer/insertion cell,'' \emph{J. Electrochem.
-  Soc.} \textbf{140}, 1526 (1993). DOI: 10.1149/1.2221597.
-\bibitem{newman} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd
-  ed., Wiley (2004).
-\bibitem{basssler1993} H. Bässler, ``Charge transport in disordered organic
+  charge and discharge,'' \emph{J. Electrochem. Soc.} \textbf{140}, 1526 (1993). DOI:
+  10.1149/1.2221597.
+\bibitem{newman} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed.,
+  Wiley (2004).
+\bibitem{baessler1993} H. Bässler, ``Charge transport in disordered organic
   photoconductors,'' \emph{Phys. Status Solidi B} \textbf{175}, 15 (1993). DOI:
   10.1002/pssb.2221750102.
 \bibitem{dubarry2022} M. Dubarry, D. Anseán, ``Best practices for incremental capacity
   analysis,'' \emph{Front. Energy Res.} \textbf{10}, 1023555 (2022). DOI:
   10.3389/fenrg.2022.1023555.
 \bibitem{fly2020} A. Fly, R. Chen, ``Rate dependency of incremental capacity analysis
-  (dQ/dV) as a diagnostic tool for lithium-ion batteries,'' \emph{J. Energy Storage}
-  \textbf{29}, 101329 (2020). DOI: 10.1016/j.est.2020.101329.
-\bibitem{asenbauer2020} J. Asenbauer et al., ``The success story of graphite as a
-  lithium-ion anode material,'' \emph{Sustain. Energy Fuels} \textbf{4}, 5387 (2020).
+  (dQ/dV),'' \emph{J. Energy Storage} \textbf{29}, 101329 (2020). DOI:
+  10.1016/j.est.2020.101329.
 \end{thebibliography}
 
 \end{document}
