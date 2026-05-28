@@ -258,6 +258,7 @@ Dahn, Lee/Son SNU·AIP, Dubarry, Fly, Plonka, De Groot-Mazur, Bässler GDM, DFN.
 |---|---|
 | 2026-05-28 | v3 신설. 사용자 "챕터1 처음부터 재작성 + v2 old 로 + 계획서부터" 수신. v2 전체 `Claude/old/v2/` 아카이브. 문헌 grounding 리서치 통합 → Assumption Ledger §8. AGP(가정 grounding 표준) 1급 격상. v2 대비 과학적 pivot 5건 명시(§7). cross-check·self-review 를 근거 입력으로 유지. **계획 상태 — GO 대기, 본문 작성 X.** |
 | 2026-05-28 | 사용자 정정 "가우시안 관측은 뾰족한 피크 예시일 뿐 가우시안 확정 아님" 반영. §0·§6 S3·§7 pivot 1·§8 AL-3b·§11 DQ-v3-1·§13 갱신: 평형 isotherm 함수 형태를 사용자 제약이 아닌 grounding+데이터 결정 사안으로 명확화. erf 는 목표 아닌 FLAGGED 옵션. v3 의 erf→lattice-gas pivot 이 이 정정으로 강화됨. |
+| 2026-05-28 | ★ 사용자 정정 2: "활성 장벽(activation energy barrier)은 맞다. 쓸모없다 한 건 ChatGPT 의 '특정 지점 넘으면 0→1 로 갑자기 점프'하는 step-function 식 비약을 가리킨 것." → activation barrier spine(S4-S6) **유지 확정**. 적(敵)은 discontinuous step jump = 기존 anti-pattern(AGP-3, Dim #11, AP1-3)과 동일. equilibrium isotherm 은 **smooth (0→1 급점프 금지)**. ★ 사용자 GO: "제대로 챕터1 작성하고 10회 검토." → 실행 진입. ★ 작성 규칙: 한글 prose + 영어 학술 용어 (`feedback_korean_prose_english_terms`). |
 
 ---
 
