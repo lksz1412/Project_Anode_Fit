@@ -15,7 +15,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\headheight}{14pt}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
-  pdftitle={Graphite ICA tail: barrier-spectrum kernel-integral theory (Ch.1 v5 merged canonical)}}
+  pdftitle={Graphite ICA tail: barrier-spectrum kernel-integral theory}}
 \pagestyle{fancy}\fancyhf{}
 \lhead{Graphite ICA tail — Chapter 1}\rhead{\thepage/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -163,7 +163,7 @@ S10 & ★ closure: Plan B (conservative theoretical formulation, 항상 보존) 
 S11 & ICA mapping $dQ/dV_n$ & GROUNDED \AL{9} \\
 S12 & ★ spectrum 의 $T/\psi$ shift = stretched tail & FLAGGED novel \AL{8} \\
 S13 & ★ falsification + non-uniqueness 처리 & method \AL{10} \\
-S14 & fitting model + identifiability + validation & GROUNDED \AL{10} \\
+S14 & later fitting interface + identifiability + validation & GROUNDED \AL{10} \\
 \bottomrule
 \end{longtable}
 \textbf{AGP.} 모든 assumption 은 AL-\# 인용. FLAGGED 는 established 로 사용 금지; BOUNDED
@@ -528,7 +528,7 @@ compression 이다.
   limiting-case consistency를 함께 제시한다.
 \item Plan A와 Plan B가 같은 limiting cases를 주지 않으면, Chapter 1의 core 논리로는 Plan B
   formulation만 채택한다.
-\item 이 dual hierarchy는 coding Plan B이 아니라 논리적 책임 분리다.
+\item 이 dual hierarchy는 coding route이 아니라 논리적 책임 분리다.
 \end{enumerate}
 \section{ICA mapping}\label{sec:ica}
 % ====================================================================
@@ -632,10 +632,10 @@ $\eta_{\mathrm{ct}}$ Tafel slope 는 \emph{단일 electrode 데이터에서 co-l
 % ====================================================================
 \section{Later fitting interface, identifiability, validation}\label{sec:fitting}
 % ====================================================================
-\textbf{Deliverable.} ICA tail 의 논리식 (평가 순서 inner$\to$outer):
+\textbf{Deliverable.} ICA tail 의 analytic closure 논리식 (평가 순서 inner$\to$outer):
 $k(G,T,\psi)$ (식~\eqref{eq:rate}) $\to$ $L(G)$ (식~\eqref{eq:L_of_G}) $\to$ spectrum
 $A_L$ (식~\eqref{eq:spectrum}) $\to$ kernel integral $d\Theta_\mathrm{tail}/dq$
-(식~\eqref{eq:kernel_integral}, Refs 6/7 closure 식~\eqref{eq:closed}) $\to$ $dQ/dV_n$
+(식~\eqref{eq:kernel_integral}, Refs 6/7 closure 식~\eqref{eq:plan_a_closure}) $\to$ $dQ/dV_n$
 (식~\eqref{eq:ica}). \textbf{유효범위}: $\Delta G_\eff\ge0$ (Marcus bound), tail 영역
 $V_{n,\dimedrive}\approx U_j+O(w_j)$.
 
@@ -663,8 +663,7 @@ $k_0(T)$ & prefactor & Arrhenius intercept \\
 \item ★ effective barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A=G-W_\psi$, Marcus-bounded (S5, \AL{2}).
 \item single-mode relaxation + exponential kernel $L=|I|/(Q_\cell k)$ (S6/S7, \AL{1},\AL{5}).
 \item ★ barrier distribution $\to$ 지수 매핑 $\to$ relaxation-length spectrum $A_L$ (S8, \AL{6}).
-\item ★ 관측 tail = spectrum kernel integral (S9); closure = \textbf{Plan B (reduced-theory
-  core, 항상 보존) + Plan A (Refs 6/7 instantiated analytic closure, M1-M5+$\varepsilon$ gated) +
+\item ★ 관측 tail = spectrum kernel integral (S9); closure = \textbf{Plan B (conservative theoretical formulation, 항상 보존) + Plan A (Refs 6/7 instantiated analytic closure, M1-M5+$\varepsilon$ gated) +
   R1-R5 governance} (S10, \AL{7}, DQ-v3-2).
 \item ★ stretched tail 의 $T/\psi$ 의존 = spectrum shift (novel; S12, \AL{8}); homogeneous-equilibrium 으로 설명 불가, kinetic-spectrum 강하게 시사 (확정은 falsification 전제).
 \item ★ falsification protocol + 비퇴화 discriminator + $\rho_G$ non-unique 역산 회피 (S13, \AL{10}).
