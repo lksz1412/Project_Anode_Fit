@@ -229,7 +229,7 @@ equation) 이 spectrum kernel integral 을 닫는 도구}가 된다.
 | S7 | single-mode exponential kernel $L=v_Q/k$ ($Q$ 좌표) | GROUNDED \[1\] | 공통 |
 | **S8** | ★ barrier distribution $\rho_G$ → rate dist → **relaxation-length spectrum $A_L$** (barrier→length 지수 매핑 + Jacobian) | BOUNDED \[6\]→**승격** | **Codex 강점** |
 | **S9** | ★ **kernel integral** $d\Theta_{tail}/dQ=\int A_L(L)\frac1L e^{-(Q-Q_a)/L}dL$ | BOUNDED \[6\] | **Codex 중심식** |
-| **S10** | ★ **Refs 6/7 propagator/ratio-substitution = self-consistent spectrum integral 의 closure** | GROUNDED+DQ \[7\] | **Claude rigor × join** |
+| **S10** | ★ closure \textbf{dual-track}: 1안 Fredholm+Refs 6/7 closed-form / 2안 direct numerical (validator+fallback) / single-mode floor + 정량 전환 기준 ($\varepsilon\le\varepsilon_{tol}$) | GROUNDED+DQ \[7\] | **join (user PhD 사용 + overclaim 회피 동시)** |
 | S11 | ICA mapping $dQ/d\varphi=C_b/(1-Q_p\,d\Theta/dQ)$ | GROUNDED \[9\] | 공통 |
 | **S12** | ★ spectrum 의 $T/\psi$ 의존: 저T → large-$L$ 이동 → long **stretched** tail; $\psi$ → short-$L$ ($\partial\ln L/\partial\psi=-\Lambda_\psi F/RT$) | FLAGGED novel \[8\] | 공통(정량) |
 | **S13** | ★ falsification: χ-discriminator + **spectrum-shift signature** + **non-uniqueness 처리(forward prediction, ρ_G 역산 금지)** | method \[10\] | **Claude(Codex gap 보완)** |
@@ -303,7 +303,8 @@ equation) 이 spectrum kernel integral 을 닫는 도구}가 된다.
 | 2026-05-28 | 사용자 정정 "가우시안 관측은 뾰족한 피크 예시일 뿐 가우시안 확정 아님" 반영. §0·§6 S3·§7 pivot 1·§8 AL-3b·§11 DQ-v3-1·§13 갱신: 평형 isotherm 함수 형태를 사용자 제약이 아닌 grounding+데이터 결정 사안으로 명확화. erf 는 목표 아닌 FLAGGED 옵션. v3 의 erf→lattice-gas pivot 이 이 정정으로 강화됨. |
 | 2026-05-28 | ★ 사용자 정정 2: "활성 장벽(activation energy barrier)은 맞다. 쓸모없다 한 건 ChatGPT 의 '특정 지점 넘으면 0→1 로 갑자기 점프'하는 step-function 식 비약을 가리킨 것." → activation barrier spine(S4-S6) **유지 확정**. 적(敵)은 discontinuous step jump = 기존 anti-pattern(AGP-3, Dim #11, AP1-3)과 동일. equilibrium isotherm 은 **smooth (0→1 급점프 금지)**. ★ 사용자 GO: "제대로 챕터1 작성하고 10회 검토." → 실행 진입. ★ 작성 규칙: 한글 prose + 영어 학술 용어 (`feedback_korean_prose_english_terms`). |
 | 2026-05-28 | Chapter 1 v3 (single tail-length) 작성 + 10-round 검토 완료 (`REVIEW_LEDGER_v3_CH1.md`), commit cb12a44. 이후 Codex 산출물 대조(`COMPARISON_CLAUDE_vs_CODEX_CH1.md`). |
-| 2026-05-28 | ★ 사용자 지시: "Codex 강점 염두에 두고 계획 세워 Chapter 1 재작성 진입." → §9bis Synthesis 개정: tail 메커니즘 = **relaxation-length spectrum kernel integral** (Codex 강점) + Claude rigor(Refs6/7 closure·falsification·grounding·charge-balance). single-length v3 는 `Claude/old/v3_single_length/` 아카이브. 사용자 PhD Refs 6/7 = kernel integral closure 도구로 위치. **재작성 실행 진입** (계획+재작성 동일 directive). |
+| 2026-05-28 | ★ 사용자 지시: "Codex 강점 염두에 두고 계획 세워 Chapter 1 재작성 진입." → §9bis Synthesis 개정: tail 메커니즘 = **relaxation-length spectrum kernel integral** (Codex 강점) + Claude rigor(Refs6/7 closure·falsification·grounding·charge-balance). single-length v3 는 `Claude/old/v3_single_length/` 아카이브. 사용자 PhD Refs 6/7 = kernel integral closure 도구로 위치. **재작성 실행 진입** (계획+재작성 동일 directive). v4 synthesis 작성 + 10-round 검토 완료 (commit c67fbc9). 2차 Codex 대조 (`COMPARISON_CLAUDE_v4_vs_CODEX_REBUILT.md`): 양쪽 수렴 확인. |
+| 2026-05-28 | ★ 사용자 결정: closure 를 **dual-track** 으로 — 1안 Fredholm+Refs 6/7 closed-form, 사용 못할 경우(정량 오차 기준) 2안 안정 버전(direct numerical, validator 겸)으로 회귀, single-mode floor. S10 갱신. canonical chapter §closure 를 dual-track(1안/2안/floor + 전환 기준)으로 재구성 + Codex full-cell $V_{app}$ bridge 병합. "그래 작성하자" GO → canonical 작성 + 10-round 검토 진입. (Codex 도 병행 작성 중.) |
 
 ---
 
