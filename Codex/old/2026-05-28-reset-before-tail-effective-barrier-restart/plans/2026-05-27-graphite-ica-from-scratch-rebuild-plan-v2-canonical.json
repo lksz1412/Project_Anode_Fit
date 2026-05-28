@@ -1,0 +1,110 @@
+{
+  "plan_id": "graphite-ica-from-scratch-rebuild-v2-canonical",
+  "created": "2026-05-27",
+  "project": "D:\\Projects\\Project_Anode_Fit",
+  "codex_workspace": "D:\\Projects\\Project_Anode_Fit\\Codex",
+  "supersedes": [
+    "D:\\Projects\\Project_Anode_Fit\\Codex\\plans\\2026-05-27-graphite-ica-from-scratch-rebuild-plan.md"
+  ],
+  "primary_output": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\graphite_ica_rebuilt_manuscript_v1.tex",
+  "ledger": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\REBUILD_V2_EXECUTION_LEDGER.md",
+  "source_files": {
+    "ver5": "D:\\Projects\\Project_BatteryData_Display_임시저장소\\새 폴더\\drive-download-20260527T100231Z-3-001\\graphite_ica_dynamic_ver5.tex",
+    "corrected_ver1": "D:\\Projects\\Project_BatteryData_Display_임시저장소\\새 폴더\\drive-download-20260527T100231Z-3-001\\graphite_ica_charge_balance_ver1_rechecked2.tex",
+    "user_pdf": "D:\\Projects\\Project_BatteryData_Display_임시저장소\\새 폴더\\drive-download-20260527T100231Z-3-001\\JCP_147(14)_144111_(2017) - Effects of external electric field.pdf"
+  },
+  "phases": [
+    {
+      "phase": "001",
+      "name": "Canonical v2 plan and rebuild ledger baseline",
+      "steps": "1-18",
+      "gate": "PASS_REBUILD_V2_PLAN_BASELINE"
+    },
+    {
+      "phase": "002",
+      "name": "Source evidence recertification and reference-only boundary",
+      "steps": "19-50",
+      "gate": "PASS_REBUILD_V2_SOURCE_EVIDENCE"
+    },
+    {
+      "phase": "003",
+      "name": "Failure analysis and salvage/reject inventory",
+      "steps": "51-84",
+      "gate": "PASS_REBUILD_V2_FAILURE_ANALYSIS"
+    },
+    {
+      "phase": "004",
+      "name": "Manuscript scope, audience, and architecture contract",
+      "steps": "85-120",
+      "gate": "PASS_REBUILD_V2_ARCHITECTURE"
+    },
+    {
+      "phase": "005",
+      "name": "Notation and equation dependency contract",
+      "steps": "121-160",
+      "gate": "PASS_REBUILD_V2_NOTATION_DEPENDENCY"
+    },
+    {
+      "phase": "006",
+      "name": "Chapter 1 mathematical foundation package",
+      "steps": "161-220",
+      "gate": "PASS_REBUILD_V2_CHAPTER1_MATH"
+    },
+    {
+      "phase": "007",
+      "name": "refs. 6/7 closure method package",
+      "steps": "221-270",
+      "gate": "PASS_REBUILD_V2_REF_CLOSURE"
+    },
+    {
+      "phase": "008",
+      "name": "Direct solver, approximation, and validation protocol",
+      "steps": "271-325",
+      "gate": "PASS_REBUILD_V2_SOLVER_VALIDATION"
+    },
+    {
+      "phase": "009",
+      "name": "Fitting strategy and identifiability protocol",
+      "steps": "326-385",
+      "gate": "PASS_REBUILD_V2_FITTING_IDENTIFIABILITY"
+    },
+    {
+      "phase": "010",
+      "name": "Chapter 2-5 interface and expansion skeleton",
+      "steps": "386-435",
+      "gate": "PASS_REBUILD_V2_CHAPTER_INTERFACES"
+    },
+    {
+      "phase": "011",
+      "name": "Blank LaTeX manuscript assembly",
+      "steps": "436-515",
+      "gate": "PASS_REBUILD_V2_DRAFT"
+    },
+    {
+      "phase": "012",
+      "name": "Review pass 1, structural/evidence audit",
+      "steps": "516-565",
+      "gate": "PASS_REBUILD_V2_REVIEW_PASS1"
+    },
+    {
+      "phase": "013",
+      "name": "Review pass 2, mathematical/physical audit",
+      "steps": "566-625",
+      "gate": "PASS_REBUILD_V2_REVIEW_PASS2"
+    },
+    {
+      "phase": "014",
+      "name": "Review pass 3, build/syntax/handover gate",
+      "steps": "626-675",
+      "gate": "PASS_REBUILD_V2_HANDOVER"
+    }
+  ],
+  "non_goals": [
+    "do_not_overwrite_original_tex_sources",
+    "do_not_modify_user_pdf",
+    "do_not_modify_claude_workspace",
+    "do_not_patch_existing_draft",
+    "do_not_import_ref6_ref7_physics_as_graphite_physics",
+    "do_not_claim_numerical_validation_without_solver"
+  ]
+}

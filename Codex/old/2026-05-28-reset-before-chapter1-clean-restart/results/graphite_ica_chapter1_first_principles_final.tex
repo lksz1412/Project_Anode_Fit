@@ -1,0 +1,446 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ICA}{\mathrm{ICA}}
+\newcommand{\DVA}{\mathrm{DVA}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\raw}{\mathrm{raw}}
+\newcommand{\att}{\mathrm{att}}
+
+\title{Chapter 1. 흑연 음극 ICA 피크 Tail의 유효 장벽 기반 기본 논리}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+흑연 음극의 ICA 피크 뒤쪽 tail은 평형 상변이 peak를 단순히 넓힌 것만으로는 충분히 설명되지 않는다. 낮은 온도에서 tail이 길어지고 높은 온도에서 상대적으로 짧아지는 현상은 실제 상변이 분율이 평형 상변이 분율을 유한한 속도로 따라가는 지연 현상으로 해석할 수 있다. 본 장은 전위 convention, scan coordinate, ICA/DVA 정의를 먼저 고정한 뒤, 온도 의존 intrinsic barrier와 현 전극 전위가 제공하는 barrier-lowering work를 이용해 국소 tail 길이를 유도한다. 핵심 결과는 \(L_Q=v_Q/k\)이며, \(k\)가 유효 장벽에 의해 정해질 때
+\[
+L_Q(T,\psi)
+=
+\frac{v_Q}{k_{\att}(T)}
+\exp\!\left[\frac{B(T,\psi)}{RT}\right]
+\]
+가 된다. 여기서 \(B(T,\psi)\)는 현 전위 보조가 반영된 비음수 유효 장벽이다.
+\end{abstract}
+
+\section{컨벤션과 범위}
+
+본 장에서는 수식 전개에 앞서 convention을 먼저 고정한다. ICA peak의 tail은 부호 convention이 흐려지면 쉽게 잘못 해석되므로, 아래 convention은 본 장 전체에서 유지한다.
+
+\begin{longtable}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+항목 & convention \\
+\midrule
+\endhead
+분석 전위 & \(\varphi\)는 흑연 음극의 분석용 전위 좌표이다. 실제 음극 전위가 반대 방향으로 움직이는 branch에서는 \(\varphi\)를 실제 전위의 부호를 바꾼 signed coordinate로 잡을 수 있다. 핵심은 \(\varphi\)가 해당 상변이의 forward 방향을 나타내도록 정하는 것이다. \\
+full-cell 전압 & 본 장의 직접 변수는 full-cell voltage와 구분되는 흑연 음극의 분석 전위 \(\varphi\)이다. full-cell mapping은 후속 장 또는 별도 모델에서 다룬다. \\
+scan coordinate & \(Q\)는 분석 branch를 따라 증가하는 누적 charge 또는 capacity coordinate이다. 단위는 C, Ah, mAh g\(^{-1}\) 등 선택한 데이터 축에 맞춘다. \\
+scan speed & \(v_Q=\dd Q/\dd t>0\)로 둔다. 정전류 실험에서는 \(v_Q\)가 전류 크기에 대응한다. \\
+ICA & 본 장의 ICA는 \(\dd Q/\dd\varphi\)이다. 원 데이터가 full-cell voltage 기준이면 음극 전위 변환의 부호와 scaling을 별도로 적용해야 한다. \\
+DVA & 본 장의 DVA는 \(\dd\varphi/\dd Q\)이다. \\
+tail 방향 & post-peak tail은 분석 branch에서 equilibrium transition center를 지난 뒤, 즉 \(Q>Q_a\)인 영역을 뜻한다. \\
+전위 보조 부호 & \(\psi>0\)이면 forward 상변이를 돕도록 정의한다. 따라서 \(\psi>0\)은 유효 장벽을 낮추는 방향이다. \\
+에너지 단위 & 장벽과 전위 work는 mol 기준 에너지 \(\mathrm{J\,mol^{-1}}\)로 쓴다. \(F\psi\)는 \((\mathrm{C\,mol^{-1}})(\mathrm{J\,C^{-1}})=\mathrm{J\,mol^{-1}}\)이다. \\
+속도 단위 & rate \(k\)와 prefactor \(k_{\att}\)는 \(\mathrm{s^{-1}}\) 단위를 갖는다. tail 길이 \(L_Q\)는 \(Q\)와 같은 charge 또는 capacity 단위를 갖는다. \\
+\bottomrule
+\end{longtable}
+
+본 장은 Chapter 1의 기본 논리만 다룬다. 가역 발열과 \(\dd V/\dd T\) 계열 확장은 Chapter 2, 전기화학 반응속도론 연결은 Chapter 3, 그 반응속도론에 발열을 결합하는 것은 Chapter 4, 충방전 hysteresis 해석은 Chapter 5의 영역으로 둔다.
+
+\section{관찰 대상}
+
+흑연 음극 ICA에는 staging transition에 대응하는 peak가 나타난다. 그런데 실험적으로 중요한 것은 peak 위치나 면적만이 아니다. peak 뒤쪽 tail의 길이와 감쇠 양상이 온도와 현 전극 전위 상태에 따라 달라진다.
+
+\begin{itemize}
+\item 낮은 온도에서는 tail이 길게 남는다.
+\item 높은 온도에서는 tail이 상대적으로 빠르게 줄어든다.
+\item 평형 peak 폭만으로는 post-peak 방향의 비대칭 tail을 설명하기 어렵다.
+\item 현 전극 전위 상태가 상변이 진행의 유효 장벽을 낮추는 효과가 필요하다.
+\end{itemize}
+
+따라서 본 장의 목표는 경험적 peak 함수를 먼저 정하는 것이 아니라, tail 길이가 어떤 물리량에서 나오는지 수식으로 유도하는 것이다.
+
+\section{평형 peak만으로 부족한 이유}
+
+상변이 peak를 설명하는 가장 쉬운 방법은 평형 분율이 전위에 따라 급격히 바뀐다고 보는 것이다. 이 경우 peak의 중심과 폭은 평형 함수의 형태에서 나온다. 그러나 이 설명만으로는 post-peak tail의 온도 의존성을 충분히 분리해서 설명하기 어렵다.
+
+그 이유는 평형 한계에서 실제 분율이 항상 평형 분율을 즉시 따라가기 때문이다.
+\begin{equation}
+k\rightarrow\infty
+\quad\Longrightarrow\quad
+\theta(Q)\rightarrow\theta_{\mathrm e}(\varphi(Q),T).
+\end{equation}
+이때 residual lag는
+\begin{equation}
+r(Q)=\theta_{\mathrm e}-\theta\rightarrow0
+\end{equation}
+이므로, peak 뒤쪽에 남아 감쇠하는 별도의 kinetic residual tail이 없다. 즉 평형 peak는 transition이 어디에서 얼마나 넓게 일어나는지를 설명하지만, 실제 분율이 평형 target을 뒤늦게 따라잡는 tail은 설명하지 못한다.
+
+따라서 tail을 설명하려면 적어도 두 가지가 필요하다.
+\begin{enumerate}
+\item 평형 target \(\theta_{\mathrm e}\)가 어디로 이동하는지.
+\item 실제 분율 \(\theta\)가 그 target을 얼마나 빠르게 따라가는지.
+\end{enumerate}
+본 장의 핵심은 두 번째 항목, 즉 따라잡는 속도 \(k\)가 온도와 현 전위 상태에 의해 어떻게 달라지는가이다.
+
+\section{평형 분율과 실제 분율}
+
+하나의 graphite 상변이 mode를 생각한다. 이 mode의 평형 변환 분율을
+\begin{equation}
+\theta_{\mathrm e}=\theta_{\mathrm e}(\varphi,T)
+\label{eq:theta_eq_def}
+\end{equation}
+로 둔다. \(\theta_{\mathrm e}\)는 \(0\)과 \(1\) 사이의 smooth thermodynamic state function이다. 이 함수는 transition center 근처에서 빠르게 변하고, transition 영역을 벗어나면 \(Q\)에 따른 변화가 작아진다. 여기서는 특정 Gaussian, logistic, erf 형태를 가정하지 않는다.
+
+실제 변환 분율은
+\begin{equation}
+\theta=\theta(Q)
+\label{eq:theta_actual}
+\end{equation}
+이다. 평형값과 실제값의 차이를 residual lag로 정의한다.
+\begin{equation}
+r(Q)=\theta_{\mathrm e}(\varphi(Q),T)-\theta(Q).
+\label{eq:residual_def}
+\end{equation}
+
+\(r>0\)이면 실제 상변이가 현재 평형 target보다 뒤처져 있다는 뜻이다. 이 잔차가 post-peak tail의 동역학적 원천이다.
+
+\section{유한 속도 완화 모델}
+
+가장 단순한 finite-rate model로, 실제 분율이 현재 평형 분율을 향해 1차 완화한다고 둔다.
+\begin{equation}
+\frac{\dd\theta}{\dd t}
+=
+k\left(\theta_{\mathrm e}-\theta\right)
+=
+k r .
+\label{eq:theta_relax_t}
+\end{equation}
+이 식은 미시 반응 경로 전체를 해석적으로 푼 결과가 아니며, 한 transition mode의 지연을 표현하는 최소 모델 가정이다.
+
+scan coordinate \(Q\)에 대해 \(v_Q=\dd Q/\dd t\)이므로 chain rule에서
+\begin{equation}
+\frac{\dd\theta}{\dd t}
+=
+\frac{\dd\theta}{\dd Q}
+\frac{\dd Q}{\dd t}
+=
+v_Q\frac{\dd\theta}{\dd Q}.
+\end{equation}
+이를 식 \eqref{eq:theta_relax_t}와 비교하면
+\begin{equation}
+\boxed{
+\frac{\dd\theta}{\dd Q}
+=
+\frac{k}{v_Q}r .
+}
+\label{eq:theta_relax_Q}
+\end{equation}
+
+\section{Residual 방정식과 tail 길이}
+
+식 \eqref{eq:residual_def}를 \(Q\)로 미분한다.
+\begin{equation}
+\frac{\dd r}{\dd Q}
+=
+\frac{\dd\theta_{\mathrm e}}{\dd Q}
+-
+\frac{\dd\theta}{\dd Q}.
+\end{equation}
+여기서 평형 target의 \(Q\) 방향 변화는
+\begin{equation}
+\frac{\dd\theta_{\mathrm e}}{\dd Q}
+=
+\frac{\partial\theta_{\mathrm e}}{\partial\varphi}
+\frac{\dd\varphi}{\dd Q}
++
+\frac{\partial\theta_{\mathrm e}}{\partial T}
+\frac{\dd T}{\dd Q}
+\label{eq:theta_eq_chain}
+\end{equation}
+이다. 등온 실험에서는 두 번째 항이 사라지고, transition center를 지나 \(\partial\theta_{\mathrm e}/\partial\varphi\)가 작아지면 \(\dd\theta_{\mathrm e}/\dd Q\)도 작아진다.
+
+식 \eqref{eq:theta_relax_Q}를 대입하면
+\begin{equation}
+\boxed{
+\frac{\dd r}{\dd Q}
++
+\frac{k}{v_Q}r
+=
+\frac{\dd\theta_{\mathrm e}}{\dd Q}.
+}
+\label{eq:residual_forced}
+\end{equation}
+
+이 식은 tail의 출처를 분명하게 보여준다. equilibrium target이 계속 움직이는 동안에는 오른쪽 forcing term이 residual을 계속 만든다. 반대로 peak center를 지나 equilibrium target 변화가 작아지는 post-peak 구간에서는
+\begin{equation}
+\frac{\dd\theta_{\mathrm e}}{\dd Q}\approx0
+\end{equation}
+이므로
+\begin{equation}
+\frac{\dd r}{\dd Q}\approx-\frac{k}{v_Q}r .
+\label{eq:residual_tail_ode}
+\end{equation}
+
+국소적으로 \(k/v_Q\)가 거의 일정하면, \(Q=Q_a\)에서의 residual을 \(r(Q_a)\)라 할 때
+\begin{equation}
+\boxed{
+r(Q)
+\approx
+r(Q_a)
+\exp\!\left[-\frac{Q-Q_a}{L_Q}\right],
+\qquad
+L_Q=\frac{v_Q}{k}.
+}
+\label{eq:tail_length_basic}
+\end{equation}
+
+즉 tail 길이는 scan speed를 rate로 나눈 값이다. 같은 scan speed에서 \(k\)가 작으면 tail이 길고, \(k\)가 크면 tail이 짧다.
+
+\section{Intrinsic barrier와 전위 보조 work}
+
+상변이 진행에는 intrinsic activation free energy가 있다고 둔다. 이를
+\begin{equation}
+G_0^\ddagger(T)
+=
+H^\ddagger-T S^\ddagger
+\label{eq:intrinsic_barrier}
+\end{equation}
+로 쓴다. 이는 activation enthalpy와 activation entropy로 activation free energy를 표현한 것이다.
+
+이제 현 전극 전위 상태가 상변이 진행을 돕는 정도를 signed potential displacement \(\psi\)로 표현한다. 예를 들어 transition reference potential을 \(\varphi^\star(T)\)라 하면
+\begin{equation}
+\psi=s_\psi\left[\varphi-\varphi^\star(T)\right]
+\label{eq:psi_def}
+\end{equation}
+로 둘 수 있다. \(s_\psi\)는 \(\psi>0\)일 때 forward 상변이를 돕도록 정한다.
+
+상변이 coordinate에 결합된 effective molar charge number를 \(z_{\mathrm{eff}}>0\)라 하면, 전위가 제공하는 molar work scale은
+\begin{equation}
+W_\phi=z_{\mathrm{eff}}F\psi .
+\label{eq:potential_work}
+\end{equation}
+모든 전기적 work가 rate-limiting coordinate의 장벽 저하로 투영되지는 않을 수 있으므로, 투영 계수 \(\alpha\ge0\)를 둔다. 그러면 raw effective barrier는
+\begin{equation}
+G_{\raw}^\ddagger(T,\psi)
+=
+G_0^\ddagger(T)
+-
+\alpha z_{\mathrm{eff}}F\psi .
+\label{eq:raw_barrier}
+\end{equation}
+
+강한 보조 전위에서 reduced model이 음의 장벽으로 외삽되지 않도록, rate에 들어가는 비음수 barrier를
+\begin{equation}
+B(T,\psi)
+=
+\max\!\left[
+G_{\raw}^\ddagger(T,\psi),\,0
+\right]
+\label{eq:positive_barrier}
+\end{equation}
+로 둔다. 매끄러운 피팅식이 필요하면 \(\max\) 대신 smooth positive-part를 쓸 수 있지만, Chapter 1의 논리에는 식 \eqref{eq:positive_barrier}면 충분하다.
+
+\section{Rate와 tail 길이}
+
+활성화 장벽을 갖는 reduced rate를 Arrhenius형으로 둔다.
+\begin{equation}
+\boxed{
+k(T,\psi)
+=
+k_{\att}(T)
+\exp\!\left[-\frac{B(T,\psi)}{RT}\right].
+}
+\label{eq:rate_barrier}
+\end{equation}
+여기서 \(k_{\att}(T)\)는 attempt rate 또는 prefactor이다.
+
+식 \eqref{eq:rate_barrier}를 식 \eqref{eq:tail_length_basic}에 대입하면
+\begin{equation}
+\boxed{
+L_Q(T,\psi)
+=
+\frac{v_Q}{k_{\att}(T)}
+\exp\!\left[\frac{B(T,\psi)}{RT}\right].
+}
+\label{eq:tail_length_barrier}
+\end{equation}
+
+이 식이 Chapter 1의 핵심 결과이다. tail 길이는 effective barrier가 클수록 길어지고, effective barrier가 작아질수록 짧아진다.
+
+\section{온도 효과}
+
+식 \eqref{eq:tail_length_barrier}의 로그를 취하면
+\begin{equation}
+\ln L_Q
+=
+\ln v_Q
+-
+\ln k_{\att}(T)
++
+\frac{B(T,\psi)}{RT}.
+\label{eq:log_tail}
+\end{equation}
+
+따라서 온도 효과는 단순히 \(RT\) 하나로만 결정되지 않는다. \(B(T,\psi)\) 자체의 온도 의존성, \(k_{\att}(T)\), 그리고 실험 중 \(\psi\)가 온도에 따라 어떻게 달라지는지가 함께 들어간다.
+
+같은 \(v_Q\)와 같은 \(\psi\)에서, 그리고 \(B=G_{\raw}^\ddagger>0\)인 smooth active-barrier 영역에서 형식적으로 미분하면
+\begin{equation}
+\frac{\partial\ln L_Q}{\partial T}
+=
+-
+\frac{\partial\ln k_{\att}}{\partial T}
++
+\frac{1}{RT}\frac{\partial B}{\partial T}
+-
+\frac{B}{RT^2}.
+\label{eq:temperature_tail_derivative}
+\end{equation}
+따라서 높은 온도에서 tail이 짧아지려면
+\begin{equation}
+\frac{\partial\ln L_Q}{\partial T}<0
+\end{equation}
+이면 충분하다. 일반적인 activated process에서 \(k_{\att}(T)\)가 온도와 함께 증가하고, \(B/(RT)\) 항의 penalty가 온도 증가와 함께 약해지면 이 조건을 만족하기 쉽다.
+
+그러나 관찰된 방향은 명확하게 정리할 수 있다.
+\begin{equation}
+L_Q=\frac{v_Q}{k}
+\end{equation}
+이므로, 같은 scan speed에서 낮은 온도가 net rate \(k\)를 감소시키면 \(L_Q\)는 증가한다. 이것이 낮은 온도에서 tail이 길어지는 조건이다. 반대로 높은 온도가 net rate \(k\)를 증가시키면 \(L_Q\)는 감소하고, tail은 짧아진다.
+
+\section{현 전위 상태에 의한 barrier lowering}
+
+barrier가 아직 양수인 영역, 즉 \(G_{\raw}^\ddagger>0\)에서는 식 \eqref{eq:raw_barrier}와 \eqref{eq:positive_barrier}에서
+\begin{equation}
+\frac{\partial B}{\partial\psi}
+=
+-
+\alpha z_{\mathrm{eff}}F .
+\end{equation}
+식 \eqref{eq:log_tail}로부터
+\begin{equation}
+\boxed{
+\frac{\partial\ln L_Q}{\partial\psi}
+=
+-
+\frac{\alpha z_{\mathrm{eff}}F}{RT}
+\le0 .
+}
+\label{eq:potential_tail_derivative}
+\end{equation}
+
+따라서 \(\psi>0\) 방향으로 현 전극 전위가 더 유리해지면 effective barrier가 낮아지고, rate가 증가하며, tail 길이 \(L_Q\)는 감소한다. 반대로 \(\psi\)가 작거나 음수이면 barrier lowering이 약해지고 tail은 길게 남는다.
+
+\section{ICA로의 연결}
+
+이제 kinetic tail이 ICA에 어떻게 나타나는지 연결한다. transition이 없는 background 저장은 국소적으로
+\begin{equation}
+\dd Q_{\mathrm b}
+=
+C_{\mathrm b}(\varphi,T)\,\dd\varphi
+\end{equation}
+로 쓴다. 여기서 \(C_{\mathrm b}\)는 non-transition background differential capacity이다.
+
+상변이 분율 변화가 저장하는 charge scale을 \(Q_p\)라 하면, 전체 incremental charge balance는
+\begin{equation}
+\boxed{
+\dd Q
+=
+C_{\mathrm b}(\varphi,T)\,\dd\varphi
++
+Q_p\,\dd\theta .
+}
+\label{eq:incremental_storage}
+\end{equation}
+
+양변을 \(\dd Q\)로 나누면
+\begin{equation}
+1
+=
+C_{\mathrm b}(\varphi,T)\frac{\dd\varphi}{\dd Q}
++
+Q_p\frac{\dd\theta}{\dd Q}.
+\end{equation}
+따라서
+\begin{equation}
+\frac{\dd\varphi}{\dd Q}
+=
+\frac{
+1-Q_p\,\dd\theta/\dd Q
+}{
+C_{\mathrm b}(\varphi,T)
+}.
+\label{eq:dphidQ}
+\end{equation}
+
+ICA는 그 역수이므로
+\begin{equation}
+\boxed{
+\frac{\dd Q}{\dd\varphi}
+=
+\frac{
+C_{\mathrm b}(\varphi,T)
+}{
+1-Q_p\,\dd\theta/\dd Q
+}.
+}
+\label{eq:ica_mapping}
+\end{equation}
+이 식이 물리적으로 해석되려면 분석 구간에서
+\begin{equation}
+1-Q_p\,\frac{\dd\theta}{\dd Q}\ne0
+\end{equation}
+이어야 한다. 분모가 0에 가까워지면 \(\dd Q/\dd\varphi\)가 매우 커지므로 peak center의 세부 모양은 비선형적으로 민감해진다. 본 장의 tail 논리는 분모가 완전히 특이해지는 중심부보다 post-peak 감쇠 영역에 초점을 둔다.
+
+post-peak tail에서는 식 \eqref{eq:theta_relax_Q}와 \eqref{eq:tail_length_basic}에서
+\begin{equation}
+\frac{\dd\theta}{\dd Q}
+\approx
+\frac{1}{L_Q}
+r(Q_a)
+\exp\!\left[-\frac{Q-Q_a}{L_Q}\right].
+\label{eq:dtheta_tail}
+\end{equation}
+따라서 식 \eqref{eq:ica_mapping}의 분모에는 같은 exponential scale \(L_Q\)를 가진 tail 항이 남는다. 이 때문에 ICA tail의 감쇠 길이는 equilibrium peak 폭만이 아니라 kinetic rate와 effective barrier에 의해 정해진다.
+
+\section{해석 요약}
+
+본 장의 논리 사슬은 다음과 같다.
+\[
+\text{present potential and temperature}
+\rightarrow
+B(T,\psi)
+\rightarrow
+k(T,\psi)
+\rightarrow
+L_Q=\frac{v_Q}{k}
+\rightarrow
+\frac{\dd\theta}{\dd Q}
+\rightarrow
+\frac{\dd Q}{\dd\varphi}.
+\]
+
+핵심 해석은 다음과 같다.
+
+\begin{itemize}
+\item 낮은 온도에서 net rate \(k\)가 작아지면 \(L_Q\)가 커지고 tail이 길어진다.
+\item 높은 온도에서 net rate \(k\)가 커지면 \(L_Q\)가 작아지고 tail이 짧아진다.
+\item 현 전극 전위가 forward 상변이를 돕는 방향이면 \(\psi\)가 증가하고, barrier \(B\)가 낮아지며, tail이 짧아진다.
+\item equilibrium peak 폭은 \(\theta_{\mathrm e}\)가 얼마나 급하게 바뀌는지를 정하지만, post-peak tail 길이는 실제 분율 \(\theta\)가 그 평형 target을 따라잡는 rate가 정한다.
+\item peak area는 추후 fitting과 capacity decomposition에서 다룰 수 있지만, Chapter 1의 중심 논증은 tail length와 effective barrier이다.
+\end{itemize}
+
+\section{후속 장으로의 연결}
+
+Chapter 2에서는 본 장에서 정의한 평형 전위와 분율 구조를 이용해 가역 발열 및 \(\dd V/\dd T\) 계열의 열역학량으로 확장한다. Chapter 3에서는 rate \(k\)와 barrier lowering을 전기화학 반응속도론의 overpotential, charge-transfer, exchange-current 개념과 연결한다. Chapter 4에서는 Chapter 3의 속도론에 heat-generation term을 결합한다. Chapter 5에서는 Chapter 3의 방향성 있는 반응속도론을 충방전 hysteresis 해석으로 확장한다.
+
+\end{document}

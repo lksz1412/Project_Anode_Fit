@@ -1,0 +1,710 @@
+% INVALIDATED: This generated manuscript is not a canonical scientific output.
+% Reason: it reused and rearranged equations from the prior TeX sources, while the user
+% required first-principles re-derivation of the equations. Preserve only as a record of
+% the invalidated attempt; do not use as the basis for further manuscript writing.
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\tot}{\mathrm{tot}}
+
+\title{흑연 음극 ICA 피크 tail의 유효 장벽 기반 해석}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+흑연 음극의 ICA(\(\dd Q/\dd V\)) 피크는 평형 상변이 위치만으로 결정되지 않는다. 특히 피크 뒤쪽 tail은 온도와 현 시점의 전극 전위 상태에 따라 길게 늘어지거나 빠르게 사라질 수 있다. 본 문서는 이 tail을 피팅 함수로 먼저 가정하지 않고, 전하 보존식으로 결정되는 내부 전위, 전위 보조 유효 장벽, 상변이 진행률 완화식, 그리고 ICA/DVA 관측식의 순서로 유도한다. 핵심 결과는 국소 tail 길이
+\begin{equation}
+\ell_{q,j}
+=
+\frac{|I|}{Q_{\cell}\nu_j(T)}
+\exp\!\left[
+\frac{\Delta G_{\eff,j}^{+}}{RT}
+\right]
+\end{equation}
+이다. 낮은 온도 또는 불리한 전위 상태에서는 \(k_j\)가 작아져 \(\ell_{q,j}\)가 커지고 tail이 길어진다. 높은 온도에서는 장벽 penalty가 줄고, 유리한 현 전위 상태에서는 유효 장벽이 낮아져 \(k_j\)가 커지며 tail이 짧아질 수 있다.
+\end{abstract}
+
+\section{문제 설정}
+
+흑연 음극의 방전 또는 충전 곡선에는 staging transition에 대응하는 피크가 ICA 곡선에 나타난다. 평형 상태만 본다면 각 transition은 특정 전위 근처에서 비교적 좁은 폭을 가진 peak 또는 step 형태로 나타난다. 그러나 실제 정전류 실험에서는 피크 이후의 tail이 온도와 전극 전위 상태에 따라 달라진다. 관찰하고자 하는 현상은 다음과 같다.
+
+\begin{itemize}
+\item 낮은 온도에서는 피크 뒤쪽 tail이 길게 남는다.
+\item 높은 온도에서는 같은 종류의 tail이 상대적으로 짧게 끝난다.
+\item 단순한 Gaussian형 평형 피크만으로는 이 비대칭적 tail을 설명하기 어렵다.
+\item thermal barrier 외에도, 현 시점의 전극 전위가 상변이 진행의 유효 장벽을 낮추는 효과가 필요하다.
+\end{itemize}
+
+본 장의 목표는 피팅 코드나 numerical solver를 만드는 것이 아니다. 목표는 나중에 피팅에 사용할 수 있는 이론적 배경식을 논리 비약 없이 정리하는 것이다. 피크 면적은 추후 용량 분해와 피팅 제약에서 중요하지만, 본 장의 중심 논증은 tail의 길이와 유효 장벽이다.
+
+\section{전하 좌표}
+
+정전류 구간에서 외부로 흐른 전하량을 먼저 정의한다. 전류의 부호 convention은 실험마다 다를 수 있으므로, 진행 속도에는 전류 크기 \(|I|\)를 사용한다.
+\begin{equation}
+Q_{\ext}(t)
+=
+\int_0^t |I(t')|\,\dd t' .
+\end{equation}
+
+셀 기준 용량을 \(Q_{\cell}\)이라 두고, 무차원 진행 좌표 \(q\)를
+\begin{equation}
+q(t)
+=
+\frac{Q_{\ext}(t)}{Q_{\cell}}
+\end{equation}
+로 정의한다. 정전류 구간에서는
+\begin{equation}
+\frac{\dd q}{\dd t}
+=
+\frac{|I|}{Q_{\cell}} .
+\label{eq:dqdt}
+\end{equation}
+
+이 식은 시간 영역의 상변이 속도를 ICA에서 쓰기 쉬운 \(q\) 좌표로 바꾸는 다리 역할을 한다.
+
+\section{전하 보존식과 내부 전위}
+
+외부에서 흘린 전하량은 음극 내부의 저장 상태와 일치해야 한다. 뚜렷한 staging transition으로 분리하지 않은 잔류 저장 항을 \(Q_{\bg}(V_n,T)\)라 두고, transition \(j\)의 실제 진행률을 \(\xi_j\), 해당 transition의 용량 기여를 \(Q_{j,\tot}\)라 두면
+\begin{equation}
+\boxed{
+Q_{\cell}q
+=
+Q_{\bg}(V_n,T)
++
+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j .
+}
+\label{eq:charge_balance}
+\end{equation}
+
+여기서 \(V_n\)은 임의로 주어진 함수가 아니다. 주어진 \(q\), \(T\), 그리고 현재 \(\xi_j\)들에 대해 식 \eqref{eq:charge_balance}를 만족하도록 결정되는 내부 음극 전위이다. 즉 논리 순서는 다음과 같다.
+\begin{equation}
+(q,T,\{\xi_j\})
+\quad\Longrightarrow\quad
+V_n
+\quad\text{from charge balance.}
+\end{equation}
+
+이 구조 때문에 모델은 전압에 대해 implicit하다. 그러나 이것은 논리 오류가 아니다. 현재 진행률 \(\xi_j\)가 주어지면 전하 보존식이 \(V_n\)을 닫고, 그 \(V_n\)으로 평형 진행률과 속도상수를 계산한다.
+
+\section{평형 진행률}
+
+상변이 \(j\)의 평형 진행률은 내부 전위와 온도의 함수로 둔다.
+\begin{equation}
+\xi_{j,\mathrm{eq}}
+=
+\xi_{j,\mathrm{eq}}(V_n,T).
+\end{equation}
+
+방전 방향에서 전위 증가와 함께 진행률이 증가하는 예시는 logistic 형태이다.
+\begin{equation}
+\xi_{j,\mathrm{eq}}(V_n,T)
+=
+\frac{1}{
+1+\exp\!\left[-\dfrac{V_n-U_j(T)}{w_j(T)}\right]
+}.
+\label{eq:xi_eq_logistic}
+\end{equation}
+여기서 \(U_j(T)\)는 transition 중심 전위이고, \(w_j(T)>0\)는 평형 transition 폭이다.
+
+\(\xi_{j,\mathrm{eq}}\)는 ``평형이라면 어느 정도 진행되어야 하는가''를 나타낸다. 반면 실제 진행률 \(\xi_j\)는 유한한 속도로 이 목표값을 따라간다. 따라서 \(w_j(T)\)는 평형 step의 폭을 정하지만, 피크 뒤쪽 tail의 길이를 단독으로 정하지 않는다.
+
+\section{전압의 역할 분리}
+
+본 모델에서는 전압 기호를 섞어 쓰지 않는다.
+
+\begin{longtable}{p{0.25\textwidth}p{0.65\textwidth}}
+\toprule
+기호 & 의미 \\
+\midrule
+\endhead
+\(V_n\) & 전하 보존식 \eqref{eq:charge_balance}로 결정되는 내부 음극 전위 \\
+\(V_{n,\app}\) & 실험에서 관측되거나 환산되는 apparent 음극 전위 \\
+\(V_{n,\drive}\) & 상변이 속도상수의 구동력을 계산할 때 쓰는 전위 \\
+\(V_{n,\OCV}\) & 충분히 느린 평형 또는 준평형 조건의 전위 \\
+\bottomrule
+\end{longtable}
+
+apparent 전위는 reduced model에서
+\begin{equation}
+V_{n,\app}
+=
+V_n+s_I|I|R_n(q,T,|I|)
+\label{eq:Vapp}
+\end{equation}
+로 둘 수 있다. \(R_n\)은 저항, 농도분극, 접촉 효과 등을 묶은 reduced term이다.
+
+구동 전위는 일반적으로 \(V_{n,\drive}\)로 따로 둔다. 가장 단순한 reduced model에서는
+\begin{equation}
+V_{n,\drive}\approx V_{n,\app}
+\label{eq:drive_app}
+\end{equation}
+를 사용할 수 있다. 그러나 이 근사는 주의가 필요하다. \(R_n\)이 이미 전압축 이동과 broadening을 설명하고 있는데, 같은 데이터에서 \(k_j\)도 자유롭게 tail과 broadening을 설명하게 두면 중복 피팅이 된다. 따라서 \(V_{n,\drive}\approx V_{n,\app}\)를 사용할 때는 \(R_n\)을 독립 실험이나 선행 제약으로 제한해야 한다.
+
+\section{전위 보조 유효 장벽}
+
+\subsection{고유 활성화 자유에너지}
+
+상변이 \(j\)의 고유 활성화 자유에너지를
+\begin{equation}
+\Delta G_{a,j}(T)
+=
+\Delta H_{a,j}
+-T\Delta S_{a,j}
+\label{eq:Ga}
+\end{equation}
+로 둔다. \(\Delta H_{a,j}\)의 단위는 \(\mathrm{J\,mol^{-1}}\), \(\Delta S_{a,j}\)의 단위는 \(\mathrm{J\,mol^{-1}\,K^{-1}}\)이므로 \(\Delta G_{a,j}\)의 단위는 \(\mathrm{J\,mol^{-1}}\)이다.
+
+\subsection{현 전위의 구동 affinity}
+
+전위가 상변이를 보조하는 정도를 다음처럼 정의한다.
+\begin{equation}
+\mathcal A_j
+=
+s_{\phi,j}F\left[V_{n,\drive}-U_j(T)\right].
+\label{eq:affinity}
+\end{equation}
+
+\(F\)는 Faraday 상수이다. \(F\)의 단위는 \(\mathrm{C\,mol^{-1}}\), 전위의 단위는 \(\mathrm{V=J\,C^{-1}}\)이므로 \(\mathcal A_j\)의 단위는 \(\mathrm{J\,mol^{-1}}\)이다. 따라서 \(\mathcal A_j\)는 활성화 자유에너지와 같은 차원의 양이다.
+
+부호 \(s_{\phi,j}\)는 중요하다. \(\xi_j\)가 증가하는 방향을 forward direction으로 정했을 때, 그 방향을 돕는 전위 상태에서 \(\mathcal A_j>0\)이 되도록 \(s_{\phi,j}\)를 선택한다.
+
+\subsection{유효 장벽}
+
+전위 보조를 포함한 유효 장벽은
+\begin{equation}
+\boxed{
+\Delta G_{\eff,j}
+=
+\Delta G_{a,j}(T)-\chi_j\mathcal A_j .
+}
+\label{eq:Geff}
+\end{equation}
+여기서 \(\chi_j\ge0\)는 전위 affinity가 장벽을 얼마나 낮추는지 나타내는 coupling 계수이다.
+
+식 \eqref{eq:Geff}의 부호 논리는 다음과 같다.
+\begin{itemize}
+\item \(\mathcal A_j>0\)이면 forward transition을 돕는 전위 상태이다. 이때 \(\Delta G_{\eff,j}<\Delta G_{a,j}\)가 되어 장벽이 낮아진다.
+\item \(\mathcal A_j=0\)이면 전위 보조가 없고, \(\Delta G_{\eff,j}=\Delta G_{a,j}\)이다.
+\item \(\mathcal A_j<0\)이면 forward transition에 불리한 전위 상태이고, \(\Delta G_{\eff,j}>\Delta G_{a,j}\)가 된다.
+\end{itemize}
+
+\subsection{양의 장벽 regularization}
+
+Reduced Arrhenius 식을 강한 구동력 영역까지 그대로 외삽하면 \(\Delta G_{\eff,j}<0\)이 될 수 있다. 그러면 속도상수가 prefactor보다 커지는 비물리적 외삽이 생긴다. 이를 막기 위해 부드러운 양의 장벽을 둔다.
+\begin{equation}
+\boxed{
+\Delta G_{\eff,j}^{+}
+=
+\epsilon_G\ln\left[
+1+\exp\left(\frac{\Delta G_{\eff,j}}{\epsilon_G}\right)
+\right].
+}
+\label{eq:softplus}
+\end{equation}
+
+\(\epsilon_G\)는 새로운 물리 장벽이 아니라, \(\Delta G_{\eff,j}<0\) 영역에서 속도상수가 비정상적으로 커지는 것을 막기 위한 smooth regularization scale이다.
+
+\subsection{속도상수}
+
+relaxation rate는 다음처럼 정의한다.
+\begin{equation}
+\boxed{
+k_j
+=
+\nu_j(T)\exp\!\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right].
+}
+\label{eq:k_rate}
+\end{equation}
+
+\(R\)의 단위는 \(\mathrm{J\,mol^{-1}\,K^{-1}}\)이고 \(RT\)의 단위는 \(\mathrm{J\,mol^{-1}}\)이다. 따라서 \(\Delta G_{\eff,j}^{+}/RT\)는 무차원이며, \(k_j\)의 단위는 \(\nu_j\)와 같은 \(\mathrm{s^{-1}}\)이다.
+
+\section{상변이 진행률 동역학}
+
+실제 진행률은 평형 진행률을 유한한 속도로 따라간다고 둔다.
+\begin{equation}
+\boxed{
+\frac{\dd \xi_j}{\dd t}
+=
+k_j\left[
+\xi_{j,\mathrm{eq}}(V_n,T)-\xi_j
+\right].
+}
+\label{eq:dxidt}
+\end{equation}
+
+정전류 조건에서 식 \eqref{eq:dqdt}를 사용하면
+\begin{equation}
+\frac{\dd \xi_j}{\dd t}
+=
+\frac{\dd \xi_j}{\dd q}
+\frac{\dd q}{\dd t}
+=
+\frac{\dd \xi_j}{\dd q}
+\frac{|I|}{Q_{\cell}} .
+\end{equation}
+따라서 식 \eqref{eq:dxidt}는
+\begin{equation}
+\frac{\dd \xi_j}{\dd q}
+\frac{|I|}{Q_{\cell}}
+=
+k_j\left[
+\xi_{j,\mathrm{eq}}-\xi_j
+\right]
+\end{equation}
+이고, 양변에 \(Q_{\cell}/|I|\)를 곱하면
+\begin{equation}
+\boxed{
+\frac{\dd \xi_j}{\dd q}
+=
+\left(\frac{Q_{\cell}}{|I|}\right)
+\,k_j\left[
+\xi_{j,\mathrm{eq}}-\xi_j
+\right].
+}
+\label{eq:dxidq}
+\end{equation}
+
+\section{tail 길이의 유도}
+
+\subsection{잔차 방정식}
+
+tail은 실제 진행률이 평형 진행률을 따라가지 못해서 생긴다. 이를 잔차
+\begin{equation}
+u_j(q)
+=
+\xi_{j,\mathrm{eq}}(q)-\xi_j(q)
+\end{equation}
+로 정의한다.
+
+식 \eqref{eq:dxidq}에서
+\begin{equation}
+\kappa_j(q)
+=
+\left(\frac{Q_{\cell}}{|I|}\right)k_j(q)
+\end{equation}
+라 두면
+\begin{equation}
+\frac{\dd \xi_j}{\dd q}
+=
+\kappa_j(q)u_j(q).
+\end{equation}
+
+잔차를 미분하면
+\begin{equation}
+\frac{\dd u_j}{\dd q}
+=
+\frac{\dd \xi_{j,\mathrm{eq}}}{\dd q}
+-
+\frac{\dd \xi_j}{\dd q}
+=
+\frac{\dd \xi_{j,\mathrm{eq}}}{\dd q}
+-
+\kappa_j(q)u_j(q).
+\end{equation}
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd u_j}{\dd q}
++
+\kappa_j(q)u_j(q)
+=
+\frac{\dd \xi_{j,\mathrm{eq}}}{\dd q}.
+}
+\label{eq:u_forced}
+\end{equation}
+
+이 식은 순수 exponential tail이 언제 나오는지 보여준다. 평형 목표값이 계속 변하고 있으면 오른쪽 항이 tail을 계속 새로 만든다. 피크 뒤쪽에서 평형 transition이 대부분 지나가 \(\dd \xi_{j,\mathrm{eq}}/\dd q\approx0\)가 되면, 남아 있던 잔차가 완화되면서 tail을 만든다.
+
+\subsection{일반해와 국소 tail}
+
+\begin{equation}
+K(q_a,q)
+=
+\int_{q_a}^{q}\kappa_j(s)\,\dd s
+\end{equation}
+라 두면, 식 \eqref{eq:u_forced}의 해는
+\begin{equation}
+u_j(q)
+=
+u_j(q_a)\exp[-K(q_a,q)]
++
+\int_{q_a}^{q}
+\exp[-K(s,q)]
+\frac{\dd \xi_{j,\mathrm{eq}}(s)}{\dd s}
+\,\dd s .
+\label{eq:u_general}
+\end{equation}
+
+post-peak tail 구간에서 \(\dd \xi_{j,\mathrm{eq}}/\dd q\approx0\)이고 \(\kappa_j\)가 국소적으로 거의 일정하면
+\begin{equation}
+u_j(q)
+\approx
+u_j(q_a)
+\exp[-\kappa_j(q-q_a)] .
+\end{equation}
+
+이때 charge-coordinate tail 길이를
+\begin{equation}
+\boxed{
+\ell_{q,j}
+=
+\frac{1}{\kappa_j}
+=
+\frac{|I|}{Q_{\cell}k_j}
+}
+\label{eq:ell_basic}
+\end{equation}
+로 정의하면
+\begin{equation}
+\boxed{
+u_j(q)
+\approx
+u_j(q_a)
+\exp\!\left[-\frac{q-q_a}{\ell_{q,j}}\right].
+}
+\label{eq:u_tail}
+\end{equation}
+
+\subsection{유효 장벽을 대입한 tail 길이}
+
+식 \eqref{eq:k_rate}를 식 \eqref{eq:ell_basic}에 대입하면
+\begin{equation}
+\boxed{
+\ell_{q,j}
+=
+\frac{|I|}{Q_{\cell}\nu_j(T)}
+\exp\!\left[
+\frac{\Delta G_{\eff,j}^{+}}{RT}
+\right].
+}
+\label{eq:ell_geff}
+\end{equation}
+
+이 식이 본 장의 중심 결과이다. \(k_j\)가 작으면 \(\ell_{q,j}\)가 커져 tail이 길어진다. \(k_j\)가 크면 \(\ell_{q,j}\)가 작아져 tail이 짧아진다.
+
+\section{온도와 현 전위 상태의 해석}
+
+식 \eqref{eq:ell_geff}의 로그를 취하면
+\begin{equation}
+\ln \ell_{q,j}
+=
+\ln |I|
+-\ln Q_{\cell}
+-\ln \nu_j(T)
++
+\frac{\Delta G_{\eff,j}^{+}}{RT}.
+\label{eq:ln_ell}
+\end{equation}
+
+\subsection{낮은 온도}
+
+낮은 온도에서는 \(RT\)가 작다. 따라서 양의 장벽 \(\Delta G_{\eff,j}^{+}\)가 같은 값이라면 \(\Delta G_{\eff,j}^{+}/RT\)가 커진다. 또한 thermally activated prefactor라면 \(\nu_j(T)\)도 낮아질 수 있다. 이 두 효과는 모두 \(k_j\)를 줄이고 \(\ell_{q,j}\)를 키우는 방향이다. 따라서 낮은 온도에서 tail이 길어지는 관찰과 일치한다.
+
+다만 \(\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}\)의 온도 의존성은 \(\Delta S_{a,j}\)의 부호에 따라 달라질 수 있다. 그러므로 엄밀한 표현은 ``낮은 온도에서 net \(k_j\)가 작아질 때 tail이 길어진다''이다.
+
+\subsection{높은 온도}
+
+높은 온도에서는 \(RT\)가 커져 같은 장벽의 지수 penalty가 작아진다. 또한 \(\nu_j(T)\)가 증가하면 \(k_j\)는 더 커진다. net effect로 \(k_j\)가 증가하면 식 \eqref{eq:ell_basic}에 의해 \(\ell_{q,j}\)가 작아지고, 피크 tail은 더 빨리 사라진다.
+
+\subsection{현 전위에 의한 장벽 저하}
+
+현 전위 상태가 forward transition을 돕는다면 \(\mathcal A_j>0\)이고
+\begin{equation}
+\Delta G_{\eff,j}
+=
+\Delta G_{a,j}
+-
+\chi_j\mathcal A_j
+\end{equation}
+가 감소한다. 그 결과 \(\Delta G_{\eff,j}^{+}\)가 작아지고 \(k_j\)가 증가하며, \(\ell_{q,j}\)는 감소한다.
+
+softplus를 쓰면
+\begin{equation}
+\sigma(x)
+=
+\frac{1}{1+\exp(-x)}
+\end{equation}
+에 대해
+\begin{equation}
+\boxed{
+\frac{\partial \ln \ell_{q,j}}{\partial \mathcal A_j}
+=
+-
+\frac{\chi_j}{RT}
+\,\sigma\!\left(
+\frac{\Delta G_{\eff,j}}{\epsilon_G}
+\right)
+\le0
+}
+\label{eq:dell_dA}
+\end{equation}
+이다. 즉 유리한 전위 보조가 증가할수록 tail 길이는 짧아진다.
+
+\subsection{C-rate 경쟁}
+
+식 \eqref{eq:ell_basic}은
+\begin{equation}
+\ell_{q,j}
+=
+\frac{|I|}{Q_{\cell}k_j(T,I)}
+\end{equation}
+이다. 따라서 \(|I|\)가 커지면, \(k_j\)가 변하지 않는다는 조건에서는 \(q\) 좌표 tail이 길어진다. 같은 \(q\) 구간에 머무는 시간이 줄어들기 때문이다.
+
+그러나 전류가 커지면서 \(V_{n,\drive}\)와 \(\mathcal A_j\)가 변해 \(k_j\)도 커질 수 있다. 이 경우
+\begin{equation}
+\frac{\partial\ln \ell_{q,j}}{\partial\ln |I|}
+=
+1
+-
+\frac{\partial\ln k_j}{\partial\ln |I|}
+\end{equation}
+이므로, residence time 감소와 drive-enhanced rate 증가가 서로 경쟁한다.
+
+\section{ICA/DVA 관측식과 tail}
+
+\subsection{전하 보존식의 미분}
+
+식 \eqref{eq:charge_balance}를 \(q\)로 미분하면
+\begin{equation}
+Q_{\cell}
+=
+\left(\frac{\partial Q_{\bg}}{\partial V_n}\right)
+\left(\frac{\dd V_n}{\dd q}\right)
++
+\left(\frac{\partial Q_{\bg}}{\partial T}\right)
+\left(\frac{\dd T}{\dd q}\right)
++
+\sum_j Q_{j,\tot}
+\frac{\dd \xi_j}{\dd q}.
+\end{equation}
+
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd V_n}{\dd q}
+=
+\frac{
+Q_{\cell}
+-
+\left(\dfrac{\partial Q_{\bg}}{\partial T}\right)
+\dfrac{\dd T}{\dd q}
+-
+\sum_j Q_{j,\tot}\dfrac{\dd \xi_j}{\dd q}
+}{
+\dfrac{\partial Q_{\bg}}{\partial V_n}
+}.
+}
+\label{eq:dVndq_general}
+\end{equation}
+
+등온 조건에서는
+\begin{equation}
+\boxed{
+\frac{\dd V_n}{\dd q}
+=
+\frac{
+Q_{\cell}
+-
+\sum_j Q_{j,\tot}\dfrac{\dd \xi_j}{\dd q}
+}{
+\dfrac{\partial Q_{\bg}}{\partial V_n}
+}.
+}
+\label{eq:dVndq_iso}
+\end{equation}
+
+\subsection{apparent 전위 미분}
+
+식 \eqref{eq:Vapp}에서 등온 정전류 조건을 쓰면
+\begin{equation}
+\boxed{
+\frac{\dd V_{n,\app}}{\dd q}
+=
+\frac{\dd V_n}{\dd q}
++
+s_I|I|\frac{\partial R_n}{\partial q}.
+}
+\label{eq:dVappdq}
+\end{equation}
+
+\subsection{ICA와 DVA}
+
+\(Q_{\ext}=Q_{\cell}q\)이므로
+\begin{equation}
+\frac{\dd Q_{\ext}}{\dd q}
+=
+Q_{\cell}.
+\end{equation}
+따라서 ICA는
+\begin{equation}
+\boxed{
+\frac{\dd Q_{\ext}}{\dd V_{n,\app}}
+=
+\frac{Q_{\cell}}
+{\dfrac{\dd V_{n,\app}}{\dd q}}
+}
+\label{eq:ica}
+\end{equation}
+이고, DVA는
+\begin{equation}
+\boxed{
+\frac{\dd V_{n,\app}}{\dd Q_{\ext}}
+=
+\frac{1}{Q_{\cell}}
+\frac{\dd V_{n,\app}}{\dd q}.
+}
+\label{eq:dva}
+\end{equation}
+
+식 \eqref{eq:dVndq_iso}에서 \(\dd \xi_j/\dd q\)는 전압 기울기에 직접 들어간다. post-peak tail에서
+\begin{equation}
+\frac{\dd \xi_j}{\dd q}
+\approx
+\kappa_j u_j(q_a)
+\exp\!\left[-\frac{q-q_a}{\ell_{q,j}}\right]
+\label{eq:dxidq_tail}
+\end{equation}
+이므로, ICA tail도 같은 kinetic scale \(\ell_{q,j}\)를 반영한다. 단, ICA는 전압 기울기의 역수이므로 피크 중심 근처에서는 비선형성이 커질 수 있고, tail의 amplitude는 \(Q_{\bg}\), \(R_n\), 다른 transition과의 중첩에 의해 달라진다.
+
+\section{장벽 분포 확장}
+
+단일 장벽으로 tail이 충분히 설명되지 않으면, transition \(j\) 안에 kinetic activation barrier \(g\)의 분포를 둘 수 있다.
+\begin{equation}
+\int_0^\infty \rho_j(g)\,\dd g
+=
+1.
+\end{equation}
+여기서 \(\rho_j(g)\)는 kinetic barrier 분포이다. 평형 transition center \(U_j\)의 분포나 \(w_j\)의 분포와 혼동하면 안 된다.
+
+각 \(g\) 집단의 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}(g)
+=
+g-\chi_j\mathcal A_j
+\end{equation}
+이다. 이에 대응하는 양의 유효 장벽은
+\begin{equation}
+\Delta G_{\eff,j}^{+}(g)
+=
+\epsilon_G\ln\left[
+1+\exp\left(
+\frac{g-\chi_j\mathcal A_j}{\epsilon_G}
+\right)
+\right]
+\end{equation}
+이고, 속도상수는
+\begin{equation}
+\boxed{
+k_j(g)
+=
+\nu_j(T)\exp\!\left[-\frac{\Delta G_{\eff,j}^{+}(g)}{RT}\right].
+}
+\end{equation}
+
+각 집단은
+\begin{equation}
+\frac{\dd \xi_j(g,q)}{\dd q}
+=
+\left(\frac{Q_{\cell}}{|I|}\right)
+\,k_j(g)
+\left[
+\xi_{j,\mathrm{eq}}(V_n,T)-\xi_j(g,q)
+\right]
+\end{equation}
+를 따르고, 전체 진행률은
+\begin{equation}
+\xi_j(q)
+=
+\int_0^\infty \rho_j(g)\xi_j(g,q)\,\dd g
+\end{equation}
+이다.
+
+각 장벽 집단의 \(q\) 좌표 완화 계수와 tail 길이는
+\begin{equation}
+\kappa_j(g)
+=
+\left(\frac{Q_{\cell}}{|I|}\right)k_j(g),
+\qquad
+\ell_{q,j}(g)
+=
+\frac{1}{\kappa_j(g)}
+=
+\frac{|I|}{Q_{\cell}k_j(g)}
+\end{equation}
+이다.
+
+post-peak tail에서는
+\begin{equation}
+\frac{\dd \xi_j}{\dd q}
+\approx
+\int_0^\infty
+\rho_j(g)\kappa_j(g)u_j(g,q_a)
+\exp\!\left[-\frac{q-q_a}{\ell_{q,j}(g)}\right]
+\dd g
+\end{equation}
+로 쓴다. 즉 분포형 tail은 여러 exponential tail의 가중합이다. 높은 장벽 집단은 \(k_j(g)\)가 작고 \(\ell_{q,j}(g)\)가 크므로 긴 tail을 만든다.
+
+\section{논리적 제한과 금지 사항}
+
+본 장의 논리를 사용할 때 다음을 지켜야 한다.
+
+\begin{enumerate}
+\item \(\xi_{j,\mathrm{eq}}\)는 평형 target이고, \(k_j\)는 그 target을 따라가는 속도이다. equilibrium width \(w_j\)와 kinetic tail length \(\ell_{q,j}\)를 같은 것으로 두면 안 된다.
+\item \(V_n\), \(V_{n,\app}\), \(V_{n,\drive}\)를 구분해야 한다. reduced model에서 \(V_{n,\drive}\approx V_{n,\app}\)를 쓰려면 \(R_n\)과 \(k_j\)의 중복 설명을 막아야 한다.
+\item \(\rho_j(g)\)는 kinetic activation barrier 분포이며, equilibrium center 분포가 아니다.
+\item EMG 같은 경험적 peak 함수는 초기값 추정이나 비교용으로 쓸 수 있지만, 본 장의 물리 모델을 대체하지 않는다.
+\item 피크 면적은 후속 fitting과 capacity decomposition의 제약으로 다루고, 본 장에서는 tail decay scale의 논리 전개에 집중한다.
+\end{enumerate}
+
+\section{결론}
+
+흑연 음극 ICA 피크의 tail은 평형 피크를 Gaussian 형태로 넓힌 것만으로 설명하기 어렵다. 전하 보존식으로 내부 전위 \(V_n\)을 결정하고, 현 전위 상태가 유효 장벽
+\begin{equation}
+\Delta G_{\eff,j}
+=
+\Delta G_{a,j}(T)-\chi_j\mathcal A_j
+\end{equation}
+을 낮추며, 그 장벽이 relaxation rate
+\begin{equation}
+k_j
+=
+\nu_j(T)\exp\!\left[-\frac{\Delta G_{\eff,j}^{+}}{RT}\right]
+\end{equation}
+를 정한다. 실제 진행률은 평형 진행률을 유한 속도로 따라가므로 post-peak 구간에서 잔차가
+\begin{equation}
+u_j(q)
+\approx
+u_j(q_a)
+\exp\!\left[-\frac{q-q_a}{\ell_{q,j}}\right]
+\end{equation}
+로 감소하고,
+\begin{equation}
+\ell_{q,j}
+=
+\frac{|I|}{Q_{\cell}\nu_j(T)}
+\exp\!\left[
+\frac{\Delta G_{\eff,j}^{+}}{RT}
+\right]
+\end{equation}
+가 tail 길이를 정한다.
+
+따라서 낮은 온도에서 \(k_j\)가 작아지면 tail이 길어지고, 높은 온도에서 \(k_j\)가 커지면 tail이 짧아진다. 또한 온도 효과와 별개로, 현 전위 상태가 forward transition을 돕는 방향이면 유효 장벽이 낮아지고 tail이 짧아질 수 있다. 이것이 본 장에서 필요한 핵심 논리이다.
+
+\end{document}

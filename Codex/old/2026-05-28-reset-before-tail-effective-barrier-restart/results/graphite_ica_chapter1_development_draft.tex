@@ -1,0 +1,375 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+
+\setstretch{1.13}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdftitle={Graphite ICA DVA Chapter 1 Development Draft},
+  pdfauthor={Codex}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Chapter 1: Charge-Balance Graphite ICA/DVA}
+\rhead{\thepage/\pageref{LastPage}}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\refe}{\mathrm{ref}}
+\newcommand{\Ah}{\mathrm{Ah}}
+\newcommand{\Cunit}{\mathrm{C}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \textbf{Chapter 1}}\\[0.3em]
+{\LARGE \textbf{Thermodynamic Charge Balance and Graphite ICA/DVA}}\\[0.8em]
+{\large Development draft}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{Purpose and Scope}
+
+This chapter defines the thermodynamic charge-balance basis for graphite-anode
+ICA/DVA modeling.  The internal graphite potential is not prescribed as an
+external function \(V_{n,\OCV}(q,T)\).  It is solved from charge conservation
+after the external charge coordinate, temperature, and internal transition
+states have been specified.
+
+The central chain is
+\begin{equation}
+Q_{\ext}=Q_{\cell}q
+\quad\Longrightarrow\quad
+Q_{\cell}q =
+Q_{\bg}(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j
+\quad\Longrightarrow\quad
+V_n
+\quad\Longrightarrow\quad
+V_{n,\app}
+\quad\Longrightarrow\quad
+\frac{\dd Q_{\ext}}{\dd V_{n,\app}},\;
+\frac{\dd V_{n,\app}}{\dd Q_{\ext}} .
+\label{eq:chapter1_spine}
+\end{equation}
+
+Heat generation, detailed electrochemical interface kinetics, global fitting,
+and hysteresis are not solved in this chapter.  They are downstream layers that
+must consume the quantities defined here without redefining charge balance.
+
+\section{Measured Charge Coordinate}
+
+Let \(Q_{\cell}\) be the reference cell capacity in coulomb.  If a capacity is
+given in ampere-hour, the conversion is
+\begin{equation}
+Q_{\cell}[\Cunit]=3600\,Q_{\cell}[\Ah].
+\end{equation}
+
+The external charge passed through the circuit is
+\begin{equation}
+Q_{\ext}(t)=\int_{t_0}^{t}|I(t')|\,\dd t',
+\qquad
+q(t)=\frac{Q_{\ext}(t)}{Q_{\cell}} .
+\label{eq:q_definition}
+\end{equation}
+
+Under a nonzero constant-current segment,
+\begin{equation}
+\frac{\dd q}{\dd t}=\frac{|I|}{Q_{\cell}},
+\qquad
+\frac{\dd}{\dd q}=\frac{Q_{\cell}}{|I|}\frac{\dd}{\dd t}.
+\label{eq:q_time_conversion}
+\end{equation}
+The \(q\)-domain form is not used during rest.  At rest, \(q\) is fixed and the
+time-domain relaxation equations must be used.
+
+\section{Transition States and Equilibrium Occupancy}
+
+The graphite staging transitions are represented by progress variables
+\(\xi_j\), where \(j=1,\ldots,N_p\).  In the discharge-oriented convention used
+here, \(\xi_j\) increases as the associated transition contributes positive
+external capacity.
+
+For a dummy voltage argument \(V\), the equilibrium progress is written as
+\begin{equation}
+\xi_{j,\eq}(V,T)
+=
+\left[
+1+\exp\!\left(
+-s_{\xi,j}\frac{V-U_j(T)}{w_j(T)}
+\right)
+\right]^{-1},
+\label{eq:xi_eq_dummy_voltage}
+\end{equation}
+with default \(s_{\xi,j}=+1\) unless a transition requires the opposite
+orientation.  The width \(w_j\) is reserved for this equilibrium voltage width.
+If a dimensionless capacity fraction is needed, use
+\begin{equation}
+a_j=\frac{Q_{j,\tot}}{Q_{\cell}},
+\end{equation}
+rather than reusing \(w_j\).
+
+\section{Charge Balance and Internal Potential}
+
+Define the charge-balance residual
+\begin{equation}
+\mathcal G(V;q,T,\bm{\xi};\theta)
+=
+Q_{\bg}(V,T;\theta)
++\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j
+-Q_{\cell}q .
+\label{eq:charge_balance_residual}
+\end{equation}
+The internal graphite potential \(V_n\) is the admissible root
+\begin{equation}
+V_n=\mathcal V(q,T,\bm{\xi};\theta),
+\qquad
+\mathcal G(V_n;q,T,\bm{\xi};\theta)=0.
+\label{eq:V_root_operator}
+\end{equation}
+
+The root must lie in the voltage interval used to define the graphite
+thermodynamic model.  A sufficient local conditioning requirement is
+\begin{equation}
+\frac{\partial Q_{\bg}}{\partial V}(V,T)\ge \epsilon_Q>0.
+\label{eq:bg_slope_floor_draft}
+\end{equation}
+This prevents the charge-balance inversion from becoming singular.
+
+\section{Equilibrium OCV as a Derived Relation}
+
+The equilibrium OCV is not an independent input curve.  It is the special
+charge-balance solution obtained when each transition is at equilibrium:
+\begin{equation}
+Q_{\cell}q
+=
+Q_{\bg}(V,T)
++\sum_{j=1}^{N_p}Q_{j,\tot}\xi_{j,\eq}(V,T).
+\label{eq:ocv_implicit_draft}
+\end{equation}
+The equilibrium anode OCV is therefore
+\begin{equation}
+V_{n,\OCV}(q,T)=V
+\quad\text{such that Eq.~\eqref{eq:ocv_implicit_draft} holds.}
+\label{eq:ocv_root_definition}
+\end{equation}
+
+The total capacity normalization is imposed by the same storage relation at the
+chosen endpoints.  This couples \(Q_{\bg}\), \(Q_{j,\tot}\), \(U_j\), and
+\(w_j\); these parameters should not be fitted as unrelated shape knobs.
+
+\section{Apparent and Driving Voltages}
+
+The internal potential, apparent voltage, and kinetic driving voltage are
+distinct:
+\begin{align}
+V_n &=
+\mathcal V(q,T,\bm{\xi};\theta),\\
+V_{n,\app} &=
+V_n+s_I |I|R_n(q,T,|I|),\label{eq:Vapp_draft}\\
+\mathcal A_j &=
+s_{\phi,j}F\bigl(V_{n,\drive}-U_j(T)\bigr).
+\label{eq:affinity_draft}
+\end{align}
+The approximation \(V_{n,\drive}\approx V_{n,\app}\) may be used only as a
+declared modeling choice.  It should not be combined with an unconstrained
+fit of both \(R_n\) and the kinetic prefactors, because both can absorb dynamic
+voltage shifts.
+
+\section{Self-Consistent Dynamics}
+
+After \(V_n\) has been defined by Eq.~\eqref{eq:V_root_operator}, the transition
+dynamics are
+\begin{equation}
+\frac{\dd \xi_j}{\dd t}
+=
+k_j(V_n,q,T,I;\theta)
+\bigl[\xi_{j,\eq}(V_n,T)-\xi_j\bigr].
+\label{eq:dxidt_draft}
+\end{equation}
+
+During a nonzero-current segment this becomes
+\begin{equation}
+\frac{\dd \xi_j}{\dd q}
+=
+\frac{Q_{\cell}}{|I|}
+k_j(V_n,q,T,I;\theta)
+\bigl[\xi_{j,\eq}(V_n,T)-\xi_j\bigr].
+\label{eq:dxidq_draft}
+\end{equation}
+
+Equivalently, with \(V_n(s)=\mathcal V(s,T(s),\bm{\xi}(s);\theta)\),
+\begin{equation}
+\xi_j(q)
+=
+\xi_j(q_0)
++
+\int_{q_0}^{q}
+\frac{Q_{\cell}}{|I(s)|}
+k_j(V_n(s),s,T(s),I(s);\theta)
+\bigl[\xi_{j,\eq}(V_n(s),T(s))-\xi_j(s)\bigr]
+\,\dd s .
+\label{eq:volterra_draft}
+\end{equation}
+This is the explicit self-consistent problem: the state \(\bm{\xi}\) determines
+\(V_n\) through charge balance, and the solved \(V_n\) determines the state
+update.
+
+\section{Reference-Closure Strategy}
+
+Equations~\eqref{eq:V_root_operator} and \eqref{eq:volterra_draft} define the
+direct coupled problem.  The safest numerical baseline is to solve the
+charge-balance root at each step and integrate the state equation directly.
+
+For analytic or fast fitting approximations, the closure pattern used in
+Refs.~\cite{Lee2011Propagator,Son2013Rates} can be adapted mathematically.
+The transferable idea is not the geminate-pair physics, but the way a
+self-consistent integral equation is rewritten so that the unknown feedback
+appears as a ratio or correction relative to a simpler reference solution.
+
+Choose a reference path \(\bm{\xi}^{\refe}(q)\) and
+\(V_n^{\refe}(q)=\mathcal V(q,T,\bm{\xi}^{\refe};\theta)\).  A natural
+thermodynamic reference is the equilibrium path
+\begin{equation}
+\xi_j^{\refe}(q)
+=
+\xi_{j,\eq}\!\left(V_{n,\OCV}(q,T),T\right).
+\label{eq:eq_reference_path}
+\end{equation}
+Alternative references, such as a low-rate direct solve or a frozen-feedback
+path, may be used if they are stated explicitly.
+
+The dynamic integral can then be written schematically as
+\begin{equation}
+\xi_j(q)=\xi_j(q_0)+
+\int_{q_0}^{q}
+F_j^{\refe}(s)\,
+\mathcal C_j(s;\bm{\xi},\bm{\xi}^{\refe})\,\dd s,
+\label{eq:closure_schematic}
+\end{equation}
+where \(F_j^{\refe}\) is the reference integrand and
+\(\mathcal C_j\) is the dimensionless feedback correction.  A closure is
+acceptable only if it specifies how \(\mathcal C_j\) is estimated and if the
+result is checked against the direct root-solve integration.
+
+\section{Derivative Observables}
+
+Differentiate the charge-balance equation only after the state and root solve
+are defined.  For the isothermal case,
+\begin{equation}
+\frac{\dd V_n}{\dd q}
+=
+\frac{
+Q_{\cell}
+-\sum_{j=1}^{N_p}Q_{j,\tot}\frac{\dd \xi_j}{\dd q}
+}{
+\frac{\partial Q_{\bg}}{\partial V}(V_n,T)
+}.
+\label{eq:dVdq_iso_draft}
+\end{equation}
+With temperature variation, include the \(\partial Q_{\bg}/\partial T\) term
+and any declared temperature dependence of the fitted parameters.
+
+The apparent-voltage derivative is
+\begin{equation}
+\frac{\dd V_{n,\app}}{\dd q}
+=
+\frac{\dd V_n}{\dd q}
++s_I\frac{\dd}{\dd q}\bigl(|I|R_n(q,T,|I|)\bigr).
+\label{eq:dVappdq_draft}
+\end{equation}
+
+The ICA and DVA observables are based on external charge:
+\begin{align}
+\frac{\dd Q_{\ext}}{\dd V_{n,\app}}
+&=
+\frac{Q_{\cell}}{\dd V_{n,\app}/\dd q},
+\label{eq:ica_draft}\\
+\frac{\dd V_{n,\app}}{\dd Q_{\ext}}
+&=
+\frac{1}{Q_{\cell}}
+\frac{\dd V_{n,\app}}{\dd q}.
+\label{eq:dva_draft}
+\end{align}
+
+\section{Validation Gates}
+
+The model is admissible only when the following checks are satisfied:
+\begin{enumerate}[label=\arabic*.]
+\item The normalized charge-balance residual
+  \(\mathcal G(V_n;q,T,\bm{\xi};\theta)/Q_{\cell}\) is small at all evaluated
+  points.
+\item The charge-balance root remains inside the allowed voltage interval.
+\item The slope floor in Eq.~\eqref{eq:bg_slope_floor_draft} is not violated.
+\item The transition states remain in their declared physical domain.
+\item The capacity closure is consistent at the endpoints of the analysis
+  window.
+\item The denominator in Eq.~\eqref{eq:ica_draft} does not cross an
+  unphysical singularity.
+\item Any reference-closure approximation is compared against the direct
+  root-solve integration.
+\end{enumerate}
+
+\section{Interfaces to Later Chapters}
+
+Chapter 2 may use \(T\), \(V_n\), \(V_{n,\app}\), \(\xi_j\), and
+\(\dd\xi_j/\dd t\) for heat coupling.  Chapter 3 may use \(V_{n,\drive}\),
+\(\mathcal A_j\), and \(k_j\) for electrochemical kinetic extensions.  Chapter
+4 may assemble residuals, constraints, and observables into a fitting system.
+Chapter 5 may introduce hysteresis or structural memory, but it must preserve
+the charge-balance residual and the distinction between \(V_n\), \(V_{n,\app}\),
+and \(V_{n,\drive}\).
+
+\begin{thebibliography}{9}
+
+\bibitem{Lee2017Field}
+K. Lee, S. Lee, C. H. Choi, and S. Lee,
+``Effects of external electric field and anisotropic long-range reactivity on
+charge separation probability,''
+\textit{J. Chem. Phys.} \textbf{147}, 144111 (2017).
+doi:10.1063/1.5000882.
+
+\bibitem{Lee2011Propagator}
+S. Lee, C. Y. Son, J. Sung, and S.-H. Chong,
+``Communication: Propagator for diffusive dynamics of an interacting molecular
+pair,''
+\textit{J. Chem. Phys.} \textbf{134}, 121102 (2011).
+doi:10.1063/1.3565476.
+
+\bibitem{Son2013Rates}
+C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, and S. Lee,
+``An accurate expression for the rates of diffusion-influenced bimolecular
+reactions with long-range reactivity,''
+\textit{J. Chem. Phys.} \textbf{138}, 164123 (2013).
+doi:10.1063/1.4802584.
+
+\end{thebibliography}
+
+\end{document}

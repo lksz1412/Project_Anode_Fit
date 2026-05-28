@@ -1,0 +1,128 @@
+{
+  "project": "Project_Anode_Fit",
+  "date": "2026-05-28",
+  "plan": "D:\\Projects\\Project_Anode_Fit\\Codex\\plans\\2026-05-28-tail-effective-barrier-restart-plan.md",
+  "archive": "D:\\Projects\\Project_Anode_Fit\\Codex\\old\\2026-05-28-reset-before-tail-effective-barrier-restart",
+  "goal": "Rebuild Chapter 1 from scratch as a theoretical derivation of graphite ICA tail behavior from temperature and electrode-potential-dependent effective barrier lowering.",
+  "phase_policy": {
+    "phase_and_step_ranges_are": "minimum_required_coverage",
+    "may_add_extra_phases_or_steps": true,
+    "must_record_added_work_in": [
+      "phase result",
+      "execution ledger"
+    ],
+    "compaction_recovery_rule": "After context compaction, re-open the active plan and relevant phase result/ledger files before relying on prior state."
+  },
+  "user_core_problem_statement": [
+    "LIB graphite ICA peak-tail shape changes with temperature and present electrode potential state.",
+    "Low temperature shows a longer tail; higher temperature shows a shorter tail.",
+    "A simple temperature-broadened Gaussian-like equilibrium peak is insufficient.",
+    "Beyond the thermal barrier, the present electrode potential may lower the effective phase-transition barrier.",
+    "The current work is theoretical derivation only, not fitting code, solver construction, or parameter extraction.",
+    "Peak area belongs to later fitting/capacity decomposition; the present chapter centers tail behavior and effective barrier.",
+    "The manuscript must show all mathematical steps with no logical jumps and be followable by an undergraduate reader.",
+    "Previous artifacts are archived; the active manuscript must be written from scratch using original sources as evidence."
+  ],
+  "non_goals": [
+    "fitting code",
+    "numerical solver construction",
+    "peak-area-centered theory",
+    "editing original source files",
+    "editing Claude workspace"
+  ],
+  "phases": [
+    {
+      "phase": "001",
+      "name": "Restart Baseline And Source Inventory",
+      "steps": "1-12",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_001_RESTART_BASELINE_RESULT.md",
+      "gate": "PASS_RESTART_BASELINE"
+    },
+    {
+      "phase": "002",
+      "name": "Full TeX Read Coverage",
+      "steps": "13-26",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_002_FULL_TEX_READ_RESULT.md",
+      "gate": "PASS_TEX_READ_FULL"
+    },
+    {
+      "phase": "003",
+      "name": "Source Evidence Extraction",
+      "steps": "27-42",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_003_SOURCE_EVIDENCE_INDEX.md",
+      "gate": "PASS_SOURCE_EVIDENCE_INDEX"
+    },
+    {
+      "phase": "004",
+      "name": "PDF Ref. 6/7 Method Extraction",
+      "steps": "43-58",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_004_REF6_REF7_METHOD_RESULT.md",
+      "gate": "PASS_REF_METHOD_VERIFIED_OR_METHOD_NOT_IMPORTED"
+    },
+    {
+      "phase": "005",
+      "name": "Problem Definition And Scope Contract",
+      "steps": "59-72",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_005_TAIL_SCOPE_CONTRACT.md",
+      "gate": "PASS_SCOPE_LOCK"
+    },
+    {
+      "phase": "006",
+      "name": "Notation And Dependency Bible",
+      "steps": "73-90",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_006_NOTATION_DEPENDENCY_BIBLE.md",
+      "gate": "PASS_NOTATION_DEPENDENCY"
+    },
+    {
+      "phase": "007",
+      "name": "Effective Barrier Derivation",
+      "steps": "91-112",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_007_EFFECTIVE_BARRIER_DERIVATION.md",
+      "gate": "PASS_EFFECTIVE_BARRIER_DERIVATION"
+    },
+    {
+      "phase": "008",
+      "name": "Tail Decay Derivation",
+      "steps": "113-136",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_008_TAIL_DECAY_DERIVATION.md",
+      "gate": "PASS_TAIL_DECAY_DERIVATION"
+    },
+    {
+      "phase": "009",
+      "name": "ICA/DVA Observable Mapping",
+      "steps": "137-158",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_009_ICA_DVA_MAPPING.md",
+      "gate": "PASS_ICA_DVA_MAPPING"
+    },
+    {
+      "phase": "010",
+      "name": "Barrier Distribution Extension",
+      "steps": "159-176",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_010_BARRIER_DISTRIBUTION_EXTENSION.md",
+      "gate": "PASS_BARRIER_DISTRIBUTION_EXTENSION"
+    },
+    {
+      "phase": "011",
+      "name": "Manuscript Draft From Scratch",
+      "steps": "177-206",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_011_DRAFT_RESULT.md",
+      "artifact": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\graphite_ica_tail_effective_barrier_theory_chapter1.tex",
+      "gate": "PASS_DRAFT_STRUCTURE"
+    },
+    {
+      "phase": "012",
+      "name": "Ralph Wiggum Logic Verification Loop",
+      "steps": "207-238",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_012_RALPH_WIGGUM_LOGIC_AUDIT.md",
+      "gate": "PASS_RALPH_WIGGUM_LOGIC_LOOP"
+    },
+    {
+      "phase": "013",
+      "name": "Final Packaging And Handover",
+      "steps": "239-252",
+      "result": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_013_FINAL_HANDOVER.md",
+      "ledger": "D:\\Projects\\Project_Anode_Fit\\Codex\\results\\PHASE_001_013_RESTART_EXECUTION_LEDGER.md",
+      "gate": "PASS_FINAL_HANDOVER"
+    }
+  ]
+}
