@@ -1,0 +1,527 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=24mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{hyperref}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ICA}{\mathrm{ICA}}
+\newcommand{\DVA}{\mathrm{DVA}}
+
+\title{Chapter 1. 흑연 음극 ICA 피크 꼬리의 유효 활성 장벽 기반 이론}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+리튬이온전지 흑연 음극의 incremental capacity analysis, 즉 \(\dd Q/\dd V\) 피크는 graphite staging transition과 연결된다. 본 장은 그 피크의 면적이나 경험적 피크 함수를 먼저 정하지 않고, 피크 뒤쪽에 남는 post-peak tail이 왜 온도와 현 전극 전위 상태에 따라 달라질 수 있는지를 이론적으로 전개한다. 핵심은 실제 상변이 진행률 \(\theta\)가 평형 target \(\theta_{\mathrm e}\)를 즉시 따라가지 못할 때 residual lag \(r=\theta_{\mathrm e}-\theta\)가 생기며, 이 residual이 post-peak 영역에서 유한한 속도로 감쇠한다는 점이다. 국소적으로
+\[
+L_Q=\frac{v_Q}{k}
+\]
+가 되어, 같은 scan speed \(v_Q\)에서 rate \(k\)가 작으면 tail은 길고 \(k\)가 크면 tail은 짧다. 활성 장벽 영역에서는
+\[
+k(T,\psi)=k_0(T)
+\exp\!\left[-\frac{\Delta G_{\mathrm{act}}^\ddagger(T,\psi)}{RT}\right],
+\qquad
+\Delta G_{\mathrm{act}}^\ddagger>0
+\]
+로 둘 수 있으며, 현 전위 보조량 \(\psi\)가 forward transition을 돕는 방향이면 \(\Delta G_{\mathrm{act}}^\ddagger\)가 낮아져 tail이 짧아진다. 장벽이 소진되는 영역은 수학적으로 잘라 붙이지 않고, 활성 장벽 근사의 적용 범위가 끝난 것으로 해석한다.
+\end{abstract}
+
+\section{Convention and Scope}
+
+본 장은 흑연 음극 하나의 분석 좌표에서 ICA tail의 기본 논리를 세우는 장이다. full-cell 전압 분해, 충전/방전 hysteresis, 발열, 수치 solver, 피팅 절차는 본 장의 대상이 아니다.
+
+\begin{longtable}{p{0.26\textwidth}p{0.64\textwidth}}
+\toprule
+항목 & 본 장의 convention \\
+\midrule
+\endhead
+분석 전위 & \(\varphi\)는 흑연 음극의 분석용 전위 좌표이다. 실제 실험 전위가 반대 방향으로 움직이는 경우에는 부호가 포함된 signed coordinate로 잡아, \(\varphi\) 증가가 본 장에서 다루는 forward transition 방향을 나타내게 한다. \\
+용량 좌표 & \(Q\)는 분석 branch를 따라 증가하는 누적 charge 또는 capacity coordinate이다. \\
+scan speed & \(v_Q=\dd Q/\dd t>0\). 정전류 조건에서는 전류 크기와 같은 역할을 한다. \\
+ICA & 본 장에서는 \(\ICA=\dd Q/\dd\varphi\)로 정의한다. full-cell voltage 기준 ICA와 혼동하지 않는다. \\
+DVA & 본 장에서는 \(\DVA=\dd\varphi/\dd Q\)로 정의한다. \\
+tail 방향 & post-peak tail은 transition 중심을 지난 뒤의 branch 영역, 즉 \(Q>Q_a\)에서 residual 진행이 남아 있는 부분이다. \\
+전위 보조량 & \(\psi>0\)이면 forward transition의 활성 장벽을 낮추는 방향으로 정의한다. \\
+에너지 단위 & 활성 자유에너지와 전위 work는 mol 기준 \(\mathrm{J\,mol^{-1}}\)로 쓴다. \(F\psi\)는 \(\mathrm{J\,mol^{-1}}\)이다. \\
+\bottomrule
+\end{longtable}
+
+Chapter 1의 목표는 다음 세 문장을 수식으로 닫는 것이다.
+
+\begin{enumerate}
+\item 낮은 온도에서 transition relaxation rate가 작아지면 post-peak residual tail이 길어진다.
+\item 높은 온도에서 rate가 커지면 같은 scan speed에서 tail이 짧아진다.
+\item 현 전극 전위가 transition을 돕는 방향이면 활성 장벽이 낮아져 rate가 커지고 tail이 짧아진다.
+\end{enumerate}
+
+이 세 문장은 무조건 법칙이 아니라, 본 장에서 명시하는 local reduced model과 active-barrier regime 안에서 성립하는 조건부 결과이다.
+
+\section{Equilibrium Peak Alone Is Not The Whole Tail}
+
+흑연의 staging transition은 열역학적으로 여러 안정 또는 준안정 stage 사이의 변화와 연결된다. 이 사실은 \( \mathrm{Li}_x\mathrm{C}_6\) phase diagram과 graphite stage transformation 문헌에서 잘 알려져 있다 \cite{Dahn1991,Funabiki1999}. 따라서 ICA peak의 존재 자체는 평형 또는 준평형 transition 구조와 연결될 수 있다.
+
+그러나 본 장이 설명하려는 것은 peak 전체가 아니라, transition 중심을 지난 뒤에도 남는 동역학적 tail이다. 평형 target만 고려하면 실제 분율은 항상 그 순간의 target에 붙어 있다.
+\begin{equation}
+\theta(Q)=\theta_{\mathrm e}(\varphi(Q),T)
+\qquad
+\text{in the instantaneous-equilibrium limit}.
+\end{equation}
+이 한계에서는
+\begin{equation}
+r(Q):=\theta_{\mathrm e}(\varphi(Q),T)-\theta(Q)=0
+\end{equation}
+이므로, target을 뒤늦게 따라잡는 residual tail은 존재하지 않는다.
+
+물론 equilibrium heterogeneity, particle distribution, transition potential distribution도 peak 폭과 비대칭성을 만들 수 있다. 따라서 본 장의 주장은 ``모든 tail은 kinetic tail이다''가 아니다. 본 장의 주장은 더 좁다. 온도와 현 전위 상태에 따라 변하는 residual post-peak tail 성분은 finite-rate relaxation으로 자연스럽게 설명될 수 있으며, 그 길이는 \(v_Q/k\)로 정리된다.
+
+\section{Equilibrium Target, Actual Progress, And Residual Lag}
+
+하나의 effective graphite transition mode를 잡는다. 평형 또는 준평형 target fraction을
+\begin{equation}
+\theta_{\mathrm e}=\theta_{\mathrm e}(\varphi,T),
+\qquad
+0\le\theta_{\mathrm e}\le1
+\label{eq:thetae_def}
+\end{equation}
+로 둔다. 여기서 \(\theta_{\mathrm e}\)의 구체적 형태는 아직 정하지 않는다. logistic, erf, regular-solution 형태는 나중에 선택할 수 있지만, Chapter 1의 tail 논리는 특정 peak 함수에 의존하지 않는다.
+
+실제 진행률은 branch 좌표의 함수로 둔다.
+\begin{equation}
+\theta=\theta(Q),
+\qquad
+0\le\theta\le1.
+\label{eq:theta_def}
+\end{equation}
+
+residual lag를
+\begin{equation}
+r(Q)=\theta_{\mathrm e}(\varphi(Q),T)-\theta(Q)
+\label{eq:residual_def_clean}
+\end{equation}
+로 정의한다. 본 장의 forward branch에서는 transition 중심을 지난 직후 실제 진행률이 target을 덜 따라간 상황을 주로 다루므로, post-peak tail의 시작점 \(Q_a\)에서 \(r(Q_a)>0\)인 경우가 대표적이다. branch convention을 바꾸면 \(r\)의 부호 정의도 함께 바꾸어야 한다.
+
+\section{Why A First-Order Relaxation Law Is Allowed Locally}
+
+본 장은 흑연 stage transformation의 모든 microscopic nucleation, growth, phase-boundary motion, diffusion을 하나의 exact law로 줄이지 않는다. 실제 graphite stage transformation kinetics에는 nucleation과 phase-boundary movement가 관여할 수 있다 \cite{Funabiki1999}. 따라서 다음 식은 microscopic universal law가 아니라, 한 transition mode를 국소적으로 coarse-grain한 reduced law이다.
+
+이를 더 안전하게 보이기 위해 forward/backward two-state form에서 시작한다.
+\begin{equation}
+\frac{\dd\theta}{\dd t}
+=
+r_+(1-\theta)-r_-\theta .
+\label{eq:forward_backward_clean}
+\end{equation}
+여기서 \(r_+\)와 \(r_-\)는 현재 \(\varphi,T\)에서의 forward/backward transition rate이다. 이 식은 다음처럼 정리된다.
+\begin{equation}
+\frac{\dd\theta}{\dd t}
+=
+(r_++r_-)
+\left[
+\frac{r_+}{r_++r_-}-\theta
+\right].
+\label{eq:fb_reduced_clean}
+\end{equation}
+stationary target이 equilibrium target과 일치하는 영역에서는
+\begin{equation}
+\theta_{\mathrm e}
+=
+\frac{r_+}{r_++r_-}
+\label{eq:thetae_rate_ratio_clean}
+\end{equation}
+로 둘 수 있고, mobility는
+\begin{equation}
+k=r_++r_-
+\label{eq:mobility_sum_clean}
+\end{equation}
+가 된다. 따라서
+\begin{equation}
+\boxed{
+\frac{\dd\theta}{\dd t}
+=
+k\left(\theta_{\mathrm e}-\theta\right)
+=kr .
+}
+\label{eq:first_order_clean}
+\end{equation}
+
+이 전개는 중요한 double-counting 방지 장치이다. \(\theta_{\mathrm e}\)는 forward/backward 비율이 정하는 target이고, \(k\)는 그 target으로 접근하는 mobility이다. 같은 전위가 둘 다에 영향을 줄 수는 있지만, 둘을 독립적으로 마음대로 정하면 thermodynamic consistency가 깨질 수 있다. 따라서 본 장에서 \(k(T,\psi)\)를 쓰는 것은 ``주어진 \(\theta_{\mathrm e}\)로 향하는 reduced mobility''를 모델링한다는 뜻이며, \(\theta_{\mathrm e}\) 자체를 다시 임의로 바꾸는 뜻이 아니다.
+
+\section{Residual Equation In Capacity Coordinate}
+
+정전류 또는 monotone scan 구간에서 \(v_Q=\dd Q/\dd t>0\)이므로
+\begin{equation}
+\frac{\dd\theta}{\dd t}
+=
+\frac{\dd\theta}{\dd Q}\frac{\dd Q}{\dd t}
+=
+v_Q\frac{\dd\theta}{\dd Q}.
+\end{equation}
+식 \eqref{eq:first_order_clean}에서
+\begin{equation}
+\frac{\dd\theta}{\dd Q}
+=
+\frac{k}{v_Q}r .
+\label{eq:dtheta_dQ_clean}
+\end{equation}
+
+이제 식 \eqref{eq:residual_def_clean}을 \(Q\)로 미분한다.
+\begin{equation}
+\frac{\dd r}{\dd Q}
+=
+\frac{\dd\theta_{\mathrm e}}{\dd Q}
+-
+\frac{\dd\theta}{\dd Q}.
+\end{equation}
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd r}{\dd Q}
++
+\frac{k}{v_Q}r
+=
+\frac{\dd\theta_{\mathrm e}}{\dd Q}.
+}
+\label{eq:residual_ode_clean}
+\end{equation}
+평형 target의 이동은 chain rule로
+\begin{equation}
+\frac{\dd\theta_{\mathrm e}}{\dd Q}
+=
+\frac{\partial\theta_{\mathrm e}}{\partial\varphi}
+\frac{\dd\varphi}{\dd Q}
++
+\frac{\partial\theta_{\mathrm e}}{\partial T}
+\frac{\dd T}{\dd Q}.
+\label{eq:thetae_chain_clean}
+\end{equation}
+등온 분석에서는 두 번째 항이 사라진다.
+
+식 \eqref{eq:residual_ode_clean}은 forced first-order residual equation이다. \(Q_0\)에서 \(Q\)까지의 일반해는
+\begin{align}
+r(Q)
+&=
+r(Q_0)
+\exp\!\left[
+-\int_{Q_0}^{Q}\frac{k(s)}{v_Q(s)}\,\dd s
+\right]
+\nonumber\\
+&\quad+
+\int_{Q_0}^{Q}
+\exp\!\left[
+-\int_{s}^{Q}\frac{k(u)}{v_Q(u)}\,\dd u
+\right]
+\frac{\dd\theta_{\mathrm e}}{\dd s}\,\dd s .
+\label{eq:residual_general_clean}
+\end{align}
+이 식은 residual tail이 두 가지에서 온다는 점을 보인다. 첫째, 이미 생긴 residual이 유한한 rate로 사라진다. 둘째, 평형 target이 움직이는 동안 forcing term이 residual을 계속 만든다.
+
+transition 중심을 지난 뒤 \(\dd\theta_{\mathrm e}/\dd Q\)가 작아지고, \(k/v_Q\)가 국소적으로 거의 일정하면
+\begin{equation}
+\frac{\dd r}{\dd Q}
+\simeq
+-\frac{k}{v_Q}r
+\end{equation}
+이고,
+\begin{equation}
+\boxed{
+r(Q)
+\simeq
+r(Q_a)
+\exp\!\left[-\frac{Q-Q_a}{L_Q}\right],
+\qquad
+L_Q=\frac{v_Q}{k}.
+}
+\label{eq:LQ_clean}
+\end{equation}
+따라서 \(L_Q\)는 capacity-axis에서 본 국소 kinetic tail length이다. 이것은 voltage-axis tail length가 아니다. voltage-axis 변환은 뒤에서 따로 둔다.
+
+\section{Active Barrier Rate Law}
+
+상변이가 진행되려면 coarse-grained activated coordinate를 넘어야 한다고 가정한다. transition-state theory에서는 rate가 activation free energy에 지수적으로 의존한다 \cite{Eyring1935,EyringChemRev1935}. 본 장에서는 이를 graphite transition mode의 reduced mobility에 적용한다.
+
+intrinsic activation free energy를 국소 온도 구간에서
+\begin{equation}
+\Delta G_0^\ddagger(T)
+=
+\Delta H^\ddagger(T)
+-
+T\Delta S^\ddagger(T)
+\label{eq:G0_clean}
+\end{equation}
+로 쓴다. 좁은 온도 범위에서는 \(\Delta H^\ddagger\)와 \(\Delta S^\ddagger\)를 상수처럼 근사할 수 있지만, 넓은 온도 범위에서는 둘의 온도 의존성을 열어 두어야 한다.
+
+현 전극 전위가 forward transition을 돕는 정도를 signed coordinate \(\psi\)로 둔다.
+\begin{equation}
+\psi
+=
+s_\psi\left[\varphi-\varphi^\star(T)\right],
+\qquad
+\psi>0
+\text{ assists the forward transition.}
+\label{eq:psi_clean}
+\end{equation}
+전위가 activated coordinate에 제공하는 molar work scale은 \(F\psi\)이고, 그 중 실제 활성 장벽 저하에 투영되는 유효 결합을 \(\Lambda_\psi\ge0\)로 둔다. \(\Lambda_\psi\)는 dimensionless effective coupling number이다. 그러면 active-barrier regime에서
+\begin{equation}
+\boxed{
+\Delta G_{\mathrm{act}}^\ddagger(T,\psi)
+=
+\Delta G_0^\ddagger(T)
+-
+\Lambda_\psi F\psi,
+\qquad
+\Delta G_{\mathrm{act}}^\ddagger>0 .
+}
+\label{eq:Gact_clean}
+\end{equation}
+이 식의 마지막 조건이 중요하다. 식 \eqref{eq:Gact_clean}은 활성 장벽이 rate를 지배하는 영역의 식이다. \(\Delta G_{\mathrm{act}}^\ddagger\le0\)인 영역을 수학적으로 잘라서 고치지 않는다. 그 경우에는 이 reduced active-barrier 설명의 적용 범위가 끝났으며, attempt frequency, site availability, phase-boundary motion, diffusion, transport, current conservation 같은 다른 물리적 병목이 rate를 제한한다.
+
+active-barrier regime에서는
+\begin{equation}
+\boxed{
+k(T,\psi)
+=
+k_0(T)
+\exp\!\left[
+-\frac{\Delta G_{\mathrm{act}}^\ddagger(T,\psi)}{RT}
+\right].
+}
+\label{eq:k_clean}
+\end{equation}
+여기서 \(k_0(T)\)는 transmission factor, \(k_B T/h\) scale, local availability, coarse-graining factor 등을 포함할 수 있는 reduced prefactor이다. 본 장에서는 \(k_0\)를 fitting knob으로 자유화하지 않고, active-barrier 식의 prefactor로만 둔다.
+
+식 \eqref{eq:LQ_clean}과 \eqref{eq:k_clean}에서
+\begin{equation}
+\boxed{
+L_Q(T,\psi)
+=
+\frac{v_Q}{k_0(T)}
+\exp\!\left[
+\frac{\Delta G_{\mathrm{act}}^\ddagger(T,\psi)}{RT}
+\right]
+}
+\label{eq:LQ_barrier_clean}
+\end{equation}
+이다. 이 식은 Chapter 1의 중심 결과이다. 단, active-barrier regime, local constant-rate approximation, fixed scan speed라는 조건을 갖는다.
+
+\section{Temperature Effect}
+
+식 \eqref{eq:LQ_barrier_clean}의 로그를 쓰면
+\begin{equation}
+\ln L_Q
+=
+\ln v_Q
+-
+\ln k_0(T)
++
+\frac{\Delta G_{\mathrm{act}}^\ddagger(T,\psi)}{RT}.
+\label{eq:lnL_clean}
+\end{equation}
+같은 \(v_Q\), 같은 \(\psi\)에서 미분하면
+\begin{equation}
+\frac{\partial\ln L_Q}{\partial T}
+=
+-
+\frac{\partial\ln k_0}{\partial T}
++
+\frac{1}{RT}
+\frac{\partial\Delta G_{\mathrm{act}}^\ddagger}{\partial T}
+-
+\frac{\Delta G_{\mathrm{act}}^\ddagger}{RT^2}.
+\label{eq:T_deriv_clean}
+\end{equation}
+따라서 고온에서 tail이 짧아진다는 명제는 무조건 법칙이 아니라
+\begin{equation}
+\frac{\partial\ln L_Q}{\partial T}<0
+\end{equation}
+이라는 조건이다. 일반적인 활성화 과정에서 온도가 올라가면 exponential penalty가 줄고, prefactor가 감소하지 않으면 \(k\)가 증가하기 쉬우므로 \(L_Q=v_Q/k\)는 줄어든다. 반대로 \(k_0(T)\), \(\Delta G_{\mathrm{act}}^\ddagger(T,\psi)\), transport bottleneck, 또는 \(\psi(T)\)가 특이하게 변하면 단순 고온-short-tail 결론은 깨질 수 있다.
+
+따라서 본 장의 해석은 다음처럼 써야 한다.
+\begin{equation}
+T\downarrow
+\Rightarrow
+k\downarrow
+\Rightarrow
+L_Q\uparrow
+\quad
+\text{if the net active-regime rate decreases at lower temperature.}
+\end{equation}
+그리고
+\begin{equation}
+T\uparrow
+\Rightarrow
+k\uparrow
+\Rightarrow
+L_Q\downarrow
+\quad
+\text{if the net active-regime rate increases at higher temperature.}
+\end{equation}
+
+\section{Present-Potential Assistance}
+
+active-barrier regime에서, fixed \(T\), fixed \(v_Q\), and fixed \(k_0\)로 보면 식 \eqref{eq:Gact_clean}에서
+\begin{equation}
+\frac{\partial\Delta G_{\mathrm{act}}^\ddagger}{\partial\psi}
+=
+-\Lambda_\psi F .
+\end{equation}
+따라서 식 \eqref{eq:lnL_clean}로부터
+\begin{equation}
+\boxed{
+\frac{\partial\ln L_Q}{\partial\psi}
+=
+-\frac{\Lambda_\psi F}{RT}
+\le0.
+}
+\label{eq:psi_deriv_clean}
+\end{equation}
+즉 \(\psi\)가 forward transition을 돕는 방향으로 커지면 active barrier가 낮아지고, \(k\)가 커지며, capacity-axis residual tail length \(L_Q\)는 감소한다.
+
+여기서도 한계를 분명히 해야 한다. 식 \eqref{eq:psi_deriv_clean}은 active-barrier regime의 국소 민감도이다. \(\Delta G_{\mathrm{act}}^\ddagger\)가 더 이상 양의 rate-limiting barrier가 아니면, 이 미분식을 계속 외삽하지 않는다. 그 다음 영역에서는 어떤 물리적 병목이 rate를 제한하는지 별도로 모델링해야 한다.
+
+\section{ICA/DVA Mapping}
+
+transition이 없는 background storage를 국소적으로
+\begin{equation}
+\dd Q_{\mathrm b}
+=
+C_{\mathrm b}(\varphi,T)\,\dd\varphi,
+\qquad
+C_{\mathrm b}>0
+\end{equation}
+로 둔다. effective transition fraction이 저장하는 charge scale을 \(Q_p>0\)라 하면 전체 incremental storage balance는
+\begin{equation}
+\boxed{
+\dd Q
+=
+C_{\mathrm b}(\varphi,T)\,\dd\varphi
++
+Q_p\,\dd\theta .
+}
+\label{eq:storage_clean}
+\end{equation}
+양변을 \(\dd Q\)로 나누면
+\begin{equation}
+1
+=
+C_{\mathrm b}\frac{\dd\varphi}{\dd Q}
++
+Q_p\frac{\dd\theta}{\dd Q}.
+\end{equation}
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd\varphi}{\dd Q}
+=
+\frac{1-Q_p\,\dd\theta/\dd Q}{C_{\mathrm b}}
+}
+\label{eq:dva_clean}
+\end{equation}
+이고,
+\begin{equation}
+\boxed{
+\frac{\dd Q}{\dd\varphi}
+=
+\frac{C_{\mathrm b}}
+{1-Q_p\,\dd\theta/\dd Q}.
+}
+\label{eq:ica_clean}
+\end{equation}
+이 식은 denominator가 0이 아닌 영역에서만 일반적인 ICA로 해석된다.
+\begin{equation}
+1-Q_p\frac{\dd\theta}{\dd Q}\ne0 .
+\label{eq:denom_clean}
+\end{equation}
+peak 중심에서 denominator가 작아지면 ICA는 매우 민감해질 수 있다. 본 장의 tail 논리는 이 특이 중심부가 아니라 post-peak 감쇠 영역에 초점을 둔다.
+
+post-peak homogeneous 영역에서
+\begin{equation}
+\frac{\dd\theta}{\dd Q}
+=
+\frac{k}{v_Q}r
+\simeq
+\frac{r(Q_a)}{L_Q}
+\exp\!\left[-\frac{Q-Q_a}{L_Q}\right].
+\label{eq:dtheta_tail_clean}
+\end{equation}
+따라서 ICA 식 \eqref{eq:ica_clean}의 denominator에는 같은 capacity-axis exponential scale이 들어간다. 전압축에서의 국소 tail scale은 DVA mapping을 통해
+\begin{equation}
+\boxed{
+L_\varphi
+\simeq
+\left|
+\frac{\dd\varphi}{\dd Q}
+\right|_{Q_a}
+L_Q
+}
+\label{eq:Lphi_clean}
+\end{equation}
+로 볼 수 있다. 이는 \(\dd\varphi/\dd Q\)가 tail 구간에서 완만하게 변한다는 local approximation이다. 전압축 mapping이 강하게 비선형이면, 관측 ICA tail 모양은 \(L_Q\)만으로 정해지지 않는다.
+
+\section{Interpretation And Limits}
+
+본 장의 논리 사슬은 다음과 같다.
+\[
+\psi,T
+\rightarrow
+\Delta G_{\mathrm{act}}^\ddagger(T,\psi)
+\rightarrow
+k(T,\psi)
+\rightarrow
+L_Q=\frac{v_Q}{k}
+\rightarrow
+\frac{\dd\theta}{\dd Q}
+\rightarrow
+\frac{\dd Q}{\dd\varphi}.
+\]
+
+정리하면 다음과 같다.
+
+\begin{enumerate}
+\item post-peak kinetic tail은 residual \(r=\theta_{\mathrm e}-\theta\)가 유한한 rate로 사라지는 현상이다.
+\item local constant-rate approximation에서 capacity-axis tail length는 \(L_Q=v_Q/k\)이다.
+\item active-barrier regime에서는 \(k\)가 activation free energy에 지수적으로 의존한다.
+\item 낮은 온도에서 net rate가 작아지면 \(L_Q\)가 커져 tail이 길어진다.
+\item 높은 온도에서 net rate가 커지면 \(L_Q\)가 작아져 tail이 짧아진다.
+\item 현 전위 상태가 forward transition을 돕는 방향이면 \(\psi\)가 커지고, active barrier가 낮아져 tail이 짧아진다.
+\item 이 전위 효과는 \(\theta_{\mathrm e}\)와 \(k\)를 무관하게 자유 피팅한다는 뜻이 아니다. \(\theta_{\mathrm e}\)는 stationary target, \(k\)는 그 target으로 접근하는 mobility라는 구분이 필요하다.
+\item active barrier가 소진되는 영역은 수학적으로 잘라내지 않는다. 그 영역은 활성 장벽 근사의 밖이며, rate limitation은 물리적 병목으로 별도 설명해야 한다.
+\item equilibrium heterogeneity도 peak 폭과 모양에 기여할 수 있다. 본 장은 그 중 kinetic residual tail 성분을 분리해 설명한다.
+\end{enumerate}
+
+\section{Roadmap To Later Chapters}
+
+Chapter 2에서는 이 equilibrium target과 전위 구조를 이용해 reversible heat와 \(\dd V/\dd T\) 계열을 다룬다. Chapter 3에서는 본 장의 reduced mobility \(k\)와 active-barrier lowering을 electrochemical forward/backward kinetics, overpotential, exchange current와 연결한다. Chapter 4에서는 열 발생 항으로 확장한다. Chapter 5에서는 charge/discharge branch와 hysteresis를 별도로 다룬다.
+
+\begin{thebibliography}{9}
+
+\bibitem{Dahn1991}
+J. R. Dahn, ``Phase diagram of \(\mathrm{Li}_x\mathrm{C}_6\),'' \textit{Physical Review B}, 44, 9170-9177 (1991). DOI: \href{https://doi.org/10.1103/PhysRevB.44.9170}{10.1103/PhysRevB.44.9170}.
+
+\bibitem{Funabiki1999}
+A. Funabiki, M. Inaba, T. Abe, and Z. Ogumi, ``Nucleation and phase-boundary movement upon stage transformation in lithium-graphite intercalation compounds,'' \textit{Electrochimica Acta}, 45, 865-871 (1999). DOI: \href{https://doi.org/10.1016/S0013-4686(99)00290-X}{10.1016/S0013-4686(99)00290-X}.
+
+\bibitem{Eyring1935}
+H. Eyring, ``The activated complex in chemical reactions,'' \textit{Journal of Chemical Physics}, 3, 107-115 (1935). DOI: \href{https://doi.org/10.1063/1.1749604}{10.1063/1.1749604}.
+
+\bibitem{EyringChemRev1935}
+S. Glasstone, K. J. Laidler, and H. Eyring, ``The activated complex and the absolute rate of chemical reactions,'' \textit{Chemical Reviews}, 17, 301-327 (1935). DOI: \href{https://doi.org/10.1021/cr60056a006}{10.1021/cr60056a006}.
+
+\bibitem{Bazant2013}
+M. Z. Bazant, ``Theory of chemical kinetics and charge transfer based on nonequilibrium thermodynamics,'' \textit{Accounts of Chemical Research}, 46, 1144-1160 (2013). DOI: \href{https://doi.org/10.1021/ar300145c}{10.1021/ar300145c}.
+
+\bibitem{Dubarry2006}
+M. Dubarry, V. Svoboda, R. Hwu, and B. Y. Liaw, ``Incremental capacity analysis and close-to-equilibrium OCV measurements to quantify capacity fade in commercial rechargeable lithium batteries,'' \textit{Electrochemical and Solid-State Letters}, 9, A454-A457 (2006). DOI: \href{https://doi.org/10.1149/1.2221767}{10.1149/1.2221767}.
+
+\bibitem{Dubarry2022}
+M. Dubarry and D. Ansean, ``Best practices for incremental capacity analysis,'' \textit{Frontiers in Energy Research}, 10, 1023555 (2022). DOI: \href{https://doi.org/10.3389/fenrg.2022.1023555}{10.3389/fenrg.2022.1023555}.
+
+\end{thebibliography}
+
+\end{document}
+
