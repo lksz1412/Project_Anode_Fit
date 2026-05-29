@@ -30,4 +30,5 @@
 
 ## 상태
 - CRIT 0. MED 2 반영. LOW 수용. 균형: G1 (k_lim 추가 후) / G2 / G3 재확인 필요.
-- G1~G3 keystone 무모순 전파(P3-6) 유지. 다음: (a) 통합 문서 병합.
+- G1~G3 keystone 무모순 전파(P3-6) 유지.
+- **(a) 통합 문서 병합 완료**: `graphite_ica_consolidated_full.tex` (통합 preamble + `\input` 본문 3개 + 통합 bib 20). 전개본 검증: 단일 documentclass/document, begin=end=64, boxed=7, 중복 정의 0, 미정의 cite/ref 0, 중복 label 0. 빌드: xelatex(kotex), 사용자 환경.

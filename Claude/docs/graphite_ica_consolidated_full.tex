@@ -1,0 +1,95 @@
+% ====================================================================
+% graphite_ica_consolidated_full.tex — 합류 통합본 (G1+G2+G3 단일 문서)
+%   통합 preamble + 본문 \input(_body_ch1_G1, _body_ch2_ch4_G2, _body_ch5_ch6_G3)
+%   + 통합 참고문헌(_bib_merged). 빌드: xelatex (kotex).
+%   본문 .tex(G1/G2/G3 standalone) 및 (A)(B) 원본은 그대로 보존; 본 파일은 병합 master.
+%   라벨 충돌 0 / 미정의 ref 0 확인 (2026-05-29).
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- 통합 정리 환경 (각 1회 정의) ---
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{flagbox}{FLAGGED (미확정)}
+\newtheorem*{keybox}{Keystone}
+\newtheorem*{anchorbox}{Observation Anchor}
+
+% --- 통합 매크로 (union, 각 1회) ---
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\simplecase}{\mathrm{simple}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\state}{\mathrm{state}}
+\newcommand{\tar}{\mathrm{tar}}
+\newcommand{\ss}{\mathrm{ss}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 흑연 음극 ICA($dQ/dV$) tail 의 열역학 무대 $\cdot$ 동역학 주역 이론}\\[0.4em]
+\large 합류 통합본 — Chapter 1--6\\[0.2em]
+\normalsize 전하보존 $V_n$ $\cdot$ 유효 mobility(Level A) $\cdot$ relaxation-length spectrum $\cdot$ 피팅식 $\cdot$
+발열 $\cdot$ 반응속도론(Level B) $\cdot$ entropy production $\cdot$ 충방전/히스테리시스 $\cdot$ 수치 $\cdot$ 검증}
+\author{Project\_Anode\_Fit (Claude 측)}
+\date{2026-05-29}
+
+\begin{document}
+\maketitle
+
+\begin{mdframed}
+\textbf{통합본 안내.} 본 문서는 합류 G1(Ch1)$\cdot$G2(Ch2--4)$\cdot$G3(Ch5--6)을 단일 빌드로 묶은 것이다.
+\textbf{지배 표준 GS-1~4}(학부 무비약 / 전문 깊이 / 모든 가정 AL 인용 / 임의 cap$\cdot$step 금지)와
+\textbf{keystone}(Ch1=Level A mobility, Ch3=Level B 방향성, $\chi_j=\beta_j$)이 Ch1$\to$Ch6 에 무모순
+전파된다(P3-6). 10-pass 논리 검토 2회(G1+G2, G3) 반영본. 빌드: \texttt{xelatex}(kotex).
+\end{mdframed}
+
+\tableofcontents
+\newpage
+
+% ====================== Chapter 1 (G1) ======================
+\setcounter{section}{0}\renewcommand{\thesection}{1.\arabic{section}}
+\renewcommand{\thesubsection}{1.\arabic{section}.\arabic{subsection}}
+\input{_body_ch1_G1}
+\clearpage
+
+% ====================== Chapter 2--4 (G2) ======================
+\input{_body_ch2_ch4_G2}
+\clearpage
+
+% ====================== Chapter 5--6 (G3) ======================
+\input{_body_ch5_ch6_G3}
+\clearpage
+
+% ====================== 통합 참고문헌 ======================
+\begin{thebibliography}{99}
+\input{_bib_merged}
+\end{thebibliography}
+
+\end{document}
