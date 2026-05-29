@@ -8,6 +8,19 @@
 
 ---
 
+## §00. ★ 지배 표준 (Governing Standard) — 서두 고정, 모든 phase·산출물에 우선 적용
+
+> 본 계획과 그 후속 합류 산출물(G-series Chapter 1~6) 전체를 지배하는 최우선 표준. 아래 4조와 충돌하는 어떤 전개·가정도 채택하지 않는다. (CHARTER_v3 §00.2 P4 + MASTER_ROADMAP_v3 §2 AGP 를 본 계획에 명시 승계·강화.)
+
+- **GS-1 (학부 가독성 · 무비약).** 모든 논리 전개는 **학부 수준 지식**(일반화학·물리화학의 화학평형/열역학, 전기화학 기초 Nernst·Butler–Volmer, 반응속도론 Arrhenius/transition-state, 기초 미적분)으로 한 단계씩 따라갈 수 있어야 한다. 각 식은 **물리적 의미를 prose 로 먼저 제시한 뒤 수식화**하고, 식 A→식 B 의 모든 중간 단계는 **생략(omission) 금지**. "직관적으로", "잘 알려진 대로" 식의 도약(leap)으로 단계를 건너뛰지 않는다.
+- **GS-2 (전문 깊이).** 단, 결론·구조는 **출판(논문/특허) 수준의 물리적 엄밀성**을 유지한다. 깊이와 가독성은 trade-off 가 아니라 **"깊은 내용을 학부가 따라오도록 단계적으로 푼다"** 로 양립시킨다. 깊이를 위해 가독성을, 가독성을 위해 엄밀성을 희생하지 않는다.
+- **GS-3 (가정 grounding 의무).** 사용 가능한 가정·관계식은 다음 중 하나의 근거를 **반드시** 가진다: (a) peer-reviewed 논문의 명시 인용, (b) 교과서 canon 으로부터의 1st-principles 유도. 둘 다 없으면 **established 로 사용 금지** → FLAGGED(가설/ansatz)로만 표기. 모든 본문 가정은 Assumption Ledger(AL-#)에 인용.
+- **GS-4 (과도한 가정 배제).** 물리적 의미를 무시한 **수학적 편의 가정 금지**: 임의 clip/cap, softplus 위장 knob, step-function·Heaviside·hard-switch 정의식, 0→1 급점프, 물리 근거 없는 함수형(예: 평형형태) 강제. 속도 제한이 필요하면 transport·site·diffusion·finite-current 같은 **물리적 병목**으로 둔다. BOUNDED 가정은 **유효범위(어디서 성립/깨지는가)를 항상 병기**(예: 선형 barrier lowering 은 Marcus 곡률로 큰 |V−U| 에서 깨짐).
+
+**적용 방식.** GS-1~4 는 (i) 본 진단 phase 의 gate(§8)에 검사항목으로 박히고, (ii) North Star N-2/N-5(§1bis)와 연결되며, (iii) G-series 재작성의 매 식·매 절에 적용된다. 본 계획서 자체도 GS 로 자기감사한다(§8bis).
+
+---
+
 ## §0. 사용자 의도 — 두 층위 (절대 기준)
 
 ### §0.1 원천 관찰·동기 (verbatim, Charter §00 유지)
@@ -145,19 +158,32 @@
 
 ### §6.2 ★ 열역학 vs 동역학 — 재정합 (이미 내부적으로 해소된 사안)
 
-`SELF_REVIEW_v2_DELIVERABLES.md §3` 가 이미 도출한 결론을 본 진단의 1급 명제로 격상한다:
+`SELF_REVIEW_v2_DELIVERABLES.md §3` 가 이미 도출한 결론을, **GS-1 학부 무비약 chain** 으로 다시 적어 본 진단의 1급 명제로 격상한다. (각 단계는 물리화학·반응속도론 교과서 수준.)
 
-- 평형 lattice-gas 폭 `w = RT/F` 는 **저온서 좁아진다** (25°C 0.0257V → −15°C 0.0222V). 즉 **순수 평형 열역학은 "저온 → 더 sharp"** 를 예측 → 관찰(저온 긴 꼬리)과 **반대**.
-- 저온 긴 꼬리는 `k = k_0 exp(−ΔG_a/RT)` 감소 → lag 증가 → relaxation length `L=|I|/(Q_cell k)` 증가의 **동역학 신호**. 관찰과 **일치**.
-- ∴ **열역학 = 무대**(`V_n` charge-balance, `θ_eq` 평형 target), **관찰된 꼬리 거동 = 동역학(주역)**. 사용자의 "전위가 배리어를 낮춘다"도 이미 **activation-barrier(동역학)** 개념.
+**(가) 평형(열역학)만으로는 저온 긴 꼬리가 안 나온다.**
+1. 2-state 평형 점유(화학평형 Boltzmann/Fermi): `θ_eq = 1/(1+exp[−(V_n−U)/w])`, 폭 `w = RT/F` [AL-3a, McKinnon-Haering/Bazant].
+2. dQ/dV peak 형상은 `dθ_eq/dV_n = (1/w)·θ_eq(1−θ_eq)` 로 결정 — peak 높이 ∝ `1/w`, 폭 ∝ `w` (logistic 미분, 미적분 1단계).
+3. 저온 → `w=RT/F` **감소** → peak 가 **더 좁고 가팔라짐**(꼬리 더 **빨리** 감쇠). 수치: 25°C `w≈25.7 mV` → −15°C `w≈22.2 mV`.
+4. ∴ 평형 열역학 예측 = "저온 → 짧은 꼬리". **관찰(저온 → 긴 꼬리)과 정반대.** (∴ 관찰은 평형 broadening 으로 설명 불가.)
 
-→ **정정된 framing**: "열역학적 *기반* 위에서 전개되는 동역학적 꼬리 현상." 이 한 문장을 합류 문서의 머리에 못박으면 G2 가 닫힌다. (사용자 최초 직관은 틀린 게 아니라 — 열역학이 무대를 깐다 — 다만 *주역이 동역학*임을 명시 안 했을 뿐.)
+**(나) 동역학(kinetic lag)은 관찰 방향을 그대로 준다.**
+1. 진행률은 평형을 향해 1차 완화: `dξ/dt = k(ξ_eq−ξ)`, `k = k_0 exp(−ΔG_a/RT)` [AL-1 Eyring, AL-5 선형완화 — 교과서].
+2. 정전류 `dq/dt=|I|/Q_cell` 로 좌표 변환 → post-peak(`dξ_eq/dq≈0`)에서 잔차 `r=ξ_eq−ξ` 가 `r(q)=r_a·exp[−(q−q_a)/L]`, **`L=|I|/(Q_cell k)`** (1계 선형 ODE 적분, 학부 미분방정식 1단계).
+3. 저온 → `k` **감소**(Arrhenius) → `L` **증가** → 꼬리가 **길어짐**. 관찰과 **일치**. (전류↑ 도 `L↑` → C-rate 겹침과 일치, §0.2-③.)
+
+**(다) 종합.** **열역학 = 무대**(charge-balance 로 `V_n` 결정 + `θ_eq` 평형 target), **관찰된 꼬리 거동 = 동역학(주역)**. 사용자의 "전위가 배리어를 낮춘다"도 `k` 를 통한 **activation-barrier(동역학)** 개념이다.
+
+→ **정정된 framing (GS 적합)**: "열역학적 *기반*(무대) 위에서 전개되는 **동역학적** 꼬리 현상." 이 한 문장을 합류 문서 머리에 못박으면 G2 가 닫힌다. (사용자 최초 직관 "열역학 기반"은 틀린 게 아니라 — 열역학이 무대를 깐다 — 다만 *관찰 신호의 주역이 동역학*임이 위 (가)(나) 무비약 chain 으로 확정된다.)
 
 ### §6.3 ★ Keystone — χ𝒜 의 역할 (Level A vs Level B), 그리고 의도 사슬이 주는 해답
 
-리뷰 지적서 #1 + 본 세션 (A) 검토에서 확인된 핵심 모순:
-- (A) `D3`: χ 를 **BEP/BV transfer coefficient**(방향성)로 grounding. 그러나 `D5`+`eq:rate`: χ𝒜 가 **총 mobility `k=r_++r_-`** 에 대칭 삽입 → ratio `r_+/r_- = θ_eq/(1−θ_eq)` 가 χ𝒜 와 무관 → 실제로는 **방향성 없는 Level A(mobility scale)**. 이름·grounding(Level B)과 사용(Level A)이 불일치.
-- (B) 도 동형 (`ΔG_eff=ΔG_a−χ𝒜` → `k_act` → relaxation). v3 는 Ch3 에서 명시적 forward/backward(Level B)를 따로 도입해 Ch1(Level A)과 **장 간 충돌** (리뷰 지적서 핵심).
+**(학부 chain — 왜 모순인지 무비약으로)**: 2-state 반응속도론(교과서)에서 net rate `dξ/dt = r_+(1−ξ) − r_-ξ`. 정상점 `ξ_ss = r_+/(r_++r_-)`, 그 근처 선형화 → `dξ/dt = (r_++r_-)(ξ_ss−ξ)`. 즉 **`k ≡ r_++r_-` = mobility(평형 접근 속도), `ξ_eq=ξ_ss=r_+/(r_++r_-)` = target(방향)** 으로 분리된다 [AL-5]. 따라서:
+- `χ𝒜` 가 **`k`(=`r_++r_-`)에만** 들어가면 → `r_+,r_-` 가 **같은 배율**로 커져 ratio `r_+/r_- = ξ_eq/(1−ξ_eq)` **불변** → `χ𝒜` = 방향성 없는 **mobility scale(Level A)**.
+- `χ𝒜` 가 **`r_+,r_-` 에 비대칭**으로(forward `−β𝒜`, backward `+(1−β)𝒜`) 들어가야 → ratio 가 `exp(𝒜/RT)` 로 **이동** → 진짜 방향성 **barrier lowering(Level B)** [AL-2 BEP/BV].
+
+이 잣대로 본 핵심 모순:
+- (A) `D3`: χ 를 **BEP/BV transfer coefficient**(방향성=Level B 함의)로 grounding. 그러나 `D5`+`eq:rate`: χ𝒜 를 **총 mobility `k=r_++r_-`** 에 넣어 사용 → 위 chain 에 의해 실제 작동은 **Level A(방향성 없음)**. **이름·grounding(Level B) ↔ 사용(Level A) 불일치.**
+- (B) 도 동형 (`ΔG_eff=ΔG_a−χ𝒜` → `k_act` → relaxation = Level A). 그러나 (B) Ch3 는 명시적 forward/backward(Level B)를 따로 도입 → Ch1(Level A)과 **장 간 충돌** (리뷰 지적서 핵심).
 
 **★ 의도 사슬이 곧 해답을 준다 (본 진단의 핵심 통찰):**
 §0.2 에서 사용자는 **Ch1 = 열역학, Ch3 = 전기화학 반응속도론 확장**으로 이미 분리했다. 이 분리에 χ𝒜 역할을 그대로 얹으면 자연스럽게 정합한다:
@@ -314,6 +340,27 @@ CROSSCHECK 가 식별한 **유일한 식별식 수준 모순**. grep 으로 (B) 
 + 공통: 본문 가정 모두 AL 인용, FLAGGED 미오용, BOUNDED 유효범위 병기, Codex tex 미열람 준수.
 + ★ (anti-drift) **Observation Anchor Test**: 모든 Phase 산출물의 각 핵심 주장은 §0.2 관찰(저온 긴 꼬리·피크 겹침)로 **≤3 단계** 환원 추적 가능해야 한다 (SELF_REVIEW 교훈 "내부 일관성 ≠ 과학적 완결성" 의 운용판 — 관찰과 끊긴 형식 전개를 차단). 추적 불가 항목은 RETIRE 후보로 표기. → 이것이 N-1(단일 서사) 의 phase 단위 enforcement.
 + ★ (North Star) 각 Phase gate 통과 시 N-1~N-5(§1bis) 중 해당 조건의 충족/미충족을 명시 기록.
++ ★ (GS-1 학부 무비약) 각 산출물의 모든 유도가 "prose 의미 → 식" 순서 + 중간단계 무생략. 한 단계라도 학부 지식으로 추적 불가하면 FAIL → 단계 보강.
++ ★ (GS-3 grounding) 본문 사용 가정이 AL-# (논문/교과서 근거) 인용 0 누락; 근거 없는 항목은 FLAGGED 표기 확인.
++ ★ (GS-4 과도가정 배제) clip/cap/softplus-knob/step-function/hard-switch/근거없는 함수형 강제 정의식 0; BOUNDED 유효범위 병기 확인.
+
+---
+
+## §8bis. ★ 본 계획서 자체의 Governing-Standard 자기감사 (GS 로 계획서 재검토)
+
+사용자 지시("서두에 박고 그에 맞게 다시 검토")에 따라 본 계획서를 GS-1~4 로 감사한 결과:
+
+| GS | 검사 | 현 계획서 상태 | 조치 |
+|---|---|---|---|
+| GS-1 무비약 | §6.2 thermo/kinetic 논증이 학부 단계로 추적되나 | (초안) 결론만 제시 → **보강함**: (가)(나) 각 step 을 화학평형·Arrhenius·1계 ODE 로 무생략 전개 | ✅ 수정 완료 |
+| GS-1 무비약 | §6.3 "ratio 가 χ𝒜 무관" 주장이 도약 아닌가 | (초안) 단정 → **보강함**: 2-state net-rate→정상점→선형화 chain 명시 | ✅ 수정 완료 |
+| GS-2 깊이 | 진단이 출판수준 구조(P3 7항목·loop 4분류·전파 trace)를 유지하나 | §6.6/§6.8/§11 로 충족 | ✅ 유지 |
+| GS-3 grounding | 본 계획의 모든 물리 주장이 AL-# 인용되나 | §6.0 anchor 표 + §6.2/§6.3 inline [AL-#] | ✅ 충족 |
+| GS-3 grounding | 신규(근거 없는) 가정을 established 로 쓰지 않나 | 본 계획은 신규 물리가정 도입 X (기존 AL 재사용만); keystone·erf/logistic 은 미결로 표기 | ✅ 충족 |
+| GS-4 과도가정 | 계획이 clip/cap/step 등 편의 가정을 옹호하나 | 반대 — §6.4 RETIRE, §6.7-⑤(flux→rate clamp는 *발산·부호 없는 물리 clamp*), GS-4 gate 신설 | ✅ 충족 |
+| GS-4 과도가정 | tail 결론이 특정 함수형(erf/logistic) 강제에 의존하나 | §6.9-④: tail 결론은 평형형태 **무의존**(post-peak `dθ_eq/dq≈0`) | ✅ 충족 |
+
+**자기감사 판정**: 본 계획서는 GS-2/3/4 를 이미 충족했고, **GS-1(학부 무비약)에서 §6.2·§6.3 두 곳이 "결론 단정" 수준이라 미달**이었음 → 이번 turn 에 무비약 chain 으로 **보강 완료**. 잔여: G-series 재작성 시 매 식에 GS-1 을 적용(§8 gate 로 강제). **본 계획서 자체에는 GS 위반(논리 비약·근거 없는 가정·과도 편의가정) 잔존 0.**
 
 ---
 
@@ -400,3 +447,4 @@ Decision Gate 도달 / 새 외부 의존성 / FAIL gate / 사용자 stop — 그
 | 2026-05-29 | 신설. 사용자 호소(§0.3) + 의도 서사 사슬(§0.2) 수신 → 간극 진단 + 합류 로드맵 + salvage map 계획화. 두 산출물 계열(A kernel / B 전하보존 6장) 갈라짐을 핵심 사실로 식별. thermo/kinetic 재정합(§6.2)·χ𝒜 keystone 해결 후보(§6.3)·salvage map(§6.4) 예비 제시. 선택형 보기 금지 합의 반영. **계획 상태 — GO 대기.** |
 | 2026-05-29 | 심도 보완 (사용자 "기존 계획서와 유사 심도 확인·보완"): §6.0 grounding anchor(AL+DOI), §6.5 Intent↔Artifact 예비 traceability skeleton(8×2), §6.6 self-consistent loop dependency + P3-4 4-분류, §6.7 합류 강제 구조변경 7건(roadmap §7 pivot 동격), §11 Test Plan(T-DIAG-1~7)·Decision Queue(기존 DQ-v3 연계)·Sprint Contract 추가. 진입조건→§12, History→§13 재번호. |
 | 2026-05-29 | 2차 심도 보완 (사용자 "계획 더 가다듬기"): (B) Ch3~6 구조 grep 확인 → (B) Ch3 가 Level A/B·detailed balance·BV 를 이미 명시 보유함을 발견. 추가: §1bis **North Star N-1~N-5**(무엇이 "거리 없음"인가 정의), §6.3 keystone = reconciliation 으로 격상(grep 근거), §6.8 **keystone 전파 trace Ch1→Ch6**(P3-6 구체화), §6.9 **erf/logistic 합류 매듭**(Ch3 detailed balance 의 logistic 의존 확인), §6.10 **Refs 6/7 P3-5 dossier**(현상태·빈칸), §7 **전체 arc G1~G4**(재작성 scope), §8 **anti-drift Observation Anchor Test** + North Star gate. |
+| 2026-05-29 | 3차 — 지배 표준 서두 고정 + GS 자기검토 (사용자 "전문성+학부 가독성+무비약+grounded 가정만, 서두에 박고 그에 맞게 재검토"): §00 **Governing Standard GS-1~4** 신설(학부 무비약 / 전문 깊이 / 가정 grounding 의무 / 과도가정 배제). 이에 맞춰 §6.2(thermo/kinetic)·§6.3(keystone ratio) 을 **학부 무비약 chain** 으로 보강. §8 gate 에 GS-1/3/4 검사항목 추가. §8bis **계획서 GS 자기감사표** 추가 — 판정: GS-2/3/4 충족, GS-1 미달 2곳(§6.2·§6.3) 보강 완료, 계획서 내 GS 위반 잔존 0. |
