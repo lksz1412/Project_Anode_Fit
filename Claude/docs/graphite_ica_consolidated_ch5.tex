@@ -1,0 +1,424 @@
+% ====================================================================
+% graphite_ica_consolidated_ch5.tex — 합류 Chapter 5 (충방전·히스테리시스, v2)
+%   트렁크 = (B) 전하보존 6장 Ch5 전문 밀도. Ch1 v2 / Ch2 / Ch3 / Ch4 위 적층.
+%   합류 정합: branch target = Ch3 ξ_ss(branch-local detailed balance), 히스테리시스
+%   = Level A "열역학=방향" 분업의 부분 붕괴(target 자체가 path memory 획득).
+% Date: 2026-05-29 (v2)  Author: Project_Anode_Fit (Claude 측)
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail — 합류 Chapter 5 (충방전·히스테리시스, v2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA tail — 합류 Chapter 5 (충방전·히스테리시스, v2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{flagbox}{FLAGGED (미확정)}
+\newtheorem*{keybox}{Keystone}
+\newtheorem*{linkbox}{Ch1--4 전달식}
+
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\rlx}{\mathrm{relax}}
+\newcommand{\prog}{\mathrm{prog}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\transp}{\mathrm{transport}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{ch}}
+\newcommand{\rst}{\mathrm{rest}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\kin}{\mathrm{kin}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\loss}{\mathrm{loss}}
+\newcommand{\tar}{\mathrm{tar}}
+\newcommand{\stt}{\mathrm{state}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 흑연 음극 ICA tail 이론 — 합류 Chapter 5}\\[0.4em]
+\large 충방전과 히스테리시스: signed current $\cdot$ metastable branch target $\cdot$\\
+path dependence $\cdot$ full-cell 관측 연결 (Level A 분업의 부분 붕괴)}
+\author{Project\_Anode\_Fit (Claude 측)}
+\date{2026-05-29 (v2)}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서 — 인과 사슬에서 ``히스테리시스''의 자리}
+\addcontentsline{toc}{section}{서 — 히스테리시스의 자리}
+% ====================================================================
+Chapter 1 의 keystone 은 ``\textbf{열역학이 방향(평형 target $\xi_{\eq}$)을, 동역학이 속도(mobility $k_j$)를}''
+전담한다는 분업이었다(Level A). Chapter 3 은 forward/backward rate 가 detailed balance 를 만족하면 그 분업이
+미시적으로 정확함을 보였다($\xi_{\sstat}\to\xi_{\eq}$). \textbf{Chapter 5 의 히스테리시스는 바로 이 분업이
+\emph{부분적으로 무너지는} 영역이다}: 계가 metastable branch 자유에너지 위에 갇히면 \emph{target 자체가
+이력(branch memory)을 획득}해 $\xi_{\tar}^b\ne\xi_{\eq}$ 가 되고, ``방향''이 더 이상 순수 평형 열역학만으로
+정해지지 않는다. 즉 히스테리시스는 새로운 피팅 곡선이 아니라, \emph{detailed balance 의 이탈}(Ch3 $C_j$ 의
+branch 의존)로 인과 사슬 안에서 발생한다.
+
+\textbf{Chapter 5 의 한 문장 요지.} \emph{관측 voltage gap $\ne$ 히스테리시스} — gap 에는 polarization,
+kinetic lag, transport, aging 이 섞이며, true hysteresis 는 metastable free-energy branch / nucleation
+barrier / domain memory 로 \emph{분리 식별}된 경우에만 본문 모델에 둔다. 본 장은 충전 branch 까지 한 구조에
+넣되 Chapter 1--4 기본식을 수정하지 않고, 내부 state 는 방전 기준 $\xi_j$ 를 유지한다.
+
+\begin{groundingbox}
+\textbf{지배 표준(GS) 계승.} (GS-1\,$\sim$\,4) Ch1--4 동일. 충전 표기 보조 변수는 허용하나 독립 state 를
+임의로 늘리지 않는다; voltage gap 을 곧바로 hysteresis 로 등치하지 않는다; branch target 은 metastable
+free-energy/nucleation/domain memory 로 해석 가능할 때만 본문 모델; 근거 없는 empirical branch offset /
+arbitrary hysteresis curve 는 실무 팁으로 격하; hysteresis heat 는 polarization/transport/kinetic lag 와
+분리된 path-dependent loss 가 식별된 경우에만 후보.
+\end{groundingbox}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Chapter 1--4 에서 가져오는 고정 기준}\label{sec:ch5_inherit}
+% ====================================================================
+\begin{linkbox}
+\textbf{(L1) 전하 보존식.} $Q_\cell q=Q_\bg(V_n,T)+\sum_j Q_{j,\tot}\xi_j$(방전 기준 축약형; 충전 포함 시
+signed coordinate 로 일반화, \S\ref{sec:ch5_signed}).\\
+\textbf{(L2) forward/backward kinetics.} $\dfrac{d\xi_j}{dt}=r_j^+(1-\xi_j)-r_j^-\xi_j$; detailed balance
+$r_j^+/r_j^-=\xi_{\eq,j}/(1-\xi_{\eq,j})$; nonequilibrium stationary $\xi_{\sstat,j}=r_j^+/(r_j^++r_j^-)$
+(Ch3). \textbf{branch 비대칭은 $\xi_{\sstat,j}\ne\xi_{\eq,j}$ 인 영역}이다.\\
+\textbf{(L3) dissipation.} 비가역 열 $=n_j^{\eff}I_j\eta_j$(미시=거시, Ch4); $\eta_j$=국소 평형 이탈 과전압.\\
+\textbf{(L4) 열원.} $\dot{\mathcal Q}_{\src,n}=\dot{\mathcal Q}_{\irr,n}+\dot{\mathcal Q}_{\rev,n}+\dot{\mathcal Q}_{\rlx,n}+\dot{\mathcal Q}_{\transp,n}$(Ch4); 본 장서 branch 확장.
+\end{linkbox}
+Chapter 1--4 본문 기본식은 수정하지 않는다(P3-6).
+
+% ====================================================================
+\section{Signed current $\cdot$ branch index $\cdot$ signed state coordinate}\label{sec:ch5_signed}
+% ====================================================================
+충방전 동시 처리를 위해 signed current 를 도입한다:
+\begin{equation}
+I_s>0:\ \text{discharge},\quad I_s<0:\ \text{charge},\quad I_s=0:\ \text{rest};\qquad |I_s|=\text{크기}.
+\label{eq:ch5_signed_current}
+\end{equation}
+Chapter 1--4 의 $|I|$ 는 방전 기준 magnitude 였으므로 $I_s$ 와 $|I_s|$ 를 반드시 구분한다. branch index
+$b(t)\in\{\dis,\chg,\rst\}$: $I_s>0\Rightarrow b=\dis$, $I_s<0\Rightarrow b=\chg$, $I_s=0\Rightarrow b=\rst$.
+내부 상태 좌표는 signed coordinate:
+\begin{equation}
+\frac{dq_\stt}{dt}=\frac{I_s}{Q_\cell}
+\label{eq:ch5_qstate}
+\end{equation}
+(방전서 증가, 충전서 감소). $Q_\cell$ 은 기준 용량이며 irreversible capacity/LLI/LAM/electrode balancing
+error 를 이 식에 임의 흡수하지 않는다(필요 시 별도 capacity-balancing 변수). 전하 보존식은 기준점 포함 상대형이 안전하다:
+\begin{equation}
+Q_\cell(q_\stt-q_{\stt,\mathrm{ref}})=\big[Q_\bg(V_n,T)-Q_\bg(V_{n,\mathrm{ref}},T_{\mathrm{ref}})\big]+\sum_jQ_{j,\tot}(\xi_j-\xi_{j,\mathrm{ref}}).
+\label{eq:ch5_relbalance}
+\end{equation}
+실험 plotting 용량은 별도: $Q_\dis=\int_\dis|I_s|dt$, $Q_\chg=\int_\chg|I_s|dt$ (ICA/DVA overlay 용; 내부
+상태방정식은 $q_\stt$ 를 따른다).
+
+\subsection{내부 state $\xi_j$ 유지와 보조 변수}
+기본 state 는 방전 기준 $\xi_j$ 하나($\xi_j=0$ 미진행, $\xi_j=1$ 완료). 방전서 대체로 $d\xi_j/dt>0$, 충전서
+$d\xi_j/dt<0$. 충전 방향 직관 표현용 $\zeta_j=1-\xi_j$ 는 \textbf{독립 state 가 아니다} — branch 전환 시
+$\xi_j$ 를 재초기화하지 않고, 수치적분/전하보존/발열의 기본 입력은 $\xi_j,d\xi_j/dt$ 다.
+
+% ====================================================================
+\section{True equilibrium vs metastable branch target (Ch3 $\xi_{\sstat}$ 와의 연결)}\label{sec:ch5_branch}
+% ====================================================================
+Chapter 1/3 의 $\xi_{\eq,j}(V_n,T)$ 는 true thermodynamic equilibrium target 이다. 충방전 경로의
+branch-dependent curve 는 (1) metastable phase path, (2) nucleation barrier/phase-boundary pinning,
+(3) particle/domain memory, (4) finite-rate kinetic lag, (5) concentration polarization, (6) ohmic/
+charge-transfer polarization, (7) aging/side reaction 중 하나 이상의 결과일 수 있다. 따라서 branch target
+도입 시 \emph{단순 fitting curve 인지 metastable free-energy branch 인지} 구분한다.
+
+물리적으로 해석 가능하면 branch free energy $G_j^b$ 로 branch potential 을 정의한다(\cite{dreyer2010,sethna1993}, \AL{Y1}):
+\begin{equation}
+U_j^b(T,h_j)\sim\frac{1}{F}\frac{\partial G_j^b}{\partial n_j},
+\label{eq:ch5_branch_potential}
+\end{equation}
+그때 branch target 은
+\begin{equation}
+\xi_{\tar,j}^b(V_n,T,h_j)=\frac{1}{1+\exp\!\big[-(V_n-U_j^b(T,h_j))/w_j^b(T)\big]}.
+\label{eq:ch5_branch_target}
+\end{equation}
+\begin{keybox}
+\textbf{★ branch target $=$ Chapter 3 의 $\xi_{\sstat}$ (detailed balance 이탈의 표현).} branch 안에서
+branch-local detailed balance $r_j^{+,b}/r_j^{-,b}=\xi_{\tar,j}^b/(1-\xi_{\tar,j}^b)$ 를 쓰면
+$\xi_{\sstat,j}^b=r_j^{+,b}/(r_j^{+,b}+r_j^{-,b})=\xi_{\tar,j}^b$. 즉 Chapter 3 의 nonequilibrium stationary
+target 이 곧 branch target 이며, \textbf{$\xi_{\tar}^b\ne\xi_{\eq}$ 는 Ch3 의 $C_j$ 가 true-equilibrium
+값에서 branch 만큼 이탈}했음을 뜻한다(Level A 분업에서 ``방향''이 metastable 자유에너지로 인해 이력을
+획득). 히스테리시스는 이 \emph{target 이동}이지, mobility($k_j$)의 변화가 아니다.
+\end{keybox}
+\begin{boundbox}
+\textbf{근거 요구.} $\xi_{\tar}^b$ 를 쓰는 것 자체가 물리 모델은 아니다. $U_j^b,w_j^b,h_j$ 가 metastable
+branch/domain memory/nucleation barrier/phase-boundary history 와 연결되어야 한다. 근거 없으면 $\xi_{\tar}^b$
+는 empirical branch fit 이며 본문 기본식이 아니라 실무 팁/비교 모델로 내린다(GS-4).
+\end{boundbox}
+
+% ====================================================================
+\section{Hysteresis state variable 과 metastability}\label{sec:ch5_hstate}
+% ====================================================================
+transition 별 hysteresis state $h_j(t)\in[-1,1]$: $h_j=+1$ 방전 branch memory, $h_j=-1$ 충전 branch memory,
+$h_j=0$ relaxed/중간. branch center 는 signed hysteresis parameter:
+\begin{equation}
+U_j^\hys(T,h_j)=U_j^0(T)+\frac{\Delta U_j^\hys(T)}{2}h_j,\qquad \Delta U_j^\hys\in\mathbb R.
+\label{eq:ch5_hys_center}
+\end{equation}
+$\Delta U_j^\hys>0$ 이면 방전 branch center 가 충전보다 높은 convention(반대 관측이면 $<0$ 로 피팅; 양
+magnitude 강제엔 별도 부호 인자 $s_{h,j}$). hysteresis state dynamics:
+\begin{equation}
+\frac{dh_j}{dt}=\lambda_j^b\big[h_{\tar,j}^b-h_j\big],
+\label{eq:ch5_h_dyn}
+\end{equation}
+$\lambda_j^b$ 는 fitting speed 가 아니라 domain rearrangement/phase-boundary depinning/nucleation/
+microstructural memory relaxation time scale 을 대표한다(rest relaxation 자료 없으면 식별성 약함).
+
+% ====================================================================
+\section{Branch-dependent forward/backward kinetics}\label{sec:ch5_kinetics}
+% ====================================================================
+Chapter 3 구조 유지:
+\begin{equation}
+\frac{d\xi_j}{dt}=r_j^{+,b}(1-\xi_j)-r_j^{-,b}\xi_j.
+\label{eq:ch5_branch_fb}
+\end{equation}
+branch free-energy landscape 가 정의되면 branch 안 local detailed balance:
+\begin{equation}
+\frac{r_j^{+,b}}{r_j^{-,b}}=\frac{\xi_{\tar,j}^b}{1-\xi_{\tar,j}^b}
+\label{eq:ch5_branch_db}
+\end{equation}
+(global equilibrium 에 대한 detailed balance 가 아니라 metastable branch surface 위의 local balance). 전위
+구동력이 명시되면 branch 진행 affinity:
+\begin{equation}
+\mathcal A_{j,\prog}^b=n_j^{\eff,b}F\,\eta_{j,\prog}^b,\qquad \eta_{j,\prog}^b>0\Rightarrow b\text{-branch 방향 촉진},
+\label{eq:ch5_branch_affinity}
+\end{equation}
+$\eta_{j,\prog}^b=V_n-V_{\tar,j}^b(\xi_j)$, $V_{\tar,j}^b(\xi)=U_j^b+w_j^b\ln[\xi/(1-\xi)]$ 는 branch-local
+평형 이탈 과전압. 방전 branch 서 $d\xi_j/dt>0$, 충전 branch 서 $d\xi_j/dt<0$ 방향이 촉진된다. 이
+$\eta_{j,\prog}^b$ 는 Chapter 3 의 true-equilibrium 기반 $\eta_j$ 와 자동으로 같지 않다.
+\begin{boundbox}
+\textbf{branch-local dissipation vs metastable free-energy loss(중요).} Chapter 4 의 미시=거시 결과는 branch
+안에서 $\dot{\mathcal Q}_{\irr,j}^b=n_j^{\eff,b}I_j\eta_{j,\prog}^b\ge0$ 로 일반화된다($\eta$ 를 branch-local
+이탈로). 그러나 이는 \emph{branch surface 위의 kinetic dissipation} 일 뿐이며, branch 가 결국 true
+equilibrium 으로 풀릴 때 방출되는 \emph{metastable 자유에너지 차이}(히스테리시스 loss, \S\ref{sec:ch5_hysheat})와
+구분된다. 둘을 합치면 같은 에너지를 이중 계상한다.
+\end{boundbox}
+
+% ====================================================================
+\section{Apparent 전위와 polarization 의 branch 확장}\label{sec:ch5_apparent}
+% ====================================================================
+branch 별 apparent 음극 전위:
+\begin{equation}
+V_{n,\app}^b=V_n+\Delta V_{n,\pol}^b,\qquad \Delta V_{n,\pol}^b\approx I_s\,R_n^b(q_\stt,T,|I_s|)\ \text{(small-signal/secant)}.
+\label{eq:ch5_vapp_branch}
+\end{equation}
+이는 polarization 표현이지 hysteresis offset 이 아니다 — $R_n^b>0$ 여도 $I_s$ 부호에 따라 전압 이동 방향이
+바뀐다(방전 $I_s>0$ 서 +, 충전 $I_s<0$ 서 $-$). 관측 voltage gap 분해:
+\begin{equation}
+\Delta V_\obs=\Delta V_\hys+\Delta V_\pol+\Delta V_\kin+\Delta V_\transp+\Delta V_{\mathrm{aging}},
+\label{eq:ch5_gap_decomp}
+\end{equation}
+따라서 기본 원칙은
+\begin{equation}
+\boxed{\;\Delta V_\obs\ne\Delta V_\hys\;.}
+\label{eq:ch5_obs_not_hys}
+\end{equation}
+
+% ====================================================================
+\section{Branch-dependent ICA/DVA 좌표}\label{sec:ch5_icadva}
+% ====================================================================
+signed capacity $Q_s(t)=Q_{s,\mathrm{ref}}+\int_{t_{\mathrm{ref}}}^t I_s(t')dt'$; branch positive capacity
+$Q_b=Q_\dis\ (b=\dis)$ 또는 $Q_\chg\ (b=\chg)$. branch 별 apparent DVA 는 $(dV_{n,\app}^b/dQ_b)_b$, signed
+thermodynamic 분석은 $dV_n/dQ_s$ 를 별도로 쓴다. \textbf{좌표를 명시하지 않은 charge/discharge ICA overlay 는
+부호와 peak 방향 혼동을 만든다}(Ch1 ICA/DVA 의 $Q_\ext$ 기준과 정합 유지: 방전 단독서 $Q_s=Q_\ext$).
+
+% ====================================================================
+\section{Full-cell 관측 전압과 음극 peak}\label{sec:ch5_fullcell}
+% ====================================================================
+Full-cell 전압(내부 전극 전위 + signed loss):
+\begin{equation}
+V_\cell^b=V_p^b-V_n^b-\eta_\loss^b,
+\label{eq:ch5_fullcell}
+\end{equation}
+$\eta_\loss^b$=branch-dependent signed loss/overpotential aggregate. apparent 기준:
+$V_{\cell,\app}^b=V_{p,\app}^b-V_{n,\app}^b$. \textbf{두 표현 동시 사용 시 polarization 중복 계상 금지} —
+$V_{p,\app}^b,V_{n,\app}^b$ 에 이미 포함된 분극을 다시 $\eta_\loss^b$ 에 넣지 않는다. signed capacity 기준
+full-cell DVA:
+\begin{equation}
+\frac{dV_\cell^b}{dQ_s}=\frac{dV_p^b}{dQ_s}-\frac{dV_n^b}{dQ_s}-\frac{d\eta_\loss^b}{dQ_s}.
+\label{eq:ch5_fullcell_dva}
+\end{equation}
+따라서 full-cell graphite peak 는 양극/음극/loss/transport 가 섞인 관측 신호다. reference electrode/
+half-cell reconstruction/electrode balancing 없이 full-cell peak 를 음극 peak 로 직접 등치하지 않는다.
+
+% ====================================================================
+\section{Hysteresis energy 와 heat}\label{sec:ch5_hysheat}
+% ====================================================================
+전압 loop area $E_{\mathrm{loop}}=\oint V\,dQ$ 는 true hysteresis + polarization loss + kinetic lag +
+transport loss + side reaction 을 모두 포함한다. \textbf{$E_{\mathrm{loop}}$ 전체를 true hysteresis heat 로
+단정하지 않는다.} 물리적으로 분리된 hysteresis loss voltage 가 있을 때만 후보로:
+\begin{equation}
+\dot{\mathcal Q}_{\hys,n}^b=|I_s|\,\Delta V_{\hys\text{-}\loss,n}^b,\qquad \Delta V_{\hys\text{-}\loss,n}^b\ge0,
+\label{eq:ch5_hys_heat}
+\end{equation}
+더 일반적으로는 flux--force $\dot{\mathcal Q}_{\hys,n}^b=J_\hys^b\mathcal A_\hys^b\ge0$. 단순 signed
+$I_s\Delta V_\hys^b$ 는 부호 convention 이 정렬된 경우에만.
+\begin{boundbox}
+\textbf{중복 계상 금지.} $\dot{\mathcal Q}_\hys$ 를 별도 항으로 쓰려면 같은 voltage-gap 성분을 $\eta_\loss^b$,
+$R_n^b$, $R_{n,\eff}^b$, transport heat, 그리고 \S\ref{sec:ch5_kinetics} 의 branch-local kinetic dissipation
+$n^{\eff}I_j\eta_{\prog}^b$ 에 동시에 넣지 않는다. 분리되지 않은 loop area 전체는 true hysteresis heat 가 아니다.
+\end{boundbox}
+
+% ====================================================================
+\section{Branch-dependent heat 구조}\label{sec:ch5_branchheat}
+% ====================================================================
+Chapter 4 source term 의 branch 확장:
+\begin{equation}
+\dot{\mathcal Q}_{\src,n}^b=\dot{\mathcal Q}_{\irr,n}^b+\dot{\mathcal Q}_{\rev,n}^b+\dot{\mathcal Q}_{\rlx,n}^b+\dot{\mathcal Q}_{\transp,n}^b+\dot{\mathcal Q}_{\hys,n}^b.
+\label{eq:ch5_branch_heat}
+\end{equation}
+\begin{longtable}{p{0.31\textwidth} p{0.57\textwidth}}
+\toprule 항 & 물리적 근거 \\ \midrule \endhead
+$\dot{\mathcal Q}_{\irr,n}^b$ & $J^b\mathcal A^b\ge0$, overpotential-driven entropy production($=n^{\eff}I_j\eta_\prog^b$) \\
+$\dot{\mathcal Q}_{\rev,n}^b$ & branch별 entropy coefficient 또는 transition entropy \\
+$\dot{\mathcal Q}_{\rlx,n}^b$ & metastable branch relaxation 또는 transition-network entropy production \\
+$\dot{\mathcal Q}_{\transp,n}^b$ & diffusion/electrolyte/finite-current dissipative loss \\
+$\dot{\mathcal Q}_{\hys,n}^b$ & polarization 과 분리된 path-dependent hysteresis loss \\
+\bottomrule
+\end{longtable}
+가역 열을 transition entropy basis 로 쓰면
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\xi}^b=\sum_j s_{\rev,\xi,j}^{b,\conv}\,T\,\Delta S_j^b\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_j}{dt},
+\label{eq:ch5_branch_rev}
+\end{equation}
+충전서 $d\xi_j/dt<0$ 이 될 수 있으므로 $\Delta S_j^b$ 와 sign convention 을 명시한다. \textbf{Hysteresis heat
+와 reversible heat 가 branch heat asymmetry 를 동시에 설명하지 않도록 독립 제약이 필요}하다.
+
+% ====================================================================
+\section{Rest 구간과 branch switching}\label{sec:ch5_rest}
+% ====================================================================
+rest 구간 $I_s=0,\ dq_\stt/dt=0$ 이지만 $\xi_j,h_j,V_n$ 은 relax 한다. true equilibrium 으로 relax 하는 후보:
+\begin{equation}
+\frac{d\xi_j}{dt}=k_j^\rst\big[\xi_{\eq,j}(V_n,T)-\xi_j\big],
+\label{eq:ch5_rest_eq}
+\end{equation}
+metastable memory 유지 후보:
+\begin{equation}
+\frac{d\xi_j}{dt}=k_j^\rst\big[\xi_{\tar,j}^\rst(V_n,T,h_j)-\xi_j\big].
+\label{eq:ch5_rest_meta}
+\end{equation}
+무엇이 맞는지는 rest relaxation voltage + thermal response 로 제한한다. hysteresis state 도 두 후보:
+\begin{align}
+\text{memory-retaining:}\quad &\frac{dh_j}{dt}=0,\label{eq:ch5_h_rest_mem}\\
+\text{relaxing:}\quad &\frac{dh_j}{dt}=-\lambda_{j,\rst}\,h_j.\label{eq:ch5_h_rest_relax}
+\end{align}
+rest relaxation 데이터 없으면 두 모델은 식별 곤란. \textbf{branch switching 시 $\xi_j,h_j,V_n$ 은 연속}
+(재초기화 X); 전하 보존식은 매 시간점 다시 풀어 $V_n$ 을 얻는다.
+
+% ====================================================================
+\section{식별성 및 필요한 실험 제약}\label{sec:ch5_ident}
+% ====================================================================
+\begin{longtable}{p{0.34\textwidth} p{0.54\textwidth}}
+\toprule 상관되는 항 & 주의점 \\ \midrule \endhead
+$\Delta V_\hys$ 와 $\Delta V_\pol$ & voltage gap 을 모두 hysteresis 로 해석 금지 \\
+$U_j^b$ 와 $R_n^b$ & branch offset 과 polarization shift 가 peak 위치 모두 변화 \\
+$k_j^b,h_j,\lambda_j^b$ & kinetic lag 와 memory relaxation 이 tail/peak shift 모두 설명 가능 \\
+$\Delta S_j^b$ 와 hysteresis heat & branch heat asymmetry 중복 설명 위험 \\
+full-cell $V_p$ 와 음극 $V_n$ & full-cell 서 양극/음극 contribution 중첩 \\
+\bottomrule
+\end{longtable}
+필요 실험: 저율 charge/discharge 비교, rest relaxation, current interrupt/pulse, rate series, temperature
+series, reference electrode/half-cell reconstruction, calorimetry/temperature response.
+\begin{mdframed}
+\textbf{실무 팁(본문 물리식 아님).} 초기 비교서 충전/방전을 별도 empirical branch curve 로 피팅할 수 있으나
+물리 모델 기본식이 아니다. 그 curve 가 metastable free-energy branch/domain memory/nucleation barrier/
+polarization/transport/aging 중 무엇인지 분리되지 않으면 논문용 물리 결론에 쓰지 않는다.
+\end{mdframed}
+
+% ====================================================================
+\section{Chapter 6 으로 전달되는 항목}\label{sec:ch5_transmit}
+% ====================================================================
+signed current 와 $q_\stt$ 기반 시간 적분; branch switching 시 $\xi_j,h_j,V_n$ continuity; branch 별 root
+finding 과 apparent voltage 계산; hysteresis vs polarization 구분 검증 절차; full-cell 조합 시 양극/음극
+coordinate matching; empirical branch fit 을 validation candidate 로만 취급.
+
+% ====================================================================
+\section{Chapter 5 자체 검수표}\label{sec:ch5_selfcheck}
+% ====================================================================
+{\small
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+Ch1--4 를 수정 없이 적층(P3-6) & 통과(\S\ref{sec:ch5_inherit}) \\
+signed current convention 을 먼저 정의; $I_s$ vs $|I_s|$ 구분 & 통과(식~\eqref{eq:ch5_signed_current}) \\
+$q_\stt$ 와 reference form 명시; LLI/LAM 임의 흡수 금지 & 통과(식~\eqref{eq:ch5_qstate},\eqref{eq:ch5_relbalance}) \\
+방전 기준 $\xi_j$ continuity 유지; $\zeta_j$ 는 종속 보조 변수 & 통과 \\
+true equilibrium target 과 metastable branch target 구분 & 통과(\S\ref{sec:ch5_branch}) \\
+★ branch target $=$ Ch3 $\xi_{\sstat}$(detailed balance 이탈); 히스테리시스 $=$ target 이동(mobility 아님) & 통과(keybox) \\
+branch target 을 arbitrary fitting curve 로 두지 않음(근거 요구) & 통과(boundbox) \\
+hysteresis state $h_j$ 에 물리적 memory 의미 부여 & 통과(\S\ref{sec:ch5_hstate}) \\
+branch forward/backward kinetics 를 Ch3 구조와 연결; branch-local DB & 통과(식~\eqref{eq:ch5_branch_db}) \\
+★ branch-local kinetic dissipation vs metastable 자유에너지 loss 구분(이중계상 금지) & 통과(\S\ref{sec:ch5_kinetics} boundbox) \\
+$\Delta V_\obs\ne\Delta V_\hys$ 명시; $R_n^b$ 는 polarization(부호 $I_s$ 의존) & 통과(식~\eqref{eq:ch5_obs_not_hys}) \\
+full-cell apparent 전위와 internal-loss double counting 금지 & 통과(\S\ref{sec:ch5_fullcell}) \\
+hysteresis heat 를 loop area 전체로 단정하지 않음; flux--force 후보 & 통과(\S\ref{sec:ch5_hysheat}) \\
+branch-dependent heat 를 물리 근거 항으로 제한; 충전 $d\xi/dt<0$ sign 명시 & 통과(\S\ref{sec:ch5_branchheat}) \\
+rest relaxation 의 eq vs meta 두 후보 구분; branch switching continuity & 통과(\S\ref{sec:ch5_rest}) \\
+empirical branch fit 을 실무 팁으로 격하 & 통과 \\
+Ch6 이월 항목 분리 & 통과(\S\ref{sec:ch5_transmit}) \\
+\bottomrule
+\end{longtable}
+}
+
+% ====================================================================
+\section{Chapter 5 의 결론}\label{sec:ch5_concl}
+% ====================================================================
+첫째, Chapter 1--4 방전 기준 모델은 signed current $I_s$ 와 signed state coordinate $q_\stt$ 도입으로 충전
+branch 까지 확장된다. 내부 state 는 방전 기준 $\xi_j$ 를 유지하고, $\zeta_j=1-\xi_j$ 는 종속 보조 변수다.
+
+둘째, true equilibrium target $\xi_{\eq,j}$ 와 metastable branch target $\xi_{\tar,j}^b$ 를 구분한다.
+\textbf{branch target 은 Chapter 3 의 nonequilibrium stationary $\xi_{\sstat,j}$ 이며}, $\xi_{\tar}^b\ne\xi_{\eq}$
+는 detailed balance 의 branch 이탈이다 — 히스테리시스는 mobility 변화가 아니라 \emph{target 의 이력 의존}
+(Level A 분업의 부분 붕괴)이다. branch target 은 free-energy branch/nucleation barrier/domain memory 근거가
+있을 때만 본문 모델로 허용된다.
+
+셋째, 관측 voltage gap 은 hysteresis 가 아니다($\Delta V_\obs\ne\Delta V_\hys$). gap 에는 hysteresis,
+polarization, kinetic lag, transport limitation, aging 이 섞인다.
+
+넷째, hysteresis heat 는 polarization/transport/branch-local kinetic dissipation 과 분리된 path-dependent
+metastable 자유에너지 loss 가 식별된 경우에만 별도 항으로 둔다. Loop area 전체를 true hysteresis heat 로
+단정하지 않는다.
+
+다섯째, full-cell ICA/DVA 는 음극 단독과 직접 같지 않다 — 양극/음극/branch signed loss/transport/
+polarization 이 모두 관측 신호에 들어간다.
+
+여섯째, Chapter 5 는 물리적 path dependence 와 metastability 를 중심으로 충방전 확장 구조를 닫는다.
+Chapter 6 에서 이 구조를 실제 수치 해법, validation pipeline, GITT/저율/고율 데이터 비교로 연결한다.
+
+\begin{thebibliography}{99}
+\bibitem{dreyer2010} W. Dreyer \emph{et al.}, ``The thermodynamic origin of hysteresis in insertion batteries,'' \emph{Nature Materials} \textbf{9}, 448 (2010).
+\bibitem{sethna1993} J. P. Sethna \emph{et al.}, ``Hysteresis and hierarchies: dynamics of disorder-driven first-order phase transformations,'' \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993).
+\bibitem{baker1999} D. R. Baker, M. W. Verbrugge, ``Temperature and current distribution in thin-film batteries,'' \emph{J. Electrochem. Soc.} \textbf{146}, 2413 (1999).
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of chemical kinetics and charge transfer based on nonequilibrium thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013).
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962).
+\end{thebibliography}
+
+\end{document}
