@@ -458,7 +458,13 @@ boundary$\cdot$defect$\cdot$stress$\cdot$surface 차이로 인한 \emph{barrier 
 \label{eq:rho_norm}
 \end{equation}
 $\rho_G$ 는 kinetic activation barrier 분포이며, 평형 전이 중심의 불균일성($U_j,w_j$ 또는 별도 분포
-$p_j(U)$)과 혼동하지 않는다. 각 $g$ 집단의 유효 장벽 $\Delta G_{\eff,j}(g)=g-\chi_j\mathcal A_j$, 활성화
+$p_j(U)$)과 혼동하지 않는다.
+\textbf{온도 의존 분포의 처리(원본 (B) 보존).} 본 장의 $g$ 는 해당 온도의 kinetic activation
+free-energy-like barrier 다. $\rho_G(g;T)$ 를 온도별 유효 분포로 쓰는 것은 고정 온도 자료 또는 온도별
+준정상 해석을 위한 표기이며, 시간에 따라 $T(t)$ 가 크게 변하는 동역학에서 $\rho_G(g;T(t))$ 를 직접 미분하면
+$\partial\rho_G/\partial T$ 항이 추가된다. 그런 경우 장벽을 enthalpy/entropy 로 분해해 $g(T)=h-Ts$ 또는
+$\rho_j(h,s)$ 형태로 물질 domain 을 다시 정의한다(미시 해석은 후속 장/부록).
+각 $g$ 집단의 유효 장벽 $\Delta G_{\eff,j}(g)=g-\chi_j\mathcal A_j$, 활성화
 rate $k_j^\mathrm{act}(g)=\nu_j(T)\exp[-(g-\chi_j\mathcal A_j)/RT]$, 물리적 병목 포함 시
 $1/k_j^\mathrm{phys}(g)=1/k_j^\mathrm{act}(g)+1/k_{j,\mathrm{lim}}(g)$. 각 집단은
 $d\xi_j(g,t)/dt=k_j^\mathrm{phys}(g)[\xi_{\eq,j}(V_n,T)-\xi_j(g,t)]$ 를 따르고 전체 진행률은
@@ -834,6 +840,7 @@ softplus/capped 양수 장벽을 기본식에서 제거, 강구동=accelerated r
 유한 전류=flux 제약(clamp), 발산/부호 처리 & 통과(식~\eqref{eq:clamp}) \\
 $k_{j,\mathrm{lim}}$ 이 transport/site/diffusion/current 물리 병목 의미 & 통과(식~\eqref{eq:kphys}) \\
 barrier 분포 support $g\ge0$, $\rho_G$=kinetic barrier 분포($U_j,w_j$ 와 구분) & 통과(\S\ref{sec:spectrum}) \\
+온도 의존 장벽 분포 시간미분 시 $\partial\rho_G/\partial T$ 추가항 위험 + $g=h-Ts$ domain 재정의 명시(원본 (B) 보존) & 통과(\S\ref{sec:spectrum}) \\
 관측 tail = spectrum kernel integral; Refs 6/7 closure(Plan A) + Plan B core + M1-M5/$\varepsilon$ & 통과(\S\ref{sec:kernel},\ref{sec:closure}) \\
 self-consistent Volterra 가 kernel$\times$target(source form)이고 single-mode 극한서 $\xi^\ast(1-e^{-q/L})$ 복귀(M4; 잔차형 $\xi^\ast/2$ 이중계상 회피) & 통과(\S\ref{sec:closure}) \\
 Plan A 닫힌형이 $b\to0$ 서 Plan B source form 으로 복귀; $b=-(Q_p/C_\bg)\partial\Theta_\eq/\partial V_n$ 부호 정합 & 통과(식~\eqref{eq:closed}) \\
