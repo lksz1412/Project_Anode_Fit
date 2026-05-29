@@ -152,10 +152,23 @@ r_j^-&=\nu_j^-\,a_j^-\,\exp\!\Big[-\frac{\Delta G_j^{-\ddagger}+(1-\beta_j)\math
 \frac{r_j^+}{r_j^-}=\underbrace{\frac{\nu_j^+a_j^+}{\nu_j^-a_j^-}\exp\!\Big[-\frac{\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}}{RT}\Big]}_{\textstyle \equiv\,\Pi_j^0\ (\text{intrinsic})}\ \exp\!\Big[\frac{\mathcal A_j}{RT}\Big].
 \label{eq:ch3_ratioB}
 \end{equation}
-detailed balance(식~\eqref{eq:ch3_db}) 와 식~\eqref{eq:ch3_dbwidth} 를 만족하려면 intrinsic 부분이
-$\Pi_j^0=\exp[-\mathcal A_j^{0}/RT]$ 형태로 $U_j$ 를 정의하도록 묶인다. \textbf{핵심}: $\mathcal A_j$
-가 forward 지수는 키우고($-\beta_j\mathcal A_j$) backward 지수는 줄이므로($+(1-\beta_j)\mathcal A_j$),
-\emph{비가 바뀐다} — 즉 정상 target 이 이동한다. 이것이 Level A 와 \emph{다른} 물리다.
+\textbf{★ 정합 조건 (10-pass R3-1, 무비약).} detailed balance(식~\eqref{eq:ch3_db},\eqref{eq:ch3_dbwidth})는
+$r_j^+/r_j^-=\exp[(V_n-U_j)/w_j]$ 를 요구한다. 한편 식~\eqref{eq:ch3_ratioB} 의 구동 지수는
+$\mathcal A_j/RT=s_{\phi,j}F(V_{n,\drive}-U_j)/RT$ 이다. 두 식이 \emph{모든} $V_n$ 에서 일치하려면
+구동 \emph{척도}가 같아야 한다:
+\begin{equation}
+\frac{1}{w_j}=\frac{F}{RT}\ \Longleftrightarrow\ w_j=\frac{RT}{F}\ (\text{ideal}),\qquad \Pi_j^0=1.
+\label{eq:ch3_dbconsist}
+\end{equation}
+즉 단순 affinity $\mathcal A_j=F(V_n-U_j)$ 는 \textbf{ideal width 에서만} 평형형태(width $w_j$)의 detailed
+balance 와 정합한다. \emph{effective width} $w_j\ne RT/F$ (nonideality/disorder, Ch1)를 쓰면, 비에
+들어가는 것은 \textbf{thermodynamic affinity} $\mathcal A_j^{\mathrm{th}}\equiv RT(V_n-U_j)/w_j$ 이며
+($w_j=RT/F$ 극한서 $F(V_n-U_j)$ 로 환원), barrier 분배는 $\mathcal A_j^{\mathrm{th}}$ 에 대해
+$-\beta_j$/$+(1-\beta_j)$ 로 둔다. 따라서 \textbf{Ch1 의 mobility 가속 계수 $\chi_j$ = Ch3 의
+transfer coefficient $\beta_j$ 는 \emph{동일한 thermodynamic 구동} $\mathcal A_j^{\mathrm{th}}$ 에 작용}하며,
+$\Pi_j^0=1$ 은 intrinsic barrier 들이 $\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}=RT\ln(\nu_j^+a_j^+/\nu_j^-a_j^-)$
+를 만족하도록 묶는다(자유 파라미터 아님). \textbf{핵심}: $\mathcal A_j^{\mathrm{th}}$ 가 forward 지수는
+키우고 backward 지수는 줄여 \emph{비가 바뀌고} 정상 target 이 이동한다 — Level A 와 \emph{다른} 물리다.
 
 강구동서 $\Delta G_j^{+\ddagger}-\beta_j\mathcal A_j<0$ 가 되어도 $\max(\cdot,0)$ 으로 자르지 않는다
 (GS-4). 실제 제한은 물리적 병목의 직렬 합성:
@@ -232,7 +245,9 @@ T\dot S_{\irr,n}=J_n\mathcal A_n\ge0 .
 $|I_n||\eta_n|$ 로 분리.)
 
 \section{Transition-level entropy production (Ch3 forward/backward 기반)}\label{sec:ch4_trep}
-Ch3 의 flux $\mathcal J_j^+=r_j^+(1-\xi_j)$, $\mathcal J_j^-=r_j^-\xi_j$ 로부터(Markov/CRN 형):
+Ch3 의 flux $\mathcal J_j^+=r_j^+(1-\xi_j)$, $\mathcal J_j^-=r_j^-\xi_j$ 로부터, Markov-jump / chemical-
+reaction-network 의 \textbf{Schnakenberg 형 entropy production}(\cite{schnakenberg1976}; reaction current
+$\times$ affinity 의 합, 항상 $\ge0$):
 \begin{equation}
 \dot{\mathcal Q}_{\irr,j}^{\mathrm{tr}}=\frac{Q_{j,\tot}}{F}RT\,(\mathcal J_j^+-\mathcal J_j^-)\,
 \ln\!\frac{\mathcal J_j^+}{\mathcal J_j^-}\ \ge 0,
@@ -294,5 +309,6 @@ Ch4 & Level B $r_j^\pm$ → transition entropy production & $(\mathcal J^+-\math
 \bibitem{onsager1931} L. Onsager, \emph{Phys. Rev.} \textbf{37}, 405 (1931).
 \bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics} (1962).
 \bibitem{callen} H. B. Callen, \emph{Thermodynamics and an Introduction to Thermostatistics}, Wiley.
+\bibitem{schnakenberg1976} J. Schnakenberg, ``Network theory of microscopic and macroscopic behavior of master equation systems,'' \emph{Rev. Mod. Phys.} \textbf{48}, 571 (1976).
 \end{thebibliography}
 \end{document}

@@ -138,8 +138,12 @@ $\Theta,\ Q_p$ & --- & 전체 phase progress, 그 용량 scale \\
 \boxed{\,Q_\cell\,q = Q_\bg(V_n,T) + \sum_{j=1}^{N_p} Q_{j,\tot}\,\xi_j\,.}
 \label{eq:charge_balance}
 \end{equation}
-주어진 $(q,T,\xi_j)$ 에서 식~\eqref{eq:charge_balance} 를 $V_n$ 에 대해 푼다. \textbf{유일·매끄러운
-해 조건}(GS-4, 임의 정규화 아님):
+주어진 $(q,T,\xi_j)$ 에서 식~\eqref{eq:charge_balance} 를 $V_n$ 에 대해 푼다.
+\textbf{전체 phase progress 정의(10-pass R9-1)}: staging 기여를 하나로 묶어
+$Q_p\Theta\equiv\sum_j Q_{j,\tot}\xi_j$ ($Q_p$ = 그 용량 scale, $\Theta\in[0,1]$ 무차원), 따라서
+식~\eqref{eq:charge_balance} 는 $Q_\cell q=Q_\bg+Q_p\Theta$. 이로써 kernel integral 의
+$d\Theta_\mathrm{tail}/dq$(\S\ref{sec:kernel})와 charge balance 가 같은 $\Theta$ 로 연결된다.
+\textbf{유일·매끄러운 해 조건}(GS-4, 임의 정규화 아님):
 \begin{equation}
 \frac{\partial Q_\bg}{\partial V_n}\ge \epsilon_Q>0 .
 \label{eq:monotone}
@@ -341,6 +345,18 @@ $L_\varphi\simeq|dV_n/dQ|_{q_a}L$. \textbf{$R_n$(전압축 분극)과 $\chi_j$(m
 $G-\chi_j\mathcal A_j\ge0$(Marcus), $V_{n,\drive}\approx U_j+O(w_j)$. \textbf{P1: solver 코드 구현은 범위 외;
 본 식은 논리식으로 제시.}
 
+\textbf{좌표 bridge(10-pass R5-2).} 식~\eqref{eq:fiteq} 의 $d\Theta/dQ$ 는 전체 $\Theta$(peak+tail)의
+도함수이며 $d\Theta/dQ=(1/Q_\cell)\,d\Theta/dq$; post-peak 영역에서 $d\Theta/dq\simeq d\Theta_\mathrm{tail}/dq$
+(식~\eqref{eq:kernel_integral}). $\rho_G$ 는 독립 입력의 \emph{모수형}(예: $G$ 에 대한 Gaussian/log-normal)
+으로 주고 입자분포/EIS/계산으로 제약(역산 금지). $1-Q_p\,d\Theta/dQ>0$ 은 식~\eqref{eq:monotone} 단조성
+조건과 동치 영역에서 보장.
+
+\textbf{극한 점검(10-pass R7-1, M4).} 빠른 kinetics $k_j\to\infty$ 면 $L=|I|/(Q_\cell k_j)\to0$,
+$A_L\to\delta(L)$, kernel 이 $\delta$ 로 수축해 $d\Theta_\mathrm{tail}/dq\to d\Theta_\eq/dq$ (꼬리 소멸,
+평형 추종). 단 이는 bracket 이 $0$ 이 되어서가 아니라 작은 lag $\times$ 큰 $k$ 의 곱이 유한히 남는
+asymptotic balance 다(singular perturbation; $d\Theta_\mathrm{tail}/dq$ 가 임의 $\delta$-함수가 되지 않음).
+$A_L=\delta(L-L_0)$ 특수해서 single-mode 식~\eqref{eq:single_kernel} 로 정확히 복귀(M4 충족).
+
 % ====================================================================
 \section{Tail 의 $T\cdot$전위 의존 = spectrum shift}\label{sec:tailT}
 % ====================================================================
@@ -349,7 +365,13 @@ $A_L$ 가 large-$L$ 로 이동 $\to$ 긴 꼬리. \textbf{고$T$} $\to L$↓ $\to
 가속}: $\partial\ln L/\partial V_{n,\drive}=-\chi_j s_{\phi,j}F/RT<0$ (forward) $\to$ spectrum 을
 short-$L$ 로 이동(state jump 아니라 \emph{spectrum shift}; C-rate 겹침의 근원). 평형폭
 $w=RT/F$ 는 저온서 좁아지므로 ``저온 긴 꼬리''는 homogeneous 평형으로 설명 불가, kinetic-spectrum
-shift 가 필요함을 \emph{강하게 시사}(확정은 \S\ref{sec:falsify} 통과 전제, \AL{8} novel).
+shift 가 필요함을 \emph{강하게 시사}(확정은 \S\ref{sec:falsify} 통과 전제).
+\textbf{Grounding 정정(10-pass R4-2)}: ``고정 barrier 분포 $\to$ \emph{T-의존} stretched 완화''라는
+\emph{메커니즘 자체}는 신규가 아니라 disordered/fast-ion-conductor kinetics 에서 확립돼 있다
+(연속 relaxation-rate 분포의 합 = stretched \cite{lindsey1980}; 고정 activation-energy 분포가 T-의존
+stretching 을 주는 정량 결과 \cite{macdonald2000}; static/dynamic disorder + LFER(=BEP) stretched
+kinetics \cite{plonka2001}). 따라서 \AL{8} 은 ``novel''이 아니라 \textbf{BOUNDED — 메커니즘 grounded,
+\emph{graphite ICA $dQ/dV$ tail 로의 적용}이 본 작업의 기여}로 표기한다.
 
 % ====================================================================
 \section{Falsification 과 비퇴화 discriminator}\label{sec:falsify}
@@ -412,7 +434,9 @@ N-1 단일 서사 / N-2 피팅식 본문 결과 & 통과 (서 / \S\ref{sec:fiteq
 \bibitem{bazant2013} M. Z. Bazant, \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013).
 \bibitem{onsager1931} L. Onsager, \emph{Phys. Rev.} \textbf{37}, 405 (1931).
 \bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962).
-\bibitem{plonka2001} A. Plonka, \emph{Dispersive Kinetics}, Springer (2001).
+\bibitem{plonka2001} A. Plonka, \emph{Dispersive Kinetics}, Springer (2001); A. Plonka, ``Linear free energy relations and reversible stretched exponential kinetics…,'' \emph{J. Phys. Chem. B} \textbf{102}, 5835 (1998).
+\bibitem{macdonald2000} J. R. Macdonald, ``Stretched exponentials with $T$-dependent exponents from fixed distributions of energy barriers for relaxation times,'' \emph{Phys. Rev. B} \textbf{61}, 228 (2000).
+\bibitem{lindsey1980} C. P. Lindsey, G. D. Patterson, ``Detailed comparison of the Williams--Watts and Cole--Davidson functions,'' \emph{J. Chem. Phys.} \textbf{73}, 3348 (1980). (stretched exp = 연속 relaxation-rate 분포의 합)
 \bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S. Chong, \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011).
 \bibitem{son2013} C. Y. Son et al., \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013).
 \bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, \emph{J. Electrochem. Soc.} \textbf{140}, 1526 (1993).
