@@ -4,378 +4,760 @@
 \addcontentsline{toc}{section}{서 — 단일 인과 사슬}
 % ====================================================================
 본 장은 다음 \textbf{하나의 관찰}에서 출발하여 끝까지 그 끈을 놓지 않는다.
-
-\begin{quote}
-\emph{흑연 음극의 $dQ/dV$(ICA) 곡선에서, 상변이 peak 의 꼬리가 \textbf{온도가 낮을수록 길게
-늘어져 다음 peak 와 겹치고}, 높을수록 짧게 끝난다. 또 전류(C-rate)가 커지면 peak 겹침이
-심해진다.}
+\begin{quote}\itshape
+흑연 음극의 $dQ/dV$(ICA) 곡선에서, 상변이 peak 의 꼬리가 \textbf{온도가 낮을수록 길게 늘어져 다음
+peak 와 겹치고}, 높을수록 짧게 끝난다. 또 전류(C-rate)가 커지면 peak 겹침이 심해진다.
 \end{quote}
-
-이 관찰을 다섯 단계로 푼다 (각 단계는 학부 수준으로 따라갈 수 있게 무비약으로 전개; 본 장의
-지배 표준 GS-1).
-\begin{enumerate}[label=(\arabic*)]
-\item \textbf{평형 열역학만으로는 안 된다.} 평형 전이폭은 $w=RT/F$ 라 \emph{저온서 오히려
+이 관찰을 다섯 단계로 푼다(각 단계는 학부 수준으로 따라갈 수 있게 무비약; 지배 표준 GS-1).
+\begin{enumerate}[label=(\arabic*),leftmargin=2.0em]
+\item \textbf{평형 열역학만으로는 안 된다.} 평형 전이폭은 $w_j=RT/F$(ideal)라 \emph{저온서 오히려
   좁아져}(\S\ref{sec:eq}), 평형 이론은 ``저온 $\to$ 짧은 꼬리''를 예측한다. 관찰과 \emph{반대}.
-\item \textbf{따라서 꼬리는 동역학이다.} 진행이 평형을 \emph{유한 속도}로 따라가며 생기는 lag 가
-  꼬리를 만든다. 속도상수 $k=k_0e^{-\Delta G_a/RT}$ 는 저온서 작아져 lag 가 커지고 꼬리가
-  길어진다(\S\ref{sec:rate}). 관찰과 \emph{일치}.
-\item \textbf{그 배리어는 극판 전위로 바뀐다.} 전류가 흐를 때 내부 전위는 OCV 평형과 다르며,
-  이 전위 구동력이 \emph{진행 속도(mobility)}를 바꾼다(\S\ref{sec:barrier}). 그래서 C-rate 가
-  peak 겹침을 키운다.
-\item \textbf{무대는 전하보존이 깐다.} 내부 음극 전위 $V_n$ 은 외부에서 읽는 값이 아니라
-  \emph{전하 보존식의 해}로 결정된다(\S\ref{sec:charge}). 꼬리의 \emph{깊이}는 실제 전극의
-  barrier 분포가 만드는 \emph{relaxation-length spectrum}으로 설명된다(\S\ref{sec:spectrum}).
-\item \textbf{결과 = 피팅 가능한 닫힌 논리식}(\S\ref{sec:fiteq}, 식~\eqref{eq:fiteq}). 이후
-  발열(Ch2,4)$\cdot$히스테리시스(Ch5)$\cdot$수치검증(Ch6)으로 확장한다.
+\item \textbf{따라서 꼬리는 동역학이다.} 진행률 $\xi_j$ 가 평형 target $\xi_{\eq,j}$ 를 \emph{유한
+  속도}로 따라가며 생기는 lag 가 꼬리를 만든다. 속도상수 $k=k_0e^{-\Delta G_a/RT}$ 는 저온서 작아져
+  lag 가 커지고 꼬리가 길어진다(\S\ref{sec:dyn},\ref{sec:spectrum}). 관찰과 \emph{일치}.
+\item \textbf{그 배리어는 극판 전위로 바뀐다.} 전류가 흐를 때 내부 전위는 OCV 평형과 다르며, 이
+  전위 구동력 $\mathcal A_j$ 가 진행 속도를 바꾼다(\S\ref{sec:rate}). 그래서 C-rate 가 peak 겹침을 키운다.
+\item \textbf{무대는 전하보존이 깐다.} 내부 음극 전위 $V_n$ 은 외부 lookup 이 아니라 \emph{전하 보존식의
+  해}로 결정된다(\S\ref{sec:charge}). 꼬리의 \emph{깊이}는 barrier 분포가 만드는 \emph{relaxation-length
+  spectrum} 의 kernel integral 로 설명된다(\S\ref{sec:spectrum}--\ref{sec:kernel}).
+\item \textbf{결과 = 피팅 가능한 닫힌 논리식}(\S\ref{sec:fiteq}). 이후 발열(Ch2,4)$\cdot$히스테리시스
+  (Ch5)$\cdot$수치검증(Ch6)으로 확장한다.
 \end{enumerate}
-
-\noindent\textbf{한 문장 요지: 열역학이 \emph{무대}($V_n$, 평형 target)를 깔고, 관찰된 꼬리
-거동의 \emph{주역}은 동역학이다.}
+\noindent\textbf{한 문장 요지: 열역학이 \emph{무대}($V_n$, 평형 target)를 깔고, 관찰된 꼬리 거동의
+\emph{주역}은 동역학이다.} 본 Chapter 1 은 \textbf{방전(탈리튬화) branch 만} 다룬다 — 충전 branch,
+좌표 변환, 히스테리시스, full-cell 전압 분해는 후속 장(Ch5)에서 정의한다. 따라서 본문의 $q$,
+$Q_\ext$, $\xi_j$, $Q_{j,\tot}$ 방향은 모두 방전 기준이다.
 
 \begin{groundingbox}
-\textbf{지배 표준(GS).} (GS-1) 모든 식은 물리적 의미를 prose 로 먼저 제시한 뒤 수식화하고
-중간 단계를 생략하지 않는다. (GS-2) 결론은 출판 수준 엄밀성. (GS-3) 모든 가정은 Assumption
-Ledger(AL-\#: 논문/교과서 근거)를 인용; 근거 없는 항목은 FLAGGED. (GS-4) 임의 clip/cap/
-softplus/step-function 정의식 금지; 속도 제한은 물리적 병목으로, BOUNDED 가정은 유효범위 병기.
+\textbf{지배 표준(GS).} (GS-1) 모든 식은 물리적 의미를 prose 로 먼저 제시한 뒤 수식화하고 중간
+단계를 생략하지 않는다. (GS-2) 결론은 출판 수준 엄밀성. (GS-3) 모든 가정은 Assumption Ledger
+(AL-\#: 논문/교과서 근거)를 인용; 근거 없는 항목은 FLAGGED. (GS-4) 임의 clip/cap/softplus/
+step-function 정의식 금지; 속도 제한은 물리적 병목으로, BOUNDED 가정은 유효범위 병기.
 \end{groundingbox}
+
+본 문서의 기준 흐름은 다음을 중심으로 한다.
+\begin{equation}
+Q_\ext=Q_\cell q
+\ \rightarrow\
+Q_\ext=Q_\bg(V_n,T)+\sum_j Q_{j,\tot}\xi_j
+\ \rightarrow\
+V_n
+\ \rightarrow\
+V_{n,\app}
+\ \rightarrow\
+\frac{dQ}{dV},\ \frac{dV}{dQ}.
+\label{eq:masterflow}
+\end{equation}
+모든 후속 장은 이 구조를 유지한다. 본문은 장벽을 특정 기준값으로 잘라 ``완료/미완료''를 나누는
+방식을 쓰지 않으며, 상변이는 진행률 $\xi_j$ 의 동역학으로 표현한다. 피팅 안정화를 위한 임의
+clipping/capped transform 을 기본 물리 모델로 쓰지 않는다(GS-4).
 
 \newpage
 
 % ====================================================================
-\section{명명 $\cdot$ 기호 규약 (G0)}\label{sec:notation}
+\section{기호와 단위 컨벤션}\label{sec:notation}
 % ====================================================================
-\textbf{역사적 명칭 매핑(P3-7).} 본 합류본은 기존 두 계열을 통합한다: (A) relaxation-length
-spectrum kernel-integral 계열(기호 $\theta$), (B) 전하보존 6장 계열(기호 $\xi$). 본 G1 은
-\textbf{트렁크 (B)의 진행률 기호 $\xi$ 로 통일}한다; (A)의 $\theta$ 는 본 장의 $\xi$ 와 동일물.
-``$ver.1$--$ver.5$''(역사적 파일 이력)와 ``Chapter 1--6''(본 구조)을 혼동하지 않는다.
+\textbf{역사적 명칭 매핑(P3-7).} 본 합류본은 두 계열을 통합한다: (A) relaxation-length spectrum
+kernel-integral 계열(진행률 기호 $\theta$), (B) 전하보존 6장 계열(기호 $\xi$). 본 장은 \textbf{트렁크
+(B)의 $\xi$ 로 통일}하며 (A)의 $\theta$ 는 본 장 $\xi$ 와 동일물이다. ``$ver.1$--$ver.5$''(역사적 파일
+이력)와 ``Chapter 1--6''(본 구조)을 혼동하지 않는다.
 
-\begin{longtable}{p{0.15\textwidth} p{0.12\textwidth} p{0.65\textwidth}}
+\subsection{기본 좌표와 전하량}
+\begin{longtable}{p{0.17\textwidth} p{0.10\textwidth} p{0.65\textwidth}}
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-$q$ & --- & 방전 진행 좌표 $q=Q_\mathrm{ext}/Q_\cell$ \\
-$Q_\mathrm{ext},Q_\cell$ & C & 외부 누적 charge; 기준 cell 용량. $|I|=dQ_\mathrm{ext}/dt$ \\
-$V_n$ & V & 내부 음극 전위 — \textbf{전하 보존식의 root}(외부 lookup 아님) \\
-$V_{n,\app}$ & V & apparent(측정) 전위 $=V_n+s_I|I|R_n$ \\
-$V_{n,\drive}$ & V & 속도식 구동 전위; 기본 $=V_n$ \\
-$V_{n,\OCV}$ & V & 평형($\xi_j=\xi_{\eq,j}$)에서의 charge-balance 해 \\
-$\xi_j,\ \xi_{\eq,j}$ & --- & $j$번째 effective transition 진행률, 평형 target ($0\!\le\!\xi\!\le\!1$) \\
-$U_j(T),w_j(T)$ & V & 전이 중심 전위, 평형 전이폭 \\
-$\mathcal A_j$ & J/mol & 전위 구동력 $=s_{\phi,j}F(V_{n,\drive}-U_j)$ \\
-$\chi_j$ & --- & mobility 가속 계수 ($0\le\chi_j\le1$; Ch3 Level B 의 transfer coeff.\ $\beta$ 와 동일물) \\
-$\Delta G_{a,j}$ & J/mol & 활성화 자유에너지 $=\Delta H_{a,j}-T\Delta S_{a,j}$ \\
-$G$ & J/mol & local activation barrier (mode 별; hidden rate variable) \\
-$k_j,\ k_0(T)$ & 1/s & relaxation mobility(속도상수), Eyring prefactor $k_0=(k_BT/h)\kappa$ \\
-$L$ & --- & local relaxation length. $q$-좌표서 $L=|I|/(Q_\cell k)$ (무차원) \\
-$\rho_G(G)$ & mol/J & activation barrier 분포 \\
-$A_L(L)$ & 1/L & relaxation-length spectral density \\
-$Q_{j,\tot}$ & C & $j$ transition 의 용량 기여 (방전 기준 $>0$) \\
-$Q_\bg(V_n,T)$ & C & 배경 누적 용량; $\partial Q_\bg/\partial V_n$ = 잔류 chemical capacitance \\
-$\Theta,\ Q_p$ & --- & 전체 phase progress, 그 용량 scale \\
+$q$ & --- & 방전 진행 좌표. $q=0$ 은 방전 기준 누적 전하 영점, $q=1$ 은 기준 방전 용량만큼 진행. 본 장에서 충전 좌표로 재해석하지 않음 \\
+$Q_\ext$ & C & 외부 회로로 흘린 방전 기준 누적 전하량. 본문 $Q_\ext=Q_\cell q$ \\
+$Q_\cell$ & C & 기준 셀 용량(쿨롱) \\
+$V_n$ & V & 전하 보존식으로 계산되는 내부 음극 전위 \\
+$V_{n,\app}$ & V & 실험에서 보이는 apparent 음극 전위 \\
+$V_{n,\drive}$ & V & 상변이 속도식 구동력 계산에 쓰는 전위; 기본 $=V_n$ \\
+$V_{n,\OCV}$ & V & 평형($\xi_j=\xi_{\eq,j}$)에서의 전하보존식 해 \\
+$R_n(q,T,|I|)$ & $\Omega$ & 전압축 이동을 나타내는 음극 유효 분극 계수(단순화 시 $R_n(q,T)$) \\
+$\xi_j,\ \xi_{\eq,j}$ & --- & $j$번째 effective transition 진행률, 평형 진행률 ($0\!\le\!\xi\!\le\!1$) \\
+$Q_{j,\tot}$ & C & $j$번째 transition 의 방전 방향 누적 용량 기여(본 장 $>0$) \\
+$Q_\bg(V_n,T)$ & C & staging peak 로 분리되지 않는 방전 방향 배경 누적 용량; $\partial Q_\bg/\partial V_n$ 이 잔류 chemical capacitance \\
+$U_j(T),\ w_j(T)$ & V & 전이 중심 전위, 평형 전이 폭 \\
+$\mathcal A_j$ & J/mol & 상변이 구동력 $=s_{\phi,j}F(V_{n,\drive}-U_j)$ \\
+$\chi_j$ & --- & 유효장벽이 구동력에 의해 낮아지는 민감도($0\le\chi_j\le1$; Ch3 transfer coeff.\ $\beta_j$ 와 동일물) \\
+$\Delta H_{a,j},\Delta S_{a,j},\Delta G_{a,j}$ & J/mol & 활성화 enthalpy/entropy/free energy \\
+$G$ & J/mol & local activation barrier(mode 별 hidden rate variable; \S\ref{sec:spectrum} 에서 분포) \\
+$\nu_j(T),\kappa(T),k_0(T)$ & 1/s 등 & Eyring prefactor $k_0=(k_BT/h)\kappa$ \\
+$k_j$ & 1/s & relaxation mobility(물리적 reduced 속도상수) \\
+$L$ & --- & local relaxation length; $q$-좌표서 $L=|I|/(Q_\cell k_j)$(무차원) \\
+$\rho_G(G;T)$ & mol/J & activation barrier 분포 \\
+$A_L(L;T,V_{n,\drive})$ & 1/L & relaxation-length spectral density \\
+$\Theta,\ Q_p$ & --- & 전체 effective phase progress, 그 용량 scale \\
+$s_{\phi,j},s_I,s_{\xi,j}$ & --- & 방전 방향 부호 인자 \\
 \bottomrule
 \end{longtable}
+
+\subsection{용량 단위}
+미분방정식에서 전류 $I$ 는 A $=\mathrm{C\,s^{-1}}$ 이므로 $Q_\cell$ 은 쿨롱이어야 한다.
+\begin{equation}
+Q_\cell[\Cunit]=3600\,Q_\cell[\Ah].
+\label{eq:unit}
+\end{equation}
+이 변환을 생략하면 $dq/dt$ 의 차원이 틀어진다. 외부 방전 전하량과 진행 좌표는
+\begin{equation}
+Q_\ext(t)=\int_0^t |I(t')|\,dt',\qquad q(t)=\frac{Q_\ext(t)}{Q_\cell},\qquad
+\frac{dq}{dt}=\frac{|I|}{Q_\cell}\ (\text{정전류}).
+\label{eq:dqdt}
+\end{equation}
+
+% ====================================================================
+\section{흑연 staging 과 effective transition}\label{sec:staging}
+% ====================================================================
+흑연 lithiation 은 stage 4 $\to$ 3 $\to$ 2L $\to$ 2 $\to$ 1 sequence 로 진행하며 각 transition 이
+$dQ/dV_n$ 에 peak 를 남긴다 \cite{dahn1991,ohzuku1993,funabiki1999}(\AL{4}). 인접 stage 중심 전위
+차가 width 이하이면 fusion 되어 관측 peak 수가 $N_p\approx3\sim4$ 가 된다. 본 장은 분리 가능한 유효
+transition 을 $j=1,\dots,N_p$ 로 둔다. 단 각 effective transition 내부에도 particle/domain/boundary
+다양성에 의한 \emph{local mode 분포}가 존재하며, 이것이 \S\ref{sec:spectrum} spectrum 의 물리적 근원이다.
+\begin{groundingbox}
+\textbf{진행률 방향(\AL{4}).} 본 장에서 $\xi_j$ 는 방전 진행 좌표 $q$ 와 같은 방향으로 증가한다:
+$\xi_j=0$ 은 방전 방향 미진행, $\xi_j=1$ 은 방전 방향 완료. 따라서 $Q_{j,\tot}>0$. 충전 데이터를
+실제 시간 방향으로 쓸지 방전 좌표로 재정렬할지는 Ch5(히스테리시스)에서 별도 고정한다.
+\end{groundingbox}
 
 % ====================================================================
 \section{전하 보존식과 내부 전위 $V_n$ (무대; (B) 트렁크)}\label{sec:charge}
 % ====================================================================
-\textbf{물리.} 음극 내부에 누적된 변환 전하 = 외부로 흘린 전하(보존). 이것이 $V_n$ 을 결정한다
-(\AL{9}; \cite{doyle1993,newman}). 배경 저장 $Q_\bg$ 와 staging 진행 $\sum_j Q_{j,\tot}\xi_j$ 의 합:
+\textbf{물리.} 외부 방전 용량과 음극 내부의 방전 방향 누적(배경 + staging 진행) 용량은 일치해야 한다
+(보존). 이것이 $V_n$ 을 결정한다(외부 함수 아님; \AL{9}, \cite{doyle1993,newman}).
 \begin{equation}
-\boxed{\,Q_\cell\,q = Q_\bg(V_n,T) + \sum_{j=1}^{N_p} Q_{j,\tot}\,\xi_j\,.}
+\boxed{\;Q_\cell\,q = Q_\bg(V_n,T) + \sum_{j=1}^{N_p} Q_{j,\tot}\,\xi_j\;.}
 \label{eq:charge_balance}
 \end{equation}
-주어진 $(q,T,\xi_j)$ 에서 식~\eqref{eq:charge_balance} 를 $V_n$ 에 대해 푼다.
-\textbf{전체 phase progress 정의(10-pass R9-1)}: staging 기여를 하나로 묶어
-$Q_p\Theta\equiv\sum_j Q_{j,\tot}\xi_j$ ($Q_p$ = 그 용량 scale, $\Theta\in[0,1]$ 무차원), 따라서
-식~\eqref{eq:charge_balance} 는 $Q_\cell q=Q_\bg+Q_p\Theta$. 이로써 kernel integral 의
-$d\Theta_\mathrm{tail}/dq$(\S\ref{sec:kernel})와 charge balance 가 같은 $\Theta$ 로 연결된다.
-\textbf{유일·매끄러운 해 조건}(GS-4, 임의 정규화 아님):
+$V_n$ 은 독립적으로 주어지는 함수가 아니라, 주어진 $(q,T,\xi_j)$ 에서 식~\eqref{eq:charge_balance} 를
+만족하도록 계산되는 내부 전위다. single-particle/porous-electrode 의 implicit $\mu$ 관계와 동형이다
+\cite{doyle1993,newman}.
+
+\textbf{상대 기준형.} 식~\eqref{eq:charge_balance} 는 방전 시작점에서 누적 영점을 잡은 축약형이다.
+부분 구간만 떼어 피팅하거나 시작 시 일부 transition 이 이미 진행돼 있으면 상대 기준형을 쓴다:
 \begin{equation}
-\frac{\partial Q_\bg}{\partial V_n}\ge \epsilon_Q>0 .
+Q_\cell(q-q_\mathrm{ref})=\big[Q_\bg^\mathrm{abs}(V_n,T)-Q_\bg^\mathrm{abs}(V_{n,\mathrm{ref}},T_\mathrm{ref})\big]
++\sum_{j=1}^{N_p}Q_{j,\tot}(\xi_j-\xi_{j,\mathrm{ref}}).
+\label{eq:charge_balance_rel}
+\end{equation}
+이때 $Q_\bg$ 의 임의 offset 으로 물리적 초기 상태를 숨기지 않는다.
+
+\textbf{배경 용량의 의미.} $Q_\bg(V_n,T)$ 는 단순 그래프 기저선이 아니라, 뚜렷한 staging 으로 분리하지
+않은 방전 방향 잔류 누적 용량 저장소이며, $\xi_j$ 가 평형 진행률을 즉시 따라가지 못할 때 전하 보존을
+만족시키기 위해 $V_n$ 이 얼마나 이동해야 하는지를 결정한다. 차원은 용량이고, 잔류 chemical
+capacitance 에 해당하는 항은 $\partial Q_\bg/\partial V_n$ 이다.
+
+\textbf{해 존재 조건.} 식~\eqref{eq:charge_balance} 가 풀리려면
+\begin{equation}
+Q_\cell q-\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j\ \in\ \mathrm{Range}\big[Q_\bg(\cdot,T)\big],
+\label{eq:solexist}
+\end{equation}
+즉 $Q_{\bg,\min}(T)\le Q_\cell q-\sum_j Q_{j,\tot}\xi_j\le Q_{\bg,\max}(T)$. 이를 어기는 파라미터
+조합은 전압 해가 없는 것으로 보아 피팅에서 제외하거나 강하게 제약한다.
+
+\textbf{수치 조건(단조성 floor).} $V_n$ 을 안정적으로 풀려면 $Q_\bg$ 가 전위에 충분한 기울기를 가져야
+한다(임의 정규화 아님; GS-4):
+\begin{equation}
+\frac{\partial Q_\bg}{\partial V_n}\ge \epsilon_Q>0.
 \label{eq:monotone}
 \end{equation}
-$\xi_j=\xi_{\eq,j}$ 이면 그 해가 평형 곡선 $V_n=V_{n,\OCV}(q,T)$ 이다 — \textbf{외부 OCV lookup 은
-이 보존식의 평형 특수해}일 뿐이다(중심식이 OCV 읽기로 회귀하지 않음, P3-2).
+이 조건이 없으면 $dV_n/dq$ 가 과도하게 커지거나 특이점이 생긴다. 본 장은 방전 기준에서 $q$ 증가와
+함께 $V_n$ 이 증가하는 구간을 기본 대상으로 하므로 $Q_\bg$ 도 $V_n$ 의 증가 함수로 둔다.
+
+\textbf{전체 phase progress 정의(심층검토 R9-1).} staging 기여를 하나로 묶어
+$Q_p\Theta\equiv\sum_j Q_{j,\tot}\xi_j$ ($Q_p$ = 용량 scale, $\Theta\in[0,1]$ 무차원)로 두면
+식~\eqref{eq:charge_balance} 는 $Q_\cell q=Q_\bg+Q_p\Theta$ 가 된다. 이로써 \S\ref{sec:kernel} 의
+kernel integral($d\Theta_\mathrm{tail}/dq$)과 charge balance 가 같은 $\Theta$ 로 연결된다.
+
+\subsection{평형 OCV 의 의미}\label{sec:ocv}
+평형 또는 충분히 느린 조건에서는 $\xi_j=\xi_{\eq,j}(V_n,T)$ 이고 식~\eqref{eq:charge_balance} 은
+\begin{equation}
+Q_\cell q=Q_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_{\eq,j}(V_n,T)
+\label{eq:ocv_implicit}
+\end{equation}
+가 된다. 이를 $V_n$ 에 대해 풀면 평형 음극 전위 곡선 $V_n=V_{n,\OCV}(q,T)$ 이다. \textbf{즉 외부 OCV
+lookup 은 임의로 주어진 함수가 아니라 전하 보존식의 평형 특수해다}(중심식이 OCV 읽기로 회귀하지 않음, P3-2).
+
+\subsection{총용량 정합 조건}\label{sec:capmatch}
+방전 구간 시작/종료 전위를 $V_{n,0},V_{n,1}$ 이라 하면 모델 총용량은 실험 기준 용량과 정합해야 한다.
+\begin{equation}
+Q_\cell=Q_\bg(V_{n,1},T)-Q_\bg(V_{n,0},T)+\sum_{j=1}^{N_p}Q_{j,\tot}\big[\xi_{\eq,j}(V_{n,1},T)-\xi_{\eq,j}(V_{n,0},T)\big].
+\label{eq:capmatch}
+\end{equation}
+동역학 경로의 특정 구간을 직접 정합할 때는 시작/끝 상태값으로
+$Q_\cell\Delta q=Q_\bg(V_n(t_1),T_1)-Q_\bg(V_n(t_0),T_0)+\sum_j Q_{j,\tot}[\xi_j(t_1)-\xi_j(t_0)]$ 를 쓴다.
+피팅에서는 이 조건이 $Q_\bg,Q_{j,\tot},U_j,w_j$ 를 함께 제약한다.
 
 % ====================================================================
-\section{평형 target $\xi_\eq$ (logistic baseline)}\label{sec:eq}
+\section{평형 진행률 $\xi_\eq$ (logistic baseline)}\label{sec:eq}
 % ====================================================================
-\textbf{보수적 입장.} 평형 target 은 (i) smooth, (ii) $0\le\xi_\eq\le1$, (iii) $V_n$ 단조만
-요구한다. grounded baseline 은 graphite intercalation 의 lattice-gas/regular-solution chemical
-potential \cite{mckinnon1983,bazant2013} (\AL{3a}): ideal 극한에서
+\textbf{보수적 입장.} 평형 진행률은 (i) smooth, (ii) $0\le\xi_\eq\le1$, (iii) $V_n$ 단조만 요구한다:
+$\xi_{\eq,j}=\xi_{\eq,j}(V_n,T)$. grounded baseline 은 graphite intercalation 의 lattice-gas/
+regular-solution chemical potential \cite{mckinnon1983,bazant2013}(\AL{3a}):
+$\mu(\xi)=\mu^0+RT\ln[\xi/(1-\xi)]+\Omega_j(1-2\xi)$, 전기화학 평형 $\mu=s_{\phi,j}F(V_n-U_j^0)$ 에서
+($\Omega_j=0$ ideal limit)
 \begin{equation}
-\xi_{\eq,j}=\Big[1+\exp\!\big(-(V_n-U_j)/w_j\big)\Big]^{-1},\qquad w_j=RT/F\ (\text{ideal}),
+\xi_{\eq,j}(V_n,T)=\frac{1}{1+\exp[-(V_n-U_j(T))/w_j(T)]},\qquad w_j=RT/F\ (\text{ideal}),
 \label{eq:logistic}
 \end{equation}
-즉 smooth logistic ($0\!\to\!1$ 급점프 아님). $w_j$ 는 nonideality$\cdot$disorder 를 포함하는
-effective width 로 둘 수 있어 $RT/F$ 에 강제로 묶지 않는다.
+즉 smooth logistic($0\!\to\!1$ 급점프 아님). $\Omega_j\ne0$ 이면 width/형태 보정(smooth 유지). $w_j$ 는
+nonideality$\cdot$domain heterogeneity$\cdot$finite transition width 를 포함하는 effective width 로
+둘 수 있어 $RT/F$ 에 강제로 묶지 않는다. 방향 반전이 필요하면 부호 인자를 둔 확장형
+$\xi_{\eq,j}=[1+\exp(-s_{\xi,j}(V_n-U_j)/w_j)]^{-1}$ 을 쓰되, $s_{\xi,j}\ne+1$ 은 $q,Q_{j,\tot},\xi_j$
+방향 정의를 함께 재검토해야 하므로 본 장은 $s_{\xi,j}=+1$ 을 기본으로 둔다.
+
+\textbf{저온 거동(서 (1) 의 근거; 무비약).} 식~\eqref{eq:logistic} 의 peak 형상은
+\begin{equation}
+\frac{\partial\xi_{\eq,j}}{\partial V_n}=\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j(T)}
+\label{eq:dxidV}
+\end{equation}
+로 결정되어 peak 높이 $\propto 1/w_j$, 폭 $\propto w_j$. 저온 $\to w_j=RT/F$ \emph{감소} $\to$ 더 좁고
+가파른 peak(꼬리 더 빨리 감쇠). 수치: $25^\circ$C $w\approx25.7$ mV $\to -15^\circ$C $w\approx22.2$ mV.
+따라서 평형 열역학 예측 = ``저온 짧은 꼬리''이며, 관찰(저온 긴 꼬리)은 평형 broadening 으로 설명
+불가 $\Rightarrow$ 동역학이 필요하다(\S\ref{sec:dyn}).
 \begin{flagbox}
-\textbf{형태는 data 결정(DQ-v3-1).} erf/Gaussian-cumulative isotherm 은 graphite 에 대한
-열역학 유도가 문헌에 없어 FLAGGED ansatz(\AL{3b}). 저속 OCV near-peak 감쇠 plot
-($\log dQ/dV$ vs $(V-U)$ $\to$ 지수=logistic / vs $(V-U)^2$ $\to$ 가우시안)으로 판별
-(\S\ref{sec:falsify}). \textbf{본 장 tail 결론은 평형 형태에 무의존}(post-peak 에서
-$d\xi_\eq/dq\simeq0$ 만 사용, \S\ref{sec:rate}). 단, Ch3 detailed balance 의 선형성은
-logistic 에 의존하므로 baseline 을 logistic 으로 둔다.
+\textbf{형태는 data 결정(DQ-v3-1).} erf/Gaussian-cumulative isotherm 은 graphite 에 대한 열역학 유도가
+문헌에 없어 (organic-semiconductor Gaussian Disorder Model \cite{baessler1993} analogy + 경험
+peak-fit 수준) FLAGGED ansatz(\AL{3b}). 실제 형태는 저속 OCV near-peak 감쇠 plot
+($\log dQ/dV$ vs $(V-U)$ $\to$ 지수=logistic / vs $(V-U)^2$ $\to$ 가우시안)으로 판별(\S\ref{sec:falsify}).
+\textbf{본 장 tail 결론은 평형 형태에 무의존}(post-peak 에서 $d\xi_\eq/dq\simeq0$ 만 사용,
+\S\ref{sec:dyn}). 단, Ch3 detailed balance 의 선형성은 logistic 에 의존하므로 baseline 을 logistic 으로 둔다.
 \end{flagbox}
 
-\textbf{저온 거동(서 (1) 의 근거).} 식~\eqref{eq:logistic} 의 peak 형상은
-$d\xi_\eq/dV_n=(1/w_j)\xi_\eq(1-\xi_\eq)$ 로 결정되어 peak 높이 $\propto 1/w_j$, 폭 $\propto w_j$.
-저온 $\to w_j=RT/F$ 감소 $\to$ \emph{더 좁고 가파른 peak}(꼬리 더 빨리 감쇠). 따라서 평형
-열역학은 ``저온 짧은 꼬리''를 예측하며, 관찰(저온 긴 꼬리)은 평형으로 설명 불가 $\Rightarrow$
-동역학이 필요하다(\S\ref{sec:rate}).
-
 % ====================================================================
-\section{★ 유효 mobility 와 keystone (Ch1 = Level A)}\label{sec:barrier}
+\section{상변이 속도식과 유효 mobility (keystone: Ch1 = Level A)}\label{sec:rate}
 % ====================================================================
-\textbf{Derivation (활성화, \AL{1}).} transition-state theory \cite{eyring1935}:
-$\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}$. 전위 구동력
-$\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$ 가 활성화 과정에 $\chi_j\mathcal A_j$ 만큼 기여하여
-유효 지수를 낮춘다(Br\o{}nsted--Evans--Polanyi/Butler--Volmer; \AL{2}, \cite{evanspolanyi1938,bardfaulkner}):
+\subsection{구동 전위와 apparent 전위의 구분}
+전압에는 세 종류가 있다: 내부 $V_n$, apparent $V_{n,\app}$, 구동 $V_{n,\drive}$. 측정(apparent) 전위는
 \begin{equation}
-k_j(G,T,V_{n,\drive})=k_0(T)\exp\!\Big[-\frac{G-\chi_j\mathcal A_j}{RT}\Big],\qquad k_0=\tfrac{k_BT}{h}\kappa(T).
-\label{eq:rate_const}
+V_{n,\app}=V_n+s_I|I|R_n(q,T,|I|)
+\label{eq:Vapp}
 \end{equation}
+($s_I=+1$: 방전서 apparent 증가 convention). 상변이 구동력은
+\begin{equation}
+\mathcal A_j=s_{\phi,j}F\,[V_{n,\drive}-U_j(T)]
+\label{eq:Aj}
+\end{equation}
+이며 $F[V]$ 가 $\mathrm{J\,mol^{-1}}$ 차원이라 $\mathcal A_j$ 는 몰 기준 자유에너지 구동력이다.
+$s_{\phi,j}$ 는 선택한 방전 방향 transition 의 구동력 부호를 정해
+\begin{equation}
+\chi_j\ge0,\qquad s_{\phi,j}[V_{n,\drive}-U_j(T)]>0\ \Rightarrow\ \text{방전 방향 transition 촉진}
+\label{eq:signrule}
+\end{equation}
+으로 제한한다. 즉 전위 보조항은 임의의 전위 증가가 아니라 선택한 방전 방향 친화도가 커질 때 작동한다.
+가장 보수적인 기본형은
+\begin{equation}
+V_{n,\drive}=V_n
+\label{eq:drive_basic}
+\end{equation}
+이며, 반응속도론 확장에서는 국소 계면 과전압을 분리해 $V_{n,\drive}=V_n+\eta_{n,\drive}$(Ch3), 더 강한
+reduced model 에서는 $V_{n,\drive}\approx V_{n,\app}$ 를 쓸 수 있다.
+\begin{boundbox}
+\textbf{$V_{n,\drive}\approx V_{n,\app}$ 의 주의.} 이 근사를 쓰면 $R_n$ 과 $k_j$ 가 같은 현상을 동시에
+설명하지 않도록 역할을 분리해야 한다($R_n$=전압축 이동, $\xi_j$ 동역학=상변이 지연). 특히 $R_n$ 은
+독립 실험(pulse/current-interrupt) 또는 선행 피팅으로 먼저 제한하고 $k_j$ 와 같은 데이터에서 동시
+자유 피팅하지 않는다.
+\end{boundbox}
+
+\subsection{유효 장벽과 속도상수}
+고유 활성화 자유에너지는 transition-state theory \cite{eyring1935,evanspolanyi1938}(\AL{1}):
+$\Delta G_{a,j}(T)=\Delta H_{a,j}-T\Delta S_{a,j}$. 전위 보조를 포함한 유효 구동 장벽은(BEP/Butler--Volmer,
+\AL{2}, \cite{evanspolanyi1938,bardfaulkner})
+\begin{equation}
+\boxed{\;\Delta G_{\eff,j}=\Delta G_{a,j}(T)-\chi_j\mathcal A_j\;=\;G-\chi_j\mathcal A_j\;}
+\label{eq:Geff}
+\end{equation}
+($G\equiv\Delta G_{a,j}$ = mode 의 intrinsic barrier; \S\ref{sec:spectrum} 에서 분포). $\mathcal A_j>0$
+이면 유효 장벽이 낮아진다. 물리 우선 기본형의 활성화 속도상수는 Eyring rate(\AL{1})
+\begin{equation}
+\boxed{\;k_j^\mathrm{act}=\nu_j(T)\exp\!\Big[-\frac{\Delta G_{\eff,j}}{RT}\Big]\;},\qquad
+\nu_j(T)=\frac{k_BT}{h}\kappa(T).
+\label{eq:kact}
+\end{equation}
+prefactor 가 $k_BT/h$ 이며 임의 상수가 아니다. $\Delta G_{\eff,j}>0$ 은 일반 activated regime,
+$\Delta G_{\eff,j}\le0$ 은 강한 전위 구동으로 유효 장벽이 사실상 제거됐거나 선형 근사가 강구동 영역에
+들어간 \textbf{강구동 accelerated regime} 으로 표시하며, $\max(\cdot,0)$/clip 으로 자르지 \emph{않는다}(GS-4).
 
 \begin{keybox}
-\textbf{★ keystone — Ch1 에서 $\chi_j\mathcal A_j$ 는 ``배리어 낮춤''이 아니라 ``relaxation
-mobility 의 전위 의존 \emph{가속}''이다 (Level A).} 그 이유를 학부 수준으로 무비약 전개한다.
-2-state 반응속도론에서 net rate 는 $\dot\xi_j=r_j^+(1-\xi_j)-r_j^-\xi_j$. 정상점
-$\xi_{\eq,j}=r_j^+/(r_j^++r_j^-)$ 근처 1차 선형화하면 $\dot\xi_j=k_j(\xi_{\eq,j}-\xi_j)$,
-$k_j=r_j^++r_j^-$ (\AL{5}). 즉 \textbf{$k_j$ = mobility(평형 접근 속도), $\xi_{\eq,j}$ = target(방향)}.
-식~\eqref{eq:rate_const} 처럼 $\chi_j\mathcal A_j$ 가 \emph{$k_j$ 전체}에 들어가면 $r_j^+,r_j^-$ 가
-같은 배율로 커져 비 $r_j^+/r_j^-=\xi_\eq/(1-\xi_\eq)$ 가 \emph{불변} — 즉 $\mathcal A_j$ 는
-방향성 없는 \textbf{mobility scale}이고, target $\xi_\eq$ 는 열역학(\S\ref{sec:eq})이 전담한다.
-\emph{방향성을 가진} barrier lowering(forward 장벽만 $-\beta\mathcal A$, backward 는 $+(1-\beta)\mathcal A$
-$\Rightarrow$ 비가 바뀜)은 \textbf{Chapter 3 의 Level B}에서 명시 도입하며, 그때 본 장의 $\chi_j$
-는 transfer coefficient $\beta_j$ 와 동일물이 된다. 본 장에서 ``배리어 낮춤''이라는 \emph{방향성
-함의} 용어를 쓰지 않는다.
+\textbf{★ Ch1 에서 $\chi_j\mathcal A_j$ 는 ``배리어 낮춤''이 아니라 ``relaxation mobility 의 전위 의존
+\emph{가속}''이다(Level A).} 무비약 근거: 2-state 반응속도론에서 net rate
+$\dot\xi_j=r_j^+(1-\xi_j)-r_j^-\xi_j$. 정상점 $\xi_{\eq,j}=r_j^+/(r_j^++r_j^-)$ 근처 1차 선형화하면
+$\dot\xi_j=k_j(\xi_{\eq,j}-\xi_j)$, $k_j=r_j^++r_j^-$ (\AL{5}). 즉 \textbf{$k_j$=mobility(평형 접근
+속도), $\xi_{\eq,j}$=target(방향)}. 식~\eqref{eq:kact} 처럼 $\chi_j\mathcal A_j$ 가 \emph{$k_j$ 전체}에
+들어가면 $r_j^+,r_j^-$ 가 같은 배율로 커져 비 $r_j^+/r_j^-=\xi_\eq/(1-\xi_\eq)$ 가 \emph{불변} — 즉
+$\mathcal A_j$ 는 방향성 없는 mobility scale 이고 target 은 열역학(\S\ref{sec:eq})이 전담한다. \emph{방향성을
+가진} barrier lowering(forward 장벽만 $-\beta\mathcal A$, backward 는 $+(1-\beta)\mathcal A$ $\Rightarrow$
+비가 바뀜)은 \textbf{Ch3 의 Level B} 에서 도입하며 그때 본 장 $\chi_j$ 는 transfer coefficient $\beta_j$
+와 동일물이 된다. 본 장에서 ``배리어 낮춤''이라는 방향성 함의 용어를 결론식에 쓰지 않는다.
 \end{keybox}
-
 \begin{boundbox}
-\textbf{Marcus bound(\AL{2}).} 선형 $-\chi_j\mathcal A_j$ 는 작은 구동력의 1차 근사다.
-Marcus \cite{marcus1956} 는 곡률을 주므로 $|\mathcal A_j|$ 가 클 때 깨진다; 본 식은 tail 영역
-$V_{n,\drive}\approx U_j$ 에서 유효. $G-\chi_j\mathcal A_j<0$ 가 되어도 $\max(\cdot,0)$/clip 으로
-자르지 \emph{않는다}(GS-4); 그 영역에서는 transport$\cdot$site$\cdot$diffusion$\cdot$finite-current
-같은 \emph{물리적 병목}이 rate 를 제한한다(\S\ref{sec:falsify}; Ch3 전류 보존).
+\textbf{Marcus bound(\AL{2}).} 선형 $-\chi_j\mathcal A_j$ 는 작은 구동력의 1차 근사다. Marcus
+\cite{marcus1956} 는 곡률을 주므로 $|\mathcal A_j|$ 가 클 때(inverted region 포함) 깨진다; 본 선형식은
+tail 영역 $V_{n,\drive}\approx U_j$ 에서 유효하며 전역 정당화가 아니다.
 \end{boundbox}
-\textbf{물리적 병목의 직렬 합성(10-pass R9-G3; $k_{j,\mathrm{lim}}$ 정의).} 강구동서 활성화가 더 이상
-rate-limiting 이 아니면, 유효 mobility 를 \emph{직렬 시간척도 합성}으로 둔다(임의 cap 아님):
+
+\subsection{물리적 병목과 reduced rate}
+식~\eqref{eq:kact} 를 모든 구동력으로 무제한 외삽하지 않는다. 전하전달이 빨라져도 다음 병목이 전체
+진행을 제한할 수 있다(effective time-scale):
 \begin{equation}
-\frac{1}{k_j}=\frac{1}{k_j^{\mathrm{act}}}+\frac{1}{k_{j,\mathrm{lim}}},\qquad
-k_j^{\mathrm{act}}=k_0(T)e^{-(G-\chi_j\mathcal A_j)/RT},
-\label{eq:kphys_series}
+k_{j,\mathrm{lim}}^{-1}=k_{j,\mathrm{transport}}^{-1}+k_{j,\mathrm{site}}^{-1}+k_{j,\mathrm{diff}}^{-1}
++k_{j,\mathrm{current}}^{-1}+\cdots,
+\label{eq:klim_comp}
 \end{equation}
-$k_{j,\mathrm{lim}}$ 은 transport/site/diffusion/finite-current 병목의 effective rate(독립 물리 근거
-필요). $k_{j,\mathrm{lim}}\!\to\!\infty$ 면 $k_j\!\to\!k_j^{\mathrm{act}}$(활성화 지배), $k_j^{\mathrm{act}}\!\gg\!k_{j,\mathrm{lim}}$
-면 병목 지배. 이후 본문/Ch6 의 $k_j$ 는 이 $k_j(=k_j^{\mathrm{phys}})$ 를 뜻한다.
+각 항은 전해질/고체 transport, 유한 활성 site, 고체상 확산, 유한 외부 전류/국소 전류 보존 제약이다.
+이를 포함한 물리적 reduced rate 는 직렬 시간척도 합성(수치 cap 아님)
+\begin{equation}
+\boxed{\;\frac{1}{k_j^\mathrm{phys}}=\frac{1}{k_j^\mathrm{act}}+\frac{1}{k_{j,\mathrm{lim}}}\;}
+\label{eq:kphys}
+\end{equation}
+로 둔다. $k_{j,\mathrm{lim}}\to\infty$ 면 $k_j^\mathrm{phys}\to k_j^\mathrm{act}$(활성화 지배),
+$k_j^\mathrm{act}\gg k_{j,\mathrm{lim}}$ 면 병목 지배. 본 장 기본 진행률식의 $k_j$ 는 이
+$k_j^\mathrm{phys}$ 다. $k_{j,\mathrm{lim}}$ 을 독립 자료 없이 자유 추가하면 $\nu_j,\Delta G_{a,j},\chi_j$
+와 강하게 상관되므로 물리적 근거와 독립 제약을 명시해야 한다 — 특히 \textbf{softplus cap 을 이름만 바꾼
+자유 knob 이 되어선 안 된다}.
+
+\textbf{유한 전류 제약(심층검토: clamp 형태).} 유한 전류는 엄밀히는 rate 보다 progress flux 를 제한한다.
+$|Q_{j,\tot}\,d\xi_j/dt|\le I_{j,\max}(q,T,|I|)$. 이를 단순 rate 상한으로 환산한
+$k_{j,\mathrm{current}}\lesssim I_{j,\max}/(Q_{j,\tot}|\xi_{\eq,j}-\xi_j|)$ 은 평형 부근($\xi_j\to\xi_{\eq,j}$)
+에서 분모$\to0$ 으로 발산한다 — 이는 ``진행할 flux 가 거의 없어 전류 제약이 binding 이 아니다''라는
+올바른 물리이나(직렬식~\eqref{eq:kphys} 에서 $k_{\mathrm{current}}\to\infty$ 면 매끄럽게 환원), 구현
+혼란을 막기 위해 권장 형태는 환산식이 아니라 \textbf{부호 없는 flux 부등식 clamp}:
+\begin{equation}
+\frac{d\xi_j}{dt}=\operatorname{sign}(\xi_{\eq,j}-\xi_j)\,
+\min\!\Big(k_j^\mathrm{act}|\xi_{\eq,j}-\xi_j|,\ \frac{I_{j,\max}}{Q_{j,\tot}}\Big),
+\label{eq:clamp}
+\end{equation}
+평형 부근에서 자동으로 첫 항(비활성)을 택하고 강구동에서만 전류 상한으로 clamp 되며 발산도 부호
+뒤집힘도 없다(방향은 $[\xi_{\eq,j}-\xi_j]$ 가 정한다).
+\begin{mdframed}
+\textbf{실무 팁(본문 물리식 아님).} 초기값 탐색/불안정 임시 계산에서 $\Delta G_{\eff}<0$ 의 속도 폭주를
+막기 위해 capped transform/softplus 를 쓸 수 있으나, 이는 본 문서의 물리 모델이 아니며 논문용 해석에서는
+transport/site/diffusion/current limitation 같은 물리적 제한항으로 대체한다(GS-4).
+\end{mdframed}
 
 % ====================================================================
-\section{완화 동역학과 single-mode kernel}\label{sec:rate}
+\section{상변이 진행률 동역학과 single-mode kernel}\label{sec:dyn}
 % ====================================================================
-한 local mode 의 lag $r=\xi_{\eq,j}-\xi_j$ 는 평형 근처 1차 완화(\AL{5}, \cite{onsager1931,degrootmazur1962}):
+\subsection{시간 영역과 $q$ 좌표}
+상변이는 평형 진행률을 향해 완화된다(\AL{5}, \cite{onsager1931,degrootmazur1962}):
 \begin{equation}
-\frac{d\xi_j}{dt}=k_j(\xi_{\eq,j}-\xi_j),\qquad
-\frac{d\xi_j}{dq}=\frac{Q_\cell k_j}{|I|}(\xi_{\eq,j}-\xi_j)\ \ (|I|>0).
-\label{eq:relax}
+\boxed{\;\frac{d\xi_j}{dt}=k_j(V_n,q,T,I)\,[\xi_{\eq,j}(V_n,T)-\xi_j]\;}
+\label{eq:dxidt}
 \end{equation}
-post-peak 에서 target 이 거의 정지($d\xi_{\eq,j}/dq\simeq0$)하면 1계 선형 ODE 가 풀려
+($k_j=k_j^\mathrm{phys}$). $\xi_j$ 가 즉시 평형에 도달하지 못하면 전압 곡선과 ICA/DVA 에 tail/broadening 이
+생긴다. $k_j$ 가 큰 극한에서 $\xi_j$ 가 $\xi_{\eq,j}$ 를 더 잘 따라가나, 이는 $d\xi_j/dq$ 가 자동으로
+델타가 된다는 뜻이 \emph{아니라} $d\xi_j/dq\to d\xi_{\eq,j}/dq$ 로 접근한다는 뜻이다(아래 singular
+perturbation). 정전류($|I|>0$)구간에서 식~\eqref{eq:dqdt} 로
 \begin{equation}
-r(q)\simeq r(q_a)\exp\!\Big[-\frac{q-q_a}{L}\Big],\qquad \boxed{\,L=\frac{|I|}{Q_\cell\,k_j}\,}
+\boxed{\;\frac{d\xi_j}{dq}=\frac{Q_\cell}{|I|}\,k_j(V_n,q,T,I)\,[\xi_{\eq,j}(V_n,T)-\xi_j]\;}
+\label{eq:dxidq}
+\end{equation}
+를 쓴다. 휴지 구간($|I|=0$)에서는 식~\eqref{eq:dxidq} 를 쓰지 않고 $dq/dt=0$, $d\xi_j/dt=k_j[\xi_{\eq,j}-\xi_j]$
+의 시간식으로 relaxation 을 계산하며, 매 시간점에서 $Q_\cell q_\mathrm{rest}=Q_\bg(V_n(t),T)+\sum_j
+Q_{j,\tot}\xi_j(t)$ 를 다시 풀어 $V_n(t)$ 를 얻는다(휴지 전압 relaxation = $\xi_j$ 완화 + 전하 보존 동시 만족).
+
+\textbf{초기 조건.} $q(0)=q_0,\ T(0)=T_0,\ \xi_j(0)=\xi_{j,0}$ 는 선택한 기준형의 전하 보존식도 만족해야
+한다: 축약형 $Q_\cell q_0=Q_\bg(V_n(0),T_0)+\sum_j Q_{j,\tot}\xi_{j,0}$. 평형 시작이면
+$\xi_{j,0}=\xi_{\eq,j}(V_n(0),T_0)$; 이력 있는 셀이면 이전 branch 결과 또는 별도 피팅값.
+
+\subsection{Single-mode exponential kernel}\label{sec:singlemode}
+한 local mode 의 lag $r=\xi_{\eq,j}-\xi_j$. post-peak 에서 target 이 거의 정지($d\xi_{\eq,j}/dq\simeq0$)
+하면 식~\eqref{eq:dxidq} 가 1계 선형 ODE 로 풀려
+\begin{equation}
+r(q)\simeq r(q_a)\exp\!\Big[-\frac{q-q_a}{L}\Big],\qquad \boxed{\;L=\frac{|I|}{Q_\cell\,k_j}\;}
 \label{eq:single_kernel}
 \end{equation}
-이다(차원: $|I|/(Q_\cell k)=$무차원). 이는 관측 tail 전체가 단일 지수라는 뜻이 \emph{아니라}
-\textbf{하나의 mode 가 만드는 exponential kernel} 이다. \textbf{저온 거동}: $k_j=k_0e^{-(G-\chi\mathcal A)/RT}$
-가 저온서 작아져 $L$ 이 커진다 $\Rightarrow$ 꼬리가 길어진다(관찰 일치, 서 (2)).
+(차원: $|I|/(Q_\cell k)=$A$/$(C$\cdot$1/s)$=$무차원). 이는 관측 tail 전체가 단일 지수라는 뜻이 \emph{아니라}
+\textbf{하나의 mode 가 만드는 exponential kernel} 이다.
+
+\textbf{잔차에서 진행률 도함수로(심층검토 P-CRIT-1: 무비약 연결).} kernel integral(\S\ref{sec:kernel})은
+잔차 $r$ 이 아니라 \emph{진행률 도함수} $d\xi_j/dq$ 의 중첩이다. 둘의 연결: 식~\eqref{eq:dxidq} 에서
+$d\xi_j/dq=(Q_\cell k_j/|I|)\,r=r/L$ 이고, post-peak 에서 $r$ 이 위처럼 감쇠하므로
+\begin{equation}
+\frac{d\xi_j}{dq}=\frac{r(q_a)}{L}\exp\!\Big[-\frac{q-q_a}{L}\Big].
+\label{eq:single_dxidq}
+\end{equation}
+바로 이 \textbf{$1/L$ 인자}가 \S\ref{sec:kernel} kernel 의 $1/L$ 출처다 — spectrum integral 은 각 mode 의
+\emph{진행률 기여} $d\xi_j/dq$ 를 mode 분포로 합한 것이지 잔차 $r$ 의 합이 아니다.
+\textbf{숨은 전제 명시(심층검토 P-MED-2b).} $L$ 을 상수로 둔 것은 $d\xi_{\eq,j}/dq\simeq0$ \emph{뿐 아니라}
+구동력 정지 $d\mathcal A_j/dq\simeq0$($V_n$ 완만 변화)도 함께 요구한다(별개 가정 2개). $V_n$ 이 post-peak
+에서 빠르게 변하면 $L=L(q)$ 로 두고 식~\eqref{eq:dxidt} 직접적분(또는 Ch6 수치)을 쓴다.
+
+\textbf{저온 거동(서 (2)).} $k_j=k_0e^{-(G-\chi\mathcal A)/RT}$ 가 저온서 작아져 $L$ 이 커진다
+$\Rightarrow$ 꼬리가 길어진다(관찰 일치).
+
+\textbf{빠른 kinetics 극한(M4 / singular perturbation).} $\xi_j=\xi_{\eq,j}-\delta_j$,
+$\delta_j\sim k_j^{-1}d\xi_{\eq,j}/dt$ 로 보면 $k_j\to\infty$ 서 $\delta_j\to0$ 이면서도
+$d\xi_j/dt\to d\xi_{\eq,j}/dt$ 가 된다(작은 lag $\times$ 큰 $k$ 의 곱이 유한). 즉 빠른 kinetics 결론은
+$d\xi_j/dq\to d\xi_{\eq,j}/dq$ 이며 단순히 bracket 이 0 이 되어서가 아니라 asymptotic balance 의 결과다.
 
 % ====================================================================
-\section{★ Barrier 분포 $\to$ relaxation-length spectrum ((A) 엔진 이식)}\label{sec:spectrum}
+\section{Barrier 분포 $\to$ relaxation-length spectrum ((A) 엔진 이식)}\label{sec:spectrum}
 % ====================================================================
-\textbf{물리.} 실제 전극은 단일 $G$ 가 아니라 입자크기$\cdot$domain$\cdot$defect 차이로 인한
-\emph{barrier 분포} $\rho_G(G)$ 를 가진다(\AL{6}). 관측 tail 의 shape 은 $\rho_G$ 와 같지 않다 —
-$G$ 가 먼저 rate 로, 다시 length 로 \emph{지수 변환}되기 때문이다. 식~\eqref{eq:rate_const},
+\textbf{물리.} 실제 전극은 단일 $G$ 가 아니라 particle size$\cdot$local staging environment$\cdot$domain
+boundary$\cdot$defect$\cdot$stress$\cdot$surface 차이로 인한 \emph{barrier 분포} $\rho_G(G;T)$ 를 가진다
+(\AL{6}). 진행률을 특정 장벽 기준으로 자르지 않는다; 장벽 $g$ 를 가진 domain 의 진행률을 $\xi_j(g,t)$ 로
+두고 음수 아닌 기준 장벽 분포로 정규화한다:
+\begin{equation}
+\int_0^\infty \rho_G(g;T)\,dg=1.
+\label{eq:rho_norm}
+\end{equation}
+$\rho_G$ 는 kinetic activation barrier 분포이며, 평형 전이 중심의 불균일성($U_j,w_j$ 또는 별도 분포
+$p_j(U)$)과 혼동하지 않는다. 각 $g$ 집단의 유효 장벽 $\Delta G_{\eff,j}(g)=g-\chi_j\mathcal A_j$, 활성화
+rate $k_j^\mathrm{act}(g)=\nu_j(T)\exp[-(g-\chi_j\mathcal A_j)/RT]$, 물리적 병목 포함 시
+$1/k_j^\mathrm{phys}(g)=1/k_j^\mathrm{act}(g)+1/k_{j,\mathrm{lim}}(g)$. 각 집단은
+$d\xi_j(g,t)/dt=k_j^\mathrm{phys}(g)[\xi_{\eq,j}(V_n,T)-\xi_j(g,t)]$ 를 따르고 전체 진행률은
+\begin{equation}
+\boxed{\;\xi_j(t)=\int_0^\infty \rho_G(g;T)\,\xi_j(g,t)\,dg\;.}
+\label{eq:xi_dist}
+\end{equation}
+
+\textbf{barrier$\to$length 지수 매핑(stretched tail 의 근원).} 그러나 관측 tail 의 shape 은 $\rho_G$ 와
+같지 않다 — $G$ 가 먼저 rate 로, 다시 length 로 \emph{지수 변환}되기 때문이다. 식~\eqref{eq:kact},
 \eqref{eq:single_kernel} 에서
 \begin{equation}
-\boxed{\,L(G,T,V_{n,\drive})=\frac{|I|}{Q_\cell k_0(T)}\exp\!\Big[\frac{G-\chi_j\mathcal A_j}{RT}\Big]\,.}
+\boxed{\;L(G,T,V_{n,\drive})=\frac{|I|}{Q_\cell k_0(T)}\exp\!\Big[\frac{G-\chi_j\mathcal A_j}{RT}\Big]\;.}
 \label{eq:L_of_G}
 \end{equation}
-$G$ 의 작은 분산이 $L$ 에서 \emph{지수적으로 확대}된다 — 이것이 stretched tail 의 근원이다
-(긴 꼬리는 $\rho_G$ 가 길어서가 아니라 매핑이 지수이기 때문일 수 있다). 역변환
-$G(L)=\chi_j\mathcal A_j+RT\ln[Q_\cell k_0 L/|I|]$, Jacobian $|dG/dL|=RT/L$ 에서 relaxation-length
-spectral density:
+$G$ 의 작은 분산이 $L$ 에서 \emph{지수적으로 확대}된다 — 긴 꼬리는 $\rho_G$ 가 길어서가 아니라 매핑이
+지수이기 때문일 수 있다.
+
+\textbf{변수변환 보존(심층검토 P-HIGH-2: 무비약).} $\rho_G$ 는 $G$ 에 대한 \emph{밀도}이므로 $L$ 좌표로
+옮길 때 질량 보존 $A_L(L)\,dL=\rho_G(G)\,dG$ 를 쓴다(단순 대입 아님). 식~\eqref{eq:L_of_G} 의 역변환
+$G(L)=\chi_j\mathcal A_j+RT\ln[Q_\cell k_0 L/|I|]$ 에서 $dG/dL=RT/L>0$(단조)이므로
+$A_L(L)=\rho_G(G(L))\,|dG/dL|$, 여기에 per-mode amplitude$\cdot$population weight$\cdot$accessibility
+$A_0(L)$ 를 곱하면
 \begin{equation}
-A_L(L;T,V_{n,\drive})=\rho_G\big(G(L)\big)\,\frac{RT}{L}\,A_0(L),
+A_L(L;T,V_{n,\drive})=\rho_G\big(G(L)\big)\,\frac{RT}{L}\,A_0(L).
 \label{eq:spectrum}
 \end{equation}
-$A_0$ = per-mode amplitude$\cdot$population weight. ($\int A_L\,dL$ = 총 weight.)
+$A_0\equiv1$ 이면 $\int A_L\,dL=\int\rho_G\,dG=1$ 로 규격 보존. 단조성 $dG/dL>0$ 은 $k$ 가 $G$ 의
+단조함수(식~\eqref{eq:kact})임에서 오며 $G\!\to\!L$ 일대일(역변환 유일)의 전제다.
 \begin{boundbox}
 \textbf{Non-uniqueness(\AL{6}, Plonka \cite{plonka2001}).} stretched kinetics $\to\rho_G$ 역매핑은
-\emph{비유일}. 따라서 $\rho_G$ 를 관측 tail 에서 역산하지 않고, 독립 측정한 $\rho_G$ 로부터 tail 을
-\emph{forward 예측}만 한다(\S\ref{sec:falsify}, N4).
+\emph{비유일}(retrapping 등 다른 메커니즘도 동일 stretched tail 재현). 따라서 $\rho_G$ 를 관측 tail 에서
+\emph{역산하지 않고}, 독립 측정/모형한 $\rho_G$ 로부터 tail 을 \emph{forward 예측}만 한다(\S\ref{sec:falsify}, N4).
+``고정 barrier 분포 $\to$ T-의존 stretched'' 메커니즘 자체는 disordered/fast-ion-conductor kinetics 에서
+확립돼 있다(\cite{macdonald2000,lindsey1980}); 따라서 본 spectrum 관점은 BOUNDED 이며 \emph{graphite ICA
+$dQ/dV$ tail 로의 적용}이 본 작업의 기여다.
 \end{boundbox}
 
 % ====================================================================
-\section{★ 관측 tail = kernel integral}\label{sec:kernel}
+\section{관측 tail = kernel integral}\label{sec:kernel}
 % ====================================================================
-전체 phase progress 의 post-peak tail 은 local exponential kernel 의 중첩:
+전체 phase progress 의 post-peak tail 은 각 mode 의 진행률 기여 $d\xi_j/dq$(식~\eqref{eq:single_dxidq})를
+relaxation-length spectrum $A_L$ 로 가중 합한 것이다($r(q_a)$ 는 $A_0$ 에 흡수):
 \begin{equation}
-\boxed{\,\frac{d\Theta_\mathrm{tail}}{dq}\simeq\int_0^\infty A_L(L)\,\frac1L\,
-\exp\!\Big[-\frac{q-q_a}{L}\Big]\,dL\,.}
+\boxed{\;\frac{d\Theta_\mathrm{tail}}{dq}\simeq\int_0^\infty A_L(L)\,\frac1L\,
+\exp\!\Big[-\frac{q-q_a}{L}\Big]\,dL\;.}
 \label{eq:kernel_integral}
 \end{equation}
-이는 Laplace-type mixture 라 $\rho_G$ 형태에 따라 단일지수$\sim$stretched$\sim$power-law 를 smooth
-하게 잇는다. single-mode(식~\eqref{eq:single_kernel}) 는 $A_L=\delta(L-L_0)$ 특수해. 두 시점 kernel
-$\mathcal K(q,q')=\int A_L(L)\tfrac1L e^{-(q-q')/L}dL$ 로 쓰면 식~\eqref{eq:kernel_integral} 은
-$\mathcal K(q,q_a)$ 이다.
+$1/L$ 인자는 식~\eqref{eq:single_dxidq} 의 진행률 도함수에서 온 것이지 임의 가중이 아니다(심층검토 연결).
+이는 Laplace-type mixture 라 $\rho_G$ 형태에 따라 단일지수$\sim$stretched$\sim$power-law 를 smooth 하게
+잇는다. single-mode(식~\eqref{eq:single_kernel})는 $A_L=\delta(L-L_0)$ 특수해다. 일반적인 두 시점 kernel
+\begin{equation}
+\mathcal K(q,q')=\int_0^\infty A_L(L)\,\frac1L\,\exp\!\Big[-\frac{q-q'}{L}\Big]\,dL
+\label{eq:Kdef}
+\end{equation}
+로 쓰면 식~\eqref{eq:kernel_integral} 은 $\mathcal K(q,q_a)$ 이다(이 $\mathcal K$ 가 \S\ref{sec:closure} closure 에 들어간다).
 
 % ====================================================================
-\section{Self-consistent closure — Plan B (core) + Plan A (Refs 6/7, 검증 tier)}\label{sec:closure}
+\section{Self-consistent closure — Plan B(core) + Plan A(Refs 6/7, 검증 tier)}\label{sec:closure}
 % ====================================================================
-$\xi_j$ 와 $V_n$ 이 charge balance(식~\eqref{eq:charge_balance})로 결합되어 $\Theta$ 가 적분 안팎에
-동시에 나타나는 self-consistent 식이 된다(시간적분형은 인과 상한 $q$ 의 \emph{Volterra} 2종):
+$\xi_j$ 와 $V_n$ 이 charge balance(식~\eqref{eq:charge_balance})로 결합되어 $\Theta$ 가 적분 안팎에 동시에
+나타나는 self-consistent integral equation 이 된다. 시간 적분형은 인과 상한 $q$ 의 \emph{Volterra} 2종:
 \begin{equation}
 \Theta(q)=\Theta_0+\int_0^q \mathcal K(q,q')\,[\Theta_\eq(q')-\Theta(q')]\,dq'.
 \label{eq:volterra}
 \end{equation}
+두 layer 를 구분한다: \textbf{I1 (물리 core)} barrier 분포 $\to$ rate 분포 $\to$ relaxation-length
+spectrum $\to$ kernel 중첩(\S\ref{sec:spectrum}--\ref{sec:kernel}); \textbf{I2 (수학적 closure)}
+self-consistent 결합을 닫아 fitting expression 을 만드는 layer(analytic convenience). I2 의 특정 method 가
+성립 안 해도 I1 이 무너지면 안 된다.
 
-\textbf{Plan B (항상 보존되는 core/validator).} 식~\eqref{eq:volterra} (또는 식~\eqref{eq:relax}
-+charge balance)를 \emph{direct $g$-grid 수치적분}으로 푼다. 주어진 $\rho_G$(\AL{6})$\cdot$완화
-closure(\AL{5}) 하에서 numerically exact reference 이며, Plan A 의 validator 를 겸한다. 저온
-$\to$ large-$L$ $\to$ 긴 꼬리 같은 \emph{물리 결론은 closed-form 없이도 성립}한다.
+\subsection{Plan B — conservative reduced theory (항상 보존되는 core/validator)}\label{sec:planB}
+Plan A 가 성립하지 않아도 physical core 는 다음 reduced theory 만으로 유지된다: (B1) local residual
+ODE 식~\eqref{eq:dxidq}, (B2) barrier$\to$length 식~\eqref{eq:L_of_G}, (B3) spectrum kernel integral
+식~\eqref{eq:kernel_integral}. 값이 필요하면 식~\eqref{eq:volterra}(또는 B1+charge balance)를
+\emph{direct $g$-grid 수치적분}으로 평가하며($\xi_j=\sum_m w_m\rho_G(g_m)\xi_j(g_m,t)$, Ch6), 주어진
+$\rho_G$(\AL{6})와 완화 closure(\AL{5}) 하에서 numerically exact reference(discretization 오차 한정)다 —
+Plan A 의 \textbf{validator} 를 겸한다. 저온 $\to$ large-$L$ $\to$ 긴 꼬리; 전위 가속 $\to$ short-$L$
+같은 \emph{물리 결론은 closed-form 없이도 성립}한다. spectrum 조차 식별 불가한 극단에서는 single-mode
+(식~\eqref{eq:single_kernel}, $A_L=\delta(L-L_0)$)로 회귀 — Plan B 안의 최단순 limit.
 
-\textbf{Plan A (사용자 PhD Refs 6/7 \cite{lee2011,son2013}; ratio-substitution closed-form).}
-self-consistent 적분을 닫는 \emph{후보}. 방법(사용자 논문 JCP 147,144111 (2017) Eq.(32)$\to$(34)):
-미지 $\Theta(q')$ 의 자기참조를 ratio 로 두고, 해석적으로 풀리는 reference $\Theta^\simplecase$
-(single-mode baseline)의 비로 치환 — $\Theta(q')/\Theta(q)\approx\Theta^\simplecase(q')/\Theta^\simplecase(q)$:
+\subsection{Plan A — 사용자 PhD Refs 6/7 ratio-substitution closed-form (검증 시 승격)}\label{sec:planA}
+\textbf{단계 0 — Volterra$\to$Fredholm 근사.} 식~\eqref{eq:volterra} 는 causal(triangular) Volterra 다.
+고정 구간 Fredholm 으로의 환원은 무조건 성립하지 않으며, 본 장의 controlled approximation 은 post-peak
+window $[q_a,q]$ 에서 (i) moving target 정지($d\Theta_\eq/dq\simeq0$), (ii) kernel decay length
+$\bar L\ll q-q_a$ 로 memory 국소. 이 근사의 붕괴는 아래 R-규칙에서 \emph{측정}한다(주장 X).
+
+\textbf{단계 1 — ratio ansatz(사용자 PhD 방법 적용).} \cite{lee2011,son2013} 의 propagator /
+ratio-substitution 을 미지 $\Theta(q')$ 의 자기참조 적분에만 적용:
+$\Theta(q')/\Theta(q)\approx\Theta^\simplecase(q')/\Theta^\simplecase(q)$ ($\Theta^\simplecase$ = single-mode
+baseline). \textbf{단계 2 — $\Theta(q)$ factor out}:
 \begin{equation}
-\boxed{\,\Theta_{\mathrm A}(q)=\frac{\Theta_0+\int_0^q \mathcal K\,\Theta_\eq\,dq'}
-{1+\dfrac{1}{\Theta^\simplecase(q)}\int_0^q \mathcal K\,\Theta^\simplecase\,dq'}\,.}
+\boxed{\;\Theta_\mathrm A(q)=\frac{\Theta_0+\displaystyle\int_0^q\mathcal K\,\Theta_\eq\,dq'}
+{1+\dfrac{1}{\Theta^\simplecase(q)}\displaystyle\int_0^q\mathcal K\,\Theta^\simplecase\,dq'}\;.}
 \label{eq:closed}
 \end{equation}
+이것이 fitting 에 쓰는 instantiated candidate closed-form 이다.
 \begin{boundbox}
-\textbf{Refs 6/7 의 물리가정 차이 (그대로 쓰면 안 됨; dossier P3-5(e)).}
-(i) Refs 는 \emph{Fredholm}(고정 구간$\cdot$정상상태); 본 식은 \emph{Volterra}(인과). 적용하려면
-post-peak 에서 target 동결($d\Theta_\eq/dq\simeq0$) + kernel 국소화로 Fredholm 환원해야 하며, 그
-붕괴는 \emph{측정}한다(아래 M1,M5). (ii) ratio ansatz 는 사용자 논문 자신이 ``reaction zone 이
-넓으면 부정확''이라 경고 — graphite 에서 \emph{넓은 spectrum = stretched tail(관심 영역)} 이므로
-\textbf{closure 가 가장 필요한 곳에서 가장 부정확할 수 있다}. 따라서 Plan B(g-grid)를 reference 로
-필수 유지하고 ε 를 운용 $T\cdot$rate 영역에서 측정한다.
+\textbf{Refs 6/7 의 물리가정 차이(그대로 쓰면 안 됨; dossier P3-5).} 사용자 논문(\emph{JCP} \textbf{147},
+144111 (2017), Eq.\ (32)$\to$(34))은 \emph{Fredholm} 2종(고정 구간 $[\sigma,\infty)$, ultimate/정상상태
+확률)을 ratio-substitution(미지 비 $\bar W_u(r_1)/\bar W_u(r)\approx\bar W_u^\delta$ 비)으로 닫는다.
+graphite 의 식~\eqref{eq:volterra} 는 \emph{Volterra}(인과, 상한 $q$). (i) 따라서 Fredholm 환원(단계 0)이
+필요하며 그 붕괴는 측정한다. (ii) \textbf{사용자 논문 자신이 ``reaction zone 이 넓으면 ratio 근사
+부정확''이라 경고} — graphite 에서 \emph{넓은 spectrum = stretched tail(저온$\cdot$관심 영역)} 이므로
+closure 가 가장 필요한 곳에서 가장 부정확할 수 있다. $\Rightarrow$ Plan A 단독 채택 금지, Plan B
+(g-grid) 대비 $\varepsilon$ 를 운용 $T\cdot$rate$\cdot$tail-window 에서 측정.
 \end{boundbox}
-\textbf{승격 조건(Plan A $\to$ analytic closure).} M1 fixed-domain Fredholm 재정식 가능 / M2 적분
-안팎 동일 function class / M3 ratio 적용 변수 명시 / M4 single-mode 극한서 식~\eqref{eq:single_kernel}
-복귀 / M5 정량 오차 $\varepsilon=\lVert\Theta_\mathrm A-\Theta_\mathrm B\rVert/\lVert\Theta_\mathrm B\rVert
-\le\varepsilon_\mathrm{tol}$. \textbf{어떤 경우에도 Plan B 가 논리 core 로 보존된다.}
+\textbf{승격 조건 M1--M5.} M1 fixed-domain Fredholm 재정식 가능; M2 적분 안팎 동일 function class;
+M3 ratio 적용 변수 명시(단계 1); M4 single-mode 극한서 식~\eqref{eq:single_kernel} 복귀; M5 정량 오차
+$\varepsilon=\lVert\Theta_\mathrm A-\Theta_\mathrm B\rVert/\lVert\Theta_\mathrm B\rVert\le\varepsilon_\mathrm{tol}$
+(운용 영역). \textbf{어떤 경우에도 Plan B 가 논리 core 로 보존된다}(R1--R5 governance: Plan A 는 검증 전
+core 가정 아님; 논문 본문이 Plan A 를 써도 appendix 에 Plan B + limiting-case 병기; 두 plan 이 같은
+limiting case 를 안 주면 Plan B 만 채택).
 
 % ====================================================================
-\section{ICA mapping 과 측정 축 bridge}\label{sec:ica}
+\section{ICA 와 DVA 유도}\label{sec:ica}
 % ====================================================================
-$dQ=C_\bg(V_n,T)\,dV_n+Q_p\,d\Theta$ 에서
+\subsection{내부 전위 미분}
+식~\eqref{eq:charge_balance} 를 $q$ 로 미분하면
+$Q_\cell=\frac{\partial Q_\bg}{\partial V_n}\frac{dV_n}{dq}+\frac{\partial Q_\bg}{\partial T}\frac{dT}{dq}
++\sum_j Q_{j,\tot}\frac{d\xi_j}{dq}$, 따라서
 \begin{equation}
-\frac{dQ}{dV_n}=\frac{C_\bg(V_n,T)}{1-Q_p\,(d\Theta/dQ)},\qquad C_\bg\equiv\frac{\partial Q_\bg}{\partial V_n}.
-\label{eq:ica}
+\frac{dV_n}{dq}=\frac{Q_\cell-\dfrac{\partial Q_\bg}{\partial T}\dfrac{dT}{dq}-\sum_j Q_{j,\tot}\dfrac{d\xi_j}{dq}}
+{\dfrac{\partial Q_\bg}{\partial V_n}},
+\label{eq:dVdq_gen}
 \end{equation}
-측정 축은 $V_{n,\app}=V_n+s_I|I|R_n$ 로 가며(P3-1), voltage-axis tail scale 은
-$L_\varphi\simeq|dV_n/dQ|_{q_a}L$. \textbf{$R_n$(전압축 분극)과 $\chi_j$(mobility 가속)의 역할을
-혼동하지 않는다}(\S\ref{sec:falsify} 의 co-linearity 주의).
+등온이면 $dV_n/dq=[Q_\cell-\sum_j Q_{j,\tot}\,d\xi_j/dq]/(\partial Q_\bg/\partial V_n)$. 비등온 경로에서
+$d\xi_j/dq$ 안에는 $k_j(V_n,q,T,I)$ 와 $\xi_{\eq,j}(V_n,T)$ 를 통해 $U_j(T),w_j(T),\Delta G_{a,j}(T)$ 의
+온도 의존성이 간접 반영되므로, $d\xi_j/dq$ 를 온도 고정 후처리하지 말고 식~\eqref{eq:dxidq} 시간 적분
+루프 안에서 $T(t)$ 에 따라 갱신한다. 단조 방전 해석 유지를 위해 분모는 식~\eqref{eq:monotone} 로
+제한하고, 등온 방전서 $dV_n/dq\ge0$ 을 요구하면
+\begin{equation}
+\boxed{\;\sum_{j=1}^{N_p}Q_{j,\tot}\frac{d\xi_j}{dq}\le Q_\cell\;}
+\label{eq:monoconstraint}
+\end{equation}
+를 피팅 범위에서 만족시킨다.
+
+\subsection{apparent 전위 미분}
+$V_{n,\app}=V_n+s_I|I|R_n$ 에서 일반적으로
+\begin{equation}
+\frac{dV_{n,\app}}{dq}=\frac{dV_n}{dq}+s_I\Big[R_n\frac{d|I|}{dq}
++|I|\Big(\frac{\partial R_n}{\partial q}+\frac{\partial R_n}{\partial T}\frac{dT}{dq}+\frac{\partial R_n}{\partial|I|}\frac{d|I|}{dq}\Big)\Big].
+\label{eq:dVappdq_gen}
+\end{equation}
+첫 항 $R_n\,d|I|/dq$ 는 $|I|R_n$ 곱 미분에서 나온다. 등온 정전류서 $d|I|/dq=0$ 이므로
+$dV_{n,\app}/dq=dV_n/dq+s_I|I|\,\partial R_n/\partial q$.
+
+\subsection{ICA 와 DVA}
+외부 용량 $Q_\ext=Q_\cell q$ 이므로 $dQ_\ext/dq=Q_\cell$, 따라서
+\begin{equation}
+\boxed{\;\frac{dQ_\ext}{dV_{n,\app}}=\frac{Q_\cell}{dV_{n,\app}/dq}\;},\qquad
+\boxed{\;\frac{dV_{n,\app}}{dQ_\ext}=\frac{1}{Q_\cell}\frac{dV_{n,\app}}{dq}\;}.
+\label{eq:icadva}
+\end{equation}
+또한 background 저장 $dQ_\bg=C_\bg dV_n$($C_\bg\equiv\partial Q_\bg/\partial V_n$)과 phase progress
+$Q_p\,d\Theta$ 의 합 $dQ=C_\bg dV_n+Q_p d\Theta$ 에서 내부 전위 기준 ICA 는
+\begin{equation}
+\frac{dQ}{dV_n}=\frac{C_\bg(V_n,T)}{1-Q_p\,(d\Theta/dQ)},
+\label{eq:ica_internal}
+\end{equation}
+식~\eqref{eq:kernel_integral} 의 tail 기여가 $d\Theta/dQ$ 에 들어가 ICA tail 로 나타난다.
+
+\textbf{측정 축 bridge.} 이론의 primary 전위는 내부 $V_n$(charge-balance root)이고 rate 인수는
+$V_{n,\drive}=V_n$(기본)이다. half-cell 이면 $V_{n,\app}$ 를 직접 보고, full-cell 이면 anode 기여를 분리해야
+한다(Ch5). voltage-axis tail scale 은 $L_\varphi\simeq|dV_n/dQ|_{q_a}\,L$. \textbf{$R_n$(전압축 분극)과
+$\chi_j$(mobility 가속)의 역할을 혼동하지 않는다}(\S\ref{sec:falsify} co-linearity).
 
 % ====================================================================
-\section{★ 피팅 가능한 닫힌 논리식 (N-2 deliverable)}\label{sec:fiteq}
+\section{피팅 가능한 닫힌 논리식 (N-2 deliverable)}\label{sec:fiteq}
 % ====================================================================
 본 장의 결과물. inner$\to$outer 평가 순서로 단일 식에 조립한다.
 \begin{equation}
-\boxed{\;
-\frac{dQ}{dV_n}(V_n,T,|I|)=\frac{C_\bg(V_n,T)}{\,1-Q_p\,\dfrac{d\Theta_\mathrm{tail}}{dQ}\,}\;}
+\boxed{\;\frac{dQ}{dV_n}(V_n,T,|I|)=\frac{C_\bg(V_n,T)}{\,1-Q_p\,\dfrac{d\Theta_\mathrm{tail}}{dQ}\,}\;}
 \label{eq:fiteq}
 \end{equation}
-\textbf{평가 순서} (각 단계 본문 식 참조):
+\textbf{평가 순서}:
 \begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=2.2em]
-\item charge balance(식~\eqref{eq:charge_balance})로 $V_n(q,T,\{\xi_j\})$ 를 root-find.
-\item 평형 target $\xi_{\eq,j}(V_n,T)$ (식~\eqref{eq:logistic}).
-\item mobility $k_j=k_0(T)e^{-(G-\chi_j\mathcal A_j)/RT}$, $\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$ (식~\eqref{eq:rate_const}).
-\item barrier$\to$length $L(G)$ (식~\eqref{eq:L_of_G}) $\to$ spectrum $A_L(L)$ (식~\eqref{eq:spectrum}).
-\item tail kernel integral $d\Theta_\mathrm{tail}/dq$ (식~\eqref{eq:kernel_integral}); self-consistency 는
+\item charge balance(식~\eqref{eq:charge_balance})로 $V_n(q,T,\{\xi_j\})$ root-find.
+\item 평형 target $\xi_{\eq,j}(V_n,T)$(식~\eqref{eq:logistic}).
+\item mobility $k_j=k_0(T)e^{-(G-\chi_j\mathcal A_j)/RT}$, $\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$
+  (식~\eqref{eq:kact}; 병목 시 식~\eqref{eq:kphys}).
+\item barrier$\to$length $L(G)$(식~\eqref{eq:L_of_G}) $\to$ spectrum $A_L$(식~\eqref{eq:spectrum}).
+\item tail kernel integral $d\Theta_\mathrm{tail}/dq$(식~\eqref{eq:kernel_integral}); self-consistency 는
   Plan B(g-grid) 또는 Plan A(식~\eqref{eq:closed}, $\varepsilon$ 통과 시).
-\item $dQ/dV_n$ (식~\eqref{eq:fiteq}) $\to$ 측정축은 $dQ/dV_{n,\app}$ (\S\ref{sec:ica}).
+\item $dQ/dV_n$(식~\eqref{eq:fiteq}) $\to$ 측정축 $dQ/dV_{n,\app}$(\S\ref{sec:ica}).
 \end{enumerate}
+\textbf{좌표 bridge.} 식~\eqref{eq:fiteq} 의 $d\Theta/dQ=(1/Q_\cell)d\Theta/dq$; post-peak 영역에서
+$d\Theta/dq\simeq d\Theta_\mathrm{tail}/dq$. $1-Q_p\,d\Theta/dQ>0$ 은 식~\eqref{eq:monotone} 단조성과
+동치 영역에서 보장.
 \textbf{피팅 파라미터}: $\{U_j,w_j,Q_{j,\tot},Q_\bg\}$(평형, 저속 OCV/GITT), $\{\Delta H_a,\Delta S_a,k_0\}$
-(다중 $T$ Arrhenius), $\chi_j$(다중 $|I|$/전위), $\rho_G$(독립 입력 — 역산 금지). \textbf{유효범위}:
-$G-\chi_j\mathcal A_j\ge0$(Marcus), $V_{n,\drive}\approx U_j+O(w_j)$. \textbf{P1: solver 코드 구현은 범위 외;
-본 식은 논리식으로 제시.}
+(다중 $T$ Arrhenius), $\chi_j$(다중 $|I|$/전위), $\rho_G$(독립 입력 모수형 — 역산 금지).
+\textbf{유효범위}: $G-\chi_j\mathcal A_j\ge0$(Marcus), $V_{n,\drive}\approx U_j+O(w_j)$.
+\textbf{P1: solver 코드 구현은 범위 외; 본 식은 논리식으로 제시.}
 
-\textbf{좌표 bridge(10-pass R5-2).} 식~\eqref{eq:fiteq} 의 $d\Theta/dQ$ 는 전체 $\Theta$(peak+tail)의
-도함수이며 $d\Theta/dQ=(1/Q_\cell)\,d\Theta/dq$; post-peak 영역에서 $d\Theta/dq\simeq d\Theta_\mathrm{tail}/dq$
-(식~\eqref{eq:kernel_integral}). $\rho_G$ 는 독립 입력의 \emph{모수형}(예: $G$ 에 대한 Gaussian/log-normal)
-으로 주고 입자분포/EIS/계산으로 제약(역산 금지). $1-Q_p\,d\Theta/dQ>0$ 은 식~\eqref{eq:monotone} 단조성
-조건과 동치 영역에서 보장.
-
-\textbf{극한 점검(10-pass R7-1, M4).} 빠른 kinetics $k_j\to\infty$ 면 $L=|I|/(Q_\cell k_j)\to0$,
-$A_L\to\delta(L)$, kernel 이 $\delta$ 로 수축해 $d\Theta_\mathrm{tail}/dq\to d\Theta_\eq/dq$ (꼬리 소멸,
-평형 추종). 단 이는 bracket 이 $0$ 이 되어서가 아니라 작은 lag $\times$ 큰 $k$ 의 곱이 유한히 남는
-asymptotic balance 다(singular perturbation; $d\Theta_\mathrm{tail}/dq$ 가 임의 $\delta$-함수가 되지 않음).
-$A_L=\delta(L-L_0)$ 특수해서 single-mode 식~\eqref{eq:single_kernel} 로 정확히 복귀(M4 충족).
+\textbf{EMG 등 경험식과의 관계.} 초기값 추정/비교용으로
+$dQ/dV=B(V)+\sum_j A_j\,g_\mathrm{EMG}(V;\mu_j,\sigma_j,\lambda_j)$ 같은 peak 함수를 쓸 수 있으나, 이는
+주 모델이 아니다. 동역학 모델에서 tail 은 $k_j,\rho_G,R_n$, 전하 보존식의 결합 결과로 나온다.
 
 % ====================================================================
-\section{Tail 의 $T\cdot$전위 의존 = spectrum shift}\label{sec:tailT}
+\section{온도 의존 tail 의 분해 원칙과 spectrum shift}\label{sec:tailT}
 % ====================================================================
-식~\eqref{eq:L_of_G} 에서: \textbf{저$T$} $\to k_0$↓ 및 $e^{(G-\chi\mathcal A)/RT}$↑ $\to L$↑ $\to$
-$A_L$ 가 large-$L$ 로 이동 $\to$ 긴 꼬리. \textbf{고$T$} $\to L$↓ $\to$ 짧은 꼬리. \textbf{전위
-가속}: $\partial\ln L/\partial V_{n,\drive}=-\chi_j s_{\phi,j}F/RT<0$ (forward) $\to$ spectrum 을
-short-$L$ 로 이동(state jump 아니라 \emph{spectrum shift}; C-rate 겹침의 근원). 평형폭
-$w=RT/F$ 는 저온서 좁아지므로 ``저온 긴 꼬리''는 homogeneous 평형으로 설명 불가, kinetic-spectrum
-shift 가 필요함을 \emph{강하게 시사}(확정은 \S\ref{sec:falsify} 통과 전제).
-\textbf{Grounding 정정(10-pass R4-2)}: ``고정 barrier 분포 $\to$ \emph{T-의존} stretched 완화''라는
-\emph{메커니즘 자체}는 신규가 아니라 disordered/fast-ion-conductor kinetics 에서 확립돼 있다
-(연속 relaxation-rate 분포의 합 = stretched \cite{lindsey1980}; 고정 activation-energy 분포가 T-의존
-stretching 을 주는 정량 결과 \cite{macdonald2000}; static/dynamic disorder + LFER(=BEP) stretched
-kinetics \cite{plonka2001}). 따라서 \AL{8} 은 ``novel''이 아니라 \textbf{BOUNDED — 메커니즘 grounded,
-\emph{graphite ICA $dQ/dV$ tail 로의 적용}이 본 작업의 기여}로 표기한다.
+온도에 따른 tail 증감은 하나의 항으로 단정하지 않는다. 본 장은 관측 tail 을 \textbf{세 계층}의 결합으로 본다.
+\begin{longtable}{p{0.24\textwidth} p{0.32\textwidth} p{0.34\textwidth}}
+\toprule 계층 & 담당 항 & 해석 \\ \midrule \endhead
+평형 열역학 & $U_j(T),w_j(T),Q_\bg(V_n,T)$ & 전이 중심 전위, 평형 폭, 배경 용량/chemical-capacitance 의 온도 의존 \\
+동역학 지연 & $k_j(T,I),\rho_G(g;T)$ & 진행률이 평형을 못 따라가서 생기는 tail/broadening \\
+전압축 분극 & $R_n(q,T,|I|)$ & apparent 전위 이동, slope 변화, 분극 peak 변형 \\
+\bottomrule
+\end{longtable}
+따라서 tail 변화를 즉시 순수 열역학/순수 kinetic 으로 단정하지 않는다: 저율 자료로 $U_j,w_j,Q_{j,\tot},Q_\bg$
+를 제한 $\to$ pulse/current-interrupt 로 $R_n$ 제한 $\to$ 남는 $T$/C-rate 의존 tail 을 $k_j,\rho_G$ 로 설명.
+
+\textbf{spectrum shift(novel 적용; \AL{8}).} 식~\eqref{eq:L_of_G} 에서:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{저$T$}: $\exp[(G-\chi\mathcal A)/RT]$ 증가 + $k_0(T)$ 감소 $\to L$ 증가 $\to A_L$ 가 large-$L$
+  로 이동 $\to$ 긴 stretched tail(저온 긴 꼬리).
+\item \textbf{고$T$}: $RT$ 증가로 $L$ 감소 $\to$ short-$L$ $\to$ 짧은 꼬리.
+\item \textbf{전위 가속}: $\dfrac{\partial\ln L}{\partial V_{n,\drive}}=-\dfrac{\chi_j s_{\phi,j}F}{RT}<0$
+  (forward) $\to$ spectrum 을 short-$L$ 로 shift $\to$ tail 단축(C-rate 겹침의 근원). \emph{state jump 가
+  아니라 spectrum shift} 다.
+\end{itemize}
+\textbf{평형 width 와 구별.} homogeneous lattice-gas width $w_j=RT/F$ 는 저온서 오히려 좁아지므로 ``저온
+긴 tail''은 homogeneous-equilibrium 으로 설명 불가, \emph{kinetic-spectrum shift} 가 필요하다(단,
+heterogeneous disorder width 는 $T$-약의존이라 별도 — \S\ref{sec:falsify} lineshape test). 본 절은
+kinetic-spectrum 메커니즘이 관찰과 \emph{강하게 시사}됨을 보이며 확정은 falsification 통과 전제다.
+
+% ====================================================================
+\section{C-rate 효과와 0.2C 기준식}\label{sec:crate}
+% ====================================================================
+C-rate 효과는 두 경향의 경쟁이다: (i) $|I|$ 증가 $\to$ 같은 $dq$ 에서 체류 시간 감소 $\to$ 지연 증가,
+(ii) 전류 증가 $\to V_{n,\drive}$/$\mathcal A_j$ 변화 $\to k_j$ 증가 가능. 정전류 좌표식
+(식~\eqref{eq:dxidq})에서
+\begin{equation}
+\frac{d\xi_j}{dq}=\frac{Q_\cell}{|I|}\,k_j(V_n,q,T,I)\,[\xi_{\eq,j}-\xi_j]
+\label{eq:crate}
+\end{equation}
+이므로 단순히 $d\xi_j/dq\propto k_j(I)/|I|$ 로만 해석하면 안 된다: 앞의 $1/|I|$ prefactor 는 줄이는
+방향, 뒤의 $[\xi_{\eq,j}-\xi_j]$ 증가(고율일수록 $\xi_j$ 가 $\xi_{\eq,j}$ 를 못 따라가 커짐)는 늘리는
+방향으로 동시에 작용한다. 빠른 kinetics 극한에서도 $k_j[\xi_{\eq,j}-\xi_j]$ 곱은 평형 target 이동률을
+따라 유한하게 남는다(\S\ref{sec:singlemode} singular perturbation). 0.2C 기준 전위를 쓰면
+($I_{0.2C}>0$ 는 양의 크기값)
+\begin{equation}
+V_{n,\app}-V_{n,0.2C}\approx s_I[\,|I|R_n(q,T,|I|)-I_{0.2C}R_n(q,T,I_{0.2C})\,],
+\label{eq:02c_gen}
+\end{equation}
+전류 의존이 약하거나 같은 $R_n(q,T)$ 로 선형화 가능한 단순형은
+$V_{n,\app}\approx V_{n,0.2C}+s_I(|I|-I_{0.2C})R_n(q,T)$. 이는 0.2C 에서 상변이 지연이 충분히 작거나 그
+지연을 기준 곡선에 흡수해도 되는 경우의 실용 근사다.
 
 % ====================================================================
 \section{Falsification 과 비퇴화 discriminator}\label{sec:falsify}
 % ====================================================================
-관측 tail 을 barrier-spectrum 에 귀속하려면 경쟁원(평형폭$\cdot$분극 $R_n$$\cdot$transport$\cdot$
-$\rho_G$ 비유일)을 배제해야 한다(\AL{10}, \cite{dubarry2022,fly2020}).
-\textbf{비퇴화 signature}: $L\propto|I|$ 는 transport 도 공유(퇴화). 고유 signature 는
-식~\eqref{eq:L_of_G},\eqref{eq:psi_shift_inline} 의 \emph{전위 의존} 항 — tail Arrhenius slope 가
-$(V_{n,\drive}-U_j)$ 에 의존. \textbf{가장 약한 지점}: charge-transfer 과전압 $\eta_\mathrm{ct}$ 도
-Butler--Volmer 라 전위 지수의존이므로 $\chi_j$ 와 단일 전극서 co-linear 가능 — \textbf{다중
-$T\times|I|$ + GITT/pulse} 로 $\eta_\mathrm{ct}$ 를 분리한 \emph{후}에만 $\chi_j$ 귀속 성립.
-\textbf{Null 규칙}: (N1) tail의 $\ln$ vs $1/T$ slope 가 전위 무의존이면 transport-dominant 로 기각;
-(N2) 전위/$|I|$ 증가에 spectrum shift 없으면 $\chi_j$ 항 부재; (N3) 저속 OCV near-peak 가 저온서
-안 좁아지면 disorder 기여 분리; (N4) $\rho_G$ 는 독립 근거로 주고 forward 예측만(역산 금지).
-여기서 $\partial\ln L/\partial V_{n,\drive}=-\chi_j s_{\phi,j}F/RT$ (식 재기재 \label{eq:psi_shift_inline}).
+관측 tail 을 barrier-spectrum 에 귀속하려면 competing source 를 배제해야 한다(\AL{10}; ICA 가 rate 로
+broadening 됨은 알려져 있으므로 \cite{dubarry2022,fly2020} 단순 rate-broadening 과 구별이 핵심).
+\begin{longtable}{p{0.24\textwidth} p{0.36\textwidth} p{0.32\textwidth}}
+\toprule Competing source & tail 기여 & 판별 \\ \midrule \endhead
+Equilibrium width & homogeneous/disorder broadening & 저속 OCV near-peak lineshape; 저온서 좁아지면 kinetic 아님(homogeneous 한정) \\
+Polarization $R_n$ & $V_{n,\app}$ shift & pulse/current-interrupt/다중 $|I|$ \\
+Transport/diffusion & 저온 느린 확산 lag & GITT relaxation signature; $D(T)$ Arrhenius vs barrier slope \\
+Barrier 분포 $\rho_G$ \cite{plonka2001} & spectrum kernel & 비유일 역매핑 — forward prediction 만; 역산 금지 \\
+\bottomrule
+\end{longtable}
+\textbf{비퇴화 signature.} tail length scaling 만으로는 부족하다($L\propto|I|$ 는 transport 도 공유 —
+퇴화). barrier-spectrum 의 고유 signature 는 식~\eqref{eq:L_of_G} 의 \emph{전위 의존} 항: (a) tail length
+Arrhenius slope 자체가 $(V_{n,\drive}-U_j)$ 에 의존, (b) 전위/$|I|$ 증가 시 spectrum 이 $\chi_j$ 를 통해
+short-$L$ 로 shift. transport 와 단순 polarization 은 이런 potential-dependent slope 를 갖지 않는다.
+\textbf{가장 약한 지점 — $\chi_j$ vs $\eta_\mathrm{ct}$ co-linearity.} charge-transfer 과전압
+$\eta_\mathrm{ct}$ 도 Butler--Volmer 라 전위 지수의존이고 $R_n$ 도 $q$(전위)의존이라, $\chi_j$
+barrier-lowering slope 와 $\eta_\mathrm{ct}$ Tafel slope 가 단일 전극서 co-linear 일 수 있다. 따라서 (b)
+신호만으로 $\chi_j$ 를 확정할 수 없고, 다중 $T\times|I|$ + GITT/pulse(순간 step 이 $\eta_\mathrm{ct}$, 느린
+relaxation 이 barrier-spectrum 분리)로 $\eta_\mathrm{ct}$ 를 독립 분리한 \emph{후}에만 $\chi_j$ 귀속이 성립한다.
+\textbf{Null-result 규칙.}
+\begin{enumerate}[label=(N\arabic*),leftmargin=2.2em]
+\item tail length 의 $\ln$ vs $1/T$ slope 가 독립 측정 $E_D$ 와 일치하고 전위 의존이 없으면 $\Rightarrow$
+  barrier-spectrum 귀속 기각(transport-dominant).
+\item 전위/$|I|$ 증가 시 spectrum/peak shift 가 없으면 $\Rightarrow$ $\chi_j$ 항 부재 $\Rightarrow$
+  potential-lowering 가설 기각.
+\item 저속 OCV near-peak lineshape 이 저온서 안 좁아지면 $\Rightarrow$ heterogeneous disorder 기여 존재 —
+  kinetic 단독 귀속 기각, disorder 와 분리.
+\item $\rho_G$ 를 관측 tail 에서 역산하지 않는다(비유일); 독립 근거(입자분포/EIS/계산)로 주고 forward 예측만.
+\end{enumerate}
+
+% ====================================================================
+\section{파라미터 제한 순서와 식별성}\label{sec:ident}
+% ====================================================================
+물리 우선 모델에서도 식별성은 별도 관리한다. 목적은 피팅 편의를 위한 식 변형이 아니라, 서로 다른 물리
+항이 같은 관측 특징을 중복 설명하지 않도록 독립 제약을 부여하는 것이다. 권장 순서:
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 저율/quasi-equilibrium 자료로 $U_j,w_j,Q_{j,\tot}$ 초기 물리 범위 제한.
+\item 같은 온도 rate series 또는 저율 자료로 $Q_\bg(V_n,T)$ 와 총용량 정합(식~\eqref{eq:capmatch}) 제한.
+\item $R_n(q,T,|I|)$ 를 pulse/current-interrupt/rate-shift 로 먼저 제한(전압축 분극 계층; $k_j$ 와 같은
+  현상 동시 설명 금지).
+\item 고율/온도별 tail 을 $k_j^\mathrm{act}$, 물리적 $k_{j,\mathrm{lim}}$, 필요시 $\rho_G(g;T)$ 로 설명
+  (제한항은 transport/diffusion/site/current conservation 으로 해석 가능할 때만).
+\item $R_n,k_j^\mathrm{act},k_{j,\mathrm{lim}},w_j,\rho_G$ 를 같은 데이터에서 동시 자유 피팅하지 않는다.
+\item EMG/임의 peak 함수는 초기값/비교용 경험식으로만.
+\end{enumerate}
+주요 상관: $R_n$↔$k_j$(둘 다 peak shift/broadening), $\nu_j$-$\Delta G_{a,j}$-$\chi_j$(Arrhenius
+prefactor·고유장벽·전위 민감도 강상관), $k_j^\mathrm{act}$↔$k_{j,\mathrm{lim}}$(독립 제약 없이 동시
+자유 두면 불안정), $w_j$↔$k_j$(평형 폭·동적 지연 모두 peak 폭/tail), $Q_{j,\tot}$↔$Q_\bg$(총용량/해존재
+조건으로 제한). 특히 $k_j^\mathrm{act}$ 와 $k_{j,\mathrm{lim}}$ 분리는 독립 제약 없이 거의 불가하므로,
+$k_j^\mathrm{act}$ 만으로 설명되는 rate acceleration 범위를 먼저 확인하고 남는 고율 잔차가 transport/
+diffusion/site/finite-current 중 무엇과 일치하는지 검토한 뒤에만 $k_{j,\mathrm{lim}}$ 을 도입한다(도입 시
+전류/SOC/입자크기/transport-length 의존 중 최소 하나를 물리적으로 명시). \textbf{fitting solver 구현은
+범위 외(P1).}
 
 % ====================================================================
 \section{Chapter 2--6 으로 전달되는 기준식}\label{sec:transmit}
 % ====================================================================
 \begin{itemize}[leftmargin=1.4em]
-\item \textbf{Ch2/Ch4 (발열)}: 직접 입력은 $d\xi_j/dt$(식~\eqref{eq:relax}). Level A $k_j$ 사용 시
-  가역열은 평형 온도계수$\cdot$transition entropy(thermo)서, 비가역열은 flux--force $J\mathcal A\ge0$ 서.
-  $dV_{n,\app}/dT$ 를 가역열로 직접 쓰지 않음.
-\item \textbf{Ch3 (반응속도론)}: 본 장 $k_j$ 는 $r_j^+\!+\!r_j^-$ 의 축약. \textbf{방향성 barrier
-  lowering(Level B)} = forward $-\beta_j\mathcal A_j$/backward $+(1-\beta_j)\mathcal A_j$ 는 Ch3 에서
-  도입하고, 본 장 $\chi_j=\beta_j$. detailed balance $r_j^+/r_j^-=\xi_\eq/(1-\xi_\eq)$ 와 본 장
-  $\xi_\eq$(logistic) 정합. \textbf{검증점}: 본 장 Level A 가 Ch3 Level B 의 정상 target
-  $\xi_\mathrm{ss}\to\xi_\eq$ 극한과 일치(P3-6).
-\item \textbf{Ch5 (히스테리시스)}: branch 비대칭 = Level B 의 $\beta\cdot$landscape 차이; signed
+\item \textbf{Ch2/Ch4(발열)}: 직접 입력은 $d\xi_j/dt$(식~\eqref{eq:dxidt}); 정전류서만
+  $d\xi_j/dt=(|I|/Q_\cell)d\xi_j/dq$. Level A $k_j$ 사용 시 가역열은 평형 온도계수$\cdot$transition
+  entropy(thermo)서, 비가역열은 flux--force $J\mathcal A\ge0$ 서. $dV_{n,\app}/dT$ 를 가역열로 직접 쓰지 않음.
+\item \textbf{Ch3(반응속도론)}: 본 장 $k_j$ 는 $r_j^++r_j^-$ 의 축약. \textbf{방향성 barrier lowering
+  (Level B)} = forward $-\beta_j\mathcal A_j$ / backward $+(1-\beta_j)\mathcal A_j$ 는 Ch3 에서 도입,
+  본 장 $\chi_j=\beta_j$. detailed balance $r_j^+/r_j^-=\xi_\eq/(1-\xi_\eq)$ 와 본 장 $\xi_\eq$(logistic)
+  정합. \textbf{검증점}: 본 장 Level A 가 Ch3 Level B 의 정상 target $\xi_\mathrm{ss}\to\xi_\eq$ 극한과
+  일치(P3-6).
+\item \textbf{Ch5(히스테리시스)}: branch 비대칭 = Level B 의 $\beta\cdot$landscape 차이; signed
   current/branch target 은 본 장 $\xi_\eq$(true eq)와 metastable target 을 구분.
-\item \textbf{Ch6 (수치/검증)}: Plan B = $g$-grid reference; Plan A = Fredholm/Pad\'e 가속 후보(F1--F5,
-  $\varepsilon$); 보유 데이터(반쪽셀 GITT$\cdot$STO-OCV$\cdot$0.1/0.2/0.5/1.0C)로 골격$\to$분극$\to$
-  tail 순차 검증.
+\item \textbf{Ch6(수치/검증)}: Plan B = $g$-grid reference; Plan A = Fredholm/Pad\'e 가속 후보(M1--M5,
+  $\varepsilon$); 보유 데이터(반쪽셀 GITT$\cdot$STO-OCV$\cdot$0.1/0.2/0.5/1.0C)로 골격$\to$분극$\to$tail
+  순차 검증.
 \end{itemize}
 
 % ====================================================================
-\section{자체 검수표 (P3 7항목 + GS + keystone)}\label{sec:selfcheck}
+\section{자체 검수표}\label{sec:selfcheck}
 % ====================================================================
-\begin{longtable}{p{0.78\textwidth} p{0.14\textwidth}}
-\toprule 항목 & 결과 \\ \midrule \endhead
-(P3-1) $V_n/V_{n,\app}/V_{n,\drive}/V_{n,\OCV}$ 구분 일관 & 통과 (\S\ref{sec:notation},\ref{sec:ica}) \\
-(P3-2) 전하 보존식이 $V_n$ 결정 중심식 (OCV 읽기 회귀 X) & 통과 (\S\ref{sec:charge}) \\
-(P3-5) Refs 6/7 = ratio-substitution, 5항목 dossier 기록 + 물리가정 차이 & 통과 (\S\ref{sec:closure}, dossier) \\
-(P3-6) Ch1 기준식이 Ch2--5 전달식과 무충돌 (keystone 전파) & 통과 (\S\ref{sec:transmit}) \\
-(P3-7) ver.N ↔ Chapter N, $\theta$↔$\xi$ 매핑 명시 & 통과 (\S\ref{sec:notation}) \\
-(GS-1) 각 식 prose-먼저 + 무비약 (서, keystone 2-state chain) & 통과 \\
-(GS-3) 모든 가정 AL 인용; FLAGGED(erf, novel tail) 미오용 & 통과 \\
-(GS-4) clip/cap/softplus/step 정의식 0; Marcus/비유일 유효범위 병기 & 통과 \\
-★ keystone: $\chi_j\mathcal A_j$ 를 Ch1 = Level A(mobility 가속)로 확정, barrier lowering = Ch3 Level B & 통과 (\S\ref{sec:barrier}) \\
-N-1 단일 서사 / N-2 피팅식 본문 결과 & 통과 (서 / \S\ref{sec:fiteq}) \\
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+전하 보존식이 $V_n$ 결정 중심식인가(OCV 읽기 회귀 X) & 통과(\S\ref{sec:charge}) \\
+해 존재 조건/단조성 floor 가 있는가 & 통과(식~\eqref{eq:solexist},\eqref{eq:monotone}) \\
+$Q_\bg$ 와 $\partial Q_\bg/\partial V_n$(용량/chemical capacitance) 구분 & 통과 \\
+$V_n,V_{n,\app},V_{n,\drive},V_{n,\OCV}$ 구분(P3-1) & 통과 \\
+$V_{n,\drive}=V_n$ 기본형/$=V_n+\eta_{n,\drive}$ 확장형 구분 & 통과(\S\ref{sec:rate}) \\
+$\xi_j$ 방전 방향 증가, $Q_{j,\tot}>0$, $Q_\cell$ 단위 C & 통과 \\
+★ $\chi_j\mathcal A_j$ 를 Ch1=Level A(mobility 가속)로 확정, barrier lowering=Ch3 Level B & 통과(\S\ref{sec:rate}) \\
+잔차 $r$ $\to$ 진행률 도함수 $d\xi/dq$ 무비약 연결(1/L 출처) & 통과(식~\eqref{eq:single_dxidq}) \\
+변수변환 밀도보존($A_L dL=\rho_G dG$) 명시 & 통과(\S\ref{sec:spectrum}) \\
+single-mode 의 숨은 전제($d\xi_\eq/dq\simeq0$ \& $d\mathcal A_j/dq\simeq0$) 분리 & 통과 \\
+softplus/capped 양수 장벽을 기본식에서 제거, 강구동=accelerated regime & 통과(GS-4) \\
+유한 전류=flux 제약(clamp), 발산/부호 처리 & 통과(식~\eqref{eq:clamp}) \\
+$k_{j,\mathrm{lim}}$ 이 transport/site/diffusion/current 물리 병목 의미 & 통과(식~\eqref{eq:kphys}) \\
+barrier 분포 support $g\ge0$, $\rho_G$=kinetic barrier 분포($U_j,w_j$ 와 구분) & 통과(\S\ref{sec:spectrum}) \\
+관측 tail = spectrum kernel integral; Refs 6/7 closure(Plan A) + Plan B core + M1-M5/$\varepsilon$ & 통과(\S\ref{sec:kernel},\ref{sec:closure}) \\
+Refs 6/7 의 Volterra vs Fredholm 차이 + broad-kernel 열화 명시(P3-5) & 통과(\S\ref{sec:planA}) \\
+ICA/DVA 가 $Q_\ext$ 기준; 단조 제약 & 통과(식~\eqref{eq:icadva},\eqref{eq:monoconstraint}) \\
+피팅 논리식(N-2)이 본문 결과로 제시 + 평가순서 & 통과(\S\ref{sec:fiteq}) \\
+저온 긴 tail = kinetic spectrum shift(평형 width 로 설명 불가) & 통과(\S\ref{sec:tailT}) \\
+falsification + 비퇴화 discriminator + $\chi$ vs $\eta_\mathrm{ct}$ 분리 & 통과(\S\ref{sec:falsify}) \\
+온도 tail 을 평형/동역학/분극 3계층 분해 & 통과(\S\ref{sec:tailT}) \\
+C-rate 를 prefactor 스케일 하나로 단정 안 함 & 통과(\S\ref{sec:crate}) \\
+EMG 를 경험식(초기값/비교)으로만 격하 & 통과(\S\ref{sec:fiteq}) \\
+모든 본문 가정 AL 인용; FLAGGED(erf) established 미사용; BOUNDED 유효범위 병기 & 통과 \\
+ver.N ↔ Chapter N, $\theta$↔$\xi$ 매핑(P3-7) & 통과(\S\ref{sec:notation}) \\
+Ch1 기준식이 Ch2--5 전달식과 무충돌(P3-6) & 통과(\S\ref{sec:transmit}) \\
 \bottomrule
 \end{longtable}
 
