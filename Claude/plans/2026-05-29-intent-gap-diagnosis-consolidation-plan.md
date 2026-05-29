@@ -111,6 +111,18 @@
 
 > 아래는 (A) 완독 + (B) Ch1·Ch2 + 리뷰지적서 + 기존 Claude 결과문서에 근거한 **예비** 진단이다. Ph A 의 (B) Ch3~6 완독으로 G1·G4·G5 를 확정/수정한다.
 
+### §6.0 진단의 grounding anchor (물리 주장은 AL 인용 동반 — AGP-1)
+본 §6 의 모든 물리 주장은 `ASSUMPTION_LEDGER_v3.md` 의 AL-# 에 anchor 한다 (신규 가정 도입 X, 기존 grounding 재사용).
+
+| 주장 | anchor | 문헌 (DOI) | tier |
+|---|---|---|---|
+| `ΔG_a=ΔH_a−TΔS_a`, Eyring `k=(k_BT/h)e^{−ΔG/RT}` | AL-1 | Eyring 1935 (10.1063/1.1749604); Evans-Polanyi 1935 | GROUNDED |
+| `ΔG_eff=ΔG_a−χF(V−U)` 선형 lowering + 한계 | AL-2 | BV(Bard&Faulkner Ch.3); BEP Evans-Polanyi 1938 (10.1039/TF9383400011); Marcus 1956 (10.1063/1.1742723) | BOUNDED |
+| 평형 lattice-gas `μ(ξ)`, ideal width `w=RT/F` | AL-3a | McKinnon-Haering 1983; Bazant 2013 (10.1021/ar300145c) | GROUNDED |
+| 1차 완화 `dξ/dt=k(ξ_eq−ξ)`, detailed balance | AL-5 | Onsager 1931; De Groot-Mazur 1962 Ch.X | BOUNDED (평형근처) |
+| 꼬리 T-의존 = kinetic lag (저T 큰 lag 긴 꼬리) | AL-8 | 선행 모델 부재 → S1-S10 유도 | FLAGGED novel |
+| 비율치환/propagator closure | AL-7 | Lee 2011 (10.1063/1.3565476); Son 2013 (10.1063/1.4802584) | GROUNDED(기법)+DQ(적용성) |
+
 ### §6.1 간극 5축 (G1~G5)
 
 - **G1 — 서사 단절 (가장 큰 간극, 추정).** §0.2 는 *하나의 인과 narrative*(관찰→유효배리어→피팅식→발열→히스테리시스)인데, 산출물은 (A) 깊게 판 한 챕터(framing pivot) 또는 (B) 병렬적 형식 장들로 읽힌다. "각 챕터가 왜 존재하며 저온-긴-꼬리 관찰로 어떻게 환원되는지"의 끈이 문서 표면에서 안 보인다. → 매 세션이 "거리 있다"고 하는 1순위 원인으로 추정.
@@ -154,6 +166,58 @@
 | **FIX (재사용 전 수정)** | χ𝒜 Level A/B 확정(§6.3); flux→rate clamp(리뷰 #2); 검수표 항목 추가(리뷰 #3) | (A)(B) | keystone 확정 후 전파 |
 | **DQ (데이터 대기)** | erf vs logistic 평형 형태 | CROSSCHECK §2.B | 저속 OCV near-peak plot 까지 dual-track |
 | **RETIRE/강등** | 관찰→배리어→피팅 사슬에서 떠 있는 형식 절; closed-form "primary" 과대위상(이미 v5 강등); "열역학 only" 인식 | (A)(B) | 합류 시 제거/각주화 |
+
+### §6.5 ★ Intent↔Artifact Traceability — 예비 skeleton (Phase B 에서 식·줄 근거로 확정)
+§0.2 의 8고리 × 두 계열. 판정: ✅구현 / ◑부분 / ⚠표류(drift) / ✗누락 / ✖모순. (※ (B) Ch3~6 미완독분은 *잠정* 표기 — Phase A 후 확정.)
+
+| # | 의도 고리 (§0.2) | (A) Kernel 계열 | (B) 전하보존 6장 | 예비 판정 | 비고 |
+|---|---|---|---|---|---|
+| 1 | 저온 긴 꼬리/고온 짧음 = 열역학 기반 관찰 | ✅ (O2, abstract) | ✅ (Ch1 §온도 tail 분해) | **◑** | 양쪽 "관찰"은 적되 framing이 열역학/동역학 미정합(G2) |
+| 2 | 전위 효과 (OCV 평형 ≠ 전류 시) | ✅ (`V_drive`, `eq:psi_shift`) | ✅ (`V_n/V_app/V_drive`, `eq:Vapp`) | ✅ | 양 계열 전위 3분 명확(P3-1 양호) |
+| 3 | C-rate 무조건 적용 (전류 의존 전위) | ◑ (`L∝|I|` 언급) | ✅ (Ch1 §C-rate, 0.2C 기준식) | **◑** | (A)는 C-rate 절 미약 |
+| 4 | Ch1: 열역학 → 유효배리어 → **피팅식** | ◑ (kernel+closure, 식은 P1밖 연기) | ◑ (EMG 비교용·물리식, 피팅식 표면 약) | **◑→G4** | 피팅식 deliverable 표면화 필요 |
+| 5 | Ch2: Ch1 기반 발열 단초 | ✗ (Ch1 단독) | 잠정✅ (Ch2 평형 온도계수·heat) | **(A)✗ / (B)잠정◑** | Phase A 확정 |
+| 6 | Ch3: 전기화학 반응속도론 확장 | ✗ | 잠정✅ (Ch3 BV forward/backward) | **(A)✗ / (B)잠정◑** | ★ keystone(§6.3) 충돌 지점 — 리뷰 #1 |
+| 7 | Ch4: Ch3 기반 발열 | ✗ | 잠정✅ (Ch4 entropy production) | **(A)✗ / (B)잠정◑** | 리뷰 "정합" 항목 다수 |
+| 8 | Ch5(~6): 충전방향 → 히스테리시스 | ✗ | 잠정✅ (Ch5 hysteresis flux-force) | **(A)✗ / (B)잠정◑** | Ch3 Level B 확정에 종속 |
+
+→ 예비 결론: **(B)가 §0.2 폭을 거의 덮고(고리 5~8), (A)는 고리 1~4의 깊이를 가진다.** 합류 시 **(A)의 깊이(고리 4 tail/피팅)를 (B) 트렁크에 이식**하는 그림이 traceability 상으로도 지지된다(§2 핵심인식 3 정량 확인).
+
+### §6.6 ★ Self-consistent loop — 예비 dependency + 4-분류 (P3-3 / P3-4)
+순환 의존이 **어느 식·변수**에서 생기고, `정의상 implicit / 수치해법 필요 / 논리 공백 / 물리 가정 충돌` 중 무엇인지:
+
+```
+charge balance:  Q_cell·q = Q_bg(V_n,T) + Σ_j Q_{j,tot}·ξ_j      …(C)
+dynamics:        dξ_j/dt = k_j(V_drive)·[ξ_eq,j(V_n,T) − ξ_j]    …(K)
+target:          ξ_eq,j = ξ_eq,j(V_n,T)                          …(E)
+driving/rate:    A_j = s_φF(V_drive−U_j),  V_drive = V_n         …(D)
+observable:      dQ/dV, dV/dQ  ← d/dq of (C)                     …(O)
+
+loop:  V_n ──(E)──▶ ξ_eq ──(K)──▶ ξ_j ──(C)──▶ V_n   (메인 폐루프)
+       V_n ──(D)──▶ A_j ──▶ k_j ──(K)──▶ ξ_j ↑
+       Q_bg(V_n) (C)의 RHS·해(V_n) 양쪽 등장 (implicit root)
+```
+
+| loop edge | 순환 출처 | 4-분류 | 처리 |
+|---|---|---|---|
+| `V_n` ↔ `Q_bg(V_n)` in (C) | implicit root | **정의상 implicit formulation** | 단조성 floor `∂Q_bg/∂V_n≥ε_Q` → unique smooth root (well-posed) |
+| `V_n` ↔ `ξ_j` (C+K+E) | 상태 결합 DAE | **수치해법 필요** | 시간적분; Plan A 비율치환은 closed-form 시도(검증 tier) |
+| kernel `Θ` 적분 안팎 (Volterra) | self-consistent integral | **수치해법 필요** | Plan B direct numerical = reference |
+| `χA` 가 `k`(mobility)에 — Level A/B | grounding↔사용 불일치 | **★ 물리 가정 충돌** | §6.3 keystone — Ch1 Level A / Ch3 Level B 분리로 해소(D2) |
+| `ρ_G → A_L` 역매핑 | 비유일 inverse | **논리 공백 (회피됨)** | forward-only discipline (역산 금지, Plonka 비유일) |
+
+→ 4-분류 중 **실제 위험은 단 1건(χA Level A/B = 물리 가정 충돌)** 이며 나머지는 well-posed implicit 또는 수치해법으로 닫힌다. 즉 keystone(§6.3) 하나가 loop 상 유일한 미해결 충돌이다.
+
+### §6.7 ★ 합류 시 강제되는 구조 변경 (MASTER_ROADMAP_v3 §7 pivot 열거와 동격)
+salvage(KEEP) 를 보존하면서 합류하려면 다음 구조 변경이 **강제**된다 (각각 §10 결정·Phase 와 연결):
+
+1. **χA 역할 분리** — Ch1=mobility 가속(Level A) / Ch3=forward·backward barrier lowering(Level B). (§6.3, D2, Phase C)
+2. **기호 통일** — (A) `θ` ↔ (B) `ξ`. 트렁크 (B) 채택 시 `ξ` 로 통일하되 (A) `θ` 는 역사 명칭으로 매핑표 보존(P3-7). (DQ-DIAG-3)
+3. **tail 엔진 이식** — (A) relaxation-length spectrum kernel integral 을 (B) Ch1 §완화/§tail 자리에 삽입 (단일 relaxation → spectrum 격상). (Phase E)
+4. **framing 머리 못박기** — "열역학 무대 + 동역학 주역"(§6.2)을 합류 Ch1 서두에. (G2 종결)
+5. **flux→rate clamp** — 리뷰 #2: 발산·부호 없는 clamp 형태로. (FIX)
+6. **피팅식 표면화** — deliverable 논리식을 본문 결과로 노출(solver 코드는 여전히 P1 밖). (G4)
+7. **명명 매핑표** — `ver.1~5` ↔ `Chapter 1~5` 매핑을 합류 문서 머리에(P3-7).
 
 ---
 
@@ -219,7 +283,39 @@ Decision Gate 도달 / 새 외부 의존성 / FAIL gate / 사용자 stop — 그
 
 ---
 
-## §11. 진입조건 · 순서 (P4 체크리스트 확인)
+## §11. Test Plan · Decision Queue · Sprint Contract
+
+### Test Plan (verifiable, 통과기준 명시)
+- **T-DIAG-1**: §0.2 8고리 × {(A),(B)} traceability 매트릭스 셀 **누락 0** (16셀 전부 판정).
+- **T-DIAG-2**: 모든 ⚠표류/✗누락/✖모순 판정에 파일·식·줄 근거 **≥1**.
+- **T-DIAG-3**: self-consistent loop 모든 edge 가 4-분류(P3-4) 중 정확히 하나에 배정 (미분류 0).
+- **T-DIAG-4**: 기존 모든 장·핵심식이 salvage 분류(KEEP/FIX/RETIRE) 정확히 1개에 배정 (미분류 0).
+- **T-DIAG-5**: 합류 spine 각 장 → §0.2 고리 매핑 + Ch1 기준식 ↔ Ch2-5 전달 무충돌(P3-6) 0-FAIL.
+- **T-DIAG-6**: §6 의 모든 물리 주장이 §6.0 AL anchor 인용 동반 (무인용 0); FLAGGED(AL-8 등) established 미사용.
+- **T-DIAG-7**: Codex `*.tex` 본문 미열람 준수 (git/대화 로그상 read 0).
+
+### Decision Queue (기존 DQ 연계 + 신규)
+*데이터 대기 / phase 내 해소 / 사용자 결정* 으로 분리:
+- **DQ-v3-1** (erf vs logistic 평형형태) — *데이터 대기*. 본 진단서 **dual-track 유지**, 미결로 보존(저속 OCV near-peak plot 까지).
+- **DQ-v3-2** (Volterra↔Fredholm 비율치환 적용성) — *Phase C 내 해소* (기존 Plan A M1 검증과 합치).
+- **DQ-DIAG-1** (트렁크 = (B)+A엔진) — *사용자 결정* (§10 D1). 무응답 시 권고값.
+- **DQ-DIAG-2** (keystone Level A/B 분리) — *사용자 결정 + Phase C 수식 검증* (§10 D2).
+- **DQ-DIAG-3** (기호 `θ`↔`ξ` 통일) — *합류 시 결정*. 권고: 트렁크 (B) 의 `ξ` 채택 + (A) `θ` 매핑표 보존(P3-7).
+- **DQ-DIAG-4** (범위 = 진단까지 / 재작성 연속) — *사용자 결정* (§10 D4).
+
+### Sprint Contract
+- [ ] Phase A~F 완료 (또는 확장).
+- [ ] Traceability 매트릭스 8×2 무누락 + 근거 첨부 (T-DIAG-1,2).
+- [ ] self-consistent loop 4-분류 완료 (T-DIAG-3).
+- [ ] salvage 미분류 0 (T-DIAG-4).
+- [ ] 합류 로드맵 산출 + §0.2 매핑 + P3-6 무충돌 (T-DIAG-5).
+- [ ] §6 물리주장 AL 인용 0 누락 (T-DIAG-6).
+- [ ] 매 phase commit 페어 (작업+검토), Codex tex 미열람.
+- [ ] P3 7항목 self-check + 사용자 검수(Decision Gate) 통과.
+
+---
+
+## §12. 진입조건 · 순서 (P4 체크리스트 확인)
 
 - [x] 활성 작업 폴더 = `Claude/` 계열.
 - [x] 원천 파일 목록 확정 (§4).
@@ -234,7 +330,8 @@ Decision Gate 도달 / 새 외부 의존성 / FAIL gate / 사용자 stop — 그
 
 ---
 
-## §12. Correction History
+## §13. Correction History
 | 일자 | 변경 |
 |---|---|
 | 2026-05-29 | 신설. 사용자 호소(§0.3) + 의도 서사 사슬(§0.2) 수신 → 간극 진단 + 합류 로드맵 + salvage map 계획화. 두 산출물 계열(A kernel / B 전하보존 6장) 갈라짐을 핵심 사실로 식별. thermo/kinetic 재정합(§6.2)·χ𝒜 keystone 해결 후보(§6.3)·salvage map(§6.4) 예비 제시. 선택형 보기 금지 합의 반영. **계획 상태 — GO 대기.** |
+| 2026-05-29 | 심도 보완 (사용자 "기존 계획서와 유사 심도 확인·보완"): §6.0 grounding anchor(AL+DOI), §6.5 Intent↔Artifact 예비 traceability skeleton(8×2), §6.6 self-consistent loop dependency + P3-4 4-분류, §6.7 합류 강제 구조변경 7건(roadmap §7 pivot 동격), §11 Test Plan(T-DIAG-1~7)·Decision Queue(기존 DQ-v3 연계)·Sprint Contract 추가. 진입조건→§12, History→§13 재번호. |
