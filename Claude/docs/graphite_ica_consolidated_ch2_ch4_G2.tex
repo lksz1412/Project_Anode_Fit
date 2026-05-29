@@ -1,0 +1,298 @@
+% ====================================================================
+% graphite_ica_consolidated_ch2_ch4_G2.tex  —  합류 Chapter 2~4 (G2)
+%   트렁크 = (B) 전하보존 6장; G1 Chapter 1 (graphite_ica_consolidated_ch1_G1.tex) 위에 적층.
+%   keystone 전파: Ch1 = Level A(mobility 가속) / ★Ch3 = Level B(방향성 barrier lowering, χ=β).
+%   ★핵심 검증점(roadmap R2): Ch1 Level A = Ch3 Level B 의 ξ_ss→ξ_eq 극한 일치.
+%   지배 표준: 계획서 §00 GS-1~4.  기존 (A)(B) 원본 보존, 본 파일은 신규 G2.
+% Date: 2026-05-29  Author: Project_Anode_Fit (Claude 측)
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA — 합류 Ch2~4 (G2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA — 합류 Ch2~4 (G2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{Keystone 전파}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{anchorbox}{Observation Anchor}
+
+\newcommand{\eff}{\mathrm{eff}}\newcommand{\eq}{\mathrm{eq}}\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}\newcommand{\tot}{\mathrm{tot}}\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}\newcommand{\OCV}{\mathrm{OCV}}\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rev}{\mathrm{rev}}\newcommand{\ct}{\mathrm{ct}}\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{흑연 음극 ICA 이론 — 합류 Chapter 2--4 (G2)}\\[0.3em]
+\large 발열 연결(Ch2) $\cdot$ 전기화학 반응속도론과 keystone Level B(Ch3) $\cdot$ entropy production 발열(Ch4)}
+\author{Project\_Anode\_Fit (Claude 측)}\date{2026-05-29}
+
+\begin{document}
+\maketitle
+
+\begin{mdframed}
+\textbf{G2 의 위치.} 본 문서는 G1 합류 Chapter 1(\texttt{graphite\_ica\_consolidated\_ch1\_G1.tex})의
+전하보존 $V_n$, 평형 target $\xi_\eq$(logistic), 유효 mobility $k_j$(Level A), relaxation-length
+spectrum 을 \emph{수정하지 않고} 그 위에 적층한다. \textbf{지배 표준 GS-1~4} (학부 무비약 / 전문
+깊이 / 모든 가정 AL 인용 / 임의 cap$\cdot$step 금지)와 \textbf{keystone 전파}(Ch1=Level A,
+Ch3=Level B)를 매 절에 적용한다. 본 turn 의 핵심 성과 = \S\ref{sec:reconcile} 의 \textbf{Level A
+$\leftrightarrow$ Level B 극한 일치}(roadmap R2 의 유일 hard 검증점).
+\end{mdframed}
+\tableofcontents
+\newpage
+
+% ====================================================================
+\part*{Chapter 2 — 발열 연결 (Ch1 상태변수 위의 열 계층)}
+\addcontentsline{toc}{section}{Chapter 2 — 발열 연결}
+% ====================================================================
+\setcounter{section}{0}\renewcommand{\thesection}{2.\arabic{section}}
+
+\begin{anchorbox}
+\textbf{관찰과의 끈(N-1).} 저온서 긴 꼬리를 만드는 것은 \emph{동역학 lag}(Ch1)이고, 그 lag 는
+자유에너지 소산을 동반한다. 따라서 \emph{같은} $d\xi_j/dt$ 가 ICA tail 도, 발열도 만든다. Ch2 는
+그 연결의 \emph{차원과 경계}만 정한다(확정은 Ch4).
+\end{anchorbox}
+
+\section{목적과 고정 기준}\label{sec:ch2_scope}
+Ch2 는 Ch1 의 charge-balance($Q_\cell q=Q_\bg+\sum_j Q_{j,\tot}\xi_j$)와 완화식
+$d\xi_j/dt=k_j(\xi_{\eq,j}-\xi_j)$ 를 그대로 받아, 어떤 조건에서 가역/비가역/relaxation 열로
+연결되는지 정리한다. \textbf{직접 입력은 시간 미분량 $d\xi_j/dt$}(정전류서만 $=(|I|/Q_\cell)d\xi_j/dq$).
+
+\section{발열 해석의 전압 구분과 금지식}\label{sec:ch2_volt}
+가역 열의 기준은 \emph{평형} 전위의 온도 계수이며, apparent 전위의 경로 미분이 아니다(\AL{2 측정}):
+\begin{equation}
+\frac{dV_{n,\app}}{dT}\ \ne\ \Big(\frac{\partial V_{n,\OCV}}{\partial T}\Big)_q .
+\label{eq:ch2_forbid}
+\end{equation}
+좌변에는 분극$\cdot$kinetic lag$\cdot$transport$\cdot$$R_n(T)$ 가 섞이고, 우변만이 상태함수 기반
+온도 계수다. 평형 온도 계수는 charge-balance 평형해를 $T$ 로 미분해 얻는다:
+\begin{equation}
+\Big(\frac{\partial V_{n,\OCV}}{\partial T}\Big)_q=
+-\frac{\dfrac{\partial Q_\bg}{\partial T}+\sum_j Q_{j,\tot}\big(\partial \xi_{\eq,j}/\partial T\big)_{V_n}}
+{\dfrac{\partial Q_\bg}{\partial V_n}+\sum_j Q_{j,\tot}\,\partial \xi_{\eq,j}/\partial V_n} .
+\label{eq:ch2_dvdt}
+\end{equation}
+
+\section{내부 열원 분해와 keystone 정합}\label{sec:ch2_heat}
+음극 control volume 내부 열원을
+$\dot{\mathcal Q}_{\mathrm{src}}=\dot{\mathcal Q}_{\irr}+\dot{\mathcal Q}_{\rev}+\dot{\mathcal Q}_{\mathrm{relax}}+\dot{\mathcal Q}_{\mathrm{transport}}$
+로 둔다(확정은 Ch4). $R_n$(Ch1 의 전압축 분극 계수)을 곧바로 $I^2R$ 발열 저항으로 쓰지 않는다:
+$R_n\ne R_{n,\eff}\ne R_{\ct}$ (Ch3 \S\ref{sec:ch3_Rn}).
+
+\begin{keybox}
+\textbf{Ch1 Level A 의 Ch2 귀결.} Ch1 에서 $\chi_j\mathcal A_j$ 는 mobility 가속(Level A)이므로
+$\xi_{\eq,j}$(평형 target)를 이동시키지 \emph{않는다}. 따라서 \textbf{가역 열은 평형(thermo)
+정보}($\partial V_\OCV/\partial T$, transition entropy $\Delta S_j$)에서, \textbf{비가역 열은
+flux--force}($J\mathcal A$)에서 나온다 — 둘을 같은 자유도로 동시에 더하면 double counting(Ch4
+\S\ref{sec:ch4_double}). mobility 가속이 평형 target 을 안 바꾸므로 이 분리가 깨지지 않는다.
+\end{keybox}
+
+\section{Ch2 검수}\label{sec:ch2_check}
+{\small (P3-2) charge-balance 보존: 통과. (P3-1) $V_{n,\app}$ 온도미분 금지(식~\eqref{eq:ch2_forbid}):
+통과. (P3-6) Ch1 Level A 와 무충돌(가역=thermo/비가역=flux): 통과. (GS-4) 임의 heat term 0: 통과.}
+
+% ====================================================================
+\part*{Chapter 3 — 전기화학 반응속도론과 keystone Level B}
+\addcontentsline{toc}{section}{Chapter 3 — 반응속도론 + Level B}
+% ====================================================================
+\setcounter{section}{0}\renewcommand{\thesection}{3.\arabic{section}}
+
+\begin{anchorbox}
+\textbf{관찰과의 끈(N-1).} 관찰의 (다): ``극판 전위가 배리어를 바꾼다''. Ch1 은 이를 \emph{속도
+크기}(mobility, Level A)로만 받았다. Ch3 은 전위가 \emph{forward 와 backward 를 비대칭}으로 바꾸어
+\emph{정상 target 자체를 이동}시키는 \textbf{방향성 효과(Level B)}를 도입한다 — 이것이 강구동/
+고율에서 peak 위치가 이동하고 겹침이 심해지는 추가 메커니즘이다.
+\end{anchorbox}
+
+\section{목적과 고정 기준}\label{sec:ch3_scope}
+Ch3 은 Ch1 의 완화식이 \emph{forward/backward transition kinetics 의 축약형}임을 보이고, 전위
+구동력의 \emph{방향성} 효과를 명시한다. Ch1 의 charge-balance$\cdot$$\xi_\eq$(logistic)$\cdot$
+Marcus bound 는 유지. rate 안정화용 임의 cap 금지(GS-4); 강구동 제한은 물리적 병목으로.
+
+\section{Forward/backward kinetics 와 detailed balance}\label{sec:ch3_fb}
+가장 일반적 진행률(\AL{5}):
+\begin{equation}
+\frac{d\xi_j}{dt}=r_j^+(1-\xi_j)-r_j^-\xi_j .
+\label{eq:ch3_fb}
+\end{equation}
+평형(net flux $=0$)에서 $r_j^+(1-\xi_{\eq,j})=r_j^-\xi_{\eq,j}$, 즉 \textbf{local detailed balance}
+\begin{equation}
+\frac{r_j^+}{r_j^-}=\frac{\xi_{\eq,j}}{1-\xi_{\eq,j}} .
+\label{eq:ch3_db}
+\end{equation}
+Ch1 의 logistic $\xi_{\eq,j}=[1+e^{-(V_n-U_j)/w_j}]^{-1}$ 를 넣으면
+\begin{equation}
+\ln\frac{r_j^+}{r_j^-}=\frac{V_n-U_j}{w_j}=\frac{\mathcal A_j^{\eq}}{RT}\Big|_{w_j=RT/F},
+\label{eq:ch3_dbwidth}
+\end{equation}
+즉 \emph{detailed balance 의 선형성은 logistic 평형에 의존}(erf 면 inverse-erf 로 비선형 — Ch1
+\S equilibrium 의 baseline=logistic 선택 근거).
+
+\section{★ Level B — 방향성 활성화(전위가 forward/backward 를 비대칭으로 바꿈)}\label{sec:ch3_levelB}
+명시적 활성화 rate(transfer coefficient $\beta_j$; BEP/Butler--Volmer, \AL{2}):
+\begin{align}
+r_j^+&=\nu_j^+\,a_j^+\,\exp\!\Big[-\frac{\Delta G_j^{+\ddagger}-\beta_j\mathcal A_j}{RT}\Big],
+\label{eq:ch3_rplus}\\
+r_j^-&=\nu_j^-\,a_j^-\,\exp\!\Big[-\frac{\Delta G_j^{-\ddagger}+(1-\beta_j)\mathcal A_j}{RT}\Big].
+\label{eq:ch3_rminus}
+\end{align}
+\textbf{학부 무비약(GS-1).} 두 식의 비를 취하면 $\mathcal A_j$ 지수가 $\beta_j+(1-\beta_j)=1$ 로 합쳐져
+\begin{equation}
+\frac{r_j^+}{r_j^-}=\underbrace{\frac{\nu_j^+a_j^+}{\nu_j^-a_j^-}\exp\!\Big[-\frac{\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}}{RT}\Big]}_{\textstyle \equiv\,\Pi_j^0\ (\text{intrinsic})}\ \exp\!\Big[\frac{\mathcal A_j}{RT}\Big].
+\label{eq:ch3_ratioB}
+\end{equation}
+detailed balance(식~\eqref{eq:ch3_db}) 와 식~\eqref{eq:ch3_dbwidth} 를 만족하려면 intrinsic 부분이
+$\Pi_j^0=\exp[-\mathcal A_j^{0}/RT]$ 형태로 $U_j$ 를 정의하도록 묶인다. \textbf{핵심}: $\mathcal A_j$
+가 forward 지수는 키우고($-\beta_j\mathcal A_j$) backward 지수는 줄이므로($+(1-\beta_j)\mathcal A_j$),
+\emph{비가 바뀐다} — 즉 정상 target 이 이동한다. 이것이 Level A 와 \emph{다른} 물리다.
+
+강구동서 $\Delta G_j^{+\ddagger}-\beta_j\mathcal A_j<0$ 가 되어도 $\max(\cdot,0)$ 으로 자르지 않는다
+(GS-4). 실제 제한은 물리적 병목의 직렬 합성:
+$1/r_{j,\mathrm{obs}}^+=1/r_j^++1/r_{j,\mathrm{transport}}^++1/r_{j,\mathrm{site}}^++1/r_{j,\mathrm{current}}^+$.
+\textbf{전류 보존}: 외부 전류가 유한하므로 $\sum_j Q_{j,\tot}\,d\xi_j/dt$ 합이 $|I|$ 와 charge
+balance 를 동시에 만족 — 강구동 saturation 은 임의 cap 이 아니라 보존법칙에서 나온다.
+
+\section{★ Level A $\leftrightarrow$ Level B 극한 일치 (roadmap R2 — 유일 hard 검증점)}\label{sec:reconcile}
+\begin{keybox}
+\textbf{두 level 이 언제 같은가, 언제 다른가 (무비약).}
+Ch1 의 Level A 는 $\dot\xi_j=k_j(\xi_{\eq,j}-\xi_j)$, $k_j=r_j^++r_j^-$, target=thermo $\xi_{\eq,j}$.
+Ch3 의 Level B 는 식~\eqref{eq:ch3_fb} 로, 그 \emph{정상 target} 은
+\begin{equation}
+\xi_{j,\mathrm{ss}}=\frac{r_j^+}{r_j^++r_j^-}.
+\label{eq:ch3_xiss}
+\end{equation}
+식~\eqref{eq:ch3_fb} 를 $\xi_{j,\mathrm{ss}}$ 둘레로 정리하면 항등적으로
+$\dot\xi_j=(r_j^++r_j^-)(\xi_{j,\mathrm{ss}}-\xi_j)$ 이다(대수 1줄). 따라서:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{일치(극한):} forward/backward 가 detailed balance(식~\eqref{eq:ch3_db})를 만족하면
+  $\xi_{j,\mathrm{ss}}=\xi_{\eq,j}$ 이고, $k_j=r_j^++r_j^-$ 로 두면 Level B 가 \emph{정확히} Level A
+  로 환원된다. 이때 $\chi_j$(Ch1 mobility 가속 계수)와 $\beta_j$(Ch3 transfer coeff.)는 동일물.
+  $\Rightarrow$ \textbf{P3-6 무충돌 성립.}
+\item \textbf{차이(novel):} 전류/과전압이 forward/backward 비를 detailed-balance 값에서 벗어나게 하면
+  $\xi_{j,\mathrm{ss}}(\mathcal A_j)\ne\xi_{\eq,j}$ — 정상 target 이 \emph{이동}한다. 이는 Level A 가
+  주지 못하는 신호(peak 위치의 전류 의존 shift)다. Level A 는 그 특수 극한($\xi_{\mathrm{ss}}\to\xi_\eq$).
+\end{itemize}
+\textbf{결론}: Ch1(Level A)은 ``전위가 속도만 키운다''는 \emph{보수적 1차} 모델, Ch3(Level B)는
+``전위가 target 도 이동시킨다''는 \emph{확장}이며, 둘은 detailed-balance 극한에서 연속적으로 일치한다.
+같은 기호를 두 역할로 겹쳐 쓰던 모순(진단 RESULT \S C)은 이 분리로 해소된다.
+\end{keybox}
+\textbf{$\xi_{\mathrm{ss}}$ 는 true equilibrium 이 아니다}: nonequilibrium stationary progress 이며,
+Ch5 의 branch target 계열과 관련되나 구분한다.
+
+\section{Butler--Volmer 계층과 $R_n$ 분리}\label{sec:ch3_Rn}
+계면 전하전달 지배 시 $j_n=j_{0,n}[e^{(1-\alpha)F\eta_n/RT}-e^{-\alpha F\eta_n/RT}]$; 소과전압서
+$R_{\ct,n}=RT/(FA_\eff j_{0,n})$. apparent 전위
+$V_{n,\app}=V_n+s_I|I|R_n$ 의 $R_n$ 은 $\eta_\ct+\eta_{\mathrm{ohm}}+\eta_{\mathrm{conc}}+\eta_{\mathrm{film}}$
+의 apparent aggregate 이며 $R_n\ne R_{\ct,n}\ne R_{n,\eff}$. \textbf{co-linearity 주의}: $\eta_\ct$
+도 전위 지수의존이라 Ch1 의 $\chi_j$(mobility 가속)와 단일 전극서 교락 가능 — 다중 $T\times|I|$+GITT 로
+분리(Ch1 \S falsify, Ch6).
+
+\section{Ch3 검수}\label{sec:ch3_check}
+{\small (P3-6) Ch1 완화 = forward/backward 축약(\S\ref{sec:reconcile}) 무충돌: 통과. ★keystone:
+Level B(방향성)를 Ch3 에만 두고 $\chi_j=\beta_j$ 명시: 통과. (GS-1) ratio$\to$target 이동 무비약:
+통과. detailed balance$=$logistic 의존 명시: 통과. (GS-4) 강구동 cap 0, 전류보존 saturation: 통과.}
+
+% ====================================================================
+\part*{Chapter 4 — 반응속도론 기반 발열 (entropy production)}
+\addcontentsline{toc}{section}{Chapter 4 — entropy production 발열}
+% ====================================================================
+\setcounter{section}{0}\renewcommand{\thesection}{4.\arabic{section}}
+
+\begin{anchorbox}
+\textbf{관찰과의 끈(N-1).} 꼬리를 만드는 lag(Ch1)와 방향성 구동(Ch3)은 모두 \emph{비가역 소산}을
+동반한다. Ch4 는 그 소산을 flux--force 로 정량화해, 같은 동역학이 ICA tail 과 발열을 동시에
+설명하도록 닫는다.
+\end{anchorbox}
+
+\section{목적과 원칙}\label{sec:ch4_scope}
+Ch4 의 열 항은 (i) 반응 entropy production, (ii) conjugate flux--force, (iii) 평형 전위 온도계수,
+(iv) transition entropy, (v) 물리적 병목 소산 중 하나에 grounding 되어야 한다(GS-3). 임의 heat
+correction/capped transform/empirical gain 금지(GS-4). charge-balance 는 발열식으로 대체되지 않으며,
+발열은 그 상태 경로 \emph{위}의 에너지 계층이다.
+
+\section{비가역 열 = flux--force}\label{sec:ch4_irr}
+기본식(2법칙, \AL{비가역}):
+\begin{equation}
+T\dot S_\irr=\sum_\alpha J_\alpha X_\alpha\ge0,\qquad
+T\dot S_{\irr,n}=J_n\mathcal A_n\ge0 .
+\label{eq:ch4_JA}
+\end{equation}
+($I_n=FJ_n$, $\mathcal A_n=F\eta_n$ 일관 시 $I_n\eta_n$ 형과 연결; 부호는 magnitude 표현
+$|I_n||\eta_n|$ 로 분리.)
+
+\section{Transition-level entropy production (Ch3 forward/backward 기반)}\label{sec:ch4_trep}
+Ch3 의 flux $\mathcal J_j^+=r_j^+(1-\xi_j)$, $\mathcal J_j^-=r_j^-\xi_j$ 로부터(Markov/CRN 형):
+\begin{equation}
+\dot{\mathcal Q}_{\irr,j}^{\mathrm{tr}}=\frac{Q_{j,\tot}}{F}RT\,(\mathcal J_j^+-\mathcal J_j^-)\,
+\ln\!\frac{\mathcal J_j^+}{\mathcal J_j^-}\ \ge 0,
+\label{eq:ch4_trep}
+\end{equation}
+단위 $\mathrm{mol}\cdot\mathrm{J/mol}\cdot\mathrm{s^{-1}}=\mathrm W$. \textbf{비음수 보장(GS-1)}:
+$(x-y)\ln(x/y)\ge0$ 은 $\ln$ 의 단조성에서 항등적으로 성립 — Ch3 detailed balance 가 부호를 보장한다.
+$\mathcal J^\pm\to0$ 의 log 특이점은 coarse-graining resolution 에 해당하는 작은 양의 floor 로 처리하며,
+이는 heat fitting parameter 가 아니라 \emph{수치 domain guard}(GS-4).
+
+\begin{keybox}
+\textbf{Level B 가 Ch4 의 비가역 열을 정합시킨다.} 식~\eqref{eq:ch4_trep} 은 Ch3 의 $r_j^\pm$(Level B)을
+직접 요구한다. Ch1 의 Level A($k_j=r^++r^-$)만으로는 forward/backward 를 분해할 수 없어 transition
+entropy production 을 쓸 수 없다 — 즉 \textbf{발열의 비가역 항이 Level B 도입의 물리적 필요를
+독립적으로 정당화}한다(keystone 의 하류 근거).
+\end{keybox}
+
+\section{가역 열 — 두 basis 와 double counting 금지}\label{sec:ch4_double}
+(A) \textbf{OCV entropy coefficient basis}: $\dot{\mathcal Q}_\rev^{\OCV}\propto |I|\,T\,(\partial V_\OCV/\partial T)_q$
+(식~\eqref{eq:ch2_dvdt}). (B) \textbf{transition entropy basis}:
+$\dot{\mathcal Q}_{\rev,\xi}=\sum_j s_j\,T\,\Delta S_j\,(Q_{j,\tot}/F)\,d\xi_j/dt$. 두 식을 독립
+발열항으로 \emph{동시에} 더하면 double counting — $\partial V_\OCV/\partial T$ 에 이미 transition$\cdot$
+background entropy 가 반영되기 때문. \textbf{택일}: OCV basis 중심(그러면 $\Delta S_j$ 는 해석용) 또는
+transition basis 중심(그러면 OCV $dV/dT$ 는 독립항 아니라 \emph{consistency 제약}). 금지식
+$\dot{\mathcal Q}_\rev\not\propto IT\,dV_{n,\app}/dT$ (식~\eqref{eq:ch2_forbid}).
+
+\section{Transport$\cdot$rest relaxation 열, 계산 순서}\label{sec:ch4_transport}
+선형 근방 $\dot{\mathcal Q}_{\mathrm{transport}}\approx I^2R_{\mathrm{transport}}$, 일반은 flux--force
+$\sum_\ell J_\ell X_\ell$; $R_n$ 을 직접 쓰지 않음($R_n\ne R_{n,\eff}$). 휴지($I=0$)서도 내부 relaxation
+$d\xi_j/dt\ne0$ 의 entropy production 은 남을 수 있으나 calorimetry/rest 응답 없이 확정 X.
+\textbf{계산 순서}: $q\to$charge-balance root $V_n\to(\xi_\eq,\mathcal A_j,r_j^\pm$ 또는 $k_j)\to
+d\xi_j/dt,I_j\to$ 비가역열(식~\eqref{eq:ch4_JA},\eqref{eq:ch4_trep}) + 가역열(택일) $\to T(t)$ 갱신
+$\to (Q_\bg,U_j,w_j,r_j^\pm,k_j,R_n)$ 되먹임.
+
+\section{Ch4 검수}\label{sec:ch4_check}
+{\small 비가역열 flux--force 출발: 통과(식~\eqref{eq:ch4_JA}). $(\mathcal J^+-\mathcal J^-)\ln(\mathcal J^+/\mathcal J^-)\ge0$
+무비약: 통과. 가역열 OCV/transition 택일(double counting 금지): 통과. $dV_{n,\app}/dT$ 가역열 금지:
+통과. (P3-6) Ch3 Level B 사용 정합: 통과. (GS-4) log floor=domain guard(heat knob 아님): 통과.}
+
+% ====================================================================
+\section*{G2 종합 — keystone 전파 확인 (P3-6)}
+\addcontentsline{toc}{section}{G2 종합 — keystone 전파}
+% ====================================================================
+\begin{longtable}{p{0.10\textwidth} p{0.40\textwidth} p{0.44\textwidth}}
+\toprule 장 & keystone 사용 & 무충돌 근거 \\ \midrule \endhead
+Ch2 & Ch1 Level A $k_j$ → 가역=thermo / 비가역=flux & mobility 가속이 $\xi_\eq$ 불변(double counting 차단) \\
+Ch3 & ★Level B 도입($\chi_j=\beta_j$); $\xi_{\mathrm{ss}}$ & detailed-balance 극한서 Level A 로 환원(\S\ref{sec:reconcile}) \\
+Ch4 & Level B $r_j^\pm$ → transition entropy production & $(\mathcal J^+-\mathcal J^-)\ln(\cdot)\ge0$, Ch3 db 가 부호 보장 \\
+\bottomrule
+\end{longtable}
+\textbf{유일 hard 검증점(R2) 결과}: Ch1 Level A = Ch3 Level B 의 $\xi_{\mathrm{ss}}\to\xi_\eq$ 극한 —
+\S\ref{sec:reconcile} 에서 대수 항등으로 확인(가정 아님). keystone 이 Ch1$\to$Ch4 에 무모순 전파됨.
+\textbf{다음(G3)}: Ch5(충방전$\cdot$hysteresis = Level B branch 확장) + Ch6(수치$\cdot$검증).
+
+\begin{thebibliography}{9}
+\bibitem{eyring1935} H. Eyring, \emph{J. Chem. Phys.} \textbf{3}, 107 (1935).
+\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938).
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods}, Wiley.
+\bibitem{onsager1931} L. Onsager, \emph{Phys. Rev.} \textbf{37}, 405 (1931).
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics} (1962).
+\bibitem{callen} H. B. Callen, \emph{Thermodynamics and an Introduction to Thermostatistics}, Wiley.
+\end{thebibliography}
+\end{document}
