@@ -1,0 +1,425 @@
+% ====================================================================
+% graphite_ica_consolidated_ch4.tex — 합류 Chapter 4 (반응속도론 기반 발열 확장, v2)
+%   트렁크 = (B) 전하보존 6장 Ch4 전문 밀도. Ch1 v2 / Ch2 / Ch3 위 적층.
+%   합류 정합: transition entropy production = n^eff I_j η_j → Ch2 J·η 환원(미시-거시 검증).
+% Date: 2026-05-29 (v2)  Author: Project_Anode_Fit (Claude 측)
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail — 합류 Chapter 4 (발열 확장, v2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA tail — 합류 Chapter 4 (발열 확장, v2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{flagbox}{FLAGGED (미확정)}
+\newtheorem*{linkbox}{Ch1--3 전달식}
+\newtheorem*{verifybox}{정합 검증 (미시=거시)}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\loss}{\mathrm{loss}}
+\newcommand{\rlx}{\mathrm{relax}}
+\newcommand{\prog}{\mathrm{prog}}
+\newcommand{\coord}{\mathrm{coord}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\transp}{\mathrm{transport}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 흑연 음극 ICA tail 이론 — 합류 Chapter 4}\\[0.4em]
+\large 반응속도론 기반 발열 확장: flux--force entropy production $\cdot$\\
+transition-level dissipation $\cdot$ 가역/비가역 열의 미시--거시 정합}
+\author{Project\_Anode\_Fit (Claude 측)}
+\date{2026-05-29 (v2)}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서 — 인과 사슬에서 ``발열 정량화''의 자리}
+\addcontentsline{toc}{section}{서 — 발열 정량화의 자리}
+% ====================================================================
+Chapter 2 는 발열을 entropy(가역)/affinity(비가역) 기원으로 \emph{연결}했고, Chapter 3 은 그 affinity 를
+미시 forward/backward kinetics $r_j^\pm$ 로 \emph{확대}했다. Chapter 4 는 이 둘을 합쳐, \textbf{Chapter 3 의
+$r_j^\pm$ 로부터 transition-level entropy production 을 정량}하고 그것이 Chapter 2 의 거시 $I_j\eta_j$ 형과
+\emph{정확히 일치}함을 보인다(미시=거시 정합). 즉 발열은 새 피팅항이 아니라 이미 깔린 인과 사슬
+($V_n\to\xi_{\eq}\to k_j/r_j^\pm\to d\xi_j/dt$) 위에서 계산되는 에너지 계층이다.
+
+\textbf{Chapter 4 의 한 문장 요지.} \emph{비가역 열 $=\sum_j$(transition flux)$\times$(transition affinity)
+$=\sum_j n_j^{\eff}I_j\eta_j\ge0$, 가역 열 $=$ 평형 전위 온도계수 또는 transition entropy basis(둘 중 택일,
+정합 제약)} — 모든 항이 entropy production / 평형 열역학 / flux--force 로 환원되며 임의 heat correction 을
+기본식에 넣지 않는다. 충전 branch/hysteresis heat(Ch5), 수치 해법(Ch6)은 후속.
+
+\begin{groundingbox}
+\textbf{지배 표준(GS) 계승.} (GS-1\,$\sim$\,4) Ch1--3 동일. 발열 항은 (i) entropy production, (ii) conjugate
+flux--force, (iii) 평형 전위 온도계수, (iv) transition entropy$\times$진행률, (v) transport/finite-current
+dissipative loss, (vi) 자유에너지 감소를 동반하는 internal relaxation 중 하나의 물리 근거를 가져야 한다.
+임의 heat correction / capped heat / empirical gain / residual heat 는 기본식에 넣지 않는다(실무 팁 분리).
+방전 기준, $|I|>0$, heat-generation-positive convention.
+\end{groundingbox}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{유지하는 상태식 $\cdot$ 속도식과 transition flux}\label{sec:ch4_inherit}
+% ====================================================================
+\begin{linkbox}
+\textbf{(L1) 전하 보존식(중심 상태식, 발열로 대체 안 됨).} $Q_\cell q=Q_\bg(V_n,T)+\sum_j Q_{j,\tot}\xi_j$.\\
+\textbf{(L2) kinetics.} $\dfrac{d\xi_j}{dt}=r_j^+(1-\xi_j)-r_j^-\xi_j$, 축약형 $=k_j^{\mathrm{phys}}(\xi_{\eq,j}-\xi_j)$;
+정전류서만 $\dfrac{d\xi_j}{dt}=\dfrac{|I|}{Q_\cell}\dfrac{d\xi_j}{dq}$.\\
+\textbf{(L3) Ch2 dissipation force.} 비가역 열 공액 force 는 과전압 $\eta_j=V_{n,\drive}-V_{\eq,j}(\xi_j)$,
+$V_{\eq,j}(\xi_j)=U_j+w_j\ln[\xi_j/(1-\xi_j)]$(중심 affinity $\mathcal A_j$ 와 구분).\\
+\textbf{(L4) Ch3 정합.} detailed balance $r_j^+/r_j^-=\xi_{\eq,j}/(1-\xi_{\eq,j})$; $n_j^{\eff}=RT/(Fw_j)$
+($\mathcal A_j=s_{\phi,j}n_j^{\eff}F(V_{n,\drive}-U_j)$); $\chi_j\equiv\beta_j$.
+\end{linkbox}
+모든 발열률/entropy production 의 직접 입력은 시간 미분량 $d\xi_j/dt$ 또는 시간당 flux 다. transition 별
+전하/molar 진행률:
+\begin{equation}
+I_j=Q_{j,\tot}\frac{d\xi_j}{dt},\qquad \dot n_j=\frac{Q_{j,\tot}}{F}\frac{d\xi_j}{dt}\ [\mathrm{mol\,s^{-1}}].
+\label{eq:ch4_Ij}
+\end{equation}
+면적 정규화가 필요하면 유효 반응면적 $A_{\eff}$ 로 $J_j=\dot n_j/A_{\eff}$ 를 별도 정의한다(lumped molar
+rate 와 area-flux 혼동 금지).
+
+% ====================================================================
+\section{내부 열원 항의 물리적 분해}\label{sec:ch4_decomp}
+% ====================================================================
+\begin{equation}
+\dot{\mathcal Q}_{\src,n}=\dot{\mathcal Q}_{\irr,n}+\dot{\mathcal Q}_{\rev,n}+\dot{\mathcal Q}_{\rlx,n}+\dot{\mathcal Q}_{\transp,n}.
+\label{eq:ch4_decomp}
+\end{equation}
+\begin{longtable}{p{0.28\textwidth} p{0.60\textwidth}}
+\toprule 항 & 물리적 의미 \\ \midrule \endhead
+$\dot{\mathcal Q}_{\irr,n}$ & 계면 반응/transition 진행의 비가역 entropy production \\
+$\dot{\mathcal Q}_{\rev,n}$ & 평형 entropy coefficient 또는 transition entropy 가역 열 \\
+$\dot{\mathcal Q}_{\rlx,n}$ & 외부 전류와 무관하게 내부 상태가 자유에너지를 낮추며 relax 할 때의 열(확정엔 자유에너지 함수 필요) \\
+$\dot{\mathcal Q}_{\transp,n}$ & solid diffusion/electrolyte/film/finite-current limitation 의 dissipative loss \\
+\bottomrule
+\end{longtable}
+가역 열이 흡열일 수 있으므로 $\dot{\mathcal Q}_{\src,n}$ 은 항상 양수 ``생성량''이 아니라 internal heat
+source term 이다. 외부 손실 포함 열수지:
+\begin{equation}
+C_{\mathrm{th}}\frac{dT}{dt}=\dot{\mathcal Q}_{\src,n}-\dot{\mathcal Q}_{\loss}.
+\label{eq:ch4_balance}
+\end{equation}
+$\dot{\mathcal Q}_{\loss}$ 상세 열전달 모델은 본 장에서 닫지 않는다.
+
+% ====================================================================
+\section{비가역 열: flux--force 와 entropy production}\label{sec:ch4_irr}
+% ====================================================================
+가장 기본적 출발점은 conjugate flux $J_\alpha$ 와 thermodynamic force $X_\alpha$ 의 곱(\cite{degrootmazur1962,onsager1931,prigogine1967}, \AL{H1}):
+\begin{equation}
+T\dot S_{\irr}=\sum_\alpha J_\alpha X_\alpha\ge0.
+\label{eq:ch4_fluxforce}
+\end{equation}
+전기화학 반응에서는 molar reaction flux $J_n$ 와 reaction affinity $\mathcal A_n$ 로
+\begin{equation}
+T\dot S_{\irr,n}=J_n\mathcal A_n\ge0.
+\label{eq:ch4_JA}
+\end{equation}
+$I_n=FJ_n$, $\mathcal A_n=F\eta_n$ convention 이 일관되면 $I_n\eta_n$ 형과 연결되나, $I\eta$ 부호는 전류
+방향$\cdot$전극 전위 convention 에 종속되므로 본 장은 positive-dissipation 식~\eqref{eq:ch4_JA} 를 더 기본으로
+둔다. magnitude 표현 $\dot{\mathcal Q}_{\irr,n}^{\mathrm{mag}}=|I_n||\eta_n|$ 은 부호가 정렬됐을 때의 크기
+표현이며 entropy production 의 일반 정의가 아니다.
+
+% ====================================================================
+\section{Transition-level entropy production (미시) 과 Ch2 거시식의 정합}\label{sec:ch4_tr}
+% ====================================================================
+Chapter 3 transition kinetics 의 forward/backward flux 를
+\begin{equation}
+\mathcal J_j^+=r_j^+(1-\xi_j),\qquad \mathcal J_j^-=r_j^-\xi_j,\qquad \frac{d\xi_j}{dt}=\mathcal J_j^+-\mathcal J_j^-,
+\label{eq:ch4_Jpm}
+\end{equation}
+로 두면, Markov-jump / chemical-reaction-network entropy production(\cite{schnakenberg1976,prigogine1967}, \AL{H2})은
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\irr,j}^{\tr}=\frac{Q_{j,\tot}}{F}\,RT\,\big(\mathcal J_j^+-\mathcal J_j^-\big)\ln\!\frac{\mathcal J_j^+}{\mathcal J_j^-}\ \ge\ 0\;.}
+\label{eq:ch4_tr_entropy}
+\end{equation}
+$(\mathcal J_j^+-\mathcal J_j^-)\ln(\mathcal J_j^+/\mathcal J_j^-)\ge0$ 은 두 양수의 (차)$\times$(로그비)가 항상
+음 아님에서 보장된다(평형 $\mathcal J_j^+=\mathcal J_j^-$ 서 $0$). 단위 $\mathrm{mol}\cdot\mathrm{J\,mol^{-1}}\cdot\mathrm{s^{-1}}=\mathrm W$.
+
+\begin{verifybox}
+\textbf{미시 entropy production $=$ 거시 $n_j^{\eff}I_j\eta_j$ (Ch2 정합, 무비약).} transition chemical
+affinity 는 $\mathcal A_j^{\mathrm{chem}}=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$. detailed balance
+$r_j^+/r_j^-=\xi_{\eq,j}/(1-\xi_{\eq,j})$ 와 $\ln[\xi_{\eq,j}/(1-\xi_{\eq,j})]=(V_n-U_j)/w_j$ 를 대입하면
+\begin{equation}
+\mathcal A_j^{\mathrm{chem}}=RT\ln\!\frac{r_j^+(1-\xi_j)}{r_j^-\xi_j}
+=RT\Big[\frac{V_n-U_j}{w_j}-\ln\frac{\xi_j}{1-\xi_j}\Big]
+=\frac{RT}{w_j}\,\eta_j=n_j^{\eff}F\,\eta_j,
+\label{eq:ch4_affinity_eta}
+\end{equation}
+여기서 $\eta_j=(V_n-U_j)-w_j\ln[\xi_j/(1-\xi_j)]=V_n-V_{\eq,j}(\xi_j)$ 는 Chapter 2 의 과전압이고
+$n_j^{\eff}=RT/(Fw_j)$ 는 Chapter 3 의 effective electron number 다. 따라서
+\begin{equation}
+\dot{\mathcal Q}_{\irr,j}^{\tr}=\dot n_j\,\mathcal A_j^{\mathrm{chem}}
+=\frac{Q_{j,\tot}}{F}\frac{d\xi_j}{dt}\cdot n_j^{\eff}F\eta_j
+=n_j^{\eff}\,I_j\,\eta_j.
+\label{eq:ch4_micro_macro}
+\end{equation}
+즉 \textbf{미시 transition entropy production 이 거시 flux$\times$overpotential 형(Chapter 2 식)으로 정확히
+환원}되며, ideal width $w_j=RT/F$($n_j^{\eff}=1$)에서 $\dot{\mathcal Q}_{\irr,j}^{\tr}=I_j\eta_j$. 부호:
+$\xi_j<\xi_{\eq,j}\Rightarrow\eta_j>0,\ d\xi_j/dt>0\Rightarrow I_j\eta_j>0$ (positive dissipation). 이로써
+Ch2(거시)$\cdot$Ch3(미시 rate)$\cdot$Ch4(entropy production)가 한 표현으로 닫힌다.
+\emph{Chapter 2 의 $\sum_jJ_jF\eta_j=\sum_jI_j\eta_j$ 는 이 결과의 $n_j^{\eff}=1$(ideal-width) 특수형}이며,
+일반 dissipation 은 $\sum_j n_j^{\eff}I_j\eta_j$ 다(Chapter 3 의 $n_j^{\eff}=RT/Fw_j$ refinement 와 동일
+맥락 — 트렁크 일관). 본 유도는 detailed balance($r_j^+/r_j^-=\xi_{\eq,j}/(1-\xi_{\eq,j})$)를 전제하며,
+branch 비대칭(non-detailed-balance, Chapter 5)에서는 $\mathcal A_j^{\mathrm{chem}}$ 가 일반화된다.
+\end{verifybox}
+
+식~\eqref{eq:ch4_tr_entropy} 을 실제 발열항으로 채택하려면 (1) $r_j^\pm$ 가 실제 coarse-grained transition
+rate, (2) $\xi_j$ 가 progress coordinate, (3) detailed balance $\xi_{\eq,j}$ 정합, (4) calorimetry/rest
+relaxation 검증이 필요하다. 따라서 해석 가능한 \emph{후보}식이며 독립 검증 없이 모든 relaxation heat 를
+이 항으로 확정하지 않는다.
+\begin{boundbox}
+\textbf{log singularity 는 floor 아닌 영역 처리.} $\mathcal J_j^\pm\to0$ 서 $\ln$ 발산은 coarse-graining
+resolution 에 해당하는 작은 positive floor 로 처리한다. 단, 식~\eqref{eq:ch4_micro_macro} 형
+$n_j^{\eff}I_j\eta_j$ 를 쓰면 $\mathcal J^\pm$ 가 평형 부근에서 작아도 $I_j\to0$ 로 매끄럽게 0 이 되어
+발산이 없다(이 floor 는 heat fitting parameter 가 아니라 numerical domain guard).
+\end{boundbox}
+
+% ====================================================================
+\section{가역 열 (1): 평형 전위 온도 계수}\label{sec:ch4_revOCV}
+% ====================================================================
+Chapter 2 에서 평형 전하 보존식으로 유도한 음극 온도 계수(reduced; $Q_\cell,Q_{j,\tot}$ 기준 용량 고정):
+\begin{equation}
+\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=-\frac{\dfrac{\partial Q_\bg}{\partial T}+\sum_jQ_{j,\tot}\left(\dfrac{\partial\xi_{\eq,j}}{\partial T}\right)_{V_n}}
+{\dfrac{\partial Q_\bg}{\partial V_n}+\sum_jQ_{j,\tot}\dfrac{\partial\xi_{\eq,j}}{\partial V_n}}.
+\label{eq:ch4_ocv_dvdt}
+\end{equation}
+방전 기준 음극 reduced reversible heat:
+\begin{equation}
+\dot{\mathcal Q}_{\rev,n}^{\OCV}=s_{\rev,n}^{\conv}\,|I|\,T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q.
+\label{eq:ch4_rev_ocv}
+\end{equation}
+$s_{\rev,n}^{\conv}$ 는 convention bookkeeping factor(피팅 X). 금지 연결:
+\begin{equation}
+\dot{\mathcal Q}_{\rev}\not\propto I\,T\,\frac{dV_{n,\app}}{dT}
+\label{eq:ch4_forbid}
+\end{equation}
+— $V_{n,\app}$ 에는 분극$\cdot$kinetic lag$\cdot$transport loss$\cdot$hysteresis-like gap$\cdot R_n(T)$ 가
+섞이므로 그 경로 미분은 평형 entropy coefficient 가 아니다.
+
+% ====================================================================
+\section{가역 열 (2): transition entropy basis 와 double counting}\label{sec:ch4_revxi}
+% ====================================================================
+$\Delta S_j$ = $j$번째 effective transition 의 방전 방향 mol electron(또는 Li-equiv) 1 mol 당 entropy
+change 로 두면
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\xi}=\sum_{j=1}^{N_p}s_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_j}{dt}.
+\label{eq:ch4_rev_xi}
+\end{equation}
+직접 입력은 $d\xi_j/dt$. 식~\eqref{eq:ch4_rev_ocv} 와 식~\eqref{eq:ch4_rev_xi} 를 독립항으로 동시에 자유롭게
+더하면 double counting(평형 $V_{n,\OCV}$ 온도계수에 이미 transition/background entropy 반영). 따라서 택일:
+\begin{enumerate}[label=\Alph*),leftmargin=2.0em]
+\item \textbf{OCV 중심}: 전체 가역 열을 식~\eqref{eq:ch4_rev_ocv} 로 대표; $\Delta S_j$ 는 분해 해석/파라미터
+  interpretation 용.
+\item \textbf{Transition entropy 중심}: $\Delta S_j, h_\bg$ 로 분해; 이때 OCV $dV/dT$ 는 독립항이 아니라
+  $\Delta S_j,h_\bg$ 를 묶는 equilibrium consistency condition(Chapter 2 정합식):
+\end{enumerate}
+\begin{equation}
+s_{\rev,n}^{\conv}|I|T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=s_\bg^{\conv}Th_\bg\dot Q_\bg^{\prog}+\sum_j s_{\rev,\xi,j}^{\conv}T\Delta S_j\frac{Q_{j,\tot}}{F}\frac{d\xi_{\eq,j}}{dt}.
+\label{eq:ch4_consistency}
+\end{equation}
+
+% ====================================================================
+\section{Background heat 와 coordinate shift}\label{sec:ch4_bg}
+% ====================================================================
+$Q_\bg$ 는 배경 누적 용량이지 entropy 가 아니다. background entropy coefficient
+$h_\bg(V_n,T)\equiv(\partial V_{\bg,\eq}/\partial T)_{\mathrm{bg}}$ 로 두면 background reversible heat 후보는
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\bg}=s_\bg^{\conv}\,T\,h_\bg(V_n,T)\,\dot Q_\bg^{\prog}.
+\label{eq:ch4_qrev_bg}
+\end{equation}
+전하 보존식 전미분의 $\dot Q_\bg^{\mathrm{tot}}=(\partial Q_\bg/\partial V_n)dV_n/dt+(\partial Q_\bg/\partial T)dT/dt$ 는
+\begin{equation}
+\dot Q_\bg^{\mathrm{tot}}=\dot Q_\bg^{\prog}+\dot Q_\bg^{\coord},\qquad
+\dot Q_\bg^{\coord}=\frac{\partial Q_\bg}{\partial T}\frac{dT}{dt},
+\label{eq:ch4_qbg_split}
+\end{equation}
+로 분리한다($\dot Q_\bg^{\coord}$ = capacity-coordinate shift, reaction heat 로 직접 안 넣음). 등온 정전류서
+실용적으로
+\begin{equation}
+\dot Q_\bg^{\prog}\approx|I|-\sum_jQ_{j,\tot}\frac{d\xi_j}{dt}
+\label{eq:ch4_qbg_iso}
+\end{equation}
+(비등온서 그대로 사용 금지).
+
+% ====================================================================
+\section{Transport 및 물리적 병목 발열}\label{sec:ch4_transport}
+% ====================================================================
+강구동 제한을 arbitrary cap 이 아니라 물리적 병목으로 두는 원칙을 발열에도 유지한다. 선형 near-equilibrium:
+\begin{equation}
+\dot{\mathcal Q}_{\transp,n}\approx I^2R_{\transp,n},
+\label{eq:ch4_transport_i2r}
+\end{equation}
+고율/nonlinear transport 에서는 flux--force 형이 더 기본:
+\begin{equation}
+\dot{\mathcal Q}_{\transp,n}=\sum_\ell J_\ell X_\ell,
+\label{eq:ch4_transport_ff}
+\end{equation}
+$J_\ell$=물질 flux, $X_\ell$=chemical-potential/electrolyte-potential/concentration gradient. Chapter 1 의
+$R_n$ 은 apparent voltage-axis coefficient 이므로 $I^2R$ heat resistance 로 직접 쓰지 않는다:
+\begin{equation}
+R_n\ne R_{n,\eff},\qquad R_n\ne R_{\ct,n}.
+\label{eq:ch4_Rsep}
+\end{equation}
+$R_{n,\eff}$ 사용은 independent physical/calorimetric constraint 가 있을 때만 허용한다.
+
+% ====================================================================
+\section{휴지 구간 relaxation heat}\label{sec:ch4_rest}
+% ====================================================================
+휴지 구간 $I=0,\ dq/dt=0$ 이지만 내부 state 는 relax 한다:
+$d\xi_j/dt=r_j^+(1-\xi_j)-r_j^-\xi_j\ne0$. 외부 전류 ohmic heat 는 사라지나 내부 자유에너지 감소와 entropy
+production 은 남을 수 있다. 정량화엔 $\xi_j$ 의 coarse-grained 자유에너지/transition network 가 필요하므로 분리:
+\begin{equation}
+\dot{\mathcal Q}_{\xi,\rlx}=\dot{\mathcal Q}_{\rev,\xi}^{\rlx}+\dot{\mathcal Q}_{\irr,\xi}^{\rlx}.
+\label{eq:ch4_rest_split}
+\end{equation}
+가역 후보는 transition entropy basis(식~\eqref{eq:ch4_rev_xi}), 비가역 후보는 transition entropy
+production(식~\eqref{eq:ch4_tr_entropy}, 즉 $n_j^{\eff}I_j\eta_j$)과 연결된다. 휴지 중 $I_j=Q_{j,\tot}d\xi_j/dt\ne0$
+(내부 전류)이므로 식~\eqref{eq:ch4_micro_macro} 가 그대로 적용된다 — 외부 $I=0$ 라도 내부 transition flux 의
+dissipation 은 존재한다. 독립 calorimetry/rest temperature response 없이 가역/비가역을 임의 분리하지 않는다.
+
+% ====================================================================
+\section{전기--열 coupling 계산 순서}\label{sec:ch4_order}
+% ====================================================================
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 외부 전류로 $q(t)$ 갱신: $dq/dt=|I|/Q_\cell$.
+\item 현재 $q,T,\{\xi_j\}$ 에서 전하 보존식으로 $V_n$ root-find.
+\item $V_n,T$ 에서 $\xi_{\eq,j}$, $\mathcal A_j$, $r_j^\pm$ 또는 $k_j^{\mathrm{phys}}$, 그리고 $\eta_j=V_n-V_{\eq,j}(\xi_j)$ 계산.
+\item $d\xi_j/dt$, $I_j$, $\dot n_j$ 계산.
+\item 비가역 열: $J\mathcal A$ / transition entropy production($n_j^{\eff}I_j\eta_j$) / transport flux--force.
+\item 가역 열: OCV coefficient 또는 transition entropy basis 중 택일(식~\eqref{eq:ch4_consistency} 제약).
+\item background heat 사용 시 $\dot Q_\bg^{\prog}$ 와 $\dot Q_\bg^{\coord}$ 분리.
+\item 내부 열원 $\dot{\mathcal Q}_{\src,n}$(식~\eqref{eq:ch4_decomp}) 계산.
+\item 열수지식(식~\eqref{eq:ch4_balance})으로 $T(t)$ 갱신.
+\item 갱신 $T(t)$ 는 $Q_\bg,U_j,w_j,r_j^\pm,k_j^{\mathrm{phys}},R_n,\rho_j(g;T)$ 에 되먹임(Ch2 순환).
+\end{enumerate}
+
+% ====================================================================
+\section{식별성 및 필요한 실험 제약}\label{sec:ch4_ident}
+% ====================================================================
+\begin{equation}
+\eta_n\leftrightarrow\mathcal A_n\leftrightarrow r_j^\pm\leftrightarrow k_{j,\lim}\leftrightarrow R_{n,\eff}\leftrightarrow\Delta S_j\leftrightarrow h_\bg\leftrightarrow\rho_j(g;T).
+\label{eq:ch4_ident}
+\end{equation}
+\begin{longtable}{p{0.36\textwidth} p{0.52\textwidth}}
+\toprule 실험/자료 & 제한 가능한 항 \\ \midrule \endhead
+저율 OCV 온도 series & $(\partial V_{n,\OCV}/\partial T)_q$, $\Delta S_j$, $h_\bg$ \\
+pulse/current interrupt & immediate polarization, 일부 $R_n$, 일부 $R_{\ct}$ \\
+EIS/small-signal & $R_{\ct}$, transport time constant, film \\
+calorimetry & $\dot{\mathcal Q}_{\irr}$, $\dot{\mathcal Q}_{\rev}$, heat scale \\
+rest relaxation 온도 응답 & $\dot{\mathcal Q}_{\xi,\rlx}$ 후보 검증 \\
+rate series & rate limitation, $r_j^\pm$, $k_{j,\lim}$, $\rho_j(g;T)$ \\
+\bottomrule
+\end{longtable}
+독립 자료 없이 동시 자유 결정 금지: (1) OCV coefficient vs transition entropy basis, (2) $R_n,R_{\ct},R_{n,\eff}$,
+(3) $r_j^\pm,k_{j,\lim},\rho_j(g;T)$, (4) $\Delta S_j,h_\bg$, rest relaxation heat, (5) transport heat vs
+hysteresis-like voltage loss.
+
+\begin{mdframed}
+\textbf{실무 팁(본문 물리식 아님).} 초기 탐색서 heat residual / effective heat gain / capped heat correction /
+apparent $I^2R$ 가 피팅을 안정화할 수 있으나 물리 모델 기본식이 아니다. 논문용 해석에서는 transport /
+charge-transfer / entropy coefficient / relaxation entropy production / hysteresis loss 로 분해하거나 단순
+empirical residual 로 명시하고 주 결론에서 제외한다.
+\end{mdframed}
+
+% ====================================================================
+\section{Chapter 5 $\cdot$ Chapter 6 으로 전달되는 항목}\label{sec:ch4_transmit}
+% ====================================================================
+Chapter 5: 충전 branch $\dot{\mathcal Q}_{\rev}$ 부호 convention; branch-dependent entropy coefficient;
+hysteresis heat vs polarization heat 분리; charge/discharge asymmetric affinity/rate; full-cell voltage gap
+heat 해석. Chapter 6: $d\xi_j/dt$ 기반 heat-rate 계산; stiff kinetics+thermal ODE 결합 수치 해법; 직접
+$g$-분포 적분서 heat-rate 동시 계산; calorimetry 부재 시 발열 항을 피팅 않고 forward prediction 으로만 두는 제한.
+
+% ====================================================================
+\section{Chapter 4 자체 검수표}\label{sec:ch4_selfcheck}
+% ====================================================================
+{\small
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+Ch1--3 를 수정 없이 적층; 전하 보존식이 발열로 대체되지 않음 & 통과(\S\ref{sec:ch4_inherit}) \\
+발열 항을 fitting residual 아닌 물리적 heat source term 으로 정의 & 통과(\S\ref{sec:ch4_decomp}) \\
+비가역 열을 flux--force / entropy production 에서 출발 & 통과(식~\eqref{eq:ch4_JA}) \\
+$I\eta$ 를 부호 convention 종속 magnitude 표현과 구분 & 통과 \\
+transition entropy production 식에 $Q_{j,\tot}/F$ 포함, $\ge0$ 보장 & 통과(식~\eqref{eq:ch4_tr_entropy}) \\
+★ 미시 transition entropy production $=$ 거시 $n_j^{\eff}I_j\eta_j$ 정합(무비약) & 통과(verifybox,식~\eqref{eq:ch4_micro_macro}) \\
+★ ideal width 서 $\to I_j\eta_j$(Ch2), 평형서 $I_j\to0$ 로 log 발산 회피 & 통과(boundbox) \\
+Ch2 의 $I_j\eta_j$ 가 $n^{\eff}{=}1$ 특수형이고 일반형 $n^{\eff}I_j\eta_j$ 임을 명시(트렁크 일관); detailed-balance 전제 & 통과(verifybox) \\
+가역 열을 OCV coefficient 또는 transition entropy basis 에서 출발 & 통과(\S\ref{sec:ch4_revOCV},\ref{sec:ch4_revxi}) \\
+$V_{n,\app}$ 온도 미분을 가역 열로 직접 쓰지 않음 & 통과(식~\eqref{eq:ch4_forbid}) \\
+OCV 방식과 entropy basis double counting 정합 제약 & 통과(식~\eqref{eq:ch4_consistency}) \\
+$Q_\bg$ progress 와 coordinate shift 구분; 등온 근사 한정 & 통과(식~\eqref{eq:ch4_qbg_split}) \\
+$R_n,R_{\ct},R_{n,\eff}$ 구분; transport heat 를 flux--force/제한된 $I^2R$ 로만 & 통과(식~\eqref{eq:ch4_Rsep}) \\
+휴지 relaxation heat 를 확정항 아닌 후보(가역/비가역 분리)로; 내부 $I_j\ne0$ & 통과(\S\ref{sec:ch4_rest}) \\
+전기--열 coupling 계산 순서 + 온도 되먹임 명시 & 통과(\S\ref{sec:ch4_order}) \\
+피팅 편의 heat term 을 기본식에 넣지 않음(실무 팁 격하) & 통과 \\
+Ch5/Ch6 이월 항목 분리 & 통과(\S\ref{sec:ch4_transmit}) \\
+\bottomrule
+\end{longtable}
+}
+
+% ====================================================================
+\section{Chapter 4 의 결론}\label{sec:ch4_concl}
+% ====================================================================
+첫째, 비가역 열은 임의 heat correction 이 아니라 $T\dot S_{\irr}=J\mathcal A\ge0$, 또는 transition-level
+entropy production 에서 출발한다.
+
+둘째, \textbf{미시 transition entropy production $\dot{\mathcal Q}_{\irr,j}^{\tr}=(Q_{j,\tot}/F)RT(\mathcal J_j^+-\mathcal J_j^-)\ln(\mathcal J_j^+/\mathcal J_j^-)$
+은 거시 $n_j^{\eff}I_j\eta_j$ 로 정확히 환원}된다(식~\eqref{eq:ch4_micro_macro}). 이로써 Ch2(거시 flux$\times$
+overpotential)$\cdot$Ch3(미시 forward/backward rate, $n_j^{\eff}$)$\cdot$Ch4(entropy production)가 한 표현으로
+닫히고, 평형서 $I_j\to0$ 로 발산 없이 0 이 된다.
+
+셋째, 가역 열은 평형 전위 온도 계수 또는 transition entropy basis 에서 출발하며 두 방식을 독립항으로 동시에
+자유롭게 더하면 double counting 이다(정합 제약 식~\eqref{eq:ch4_consistency}).
+
+넷째, Chapter 1 의 $R_n$ 은 apparent voltage-axis coefficient 이므로 heat-generation resistance 가 아니다.
+$I^2R$ 형 heat 는 small-signal/독립 실험으로 제한된 $R_{n,\eff}$ 에 대해서만.
+
+다섯째, 강구동 rate limitation 과 dissipative heat 는 soft cap/empirical saturation 이 아니라 transport/
+diffusion/site/finite-current/current-conservation 병목으로 표현한다.
+
+여섯째, 본 장의 $\dot{\mathcal Q}_{\irr},\dot{\mathcal Q}_{\rev},\dot{\mathcal Q}_{\rlx},\dot{\mathcal Q}_{\transp}$
+는 Chapter 5 의 charge/discharge branch 및 hysteresis heat 해석으로 전달된다.
+
+\begin{thebibliography}{99}
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962).
+\bibitem{onsager1931} L. Onsager, ``Reciprocal relations in irreversible processes,'' \emph{Phys. Rev.} \textbf{37}, 405 (1931).
+\bibitem{prigogine1967} I. Prigogine, \emph{Introduction to Thermodynamics of Irreversible Processes}, 3rd ed., Interscience (1967).
+\bibitem{schnakenberg1976} J. Schnakenberg, ``Network theory of microscopic and macroscopic behavior of master equation systems,'' \emph{Rev. Mod. Phys.} \textbf{48}, 571 (1976).
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A general energy balance for battery systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985).
+\bibitem{rao1997} L. Rao, J. Newman, ``Heat-generation rate and general energy balance for insertion battery systems,'' \emph{J. Electrochem. Soc.} \textbf{144}, 2697 (1997).
+\bibitem{thomasnewman2003} K. E. Thomas, J. Newman, ``Thermal modeling of porous insertion electrodes,'' \emph{J. Electrochem. Soc.} \textbf{150}, A176 (2003).
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
+\end{thebibliography}
+
+\end{document}
