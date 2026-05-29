@@ -12,7 +12,7 @@
 \usepackage{kotex}
 \usepackage{amsmath,amssymb,mathtools,bm}
 \usepackage{booktabs,longtable,array}
-\usepackage{enumitem}\usepackage{hyperref}\usepackage{mdframed}
+\usepackage{enumitem}\usepackage{hyperref}\usepackage{amsthm}\usepackage{mdframed}
 \usepackage{fancyhdr}\usepackage{lastpage}\usepackage{setspace}
 \setstretch{1.12}\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
@@ -28,8 +28,9 @@
 \newcommand{\eff}{\mathrm{eff}}\newcommand{\eq}{\mathrm{eq}}\newcommand{\app}{\mathrm{app}}
 \newcommand{\drive}{\mathrm{drive}}\newcommand{\tot}{\mathrm{tot}}\newcommand{\bg}{\mathrm{bg}}
 \newcommand{\cell}{\mathrm{cell}}\newcommand{\OCV}{\mathrm{OCV}}\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\irr}{\mathrm{irr}}\newcommand{\rev}{\mathrm{rev}}
 \newcommand{\hys}{\mathrm{hys}}\newcommand{\pol}{\mathrm{pol}}\newcommand{\AL}[1]{\textsf{[AL-#1]}}
-\newcommand{\state}{\mathrm{state}}\newcommand{\tar}{\mathrm{tar}}\newcommand{\ss}{\mathrm{ss}}
+\newcommand{\state}{\mathrm{state}}\newcommand{\tar}{\mathrm{tar}}% \ss 는 LaTeX 내장(ß)과 충돌 → \mathrm{ss} 직접 사용
 
 \title{\textbf{흑연 음극 ICA 이론 — 합류 Chapter 5--6 (G3)}\\[0.3em]
 \large 충방전$\cdot$히스테리시스(Level B branch, Ch5) $\cdot$ 수치해법과 보유 데이터 검증(Ch6)}
@@ -258,7 +259,7 @@ Plan A = F1--F5 검증 가속(dossier caveat 반영): 통과. GITT 를 $k_j$ 직
 \toprule 장 & 역할(의도 고리) & keystone/검증 정합 \\ \midrule \endhead
 Ch1(G1) & 열역학 무대+Level A mobility+spectrum tail+피팅식 & χ=Level A; N-2 \texttt{eq:fiteq} \\
 Ch2(G2) & 발열 연결 & Level A→가역=thermo/비가역=flux \\
-Ch3(G2) & ★Level B($\chi=\beta$), detailed balance & ★R3-1: $\mathcal A^\mathrm{th}=RT(V-U)/w_j$; $\xi_\ss\to\xi_\eq$ 극한 일치 \\
+Ch3(G2) & ★Level B($\chi=\beta$), detailed balance & ★R3-1: $\mathcal A^\mathrm{th}=RT(V-U)/w_j$; $\xi_{\mathrm{ss}}\to\xi_\eq$ 극한 일치 \\
 Ch4(G2) & entropy production 발열 & Schnakenberg $(\mathcal J^+-\mathcal J^-)\ln(\cdot)\ge0$ \\
 Ch5(G3) & 충방전·hysteresis(Level B branch) & branch-local db 가 $\mathcal A^{b,\mathrm{th}}$ 로 정합; 방전 극한서 G1/G2 환원 \\
 Ch6(G3) & 수치해법+보유 데이터 검증 & Plan B reference + Plan A(dossier caveat); $\chi$ vs $\eta_\ct$ 분리 \\
