@@ -176,6 +176,15 @@ $\Pi_j^0=1$ 은 intrinsic barrier 들이 $\Delta G_j^{+\ddagger}-\Delta G_j^{-\d
 $1/r_{j,\mathrm{obs}}^+=1/r_j^++1/r_{j,\mathrm{transport}}^++1/r_{j,\mathrm{site}}^++1/r_{j,\mathrm{current}}^+$.
 \textbf{전류 보존}: 외부 전류가 유한하므로 $\sum_j Q_{j,\tot}\,d\xi_j/dt$ 합이 $|I|$ 와 charge
 balance 를 동시에 만족 — 강구동 saturation 은 임의 cap 이 아니라 보존법칙에서 나온다.
+\begin{boundbox}
+\textbf{병목과 detailed balance 의 상호작용(심층 재검토 P-MED-4).} 병목이 forward 와 backward 에
+\emph{비대칭}으로 들어가면(예: 위처럼 $r^+$ 에만 transport/current 항) 비 $r^+/r^-$ 가 바뀌어
+detailed balance(식~\eqref{eq:ch3_db})/평형 target 과 충돌할 수 있다. 따라서 제한항 도입 시 그것이
+\emph{(a) mobility 전체}($k_j$, Level A — 비 불변, $\xi_\eq$ 보존)에 작용하는지, \emph{(b) 특정 방향
+flux}(Level B — 비 변경, $\xi_\ss$ 이동)에 작용하는지 \textbf{반드시 명시}한다. 평형 부근(저구동)에서는
+미세 가역성(microscopic reversibility)상 병목도 대칭이어야 detailed balance 가 보존되며, 비대칭 병목은
+오직 \emph{강구동 비평형}에서만 물리적으로 정당하다(그 영역은 어차피 $\xi_\ss\ne\xi_\eq$).
+\end{boundbox}
 
 \section{★ Level A $\leftrightarrow$ Level B 극한 일치 (roadmap R2 — 유일 hard 검증점)}\label{sec:reconcile}
 \begin{keybox}
@@ -189,13 +198,18 @@ Ch3 의 Level B 는 식~\eqref{eq:ch3_fb} 로, 그 \emph{정상 target} 은
 식~\eqref{eq:ch3_fb} 를 $\xi_{j,\mathrm{ss}}$ 둘레로 정리하면 항등적으로
 $\dot\xi_j=(r_j^++r_j^-)(\xi_{j,\mathrm{ss}}-\xi_j)$ 이다(대수 1줄). 따라서:
 \begin{itemize}[leftmargin=1.4em]
-\item \textbf{일치(극한):} forward/backward 가 detailed balance(식~\eqref{eq:ch3_db})를 만족하면
-  $\xi_{j,\mathrm{ss}}=\xi_{\eq,j}$ 이고, $k_j=r_j^++r_j^-$ 로 두면 Level B 가 \emph{정확히} Level A
-  로 환원된다. 이때 $\chi_j$(Ch1 mobility 가속 계수)와 $\beta_j$(Ch3 transfer coeff.)는 동일물.
-  $\Rightarrow$ \textbf{P3-6 무충돌 성립.}
-\item \textbf{차이(novel):} 전류/과전압이 forward/backward 비를 detailed-balance 값에서 벗어나게 하면
-  $\xi_{j,\mathrm{ss}}(\mathcal A_j)\ne\xi_{\eq,j}$ — 정상 target 이 \emph{이동}한다. 이는 Level A 가
-  주지 못하는 신호(peak 위치의 전류 의존 shift)다. Level A 는 그 특수 극한($\xi_{\mathrm{ss}}\to\xi_\eq$).
+\item \textbf{일치 조건(극한, 심층 재검토로 명확화):} 식~\eqref{eq:ch3_ratioB} 에서
+  $\xi_{j,\mathrm{ss}}/(1-\xi_{j,\mathrm{ss}})=r_j^+/r_j^-=\Pi_j^0\exp[\mathcal A_j^{\mathrm{th}}/RT]$ 이고,
+  thermo target 은 $\xi_{\eq,j}/(1-\xi_{\eq,j})=\exp[(V_n-U_j)/w_j]$ 이다. 따라서
+  $\xi_{j,\mathrm{ss}}=\xi_{\eq,j}$ 는 \emph{자동}이 아니라 \textbf{두 조건}을 요구한다: (i) $\Pi_j^0=1$
+  (R3-1, intrinsic barrier 정합), (ii) 비-구동 $\mathcal A_j^{\mathrm{th}}=RT(V_n-U_j)/w_j$, 즉
+  \textbf{$V_{n,\drive}=V_n$}(추가 kinetic 과전압 없음). 이때 $k_j=r_j^++r_j^-$ 로 Level B 가 \emph{정확히}
+  Level A 로 환원되고 $\chi_j=\beta_j$ 동일물 $\Rightarrow$ \textbf{P3-6 무충돌}.
+\item \textbf{차이(novel):} 전류/과전압으로 $V_{n,\drive}=V_n+\eta_{\drive}\ne V_n$ 이 되면 비가
+  detailed-balance 값을 벗어나 $\xi_{j,\mathrm{ss}}\ne\xi_{\eq,j}$ — 정상 target 이 $\eta_{\drive}$ 만큼
+  \emph{이동}한다(peak 위치의 전류 의존 shift). 즉 \textbf{Level A$\to$B 차이의 크기 = kinetic 과전압
+  $\eta_{\drive}$}: $\eta_{\drive}\to0$ 극한이 Level A 다. (Ch1 은 $V_{n,\drive}=V_n$ 기본이므로 보수적
+  Level A; $V_{n,\drive}\approx V_{n,\app}$ reduced model 에서 shift 가 켜진다.)
 \end{itemize}
 \textbf{결론}: Ch1(Level A)은 ``전위가 속도만 키운다''는 \emph{보수적 1차} 모델, Ch3(Level B)는
 ``전위가 target 도 이동시킨다''는 \emph{확장}이며, 둘은 detailed-balance 극한에서 연속적으로 일치한다.
