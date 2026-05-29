@@ -1,0 +1,405 @@
+% ====================================================================
+% graphite_ica_consolidated_ch6.tex — 합류 Chapter 6 (수치 해법·검증, v2)
+%   트렁크 = (B) 전하보존 6장 Ch6 전문 밀도. Ch1 v2 ~ Ch5 위 적층(검증 계층).
+%   합류 정합: Plan B=g-grid reference, Plan A=Fredholm/Padé(M1-M5·ε),
+%   피팅식 N-2 S1-S6 수치화, falsification N1-N4, 도입 관찰로의 loop 폐합.
+% Date: 2026-05-29 (v2)  Author: Project_Anode_Fit (Claude 측)
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail — 합류 Chapter 6 (수치·검증, v2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA tail — 합류 Chapter 6 (수치·검증, v2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{flagbox}{FLAGGED (미확정)}
+\newtheorem*{linkbox}{Ch1--5 전달식}
+\newtheorem*{loopbox}{도입 관찰로의 폐합}
+
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\cb}{\mathrm{cb}}
+\newcommand{\dyn}{\mathrm{dyn}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 흑연 음극 ICA tail 이론 — 합류 Chapter 6}\\[0.4em]
+\large 수치 해법과 물리 제약 기반 검증: root-constrained DAE $\cdot$\\
+$g$-grid reference(Plan B) $\cdot$ Fredholm/Padé(Plan A) $\cdot$ falsification pipeline}
+\author{Project\_Anode\_Fit (Claude 측)}
+\date{2026-05-29 (v2)}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서 — 인과 사슬의 닫힘: 관찰로 돌아가기}
+\addcontentsline{toc}{section}{서 — 인과 사슬의 닫힘}
+% ====================================================================
+Chapter 1 은 하나의 관찰(``저온$\cdot$고율서 ICA peak 꼬리가 길어져 겹친다'')에서 출발해, 열역학 무대($V_n$,
+$\xi_{\eq}$) 위에서 동역학(진행률 완화 + relaxation-length spectrum)이 꼬리를 만든다는 인과 사슬과 피팅
+논리식을 세웠다. Chapter 2--5 는 그 위에 발열$\cdot$반응속도론$\cdot$entropy production$\cdot$히스테리시스를
+적층했다. \textbf{Chapter 6 은 이 모델을 실제로 \emph{풀고}, 보유 데이터로 \emph{제한}하고, 도입 관찰을
+\emph{반증 가능하게 검증}하는 solution\,$\&$\,validation layer 다.} 새 물리를 추가하지 않는다.
+
+\textbf{Chapter 6 의 한 문장 요지.} \emph{$V_n$ 은 입력 전압이 아니라 전하 보존식의 root 이고, 모델은
+root-constrained DAE 로 직접 풀린다; 장벽 분포 적분의 기준 해법은 direct $g$-grid(Plan B)이며 모든 축약
+(Fredholm/Padé=Plan A 포함)은 reference 대비 오차 $\varepsilon$ 로 검증된 경우에만 쓴다; STO--OCV$\to$GITT$\to$
+C-rate 를 순차로 써서 열역학 골격$\to$분극$\to$kinetic lag/tail 을 단계적으로 제한한다.} 1차 범위는
+\textbf{음극 방전$\cdot$등온}이다.
+
+\begin{groundingbox}
+\textbf{지배 표준(GS) 계승.} (GS-1\,$\sim$\,4) Ch1--5 동일. 수치해법/축약법은 (1) 지배식 보존 법칙 비훼손,
+(2) 극한 거동 보존, (3) direct 수치해 대비 검증 가능, (4) 수학적/문헌적 근거 또는 명시적 오차 검증 절차를
+가져야 한다. fitting convenience(cap/clip/arbitrary transform)를 모델 정의로 쓰지 않는다.
+\end{groundingbox}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Chapter 1--5 에서 가져오는 고정 기준}\label{sec:ch6_inherit}
+% ====================================================================
+\begin{linkbox}
+\textbf{(L1) 전하 보존식(등온).} $Q_\cell q=Q_\bg(V_n)+\sum_j Q_{j,\tot}\xi_j$ — 기본 대수 제약.\\
+\textbf{(L2) 동역학.} $\dfrac{d\xi_j}{dt}=k_j^{\mathrm{phys}}(V_n,q,T,I)[\xi_{\eq,j}(V_n)-\xi_j]$ 또는
+$r_j^+(1-\xi_j)-r_j^-\xi_j$; 어느 형태든 같은 (L1)을 만족.\\
+\textbf{(L3) 피팅 논리식(N-2).} $\dfrac{dQ}{dV_n}=\dfrac{C_\bg(V_n,T)}{1-Q_p\,d\Theta_{\mathrm{tail}}/dQ}$,
+평가 순서 S1--S6(charge-balance root $\to$ $\xi_{\eq}$ $\to$ $k_j$ $\to$ $L(G)\to A_L$ $\to$ kernel
+integral $\to dQ/dV_n$).\\
+\textbf{(L4) closure 2-tier.} \emph{Plan B}=direct $g$-grid(항상 보존되는 core/validator);
+\emph{Plan A}=Fredholm ratio closed-form(M1--M5 통과 시 가속 후보).\\
+\textbf{(L5) falsification.} N1 tail Arrhenius slope vs $E_D$, N2 potential-dependent spectrum shift,
+N3 저온 lineshape(homogeneous vs disorder), N4 $\rho_G$ forward-only(역산 금지).
+\end{linkbox}
+Chapter 1--5 본문 기본식은 수정하지 않는다(P3-6). 본 장은 이들을 수치적으로 풀 수 있는 형태로 배치한다.
+
+% ====================================================================
+\section{보유 데이터와 식별 가능한 항목}\label{sec:ch6_data}
+% ====================================================================
+1차 검증 기준: 사용자 보유 \textbf{음극 반쪽셀 GITT, STO--OCV 테이블, 0.1/0.2/0.5/1.0\,C rate series}. 이
+데이터는 모델을 모두 결정하지 않으므로 제한 가능/불가 항을 먼저 분리한다.
+\begin{longtable}{p{0.30\textwidth} p{0.32\textwidth} p{0.30\textwidth}}
+\toprule 데이터 & 우선 제한 가능 & 직접 확정 곤란 \\ \midrule \endhead
+반쪽셀 STO--OCV & $V_{n,\OCV}(q),U_j,w_j,Q_{j,\tot},Q_\bg$ 열역학 골격 & $k_j,\rho_j(g)$, transport limitation \\
+반쪽셀 GITT & instantaneous polarization, relaxation time signature, OCV consistency & $k_j$ 단독값, solid diffusion vs phase relaxation 완전 분리 \\
+0.1/0.2\,C & 저율 quasi-equilibrium proxy, peak 위치/폭 & strict thermodynamic equilibrium \\
+0.5/1.0\,C & kinetic lag, broadening, transport stress test & pure frozen kinetic limit \\
+온도별 수명/full-cell & 정성적 열화 trend & $U_j(T),w_j(T),k_j(T),\Delta S_j$ 정량 분리 \\
+\bottomrule
+\end{longtable}
+\begin{boundbox}
+\textbf{데이터 제약.} 단일 온도 자료로 $U_j(T),w_j(T),k_j(T),\nu_j(T)$ 온도 의존을 분리하지 않는다.
+calorimetry 없이 Ch2/Ch4 발열 파라미터를 피팅하지 않는다 — 발열 항은 \textbf{forward prediction}(미시=거시
+$n^{\eff}I_j\eta_j$ 로 예측만)으로 두고 calorimetry 확보 후 검증한다.
+\end{boundbox}
+\begin{boundbox}
+\textbf{등온 가정 유효 범위.} 등온 검증은 온도 상승이 충분히 작거나 외부 온도 제어가 강할 때만 유효. 고율
+자기발열로 $T(t)$ 가 유의하게 변하면 $U_j(T),w_j(T),k_j(T),R_n(T),k_{j,\lim}(T),\rho_j(g;T)$ 가 함께 변하므로
+등온 C-rate 자료만으로 kinetic parameter 를 확정하지 않고 Ch2/Ch4 thermal coupling 으로 돌아간다.
+\end{boundbox}
+
+% ====================================================================
+\section{전하 보존식 root: dynamic root vs OCV root}\label{sec:ch6_root}
+% ====================================================================
+\subsection{동역학 상태 root}
+동역학 계산 중 $q$ 와 $\bm\xi=(\xi_1,\dots,\xi_{N_p})$ 가 주어진 상태에서 $V_n$ 을 푼다:
+\begin{equation}
+F_{\cb}^{\dyn}(V_n;q,\bm\xi)=Q_\bg(V_n)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j-Q_\cell q=0.
+\label{eq:ch6_dyn_root}
+\end{equation}
+$\xi_j$ 는 root finding 에서 독립 입력이므로
+\begin{equation}
+\frac{\partial F_{\cb}^{\dyn}}{\partial V_n}=\frac{\partial Q_\bg}{\partial V_n}.
+\label{eq:ch6_dyn_deriv}
+\end{equation}
+Chapter 1 단조성 floor $\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ 가 유지되면 해 존재 범위서 root 는 유일하다.
+
+\subsection{평형 OCV root}
+평형/준평형서 $\xi_j=\xi_{\eq,j}(V_n)$ 이므로 root 가 달라진다:
+\begin{equation}
+F_{\cb}^{\OCV}(V_n;q)=Q_\bg(V_n)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_{\eq,j}(V_n)-Q_\cell q=0,
+\label{eq:ch6_ocv_root}
+\end{equation}
+\begin{equation}
+\frac{\partial F_{\cb}^{\OCV}}{\partial V_n}=\frac{\partial Q_\bg}{\partial V_n}+\sum_{j=1}^{N_p}Q_{j,\tot}\frac{\partial\xi_{\eq,j}}{\partial V_n}.
+\label{eq:ch6_ocv_deriv}
+\end{equation}
+\textbf{두 root 의 derivative 가 다르므로(식~\eqref{eq:ch6_dyn_deriv} vs \eqref{eq:ch6_ocv_deriv}) 같은
+Jacobian 으로 처리하면 안 된다.} 식~\eqref{eq:ch6_ocv_deriv} 의 분모는 Chapter 2 의 평형 chemical
+capacitance $D_q$ 와 동일하다(온도계수 유도와 정합).
+
+\subsection{Root-finding 알고리즘}
+\begin{enumerate}[label=R\arabic*),leftmargin=2.2em]
+\item 해 존재 조건 검사: $Q_\cell q-\sum_jQ_{j,\tot}\xi_j\in\mathrm{Range}[Q_\bg(\cdot)]$.
+\item 직전 스텝 $V_n$ 또는 $V_{n,\OCV}(q)$ 를 초기값으로.
+\item Newton 사용, 실패 시 bracketed/Brent 로 fallback.
+\item root 실패를 임의 residual penalty 로 흡수하지 않는다 — 물리적으로 해 없는 파라미터 조합은 reject.
+\end{enumerate}
+
+% ====================================================================
+\section{Root-constrained ODE / index-1 DAE 시간 적분}\label{sec:ch6_dae}
+% ====================================================================
+정전류 음극 방전서 $dq/dt=|I|/Q_\cell$. 상태변수는 $\xi_j$, $V_n$ 은 전하 보존식이 정하는 algebraic
+variable:
+\begin{align}
+\frac{d\xi_j}{dt}&=k_j^{\mathrm{phys}}(V_n,q,|I|)\,[\xi_{\eq,j}(V_n)-\xi_j],\label{eq:ch6_ode}\\
+0&=F_{\cb}^{\dyn}(V_n;q,\bm\xi).\label{eq:ch6_alg}
+\end{align}
+index-1 DAE 이며, $q(t)$ 가 명시적인 정전류서 root-constrained ODE 로 구현한다. 계산 순서:
+\begin{enumerate}[label=T\arabic*),leftmargin=2.2em]
+\item 현재 $q(t),\xi_j(t)$ 에서 식~\eqref{eq:ch6_dyn_root} 로 $V_n(t)$ root-find.
+\item $V_n(t)$ 에서 $\xi_{\eq,j},k_j^{\mathrm{act}},k_{j,\lim},k_j^{\mathrm{phys}}$ 또는 $r_j^\pm$ 계산.
+\item 식~\eqref{eq:ch6_ode}(또는 forward/backward)로 $d\xi_j/dt$ 계산.
+\item implicit solver(BDF/Radau)로 다음 시간 진행.
+\item 휴지서 $q$ 고정, $\xi_j$ relaxation 과 전하 보존식 root 를 함께 갱신(Ch2/Ch5 rest).
+\end{enumerate}
+\begin{boundbox}
+\textbf{stiff system 처리(cap 아님).} 강구동서 $k_j^{\mathrm{act}}$ 또는 $r_j^+$ 가 매우 커질 수 있다. 이를
+arbitrary cap 으로 자르지 않고 stiff system 으로 취급(BDF/Radau)하며, 실제 rate 제한은 $k_{j,\lim}$,
+transport, finite-current, site availability 같은 물리적 병목으로 명시한다(Ch1/Ch3 정합).
+\end{boundbox}
+
+% ====================================================================
+\section{장벽 분포 적분의 reference solver (Plan B)}\label{sec:ch6_grid}
+% ====================================================================
+Chapter 1 분포 확장의 domain 별 진행률:
+\begin{equation}
+\frac{d\xi_j(g,t)}{dt}=k_j^{\mathrm{phys}}(g,V_n,q,|I|)\,[\xi_{\eq,j}(V_n)-\xi_j(g,t)],\qquad
+\xi_j(t)=\int_0^\infty\rho_j(g)\xi_j(g,t)\,dg.
+\label{eq:ch6_dist}
+\end{equation}
+\textbf{본 장 reference solver(= Chapter 1 의 Plan B)는 direct $g$-grid 적분}:
+\begin{equation}
+\xi_j(t)\approx\sum_{m=1}^{N_g}w_m^{(g)}\rho_j(g_m)\xi_j(g_m,t),\qquad \sum_m w_m^{(g)}\rho_j(g_m)\to1.
+\label{eq:ch6_grid}
+\end{equation}
+각 $g_m$ mode 가 식~\eqref{eq:ch6_dist} 의 ODE 를 따르고, charge balance(식~\eqref{eq:ch6_dyn_root})로
+$V_n$ 이 매 스텝 결합된다. 빠르지 않을 수 있으나 \textbf{주어진 $\rho_j$ 와 완화 closure 하에서 numerically
+exact reference}(discretization 오차 한정)이며, 모든 축약 해법은 이 식에 대해 검증한다. 이는 Chapter 1
+self-consistent Volterra(식: $\Theta=\Theta_{\mathrm{init}}+\int\mathcal K\,\Theta_{\eq}\,dq'$)의 직접 수치 평가다.
+
+% ====================================================================
+\section{분포 적분 축약: 허용되는 수학적 해법}\label{sec:ch6_reduction}
+% ====================================================================
+직접 격자는 비용이 크므로 축약이 필요할 수 있으나, 물리 의미를 훼손하지 않고 reference 와 비교돼야 한다.
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item \textbf{Adaptive quadrature.} $\rho_j(g)$ 가 매끄럽고 support 제한/tail 빠른 감소면 모델을 바꾸지 않고
+  적분 정확도를 확보하는 수치 적분법이므로 허용.
+\item \textbf{Moment matching.} 분포 폭이 작고 kernel 이 매끄러우면 $k_j(g)$/memory kernel 을 저차 moment 로
+  근사. 단 moment closure 가 tail-dominated kinetics 를 놓치지 않는지 grid 해와 비교(Chapter 1 의 stretched
+  tail 은 tail-dominated 라 주의).
+\item \textbf{Prony/rational approximation.} 연속 relaxation spectrum 을 유한 exponential mode 로:
+\begin{equation}
+K_j(t)=\int_0^\infty\rho_j(g)k_j(g)e^{-k_j(g)t}\,dg\approx\sum_{\ell=1}^{N_r}a_\ell e^{-t/\tau_\ell},\quad a_\ell\ge0,\ \tau_\ell>0.
+\label{eq:ch6_prony}
+\end{equation}
+\end{enumerate}
+음수 가중치/비물리 time constant 로 정확도만 맞추면 물리 의미 손상이라 금지. 식~\eqref{eq:ch6_prony} 는
+Chapter 1 의 연속 relaxation-length spectrum 을 유한 mode 로 근사한 것이다(정전류서 $t-t'\leftrightarrow
+(q-q')Q_\cell/|I|$, $\tau_\ell\leftrightarrow L_\ell$). 단, $V_n$ 이 전하 보존식으로 $\xi_j$ 와 결합돼
+고율/큰 lag 서 $\xi_j\to V_n\to\xi_{\eq,j}\to d\xi_j/dt$ 되먹임이 강해지므로, Prony/rational 은 준정상/약결합
+근사로만 쓰고 direct $g$-grid DAE 대비 오차를 검증한다. 되먹임 오차가 허용 범위를 넘으면 reference solver 로 회귀.
+
+% ====================================================================
+\section{Fredholm/Padé ratio 계열의 위치 (Plan A)}\label{sec:ch6_fredholm}
+% ====================================================================
+Chapter 1 의 \textbf{Plan A}(사용자 PhD ratio-substitution closed-form, \cite{lee2011,son2013})는 문헌적$\cdot$
+수학적 기반이 있는 \emph{가속 후보}로 본 장에서 유지한다. 단 direct $g$-grid reference 를 대체하는 기본 모델이
+아니라 검증 대상이다. Chapter 1 의 승격 조건 M1--M5 를 본 장에서 수치적으로 집행한다:
+\begin{enumerate}[label=F\arabic*),leftmargin=2.2em]
+\item (M1--M2) 흑연 장벽 분포 문제로의 kernel mapping 이 명확하고 적분 안팎 function class 가 같다.
+\item (M4) $\rho_j(g)\to\delta(g-g_0)$ baseline 에서 단일 장벽 해(Chapter 1 single-mode
+  $r\propto e^{-(q-q_a)/L_0}$)로 환원된다.
+\item (M3) ratio truncation/Neumann series 의 수렴성이 수치적으로 확인된다.
+\item (M5) 정량 오차
+  $\varepsilon=\lVert\Theta_{\mathrm A}-\Theta_{\mathrm B}\rVert/\lVert\Theta_{\mathrm B}\rVert\le\varepsilon_{\mathrm{tol}}$
+  가 0.1/0.2/0.5/1.0\,C $\times$ 관심 tail-window 에서 만족.
+\item 실패 시 direct grid$\to$adaptive quadrature$\to$Prony/rational 로 fallback.
+\end{enumerate}
+\begin{boundbox}
+\textbf{Refs 6/7 의 한계 재확인(Ch1 dossier).} 사용자 논문은 \emph{Fredholm}(고정 구간) ratio closure 이고
+graphite 문제는 \emph{Volterra}(인과 상한 $q$)라 자기참조 선형화(Ch1 식 selfcoupling)가 선행돼야 하며, 논문
+자신이 ``reaction zone 이 넓으면 ratio 부정확''이라 경고한다 — graphite 의 넓은 spectrum(=저온 stretched
+tail, 관심 영역)서 Plan A 가 가장 부정확할 수 있다. 따라서 \textbf{Plan A 단독 채택 금지; 항상 Plan B(g-grid)
+대비 $\varepsilon$ 측정.} graphite transition 개수$\cdot$분포 폭$\cdot$hysteresis branch offset 을 Fredholm
+correction factor 안에 흡수하지 않는다(식별성 보존).
+\end{boundbox}
+
+% ====================================================================
+\section{STO--OCV 기반 열역학 골격 제한 (S1 실현)}\label{sec:ch6_ocv}
+% ====================================================================
+STO--OCV 테이블을 평형 음극 전위 $V_{n,\OCV}(q)$ 실측 proxy 로 쓴다(이 자료만으로 $U_j,w_j,Q_{j,\tot},Q_\bg$
+유일 결정 X). 평형 fitting 제약:
+\begin{enumerate}[label=O\arabic*),leftmargin=2.2em]
+\item 총용량 정합 조건 만족(Ch1 capmatch).
+\item $Q_\bg(V_n)$ 단조성($\ge\epsilon_Q$) 및 smoothness.
+\item transition 개수 $N_p$ 를 필요 이상 늘리지 않음(parsimony).
+\item $Q_{j,\tot}>0$.
+\item $w_j$ 는 \emph{평형} transition width — kinetic barrier distribution $\rho_j(g)$ 와 혼동 금지(Ch1
+  구분; 단 $n_j^{\eff}w_j=RT/F$ 정합, Ch3).
+\item 잔차를 임의 background wiggle 로 모두 흡수하지 않음.
+\end{enumerate}
+이것이 피팅 논리식 평가 순서 S1(charge-balance root 의 평형 골격)의 수치 실현이다.
+
+% ====================================================================
+\section{GITT 기반 동역학 및 분극 제한}\label{sec:ch6_gitt}
+% ====================================================================
+GITT 는 instantaneous response 와 relaxation response 를 준다. \textbf{GITT relaxation 을 곧바로 $k_j$ 직접
+측정값으로 해석하지 않는다} — 다음이 섞인다:
+\begin{equation}
+\text{GITT relaxation}=\text{solid diffusion}+\text{electrolyte relaxation}+\text{phase/staging relaxation}+\text{OCV curvature}+\text{measurement filtering}.
+\label{eq:ch6_gitt_decomp}
+\end{equation}
+권장 절차:
+\begin{enumerate}[label=G\arabic*),leftmargin=2.2em]
+\item 펄스 직후 instantaneous step 으로 ohmic/fast polarization 제한($R_n$ 의 일부; Ch3 $\eta_{\mathrm{ct}}$ 분리 시작).
+\item 장시간 완화 끝점을 STO--OCV 와 비교해 평형 골격 검증.
+\item relaxation curve 를 단일 $k_j$ 로 단정하지 않고 single- vs multi-time-constant 후보 비교(Ch1 spectrum 의 다중 $L$).
+\item rate series 와 결합해 $k_j$, diffusion limitation, transport limitation 분리.
+\end{enumerate}
+\textbf{$\chi_j$ vs $\eta_{\mathrm{ct}}$ co-linearity(Ch1/Ch3 falsification).} GITT 의 순간 step($\eta_{\mathrm{ct}}$)과
+느린 relaxation(barrier-spectrum)을 분리한 \emph{후}에만 $\chi_j(=\beta_j)$ 귀속이 성립한다.
+
+% ====================================================================
+\section{C-rate series 검증과 도입 관찰의 반증 가능 시험}\label{sec:ch6_crate}
+% ====================================================================
+0.1/0.2\,C 는 strict equilibrium 이 아니라 quasi-equilibrium proxy, 1.0\,C 는 strict frozen limit 이 아니라
+kinetic-lag/transport-limitation stress test. 검증 순서:
+\begin{enumerate}[label=C\arabic*),leftmargin=2.2em]
+\item STO--OCV 로 평형 골격 제한.
+\item GITT 로 fast polarization/relaxation signature 제한.
+\item 0.1/0.2\,C 에서 ICA/DVA peak 위치$\cdot$폭 검증(Ch1 S1--S2).
+\item 0.5/1.0\,C 에서 tail$\cdot$broadening$\cdot$shift$\cdot$transport limitation 검증(Ch1 S3--S6, kernel integral).
+\item 잔차를 $\rho_j(g),k_{j,\lim},R_n$, transport 중 어느 항으로 설명 가능한지 독립 제약과 함께 판단.
+\end{enumerate}
+\begin{loopbox}
+\textbf{도입 관찰의 반증 가능 시험(Ch1 falsification N1--N4 의 데이터 실현).} 도입 관찰 ``저온$\cdot$고율 긴
+겹침 꼬리''를 다음으로 시험한다:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{(N1)} tail length 의 $\ln$ vs $1/T$ 기울기가 독립 측정 $E_D$(diffusion)와 일치하고 \emph{전위
+  의존이 없으면} barrier-spectrum 귀속 \emph{기각}(transport-dominant). C-rate$\times$온도 교차표로 측정.
+\item \textbf{(N2)} 전위/$|I|$ 증가 시 spectrum 이 short-$L$ 로 shift(식 Ch1 $\partial\ln L/\partial V<0$)하는지 —
+  없으면 $\chi_j$ 항 \emph{기각}.
+\item \textbf{(N3)} 저속 OCV near-peak lineshape 이 저온서 안 좁아지면 heterogeneous disorder 기여 존재 —
+  kinetic 단독 귀속 기각, disorder 와 분리(Ch1 평형 width $w=RT/F$ 는 저온서 좁아짐).
+\item \textbf{(N4)} $\rho_j(g)$ 를 관측 tail 에서 \emph{역산하지 않고} 독립 근거(입자분포/EIS/계산)로 주어
+  forward 예측만(비유일성, Ch1 Plonka).
+\end{itemize}
+이로써 도입 관찰 $\to$ 인과 사슬 $\to$ 피팅식 $\to$ \emph{반증 가능한 데이터 시험}으로 loop 가 닫힌다.
+\end{loopbox}
+
+% ====================================================================
+\section{식별성 제한과 금지되는 피팅 편의}\label{sec:ch6_ident}
+% ====================================================================
+다음을 같은 자료에서 동시에 자유화하면 식별성이 무너진다:
+\begin{equation}
+\{R_n,\ k_j^{\mathrm{phys}},\ w_j,\ \rho_j(g),\ Q_\bg,\ Q_{j,\tot},\ k_{j,\lim}\}.
+\label{eq:ch6_no_free}
+\end{equation}
+금지: (1) 강구동 rate 폭주를 물리 의미 없는 cap 으로 자르기, (2) 잔차를 arbitrary background correction 으로
+모두 흡수, (3) branch hysteresis 를 단순 charge/discharge offset 으로만 피팅(Ch5), (4) negative quadrature
+weight/비물리 time constant 로 relaxation spectrum 맞추기, (5) Fredholm/Padé correction factor 를 불분명한
+fitting knob 으로 사용.
+\begin{mdframed}
+\textbf{실무 팁(본문 물리식 아님).} 초기값 탐색/디버깅서 bounded transform, clipped rate, smoothed background
+같은 수치 보조를 임시 사용 가능하나 본 모델 물리식이 아니다. 최종 해석$\cdot$논문용 식$\cdot$검증 결과에서는
+제거하고 물리적 제한항 또는 검증된 축약법으로 대체한다.
+\end{mdframed}
+
+% ====================================================================
+\section{충전 $\cdot$ 양극 $\cdot$ full-cell 확장 조건}\label{sec:ch6_extension}
+% ====================================================================
+\begin{enumerate}[label=E\arabic*),leftmargin=2.2em]
+\item 충전 branch 는 Chapter 5 의 signed current 와 metastable branch target($\xi_{\mathrm{ss}}$) 사용.
+\item 양극에 별도 전하 보존식, 양극 STO--OCV, 양극 GITT 적용.
+\item full-cell 은 $V_{\cell}=V_p-V_n-\eta_{\mathrm{loss}}$ 또는 apparent electrode voltage 표현, loss/
+  polarization 중복 계상 금지(Ch5).
+\item \textbf{음극 방전이 먼저 검증되지 않으면 full-cell 조합 해석으로 넘어가지 않는다.}
+\end{enumerate}
+
+% ====================================================================
+\section{Chapter 6 자체 검수표}\label{sec:ch6_selfcheck}
+% ====================================================================
+{\small
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+Ch1--5 본문 수정 없이 Ch6만 적층(P3-6) & 통과(\S\ref{sec:ch6_inherit}) \\
+음극 방전 한정$\cdot$등온 검증 계층 명시 & 통과 \\
+dynamic root vs OCV root 의 derivative 구분(식~\eqref{eq:ch6_dyn_deriv} vs \eqref{eq:ch6_ocv_deriv}) & 통과 \\
+OCV root 분모 $=$ Ch2 평형 chemical capacitance $D_q$ 정합 & 통과(\S\ref{sec:ch6_root}) \\
+전하 보존식 해 존재 조건을 residual 로 흡수하지 않음(reject) & 통과 \\
+index-1 DAE/root-constrained ODE 계산 순서 명시 & 통과(\S\ref{sec:ch6_dae}) \\
+강구동 rate 를 cap 으로 자르지 않고 stiff+물리 병목으로 처리 & 통과(boundbox) \\
+direct $g$-grid 를 reference(Plan B)로; 모든 축약은 대비 검증 & 통과(\S\ref{sec:ch6_grid}) \\
+Prony/rational $=$ Ch1 relaxation-length spectrum 의 유한 mode 근사; $a_\ell\ge0,\tau_\ell>0$ & 통과(식~\eqref{eq:ch6_prony}) \\
+Fredholm/Padé(Plan A)를 M1--M5$\cdot\varepsilon$ 가속 후보로 제한; Volterra/broad-kernel 한계 명시 & 통과(\S\ref{sec:ch6_fredholm}) \\
+STO--OCV 골격(O1--O6); $w_j$ vs $\rho_j(g)$ 구분, $n^{\eff}w_j=RT/F$ 정합 & 통과(\S\ref{sec:ch6_ocv}) \\
+GITT relaxation 을 $k_j$ 직접 측정으로 단정 X; $\chi$ vs $\eta_{\mathrm{ct}}$ 분리 & 통과(\S\ref{sec:ch6_gitt}) \\
+0.1C/1.0C 를 strict limit 아닌 proxy/stress test 로 & 통과(\S\ref{sec:ch6_crate}) \\
+★ 도입 관찰 $\to$ falsification N1--N4 데이터 시험으로 loop 폐합 & 통과(loopbox) \\
+calorimetry 없이 발열 파라미터 피팅 X(forward prediction) & 통과(\S\ref{sec:ch6_data}) \\
+비물리 transform 을 기본 모델서 배제(실무 팁 격하) & 통과(\S\ref{sec:ch6_ident}) \\
+충전/양극/full-cell 확장을 음극 방전 검증 이후로 보류 & 통과(\S\ref{sec:ch6_extension}) \\
+\bottomrule
+\end{longtable}
+}
+
+% ====================================================================
+\section{Chapter 6 의 결론}\label{sec:ch6_concl}
+% ====================================================================
+첫째, Chapter 1--5 물리 우선 모델은 root finding 과 index-1 DAE(root-constrained ODE)로 직접 풀린다. $V_n$ 은
+임의 입력 전압이 아니라 전하 보존식의 해다.
+
+둘째, 동역학 root 와 평형 OCV root 는 derivative 가 다르므로 분리한다(식~\eqref{eq:ch6_dyn_deriv} vs
+\eqref{eq:ch6_ocv_deriv}); 후자의 분모는 Chapter 2 평형 chemical capacitance 와 정합한다.
+
+셋째, 장벽 분포 적분의 기준 해법은 direct $g$-grid(\textbf{Plan B}). adaptive quadrature/moment matching/
+Prony-rational/Fredholm-Padé(\textbf{Plan A})는 모두 reference 대비 $\varepsilon$ 로 검증될 때만 쓴다.
+
+넷째, Fredholm/Padé(Plan A)는 문헌적 가속 후보로 유지하되 흑연 적용엔 kernel mapping$\cdot\delta$ baseline$\cdot$
+수렴성$\cdot$grid 대비 오차를 검증해야 하며, Volterra/broad-kernel 한계상 Plan B 가 항상 core/validator 다.
+
+다섯째, STO--OCV$\to$GITT$\to$C-rate series 는 파라미터를 모두 자유화하는 도구가 아니라 열역학 골격$\to$
+polarization$\to$relaxation signature$\to$kinetic lag/transport 를 순차 제한하는 검증 체계다.
+
+여섯째, 피팅 편의는 모델 근거가 아니다 — 물리 의미 없는 cap/clip/arbitrary transform 은 배제하고 필요 시
+초기값/안정화용 실무 팁으로만 둔다. 발열 항은 calorimetry 전까지 forward prediction 으로 둔다.
+
+일곱째, \textbf{도입 관찰(저온$\cdot$고율 긴 겹침 꼬리)} $\to$ 인과 사슬(Ch1) $\to$ 발열/속도론/히스테리시스
+(Ch2--5) $\to$ 수치 해법과 반증 가능 데이터 시험(Ch6, N1--N4)으로 \emph{한 바퀴가 닫힌다}. 음극 방전 모델이
+먼저 닫힌 뒤에야 충전 branch$\cdot$양극$\cdot$full-cell 로 확장한다.
+
+\begin{thebibliography}{99}
+\bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, ``Modeling of galvanostatic charge and discharge,'' \emph{J. Electrochem. Soc.} \textbf{140}, 1526 (1993).
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
+\bibitem{brenan1996} K. E. Brenan, S. L. Campbell, L. R. Petzold, \emph{Numerical Solution of Initial-Value Problems in Differential-Algebraic Equations}, SIAM (1996).
+\bibitem{hindmarsh2005} A. C. Hindmarsh \emph{et al.}, ``SUNDIALS: Suite of nonlinear and differential/algebraic equation solvers,'' \emph{ACM Trans. Math. Softw.} \textbf{31}, 363 (2005).
+\bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S. Chong, ``Communication: Propagator for diffusive dynamics of an interacting molecular pair,'' \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011).
+\bibitem{son2013} C. Y. Son \emph{et al.}, ``An accurate expression for the rates of diffusion-influenced bimolecular reactions with long-range reactivity,'' \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013).
+\bibitem{plonka2001} A. Plonka, \emph{Dispersive Kinetics}, Springer (2001).
+\bibitem{dubarry2022} M. Dubarry, D. Anse\'an, ``Best practices for incremental capacity analysis,'' \emph{Front. Energy Res.} \textbf{10}, 1023555 (2022).
+\end{thebibliography}
+
+\end{document}
