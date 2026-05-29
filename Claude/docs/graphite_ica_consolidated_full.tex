@@ -1,9 +1,10 @@
 % ====================================================================
-% graphite_ica_consolidated_full.tex — 합류 통합본 (G1+G2+G3 단일 문서)
-%   통합 preamble + 본문 \input(_body_ch1_G1, _body_ch2_ch4_G2, _body_ch5_ch6_G3)
-%   + 통합 참고문헌(_bib_merged). 빌드: xelatex (kotex).
-%   본문 .tex(G1/G2/G3 standalone) 및 (A)(B) 원본은 그대로 보존; 본 파일은 병합 master.
-%   라벨 충돌 0 / 미정의 ref 0 확인 (2026-05-29).
+% graphite_ica_consolidated_full.tex — 합류 통합본 (Ch1--6 단일 문서, v2)
+%   새 6개 장(graphite_ica_consolidated_ch1..ch6.tex)의 body 를 \input 으로 병합.
+%   통합 preamble(매크로/정리환경 합집합) + 병합 참고문헌(_bib_merged_v2, 키 dedupe).
+%   원본 소스((A)(B) 및 chapter1/charge_balance_ver1/dynamic_ver5)는 그대로 보존.
+%   장별 10-pass 물리검수 반영본. 빌드: xelatex(kotex). 라벨충돌 0 / 미정의 ref 0.
+% Date: 2026-05-29 (v2 재구성)  Author: Project_Anode_Fit (Claude 측)
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
@@ -20,19 +21,22 @@
 \setstretch{1.12}
 \setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
-  pdftitle={흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6)}}
+  pdftitle={흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6, v2)}}
 \pagestyle{fancy}\fancyhf{}
-\lhead{흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6)}\rhead{\thepage/\pageref{LastPage}}
+\lhead{흑연 음극 ICA tail 이론 — 합류 통합본 (Ch1--6, v2)}\rhead{\thepage/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% --- 통합 정리 환경 (각 1회 정의) ---
+% --- 통합 정리 환경 (8종 합집합, 각 1회 정의) ---
 \newtheorem*{groundingbox}{Grounding}
 \newtheorem*{boundbox}{유효범위(Validity bound)}
 \newtheorem*{flagbox}{FLAGGED (미확정)}
 \newtheorem*{keybox}{Keystone}
 \newtheorem*{anchorbox}{Observation Anchor}
+\newtheorem*{linkbox}{전달식(Inherited)}
+\newtheorem*{verifybox}{정합 검증}
+\newtheorem*{loopbox}{도입 관찰로의 폐합}
 
-% --- 통합 매크로 (union, 각 1회) ---
+% --- 통합 매크로 (40종 합집합, 각 1회) ---
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\eff}{\mathrm{eff}}
 \newcommand{\eq}{\mathrm{eq}}
@@ -41,55 +45,119 @@
 \newcommand{\tot}{\mathrm{tot}}
 \newcommand{\bg}{\mathrm{bg}}
 \newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
 \newcommand{\OCV}{\mathrm{OCV}}
 \newcommand{\simplecase}{\mathrm{simple}}
+\newcommand{\Ah}{\mathrm{Ah}}
+\newcommand{\Cunit}{\mathrm{C}}
 \newcommand{\ct}{\mathrm{ct}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\resid}{\mathrm{resid}}
 \newcommand{\irr}{\mathrm{irr}}
 \newcommand{\rev}{\mathrm{rev}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\loss}{\mathrm{loss}}
+\newcommand{\amb}{\mathrm{amb}}
+\newcommand{\rlx}{\mathrm{relax}}
+\newcommand{\prog}{\mathrm{prog}}
+\newcommand{\coord}{\mathrm{coord}}
+\newcommand{\cand}{\mathrm{cand}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\transp}{\mathrm{transport}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{ch}}
+\newcommand{\rst}{\mathrm{rest}}
 \newcommand{\hys}{\mathrm{hys}}
 \newcommand{\pol}{\mathrm{pol}}
-\newcommand{\state}{\mathrm{state}}
+\newcommand{\kin}{\mathrm{kin}}
+\newcommand{\obs}{\mathrm{obs}}
 \newcommand{\tar}{\mathrm{tar}}
-% \ss 는 LaTeX 내장(ß)과 충돌하므로 정의하지 않고 \mathrm{ss} 직접 사용
+\newcommand{\stt}{\mathrm{state}}
+\newcommand{\cb}{\mathrm{cb}}
+\newcommand{\dyn}{\mathrm{dyn}}
 \newcommand{\AL}[1]{\textsf{[AL-#1]}}
 
 \title{\textbf{리튬이온전지 흑연 음극 ICA($dQ/dV$) tail 의 열역학 무대 $\cdot$ 동역학 주역 이론}\\[0.4em]
-\large 합류 통합본 — Chapter 1--6\\[0.2em]
+\large 합류 통합본 (v2) — Chapter 1--6\\[0.2em]
 \normalsize 전하보존 $V_n$ $\cdot$ 유효 mobility(Level A) $\cdot$ relaxation-length spectrum $\cdot$ 피팅식 $\cdot$
 발열 $\cdot$ 반응속도론(Level B) $\cdot$ entropy production $\cdot$ 충방전/히스테리시스 $\cdot$ 수치 $\cdot$ 검증}
 \author{Project\_Anode\_Fit (Claude 측)}
-\date{2026-05-29}
+\date{2026-05-29 (v2)}
 
 \begin{document}
 \maketitle
 
 \begin{mdframed}
-\textbf{통합본 안내.} 본 문서는 합류 G1(Ch1)$\cdot$G2(Ch2--4)$\cdot$G3(Ch5--6)을 단일 빌드로 묶은 것이다.
-\textbf{지배 표준 GS-1~4}(학부 무비약 / 전문 깊이 / 모든 가정 AL 인용 / 임의 cap$\cdot$step 금지)와
-\textbf{keystone}(Ch1=Level A mobility, Ch3=Level B 방향성, $\chi_j=\beta_j$)이 Ch1$\to$Ch6 에 무모순
-전파된다(P3-6). 10-pass 논리 검토 2회(G1+G2, G3) 반영본. 빌드: \texttt{xelatex}(kotex).
+\textbf{통합본 안내(v2).} 본 문서는 원본 밀도로 재작성된 6개 장(\texttt{graphite\_ica\_consolidated\_ch1..ch6.tex})의
+본문을 단일 빌드로 병합한 것이다. 각 장은 독립 standalone 으로도 컴파일되며, 본 통합본은 매크로/정리환경
+합집합과 키 dedupe 한 병합 참고문헌을 쓴다. \textbf{지배 표준 GS-1$\sim$4}(학부 무비약 / 출판 깊이 / 모든
+가정 AL 인용 / 임의 cap$\cdot$step 금지)와 \textbf{단일 인과 사슬}(관찰 $\to$ 무대 $V_n$/주역 동역학 $\to$
+발열 $\to$ 반응속도론 $\to$ entropy production $\to$ 히스테리시스 $\to$ 수치$\cdot$반증)이 Ch1$\to$Ch6 에
+무모순 전파된다(P3-6). \textbf{Keystone}: Ch1=Level A(mobility, 방향성 없음), Ch3=Level B(directional
+barrier, $\chi_j\equiv\beta_j$), Level A는 Level B의 detailed-balance 극한. 장별 10-pass 물리 검수 반영본.
 \end{mdframed}
 
 \tableofcontents
-\newpage
+\clearpage
 
-% ====================== Chapter 1 (G1) ======================
-\setcounter{section}{0}\renewcommand{\thesection}{1.\arabic{section}}
+% ====================== Chapter 1 ======================
+\part*{Chapter 1 — 전하 보존 무대 $\cdot$ 동역학 주역 $\cdot$ relaxation-length spectrum $\cdot$ 피팅식}
+\addcontentsline{toc}{part}{Chapter 1 — 전하보존 $\cdot$ 동역학 $\cdot$ spectrum $\cdot$ 피팅식}
+\setcounter{section}{0}
+\renewcommand{\thesection}{1.\arabic{section}}
 \renewcommand{\thesubsection}{1.\arabic{section}.\arabic{subsection}}
-\input{_body_ch1_G1}
+\input{_body_ch1_v2}
 \clearpage
 
-% ====================== Chapter 2--4 (G2) ======================
-\input{_body_ch2_ch4_G2}
+% ====================== Chapter 2 ======================
+\part*{Chapter 2 — 발열 연결: 평형 전위 온도계수 $\cdot$ 가역/비가역 열의 entropy/affinity 기반}
+\addcontentsline{toc}{part}{Chapter 2 — 발열 연결}
+\setcounter{section}{0}
+\renewcommand{\thesection}{2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\input{_body_ch2_v2}
 \clearpage
 
-% ====================== Chapter 5--6 (G3) ======================
-\input{_body_ch5_ch6_G3}
+% ====================== Chapter 3 ======================
+\part*{Chapter 3 — 전기화학 반응속도론: forward/backward $\cdot$ detailed balance $\cdot$ Level A$\to$B}
+\addcontentsline{toc}{part}{Chapter 3 — 반응속도론}
+\setcounter{section}{0}
+\renewcommand{\thesection}{3.\arabic{section}}
+\renewcommand{\thesubsection}{3.\arabic{section}.\arabic{subsection}}
+\input{_body_ch3_v2}
+\clearpage
+
+% ====================== Chapter 4 ======================
+\part*{Chapter 4 — 반응속도론 기반 발열 확장: entropy production $\cdot$ 미시=거시 정합}
+\addcontentsline{toc}{part}{Chapter 4 — 발열 확장}
+\setcounter{section}{0}
+\renewcommand{\thesection}{4.\arabic{section}}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}}
+\input{_body_ch4_v2}
+\clearpage
+
+% ====================== Chapter 5 ======================
+\part*{Chapter 5 — 충방전과 히스테리시스: signed current $\cdot$ metastable branch $\cdot$ Level A 분업의 부분 붕괴}
+\addcontentsline{toc}{part}{Chapter 5 — 충방전/히스테리시스}
+\setcounter{section}{0}
+\renewcommand{\thesection}{5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\input{_body_ch5_v2}
+\clearpage
+
+% ====================== Chapter 6 ======================
+\part*{Chapter 6 — 수치 해법과 물리 제약 기반 검증: DAE $\cdot$ Plan A/B $\cdot$ falsification}
+\addcontentsline{toc}{part}{Chapter 6 — 수치/검증}
+\setcounter{section}{0}
+\renewcommand{\thesection}{6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\input{_body_ch6_v2}
 \clearpage
 
 % ====================== 통합 참고문헌 ======================
 \begin{thebibliography}{99}
-\input{_bib_merged}
+\input{_bib_merged_v2}
 \end{thebibliography}
 
 \end{document}

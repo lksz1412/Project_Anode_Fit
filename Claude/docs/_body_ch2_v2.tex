@@ -1,0 +1,412 @@
+
+% ====================================================================
+\section*{서 — 인과 사슬에서 ``발열''의 자리}
+\addcontentsline{toc}{section}{서 — 발열의 자리}
+% ====================================================================
+Chapter 1 은 하나의 관찰(``저온$\cdot$고율서 ICA peak 꼬리가 길어져 겹친다'')을 풀어, 열역학이 \emph{무대}
+(내부 전위 $V_n$, 평형 target $\xi_{\eq,j}$)를 깔고 \emph{주역}인 동역학(진행률 $\xi_j$ 의 유한속도 완화)이
+꼬리를 만든다는 단일 인과 사슬을 세웠다. Chapter 2 는 \textbf{같은 상태변수} 위에서 ``그 과정이 어떤 열을
+주고받는가''를 잇는다. 발열은 ICA/DVA 곡선 자체가 아니라, \textbf{(i) 비등온 조건에서 $V_n,\xi_j,T$ 가
+되먹임으로 결합되어 ICA tail 의 온도 의존을 바꾸고, (ii) 안전$\cdot$열관리$\cdot$열화 해석으로 이어지는}
+연결 고리다.
+
+\textbf{Chapter 2 의 한 문장 요지.} \emph{가역 열은 열역학(평형 entropy $\cdot$ 전위 온도계수)이 전담하고,
+비가역 열은 동역학(flux$\times$affinity, 과전압)이 전담한다} — 이는 Chapter 1 의 ``열역학=방향(target),
+동역학=속도(mobility)'' 분업(keystone Level A)의 열적 대응이다. 따라서 두 열을 한 경험항으로 섞지 않는다.
+
+\textbf{Chapter 2 가 \emph{확정하지 않는} 것.} 완전한 Butler--Volmer, exchange current 와 계면 과전압의
+분리, forward/backward rate 와 detailed balance 기반 entropy production, branch 의존 가역 열(히스테리시스)은
+Chapter 3--5 로 넘긴다. 본 장은 \textbf{물리적 연결 장}이며 발열 모델의 폐쇄가 아니다.
+
+\begin{groundingbox}
+\textbf{지배 표준(GS, Ch1 계승).} (GS-1) 물리 의미 prose 선행 후 수식, 중간단계 무생략. (GS-2) 출판 수준
+엄밀성. (GS-3) 가정은 Assumption Ledger(AL-\#) 인용; 무근거는 FLAGGED. (GS-4) 임의 clip/cap 금지;
+BOUNDED 가정은 유효범위 병기. \textbf{부호 규약(P3-1).} 본 장은 \emph{방전(탈리튬화) 기준}, heat generation
+positive convention, 전류 크기 $|I|>0$. 가역 열의 방향 부호는 피팅 파라미터가 아니라 convention
+bookkeeping factor $s^{\conv}$ 로 분리해 명시 후 고정한다.
+\end{groundingbox}
+
+
+% ====================================================================
+\section{Chapter 1 에서 전달받는 기준식}\label{sec:ch2_inherit}
+% ====================================================================
+본 장은 Chapter 1(v2)의 다음을 \textbf{수정 없이} 입력으로 받는다(P3-6).
+\begin{linkbox}
+\textbf{(L1) 전하 보존식(무대).} $Q_\cell\,q=Q_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\,\xi_j$, 이를 $V_n$ 에
+대해 푼 것이 내부 전위. 평형 특수해가 $V_n=V_{n,\OCV}(q,T)$.\\
+\textbf{(L2) 진행률 동역학(주역).} $\dfrac{d\xi_j}{dt}=k_j(V_n,q,T,I)\,[\xi_{\eq,j}(V_n,T)-\xi_j]$,
+$k_j=k_j^{\mathrm{phys}}$(활성화+병목 직렬). 정전류서만 $\dfrac{d\xi_j}{dt}=\dfrac{|I|}{Q_\cell}\dfrac{d\xi_j}{dq}$.\\
+\textbf{(L3) 세 전압 구분.} 내부 $V_n$, apparent $V_{n,\app}=V_n+s_I|I|R_n$, 구동 $V_{n,\drive}$(기본 $=V_n$),
+평형 $V_{n,\OCV}$. \textbf{$V_{n,\app}$ 는 평형 전위가 아니다.}\\
+\textbf{(L4) Level A 분업.} $\chi_j\mathcal A_j$ 는 방향성 없는 mobility 가속(열역학이 방향 전담). 방향성
+barrier lowering($\beta_j$)은 Ch3 Level B.\\
+\textbf{(L5) 집계 진행.} $Q_p\Theta\equiv\sum_jQ_{j,\tot}\xi_j$ ($\Theta\in[0,1]$). 따라서
+$Q_\cell q=Q_\bg+Q_p\Theta$.
+\end{linkbox}
+기호: $C_{\mathrm{th}}$=음극 control volume 유효 열용량 [J/K], $h$=대류계수, $A$=표면적, $F$=Faraday
+상수, $R$=기체상수. 열원/열량 dot 표기는 시간율 [W].
+
+% ====================================================================
+\section{평형 전위의 온도 계수 $(\partial V_{n,\OCV}/\partial T)_q$}\label{sec:ch2_ocvT}
+% ====================================================================
+\textbf{물리.} 가역 열은 평형 상태함수의 온도 의존에서 나온다. Chapter 1 의 전하 보존식이 $V_n$ 을 결정하므로,
+\emph{가역 열의 기초인 전위 온도계수도 외부 lookup 이 아니라 전하 보존식에서 유도}해야 한다(P3-2). 평형
+($\xi_j=\xi_{\eq,j}$)에서 식 (L1) 은
+\begin{equation}
+Q_\cell\,q=Q_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\,\xi_{\eq,j}(V_n,T)
+\label{eq:ch2_eqbal}
+\end{equation}
+이고 $V_n=V_{n,\OCV}(q,T)$.
+
+\textbf{기준 용량 가정(\AL{C1}).} 본 유도에서 $Q_\cell,Q_{j,\tot}$ 은 온도 무관 기준 용량 매개변수로 둔다.
+실제 accessible capacity / transition allocation 의 온도 의존은 별도 용량 보정 또는 후속 열화 모델에서
+다룬다. $Q_{j,\tot}(T)$ 를 허용하면 아래 고정-$q$ 온도미분 분자에 $\sum_j(\partial Q_{j,\tot}/\partial T)\xi_{\eq,j}$
+항이 추가된다.
+
+\subsection{고정 $q$ 에서의 온도 미분 (무비약)}
+$q$ 를 고정하고 식~\eqref{eq:ch2_eqbal} 을 $T$ 로 전미분한다. 좌변은 상수($Q_\cell q$, $q$ 고정)이므로 $0$:
+\begin{equation}
+0=\underbrace{\left[\frac{\partial Q_\bg}{\partial V_n}+\sum_{j}Q_{j,\tot}\frac{\partial\xi_{\eq,j}}{\partial V_n}\right]}_{\equiv\,D_q\ (\text{equilibrium chemical capacitance})}
+\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
++\frac{\partial Q_\bg}{\partial T}+\sum_{j}Q_{j,\tot}\left(\frac{\partial\xi_{\eq,j}}{\partial T}\right)_{V_n}.
+\label{eq:ch2_implicitT}
+\end{equation}
+$V_{n,\OCV}$ 가 $T$ 에 의존하는 부분(첫 묶음, chain rule)과 $V_n$ 고정 명시적 $T$ 의존(나머지)을 분리한 것이다.
+$D_q>0$ 은 Chapter 1 의 단조성 floor(식 (L1) 의 $\partial Q_\bg/\partial V_n\ge\epsilon_Q$ + $\partial\xi_\eq/\partial V_n\ge0$)에서 보장된다. 따라서
+\begin{equation}
+\boxed{\;\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=-\,\frac{\dfrac{\partial Q_\bg}{\partial T}+\displaystyle\sum_{j}Q_{j,\tot}\left(\dfrac{\partial\xi_{\eq,j}}{\partial T}\right)_{V_n}}
+{\dfrac{\partial Q_\bg}{\partial V_n}+\displaystyle\sum_{j}Q_{j,\tot}\dfrac{\partial\xi_{\eq,j}}{\partial V_n}}\;.}
+\label{eq:ch2_dVocvdT}
+\end{equation}
+\textbf{이 식은 평형 상태함수의 온도 계수이며 apparent 전위 경로 미분이 아니다}(P3-1). 즉
+$(\partial V_{n,\OCV}/\partial T)_q\ne dV_{n,\app}/dT$.
+
+\subsection{logistic 평형 진행률의 온도 항}
+Chapter 1 baseline $\xi_{\eq,j}=[1+\exp(-(V_n-U_j(T))/w_j(T))]^{-1}$ 에서
+\begin{equation}
+\frac{\partial\xi_{\eq,j}}{\partial V_n}=\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j(T)},
+\label{eq:ch2_dxidV}
+\end{equation}
+\begin{equation}
+\left(\frac{\partial\xi_{\eq,j}}{\partial T}\right)_{V_n}
+=\xi_{\eq,j}(1-\xi_{\eq,j})\left[-\frac{U'_j(T)}{w_j(T)}-\frac{V_n-U_j(T)}{w_j(T)^2}\,w'_j(T)\right].
+\label{eq:ch2_dxidT}
+\end{equation}
+($U'_j=dU_j/dT$, $w'_j=dw_j/dT$.) 따라서 평형 $(\partial V_{n,\OCV}/\partial T)_q$ 는 $Q_\bg$, $U_j$, $w_j$,
+$\xi_{\eq,j}$ 의 온도 의존이 결합된 결과다. 이 결합을 단일 경험 보정항으로 흡수하면 물리 해석성이 약해진다.
+\begin{boundbox}
+\textbf{ideal width 의 함의.} ideal limit $w_j=RT/F$ 이면 $w'_j=R/F>0$. 식~\eqref{eq:ch2_dxidT} 의 둘째 항은
+$(V_n-U_j)$ 의 부호에 따라 transition 양쪽에서 부호가 바뀐다. 실제 graphite 의 $U_j(T)$(entropy
+profile)는 비단조라 $(\partial V_{n,\OCV}/\partial T)_q$ 가 SOC 에 따라 부호 반전할 수 있다
+\cite{thomasnewman2003,reynier2004}(\AL{C2}); 이는 측정된 anode entropy 곡선과 정합 검증 대상이다.
+\end{boundbox}
+
+% ====================================================================
+\section{열원 항의 물리적 분해}\label{sec:ch2_decomp}
+% ====================================================================
+음극 control volume 내부 열원을 물리 기원별로 분해한다(피팅 편의 분해가 아니라 entropy/affinity/overpotential
+기원 분해; \cite{bernardi1985,rao1997}, \AL{C3}):
+\begin{equation}
+\dot{\mathcal Q}_{\src,n}=\dot{\mathcal Q}_{\irr,n}+\dot{\mathcal Q}_{\rev,n}+\dot{\mathcal Q}_{\rlx,n}^{\cand}.
+\label{eq:ch2_srcdecomp}
+\end{equation}
+$\dot{\mathcal Q}_{\rev,n}$ 은 흡열일 수 있으므로 $\dot{\mathcal Q}_{\src,n}$ 이 항상 양수일 필요는 없다.
+$\dot{\mathcal Q}_{\rlx,n}^{\cand}$ 은 외부 전류가 없거나 작아도 내부 $\xi_j$ relaxation 으로 발생 가능한
+\emph{후보} 항이다(\S\ref{sec:ch2_rest}). 외부 열손실까지 포함한 control-volume 열수지는
+\begin{equation}
+C_{\mathrm{th}}\frac{dT}{dt}=\dot{\mathcal Q}_{\src,n}-\dot{\mathcal Q}_{\loss},\qquad
+\dot{\mathcal Q}_{\loss}=hA(T-T_{\amb}).
+\label{eq:ch2_balance}
+\end{equation}
+\begin{longtable}{p{0.26\textwidth} p{0.62\textwidth}}
+\toprule 항 & 물리적 의미 \\ \midrule \endhead
+$\dot{\mathcal Q}_{\irr,n}$ & overpotential, reaction affinity, transport limitation, internal dissipation 에 의한 비가역 열(동역학 기원) \\
+$\dot{\mathcal Q}_{\rev,n}$ & 평형 entropy coefficient 또는 transition entropy 변화에 따른 가역 열(열역학 기원) \\
+$\dot{\mathcal Q}_{\rlx,n}^{\cand}$ & 외부 전류가 작아도 내부 $\xi_j$ relaxation 으로 발생 가능한 후보 열 \\
+\bottomrule
+\end{longtable}
+\textbf{Ch1 분업과의 대응.} $\dot{\mathcal Q}_{\rev}$ 는 Chapter 1 의 ``방향=열역학(target/entropy)''에,
+$\dot{\mathcal Q}_{\irr}$ 는 ``속도=동역학(mobility/affinity)''에 대응한다(인과 사슬 일관성).
+
+% ====================================================================
+\section{비가역 열: 분극 $\cdot$ 과전압 $\cdot$ affinity}\label{sec:ch2_irr}
+% ====================================================================
+비가역 열(entropy production)은 비평형 열역학의 flux$\times$force 에서 출발한다(\cite{degrootmazur1962,onsager1931}, \AL{C4}).
+진행률 flux $J_{n,j}=Q_{j,\tot}\,(d\xi_j/dt)/F$ [mol/s] 에 \emph{공액(conjugate)인 열역학적 force 는 국소
+평형으로부터의 이탈, 즉 과전압} $\eta_j$ 이다(\cite{newman2004,bardfaulkner}, \AL{C4}):
+\begin{equation}
+T\dot S_{\irr,n}=\sum_j J_{n,j}\,F\eta_j\ \ge\ 0,\qquad
+\eta_j\equiv V_{n,\drive}-V_{\eq,j}(\xi_j),\quad
+V_{\eq,j}(\xi_j)=U_j(T)+w_j(T)\ln\frac{\xi_j}{1-\xi_j}.
+\label{eq:ch2_fluxforce}
+\end{equation}
+$V_{\eq,j}$ 는 logistic 평형(Ch1)의 역함수로, $\xi_j$ 가 현재 값일 때 진행이 멈추는 국소 평형 전위다.
+$\xi_j<\xi_{\eq,j}(V_{n,\drive})$ 이면 $V_{\eq,j}(\xi_j)<V_{n,\drive}$ 이라 $\eta_j>0$ 이고 $d\xi_j/dt>0$ —
+같은 부호라 $J_{n,j}F\eta_j\ge0$ 이 보장되고, 평형($\xi_j=\xi_{\eq,j}$)에서 $\eta_j\to0,\ d\xi_j/dt\to0$ 이
+\emph{동시에} 일어나 entropy production 이 사라진다.
+\begin{boundbox}
+\textbf{rate-affinity 와 heat-force 의 구분(검수 4).} Chapter 1 의 \emph{rate-구동} affinity
+$\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$ 는 전이 \emph{중심} $U_j$ 기준이라 평형에서도 0 이 아니다(BEP
+장벽 낮춤용). 반면 \emph{heat-구동}(dissipation) force 는 $\eta_j$ 로, 둘의 관계는
+$\mathcal A_j/F=\eta_j+w_j\ln[\xi_j/(1-\xi_j)]$ 이다. 둘째 항(configurational 가역 혼합 entropy)은 비가역
+열이 아니라 가역 entropy basis(\S\ref{sec:ch2_revxi})로 간다. 즉 \textbf{rate 에는 $\mathcal A_j$,
+dissipation 에는 $\eta_j$} 를 쓴다 — 이 둘을 혼동하면 가역 혼합 entropy 가 비가역 열로 오계상된다.
+\end{boundbox}
+전류와 과전압으로 축약하면 일관된 부호 규약에서
+\begin{equation}
+\dot{\mathcal Q}_{\irr,n}\sim I_n\eta_n,\qquad
+\dot{\mathcal Q}_{\irr,n}^{\mathrm{mag}}=|I_n|\,|\eta_n|,
+\label{eq:ch2_Ieta}
+\end{equation}
+절댓값 표현은 부호가 이미 정렬된 magnitude 표현이며 일반 원리 자체는 식~\eqref{eq:ch2_fluxforce} 이다.
+
+\textbf{$R_n$ 과 heat-generation resistance 의 구분(P3-1, 중요).} Chapter 1 의 $R_n$ 은 \emph{apparent 전압축
+이동 계수}다: $V_{n,\app}-V_n=s_I|I|R_n(q,T,|I|)$. 이를 곧바로 실제 dissipated-heat resistance 로
+동일시하지 않는다. 물리적 발열 저항으로 해석하려면 $R_n$ 이 ohmic / charge-transfer / transport / film /
+concentration polarization 중 무엇을 대표하는지 독립 실험 또는 Chapter 3 kinetics 로 제한되어야 한다.
+작은 과전압(선형 응답)에서만 reduced form
+\begin{equation}
+\dot{\mathcal Q}_{\irr,n}\approx I^2R_{n,\eff},\qquad R_{n,\eff}\ \ne\ R_n\ (\text{원칙적으로}),
+\label{eq:ch2_i2r}
+\end{equation}
+$R_{n,\eff}$ 는 열 발생에 대응하는 물리적 effective resistance.
+\begin{boundbox}
+\textbf{식별성 경고.} 전압 자료만으로 $R_n,R_{n,\eff},R_{\mathrm{ct}}$ 를 동시에 자유 피팅하면 apparent
+shift 와 실제 dissipated heat 가 혼동된다. 논문용 물리 모델에서는 $R_n$ 을 heat resistance 로 직접 쓰지
+말고, pulse / current-interrupt / impedance / calorimetry 로 제한된 경우에만 $I^2R$ 형태를 쓴다(GS-4).
+\end{boundbox}
+
+% ====================================================================
+\section{가역 열 (1): 평형 전위 온도 계수 기반}\label{sec:ch2_revOCV}
+% ====================================================================
+평형 전위의 온도 계수는 reversible heat 와 연결된다(\cite{bernardi1985,thomasnewman2003}, \AL{C5}). 방전 기준
+음극 reduced form:
+\begin{equation}
+\dot{\mathcal Q}_{\rev,n}^{\OCV}=s_{\rev,n}^{\conv}\,|I|\,T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q.
+\label{eq:ch2_revOCV}
+\end{equation}
+$s_{\rev,n}^{\conv}\in\{+1,-1\}$ 는 피팅 파라미터가 아니라 convention bookkeeping factor 다: 음극 전위 부호,
+전류 방향, heat-generation-positive 규약을 명시한 뒤 고정한다. 차원: $|I|\,T\,(\partial V/\partial T)=
+\mathrm A\cdot\mathrm K\cdot\mathrm{V\,K^{-1}}=\mathrm{W}$ \checkmark.
+
+\textbf{금지되는 연결(P3-1).}
+\begin{equation}
+\dot{\mathcal Q}_{\rev,n}\ \not\propto\ |I|\,T\,\frac{dV_{n,\app}}{dT}.
+\label{eq:ch2_forbidden}
+\end{equation}
+$V_{n,\app}$ 는 평형 전위가 아니므로 그 경로 미분은 reversible entropy coefficient 가 아니다. apparent
+전위의 온도 변화에는 $R_n(q,T,|I|)$ 의 온도 의존(비가역 분극)이 섞여 있다.
+
+% ====================================================================
+\section{가역 열 (2): transition entropy basis}\label{sec:ch2_revxi}
+% ====================================================================
+Chapter 1 의 핵심 내부 상태변수는 $\xi_j$ 다. 따라서 상변이/staging transition 의 entropy 변화는
+\emph{진행률 시간율} $d\xi_j/dt$ 를 통해 열 항으로 표현된다(\AL{C5}):
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\xi}=\sum_{j=1}^{N_p}s_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_j}{dt}.
+\label{eq:ch2_revxi}
+\end{equation}
+$\Delta S_j$ = $j$번째 effective transition 의 방전 방향 진행 mol electron(또는 mol Li-equivalent) 1 mol 당
+entropy change [J/(mol\,K)]. 차원:
+\begin{equation}
+T\,\Delta S_j\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_j}{dt}\sim
+\mathrm K\cdot\frac{\mathrm J}{\mathrm{mol\,K}}\cdot\frac{\mathrm C}{\mathrm{C\,mol^{-1}}}\cdot\mathrm s^{-1}
+=\mathrm K\cdot\frac{\mathrm J}{\mathrm{mol\,K}}\cdot\mathrm{mol}\cdot\mathrm s^{-1}=\mathrm W.
+\label{eq:ch2_revxi_dim}
+\end{equation}
+($Q_{j,\tot}/F$ 의 단위 $\mathrm C/(\mathrm{C\,mol^{-1}})=\mathrm{mol}$.) 정전류 방전 구간에서만 좌표 변환
+\begin{equation}
+\frac{d\xi_j}{dt}=\frac{|I|}{Q_\cell}\frac{d\xi_j}{dq}
+\label{eq:ch2_revxi_q}
+\end{equation}
+로 $q$-좌표식으로 바꿀 수 있다(휴지/가변전류 구간 금지).
+
+\subsection{OCV 계수 방식과 entropy basis 방식의 정합 (double counting 금지)}\label{sec:ch2_double}
+$\dot{\mathcal Q}_{\rev,n}^{\OCV}$ 와 $\dot{\mathcal Q}_{\rev,\xi}$ 는 \emph{같은 평형 entropy 정보}를 서로 다른
+수준에서 표현한다. 따라서 둘을 독립 발열항으로 동시에 자유롭게 더하면 double counting 이다(P3 검수 항목).
+물리 우선 원칙은 둘 중 하나를 선택하거나, 동시에 쓸 때 \textbf{정합 제약}을 부과하는 것이다.
+\begin{enumerate}[label=\Alph*),leftmargin=2.0em]
+\item 전체 평형 저장 반응을 $(\partial V_{n,\OCV}/\partial T)_q$ 하나로 대표(식~\eqref{eq:ch2_revOCV}).
+\item $Q_\bg$ 와 각 $\xi_j$ transition 에 별도 entropy coefficient($h_\bg,\Delta S_j$)를 부여하되, 이들이
+  OCV 온도 계수를 재현하도록 제약(식~\eqref{eq:ch2_revxi}, \eqref{eq:ch2_revbg}).
+\end{enumerate}
+\textbf{정합 제약(평형 경로에서).} 평형 준정적 방전($\xi_j=\xi_{\eq,j}$, $V_n=V_{n,\OCV}$)에서 두 표현이 같은
+가역 열률을 주어야 한다:
+\begin{equation}
+\boxed{\;s_{\rev,n}^{\conv}|I|T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=s_\bg^{\conv}T\,h_\bg\,\dot Q_\bg^{\prog}
++\sum_{j}s_{\rev,\xi,j}^{\conv}T\,\Delta S_j\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_{\eq,j}}{dt}\;.}
+\label{eq:ch2_consistency}
+\end{equation}
+이 제약을 두면 B 방식의 $\{h_\bg,\Delta S_j\}$ 가 A 방식의 $(\partial V_{n,\OCV}/\partial T)_q$ 와 정합되어
+double counting 이 제거된다. 제약 없이 둘을 더하면 동일 entropy 가 두 번 계상된다.
+
+% ====================================================================
+\section{배경 용량과 background entropy coefficient}\label{sec:ch2_bg}
+% ====================================================================
+$Q_\bg$ 는 잔류 background capacity 저장소이지 entropy 자체가 아니다. background 영역 reversible heat 를
+쓰려면 별도 entropy coefficient 가 필요하다:
+\begin{equation}
+h_\bg(V_n,T)\equiv\left(\frac{\partial V_{\bg,\eq}}{\partial T}\right)_{\mathrm{bg\ state}},
+\label{eq:ch2_hbg}
+\end{equation}
+background reversible heat 후보는
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\bg}^{\cand}=s_\bg^{\conv}\,T\,h_\bg(V_n,T)\,\dot Q_\bg^{\prog}.
+\label{eq:ch2_revbg}
+\end{equation}
+$\dot Q_\bg^{\prog}$ 는 실제 background 저장/방출 진행률이다.
+
+\textbf{total derivative 와 progress 의 구분(중요).} 전하 보존식 (L1) 을 시간 미분하면
+\begin{equation}
+Q_\cell\frac{dq}{dt}=\frac{\partial Q_\bg}{\partial V_n}\frac{dV_n}{dt}+\frac{\partial Q_\bg}{\partial T}\frac{dT}{dt}
++\sum_jQ_{j,\tot}\frac{d\xi_j}{dt}.
+\label{eq:ch2_dQdt}
+\end{equation}
+비등온 조건에서 $dQ_\bg/dt$ 전체를 곧바로 reaction progress 로 해석하면 안 된다. 개념적으로
+\begin{equation}
+\dot Q_\bg^{\mathrm{tot}}=\dot Q_\bg^{\prog}+\dot Q_\bg^{\coord},\qquad
+\dot Q_\bg^{\coord}=\frac{\partial Q_\bg}{\partial T}\frac{dT}{dt},
+\label{eq:ch2_bgsplit}
+\end{equation}
+$\dot Q_\bg^{\coord}$ 는 온도 변화에 따른 capacity-coordinate shift 이며, 이를 그대로 heat-generating
+reaction rate 로 넣지 않는다($\dot Q_\bg^{\prog}=(\partial Q_\bg/\partial V_n)\,dV_n/dt$ 가 progress 부분).
+
+% ====================================================================
+\section{휴지 구간 relaxation 과 열 발생 가능성}\label{sec:ch2_rest}
+% ====================================================================
+휴지 구간에서는 $I=0,\ dq/dt=0$ 이지만 내부 진행률은 (L2) 로 완화된다:
+$d\xi_j/dt=k_j^{\mathrm{phys}}(\xi_{\eq,j}-\xi_j)$. 따라서 전하 보존식은 매 시간점에서 다시 풀린다:
+\begin{equation}
+Q_\cell\,q_{\mathrm{rest}}=Q_\bg(V_n(t),T)+\sum_jQ_{j,\tot}\xi_j(t).
+\label{eq:ch2_rest_balance}
+\end{equation}
+휴지 중 외부 전류에 의한 $I^2R$ 열은 사라진다. 그러나 $\xi_j$ relaxation 이 있으면 entropy exchange 후보와
+internal dissipation 후보가 남는다:
+\begin{equation}
+\dot{\mathcal Q}_{\xi,\rlx}^{\cand}=\sum_js_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_{j,\tot}}{F}\,\frac{d\xi_j}{dt}.
+\label{eq:ch2_relax}
+\end{equation}
+이는 entropy basis heat exchange \emph{후보}일 뿐이며 확정된 가역 열 또는 확정된 비가역 열로 단정하지 않는다.
+\begin{flagbox}
+\textbf{왜 후보인가.} 휴지 relaxation 의 가역/비가역 분리는 forward/backward rate 의 비대칭(detailed balance
+로부터의 이탈)에 달려 있다. Chapter 1 Level A 의 $k_j=r_j^++r_j^-$ 는 \emph{합}만 주고 비대칭(entropy
+production)은 주지 않으므로, $\dot{\mathcal Q}_{\xi,\rlx}$ 의 가역/비가역 분해는 Chapter 3--4 의
+forward/backward rate 와 free-energy/entropy-production 구조가 있어야 확정된다. 본 장에서는 후보로 둔다.
+\end{flagbox}
+
+% ====================================================================
+\section{온도 되먹임 구조와 계산 순서}\label{sec:ch2_feedback}
+% ====================================================================
+온도는 Chapter 1 의 다음 항들에 되먹임된다:
+\begin{equation}
+Q_\bg(V_n,T),\ \xi_{\eq,j}(V_n,T),\ U_j(T),\ w_j(T),\ \rho_G(g;T),
+\end{equation}
+\begin{equation}
+k_j^{\mathrm{phys}}(V_n,q,T,I),\ k_{j,\mathrm{lim}}(V_n,q,T,I),\ R_n(q,T,|I|),\ V_{n,\OCV}(q,T).
+\end{equation}
+따라서 비등온 계산에서 $V_n,\xi_j,T$ 를 독립 후처리하지 않고 같은 시간 적분 루프에서 갱신한다(P3-3 순환
+의존성). 계산 순서:
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 외부 전류에서 $q(t)$ 업데이트.
+\item 현재 $q,T,\{\xi_j\}$ 에서 전하 보존식(L1)으로 $V_n$ root-find.
+\item $V_n,T$ 에서 $\xi_{\eq,j}$, $k_j^{\mathrm{act}}$, 필요 시 $k_{j,\mathrm{lim}}$ 및 $k_j^{\mathrm{phys}}$ 계산.
+\item $d\xi_j/dt$ (L2) 계산.
+\item 물리적으로 정의된 overpotential, affinity, entropy coefficient 로 열원 항(식~\eqref{eq:ch2_srcdecomp}) 계산.
+\item 열수지식(식~\eqref{eq:ch2_balance})으로 $T(t)$ 업데이트.
+\end{enumerate}
+\begin{boundbox}
+\textbf{되먹임이 ICA tail 에 미치는 영향.} 발열 $\to T\uparrow\to k_j\uparrow$($L\downarrow$, Ch1 spectrum
+shift) $\to$ 꼬리 단축; 동시에 $w_j=RT/F\uparrow$ 로 평형 peak 폭 증가. 두 효과가 경쟁하므로 비등온 ICA
+tail 을 단일 부호로 단정하지 않는다(Chapter 1 \S 온도 tail 3계층 분해와 정합).
+\end{boundbox}
+
+% ====================================================================
+\section{식별성 및 실험 요구조건}\label{sec:ch2_ident}
+% ====================================================================
+물리 우선 모델에서도 식별성은 사라지지 않는다. 해결책은 임의 clipping 이 아니라 독립 실험과 물리적 prior 다.
+\begin{longtable}{p{0.34\textwidth} p{0.54\textwidth}}
+\toprule 상관 항 & 주의점 \\ \midrule \endhead
+$R_n$ 와 $R_{n,\eff}$ & apparent voltage shift 와 실제 dissipated heat 혼동 \\
+$(\partial V_{n,\OCV}/\partial T)_q$ 와 $\Delta S_j$ & 둘 다 reversible heat 설명 $\to$ double counting(식~\eqref{eq:ch2_consistency} 제약 필요) \\
+$k_j^{\mathrm{act}}$ 와 $k_{j,\mathrm{lim}}$ & 강구동 가속과 물리 병목 분리(Ch1 계승) \\
+$Q_\bg$ 와 $h_\bg$ & 배경 용량과 background entropy coefficient 를 독립 자료 없이 분리 곤란 \\
+$hA$ 와 내부 열원 항 & 표면 온도만 있으면 heat generation 과 heat loss 가 상호 보상 \\
+\bottomrule
+\end{longtable}
+필요 실험 제약:
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 저율 OCV/quasi-OCV 온도 series: $(\partial V_{n,\OCV}/\partial T)_q$, $U_j(T)$, $w_j(T)$ 제한.
+\item rate series: $k_j^{\mathrm{act}}$, $k_{j,\mathrm{lim}}$, transport limitation, tail broadening 분리.
+\item pulse/current-interrupt/impedance: ohmic 및 charge-transfer 성분 제한($R_n$ vs $R_{n,\eff}$).
+\item 휴지 relaxation 자료: $\xi_j$ relaxation 과 thermal relaxation 분리.
+\item calorimetry/온도 측정: heat source scale 및 heat loss($hA$) 제한.
+\end{enumerate}
+
+% ====================================================================
+\section{후속 장으로 넘기는 항목}\label{sec:ch2_transmit}
+% ====================================================================
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 완전한 Butler--Volmer / generalized BV (Ch3).
+\item exchange current density 와 계면 overpotential 의 분리 (Ch3).
+\item forward/backward rate 와 detailed balance 기반 entropy production (Ch3--4) — 휴지 relaxation heat 의
+  가역/비가역 확정.
+\item microscopic free-energy surface 기반 relaxation heat (Ch4).
+\item full-cell heat balance 와 양극/음극 발열 분리 (Ch4--5).
+\item 충전 branch, hysteresis, branch-dependent reversible heat (Ch5).
+\end{enumerate}
+
+% ====================================================================
+\section{Chapter 2 자체 검수표}\label{sec:ch2_selfcheck}
+% ====================================================================
+{\small
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+Chapter 1(v2) 상태변수/기호를 수정 없이 입력으로 받았는가(P3-6) & 통과(\S\ref{sec:ch2_inherit}) \\
+발열 항이 entropy/affinity/overpotential 물리에서 출발하는가(피팅 편의 X) & 통과(\S\ref{sec:ch2_decomp}) \\
+비가역 열의 공액 force 가 과전압 $\eta_j=V_{n,\drive}-V_{\eq,j}(\xi_j)$(국소 평형 이탈)이고 rate-affinity $\mathcal A_j$(중심 $U_j$ 기준)와 구분됨 & 통과(식~\eqref{eq:ch2_fluxforce}) \\
+평형서 $\eta_j\to0,\dot\xi_j\to0$ 동시 $\Rightarrow$ entropy production$\to0$; 가역 혼합 entropy 의 비가역 오계상 회피 & 통과(\S\ref{sec:ch2_irr}) \\
+$V_n,V_{n,\OCV},V_{n,\app},V_{n,\drive}$ 구분 유지(P3-1) & 통과 \\
+$(\partial V_{n,\OCV}/\partial T)_q$ 를 평형 전하 보존식에서 유도(외부 lookup X, P3-2) & 통과(식~\eqref{eq:ch2_dVocvdT}) \\
+고정-$q$ 온도미분에서 chain($V_{n,\OCV}(T)$)과 명시 $T$ 의존 분리 무비약 & 통과(식~\eqref{eq:ch2_implicitT}) \\
+$D_q>0$ 가 Ch1 단조성 floor 에서 보장됨 명시 & 통과 \\
+$Q_\cell,Q_{j,\tot}$ 기준 용량 가정 + $Q_{j,\tot}(T)$ 보정항 명시(\AL{C1}) & 통과 \\
+$V_{n,\app}$ 온도 미분을 reversible heat 로 쓰지 않음 명시(식~\eqref{eq:ch2_forbidden}) & 통과 \\
+상변이 heat-rate 입력을 $d\xi_j/dt$ 로 유지, $d\xi_j/dq$ 는 정전류 한정 & 통과(식~\eqref{eq:ch2_revxi_q}) \\
+$\Delta S_j$ 의 mol electron/Li-equiv 기준 + 차원 W 확인 & 통과(식~\eqref{eq:ch2_revxi_dim}) \\
+OCV entropy 방식과 transition entropy basis double counting 정합 제약 제시 & 통과(식~\eqref{eq:ch2_consistency}) \\
+$R_n,R_{n,\eff},R_{\mathrm{ct}}$ 구분, $I^2R$ 는 선형응답 한정 & 통과(식~\eqref{eq:ch2_i2r}) \\
+$Q_\bg$ total derivative 와 progress rate 구분 & 통과(식~\eqref{eq:ch2_bgsplit}) \\
+휴지 relaxation heat 를 확정항 아닌 후보로, 가역/비가역 분해는 Ch3--4 위임 & 통과(\S\ref{sec:ch2_rest}) \\
+온도 되먹임 순환(P3-3)을 같은 적분 루프로 처리, 계산 순서 명시 & 통과(\S\ref{sec:ch2_feedback}) \\
+가역 열 부호를 피팅 X, convention factor $s^{\conv}$ 로 분리 & 통과 \\
+임의 clipping/stabilizer 를 기본 열원 항으로 쓰지 않음(GS-4) & 통과 \\
+Ch3--5 이월 항목 분리 & 통과(\S\ref{sec:ch2_transmit}) \\
+모든 가정 AL 인용; 미확정은 FLAGGED; BOUNDED 유효범위 병기 & 통과 \\
+\bottomrule
+\end{longtable}
+}
+
+% ====================================================================
+\section{Chapter 2 의 결론}\label{sec:ch2_concl}
+% ====================================================================
+첫째, Chapter 1 전하 보존식은 평형에서 $(\partial V_{n,\OCV}/\partial T)_q$ 를 유도한다(식~\eqref{eq:ch2_dVocvdT}).
+이는 가역 열과 연결되는 상태함수 온도 계수이며 apparent 전위 $V_{n,\app}$ 경로 미분과 구분된다.
+
+둘째, 상변이/staging 가역 열은 $d\xi_j/dt$ 에서 출발한다(식~\eqref{eq:ch2_revxi}). $d\xi_j/dq$ 표현은
+정전류 방전 한정 좌표 변환이다.
+
+셋째, 비가역 열은 flux$\times$\emph{과전압} $\sum_jJ_{n,j}F\eta_j$, 축약형 $I\eta$, 또는 물리적으로 제한된
+$I^2R_{n,\eff}$ 에서 출발한다. 공액 force 는 국소 평형 이탈 $\eta_j=V_{n,\drive}-V_{\eq,j}(\xi_j)$ 이며
+전이 중심 기준 rate-affinity $\mathcal A_j$ 와 구분된다(가역 혼합 entropy 의 비가역 오계상 방지). Chapter 1 의
+apparent $R_n$ 은 실제 heat-generation resistance 와 동일시하지 않는다.
+
+넷째, OCV 온도 계수 가역 열과 transition entropy basis 가역 열은 같은 entropy 정보를 다른 수준에서
+표현하므로, 독립 열원으로 동시에 더하면 double counting 이다. 정합 제약(식~\eqref{eq:ch2_consistency})으로 묶는다.
+
+다섯째, Chapter 2 는 발열 모델 폐쇄가 아니라 물리적 연결 장이다. 상세 과전압, exchange current,
+forward/backward kinetics, entropy production, 충방전 hysteresis heat 는 Chapter 3--5 에서 다룬다. 이로써
+``열역학=가역(방향/entropy), 동역학=비가역(속도/affinity)'' 분업이 Chapter 1 의 인과 사슬과 정합되게 유지된다.
+
+
