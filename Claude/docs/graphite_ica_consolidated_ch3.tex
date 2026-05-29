@@ -1,0 +1,502 @@
+% ====================================================================
+% graphite_ica_consolidated_ch3.tex — 합류 Chapter 3 (반응속도론, v2 원본 밀도)
+%   트렁크 = (B) 전하보존 6장 Ch3 전문 밀도. Ch1 v2 / Ch2 위 적층.
+%   Ch1 v2 정합: Level A(mobility) ↔ Level B(directional barrier, β_j=χ_j),
+%   detailed-balance 일관성(n_j^eff=RT/Fw_j), ξ_ss↔ξ_eq 검증(P3-6).
+% Date: 2026-05-29 (v2)  Author: Project_Anode_Fit (Claude 측)
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.4em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail — 합류 Chapter 3 (반응속도론, v2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 ICA tail — 합류 Chapter 3 (반응속도론, v2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{유효범위(Validity bound)}
+\newtheorem*{flagbox}{FLAGGED (미확정)}
+\newtheorem*{keybox}{Keystone}
+\newtheorem*{linkbox}{Ch1/Ch2 전달식}
+\newtheorem*{verifybox}{정합 검증 (P3-6)}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\resid}{\mathrm{resid}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 흑연 음극 ICA tail 이론 — 합류 Chapter 3}\\[0.4em]
+\large 전기화학 반응속도론: forward/backward kinetics $\cdot$ detailed balance $\cdot$\\
+Level A(mobility) $\to$ Level B(directional barrier) $\cdot$ Butler--Volmer 계층}
+\author{Project\_Anode\_Fit (Claude 측)}
+\date{2026-05-29 (v2)}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서 — 인과 사슬에서 ``반응속도론''의 자리}
+\addcontentsline{toc}{section}{서 — 반응속도론의 자리}
+% ====================================================================
+Chapter 1 은 ICA 꼬리의 주역을 \emph{동역학}(진행률 $\xi_j$ 의 유한속도 완화)으로 지목하되, 그 동역학을
+\textbf{Level A}(평형 target $\xi_{\eq,j}$ 을 향한 mobility $k_j$ 완화)로 \emph{coarse-grained} 하게 두었다.
+Chapter 3 은 이 한 단계를 \textbf{확대(zoom-in)}한다: ``그 mobility 는 미시적으로 어떤 forward/backward
+transition kinetics 에서 나오는가, 그리고 그 미시식이 Chapter 1 식을 정확히 회복하는가''.
+
+\textbf{Chapter 3 의 한 문장 요지.} \emph{Chapter 1 의 relaxation ODE 는 forward/backward transition
+kinetics 의 coarse-grained 축약형이며}(Level A = Level B 의 detailed-balance 극한), 강구동에서 forward rate
+증가는 물리적으로 허용하되 그 제한은 임의 cap 이 아니라 transport/site/diffusion/current-conservation 병목으로
+도입한다. 본 장은 발열식의 최종 부호(Ch4)와 충전 branch/hysteresis(Ch5)를 닫지 않는다.
+
+\begin{groundingbox}
+\textbf{지배 표준(GS) 및 keystone 계승.} (GS-1\,$\sim$\,4) Ch1/Ch2 와 동일. \textbf{Keystone(Ch1).} Level A:
+$\chi_j\mathcal A_j$ 는 \emph{방향성 없는} mobility 가속(target=열역학 전담, ratio 불변). \textbf{Level B(본 장):}
+forward 장벽만 $-\beta_j\mathcal A_j$, backward 는 $+(1-\beta_j)\mathcal A_j$ $\Rightarrow$ rate ratio 가
+$\mathcal A_j$ 에 의존(변함). 이때 본 장 transfer coefficient $\beta_j$ 는 Chapter 1 의 $\chi_j$ 와
+\textbf{동일물}이다($\chi_j\equiv\beta_j$). 방전 기준, $|I|>0$.
+\end{groundingbox}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Chapter 1--2 에서 가져오는 고정 기준}\label{sec:ch3_inherit}
+% ====================================================================
+\begin{linkbox}
+\textbf{(L1) 전하 보존식.} $Q_\cell q=Q_\bg(V_n,T)+\sum_j Q_{j,\tot}\xi_j$; $V_n$ 은 그 해(외부 입력 아님).\\
+\textbf{(L2) relaxation ODE.} $\dfrac{d\xi_j}{dt}=k_j^{\mathrm{phys}}(V_n,q,T,I)[\xi_{\eq,j}(V_n,T)-\xi_j]$.\\
+\textbf{(L3) 활성화 계층.} $\Delta G_{\eff,j}=\Delta G_{a,j}(T)-\chi_j\mathcal A_j$,
+$k_j^{\mathrm{act}}=\nu_j(T)e^{-\Delta G_{\eff,j}/RT}$, $1/k_j^{\mathrm{phys}}=1/k_j^{\mathrm{act}}+1/k_{j,\lim}$.
+$\Delta G_{\eff,j}<0$ 은 비물리 영역이 아니라 강구동 accelerated regime.\\
+\textbf{(L4) Ch2 경계.} 열/flux 직접 입력은 $d\xi_j/dt$; $V_{n,\app}$ 는 평형 전위/과전압 아님;
+$R_n,R_{n,\eff},R_{\ct}$ 는 서로 다른 계층; 가역 열 dissipation force 는 과전압 $\eta_j$(중심 affinity
+$\mathcal A_j$ 와 구분).\\
+\textbf{(L5) spectrum.} 각 effective transition 내부에 activation barrier 분포 $\rho_j(g;T)$ 존재(Ch1
+relaxation-length spectrum 의 근원).
+\end{linkbox}
+본 장은 위를 \textbf{수정하지 않고} 미시 kinetics 계층을 적층한다(P3-6). 임의 clipping/softplus/bounded
+transform 을 기본 반응속도식으로 쓰지 않는다(GS-4); 강구동 forward rate 증가는 허용하고 제한은 물리적 병목으로 둔다.
+
+% ====================================================================
+\section{전위 $\cdot$ 과전압 $\cdot$ 구동력의 계층화}\label{sec:ch3_potentials}
+% ====================================================================
+\begin{longtable}{p{0.16\textwidth} p{0.40\textwidth} p{0.36\textwidth}}
+\toprule 기호 & 의미 & 본 장 역할 \\ \midrule \endhead
+$V_n$ & 전하 보존식 해(내부 음극 전위) & thermodynamic state coordinate \\
+$V_{n,\OCV}$ & 평형 전하 보존식 해 & 준평형 기준 \\
+$V_{n,\app}$ & 분극+실험 전압축 이동 포함 apparent 전위 & 관측량(직접 과전압 아님) \\
+$V_{n,\drive}$ & Ch1 속도식 구동 전위 & reduced driving coordinate \\
+$\phi_s,\phi_e$ & 고체상/전해질상 전위 & 계면 kinetics 변수 \\
+$U_n$ & local equilibrium potential & overpotential 기준 \\
+$\eta_n$ & 계면 과전압 & Butler--Volmer 입력 \\
+\bottomrule
+\end{longtable}
+표준 계면 과전압은
+\begin{equation}
+\eta_n=\phi_s-\phi_e-U_n,
+\label{eq:ch3_eta_standard}
+\end{equation}
+이며 $V_{n,\app}$ 와 같지 않다($V_{n,\app}$ 에는 ohmic drop, concentration polarization, surface film,
+fitting residual 이 섞인다). Chapter 1 transition 구동력(reduced affinity)은
+\begin{equation}
+\mathcal A_j=s_{\phi,j}\,n_j^{\eff}\,F\,[V_{n,\drive}-U_j(T)],\qquad \eta_j\equiv\frac{\mathcal A_j}{n_j^{\eff}F},
+\label{eq:ch3_Aj}
+\end{equation}
+$s_{\phi,j}$ 는 $\mathcal A_j>0$ 이면 방전 방향 진행이 촉진되도록 선택. $n_j^{\eff}$ 는 \S\ref{sec:ch3_db}
+에서 detailed balance 정합으로 고정되는 effective electron number(ideal limit $n_j^{\eff}=1$ 이면 Ch1
+원형 $\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$). 가장 보수적 연결은
+\begin{equation}
+V_{n,\drive}=V_n+\eta_{n,\drive},\qquad \eta_{n,\drive}\ne\eta_n,
+\label{eq:ch3_drive}
+\end{equation}
+$\eta_{n,\drive}$ 는 Ch1 reduced kinetic driving correction(기본형 $\eta_{n,\drive}=0\Rightarrow V_{n,\drive}=V_n$).
+$\eta_{n,\drive}$ 와 계면 $\eta_n$ 을 연결하려면 $V_n,\phi_s,\phi_e,U_n$ 대응과 reference electrode
+convention 이 별도로 필요하다(임의 동일시 금지).
+
+% ====================================================================
+\section{Forward/backward transition kinetics 와 detailed balance}\label{sec:ch3_db}
+% ====================================================================
+상변이 진행률은 가장 일반적으로 forward/backward transition 의 차다(\cite{eyring1935,degrootmazur1962}, \AL{K1}):
+\begin{equation}
+\frac{d\xi_j}{dt}=r_j^+\,(1-\xi_j)-r_j^-\,\xi_j,
+\label{eq:ch3_fb}
+\end{equation}
+$r_j^+$=방전 방향 transition rate, $r_j^-$=역방향. $(1-\xi_j),\xi_j$ 는 각 방향이 작용 가능한 잔여
+fraction. 평형에서 net flux $=0$:
+\begin{equation}
+r_j^+(1-\xi_{\eq,j})=r_j^-\xi_{\eq,j}
+\ \Longrightarrow\
+\frac{r_j^+}{r_j^-}=\frac{\xi_{\eq,j}}{1-\xi_{\eq,j}}\quad(\text{local detailed balance}).
+\label{eq:ch3_db}
+\end{equation}
+Chapter 1 logistic $\xi_{\eq,j}=[1+\exp(-(V_n-U_j)/w_j)]^{-1}$ 을 대입하면
+\begin{equation}
+\boxed{\;\ln\frac{r_j^+}{r_j^-}=\ln\frac{\xi_{\eq,j}}{1-\xi_{\eq,j}}=\frac{V_n-U_j(T)}{w_j(T)}\;.}
+\label{eq:ch3_db_width}
+\end{equation}
+이 식은 $w_j$ 를 $RT/F$ 에 강제로 묶지 않는다 — $w_j$ 는 nonideality$\cdot$domain heterogeneity$\cdot$finite
+width 를 포함하는 effective equilibrium width 다.
+
+% ====================================================================
+\section{Chapter 1 relaxation ODE 와의 정합 (Level A = Level B 의 detailed-balance 극한)}\label{sec:ch3_consistency}
+% ====================================================================
+\subsection{consistent split (Level A 회복)}
+Chapter 1 의 $d\xi_j/dt=k_j^{\mathrm{phys}}(\xi_{\eq,j}-\xi_j)$ 는 식~\eqref{eq:ch3_fb} 의 특수 축약형이다.
+이를 보장하는 rate split:
+\begin{equation}
+r_j^+=k_j^{\mathrm{phys}}\,\xi_{\eq,j},\qquad r_j^-=k_j^{\mathrm{phys}}\,(1-\xi_{\eq,j}).
+\label{eq:ch3_split}
+\end{equation}
+대입하면(무비약)
+\begin{align}
+\frac{d\xi_j}{dt}
+&=k_j^{\mathrm{phys}}\xi_{\eq,j}(1-\xi_j)-k_j^{\mathrm{phys}}(1-\xi_{\eq,j})\xi_j \notag\\
+&=k_j^{\mathrm{phys}}\big[\xi_{\eq,j}-\xi_{\eq,j}\xi_j-\xi_j+\xi_{\eq,j}\xi_j\big]
+=k_j^{\mathrm{phys}}(\xi_{\eq,j}-\xi_j).
+\label{eq:ch3_recover}
+\end{align}
+이 split 은 detailed balance(식~\eqref{eq:ch3_db})를 자동으로 만족하며($r_j^+/r_j^-=\xi_{\eq,j}/(1-\xi_{\eq,j})$),
+$\xi_{\eq,j}$ 를 전류 의존 target 으로 바꾸지 않는다. \textbf{즉 Chapter 1 의 $k_j^{\mathrm{phys}}$ 는 forward-only
+rate $r_j^+$ 가 아니라 mobility(평형 접근 속도)이고, $\chi_j\mathcal A_j$ 는 $k_j^{\mathrm{phys}}=r_j^++r_j^-$
+\emph{전체}를 키운다}(ratio 불변 = Level A).
+
+\subsection{nonequilibrium stationary target}
+전류/과전압이 forward/backward 비 자체를 바꾸면 새로운 stationary target 이 생긴다:
+\begin{equation}
+\xi_{\sstat,j}(V_n,T,I)=\frac{r_j^+}{r_j^++r_j^-}.
+\label{eq:ch3_xiss}
+\end{equation}
+이는 true thermodynamic equilibrium $\xi_{\eq,j}$ 가 아니라 nonequilibrium stationary progress 다.
+detailed balance(식~\eqref{eq:ch3_db})가 성립하면 $\xi_{\sstat,j}=\xi_{\eq,j}$. Chapter 5 의 branch target 도
+이 계열이며 true equilibrium 과 구분한다.
+
+% ====================================================================
+\section{Level B: 명시적 활성화 rate 와 directional barrier lowering}\label{sec:ch3_levelB}
+% ====================================================================
+명시적 activation-rate 로 forward/backward 를 세우면(transfer coefficient $0\le\beta_j\le1$;
+\cite{evanspolanyi1938,bardfaulkner,bazant2013}, \AL{K2})
+\begin{equation}
+r_j^+=\nu_j^+(T)\,a_j^+(\xi_j,V_n,T)\exp\!\Big[-\frac{\Delta G_j^{+\ddagger}(T)-\beta_j\mathcal A_j}{RT}\Big],
+\label{eq:ch3_rplus}
+\end{equation}
+\begin{equation}
+r_j^-=\nu_j^-(T)\,a_j^-(\xi_j,V_n,T)\exp\!\Big[-\frac{\Delta G_j^{-\ddagger}(T)+(1-\beta_j)\mathcal A_j}{RT}\Big].
+\label{eq:ch3_rminus}
+\end{equation}
+$a_j^\pm$=site availability/activity/phase accessibility. forward 장벽만 $-\beta_j\mathcal A_j$, backward 는
+$+(1-\beta_j)\mathcal A_j$ 이므로 \textbf{rate ratio 가 $\mathcal A_j$ 에 의존}한다:
+\begin{equation}
+\ln\frac{r_j^+}{r_j^-}=\underbrace{\ln\frac{\nu_j^+a_j^+}{\nu_j^-a_j^-}-\frac{\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}}{RT}}_{\equiv\,C_j(\xi_j,T)}
++\frac{\mathcal A_j}{RT}.
+\label{eq:ch3_ratio_B}
+\end{equation}
+$\beta_j$ 는 \emph{ratio 의 $\mathcal A_j$ 계수에서 상쇄}되어($\beta+(1-\beta)=1$) ratio 의
+$\mathcal A_j$-기울기는 $1/RT$ 로 $\beta_j$ 무관이고, $\beta_j$ 는 \emph{sum} $r_j^++r_j^-$(mobility)의
+$\mathcal A_j$-응답 비대칭만 결정한다. sum 은(\AL{K2})
+\begin{equation}
+k_j^{\mathrm{phys}}=r_j^++r_j^-
+=e^{-\Delta G_j^{+\ddagger}/RT}\nu_j^+a_j^+\,e^{\beta_j\mathcal A_j/RT}
++e^{-\Delta G_j^{-\ddagger}/RT}\nu_j^-a_j^-\,e^{-(1-\beta_j)\mathcal A_j/RT}.
+\label{eq:ch3_ksum}
+\end{equation}
+
+\subsection{detailed-balance 정합 제약 ($n_j^{\eff}$ 의 고정)}\label{sec:ch3_neff}
+식~\eqref{eq:ch3_ratio_B} 가 Chapter 1 의 평형(식~\eqref{eq:ch3_db_width})과 정합하려면
+\begin{equation}
+C_j+\frac{\mathcal A_j}{RT}\Big|_{V_{n,\drive}=V_n}=\frac{V_n-U_j}{w_j}.
+\label{eq:ch3_dbmatch}
+\end{equation}
+$\mathcal A_j=s_{\phi,j}n_j^{\eff}F(V_n-U_j)$(식~\eqref{eq:ch3_Aj})을 넣고 $V_n$ 전 구간에서 성립시키면, 기울기
+정합으로부터
+\begin{equation}
+\boxed{\;n_j^{\eff}=\frac{RT}{F\,w_j(T)}\;,\qquad C_j\big|_{\text{midpoint}}=0\;}
+\label{eq:ch3_neff}
+\end{equation}
+가 강제된다. 즉 effective width $w_j$ 와 effective electron number $n_j^{\eff}$ 는 독립이 아니라
+$n_j^{\eff}w_j=RT/F$ 로 묶인다(ideal $w_j=RT/F\Rightarrow n_j^{\eff}=1$). \textbf{이 제약이 없으면 BV-형
+barrier lowering($Fη/RT$)과 logistic 평형 폭 $w_j$ 가 불일치}한다 — 모든 prefactor/barrier/transfer
+coefficient 를 독립 자유 피팅하면 thermodynamic consistency 가 깨진다(P3 검수).
+\begin{boundbox}
+\textbf{정합 가정 명시(검수 5).} 식~\eqref{eq:ch3_neff} 의 기울기 정합은 \emph{$C_j$ 가 $V_n$ 에 무의존}
+(활성도비 $a_j^+/a_j^-$ 의 전위 의존을 $\mathcal A_j$ 항으로 모두 흡수)이라는 가정에 의존한다. 일반적으로
+ln 비의 전 $V_n$ 의존은 $C_j$(configurational)와 $\mathcal A_j/RT$(potential) 로 분할되며 그 partition 은
+모델 선택이다. 본 장은 \textbf{전체 ln 비가 detailed balance(식~\eqref{eq:ch3_db_width}) $=(V_n-U_j)/w_j$ 와
+같아야 한다}는 model-independent 제약을 우선하고, 전위 의존을 $\mathcal A_j$ 에 귀속하는 표준 partition 에서
+$n_j^{\eff}=RT/(Fw_j)$ 를 얻는다($s_{\phi,j}=+1$). $a_j^\pm$ 가 강한 $V_n$ 의존을 가지면 effective width 가
+재정의되므로, partition 을 명시한 뒤 $n_j^{\eff}$ 를 고정한다.
+\end{boundbox}
+\begin{boundbox}
+\textbf{Chapter 1 과의 reconcile(검수 10).} Chapter 1 v2 는 $\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$
+(즉 $n_j^{\eff}=1$)에 \emph{effective} $w_j$ 를 함께 썼다. 위 제약상 이는 $w_j=RT/F$(ideal)에서만 정합한다.
+따라서 nonideal effective width($w_j\ne RT/F$)를 쓸 때는 \textbf{Chapter 1 의 $\mathcal A_j$ 의 $F$ 도
+$n_j^{\eff}F=RT/w_j$ 로 읽어야} 정합이 유지된다(Chapter 1 의 logistic baseline FLAG 와 같은 층위의 단서).
+이는 Chapter 1 식의 형태를 바꾸지 않고 affinity scale 의 해석만 정밀화한 것이며, 트렁크와 충돌하지 않는다.
+\end{boundbox}
+
+\begin{verifybox}
+\textbf{Level A $=$ Level B 의 detailed-balance 극한.} 식~\eqref{eq:ch3_xiss} 에 식~\eqref{eq:ch3_ratio_B}
+대입: $\xi_{\sstat,j}=[1+e^{-(C_j+\mathcal A_j/RT)}]^{-1}$. 정합 제약(식~\eqref{eq:ch3_neff}, 및 $C_j$ 무의존
+가정) 하에서 $C_j+\mathcal A_j/RT=(V_n-U_j)/w_j$ 이므로 $\xi_{\sstat,j}=\xi_{\eq,j}$. 즉 \textbf{Chapter 1 의 평형 target
+은 Level B 의 detailed-balance stationary 극한}이며, 두 계층은 충돌하지 않는다(P3-6 통과). branch 비대칭
+$\xi_{\sstat,j}\ne\xi_{\eq,j}$ 은 $C_j$ 가 detailed balance 를 이탈할 때(독립 landscape, metastable branch)만
+발생하며 이는 Chapter 5 로 넘긴다.
+\end{verifybox}
+
+\subsection{강구동 accelerated regime 과 물리적 병목}
+강구동에서 $\Delta G_j^{+\ddagger}-\beta_j\mathcal A_j<0$ 이 될 수 있다. 이를 0 에 잘라 붙이지 않는다(GS-4);
+단순 activation 식이 매우 큰 forward rate 를 예측하는 accelerated regime 이다. 실제 제한은 직렬 병목으로
+나타난다(수치 cap 아님):
+\begin{equation}
+\frac{1}{r_{j,\mathrm{obs}}^+}=\frac{1}{r_j^+}+\frac{1}{r_{j,\mathrm{transport}}^+}+\frac{1}{r_{j,\mathrm{site}}^+}+\frac{1}{r_{j,\mathrm{current}}^+},
+\label{eq:ch3_forward_limiter}
+\end{equation}
+연속적 병목 과정이 직렬 저항처럼 작용한다는 물리 해석을 가진다.
+\begin{mdframed}
+\textbf{실무 팁(본문 물리식 아님).} 강구동서 explicit rate 가 발산적으로 커지면 초기 fitting/solver
+debugging 에서 임시 cap 가능하나, 이는 계산 보조 장치일 뿐 최종 해석에서는 transport/site/diffusion/
+finite-current 병목으로 대체한다(GS-4).
+\end{mdframed}
+
+% ====================================================================
+\section{Butler--Volmer 계층과의 연결}\label{sec:ch3_bv}
+% ====================================================================
+계면 전하전달이 지배적이면 음극 반응 전류밀도는 Butler--Volmer 형(\cite{bardfaulkner,newman2004}, \AL{K3}):
+\begin{equation}
+j_n=j_{0,n}(T,\theta)\Big[\exp\!\Big(\frac{(1-\alpha_n)F\eta_n}{RT}\Big)-\exp\!\Big(-\frac{\alpha_n F\eta_n}{RT}\Big)\Big],
+\label{eq:ch3_bv}
+\end{equation}
+$\eta_n>0$ 이 방전 방향 flux 를 키우는 convention. 강한 양의 과전압에서 forward exponential 이 커지는 것을
+허용하며, 제한은 임의 cap 이 아니라 $j_{0,n}$, reactant activity, surface concentration, electrolyte
+transport, finite applied current 가 정한다. 작은 과전압에서
+\begin{equation}
+j_n\approx j_{0,n}\frac{F\eta_n}{RT},\qquad
+R_{\ct,n}=\frac{RT}{F\,A_{\eff}\,j_{0,n}},
+\label{eq:ch3_rct}
+\end{equation}
+$R_{\ct,n}$ 은 small-signal charge-transfer resistance 이며 Chapter 1 의 $R_n$ 과 원칙적으로 다르다.
+\begin{boundbox}
+\textbf{BV $\leftrightarrow$ Level B 대응.} 식~\eqref{eq:ch3_bv} 의 $\alpha_n$ 은 식~\eqref{eq:ch3_rplus}
+의 $\beta_j$ 와 같은 transfer-coefficient 계열이다. 단, BV 는 \emph{계면 charge-transfer} 의 과전압 $\eta_n$
+(식~\eqref{eq:ch3_eta_standard})을 쓰고, Level B 는 \emph{transition} 구동력 $\mathcal A_j$(식~\eqref{eq:ch3_Aj})
+을 쓴다. $\eta_{n,\drive}\ne\eta_n$(식~\eqref{eq:ch3_drive})이므로 둘을 동일시하지 않는다.
+\end{boundbox}
+
+% ====================================================================
+\section{Generalized affinity 와 double counting 금지}\label{sec:ch3_genaff}
+% ====================================================================
+비이상 열역학$\cdot$staging free energy$\cdot$surface contribution 을 포함하려면 단순 $F\eta_n$ 대신
+generalized affinity:
+\begin{equation}
+\mathcal A_n=F\eta_n+\mathcal A_{\resid}.
+\label{eq:ch3_genaff}
+\end{equation}
+$U_n$ 을 local thermodynamic equilibrium potential 로 정의하면 activity/chemical potential/staging free
+energy 일부가 이미 $U_n$ 안에 있다. 따라서 $\mathcal A_{\resid}$ 는 $U_n$ 에 포함되지 않은 residual
+nonideality, phase-boundary driving force, surface contribution 으로만 해석한다.
+\begin{mdframed}
+\textbf{double counting 금지.} 같은 자유에너지 항을 $U_n$ 과 $\mathcal A_n$ 에 동시에 넣지 않는다. 예: $U_n$ 이
+이미 graphite staging chemical potential 을 포함하면 동일 staging free-energy 를 $\mathcal A_{\resid}$ 에
+다시 더하는 것은 double counting.
+\end{mdframed}
+
+% ====================================================================
+\section{전류 보존과 transition current 분해}\label{sec:ch3_current}
+% ====================================================================
+전하 보존식 시간 미분:
+\begin{equation}
+Q_\cell\frac{dq}{dt}=\frac{\partial Q_\bg}{\partial V_n}\frac{dV_n}{dt}+\frac{\partial Q_\bg}{\partial T}\frac{dT}{dt}+\sum_j Q_{j,\tot}\frac{d\xi_j}{dt}.
+\label{eq:ch3_current_balance}
+\end{equation}
+등온 방전 정전류 구간에서
+\begin{equation}
+|I|=I_\bg^{\mathrm{prog}}+\sum_j I_j,\qquad I_j=Q_{j,\tot}\frac{d\xi_j}{dt},
+\label{eq:ch3_current_decomp}
+\end{equation}
+$I_j$ 는 $j$번째 transition 이 담당하는 lumped transition current. 비등온서 $(\partial Q_\bg/\partial T)(dT/dt)$ 는
+Chapter 2 처럼 coordinate shift 와 progress 를 구분한다($I_\bg^{\mathrm{prog}}=(\partial Q_\bg/\partial V_n)dV_n/dt$).
+\textbf{전류 보존 = 강구동 rate 제한의 물리적 근거.} $r_j^+$ 가 아무리 커도 외부 전류가 한정되면 transition
+current 합이 전하 보존식과 외부 전류를 동시에 만족해야 한다. 따라서 강구동 saturation 은 임의 cap 이 아니라
+current conservation + coupled transport 에서 유도된다(식~\eqref{eq:ch3_forward_limiter} 의
+$r_{j,\mathrm{current}}^+$).
+
+% ====================================================================
+\section{Chapter 1 의 $R_n$ 과 전기화학 분극}\label{sec:ch3_Rn}
+% ====================================================================
+apparent 전위 $V_{n,\app}=V_n+s_I|I|R_n(q,T,|I|)$ 의 $R_n$ 은 전기화학적으로 여러 성분의 apparent
+aggregate 일 수 있다:
+\begin{equation}
+s_I|I|R_n\approx\eta_{\ct,n}+\eta_{\mathrm{ohm},n}+\eta_{\mathrm{conc},n}+\eta_{\mathrm{film},n}+\eta_{\resid,n}.
+\label{eq:ch3_Rn_decomp}
+\end{equation}
+이는 해석용 분해이며 모든 항 동시 자유 피팅을 뜻하지 않는다.
+\begin{longtable}{p{0.26\textwidth} p{0.62\textwidth}}
+\toprule 항 & 물리적 의미 \\ \midrule \endhead
+$\eta_{\ct,n}$ & charge-transfer overpotential \\
+$\eta_{\mathrm{ohm},n}$ & electrolyte/solid ohmic drop \\
+$\eta_{\mathrm{conc},n}$ & concentration polarization / transport limitation \\
+$\eta_{\mathrm{film},n}$ & SEI/surface film contribution \\
+$\eta_{\resid,n}$ & reduced model 에서 아직 분리 못 한 residual \\
+\bottomrule
+\end{longtable}
+가장 중요한 원칙:
+\begin{equation}
+\boxed{\;R_n\ne R_{\ct,n},\qquad R_n\ne R_{n,\eff}\;}
+\label{eq:ch3_Rn_not_equal}
+\end{equation}
+$R_n$=voltage-axis shift apparent coefficient, $R_{\ct,n}$=계면 charge-transfer resistance,
+$R_{n,\eff}$=heat-generation effective coefficient(Ch2). \textbf{Ch1 falsification 연결}: $\chi_j(=\beta_j)$
+barrier-lowering 기울기와 $\eta_{\ct,n}$ Tafel 기울기는 단일 전극서 co-linear 일 수 있으므로, 다중
+$T\times|I|$ + pulse/GITT 로 $\eta_{\ct}$ 를 독립 분리한 \emph{후}에만 $\chi_j$ 귀속이 성립한다.
+
+% ====================================================================
+\section{C-rate 효과의 전기화학적 재분해}\label{sec:ch3_crate}
+% ====================================================================
+Chapter 1 정전류 좌표식
+\begin{equation}
+\frac{d\xi_j}{dq}=\frac{Q_\cell}{|I|}\,k_j^{\mathrm{phys}}\,[\xi_{\eq,j}-\xi_j]
+\label{eq:ch3_crate}
+\end{equation}
+의 C-rate 효과는 단순 $k_j/|I|$ 경쟁이 아니라 다음의 결합이다.
+\begin{longtable}{p{0.22\textwidth} p{0.26\textwidth} p{0.40\textwidth}}
+\toprule 요소 & 수식 위치 & 의미 \\ \midrule \endhead
+체류 시간 & $Q_\cell/|I|$ & 고율일수록 같은 $dq$ 에서 반응 시간 짧음 \\
+평형 target lag & $\xi_{\eq,j}-\xi_j$ & state 가 target 못 따라가면 mismatch 증가 \\
+활성화 mobility & $k_j^{\mathrm{act}}$ & 전위 구동력+activation barrier 로 rate 증가 \\
+물리적 병목 & $k_{j,\lim}$ & transport/site/diffusion/current 제한 \\
+분극 & $V_{n,\drive},\eta_n,R_n$ & 구동력+apparent shift 변화 \\
+\bottomrule
+\end{longtable}
+따라서 고율 tail/broadening 은
+\begin{equation}
+\mathrm{tail/broadening}=\mathcal F\!\Big(\frac{1}{|I|},\,\mathcal A_j,\,k_j^{\mathrm{act}},\,k_{j,\lim},\,R_n,\,\rho_j(g;T)\Big)
+\label{eq:ch3_tail_function}
+\end{equation}
+의 결과다. 강구동서 $k_j^{\mathrm{act}}$ 증가해도 외부 전류+transport limitation 이 전체 관측 tail 을
+제한할 수 있다(Ch1 spectrum shift 와 정합).
+
+% ====================================================================
+\section{온도 의존 kinetics 와 식별성}\label{sec:ch3_ident}
+% ====================================================================
+prefactor/barrier/exchange current/transport 가 모두 온도 의존을 가질 수 있다:
+\begin{equation}
+\nu_j(T)=\nu_{j,\mathrm{ref}}\exp\!\Big[-\frac{E_{\nu,j}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big],\quad
+j_{0,n}(T,\theta)=j_{0,n}^{\mathrm{ref}}(\theta)\exp\!\Big[-\frac{E_{a,j_0}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big].
+\label{eq:ch3_T}
+\end{equation}
+그러나 다음 항들은 강하게 상관된다(물리적 식별성 문제):
+\begin{equation}
+j_0(T,\theta)\leftrightarrow\nu_j(T)\leftrightarrow\Delta G_{a,j}(T)\leftrightarrow\chi_j(=\beta_j)\leftrightarrow k_{j,\lim}\leftrightarrow R_n\leftrightarrow\rho_j(g;T).
+\label{eq:ch3_ident_chain}
+\end{equation}
+같은 ICA/rate 자료만으로 이 모두를 독립 결정할 수 없다 $\Rightarrow$ 독립 실험$\cdot$사전 물리 제약$\cdot$
+단계적 검증 필요. \textbf{병목 도입 층위 명시.} Coarse-grained(Level A)에서 $k_{j,\lim}$ 은
+$\xi_j\to\xi_{\eq,j}$ relaxation mobility 의 병목이다. explicit(Level B)에서는 제한이 $r_j^+$, $r_j^-$,
+또는 net flux 에 작용할 수 있다 — transport/finite-current 가 forward/backward 에 \emph{비대칭}으로 들어가면
+$r_j^+/r_j^-$ 가 바뀌어 detailed balance 와 충돌한다. 따라서 제한항이 mobility 전체/forward flux/net current
+중 어디에 작용하는지 반드시 명시한다(비대칭 제한 $\Rightarrow$ $\xi_{\sstat}\ne\xi_{\eq}$, Ch5).
+
+% ====================================================================
+\section{Chapter 4 $\cdot$ Chapter 5 로 전달되는 항목}\label{sec:ch3_transmit}
+% ====================================================================
+\begin{longtable}{p{0.30\textwidth} p{0.58\textwidth}}
+\toprule 항 & 후속 역할 \\ \midrule \endhead
+$\eta_n,\mathcal A_n,\mathcal A_j,\eta_j$ & Ch4 비가역 열/entropy production driving force(dissipation 은 $\eta_j$, Ch2 정합) \\
+$r_j^+,r_j^-$ & Ch4 transition-level dissipation + relaxation entropy production; Ch5 branch 비대칭 \\
+$I_j=Q_{j,\tot}d\xi_j/dt$ & 상변이 heat-rate / transition current \\
+$R_{\ct,n},R_{n,\eff}$ & Ch4 small-signal heat / dissipative loss 분해 \\
+$k_j^{\mathrm{act}},k_{j,\lim},\beta_j$ & Ch4 rate acceleration vs 병목; Ch5 charge/discharge 비대칭 \\
+$\xi_{\sstat,j}$ vs $\xi_{\eq,j}$ & Ch5 branch-dependent target / hysteresis state \\
+\bottomrule
+\end{longtable}
+Chapter 5 로 넘기는 항목: 충전 branch 부호 convention, branch-dependent target/hysteresis state,
+charge/discharge asymmetric kinetics, path-dependent $U_j^{\mathrm{ch}},U_j^{\mathrm{dis}}$, full-cell
+voltage decomposition, charge/discharge heat asymmetry.
+
+% ====================================================================
+\section{Chapter 3 자체 검수표}\label{sec:ch3_selfcheck}
+% ====================================================================
+{\small
+\begin{longtable}{p{0.74\textwidth} p{0.16\textwidth}}
+\toprule 검수 항목 & 결과 \\ \midrule \endhead
+Ch1--2 를 수정 없이 적층(P3-6) & 통과(\S\ref{sec:ch3_inherit}) \\
+반응속도론이 전하 보존식을 대체하지 않음 & 통과 \\
+forward/backward kinetics 를 중심 구조로 둠 & 통과(식~\eqref{eq:ch3_fb}) \\
+Ch1 relaxation ODE = forward/backward 축약(consistent split 무비약 유도) & 통과(식~\eqref{eq:ch3_recover}) \\
+$\xi_{\eq,j}$ 를 전류 의존 target 으로 바꾸지 않음; $\xi_{\sstat,j}$ 별도 표기 & 통과(식~\eqref{eq:ch3_xiss}) \\
+★ Level A = Level B 의 detailed-balance 극한($\xi_{\sstat}\to\xi_{\eq}$) 검증(P3-6) & 통과(verifybox) \\
+★ $\beta_j$ 가 ratio 의 $\mathcal A$-기울기서 상쇄, sum(mobility) 비대칭만 결정 & 통과(식~\eqref{eq:ch3_ratio_B},\eqref{eq:ch3_ksum}) \\
+★ detailed-balance 정합 제약 $n_j^{\eff}=RT/(Fw_j)$ 도출(BV-폭 불일치 방지) & 통과(식~\eqref{eq:ch3_neff}) \\
+$n_j^{\eff}$ 도출의 $C_j$ 무의존 가정(partition) 명시; model-independent 제약 우선 & 통과(검수 5 boundbox) \\
+Ch1 의 $\mathcal A_j(n{=}1)$+effective $w_j$ 정합 reconcile($F\to n^{\eff}F=RT/w_j$, 트렁크 무모순) & 통과(검수 10 boundbox) \\
+$\chi_j\equiv\beta_j$ 동일물 명시 & 통과 \\
+$\Delta G_{\eff}<0$ 을 강구동 accelerated regime 으로(cap X) & 통과 \\
+강구동 제한을 transport/site/diffusion/current 병목으로(직렬) & 통과(식~\eqref{eq:ch3_forward_limiter}) \\
+BV forward exponential 증가 허용; $\alpha_n\leftrightarrow\beta_j$, $\eta_n\ne\eta_{n,\drive}$ & 통과(\S\ref{sec:ch3_bv}) \\
+$V_{n,\app},V_{n,\drive},\eta_{n,\drive},\eta_n$ 구분 & 통과(\S\ref{sec:ch3_potentials}) \\
+generalized affinity chemical-potential double counting 금지 & 통과(\S\ref{sec:ch3_genaff}) \\
+$R_n,R_{\ct},R_{n,\eff}$ 구분 + $\chi$ vs $\eta_{\ct}$ co-linearity 경고 & 통과(식~\eqref{eq:ch3_Rn_not_equal}) \\
+피팅 편의 cap 을 기본식에 넣지 않음; 수치 안정화는 실무 팁 격하 & 통과(GS-4) \\
+비대칭 제한 $\Rightarrow$ detailed balance 충돌 가능 명시 & 통과(\S\ref{sec:ch3_ident}) \\
+Ch4/Ch5 이월 항목 분리 & 통과(\S\ref{sec:ch3_transmit}) \\
+\bottomrule
+\end{longtable}
+}
+
+% ====================================================================
+\section{Chapter 3 의 결론}\label{sec:ch3_concl}
+% ====================================================================
+첫째, Chapter 1 relaxation ODE 는 forward/backward transition kinetics 의 축약형이다. 기본 split
+$r_j^+=k_j^{\mathrm{phys}}\xi_{\eq,j}$, $r_j^-=k_j^{\mathrm{phys}}(1-\xi_{\eq,j})$ 는 true equilibrium target
+을 유지하며 Chapter 1 식을 회복한다(식~\eqref{eq:ch3_recover}).
+
+둘째, directional barrier lowering(Level B)에서 transfer coefficient $\beta_j(\equiv\chi_j)$ 는 rate ratio 의
+$\mathcal A_j$-기울기에서 상쇄되고 mobility(sum)의 비대칭만 결정한다. 따라서 detailed-balance 정합
+($n_j^{\eff}=RT/Fw_j$) 하에서 stationary target 은 평형 target 으로 환원된다 — \textbf{Level A 는 Level B 의
+detailed-balance 극한}이며 두 계층은 충돌하지 않는다(P3-6).
+
+셋째, explicit forward/backward rate 사용 시 detailed balance 와 effective width $w_j$ 의 정합
+($n_j^{\eff}w_j=RT/F$)을 반드시 유지한다. 모든 prefactor/barrier/transfer coefficient 를 독립 자유
+피팅하면 thermodynamic consistency 가 깨진다.
+
+넷째, 강구동에서 forward rate 증가는 물리적으로 허용하되 softplus cap 으로 절단하지 않는다. 제한은
+transport/site/diffusion/finite-current/current-conservation 병목으로 표현한다.
+
+다섯째, Chapter 1 의 $R_n$ 은 apparent voltage-axis coefficient 이며 $R_{\ct}$ 또는 heat-generation
+resistance 와 다르다. 이 구분은 Chapter 4 발열식과 Chapter 5 hysteresis 해석에서도 유지된다.
+
+여섯째, 본 장의 $r_j^\pm,\eta_n,\eta_j,\mathcal A_j,I_j,k_j^{\mathrm{act}},k_{j,\lim},\beta_j,\xi_{\sstat,j}$ 는
+Chapter 4 entropy production/발열 확장과 Chapter 5 branch/hysteresis 로 전달된다.
+
+\begin{thebibliography}{99}
+\bibitem{eyring1935} H. Eyring, ``The activated complex in chemical reactions,'' \emph{J. Chem. Phys.} \textbf{3}, 107 (1935).
+\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and driving force of chemical reactions,'' \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938).
+\bibitem{marcus1956} R. A. Marcus, ``On the theory of oxidation--reduction reactions involving electron transfer,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956).
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods}, 2nd ed., Wiley (Ch.~3).
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of chemical kinetics and charge transfer based on nonequilibrium thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013).
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962).
+\end{thebibliography}
+
+\end{document}
