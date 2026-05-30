@@ -31,7 +31,13 @@
 - **Ch1 재작성 방침**: 흐름 14식 보존 + 학부 무비약 + global AL-# 통일 + 심플화(clamp 제거; softplus·ε_tol·Plan A closure → Ch6 이관) + 극판전위 배리어 낮춤 위주 + AL-14 BOUNDED 명시.
 - **결정**: D1 해소. D7(funabiki 둘다등재) 권고. D2~D6 권고값 진행.
 
+## Phase 1 최종 상태 (Ch1 완결)
+- `graphite_ica_ch1_rebuilt.tex` **558줄, 무결성 PASS** (env balance·dup label 0·undefined ref/cite 0·GS-4 정의식 leak 0·macdonald 0·svare2000 3).
+- 적대검증 49 findings → 실결함(컴파일차단 3 + HIGH 1 + MEDIUM 다수 + LOW) 전건 수정. host 2회 오판(MEDIUM 1 / 잔여 4) 정정 후 재확인.
+- **다음**: 사용자 Decision Gate(Ch1 검토) → GO 시 Phase 2.1 (step 43).
+
 ## Correction History
 | 일자 | 변경 |
 |---|---|
 | 2026-05-30 | Ledger 신설. Phase A/B result 소급 기록 반영. RB Phase 0~7 / step 1–157 등록. |
+| 2026-05-30 | Phase 0~1 완료. Ch1 재구성본 558줄 무결성 PASS. host 결함파싱 2회 오판(cp949/요약잘림) 정정 — JSON 전건 재파싱 후 전건 수정. Decision Gate. |
