@@ -12,7 +12,8 @@
 | 0.2 | 6–12 | 6–12 | foundation | references dossier + DOI 검증(30종+보강) | PASS | " | `RB_REFERENCES_DOSSIER.md` | PASS_DOSSIER | 13 |
 | 0.3 | 13–16 | 13–16 | foundation | 통합 AL 체계 + notation + 가독gate | PASS | " | `RB_AL_MASTER.md` | PASS_AL_SKELETON | 17 |
 | (Phase 0 종합) | 1–16 | 1–16 | foundation | Foundation 완료 | PASS | RB plan Phase 0 | `PHASE_0_foundation_RESULT.md` | PASS_FOUNDATION | 17 |
-| 1.1–1.5 | 17–42 | — | Ch1 | 열역학 무대+극판전위 배리어, 5-stage | PENDING | RB plan Phase 1 | `RB_LEDGER_CH1.md` + `ch1_rebuilt.tex`(예정) | — | 17 |
+| 1.1 | 17–20 | 17–20 | Ch1 | 골격추출(핵심식 14 + 가정목록 + 심플화 6건 + 입력결함 5건) | PASS | RB plan Phase 1 | `RB_LEDGER_CH1.md`(S1) | PASS_CH1_SKELETON | 21 |
+| 1.2–1.5 | 21–42 | — | Ch1 | grounding감사→재유도→적대검증→수정·gate | PENDING(다음) | RB plan Phase 1 | `RB_LEDGER_CH1.md` + `ch1_rebuilt.tex`(예정) | — | 21 |
 | 2.1–2.5 | 43–62 | — | Ch2 | (Ch1) 가역 반응열, 5-stage | PENDING | RB plan Phase 2 | (예정) | — | 43 |
 | 3.1–3.5 | 63–88 | — | Ch3 | (Ch1) 반응속도론 일반화, 5-stage | PENDING | RB plan Phase 3 | (예정) | — | 63 |
 | 4.1–4.5 | 89–110 | — | Ch4 | (Ch3) 가역 반응열, 5-stage | PENDING | RB plan Phase 4 | (예정) | — | 89 |
@@ -23,9 +24,10 @@
 ## 현재 위치
 - **마지막 완료**: Phase 0 전체(Foundation, step 1–16). `RB_CHARTER.md` + `RB_REFERENCES_DOSSIER.md` + `RB_AL_MASTER.md` + `PHASE_0_foundation_RESULT.md`.
 - **★ 핵심 발견(5-30 경고 적중)**: 폰 `macdonald2000` = \emph{저자} 오귀속(DOI·물리 유효, 저자 Macdonald→Svare/Martin/Borsa) → `svare2000` 정정·유효 사용 + johnston2006 보강. funabiki title↔locator 혼합 → ea+jes 둘 등재(D7). lee2011/son2013/lindsey1980 DOI 정정. plonka 미확인(FLAGGED). AL-1~63 기등재.
-- **다음 진입**: **Phase 1.1 — Ch1 골격추출 (step 17).** Ch1 = 최대한 심플(열역학 무대 + 극판전위 배리어 낮춤).
-- **Ch1 최우선 검증점**: AL-14 stretched-tail grounding(johnston2006+lindsey1980)이 핵심 물리를 닫는지 재유도 확정. 못 닫으면 FLAGGED.
-- **결정**: D1 해소. D2~D6 권고값 진행.
+- **마지막 완료(추가)**: Phase 1.1 Ch1 골격추출(step 17–20, `RB_LEDGER_CH1.md` S1). 핵심식 14개 흐름 + 가정목록 + ★심플화 대상 6건(clamp/다중병목/softplus팁 등) + 입력결함 5건.
+- **다음 진입**: **Phase 1.2 — Ch1 grounding 감사 (step 21).** AL-1~16 확정·보강, AL-5~9 채움.
+- **Ch1 최우선 검증점**: AL-14 stretched-tail grounding(svare2000+johnston2006+lindsey1980)이 핵심 물리를 닫는지 Phase 1.3 재유도서 확정. 못 닫으면 FLAGGED.
+- **결정**: D1 해소. D7(funabiki 둘다등재) 권고. D2~D6 권고값 진행.
 
 ## Correction History
 | 일자 | 변경 |
