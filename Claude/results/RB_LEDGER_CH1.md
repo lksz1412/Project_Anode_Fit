@@ -105,4 +105,31 @@ Ch1 S2 에서 채울 여유번호: AL-5~9(= $Q_\bg$ chemical capacitance, 단조
 
 ---
 
-(Phase 1.3~1.5 는 진행하며 append)
+# Phase 1.3 — 무비약 재유도 (step 26–33)
+
+**산출**: `Claude/docs/graphite_ica_ch1_rebuilt.tex` (529줄). 흐름 14식 보존 + 학부 무비약 + global AL-# + 심플화 반영 + 극판전위 배리어 낮춤 위주.
+
+## S3-a. 재구성 주요 결정 (방향 반영)
+- **logistic 무비약 유도 추가**: 화학퍼텐셜 $\mu=\mu^0+RT\ln[\xi/(1-\xi)]+\Omega(1-2\xi)$ → 평형조건 → ($\Omega=0$) 대수로 logistic 도출(원본은 결과만 제시, 재구성은 중간 단계 명시).
+- **극판전위 배리어 낮춤(§rate) = 장 핵심으로 전진 배치**: eq:Geff $\Delta G_\eff=\Delta G_a-\chi\mathcal A$ 를 BEP/Butler-Volmer grounding(evanspolanyi1938/bazant2013)으로 무비약 + keystone(Level A=mobility, 방향성X) 한정 유지.
+- **심플화(사용자 "최대한 심플", S2-c 6건 반영)**: eq:clamp(sign·min) **제거**(GS-4); softplus 실무팁·Plan A closed-form(eq:closed)·ε_tol·상대기준형·총용량정합 → **Ch6/각주 이관**. closure 는 §kernel 에 \emph{형태}(volterra + 이중계상 경고)까지만, \emph{푸는 방법}은 Ch6 명시.
+- **AL global 단일번호**(F-4 해소): tex local \AL{n} 폐기, master AL-# 사용(charge_balance=AL-1·logistic=AL-2·staging=AL-3·w=AL-4·V_app=AL-6·Eyring=AL-10·Geff=AL-11·완화=AL-12·spectrum=AL-13·stretched=AL-14·Marcus=AL-15·비유일=AL-16).
+- **AL-14 BOUNDED 정직 표기**: stretched grounding boundbox 에 svare2000/johnston2006/lindsey1980 + gap(특정 ρ_G→지수, fast-ion→graphite 적용)을 BOUNDED 명시.
+- **부호 CHARTER 정합**: $\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$, $V_{n,\drive}=V_n$ 기본 명시, $n_j^\eff=RT/(Fw_j)$ 도입(Ch3/4 전달).
+- **DOI 정정 반영**: bibliography 18종 = dossier 검증값(svare2000 저자 Svare/Martin/Borsa, funabiki ea+jes 둘, lindsey 440530, doyle/ohzuku 정정제목).
+
+## S3-b. 정적 검증 (python check_tex.py)
+- 환경 balance: document/equation(21)/longtable(2)/enumerate(3)/boundbox(4)/groundingbox/flagbox/keybox/quote/thebibliography 전부 균형 ✅
+- label 31 / ref 21: **undefined ref 0**, unused label 10(eq:Aj/Geff/dVdV 등 boxed — LaTeX 무해, 추적성; Phase 1.5서 일부 \eqref 보강 검토)
+- cite 18 / bibitem 18: **undefined cite 0, uncited bibitem 0** ✅
+- **GS-4 leak: `\max`(L258)·`\min`(L288) 2건 = 정의식 아님, "이런 절단 쓰지 않는다"는 \emph{금지 서술}** (false positive, GS-4 준수 문장). eq:clamp 제거 확인 ✅
+- ε_tol 0, macdonald 잔재 0, svare2000 인용 3 ✅
+
+## Phase 1.3 Gate
+- G-flow(흐름 14식 보존)·G-latex(정적 통과)·G-noconvleap(정의식 0, 금지서술만)·G-cross(CHARTER 규약) 정적 PASS.
+- G-undergrad·G-noleap·G-ground 는 Phase 1.4 적대검증서 확정.
+- **PASS(정적)** (step 26–33). 다음: Phase 1.4 적대검증(워크플로 w388rbnzf).
+
+---
+
+(Phase 1.4~1.5 는 진행하며 append)
