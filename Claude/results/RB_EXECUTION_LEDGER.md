@@ -13,7 +13,8 @@
 | 0.3 | 13–16 | 13–16 | foundation | 통합 AL 체계 + notation + 가독gate | PASS | " | `RB_AL_MASTER.md` | PASS_AL_SKELETON | 17 |
 | (Phase 0 종합) | 1–16 | 1–16 | foundation | Foundation 완료 | PASS | RB plan Phase 0 | `PHASE_0_foundation_RESULT.md` | PASS_FOUNDATION | 17 |
 | 1.1 | 17–20 | 17–20 | Ch1 | 골격추출(핵심식 14 + 가정목록 + 심플화 6건 + 입력결함 5건) | PASS | RB plan Phase 1 | `RB_LEDGER_CH1.md`(S1) | PASS_CH1_SKELETON | 21 |
-| 1.2–1.5 | 21–42 | — | Ch1 | grounding감사→재유도→적대검증→수정·gate | PENDING(다음) | RB plan Phase 1 | `RB_LEDGER_CH1.md` + `ch1_rebuilt.tex`(예정) | — | 21 |
+| 1.2 | 21–25 | 21–25 | Ch1 | grounding 감사(31가정, 무근거 5건, AL-14 닫힘) | PASS | RB plan Phase 1 | `PHASE_1_2_ch1_grounding_RESULT.md` + `RB_LEDGER_CH1.md`(S2) | PASS_CH1_GROUNDING | 26 |
+| 1.3–1.5 | 26–42 | — | Ch1 | 무비약 재유도→적대검증→수정·gate | PENDING(다음) | RB plan Phase 1 | `ch1_rebuilt.tex`(예정) | — | 26 |
 | 2.1–2.5 | 43–62 | — | Ch2 | (Ch1) 가역 반응열, 5-stage | PENDING | RB plan Phase 2 | (예정) | — | 43 |
 | 3.1–3.5 | 63–88 | — | Ch3 | (Ch1) 반응속도론 일반화, 5-stage | PENDING | RB plan Phase 3 | (예정) | — | 63 |
 | 4.1–4.5 | 89–110 | — | Ch4 | (Ch3) 가역 반응열, 5-stage | PENDING | RB plan Phase 4 | (예정) | — | 89 |
@@ -24,9 +25,10 @@
 ## 현재 위치
 - **마지막 완료**: Phase 0 전체(Foundation, step 1–16). `RB_CHARTER.md` + `RB_REFERENCES_DOSSIER.md` + `RB_AL_MASTER.md` + `PHASE_0_foundation_RESULT.md`.
 - **★ 핵심 발견(5-30 경고 적중)**: 폰 `macdonald2000` = \emph{저자} 오귀속(DOI·물리 유효, 저자 Macdonald→Svare/Martin/Borsa) → `svare2000` 정정·유효 사용 + johnston2006 보강. funabiki title↔locator 혼합 → ea+jes 둘 등재(D7). lee2011/son2013/lindsey1980 DOI 정정. plonka 미확인(FLAGGED). AL-1~63 기등재.
-- **마지막 완료(추가)**: Phase 1.1 Ch1 골격추출(step 17–20, `RB_LEDGER_CH1.md` S1). 핵심식 14개 흐름 + 가정목록 + ★심플화 대상 6건(clamp/다중병목/softplus팁 등) + 입력결함 5건.
-- **다음 진입**: **Phase 1.2 — Ch1 grounding 감사 (step 21).** AL-1~16 확정·보강, AL-5~9 채움.
-- **Ch1 최우선 검증점**: AL-14 stretched-tail grounding(svare2000+johnston2006+lindsey1980)이 핵심 물리를 닫는지 Phase 1.3 재유도서 확정. 못 닫으면 FLAGGED.
+- **마지막 완료**: Phase 1.2 Ch1 grounding 감사(step 21–25, PASS). 31 가정 판정, 무근거 5건(clamp HIGH·softplus·ε_tol·ledger번호 HIGH·Plan A) → Phase 1.3 재작성. AL-5~9 등재.
+- **★ AL-14 핵심물리 닫힘 확정**: svare2000+johnston2006+lindsey1980 으로 3렌즈 YES_BOUNDED. FLAGGED 불필요. gap(데이터영역·적용)은 BOUNDED 명시.
+- **다음 진입**: **Phase 1.3 — Ch1 무비약 재유도 (step 26).** `graphite_ica_ch1_rebuilt.tex` 작성.
+- **Ch1 재작성 방침**: 흐름 14식 보존 + 학부 무비약 + global AL-# 통일 + 심플화(clamp 제거; softplus·ε_tol·Plan A closure → Ch6 이관) + 극판전위 배리어 낮춤 위주 + AL-14 BOUNDED 명시.
 - **결정**: D1 해소. D7(funabiki 둘다등재) 권고. D2~D6 권고값 진행.
 
 ## Correction History

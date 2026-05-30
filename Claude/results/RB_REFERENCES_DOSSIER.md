@@ -88,4 +88,4 @@ tier: GROUNDED(논문/교과서 확립) / status: CONFIRMED(서지·DOI 정확) 
 - **결론**: 폰 키 `macdonald2000` 은 \emph{제거 아님} — 저자만 정정해 `svare2000` 으로 \emph{유효 사용}. johnston2006 은 보강 추가.
 
 ## 다음
-Phase 0.3 (통합 AL 체계 골격 `RB_AL_MASTER.md`): 본 dossier 의 검증 DOI + tier 를 AL row 로 등재. macdonald→johnston 교체를 stretched-tail AL 항목에 반영. funabiki 정정 반영.
+Phase 0.3 (통합 AL 체계 골격 `RB_AL_MASTER.md`): 본 dossier 의 검증 DOI + tier 를 AL row 로 등재. macdonald2000→svare2000 저자 정정 + johnston2006 보강을 AL-14(stretched) 에 반영. funabiki ea+jes 둘 등재 반영. (완료)

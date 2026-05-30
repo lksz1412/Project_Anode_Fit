@@ -63,4 +63,46 @@ Ch1 S2 에서 채울 여유번호: AL-5~9(= $Q_\bg$ chemical capacitance, 단조
 
 ---
 
-(Phase 1.2~1.5 는 진행하며 본 ledger 에 append)
+# Phase 1.2 — grounding 감사 (step 21–25)
+
+**방법**: 워크플로 wf_f9602d7e-ada, 6 agent(영역 A/B/C 감사 3 + AL-14 닫힘 검증 3 렌즈), Ch1 886줄 전수 정독 + 직접 재유도. 31개 가정 판정.
+
+## S2-a. 판정 요약 — 대부분 GROUNDED (논문 실인용 확인)
+- **무대·평형(A)**: charge_balance(doyle1993/newman 실인용)·logistic(mckinnon1983/bazant2013, 무비약 재유도 통과: $RT\ln[\xi/(1-\xi)]=F(V_n-U)\Rightarrow$ logistic)·dxidV(수치 25.68/22.23 mV 검증)·ocv_implicit·solexist(IVT) = 전부 GROUNDED.
+- **동역학·배리어(B)**: ★eq:Geff(극판전위 배리어 낮춤, 장 핵심; evanspolanyi1938 BEP + bazant2013 실인용)·kact(eyring1935, prefactor $k_BT/h$)·keystone 2-state 선형화(직접 재유도 통과: $k=r^++r^-$, $\chi\mathcal A$=mobility scale Level A 방향성X)·single_kernel·kphys·Marcus bound(BOUNDED) = GROUNDED.
+- **spectrum·closure(C)**: L_of_G(지수매핑, 무비약)·spectrum(변수변환 밀도보존 $A_L dL=\rho_G dG$ 재유도 통과)·kernel_integral·xi_dist = GROUNDED.
+
+## S2-b. ★ AL-14 핵심물리 닫힘 검증 (3 렌즈 전부 YES_BOUNDED)
+| 렌즈 | claim | 결과 | 근거 |
+|---|---|---|---|
+| johnston2006 | kernel integral = 연속 지수합 → stretched | YES_BOUNDED | Laplace 변환형이 완전단조→stretched/power-law. $A_L=\delta$서 단일지수 복귀. $1/L$=진행률 도함수 출처(임의가중 아님) |
+| svare2000 | 고정 $\rho_G$ + T-의존 지수매핑 → 저온 긴 꼬리 | YES_BOUNDED | 직접 재유도: $\ln L=\ln L_0+G/RT$ → 저온서 $\ln L$ spread $\propto\sigma_G/RT$ 확대 = stretched. svare2000 메커니즘과 정확 정합 |
+| lindsey1980 | stretched ↔ 완화시간(length) 분포 등가 | YES_BOUNDED | KWW $\leftrightarrow\rho(\tau)$ 라플라스 등가의 $q$-좌표 instance |
+
+→ **결론: Ch1 핵심 물리(관측 tail = relaxation-length spectrum kernel integral; 저온 긴 꼬리 = 고정 barrier 분포의 지수매핑) 는 닫힌다(BOUNDED).** FLAGGED 불필요. **gap(데이터 영역)**: $A_L$ 특정 형태→정확한 stretched 지수, 그리고 fast-ion/dielectric→graphite 적용이 본 작업 기여(BOUNDED). 이 gap 은 정직하게 본문에 BOUNDED 로 명시.
+
+## S2-c. 무근거·HIGH 결함 5건 → Phase 1.3 재작성 조치
+| # | 결함 | tier | 조치 |
+|---|---|---|---|
+| F-1 | **eq:clamp** ($\operatorname{sign}\cdot\min$ flux clamp, L381) | **UNFOUNDED_LEAP/HIGH** | **본문 제거**. 유한전류 제약 = $1/k_\phys=1/k_\mathrm{act}+1/k_\mathrm{current}$ 직렬항(smooth)만 (방향-4) |
+| F-2 | softplus/capped 실무팁(L387) | UNFOUNDED_LEAP/MED | Ch1 제거 → Ch6(피팅 실무) |
+| F-3 | ε_tol 수치근거 부재(L607) | FLAGGED/MED | Ch1 비포함 → Ch6서 데이터 noise 기반 또는 FLAGGED (Phase A Ch6 CRITICAL 과 동일 결함) |
+| F-4 | **ledger 번호 불정합**(tex local AL ↔ master global AL) | FLAGGED/HIGH | **ch1_rebuilt 는 master global AL-# 단일체계** (장내 local 번호 폐기) |
+| F-5 | Plan A 선형화+ratio closure(eq:selfcoupling/eq:closed) | BOUNDED/MED | **Ch6 이관**. Ch1 은 volterra 형태 + 이중계상 경고까지만(심플화) |
+
+## S2-d. AL master 보강 (AL-5~9 등재 — 본 Phase 산출)
+- AL-5 GROUNDED: chemical capacitance 단조성 $\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ (bazant2013; $\epsilon_Q$=수치 floor, BOUNDED).
+- AL-6 GROUNDED: apparent 전위 분극 $V_{n,\app}=V_n+s_I|I|R_n$ (bardfaulkner/newman; 선형 $R_n$ BOUNDED 소과전압).
+- AL-7 GROUNDED: 해 존재 조건 = charge balance 가해성(IVT).
+- AL-8 GROUNDED: 총용량 정합 $Q_\cell$ = 시종점 전하 차분(charge balance).
+- AL-9 GROUNDED: 전하보존이 $V_n$ 결정(외부 lookup 아님; doyle1993/newman) — tex 의 \AL{9} 와 동기화.
+
+## Phase 1.2 Gate
+- G-ground: 31 가정 전부 판정(AL+cite+DOI 또는 정직 FLAGGED) ✅
+- G-noungrounded: 무근거 비약 5건 적발 + 재작성 조치 명시 ✅
+- AL-14 핵심물리 닫힘 확정(BOUNDED, gap 명시) ✅
+- **PASS** (step 21–25). 다음: Phase 1.3 무비약 재유도.
+
+---
+
+(Phase 1.3~1.5 는 진행하며 append)
