@@ -22,7 +22,7 @@
 
 ## 현재 위치
 - **마지막 완료**: Phase 0 전체(Foundation, step 1–16). `RB_CHARTER.md` + `RB_REFERENCES_DOSSIER.md` + `RB_AL_MASTER.md` + `PHASE_0_foundation_RESULT.md`.
-- **★ 핵심 발견(5-30 경고 적중)**: `macdonald2000` 오귀속(stretched-tail 핵심 물리 근거 틀림) → `johnston2006`(PRB 74,184430) 대체. funabiki/doyle/reynier/ohzuku 서지 정정. AL-1~63 기등재.
+- **★ 핵심 발견(5-30 경고 적중)**: 폰 `macdonald2000` = \emph{저자} 오귀속(DOI·물리 유효, 저자 Macdonald→Svare/Martin/Borsa) → `svare2000` 정정·유효 사용 + johnston2006 보강. funabiki title↔locator 혼합 → ea+jes 둘 등재(D7). lee2011/son2013/lindsey1980 DOI 정정. plonka 미확인(FLAGGED). AL-1~63 기등재.
 - **다음 진입**: **Phase 1.1 — Ch1 골격추출 (step 17).** Ch1 = 최대한 심플(열역학 무대 + 극판전위 배리어 낮춤).
 - **Ch1 최우선 검증점**: AL-14 stretched-tail grounding(johnston2006+lindsey1980)이 핵심 물리를 닫는지 재유도 확정. 못 닫으면 FLAGGED.
 - **결정**: D1 해소. D2~D6 권고값 진행.
