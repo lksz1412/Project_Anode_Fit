@@ -132,4 +132,50 @@ Ch1 S2 에서 채울 여유번호: AL-5~9(= $Q_\bg$ chemical capacitance, 단조
 
 ---
 
-(Phase 1.4~1.5 는 진행하며 append)
+# Phase 1.4 — 적대검증 (step 34–38)
+
+**방법**: 워크플로 wf_c41f2c89-236, 7 agent(5렌즈 리뷰 + 적대 재검증). all_findings 49건(OK 16 / MEDIUM 14 / LOW 17 / HIGH 2; 5렌즈 중복 포함). dedup 후 고유 결함 정리.
+**★ host 정정 이력(GS-5)**: 첫 파싱서 요약 잘림 + cp949 인코딩 에러로 "MEDIUM 1"로 오판하고 성급히 커밋 시도 → 그 커밋이 취소됐고, JSON 전건 재파싱으로 정확 집계. (적대검증 agent 자신도 finding #34 에서 "도구결과 수신 전 성급 판정" 자기적발 — 같은 실패 양식.)
+
+## S4 결과 — dedup 후 실결함
+| # | 심각도 | 위치 | 결함 |
+|---|---|---|---|
+| 손상-1 | 컴파일차단 | §charge OCV (L186-191) | `\begin{equation}\textbf{}` + 고아 `\end{equation}을 잘못 닫지` + 인라인 누출 → OCV 식 통째 깨짐 |
+| 손상-2 | 컴파일차단 | keystone (L256-257) | `\chi_j\mathcal A_j$` 여는 `$` 누락 + "방향은 열역학 전담하고 χ_j가 정한다"(논리 꼬임) |
+| 손상-3 | 빌드결함 | notation 표 (L117-127) | ρ_G·A_L·L 행 중복(각 3~5회) — host 전수정독 추가 적발(워크플로 미포착) |
+| #20 | HIGH | fiteq (L414-420) | 유도 연결 끊김: dQ=Q_cell dq 미명시·역수 단계 생략·Q_p 정의 끊김 → 학부 재현 불가 |
+| #14 | MED | Geff (L233) | 선형 배리어 낮춤 -χA 의 "선형" 출처(Marcus 접선) 미명시 |
+| #15 | MED | kact (L247) | Eyring prefactor k_BT/h 학부 범위 밖 — 비-기반 충분성 분리 필요 |
+| #18 | MED | spectrum (L355) | A_0 가 변수변환 산물 아닌 별도 가중임 미분리 |
+| #19 | MED | kernel (L367/373) | r(q_a) 흡수 비약 + 1/L 두 출처(kinematic vs Jacobian) 미구분 |
+| #21 | MED | fiteq (L424) | Θ/Q_p 이중정의(§8 적분량 vs §9 ΣQξ) 일치 미명시 |
+| #28 | MED | charge (L177) | eq:solexist 치역 조건(well-posedness) 누락 |
+| #37 | MED | spectrum/notation | ρ_G 단위 mol/J vs 정규화 ∫ρ_G dG=1 충돌 |
+| #39/#45 | MED | keystone | Level A=Level B "detailed-balance 극한/ξ_ss→ξ_eq" 한정어 미명시(CHARTER step4) |
+| #40 | MED | eq:Aj | n_eff forward-ref(ideal n^eff=1; 일반형 Ch3) 누락 |
+| s_φ | MED | logistic/dxidV | 평형조건엔 s_φ 있으나 logistic 최종형·dxidV 에서 탈락(적대검증 confirmed) |
+| (LOW 다수) | LOW | — | 이중계상 box ξ*/Θ_0·저온 ideal한정·L 무차원 extent·AL-14 cite 3종 병기·차원주석 A=C/s 등 |
+
+(비결함: finding #34 메타 "BLOCKED 오보고 자기정정" = 에이전트 자기수정, 실파일 결함 아님.)
+
+# Phase 1.5 — 수정·재작성 + Decision Gate (step 39–42)
+
+## S5 수정 적용 (ch1_rebuilt.tex, 13건 Edit)
+1. **손상-1**: OCV 식 정상 복구(eq:ocv_implicit) + solexist 치역조건(#28) 신설.
+2. **손상-2**: keystone `$` 복구 + 논리 정정("방향은 열역학 전담, χA는 방향없는 속도scale") + r± 국소상수 전제(#11) + 한정어(#39/#45).
+3. **손상-3**: notation 중복 행 제거(ρ_G·A_L·L 각 1회) + ρ_G 단위 mol/J→1/J(#37) + L 무차원 extent 명시.
+4. **#20 HIGH**: fiteq 유도 연결 — Θ/Q_p 선제정의(#21), dQ=Q_ext=Q_cell dq, 역수 단계, 분모 유효범위(#9).
+5. **#14**: Geff 선형성 = Marcus 포물면 꼭지점 접선(소구동력 1차) 유도 추가.
+6. **#15**: Eyring — Boltzmann 인자만으로 충분(L 비로 k_0 상쇄), prefactor k_BT/h는 TST 인용으로 분리.
+7. **#18/#19**: A_0=물리적 가중(변수변환 산물 아님) + 1/L 두 출처(kinematic vs Jacobian RT/L) 구분.
+8. **#36**: stretched 근거 3종(svare2000+johnston2006+lindsey1980) 병기 + BOUNDED 연결.
+9. **#40**: eq:Aj 직후 n_eff=RT/(Fw)=1 ideal 기본 + 일반형 Ch3 forward-ref.
+10. **s_φ**: logistic 균형식·eq:logistic·eq:dxidV 에 s_φ 보존(eq:Aj 부호 일관) + 저온 ideal 한정.
+11. **Volterra box**: ξ*→Θ_0 통일 + q→∞ 수렴 명시.
+
+## S5 최종 무결성 (python final_check, 13 수정 후)
+환경 balance NONE mismatch · undefined ref 0 · undefined cite 0 · uncited bibitem 0 · **duplicate label 0** · **깨진 텍스트 0(잘못닫지/footnotetext/broken-keystone 전부 0)** · **notation 중복 제거(ρ_G·L 행 각 1)** · ρ_G mol/J 잔재 0 · s_φ logistic boxed 반영 · ocv_implicit 복구 · macdonald 0 · svare2000 2(cite+bibitem) · 542줄.
+
+## Phase 1 종합 Gate
+- G-flow ✅(14식 보존) · G-noleap ✅(Marcus접선·Eyring·fiteq 유도 보강) · G-undergrad ✅(fiteq 재현 가능화) · G-ground ✅(AL+DOI, stretched 3종) · G-noungrounded ✅(무근거 0, AL-14 BOUNDED) · G-dim ✅ · G-noconvleap ✅(정의식 leak 0; max/min은 금지서술) · G-cross ✅(CHARTER s_φ·V_drive·n_eff·keystone 한정어) · G-latex ✅(컴파일차단 3 손상 해소, 균형·resolve) · G-honest ✅(3-tier, host 오판 정정 기록)
+- **PASS** (step 34–42). → **Decision Gate: 사용자 검토 대기.**
