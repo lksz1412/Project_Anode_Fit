@@ -36,9 +36,18 @@
 - 적대검증 49 findings → 실결함(컴파일차단 3 + HIGH 1 + MEDIUM 다수 + LOW) 전건 수정. host 2회 오판(MEDIUM 1 / 잔여 4) 정정 후 재확인.
 - **다음**: 사용자 Decision Gate(Ch1 검토) → GO 시 Phase 2.1 (step 43).
 
+## Phase 1B 최종 상태 (Ch1 무생략 보강 + Codex 교차검증 반영, 5-31 재개)
+- 트리거: 사용자 5-31 "Ch1 PDF 수식 약간의 건너뜀" → 내용=리뷰논문 깊이 유지, 전개=학부 무생략. + Codex 의견·비교.
+- 4갈래 교차검증(Agent 구간 A/B/C + 워크플로 w37b88pni·w1c518wxb + Codex exec b553mb9d7 70,933tok) → skip 5 + Codex 물리오류 2 확정. result: `PHASE_1B_ch1_noskip_audit_RESULT.md`(분석 + 실행 Addendum).
+- 보강 10건 전건 적용(삭제·축약 0, 식 사이 유도 삽입): 혼합엔트로피 무비약·dxidV·Geff Marcus Taylor·keystone 인수분해(직전 세션) + single_kernel ODE·dxidq chain·차원 A=C/s·L_of_G 부호반전·**eq:fiteq 동치오류 정정**·**eq:spectrum Heaviside support+A_L^prob/amp 명칭분리**(본 세션). ρ_G 단위 1/J 유지(Codex mol/J 지적 기각).
+- `graphite_ica_ch1_rebuilt.tex` **641줄**(561→641, +80). 무결성 PASS: equation 25/25·begin-end 40/40·document 1/1·진짜 undefined ref/cite 0(폰트 italic 대체 4건만, 무해)·`!`에러 0·macdonald 0·svare2000 3.
+- PDF 재빌드 **13p**(11→13), `Claude/results/graphite_ica_ch1_rebuilt.pdf` 갱신.
+- **다음**: 사용자 Decision Gate(3대 검토: ①컨벤션 통일 ②물리 논리 전개 ③리뷰논문 내용의 교재 수준 상세함) → GO 시 Phase 2.1 (step 43). main 머지·push 는 승인 전 금지.
+
 ## Correction History
 | 일자 | 변경 |
 |---|---|
 | 2026-05-30 | Ledger 신설. Phase A/B result 소급 기록 반영. RB Phase 0~7 / step 1–157 등록. |
 | 2026-05-30 | Phase 0~1 완료. Ch1 재구성본 558줄 무결성 PASS. host 결함파싱 2회 오판(cp949/요약잘림) 정정 — JSON 전건 재파싱 후 전건 수정. Decision Gate. |
 | 2026-05-31 | Ch1 562줄 keystone 한정어까지 완결(커밋 7e238e9). MiKTeX 설치+Ch1 PDF 빌드(11p, 한글 OK, undefined ref 0) → `results/graphite_ica_ch1_rebuilt.pdf`. 사용자 피드백: 수식 "약간의 건너뜀" → **다음 최우선 = Ch1 무생략 보강(내용=리뷰논문 깊이, 전개=학부 무생략)** + Codex 교차검증(`/codex:review`·rescue 비교). 5h 제한 중단→토큰 재충전 후 재개. 첫 핸드오버 Write 토큰끊김 미저장→HANDOVER_RB_2026-05-31 재작성. |
+| 2026-05-31 (재개) | HANDOVER_RB 복구. 직전 세션 미커밋 작업(보강 4영역, tex 561→616) 확인 후 잔여 6건 적용 → tex **641줄**(skip 4 + Codex 물리오류 2: eq:fiteq 동치오류·eq:spectrum Heaviside support). PDF 재빌드 13p, 무결성 PASS(undefined ref/cite 0). Phase 1B 완료. result Addendum + 본 ledger 갱신. Decision Gate(3대 검토) 대기. |
