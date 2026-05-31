@@ -41,3 +41,4 @@
 |---|---|
 | 2026-05-30 | Ledger 신설. Phase A/B result 소급 기록 반영. RB Phase 0~7 / step 1–157 등록. |
 | 2026-05-30 | Phase 0~1 완료. Ch1 재구성본 558줄 무결성 PASS. host 결함파싱 2회 오판(cp949/요약잘림) 정정 — JSON 전건 재파싱 후 전건 수정. Decision Gate. |
+| 2026-05-31 | Ch1 562줄 keystone 한정어까지 완결(커밋 7e238e9). MiKTeX 설치+Ch1 PDF 빌드(11p, 한글 OK, undefined ref 0) → `results/graphite_ica_ch1_rebuilt.pdf`. 사용자 피드백: 수식 "약간의 건너뜀" → **다음 최우선 = Ch1 무생략 보강(내용=리뷰논문 깊이, 전개=학부 무생략)** + Codex 교차검증(`/codex:review`·rescue 비교). 5h 제한 중단→토큰 재충전 후 재개. 첫 핸드오버 Write 토큰끊김 미저장→HANDOVER_RB_2026-05-31 재작성. |
