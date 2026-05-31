@@ -59,3 +59,41 @@ Ch1(graphite_ica_ch1_rebuilt.tex 561줄) 유도 건너뜀(skip)을 학부 교재
 
 ### 사용자 Decision Gate 대기 (3대 검토)
 ① 컨벤션 통일 ② 물리 논리 전개(무생략 여부) ③ 리뷰논문 내용을 교재 수준 상세함으로 설명했는지. → GO 시 Phase 2(Ch2, step 43) 진입. main 머지·push 는 승인 전 금지.
+
+---
+
+## 실행 완료 Addendum 2 (2026-05-31 — 사용자 선택 B: Ch1 적대 재검수 후 완성)
+
+> 사용자 지시: "B로 일단 챕터1 먼저 완성하고 보자. 이게 흔들리면 그 뒤 전부 따라 흔들린다." → 신규 보강분 독립 적대 재검수 1패스 후 발견 정정.
+
+### 적대 재검수 (3렌즈 병렬 sub-agent, 각 반증 임무 / read-only)
+① 물리 타당성 ② 수학 무생략·대수오류 ③ 내부정합·컨벤션. 세 에이전트 독립 컨텍스트, 각 tex 전문 + AL_MASTER/REFERENCES/CHARTER/CLAUDE.md(P3) 정독.
+- **CRITICAL(식 자체 오류) 0건** — 보강 결과식 대수·부호 전부 옳음(2번 에이전트 sympy로 8개 항등식 교차검증).
+- **3 에이전트 만장일치 #1 = ρ_G 단위.**
+
+### ★ 확정 뒤집힘 — ρ_G 단위 1/J → **mol/J** (Codex가 옳았음; PHASE_1B 판정이 판단오류)
+- 본 result 상단 §"Codex 지적 중 기각"의 "ρ_G=1/J 유지, mol/J 기각"은 **틀린 판정이었다.** (환각 아님 — "확률밀도면 1/J"가 적분변수 G가 J일 때만 성립하는데, 본 문서 G=J/mol을 놓침.)
+- 차원 증명: G=ΔG_a 가 본문 전체 J/mol(`exp[−ΔG_eff/RT]`의 RT 몰당 → 필연). ∫ρ_G dG=1 무차원 → ρ_G=1/[G]=mol/J. 교차검산 `A_L^prob=ρ_G·(RT/L)` 무차원 ⇔ ρ_G=mol/J(1/J면 1/mol로 깨짐). 상위 정본 `RB_AL_MASTER.md` line 81도 이미 mol/J → tex가 정본과 충돌하던 것.
+- 정정: tex 기호표 line 127 `1/J → mol/J`. **[[feedback_confirmed_items_policy]] 확정 사항 정정 — 근거(차원증명) 명시 후 뒤집음.**
+
+### 발견·정정 (8 edits, 삭제 0 / 단위 1건만 정정 + 나머지 유도단계 삽입)
+| 등급 | 위치 | 정정 |
+|---|---|---|
+| CRIT-인접 | 기호표 ρ_G | 1/J→mol/J (+ A_0/A_L^prob/A_L^amp/L_0/L_min 등재 + U_j 재정의 주석) |
+| HIGH | eq:L_of_G | 닫힌 지수매핑이 활성화 지배 극한(k_eff≈k_j, eq:kphys k_lim→∞) 전제임 명시. 꼬리영역 정당화 + 병목 유효시 Ch6 |
+| HIGH | eq:single_kernel | L이 일반적으로 q-함수(k_j의 A 지수의존)이나 가정(나)dA/dq≃0이 L상수를 **귀결**로 함의 → 적분 밖 추출 근거 명시 |
+| MED | eq:mu_mix | ∂G_mix/∂ξ=μ_config 근거(per-site intensive, ∂/∂n=(1/N)∂/∂ξ, N 상쇄) 한 줄 |
+| MED | eq:Geff | χ=½(대칭 Marcus 1차 정확값) vs 0≤χ≤1(곡률 비대칭 λ_f≠λ_b / BEP 경험 기울기) 출처 분리 |
+| MED | keystone | "정확 항등"이 r±=상수 가정 위에서만 정확(ξ-의존이면 국소선형화) 명확화 + common-mode가 Marcus 비대칭 이동(λ∓A)의 대칭 평균 모형선택임 명시 |
+| FLAGGED | eq:xi_dist | 독립 평행 1차 완화 = 평균장 ansatz. staging은 협동적 1차 상전이(nucleation, funabiki AL-3)라 mode간 결합 무시 → FLAGGED(Ch3·Ch6 검증) |
+
+### 적대 발견 중 미정정 (사유 명시)
+- 298 K vs 298.15 K(25°C): 수치(25.68/22.23 mV) 자기일관, 0.15 K 무해 — 유지.
+- kernel_integral r(q_a)→A_0 흡수: 이미 "post-peak 공통값 근사"로 명시됨(근사 표기 충분) — 유지.
+
+### 빌드·무결성 (재빌드)
+- tex **662줄**(641→662, +21). xelatex 2-pass. PDF **13p** → `Claude/results/graphite_ica_ch1_rebuilt.pdf` 갱신.
+- env: equation 25/25, begin/end 41/41(flagbox +1). 진짜 undefined ref/cite **0**, "undefined references"/"may have changed" 경고 **0**, **Overfull hbox 0**, `!` 에러 0.
+
+### 현재 = 사용자 최종 검토 (Ch1 완성판)
+적대검수 정정까지 반영한 Ch1 완성판. GO 시 Phase 2(Ch2, step 43). main 머지·push 승인 전 금지.

@@ -42,7 +42,14 @@
 - 보강 10건 전건 적용(삭제·축약 0, 식 사이 유도 삽입): 혼합엔트로피 무비약·dxidV·Geff Marcus Taylor·keystone 인수분해(직전 세션) + single_kernel ODE·dxidq chain·차원 A=C/s·L_of_G 부호반전·**eq:fiteq 동치오류 정정**·**eq:spectrum Heaviside support+A_L^prob/amp 명칭분리**(본 세션). ρ_G 단위 1/J 유지(Codex mol/J 지적 기각).
 - `graphite_ica_ch1_rebuilt.tex` **641줄**(561→641, +80). 무결성 PASS: equation 25/25·begin-end 40/40·document 1/1·진짜 undefined ref/cite 0(폰트 italic 대체 4건만, 무해)·`!`에러 0·macdonald 0·svare2000 3.
 - PDF 재빌드 **13p**(11→13), `Claude/results/graphite_ica_ch1_rebuilt.pdf` 갱신.
-- **다음**: 사용자 Decision Gate(3대 검토: ①컨벤션 통일 ②물리 논리 전개 ③리뷰논문 내용의 교재 수준 상세함) → GO 시 Phase 2.1 (step 43). main 머지·push 는 승인 전 금지.
+
+## Phase 1B-adv 최종 상태 (적대 재검수 후 Ch1 완성, 5-31 사용자 선택 B)
+- 3렌즈 병렬 적대 sub-agent(물리/수학/정합, 반증임무 read-only) → CRITICAL(식오류) 0. **3 에이전트 만장일치 #1 = ρ_G 단위.**
+- **★ 확정 뒤집힘**: ρ_G 1/J→**mol/J** (Codex 옳았음, PHASE_1B "기각" 판단오류). G=J/mol이므로 ∫ρ_G dG=1 무차원 ⇒ ρ_G=mol/J. RB_AL_MASTER line 81(mol/J)과 정합 복원. 차원증명 후 정정.
+- 정정 8건(삭제 0): ρ_G단위+기호표 신규등재(A_0/A_L^prob/amp/L_0/L_min/U_j주석) · HIGH(eq:L_of_G 활성화지배극한 가정명시, eq:single_kernel L-상수 (나)귀결 명시) · MED(mu_mix per-site정규화, Geff χ½vs0~1 출처분리, keystone 정확항등 한정+common-mode ansatz) · FLAGGED(xi_dist 독립완화=평균장, staging 협동적1차전이 충돌가능).
+- 미정정: 298 vs 298.15K(자기일관 무해), kernel r(q_a)흡수(근사 명시됨).
+- tex **662줄**(641→662). PDF **13p**. 무결성 PASS: env 25/25·41/41·undefined ref/cite 0·overfull 0·`!` 0.
+- **다음**: 사용자 최종 검토(Ch1 완성판) → GO 시 Phase 2.1 (step 43). main 머지·push 승인 전 금지.
 
 ## Correction History
 | 일자 | 변경 |
@@ -51,3 +58,4 @@
 | 2026-05-30 | Phase 0~1 완료. Ch1 재구성본 558줄 무결성 PASS. host 결함파싱 2회 오판(cp949/요약잘림) 정정 — JSON 전건 재파싱 후 전건 수정. Decision Gate. |
 | 2026-05-31 | Ch1 562줄 keystone 한정어까지 완결(커밋 7e238e9). MiKTeX 설치+Ch1 PDF 빌드(11p, 한글 OK, undefined ref 0) → `results/graphite_ica_ch1_rebuilt.pdf`. 사용자 피드백: 수식 "약간의 건너뜀" → **다음 최우선 = Ch1 무생략 보강(내용=리뷰논문 깊이, 전개=학부 무생략)** + Codex 교차검증(`/codex:review`·rescue 비교). 5h 제한 중단→토큰 재충전 후 재개. 첫 핸드오버 Write 토큰끊김 미저장→HANDOVER_RB_2026-05-31 재작성. |
 | 2026-05-31 (재개) | HANDOVER_RB 복구. 직전 세션 미커밋 작업(보강 4영역, tex 561→616) 확인 후 잔여 6건 적용 → tex **641줄**(skip 4 + Codex 물리오류 2: eq:fiteq 동치오류·eq:spectrum Heaviside support). PDF 재빌드 13p, 무결성 PASS(undefined ref/cite 0). Phase 1B 완료. result Addendum + 본 ledger 갱신. Decision Gate(3대 검토) 대기. |
+| 2026-05-31 (적대검수 B) | 사용자 선택 B: Ch1 신규보강 독립 적대 재검수(3렌즈) → CRITICAL 0, **확정 뒤집힘 ρ_G 1/J→mol/J**(차원증명, Codex 옳았음) + HIGH 2 + MED 3 + FLAGGED 1 = 8 edits 정정(삭제 0). tex **662줄**, PDF 13p, 무결성 PASS(undefined 0·overfull 0). result Addendum 2 + 본 ledger 갱신. Ch1 완성판 → 사용자 최종 검토 대기. |
