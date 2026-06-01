@@ -19,7 +19,7 @@
 | 3.1–3.5 | 63–88 | 63–88 | Ch3 | (Ch1) 반응속도론 일반화, 5-stage | PASS | RB plan Phase 3 | `RB_LEDGER_CH3.md` | PASS_CH3(적대 3렌즈) | 89 |
 | 4.1–4.5 | 89–110 | 89–110 | Ch4 | (Ch3) 가역 반응열, 5-stage | PASS | RB plan Phase 4 | `RB_LEDGER_CH4.md` | PASS_CH4(적대 3렌즈) | 111 |
 | 5.1–5.5 | 111–132 | 111–132 | Ch5 | (Ch3) 히스테리시스, 5-stage | PASS | RB plan Phase 5 | `RB_LEDGER_CH5.md` | PASS_CH5(적대 3렌즈) | 133 |
-| 6.1–6.3 | 133–146 | — | Ch6 | 기존 내용 검토→Gate→(조건부)재유도 | PENDING | RB plan Phase 6 | (예정) | — | 133 |
+| 6.1–6.3 | 133–146 | 133–146 | Ch6 | 피팅 실무 부록(검토+재유도) | PASS | RB plan Phase 6 | `RB_LEDGER_CH6.md` | PASS_CH6(적대 3렌즈) | 147 |
 | 7.1–7.3 | 147–157 | — | 통합 | refs + full + 정합·빌드 | PENDING | RB plan Phase 7 | (예정) | — | 147 |
 
 ## 현재 위치
@@ -63,3 +63,4 @@
 | 2026-06-01 (자율) | **Phase 3 (Ch3 반응속도론 일반화 Level B) 완료**: draft→3렌즈 적대검수(CRITICAL 0, sympy keystone 항등식 교차검증)→2 HIGH(keystone 닫힘조건 r±비 ξ_j-무관 추가·AL-30/35 Onsager DOI 오귀속 정정) + 1 MED(forward_limiter 대칭 기본형) 정정 → tex **834줄**, PDF 18p, 무결성 PASS(undefined 0·overfull 0). AL-32~39 등재. `RB_LEDGER_CH3.md`. 다음 step 89(Ch4). |
 | 2026-06-01 (자율) | **Phase 4 (Ch4 entropy-production 발열) 완료**: draft→3렌즈 적대검수(CRITICAL 0, sympy 5단계+부호보조정리 잔차 0, CHARTER 5규약·DOI 전건 통과·오귀속 0)→4 HIGH(micro=macro C_j≡0 전제·extensivation 다리 k_B→R/½부재·s_φ 사후부착 해소·휴지 ≥0 근거 V_n공유 동부호) + 2 MED 정정 → tex **929줄**, PDF 19p, 무결성 PASS. ★Phase A CRITICAL(η 이중정의) 진짜 해소. AL-42~49 등재. `RB_LEDGER_CH4.md`. 다음 step 111(Ch5). |
 | 2026-06-01 (자율) | **Phase 5 (Ch5 충방전 히스테리시스) 완료**: draft→3렌즈 적대검수 → **물리·수학 두 agent 독립 CRITICAL 수렴**(충전 η^chg 부호 유도 자기모순; 정합 agent는 놓침) → 근본 정정: **V_eq^b/V_tar^b 정의에 s_φ^b 누락**(증가형↔감소형) → $V_\eq^b=U^b+s_\phi^b w^b\ln[\xi/(1-\xi)]$ 로 충전 ξ-감소형 닫음(음×음=양 진짜 유도) + conjugacy robust 근거. 결론(2법칙)은 옳았으나 거짓 단조성 패치였던 것 정정 → tex **899줄**, PDF 19p, 무결성 PASS. ★충전 branch 부호 유도(Phase A HIGH) 해소. AL-52~59 등재. `RB_LEDGER_CH5.md`. 다음 step 133(Ch6). |
+| 2026-06-01 (자율) | **Phase 6 (Ch6 피팅 실무 부록) 완료**: 5-30 지시(기존내용 검토 우선)대로 consolidated_ch6(수치 강조) → 피팅 실무 주역화·수치 종속화. ★FLAGGED 허위(ε_tol) 정정(측정 기반 max(ε_disc,ε_noise)+값 FLAGGED). draft→3렌즈 적대검수 → **수치·수학 두 agent 독립 CRITICAL 수렴**(Arrhenius 기울기 = 유효 엔탈피 −(ΔH_a−χA)/R, χA/RT가 1/T-선형 기여) + 2 HIGH(∂lnL n^eff convention·§grid 평균장 closure FLAGGED 승계) 정정 → tex **842줄**, PDF 19p, 무결성 PASS. AL-64~69 등재. `RB_LEDGER_CH6.md`. 다음 step 147(Phase 7 통합). |
