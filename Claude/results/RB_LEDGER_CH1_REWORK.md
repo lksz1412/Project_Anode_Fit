@@ -42,7 +42,19 @@ tex **795줄**, PDF **15p** → `Claude/results/graphite_ica_ch1_rebuilt.pdf`. e
 - bibitem: lee2011 serial 124112→121102 정정, dubarry2022·fly2020 추가(N5 인용).
 - 빌드: tex **859줄**, **17p**, env eq 31/31·eq* 1/1·begin/end 49/49, undefined 0, dup label 0, overfull 0, `!` 0.
 
-## 8. Next (잔여)
-- §7→끝 절 분할 후 \*절별(fine chunk)\* 재검수 1회 더 권장(사용자 method).
-- Ch6 파일 해체(삭제) + full_rebuilt 재생성(Ch1 재작업본 반영) + Ch2~5 "Ch.6" 참조 정리.
-- 같은 따라가짐/사용성 청크 검수를 Ch2~5 후반 절에 적용.
+## 9. 3차 패스 — 절별(fine) 청크 검수 8 agents + 발견 전건 정정 (사용자 "2청크는 너무 거칠다·잘게 쪼개" 재지적)
+2차의 2렌즈(따라가짐/정확성) 검수가 \*전체 묶음 2청크\*라 거칠다는 지적 → §7~§15 를 \*절마다 1 agent\* (8 병렬, §14+§15 합본)로 적대 재검수. **거친 2청크가 못 본 ~25 결함 적발**(CRITICAL 1·HIGH ~10·MED ~10·LOW). 전건 정정(본 패스 = tex 859→923줄, 17→18p):
+- **§7 spectrum**: [HIGH] 단계3 A_0 도입이 Σ→∫ 측도전개 없이 단정 → \*단계3 측도변환 무비약 유도\* 신설(Θ=Q_p⁻¹ΣQ_mξ_m → ∫Q(L)ξA_L^prob dL, A_0≡Q/Q̄=Radon–Nikodym 가중). "측도 불일치 아님" 오기 정정. [MED] G(L) 역변환 출처(eq:L_of_G→G풀이) 명시·L_min 단계1→단계2 선후 정리. [LOW] σ_G=ρ_G 표준편차 정의.
+- **§8 kernel**: [HIGH-1] r(q_a;L) 흡수 \*한 줄 대수\*(r̄ factor-out→A_L 재흡수) + L-의존 편향부호(감소함수→꼬리앞 가팔라짐, Plan B 대조). [HIGH-2] eq:kernel_integral(q_a 자유감쇠)↔§9 Volterra(q' 목표구동) 역할 \*봉합\* 한 문장. [MED] single-mode δ(L−L\*) (L\*=실제 길이, L_0 prefactor 와 구별). [MED] 실효 하한 L_min>0, 1/L 발산 차단 명시.
+- **§9 Volterra**: [MED] 무결성점검이 single-mode δ-collapse 한정임 명시 — 분포 A_L 의 q→∞ = (∫A_L dL)Θ_0, A_0≡1 일때만 Θ_0. [LOW] (ii) 일반화서 Θ_eq L-무관(ξ_eq,j g-무관) 전제 명시. [LOW] Θ_0 기호중복 → 초기 mode 진행 Θ_init,0(L) 로 분리.
+- **§10 Plan B**: [HIGH] 평균식 정규화 봉합 — Σw_mρ_G(g_m)=∫ρ_G dg=1 (새 가중 아닌 적분 이산화) display 추가, 비균일 격자 정규화 재계산. [MED] validator ε 정량정의(‖Θ_A−Θ_B‖/‖Θ_B‖) 본문화. [MED] "물리결론 성립" 완화 closure 전제 재명시.
+- **§11 Plan A**: [HIGH] a(q') 미정의 → a=Θ_eq(V_n(Θ⁰))−bΘ⁰ (Taylor 절편) 명시. [HIGH] C_bg/Q_p forward-ref → eq:selfcoupling 전에 Q_pΘ≡ΣQ_jtotξ_j·C_bg≡∂Q_bg/∂V_n 정의(상세 §fiteq). [MED] ratio ansatz 정당화(|b| 섭동→형상 baseline 지배, b→0 정확).
+- **§12 fiteq**: [HIGH] L_φ 미유도·미정의 → 환산 유도(post-peak dV_n/dq 상수근사→eq:Lphi 신설) + 기호표 L_φ[V] 등재. [MED] eq:dVdq↔eq:dQsplit 동일식 명시(C_bg 곱·dq=dQ/Q_cell). [MED] post-peak bridge 적용영역 본문화(peak 영역 dΘ/dq→dΘ_eq/dq) + Θ_A 미분대입 명시.
+- **§13 simplefit**: [CRITICAL] step(2) Arrhenius 기울기에 k_0(T)=(k_BT/h)κ Eyring prefactor T-의존 누락 → ln(1/(LT)) 회귀(prefactor 보정) + U_j(T) 비선형 혼입 점별 제거(종속변수 y(T)=ln(1/LT)+χA_j(T)/RT 회귀→−ΔH_a/R). prefactor 무시 BOUNDED(ΔH_a/RT≫1). [HIGH] Θ_0 nuisance amplitude 명시(모델 y=Ae^{...}+baseline, ICA꼬리≈(Q_p/C_bg)(Θ_0/L)e^{...}, 분모≈1). [MED] (0) V_app→V_n eq:Vapp 직접역산(루프 아님). [MED] 0.2C anchor→(3) χ 회귀 가로축 정렬 연결.
+- **§14 falsify**: [HIGH] ★N5 (a) signature 가 D(ξ) 확산율속(thermodynamic factor 경유 전위의존 유효엔탈피)과 \*여전히 퇴화\* → (a)·(b) AND 조건 + k_{j,lim} 전위무관 가정 위에서만 + GITT relaxation transient(√t Cottrell vs 지수)로 확산율속 배제. [MED] "(eq:simplefit (2))" 참조혼동 → "(eq:simplefit; 추출 §ch1_simplefit 절차(2))". [MED] forward-only 헤더 과일반화 → "forward-prediction 검정; 역산 금지". [LOW] spectrum shift 부등호 χ_j≥0 전제.
+- **§15 numeric**: [MED] 격자수렴 비정량 gate → ‖Θ_{Ng}−Θ_{2Ng}‖/‖Θ_{2Ng}‖≤ε_disc 정량 종료조건(ε_tol 체인 봉합). 전달노트 Plan A/B closure ref §kernel→§planB/§planA 정정.
+- 빌드: tex **923줄**, **18p**, xelatex 2-pass EXIT 0, undefined 0, `!` 0, dup label 0, rerun 0, overfull 4(전부 <20pt cosmetic). PDF → `Claude/results/graphite_ica_ch1_rebuilt.pdf`.
+
+## 10. Next (잔여)
+- Ch6 파일 해체(삭제) + full_rebuilt/refs 재생성(Ch1 재작업본 + eq:Lphi/Θ_init,0/측도유도 반영) + Ch2~5 "Ch.6" 참조 정리.
+- 같은 절별(fine) 따라가짐/사용성 청크 검수를 Ch2~5 후반 절에 적용(deferral·압축 가능성).
