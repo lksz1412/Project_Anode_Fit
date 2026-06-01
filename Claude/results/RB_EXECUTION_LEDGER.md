@@ -15,7 +15,7 @@
 | 1.1 | 17–20 | 17–20 | Ch1 | 골격추출(핵심식 14 + 가정목록 + 심플화 6건 + 입력결함 5건) | PASS | RB plan Phase 1 | `RB_LEDGER_CH1.md`(S1) | PASS_CH1_SKELETON | 21 |
 | 1.2 | 21–25 | 21–25 | Ch1 | grounding 감사(31가정, 무근거 5건, AL-14 닫힘) | PASS | RB plan Phase 1 | `PHASE_1_2_ch1_grounding_RESULT.md` + `RB_LEDGER_CH1.md`(S2) | PASS_CH1_GROUNDING | 26 |
 | 1.3–1.5 | 26–42 | — | Ch1 | 무비약 재유도→적대검증→수정·gate | PENDING(다음) | RB plan Phase 1 | `ch1_rebuilt.tex`(예정) | — | 26 |
-| 2.1–2.5 | 43–62 | — | Ch2 | (Ch1) 가역 반응열, 5-stage | PENDING | RB plan Phase 2 | (예정) | — | 43 |
+| 2.1–2.5 | 43–62 | 43–62 | Ch2 | (Ch1) 가역 반응열, 5-stage | PASS | RB plan Phase 2 | `RB_LEDGER_CH2.md` | PASS_CH2(적대 3렌즈) | 63 |
 | 3.1–3.5 | 63–88 | — | Ch3 | (Ch1) 반응속도론 일반화, 5-stage | PENDING | RB plan Phase 3 | (예정) | — | 63 |
 | 4.1–4.5 | 89–110 | — | Ch4 | (Ch3) 가역 반응열, 5-stage | PENDING | RB plan Phase 4 | (예정) | — | 89 |
 | 5.1–5.5 | 111–132 | — | Ch5 | (Ch3) 히스테리시스, 5-stage | PENDING | RB plan Phase 5 | (예정) | — | 111 |
@@ -59,3 +59,4 @@
 | 2026-05-31 | Ch1 562줄 keystone 한정어까지 완결(커밋 7e238e9). MiKTeX 설치+Ch1 PDF 빌드(11p, 한글 OK, undefined ref 0) → `results/graphite_ica_ch1_rebuilt.pdf`. 사용자 피드백: 수식 "약간의 건너뜀" → **다음 최우선 = Ch1 무생략 보강(내용=리뷰논문 깊이, 전개=학부 무생략)** + Codex 교차검증(`/codex:review`·rescue 비교). 5h 제한 중단→토큰 재충전 후 재개. 첫 핸드오버 Write 토큰끊김 미저장→HANDOVER_RB_2026-05-31 재작성. |
 | 2026-05-31 (재개) | HANDOVER_RB 복구. 직전 세션 미커밋 작업(보강 4영역, tex 561→616) 확인 후 잔여 6건 적용 → tex **641줄**(skip 4 + Codex 물리오류 2: eq:fiteq 동치오류·eq:spectrum Heaviside support). PDF 재빌드 13p, 무결성 PASS(undefined ref/cite 0). Phase 1B 완료. result Addendum + 본 ledger 갱신. Decision Gate(3대 검토) 대기. |
 | 2026-05-31 (적대검수 B) | 사용자 선택 B: Ch1 신규보강 독립 적대 재검수(3렌즈) → CRITICAL 0, **확정 뒤집힘 ρ_G 1/J→mol/J**(차원증명, Codex 옳았음) + HIGH 2 + MED 3 + FLAGGED 1 = 8 edits 정정(삭제 0). tex **662줄**, PDF 13p, 무결성 PASS(undefined 0·overfull 0). result Addendum 2 + 본 ledger 갱신. Ch1 완성판 → 사용자 최종 검토 대기. |
+| 2026-06-01 (자율) | 사용자 위임: main 머지(9473a20)+push. 이후 Ch2~7 자율 순차(Ch1 방식, 챕터별 빡센 3렌즈 적대검수, 단계별 commit/push/merge, Decision Gate→적대검수 대체). **Phase 2 (Ch2 가역 반응열) 완료**: draft(서브에이전트)→3렌즈 적대검수(CRITICAL 0, 17항등식 sympy 교차검증)→2 HIGH(q_irr 양정치 V_drive=V_n 전제 명문화·σ_j W/mol→W 환산) + 3 MED 정정 → tex **908줄**, PDF 20p, 무결성 PASS. AL-22~29 등재. `RB_LEDGER_CH2.md`. 다음 step 63(Ch3). |
