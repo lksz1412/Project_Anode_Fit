@@ -142,7 +142,7 @@ branch 자유에너지 위에 갇히면 \emph{target 자체가 이력(branch mem
 분업의 부분 붕괴)이며, 충전 branch 는 부호 인자 $s_{\phi,j}^b=-1$ 을 logistic 지수에서 \emph{유도}함으로써
 방전과 한 구조에 닫히고, 그 부호 뒤집힘 속에서도 비가역 발열 $n_j^{\eff}I_j\eta_j^b\ge0$ 은 부호 상쇄로
 2법칙을 보존한다.} 본 장은 Chapter 1--4 기본식을 수정하지 않고 내부 state 로 방전 기준 $\xi_j$ 를 유지하며,
-수치 해법$\cdot$validation pipeline 은 Chapter 6 로 분리한다.
+수치 해법$\cdot$validation pipeline 은 Ch1 부록 B 로 분리한다.
 
 \begin{groundingbox}
 \textbf{지배 표준(GS, Ch1--4 계승) 및 히스테리시스 근거 원칙.} \textbf{(GS-1)} 모든 식은 물리적 의미를 prose 로
@@ -743,7 +743,7 @@ reconstruction(full-cell 분해), calorimetry/temperature response(가역/비가
 초기 비교에서 충전/방전을 별도 empirical branch curve 로 피팅할 수 있으나 \emph{물리 모델 기본식이 아니다}.
 그 curve 가 metastable free-energy branch / domain memory / nucleation barrier / polarization / transport /
 aging 중 무엇인지 분리되지 않으면 논문용 물리 결론에 쓰지 않고, 단순 empirical residual 로 명시한 뒤 주 결론에서
-제외한다(GS-4; solver/numerical 구현과 validation pipeline 은 Chapter 6).
+제외한다(GS-4; solver/numerical 구현과 validation pipeline 은 Ch1 부록 B).
 \end{practicebox}
 
 % ====================================================================
@@ -775,7 +775,7 @@ AL-59 & hysteresis heat $=$ loop area 의 \emph{분리된} 성분만($J_\hys^b\m
 독립 검증 전제), 히스테리시스의 metastable/many-particle$\cdot$disorder 기원과 충전 부호 유도$\cdot$2법칙 보존은
 GROUNDED, signed-coordinate$\cdot$polarization 분리$\cdot$중복계상 금지$\cdot$식별성은 BOUNDED(유효범위 병기)다.
 임의 empirical branch offset / arbitrary hysteresis curve / clip/cap/step 정의식 0(GS-4; empirical branch fit
-은 practicebox 로 격하). solver/numerical 구현 0(Ch.6 분리). \textbf{DOI 정확 귀속(★ Ch3$\cdot$Ch4 오귀속 교훈
+은 practicebox 로 격하). solver/numerical 구현 0(Ch1 부록 B 분리). \textbf{DOI 정확 귀속(★ Ch3$\cdot$Ch4 오귀속 교훈
 계승):} dreyer2010 $=$ 10.1038/nmat2730, sethna1993 $=$ 10.1103/PhysRevLett.70.3347, degrootmazur1962 $=$
 교과서(DOI 없음), onsager1931 $=$ 10.1103/PhysRev.37.405, schnakenberg1976 $=$ 10.1103/RevModPhys.48.571 —
 Onsager DOI 를 degrootmazur 책에 붙이는 류의 오귀속 0건.
@@ -810,13 +810,13 @@ rest relaxation 의 eq vs meta 두 후보 구분; branch switching $\xi_j,h_j,V_
 ``자명/clearly/쉽게/obviously'' 본문 0건(G-noleap) & 통과 \\
 모든 가정 AL-50$\sim$59 인용; BOUNDED 유효범위 병기; DOI 정확 귀속(오귀속 0) & 통과(\S\ref{sec:ch5_al}) \\
 empirical branch fit 을 실무 팁으로 격하; solver 0 & 통과(\S\ref{sec:ch5_ident}) \\
-Ch6 이월 항목 분리 & 통과(\S\ref{sec:ch5_transmit}) \\
+Ch1 부록 B 이월 항목 분리 & 통과(\S\ref{sec:ch5_transmit}) \\
 \bottomrule
 \end{longtable}
 }
 
 % ====================================================================
-\section{Chapter 6 으로 전달되는 항목}\label{sec:ch5_transmit}
+\section{실데이터 피팅(Ch1 부록 B)으로 전달되는 항목}\label{sec:ch5_transmit}
 % ====================================================================
 \begin{enumerate}[label=\arabic*),leftmargin=2.0em]
 \item \textbf{시간 적분.} signed current $I_s$ 와 $q_\stt$ 기반 시간 적분; branch switching 시 $\xi_j,h_j,V_n$
@@ -862,13 +862,13 @@ loss/transport/polarization 이 섞인 관측 신호라 음극 단독과 직접 
 
 여섯째, Chapter 5 는 물리적 path dependence 와 metastability 를 중심으로 충방전 확장 구조를 닫되, Chapter 1--4
 기본식을 수정하지 않는다. 충전 부호 유도$\cdot$2법칙 보존$\cdot$target 이력 의존$\cdot$loop-area 분리가 한 인과
-사슬 안에서 정합하며, Chapter 6 에서 이 구조를 실제 수치 해법$\cdot$validation pipeline$\cdot$GITT/저율/고율
+사슬 안에서 정합하며, Ch1 부록 B 에서 이 구조를 실제 수치 해법$\cdot$validation pipeline$\cdot$GITT/저율/고율
 데이터 비교로 연결한다.
 
-\section*{Chapter 6 으로의 전달}
+\section*{실데이터 피팅(Ch1 부록 B)으로의 전달}
 본 장이 확정한 충방전 구조(signed $I_s\cdot q_\stt$, 충전 부호 $s_{\phi,j}^b$, branch target $\xi_{\tar,j}^b
 =\xi_{\sstat,j}^b$, hysteresis state $h_j$, $\Delta V_\obs\ne\Delta V_\hys$, loop-area 분리 발열)와 상태변수
-위에서: Chapter 6 은 stiff kinetics $+$ branch switching 의 시간 적분, 매 시간점 root-find 로 $V_n$ 결정,
+위에서: Ch1 부록 B 은 stiff kinetics $+$ branch switching 의 시간 적분, 매 시간점 root-find 로 $V_n$ 결정,
 hysteresis vs polarization 분리 검증 pipeline, calorimetry 부재 시 발열$\cdot$branch curve 를 피팅하지 않고
 forward prediction 으로만 두는 제한을 다룬다(Chapter 1--4 의 forward-only 원칙).
 
