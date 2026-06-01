@@ -1,6 +1,7 @@
 # HANDOVER — RB-series (2026-06-02 세션) · Ch1 §7+ 자기완결 재작업 + 절별(fine) 검수
 
 > **Chain 헤더(누적, 최상단부터 거슬러 올라갈 위치)**
+> - **→ 후속 = `HANDOVER_RB_2026-06-02b.md`** — 본 문건 §6 미완(Ch6 해체·Ch2~5 절별 검수) + 통합본 단순 concat 을 자율 완료. main·rb-rebuild `cb17b70`. **다음 세션은 그 문건부터 정독.**
 > - **HANDOVER_RB_2026-06-02 (본 문건)** — Ch1 §7→끝 부실 지적 → 자기완결 재작업(3 패스) + 절별 적대검수(8 agents)로 ~25 결함 정정. main·rb-rebuild `96c84b6` push.
 > - ← **HANDOVER_RB_2026-05-31** (`Claude/results/HANDOVER_RB_2026-05-31.md`) — RB Phase 0·1·1B(Ch1 무생략 보강) + 자율 위임 Ch2~7 완주(8종 재구성, AL-1~69). 그 문건 말미 UPDATE 블록(2026-06-01 자율완주 / 2026-06-02 Ch1 재작업 상태)도 함께 정독.
 > - ← (그 이전) HANDOVER_RB_2026-05-31 이 첫 RB 핸드오버 — 직전 = 폰 통합본 8종 합류 + Phase A/B 적대 재검수 + Ch1 재구성.
