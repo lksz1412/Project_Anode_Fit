@@ -51,7 +51,22 @@ $\tau_j=L_0e^{(G_{0,j}-\chi_j\mathcal A_j)/RT}$, $\beta_j=\beta(\sigma_{G,j}/RT)
 6. Ch1↔Ch2~5 전달 정합: 전달절 보존, kernel 구조 변경이 ver.N 전달식과 충돌 없음(점검 필요 → C2 차기)
 7. ver.N vs Chapter 명칭: 혼동 없음 PASS
 
-## Next Step (step 50~)
+## Retroactive 10점 검수 (§7~9 batch — step 50)
+batch로 들어간 H1·H3·H4·H5·H6·H8을 plan §6 10점 체크리스트로 재검수:
+1. 앞 정합성: Θ 일가가 §4 logistic($\xi_{\eq,j}$)·§3 전하보존($Q_{j,\tot}$)과 정합 — PASS
+2. §≤6 불변: H7 §5 수정 원복 후 §1~6 본문 무변경(diff 확인) — PASS
+3. 컨벤션: 기존 $q_a,\rho_G,Q_p,Q_{j,\tot}$ 보존; 전이별은 $j$ 첨자로 확장 — PASS
+4. 논리 전개: 두 다중성(이산 $\sum_j$/연속 $\int dL$) 분리, KWW가 식21에서 frozen-target로 따라옴 — PASS
+5. 차원: $A_{0,j}$무차원, $A_{L,j}^{prob}$밀도, $\tau_j$=q단위 — PASS
+6. 정의 선행: **FAIL→FIX** — $q_{a,j}$(§6 $q_a$의 전이별), $\rho_{G,j}$(§7 $\rho_G$의 전이별) 깨끗이 정의; $r_j(q_a)\to r_j(q_{a,j})$ 전 식 일관화(eq:kernel_integral·eq:kww·single-mode)
+7. 라벨: 중복 0, 신규 4개 정합 — PASS
+8. 빌드: 2-pass exit0, ref/cite 0, error 0 — PASS
+9. BOUNDED: KWW β 사상·frozen-target 근사 정직 표기 — PASS
+10. P3: 2 PASS강화 / 3·4 보류(G1·G2) — 부분
+
+**검수 발견·수정**: I-1($q_{a,j}$ 정의·$r_j$ 첨자 불일치), I-2($\rho_{G,j}$ 명시) → step 50에서 봉합, 재빌드 0/0.
+
+## Next Step (step 51~)
 - G1/G2(순환 의존성 dependency graph + 4분류 박스) — P3-3·4 FAIL 해소
 - C2: Ch1 kernel 구조 변경(Σ_j·eq:kww)이 Ch2~5 전달식과 정합하는지 교차검증
 - C3/GS-3: 본문 AL-# ↔ RB_AL_MASTER 일치

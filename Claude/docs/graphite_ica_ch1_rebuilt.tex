@@ -514,24 +514,25 @@ $\int\dd L$). 둘을 한 적분으로 섞지 않는다.
 
 전체 진행률의 post-peak 꼬리는 (i) 각 전이 $j$ 내부에서 진행률 기여 $\dd\xi_j/\dd q$(식~\eqref{eq:single_dxidq})를
 \emph{연속} 배리어 분포에서 온 확률밀도 $A_{L,j}^{\mathrm{prob}}$ 로 가중 적분하고, (ii) 다시 $N_p$ 개 전이를
-정적 진폭 $A_{0,j}$(식~\eqref{eq:A0_def})로 \emph{이산} 합한 것이다. 동역학 잔차 $r_j(q_a)\equiv
-\xi_{\eq,j}-\xi_j(q_a)$ 는 정적 물리량인 $A_{0,j}$ 에 \emph{흡수하지 않고} 별도 인자로 둔다(그래야
+정적 진폭 $A_{0,j}$(식~\eqref{eq:A0_def})로 \emph{이산} 합한 것이다. 동역학 잔차 $r_j(q_{a,j})\equiv
+\xi_{\eq,j}-\xi_j(q_{a,j})$ 는 정적 물리량인 $A_{0,j}$ 에 \emph{흡수하지 않고} 별도 인자로 둔다(그래야
 ``$A_0$=독립 물리량, 역산 금지''와 자가당착하지 않는다):
 \begin{equation}
-\boxed{\;\frac{\dd\Theta_\mathrm{tail}}{\dd q}\simeq\sum_{j=1}^{N_p}A_{0,j}\,r_j(q_a)
+\boxed{\;\frac{\dd\Theta_\mathrm{tail}}{\dd q}\simeq\sum_{j=1}^{N_p}A_{0,j}\,r_j(q_{a,j})
 \int_{L_{\min,j}}^\infty A_{L,j}^{\mathrm{prob}}(L)\,\frac1L\,
 \exp\!\Big[-\frac{q-q_{a,j}}{L}\Big]\,\dd L\;.}
 \label{eq:kernel_integral}
 \end{equation}
-여기서 $A_{L,j}^{\mathrm{prob}},L_{\min,j},q_{a,j}$ 는 식~\eqref{eq:spectrum} 를 전이 $j$ 의
-$\rho_{G,j},\chi_j,\mathcal A_j$ 로 평가한 것이다. 두 다중성(바깥 $\sum_j$ vs 안쪽 $\int\dd L$)이 분리돼 있어
-한 적분으로 섞이지 않는다.
+여기서 $\rho_{G,j}$ 는 전이 $j$ 의 배리어 분포(\S\ref{sec:spectrum} 의 $\rho_G$ 를 전이별로 둔 것), $q_{a,j}$ 는
+전이 $j$ 의 꼬리 시작(post-peak onset) 좌표(\S\ref{sec:dyn} 의 $q_a$ 를 전이별로 둔 것)이며,
+$A_{L,j}^{\mathrm{prob}},L_{\min,j}$ 는 식~\eqref{eq:spectrum} 를 $\rho_{G,j},\chi_j,\mathcal A_j$ 로 평가한 것이다.
+두 다중성(바깥 $\sum_j$ vs 안쪽 $\int\dd L$)이 분리돼 있어 한 적분으로 섞이지 않는다.
 피적분의 $1/L$ 인자는 진행률 도함수(식~\eqref{eq:single_dxidq})에서 온 것이고, spectrum 변환의 자코비안
 $RT/L$ 은 $A_L$ 안에 이미 들어 있어 둘은 \emph{별개} 출처다 — 임의 가중이 아니다. 이 적분은
 relaxation-rate($1/L$) 분포 위의 Laplace 형 변환이며, 단일 지수의 \emph{연속 중첩}이 일반적으로 비지수
 (stretched)$\sim$power-law 꼬리를 준다(\AL{14}, \cite{johnston2006}; KWW stretched 함수와 완화시간 분포의
 등가성 \cite{lindsey1980}). single-mode 극한($N_p=1$, $a_1=1$, $\rho_{G,1}=\delta(G-G_0)\Rightarrow
-A_{L,1}^{\mathrm{prob}}=\delta(L-L_0)$, $r_1(q_a)=1$)은 식~\eqref{eq:single_kernel} 의 특수해다.
+A_{L,1}^{\mathrm{prob}}=\delta(L-L_0)$, $r_1(q_{a,1})=1$)은 식~\eqref{eq:single_kernel} 의 특수해다.
 \begin{boundbox}
 \textbf{유효범위(\AL{14}, 정직 표기).} ``고정 배리어 분포 $\to$ 지수 매핑 $\to$ 저온 긴 꼬리''의 메커니즘은
 빠른 이온 전도체$\cdot$무질서 완화에서 확립돼 있다(\cite{svare2000,johnston2006,lindsey1980}). 다만 (i)
@@ -546,10 +547,10 @@ established 가 아니라 BOUNDED 로 둔다.
 $\rho_{G,j}=\mathcal N(G_{0,j},\sigma_{G,j}^2)$ 로 두면, 식~\eqref{eq:L_of_G} 의 $\ln L=\ln L_0+
 (G-\chi_j\mathcal A_j)/RT$ 에 의해 $\ln L$ 이 정규 $\Rightarrow L$ 은 log-normal 이다. log-normal 완화시간 위의
 단일 지수 중첩(식~\eqref{eq:kernel_integral} 적분)은 stretched-exponential(KWW)로 잘 근사된다(\AL{14},
-\cite{lindsey1980,johnston2006}). 따라서 $\Theta_{\mathrm{tail},j}\simeq r_j(q_a)\{1-\exp[-((q-q_{a,j})/
+\cite{lindsey1980,johnston2006}). 따라서 $\Theta_{\mathrm{tail},j}\simeq r_j(q_{a,j})\{1-\exp[-((q-q_{a,j})/
 \tau_j)^{\beta_j}]\}$ 이고, 그 도함수가 Ch1 의 \emph{닫힌 피팅 함수}다:
 \begin{equation}
-\boxed{\;\frac{\dd\Theta_\mathrm{tail}}{\dd q}\approx\sum_{j=1}^{N_p}A_{0,j}\,r_j(q_a)\,
+\boxed{\;\frac{\dd\Theta_\mathrm{tail}}{\dd q}\approx\sum_{j=1}^{N_p}A_{0,j}\,r_j(q_{a,j})\,
 \frac{\beta_j}{\tau_j}\Big(\frac{q-q_{a,j}}{\tau_j}\Big)^{\beta_j-1}
 \exp\!\Big[-\Big(\frac{q-q_{a,j}}{\tau_j}\Big)^{\beta_j}\Big]\;,}
 \label{eq:kww}
