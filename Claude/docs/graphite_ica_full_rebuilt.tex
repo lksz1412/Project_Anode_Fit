@@ -208,8 +208,14 @@ $\rho_G(G;T)$ & mol/J & activation barrier 확률밀도 ($\int_0^\infty\rho_G\,\
 $A_L^{\mathrm{prob}},A_L^{\mathrm{amp}}$ & --- & relaxation-length 확률밀도(정규화) / 진폭 스펙트럼 $=A_0 A_L^{\mathrm{prob}}$;\brk kernel 의 $A_L\equiv A_L^{\mathrm{amp}}$ (\S\ref{sec:spectrum}) \\
 $A_0(L)$ & --- & mode 별 물리적 진폭 가중(입자크기분포$\cdot$활성 site 밀도 등 독립 물리량) \\
 $L_0,\ L_{\min}$ & --- & $L_0=|I|/(Q_\cell k_0)$ (prefactor 기준 길이), $L_{\min}=L_0 e^{-\chi_j\mathcal A_j/RT}$ (support 하한, $G\!\ge\!0$) \\
+$q_a$ & --- & 꼬리 시작 좌표(post-peak tail onset);\brk single-mode 지수감쇠 $e^{-(q-q_a)/L}$ 의 기준점, ICA peak 위치 또는 $\dd\xi_\eq/\dd q$ 가 임계 이하로 떨어지는 첫 $q$ 로 고정 \\
 $L_\varphi$ & V & 전압축 특성 꼬리 길이 $=|\dd V_n/\dd q|_{q_a}L$ (\S\ref{sec:fiteq}, 식~\eqref{eq:Lphi}) \\
 $\Theta,\ Q_p$ & ---,\ C & 전체 effective phase progress, 그 용량 scale \\
+$R$ & J/(mol\,K) & 기체상수(molar gas constant), $8.314$; $R=k_B N_A$, 평형 폭 $w_j=RT/F$ \\
+$F$ & C/mol & Faraday 상수, $96485$;\brk 전위$\to$몰당 에너지 환산($\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j)$, $w_j=RT/F$) \\
+$T$ & K & 절대온도(absolute temperature);\brk $w_j=RT/F$, $k_0=(k_BT/h)\kappa$, $\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$ 의 독립변수 \\
+$k_B$ & J/K & Boltzmann 상수, $1.381\times10^{-23}$;\brk $S=k_B\ln W$, $R=k_B N_A$, Eyring prefactor $k_0=(k_BT/h)\kappa$ \\
+$h$ & J\,s & Planck 상수, $6.626\times10^{-34}$;\brk Eyring prefactor $k_0(T)=(k_BT/h)\kappa(T)$ 의 고정 인자 \\
 \bottomrule
 \end{longtable}
 \textbf{단위 주의.} 미분방정식의 전류 $I$ 가 A $=\mathrm{C/s}$ 이므로 $Q_\cell$ 은 쿨롱이어야 한다
@@ -427,7 +433,7 @@ backward 는 $+(1-\beta)\mathcal A$ 라 비가 바뀜)은 \textbf{Ch.3 의 Level
 $\chi_j$ 가 transfer coefficient $\beta_j$ 와 같아진다(\AL{11}). \textbf{한정}: 본 장 Level A 의 ``공통 배율''
 (forward/backward 동일 가속)은 Marcus 의 \emph{비대칭} 장벽 이동($\lambda\mp\mathcal A_j$)을 대칭으로 평균낸
 \emph{모형 선택}이며, 이 대칭 극한에서만 forward/backward 가속이 세부 균형(detailed balance) 비를 보존한다. Level B(Ch.3)와
-일치하는 것은 \emph{정상 target 극한} $\xi_{\mathrm{ss},j}\to\xi_{\eq,j}$ 한정이다(CHARTER step4). 본 장
+일치하는 것은 \emph{정상 target 극한} $\xi_{\mathrm{ss},j}\to\xi_{\eq,j}$ ($\xi_{\mathrm{ss},j}\equiv r_j^+/(r_j^++r_j^-)$, 본 keybox net rate 고정점) 한정이다(CHARTER step4). 본 장
 결론식에서는 ``배리어 낮춤''이라는 방향성 함의 용어를 피한다.
 \end{keybox}
 \begin{boundbox}

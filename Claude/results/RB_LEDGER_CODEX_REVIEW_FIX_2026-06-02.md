@@ -31,3 +31,14 @@ P1 기호표(section)→P2 §rate/keystone(70)→P3 §spectrum/kernel(90-offset)
 
 ## 5. 커밋
 - 수정: graphite_ica_ch1·ch3·full·refs_rebuilt.tex. result: 본 ledger + `RB_CODEX_V4_CH1_REVIEW_CLAUDE_10PASS.md`(14322e6). commit·push(main+rb).
+
+---
+
+## Addendum A (2026-06-02) — §4 잔존 pre-existing 결함 정리 완료
+
+사용자 "정리해" 지시로 §4 에서 보고만 했던 잔존 결함을 후속 수정(탐색→수정→대립검증). 물리 변경 없이 정의행·gloss 추가만.
+- **①(HIGH) 기호표 미정의 심볼 추가**: ch1 기호표(L152·L155-159)와 full(L211·L214-218, `\brk` 적용)에 `q_a`(꼬리 시작 좌표=post-peak tail onset, single-mode 지수감쇠 $e^{-(q-q_a)/L}$ 기준점; 이를 참조하는 $L_\varphi$ 행 바로 앞 배치) + 기본상수 5종($R$ 8.314 J/mol·K, $F$ 96485 C/mol, $T$ K, $k_B$ 1.381e-23 J/K, $h$ 6.626e-34 J·s)을 각 행에 쓰이는 식 교차참조와 함께 추가. ch1↔full drift 0.
+- **②(MED) RB_CHARTER 미정의 term 정의**: keybox(ch1 L377·full L436)의 $\xi_{\mathrm{ss},j}$ 를 첫 등장에 인라인 정의 `$\xi_{\mathrm{ss},j}\equiv r_j^+/(r_j^++r_j^-)$`(2상 속도식 정상상태 고정점) 부착.
+- **③(NOTE)** ln(1/(LT)) vs ln(1/L) 입도 차 — §2 의 교차참조로 이미 완화, 추가 작업 없음.
+- **대립검증(refute 자세)**: symbolRowsCorrect·ch1FullConsistent·physicsCorrect·noRegression(Eyring minus·bib·χ_j 한정 무훼손)·buildGreen 전부 통과. ch1 2-pass·full 3-pass: `^!`=0, undefined ref/cite=0. longtable "infinite glue shrinkage" 경고는 편집 전부터 있던 비치명 TeX 경고(베이스라인).
+- **운용 정정 기록**: 본 Addendum 작업은 Workflow 도구로 시작했으나 그 호출이 auto mode 에서 권한 팝업을 띄워 사용자 흐름을 끊는 실수가 있었음. 이후 Workflow = 흐름중단 도구로 글로벌 CLAUDE.md·[[feedback_flow_interruption]] 에 금지 명시(멀티에이전트는 Agent 도구로). 산출물 자체는 정상.
