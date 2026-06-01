@@ -20,7 +20,7 @@
 | 4.1–4.5 | 89–110 | 89–110 | Ch4 | (Ch3) 가역 반응열, 5-stage | PASS | RB plan Phase 4 | `RB_LEDGER_CH4.md` | PASS_CH4(적대 3렌즈) | 111 |
 | 5.1–5.5 | 111–132 | 111–132 | Ch5 | (Ch3) 히스테리시스, 5-stage | PASS | RB plan Phase 5 | `RB_LEDGER_CH5.md` | PASS_CH5(적대 3렌즈) | 133 |
 | 6.1–6.3 | 133–146 | 133–146 | Ch6 | 피팅 실무 부록(검토+재유도) | PASS | RB plan Phase 6 | `RB_LEDGER_CH6.md` | PASS_CH6(적대 3렌즈) | 147 |
-| 7.1–7.3 | 147–157 | — | 통합 | refs + full + 정합·빌드 | PENDING | RB plan Phase 7 | (예정) | — | 147 |
+| 7.1–7.3 | 147–157 | 147–157 | 통합 | refs + full + 정합·빌드 | PASS | RB plan Phase 7 | `RB_LEDGER_INTEGRATION.md` | PASS_INTEGRATION(무손실/정합) | — (완료) |
 
 ## 현재 위치
 - **마지막 완료**: Phase 0 전체(Foundation, step 1–16). `RB_CHARTER.md` + `RB_REFERENCES_DOSSIER.md` + `RB_AL_MASTER.md` + `PHASE_0_foundation_RESULT.md`.
@@ -64,3 +64,4 @@
 | 2026-06-01 (자율) | **Phase 4 (Ch4 entropy-production 발열) 완료**: draft→3렌즈 적대검수(CRITICAL 0, sympy 5단계+부호보조정리 잔차 0, CHARTER 5규약·DOI 전건 통과·오귀속 0)→4 HIGH(micro=macro C_j≡0 전제·extensivation 다리 k_B→R/½부재·s_φ 사후부착 해소·휴지 ≥0 근거 V_n공유 동부호) + 2 MED 정정 → tex **929줄**, PDF 19p, 무결성 PASS. ★Phase A CRITICAL(η 이중정의) 진짜 해소. AL-42~49 등재. `RB_LEDGER_CH4.md`. 다음 step 111(Ch5). |
 | 2026-06-01 (자율) | **Phase 5 (Ch5 충방전 히스테리시스) 완료**: draft→3렌즈 적대검수 → **물리·수학 두 agent 독립 CRITICAL 수렴**(충전 η^chg 부호 유도 자기모순; 정합 agent는 놓침) → 근본 정정: **V_eq^b/V_tar^b 정의에 s_φ^b 누락**(증가형↔감소형) → $V_\eq^b=U^b+s_\phi^b w^b\ln[\xi/(1-\xi)]$ 로 충전 ξ-감소형 닫음(음×음=양 진짜 유도) + conjugacy robust 근거. 결론(2법칙)은 옳았으나 거짓 단조성 패치였던 것 정정 → tex **899줄**, PDF 19p, 무결성 PASS. ★충전 branch 부호 유도(Phase A HIGH) 해소. AL-52~59 등재. `RB_LEDGER_CH5.md`. 다음 step 133(Ch6). |
 | 2026-06-01 (자율) | **Phase 6 (Ch6 피팅 실무 부록) 완료**: 5-30 지시(기존내용 검토 우선)대로 consolidated_ch6(수치 강조) → 피팅 실무 주역화·수치 종속화. ★FLAGGED 허위(ε_tol) 정정(측정 기반 max(ε_disc,ε_noise)+값 FLAGGED). draft→3렌즈 적대검수 → **수치·수학 두 agent 독립 CRITICAL 수렴**(Arrhenius 기울기 = 유효 엔탈피 −(ΔH_a−χA)/R, χA/RT가 1/T-선형 기여) + 2 HIGH(∂lnL n^eff convention·§grid 평균장 closure FLAGGED 승계) 정정 → tex **842줄**, PDF 19p, 무결성 PASS. AL-64~69 등재. `RB_LEDGER_CH6.md`. 다음 step 147(Phase 7 통합). |
+| 2026-06-01 (자율) | **Phase 7 (통합) 완료 → RB-series 전체 완료**: refs_rebuilt(9p, bibitem union 33·AL-1~69 ledger) + full_rebuilt(98p, 4647줄, Ch1~6 병합). 통합 무결성 적대검수 → **무손실/정합 PASS**(SA↔full boxed 41/41·label 285/285·eq 160/160 전건 1:1, cross-chapter 규약 일관, bib orphan 0, AL-1~69 등재) + MED 1(thomasnewman2003 인용장 주석 Ch4→Ch2,Ch6) 정정. full 98p/refs 9p 빌드 PASS(undefined 0·중복label 0·overfull 0). 원본 6챕터 무수정. `RB_LEDGER_INTEGRATION.md`. **RB Phase 0~7 / step 1–157 전건 완료.** |
