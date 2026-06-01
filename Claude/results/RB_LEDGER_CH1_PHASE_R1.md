@@ -17,8 +17,14 @@
 | H4 | HIGH | $\Theta,\Theta_\eq,\Theta_\mathrm{init},\Theta_\mathrm{tail}$ 를 §8 진입부에 정의 | eq:theta_family | CLOSED |
 | H5 | MED | $g$ = barrier $G$ 의 한 실현값·적분 더미(단위 J/mol) 첫 사용 명시 | §7 line 428 | CLOSED |
 | H6 | HIGH(결정) | **Ch1 근사 닫힌식(frozen-target KWW)** 신설 → 단독 fit 가능 | eq:kww, eq:kww_params | CLOSED |
-| H7 | MED-HIGH | "꼬리=저구동" 전역단정 제거; shoulder(선형 유효) vs far-tail(2차 Marcus BOUNDED) 분리 | §6 Marcus bound 박스 | CLOSED |
+| H7 | MED-HIGH | ~~shoulder/far-tail 분리~~ → **§5(line354) 수정은 §≤6 보호 위반이라 원복**. 원문(정직 BOUNDED) 유지. 추가 명료화는 별도 reviewed step. | §5 Marcus bound(원복) | **DEFERRED(원복)** |
 | H8 | MED | 피팅 기본=eq:kww(frozen forward), 정확=eq:volterra(self-consistent), 1차근사 관계 못박음 | §8 "어느 식을 피팅에" + boundbox | CLOSED |
+
+## ⚠ 정정 (사용자 6-1 지시 반영)
+- §1~6은 완성도 높음 → **수정·요약 금지, 보완만**. R1의 H7 편집이 §5(line354)를 수정 → **원복 완료**.
+- H7은 현재 **UNRESOLVED**(원문 정직 표기 유지). 추가 명료화는 §≤6 보완 또는 §7+ 처리로 별도 reviewed step.
+- 나머지 H1·H3·H4·H5·H6·H8 = §7~9(작업 구역) 내 → 유지, retroactive 10점 검수 대상.
+- 향후 step별 순차 + 매 step 10점 검수(plan §6) 적용.
 
 ## 근사 닫힌식 (Ch1 deliverable)
 $$\frac{d\Theta_\text{tail}}{dq}\approx\sum_j A_{0,j}r_j(q_a)\frac{\beta_j}{\tau_j}\Big(\frac{q-q_{a,j}}{\tau_j}\Big)^{\beta_j-1}e^{-((q-q_{a,j})/\tau_j)^{\beta_j}}$$
