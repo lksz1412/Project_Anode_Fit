@@ -72,3 +72,18 @@
 - **AL-1~69 통합 ledger 완성**(`RB_AL_MASTER.md`). 8종 재구성(Ch1~6+refs+full). 원본 6챕터 무수정·물리 변경 0.
 - **현재 = RB-series 완료, main HEAD `22fd25c`. 사용자 최종 검토 대기.** 각 result: `RB_LEDGER_CH1~6.md`+`RB_LEDGER_INTEGRATION.md`. 복구 spine: `RB_EXECUTION_LEDGER.md`(Phase 0~7 전건 PASS).
 - 잔여(선택): Codex 교차검증(지시 9, Ch1만 일부 수행), full overfull 29건(cosmetic), bibitem 인용장 주석 정밀화.
+
+## ★★ UPDATE 2026-06-02 — Ch1 §7→끝 부실 지적 → 자기완결 재작업 + 절별(fine) 검수 완료
+사용자 재지적: Ch1 §7 이후 \*전체\*가 부실(식 뜬금없이 등장·물리의미 불명·연결 부족, 따라갈 수 없음 / Ch1만으로 심플 피팅 근사식 못 뽑음). 원인 = 컴팩션 소실이 아니라 실무·닫힌형 내용을 Ch6 으로 \*구조적 deferral\* + 설명 압축. 검수가 정확성만 보고 "따라가짐/사용성" 못 봄 + \*거친 청크\*로 검수. 사용자 핵심 method 지시: **잘게 쪼개 절별 검수 / 한번에 제대로(invest) / 절 늘려도 됨**.
+
+**처리(3 패스, 본 세션)**:
+1. 1차: Ch6 실무내용 Ch1 복원(Plan A/B closure·0.2C·simplefit·식별성).
+2. 2차: §7→끝을 \*9개 절로 분할\*(§7 spectrum/§8 kernel/§9 Volterra/§10 Plan B/§11 Plan A/§12 fiteq/§13 simplefit/§14 falsify/§15 numeric). Volterra single-mode 상수변화법 유도(뜬금없음 제거)·Plan A Θ⁰ baseline+factor-out·N5 추가·Ch6 미아 forward-ref 정리. 커밋 `bc08fb2`.
+3. **3차(★ 사용자 method): 절마다 1 agent 적대검수(8 병렬). 거친 2청크가 못 본 ~25 결함 적발·전건 정정** — CRITICAL 1(§13 Arrhenius Eyring prefactor k_0(T) 누락→ln(1/(LT)) 회귀+U_j(T) 점별제거), HIGH ~10(§7 A_0 측도유도·§8 r(q_a)흡수+kernel↔Volterra봉합·§10 정규화·§11 a정의+forward-ref·§12 L_φ유도+eq:Lphi·§13 Θ_0 nuisance·§14 N5 D(ξ)확산퇴화차단), MED ~10. 상세 = `RB_LEDGER_CH1_REWORK.md` §9.
+
+**상태**: `graphite_ica_ch1_rebuilt.tex` **923줄·18p**, xelatex EXIT 0·undefined/!/dup/rerun 0·overfull 4(<20pt). 커밋 `23bb8d4`(Ch1 정정) + `462d39b`(Codex 동반). **main·rb-rebuild 둘 다 `462d39b` push 완료.**
+
+**다음(자율 위임 잔여 — 권장 신규 세션, 본 세션 컨텍스트 심화로 대규모 다파일 작업 품질 리스크)**:
+1. **Ch6 파일 해체**: `graphite_ica_ch6_rebuilt.tex` 삭제 + `full_rebuilt`/`refs_rebuilt` 재생성(현재 STALE — 구 Ch1 + Ch6 포함). Ch2~5 본문 "Ch.6" 참조 정리.
+2. **Ch2~5 절별(fine) 검수**: Ch2~5 는 Ch1 과 같은 draft→3렌즈(거친) 프로세스 산출 → 동일 deferral·압축 가능성. Ch1 과 동일하게 \*절마다 1 agent\* 따라가짐/사용성/정확성 검수 후 정정. (의존: Ch1 확정됐으니 하류 재검증 타당.)
+3. Codex 교차검증(지시 9) 잔여.
