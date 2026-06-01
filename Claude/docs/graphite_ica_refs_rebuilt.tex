@@ -1,15 +1,13 @@
 % ====================================================================
-% graphite_ica_refs_rebuilt.tex — 통합 references 문건 (RB Phase 7.1, standalone)
-%   흑연 음극 ICA(dQ/dV) 이론서 RB-series Ch1~6 의 통합 참고문헌 + 통합 Assumption
-%   Ledger(AL-1~69). 6개 챕터의 \bibitem 을 union+dedupe(동일 키 1회) 하고,
-%   RB_REFERENCES_DOSSIER 의 검증 DOI 와 대조했다. 어느 챕터에서도 인용 안 된
-%   dead/orphan 키는 0 — 33 키 전부 본문 인용 + 통합 AL ledger 사용장.
-%
-%   생성 원칙(RB Phase 7 통합):
-%     · bibitem 텍스트는 6개 챕터 원문 그대로(서지·DOI 변경 0; \brk 줄바꿈 포함).
-%     · AL 표는 RB_AL_MASTER.md 1부를 LaTeX longtable 화(가정·tier·cite·DOI·사용장).
-%     · standalone 컴파일 가능(article, kotex, amsmath, \AL/\brk 매크로).
-% Date: 2026-06-01  Author: Project_Anode_Fit (Claude 측, RB-series Phase 7.1)
+% graphite_ica_refs_rebuilt.tex — 통합 references 문건 (RB 재생성, standalone)
+%   흑연 음극 ICA(dQ/dV) 이론서 RB-series Chapter 1~5 의 통합 참고문헌(33 키 union).
+%   ★ Ch6 해체(2026-06-01): 구 Ch6 는 Ch1 부록 B 로 흡수 — 별도 챕터 없음.
+%     5개 챕터의 \bibitem 을 union+dedupe(동일 키 1회, Ch1 우선) 하였다.
+%     bibitem 텍스트는 챕터 원문 그대로(서지·DOI 변경 0; \brk 줄바꿈 포함).
+%     본 문건의 33 키 bibliography 는 통합본(graphite_ica_full_rebuilt.tex)의
+%     통합 참고문헌과 동일하다. standalone 컴파일 가능(article, kotex, amsmath,
+%     \AL/\brk 매크로).
+% Date: 2026-06-02  Author: Project_Anode_Fit (Claude 측, RB-series 통합 재생성)
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=20mm]{geometry}
@@ -24,13 +22,14 @@
 \usepackage{setspace}
 \setstretch{1.13}
 \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{3em}\tolerance=1200\hbadness=4000
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
-  pdftitle={흑연 음극 ICA tail — 통합 References + Assumption Ledger (RB)}}
+  pdftitle={흑연 음극 ICA tail — 통합 References (33 키 union, RB)}}
 \pagestyle{fancy}\fancyhf{}
-\lhead{흑연 음극 ICA tail — 통합 References + AL-1\textasciitilde 69 (RB)}\rhead{\thepage/\pageref{LastPage}}
+\lhead{흑연 음극 ICA tail — 통합 References (33 키 union, RB)}\rhead{\thepage/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% --- 약어 매크로 union (Ch1~6 preamble 합집합; AL 표에서 사용) ---
+% --- 매크로 union (Ch1~5 preamble 의 \newcommand 합집합, 중복 1회) ---
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\eff}{\mathrm{eff}}
 \newcommand{\eq}{\mathrm{eq}}
@@ -44,306 +43,142 @@
 \newcommand{\irr}{\mathrm{irr}}
 \newcommand{\rev}{\mathrm{rev}}
 \newcommand{\rxn}{\mathrm{rxn}}
-\newcommand{\ct}{\mathrm{ct}}
-\newcommand{\sstat}{\mathrm{ss}}
-\newcommand{\resid}{\mathrm{resid}}
+\newcommand{\kin}{\mathrm{kin}}
 \newcommand{\ohm}{\mathrm{ohm}}
 \newcommand{\conc}{\mathrm{conc}}
 \newcommand{\src}{\mathrm{src}}
 \newcommand{\loss}{\mathrm{loss}}
+\newcommand{\amb}{\mathrm{amb}}
 \newcommand{\rlx}{\mathrm{relax}}
+\newcommand{\cand}{\mathrm{cand}}
 \newcommand{\conv}{\mathrm{conv}}
 \newcommand{\prog}{\mathrm{prog}}
 \newcommand{\coord}{\mathrm{coord}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\resid}{\mathrm{resid}}
+\newcommand{\film}{\mathrm{film}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\trans}{\mathrm{tr}}
+\newcommand{\site}{\mathrm{site}}
+\newcommand{\curr}{\mathrm{curr}}
 \newcommand{\transp}{\mathrm{transport}}
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\chem}{\mathrm{chem}}
-\newcommand{\chg}{\mathrm{ch}}
 \newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{ch}}
+\newcommand{\rst}{\mathrm{rest}}
 \newcommand{\hys}{\mathrm{hys}}
-\newcommand{\stt}{\mathrm{state}}
+\newcommand{\pol}{\mathrm{pol}}
 \newcommand{\tar}{\mathrm{tar}}
-\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\stt}{\mathrm{state}}
+\newcommand{\cb}{\mathrm{cb}}
+\newcommand{\dyn}{\mathrm{dyn}}
 \newcommand{\tol}{\mathrm{tol}}
-\newcommand{\disc}{\mathrm{disc}}
 \newcommand{\noise}{\mathrm{noise}}
 \newcommand{\AL}[1]{\textsf{[AL-#1]}}
 \newcommand{\brk}{\discretionary{}{}{}}% 표/참고문헌 긴 DOI·ISBN 줄바꿈 허용(zero-width)
 
-\title{\textbf{리튬이온전지 흑연 음극 ICA($dQ/dV$) tail 이론 — 통합 References 문건}\\[0.4em]
-\large 통합 참고문헌(union + dedupe, 검증 DOI) + 통합 Assumption Ledger(AL-1$\sim$69)\\[0.2em]
-\normalsize Chapter 1$\sim$6 재구성본(RB-series) 의 \texttt{\textbackslash bibitem} 33 키 합집합 + 가정 원장}
-\author{Project\_Anode\_Fit (RB 재구성본, Phase 7.1)}
-\date{2026-06-01}
+\title{\textbf{리튬이온전지 흑연 음극 ICA($dQ/dV$) tail 이론 — 통합 References}\\[0.5em]
+\large 통합 참고문헌 (Chapter 1$\sim$5 union $+$ dedupe, 검증 DOI; 33 키)\\[0.2em]
+\normalsize 구 Ch6 는 Ch1 부록 B 로 흡수 — 5개 챕터 \texttt{\textbackslash bibitem} 합집합(Ch1 우선)\\
+(통합본 \texttt{graphite\_ica\_full\_rebuilt.tex} 의 통합 참고문헌과 동일)}
+\author{Project\_Anode\_Fit (RB 재구성본)}
+\date{2026-06-02}
 
 \begin{document}
 \sloppy
 \maketitle
 
-% ====================================================================
-\section*{문건 성격과 무결성 요약}
-\addcontentsline{toc}{section}{문건 성격과 무결성 요약}
-% ====================================================================
-본 문건은 RB-series 이론서 Chapter 1$\sim$6 재구성본의 \textbf{통합 참고문헌}과 \textbf{통합 Assumption
-Ledger(AL-1$\sim$69)}를 한 곳에 모은 standalone 문건이다. 6개 챕터에 분산된 \texttt{\textbackslash bibitem}
-은 \emph{합집합 + 중복 제거}(동일 키 1회)하여 \textbf{33 키}로 닫힌다(원래 6개 챕터의 총 70 occurrence
-$\to$ union 33; 37 중복 제거). 각 키의 서지$\cdot$DOI 는 \texttt{RB\_REFERENCES\_DOSSIER.md} 의 web 실측
-검증분과 대조했으며, \textbf{어느 챕터에서도 인용되지 않은 dead/orphan 키는 0}(33 키 전부 본문 인용 + 통합
-AL ledger 사용장에서 사용)이다.
-
-\begin{itemize}[leftmargin=1.6em]
-\item \textbf{bibitem union/dedupe.} 33 키. 각 키의 텍스트는 6개 챕터 원문 그대로(서지$\cdot$DOI 변경 0).
-\item \textbf{dead/orphan.} 0 건. (검증 dossier 에는 있으나 6 챕터 미인용인 \texttt{baker1999}$\cdot$\texttt{plonka}
-  는 본 union 에 \emph{포함하지 않는다} — 이론서 본문이 인용하지 않으므로. \texttt{baker1999} 는 검증됐으나
-  미사용, \texttt{plonka} 는 FLAGGED 보조 후보로 어느 장도 채택 안 함.)
-\item \textbf{통합 AL ledger.} AL-1$\sim$69. tier(GROUNDED/BOUNDED/FLAGGED)$\cdot$근거 cite$\cdot$검증
-  DOI$\cdot$사용 장 포함. (RB\_AL\_MASTER 1부의 LaTeX 표화.)
-\end{itemize}
+\section*{문건 성격}
+\addcontentsline{toc}{section}{문건 성격}
+본 문건은 RB-series 이론서 Chapter 1$\sim$5 재구성본의 \textbf{통합 참고문헌}(33 키)을 모은 standalone
+문건이다. 5개 챕터에 분산된 \texttt{\textbackslash bibitem} 을 union$+$dedupe(동일 키 1회, Ch1 우선)
+하였으며, 어느 챕터에서도 인용 안 된 dead/orphan 키는 0 — 33 키 전부 본문 인용. bibitem 텍스트는 챕터
+원문 그대로(서지$\cdot$DOI 변경 0; \texttt{\textbackslash brk} 줄바꿈 포함). 구 Chapter 6 은 해체되어
+Ch1 부록 B 로 흡수되었으므로 별도 챕터 키 추가는 없다.
 
 \tableofcontents
 \newpage
 
-% ====================================================================
-\section{통합 참고문헌 (union + dedupe, 33 키)}\label{sec:refs_bib}
-% ====================================================================
-6개 챕터의 \texttt{\textbackslash bibitem} 을 union+dedupe 한 결과다. 각 항목 말미의 ``(인용 장)'' 은 그 키가
-\emph{실제로} 인용된 챕터를 표시한다 — 모든 키가 1개 이상 장에서 인용되므로 dead/orphan 0 임을 직접 확인할 수
-있다.
-
+\section{통합 참고문헌 (union $+$ dedupe, 33 키)}\label{sec:refs_bib}
 \begin{thebibliography}{99}
-% --- 전기화학·전지 (Ch1·2·4·6) ---
 \bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, ``Modeling of Galvanostatic Charge and Discharge
   of the Lithium/Polymer/Insertion Cell,'' \emph{J. Electrochem. Soc.} \textbf{140}, 1526 (1993).
-  DOI: 10.1149/\brk 1.2221597. \emph{(인용 장:Ch1, Ch3, Ch5)}
+  DOI: 10.1149/1.2221597.
 \bibitem{newman} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004).
-  ISBN 978-0-\brk 471-47756-3. \emph{(인용 장:Ch1, Ch2, Ch3, Ch4, Ch5)}
-\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery
-  Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI: 10.1149/\brk 1.2113792.
-  \emph{(인용 장:Ch2, Ch4, Ch6)}
-\bibitem{rao1997} L. Rao, J. Newman, ``Heat-Generation Rate and General Energy Balance for Insertion
-  Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{144}, 2697 (1997). DOI: 10.1149/\brk 1.1837884.
-  \emph{(인용 장:Ch2, Ch4)}
-\bibitem{thomasnewman2003} K. E. Thomas, J. Newman, ``Thermal Modeling of Porous Insertion Electrodes,''
-  \emph{J. Electrochem. Soc.} \textbf{150}, A176 (2003). DOI: 10.1149/\brk 1.1531194.
-  \emph{(인용 장:Ch2, Ch6)}
-\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into
-  Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004).
-  DOI: 10.1149/\brk 1.1646152. \emph{(인용 장:Ch2)}
-% --- 반응속도론·비평형 열역학 (Ch1·3·4·5) ---
-\bibitem{eyring1935} H. Eyring, ``The Activated Complex in Chemical Reactions,'' \emph{J. Chem. Phys.}
-  \textbf{3}, 107 (1935). DOI: 10.1063/\brk 1.1749604. \emph{(인용 장:Ch1, Ch2, Ch3, Ch6)}
-\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and Driving Force of Chemical Reactions,''
-  \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI: 10.1039/\brk TF9383400011.
-  \emph{(인용 장:Ch1, Ch3)}
-\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods}, 2nd ed., Wiley (2001).
-  ISBN 978-0-\brk 471-04372-0. \emph{(인용 장:Ch1, Ch2, Ch3, Ch5, Ch6)}
-\bibitem{marcus1956} R. A. Marcus, ``On the Theory of Oxidation-Reduction Reactions Involving Electron
-  Transfer. I,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956). DOI: 10.1063/\brk 1.1742723.
-  \emph{(인용 장:Ch1, Ch3)}
+  ISBN 978-0-471-47756-3.
+\bibitem{mckinnon1983} W. R. McKinnon, R. R. Haering, ``Physical Mechanisms of Intercalation,'' in
+  \emph{Modern Aspects of Electrochemistry} No.~15, Plenum, New York (1983), p.~235.
 \bibitem{bazant2013} M. Z. Bazant, ``Theory of Chemical Kinetics and Charge Transfer Based on
   Nonequilibrium Thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013).
-  DOI: 10.1021/\brk ar300145c. \emph{(인용 장:Ch1, Ch2, Ch3, Ch4, Ch5)}
+  DOI: 10.1021/ar300145c.
+\bibitem{eyring1935} H. Eyring, ``The Activated Complex in Chemical Reactions,'' \emph{J. Chem. Phys.}
+  \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
+\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and Driving Force of Chemical Reactions,''
+  \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI: 10.1039/TF9383400011.
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods}, 2nd ed., Wiley (2001).
+  ISBN 978-0-471-04372-0.
+\bibitem{marcus1956} R. A. Marcus, ``On the Theory of Oxidation-Reduction Reactions Involving Electron
+  Transfer. I,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956). DOI: 10.1063/1.1742723.
 \bibitem{onsager1931} L. Onsager, ``Reciprocal Relations in Irreversible Processes. I,'' \emph{Phys. Rev.}
-  \textbf{37}, 405 (1931). DOI: 10.1103/\brk PhysRev.37.405. \emph{(인용 장:Ch1, Ch2, Ch3, Ch4, Ch5)}
+  \textbf{37}, 405 (1931). DOI: 10.1103/PhysRev.37.405.
 \bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics},
-  North-Holland (1962); Dover (1984). [flux--force entropy production; 교과서, DOI 없음]
-  \emph{(인용 장:Ch1, Ch2, Ch3, Ch4, Ch5)}
-\bibitem{prigogine1967} I. Prigogine, \emph{Introduction to Thermodynamics of Irreversible Processes},
-  3rd ed., Interscience (1967). [entropy production; 교과서, DOI 없음] \emph{(인용 장:Ch4)}
-\bibitem{schnakenberg1976} J. Schnakenberg, ``Network Theory of Microscopic and Macroscopic Behavior of
-  Master Equation Systems,'' \emph{Rev. Mod. Phys.} \textbf{48}, 571 (1976). DOI: 10.1103/\brk RevModPhys.48.571.
-  \emph{(인용 장:Ch4, Ch5)}
-% --- 흑연 staging·intercalation (Ch1) ---
-\bibitem{mckinnon1983} W. R. McKinnon, R. R. Haering, ``Physical Mechanisms of Intercalation,'' in
-  \emph{Modern Aspects of Electrochemistry} No.~15, Plenum, New York (1983), p.~235. \emph{(인용 장:Ch1)}
+  North-Holland (1962); Dover (1984).
 \bibitem{dahn1991} J. R. Dahn, ``Phase Diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170
-  (1991). DOI: 10.1103/\brk PhysRevB.44.9170. \emph{(인용 장:Ch1)}
+  (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation
-  Compounds...,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/\brk 1.2220849.
-  \emph{(인용 장:Ch1)}
+  Compounds...,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
 \bibitem{funabiki1999ea} A. Funabiki, M. Inaba, T. Abe, Z. Ogumi, ``Nucleation and Phase-Boundary
   Movement upon Stage Transformation in Lithium-Graphite Intercalation Compounds,''
-  \emph{Electrochim. Acta} \textbf{45}, 865 (1999). DOI: 10.1016/\brk S0013-4686(99)00290-X.
-  \emph{(인용 장:Ch1)}
+  \emph{Electrochim. Acta} \textbf{45}, 865 (1999). DOI: 10.1016/S0013-4686(99)00290-X.
 \bibitem{funabiki1999jes} A. Funabiki, M. Inaba, T. Abe, Z. Ogumi, ``Stage Transformation of
   Lithium-Graphite Intercalation Compounds Caused by Electrochemical Lithium Intercalation,''
-  \emph{J. Electrochem. Soc.} \textbf{146}, 2443 (1999). DOI: 10.1149/\brk 1.1391953. \emph{(인용 장:Ch1)}
-% --- stretched 완화·disorder (Ch1) ---
+  \emph{J. Electrochem. Soc.} \textbf{146}, 2443 (1999). DOI: 10.1149/1.1391953.
 \bibitem{baessler1993} H. B\"assler, ``Charge Transport in Disordered Organic Photoconductors,''
-  \emph{Phys. Status Solidi B} \textbf{175}, 15 (1993). DOI: 10.1002/\brk pssb.2221750102. \emph{(인용 장:Ch1)}
+  \emph{Phys. Status Solidi B} \textbf{175}, 15 (1993). DOI: 10.1002/pssb.2221750102.
 \bibitem{svare2000} I. Svare, S. W. Martin, F. Borsa, ``Stretched Exponentials with $T$-Dependent
   Exponents from Fixed Distributions of Energy Barriers for Relaxation Times in Fast-Ion Conductors,''
-  \emph{Phys. Rev. B} \textbf{61}, 228 (2000). DOI: 10.1103/\brk PhysRevB.61.228. \emph{(인용 장:Ch1)}
+  \emph{Phys. Rev. B} \textbf{61}, 228 (2000). DOI: 10.1103/PhysRevB.61.228.
 \bibitem{johnston2006} D. C. Johnston, ``Stretched Exponential Relaxation Arising from a Continuous Sum
-  of Exponential Decays,'' \emph{Phys. Rev. B} \textbf{74}, 184430 (2006). DOI: 10.1103/\brk PhysRevB.74.184430.
-  \emph{(인용 장:Ch1, Ch6)}
+  of Exponential Decays,'' \emph{Phys. Rev. B} \textbf{74}, 184430 (2006). DOI: 10.1103/PhysRevB.74.184430.
 \bibitem{lindsey1980} C. P. Lindsey, G. D. Patterson, ``Detailed Comparison of the Williams-Watts and
-  Cole-Davidson Functions,'' \emph{J. Chem. Phys.} \textbf{73}, 3348 (1980). DOI: 10.1063/\brk 1.440530.
-  \emph{(인용 장:Ch1, Ch6)}
-% --- 히스테리시스 (Ch5) ---
-\bibitem{dreyer2010} W. Dreyer, J. Jamnik, C. Guhlke, R. Huth, J. Mo\v{s}kon, M. Gaber\v{s}\v{c}ek,
-  ``The Thermodynamic Origin of Hysteresis in Insertion Batteries,'' \emph{Nature Materials} \textbf{9},
-  448 (2010). DOI: 10.1038/\brk nmat2730. \emph{(인용 장:Ch5)}
-\bibitem{sethna1993} J. P. Sethna, K. Dahmen, S. Kartha, J. A. Krumhansl, B. W. Roberts, J. D. Shore,
-  ``Hysteresis and Hierarchies: Dynamics of Disorder-Driven First-Order Phase Transformations,''
-  \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993). DOI: 10.1103/\brk PhysRevLett.70.3347. \emph{(인용 장:Ch5)}
-% --- ICA 진단·rate (Ch3·6) ---
-\bibitem{fly2020} A. Fly, R. Chen, ``Rate Dependency of Incremental Capacity Analysis ($dQ/dV$) as a
-  Diagnostic Tool for Lithium-Ion Batteries,'' \emph{J. Energy Storage} \textbf{29}, 101329 (2020).
-  DOI: 10.1016/\brk j.est.2020.101329. \emph{(인용 장:Ch3, Ch6)}
-\bibitem{dubarry2022} M. Dubarry, D. Anse\'an, ``Best Practices for Incremental Capacity Analysis,''
-  \emph{Front. Energy Res.} \textbf{10}, 1023555 (2022). DOI: 10.3389/\brk fenrg.2022.1023555.
-  \emph{(인용 장:Ch6)}
-% --- 수치·closure (Ch6) ---
+  Cole-Davidson Functions,'' \emph{J. Chem. Phys.} \textbf{73}, 3348 (1980). DOI: 10.1063/1.440530.
+\bibitem{jcp2017} (사용자 PhD) ``\dots reaction-diffusion / first-passage ratio-substitution closure,''
+  \emph{J. Chem. Phys.} \textbf{147}, 144111 (2017). DOI: 10.1063/1.5000882.
+\bibitem{lee2011} (Refs.~6) S. Lee \emph{et al.}, ``Propagator / ratio-substitution method,''
+  \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011). DOI: 10.1063/1.3565476.
+\bibitem{son2013} (Refs.~7) C. Y. Son \emph{et al.}, ``Ratio-substitution closed-form,''
+  \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013). DOI: 10.1063/1.4802584.
+\bibitem{dubarry2022} M. Dubarry, D. Anseán, ``Best practices for incremental capacity analysis,''
+  \emph{Front. Energy Res.} \textbf{10}, 1023555 (2022). DOI: 10.3389/fenrg.2022.1023555.
+\bibitem{fly2020} A. Fly, R. Chen, ``Rate dependency of incremental capacity analysis (dQ/dV)...,''
+  \emph{J. Energy Storage} \textbf{29}, 101329 (2020). DOI: 10.1016/j.est.2020.101329.
 \bibitem{brenan1996} K. E. Brenan, S. L. Campbell, L. R. Petzold, \emph{Numerical Solution of Initial-Value
   Problems in Differential-Algebraic Equations}, SIAM Classics in Applied Mathematics 14 (1996).
-  DOI: 10.1137/\brk 1.9781611971224. \emph{(인용 장:Ch6)}
+  DOI: 10.1137/\brk 1.9781611971224.
 \bibitem{hindmarsh2005} A. C. Hindmarsh, P. N. Brown, K. E. Grant, S. L. Lee, R. Serban, D. E. Shumaker,
   C. S. Woodward, ``SUNDIALS: Suite of Nonlinear and Differential/Algebraic Equation Solvers,''
   \emph{ACM Trans. Math. Softw.} \textbf{31}, 363 (2005). DOI: 10.1145/\brk 1089014.1089020.
-  \emph{(인용 장:Ch6)}
-\bibitem{jcp2017} K. Lee, S. Lee, C. H. Choi, S. Lee, ``Effects of External Electric Field and Anisotropic
-  Long-Range Reactivity on Charge Separation Probability,'' \emph{J. Chem. Phys.} \textbf{147}, 144111
-  (2017). DOI: 10.1063/\brk 1.5000882. \emph{(인용 장:Ch6)}
-\bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S.-H. Chong, ``Communication: Propagator for Diffusive
-  Dynamics of an Interacting Molecular Pair,'' \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011).
-  DOI: 10.1063/\brk 1.3565476. \emph{(인용 장:Ch6)}
-\bibitem{son2013} C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, S. Lee, ``An Accurate Expression for the Rates
-  of Diffusion-Influenced Bimolecular Reactions with Long-Range Reactivity,'' \emph{J. Chem. Phys.}
-  \textbf{138}, 164123 (2013). DOI: 10.1063/\brk 1.4802584. \emph{(인용 장:Ch6)}
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery
+  Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI: 10.1149/\brk 1.2113792.
+\bibitem{thomasnewman2003} K. E. Thomas, J. Newman, ``Thermal Modeling of Porous Insertion Electrodes,''
+  \emph{J. Electrochem. Soc.} \textbf{150}, A176 (2003). DOI: 10.1149/\brk 1.1531194.
+\bibitem{rao1997} L. Rao, J. Newman, ``Heat-Generation Rate and General Energy Balance for Insertion
+  Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{144}, 2697 (1997). DOI: 10.1149/1.1837884.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into
+  Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004).
+  DOI: 10.1149/1.1646152.
+\bibitem{prigogine1967} I. Prigogine, \emph{Introduction to Thermodynamics of Irreversible Processes},
+  3rd ed., Interscience (1967). [entropy production; 교과서, DOI 없음]
+\bibitem{schnakenberg1976} J. Schnakenberg, ``Network Theory of Microscopic and Macroscopic Behavior of
+  Master Equation Systems,'' \emph{Rev. Mod. Phys.} \textbf{48}, 571 (1976). DOI: 10.1103/\brk RevModPhys.48.571.
+\bibitem{dreyer2010} W. Dreyer, J. Jamnik, C. Guhlke, R. Huth, J. Mo\v{s}kon, M. Gaber\v{s}\v{c}ek,
+  ``The Thermodynamic Origin of Hysteresis in Insertion Batteries,'' \emph{Nature Materials} \textbf{9},
+  448 (2010). DOI: 10.1038/\brk nmat2730.
+\bibitem{sethna1993} J. P. Sethna, K. Dahmen, S. Kartha, J. A. Krumhansl, B. W. Roberts, J. D. Shore,
+  ``Hysteresis and Hierarchies: Dynamics of Disorder-Driven First-Order Phase Transformations,''
+  \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993). DOI: 10.1103/\brk PhysRevLett.70.3347.
 \end{thebibliography}
-
-\textbf{dead/orphan 점검.} 위 33 키는 모두 1개 이상 챕터에서 인용된다(각 항목 우측 인용 장 표시). 6개 챕터의
-\texttt{\textbackslash cite} 호출 33 키 집합과 본 union 33 키 집합이 \emph{정확히 일치}하므로, ``정의됐으나
-미인용''(dead)$\cdot$``인용됐으나 미정의''(undefined) 가 \textbf{모두 0} 이다.
-
-\textbf{검증 dossier 와의 대조.} \texttt{RB\_REFERENCES\_DOSSIER.md} 의 web 실측 검증분과 33 키 서지$\cdot$DOI
-가 일치한다(\texttt{svare2000} 저자 정정, \texttt{funabiki} ea/jes 둘 등재, \texttt{lee2011}$\cdot$\texttt{son2013}
-$\cdot$\texttt{lindsey1980} DOI 정정 등 dossier 정정이 본 union 에 이미 반영됨). dossier 에만 있고 6 챕터
-미인용인 \texttt{baker1999}(10.1149/1.1391950, 검증됨)$\cdot$\texttt{plonka}(DOI/ISBN 미확인, FLAGGED)는 본
-union 에 포함하지 않는다.
-
-\newpage
-
-% ====================================================================
-\section{통합 Assumption Ledger (AL-1$\sim$69)}\label{sec:refs_al}
-% ====================================================================
-\texttt{RB\_AL\_MASTER.md} 1부의 통합 Assumption Ledger 를 그대로 LaTeX 표화한다. 단일 연속 번호(AL-1$\sim$69),
-tier = GROUNDED / BOUNDED / FLAGGED, 모든 본문 가정식이 AL-\# 인용. 번호 그룹: AL-1$\sim$9 전하보존$\cdot$평형
-무대(Ch1), AL-10$\sim$19 동역학$\cdot$배리어$\cdot$spectrum(Ch1), AL-20$\sim$29 발열$\cdot$entropy(Ch2),
-AL-30$\sim$39 반응속도론(Ch3), AL-40$\sim$49 entropy production 발열(Ch4), AL-50$\sim$59 히스테리시스(Ch5),
-AL-60$\sim$69 수치$\cdot$closure(Ch6). (그룹 내 여유번호 AL-5$\sim$9, 17$\sim$19 는 각 장 본문 S2 에서 정의 —
-master 표에는 묶음 행으로 표기.)
-
-{\scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\setlength{\emergencystretch}{3em}
-\renewcommand{\arraystretch}{1.20}
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.050\textwidth}
-                  >{\raggedright\arraybackslash}p{0.338\textwidth}
-                  >{\raggedright\arraybackslash}p{0.140\textwidth}
-                  >{\raggedright\arraybackslash}p{0.232\textwidth}
-                  >{\raggedright\arraybackslash}p{0.150\textwidth}}
-\toprule
-AL\# & 가정 진술 & tier & 근거 cite (검증 DOI/ISBN) & 사용(장$\cdot$식) \\ \midrule \endhead
-\multicolumn{5}{l}{\textit{\textbf{무대$\cdot$평형 (Ch1)}}} \\ \midrule
-AL-1 & 전하 보존: 외부 누적 전하 $=$ 배경 $+$ staging 진행 용량 (내부 $V_n$ 결정) & GROUNDED & doyle1993,\brk newman (10.1149/\brk 1.2221597;\brk ISBN 978-0-\brk 471-47756-3) & Ch1 charge\_balance \\
-AL-2 & 평형 진행률 logistic $\xi_\eq=[1+e^{-(V_n-U_j)/w_j}]^{-1}$ (lattice-gas/regular-solution chemical potential) & GROUNDED & mckinnon1983,\brk bazant2013 (10.1021/\brk ar300145c) & Ch1 xi\_eq \\
-AL-3 & 흑연 staging 전이($4{\to}3{\to}2\mathrm L{\to}2{\to}1$), 관측 $N_p\approx3\sim4$ & GROUNDED & dahn1991,\brk ohzuku1993,\brk funabiki1999ea,\brk funabiki1999jes (10.1103/\brk PhysRevB.44.9170;\brk 10.1149/\brk 1.2220849;\brk 10.1016/\brk S0013-4686(99)00290-X;\brk 10.1149/\brk 1.1391953) & Ch1 staging \\
-AL-4 & 평형 전이폭 $w_j=RT/F$ (ideal); 일반 effective $w_j$ 는 $n_j^\eff=RT/(Fw_j)$ & GROUNDED & newman,\brk bazant2013 (ISBN;\brk 10.1021/\brk ar300145c) & Ch1$\cdot$3$\cdot$4 (CHARTER step3) \\
-AL-5$\sim$9 & (Ch1 본문 S2 에서 정의: $Q_\bg$ chemical capacitance, $V_{n,\app}$ 분극, 해 존재(well-posedness), Eyring rate, 전하보존식 해 등) & GROUNDED/\brk BOUNDED & 각 장 본문 등재 & Ch1 charge/notation \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{동역학$\cdot$배리어$\cdot$spectrum (Ch1)}}} \\ \midrule
-AL-10 & 활성화 자유에너지 $\Delta G_a=\Delta H_a-T\Delta S_a$, Eyring rate $k=k_0 e^{-\Delta G_a/RT}$, $k_0=(k_BT/h)\kappa$ & GROUNDED & eyring1935,\brk evanspolanyi1938 (10.1063/\brk 1.1749604;\brk 10.1039/\brk TF9383400011) & Ch1 rate \\
-AL-11 & 극판 전위 유효배리어 낮춤 $\Delta G_\eff=\Delta G_a-\chi_j\mathcal A_j$ ($0\le\chi_j\le1$); BEP/transfer-coeff 류 & GROUNDED & evanspolanyi1938,\brk bazant2013 (10.1039/\brk TF9383400011;\brk 10.1021/\brk ar300145c) & Ch1 Geff (CHARTER step1,4) \\
-AL-12 & 평형 근처 1차 완화 $d\xi_j/dt=k_j(\xi_{\eq,j}-\xi_j)$ (linear irreversible thermo) & GROUNDED & onsager1931,\brk degrootmazur1962(book) (10.1103/\brk PhysRev.37.405) & Ch1 relax \\
-AL-13 & barrier 분포 $\rho_G$ $\to$ relaxation-length spectrum $A_L$ (지수 매핑); 변수변환 밀도보존 & GROUNDED & (수학;\brk baessler1993 disorder analogy) (10.1002/\brk pssb.2221750102) & Ch1 spectrum \\
-AL-14 & ★ stretched tail $=$ 지수 완화의 연속 합/분포 (kernel integral); 고정 barrier 분포 $\to$ $T$-의존 stretched (fast-ion) & GROUNDED & svare2000,\brk johnston2006,\brk lindsey1980 (10.1103/\brk PhysRevB.61.228;\brk 10.1103/\brk PhysRevB.74.184430;\brk 10.1063/\brk 1.440530) & Ch1 kernel \\
-AL-15 & Marcus bound: 선형 $\chi\mathcal A$ 는 $|\mathcal A|$ 큰 영역(inverted)서 깨짐 $\to$ 유효범위 & BOUNDED & marcus1956 (10.1063/\brk 1.1742723) & Ch1 Geff bound \\
-AL-16 & non-uniqueness: stretched$\to\rho_G$ 역매핑 비유일 (forward-only) & BOUNDED & baessler1993 (10.1002/\brk pssb.2221750102) & Ch1 spectrum caveat \\
-AL-17$\sim$19 & (Ch1 본문 S2 에서 정의: kernel integral$\cdot$Volterra self-consistent 결합 등) & GROUNDED/\brk BOUNDED & 각 장 본문 등재 & Ch1 kernel/volterra \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{발열$\cdot$entropy (Ch2)}}} \\ \midrule
-AL-20 & 전지 에너지 balance: $q_\rev=s^\conv|I|T\,\partial U/\partial T$, $q_\irr=|I|\eta$ (Bernardi balance) & GROUNDED & bernardi1985,\brk rao1997 (10.1149/\brk 1.2113792;\brk 10.1149/\brk 1.1837884) & Ch2$\cdot$4 (CHARTER step1) \\
-AL-21 & 평형 전위 온도계수 $=$ reaction entropy ($\partial U/\partial T$); graphite 실측 & GROUNDED & reynier2004,\brk thomasnewman2003 (10.1149/\brk 1.1646152;\brk 10.1149/\brk 1.1531194) & Ch2 entropy \\
-AL-22 & $Q_\cell,Q_{j,\tot}$ 온도무관 기준용량 (OCV 온도미분서 상수 취급) & BOUNDED & thomasnewman2003 (10.1149/\brk 1.1531194) & Ch2 eqbal$\cdot$dVocvdT \\
-AL-23 & graphite $U_j(T)$ 비단조 $\to$ OCV 온도계수 SOC 의존 부호반전(실측) & BOUNDED & reynier2004,\brk thomasnewman2003 (10.1149/\brk 1.1646152;\brk 10.1149/\brk 1.1531194) & Ch2 dxidT \\
-AL-24 & reaction entropy $\Delta S_\rxn$ $\ne$ activation entropy $\Delta S_a$ (대입 금지) & BOUNDED & eyring1935,\brk bardfaulkner (10.1063/\brk 1.1749604;\brk ISBN 978-0-\brk 471-04372-0) & Ch2 eyring\_entropy \\
-AL-25 & OCV 온도계수(A) $=$ entropy-basis 가역열(B) 정합 제약(double-counting 차단; 동일 heat-positive 규약) & GROUNDED & bernardi1985,\brk thomasnewman2003 (10.1149/\brk 1.2113792;\brk 10.1149/\brk 1.1531194) & Ch2 consistency \\
-AL-26 & $h_\bg$ background entropy coeff; progress vs 좌표 분리 & BOUNDED & rao1997,\brk thomasnewman2003 (10.1149/\brk 1.1837884;\brk 10.1149/\brk 1.1531194) & Ch2 hbg$\cdot$bgsplit \\
-AL-27 & 비가역열 $=$ flux$\times$force(entropy production); 공액 force $=\eta_j$; 2법칙 $\ge0$ (기본형 $V_\drive=V_n$, $n^\eff=1$ 한정; 일반형 Ch3/Ch4) & GROUNDED & degrootmazur1962(book),\brk onsager1931 (10.1103/\brk PhysRev.37.405) & Ch2 fluxforce$\cdot$qirr \\
-AL-28 & rate-affinity $\mathcal A_j$ $\ne$ heat-force $\eta_j$; $R_n\ne R_{n,\eff}\ne R_\ct$ (식별성) & BOUNDED & newman,\brk bardfaulkner (ISBN 978-0-\brk 471-47756-3;\brk 978-0-\brk 471-04372-0) & Ch2 fluxforce$\cdot$i2r \\
-AL-29 & near-eq entropy production $\sigma_j=(g''_j/T)k_j r_j^2\ge0$ ($g''_j>0$); 비가역열 tail $=$ ICA tail 열적 거울(준독립 calorimetry 검정) & BOUNDED\,($\sigma$)\,/\,\brk FLAGGED\,(\brk novel) & degrootmazur1962(book),\brk onsager1931,\brk bazant2013 (10.1103/\brk PhysRev.37.405;\brk 10.1021/\brk ar300145c) & Ch2 sigma$\cdot$\brk thermal\_\brk kernel \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{반응속도론 (Ch3)}}} \\ \midrule
-AL-30 & forward/backward kinetics $+$ detailed balance $\ln(r^+/r^-)=(V_n-U)/w$ & GROUNDED & bardfaulkner,\brk newman,\brk degrootmazur1962(book),\brk onsager1931 (ISBN 978-0-\brk 471-04372-0;\brk 978-0-\brk 471-47756-3;\brk 10.1103/\brk PhysRev.37.405) & Ch3 db \\
-AL-31 & Butler--Volmer; small-signal $R_\ct{=}RT/(FA_\eff j_0)$; $R_n\ne R_\ct\ne R_{n,\eff}$ 계층; Level B 비대칭 장벽($\beta_j\equiv\chi_j$) & GROUNDED & bardfaulkner,\brk bazant2013,\brk evanspolanyi1938,\brk eyring1935 (ISBN 978-0-\brk 471-04372-0;\brk 10.1021/\brk ar300145c;\brk 10.1039/\brk TF9383400011;\brk 10.1063/\brk 1.1749604) & Ch3 bv \\
-AL-32 & 계면 과전압 $\eta_n=\phi_s-\phi_e-U_n$\brk{} $\ne$ reduced $\eta_{n,\drive}$\brk{} $\ne V_{n,\app}$\brk{} (임의 동일시 금지;\brk{} reference-electrode convention) & BOUNDED & bardfaulkner,\brk newman (ISBN 978-0-\brk 471-04372-0;\brk 978-0-\brk 471-47756-3) & Ch3 eta\_\brk standard$\cdot$drive \\
-AL-33 & forward/backward 장벽 선형 이동($\mp\beta_j\mathcal A_j$) $=$ 소구동력 1차; $|\mathcal A_j|\sim\lambda$ 서 Marcus 곡률로 깨짐 & BOUNDED & marcus1956,\brk bazant2013 (10.1063/\brk 1.1742723;\brk 10.1021/\brk ar300145c) & Ch3 rplus$\cdot$rminus \\
-AL-34 & detailed-balance 정합 $n_j^\eff=RT/(Fw_j)$; ratio $r^+/r^-$ 의 $\xi_j$-무관(대칭 split)이 keystone 닫힘 조건; $C_j$ 무의존 partition & GROUNDED\,(제약)\,/\,\brk BOUNDED\,(\brk partition) & bazant2013,\brk newman (10.1021/\brk ar300145c;\brk ISBN 978-0-\brk 471-47756-3) & Ch3 neff$\cdot$verifybox \\
-AL-35 & 강구동 forward rate 제한 $=$ 직렬 병목(cap 아님); 기본형 대칭(DB 보존), forward-only 비대칭 $\to$ DB 이탈(Ch5) & GROUNDED/\brk BOUNDED & newman,\brk degrootmazur1962(book),\brk onsager1931 (ISBN 978-0-\brk 471-47756-3;\brk 10.1103/\brk PhysRev.37.405) & Ch3 forward\_limiter \\
-AL-36 & generalized affinity $\mathcal A_n=F\eta_n+\mathcal A_\resid$; rate-affinity$\leftrightarrow$heat-force double-counting 금지 & BOUNDED & bazant2013,\brk newman (10.1021/\brk ar300145c;\brk ISBN 978-0-\brk 471-47756-3) & Ch3 genaff \\
-AL-37 & 전류 보존 $|I|=I_\bg^{\prog}+\sum_j I_j$ (전하보존식 시간미분; Ch2 coordinate/progress 정합) & GROUNDED & doyle1993,\brk newman (10.1149/\brk 1.2221597;\brk ISBN 978-0-\brk 471-47756-3) & Ch3 current\_decomp \\
-AL-38 & $R_n$ apparent aggregate 분해(ohmic/ct/transport/film); 동시 자유피팅 금지(식별성) & BOUNDED & bardfaulkner,\brk newman (ISBN 978-0-\brk 471-04372-0;\brk 978-0-\brk 471-47756-3) & Ch3 Rn \\
-AL-39 & kinetics Arrhenius 온도의존 $+$ 식별성 chain($R_n,R_\ct,\chi$ 독립제약) & BOUNDED & bardfaulkner,\brk bazant2013,\brk fly2020 (ISBN 978-0-\brk 471-04372-0;\brk 10.1021/\brk ar300145c;\brk 10.1016/\brk j.est.2020.101329) & Ch3 T$\cdot$ident \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{entropy production 발열 (Ch4)}}} \\ \midrule
-AL-40 & entropy production $T\dot S_\irr=\sum_\alpha J_\alpha X_\alpha\ge0$ (flux--force, 2법칙) & GROUNDED & degrootmazur1962(book),\brk onsager1931,\brk prigogine1967(book) (10.1103/\brk PhysRev.37.405) & Ch4 fluxforce \\
-AL-41 & transition-level entropy production $=$ network/master-equation $(\mathcal J^+{-}\mathcal J^-)\ln(\mathcal J^+/\mathcal J^-)\ge0$; extensive 화 $\times(Q_{j,\tot}/F)RT$ ($N_A k_B=R$, $\tfrac12$ 부재 단일-쌍) & GROUNDED & schnakenberg1976 (10.1103/\brk RevModPhys.48.571) & Ch4 tr\_entropy \\
-AL-42 & 전기화학 entropy production $=J_n\mathcal A_n\ge0$; $I_n\eta_n$ 은 부호 convention 종속 magnitude($J_n\mathcal A_n$ 기본형); rate-affinity $\mathcal A_j$ $\ne$ heat-force $\eta_j$ & GROUNDED & degrootmazur1962(book),\brk prigogine1967(book),\brk bazant2013 (10.1021/\brk ar300145c) & Ch4 JA \\
-AL-43 & transition chemical affinity $\mathcal A_j^{\chem}=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$; 부호 보조정리 $(\mathcal J^+{-}\mathcal J^-)\ln(\mathcal J^+/\mathcal J^-)\ge0$ (두 양수 차$\times$로그비) & GROUNDED & schnakenberg1976,\brk prigogine1967(book) (10.1103/\brk RevModPhys.48.571) & Ch4 tr\_entropy \\
-AL-44 & ★ 미시$=$거시:\brk{} DB(AL-30)$+n_j^\eff{=}RT/(Fw_j)$(AL-34)\brk{} $\Rightarrow\mathcal A_j^{\chem}{=}n_j^\eff F\eta_j$,\brk{} $\dot{\mathcal Q}_{\irr,j}^{\tr}{=}n_j^\eff I_j\eta_j$\brk{} (전제:\brk{} (i) $C_j\equiv0$ 대칭 split,\brk{} (ii) 기본형 $V_{n,\drive}=V_n$;\brk{} $s_\phi{=}+1$ 방전) & GROUNDED\,(전제하;\brk 미충족 BOUNDED) & schnakenberg1976,\brk bazant2013,\brk degrootmazur1962(book) (10.1103/\brk RevModPhys.48.571;\brk 10.1021/\brk ar300145c) & Ch4 micro\_macro \\
-AL-45 & ★ 비가역열 일반형 $\dot{\mathcal Q}_\irr{=}\sum_j n_j^\eff I_j\eta_j\ge0$ (2법칙); Ch2 $\sum_j I_j\eta_j$ 는 $n^\eff{=}1$ ideal-width 특수해 (CHARTER step3 일반/특수 위계) & GROUNDED & degrootmazur1962(book),\brk onsager1931,\brk schnakenberg1976 (10.1103/\brk PhysRev.37.405;\brk 10.1103/\brk RevModPhys.48.571) & Ch4 qirr\_general \\
-AL-46 & Ch2 3-분해 $\to$ Ch4 4-분해 정련: $\dot{\mathcal Q}_{\irr}^{\mathrm{Ch2}}\supset\dot{\mathcal Q}_{\irr}^{\mathrm{Ch4}}+\dot{\mathcal Q}_{\transp}$ (계면반응 EP 와 transport dissipation 분리; 이중계상 금지) & BOUNDED & bernardi1985,\brk rao1997 (10.1149/\brk 1.2113792;\brk 10.1149/\brk 1.1837884) & Ch4 decomp \\
-AL-47 & transport/병목 발열 $=$ flux--force $\sum_\ell J_\ell X_\ell$ (선형 near-eq 서 $I^2R_\transp$); $R_n\ne R_{n,\eff}\ne R_\ct$ 유지($R_{n,\eff}$ 는 독립 calorimetric 제약 시만) & BOUNDED & degrootmazur1962(book),\brk newman,\brk bardfaulkner (ISBN 978-0-\brk 471-47756-3;\brk 978-0-\brk 471-04372-0) & Ch4 transport$\cdot$Rsep \\
-AL-48 & 휴지 relaxation heat $\dot{\mathcal Q}_{\xi,\rlx}{=}\dot{\mathcal Q}_{\rev,\xi}^\rlx{+}\dot{\mathcal Q}_{\irr,\xi}^\rlx$; 외부 $I{=}0$ 라도 내부 $I_j{\ne}0$ dissipation $n_j^\eff I_j\eta_j$ 존재; 가역/비가역 정량분리는 독립 calorimetry 필요 & BOUNDED & schnakenberg1976,\brk degrootmazur1962(book) (10.1103/\brk RevModPhys.48.571) & Ch4 rest \\
-AL-49 & log singularity($\mathcal J^\pm{\to}0$)는 coarse-graining resolution positive floor (numerical domain guard, heat fitting 아님); $n_j^\eff I_j\eta_j$ 형은 평형서 $I_j{\to}0$ 로 매끄럽게 0 & BOUNDED & schnakenberg1976 (10.1103/\brk RevModPhys.48.571) & Ch4 tr\_entropy boundbox \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{히스테리시스 (Ch5)}}} \\ \midrule
-AL-50 & 삽입전지 히스테리시스 $=$ metastable/다입자(mosaic) 열역학 기원; loop area $\ne$ true hys & GROUNDED & dreyer2010 (10.1038/\brk nmat2730) & Ch5 hys \\
-AL-51 & disorder-driven first-order 전이의 hysteresis/hierarchy(nucleation/depinning barrier 위계, avalanche, path memory) & GROUNDED & sethna1993 (10.1103/\brk PhysRevLett.70.3347) & Ch5 branch \\
-AL-52 & signed current $I_s$ / signed coordinate $q_\stt$; 내부 state $\xi_j$ 유지($\zeta_j{=}1{-}\xi_j$ 종속); LLI/LAM 임의 흡수 금지; branch switching 연속 & BOUNDED & doyle1993,\brk newman (10.1149/\brk 1.2221597;\brk ISBN 978-0-\brk 471-47756-3) & Ch5 signed \\
-AL-53 & ★ 충전 부호 $s_\phi^\chg{=}-1$ 을 logistic 지수 부호 정합으로 \emph{유도}(기울기 $\partial\xi_\eq/\partial V$ 부호$=s_\phi^b$; 양 branch 동시 고정) & GROUNDED & bardfaulkner,\brk newman,\brk bazant2013 (ISBN 978-0-\brk 471-04372-0;\brk 978-0-\brk 471-47756-3;\brk 10.1021/\brk ar300145c) & Ch5 chargesign \\
-AL-54 & ★ 충전서 $n^\eff I_j\eta_j^b\ge0$(2법칙) 부호 상쇄($\eta^\chg{<}0$, $I_j{<}0$, 음$\times$음$=$양; flux$\propto(\xi_\eq^b{-}\xi_j)$ 와 공액력 conjugacy); 가역열 $q_\rev^b{=}I_j\Pi_j$ 는 branch 부호가변 & GROUNDED & degrootmazur1962(book),\brk onsager1931,\brk schnakenberg1976 (10.1103/\brk PhysRev.37.405;\brk 10.1103/\brk RevModPhys.48.571) & Ch5 qirr\_charge \\
-AL-55 & ★ branch target $=$ Ch3 $\xi_\sstat$(branch-local DB; true-eq 에서 $C_j$ 이탈); Level A ``방향'' 부분 붕괴(target 이력 의존, mobility 불변); metastable free-energy 근거 시만 본문 모델 & GROUNDED/\brk BOUNDED & dreyer2010,\brk sethna1993,\brk bazant2013 (10.1038/\brk nmat2730;\brk 10.1103/\brk PhysRevLett.70.3347;\brk 10.1021/\brk ar300145c) & Ch5 branch\_db \\
-AL-56 & hysteresis state $h_j\in[-1,1]$ 1차 완화; $\lambda_j^b=$ domain rearrangement/depinning time scale(피팅속도 아님); rest 시 eq vs meta 두 후보(독립 검증 필요) & BOUNDED & sethna1993,\brk dreyer2010 (10.1103/\brk PhysRevLett.70.3347;\brk 10.1038/\brk nmat2730) & Ch5 hys\_state \\
-AL-57 & ★ branch-local kinetic dissipation($n^\eff I_j\eta_\prog^b$) $\ne$ metastable 자유에너지 loss($V_\tar^b{-}V_\eq$); 합산 시 이중계상 & BOUNDED & dreyer2010,\brk degrootmazur1962(book),\brk bazant2013 (10.1038/\brk nmat2730;\brk 10.1021/\brk ar300145c) & Ch5 loop\_heat \\
-AL-58 & ★ $\Delta V_\obs\ne\Delta V_\hys$ (loop 폭 $=$ 분극 $R_n$ 포함 $\ne$ 열역학 히스테리시스); $|I_s|{\to}0$ 잔존/소멸 진단; full-cell $\ne$ 음극 단독 & BOUNDED & dreyer2010,\brk bardfaulkner,\brk newman (10.1038/\brk nmat2730;\brk ISBN 978-0-\brk 471-04372-0;\brk 978-0-\brk 471-47756-3) & Ch5 obs\_not\_hys \\
-AL-59 & loop-area heat $q_\hys$ $=$ 히스테리시스 소산열의 \emph{분리된} 성분만(entropy production 정합, Ch4); loop area 전체 $\ne$ true hys; 중복계상 금지 & GROUNDED/\brk BOUNDED & dreyer2010,\brk degrootmazur1962(book),\brk onsager1931 (10.1038/\brk nmat2730;\brk 10.1103/\brk PhysRev.37.405) & Ch5 loop\_area \\
-\midrule
-\multicolumn{5}{l}{\textit{\textbf{수치$\cdot$closure (Ch6)}}} \\ \midrule
-AL-60 & index-1 DAE(root-constrained ODE), BDF/Radau 시간적분; 단조성 floor 가 index-1 보장 & GROUNDED\,(이론) & brenan1996,\brk hindmarsh2005 (10.1137/\brk 1.9781611971224;\brk 10.1145/\brk 1089014.1089020) & Ch6 dae \\
-AL-61 & Plan A closure: Fredholm 2종 ratio-substitution closed-form(사용자 PhD) & BOUNDED & jcp2017,\brk lee2011,\brk son2013 (10.1063/\brk 1.5000882;\brk 10.1063/\brk 1.3565476;\brk 10.1063/\brk 1.4802584) & Ch6 closure \\
-AL-62 & ★ ratio ansatz broad-kernel 열화 $=$ stretched-tail(저온) 영역서 부정확 $\to$ 직접 grid validator 필수 & BOUNDED & jcp2017 (Eq.34 자기명시) (10.1063/\brk 1.5000882) & Ch6 closure caveat \\
-AL-63 & ICA($dQ/dV$) rate-dependency$\cdot$미분 잡음 증폭$\cdot$best-practice & GROUNDED & dubarry2022,\brk fly2020 (10.3389/\brk fenrg.2022.1023555;\brk 10.1016/\brk j.est.2020.101329) & Ch6 validation \\
-AL-64 & ★ root-find/solver 종료 tolerance $=$ 물리 scale($\delta_q Q_\cell$, $\xi\in[0,1]$)$\cdot$측정 잡음 floor$\cdot$기계 epsilon 근거(임의 상수 아님) & BOUNDED & brenan1996,\brk hindmarsh2005 (10.1137/\brk 1.9781611971224;\brk 10.1145/\brk 1089014.1089020) & Ch6 solver\_tol \\
-AL-65 & ★ 분포 적분 축약(adaptive\brk{} quadrature/moment/Prony) 기준 grid 대비 검증 시만;\brk{} Prony $a_\ell\ge0,\tau_\ell>0$ 완전 단조성 보존;\brk{} 독립 완화 closure $=$ Ch1 AL-13 평균장(협동 staging 검증 미이행 $\to$ FLAGGED 승계) & BOUNDED\,/\,\brk FLAGGED\,(\brk closure) & lindsey1980,\brk johnston2006 (10.1063/\brk 1.440530;\brk 10.1103/\brk PhysRevB.74.184430) & Ch6 grid$\cdot$reduction \\
-AL-66 & ★ closure 검증 $\varepsilon_\tol=\max(\varepsilon_\disc,\varepsilon_\noise)$ (측정 기반 정의); \emph{특정 수치값}은 데이터 의존 미확정(Phase A $\varepsilon_\tol$ 허위 정정) & FLAGGED(값) / BOUNDED(정의) & dubarry2022,\brk fly2020 (10.3389/\brk fenrg.2022.1023555;\brk 10.1016/\brk j.est.2020.101329) & Ch6 epsilon \\
-AL-67 & calorimetry 부재 시 발열(Ch2/Ch4)은 forward-prediction 만(역산 금지); 검증 modality 분리 & BOUNDED & bernardi1985,\brk thomasnewman2003 (10.1149/\brk 1.2113792;\brk 10.1149/\brk 1.1531194) & Ch6 heat \\
-AL-68 & 식별성: $\{R_n,k_j^\eff,w_j,\rho_G,Q_\bg,Q_{j,\tot},k_{j,\lim}\}$ 동시 자유화 금지 $\to$ 순차 제약(OCV$\to$GITT$\to$Arrhenius$\to$C-rate) & BOUNDED & bardfaulkner,\brk fly2020 (ISBN 978-0-\brk 471-04372-0;\brk 10.1016/\brk j.est.2020.101329) & Ch6 identifiability \\
-AL-69 & Arrhenius 분해: 고정 $\mathcal A_j$ 기울기 $=-(\Delta H_a-\chi_j\mathcal A_j)/R=$ \emph{유효} 엔탈피; 순수 $\Delta H_a$ 는 $\mathcal A_j{\to}0$ 외삽/보정; $k_0,\Delta S_a$ 절편 공선형($\kappa$ 미지 잔여) & BOUNDED & eyring1935,\brk bardfaulkner (10.1063/\brk 1.1749604;\brk ISBN 978-0-\brk 471-04372-0) & Ch6 arrhenius \\
-\bottomrule
-\end{longtable}
-}
-
-\textbf{AL 표 매크로 주의(standalone).} 위 표는 본문 챕터의 약어 매크로($\backslash$eq, $\backslash$drive,
-$\backslash$chem 등)를 본 standalone 문건에 모두 정의해 사용한다(아래 preamble 의 \texttt{\textbackslash newcommand}
-union). tier 요약: GROUNDED $=$ 논문/교과서 확립, BOUNDED $=$ 유효범위 병기, FLAGGED $=$ 미검증(정직 표기,
-established 사용 금지). 본 ledger 에 FLAGGED 항목은 \textbf{AL-29(열적 tail novel)}$\cdot$\textbf{AL-65(독립
-완화 closure 평균장 승계)}$\cdot$\textbf{AL-66($\varepsilon_\tol$ 특정 수치값)} 3 건이며 모두 정직 표기 +
-검증 전제로만 제시된다.
-
-\section*{출처 정정 이력 (dossier 승계)}
-\addcontentsline{toc}{section}{출처 정정 이력}
-\begin{itemize}[leftmargin=1.6em]
-\item \texttt{svare2000}: 원 dossier 의 \texttt{macdonald2000} \emph{저자} 오귀속 정정(DOI 10.1103/PhysRevB.61.228,
-  제목$\cdot$물리 정확; 저자 $=$ Svare/Martin/Borsa). stretched-tail 1차 근거(AL-14).
-\item \texttt{funabiki1999ea} $+$ \texttt{funabiki1999jes}: title$\leftrightarrow$locator 불일치(같은 그룹 1999
-  두 논문) $\to$ 둘 다 등재(AL-3).
-\item \texttt{lee2011}$\cdot$\texttt{son2013}$\cdot$\texttt{lindsey1980}: DOI 정정 반영.
-\item \texttt{doyle1993}$\cdot$\texttt{reynier2004}$\cdot$\texttt{ohzuku1993}: 제목 truncation 정정 반영.
-\item \emph{미포함}: \texttt{baker1999}(10.1149/1.1391950, 검증됐으나 6 챕터 미인용)$\cdot$\texttt{plonka}(DOI/ISBN
-  미확인, FLAGGED 보조)는 본문 미인용이므로 union 에서 제외.
-\end{itemize}
 
 \end{document}
