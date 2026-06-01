@@ -1,0 +1,614 @@
+% ====================================================================
+% Chapter 1: Graphite anode ICA tail theory
+% Scope: discharge/delithiation branch; thermodynamic stage + kinetic tail.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.13}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite anode ICA tail theory - Chapter 1}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{Graphite anode ICA tail theory --- Ch.1}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{Validity bound}
+\newtheorem*{flagbox}{Flagged assumption}
+\newtheorem*{keybox}{Keystone}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\tail}{\mathrm{tail}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+\title{\textbf{리튬이온전지 흑연 음극 ICA($dQ/dV$) tail 이론 --- Chapter 1}\\[0.4em]
+\large Thermodynamic stage, electrode-potential-assisted relaxation barrier, and a first-pass fitting approximation}
+\author{}\date{}
+\begin{document}
+\maketitle
+
+\section*{서: 관찰에서 fitting approximation까지}
+\addcontentsline{toc}{section}{서: 관찰에서 fitting approximation까지}
+본 장의 출발점은 하나의 실험 관찰이다.
+\begin{quote}\itshape
+흑연 음극의 ICA(incremental capacity, $dQ/dV$) peak에서 상전이에 의해 생기는 tail은 온도가 낮을수록 길게 늘어지고,
+온도가 높을수록 상대적으로 짧게 끝난다. 또한 전위 상태와 C-rate가 바뀌면 peak overlap과 tail 모양도 달라진다.
+\end{quote}
+
+이 관찰은 equilibrium thermodynamics만으로 바로 설명되지 않는다. Ideal lattice-gas equilibrium peak는 $RT/F$ scale의
+thermal width를 가지므로, 다른 효과가 없으면 낮은 온도에서 더 좁아지는 방향을 준다. 따라서 관측되는 low-temperature
+long tail은 equilibrium peak width 자체가 아니라, transition progress가 equilibrium target을 유한한 속도로 따라가는
+kinetic lag에서 찾아야 한다. 본 장의 목적은 그 kinetic lag를 electrode potential이 보조하는 effective relaxation barrier와
+연결하고, 마지막에는 실제 ICA 데이터에서 바로 사용할 수 있는 simple fitting approximation을 도출하는 것이다.
+
+논리 흐름은 다음과 같다.
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.2em]
+\item Charge conservation이 internal anode potential $V_n$을 정한다. $V_n$은 lookup value가 아니라 internal state와 external charge가 함께 결정하는 implicit variable이다.
+\item Equilibrium target $\xi_{\eq,j}(V_n,T)$는 transition이 충분히 느린 scan에서 도달할 목표를 준다.
+\item 실제 progress $\xi_j$는 finite rate $k_j$로 target을 따라간다. 이 relaxation rate가 작으면 tail이 길어진다.
+\item Electrode-potential drive $\mathcal A_j$는 effective relaxation barrier를 낮추는 bounded approximation으로 들어가며, 그 결과 $k_j$와 tail length $L$이 바뀐다.
+\item Barrier distribution은 exponential map을 통해 relaxation-length spectrum이 되고, 관측 tail은 single-mode kernel의 중첩으로 표현된다.
+\item Dominant single-mode limit에서는 $Y_{\tail}(q)\approx B\exp[-(q-q_a)/L]$가 되어 Chapter 1만으로 first-pass fitting이 가능하다.
+\end{enumerate}
+
+\begin{groundingbox}
+모든 equation은 먼저 physical quantity를 말로 정의한 뒤 제시하고, 뒤에서 각 항의 meaning과 unit을 해석한다.
+Assumption은 \S\ref{sec:convention}의 ledger에서 established, bounded, flagged로 분리한다. Paper 또는 textbook 근거가
+확인되지 않은 항목은 theory identity처럼 쓰지 않는다. 본 장은 discontinuous switch, 임의 cap, 임의 threshold를 physical model로 쓰지 않는다.
+\end{groundingbox}
+
+\tableofcontents
+\newpage
+
+\section{기호와 단위}\label{sec:notation}
+진행률 기호는 $\xi$로 통일한다. 일부 문헌의 $\theta$는 같은 종류의 occupation/progress variable로만 언급하고,
+본문에서는 쓰지 않는다. 본 장은 discharge 중 graphite anode가 delithiation되는 branch를 다룬다. External discharge
+coordinate는 $q=Q_{\ext}/Q_{\cell}$이고 증가 방향으로 둔다.
+
+\begin{longtable}{p{0.18\textwidth} p{0.12\textwidth} p{0.62\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$q$ & --- & normalized external discharge coordinate, $q=Q_{\ext}/Q_{\cell}$ \\
+$Q_{\ext},Q_{\cell}$ & C & external passed charge and reference cell capacity \\
+$I$ & A & applied current magnitude는 $|I|$, discharge sign은 별도 $s_I$로 둔다 \\
+$V_n$ & V & internal graphite anode potential, charge conservation의 solution \\
+$V_{n,\app}$ & V & measured apparent anode potential, $V_n+s_I|I|R_n$ \\
+$V_{n,\drive}$ & V & transition rate에 들어가는 drive potential; Chapter 1 기본형은 $V_{n,\drive}=V_n$ \\
+$V_{n,\OCV}$ & V & equilibrium limit에서 charge conservation이 주는 anode OCV \\
+$R_n$ & $\Omega$ & effective polarization coefficient for apparent-axis shift \\
+$j$ & --- & discharge curve에서 분리 가능한 effective transition label \\
+$\xi_j,\xi_{\eq,j}$ & --- & branch-local transition progress and its equilibrium target, $0\le\xi\le1$ \\
+$U_j,w_j$ & V & effective transition center potential and equilibrium width \\
+$Q_{j,\tot}$ & C & transition $j$가 discharge capacity에 주는 positive contribution \\
+$Q_{\bg},C_{\bg}$ & C, C/V & unresolved background capacity and $C_{\bg}=\partial Q_{\bg}/\partial V_n$ \\
+$\mathcal A_j$ & J/mol & electrode-potential drive, $s_{\phi,j}F(V_{n,\drive}-U_j)$ \\
+$s_{\phi,j}$ & --- & discharge branch에서 $V_{n,\drive}>U_j$가 progress를 촉진하도록 정한 sign factor \\
+$G$ or $g$ & J/mol & intrinsic relaxation barrier value before potential assistance \\
+$\Delta G_{\eff,j}$ & J/mol & effective relaxation barrier, $G-\chi_j\mathcal A_j$ \\
+$\chi_j$ & --- & Level-A relaxation-barrier sensitivity; Chapter 1에서는 Butler--Volmer transfer coefficient $\beta_j$와 동일시하지 않는다 \\
+$k_j,k_0$ & 1/s & relaxation rate and prefactor \\
+$L$ & --- & relaxation length in $q$ coordinate, $L=|I|/(Q_{\cell}k_j)$ \\
+$L_\varphi$ & V & voltage-axis tail length, local approximation $L_\varphi\simeq |\dd V/\dd q|_{q_a}L$ \\
+$\rho_G(G;T)$ & mol/J & intrinsic barrier probability density \\
+$p_L(L)$ & 1 & relaxation-length probability density in $L$ coordinate; $p_L(L)\dd L$ is mode fraction \\
+$A_L(L)$ & 1 & relaxation-length amplitude spectrum; $A_L(L)\dd L$ is tail progress amplitude carried by modes in $[L,L+\dd L]$ \\
+$a(L)$ & --- & residual/capacity/accessibility amplitude factor converting probability spectrum into amplitude spectrum \\
+$\Theta,\Theta_{\eq}$ & --- & capacity-weighted aggregate progress and its equilibrium target \\
+$\Theta_{\tail},\Theta_0$ & --- & post-peak tail progress and single-mode residual amplitude at $q_a$ \\
+$Q_p$ & C & capacity scale for aggregate progress, typically $Q_p=\sum_jQ_{j,\tot}$ over the local transition group \\
+$q_a,x$ & ---, --- & tail-window start and local coordinate $x=q-q_a$ \\
+$Y_{\tail}$ & measured ICA unit & baseline-subtracted ICA tail signal used in first-pass fitting \\
+\bottomrule
+\end{longtable}
+
+단위상 $I$는 $\mathrm{C/s}$이고 $Q_{\cell}$은 C이다. Constant-current segment에서
+\begin{equation}
+Q_{\ext}(t)=\int_0^t|I|\dd t',\qquad q=\frac{Q_{\ext}}{Q_{\cell}},\qquad
+\frac{\dd q}{\dd t}=\frac{|I|}{Q_{\cell}}.
+\label{eq:q_time}
+\end{equation}
+
+\section{Convention과 assumption ledger}\label{sec:convention}
+\textbf{Branch convention.} Graphite lithiation literature often describes stage evolution as lithiation order. This chapter instead labels
+transitions by the measured discharge/delithiation branch. Thus $j$ is not a crystallographic stage number. It is a branch-local peak label.
+For each $j$, $\xi_j=0$ means that the corresponding discharge peak has not yet progressed, and $\xi_j=1$ means that the branch-local
+transition has passed.
+
+\textbf{Barrier convention.} $G$ is the intrinsic relaxation barrier. $\Delta G_{\eff}=G-\chi\mathcal A$ is not a microscopic forward barrier
+in the Butler--Volmer sense. It is a Level-A effective barrier controlling the scalar relaxation mobility by which $\xi_j$ approaches
+$\xi_{\eq,j}$. Directional forward/backward barrier splitting is reserved for the reaction-kinetic extension in Chapter 3.
+
+\begin{longtable}{p{0.10\textwidth} p{0.16\textwidth} p{0.30\textwidth} p{0.34\textwidth}}
+\toprule ID & status & source type & allowed use \\ \midrule \endhead
+\AL{1} & established & charge conservation in porous-electrode theory \cite{doyle1993,newman} & $V_n$ is determined by charge balance. \\
+\AL{2} & established/bounded & lattice-gas and regular-solution thermodynamics \cite{mckinnon1983,bazant2013} & ideal logistic derivation; nonideal effective width only as bounded coarse-graining. \\
+\AL{3} & established & graphite staging observations \cite{dahn1991,ohzuku1993,funabiki1999ea,funabiki1999jes} & staging transitions generate ICA peaks. \\
+\AL{4} & bounded & low-rate OCV/GITT calibration & $U_j,w_j,Q_{j,\tot},Q_{\bg}$ are fitted equilibrium-stage quantities. \\
+\AL{5} & validity gate & positive differential capacity / implicit-function condition \cite{newman,bazant2013} & $C_{\bg}>0$ is required in the fitting window. \\
+\AL{6} & established & ohmic and transport polarization separation \cite{newman,bardfaulkner} & $V_{n,\app}$ and $V_n$ must be separated before interpreting $\chi_j$. \\
+\AL{7} & mathematical gate & range and monotonicity condition & charge-balance solution exists only in an admissible window. \\
+\AL{10} & established & transition-state theory \cite{eyring1935} & rate scale follows $\exp[-\Delta G^\ddagger/(RT)]$. \\
+\AL{11} & bounded & linear free-energy/BEP/BV analogy \cite{evanspolanyi1938,bardfaulkner,bazant2013} & first-order potential assistance of a scalar relaxation barrier near the transition. \\
+\AL{12} & established/bounded & Onsager relaxation and two-state kinetic algebra \cite{onsager1931,degrootmazur1962} & local first-order relaxation toward a target. \\
+\AL{13} & flagged/bounded & heterogeneous electrode microstructure plus graphite cooperative transition literature & barrier-only independent mode distribution is a mean-field approximation. \\
+\AL{14} & established mechanism, bounded application & relaxation-time distributions \cite{svare2000,johnston2006,lindsey1980} & barrier distribution can map to broad relaxation spectrum; graphite ICA use is a model contribution. \\
+\AL{15} & established bound & Marcus curvature \cite{marcus1956} & linear barrier assistance is a small-drive approximation. \\
+\AL{16} & bounded analogy & Fredholm ratio-substitution methods \cite{lee2011,son2013,jcp2017} & unknown-ratio closure idea only; Fredholm formulas are not copied into the Volterra problem. \\
+\bottomrule
+\end{longtable}
+
+\section{흑연 staging과 effective transition}\label{sec:staging}
+Graphite lithiation/delithiation proceeds through staged intercalation structures, and stage transformations create pronounced ICA peaks
+\cite{dahn1991,ohzuku1993,funabiki1999ea,funabiki1999jes}. Because several microscopic stage transformations can overlap in measured
+$dQ/dV$, this chapter uses effective transitions $j=1,\dots,N_p$ rather than claiming a one-to-one mapping between every measured peak and
+a crystallographic stage boundary.
+
+A single effective transition can still contain many local modes. Local particle size, defect density, grain boundary, stress, and local
+accessibility can change the relaxation barrier. In Chapter 1 we first treat this heterogeneity as a distribution of intrinsic barriers $G$ while
+holding the equilibrium target of the effective transition fixed. This is the \emph{barrier-only disorder} approximation. It is not a statement
+that real graphite phase-boundary motion is microscopically independent; it is a reduced model whose consequence is a relaxation-length
+spectrum.
+
+\section{무대 I: charge conservation과 internal potential}\label{sec:charge}
+External current fixes how much charge has passed, but it does not directly fix the internal anode potential. The internal potential is the
+value that makes stored charge equal to passed charge:
+\begin{equation}
+\boxed{\;Q_{\cell}q=Q_{\bg}(V_n,T)+\sum_{j=1}^{N_p}Q_{j,\tot}\xi_j.\;}
+\label{eq:charge_balance}
+\end{equation}
+The left-hand side is known from the experiment. The right-hand side depends on the internal potential and transition progress. Given
+$(q,T,\{\xi_j\})$, Eq.~\eqref{eq:charge_balance} determines $V_n$ implicitly.
+
+The background term $Q_{\bg}$ is not a visual baseline. It is the capacity contribution not resolved into the selected effective transitions.
+Its differential capacity
+\begin{equation}
+C_{\bg}(V_n,T)=\frac{\partial Q_{\bg}}{\partial V_n}
+\label{eq:Cbg}
+\end{equation}
+must be positive in the local fitting window:
+\begin{equation}
+C_{\bg}(V_n,T)>0.
+\label{eq:monotone}
+\end{equation}
+This is a validity condition, not a numerical patch. With this monotonicity and with the target charge lying in the range of $Q_{\bg}$, the
+implicit solution for $V_n$ is locally unique.
+
+At equilibrium, $\xi_j=\xi_{\eq,j}(V_n,T)$, and the same charge-balance equation gives the equilibrium anode potential
+$V_{n,\OCV}(q,T)$. Thus OCV is the equilibrium special solution of charge conservation, not an independent replacement for it.
+
+The measured apparent potential contains polarization:
+\begin{equation}
+V_{n,\app}=V_n+s_I|I|R_n(q,T,|I|).
+\label{eq:Vapp}
+\end{equation}
+Therefore converting measured data to the internal axis requires both charge-balance consistency and a polarization correction. In a first-pass
+fit, $R_n$ should be constrained from low-rate, pulse, current-interrupt, or impedance information before interpreting tail changes as $\chi_j$.
+
+\section{무대 II: equilibrium target}\label{sec:eq}
+A minimal equilibrium target comes from a lattice-gas or regular-solution picture. For occupation/progress $\xi$, the chemical potential is
+\begin{equation}
+\mu(\xi)=\mu^0+RT\ln\frac{\xi}{1-\xi}+\Omega_j(1-2\xi).
+\label{eq:mu_latticegas}
+\end{equation}
+The logarithmic term is the configurational entropy contribution. For $N$ sites and $n=N\xi$ occupied sites,
+$W=N!/[n!(N-n)!]$ and Stirling's approximation gives
+\begin{equation}
+S_{\mathrm{mix}}=-R[\xi\ln\xi+(1-\xi)\ln(1-\xi)]
+\end{equation}
+per mole of sites. Differentiating $G_{\mathrm{mix}}=-TS_{\mathrm{mix}}$ with respect to $\xi$ gives
+$RT\ln[\xi/(1-\xi)]$. The regular-solution enthalpy term $\Omega_j\xi(1-\xi)$ gives $\Omega_j(1-2\xi)$.
+
+In the ideal limit $\Omega_j=0$, equilibrium with electrode potential gives
+\begin{equation}
+RT\ln\frac{\xi_{\eq,j}}{1-\xi_{\eq,j}}=s_{\phi,j}F(V_n-U_j),
+\label{eq:eq_balance}
+\end{equation}
+where the standard-state chemical potential has been absorbed into $U_j$. Solving step by step, set
+$z=s_{\phi,j}(V_n-U_j)/w_j$ and $w_j=RT/F$ in the ideal case. Then
+\begin{equation}
+\boxed{\;\xi_{\eq,j}(V_n,T)=\frac{1}{1+\exp[-s_{\phi,j}(V_n-U_j)/w_j]}\;}
+\label{eq:logistic}
+\end{equation}
+for the ideal target. Nonzero $\Omega_j$, particle heterogeneity, and finite plateau width can change the shape; then $w_j$ is an effective
+width calibrated from low-rate equilibrium data rather than forced to equal $RT/F$.
+
+The derivative of the ideal target is
+\begin{equation}
+\frac{\partial\xi_{\eq,j}}{\partial V_n}=\frac{s_{\phi,j}}{w_j}\xi_{\eq,j}(1-\xi_{\eq,j}).
+\label{eq:dxidV}
+\end{equation}
+Thus the ideal thermal contribution narrows as $T$ decreases because $RT/F$ decreases. This does not prove that real graphite equilibrium
+peaks always narrow exactly as $RT/F$; graphite staging is cooperative and must be calibrated by low-rate OCV/GITT. It does show that the
+observed low-temperature long tail should not be attributed to a purely ideal thermal broadening term without additional evidence.
+
+\section{주역 I: electrode-potential-assisted relaxation barrier}\label{sec:rate}
+The kinetic variable is not the equilibrium target itself but the rate at which the actual progress approaches it. Define the local electrode
+potential drive
+\begin{equation}
+\mathcal A_j=s_{\phi,j}F(V_{n,\drive}-U_j).
+\label{eq:Aj}
+\end{equation}
+It has unit J/mol. In the discharge branch convention used here, $s_{\phi,j}$ is chosen so that $\mathcal A_j>0$ means the local potential
+state assists progress through the selected discharge transition.
+
+Transition-state theory gives a relaxation rate proportional to a Boltzmann factor:
+\begin{equation}
+k_j\propto \exp\left[-\frac{\Delta G_j^\ddagger}{RT}\right].
+\end{equation}
+Near the transition center, this chapter uses a bounded linear free-energy approximation for the scalar relaxation barrier:
+\begin{equation}
+\boxed{\;\Delta G_{\eff,j}=G-\chi_j\mathcal A_j.\;}
+\label{eq:Geff}
+\end{equation}
+Here $G$ is the intrinsic relaxation barrier of a local mode and $\chi_j$ measures how strongly electrode-potential drive changes the
+\emph{relaxation mobility}. This $\chi_j$ is not yet the Butler--Volmer transfer coefficient $\beta_j$. Butler--Volmer/Marcus theory normally
+splits forward and reverse barriers and therefore changes the forward/reverse ratio. Chapter 1 deliberately stays at Level A: the equilibrium
+target is set by thermodynamics, while $\Delta G_{\eff}$ changes how fast the system approaches that target. Directional kinetics are added in
+Chapter 3.
+
+With an Eyring-type prefactor,
+\begin{equation}
+\boxed{\;k_j(T,V_{n,\drive})=k_0(T)\exp\left[-\frac{G-\chi_j\mathcal A_j}{RT}\right],\qquad
+k_0(T)=\frac{k_BT}{h}\kappa(T)\exp\left(\frac{\Delta S_a}{R}\right).\;}
+\label{eq:kact}
+\end{equation}
+The exact prefactor may be grouped differently, but the important point for tail shape is the exponential sensitivity of $k_j$ to
+$G-\chi_j\mathcal A_j$. If $|\mathcal A_j|$ becomes comparable to the reorganization/curvature scale, the linear barrier approximation is no
+longer a global law; it is then a small-drive local approximation.
+
+\begin{keybox}
+A useful two-state algebra explains why a first-order relaxation equation can be used without inventing a new target. Let
+$r_j^+$ and $r_j^-$ be local forward and reverse rates. Then
+\begin{equation}
+\dot\xi_j=r_j^+(1-\xi_j)-r_j^-\xi_j=(r_j^++r_j^-)
+\left[\frac{r_j^+}{r_j^++r_j^-}-\xi_j\right].
+\end{equation}
+Thus $k_j=r_j^++r_j^-$ and $\xi_{\eq,j}=r_j^+/(r_j^++r_j^-)$ if the local rates are treated as constants over a small window. Chapter 1
+uses $k_j$ as the scalar relaxation rate. It does not claim that $\chi_j\mathcal A_j$ is the microscopic forward barrier lowering of Chapter 3.
+\end{keybox}
+
+If another physical process limits the relaxation, a lumped first-order approximation may be written as a serial time-scale sum,
+\begin{equation}
+\frac{1}{k_j^{\eff}}=\frac{1}{k_j}+\frac{1}{k_{j,\lim}}.
+\label{eq:kphys}
+\end{equation}
+This is a bounded reduced model for transport, finite-site, diffusion, or accessibility bottlenecks. It should not be added as a free fitting knob
+without independent evidence.
+
+\section{주역 II: progress dynamics와 single-mode kernel}\label{sec:dyn}
+For a local mode in a constant-current segment, the first-order relaxation model is
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j[\xi_{\eq,j}(V_n,T)-\xi_j].
+\label{eq:dxidt}
+\end{equation}
+Using Eq.~\eqref{eq:q_time},
+\begin{equation}
+\frac{\dd\xi_j}{\dd q}=\frac{Q_{\cell}k_j}{|I|}[\xi_{\eq,j}-\xi_j].
+\label{eq:dxidq}
+\end{equation}
+
+Now examine a post-peak window beginning at $q_a$. Define residual $r=\xi_{\eq,j}-\xi_j$. If the equilibrium target is nearly flat in the
+window, $\dd\xi_{\eq,j}/\dd q\simeq0$, and if $\mathcal A_j$ varies slowly enough that $k_j$ is approximately constant, then
+\begin{equation}
+\frac{\dd r}{\dd q}=-\frac{Q_{\cell}k_j}{|I|}r=-\frac{1}{L}r,
+\qquad
+\boxed{\;L=\frac{|I|}{Q_{\cell}k_j}.\;}
+\label{eq:Ldef}
+\end{equation}
+The solution is
+\begin{equation}
+r(q)=r(q_a)\exp\left[-\frac{q-q_a}{L}\right].
+\label{eq:residual_decay}
+\end{equation}
+The observed progress contribution is the derivative, not the residual itself. From Eq.~\eqref{eq:dxidq},
+\begin{equation}
+\boxed{\;\frac{\dd\xi_j}{\dd q}=\frac{r(q_a)}{L}\exp\left[-\frac{q-q_a}{L}\right].\;}
+\label{eq:single_dxidq}
+\end{equation}
+This $1/L$ factor is the origin of the kernel factor used later. Dimensionally, $L$ is dimensionless because it is measured in the normalized
+charge coordinate $q$.
+
+The temperature trend follows immediately. If $T$ decreases and $G-\chi\mathcal A$ remains positive, $k_j$ decreases and $L$ grows.
+A larger $L$ means a slower decay in $q$ and therefore a longer tail.
+
+\section{주역 III: barrier distribution에서 relaxation-length spectrum으로}\label{sec:spectrum}
+Real electrodes do not have one intrinsic barrier. Let $\rho_G(G;T)$ be a probability density of intrinsic relaxation barriers. In the
+barrier-only disorder approximation, modes with different $G$ share the same branch-local equilibrium target but relax at different rates:
+\begin{equation}
+\xi_j(t)=\int_0^\infty \rho_G(g;T)\xi_j(g,t)\dd g,
+\qquad
+\frac{\dd\xi_j(g,t)}{\dd t}=k_j(g)[\xi_{\eq,j}-\xi_j(g,t)].
+\label{eq:xi_dist}
+\end{equation}
+This approximation ignores the possibility that local defects also change $U_j,w_j$, and capacity. When those effects dominate, the model
+must be extended; Chapter 1 uses this reduced form to isolate the tail effect of barrier heterogeneity.
+
+Insert Eq.~\eqref{eq:kact} into Eq.~\eqref{eq:Ldef}:
+\begin{equation}
+\boxed{\;L(G,T,V_{n,\drive})=\frac{|I|}{Q_{\cell}k_0(T)}
+\exp\left[\frac{G-\chi_j\mathcal A_j}{RT}\right].\;}
+\label{eq:L_of_G}
+\end{equation}
+This is the central temperature amplification. A fixed spread in $G$ becomes a spread in $\ln L$ of size proportional to $1/(RT)$. Therefore
+low temperature makes the relaxation-length spectrum broader and gives more weight to long-lived tail modes.
+
+The probability density in length coordinate is obtained by conserving mode fraction:
+\begin{equation}
+p_L(L)\dd L=\rho_G(G)\dd G.
+\end{equation}
+The inverse map is $G(L)=\chi_j\mathcal A_j+RT\ln(L/L_0)$ with $L_0=|I|/(Q_{\cell}k_0)$. Since
+\begin{equation}
+\frac{\dd G}{\dd L}=\frac{RT}{L},
+\end{equation}
+we get
+\begin{equation}
+\boxed{\;p_L(L)=\rho_G(G(L);T)\frac{RT}{L},\qquad L\ge L_{\min}=L_0\exp\left[-\frac{\chi_j\mathcal A_j}{RT}\right].\;}
+\label{eq:spectrum_prob}
+\end{equation}
+The lower limit is not an artificial switch. It is the domain condition corresponding to $G\ge0$.
+
+The observed tail needs an amplitude spectrum, not only a probability spectrum. Let $a(L)$ collect the residual amplitude at $q_a$, local
+capacity/accessibility, and other independently constrained weights. Then
+\begin{equation}
+\boxed{\;A_L(L)=a(L)p_L(L)=a(L)\rho_G(G(L);T)\frac{RT}{L},\qquad L\ge L_{\min}.\;}
+\label{eq:spectrum}
+\end{equation}
+$A_L(L)\dd L$ is the amount of post-peak progress amplitude carried by modes whose relaxation length lies in $[L,L+\dd L]$. It is generally
+not normalized to one.
+
+\section{관측 tail: kernel integral}\label{sec:kernel}
+Each length mode contributes the derivative form in Eq.~\eqref{eq:single_dxidq}. Summing those derivative contributions gives
+\begin{equation}
+\boxed{\;\frac{\dd\Theta_{\tail}}{\dd q}(q)
+\simeq \int_{L_{\min}}^\infty A_L(L)\frac{1}{L}
+\exp\left[-\frac{q-q_a}{L}\right]\dd L,\qquad q\ge q_a.\;}
+\label{eq:kernel_integral}
+\end{equation}
+The integration variable is relaxation length. The result is a progress derivative in the external charge coordinate. The factor $RT/L$ inside
+$A_L$ came from the $G\to L$ coordinate transformation; the factor $1/L$ in the kernel came from converting residual decay into progress
+derivative. These two factors have different origins.
+
+If a single mode dominates, then
+\begin{equation}
+A_L(L)=\Theta_0\delta(L-L_*),
+\end{equation}
+and Eq.~\eqref{eq:kernel_integral} becomes
+\begin{equation}
+\frac{\dd\Theta_{\tail}}{\dd q}\simeq\frac{\Theta_0}{L_*}
+\exp\left[-\frac{q-q_a}{L_*}\right].
+\label{eq:single_from_kernel}
+\end{equation}
+Writing only $A_L=\delta(L-L_*)$ would lose the amplitude. The amplitude-bearing delta form is required.
+
+\begin{boundbox}
+Barrier-distribution relaxation and stretched relaxation are established in broader relaxation literature \cite{svare2000,johnston2006,lindsey1980}.
+Applying that mechanism to graphite ICA tail is a bounded model claim. Therefore this chapter uses $\rho_G$ as a forward-model input or a
+constrained family, not as a uniquely invertible quantity extracted from one tail curve.
+\end{boundbox}
+
+\section{Self-consistency: where feedback enters}\label{sec:volterra}
+Because $\Theta$ contributes to charge storage, it changes $V_n$ through Eq.~\eqref{eq:charge_balance}; because $V_n$ changes the equilibrium
+target, the target depends on the unknown progress. This feedback is real, but it is not needed to obtain the first-pass exponential fitting formula.
+It is introduced here to show where later corrections enter.
+
+For one mode,
+\begin{equation}
+\frac{\dd\Theta}{\dd q}=\frac{1}{L}[\Theta_{\eq}(q)-\Theta(q)].
+\end{equation}
+Multiplying by the integrating factor $e^{q/L}$ and integrating gives
+\begin{equation}
+\Theta(q)=\Theta(0)e^{-q/L}+\int_0^q\frac{1}{L}e^{-(q-q')/L}\Theta_{\eq}(q')\dd q'.
+\label{eq:singlemode_integral}
+\end{equation}
+Adding spectrum and charge-balance feedback gives a causal Volterra equation,
+\begin{equation}
+\Theta(q)=\Theta_{\mathrm{init}}(q)+\int_0^q\mathcal K(q,q')
+\Theta_{\eq}\left(V_n(q',\Theta(q')),T\right)\dd q',
+\label{eq:volterra}
+\end{equation}
+where
+\begin{equation}
+\mathcal K(q,q')=\int_{L_{\min}}^\infty A_L(L)\frac{1}{L}e^{-(q-q')/L}\dd L.
+\end{equation}
+The kernel multiplies the target, not the residual again. Multiplying the kernel by $[\Theta_{\eq}-\Theta]$ at this integral stage would count
+the relaxation twice.
+
+\subsection{Plan B: reference evaluation}\label{sec:planB}
+Plan B is a reference calculation, not the main theory of Chapter 1. Discretize $G$ into grid points $g_m$, integrate each local ODE, and solve
+Eq.~\eqref{eq:charge_balance} for $V_n$ at every time or charge step. This gives a numerical reference for checking approximations when the
+spectrum is broad or feedback is strong.
+
+\subsection{Plan A: optional analytic closure}\label{sec:planA}
+The user's JCP paper and Refs.~6,7 use an unknown-ratio approximation to solve Fredholm integral equations of the second kind
+\cite{lee2011,son2013,jcp2017}. In the 2017 paper, Eq.~(32) is a Fredholm equation and Eq.~(34) replaces an unknown solution ratio by a
+reference ratio. The present graphite equation is Volterra, not Fredholm, so the formula is not copied. Only the idea of a controlled ratio
+substitution is used.
+
+Linearize the target around a baseline solution $\Theta^{(0)}$:
+\begin{equation}
+\Theta_{\eq}(V_n(\Theta))\approx a(q)+b(q)\Theta(q),
+\qquad
+b(q)=\frac{\partial\Theta_{\eq}}{\partial V_n}\frac{\partial V_n}{\partial\Theta}
+=-\frac{Q_p}{C_{\bg}}\frac{\partial\Theta_{\eq}}{\partial V_n}.
+\label{eq:selfcoupling}
+\end{equation}
+The sign $b\le0$ holds only in a window where $\partial\Theta_{\eq}/\partial V_n\ge0$ and $C_{\bg}>0$. With the ratio approximation
+$\Theta(q')/\Theta(q)\approx\Theta^{(0)}(q')/\Theta^{(0)}(q)$, the closed correction becomes
+\begin{equation}
+\boxed{\;\Theta_A(q)=\frac{c(q)}{1-\dfrac{1}{\Theta^{(0)}(q)}
+\displaystyle\int_0^q\mathcal K(q,q')b(q')\Theta^{(0)}(q')\dd q'}\;,}
+\label{eq:closed}
+\end{equation}
+where $c(q)=\Theta_{\mathrm{init}}(q)+\int_0^q\mathcal K(q,q')a(q')\dd q'$. This closure is bounded: it must be checked against Plan B before
+being used as a quantitative fitting expression.
+
+\section{ICA/DVA relation and the simple fitting formula}\label{sec:fiteq}
+Differentiate charge conservation with respect to $q$:
+\begin{equation}
+Q_{\cell}=C_{\bg}\frac{\dd V_n}{\dd q}+\sum_jQ_{j,\tot}\frac{\dd\xi_j}{\dd q}.
+\end{equation}
+Define $Q_p\Theta=\sum_jQ_{j,\tot}\xi_j$. Then
+\begin{equation}
+\dd Q=C_{\bg}\dd V_n+Q_p\dd\Theta.
+\label{eq:dQsplit}
+\end{equation}
+Since $\dd Q=Q_{\cell}\dd q$,
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V_n}=\frac{C_{\bg}(V_n,T)}{1-Q_p(\dd\Theta/\dd Q)}
+=\frac{C_{\bg}(V_n,T)}{1-(Q_p/Q_{\cell})(\dd\Theta/\dd q)}.\;}
+\label{eq:fiteq}
+\end{equation}
+Therefore a tail in $\dd\Theta/\dd q$ appears as an ICA tail. But $d\Theta/dq$ being exponential does not mean the measured ICA is exactly
+exponential. The exact reduced expression is rational in the tail contribution. Exponential fitting is a small-tail, locally constant-baseline
+approximation.
+
+For the apparent axis,
+\begin{equation}
+\frac{\dd V_{n,\app}}{\dd q}=\frac{\dd V_n}{\dd q}+s_I|I|\frac{\partial R_n}{\partial q},
+\qquad
+\frac{\dd Q_{\ext}}{\dd V_{n,\app}}=\frac{Q_{\cell}}{\dd V_{n,\app}/\dd q}.
+\label{eq:app_axis}
+\end{equation}
+Thus $L_\varphi\simeq |\dd V_{n,\app}/\dd q|_{q_a}L$. Replacing $V_{n,\app}$ by $V_n$ in this expression is allowed only when
+$\partial R_n/\partial q$ is negligible in the chosen tail window.
+
+\subsection{Simple real-data fitting approximation}\label{sec:ch1_simplefit}
+Let $x=q-q_a$. In a single-dominant-mode tail,
+\begin{equation}
+\frac{\dd\Theta_{\tail}}{\dd q}\simeq\frac{\Theta_0}{L}e^{-x/L},
+\qquad
+\boxed{\;L=\frac{|I|}{Q_{\cell}k_0(T)}
+\exp\left[\frac{G-\chi_j\mathcal A_j}{RT}\right].\;}
+\label{eq:simplefit}
+\end{equation}
+Define the baseline-subtracted ICA tail signal by
+\begin{equation}
+Y_{\tail}(q)=\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{meas}}
+-\left(\frac{\dd Q}{\dd V}\right)_{\mathrm{baseline}}.
+\label{eq:Ytail_def}
+\end{equation}
+The baseline is the slowly varying contribution obtained from low-rate equilibrium fit, local polynomial/spline constrained outside the peak,
+or the Chapter 1 charge-balance background. It is not a free curve allowed to absorb the tail.
+
+If $(Q_p/Q_{\cell})(\dd\Theta/\dd q)\ll1$ and the voltage-axis conversion is nearly constant over the selected tail window, Eq.~\eqref{eq:fiteq}
+reduces to
+\begin{equation}
+\boxed{\;Y_{\tail}(q)\approx B\exp[-(q-q_a)/L].\;}
+\label{eq:Ytail_simple}
+\end{equation}
+The amplitude $B$ contains $C_{\bg}$, $Q_p/Q_{\cell}$, $\Theta_0/L$, and the chosen voltage-axis conversion. The shape parameter is $L$.
+
+\textbf{First-pass fitting protocol.}
+\begin{enumerate}[label=\textbf{F\arabic*.},leftmargin=2.4em]
+\item Fix the equilibrium stage from low-rate OCV/GITT: $U_j,w_j,Q_{j,\tot},Q_{\bg}$.
+\item Constrain $R_n$ independently before fitting $\chi_j$.
+\item Choose a post-peak tail window after the peak maximum where equilibrium derivative is below the measurement noise floor or where the
+      semi-log residual is locally linear. The rule must be tied to data noise, not an arbitrary universal number.
+\item Fix $q_a$ before fitting. If $q_a$ is free, it becomes strongly correlated with $L$.
+\item Fit $\ln Y_{\tail}=\ln B-(q-q_a)/L$ over the selected window. The slope gives $L$.
+\item Map $L$ to an effective barrier using
+\begin{equation}
+G-\chi_j\mathcal A_j=RT\ln\left(\frac{Q_{\cell}k_0(T)L}{|I|}\right).
+\label{eq:barrier_from_L}
+\end{equation}
+When $k_0(T)$ is not independently known, use multi-temperature or multi-potential differences rather than a single absolute value.
+\item For Arrhenius analysis, account for the Eyring prefactor and entropy term. A simple slope of $\ln(1/L)$ versus $1/T$ represents
+      $-(\Delta H_a-\chi\mathcal A)/R$ only when $\mathcal A$ is held fixed and prefactor variation is either corrected or negligible.
+\item At fixed temperature, a local potential-dependence test gives
+\begin{equation}
+\frac{\partial\ln L}{\partial V_{n,\drive}}=-\frac{\chi_js_{\phi,j}F}{RT}
+\label{eq:chi_slope}
+\end{equation}
+inside the small-drive window.
+\end{enumerate}
+
+If the semi-log tail has systematic curvature, the single-mode approximation has failed. That curvature is not merely a fitting inconvenience;
+it indicates a relaxation-length spectrum, changing $L(q)$, or self-consistency feedback.
+
+\section{Temperature, potential, and C-rate effects}\label{sec:falsify}
+The reduced formula separates three contributions:
+\begin{longtable}{p{0.25\textwidth} p{0.30\textwidth} p{0.35\textwidth}}
+\toprule layer & terms & role \\ \midrule \endhead
+Equilibrium stage & $U_j(T),w_j(T),Q_{\bg}(V_n,T)$ & peak location and equilibrium target \\
+Kinetic lag & $k_j(T,V_{n,\drive}),\rho_G(G;T)$ & tail length and spectrum \\
+Apparent-axis polarization & $R_n(q,T,|I|)$ & measured voltage-axis shift and distortion \\
+\bottomrule
+\end{longtable}
+
+Temperature affects the exponential factor in $L$. Lower $T$ amplifies $G/(RT)$ and broadens the distribution in $\ln L$, so low temperature
+naturally gives long tails if the kinetic-lag model is valid. Electrode potential affects $L$ through
+\begin{equation}
+\frac{\partial\ln L}{\partial V_{n,\drive}}=-\frac{\chi_js_{\phi,j}F}{RT}
+\end{equation}
+for the discharge sign convention. Potential assistance therefore tends to shorten the tail by increasing $k_j$.
+
+C-rate has competing effects. At fixed $k_j$, $L=|I|/(Q_{\cell}k_j)$ increases with current in the $q$ coordinate. But increasing current can
+also shift $V_{n,\drive}$ and increase $k_j$ through potential assistance, which decreases $L$. Apparent polarization also shifts and overlaps
+peaks on the measured voltage axis. Therefore C-rate trends must be interpreted as competition among current prefactor, potential-assisted
+rate increase, and voltage-axis polarization; no unconditional ``higher C-rate means shorter tail'' rule is assumed.
+
+The model is falsifiable by the following checks.
+\begin{enumerate}[label=\textbf{N\arabic*.},leftmargin=2.4em]
+\item Low-rate equilibrium data must support the chosen equilibrium target shape and $w_j$.
+\item The extracted $L$ must show Arrhenius-type behavior only after controlling $\mathcal A_j$ and prefactor variation.
+\item The local slope $\partial\ln L/\partial V_{n,\drive}$ must have the sign and scale implied by Eq.~\eqref{eq:chi_slope} in the small-drive window.
+\item $\rho_G$ should be constrained by independent physical information or by a low-dimensional forward model; a single tail curve does not uniquely determine it.
+\item If $R_n$ and $\chi_j$ are both left free in one dataset, parameter covariance can destroy physical interpretability. They must be separated by multi-rate, pulse, or independent polarization information.
+\end{enumerate}
+
+\section{부록: self-consistency evaluation principle}\label{sec:ch1_numeric}
+When the single-mode approximation fails, Plan B provides a reference calculation. Choose a barrier grid $\{g_m\}$ covering the relaxation
+lengths visible in the experimental tail window. For each $g_m$, integrate
+\begin{equation}
+\frac{\dd\xi_j(g_m)}{\dd t}=k_j(g_m)[\xi_{\eq,j}(V_n,T)-\xi_j(g_m)],
+\end{equation}
+and solve charge conservation for $V_n$ at each step. The algebraic constraint is well posed only when the local charge-balance derivative
+condition is satisfied. Plan A is accepted only if its deviation from this reference is below the measurement noise and discretization floor in the
+same temperature, rate, and tail window.
+
+\section*{Chapter 2--5로의 전달}
+Chapter 1 fixes the convention for $V_n$, $V_{n,\app}$, $V_{n,\drive}$, $\xi_j$, $\xi_{\eq,j}$, $k_j$, $L$, and $A_L$.
+Chapter 2 should use the equilibrium stage to discuss reversible heat and entropy coefficients. Chapter 3 should expand Level-A scalar
+relaxation into directional forward/backward kinetics. Chapter 4 should combine heat terms without double counting, and Chapter 5 should
+add charge/discharge branch hysteresis without changing the Chapter 1 convention.
+
+\begin{thebibliography}{99}
+\bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, ``Modeling of Galvanostatic Charge and Discharge of the Lithium/Polymer/Insertion Cell,''
+  \emph{J. Electrochem. Soc.} \textbf{140}, 1526 (1993). DOI: 10.1149/1.2221597.
+\bibitem{newman} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004). ISBN 978-0-471-47756-3.
+\bibitem{mckinnon1983} W. R. McKinnon, R. R. Haering, ``Physical Mechanisms of Intercalation,'' in \emph{Modern Aspects of Electrochemistry} No.~15, Plenum, New York (1983), p.~235.
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of Chemical Kinetics and Charge Transfer Based on Nonequilibrium Thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013). DOI: 10.1021/ar300145c.
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods}, 2nd ed., Wiley (2001). ISBN 978-0-471-04372-0.
+\bibitem{eyring1935} H. Eyring, ``The Activated Complex in Chemical Reactions,'' \emph{J. Chem. Phys.} \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
+\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and Driving Force of Chemical Reactions,'' \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI: 10.1039/TF9383400011.
+\bibitem{marcus1956} R. A. Marcus, ``On the Theory of Oxidation-Reduction Reactions Involving Electron Transfer. I,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956). DOI: 10.1063/1.1742723.
+\bibitem{onsager1931} L. Onsager, ``Reciprocal Relations in Irreversible Processes. I,'' \emph{Phys. Rev.} \textbf{37}, 405 (1931). DOI: 10.1103/PhysRev.37.405.
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962); Dover (1984).
+\bibitem{dahn1991} J. R. Dahn, ``Phase Diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
+\bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
+\bibitem{funabiki1999ea} A. Funabiki, M. Inaba, T. Abe, Z. Ogumi, ``Nucleation and Phase-Boundary Movement upon Stage Transformation in Lithium-Graphite Intercalation Compounds,'' \emph{Electrochim. Acta} \textbf{45}, 865 (1999). DOI: 10.1016/S0013-4686(99)00290-X.
+\bibitem{funabiki1999jes} A. Funabiki, M. Inaba, T. Abe, Z. Ogumi, ``Stage Transformation of Lithium-Graphite Intercalation Compounds Caused by Electrochemical Lithium Intercalation,'' \emph{J. Electrochem. Soc.} \textbf{146}, 2443 (1999). DOI: 10.1149/1.1391953.
+\bibitem{baessler1993} H. B\"assler, ``Charge Transport in Disordered Organic Photoconductors,'' \emph{Phys. Status Solidi B} \textbf{175}, 15 (1993). DOI: 10.1002/pssb.2221750102.
+\bibitem{svare2000} I. Svare, S. W. Martin, F. Borsa, ``Stretched Exponentials with $T$-Dependent Exponents from Fixed Distributions of Energy Barriers for Relaxation Times in Fast-Ion Conductors,'' \emph{Phys. Rev. B} \textbf{61}, 228 (2000). DOI: 10.1103/PhysRevB.61.228.
+\bibitem{johnston2006} D. C. Johnston, ``Stretched Exponential Relaxation Arising from a Continuous Sum of Exponential Decays,'' \emph{Phys. Rev. B} \textbf{74}, 184430 (2006). DOI: 10.1103/PhysRevB.74.184430.
+\bibitem{lindsey1980} C. P. Lindsey, G. D. Patterson, ``Detailed Comparison of the Williams-Watts and Cole-Davidson Functions,'' \emph{J. Chem. Phys.} \textbf{73}, 3348 (1980). DOI: 10.1063/1.440530.
+\bibitem{jcp2017} K. Lee, S. Lee, C. H. Choi, S. Lee, ``Effects of External Electric Field and Anisotropic Long-Range Reactivity on Charge Separation Probability,'' \emph{J. Chem. Phys.} \textbf{147}, 144111 (2017). DOI: 10.1063/1.5000882.
+\bibitem{lee2011} S. Lee, C. Y. Son, J. Sung, S.-H. Chong, ``Communication: Propagator for Diffusive Dynamics of an Interacting Molecular Pair,'' \emph{J. Chem. Phys.} \textbf{134}, 121102 (2011). DOI: 10.1063/1.3565476.
+\bibitem{son2013} C. Y. Son, J. Kim, J.-H. Kim, J. S. Kim, S. Lee, ``An Accurate Expression for the Rates of Diffusion-Influenced Bimolecular Reactions with Long-Range Reactivity,'' \emph{J. Chem. Phys.} \textbf{138}, 164123 (2013). DOI: 10.1063/1.4802584.
+\end{thebibliography}
+
+\end{document}
