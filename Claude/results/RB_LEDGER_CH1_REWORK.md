@@ -32,5 +32,17 @@ tex **795줄**, PDF **15p** → `Claude/results/graphite_ica_ch1_rebuilt.pdf`. e
 ## 6. 결과
 **Ch1 자기완결 달성**: §7+ 가 물리 동기+무비약으로 따라가지고, §ch1_simplefit 에서 실데이터에 바로 대입하는 single-mode 닫힌식 + 0.2C + {L,ΔH_a,χ} 추출 절차가 나온다. Ch6 수치·피팅 내용 Ch1 흡수.
 
-## 7. Next (잔여)
-Ch6 파일 해체(삭제) + full_rebuilt 재생성(Ch1 재작업본 반영, Ch6 제외) + refs 갱신 + Ch2~5 "Ch.6" 참조→"Ch.1 부록" 정리. (별도 단계)
+## 7. 2차 패스 — 절 분할 + 청크 검수 발견 정정 (사용자 "§7 이후 전부·잘게 쪼개·제대로" 재지적)
+1차가 §8 등을 구조만 바꾸고 §7 본체·따라가짐을 덜 봤다는 지적. 2렌즈 청크 검수(따라가짐/정확성) 후 §7→끝 \*절 분할\* + 발견 전건 정정:
+- **§7 spectrum**: dense 박스 → 3단계(자코비안 eq:spectrum_prob → 지지범위 → 진폭 A_0) 무비약 분해. A_0 측도불일치 정정(개수 ρ_G ≠ 용량가중 관측 Θ, 별개량 명시).
+- **§8 kernel integral / §9 Volterra(신설 절) / §10 Plan B(신설) / §11 Plan A(신설)** 로 분할(빽빽함 해소, 사용자 "절 늘려도 됨"). **Volterra 를 single-mode ODE 상수변화법(eq:singlemode_integral)에서 유도** → "뜬금없이" 제거. **Plan A: Θ^(0) baseline 정의 신설 + ratio-substitution factor-out 한 줄 대수 명시 + b 부호 ∂Θ_eq/∂V_n>0(eq:dxidV) 근거.**
+- **§13 simplefit**: (2)↔(3) 순환 읽힘 정정 — A_j 는 각 점 \*기지값\*(자유 X), (3)→(2) 비순환 순서 명시.
+- **§14 falsify**: ★N5 비퇴화 discriminator 추가(검수 H-2, "이론의 가장 약한 지점") — tail scaling L∝|I|은 transport와 퇴화 → 전위의존 Arrhenius slope + GITT/pulse로 η_ct(R_ct) 분리 후에만 χ_j 귀속.
+- **Ch6 미아 forward-ref 8곳 전부 장내 절(§planB/§planA/§ch1_simplefit/부록)로 재지정** (사용자 "끊긴 forward-ref" 지적).
+- bibitem: lee2011 serial 124112→121102 정정, dubarry2022·fly2020 추가(N5 인용).
+- 빌드: tex **859줄**, **17p**, env eq 31/31·eq* 1/1·begin/end 49/49, undefined 0, dup label 0, overfull 0, `!` 0.
+
+## 8. Next (잔여)
+- §7→끝 절 분할 후 \*절별(fine chunk)\* 재검수 1회 더 권장(사용자 method).
+- Ch6 파일 해체(삭제) + full_rebuilt 재생성(Ch1 재작업본 반영) + Ch2~5 "Ch.6" 참조 정리.
+- 같은 따라가짐/사용성 청크 검수를 Ch2~5 후반 절에 적용.
