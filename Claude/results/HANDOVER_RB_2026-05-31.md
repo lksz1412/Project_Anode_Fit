@@ -51,4 +51,24 @@
 - **★ 5-31 사고(stale 핸드오버)**: 직전 세션이 616줄 보강 후 커밋 시작했다 끊김 → 사용자 "clear 전 핸드오버 정확히 저장" 명시 지시 → "하겠다" 응답 후 git 확인 시작 단계에서 세션 종료. **핸드오버 갱신 미수행 → 562줄·"워크플로 회수"로 stale**. 재개 세션이 핸드오버 불신·디스크 실제상태(git diff + untracked) 직접 read 로 복구 성공(유실 0). **교훈**: 핸드오버는 *세션 종료 직전 최신 상태로 갱신 저장 완료까지가 1작업* — "하겠다" 선언 후 미저장 끊김 = 지시 불이행. 복구 시 핸드오버보다 git 실제 상태(diff/untracked) 우선 신뢰.
 
 ## 4. Chain 헤더 (누적)
-- HANDOVER_RB_2026-05-31 — RB Phase 0·1·**1B 완료**(Ch1 641줄, 무생략 보강 + Codex 물리오류 2 정정, PDF 13p, 커밋 `21cb9c9`). **현재 = 사용자 Decision Gate(3대 검토) 대기 → GO 시 Phase 2(step 43).**
+- HANDOVER_RB_2026-05-31 — RB Phase 0·1·**1B 완료**(Ch1 641→662줄, 무생략 보강 + Codex 물리오류 2 정정, PDF 13p, 커밋 `21cb9c9`→`9473a20`). Decision Gate(3대 검토) 통과.
+
+---
+
+## ★★ UPDATE 2026-06-01 (자율 완주) — RB-series 전체 완료
+사용자 위임("main 머지+이게 메인이다 / Ch1 방식 그대로 Ch2~끝까지 자율 + 단계별 commit/push + 챕터마다 빡센 검수 / 퇴근 즈음 완료")으로 **Ch2~Ch7 자율 순차 완주**. main 머지+push 완료.
+
+| Phase | 산출 | p | 적대검수 핵심 발견·정정 | 커밋 |
+|---|---|---|---|---|
+| 1 Ch1 | ch1_rebuilt 662줄 | 13 | ρ_G 1/J→mol/J(확정 뒤집힘) + 8 edits | 9473a20 |
+| 2 Ch2 가역반응열 | ch2 908줄 | 20 | q_irr 양정치 V_drive=V_n 전제·σ_j W/mol 차원 | 794af16 |
+| 3 Ch3 반응속도론 LevelB | ch3 834줄 | 18 | keystone 닫힘 r±비 ξ_j-무관·DOI 오귀속 | 4bd4c77 |
+| 4 Ch4 entropy발열 | ch4 929줄 | 19 | η 이중정의 CRITICAL 해소·C_j전제·extensivation | 3b616fd |
+| 5 Ch5 히스테리시스 | ch5 899줄 | 19 | ★충전부호 CRITICAL(V_eq^b에 s_φ^b 누락) | 4cf35fd |
+| 6 Ch6 피팅실무 | ch6 842줄 | 19 | ★Arrhenius 기울기 CRITICAL(유효엔탈피)·ε_tol FLAGGED | 227f453 |
+| 7 통합 | refs 9p + full **98p** | — | 무손실/정합 PASS(SA↔full 전건 1:1) | 22fd25c |
+
+- 방식: 챕터별 draft 서브에이전트 → 독립 3렌즈 적대검수(물리/수학/정합, sympy 교차검증) → 정정 → 2-pass 빌드 무결성 → commit/push/merge → result/ledger/AL_MASTER. Decision Gate = 빡센 적대검수로 대체.
+- **AL-1~69 통합 ledger 완성**(`RB_AL_MASTER.md`). 8종 재구성(Ch1~6+refs+full). 원본 6챕터 무수정·물리 변경 0.
+- **현재 = RB-series 완료, main HEAD `22fd25c`. 사용자 최종 검토 대기.** 각 result: `RB_LEDGER_CH1~6.md`+`RB_LEDGER_INTEGRATION.md`. 복구 spine: `RB_EXECUTION_LEDGER.md`(Phase 0~7 전건 PASS).
+- 잔여(선택): Codex 교차검증(지시 9, Ch1만 일부 수행), full overfull 29건(cosmetic), bibitem 인용장 주석 정밀화.
