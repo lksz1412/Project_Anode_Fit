@@ -1,0 +1,931 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.13}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail thermodynamic extension: reversible heat and dVdT}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{Graphite ICA tail — Chapter 2}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{Validity bound}
+\newtheorem*{warningbox}{Warning}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eqs}{\mathrm{eq}}
+\newcommand{\dyn}{\mathrm{dyn}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\tail}{\mathrm{tail}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\lag}{\mathrm{lag}}
+\newcommand{\thm}{\mathrm{th}}
+\newcommand{\calH}{\mathcal H}
+
+\title{\textbf{리튬이온전지 graphite anode 의 ICA(\,$dQ/dV$\,) tail 거동:\\
+reversible heat 와 \(dV/dT\) 로의 thermodynamic extension}\\[0.4em]
+\large Chapter 2}
+\author{Project\_Anode\_Fit}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}\begin{minipage}{0.93\textwidth}
+\small \textbf{Abstract.}
+Chapter 1 은 graphite anode ICA peak 뒤의 post-peak tail 을 activation barrier,
+electrode-potential assistance, relaxation-length spectrum \(A_L(\lambda;T,\psi)\) 로
+해석했다. Chapter 2 는 그 식을 reversible heat 와 \(dV/dT\) 로 확장한다. 핵심은
+\textbf{equilibrium entropy coefficient} 와 \textbf{dynamic apparent temperature derivative} 를
+분리하는 것이다. Equilibrium/quasi-static limit 에서는 charge conservation 을 fixed \(q\) 에서
+temperature 로 미분하여
+\[
+h_n^{\eqs}(q,T)
+=
+\left(\frac{\partial V_{n,\eqs}}{\partial T}\right)_q
+=
+-\frac{
+\left(\partial Q_{\bg}/\partial T\right)_V
++Q_p\left(\partial\Theta_{\eqs}/\partial T\right)_V}
+{C_{\bg}(V_{n,\eqs},T)+Q_p\left(\partial\Theta_{\eqs}/\partial V_n\right)_T}
+\]
+를 얻는다. 이 \(h_n^{\eqs}\) 가 reversible heat 의 entropy coefficient 이다. 반면
+galvanostatic ICA 중 관측되는 \((\partial V_{n,\app}/\partial T)_q\) 는 equilibrium term,
+kinetic-lag/history term, tail-spectrum redistribution, polarization term 이 섞인
+dynamic apparent derivative 이다. 따라서 Chapter 1 의 tail kernel 은 measured thermal
+response 를 설명하는 데 쓰일 수 있지만, 그 자체가 곧 reversible heat 는 아니다. 이 장의
+목표는 이 경계를 수식으로 고정하여 Chapter 3 의 reaction kinetics, Chapter 4 의 heat coupling,
+Chapter 5 의 charge/discharge hysteresis 로 넘어갈 수 있는 thermodynamic foundation 을 만드는 것이다.
+\end{minipage}\end{center}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Target system 과 Chapter 2 의 central separation}\label{sec:target}
+% ====================================================================
+
+본 문건의 대상은 리튬이온전지(LIB) graphite anode 의 incremental capacity analysis (ICA),
+즉 \(dQ/dV\) 곡선이다. 관심 구간은 staging transition 으로 생기는 peak 자체보다
+peak 이후의 post-peak tail 이다. 실험적으로 temperature 가 낮을수록 tail 이 길게 늘어지고,
+temperature 가 높을수록 tail 이 상대적으로 빠르게 끝난다. Chapter 1 은 이 현상을
+smooth activation barrier 와 relaxation-length spectrum 으로 설명했다. Barrier 는 어떤 지점에서
+상태를 갑자기 \(0\to1\) 로 바꾸는 threshold 가 아니라, local transition mode 가 equilibrium target 을
+따라가는 rate constant 를 정하는 free-energy quantity 이다.
+
+Chapter 2 에서 추가되는 질문은 다음이다.
+
+\begin{quote}
+Chapter 1 의 ICA-tail 식을 이용하여 reversible heat, entropy coefficient, 그리고
+\(dV/dT\) 를 어떻게 해석할 수 있는가?
+\end{quote}
+
+이 질문에 답하려면 가장 먼저 두 quantity 를 분리해야 한다.
+
+\[
+\text{equilibrium entropy coefficient}
+\quad\ne\quad
+\text{dynamic apparent temperature derivative}.
+\]
+
+Equilibrium entropy coefficient 는 충분히 relaxed 된 electrode 의 equilibrium potential
+\(V_{n,\eqs}\) 에 대해
+\[
+h_n^{\eqs}(q,T)
+\equiv
+\left(\frac{\partial V_{n,\eqs}}{\partial T}\right)_q
+\]
+로 정의된다. 이 quantity 는 reversible heat 와 직접 연결된다. 반면 galvanostatic ICA 중
+측정되는 apparent voltage \(V_{n,\app}\) 의 temperature derivative 는
+\[
+h_n^{\app}(q,T;\calH)
+\equiv
+\left(\frac{\partial V_{n,\app}}{\partial T}\right)_{q,\calH}
+\]
+처럼 protocol/history \(\calH\) 에 의존한다. 이 값은 equilibrium thermodynamics 뿐 아니라
+kinetic lag, spectrum redistribution, ohmic/contact polarization, transport polarization 을 함께 포함한다.
+
+\begin{warningbox}
+Raw apparent voltage 에서 얻은 \(dV/dT\) 를 곧바로 reversible heat 의 entropy coefficient 로
+사용하면 논리 오류가 생긴다. Chapter 2 의 핵심 deliverable 은 이 오류를 막는 분리식이다.
+\end{warningbox}
+
+% ====================================================================
+\section{Conventions}\label{sec:conventions}
+% ====================================================================
+
+\subsection{Coordinate 와 state variable}\label{sec:coordinate}
+
+Chapter 2 는 Chapter 1 의 convention 을 유지한다.
+
+\begin{longtable}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+\endhead
+\(q\) & normalized external charge coordinate. \(q\) 가 이 문건의 primary coordinate 이다. \\
+\(Q_{\ext}\) & dimensional external charge, \(Q_{\ext}=Q_{\cell}q\). \\
+\(Q_{\cell}\) & chosen cell/electrode capacity scale. \\
+\(V_n\) & internal graphite-anode potential coordinate in the theory. \\
+\(V_{n,\eqs}\) & equilibrium or quasi-static graphite-anode potential. \\
+\(V_{n,\app}\) & measured/apparent graphite-anode potential after polarization is included. \\
+\(\theta_j\) & local transition progress of mode \(j\). \\
+\(\theta_{\eqs,j}\) & equilibrium target of mode \(j\). \\
+\(\Theta\) & summed transition inventory entering charge conservation. \\
+\(\Theta_{\eqs}\) & equilibrium transition inventory. \\
+\(r_j\) & lag variable, \(r_j=\theta_{\eqs,j}-\theta_j\). \\
+\(L_q\) & normalized relaxation length along \(q\). \\
+\(A_L(\lambda;T,\psi)\) & relaxation-length spectrum. \\
+\(\psi\) & electrode-potential assistance coordinate. \\
+\bottomrule
+\end{longtable}
+
+No separate transformed progress coordinate is introduced. If a future fitting layer wants such a coordinate,
+that transform must be explicitly derived from \(q\), \(V_n\), or \(\theta_j\), not silently substituted.
+
+\subsection{Current, heat sign, and thermal quantities}\label{sec:signs}
+
+Thermal equations are sign-sensitive, and the sign convention differs across battery literature.
+This manuscript therefore carries the current sign explicitly.
+
+\begin{longtable}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+\endhead
+\(I_s\) & signed current in the chosen energy-balance convention. Reversing the current convention changes the sign of \(I_s\), not the thermodynamic derivation. \\
+\(|I|\) & current magnitude. Chapter 1 relaxation length uses \(|I|\). \\
+\(\dot Q_{\rev,n}\) & reversible heat rate assigned to graphite anode; positive means heat generation into the cell body under the stated sign convention. \\
+\(\dot Q_{\irr,n}\) & irreversible heat rate assigned to graphite anode; positive definite in magnitude form. \\
+\(h_n^{\eqs}\) & equilibrium entropy coefficient, \((\partial V_{n,\eqs}/\partial T)_q\). \\
+\(h_n^{\dyn}\) & dynamic internal temperature derivative, before apparent-potential polarization is added. \\
+\(h_n^{\app}\) & apparent measured derivative, \((\partial V_{n,\app}/\partial T)_{q,\calH}\). \\
+\(C_{\thm}\) & lumped thermal capacitance for later heat balance. \\
+\(H_{\thm}\) & lumped heat-transfer coefficient to ambient. \\
+\bottomrule
+\end{longtable}
+
+To avoid hiding a sign choice inside the equations, reversible heat is written as
+\[
+\dot Q_{\rev,n}=-I_sT h_n^{\eqs}.
+\]
+This is the common Bernardi/Newman-style sign form when \(I_s\) is the current sign used in the
+corresponding electrochemical energy balance \cite{bernardi1985,newman2004}. If another convention is used,
+the same physics is obtained by changing the sign definition of \(I_s\). The magnitude of the reversible heat
+scale is
+\[
+|\dot Q_{\rev,n}|=|I|T|h_n^{\eqs}|.
+\]
+
+% ====================================================================
+\section{Chapter 1 handoff}\label{sec:handoff}
+% ====================================================================
+
+Chapter 1 starts from charge conservation:
+\begin{equation}
+Q_{\cell}q
+=
+Q_{\bg}(V_n,T)+Q_p\Theta(V_n,q,T).
+\label{eq:dynamic_charge_balance}
+\end{equation}
+Here \(Q_{\bg}\) is the smooth background charge storage, and \(Q_p\Theta\) is the charge carried by
+graphite transition inventory. \(Q_p\) is a capacity scale for the transition inventory.
+
+At fixed temperature and along a dynamic galvanostatic path, differentiating Eq.~\eqref{eq:dynamic_charge_balance}
+with respect to \(q\) gives
+\begin{equation}
+\frac{\dd V_n}{\dd q}
+=
+\frac{Q_{\cell}-Q_p\,\dd\Theta/\dd q}{C_{\bg}(V_n,T)},
+\qquad
+C_{\bg}(V_n,T)\equiv
+\left(\frac{\partial Q_{\bg}}{\partial V_n}\right)_T.
+\label{eq:ch1_dvdq}
+\end{equation}
+This relation is the bridge from transition kinetics to ICA shape.
+
+Chapter 1 then assigns each local transition mode a smooth effective barrier
+\begin{equation}
+\Delta G_{\eff,j}(V_n,T,\psi)
+=
+\Delta G_{a,j}(T)-\chi_j A_j(V_n,\psi),
+\label{eq:effective_barrier}
+\end{equation}
+where \(A_j\) is a smooth assistance function. The rate constant may be written in Eyring form,
+\begin{equation}
+k_j(G,T,\psi)
+=
+k_{0,j}(T)
+\exp\!\left[-\frac{G-W_{\psi,j}}{RT}\right].
+\label{eq:rate}
+\end{equation}
+In the spectral notation, \(G\) is the distributed bare barrier coordinate and \(W_{\psi,j}\) is the smooth
+potential-assistance work term. Thus \(G-W_{\psi,j}\) is the effective barrier entering the exponential rate.
+Under galvanostatic forcing, this creates a normalized relaxation length
+\begin{equation}
+L_q(G,T,\psi)
+=
+\frac{|I|}{Q_{\cell}k_{0,j}(T)}
+\exp\!\left[\frac{G-W_{\psi,j}}{RT}\right].
+\label{eq:Lq}
+\end{equation}
+
+The observed post-peak tail is not one exponential length. It is a spectrum integral:
+\begin{equation}
+\frac{\dd\Theta_{\tail}}{\dd q}(q;T,\psi)
+\simeq
+\int_0^\infty
+A_L(\lambda;T,\psi)\lambda^{-1}
+\exp[-(q-q_a)/\lambda]\,\dd\lambda,
+\qquad q>q_a.
+\label{eq:tail_kernel}
+\end{equation}
+Low temperature increases the statistical weight of long \(L_q\) modes because the exponential mapping from
+barrier to relaxation length becomes sharper. Electrode-potential assistance shifts modes toward shorter
+\(L_q\) by lowering the effective barrier smoothly.
+
+Chapter 2 does not alter this mechanism. Instead, it asks how the same thermodynamic structure should enter
+temperature derivatives and heat.
+
+% ====================================================================
+\section{Equilibrium \(dV/dT\) from charge conservation}\label{sec:eq_dvdt}
+% ====================================================================
+
+\subsection{Why the equilibrium limit must be written separately}\label{sec:eq_need}
+
+Reversible heat is a thermodynamic quantity. It belongs to a reversible or quasi-static path in which the
+electrode state is relaxed to its equilibrium target at each \(q\) and \(T\). Therefore the starting point is
+not Eq.~\eqref{eq:dynamic_charge_balance} with history-dependent \(\Theta\), but its equilibrium version:
+\begin{equation}
+Q_{\cell}q
+=
+Q_{\bg}(V_{n,\eqs},T)
++Q_p\Theta_{\eqs}(V_{n,\eqs},T).
+\label{eq:eq_charge_balance}
+\end{equation}
+The subscript \(\eqs\) means that \(\Theta_{\eqs}\) is computed from equilibrium targets
+\(\theta_{\eqs,j}\). No kinetic lag variable \(r_j\) appears in Eq.~\eqref{eq:eq_charge_balance}.
+
+\subsection{Step-by-step fixed-\(q\) differentiation}\label{sec:differentiate}
+
+Define
+\begin{equation}
+F(V,T;q)
+=
+Q_{\bg}(V,T)+Q_p\Theta_{\eqs}(V,T)-Q_{\cell}q.
+\label{eq:F_definition}
+\end{equation}
+The equilibrium potential \(V_{n,\eqs}(q,T)\) is the implicit solution of
+\begin{equation}
+F(V_{n,\eqs}(q,T),T;q)=0.
+\label{eq:F_zero}
+\end{equation}
+
+Now hold \(q\) fixed and differentiate Eq.~\eqref{eq:F_zero} with respect to \(T\). Since \(V_{n,\eqs}\) is
+itself a function of \(T\), the chain rule gives
+\begin{equation}
+0
+=
+\left(\frac{\partial F}{\partial V}\right)_T
+\left(\frac{\partial V_{n,\eqs}}{\partial T}\right)_q
++
+\left(\frac{\partial F}{\partial T}\right)_V.
+\label{eq:implicit_step}
+\end{equation}
+The two partial derivatives are
+\begin{align}
+\left(\frac{\partial F}{\partial V}\right)_T
+&=
+\left(\frac{\partial Q_{\bg}}{\partial V}\right)_T
++Q_p\left(\frac{\partial\Theta_{\eqs}}{\partial V}\right)_T
+=
+C_{\bg}(V_{n,\eqs},T)
++Q_p\left(\frac{\partial\Theta_{\eqs}}{\partial V}\right)_T,
+\label{eq:FV}\\
+\left(\frac{\partial F}{\partial T}\right)_V
+&=
+\left(\frac{\partial Q_{\bg}}{\partial T}\right)_V
++Q_p\left(\frac{\partial\Theta_{\eqs}}{\partial T}\right)_V.
+\label{eq:FT}
+\end{align}
+Substituting Eqs.~\eqref{eq:FV} and \eqref{eq:FT} into Eq.~\eqref{eq:implicit_step} gives
+\begin{equation}
+h_n^{\eqs}(q,T)
+\equiv
+\left(\frac{\partial V_{n,\eqs}}{\partial T}\right)_q
+=
+-\frac{
+\left(\partial Q_{\bg}/\partial T\right)_V
++Q_p\left(\partial\Theta_{\eqs}/\partial T\right)_V}
+{C_{\bg}(V_{n,\eqs},T)
++Q_p\left(\partial\Theta_{\eqs}/\partial V\right)_T}.
+\label{eq:h_eq}
+\end{equation}
+
+Eq.~\eqref{eq:h_eq} is the central Chapter 2 equilibrium equation. Its denominator has units of
+\(\mathrm{C/V}\), because \(C_{\bg}\) is differential charge storage and
+\(Q_p(\partial\Theta_{\eqs}/\partial V)_T\) is transition differential capacity. Its numerator has units of
+\(\mathrm{C/K}\). Therefore the ratio has units of \(\mathrm{V/K}\), as required for \(dV/dT\).
+
+\begin{groundingbox}
+Eq.~\eqref{eq:h_eq} is just implicit differentiation of charge conservation. No fitting assumption is used.
+The only physical assumption is that the state is equilibrium or quasi-static, so that
+\(\Theta\) can be replaced by \(\Theta_{\eqs}\).
+\end{groundingbox}
+
+\subsection{Physical reading of the numerator and denominator}\label{sec:physical_reading}
+
+The denominator of Eq.~\eqref{eq:h_eq},
+\begin{equation}
+C_{\eqs}(q,T)
+\equiv
+C_{\bg}(V_{n,\eqs},T)
++Q_p\left(\frac{\partial\Theta_{\eqs}}{\partial V}\right)_T,
+\label{eq:Ceq}
+\end{equation}
+is the equilibrium differential capacity-like response. Near a staging transition, this term becomes large
+because a small potential change moves a large amount of transition inventory.
+
+The numerator,
+\begin{equation}
+B_{\eqs}(q,T)
+\equiv
+\left(\frac{\partial Q_{\bg}}{\partial T}\right)_V
++Q_p\left(\frac{\partial\Theta_{\eqs}}{\partial T}\right)_V,
+\label{eq:Beq}
+\end{equation}
+is the charge-inventory shift caused by temperature at fixed potential. If temperature changes the equilibrium
+target \(\theta_{\eqs,j}\), then holding \(q\) fixed requires the potential to shift in the opposite direction
+so that total charge remains conserved. That compensation is exactly the minus sign in Eq.~\eqref{eq:h_eq}.
+
+This explains why the entropy coefficient can have sharp features near the same graphite transition region
+that creates ICA peaks. The same transition inventory appears in both denominator and numerator, but through
+different partial derivatives.
+
+% ====================================================================
+\section{Thermodynamic meaning and reversible heat}\label{sec:rev_heat}
+% ====================================================================
+
+\subsection{Entropy coefficient as an operational thermodynamic quantity}\label{sec:entropy_coeff}
+
+For a reversible electrochemical insertion reaction, electrode potential is linked to reaction free energy.
+Taking a temperature derivative of that reversible potential gives an entropy coefficient. Because sign
+conventions differ for anode potential, cathode potential, full-cell voltage, charge current, and discharge
+current, this manuscript uses the operational definition
+\begin{equation}
+h_n^{\eqs}(q,T)
+\equiv
+\left(\frac{\partial V_{n,\eqs}}{\partial T}\right)_q.
+\label{eq:h_operational}
+\end{equation}
+The usual thermodynamic relation can be written without hiding the convention. Let the reversible molar
+free-energy change for the graphite electrode be
+\begin{equation}
+\Delta \bar G_n(q,T)=\sigma_VF V_{n,\eqs}(q,T),
+\qquad \sigma_V\in\{+1,-1\},
+\label{eq:Gbar_sign}
+\end{equation}
+where \(\sigma_V\) records the chosen electrode-potential orientation. Then
+\begin{equation}
+\Delta \bar S_n(q,T)
+=
+-\left(\frac{\partial \Delta \bar G_n}{\partial T}\right)_q
+=
+-\sigma_VF h_n^{\eqs}(q,T).
+\label{eq:Sbar_sign}
+\end{equation}
+If the signed molar reaction rate is written as \(\dot n_s=\sigma_I I_s/F\), the reversible heat rate is
+\begin{equation}
+\dot Q_{\rev,n}
+=
+T\dot n_s\Delta \bar S_n
+=
+-(\sigma_I\sigma_V)I_sT h_n^{\eqs}.
+\label{eq:qrev_sign_general}
+\end{equation}
+The convention used below absorbs \(\sigma_I\sigma_V=1\) into the definition of \(I_s\).
+The connection to reversible heat is then made with the signed-current convention stated in
+Section~\ref{sec:signs}:
+\begin{equation}
+\dot Q_{\rev,n}(q,T)
+=
+-I_sT h_n^{\eqs}(q,T).
+\label{eq:qrev}
+\end{equation}
+This is the electrode-level form of the entropy heat term used in battery energy-balance theory
+\cite{bernardi1985,thomas2003,newman2004}.
+
+Eq.~\eqref{eq:qrev} should be read in two layers.
+
+\begin{enumerate}[leftmargin=2em]
+\item The thermodynamic layer is \(h_n^{\eqs}\), which is obtained from equilibrium potential.
+\item The sign layer is \(I_s\), which depends on the adopted current convention.
+\end{enumerate}
+
+If another report writes reversible heat as \(+I_sT(\partial U/\partial T)\), the difference is usually a
+definition of \(I_s\) or of electrode potential orientation, not a different thermodynamic principle.
+
+\subsection{Why \(V_{n,\app}\) cannot be used directly}\label{sec:not_app}
+
+Measured potential during current flow may be written schematically as
+\begin{equation}
+V_{n,\app}(q,T;\calH)
+=
+V_n(q,T;\calH)+\eta_n(q,T;\calH),
+\label{eq:Vapp}
+\end{equation}
+where \(\eta_n\) collects ohmic, contact, charge-transfer, transport, and other polarization terms. Therefore
+\begin{equation}
+\left(\frac{\partial V_{n,\app}}{\partial T}\right)_{q,\calH}
+=
+\left(\frac{\partial V_n}{\partial T}\right)_{q,\calH}
++
+\left(\frac{\partial\eta_n}{\partial T}\right)_{q,\calH}.
+\label{eq:app_derivative}
+\end{equation}
+The second term is not reversible entropy. It contains resistance temperature dependence, exchange-current
+temperature dependence, transport temperature dependence, and history-dependent lag. Thus
+\[
+h_n^{\app}=h_n^{\eqs}
+\quad\text{only after equilibrium relaxation and polarization correction.}
+\]
+
+\begin{warningbox}
+Apparent \(dV/dT\) is experimentally useful, but it is not automatically an entropy coefficient. Treating it
+as reversible heat without removing polarization and kinetic lag double-counts dynamic effects.
+\end{warningbox}
+
+% ====================================================================
+\section{Dynamic apparent \(dV/dT\)}\label{sec:dynamic_dvdt}
+% ====================================================================
+
+\subsection{History-dependent charge balance}\label{sec:history_balance}
+
+During finite-current ICA, the transition inventory is not necessarily at equilibrium. The state depends on the
+protocol history \(\calH\), including current, prior temperature, and prior potential path:
+\begin{equation}
+Q_{\cell}q
+=
+Q_{\bg}(V_n,T)+Q_p\Theta(V_n,q,T;\calH).
+\label{eq:dyn_balance}
+\end{equation}
+The fixed-\(q\) temperature derivative follows the same implicit method as Section~\ref{sec:eq_dvdt}, but the
+state is now dynamic. Define
+\begin{equation}
+F_{\dyn}(V,T;q,\calH)
+=
+Q_{\bg}(V,T)+Q_p\Theta(V,q,T;\calH)-Q_{\cell}q.
+\label{eq:Fdyn}
+\end{equation}
+Then
+\begin{equation}
+h_n^{\dyn}(q,T;\calH)
+\equiv
+\left(\frac{\partial V_n}{\partial T}\right)_{q,\calH}
+=
+-\frac{
+\left(\partial Q_{\bg}/\partial T\right)_V
++Q_p\left(\partial\Theta/\partial T\right)_{V,q,\calH}}
+{C_{\bg}(V_n,T)+Q_p\left(\partial\Theta/\partial V\right)_{T,q,\calH}}.
+\label{eq:h_dyn}
+\end{equation}
+This resembles Eq.~\eqref{eq:h_eq}, but the meaning is different. Eq.~\eqref{eq:h_eq} is a thermodynamic
+equilibrium derivative. Eq.~\eqref{eq:h_dyn} is a protocol-dependent dynamic derivative.
+
+\subsection{Decomposition into equilibrium, lag, and polarization pieces}\label{sec:decomp}
+
+Write the dynamic inventory as
+\begin{equation}
+\Theta(V_n,q,T;\calH)
+=
+\Theta_{\eqs}(V_n,T)-R_{\Theta}(V_n,q,T;\calH),
+\label{eq:Theta_lag}
+\end{equation}
+where \(R_{\Theta}\) is the total inventory lag. In a single mode, \(R_{\Theta}\) is analogous to
+\(r_j=\theta_{\eqs,j}-\theta_j\); for a spectrum, it is the summed lag across modes.
+
+Substituting Eq.~\eqref{eq:Theta_lag} into Eq.~\eqref{eq:h_dyn} shows why dynamic \(dV/dT\) differs from
+equilibrium \(dV/dT\). The numerator contains
+\begin{equation}
+\left(\frac{\partial\Theta}{\partial T}\right)_{V,q,\calH}
+=
+\left(\frac{\partial\Theta_{\eqs}}{\partial T}\right)_V
+-
+\left(\frac{\partial R_{\Theta}}{\partial T}\right)_{V,q,\calH}.
+\label{eq:Theta_T_split}
+\end{equation}
+The denominator contains
+\begin{equation}
+\left(\frac{\partial\Theta}{\partial V}\right)_{T,q,\calH}
+=
+\left(\frac{\partial\Theta_{\eqs}}{\partial V}\right)_T
+-
+\left(\frac{\partial R_{\Theta}}{\partial V}\right)_{T,q,\calH}.
+\label{eq:Theta_V_split}
+\end{equation}
+Therefore the same graphite transition can appear in two ways:
+\begin{enumerate}[leftmargin=2em]
+\item as equilibrium entropy structure through \(\Theta_{\eqs}\);
+\item as dynamic tail and lag structure through \(R_{\Theta}\).
+\end{enumerate}
+The measured apparent derivative then adds polarization:
+\begin{equation}
+h_n^{\app}(q,T;\calH)
+=
+h_n^{\dyn}(q,T;\calH)
++
+\left(\frac{\partial \eta_n}{\partial T}\right)_{q,\calH}.
+\label{eq:h_app}
+\end{equation}
+
+Eq.~\eqref{eq:h_app} is the practical warning equation. If a thermal experiment measures
+\((\partial V_{n,\app}/\partial T)_q\) under current, it measures \(h_n^{\app}\), not necessarily
+\(h_n^{\eqs}\).
+
+% ====================================================================
+\section{How the Chapter 1 tail kernel enters thermal response}\label{sec:tail_thermal}
+% ====================================================================
+
+\subsection{Tail kernel as dynamic inventory redistribution}\label{sec:tail_inventory}
+
+In Chapter 1, the post-peak tail contribution is
+\begin{equation}
+g_{\tail}(q;T,\psi)
+\equiv
+\frac{\dd\Theta_{\tail}}{\dd q}
+\simeq
+\int_0^\infty
+A_L(\lambda;T,\psi)\lambda^{-1}
+\exp[-(q-q_a)/\lambda]\,\dd\lambda.
+\label{eq:g_tail}
+\end{equation}
+This is a dynamic inventory-shape equation. It describes how much transition progress appears per unit
+charge coordinate after the peak. Since \(A_L\) depends on \(T\) and \(\psi\), the tail shape also changes
+with temperature and electrode-potential assistance.
+
+In \(\lambda\)-space, \(\lambda\) is the integration coordinate. If the post-peak coordinate is
+peak-aligned, \(s=q-q_a\), then \(s\) is held fixed and the explicit temperature dependence of
+Eq.~\eqref{eq:g_tail} enters through \(A_L\):
+\begin{equation}
+\left(\frac{\partial g_{\tail}}{\partial T}\right)_{s,\psi}
+\simeq
+\int_0^\infty
+\left(\frac{\partial A_L(\lambda;T,\psi)}{\partial T}\right)_{\lambda,\psi}
+\lambda^{-1}
+\exp[-s/\lambda]\,\dd\lambda.
+\label{eq:g_tail_T_lambda}
+\end{equation}
+This form is clean because the kernel is written in the already transformed relaxation-length coordinate.
+If the derivative is instead taken at fixed absolute \(q\), and the peak anchor \(q_a(T,\psi)\) shifts with
+temperature, the chain rule adds
+\begin{equation}
+\left(\frac{\partial g_{\tail}}{\partial T}\right)_{q,\psi}
+\simeq
+\int_0^\infty
+\left[
+\left(\frac{\partial A_L}{\partial T}\right)_{\lambda,\psi}\lambda^{-1}
++
+A_L(\lambda;T,\psi)\lambda^{-2}
+\left(\frac{\partial q_a}{\partial T}\right)_{\psi}
+\right]
+\exp[-(q-q_a)/\lambda]\,\dd\lambda.
+\label{eq:g_tail_T_absolute}
+\end{equation}
+Therefore a measurement must state whether tails are compared in absolute \(q\) or after peak alignment.
+
+In the original barrier coordinate \(G\), the same derivative is less compact because the length itself depends
+on \(T\):
+\begin{equation}
+\lambda=L_q(G,T,\psi)
+=
+\frac{|I|}{Q_{\cell}k_0(T)}
+\exp\!\left[\frac{G-W_{\psi}}{RT}\right].
+\label{eq:lambda_G}
+\end{equation}
+Then temperature changes both the barrier-to-length mapping and the barrier distribution. Schematically,
+\begin{equation}
+\frac{\partial}{\partial T}
+\left[
+\rho_G(G;T,\psi)
+\frac{1}{L_q(G,T,\psi)}
+\exp\!\left(-\frac{q-q_a}{L_q(G,T,\psi)}\right)
+\right]
+\label{eq:G_space_derivative}
+\end{equation}
+contains terms from \(\partial_T\rho_G\), \(\partial_Tk_0\), and
+\(\partial_T\exp[(G-W_\psi)/(RT)]\). This is why \(\lambda\)-space is the safer manuscript form for the
+thermal extension.
+
+\subsection{Low-temperature and high-temperature tail interpretation}\label{sec:temperature_tail}
+
+Eq.~\eqref{eq:lambda_G} shows the qualitative trend. For modes with positive effective barrier,
+lower temperature increases \(L_q\) exponentially. A broader weight at large \(\lambda\) makes the post-peak
+tail long. Higher temperature reduces the exponential sensitivity and shifts the observable spectrum toward
+shorter relaxation lengths. Electrode-potential assistance \(W_\psi\) has a similar shortening direction:
+larger assistance lowers the effective barrier and decreases \(L_q\).
+
+The important Chapter 2 consequence is not that tail area equals reversible heat. The correct statement is:
+\begin{quote}
+Temperature changes the dynamic inventory lag, and that lag changes apparent \(dV/dT\) and measured thermal
+response. Reversible heat, however, remains tied to equilibrium \(h_n^{\eqs}\).
+\end{quote}
+
+Thus the same transition region can create both an entropy-coefficient feature and a dynamic tail feature, but
+they are not the same mathematical object.
+
+% ====================================================================
+\section{Two-layer reduced closure}\label{sec:two_layer}
+% ====================================================================
+
+\subsection{Layer E: equilibrium thermodynamic layer}\label{sec:layer_E}
+
+Layer E is the conservative thermodynamic layer. It uses equilibrium quantities only:
+\[
+\Theta_{\eqs},\quad V_{n,\eqs},\quad h_n^{\eqs},\quad \dot Q_{\rev,n}.
+\]
+The exact implicit expression is Eq.~\eqref{eq:h_eq}. If a reduced basis is needed for interpretation or
+fitting, it must be introduced as an approximation to \(h_n^{\eqs}\), not as a replacement for the definition.
+
+Let \(\phi_j^{\eqs}(q,T)\) be normalized equilibrium transition shapes:
+\begin{equation}
+\phi_j^{\eqs}(q,T)
+=
+\frac{\left|\dd\theta_{\eqs,j}/\dd q\right|}
+{\int \left|\dd\theta_{\eqs,j}/\dd q\right|\,\dd q}.
+\label{eq:phi_eq}
+\end{equation}
+Then a reduced entropy-coefficient expansion may be written as
+\begin{equation}
+h_n^{\eqs}(q,T)
+\approx
+h_{\bg}^{\eqs}(q,T)
++
+\sum_j b_j(T)\phi_j^{\eqs}(q,T).
+\label{eq:h_eq_basis}
+\end{equation}
+Here \(b_j(T)\) has units of \(\mathrm{V/K}\). Eq.~\eqref{eq:h_eq_basis} is a basis approximation to the
+thermodynamic result, and its validity must be checked against equilibrium OCV temperature-step data.
+
+\subsection{Layer D: dynamic apparent layer}\label{sec:layer_D}
+
+Layer D describes finite-current apparent response. It may use Chapter 1 tail kernels:
+\begin{equation}
+h_n^{\app}(q,T;\calH)
+\approx
+h_n^{\eqs}(q,T)
++
+h_{\lag}(q,T;\calH)
++
+h_{\pol}(q,T;\calH),
+\label{eq:h_app_decomp}
+\end{equation}
+where
+\begin{align}
+h_{\lag}(q,T;\calH)
+&\text{ is generated by }R_{\Theta}\text{ and the tail spectrum},\\
+h_{\pol}(q,T;\calH)
+&=
+\left(\frac{\partial \eta_n}{\partial T}\right)_{q,\calH}.
+\end{align}
+A minimal tail-shape expansion is
+\begin{equation}
+h_{\lag}(q,T;\calH)
+\approx
+\sum_m c_m(T,\calH)\,
+\int_0^\infty
+A_{L,m}(\lambda;T,\psi)
+\lambda^{-1}\exp[-(q-q_{a,m})/\lambda]\,\dd\lambda.
+\label{eq:h_lag_basis}
+\end{equation}
+The coefficients \(c_m\) are not entropy coefficients. They convert dynamic inventory lag into apparent
+temperature response under a specified protocol. This distinction is essential: Layer D is useful for fitting
+measured finite-current thermal/voltage behavior, but it does not replace Layer E.
+
+\begin{boundbox}
+Layer E can be used to discuss reversible heat. Layer D can be used to discuss apparent heat-shape and
+finite-current \(dV/dT\). A manuscript, patent claim, or model should not move a parameter from Layer D into
+Layer E without an equilibrium reduction or an independent measurement.
+\end{boundbox}
+
+% ====================================================================
+\section{Irreversible heat and double-counting boundary}\label{sec:irr_heat}
+% ====================================================================
+
+Irreversible heat is associated with finite driving force and dissipative processes. With the apparent potential
+split in Eq.~\eqref{eq:Vapp}, a reduced electrode-level expression is
+\begin{equation}
+\dot Q_{\irr,n}
+\simeq
+|I|\,|\eta_n(q,T;\calH)|.
+\label{eq:qirr_eta}
+\end{equation}
+If \(\eta_n\) is dominated by a positive effective resistance \(R_n\), then
+\begin{equation}
+\dot Q_{\irr,n}
+\simeq
+|I|^2R_n(q,T;\calH).
+\label{eq:qirr_R}
+\end{equation}
+Eq.~\eqref{eq:qirr_R} is an approximation, not a definition. It groups several dissipative mechanisms into
+one resistance-like term.
+
+The lag variable \(R_{\Theta}\) can also reflect dissipation because a state that relaxes toward equilibrium
+under finite driving force produces entropy. However, Chapter 2 does not need a separate microscopic heat
+law for that lag. The conservative boundary is:
+\begin{enumerate}[leftmargin=2em]
+\item reversible heat uses \(h_n^{\eqs}\);
+\item ohmic and overpotential losses enter \(\dot Q_{\irr,n}\);
+\item kinetic-lag tail terms enter apparent response unless a later chapter derives their dissipative heat
+      from a specific reaction-kinetic model.
+\end{enumerate}
+This avoids double counting the same finite-current effect as both reversible entropy heat and irreversible
+polarization heat.
+
+% ====================================================================
+\section{Lumped thermal balance as a handoff}\label{sec:thermal_balance}
+% ====================================================================
+
+Once reversible and irreversible terms are separated, a later heat-coupled model may write
+\begin{equation}
+C_{\thm}\frac{\dd T}{\dd t}
+=
+\dot Q_{\rev,n}
++
+\dot Q_{\irr,n}
++
+\dot Q_{\other}
+-
+H_{\thm}(T-T_{\amb}).
+\label{eq:lumped_heat}
+\end{equation}
+Here \(\dot Q_{\other}\) may include cathode heat, electrolyte heat, contact heat, side reactions, or external
+heat inputs. Eq.~\eqref{eq:lumped_heat} is a bookkeeping equation for heat coupling. This chapter does not
+solve it and does not use it to fit temperature.
+
+The reason to include Eq.~\eqref{eq:lumped_heat} is architectural. Chapter 1 explains the ICA tail.
+Chapter 2 identifies which part of the temperature response is equilibrium entropy and which part is dynamic
+or dissipative. Chapter 4 can later insert Chapter 3 reaction kinetics into this heat balance without changing
+the definitions made here.
+
+% ====================================================================
+\section{Measurement and identifiability}\label{sec:measurement}
+% ====================================================================
+
+\subsection{How to estimate \(h_n^{\eqs}\)}\label{sec:measure_eq}
+
+The clean measurement for \(h_n^{\eqs}\) is an equilibrium or near-equilibrium temperature-step OCV method.
+At a fixed \(q\), the electrode is relaxed, temperature is changed by a small amount, the electrode is relaxed
+again, and the equilibrium potential shift is measured:
+\begin{equation}
+h_n^{\eqs}(q,T)
+\approx
+\frac{V_{n,\eqs}(q,T+\Delta T)-V_{n,\eqs}(q,T)}{\Delta T}.
+\label{eq:measure_heq}
+\end{equation}
+The word ``relaxed'' is not a detail. Without sufficient relaxation, the measurement contains \(h_{\lag}\).
+
+\subsection{What galvanostatic thermal ICA measures}\label{sec:measure_dyn}
+
+In finite-current ICA, the measurement is closer to
+\begin{equation}
+\frac{V_{n,\app}(q,T_2;\calH_2)-V_{n,\app}(q,T_1;\calH_1)}{T_2-T_1}.
+\label{eq:measure_happ}
+\end{equation}
+Unless \(\calH_1\) and \(\calH_2\) are matched and polarization is corrected, Eq.~\eqref{eq:measure_happ}
+does not isolate \(h_n^{\eqs}\). It is still valuable, but its interpretation belongs to Layer D.
+
+\subsection{Identifiability table}\label{sec:identifiability}
+
+\begin{longtable}{@{}p{0.24\textwidth}p{0.32\textwidth}p{0.34\textwidth}@{}}
+\toprule
+Quantity & Best evidence & Main risk \\
+\midrule
+\endhead
+\(h_n^{\eqs}\) & relaxed OCV temperature-step or quasi-static equilibrium map & contamination by incomplete relaxation \\
+\(h_{\lag}\) & rate-dependent ICA tail change across \(T\), \(I\), and \(\psi\) & confusion with entropy coefficient \\
+\(h_{\pol}\) & impedance, pulse, resistance, or overpotential correction & grouping multiple polarization mechanisms into one term \\
+\(A_L(\lambda;T,\psi)\) & post-peak tail shape and its rate/temperature dependence & non-unique inversion from finite data \\
+\(\dot Q_{\irr,n}\) & calorimetry plus polarization model & double counting with lag or reversible heat \\
+\bottomrule
+\end{longtable}
+
+The table states a practical rule: a dynamic ICA tail feature can support the existence of a relaxation-length
+spectrum, but it does not by itself identify the equilibrium entropy coefficient.
+
+% ====================================================================
+\section{Validity bounds and failure modes}\label{sec:validity}
+% ====================================================================
+
+The Chapter 2 derivation rests on the following assumptions.
+
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{Local thermal uniformity.} The electrode region represented by \(T\) is treated as locally
+      isothermal. Large through-thickness gradients require a spatial thermal model.
+\item \textbf{Equilibrium limit for reversible heat.} Eq.~\eqref{eq:h_eq} and Eq.~\eqref{eq:qrev} require
+      equilibrium or quasi-static states.
+\item \textbf{Smooth assistance.} Electrode-potential assistance changes the effective barrier smoothly; it
+      is not a discontinuous switch.
+\item \textbf{Layer separation.} Dynamic tail terms are not called reversible heat unless an equilibrium
+      reduction is shown.
+\item \textbf{Finite-current history.} \(h_n^{\dyn}\) and \(h_n^{\app}\) depend on protocol history \(\calH\).
+\item \textbf{Reduced basis caution.} Eq.~\eqref{eq:h_eq_basis} and Eq.~\eqref{eq:h_lag_basis} are reduced
+      representations. They do not replace the definitions in Eq.~\eqref{eq:h_eq} and Eq.~\eqref{eq:h_app}.
+\end{enumerate}
+
+Failure is expected if one tries to infer \(h_n^{\eqs}\) from finite-current voltage shifts without relaxation
+or polarization correction. Failure is also expected if a single Gaussian peak is forced to represent the
+post-peak tail, because Chapter 1 already shows that a barrier distribution maps exponentially into a
+relaxation-length spectrum.
+
+% ====================================================================
+\section{Chapter handoff}\label{sec:next}
+% ====================================================================
+
+Chapter 2 produces three outputs for later chapters:
+\begin{align}
+h_n^{\eqs}(q,T)
+&=
+-\frac{
+\left(\partial Q_{\bg}/\partial T\right)_V
++Q_p\left(\partial\Theta_{\eqs}/\partial T\right)_V}
+{C_{\bg}(V_{n,\eqs},T)
++Q_p\left(\partial\Theta_{\eqs}/\partial V\right)_T},
+\label{eq:handoff_heq}\\
+\dot Q_{\rev,n}
+&=
+-I_sT h_n^{\eqs},
+\label{eq:handoff_qrev}\\
+h_n^{\app}
+&=
+h_n^{\dyn}
++
+\left(\partial\eta_n/\partial T\right)_{q,\calH}.
+\label{eq:handoff_happ}
+\end{align}
+
+Chapter 3 can now expand \(k_j\), \(\eta_n\), and \(R_{\Theta}\) using electrochemical reaction kinetics.
+Chapter 4 can insert those kinetic terms into heat generation and thermal balance. Chapter 5 can use the
+same separation to interpret charge/discharge hysteresis: an equilibrium entropy feature should be symmetric
+under proper equilibrium mapping, while dynamic lag and polarization terms need not be symmetric.
+
+% ====================================================================
+\section{Conclusion}\label{sec:conclusion}
+% ====================================================================
+
+Chapter 2 fixes the thermodynamic boundary required for a paper-level graphite ICA theory. The equilibrium
+temperature derivative is obtained by fixed-\(q\) implicit differentiation of equilibrium charge conservation.
+That derivative, \(h_n^{\eqs}\), is the entropy coefficient used for reversible heat. The finite-current
+apparent derivative, \(h_n^{\app}\), is a different quantity because it contains kinetic lag, tail-spectrum
+redistribution, and polarization. Chapter 1's relaxation-length spectrum remains central, but its Chapter 2
+role is to explain dynamic thermal response and apparent \(dV/dT\), not to replace equilibrium thermodynamics.
+
+\begin{thebibliography}{9}
+
+\bibitem{bernardi1985}
+D. Bernardi, E. Pawlikowski, and J. Newman,
+``A General Energy Balance for Battery Systems,''
+\emph{Journal of The Electrochemical Society}, 132(1), 5--12 (1985).
+DOI: \href{https://doi.org/10.1149/1.2113792}{10.1149/1.2113792}.
+
+\bibitem{thomas2003}
+K. E. Thomas and J. Newman,
+``Thermal Modeling of Porous Insertion Electrodes,''
+\emph{Journal of The Electrochemical Society}, 150(2), A176--A192 (2003).
+DOI: \href{https://doi.org/10.1149/1.1531194}{10.1149/1.1531194}.
+
+\bibitem{newman2004}
+J. Newman and K. E. Thomas-Alyea,
+\emph{Electrochemical Systems}, 3rd ed.,
+John Wiley \& Sons (2004).
+
+\bibitem{degroot1984}
+S. R. de Groot and P. Mazur,
+\emph{Non-Equilibrium Thermodynamics},
+Dover Publications (1984).
+
+\bibitem{bard2001}
+A. J. Bard and L. R. Faulkner,
+\emph{Electrochemical Methods: Fundamentals and Applications}, 2nd ed.,
+John Wiley \& Sons (2001).
+
+\end{thebibliography}
+
+\end{document}

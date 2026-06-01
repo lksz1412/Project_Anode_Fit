@@ -1,0 +1,432 @@
+% ====================================================================
+% graphite_ica_chapter2.tex  —  Chapter 2 (v1)
+%   Thermal / entropy signature of the graphite-anode ICA peak-tail:
+%   reaction-entropy coefficient dU/dT, reversible/irreversible heat,
+%   and the kinetic-lag entropy-production tail as an ORTHOGONAL
+%   grounding + falsification of Chapter 1's effective-barrier /
+%   relaxation-length-spectrum theory.
+% Date: 2026-05-29   Author: Project_Anode_Fit (Claude 측)
+% Inherits Ch.1 (graphite_ica_chapter1.tex v5.3): notation, AGP grounding
+%   tiers, smooth-only + P1 (no solver), Plan-B-core philosophy, VG gates.
+% Rule: Korean prose + English academic terms. smooth only.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.13}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Graphite ICA tail: thermal / entropy signature (Ch.2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{Graphite ICA tail — Ch.2 (thermal/entropy)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{groundingbox}{Grounding}
+\newtheorem*{boundbox}{Validity bound}
+\newtheorem*{flagbox}{Flagged (미확정)}
+\newtheorem*{linkbox}{Chapter 1 link}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\dimedrive}{\mathrm{drive}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\kin}{\mathrm{kin}}
+\newcommand{\ohm}{\mathrm{ohm}}
+\newcommand{\conc}{\mathrm{conc}}
+\newcommand{\AL}[1]{\textsf{[AL-#1]}}
+
+\title{\textbf{리튬이온전지 graphite anode 의 ICA(\,$dQ/dV$\,) tail:\\
+열·entropy signature — reaction-entropy 계수, 가역/비가역 heat,
+kinetic-lag entropy production}\\[0.4em]
+\large Chapter 2 (v1, 2026-05-29) — Chapter 1 의 orthogonal thermal grounding}
+\author{Project\_Anode\_Fit}
+\date{2026-05-29}
+
+\begin{document}
+\maketitle
+
+\begin{center}\begin{minipage}{0.93\textwidth}
+\small \textbf{Abstract.} Chapter 1 은 graphite anode 의 ICA post-peak tail 을 effective
+barrier $\Delta G_\eff=\Delta G_a-\chi\mathcal A$ ($\Delta G_a=\Delta H_a-T\Delta S_a$) 가 만드는
+relaxation-length spectrum 의 kernel integral 로 설명했다. 본 Chapter 2 는 같은 구조를
+\textbf{열역학 1·2법칙과 calorimetry 로 닫는 orthogonal layer} 를 구성한다. 첫째, 평형 전위의
+온도의존 $\partial U_j/\partial T=\Delta S_{\rxn,j}/(s_{\phi,j}F)$ 가 \emph{reaction entropy} 를
+주며 (potentiometric entropy; grounded), 이는 Eyring prefactor 가 주는 \emph{activation entropy}
+$\Delta S_a$ 와 \textbf{별개}임을 명시한다 (혼동 금지). 둘째, Bernardi 에너지 balance 의 reversible
+heat $q_\rev=IT\,\partial U/\partial T$ 와 irreversible heat $q_\irr=|I|\eta$ 가 ICA 와 독립인 측정
+handle 을 준다. 셋째, Chapter 1 의 kinetic lag $r=\theta_\eq-\theta$ 는 near-equilibrium entropy
+production $\sigma\propto k\,r^2\ge0$ 을 만든다. \emph{per-mode} 로는 비가역열이 ICA progress 보다
+arc-length 기준 \emph{2배 빠르게} 감쇠하나($L_q\!\to\!L_q/2$), 이 \textbf{균일 비율은 단일 우세 mode
+극한에서만 엄밀}하며, Chapter 1 의 stretched spectrum 에서는 \textbf{동일 relaxation-length 지지집합
+$\{L_q\}$ 를 공유하되 \emph{재가중·arc-length 재척도}} 관계로 나타남을 보인다 (저온의 느린 relaxation
+→ 더 큰 \emph{잔여} lag → 더 길고 큰 비가역열 tail; Chapter 1 tail 의 \emph{열적 거울}, near-eq bound 내). 넷째,
+staging-resolved $\partial U/\partial T$ profile 의 feature 가 Chapter 1 의 $N_p$ effective
+transition 과 정합해야 한다. 이로써 barrier-spectrum 파라미터 ($\Delta H_a,\Delta S_a,U_j(T)$) 는
+calorimetry 와 \emph{정합}해야 하며, 불일치는 kinetic-spectrum 귀속을 반증한다. 모든 식은 smooth,
+모든 assumption 은 Assumption Ledger (AL-\#) 에 grounding, 수치 solver 구현은 범위 외 (P1).
+\end{minipage}\end{center}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Motivation 과 Chapter 1 과의 연결}\label{sec:intro}
+% ====================================================================
+\textbf{출발점 (Chapter 1 요약).} Chapter 1 은 각 local mode 가 effective barrier
+$\Delta G_\eff=\Delta G_a-\chi_j\mathcal A_j=G-W_\psi$ 가 정하는 Eyring rate $k=k_0\exp[-(G-W_\psi)/RT]$
+로 equilibrium target $\theta_{\eq,j}(V_n,T)$ 를 향해 first-order relaxation 하며, kinetic lag
+$r=\theta_\eq-\theta$ 가 normalized relaxation length $L_q=v_q/k$ 의 단일 exponential kernel 을
+만든다고 했다. barrier distribution $\rho_G$ 가 지수 매핑으로 relaxation-length spectrum $A_L$ 을
+만들고, 관측 ICA tail 은 그 kernel integral 이다. 여기서 $\Delta G_a=\Delta H_a-T\Delta S_a$ 의
+\emph{활성 enthalpy/entropy} 가 핵심 인자였다.
+
+\textbf{본 Chapter 의 목적.} Chapter 1 은 전적으로 \emph{전기적(ICA)} 관측에 기반한다. barrier·
+spectrum 귀속의 가장 큰 약점은 (Chapter 1 의 ★ Falsification 절 $\chi_j$ vs $\eta_{\mathrm{ct}}$
+co-linearity 처럼) 단일 modality 의 퇴화였다. 본 Chapter 2 는 \textbf{열역학적으로 독립인 modality
+(calorimetry + entropy coefficient)} 를 도입해 (i) $\Delta G_\eff$ 의 entropy 성분을 독립
+grounding 하고, (ii) tail 의 kinetic 기원을 비가역열로 \emph{orthogonal 하게 test/반증}한다.
+
+\textbf{기준 (Chapter 1 승계).} smooth only ($0\!\to\!1$ 급점프·$\max$·$\min$·Heaviside 정의식
+금지); 모든 assumption AL-\# grounding (FLAGGED 는 established 사용 금지); solver/numerical-fitting
+구현은 범위 외 (P1); 한글 prose + 영어 학술 용어; notation 은 Chapter 1 과 동일, 신규 기호만 추가.
+
+% ====================================================================
+\section{Notation 추가 (Chapter 1 위에)}\label{sec:notation}
+% ====================================================================
+Chapter 1 의 모든 기호 ($q,V_n,\theta_{\eq,j},r,k,L_q,\rho_G,A_L,\Delta G_\eff,\Delta H_a,
+\Delta S_a,\mathcal A_j,\chi_j,U_j,s_{\phi,j},s_I,R_n,N_p,\dots$) 를 그대로 쓰고, 다음을 추가한다.
+\begin{longtable}{p{0.16\textwidth} p{0.16\textwidth} p{0.60\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$S$ & J/(mol K) & molar entropy \\
+$\Delta S_{\rxn,j}$ & J/(mol K) & \emph{reaction} entropy of transition $j$ (평형량; products$-$reactants) \\
+$\Delta S_a$ & J/(mol K) & \emph{activation} entropy (transition state; Chapter 1 의 $\Delta G_a=\Delta H_a-T\Delta S_a$) \\
+$I$ & A & signed current ($v_Q=|I|$, 방향 $s_I=\pm1$; Chapter 1 convention) \\
+$\eta$ & V & total overpotential magnitude $\ge0$, $=\eta_\kin+\eta_\ohm+\eta_\conc$ ($\eta_\kin$=Ch.1 $\eta_{\mathrm{ct}}$, $\eta_\conc$=Ch.1 transport $\eta_{\mathrm{tr}}$) \\
+$q_\rev$ & W & reversible (entropic) heat rate (부호가변; signed $I$) \\
+$q_\irr$ & W & irreversible (dissipative) heat rate $=|I|\eta\ge0$ \\
+$\sigma$ & W/(K$\cdot$mol) & entropy production rate (per mode, near-equilibrium) \\
+$g''_j$ & J/mol & free-energy curvature $\partial^2 G_j/\partial\theta_j^2|_{\eq}>0$ (thermodynamic factor; stability) \\
+$\Pi$ & V & Peltier-type coefficient $=T\,\partial U/\partial T$ \\
+\bottomrule
+\end{longtable}
+\begin{groundingbox}
+\textbf{부호 convention.} Chapter 1 과 동일하게 $v_Q=|I|>0$, 방향 지시자 $s_I,s_{\phi,j}=\pm1$.
+$q_\rev$ 는 부호 가변(entropic), $q_\irr\ge0$ (2법칙). 단위: $S,\Delta S$ J/(mol K),
+$U$ V, $\partial U/\partial T$ V/K, $q$ W.
+\end{groundingbox}
+
+% ====================================================================
+\section{Grounded spine (T1--T8) 과 Assumption Ledger 확장}\label{sec:spine}
+% ====================================================================
+\begin{longtable}{p{0.06\textwidth} p{0.66\textwidth} p{0.20\textwidth}}
+\toprule ID & 골격 & tier [AL] \\ \midrule \endhead
+T1 & reaction-entropy 계수 $\partial U_j/\partial T=\Delta S_{\rxn,j}/(s_{\phi,j}F)$ & GROUNDED \AL{11} \\
+T2 & reaction entropy $\ne$ activation entropy ($\partial U/\partial T$ vs Eyring prefactor) & BOUNDED \AL{14} \\
+T3 & reversible heat $q_\rev=IT\,\partial U/\partial T$ (Bernardi balance) & GROUNDED \AL{12} \\
+T4 & irreversible heat $q_\irr=|I|\eta\ge0$, $\eta=\eta_\kin+\eta_\ohm+\eta_\conc$ & GROUNDED \AL{12} \\
+T5 & kinetic lag 의 entropy production $\sigma\propto (g''_j/T)\,k\,r^2\ge0$ & BOUNDED \AL{13},\AL{16} \\
+T6 & staging-resolved $\partial U/\partial T$ profile $\leftrightarrow$ Chapter 1 $N_p$ transition & GROUNDED \AL{11} \\
+T7 & barrier-spectrum $\leftrightarrow$ calorimetry orthogonal cross-check / falsification & METHOD \AL{10},\AL{15} \\
+T8 & ★ 저온 더 큰 \emph{잔여} lag $\to$ 더 크고 긴 비가역열 tail; per-mode 열 kernel $=$ ICA kernel 의 arc-length 2배(단일 mode 극한 $L_q/2$, spectrum 에서는 재척도) & FLAGGED novel \AL{15} \\
+\bottomrule
+\end{longtable}
+
+\textbf{Assumption Ledger 확장 (Chapter 1 AL-1$\sim$10 위에).}
+\begin{longtable}{p{0.10\textwidth} p{0.16\textwidth} p{0.62\textwidth}}
+\toprule ID & tier & 본 Chapter 에서의 의미 \\ \midrule \endhead
+AL-10 & METHOD & (Chapter 1 승계) competing-source falsification — ICA 귀속을 polarization/transport/mixing 등 경쟁 원인과 분리. 본 Chapter 는 이를 calorimetry modality 로 확장(T7). \\
+AL-11 & GROUNDED & 평형전위 entropy 계수 $\partial U/\partial T=\Delta S_\rxn/(s_\phi F)$ (potentiometric entropy; 흑연 $\mathrm{Li_xC_6}$ 실측). \\
+AL-12 & GROUNDED & battery 에너지 balance: $q_\rev=IT\,\partial U/\partial T$, $q_\irr=|I|\eta$ (Bernardi--Pawlikowski--Newman). \\
+AL-13 & BOUNDED & near-equilibrium entropy production $\sigma=\sum_k J_kX_k/T\ge0$ (linear irreversible thermodynamics; Chapter 1 AL-5 와 동일 유효범위). \\
+AL-14 & BOUNDED & activation entropy $\Delta S_a$ (Eyring prefactor $T$-의존) 와 reaction entropy $\Delta S_\rxn$ ($\partial U/\partial T$) 는 별개 — 상호 대입 금지. \\
+AL-15 & FLAGGED & 저온 long-tail 의 (상대적으로) 더 큰 잔여 kinetic lag 가 비가역열 tail signature 를 만든다는 해석 — per-mode arc-length doubling, ``균일 2배''는 단일 mode 극한 한정 (Chapter 1 AL-8 의 열적 대응); consistency 로만, 확정은 calorimetry falsification 전제. \\
+AL-16 & GROUNDED & 평형 안정성 / thermodynamic factor $g''=\partial^2 G/\partial\theta^2|_\eq>0$ (regular-solution / lattice-gas; Chapter 1 AL-3a 와 동형). \\
+\bottomrule
+\end{longtable}
+\textbf{AGP.} 모든 본문 assumption 은 AL-\# 인용. FLAGGED(AL-15) 는 established 로 사용 금지;
+BOUNDED(AL-13,14) 는 유효범위 병기. smooth only. solver/numerical-validation 워크플로우 없음 (P1).
+
+% ====================================================================
+\section{Reaction-entropy 계수 $\partial U/\partial T$ 와 activation entropy 의 구별}\label{sec:entropy_coeff}
+% ====================================================================
+\textbf{Derivation E1 (reaction-entropy 계수, \AL{11}).} transition $j$ 의 intercalation
+half-reaction 의 reaction Gibbs energy 는 평형 전위와
+\begin{equation}
+\Delta G_{\rxn,j}=-\,s_{\phi,j}F\,U_j(T)
+\label{eq:dGrxn}
+\end{equation}
+로 연결된다 ($s_{\phi,j}=\pm1$ 방향 지시자; Chapter 1 $\mathcal A_j=s_{\phi,j}F(V_{n,\dimedrive}-U_j)$ 와
+\emph{동일 부호 convention} — 단 $\Delta G_{\rxn}$(평형 reaction Gibbs)와 $\mathcal A_j$(비평형
+driving force)는 별개 양이며 $\Delta G_\rxn=-\mathcal A_j$ 가 아니다). $\partial\Delta G/\partial T=-\Delta S$ 이므로
+\begin{equation}
+\boxed{\;\frac{\partial U_j}{\partial T}=\frac{\Delta S_{\rxn,j}}{s_{\phi,j}F}.\;}
+\label{eq:entropy_coeff}
+\end{equation}
+즉 평형 전위의 온도의존이 \emph{reaction entropy} 를 직접 준다. 이는 potentiometric entropy
+측정(준평형 OCV 를 여러 $T$ 에서) 으로 \emph{ICA 와 독립하게} 얻는다 \cite{reynier2003}
+(\AL{11}; 흑연 $\mathrm{Li_xC_6}$ 의 $\partial U/\partial T$ 실측). 차원: V/K $=$ [J/(mol\,K)]/[C/mol] 일치.
+
+\begin{linkbox}
+\textbf{Chapter 1 과의 접점.} $U_j(T)$ 는 Chapter 1 의 equilibrium target $\theta_{\eq,j}(V_n,T)$
+중심 전위이자 driving force $\mathcal A_j$ 의 기준점이다. 따라서 $\partial U_j/\partial T$ 는
+Chapter 1 의 $U_j(T)$ 를 독립 측정으로 제약한다 (lattice-gas 특수해의 $U_j^0(T)$, Chapter 1
+식 latticegas).
+\end{linkbox}
+
+\textbf{Derivation E2 (reaction $\ne$ activation entropy, \AL{14}).} Chapter 1 의 Eyring rate
+\cite{eyring1935} $k=(k_BT/h)\kappa\exp(-\Delta G_a/RT)$ 에서 $\Delta G_a=\Delta H_a-T\Delta S_a$ 를 넣으면
+\begin{equation}
+k=\frac{k_BT}{h}\kappa\,\exp\!\Big(\frac{\Delta S_a}{R}\Big)\exp\!\Big(-\frac{\Delta H_a}{RT}\Big),
+\label{eq:eyring_entropy}
+\end{equation}
+즉 \emph{activation} entropy $\Delta S_a$ 는 rate 의 \emph{prefactor} (Arrhenius intercept,
+$k_BT/h$ 보정 후) 에서 나온다 — transition state 와 reactant 의 entropy 차이다. 반면
+$\Delta S_{\rxn}$ (식~\eqref{eq:entropy_coeff}) 은 \emph{평형} (products$-$reactants) entropy 다.
+\begin{boundbox}
+\textbf{혼동 금지 (\AL{14}).} $\Delta S_a$ 와 $\Delta S_{\rxn}$ 은 일반적으로 \emph{다르며} 서로
+대입할 수 없다. 둘은 transition-state 의 entropy 를 통해서만 (BEP-류 가정 하에서) 부분적으로
+연결될 수 있으나, 본 Chapter 는 그런 연결을 \emph{가정하지 않는다}. $\partial U/\partial T$ 로
+$\Delta S_a$ 를 추정하거나 그 역을 하는 것은 금지한다. ($\partial U/\partial T$ 는 reaction
+entropy 만, rate-prefactor 는 activation entropy 만 준다.)
+\end{boundbox}
+
+% ====================================================================
+\section{Reversible heat $q_\rev$ (Bernardi 에너지 balance)}\label{sec:revheat}
+% ====================================================================
+\textbf{Derivation E3 (reversible heat, \AL{12}).} 단일 transition 의 reaction rate 는
+$\dot n=I/(s_{\phi,j}F)$ (mol/s). entropic(reversible) heat 은 $q_\rev=T\,\Delta S_{\rxn,j}\,\dot n$
+이고 식~\eqref{eq:entropy_coeff} 를 대입하면 $s_{\phi,j}$ 가 상쇄되어
+\begin{equation}
+\boxed{\;q_\rev=T\,\Delta S_{\rxn,j}\,\frac{I}{s_{\phi,j}F}=I\,T\,\frac{\partial U_j}{\partial T}
+=I\,\Pi_j,\qquad \Pi_j\equiv T\frac{\partial U_j}{\partial T}.\;}
+\label{eq:qrev}
+\end{equation}
+이는 Bernardi--Pawlikowski--Newman 에너지 balance \cite{bernardi1985} 의 reversible 항 (Peltier-
+type) 이다 (\AL{12}). 부호 convention: $I>0$ 을 intercalation(충전, $\theta$ 증가) 방향, $q_\rev>0$ 을
+흡열로 두면, $q_\rev$ 는 부호 가변이라 $\partial U/\partial T>0$ 이면 흡열적, $<0$ 이면 발열적
+(방전 $I<0$ 에서 부호 반전). 차원: A$\cdot$K$\cdot$(V/K)$=$W 일치.
+
+\textbf{전체 balance.} 한 transition 의 총 heat rate 는
+\begin{equation}
+q = \underbrace{I\,T\,\partial U_j/\partial T}_{q_\rev\ (\text{reversible, } \pm)}
++\underbrace{|I|\,\eta}_{q_\irr\ (\ge0)}\;(+\,\text{heat of mixing, phase-change 항}),
+\label{eq:total_heat}
+\end{equation}
+mixing/phase-change 항도 grounded 이나 \cite{thomasnewman2003} 본 Chapter 의 tail 논의 핵심은
+$q_\rev$ 와 $q_\irr$ 이며 mixing 항은 \S\ref{sec:cross_check} 에서 competing source 로만 둔다.
+다중 transition 이 동시에 진행하면 $I\to I_j$ (transition $j$ 의 partial current, $\sum_j I_j=I$)
+로 읽고 $q_\rev=\sum_j I_j T\,\partial U_j/\partial T$ 로 합산한다 (\AL{12} balance 의 transition별 합;
+단일 우세 transition 극한에서 식~\eqref{eq:qrev} 로 환원).
+
+% ====================================================================
+\section{Irreversible heat 와 kinetic-lag entropy production}\label{sec:irrheat}
+% ====================================================================
+\textbf{Derivation E4 (irreversible heat, \AL{12}).} 비가역열은 overpotential 을 통한 dissipation
+\begin{equation}
+q_\irr=|I|\,\eta,\qquad \eta=\eta_\kin+\eta_\ohm+\eta_\conc\ge0,
+\label{eq:qirr}
+\end{equation}
+$\eta_\ohm$ 은 Chapter 1 의 polarization $R_n$ ($V_{n,\app}=V_n+s_I|I|R_n$) 에서, $\eta_\kin$
+(Chapter 1 의 $\eta_{\mathrm{ct}}$) 은 effective barrier 를 넘는 charge-transfer/activation
+과정에서, $\eta_\conc$ 은 transport 에서 온다. 이 분해는 Chapter 1 falsification 표의 competing source (polarization/transport) 와 동일
+대응이다.
+
+\textbf{Derivation E5 (kinetic-lag 의 entropy production, \AL{13}).} Chapter 1 의 relaxation
+$\dot\theta_j=k_j r_j$, $r_j=\theta_{\eq,j}-\theta_j$ 를 비평형 열역학으로 본다. 국소 자유에너지
+$G_j(\theta_j)$ 를 평형점 근처에서 전개하면 복원력 (affinity)
+\begin{equation}
+\mathcal X_j\equiv-\frac{\partial G_j}{\partial\theta_j}\Big|_{\theta_j}\simeq g''_j\,(\theta_{\eq,j}-\theta_j)=g''_j\,r_j,
+\qquad g''_j\equiv\frac{\partial^2 G_j}{\partial\theta_j^2}\Big|_{\eq}>0,
+\label{eq:affinity}
+\end{equation}
+($g''_j>0$ 은 평형 안정성 — 표준 통계열역학(regular-solution/lattice-gas)의 thermodynamic factor 이며, 그 nonequilibrium-kinetics 활용 예가 \cite{bazant2013}; \AL{16}). flux 는
+$J_j=\dot\theta_j=k_j r_j$. linear irreversible thermodynamics 의 entropy production은
+\cite{degrootmazur1962,onsager1931}
+\begin{equation}
+\boxed{\;\sigma_j=\frac{J_j\,\mathcal X_j}{T}=\frac{g''_j\,k_j}{T}\,r_j^{\,2}\ \ge 0,\;}
+\label{eq:sigma}
+\end{equation}
+즉 entropy production 은 lag $r_j$ 의 \emph{제곱}에 비례하며 2법칙을 만족한다 (\AL{13}; near-
+equilibrium tail 영역, Chapter 1 AL-5 와 동일 유효범위). 대응 비가역열 rate (per mode) 는
+$q_{\irr,\kin,j}=T\sigma_j=g''_j k_j r_j^2$.
+
+\begin{boundbox}
+\textbf{유효범위 (\AL{13}).} 식~\eqref{eq:affinity}--\eqref{eq:sigma} 는 평형 근처 1차(선형)
+전개다. tail 영역 ($\theta\approx\theta_\eq$, 즉 $r$ 작음) 에서 유효하며, 큰 $r$ 의 전역
+정당화가 아니다 (Chapter 1 의 near-equilibrium relaxation 과 동일 bound).
+\end{boundbox}
+
+% ====================================================================
+\section{★ Kinetic-lag 의 비가역열 tail signature (ICA tail 의 열적 거울)}\label{sec:thermal_tail}
+% ====================================================================
+\textbf{Derivation E6 (열적 tail; novel, \AL{15}).} Chapter 1 post-peak 에서 단일 mode 의
+$r_j(q)=r_j(q_a)\exp[-(q-q_a)/L_q]$ 이다. 이를 식~\eqref{eq:sigma} 의 per-mode 비가역열에 넣으면
+\begin{equation}
+\frac{\dd q_{\irr,\kin,j}}{\dd q}\ \propto\ g''_j\,k_j\,r_j(q)^2
+= g''_j\,k_j\,r_j(q_a)^2\,\exp\!\Big[-\frac{2(q-q_a)}{L_q}\Big],
+\label{eq:thermal_single}
+\end{equation}
+즉 \emph{per-mode} 로 비가역열 kernel 은 같은 relaxation length $L_q$ 를 쓰되 $r^2$ 때문에 arc-length
+척도가 절반($L_q/2$, 단일 mode 기준 2배 빠른 감쇠)이다. 단 Chapter 1 의 ICA progress kernel 은
+$d\theta_j/dq=r_j/L_q\propto (1/L_q)\,e^{-(q-q_a)/L_q}$ 로 kinematic 인자 $1/L_q$ 를 갖는 반면
+(Chapter 1 D7b), 비가역열은 $\propto r_j^2\propto e^{-2(q-q_a)/L_q}$ 로 그 인자가 \emph{없다}
+— 두 kernel 의 $L_q$-가중이 다름에 유의한다. spectrum 으로 중첩하면
+\begin{equation}
+\boxed{\;\frac{\dd q_{\irr,\kin}}{\dd q}\simeq\int_0^\infty A_L^{(2)}(L_q;T,\psi)\,
+\exp\!\Big[-\frac{2(q-q_a)}{L_q}\Big]\,\dd L_q,\;}
+\label{eq:thermal_kernel}
+\end{equation}
+여기서 $A_L^{(2)}$ 는 Chapter 1 spectrum 의 \emph{지지집합} $\{L_q\}$ 를 그대로 쓰되 per-mode weight
+$g''_j k_j r_j(q_a)^2$ (kinematic $1/L_q$ 부재 포함) 를 실은 \textbf{재가중} 분포다 — $A_L$ 자체와
+같지 않다. 따라서 전기(ICA) tail 과 열(비가역) tail 은 \textbf{같은 relaxation-length 지지집합
+$\{L_q\}$ 를 공유}하나, kernel($e^{-x/L_q}$ vs $e^{-2x/L_q}$) 과 가중이 달라 \emph{동일 spectrum 의
+단순 복제가 아니다} (\AL{15}; consistency 가설).
+
+\textbf{단위·관측 주의.} $\sigma_j,\ q_{\irr,\kin,j}$ 는 per-mode molar intensive rate (W/mol
+규모; 표 단위 $\sigma$ W/(mol\,K)) 이며, 측정되는 비가역열 $q_\irr$ (W, 식~\eqref{eq:qirr}) 는
+이들의 population/current-weighted 합이다.
+\begin{boundbox}
+\textbf{spectrum 일반화 한계 (\AL{15}).} ``decay length 비 $=2$ (균일 $L_q/2$)'' 는 \emph{단일 우세
+mode}($A_L\!\to\!\delta$, Chapter 1 degenerate floor) 극한에서만 엄밀하다. Chapter 1 이 명시한
+\emph{stretched/비지수} spectrum (broad $\rho_G$, kernel mixture) 에서는 두 관측 tail 이 단순히
+``2배 빠른'' 관계가 아니라, per-mode arc-length doubling $q-q_a\!\to\!2(q-q_a)$ 이 \emph{재가중} 과
+함께 나타난다 (예: power-law tail 이면 같은 멱지수의 상수배 재척도이지 ``2배 감쇠''가 아님). 따라서
+TN2 의 정량 검정은 ``정확히 2배''가 아니라, \emph{동일 $\{L_q\}$ 지지집합으로부터의 forward
+prediction 정합}(Chapter 1 forward-only 원칙) 으로 수행한다.
+\end{boundbox}
+
+\textbf{$T/\psi$ 거동 (Chapter 1 stretched tail 의 열적 거울).}
+\begin{itemize}
+\item \textbf{저온}: $L_q$ 가 커지고(Chapter 1) relaxation 이 느려, post-peak 같은 arc-length 에서
+  \emph{잔여} lag $r$ 가 (고온 대비) 더 크게 유지 → 식~\eqref{eq:thermal_kernel} 의 비가역열 tail 이
+  \emph{더 길고 더 크다}.
+\item \textbf{고온/potential assistance}: $L_q$ 가 작아져 비가역열 tail 이 짧아진다.
+\item \emph{유효범위}: 위 거동은 near-equilibrium tail($r$ 작음, 식~\eqref{eq:affinity} 선형 전개)
+  내의 \emph{상대적} 잔여 lag 비교다. 매우 큰 $r$ 는 선형 affinity 전개 밖이라 $g'''$ 등 고차 보정이
+  필요하며 본 Chapter 범위 외 (\AL{13} bound).
+\end{itemize}
+\begin{flagbox}
+\textbf{상태 (\AL{15}, novel).} ``저온 긴 ICA tail $\leftrightarrow$ 저온 큰 비가역열 tail'' 의
+대응은 novel hypothesis 다. consistency 로만 제시하며, \emph{확정}은 \S\ref{sec:cross_check} 의
+calorimetry cross-check 통과를 전제로 한다 (Chapter 1 AL-8 의 열적 대응).
+\end{flagbox}
+
+% ====================================================================
+\section{Staging-resolved $\partial U/\partial T$ 와 ICA--calorimetry orthogonal cross-check}\label{sec:cross_check}
+% ====================================================================
+\textbf{Derivation E7 (staging-resolved entropy profile, \AL{11}).} 흑연 $\mathrm{Li_xC_6}$ 의
+$\partial U/\partial T$ (와 $\partial U/\partial x$) 는 staging transition 에서 특징적 feature
+(step/plateau) 를 보인다 \cite{reynier2003}. 이 feature 들은 Chapter 1 의 $N_p$ effective
+transition (ICA peak 의 기원) 과 \emph{같은} staging 사건에서 나오므로, 두 modality 의 feature
+위치가 정합해야 한다 (\AL{11}).
+
+\textbf{Orthogonal cross-check (T7, \AL{10},\AL{15}).} (\AL{10} = Chapter 1 의 competing-source
+falsification METHOD; 본 Chapter 는 Chapter 1 의 AL-1$\sim$10 을 승계한다.) Chapter 1 의
+barrier-spectrum 파라미터를 calorimetry 와 교차 검증한다 — ICA 만으로 퇴화하던 귀속을 독립
+modality 로 보강·반증.
+\begin{longtable}{p{0.27\textwidth} p{0.40\textwidth} p{0.28\textwidth}}
+\toprule 양 & ICA(Chapter 1) 측 & calorimetry/entropy 측 \\ \midrule \endhead
+reaction entropy & $U_j(T)$ 의 기울기 & $\partial U/\partial T$ (potentiometric) \\
+activation entropy & rate prefactor (Arrhenius intercept) & (별개; $\partial U/\partial T$ 로 추정 금지) \\
+tail relaxation length & 동일 $\{L_q\}$ 지지집합 (per-mode kernel $e^{-x/L_q}$) & 동일 $\{L_q\}$, per-mode kernel $e^{-2x/L_q}$ (arc-length 2배; 단일 mode 극한 $L_q/2$, spectrum 은 재척도) \\
+transition 개수 & $N_p$ ICA peaks & $\partial U/\partial T$ profile feature \\
+\bottomrule
+\end{longtable}
+
+\textbf{Thermal null-result 규칙 (Chapter 1 falsification 정신의 calorimetry modality 확장; 1:1 대응
+아님 — TN1$\leftrightarrow$에너지balance, TN2$\leftrightarrow$N1/N2 rate-broadening 분리에 부분 대응).}
+\begin{enumerate}[label=(TN\arabic*)]
+\item 측정 $q_\rev/(IT)$ 가 독립 측정 $\partial U/\partial T$ 와 불일치 $\Rightarrow$ 에너지
+  balance/측정 정합 실패 (식~\eqref{eq:qrev} 위반).
+\item ($q_\rev$·mixing 차감 후) 비가역열 tail 이 Chapter 1 spectrum $\{L_q\}$ 로부터의 forward
+  prediction (per-mode arc-length doubling, 식~\eqref{eq:thermal_kernel}) 과 정합하지 않으면
+  $\Rightarrow$ kinetic-lag dissipation 그림 (따라서 kinetic-spectrum 귀속) 기각/재검토. (``정확히
+  2배 감쇠''는 단일 우세 mode 극한에서만 기대 — stretched spectrum 에서는 재척도 정합으로 검정,
+  \S\ref{sec:thermal_tail} boundbox.)
+\item $\partial U/\partial T$ profile 의 staging feature 가 $N_p$ ICA peak 와 정렬하지 않으면
+  $\Rightarrow$ effective-transition 해석 불일치.
+\item activation entropy $\Delta S_a$ 를 $\partial U/\partial T$ (reaction entropy) 로
+  추정하지 않는다 (\AL{14}); 둘은 독립 측정 (rate prefactor vs 평형 entropy).
+\end{enumerate}
+
+\textbf{Competing thermal source.} $q_\rev$ 외에 heat of mixing \cite{thomasnewman2003} 와
+phase-change 잠열도 측정 열에 섞인다. 따라서 비가역열 tail signature (TN2) 를 보려면 $q_\rev$
+(식~\eqref{eq:qrev}) 와 mixing 항을 먼저 차감해야 한다 — Chapter 1 이 polarization/transport 를
+차감하고 barrier 를 본 것과 동일한 차감 논리.
+
+% ====================================================================
+\section{종합·grounding 감사·Chapter 3 로 전달}\label{sec:summary}
+% ====================================================================
+\subsection{결과 요약}
+\begin{enumerate}[label=\textbf{(E\arabic*)}]
+\item reaction-entropy 계수 $\partial U_j/\partial T=\Delta S_{\rxn,j}/(s_{\phi,j}F)$ (T1, \AL{11}).
+\item reaction entropy $\ne$ activation entropy — 상호 대입 금지 (T2, \AL{14}).
+\item reversible heat $q_\rev=IT\,\partial U/\partial T=I\Pi$ (Bernardi balance; T3, \AL{12}).
+\item irreversible heat $q_\irr=|I|\eta\ge0$; $\eta$ 분해가 Chapter 1 polarization/transport 와 대응 (T4, \AL{12}).
+\item kinetic lag 의 entropy production $\sigma\propto (g''/T)k\,r^2\ge0$ (T5, \AL{13}).
+\item ★ 비가역열 tail = ICA tail 과 \emph{같은} relaxation-length 지지집합 $\{L_q\}$; per-mode arc-length doubling (단일 mode 극한 $L_q/2$, spectrum 은 재가중·재척도) (T8, \AL{15}, novel).
+\item staging-resolved $\partial U/\partial T$ feature $\leftrightarrow$ $N_p$ transition (T6, \AL{11}).
+\item ICA--calorimetry orthogonal cross-check + thermal null-rules TN1--TN4 (T7, \AL{10},\AL{15}).
+\end{enumerate}
+
+\subsection{Grounding 감사 (AGP self-check)}
+\begin{longtable}{p{0.62\textwidth} p{0.30\textwidth}}
+\toprule 항목 & 상태 \\ \midrule \endhead
+모든 본문 assumption 이 AL-\#(11--16, 승계 AL-10 포함) 인용 & 통과 \\
+reaction entropy 와 activation entropy 가 명시적으로 구분·교차오염 없음 & 통과 (\S\ref{sec:entropy_coeff}, \AL{14}) \\
+$q_\rev,q_\irr$ 정의식이 Bernardi balance 와 부호·차원 일치 & 통과 (\S\ref{sec:revheat},\ref{sec:irrheat}) \\
+$\sigma\ge0$ (2법칙) 만족 & 통과 (식~\eqref{eq:sigma}) \\
+FLAGGED(AL-15 열적 tail) established 미사용 & 통과 (consistency+falsification) \\
+BOUNDED(AL-13 near-eq, AL-14 두 entropy 별개) 유효범위 병기 & 통과 \\
+step/$\max$/Heaviside 정의식 부재 (smooth only) & 통과 \\
+notation 이 Chapter 1 과 충돌 없음 (신규 기호만 추가) & 통과 (\S\ref{sec:notation}) \\
+solver/numerical-validation 워크플로우 부재 (P1) & 통과 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Chapter 3 로 전달}
+reaction entropy 의 staging-resolved 형태 ($\partial U/\partial x$ 의 정량 모델), 비가역열
+tail 과 ICA tail 의 동시 fitting (cross-modal identifiability), 충방전 hysteresis 의 entropy/
+heat 비대칭 (branch-dependent spectrum 의 열적 대응), full-cell 열 balance 가 후속 input
+(별도 roadmap).
+
+\begin{thebibliography}{99}
+\bibitem{eyring1935} H. Eyring, ``The activated complex in chemical reactions,''
+  \emph{J. Chem. Phys.} \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of chemical kinetics and charge transfer
+  based on nonequilibrium thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144
+  (2013). DOI: 10.1021/ar300145c.
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium
+  Thermodynamics}, North-Holland (1962); Dover (1984), Ch.~X.
+\bibitem{onsager1931} L. Onsager, ``Reciprocal relations in irreversible processes,''
+  \emph{Phys. Rev.} \textbf{37}, 405 (1931). DOI: 10.1103/PhysRev.37.405.
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A general energy balance
+  for battery systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI:
+  10.1149/1.2113792.
+\bibitem{reynier2003} Y. Reynier, R. Yazami, B. Fultz, ``The entropy and enthalpy of
+  lithium intercalation into graphite,'' \emph{J. Power Sources} \textbf{119--121}, 850
+  (2003). DOI: 10.1016/S0378-7753(03)00285-4.
+\bibitem{thomasnewman2003} K. E. Thomas, J. Newman, ``Heats of mixing and of entropy in
+  porous insertion electrodes,'' \emph{J. Power Sources} \textbf{119--121}, 844 (2003).
+  DOI: 10.1016/S0378-7753(03)00283-0.
+\end{thebibliography}
+
+\end{document}
