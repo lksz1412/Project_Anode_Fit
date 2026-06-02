@@ -771,13 +771,13 @@ L_\varphi\equiv\big|\dd V_n/\dd q\big|_{q_a}\,L
   (식~\eqref{eq:kact}; 병목 시 식~\eqref{eq:kphys}).
 \item 배리어$\to$길이 $L(G)$(식~\eqref{eq:L_of_G}) $\to$ spectrum $A_L$(식~\eqref{eq:spectrum}).
 \item 꼬리 중첩 $\dd\Theta_\mathrm{tail}/\dd q$(식~\eqref{eq:kernel_integral}); 자기참조는 \emph{본 장에서} 닫는다 —
-  Plan B(g-grid 수치, 항상) 또는 Plan A 닫힌형(식~\eqref{eq:closed}, $\varepsilon$ 통과 시).
+  Plan B(분포 적분 기준식, 항상) 또는 Plan A 닫힌형(식~\eqref{eq:closed}, $\varepsilon$ 통과 시).
 \item $\dd Q/\dd V_n$(식~\eqref{eq:fiteq}) $\to$ 측정축 $\dd Q/\dd V_{n,\app}$.
 \end{enumerate}
 \textbf{피팅 파라미터}: $\{U_j,w_j,Q_{j,\tot},Q_\bg^{\eq}\}$(평형, 저속 OCV/GITT), $\chi_j$(여러 $|I|$/전위, current prefactor 제거),
 $\{\Delta H_a,\Delta S_a,k_0,\kappa(T)\}$(Eyring-corrected 여러 $T$), $\rho_G$(독립 입력 — 역산 금지). \textbf{유효범위}:
-$G-\chi_j\mathcal A_j\ge0$(Marcus, \AL{15}), $V_{n,\drive}\approx U_j+O(w_j)$. (전체 spectrum$\cdot$자기참조를
-쓰는 정밀 평가의 solver 스킴$\cdot$수렴 판정은 부록 \S\ref{sec:ch1_numeric}.)
+$G-\chi_j\mathcal A_j\ge0$(Marcus, \AL{15}), $V_{n,\drive}\approx U_j+O(w_j)$. 전체 spectrum$\cdot$자기참조를
+쓰는 정밀 평가는 부록 \S\ref{sec:ch1_numeric} 의 적분 기준과 근사 승격 조건을 따른다.
 
 \subsection{심플 실데이터 피팅 근사식 (narrow-spectrum single-mode; 본 장만으로 사용 가능)}\label{sec:ch1_simplefit}
 전체 spectrum 적분(식~\eqref{eq:kernel_integral}) 없이, \emph{하나의 우세 mode} 가 꼬리를 지배하는 \textbf{narrow-spectrum}
@@ -875,7 +875,7 @@ C-rate trend는 앞 절처럼 current prefactor와 apparent-axis polarization까
   $\partial Z_L/\partial V_{n,\drive}$ 가 위 예측과 다르면 $\chi_j$ 해석 기각.
 \item \textbf{비유일성 차단}: $\rho_G$ 를 꼬리에서 역산하지 않고 독립 입력으로만 — 역산하면 비유일이라
   반증력이 없다.
-\item \textbf{비퇴화 — transport$\cdot$charge-transfer 와의 분리(★ 본 이론의 가장 약한 지점).} 꼬리 길이 scaling
+\item \textbf{비퇴화 — transport$\cdot$charge-transfer 와의 분리.} 꼬리 길이 scaling
   $L\propto|I|$ 과 ``전위 커지면 꼬리 짧아짐''은 \emph{단순 transport 분극$\cdot$charge-transfer 도 공유}하므로,
   그것만으로 barrier-spectrum 에 귀속하면 \emph{퇴화}(오귀속)다. 구별 signature(두 조건 (a)$\cdot$(b)가 \emph{모두}
   필요하며, $k_{j,\lim}$ 이 전위무관일 때만 성립): (a) \emph{전위 의존 Arrhenius slope} — 보정 전 측정 기울기
@@ -904,37 +904,35 @@ $\{\Delta H_a,\Delta S_a,k_0\}$ 를 제한한다. \textbf{(5)} stretched tail은
 이 순서를 어기면 식별성이 무너져 \emph{어떤 적합도라도} 물리 해석이 불가능하다(과적합).
 
 % ====================================================================
-\section{부록: 자기참조식의 수치 평가와 검증 (Plan B 상세)}\label{sec:ch1_numeric}
+\section{부록: 자기참조식의 적분 평가 경계 (Plan B 기준식)}\label{sec:ch1_numeric}
 % ====================================================================
-전체 spectrum$\cdot$자기참조를 쓰는 정밀 평가는 Plan B(직접 $g$-grid)로 푼다. 단순 꼬리는 본문
-\S\ref{sec:ch1_simplefit} 의 단일 지수 근사로 충분하나, stretched 꼬리(저온)나 강한 자기참조에서는 본 수치
-평가가 기준해다.
-\textbf{스킴.} (i) 배리어 격자 $\{g_m\}_{m=1}^{N_g}$ 를 관심 $T\cdot$전위에서 $L(g_m)$(식~\eqref{eq:L_of_G})이
-관측 윈도를 덮도록 — 특히 large-$L$(긴 꼬리) 영역 — 잡는다. (ii) mode 별 ODE
-$\dd\xi_j(g_m)/\dd t=k_j(g_m)[\xi_{\eq,j}-\xi_j(g_m)]$ 를 시간 적분하되, 매 시점 전하 보존
-(식~\eqref{eq:charge_balance})의 대수 제약으로 $V_n$ 을 root-find 한다 — 미분변수 $\xi_j(g_m)$ + 대수 제약
-$V_n$ 의 \emph{index-1 DAE} 이며, 제약을 한 번 미분하면 $\partial Q_\bg^{\eq}/\partial V_n=C_\bg\ge\epsilon_Q>0$
-(식~\eqref{eq:monotone})이 $\dd V_n/\dd t$ 를 유일하게 주므로 index 가 정확히 1 이다. (iii)
-$\xi_j(t)=\sum_m w_m\rho_G(g_m)\xi_j(g_m,t)$ 로 평균.
-\textbf{근거 기반 tolerance(임의 상수 아님).} root-find 종료는 전하 보존 잔차 $<\delta_q Q_\cell$($\delta_q$=좌표
-분해능), 시간적분은 $\xi\in[0,1]$ 상대오차와 측정 ICA 잡음 floor 에서 잡는다 — cap/clip 이 아닌 측정$\cdot$물리
-scale 기준.
+전체 spectrum$\cdot$자기참조를 쓰는 정밀 평가는 Plan B(분포 적분 기준식)를 기준으로 삼는다. 단순 꼬리는 본문
+\S\ref{sec:ch1_simplefit} 의 단일 지수 근사로 충분하나, stretched 꼬리(저온)나 강한 자기참조에서는 단일 $L$ 이
+window-dependent descriptor 일 뿐이므로 분포 적분식이 기준식이다.
+\textbf{기준식.} (i) 배리어 변수 $g$ 에 대해 관심 $T\cdot$전위에서 $L(g)$(식~\eqref{eq:L_of_G})이
+관측 윈도를 덮는 영역을 잡는다. (ii) 각 $g$-mode 는
+$\dd\xi_j(g)/\dd t=k_j(g)[\xi_{\eq,j}-\xi_j(g)]$ 를 따르며, 같은 시점의 $V_n$ 은 전하 보존
+(식~\eqref{eq:charge_balance})의 대수 제약으로 정해진다. 이때
+$\partial Q_\bg^{\eq}/\partial V_n=C_\bg\ge\epsilon_Q>0$(식~\eqref{eq:monotone})이 전하 보존식의 해를 국소적으로
+유일하게 만든다. (iii) 관측 진행률은 $\xi_j(t)=\int \rho_G(g)\xi_j(g,t)\,\dd g$ 의 분포 평균으로 정의한다.
+\textbf{근거 기반 tolerance(임의 상수 아님).} 전하 보존 잔차와 mode-분포 이산화 오차는 좌표 분해능, 측정 ICA
+잡음 floor, 그리고 $\xi\in[0,1]$ 상대오차 scale 에서 정한다 — cap/clip 이 아닌 측정$\cdot$물리 scale 기준.
 \textbf{Plan A 승격 검증.} 닫힌형 $\Theta_\mathrm A$(식~\eqref{eq:closed})는 Plan B 대비
 $\varepsilon=\lVert\Theta_\mathrm A-\Theta_\mathrm B\rVert/\lVert\Theta_\mathrm B\rVert$ 를 운용 $T\cdot$rate$\cdot$
 tail-window 에서 측정해 $\varepsilon\le\varepsilon_{\mathrm{tol}}=\max(\varepsilon_{\mathrm{disc}},\varepsilon_{\mathrm{noise}})$
 (기준해 이산화 오차 $\vee$ 측정 잡음)일 때만 승격한다. \emph{특정 수치값}은 데이터 의존이라 미리 고정하지 않는다(FLAGGED). 넓은
 spectrum(저온 stretched)에서 ratio 근사가 가장 열화하므로(\cite{jcp2017} 자기명시) 이 검증이 필수다.
-\textbf{격자 수렴.} $\lVert\Theta_{N_g}-\Theta_{2N_g}\rVert/\lVert\Theta_{2N_g}\rVert\le\varepsilon_{\mathrm{disc}}$
-(Plan A 승격에 쓰는 이산화 오차 기준 $\varepsilon_{\mathrm{disc}}$ 와 동일값)가 될 때까지 $N_g$ 를 배가한다 —
-정성적 ``수렴할 때까지''가 아니라 위 $\varepsilon_{\mathrm{tol}}$ 체인과 닫힌 정량 종료조건이다. solver 코드 구현
-자체는 본 이론 범위 밖(P1; 이론식$\cdot$검증 원리만 제시).
+\textbf{분포 해상도 검증.} $\lVert\Theta_{N_g}-\Theta_{2N_g}\rVert/\lVert\Theta_{2N_g}\rVert\le\varepsilon_{\mathrm{disc}}$
+(Plan A 승격에 쓰는 이산화 오차 기준 $\varepsilon_{\mathrm{disc}}$ 와 동일값)가 될 때까지 mode 해상도를 높인다 —
+정성적 ``수렴할 때까지''가 아니라 위 $\varepsilon_{\mathrm{tol}}$ 체인과 닫힌 정량 종료조건이다. 코드 구현 자체는
+본 이론 범위 밖이며, 여기서는 이론식$\cdot$검증 원리만 제시한다.
 
 \section*{Chapter 2--5 로의 전달}
 본 장이 확정한 상태변수($V_n,\xi_j,k_j,\xi_{\eq,j}$)와 식 위에서: Ch.2 는 \emph{전지 가역 반응열}을 평형
 전위 온도계수로 잇고, Ch.3 은 $k_j$ 를 forward/backward 반응속도론(Level B)으로 확대하며, Ch.4 는 그 위에서
-발열을, Ch.5 는 충방전 히스테리시스를 다룬다. \emph{(기존 Ch.6 의 피팅 실무$\cdot$수치 내용은 본 장
-\S\ref{sec:ch1_simplefit}(심플 근사식)$\cdot$\S\ref{sec:planB}$\cdot$\S\ref{sec:planA}(Plan B/A closure)$\cdot$
-\S\ref{sec:ch1_numeric}(수치 평가)로 흡수했다 — Ch1 자기완결.)}
+발열을, Ch.5 는 충방전 히스테리시스를 다룬다. 본 장은 심플 근사식(\S\ref{sec:ch1_simplefit})과
+Plan B/A closure(\S\ref{sec:planB}, \S\ref{sec:planA}), 그리고 분포 적분 평가 경계(\S\ref{sec:ch1_numeric})까지
+제시하여 Chapter 1의 이론 배경을 자기완결적으로 닫는다.
 
 \begin{thebibliography}{99}
 \bibitem{doyle1993} M. Doyle, T. F. Fuller, J. Newman, ``Modeling of Galvanostatic Charge and Discharge
