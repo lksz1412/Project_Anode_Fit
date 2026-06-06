@@ -41,6 +41,16 @@ Codex Ch2 검수(8 MAJOR) 중 \*수정 완료\*: C4 k_act/k_eff 구분·$\dot{\m
 2. 판정(타당/오바/구라) → 수정 → 재검수 문제 0까지 → 커밋.
 3. subagent 보고의 의심점 확인: Ch5 의 $\Pi_j$(Ch2 가역열 표기와 대조)·reynier/bazant 인용 위치 / Ch3 의 $\chi\equiv\beta_j$ 조건부 동일물 / Ch4 의 bernardi1985 서지.
 
+#### Ch3 Codex 검수 결과 (실시 완료 — 정정 fix-list)
+빠른 register MINOR \*수정 완료\*: 서론 수사의문문→평서·"무비약으로" 메타 태그 제거.
+\*미반영 MAJOR(다음 세션, 정밀 물리 수정)\*:
+- **A3(MAJOR)**: Ch3 가 $\mathcal A_j=s\,n_j^{\eff}F(V_\drive-U_j)$ 로 \*Ch1 의 $\mathcal A_j=sF(V_\drive-U_j)$ 재정의\*. → Ch1 $\mathcal A_j$ 유지하고 일반화는 \*별도 기호\*($\mathcal A_j^{\mathrm{gen}}$ 등)로, 또는 controlled generalization 명시.
+- **B3(MAJOR)**: $\beta_j\equiv\chi$ 를 "대칭 Marcus 극한"에서만 동일물이라 했으나, Ch1 $\chi$ 는 BV/BEP \*전달계수\*(대칭 Marcus 는 $\chi=1/2$ 특수값). → "$\beta_j$ 는 같은 전달계수 규약 하 Ch1 $\chi$ 와 동일; 대칭 Marcus 가 유일 조건 아님"으로.
+- **B3/B4(MAJOR)**: $\alpha_n=1-\beta_j$ 라 했다가 뒤에서 $\beta_j(=\alpha)$ — 불일치. → $\beta_j$ 또는 $\alpha_n=1-\beta_j$ 일관, $\beta_j\ne\alpha_n$.
+- **B5/C(MAJOR)**: $C_j(\xi_j,T)$ 인데 $a_j^\pm(\xi_j,V_n,T)$ 라 $V_n$ 의존 가능 → $n_j^{\eff}=RT/(Fw_j)$ 기울기 유도는 $C_j$ 의 $V_n$ 무관 전제 필요. → $C_j(\xi_j,V_n,T)$ 로 정의 후 partition 가정 명시하고 box.
+- **E(MAJOR)**: Ch2 가 넘긴 $\eta_j$ \*메커니즘 분해\*($\eta_\kin+\eta_\ohm+\eta_\conc$)를 Ch3 가 apparent $R_n$ 분해만 하고 닫지 않음. → $\eta_j$ 메커니즘 분해 표 추가(apparent $R_n$ shift 와 분리).
+- **MINOR**: C4 가 $k_{j,\mathrm{act}}\simeq k_0 e^{-(\Delta G_a-\chi\mathcal A_j)/RT}$($\mathcal A_j\gtrsim RT$) 형 미재현(Ch2 와 동일 k_eff/k_act) · 미인덱스 $\theta$(→$\theta_j$) · `eq:ch3_drive` overfull 위험(aligned 분할).
+
 ### (C) 통합·교차 (그 다음)
 - 4개 챕터 inherit 식이 \*서로\* 일치하는지 횡단(Ch2 가 넘긴 전달항목 ↔ Ch3 inherit, …). 병렬 작성이라 drift 가능 — 교차 reconcile.
 - master 문서(\\include) 또는 cross-file \eqref 연결은 추후(현재 의미 인용).
