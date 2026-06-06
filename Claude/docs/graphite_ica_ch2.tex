@@ -75,9 +75,10 @@ Chapter 1 은 흑연 음극의 $\dd Q/\dd V$ peak 가 온도$\cdot$C-rate$\cdot$
 본 장은 그 발열을 \emph{Chapter 1 의 식 위에서} 유도한다 — 새 상태식을 들여오지 않고, 전하 보존식의 해 $V_n$ 과
 평형 진행률 $\xi_{\eq,j}$, 완화 동역학에서 가역열과 비가역열을 \emph{기원별}로 분해한다. 핵심은 세 가지다.
 첫째, 가역열의 토대인 \emph{평형 전위 온도계수} $(\partial V_{n,\OCV}/\partial T)_q$ 를 외부 lookup 이 아니라 전하
-보존식에서 유도한다(Chapter 1 의 ``OCV 는 보존식의 평형 특수해'' 흐름을 열 계층에서도 유지). 둘째, 그 온도계수가
-곧 \emph{reaction entropy} $\Delta S_j$ 이며, 이것이 Chapter 1 의 \emph{activation entropy} $\Delta S_{a,j}$ 와
-\emph{별개}임을 못박는다. 셋째, 비가역열의 동역학 성분이 Chapter 1 의 지연 꼬리와 같은 $k_j^{\eff}$ 로 닫혀 ICA
+보존식에서 유도한다(Chapter 1 의 ``OCV 는 보존식의 평형 특수해'' 흐름을 열 계층에서도 유지). 둘째, 그 온도계수의 \emph{전이별}
+성분인 위치 온도계수 $\partial U_j/\partial T=\Delta S_j/(sF)$ 가 \emph{reaction entropy} $\Delta S_j$ 를 주며(전체
+$(\partial V_{n,\OCV}/\partial T)_q$ 는 배경$\cdot$폭$\cdot$$D_q$ 정규화까지 묶은 가중 계수라 $\Delta S_j$ 와 동일물이
+아니다), 이 $\Delta S_j$ 가 Chapter 1 의 \emph{activation entropy} $\Delta S_{a,j}$ 와 \emph{별개}임을 못박는다. 셋째, 비가역열의 동역학 성분이 Chapter 1 의 지연 꼬리와 같은 $k_j^{\eff}$ 로 닫혀 ICA
 꼬리의 \emph{열적 거울}이 됨을 보인다.
 
 \tableofcontents
@@ -96,8 +97,10 @@ $\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ 로 해가 유일.\\
 이상 폭 $w_j=RT/F$. 도함수 $\partial\xi_{\eq,j}/\partial V_n=s\,\xi_{\eq,j}(1-\xi_{\eq,j})/w_j$.\\
 \textbf{(C3) 완화 동역학.} $\dd\xi_j/\dd t=k_j^{\eff}\,[\xi_{\eq,j}(V_n,T)-\xi_j]$, 정전류 구간서
 $\dd\xi_j/\dd t=(|I|/Q_\cell)\,\dd\xi_j/\dd q$.\\
-\textbf{(C4) 유효 배리어$\cdot$Eyring.} $k_j^{\eff}\simeq k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$($k_0=k_BT/h$
-현상론), $\mathcal A_j=sF(V_\drive-U_j)$(구동력, 기본 $V_\drive=V_n$), $\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$.\\
+\textbf{(C4) 유효 배리어$\cdot$Eyring.} 활성화 율 $k_{j,\mathrm{act}}\simeq k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$
+($k_0=k_BT/h$ 현상론, $\mathcal A_j\gtrsim RT$ 활성화 지배), 병목 직렬 합성 $1/k_j^{\eff}=1/k_{j,\mathrm{act}}+1/k_{j,\lim}$
+(활성화 지배면 $k_j^{\eff}\simeq k_{j,\mathrm{act}}$). $\mathcal A_j=sF(V_\drive-U_j)$(구동력, 기본 $V_\drive=V_n$),
+$\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$.\\
 \textbf{(C5) 세 전위.} 내부 $V_n$(보존식 해)$\cdot$측정 $V_\app=V_n+s_I|I|R_n$(분극 포함)$\cdot$구동 $V_\drive$(기본
 $=V_n$)$\cdot$평형 $V_{n,\OCV}$. \emph{서로 다른 물리량}.\\
 \textbf{(C6) 위치 온도계수.} $\partial U_j/\partial T=\Delta S_j/(sF)$ — Chapter 1 이 Gibbs--Helmholtz 로 준
@@ -292,12 +295,12 @@ Chapter 3--4 에서 닫힌다.
 식~\eqref{eq:ch2_entropy_coeff} 의 $\Delta S_j=sF\,\partial U_j/\partial T$ 를 넣으면 $sF$ 와 $\dot n_j$ 의
 $1/(sF)$ 가 상쇄되어
 \begin{equation}
-\boxed{\;q_{\rev,j}=T\,\Delta S_j\,\frac{I_j}{sF}=I_j\,T\,\frac{\partial U_j}{\partial T}=I_j\,\Pi_j,\qquad
+\boxed{\;\dot{\mathcal Q}_{\rev,j}=T\,\Delta S_j\,\frac{I_j}{sF}=I_j\,T\,\frac{\partial U_j}{\partial T}=I_j\,\Pi_j,\qquad
 \Pi_j\equiv T\,\frac{\partial U_j}{\partial T}.\;}
 \label{eq:ch2_qrev}
 \end{equation}
-$\Pi_j$ 는 Peltier-type 계수[V]이며 $q_{\rev,j}=I_j\Pi_j$ 는 전류$\times$Peltier 전위 형이다. $I_j$ 가 부호 있는
-전류라 $q_{\rev,j}$ 는 부호가변이다($\partial U_j/\partial T>0,\ I_j>0$ 이면 흡열). 정전류 $|I|=|\sum_j I_j|$
+$\Pi_j$ 는 Peltier-type 계수[V]이며 $\dot{\mathcal Q}_{\rev,j}=I_j\Pi_j$ 는 전류$\times$Peltier 전위 형이다. $I_j$ 가 부호 있는
+전류라 $\dot{\mathcal Q}_{\rev,j}$ 는 부호가변이다($\partial U_j/\partial T>0,\ I_j>0$ 이면 흡열). 정전류 $|I|=|\sum_j I_j|$
 이고 $(\partial V_{n,\OCV}/\partial T)_q$ 가 식~\eqref{eq:ch2_dVocvdT} 로 모든 transition 기여를 집계하므로,
 음극 control volume 의 가역 열률은
 \begin{equation}
@@ -511,19 +514,20 @@ $\sigma_j$ 채널)을 만들므로(식~\eqref{eq:ch2_sigma}), \emph{같은 kinet
 \label{eq:ch2_thermal_single}
 \end{equation}
 \textbf{두 kernel 의 차이.} Chapter 1 의 ICA progress kernel $\dd\xi_j/\dd q=r_j/L\propto(1/L)e^{-(q-q_a)/L}$
-은 (i) kinematic 인자 $1/L$ 을 갖고 (ii) 감쇠 지수가 $-(q-q_a)/L$ 이다. 비가역열 kernel(식~\eqref{eq:ch2_thermal_single})은
-$r_j^2$ 때문에 (i) $1/L$ 인자가 \emph{없고} (ii) 감쇠 지수가 \emph{2배} $-2(q-q_a)/L$ 다(특성 길이 절반 $L/2$,
-단일 mode 기준 2배 빠른 감쇠). spectrum 으로 중첩하면
+은 특성 길이 $L$ 이다. 비가역열도 \emph{용량축}으로 환산하면($\dd t/\dd q=Q_\cell/|I|$,
+$k_j=|I|/(Q_\cell L)$ 라 $g''_j k_j r_j^2\,(Q_\cell/|I|)\propto(1/L)\,g''_j r_j^2$) \emph{같은} kinematic $1/L$ 인자를
+품되, $r_j^2$ 때문에 감쇠 지수가 \emph{2배} $-2(q-q_a)/L$ 라 특성 길이가 절반 $L/2$(2배 빠른 감쇠)이고 진폭에
+$g''_j$ 가 붙는다. spectrum 으로 중첩하면
 \begin{equation}
 \boxed{\;\frac{\dd q_{\irr,\kin}}{\dd q}\simeq\int_0^\infty A_L^{(2)}(L;T,V_\drive)\,e^{-2(q-q_a)/L}\,\dd L,\;}
 \label{eq:ch2_thermal_kernel}
 \end{equation}
 $A_L^{(2)}$ 는 Chapter 1 spectrum 의 \emph{지지집합} $\{L\}$ 을 그대로 쓰되 per-mode weight $g''_j k_j r_j(q_a)^2$
-(kinematic $1/L$ 부재 포함)을 실은 \textbf{재가중} 분포다 — Chapter 1 의 $A_L$ 자체와 같지 않다.
+($g''_j$ 진폭과 $1/L$ 포함)을 실은 \textbf{재가중} 분포다 — Chapter 1 의 $A_L$ 자체와 같지 않다.
 \begin{flagbox}
-\textbf{정합 가설(novel).} ``decay length 비 $=2$''는 단일 우세 mode($A_L\to\delta(L-L_0)$)에서만 엄밀하고,
+\textbf{정합 가설.} ``decay length 비 $=2$''는 단일 우세 mode($A_L\to\delta(L-L_0)$)에서만 엄밀하고,
 broad spectrum 에서는 per-mode arc-length doubling $q-q_a\to2(q-q_a)$ 이 \emph{재가중}과 함께 나타난다(``정확히
-2배''가 아님). ``저온 긴 ICA tail $\leftrightarrow$ 저온 큰 비가역열 tail''의 대응은 novel hypothesis 로,
+2배''가 아님). ``저온 긴 ICA tail $\leftrightarrow$ 저온 큰 비가역열 tail''의 대응은 본 장이 제시하는 정합 가설로,
 \emph{확정}은 calorimetry cross-check($q_\rev\cdot$mixing$\cdot$ohmic$\cdot$transport 차감 후 비가역열 tail 이
 Chapter 1 spectrum $\{L\}$ 로부터의 forward prediction 과 정합하는지)를 전제로 한다(Chapter 1 forward-only
 반증 원칙의 calorimetry 확장). $r_j(q_a)$ 근사를 Chapter 1 kernel 과 공유하므로 완전 독립이 아니라
