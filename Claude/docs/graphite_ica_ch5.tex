@@ -1,0 +1,838 @@
+% ====================================================================
+% graphite_ica_ch5.tex — Chapter 5
+%   흑연 음극 충전 branch 와 히스테리시스: Chapter 1 의 방전 기준
+%   부호 규약 s=+1 을 충전 branch s^b=-1 로 확장하고, true equilibrium
+%   대 metastable branch target, loop area = 소산열을 Chapter 1~4 의
+%   전하 보존·평형 logistic·완화 동역학·발열 분해 위에서 유도한다.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={충전 branch 와 히스테리시스 — Chapter 5}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{충전 branch 와 히스테리시스 — Ch.5}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{inheritbox}{Chapter 1--4 에서 받는 기준식}
+\newtheorem*{boundbox}{유효 범위}
+\newtheorem*{flagbox}{비고}
+\newtheorem*{rigorbox}{심화}
+\newtheorem*{verifybox}{검산}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\peak}{\mathrm{peak}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rlx}{\mathrm{rlx}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\transp}{\mathrm{transport}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{ch}}
+\newcommand{\rst}{\mathrm{rest}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\kin}{\mathrm{kin}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\loss}{\mathrm{loss}}
+\newcommand{\tar}{\mathrm{tar}}
+\newcommand{\stt}{\mathrm{state}}
+\newcommand{\prog}{\mathrm{prog}}
+\newcommand{\ct}{\mathrm{ct}}
+
+\title{\textbf{\LARGE Chapter 5}\\[0.35em]\Large 충전 branch 와 히스테리시스: 방향 비대칭과 loop 소산열}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서론}
+\addcontentsline{toc}{section}{서론}
+% ====================================================================
+Chapter 1 은 흑연 음극 $\dd Q/\dd V$ peak 를 \emph{방전} 한 방향만 다뤘다. 부호 규약을 세울 때 방전 방향을 기준
+$s=+1$ 로 두고, 그 반대인 \emph{충전 branch} $s=-1$ 은 ``다음 장''으로 미뤄 두었다(Chapter 1 \S 평형 진행률의
+부호 확정, \S 종합의 범위 비고). \textbf{본 장이 그 미뤄둔 충전 branch 다.} 충방전을 한 구조에 넣되 Chapter 1--4
+기본식을 고쳐 쓰지 않고, 내부 상태로 방전 기준 $\xi_j$ 를 유지한 채 충전 방향을 부호 인자 $s_{\phi,j}^b$ 로
+확장한다.
+
+본 장이 설명하려는 \textbf{관측}은 다음이다.
+\begin{quote}\itshape
+같은 흑연 전극이라도 충전과 방전에서 $\dd Q/\dd V$ peak 의 위치$\cdot$발열이 다르다. 충방전 곡선이 만드는
+loop 의 폭과 면적은 단순한 측정 오차가 아니라, 방향에 따른 \emph{비대칭}과 한 cycle 의 \emph{소산열}을 담는다.
+\end{quote}
+
+\textbf{이 장의 목표}는 이 방향 비대칭을 Chapter 1--4 의 식 위에서, 중간 단계를 빠짐없이 밝혀 닫는 것이다.
+핵심은 다섯이다. 첫째, signed current 와 signed 상태 좌표로 방전$\cdot$충전$\cdot$휴지를 한 시간 적분에 넣는다.
+둘째, 충전 branch 의 부호 인자 $s_{\phi,j}^b=-1$ 을 \emph{가정이 아니라} Chapter 1 평형 logistic 의 지수 부호
+정합으로 유도하고, 충전에서 구동력$\cdot$과전압$\cdot$비가역열의 부호가 어떻게 뒤집히면서도 발열 비음성
+$n_j^{\eff}I_j\eta_j^b\ge0$ 이 부호 상쇄로 보존됨을 보인다. 셋째, true equilibrium target $\xi_{\eq,j}$ 와
+metastable branch target $\xi_{\tar,j}^b$ 를 구분하고, 후자가 Chapter 1 의 정상점 $\xi_{\sstat,j}$ 와 같은 자리에
+서되 평형값에서 이탈함을 본다. 넷째, 관측 전압 gap 이 곧 히스테리시스가 아님($\Delta V_\obs\ne\Delta V_\hys$)을
+못박는다. 다섯째, loop 면적이 소산열이되 그 전체가 진짜 히스테리시스 열이 아님을 Chapter 2$\cdot$4 의 발열 분해와
+정합시킨다.
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Chapter 1--4 에서 받는 기준식과 신규 기호}\label{sec:ch5_inherit}
+% ====================================================================
+본 장은 Chapter 1--4 의 다음 결과를 \textbf{수정 없이} 입력으로 받는다(각 식은 앞 장의 boxed 결과를 가리키며,
+본 장은 그 형태$\cdot$기호$\cdot$부호 규약을 그대로 쓰고 그 위에 충방전 branch 계층을 \emph{적층}한다 — 앞 장
+본문 기본식을 충전으로 고쳐 쓰지 않는다).
+\begin{inheritbox}
+\textbf{(C1) 전하 보존식.} $Q_\cell\,q=Q_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_j\,\xi_j$. 주어진 $(q,T,\{\xi_j\})$ 에서
+이를 $V_n$ 에 대해 푼 것이 내부 전위이며, 평형 특수해($\xi_j=\xi_{\eq,j}$)가 $V_{n,\OCV}(q,T)$ 다. 단조성
+$\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ 로 해가 유일.\\
+\textbf{(C2) 평형 진행률(logistic).} $\xi_{\eq,j}(V_n,T)=[1+\exp(-s(V_n-U_j(T))/w_j(T))]^{-1}$, 방전 $s=+1$,
+이상 폭 $w_j=RT/F$. 도함수 $\partial\xi_{\eq,j}/\partial V_n=s\,\xi_{\eq,j}(1-\xi_{\eq,j})/w_j$.\\
+\textbf{(C3) 완화 동역학.} $\dd\xi_j/\dd t=k_j(\xi_{\eq,j}-\xi_j)$ — 정/역 속도 $r_j^\pm$ 의 2-상태 과정으로부터
+$k_j=r_j^++r_j^-$(완화 속도), 정상점 $\xi_{\sstat,j}=r_j^+/(r_j^++r_j^-)$. 정전류 구간서
+$\dd\xi_j/\dd t=(|I|/Q_\cell)\,\dd\xi_j/\dd q$.\\
+\textbf{(C4) detailed balance 와 유효 배리어.} $r_j^+/r_j^-=\exp(\mathcal A_j/RT)$ 이면 $\xi_{\sstat,j}=\xi_{\eq,j}$
+(Chapter 1 에서 증명). 구동력 $\mathcal A_j=sF(V_\drive-U_j)$(기본 $V_\drive=V_n$); 유효 배리어
+$k_j\simeq k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$, $\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$, 전달
+계수 $\chi\in[0,1]$.\\
+\textbf{(C5) 세 전위.} 내부 $V_n$(보존식 해)$\cdot$측정 $V_\app=V_n+s_I|I|R_n$(분극 포함, $s_I$=전류 부호 규약)
+$\cdot$구동 $V_\drive$(기본 $=V_n$)$\cdot$평형 $V_{n,\OCV}$. \emph{서로 다른 물리량}.\\
+\textbf{(C6) 위치 온도계수와 reaction entropy.} $\partial U_j/\partial T=\Delta S_j/(sF)$(Gibbs--Helmholtz).
+$\Delta S_j$(reaction entropy)는 가역열의 토대이며 Chapter 1 의 activation entropy $\Delta S_{a,j}$ 와 별개
+(Chapter 2 \S reaction entropy $\ne$ activation entropy).\\
+\textbf{(C7) 발열 분해.} 음극 control volume 의 열원은 가역 entropic 열과 비가역 소산열로 갈리며, 비가역 성분은
+$\dot{\mathcal Q}_\irr=\sum_j n_j^{\eff}I_j\eta_j\ge0$($n_j^{\eff}=RT/(Fw_j)$, $\eta_j$=과전압) 형으로 닫혔다
+(Chapter 2 \S 비가역 소산열). 단 Chapter 2 의 분해는 방전($s=+1$)만 다루었고, 충전 branch 부호 인자의 유도는
+본 장으로 미뤄두었다.
+\end{inheritbox}
+
+\textbf{신규 기호(Chapter 1--4 위에 추가).} 본 장에서만 새로 도입하는 기호다(앞 장 기호는 (C1)--(C7) 과 동일물).
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.59\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$I_s$ & A & signed external current ($>0$ 방전, $<0$ 충전, $=0$ 휴지); $|I_s|$ 가 Chapter 1--4 의 $|I|$ \\
+$s_I$ & --- & 전류 방향 부호 $=\mathrm{sgn}(I_s)$ ($+1$ 방전, $-1$ 충전); apparent 전위 식~\eqref{eq:ch5_vapp_branch} 의 부호 인자 \\
+$b(t)$ & --- & branch index $\in\{\dis,\chg,\rst\}$ (방전/충전/휴지) \\
+$s_{\phi,j}^b$ & --- & branch 부호 인자 ($s_{\phi,j}^\dis=+1$, $s_{\phi,j}^\chg=-1$; \S\ref{sec:ch5_chargesign} 에서 유도) \\
+$q_\stt$ & --- & signed 내부 상태 좌표, $\dd q_\stt/\dd t=I_s/Q_\cell$ (방전 증가, 충전 감소) \\
+$\zeta_j$ & --- & 충전 직관용 보조 변수 $=1-\xi_j$ (독립 상태 아닌 종속 변수, $\dd\zeta_j/\dd t=-\dd\xi_j/\dd t$) \\
+$\xi_{\tar,j}^b$ & --- & branch target 진행률(metastable); branch-local 정상점 $\xi_{\sstat,j}$ 형식 \\
+$U_j^b,\ w_j^b$ & V & branch 중심 전위$\cdot$전이폭 (metastable 자유에너지 기원) \\
+$G_j^b$ & J/mol & 전이 $j$ 의 branch(metastable) 자유에너지 \\
+$h_j(t)$ & --- & hysteresis 상태 $\in[-1,1]$ ($+1$ 방전 memory, $-1$ 충전 memory, $0$ relaxed) \\
+$\Delta U_j^\hys$ & V & 방전--충전 branch 중심 차(signed) $=U_j^\dis-U_j^\chg$ \\
+$\lambda_j^b$ & 1/s & hysteresis 상태 $h_j$ 의 완화율 (domain 재배열$\cdot$depinning 시간척도) \\
+$k_j^\rst$ & 1/s & 휴지 구간 $\xi_j$ 완화율 (Chapter 1 mobility $k_j$ 와 별개의 휴지 relaxation 상수) \\
+$n_j^{\eff,b}$ & --- & branch 유효 전자수 $\equiv RT/(Fw_j^b)$ (C7 $n_j^\eff=RT/(Fw_j)$ 의 branch 폭 판) \\
+$\eta_{j,\prog}^b$ & V & branch-local 진행 과전압 $=s_{\phi,j}^b[V_\drive-V_{\tar,j}^b(\xi_j)]$ \\
+$\Delta V_\obs,\Delta V_\hys$ & V & 관측 voltage gap$\cdot$true thermodynamic hysteresis gap \\
+$\Delta V_\pol,\Delta V_\kin,\Delta V_\transp$ & V & 분극$\cdot$kinetic lag$\cdot$transport 기여 gap \\
+$E_{\mathrm{loop}}$ & J & 전압--용량 loop 면적 $\oint V\,\dd Q$ (소산 + 분극 + lag 혼합) \\
+$\dot{\mathcal Q}_{\hys}^b$ & W & branch path-dependent hysteresis 발열률 \\
+$V_\cell^b,\ V_p^b$ & V & branch full-cell 전압$\cdot$양극 전위 \\
+$\eta_\loss^b$ & V & branch-dependent signed loss/overpotential aggregate \\
+$R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Faraday, Boltzmann, Planck \\
+\bottomrule
+\end{longtable}
+$F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$, $\mathrm{J/C}=\mathrm V$. 열률 dot 표기는 시간율 [W].
+임의 empirical branch offset$\cdot$arbitrary hysteresis curve$\cdot$clip/cap/step 정의식을 기본 물리식으로 쓰지
+않으며, 충전 부호는 유도(\S\ref{sec:ch5_chargesign}), branch target 은 metastable 자유에너지로 해석 가능할 때만
+본문 모델로 둔다.
+
+% ====================================================================
+\section{Signed current $\cdot$ branch index $\cdot$ signed 상태 좌표}\label{sec:ch5_signed}
+% ====================================================================
+Chapter 1--4 는 방전 한 방향만 다뤘으므로 전류 크기 $|I|$ 만으로 충분했다. 충방전을 한 구조에 넣으려면
+\emph{부호 있는} 전류가 필요하다. signed current 를 도입한다:
+\begin{equation}
+I_s>0:\ \text{방전(discharge)},\quad I_s<0:\ \text{충전(charge)},\quad I_s=0:\ \text{휴지(rest)};\qquad |I_s|=\text{크기}.
+\label{eq:ch5_signed_current}
+\end{equation}
+Chapter 1--4 의 $|I|$ 는 방전 기준 magnitude 였으므로, 앞 장 식에 $I_s$ 를 그대로 넣지 않고 $|I|\equiv|I_s|$ 로
+대응시킨다. branch index 는 부호로 정한다: $I_s>0\Rightarrow b=\dis$, $I_s<0\Rightarrow b=\chg$,
+$I_s=0\Rightarrow b=\rst$. 내부 상태 좌표는 \emph{부호 있는} signed 좌표다:
+\begin{equation}
+\boxed{\;\frac{\dd q_\stt}{\dd t}=\frac{I_s}{Q_\cell}\;}\qquad(\text{방전서 증가},\ \text{충전서 감소}).
+\label{eq:ch5_qstate}
+\end{equation}
+
+\begin{verifybox}
+\textbf{차원.} $I_s[\mathrm A=\mathrm{C/s}]/Q_\cell[\mathrm C]=\mathrm{s^{-1}}$, 좌변 $\dd q_\stt/\dd t$ 도
+$\mathrm{s^{-1}}$($q_\stt$ 무차원) — 정합. \textbf{부호.} $I_s>0$(방전)서 $\dd q_\stt/\dd t>0$, $I_s<0$(충전)서
+$\dd q_\stt/\dd t<0$ — 방전이 진행 좌표를 키우고 충전이 되돌린다는 직관과 일치.
+\end{verifybox}
+
+$Q_\cell$ 은 기준 용량이며 비가역 용량 손실(loss of lithium inventory / loss of active material)이나 전극 balancing
+오차를 이 식에 임의 흡수하지 않는다(필요 시 별도 capacity-balancing 변수). 전하 보존식은 적분 상수 모호성을 피하려
+\emph{기준점 포함 상대형}이 안전하다:
+\begin{equation}
+Q_\cell(q_\stt-q_{\stt,\mathrm{ref}})=\big[Q_\bg(V_n,T)-Q_\bg(V_{n,\mathrm{ref}},T_{\mathrm{ref}})\big]
++\sum_j Q_j(\xi_j-\xi_{j,\mathrm{ref}}).
+\label{eq:ch5_relbalance}
+\end{equation}
+\textbf{방전 극한 환원.} 방전 단독($I_s=|I_s|>0$, 기준점을 방전 시작으로)에서 이상 쿨롱 효율$\cdot$$\dd Q_\bg=0$
+극한이면 $q_\stt-q_{\stt,\mathrm{ref}}\to q$ 가 되어 식~\eqref{eq:ch5_relbalance} 가 Chapter 1 의 전하 보존식 (C1)
+으로 환원된다(앞 장과 충돌 없음). 일반 경우에는 $q_\stt$(외부 전류 적분)와 $q$(보존식 해)가 부반응만큼 어긋나며,
+이 차이를 식~\eqref{eq:ch5_qstate} 에 임의 흡수하지 않는다. 실험 plotting 용량은 내부 좌표와 별개로 둔다:
+$Q_\dis=\int_\dis|I_s|\,\dd t$, $Q_\chg=\int_\chg|I_s|\,\dd t$(ICA/DVA overlay 용; 내부 상태 방정식은 $q_\stt$ 를
+따른다).
+
+\subsection{내부 상태 $\xi_j$ 유지와 보조 변수 $\zeta_j$}\label{sec:ch5_xikeep}
+기본 상태는 \emph{방전 기준} $\xi_j$ 하나다($\xi_j=0$ 미진행, $\xi_j=1$ 완료). 방전서 대체로 $\dd\xi_j/\dd t>0$,
+충전서 $\dd\xi_j/\dd t<0$ 이다(같은 $\xi_j$ 가 양방향으로 움직인다). 충전 방향을 직관적으로 표기할 때
+$\zeta_j\equiv1-\xi_j$ 를 쓸 수 있으나, 이는 독립 상태가 아니라 \emph{종속 보조 변수}이며($\dd\zeta_j/\dd t=
+-\dd\xi_j/\dd t$), branch 전환 시 $\xi_j$ 를 재초기화하지 않는다(\S\ref{sec:ch5_rest}). 수치 적분$\cdot$전하 보존
+$\cdot$발열의 기본 입력은 항상 $\xi_j,\dd\xi_j/\dd t$ 다 — 독립 상태를 임의로 늘리지 않는다.
+
+% ====================================================================
+\section{충전 branch 부호 인자 $s_{\phi,j}^b$ 의 유도}\label{sec:ch5_chargesign}
+% ====================================================================
+이 절이 본 장의 핵심이며, Chapter 1 이 부호 규약을 세울 때 충전 branch $s=-1$ 을 ``다음 장''으로 미뤄둔 책임을
+수령한다. 목표는 방전 $s_{\phi,j}^\dis=+1$ 에 대해 충전 $s_{\phi,j}^\chg=-1$ 을 Chapter 1 평형식의 \emph{지수 부호
+정합}으로 유도하는 것이며, 충전에서 $\mathcal A_j$, $\eta_j$, 비가역열의 부호가 어떻게 뒤집히는지, 그럼에도
+$n_j^{\eff}I_j\eta_j^b\ge0$ 이 부호 상쇄로 여전히 성립함을 보인다.
+
+\subsection{logistic 지수의 부호 정합}\label{sec:ch5_sign_derive}
+\textbf{출발(Chapter 1 평형식).} Chapter 1 의 전기화학 평형 조건은 삽입 리튬의 점유율 화학퍼텐셜이 전극 전위와
+균형을 이루는 것이었고, 이상 극한에서 진행률로 옮기면 $RT\ln[\xi_{\eq,j}/(1-\xi_{\eq,j})]=s_{\phi,j}F(V_n-U_j)$
+였다(Chapter 1 \S 평형 진행률, 식 (iv); 부호 인자 $s_{\phi,j}$ 는 거기서 $s$ 로 적힌 것과 동일물). 부호 인자
+$s_{\phi,j}$ 는 \emph{선택한 진행 방향의 전이 구동력 부호}를 정하며, Chapter 1 은 방전을 기본으로 $s_{\phi,j}=+1$
+로 두고 충전 부호는 미뤄두었다. 본 절은 \emph{충전 branch 에서 이 부호가 무엇이어야 하는지}를 같은 평형식의 부호
+정합으로 역으로 묻는다.
+
+\textbf{물리적 요구(branch 진행 방향).} ``$\mathcal A_j>0\Leftrightarrow$ 선택한 branch 의 진행이 촉진''이라는
+규약(Chapter 1 의 구동력 정의 $\mathcal A_j=s_{\phi,j}F(V_\drive-U_j)$ 에 내장된 부호 약속)을 충전에 그대로
+적용한다. 방전 branch 의 진행은 $\xi_j$ \emph{증가}($\dd\xi_j/\dd t>0$, 점유$\to$미점유의 탈리튬화), 충전 branch
+의 진행은 $\xi_j$ \emph{감소}($\dd\xi_j/\dd t<0$, 미점유$\to$점유의 재리튬화)다(\S\ref{sec:ch5_xikeep}). 따라서
+같은 부호 규약이 방전과 충전에서 서로 반대 방향의 $\xi_j$ 변화를 촉진해야 한다.
+
+\textbf{유도.} 평형식 $RT\ln[\xi_{\eq,j}/(1-\xi_{\eq,j})]=s_{\phi,j}^b F(V_n-U_j^b)$ 를 $\xi_{\eq,j}$ 에 대해
+풀면(Chapter 1 의 (iv) 단계와 동일 대수) branch logistic
+\begin{equation}
+\xi_{\eq,j}^b(V_n,T)=\frac{1}{1+\exp\!\big[-s_{\phi,j}^b\,(V_n-U_j^b)/w_j^b\big]}.
+\label{eq:ch5_logistic_branch}
+\end{equation}
+이 곡선의 $V_n$-기울기는 Chapter 1 의 logistic 항등식 $\dd\xi/\dd z=\xi(1-\xi)$ 로
+\begin{equation}
+\frac{\partial\xi_{\eq,j}^b}{\partial V_n}=\frac{s_{\phi,j}^b\,\xi_{\eq,j}^b(1-\xi_{\eq,j}^b)}{w_j^b}.
+\label{eq:ch5_dxidV_branch}
+\end{equation}
+$\xi_{\eq,j}^b(1-\xi_{\eq,j}^b)>0$, $w_j^b>0$ 이므로 \emph{이 기울기의 부호는 정확히 $s_{\phi,j}^b$ 의 부호}다.
+이제 두 branch 의 물리적 진행 방향을 부호로 강제한다.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2pt]
+\item \textbf{방전 branch.} 방전은 $V_n$ 이 평형 중심 $U_j$ 보다 \emph{위}로($V_n>U_j$) 구동될수록 진행(탈리튬화,
+  $\xi_j$ 증가)이 촉진된다. Chapter 1 의 규약대로 $V_n>U_j$ 에서 $\xi_{\eq,j}>1/2$ 가 되려면 식~\eqref{eq:ch5_logistic_branch}
+  지수 안 $-s_{\phi,j}^b(V_n-U_j)/w_j<0$, 즉 $s_{\phi,j}^b(V_n-U_j)>0$ 이어야 하고 $V_n>U_j$ 에서 이는
+  $s_{\phi,j}^\dis=+1$ 을 강제한다(Chapter 1--4 가 쓴 값과 일치 — 환원 검산).
+\item \textbf{충전 branch.} 충전은 그 \emph{역과정}이다: 전위가 반대 방향으로 구동될 때(재리튬화/충전 방향)
+  선택한 충전 전이의 진행($\xi_j$ \emph{감소})이 촉진돼야 한다. ``$\mathcal A_j>0\Leftrightarrow$ 충전 방향
+  진행 촉진'' 규약을 만족하려면, 같은 전위 편차 $(V_n-U_j^b)$ 에 대해 방전과 \emph{반대 부호}의 구동력이 충전을
+  밀어야 한다. 즉 충전 branch 의 진행 affinity 가 방전과 부호가 반대가 되려면 지수 안 부호 인자가 뒤집혀야 하고,
+  이는 곧
+\end{enumerate}
+\begin{equation}
+\boxed{\;s_{\phi,j}^\dis=+1,\qquad s_{\phi,j}^\chg=-1\;.}
+\label{eq:ch5_schg}
+\end{equation}
+\textbf{이 부호는 유도된 것이지 가정된 것이 아니다.} 식~\eqref{eq:ch5_dxidV_branch} 의 기울기 부호가 branch 진행
+방향(방전 $\dd\xi_j/\dd t>0$ vs 충전 $\dd\xi_j/\dd t<0$)을 결정하고, ``$\mathcal A_j>0\Leftrightarrow$ 진행 촉진''
+이라는 \emph{단 하나의} 규약을 두 branch 에 일관 적용하면 충전에서 $s_{\phi,j}^\chg=-1$ 이 필연으로 따라온다.
+방전 부호를 따로 가정하지 않아도, 같은 평형식의 부호 정합이 방전($+1$)과 충전($-1$)을 동시에 고정한다.
+
+\begin{boundbox}
+\textbf{$\xi_{\eq,j}^b$ 와 metastable $\xi_{\tar,j}^b$ 의 구분(여기서는 부호만).} 식~\eqref{eq:ch5_logistic_branch}
+은 branch 부호 인자의 유도를 위해 logistic 형을 쓴 것이며, 충전과 방전의 평형 곡선이 \emph{실제로 다른지}
+($U_j^\dis\ne U_j^\chg$, true thermodynamic hysteresis)는 \S\ref{sec:ch5_branch} 의 별개 물리(metastable
+branch)다. 본 절의 결론(식~\eqref{eq:ch5_schg})은 부호 정합이며, $U_j^b,w_j^b$ 의 branch 차이를 가정하지
+않는다(그것은 \S\ref{sec:ch5_branch} 의 metastability 가 정한다).
+\end{boundbox}
+
+\subsection{충전에서 $\mathcal A_j$, $\eta_j$, 비가역열의 부호 뒤집힘}\label{sec:ch5_sign_flip}
+\textbf{구동력 $\mathcal A_j$.} Chapter 1 의 구동력 $\mathcal A_j^b=s_{\phi,j}^b n_j^{\eff}F(V_\drive-U_j^b)$ 에
+식~\eqref{eq:ch5_schg} 를 넣으면, 같은 전위 편차 $(V_\drive-U_j^b)$ 에 대해
+\begin{equation}
+\mathcal A_j^\dis=+\,n_j^{\eff}F(V_\drive-U_j),\qquad
+\mathcal A_j^\chg=-\,n_j^{\eff}F(V_\drive-U_j^\chg),
+\label{eq:ch5_A_branch}
+\end{equation}
+즉 부호 인자가 전체 affinity 의 부호를 뒤집는다(여기서 방전 중심은 $U_j^\dis\equiv U_j$ 로 적고, 중심의 branch
+분기 $U_j^\dis\ne U_j^\chg$ 자체는 가정하지 않으며 \S\ref{sec:ch5_branch} metastability 로 이연한다 — $U_j^\chg$ 는
+충전 branch 중심의 \emph{자리}만 표시). \textbf{과전압 $\eta_j$.} Chapter 2 의 과전압 $\eta_j^b=s_{\phi,j}^b
+[V_\drive-V_{\eq,j}^b(\xi_j)]$ 도 충전서 부호가 뒤집힌다:
+\begin{equation}
+\eta_j^\dis=+\,[V_\drive-V_{\eq,j}(\xi_j)],\qquad
+\eta_j^\chg=-\,[V_\drive-V_{\eq,j}^\chg(\xi_j)].
+\label{eq:ch5_eta_branch}
+\end{equation}
+\textbf{전이 전류 $I_j$.} 전이 전류 $I_j=Q_j\,\dd\xi_j/\dd t$ 는 $Q_j>0$ 이므로 $\dd\xi_j/\dd t$ 의 부호를 따른다:
+방전서 $\dd\xi_j/\dd t>0\Rightarrow I_j>0$, 충전서 $\dd\xi_j/\dd t<0\Rightarrow I_j<0$. \textbf{비가역열의 부호.}
+비가역 발열을 $\dot{\mathcal Q}_{\irr,j}=n_j^{\eff}I_j\eta_j\ge0$ 형으로 적은 것은 Chapter 2 에서 방전 기준으로
+닫은 결과인데, 충전 branch 에서 부호가 어떻게 되는지를 먼저 따져야 한다.
+
+\begin{verifybox}
+\textbf{충전에서도 $n_j^{\eff}I_j\eta_j^b\ge0$ 이 부호 상쇄로 성립함.} 충전 branch($s_{\phi,j}^\chg=-1$)에서
+비가역 발열 항의 부호를 대수적으로 따라간다. 충전이 진행 중이면 계가 충전 target 을 향해 가므로, 현재 $\xi_j$ 가
+그 충전 평형 $\xi_{\eq,j}^\chg$ 보다 \emph{크다}($\xi_j>\xi_{\eq,j}^\chg$, 아직 덜 빠진 상태). 두 인자의 부호를
+각각 본다.
+
+\emph{(1) $I_j$ 의 부호.} 완화식 $\dd\xi_j/\dd t=k_j(\xi_{\eq,j}^\chg-\xi_j)$ 에서 $\xi_j>\xi_{\eq,j}^\chg\Rightarrow
+\xi_{\eq,j}^\chg-\xi_j<0\Rightarrow\dd\xi_j/\dd t<0\Rightarrow I_j=Q_j\,\dd\xi_j/\dd t<0$. (충전서 전류가 음 —
+식~\eqref{eq:ch5_signed_current} 의 $I_s<0$ 과 정합.)
+
+\emph{(2) $\eta_j^\chg$ 의 부호.} 충전 branch 의 국소 평형 전위는 branch logistic 의 \emph{역함수}이므로 부호
+인자가 로그 항에 실린 $V_{\eq,j}^\chg(\xi_j)=U_j^\chg+s_{\phi,j}^\chg w_j^\chg\ln[\xi_j/(1-\xi_j)]
+=U_j^\chg-w_j^\chg\ln[\xi_j/(1-\xi_j)]$ 다($s_{\phi,j}^\chg=-1$ 으로 $\xi_j$ 에 \emph{감소}형). 따라서
+$\xi_j>\xi_{\eq,j}^\chg$ 이면 감소형에 의해 $V_{\eq,j}^\chg(\xi_j)<V_{\eq,j}^\chg(\xi_{\eq,j}^\chg)=V_\drive$, 즉
+$[V_\drive-V_{\eq,j}^\chg(\xi_j)]>0$. 여기에 충전 부호 인자를 곱하면 $\eta_j^\chg=s_{\phi,j}^\chg[V_\drive
+-V_{\eq,j}^\chg(\xi_j)]=(-1)\cdot[\,>0\,]<0$.
+
+\emph{(3) 곱의 부호(상쇄).} 따라서 $I_j<0$ \emph{이고} $\eta_j^\chg<0$ — 두 인자가 같은(둘 다 음) 부호라 그
+곱은 양이다:
+\begin{equation}
+\boxed{\;n_j^{\eff}\,I_j\,\eta_j^\chg=\underbrace{n_j^{\eff}}_{>0}\,\underbrace{(<0)}_{I_j}\,\underbrace{(<0)}_{\eta_j^\chg}\;>\;0\;.}
+\label{eq:ch5_qirr_charge}
+\end{equation}
+충전이 \emph{두 인자의 부호를 동시에} 뒤집으므로($I_j$ 는 $\dd\xi_j/\dd t<0$ 에서, $\eta_j^\chg$ 는
+$s_{\phi,j}^\chg=-1$ \emph{와} $V_{\eq}^\chg$ 감소형에서) 그 곱은 여전히 양이다 — 음$\times$음$=$양. 부호 우연이
+아니다: 두 인자는 독립이 아니라 둘 다 같은 편차 $(\xi_{\eq,j}^b-\xi_j)$ 에 종속한다 — $I_j\propto(\xi_{\eq,j}^b
+-\xi_j)$ 이고 $\eta_j^b$ 도 $V_{\eq}^b(\xi_j)$ 의 단조성을 통해 같은 편차와 동부호이므로($s_\phi^b$ 가 $V_{\eq}^b$
+의 단조 방향과 $\eta$ 의 부호 인자에 같이 들어가 짝이 맞는다), $I_j\eta_j^b\ge0$ 은 flux 와 그 공액력의 짝맞음의
+귀결이다. 방전($+1$, 식~\eqref{eq:ch5_eta_branch} 첫 식)에서는 $\xi_j<\xi_{\eq,j}\Rightarrow I_j>0$ \emph{이고}
+$\eta_j^\dis>0$ 이라 양$\times$양$=$양이다(Chapter 2 방전 논증과 동일). 양 branch 모두 $I_j$ 와 $\eta_j^b$ 가 같은
+부호이며, 평형서 $\eta_j^b\to0,\ I_j\to0$ 동시 소멸로 매끄럽게 0 이 된다(발산 없음). 이로써 충전에서도 2법칙
+$\sum_j n_j^{\eff}I_j\eta_j^b\ge0$ 이 보존된다 — 단순 ``$I_j\eta_j$''가 아니라 부호 정렬이 보장된 양정치 합이다.
+\end{verifybox}
+
+\textbf{가역 열의 부호 가변성(대비).} 비가역 발열이 양 branch 에서 $\ge0$ 인 것과 달리, 가역 열
+$\dot{\mathcal Q}_{\rev,j}^b=I_j\,\Pi_j$($\Pi_j=T\,\partial U_j^b/\partial T$, Peltier 류 계수)는 $I_j$ 의
+부호(방전 $+$, 충전 $-$)와 $\partial U_j^b/\partial T$ 의 부호에 따라 흡열$\cdot$발열 모두 가능하다. 충전과 방전에서
+$I_j$ 부호가 뒤집히므로 같은 reaction entropy 계수 $\partial U_j^b/\partial T$ 라도 가역 열의 부호가 branch 마다
+반대로 나온다 — 이것이 충방전 발열 비대칭의 한 물리 원천이며, 비가역(항상 $\ge0$)과 혼동하면 안 된다
+(\S\ref{sec:ch5_branchheat}). 흑연 $\mathrm{Li_xC_6}$ 의 $\partial U/\partial T$ 가 staging 에 따라 부호$\cdot$크기를
+달리함은 실측돼 있다 \cite{reynier2004}.
+
+\begin{boundbox}
+\textbf{부호 유도의 유효 범위(detailed-balance 기본형).} 위 검산의 부호 상쇄는 detailed balance 기본형
+(정상점 $\xi_{\sstat,j}=\xi_{\eq,j}$; Chapter 1 \S 전위 배리어의 평형 불변 한정)에서 닫힌다. 강구동 branch
+비대칭(\S\ref{sec:ch5_branch})에서는 $\xi_{\tar,j}^b\ne\xi_{\eq,j}$ 이므로 ``현재 평형'' 기준을 $\xi_{\tar,j}^b$
+의 국소 평형 $V_{\tar,j}^b(\xi_j)$ 로 바꿔야 하고, 그 경우 부호 논증은 $\eta_{j,\prog}^b=s_{\phi,j}^b
+[V_\drive-V_{\tar,j}^b(\xi_j)]$ 로 일반화된다(같은 부호 상쇄 구조 유지). 즉 부호 양정치는 ``target 기준 과전압''
+에 대해 성립하며, true equilibrium 과 branch target 의 차(히스테리시스 loss)는 별도 에너지다
+(\S\ref{sec:ch5_hysheat}, 이중 계상 금지).
+\end{boundbox}
+
+% ====================================================================
+\section{True equilibrium 과 metastable branch target}\label{sec:ch5_branch}
+% ====================================================================
+Chapter 1$\cdot$3 의 $\xi_{\eq,j}(V_n,T)$ 는 true thermodynamic equilibrium target 이다. 충방전 경로의
+branch-dependent 곡선은 다음 중 하나 이상의 결과일 수 있다: (1) metastable phase path, (2) nucleation barrier /
+phase-boundary pinning, (3) particle/domain memory, (4) finite-rate kinetic lag, (5) concentration polarization,
+(6) ohmic / charge-transfer polarization, (7) aging / side reaction. 따라서 branch target 도입 시 \emph{단순
+fitting 곡선인지 metastable 자유에너지 branch 인지}를 먼저 구분한다 — 이 구분 없이 충방전 곡선 차를 모두
+``열역학 히스테리시스''로 부르면 polarization 과 혼동된다(\S\ref{sec:ch5_apparent}).
+
+\textbf{다입자 기원.} 삽입전지 히스테리시스의 열역학적 기원은 개별 입자의 곡선이 아니라 \emph{다입자 집합}의
+거동에서 나온다: 각 입자가 1차 상전이(비단조 화학퍼텐셜)를 가지면, 집합은 충전 시와 방전 시 서로 다른 입자
+부분집합이 순차적으로 변태하여 충/방전이 다른 평형 분지를 좇는다 \cite{dreyer2010}. 즉 $\xi_{\eq}^{\chg}\ne
+\xi_{\eq}^{\dis}$ 는 단일 입자의 비가역성이 아니라 다입자/mosaic 열역학의 귀결이며, loop 면적이 곧 한 입자의
+소산열인 것은 아니다(\S\ref{sec:ch5_hysheat}).
+
+\textbf{disorder pinning 기원.} 무질서가 도입한 1차 상전이는 \emph{barrier hierarchy}(여러 크기의
+nucleation/depinning 장벽)를 만들어, 외부 구동이 한 장벽을 넘을 때마다 avalanche 형 변태가 일어나고 경로가
+이력을 획득한다 \cite{sethna1993}. 이 disorder-driven first-order 전이의 히스테리시스는 흑연 staging 의 도메인
+불균일$\cdot$결정립계$\cdot$phase-boundary pinning 과 대응하며, branch target 이 ``방전 memory''와 ``충전
+memory'' 사이에서 갈리는 물리 근거다.
+
+\textbf{branch 전위(물리 해석 가능 시).} branch 자유에너지 $G_j^b$ 로 branch 전위를 정의한다 \cite{dreyer2010,sethna1993}:
+\begin{equation}
+U_j^b(T,h_j)\ \sim\ \frac{1}{F}\frac{\partial G_j^b}{\partial n_j},
+\label{eq:ch5_branch_potential}
+\end{equation}
+($\partial G_j^b/\partial n_j\,[\mathrm{J/mol}]/F\,[\mathrm{C/mol}]=\mathrm{J/C}=\mathrm V$, 차원 정합; $h_j$
+의존은 \S\ref{sec:ch5_hstate}). 그때 branch target 은 식~\eqref{eq:ch5_logistic_branch} 의 branch 버전이다:
+\begin{equation}
+\xi_{\tar,j}^b(V_n,T,h_j)=\frac{1}{1+\exp\!\big[-s_{\phi,j}^b\,(V_n-U_j^b(T,h_j))/w_j^b(T)\big]}.
+\label{eq:ch5_branch_target}
+\end{equation}
+식~\eqref{eq:ch5_branch_target} 의 지수에는 \S\ref{sec:ch5_chargesign} 에서 유도한 $s_{\phi,j}^b$ 가 들어가,
+branch target 의 $V_n$-단조 방향이 branch 진행 방향과 정합한다(방전 증가, 충전 감소).
+
+\begin{keybox}
+\textbf{branch target 은 Chapter 1 의 정상점 $\xi_{\sstat,j}$ 와 같은 자리에 선다.} branch 안에서 branch-local
+detailed balance $r_j^{+,b}/r_j^{-,b}=\xi_{\tar,j}^b/(1-\xi_{\tar,j}^b)$(식~\eqref{eq:ch5_branch_db})를 정상점
+정의 $\xi_{\sstat,j}=r^+/(r^++r^-)=[1+r^-/r^+]^{-1}$ 에 대입하면 $[1+(1-\xi_\tar^b)/\xi_\tar^b]^{-1}=\xi_\tar^b$
+로 돌아온다. 이는 \emph{정의 일관성 점검}(무모순 항등)이지 $\xi_{\sstat}^b=\xi_\tar^b$ 를 독립 유도하는 것이
+아니다. 즉 \emph{branch target 이 곧 branch-local 정상점}이며, $\xi_{\tar,j}^b\ne\xi_{\eq,j}$ 는 정상점이
+true-equilibrium 값에서 branch 만큼 \emph{이탈}했음을 뜻한다(Chapter 1 의 ``열역학이 방향, 동역학이 속도'' 분업
+중 ``방향''이 metastable 자유에너지로 인해 이력을 획득). \textbf{히스테리시스는 이 target 이동이지,
+mobility($k_j$)의 변화가 아니다.}
+\end{keybox}
+
+\textbf{정상점과 평형값이 갈라지는 정확한 조건.} Chapter 1 은 정/역 비가 detailed balance
+$r_j^+/r_j^-=e^{\mathcal A_j/RT}$ 를 만족할 때 정상점이 평형값과 일치함($\xi_{\sstat,j}=\xi_{\eq,j}$)을 보였다.
+일반형은 rate ratio 가 $\ln(r_j^{+,b}/r_j^{-,b})=C_j^b(\xi_j,T)+\mathcal A_j^b/RT$ 로 보정 항 $C_j^b$ 를 가지며
+\cite{bazant2013}, true-equilibrium 정합은 ``$C_j^b$ 가 $\xi_j$-무관 \emph{이고} 중심에서 0''을 요구한다. branch 가 생기는 조건은
+이 둘 중 하나의 위배다:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=2pt]
+\item \textbf{$C_j^b$ 의 branch 이탈.} 중심에서 $C_j^b\ne0$, 또는 $C_j^b$ 가 memory $h_j$ 에 의존하면 detailed
+  balance 우변이 true-equilibrium odds 와 갈라져 $\xi_{\tar,j}^b\ne\xi_{\eq,j}$ 다. 이는 metastable 자유에너지
+  (다른 $U_j^b,w_j^b$)에서 온다.
+\item \textbf{$r_j^{+,b}/r_j^{-,b}$ 의 $\xi_j$-의존.} ratio 가 $\xi_j$ 에 의존하면 $\xi_{\sstat,j}^b$ 가 닫힌형이
+  아니라 \emph{음함수}(implicit fixed point)가 되어, 같은 $V_n$ 에서도 경로(이력)에 따라 다른 정상점에 머문다 —
+  path memory 의 미시 표현이다(\S\ref{sec:ch5_hstate} 의 $h_j$).
+\end{enumerate}
+\textbf{무엇이 안 깨지는가.} Chapter 1 의 정/역 구조 자체($\dd\xi_j/\dd t=r_j^{+,b}(1-\xi_j)-r_j^{-,b}\xi_j$,
+완화 속도 $=r^++r^-$, 전달 계수 $\chi$ 가 ratio 의 $\mathcal A$-기울기서 상쇄)는 branch 안에서도 그대로 성립한다.
+깨지는 것은 ``ratio $=$ \emph{true}-equilibrium odds''라는 정합 제약뿐이며, 그 자리에 ``ratio $=$ \emph{branch}-target
+odds''(식~\eqref{eq:ch5_branch_db})가 들어선다. 즉 ``속도'' 분업은 보존되고 ``방향'' 분업만 ``방향$=$branch
+target(이력 의존)''으로 부분 붕괴한다.
+
+\begin{boundbox}
+\textbf{근거 요구.} $\xi_{\tar,j}^b$ 를 쓰는 것 자체는 물리 모델이 아니다. $U_j^b,w_j^b,h_j$ 가 metastable
+branch / domain memory / nucleation barrier / phase-boundary history 와 연결돼야 한다 \cite{dreyer2010,sethna1993}.
+근거 없으면 $\xi_{\tar,j}^b$ 는 empirical branch fit 이며 본문 기본식이 아니라 비교 모델로 내린다.
+\end{boundbox}
+
+% ====================================================================
+\section{Hysteresis 상태 변수와 metastability}\label{sec:ch5_hstate}
+% ====================================================================
+branch 가 ``이력''을 가지려면 그 이력을 담는 내부 변수가 필요하다. 전이별 hysteresis 상태 $h_j(t)\in[-1,1]$ 를
+도입한다: $h_j=+1$ 방전 branch memory, $h_j=-1$ 충전 branch memory, $h_j=0$ relaxed/중간. branch 중심은 이
+memory 에 \emph{선형}으로 의존하는 signed 파라미터로 둔다:
+\begin{equation}
+U_j^b(T,h_j)=U_j^0(T)+\frac{\Delta U_j^\hys(T)}{2}\,h_j,\qquad \Delta U_j^\hys\in\mathbb R.
+\label{eq:ch5_hys_center}
+\end{equation}
+
+\begin{verifybox}
+\textbf{부호.} $h_j=+1$(방전 memory)서 $U_j^b=U_j^0+\Delta U_j^\hys/2$, $h_j=-1$(충전 memory)서
+$U_j^b=U_j^0-\Delta U_j^\hys/2$ — 두 branch 중심의 차가 정확히 $\Delta U_j^\hys=U_j^\dis-U_j^\chg$ 다.
+\end{verifybox}
+
+$\Delta U_j^\hys>0$ 이면 방전 branch 중심이 충전보다 높은 규약(반대 관측이면 $\Delta U_j^\hys<0$ 로 피팅).
+hysteresis 상태의 동역학은 현재 branch 의 memory target 으로의 1차 완화다:
+\begin{equation}
+\frac{\dd h_j}{\dd t}=\lambda_j^b\big[\,s_{\phi,j}^b-h_j\,\big],
+\label{eq:ch5_h_dyn}
+\end{equation}
+여기서 memory target 은 현재 branch 의 부호 인자 $s_{\phi,j}^b$ 그대로다($b=\dis$ 면 $+1$, $b=\chg$ 면 $-1$
+로 끌림; \S\ref{sec:ch5_chargesign} 의 부호 인자와 동일물이라 \emph{새 자유 파라미터가 아니다}). $\lambda_j^b$
+는 fitting 속도가 아니라 domain 재배열$\cdot$phase-boundary depinning$\cdot$nucleation 의 미세구조 memory
+relaxation 시간척도를 대표한다.
+
+\begin{verifybox}
+\textbf{차원.} $\lambda_j^b[\mathrm{s^{-1}}]\times$무차원$[h]=\mathrm{s^{-1}}$, 좌변도 $\mathrm{s^{-1}}$ — 정합.
+\textbf{구간 유지.} $s_{\phi,j}^b\in\{-1,+1\}$ 로 끌리는 1차 완화이므로 초기 $h_j\in[-1,1]$ 이면 해가 구간을
+벗어나지 않는다(완화식의 단조 수렴; clip 으로 강제하지 않는다).
+\end{verifybox}
+
+% ====================================================================
+\section{Branch-dependent 정/역 동역학}\label{sec:ch5_kinetics}
+% ====================================================================
+Chapter 1 의 정/역 구조를 branch 위에서 형태 그대로 유지한다(깨지는 것은 정합 제약뿐, \S\ref{sec:ch5_branch}):
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=r_j^{+,b}(1-\xi_j)-r_j^{-,b}\xi_j.
+\label{eq:ch5_branch_fb}
+\end{equation}
+branch 자유에너지 지형이 정의되면(식~\eqref{eq:ch5_branch_potential}) branch 안 \emph{국소} detailed balance 는
+true equilibrium 이 아니라 branch target odds 를 만족한다:
+\begin{equation}
+\frac{r_j^{+,b}}{r_j^{-,b}}=\frac{\xi_{\tar,j}^b}{1-\xi_{\tar,j}^b}
+\label{eq:ch5_branch_db}
+\end{equation}
+(global equilibrium 에 대한 detailed balance 가 아니라 metastable branch surface 위의 국소 균형). 전위 구동력이
+명시되면 branch 진행 affinity 는 \S\ref{sec:ch5_chargesign} 에서 유도한 부호 인자로(branch 유효 전자수
+$n_j^{\eff,b}\equiv RT/(Fw_j^b)$)
+\begin{equation}
+\mathcal A_{j,\prog}^b=s_{\phi,j}^b\,n_j^{\eff,b}F\,[V_\drive-V_{\tar,j}^b(\xi_j)]=n_j^{\eff,b}F\,\eta_{j,\prog}^b,
+\qquad \eta_{j,\prog}^b\equiv s_{\phi,j}^b\,[V_\drive-V_{\tar,j}^b(\xi_j)],
+\label{eq:ch5_branch_affinity}
+\end{equation}
+$V_{\tar,j}^b(\xi_j)=U_j^b+s_{\phi,j}^b\,w_j^b\ln[\xi_j/(1-\xi_j)]$ 는 branch-local 평형 이탈 기준 전위
+(\S\ref{sec:ch5_branch} 의 metastable 평형). \emph{부호 인자가 로그 항에 실리는 근거}: 이는 branch logistic
+$\xi_{\tar,j}^b=[1+e^{-s_{\phi,j}^b(V_\drive-U_j^b)/w_j^b}]^{-1}$ 의 역함수이고, 역으로 풀면
+$V_{\tar,j}^b-U_j^b=(w_j^b/s_{\phi,j}^b)\ln[\xi_j/(1-\xi_j)]=s_{\phi,j}^b w_j^b\ln[\xi_j/(1-\xi_j)]$
+($1/s_{\phi}^b=s_\phi^b$, $\pm1$)다. 따라서 방전($s_\phi^\dis=+1$)에서는 $\xi_j$ 에 \emph{증가}형(Chapter 2 형으로
+환원), 충전($s_\phi^\chg=-1$)에서는 \emph{감소}형이며, 이 감소형이 \S\ref{sec:ch5_chargesign} 부호 상쇄의 정의적
+근거다. $\eta_{j,\prog}^b>0\Rightarrow b$-branch 방향 진행 촉진(방전서 $\dd\xi_j/\dd t>0$, 충전서
+$\dd\xi_j/\dd t<0$).
+
+\textbf{affinity$\leftrightarrow$rate 부호 사슬.} 식~\eqref{eq:ch5_branch_fb} 의 두 율을 식~\eqref{eq:ch5_branch_db}
+으로 정리하면 $\dd\xi_j/\dd t=(r_j^{+,b}+r_j^{-,b})(\xi_{\tar,j}^b-\xi_j)$(mobility $\times$ target 편차)다.
+충전($\eta_{j,\prog}^\chg>0$ 으로 충전 방향 구동, $\xi_j>\xi_{\tar,j}^\chg$)에서는 $\xi_{\tar,j}^\chg-\xi_j<0
+\Rightarrow\dd\xi_j/\dd t<0$ — 진행 과전압의 양($\eta_{j,\prog}^\chg>0$)이 $\xi_j$ 의 감소를 밀어 부호 사슬이
+닫힌다. 이 $\eta_{j,\prog}^b$ 는 Chapter 2 의 true-equilibrium 기반 $\eta_j$ 와 \emph{자동으로 같지 않다} —
+branch target $V_{\tar,j}^b$ 가 true 평형 $V_{\eq,j}$ 에서 이탈했기 때문이다(\S\ref{sec:ch5_branch} 핵심). 부호
+검산은 \S\ref{sec:ch5_chargesign} 의 부호 상쇄가 ``true 평형''을 ``branch target''으로 바꾼 형으로 그대로 성립한다
+(충전서 $I_j<0$ \emph{이고} $\eta_{j,\prog}^\chg<0$ 이라 곱 $\ge0$).
+
+\begin{boundbox}
+\textbf{branch-local 소산과 metastable 자유에너지 loss(이중 계상 금지).} Chapter 2 의 비가역 발열 결과는 branch
+안에서 $\dot{\mathcal Q}_{\irr,j}^b=n_j^{\eff,b}I_j\,\eta_{j,\prog}^b\ge0$ 로 일반화된다($\eta$ 를 branch-local
+이탈로). 그러나 이는 branch surface 위의 kinetic dissipation 일 뿐이며, branch 가 결국 true equilibrium 으로 풀릴
+때 방출되는 metastable 자유에너지 차이(히스테리시스 loss, \S\ref{sec:ch5_hysheat})와 \emph{구분}된다. 둘을 합치면
+같은 에너지를 이중 계상한다. 즉 ``현재 branch 위에서 target 을 좇는 소산''($\eta_{j,\prog}^b$)과 ``branch 자체가
+true 평형 대비 갖는 자유에너지 잉여''($V_{\tar,j}^b-V_{\eq,j}$)는 서로 다른 에너지 항이다.
+\end{boundbox}
+
+% ====================================================================
+\section{Apparent 전위와 polarization 의 branch 확장 ($\Delta V_\obs\ne\Delta V_\hys$)}\label{sec:ch5_apparent}
+% ====================================================================
+관측되는 충방전 전압 차(loop 폭)를 곧바로 히스테리시스로 부르면 polarization 과 혼동된다. 본 절이 그 분리를
+못박는다. branch 별 apparent 음극 전위는 Chapter 1 의 apparent 전위 $V_\app=V_n+s_I|I|R_n$ 을 signed current 로
+확장한 것이다:
+\begin{equation}
+V_\app^b=V_n+\Delta V_{n,\pol}^b,\qquad
+\Delta V_{n,\pol}^b\approx I_s\,R_n^b(q_\stt,T,|I_s|)\ \ \text{(small-signal/secant)}.
+\label{eq:ch5_vapp_branch}
+\end{equation}
+\textbf{이는 polarization 표현이지 hysteresis offset 이 아니다.} $R_n^b>0$ 이어도 \emph{$I_s$ 의 부호}에 따라
+전압 이동 방향이 바뀐다: 방전($I_s>0$)서 $\Delta V_{n,\pol}^b>0$, 충전($I_s<0$)서 $\Delta V_{n,\pol}^b<0$. 즉
+polarization 은 $|I_s|\to0$ 에서 사라지지만(전류 차단 시 0), \emph{true hysteresis 는 $|I_s|\to0$ 에서도 남는}
+평형 분지 차다 — 이 점이 둘을 구분하는 \emph{조작적} 기준이다(\S\ref{sec:ch5_ident} 의 저율/GITT 비교).
+\textbf{한정.} $|I_s|\to0$ 외삽은 $\Delta V_\pol$ 만 제거하며, kinetic lag($\Delta V_\kin$, 유한 완화시간
+잔류)와 aging($\Delta V_{\mathrm{aging}}$, 비가역 누적)은 외삽으로 분리되지 않는다 — 따라서 외삽 단독으로
+$\Delta V_\hys$ 를 분리하려면 lag/aging 이 무시 가능한 GITT 완화 종점을 함께 써야 한다.
+
+관측 voltage gap 을 성분으로 분해한다. 각 성분은 loop \emph{폭}(branch 차)이므로 $\Delta V_X\equiv X^\dis-X^\chg$
+로 정의하여 식~\eqref{eq:ch5_vapp_branch} 의 signed single-branch 표현과 입도를 통일한다:
+\begin{equation}
+\Delta V_\obs=\Delta V_\hys+\Delta V_\pol+\Delta V_\kin+\Delta V_\transp+\Delta V_{\mathrm{aging}}.
+\label{eq:ch5_gap_decomp}
+\end{equation}
+특히 polarization 성분은 두 branch 의 \emph{부호 상쇄}로 더해진다:
+\begin{equation}
+\Delta V_\pol\equiv\Delta V_{n,\pol}^\dis-\Delta V_{n,\pol}^\chg
+\approx(+|I_s|R_{n,\pol})-(-|I_s|R_{n,\pol})=2|I_s|R_{n,\pol}>0,
+\label{eq:ch5_dvpol}
+\end{equation}
+즉 single-branch 부호($\pm$)가 차를 취하면 양의 폭으로 합쳐진다. 여기서 $R_n^b$ 는 단독 ohmic 저항이 아니라
+합성 분극 저항 $R_{n,\pol}^b\equiv R_n^b+R_\ct^b$(ohmic $+$ charge-transfer secant)로 읽는다.
+\begin{longtable}{p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.64\textwidth}}
+\toprule 성분 & 물리적 의미 \\ \midrule \endhead
+$\Delta V_\hys$ & \textbf{true thermodynamic hysteresis}: 충/방전 평형 분지 차 $U_j^\dis-U_j^\chg$ (metastable 자유에너지; $|I_s|\to0$ 잔존) \\
+$\Delta V_\pol$ & polarization($R_n^b$, ohmic/charge-transfer); $|I_s|\to0$ 소멸, $I_s$ 부호 의존 \\
+$\Delta V_\kin$ & kinetic lag($\xi_j$ 가 target 못 따라감; Chapter 1 의 지연 꼬리) \\
+$\Delta V_\transp$ & transport/concentration limitation (Chapter 2 transport heat 와 짝) \\
+$\Delta V_{\mathrm{aging}}$ & aging/side reaction 누적 변화 \\
+\bottomrule
+\end{longtable}
+따라서 본 장의 기본 원칙은
+\begin{equation}
+\boxed{\;\Delta V_\obs\ne\Delta V_\hys\;.}
+\label{eq:ch5_obs_not_hys}
+\end{equation}
+$\Delta V_\pol$ 은 Chapter 1 의 $R_n$(apparent voltage-axis shift)과 charge-transfer 저항에서 오고,
+$\Delta V_\hys$ 만이 평형 분지 차다. gap 전체를 한 항으로 피팅하면 polarization 과 true hysteresis 가 공선형이라
+식별 불가능하다(\S\ref{sec:ch5_ident}).
+
+% ====================================================================
+\section{Branch-dependent ICA/DVA 좌표}\label{sec:ch5_icadva}
+% ====================================================================
+충방전 ICA/DVA 를 한 그림에 겹칠 때 좌표를 명시하지 않으면 부호와 peak 방향이 혼동된다. signed capacity 와
+branch positive capacity 를 구분한다:
+\begin{equation}
+Q_s(t)=Q_{s,\mathrm{ref}}+\int_{t_{\mathrm{ref}}}^t I_s(t')\,\dd t',\qquad
+Q_b=\begin{cases}Q_\dis & (b=\dis)\\ Q_\chg & (b=\chg)\end{cases}
+\label{eq:ch5_signed_cap}
+\end{equation}
+($Q_s$ 는 signed, $Q_b$ 는 각 branch 의 양 용량). branch 별 apparent DVA 는 $(\dd V_\app^b/\dd Q_b)_b$, signed
+thermodynamic 분석은 $\dd V_n/\dd Q_s$ 를 별도로 쓴다. ICA 는 DVA 의 역수로, signed thermodynamic ICA 와
+branch-positive apparent ICA 를 병기한다:
+\begin{equation}
+\boxed{\;\Big(\frac{\dd Q_b}{\dd V_\app^b}\Big)_b=\Big(\frac{\dd V_\app^b}{\dd Q_b}\Big)_b^{-1}
+\quad(\text{branch-positive}),\qquad
+\frac{\dd Q_s}{\dd V_n}=\Big(\frac{\dd V_n}{\dd Q_s}\Big)^{-1}\quad(\text{signed thermodynamic}).\;}
+\label{eq:ch5_branch_ica}
+\end{equation}
+\textbf{충전 branch 부호 반전.} 충전서 $\dd q_\stt/\dd t<0$(식~\eqref{eq:ch5_qstate}, $I_s<0$)라 signed 좌표
+$Q_s$ 가 \emph{감소}하므로, 같은 물리 peak 라도 $\dd Q_s/\dd V_n$ 의 부호가 방전 대비 뒤집혀 \emph{음의 lobe} 로
+나타난다($\dd Q_s<0$ 이 분자 부호를 반전). branch-positive $Q_b$ 는 항상 증가(각 branch 양 용량)라
+$(\dd Q_b/\dd V_\app^b)_b$ 는 부호 반전 없이 양 branch 를 같은 향으로 그린다. \textbf{방전 단독서 $Q_s=Q_\ext$
+이므로 Chapter 1 의 ICA/DVA 와 정확히 일치한다}(앞 장과 충돌 없음).
+
+% ====================================================================
+\section{Full-cell 관측 전압과 음극 peak}\label{sec:ch5_fullcell}
+% ====================================================================
+실험에서 직접 읽는 것은 음극 단독 전위가 아니라 full-cell 전압이다. full-cell 전압은 양극/음극 전위와 signed
+loss 의 합이다:
+\begin{equation}
+V_\cell^b=V_p^b-V_n^b-\eta_\loss^b,
+\label{eq:ch5_fullcell}
+\end{equation}
+$\eta_\loss^b$=branch-dependent signed loss/overpotential aggregate. apparent 식 $V_{\cell,\app}^b
+=V_{p,\app}^b-V_{\app}^b$ 는 손실 항을 흡수한 표현인데, exact 식~\eqref{eq:ch5_fullcell} 의 $-\eta_\loss^b$ 와
+폐합하려면 $\eta_\loss^b$ 가 양극$\cdot$음극 분극 차로 흡수돼야 한다. 따라서
+\begin{equation}
+\eta_\loss^b\equiv(\Delta V_{p,\pol}^b-\Delta V_{n,\pol}^b)+\eta_{\loss,\mathrm{res}}^b,
+\label{eq:ch5_etaloss_def}
+\end{equation}
+여기서 양극 분극 $\Delta V_{p,\pol}^b=I_s R_p^b$(음극 식~\eqref{eq:ch5_vapp_branch} 와 동일 secant 규약,
+$V_{p,\app}^b=V_p^b+\Delta V_{p,\pol}^b$), $\eta_{\loss,\mathrm{res}}^b$ 는 $V_{p,\app}^b,V_\app^b$ 에 흡수되지
+않은 잔여 transport$\cdot$lag 손실이다.
+
+\begin{verifybox}
+\textbf{exact$\leftrightarrow$apparent 폐합.} $V_{\cell,\app}^b=(V_p^b+\Delta V_{p,\pol}^b)-(V_n^b+\Delta V_{n,\pol}^b)
+=V_p^b-V_n^b-(\Delta V_{n,\pol}^b-\Delta V_{p,\pol}^b)$ 이며, exact 식~\eqref{eq:ch5_fullcell} 와
+$\eta_{\loss,\mathrm{res}}^b=0$ 일 때 일치한다.
+\end{verifybox}
+
+\textbf{polarization 중복 계상 금지.} 두 표현을 동시에 쓸 때 $V_{p,\app}^b,V_\app^b$ 에 이미 포함된 분극
+(식~\eqref{eq:ch5_vapp_branch})을 다시 $\eta_\loss^b$ 의 $\Delta V_\pol$ 부분에 이중으로 넣지 않는다(잔여항
+$\eta_{\loss,\mathrm{res}}^b$ 만 별도). signed capacity 기준 full-cell DVA 는 양극 좌표 환산에 주의한다 — $Q_s$
+는 음극 signed 좌표이며 양극은 stoichiometric coupling $\dd Q_p=-\dd Q_s$ 로 환산되어 $\dd V_p^b/\dd Q_s
+=-\dd V_p^b/\dd Q_p$:
+\begin{equation}
+\frac{\dd V_\cell^b}{\dd Q_s}=-\frac{\dd V_p^b}{\dd Q_p}-\frac{\dd V_n^b}{\dd Q_s}-\frac{\dd\eta_\loss^b}{\dd Q_s}.
+\label{eq:ch5_fullcell_dva}
+\end{equation}
+따라서 full-cell graphite peak 는 양극$\cdot$음극$\cdot$loss 가 섞인 관측 신호다(여기서 transport 손실은
+$\eta_\loss^b$ 의 잔여항에 포함된 부분집합이지 독립 항이 아니다). reference electrode / half-cell reconstruction /
+electrode balancing 없이 full-cell peak 를 음극 peak 로 직접 등치하지 않는다 \cite{bardfaulkner,newman2004}(Chapter 1
+의 ``OCV 를 외부 lookup 으로 읽지 않는다''와 같은 입도의 경계).
+
+% ====================================================================
+\section{Hysteresis energy 와 heat (loop 면적 $=$ 소산열)}\label{sec:ch5_hysheat}
+% ====================================================================
+한 충방전 cycle 의 전압--용량 loop 면적은 그 cycle 에서 소산된 에너지다:
+\begin{equation}
+E_{\mathrm{loop}}=\oint V\,\dd Q.
+\label{eq:ch5_loop_area}
+\end{equation}
+
+\begin{verifybox}
+\textbf{차원.} $V[\mathrm V]\times Q[\mathrm C]=\mathrm{V\cdot C}=\mathrm J$ — 에너지. \textbf{부호$\cdot$가역
+극한.} 가역 준정적 cycle 에서는 $\oint V\,\dd Q=0$(2법칙 등호, 경로 무관), 비가역 cycle 에서 $\oint V\,\dd Q>0$
+이다. $|I_s|\to0$ 으로 polarization $\to0$ 이고 평형 분지 차도 0(분지 비대칭 없음)이면 loop 가 닫혀
+$E_{\mathrm{loop}}\to0$ — 가역 극한에서 소산이 사라진다는 2법칙 한계와 일치. 양정치를 보장하려면 적분 방향을
+$q_\stt$ 의 1주기(방전 증가 $\to$ 충전 감소)로 고정하고, 미정렬이면 $E_{\mathrm{loop}}=|\oint V\,\dd Q|$ 로
+절댓값을 취한다.
+\end{verifybox}
+
+그러나 이 면적은 true hysteresis + polarization loss + kinetic lag + transport loss + side reaction 을
+\emph{모두} 포함한다(식~\eqref{eq:ch5_gap_decomp} 의 모든 성분이 loop 폭에 기여). \textbf{따라서
+$E_{\mathrm{loop}}$ 전체를 true hysteresis heat 로 단정하지 않는다}(다입자 결론과 정합 \cite{dreyer2010}).
+물리적으로 분리된 hysteresis loss 전압이 식별된 경우에만 후보 발열항으로 둔다:
+\begin{equation}
+\dot{\mathcal Q}_{\hys}^b=|I_s|\,\Delta V_{\hys\text{-}\loss}^b,\qquad \Delta V_{\hys\text{-}\loss}^b\ge0,
+\label{eq:ch5_hys_heat}
+\end{equation}
+더 일반적으로는 Chapter 2 의 flux--force 형으로 $\dot{\mathcal Q}_{\hys}^b=J_\hys^b\,\mathcal A_\hys^b\ge0$ 이다
+(2법칙).
+
+\begin{verifybox}
+\textbf{율[W]과 loop 에너지[J]의 연결.} 식~\eqref{eq:ch5_hys_heat} 의 $\dot{\mathcal Q}_{\hys}^b$ 는 발열률
+($|I_s|[\mathrm A]\times\Delta V[\mathrm V]=\mathrm W$)이고, 이를 1주기 적분한 $\oint\dot{\mathcal Q}_{\hys}^b\,\dd t$[J]
+가 식~\eqref{eq:ch5_loop_area} 의 $E_{\mathrm{loop}}$ 중 \emph{분리된 hysteresis 성분}에 해당한다 — 율[W]과 loop
+에너지[J]의 차원이 시간 적분으로 이어진다.
+\end{verifybox}
+
+단순 signed $I_s\,\Delta V_\hys^b$ 는 부호 규약이 정렬된 경우에만 쓴다 — Chapter 2 가 ``$I\eta$ 단독''(부호
+미정렬)을 비가역 열로 쓰는 것을 차단한 것과 같은 원칙이며, 본 장 \S\ref{sec:ch5_chargesign} 의 부호 상쇄 유도로
+$|I_s|\,\Delta V_{\hys\text{-}\loss}^b\ge0$ 형이 정당화된다. hysteresis loss 가 metastable 자유에너지의 비가역
+방출이면, 그것은 Chapter 2 의 entropy production $T\dot S_\irr=\sum_\alpha J_\alpha X_\alpha\ge0$ 의 한
+채널(path-dependent free-energy relaxation)이며 2법칙으로 $\ge0$ 이다 — 즉 loop 면적의 분리된 hysteresis 성분은
+Chapter 2 의 비가역 발열 framework 안에서 닫힌다(새 피팅항이 아니다).
+
+\begin{boundbox}
+\textbf{중복 계상 금지.} $\dot{\mathcal Q}_{\hys}^b$ 를 별도 항으로 쓰려면 같은 voltage-gap 성분을 $\eta_\loss^b$,
+$R_n^b$, transport heat, 그리고 \S\ref{sec:ch5_kinetics} 의 branch-local kinetic dissipation
+$n_j^{\eff,b}I_j\eta_{j,\prog}^b$ 에 \emph{동시에} 넣지 않는다. 특히 branch-local kinetic dissipation(target 을
+좇는 소산)과 hysteresis loss(branch 가 true 평형으로 풀릴 때의 자유에너지 방출)는 다른 에너지이므로
+(\S\ref{sec:ch5_kinetics} 유효 범위) 둘을 합산하면 같은 에너지를 두 번 센다. 분리되지 않은 loop 면적 전체는
+true hysteresis heat 가 아니다.
+\end{boundbox}
+
+% ====================================================================
+\section{Branch-dependent heat 구조}\label{sec:ch5_branchheat}
+% ====================================================================
+Chapter 2 의 열원 분해를 branch 로 확장하고 hysteresis 항을 추가한다:
+\begin{equation}
+\dot{\mathcal Q}_{\src}^b=\dot{\mathcal Q}_{\irr}^b+\dot{\mathcal Q}_{\rev}^b+\dot{\mathcal Q}_{\rlx}^b
++\dot{\mathcal Q}_{\transp}^b+\dot{\mathcal Q}_{\hys}^b.
+\label{eq:ch5_branch_heat}
+\end{equation}
+\begin{longtable}{p{0.31\textwidth} >{\raggedright\arraybackslash}p{0.57\textwidth}}
+\toprule 항 & 물리적 근거 (부호) \\ \midrule \endhead
+$\dot{\mathcal Q}_{\irr}^b$ & overpotential-driven entropy production $=\sum_j n_j^{\eff,b}I_j\eta_{j,\prog}^b\ge0$ (\S\ref{sec:ch5_chargesign} 부호 상쇄로 양 branch $\ge0$) \\
+$\dot{\mathcal Q}_{\rev}^b$ & branch별 entropy 계수 또는 reaction entropy (부호 가변; 충전서 $I_j<0$, 즉 $\dd\xi_j/\dd t<0$ 로 방전과 부호 반전) \\
+$\dot{\mathcal Q}_{\rlx}^b$ & metastable branch relaxation 또는 전이망 entropy production \\
+$\dot{\mathcal Q}_{\transp}^b$ & diffusion/electrolyte/finite-current dissipative loss ($\ge0$) \\
+$\dot{\mathcal Q}_{\hys}^b$ & polarization 과 분리된 path-dependent hysteresis loss ($\ge0$; \S\ref{sec:ch5_hysheat}) \\
+\bottomrule
+\end{longtable}
+\textbf{가역 열(reaction entropy 기준, 충전 부호 명시).} Chapter 2 의 reaction entropy 기준 가역 발열을 branch 로
+쓰면
+\begin{equation}
+\dot{\mathcal Q}_{\rev}^b=\sum_{j=1}^{N_p}T\,\Delta S_j^b\,\frac{Q_j}{F}\,\frac{\dd\xi_j}{\dd t}.
+\label{eq:ch5_branch_rev}
+\end{equation}
+
+\begin{verifybox}
+\textbf{차원.} $T[\mathrm K]\,\Delta S_j^b[\mathrm{J/(mol\,K)}]\,(Q_j/F)[\mathrm{mol}]\,(\dd\xi_j/\dd t)[\mathrm{s^{-1}}]
+=\mathrm{J/s}=\mathrm W$ — 가역 발열률. \textbf{충전 부호.} 충전서 $\dd\xi_j/\dd t<0$($\xi_j$ 감소)이 될 수 있으므로,
+같은 $\Delta S_j^b$ 라도 가역 열의 부호가 branch 마다 반대로 나온다.
+\end{verifybox}
+
+이것이 \S\ref{sec:ch5_chargesign} 의 ``가역 열 부호 가변성''(검산 직후 단락)의 정량 표현이다. 충전서
+$\dd\xi_j/\dd t<0$ 은 $I_j=Q_j\,\dd\xi_j/\dd t<0$ 과 동치이고, 이는 다시 $q_\stt$ 감소($I_s<0$,
+식~\eqref{eq:ch5_qstate})와 \S\ref{sec:ch5_chargesign} 의 ``$I_j<0$'' 표현과 동일 기제다(셋이 한 부호 사슬).
+hysteresis heat 와 reversible heat 가 branch heat 비대칭을 \emph{동시에} 설명하지 않도록 독립 제약이 필요하다
+(\S\ref{sec:ch5_ident}; calorimetry).
+
+% ====================================================================
+\section{Rest 구간과 branch switching}\label{sec:ch5_rest}
+% ====================================================================
+휴지 구간에서는 $I_s=0,\ \dd q_\stt/\dd t=0$ 이지만 내부 $\xi_j,h_j,V_n$ 은 계속 relax 한다(Chapter 2 의 휴지
+relaxation heat 와 짝). $\xi_j$ 가 무엇을 향해 풀리는지에 두 후보가 있다(휴지 완화율 $k_j^\rst$ 은 Chapter 1
+mobility $k_j$ 와는 별개의 휴지 relaxation 상수). true equilibrium 으로 relax(메모리 소멸):
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^\rst\big[\xi_{\eq,j}(V_n,T)-\xi_j\big],
+\label{eq:ch5_rest_eq}
+\end{equation}
+metastable memory 유지(branch target 으로 relax):
+\begin{equation}
+\frac{\dd\xi_j}{\dd t}=k_j^\rst\big[\xi_{\tar,j}^\rst(V_n,T,h_j)-\xi_j\big].
+\label{eq:ch5_rest_meta}
+\end{equation}
+무엇이 맞는지는 rest relaxation voltage 와 thermal response 로 제한한다(둘은 같은 데이터로 판별 가능 — true
+평형으로 풀리면 OCV 가 두 branch 에서 한 값으로 수렴, memory 유지면 갈린 채 남음). hysteresis 상태도 두 후보다:
+\begin{align}
+\text{memory-retaining:}\quad &\frac{\dd h_j}{\dd t}=0,\label{eq:ch5_h_rest_mem}\\
+\text{relaxing:}\quad &\frac{\dd h_j}{\dd t}=-\lambda_j^\rst\,h_j\quad(h_j\to0\ \text{단조 감쇠};\ \text{식~\eqref{eq:ch5_h_dyn} 의 }b=\rst,\ s_{\phi,j}^\rst=0\text{ 특수화}).\label{eq:ch5_h_rest_relax}
+\end{align}
+
+\begin{boundbox}
+\textbf{두 후보 짝의 결합.} $\xi_j$-target 후보(eq vs meta, 식~\eqref{eq:ch5_rest_eq}--\eqref{eq:ch5_rest_meta})와
+$h_j$ 후보(memory-retaining vs relaxing, 식~\eqref{eq:ch5_h_rest_mem}--\eqref{eq:ch5_h_rest_relax})는 독립 두
+짝이라 교차조합($2\times2$)이 가능하나, 물리적으로 ``$\xi_j$ true-eq relax''와 ``$h_j\to0$''(메모리 소멸)이 같은
+점근(완전 relaxed)으로, ``$\xi_j$ branch-target relax''와 ``$\dd h_j/\dd t=0$''(메모리 유지)이 같은 점근으로
+짝지어진다 — 두 짝을 독립으로 피팅하지 않고 한 물리 가설(소멸/유지)로 묶어 식별한다. rest relaxation 데이터가
+없으면 두 모델은 식별 곤란하다(임의 택일 금지).
+\end{boundbox}
+
+\textbf{branch switching 연속성.} branch 전환 시 \emph{상태} 변수 $\xi_j,h_j,V_n$ 은 \emph{연속}이며 재초기화하지
+않는다 — 물리 상태는 전류 부호가 바뀐다고 점프하지 않는다. 반면 \emph{구동} 측 부호 인자 $s_{\phi,j}^b$ 는 branch
+전환서 \emph{불연속}으로 뒤집힌다($+1\leftrightarrow-1$) — 즉 불연속은 구동 규약에만 있고 상태 적분 변수에는 없다.
+전하 보존식(식~\eqref{eq:ch5_relbalance})은 매 시간점 다시 풀어 $V_n$ 을 얻으므로, branch 전환은 $I_s$ 부호
+변화로만 들어가고 상태 변수의 불연속을 만들지 않는다.
+
+% ====================================================================
+\section{식별성과 필요한 실험 제약}\label{sec:ch5_ident}
+% ====================================================================
+branch 항들은 강하게 상관되어, 같은 충방전 곡선만으로 동시 결정할 수 없다. 해결책은 임의 clipping 이 아니라 독립
+실험과 물리적 prior 다(Chapter 1 의 forward-only$\cdot$식별성 원칙 계승). 식별 대상 파라미터는
+$\{U_j^b,\,w_j^b,\,k_j^b,\,\lambda_j^b,\,\Delta S_j^b,\,R_n^b\}$ 이다 — 충전 부호 인자 $s_{\phi,j}^b$ 는
+\S\ref{sec:ch5_chargesign} 에서 유도된 상수($\pm1$)라 식별 대상이 \emph{아니고}, loop 면적 $E_{\mathrm{loop}}$ 는
+피팅 파라미터가 아니라 관측량이다.
+\begin{longtable}{p{0.34\textwidth} >{\raggedright\arraybackslash}p{0.54\textwidth}}
+\toprule 상관되는 항 & 주의점 \\ \midrule \endhead
+$\Delta V_\hys$ 와 $\Delta V_\pol$ & voltage gap 을 모두 hysteresis 로 해석 금지($\Delta V_\obs\ne\Delta V_\hys$; $|I_s|\to0$ 외삽으로 분리) \\
+$U_j^b$ 와 $R_n^b$ & branch offset(평형 분지)과 polarization shift 가 peak 위치를 모두 변화 \\
+$k_j^b,\ h_j,\ \lambda_j^b$ & kinetic lag 와 memory relaxation 이 꼬리/peak shift 를 모두 설명 가능 — 실험축 분리: $k_j^b\leftarrow$ 율 series, $\lambda_j^b\leftarrow$ rest relaxation 시간상수, $h_j\leftarrow$ rest 후 재기동(메모리 잔존 여부) \\
+$\Delta S_j^b$ 와 hysteresis heat & branch heat 비대칭을 가역 열과 hysteresis loss 가 중복 설명 위험 \\
+full-cell $V_p$ 와 음극 $V_n$ & full-cell 서 양극/음극 기여 중첩(reference electrode 필요) \\
+\bottomrule
+\end{longtable}
+\textbf{필요 실험.} 저율 charge/discharge 비교(GITT/저율 OCV — true hysteresis vs polarization 분리), rest
+relaxation(memory 소멸 vs 유지 판별), current interrupt/pulse(immediate polarization), 율 series(kinetic lag
+vs hysteresis), 온도 series($\Delta S_j^b$, $U_j^b(T)$), reference electrode/half-cell reconstruction(full-cell
+분해), calorimetry/temperature response(가역/비가역/hysteresis heat 분리).
+
+\textbf{$U_j^b$ 의 polarization$\cdot$lag-독립 고정(양방향 GITT).} branch 중심 $U_j^b$ 를 polarization$\cdot$kinetic
+lag 와 독립으로 고정하려면, 각 SOC 격자에서 충$\cdot$방전 \emph{양방향} GITT 완화 종점($I=0$ OCV)을 측정해
+$U_j^\dis-U_j^\chg=\Delta V_\hys$ 를 직접 추출한다(완화 종점이라 kinetic lag 가 배제됨). 저율 연속 곡선의
+$|I_s|\to0$ 외삽 단독은 polarization 만 제거하여 hysteresis 와 kinetic lag 를 분리하지 못하므로, 양방향 완화 종점
+측정과 병용해야 한다.
+
+\begin{boundbox}
+\textbf{empirical branch fit 의 격하.} 초기 비교에서 충전/방전을 별도 empirical branch 곡선으로 피팅할 수 있으나
+물리 모델 기본식이 아니다. 그 곡선이 metastable 자유에너지 branch / domain memory / nucleation barrier /
+polarization / transport / aging 중 무엇인지 분리되지 않으면 논문용 물리 결론에 쓰지 않고, 단순 empirical
+residual 로 명시한 뒤 주 결론에서 제외한다. 수치 해법$\cdot$validation pipeline 은 Chapter 1 부록 B 로 분리한다.
+\end{boundbox}
+
+% ====================================================================
+\section{실데이터 피팅(Chapter 1 부록 B)으로 전달되는 항목}\label{sec:ch5_transmit}
+% ====================================================================
+본 장이 확정한 충방전 구조와 상태 변수 위에서, Chapter 1 부록 B 는 다음을 다룬다.
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em,itemsep=2pt]
+\item \textbf{시간 적분.} signed current $I_s$ 와 $q_\stt$ 기반 시간 적분; branch switching 시 $\xi_j,h_j,V_n$
+  연속성(재초기화 X); branch 별 root finding 으로 매 시간점 $V_n$ 결정(stiff kinetics $+$ branch switching).
+\item \textbf{분리 검증.} hysteresis vs polarization 구분 검증 절차($|I_s|\to0$ 외삽, GITT, rest relaxation);
+  가역/비가역/hysteresis heat 의 calorimetry 분리; full-cell 조합 시 양극/음극 좌표 matching.
+\item \textbf{empirical 격하.} empirical branch fit 을 validation 후보로만 취급(metastable 자유에너지/domain
+  memory 분리 안 되면 주 결론서 제외; Chapter 1--4 의 forward-only 원칙). calorimetry 부재 시 발열$\cdot$branch
+  곡선을 피팅하지 않고 forward prediction 으로만 둔다.
+\end{enumerate}
+
+% ====================================================================
+\section{Chapter 5 의 결론}\label{sec:ch5_concl}
+% ====================================================================
+첫째, Chapter 1--4 의 방전 기준 모델은 signed current $I_s$ 와 signed 상태 좌표 $q_\stt$ 도입으로 충전 branch 까지
+확장된다(식~\eqref{eq:ch5_signed_current},~\eqref{eq:ch5_qstate}). 내부 상태는 방전 기준 $\xi_j$ 를 유지하고
+($\zeta_j=1-\xi_j$ 는 종속 보조 변수), branch switching 시 $\xi_j,h_j,V_n$ 은 연속이며 방전 단독서 Chapter 1 식으로
+정확히 환원된다(앞 장과 충돌 없음).
+
+둘째, \textbf{충전 branch 의 부호 인자 $s_{\phi,j}^\chg=-1$ 은 유도된다}(식~\eqref{eq:ch5_schg}). logistic 기울기의
+부호가 정확히 $s_{\phi,j}^b$ 이고(식~\eqref{eq:ch5_dxidV_branch}), ``$\mathcal A_j>0\Leftrightarrow$ 진행 촉진''
+이라는 단 하나의 규약을 방전($\xi_j$ 증가)과 충전($\xi_j$ 감소)에 일관 적용하면 방전 $+1$ 과 충전 $-1$ 이 동시에
+고정된다 — Chapter 1 이 미뤄둔 충전 부호의 수령이다. 충전서 $\mathcal A_j,\eta_j$, 비가역열의 부호가 뒤집히지만,
+\textbf{$I_j$ 와 $\eta_j^b$ 가 동시에 부호를 뒤집어(음$\times$음$=$양) 비가역 발열 $n_j^{\eff}I_j\eta_j^b\ge0$ 이
+부호 상쇄로 2법칙을 보존한다}(식~\eqref{eq:ch5_qirr_charge}). 가역 열은 $I_j$ 부호 반전으로 branch 부호 가변이며,
+이것이 충방전 발열 비대칭의 한 원천이다.
+
+셋째, true equilibrium target $\xi_{\eq,j}$ 와 metastable branch target $\xi_{\tar,j}^b$ 를 구분한다.
+\textbf{branch target 은 Chapter 1 의 정상점 $\xi_{\sstat,j}$ 와 같은 자리에 서되}(식~\eqref{eq:ch5_branch_db}),
+$\xi_{\tar,j}^b\ne\xi_{\eq,j}$ 는 detailed balance 의 branch 이탈이다 — 히스테리시스는 mobility 변화가 아니라
+\emph{target 의 이력 의존}이다. 그 기원은 다입자/mosaic 열역학 \cite{dreyer2010} 과 disorder-driven first-order
+전이의 barrier hierarchy \cite{sethna1993} 이며, Chapter 1 의 평형 불변(정상점$=$평형값)이 깨지는 정확한 자리
+($C_j$ 의 detailed-balance 이탈 / $r_j^+/r_j^-$ 의 $\xi_j$-의존)를 명시했다(\S\ref{sec:ch5_branch}).
+
+넷째, 관측 voltage gap 은 히스테리시스가 아니다(\textbf{$\Delta V_\obs\ne\Delta V_\hys$},
+식~\eqref{eq:ch5_obs_not_hys}). gap 에는 polarization($R_n^b$; $|I_s|\to0$ 소멸, $I_s$ 부호 의존), kinetic lag,
+transport, aging 이 섞이며, true thermodynamic hysteresis(평형 분지 차)만이 $|I_s|\to0$ 에서 잔존한다 — 이 조작적
+차이가 둘을 분리한다.
+
+다섯째, loop 면적 $E_{\mathrm{loop}}=\oint V\,\dd Q$ 는 소산 에너지이되 그 전체가 true hysteresis heat 는
+\emph{아니다}\cite{dreyer2010}. 분리된 hysteresis loss 만이 flux--force $J_\hys^b\mathcal A_\hys^b\ge0$ (Chapter 2
+의 entropy production 채널)으로 후보 발열항이 되며, branch-local kinetic dissipation 과 합산하면 같은 에너지를
+이중 계상한다(\S\ref{sec:ch5_hysheat}). full-cell ICA/DVA 는 양극/음극/branch signed loss/transport/polarization
+이 섞인 관측 신호라 음극 단독과 직접 같지 않다.
+
+여섯째, Chapter 5 는 물리적 path dependence 와 metastability 를 중심으로 충방전 확장 구조를 닫되, Chapter 1--4
+기본식을 수정하지 않는다. 충전 부호 유도$\cdot$2법칙 보존$\cdot$target 이력 의존$\cdot$loop 면적 분리가 한 인과
+사슬 안에서 정합하며, Chapter 1 부록 B 에서 이 구조를 실제 수치 해법$\cdot$validation pipeline$\cdot$GITT/저율/고율
+데이터 비교로 연결한다.
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{dreyer2010} W. Dreyer, J. Jamnik, C. Guhlke, R. Huth, J. Mo\v{s}kon, M. Gaber\v{s}\v{c}ek, ``The Thermodynamic Origin of Hysteresis in Insertion Batteries,'' \emph{Nature Materials} \textbf{9}, 448 (2010). DOI: 10.1038/nmat2730.
+\bibitem{sethna1993} J. P. Sethna, K. Dahmen, S. Kartha, J. A. Krumhansl, B. W. Roberts, J. D. Shore, ``Hysteresis and Hierarchies: Dynamics of Disorder-Driven First-Order Phase Transformations,'' \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993). DOI: 10.1103/PhysRevLett.70.3347.
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of Chemical Kinetics and Charge Transfer based on Nonequilibrium Thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013). DOI: 10.1021/ar300145c.
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods: Fundamentals and Applications}, 2nd ed., Wiley (2001). ISBN 978-0-471-04372-0.
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley-Interscience (2004). ISBN 978-0-471-47756-3.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). DOI: 10.1149/1.1646152.
+\end{thebibliography}
+
+\end{document}

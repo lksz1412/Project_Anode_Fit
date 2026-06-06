@@ -1,0 +1,841 @@
+% ====================================================================
+% graphite_ica_ch4.tex — Chapter 4
+%   흑연 음극 발열의 통합: 전기-열 coupling 과 entropy production.
+%   Chapter 1 의 전하 보존·평형 logistic·완화 동역학·정/역 속도 r_j^± 와
+%   Chapter 2 의 가역(전위 온도계수)·비가역(flux×force) 발열 위에서,
+%   transition-level entropy production 을 미시에서 세워 거시 비가역열
+%   일반형 Σ_j n_j^eff I_j η_j ≥0 로 환원한다(미시=거시 정합). Ch2 의
+%   Σ_j I_j η_j (n^eff=1) 은 그 ideal-width 특수해다.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 발열의 통합 — Chapter 4}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 발열의 통합 — Ch.4}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{inheritbox}{Chapter 1--3 에서 받는 기준식}
+\newtheorem*{boundbox}{유효 범위}
+\newtheorem*{flagbox}{비고}
+\newtheorem*{rigorbox}{심화}
+\newtheorem*{verifybox}{검산}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\peak}{\mathrm{peak}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\rlx}{\mathrm{rlx}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\amb}{\mathrm{amb}}
+\newcommand{\Th}{\mathrm{th}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\chem}{\mathrm{chem}}
+\newcommand{\transp}{\mathrm{transport}}
+\newcommand{\coord}{\mathrm{coord}}
+\newcommand{\prog}{\mathrm{prog}}
+\newcommand{\ct}{\mathrm{ct}}
+\newcommand{\ohm}{\mathrm{ohm}}
+\newcommand{\conc}{\mathrm{conc}}
+\newcommand{\loss}{\mathrm{loss}}
+\newcommand{\conv}{\mathrm{conv}}
+
+\title{\textbf{\LARGE Chapter 4}\\[0.35em]\Large 흑연 음극 발열의 통합: 전기--열 coupling 과 entropy production}
+\author{}
+\date{}
+
+\begin{document}
+% 혼합 한글+영문+수식 dense 단락의 잔여 overfull 제거: 약간 느슨한 줄바꿈 허용.
+\sloppy
+\maketitle
+
+% ====================================================================
+\section*{서론}
+\addcontentsline{toc}{section}{서론}
+% ====================================================================
+Chapter 1 은 흑연 음극 $\dd Q/\dd V$ 꼬리의 주역을 \emph{동역학}(진행률 $\xi_j$ 의 유한속도 완화)으로 지목하고,
+정/역 두 방향 속도 $r_j^\pm$ 와 그 detailed balance 로 평형 logistic 을 재생했다. Chapter 2 는 그 위에서 발열을
+\emph{가역}(평형 entropy, 전위 온도계수 $\partial U_j/\partial T=\Delta S_j/(sF)$)과 \emph{비가역}(과전압 소산,
+flux$\times$force)으로 분해하고, reaction entropy $\Delta S_j$ 가 activation entropy $\Delta S_{a,j}$ 와 별개임을
+못박았다. 그러나 Chapter 2 의 비가역열은 ideal width($w_j=RT/F$) 특수형 $\sum_j I_j\eta_j$ 에 머물렀고, 그 일반형은
+다음 장으로 미뤄 두었다.
+
+본 장은 셋을 합쳐 \textbf{하나의 정량 명제}를 닫는다.
+\begin{quote}\itshape
+Chapter 1 의 정/역 속도 $r_j^\pm$ 로부터 각 transition 의 \textbf{entropy production} 을 비평형 열역학의
+표준형(network/master-equation)으로 세우면, 그것은 거시 비가역 발열 \emph{일반형} $\dot{\mathcal Q}_\irr=
+\sum_j n_j^{\eff}I_j\eta_j\ge0$ 으로 \textbf{정확히 환원}된다. Chapter 2 가 쓴 $\sum_j I_j\eta_j$ 는 이 일반형의
+ideal-width($n_j^{\eff}=1$) 특수해다.
+\end{quote}
+
+본 장의 방침은 앞 장과 같다 — 새 상태식을 들여오지 않고, 전하 보존식의 해 $V_n$ 과 평형 진행률 $\xi_{\eq,j}$,
+완화 동역학 위에서 발열을 \emph{기원별}로 쌓는다(전하 보존식을 발열로 대체하지 않는다). 모든 발열 항은
+(i) entropy production, (ii) conjugate flux$\times$force, (iii) 평형 전위 온도계수, (iv) transition
+entropy$\times$진행률, (v) transport 의 dissipative loss, (vi) 자유에너지 감소를 동반하는 internal relaxation
+중 하나의 \emph{물리} 근거를 가진다. 임의 heat correction$\cdot$capped heat$\cdot$empirical residual 은 기본식에
+넣지 않으며, 강구동 제한과 log 발산은 임의 절단이 아니라 물리적 병목과 numerical domain guard 로 둔다(Chapter 1
+의 ``$\min$/clip 금지'' 원칙 계승). 본 장은 Chapter 1--3 과 같이 \textbf{방전(탈리튬화) 방향}($s=+1$)을 기본으로
+하며, 충전 branch 의 부호 \emph{유도}와 hysteresis heat 는 Chapter 5 로, 수치 적분$\cdot$피팅은 Chapter 1 부록으로
+이월한다.
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Chapter 1--3 에서 받는 기준식과 신규 기호}\label{sec:ch4_inherit}
+% ====================================================================
+본 장은 앞 장의 다음 결과를 \textbf{수정 없이} 입력으로 받는다(각 항목은 앞 장의 boxed 결과를 의미로 가리키며,
+본 장은 그 형태$\cdot$기호$\cdot$부호 규약을 그대로 쓴다). 본 장은 그 위에 entropy-production 계층을 \emph{적층}
+한다.
+\begin{inheritbox}
+\textbf{(C1) 전하 보존식(중심 상태식, 발열로 대체 안 됨).} $Q_\cell\,q=Q_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_j\,\xi_j$.
+$V_n$ 은 그 해(외부 입력 아님), 평형 특수해($\xi_j=\xi_{\eq,j}$)가 $V_{n,\OCV}(q,T)$. 단조성
+$\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ 로 해 유일.\\
+\textbf{(C2) 평형 진행률(logistic).} $\xi_{\eq,j}(V_n,T)=[1+\exp(-s(V_n-U_j(T))/w_j(T))]^{-1}$, 방전 $s=+1$,
+이상 폭 $w_j=RT/F$. 도함수 $\partial\xi_{\eq,j}/\partial V_n=s\,\xi_{\eq,j}(1-\xi_{\eq,j})/w_j$.\\
+\textbf{(C3) 완화 동역학과 정/역 속도.} $\dd\xi_j/\dd t=r_j^+(1-\xi_j)-r_j^-\xi_j=k_j(\xi_{\eq,j}-\xi_j)$,
+$k_j=r_j^++r_j^-$(완화 속도). 정전류 구간서 $\dd\xi_j/\dd t=(|I|/Q_\cell)\,\dd\xi_j/\dd q$.\\
+\textbf{(C4) 구동력$\cdot$detailed balance.} $\mathcal A_j=sF(V_\drive-U_j)$(기본 $V_\drive=V_n$),
+$r_j^+/r_j^-=e^{\mathcal A_j/RT}$ 이므로 $\ln(r_j^+/r_j^-)=s(V_n-U_j)/w_j=\ln[\xi_{\eq,j}/(1-\xi_{\eq,j})]$.
+유효 배리어 $k_j\simeq k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$($k_0=k_BT/h$ 현상론),
+$\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$.\\
+\textbf{(C5) 세 전위.} 내부 $V_n$(보존식 해)$\cdot$측정 $V_\app=V_n+s_I|I|R_n$(분극 포함, 평형 전위 아님)$\cdot$
+구동 $V_\drive$(기본 $=V_n$)$\cdot$평형 $V_{n,\OCV}$. \emph{서로 다른 물리량}.\\
+\textbf{(C6) 위치 온도계수.} $\partial U_j/\partial T=\Delta S_j/(sF)$(Gibbs--Helmholtz). $\Delta S_j$=reaction
+entropy(평형, products$-$reactants), Chapter 1 Eyring rate 의 activation entropy $\Delta S_{a,j}$ 와 별개.\\
+\textbf{(C7) 과전압과 비가역열 특수형(Chapter 2).} 과전압 $\eta_j=V_\drive-V_{\eq,j}(\xi_j)$, 국소 평형
+$V_{\eq,j}(\xi_j)=U_j(T)+w_j(T)\ln[\xi_j/(1-\xi_j)]$. flux$\times$force $T\dot S_\irr=\sum_j J_j F\eta_j\ge0$,
+축약 $q_\irr=|I|\eta\ge0$. \textbf{본 장이 일반화하는 대상} — ideal width($n^{\eff}=1$) 특수형이며, 일반형
+$\sum_j n_j^{\eff}I_j\eta_j$ 를 본 장에서 닫는다.
+\end{inheritbox}
+
+\textbf{신규 기호(Chapter 1--3 위에 추가).} 본 장에서만 새로 도입하는 기호다(앞 장 기호는 위 (C1)--(C7) 과
+동일물). $Q_j$=전이 $j$ 의 총 용량(Chapter 1 동일물), $N_p$=동시 진행 전이 수, $s_I$=apparent 축 전류 부호
+규약은 앞 장 그대로다.
+\begin{longtable}{p{0.16\textwidth} p{0.17\textwidth} >{\raggedright\arraybackslash}p{0.59\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$\dot{\mathcal Q}$ & W & 열률(시간율); 첨자 $\src$(내부 열원)$\cdot$$\rev$(가역)$\cdot$$\irr$(비가역)$\cdot$$\rlx$(휴지 완화)$\cdot$$\transp$(transport) \\
+$\dot S_\irr$ & W/K & entropy production rate(비가역 entropy 생성률; 2법칙 $\ge0$) \\
+$J_\alpha,\ X_\alpha$ & (쌍) & generalized conjugate flux $\cdot$ thermodynamic force (곱 $J_\alpha X_\alpha$ 가 W) \\
+$J_n,\ \mathcal A_n$ & mol/s, J/mol & 음극 molar reaction flux $\cdot$ generalized reaction affinity \\
+$\mathcal J_j^+,\ \mathcal J_j^-$ & 1/s & 전이 $j$ 의 forward $=r_j^+(1-\xi_j)$ $\cdot$ backward $=r_j^-\xi_j$ unidirectional flux \\
+$\mathcal A_j^{\chem}$ & J/mol & 전이 $j$ 의 chemical affinity $=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$ (network thermo) \\
+$I_j$ & A & 전이 $j$ 의 lumped current $=Q_j\,\dd\xi_j/\dd t$ \\
+$\dot n_j$ & mol/s & 전이 $j$ molar rate $=(Q_j/F)\,\dd\xi_j/\dd t$ \\
+$n_j^{\eff}$ & --- & effective electron number $=RT/(Fw_j)$ (ideal width 서 $=1$) \\
+$\dot{\mathcal Q}_{\irr,j}^{\tr}$ & W & 전이 $j$ 의 transition-level 비가역 발열률 (entropy production $\times T$) \\
+$h_\bg$ & V/K & background reversible-heat potential coefficient $=(\partial V_{\bg,\eq}/\partial T)$ (전위형 V/K) \\
+$\Pi_j$ & V & Peltier-type 계수 $=T\,\partial U_j/\partial T$ \\
+$R_{n,\eff},R_{\ct,n}$ & $\Omega$ & heat-generation effective $\cdot$ charge-transfer small-signal 저항 ($R_n$ 과 별개) \\
+$s^{\conv}$ & --- & heat-positive 규약 bookkeeping factor $\in\{+1,-1\}$ (피팅 X) \\
+$C_\Th$ & J/K & 음극 control volume 유효 열용량 \\
+$h_T,A,T_\amb$ & {\footnotesize W/(m$^2$K), m$^2$, K} & 대류계수$\cdot$표면적$\cdot$주위 온도 \\
+\bottomrule
+\end{longtable}
+$F=96485\ \mathrm{C/mol}$(Faraday), $R=8.314\ \mathrm{J/(mol\,K)}$(기체상수), $k_B,h$=Boltzmann$\cdot$Planck,
+$N_A$=Avogadro($R=k_BN_A$), $\mathrm{J/C}=\mathrm V$. 열률 dot 표기는 시간율 [W]. unidirectional flux
+$\mathcal J_j^\pm$ 와 net flux $\dd\xi_j/\dd t=\mathcal J_j^+-\mathcal J_j^-$ 의 단위는 $\mathrm{s^{-1}}$
+($\xi_j$ 무차원).
+
+\textbf{전이별 전류와 molar rate.} 모든 발열률$\cdot$entropy production 의 직접 입력은 시간 미분량 $\dd\xi_j/\dd t$
+다. 전이별 전하/molar 진행률은
+\begin{equation}
+I_j=Q_j\,\frac{\dd\xi_j}{\dd t},\qquad
+\dot n_j=\frac{Q_j}{F}\,\frac{\dd\xi_j}{\dd t}\ [\mathrm{mol\,s^{-1}}].
+\label{eq:ch4_Ij}
+\end{equation}
+\begin{verifybox}
+\textbf{차원.} $I_j=Q_j[\mathrm C]\cdot\dd\xi_j/\dd t[\mathrm{s^{-1}}]=\mathrm{C/s}=\mathrm A$;
+$\dot n_j=(Q_j/F)[\mathrm{C}/(\mathrm{C\,mol^{-1}})]\cdot[\mathrm{s^{-1}}]=\mathrm{mol/s}$ — 정합. 면적 정규화가
+필요하면 유효 반응면적 $A_\eff$ 로 area-flux $J_j=\dot n_j/A_\eff$ 를 \emph{별도} 정의한다(lumped molar rate
+$\dot n_j$ 와 area-flux 혼동 금지).
+\end{verifybox}
+
+% ====================================================================
+\section{$\eta_j$ 의 기준 전위 단일화}\label{sec:ch4_eta_single}
+% ====================================================================
+본 장의 발열 유도(특히 미시=거시 정합, \S\ref{sec:ch4_tr})는 ``비가역 열의 공액 force''로 과전압 $\eta_j$ 를
+쓴다. 그런데 앞 장들은 이 force 의 기준 전위를 두 가지로 적었다 — Chapter 2 의 dissipation force 는 구동 전위
+기준 $\eta_j=V_\drive-V_{\eq,j}(\xi_j)$ 였고, 동역학의 중심 affinity 는 중심 전위 단위 형
+$sF(V_\drive-U_j)/(n_j^{\eff}F)$ 였다. 발열을 닫으려면 \emph{어느 기준 전위가 $\eta_j$ 의 정의인지를 먼저 못박아야}
+한다(아니면 강구동에서 같은 기호가 다른 값을 가리킨다). 본 절이 그 규약을 동결한다.
+
+\begin{keybox}
+\textbf{비가역 열 공액 force 의 단일 정의.} 비가역 발열의 공액 force 는 \emph{현재} $\xi_j$ 의 국소 평형으로부터의
+이탈, 곧 과전압이다:
+\begin{equation}
+\boxed{\;\eta_j\;\equiv\;V_\drive-V_{\eq,j}(\xi_j)\;,\qquad V_{\eq,j}(\xi_j)=U_j(T)+w_j(T)\ln\frac{\xi_j}{1-\xi_j}\;.}
+\label{eq:ch4_eta_def}
+\end{equation}
+\textbf{기준 전위는 $V_\drive$ 단일}이다($V_n$ 과 $V_\drive$ 혼용 0). 정의 자체에는 방향 부호 인자를 두지
+않으며(방전 부호 생략형), 충전을 포함하는 일반 부호는 $\eta_j$ 가 아니라 affinity $\mathcal A_j^{\chem}$ 의 scale
+인자 $s$ 로 처리한다(\S\ref{sec:ch4_tr}). 기본 전개에서는 Chapter 1 의 \textbf{기본형 $V_\drive=V_n$}
+을 쓰며, 이 전제는 미시=거시 대입(\S\ref{sec:ch4_tr})에서 \emph{명시적으로} 사용된다.
+\end{keybox}
+
+\textbf{이중정의의 위험.} 만약 $\eta_j$ 를 어떤 식에서는 $V_n$ 기준, 다른 식에서는 $V_\drive$ 기준으로 섞어 쓰면,
+$V_\drive\ne V_n$ 인 강구동에서 \emph{같은 기호 $\eta_j$ 가 서로 다른 값}을 가리켜 비가역 발열의 부호와 크기가
+식마다 달라진다. 본 장은 정의~\eqref{eq:ch4_eta_def} 를 $V_\drive$ 기준으로 동결하고, 기본형에서 $V_\drive=V_n$
+임을 \emph{사용 시점마다} 명시해 모순을 차단한다.
+
+\textbf{$V_{\eq,j}(\xi_j)$ 의 유도(logistic 역함수).} Chapter 1 의 logistic $\xi_{\eq,j}=[1+e^{-(V_n-U_j)/w_j}]^{-1}$
+($s=+1$)을 ``$\xi_j$ 가 현재값일 때 그것을 평형으로 만드는 전위''에 대해 역으로 푼다. $\xi_j=[1+e^{-(V_{\eq,j}-U_j)/w_j}]^{-1}$
+로 두면 $1/\xi_j-1=e^{-(V_{\eq,j}-U_j)/w_j}$, 즉 $(1-\xi_j)/\xi_j=e^{-(V_{\eq,j}-U_j)/w_j}$. 양변에 자연로그를
+취하면 $\ln[(1-\xi_j)/\xi_j]=-(V_{\eq,j}-U_j)/w_j$, 부호를 뒤집어 $\ln[\xi_j/(1-\xi_j)]=(V_{\eq,j}-U_j)/w_j$,
+따라서
+\begin{equation}
+V_{\eq,j}(\xi_j)=U_j+w_j\ln\frac{\xi_j}{1-\xi_j}
+\label{eq:ch4_Veq}
+\end{equation}
+— 식~\eqref{eq:ch4_eta_def} 의 둘째 식이다(중간 단계 전부 명시). 이는 Chapter 2 가 쓴 동일 유도를 본 장 기준
+전위 단일화 위에서 재확인한 것이다.
+
+\begin{boundbox}
+\textbf{rate-affinity $\mathcal A_j$ 와 heat-force $\eta_j$ 의 구분.} Chapter 1 의 $\mathcal A_j=sF(V_\drive-U_j)$
+는 \emph{중심} $U_j$ 기준이라 평형에서도 0 이 아니다(rate 구동용). 본 절 $\eta_j$ 는 \emph{현재} $\xi_j$ 의 국소
+평형 $V_{\eq,j}(\xi_j)$ 기준이라 평형($\xi_j=\xi_{\eq,j}$)에서 0 이 된다(dissipation 용). 둘의 차이는
+식~\eqref{eq:ch4_eta_def} 를 $\mathcal A_j$ 의 전위 단위 형 $\mathcal A_j/(sF)=V_\drive-U_j$ 와 비교하면 드러난다
+($V_\drive$ \emph{임의}에서 성립하는 항등식이며 기본형에 의존하지 않는다; $s=+1$ 표기만 방전 한정):
+\[
+\frac{\mathcal A_j}{sF}=(V_\drive-U_j)
+=\underbrace{(V_\drive-V_{\eq,j}(\xi_j))}_{=\eta_j}
++\underbrace{(V_{\eq,j}(\xi_j)-U_j)}_{=w_j\ln[\xi_j/(1-\xi_j)]},
+\]
+즉 $\mathcal A_j/(sF)=\eta_j+w_j\ln[\xi_j/(1-\xi_j)]$ 이며, 둘째 항(configurational 가역 혼합 entropy)은
+\emph{가역} entropy basis(\S\ref{sec:ch4_revxi})로 가고 \emph{비가역} dissipation 에는 $\eta_j$ 만 쓴다. 이
+구분을 혼동하면 가역 혼합 entropy 가 비가역 열로 오계상된다(logistic 평형 모델 내에서 정확).
+\end{boundbox}
+
+% ====================================================================
+\section{내부 열원 항의 물리적 분해 (Chapter 2 3-분해의 정련)}\label{sec:ch4_decomp}
+% ====================================================================
+음극 control volume 내부 열원을 \emph{물리 기원별}로 분해한다 — 피팅 편의 분해가 아니라 entropy-production /
+평형 entropy / dissipative-loss 기원 분해다. control-volume 1법칙 에너지수지 \emph{형식}은 Bernardi 류
+\cite{bernardi1985,rao1997}, 비가역 항의 network entropy-production 형은 \cite{degrootmazur1962,schnakenberg1976}
+(\S\ref{sec:ch4_irr},\ref{sec:ch4_tr})에서 유도한다:
+\begin{equation}
+\dot{\mathcal Q}_{\src,n}=\dot{\mathcal Q}_{\irr,n}+\dot{\mathcal Q}_{\rev,n}+\dot{\mathcal Q}_{\rlx,n}+\dot{\mathcal Q}_{\transp,n}.
+\label{eq:ch4_decomp}
+\end{equation}
+\begin{longtable}{p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.60\textwidth}}
+\toprule 항 & 물리적 의미 \\ \midrule \endhead
+$\dot{\mathcal Q}_{\irr,n}$ & 계면 반응/전이 진행의 비가역 entropy production ($\sum_j n_j^{\eff}I_j\eta_j\ge0$) \\
+$\dot{\mathcal Q}_{\rev,n}$ & 평형 entropy coefficient 또는 transition entropy 가역 열 (열역학 기원, 부호가변) \\
+$\dot{\mathcal Q}_{\rlx,n}$ & 외부 전류와 무관하게 내부 상태가 자유에너지를 낮추며 relax 할 때의 열 \\
+$\dot{\mathcal Q}_{\transp,n}$ & solid diffusion/electrolyte/film/finite-current limitation 의 dissipative loss ($\ge0$) \\
+\bottomrule
+\end{longtable}
+\textbf{Chapter 2 3-분해와의 관계(정련, 이중계상 금지).} 본 4-분해는 Chapter 2 의 3-분해
+$\dot{\mathcal Q}_{\src,n}=\dot{\mathcal Q}_{\irr,n}+\dot{\mathcal Q}_{\rev,n}+\dot{\mathcal Q}_{\rlx,n}$ 를
+\emph{정련}한 것이다 — Chapter 2 에서 $\dot{\mathcal Q}_{\irr,n}$ 에 묶여 있던 transport/diffusion dissipation 을
+본 장에서 $\dot{\mathcal Q}_{\transp,n}$ 으로 \emph{분리}했고, 후보로만 남았던 relaxation heat 를 본 장에서 가역/
+비가역으로 분해한다(\S\ref{sec:ch4_rest}). 비가역 floor $\ge0$ 는 entropy production 으로 식으로 확정되나,
+가역/비가역 \emph{분리 비율}은 detailed-balance 정합 정도와 독립 calorimetry 전제 하에서만 닫힌다
+(\S\ref{sec:ch4_rest} 비고). 두 장의 항을 함께 쓸 때 transport dissipation 을 \emph{이중 계상하지 않는다}(본 장
+$\dot{\mathcal Q}_{\irr,n}$ 은 계면 반응/전이 entropy production 만 포함):
+\begin{equation}
+\dot{\mathcal Q}_{\irr,n}^{\text{Ch2}}\;\supseteq\;\dot{\mathcal Q}_{\irr,n}^{\text{Ch4}}+\dot{\mathcal Q}_{\transp,n},
+\label{eq:ch4_ch2refine}
+\end{equation}
+이며 본 장 분할이 Chapter 2 의 $\dot{\mathcal Q}_{\irr,n}^{\text{Ch2}}$ 를 완전 분할하면(잔차 $=0$) 등호로
+닫힌다. 가역 열이 흡열일 수 있으므로 $\dot{\mathcal Q}_{\src,n}$ 은 항상 양수 ``생성량''이 아니라 internal heat
+source term 이다. 외부 손실 포함 control-volume 1법칙 열수지는(Chapter 2 식과 동형)
+\begin{equation}
+C_\Th\frac{\dd T}{\dd t}=\dot{\mathcal Q}_{\src,n}-\dot{\mathcal Q}_{\loss},\qquad
+\dot{\mathcal Q}_{\loss}=h_T A(T-T_\amb),
+\label{eq:ch4_balance}
+\end{equation}
+(좌변 $\mathrm{(J/K)(K/s)=W}$ — 차원 정합). $\dot{\mathcal Q}_{\loss}$ 의 상세 열전달 모델(대류계수 $h_T$,
+표면적 $A$, 주위 온도 $T_\amb$)은 본 장에서 닫지 않는다(Chapter 2 의 control-volume 형 계승).
+
+% ====================================================================
+\section{비가역 열의 출발점: flux--force 와 entropy production}\label{sec:ch4_irr}
+% ====================================================================
+비가역 열은 임의 heat correction 이 아니라 \emph{비평형 열역학의 entropy production} 에서 나온다. 가장 기본적
+출발점은 conjugate flux $J_\alpha$ 와 그에 공액인 thermodynamic force $X_\alpha$ 의 곱이며, 2법칙이 그 합의
+비음성을 보장한다 \cite{degrootmazur1962,prigogine1967}:
+\begin{equation}
+\boxed{\;T\dot S_{\irr}=\sum_\alpha J_\alpha X_\alpha\ \ge\ 0\;.}
+\label{eq:ch4_fluxforce}
+\end{equation}
+\textbf{2법칙 의미.} $\dot S_\irr$ 는 비가역 과정이 생성하는 entropy 율이며, 고립계에서 entropy 가 감소할 수
+없다는 2법칙이 곧 $\dot S_\irr\ge0$ 이다. 엄밀히 2법칙은 \emph{합} $\sum_\alpha J_\alpha X_\alpha\ge0$ 을
+보장한다 — cross-coupling 이 있으면 개별 항 $J_\alpha X_\alpha$ 가 음수일 수 있고(서로 다른 채널 간의 결합
+계수), 비음은 합 차원에서 정의된다. 본 장 계면 전이 항은 \emph{단일 공액 쌍}($J_n\leftrightarrow\mathcal A_n$,
+$I_j\leftrightarrow\eta_j$)이라 cross-coupling 이 없으므로 \emph{항별}로도 $\ge0$ 임을 \S\ref{sec:ch4_tr} 의 부호
+보조정리(두 양수 차$\times$로그비)에서 별도로 증명한다. 좌변에 $T$ 가 곱해진 것은 entropy production
+$\dot S_\irr$[W/K]을 \emph{열률}[W]로 환산했기 때문이다($T\dot S_\irr$ 가 dissipated power).
+\begin{verifybox}
+\textbf{차원.} $J_\alpha X_\alpha$ 의 곱이 [W]이려면 force 와 flux 가 공액(예: molar flux
+$[\mathrm{mol/s}]\times$ molar affinity $[\mathrm{J/mol}]=[\mathrm{J/s}]=\mathrm W$)이어야 한다 — 이 공액성이
+flux$\times$force 의 정의 자체에 들어 있다.
+\end{verifybox}
+
+\textbf{전기화학 반응의 specialization.} 음극 반응을 molar reaction flux $J_n$ [mol/s]와 generalized reaction
+affinity $\mathcal A_n$ [J/mol]로 쓰면 식~\eqref{eq:ch4_fluxforce} 의 한 쌍이
+\begin{equation}
+\boxed{\;T\dot S_{\irr,n}=J_n\,\mathcal A_n\ \ge\ 0\;.}
+\label{eq:ch4_JA}
+\end{equation}
+\textbf{$J_n\mathcal A_n$ 이 $I_n\eta_n$ 보다 기본형인 이유.} $I_n=FJ_n$, $\mathcal A_n=F\eta_n$ convention 이
+일관되면 $J_n\mathcal A_n=I_n\eta_n$ 형과 연결되나, ``$I_n\eta_n$''의 부호는 전류 방향$\cdot$전극 전위 convention
+에 종속된다(Chapter 2 가 $q_\irr=|I|\eta$ 로 부호를 양정치화한 이유와 같다). 따라서 본 장은 \emph{positive-dissipation}
+형 식~\eqref{eq:ch4_JA} 를 더 기본으로 두고, magnitude 표현 $|I_n||\eta_n|$ 은 \emph{부호가 정렬됐을 때의 크기}
+표현이지 entropy production 의 일반 정의가 아님을 명시한다. 이로써 ``$I\eta$ 단독''(부호 미정렬)을 비가역 열로
+쓰는 것을 차단한다.
+
+% ====================================================================
+\section{Transition-level entropy production 과 거시식의 정합}\label{sec:ch4_tr}
+% ====================================================================
+이 절이 본 장의 핵심이다 — \emph{Chapter 1 의 정/역 속도 $r_j^\pm$ 가 어떻게 거시 비가역 발열
+$n_j^{\eff}I_j\eta_j$ 로 환원되는가}.
+
+\textbf{forward/backward unidirectional flux.} Chapter 1 완화 동역학(C3)의 net flux 를 forward 와 backward 의
+\emph{unidirectional} 성분으로 분해한다:
+\begin{equation}
+\mathcal J_j^+=r_j^+\,(1-\xi_j),\qquad \mathcal J_j^-=r_j^-\,\xi_j,\qquad
+\frac{\dd\xi_j}{\dd t}=\mathcal J_j^+-\mathcal J_j^-.
+\label{eq:ch4_Jpm}
+\end{equation}
+$\mathcal J_j^+$ 는 미점유$\to$점유(방전 방향) 단위시간 진행, $\mathcal J_j^-$ 는 그 역방향이다(Chapter 1 식
+$\dd\xi_j/\dd t=r_j^+(1-\xi_j)-r_j^-\xi_j$ 와 동일물이며, 본 장은 두 성분을 \emph{따로} 보존한다). 두 성분 모두
+비음이다($r_j^\pm\ge0$, $0\le\xi_j\le1$).
+
+\subsection{transition entropy production 의 network 형}\label{sec:ch4_trep}
+비평형 열역학의 network/master-equation 이론에서, 두 상태 사이를 오가는 한 전이의 entropy production 은
+\emph{net flux}와 \emph{forward/backward flux 비의 로그}의 곱이다 \cite{schnakenberg1976,prigogine1967}. 이
+``$(\text{net flux})\times\ln(\text{flux 비})$'' 구조가 master equation 의 국소 detailed balance 에서 따라오며,
+전이 $j$ 의 진행이 동반하는 비가역 발열률은(몰 함량 $Q_j/F$ 와 $RT$ 로 extensive 화)
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\irr,j}^{\tr}=\frac{Q_j}{F}\,RT\,\big(\mathcal J_j^+-\mathcal J_j^-\big)\,
+\ln\!\frac{\mathcal J_j^+}{\mathcal J_j^-}\ \ge\ 0\;.}
+\label{eq:ch4_tr_entropy}
+\end{equation}
+\textbf{$\ge0$ 의 증명(부호 보조정리; 2법칙).} $\mathcal J_j^+,\mathcal J_j^->0$ 인 두 양수에 대해
+$(\mathcal J_j^+-\mathcal J_j^-)\ln(\mathcal J_j^+/\mathcal J_j^-)\ge0$ 임을 직접 본다. (i) $\mathcal J_j^+>\mathcal J_j^-$
+이면 차 $>0$, 비 $>1$ 이라 $\ln>0$ — 곱 $>0$. (ii) $\mathcal J_j^+<\mathcal J_j^-$ 이면 차 $<0$, 비 $<1$ 이라
+$\ln<0$ — 음$\times$음 $=$ 곱 $>0$. (iii) $\mathcal J_j^+=\mathcal J_j^-$(평형, net flux $0$)이면 차 $=0$ 이라
+곱 $=0$. 세 경우 모두 $\ge0$ 이며, 이것이 식~\eqref{eq:ch4_tr_entropy} 의 2법칙 정합이다(``두 양수의
+(차)$\times$(로그비)는 항상 음이 아니다'').
+\begin{verifybox}
+\textbf{차원.} $(Q_j/F)[\mathrm{mol}]\times RT[\mathrm{J/mol}]\times(\mathcal J_j^+-\mathcal J_j^-)[\mathrm{s^{-1}}]
+\times\ln(\cdot)[\text{무차원}]=\mathrm{mol\cdot(J/mol)\cdot s^{-1}}=\mathrm{J/s}=\mathrm W$ — 발열률의 올바른 단위.
+$RT$ 가 $\mathrm{J/mol}$, $Q_j/F$ 가 $\mathrm{mol}$ 이라 두 몰 인자가 곱해져 extensive [W]가 된다.
+\end{verifybox}
+
+\textbf{extensive 화의 다리($k_B\!\to\!R$, $\tfrac12$ 부재).} Schnakenberg 의 단일 directed transition(2-state
+site)에 대한 per-site entropy production 은 $\dot s_j^{\mathrm{site}}=k_B(\mathcal J_j^+-\mathcal J_j^-)
+\ln(\mathcal J_j^+/\mathcal J_j^-)$ [W/K]다 — 전이 $j$ 를 \emph{단일 directed edge} 로 한 번만 세므로 양방향 edge
+이중합의 $\tfrac12$ 인자는 없다(이중합 $\tfrac12\sum_{\text{edges}}$ 와 단일-쌍 $\sum_j$ 는 동일물의 다른 셈법;
+본 장은 후자). 여기에 (a) $T$ 를 곱해 per-site 발열률 [W], (b) site 수 $N_{\mathrm{site},j}=N_A(Q_j/F)$
+(몰 함량 $\times$ Avogadro)를 곱해 독립 site 합(mean-field 전제: site 간 무상관 — entropy production 이 site
+수에 extensive; site-site 상관이 있으면 보정항 발생), (c) $N_A k_B=R$ 로 묶으면 $N_A(Q_j/F)\,k_B T=(Q_j/F)RT$
+가 되어 식~\eqref{eq:ch4_tr_entropy} 의 prefactor 가 따라온다(per-site $k_B$ $\to$ per-mole $R$ 치환이 site 수
+몰 인자와 정확히 짝).
+
+\begin{verifybox}
+\textbf{미시 entropy production $=$ 거시 $n_j^{\eff}I_j\eta_j$ (Chapter 2$\cdot$3 정합).} transition chemical
+affinity 를 network thermo 정의 $\mathcal A_j^{\chem}=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$ 로 두고, 그것을
+Chapter 1 의 미시 정합으로 전개한다.
+
+\emph{(1단계) flux 비를 rate 비$\times$점유 odds 로 분해.} 식~\eqref{eq:ch4_Jpm} 에서
+$\dfrac{\mathcal J_j^+}{\mathcal J_j^-}=\dfrac{r_j^+(1-\xi_j)}{r_j^-\xi_j}=\dfrac{r_j^+}{r_j^-}\cdot\dfrac{1-\xi_j}{\xi_j}$.
+따라서 $\ln(\mathcal J_j^+/\mathcal J_j^-)=\ln(r_j^+/r_j^-)+\ln[(1-\xi_j)/\xi_j]=\ln(r_j^+/r_j^-)-\ln[\xi_j/(1-\xi_j)]$.
+
+\emph{(2단계) detailed balance 대입(두 전제 명시).} Chapter 1 의 detailed balance ln 형
+$\ln(r_j^+/r_j^-)=(V_n-U_j)/w_j$ 를 넣는다. 이 ln 형은 두 전제에서만 닫힌형으로 성립한다: (i) 비 $r_j^+/r_j^-$ 가
+$\xi_j$\emph{-무관}(Chapter 1 의 대칭 split, 전달계수 $\chi$ 상쇄)이라야 \emph{평형} odds 관계가 임의 \emph{비평형}
+$\xi_j$ 로 외삽되어 닫힌형이 되고, (ii) \emph{내부 전위} $V_n$ 기준이다(detailed balance 는 전하 보존식의 해 $V_n$
+에서 성립). 비가 $\xi_j$ 에 의존하면 우변에 보정 항이 추가되어 닫힘이 깨지므로 그 경우 미시=거시 환원은 강구동
+일반화로 미룬다(Chapter 5). 전제 (i),(ii) 하에서
+\begin{equation}
+\mathcal A_j^{\chem}=RT\,\ln\!\frac{\mathcal J_j^+}{\mathcal J_j^-}
+=RT\Big[\frac{V_n-U_j}{w_j}-\ln\frac{\xi_j}{1-\xi_j}\Big]
+=\frac{RT}{w_j}\Big[(V_n-U_j)-w_j\ln\frac{\xi_j}{1-\xi_j}\Big].
+\label{eq:ch4_affinity_raw}
+\end{equation}
+
+\emph{(3단계) 대괄호 $=$ 과전압 $\eta_j$ (기본형 $V_\drive=V_n$ 전제 명시).} 대괄호 안은
+$(V_n-U_j)-w_j\ln[\xi_j/(1-\xi_j)]$ 다. 여기서 식~\eqref{eq:ch4_Veq} 의 $V_{\eq,j}(\xi_j)=U_j+w_j\ln[\xi_j/(1-\xi_j)]$
+를 빼는 형으로 묶으면 $(V_n-U_j)-w_j\ln[\xi_j/(1-\xi_j)]=V_n-V_{\eq,j}(\xi_j)$. 본 장 규약
+(식~\eqref{eq:ch4_eta_def})의 $\eta_j=V_\drive-V_{\eq,j}(\xi_j)$ 와 일치시키려면 \textbf{기본형 $V_\drive=V_n$}
+을 \emph{여기서 명시적으로 전제}한다 — 그래야 detailed balance 가 쓴 $V_n$ 과 dissipation force 가 쓴 $V_\drive$
+가 같은 무대에서 닫힌다. 이 전제 하에서 $(V_n-U_j)-w_j\ln[\xi_j/(1-\xi_j)]=V_\drive-V_{\eq,j}(\xi_j)=\eta_j$.
+(강구동 $V_\drive\ne V_n$ 에서는 두 전위가 갈리므로 이 닫힘이 일반적으로 성립하지 않는다 — \S\ref{sec:ch4_general}
+유효 범위.)
+
+\emph{(4단계) $n_j^{\eff}$ 흡수 + 부호 인자 $s$.} $RT/w_j$ 에 effective electron number $n_j^{\eff}=RT/(Fw_j)$
+를 적용하면 $RT/w_j=n_j^{\eff}F$ 다. 위 1$\sim$3단계 대수는 $s$ 를 포함하지 않으므로, 아래 결과의 일반 $s$ 인자는
+Chapter 1 명시형과의 표기 일관을 위한 것이며 방전 $s=+1$ 이 기본이다(충전 branch $s=-1$ 의 유도는 Chapter 5).
+\begin{equation}
+\boxed{\;\mathcal A_j^{\chem}=s\,n_j^{\eff}F\,\eta_j\;,\qquad
+\eta_j=V_\drive-V_{\eq,j}(\xi_j)\;.}
+\label{eq:ch4_affinity_eta}
+\end{equation}
+($\eta_j$ 는 keybox 식~\eqref{eq:ch4_eta_def} 와 동일하게 $s$ 를 포함하지 않으며, 부호 인자 $s$ 는
+$\mathcal A_j^{\chem}$ 의 scale 인자로만 붙는다.) 이는 Chapter 1 의 명시형 $\mathcal A_j=sF(V_\drive-U_j)$ 와
+\emph{같은 $s$, 같은 $n_j^{\eff}F$ scale} 을 비가역 \emph{heat-force} $\eta_j$ 에 적용한 형이다(rate-affinity 는
+중심 $U_j$ 기준, heat-force 는 국소 평형 $V_{\eq,j}$ 기준 — \S\ref{sec:ch4_eta_single} 의 구분 보존).
+
+\emph{(5단계) entropy production 을 발열로(미시=거시).} 식~\eqref{eq:ch4_tr_entropy} 를 $\dot n_j$ 와
+$\mathcal A_j^{\chem}$ 로 다시 쓰면 $\dot{\mathcal Q}_{\irr,j}^{\tr}=(Q_j/F)(\mathcal J_j^+-\mathcal J_j^-)\cdot
+RT\ln(\mathcal J_j^+/\mathcal J_j^-)=\dot n_j\,\mathcal A_j^{\chem}$ 다($\dot n_j=(Q_j/F)(\dd\xi_j/\dd t)
+=(Q_j/F)(\mathcal J_j^+-\mathcal J_j^-)$). 여기에 식~\eqref{eq:ch4_affinity_eta} 를 넣으면 $F$ 가 상쇄되어
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\irr,j}^{\tr}=\dot n_j\,\mathcal A_j^{\chem}
+=\frac{Q_j}{F}\frac{\dd\xi_j}{\dd t}\cdot s\,n_j^{\eff}F\,\eta_j
+=s\,n_j^{\eff}\,I_j\,\eta_j\;.}
+\label{eq:ch4_micro_macro}
+\end{equation}
+즉 \textbf{미시 transition entropy production 이 거시 flux$\times$overpotential 형으로 정확히 환원}되며, 방전
+$s=+1$ 에서 $n_j^{\eff}I_j\eta_j$ 이고 ideal width $w_j=RT/F$($n_j^{\eff}=1$)에서 $I_j\eta_j$ 다. \textbf{부호
+(2법칙 재확인).} $\xi_j<\xi_{\eq,j}\Rightarrow$ (정의상) $V_{\eq,j}(\xi_j)<V_\drive\Rightarrow\eta_j>0$, 동시에
+$\dd\xi_j/\dd t=k_j(\xi_{\eq,j}-\xi_j)>0\Rightarrow I_j>0$ — 둘이 같은 부호라 $n_j^{\eff}I_j\eta_j>0$
+($n_j^{\eff}>0$). 반대로 $\xi_j>\xi_{\eq,j}$ 이면 둘 다 음이라 곱은 여전히 양이고, 평형서 $\eta_j\to0,\ I_j\to0$
+동시 소멸한다. 이로써 Chapter 2(거시 flux$\times$overpotential)$\cdot$Chapter 1(미시 정/역 속도, $n_j^{\eff}$)
+$\cdot$본 장(entropy production)이 한 표현 $n_j^{\eff}I_j\eta_j$ 로 닫힌다.
+\end{verifybox}
+
+\textbf{유도가 쓴 전제의 명시.} 위 검산은 (i) detailed balance(\emph{내부} $V_n$ 기준 ln 비), (ii)
+$n_j^{\eff}=RT/(Fw_j)$, (iii) \textbf{기본형 $V_\drive=V_n$}(3단계서 명시 전제)을 사용했다. (iii)이 없으면
+detailed balance 가 쓴 $V_n$ 과 dissipation force 가 쓴 $V_\drive$ 가 서로 달라 $\mathcal A_j^{\chem}=n_j^{\eff}F\eta_j$
+가 닫히지 않는다 — 이 전제를 사용 시점에 박는 것이 $\eta_j$ 이중정의의 해소다. 강구동 branch 비대칭
+(non-detailed-balance)에서는 $\mathcal A_j^{\chem}$ 가 일반화된다(Chapter 5).
+
+\begin{boundbox}
+\textbf{log singularity 는 floor 아닌 domain guard.} $\mathcal J_j^\pm\to0$ 에서 $\ln(\mathcal J_j^+/\mathcal J_j^-)$
+발산은 coarse-graining resolution 에 해당하는 작은 positive floor 로 처리한다 — 이는 heat fitting parameter 가
+아니라 \emph{numerical domain guard} 다(``임의 절단 금지''와 구분: 물리 모델의 임계값이 아니라 수치 정의역 보호).
+게다가 식~\eqref{eq:ch4_micro_macro} 형 $n_j^{\eff}I_j\eta_j$ 를 쓰면 $\mathcal J_j^\pm$ 가 평형 부근에서 작아도
+$I_j=Q_j(\dd\xi_j/\dd t)\to0$ 으로 \emph{매끄럽게} 0 이 되어(그리고 $\eta_j\to0$) 발산 자체가 나타나지 않는다 —
+거시형이 미시형의 log 발산을 자동으로 정칙화한다. 따라서 실제 발열 계산은 거시형 $n_j^{\eff}I_j\eta_j$ 를 쓰고,
+미시형 식~\eqref{eq:ch4_tr_entropy} 는 \emph{출처(entropy production)와 부호($\ge0$) 의 근거}로 둔다.
+\end{boundbox}
+
+\textbf{채택 조건.} 식~\eqref{eq:ch4_tr_entropy}--\eqref{eq:ch4_micro_macro} 를 실제 발열항으로 \emph{확정}하려면
+(1) $r_j^\pm$ 가 실제 coarse-grained transition rate, (2) $\xi_j$ 가 progress coordinate, (3) detailed balance
+$\xi_{\eq,j}$ 정합, (4) calorimetry/rest-relaxation 독립 검증이 필요하다. 따라서 본 식은 해석 가능한 물리식이되,
+독립 검증 없이 \emph{모든} relaxation heat 를 이 항으로 단정하지 않는다(Chapter 1$\cdot$2 의 forward-only$\cdot$
+식별성 원칙 계승).
+
+% ====================================================================
+\section{비가역열 일반형 $\sum_j n_j^{\eff}I_j\eta_j\ge0$}\label{sec:ch4_general}
+% ====================================================================
+식~\eqref{eq:ch4_micro_macro} 의 per-transition 결과를 모든 동시 진행 전이에 대해 합하면 음극의 \emph{총} 계면
+반응 비가역 발열률이다:
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\irr,n}=\sum_{j=1}^{N_p} n_j^{\eff}\,I_j\,\eta_j\ \ge\ 0\;,\qquad
+n_j^{\eff}=\frac{RT}{F\,w_j(T)}\;.}
+\label{eq:ch4_qirr_general}
+\end{equation}
+(방전 $s=+1$ 기본; 일반 부호는 식~\eqref{eq:ch4_micro_macro} 의 $s$ 인자로 처리한다.) 항별 $\ge0$ 은
+detailed-balance 기본형($V_\drive=V_n$, $n_j^{\eff}$ 일반 허용)에서 성립한다 — \S\ref{sec:ch4_tr} 의 항별 부호
+논증에서 각 항 $n_j^{\eff}I_j\eta_j$ 는 $\xi_j\lessgtr\xi_{\eq,j}$ 양쪽에서 $I_j$ 와 $\eta_j$ 가 같은 부호라 항별로
+$\ge0$ 이고, 따라서 비음항들의 합 $\sum_j n_j^{\eff}I_j\eta_j\ge0$ 이 2법칙으로 보장된다.
+\begin{verifybox}
+\textbf{차원.} $n_j^{\eff}$(무차원)$\times I_j[\mathrm A]\times\eta_j[\mathrm V]=\mathrm{A\cdot V}=\mathrm W$ —
+발열률 단위.
+\end{verifybox}
+강구동 branch 비대칭(non-detailed-balance)에서는 $\mathcal A_j^{\chem}$ 가 일반화되어 항별 부호가 일반적으로
+보장되지 않으므로 Chapter 5 에서 다룬다.
+
+\begin{keybox}
+\textbf{일반형$\leftrightarrow$Chapter 2 특수형 위계.} 식~\eqref{eq:ch4_qirr_general} 의 \emph{일반형}
+$\sum_j n_j^{\eff}I_j\eta_j$ 와 Chapter 2 의 \emph{특수형} $\sum_j I_j\eta_j$ 의 관계는 \emph{모순이 아니라
+일반/특수 위계}다:
+\begin{equation}
+\underbrace{\dot{\mathcal Q}_{\irr,n}=\sum_j n_j^{\eff}I_j\eta_j}_{\text{Ch4 일반형}}
+\ \xrightarrow{\ n_j^{\eff}=RT/(Fw_j)\to1\ (w_j=RT/F,\ \text{ideal})\ }\
+\underbrace{\sum_j I_j\eta_j}_{\text{Ch2 특수형}}.
+\label{eq:ch4_hierarchy}
+\end{equation}
+Chapter 2 는 ideal-width($n_j^{\eff}=1$)를 기본으로 써서 $\sum_j I_j\eta_j$ 를 얻었고, 본 장은 effective width
+($w_j\ne RT/F$, 따라서 $n_j^{\eff}\ne1$)를 허용하는 일반형을 닫는다. 그 일반형이 미시 transition entropy
+production(식~\eqref{eq:ch4_tr_entropy})에서 유도되므로, $n_j^{\eff}$ 가중은 임의 피팅 인자가 아니라
+\emph{detailed-balance 정합이 강제한} 물리 인자다.
+\end{keybox}
+
+\textbf{부호 양정치 형.} 위계의 환원점은 \emph{항별 합} $\sum_j I_j\eta_j$($n_j^{\eff}=1$ ideal-width)로
+고정한다. \emph{단일 등가 과전압} 형 $|I|\eta$($\eta\equiv\sum_j(J_jF/|I|)\eta_j$)는 이와 별개의 표기로,
+\emph{단일 우세 전이}$\cdot$ideal-width 극한에서만 이 합이 하나의 전류$\cdot$과전압 크기 곱으로 축약된 형이다
+(Chapter 2 의 $q_\irr=|I|\eta\ge0$ 와 정합). 어느 표기든 ``$I_j\eta_j$ 단독''(부호 미정렬)이 아니라 부호가 이미
+정렬된 양정치 합임을 유지한다.
+
+\textbf{과전압의 물리 성분 분해.} 총 과전압 $\eta$(또는 전이별 $\eta_j$)는 charge-transfer($\eta_\ct$, Chapter 1
+의 유효 배리어 활성화), ohmic($\eta_\ohm$, Chapter 1 의 $R_n$ 분극), transport/concentration($\eta_\conc$)
+기여의 합으로 분해되며 각각 $\ge0$ 이다. 단 이 성분들을 \emph{발열 저항}으로 쓸 때는 $R_n\ne R_{\ct,n}\ne R_{n,\eff}$
+구분을 유지한다(\S\ref{sec:ch4_transport}).
+
+% ====================================================================
+\section{가역 열 (1): 평형 전위 온도계수 (Bernardi)}\label{sec:ch4_revOCV}
+% ====================================================================
+가역 열은 평형 entropy 가 준다 — 비가역 dissipation 과 \emph{분리}되는 열역학 기원 항이다. Chapter 2 가 전하
+보존식에서 유도한 음극 평형 전위 온도계수를 그대로 받는다($Q_\cell,Q_j$ 기준 용량 고정) — 외부 lookup 이 아니라
+\emph{전하 보존식의 평형 특수해 미분}이다:
+\begin{equation}
+\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=-\,\frac{\dfrac{\partial Q_\bg}{\partial T}+\displaystyle\sum_j Q_j\left(\dfrac{\partial\xi_{\eq,j}}{\partial T}\right)_{V_n}}
+{\dfrac{\partial Q_\bg}{\partial V_n}+\displaystyle\sum_j Q_j\dfrac{\partial\xi_{\eq,j}}{\partial V_n}}.
+\label{eq:ch4_ocv_dvdt}
+\end{equation}
+방전 기준 음극 reversible heat 는(Chapter 2 의 Bernardi balance \cite{bernardi1985})
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\rev,n}^{\OCV}=s_{\rev,n}^{\conv}\,|I|\,T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q\;.}
+\label{eq:ch4_rev_ocv}
+\end{equation}
+\begin{verifybox}
+\textbf{차원.} $|I|\,T\,(\partial V/\partial T)=\mathrm A\cdot\mathrm K\cdot(\mathrm{V/K})=\mathrm{A\,V}=\mathrm W$
+— 가역 발열률 단위.
+\end{verifybox}
+$s_{\rev,n}^{\conv}\in\{+1,-1\}$ 는 음극 전위$\cdot$전류 방향$\cdot$heat-generation-positive 규약을 명시한 뒤
+고정하는 bookkeeping factor 다(피팅 X). \textbf{부호가변성.} $q_{\rev,j}=I_j\Pi_j$($\Pi_j=T\,\partial U_j/\partial T$)
+는 $\partial U_j/\partial T$ 와 전류 방향에 따라 흡열/발열 모두 가능하다 — 비가역 열($\ge0$)과 달리 가역 열은
+부호가변이며, 그래서 둘을 한 경험항으로 섞지 않는다(Chapter 2 핵심의 ``가역열$=$entropy(방향) / 비가역열$=$소산
+(속도)'' 분업).
+
+\textbf{금지되는 연결.}
+\begin{equation}
+\dot{\mathcal Q}_{\rev,n}\ \not\propto\ |I|\,T\,\frac{\dd V_\app}{\dd T}.
+\label{eq:ch4_forbid}
+\end{equation}
+$V_\app=V_n+s_I|I|R_n$ 에는 분극$\cdot$kinetic lag$\cdot$transport loss$\cdot R_n(T)$ 가 섞이므로 그 경로 미분은
+reversible entropy coefficient 가 아니다 — 이를 가역열로 쓰면 비가역 소산을 가역 entropy 로 오계상한다
+(Chapter 2 의 금지 연결 계승).
+
+\begin{verifybox}
+\textbf{Bernardi 가역열 $=$ 미시 reaction entropy 합.} Chapter 2 (C6)의 $\Delta S_j=sF\,\partial U_j/\partial T$
+를 per-transition 가역열에 넣는다. 전이 $j$ 의 reaction rate 는 $\dot n_j=I_j/F$ [mol/s](Faraday 법칙; 부호 인자
+없음)이고, 그 entropic 열률은 $T\Delta S_j\,\dot n_j$ 이므로
+\begin{equation}
+q_{\rev,j}=T\,\Delta S_j\,\frac{I_j}{F}
+=s\,I_j\,T\,\frac{\partial U_j}{\partial T}=s\,I_j\,\Pi_j
+\ \xrightarrow{\ s=+1\ (\text{방전})\ }\ I_j\,\Pi_j,
+\label{eq:ch4_qrev_micro}
+\end{equation}
+(부호 인자 $s$ 는 $\dot n_j$ 가 아니라 $\Delta S_j$ 환산에서 나오며 잔존한다 — 방전 $s=+1$ 에서만 $I_j\Pi_j$ 와
+일치하고, 충전 부호는 Chapter 5). 즉 \emph{미시 reaction entropy $\Delta S_j$ 의 합} $\dot{\mathcal Q}_{\rev}
+=\sum_j s\,I_j\Pi_j$(방전 $\sum_j I_j\Pi_j$)가 거시 Bernardi 형 $s_{\rev,n}^{\conv}|I|T(\partial V_{n,\OCV}/\partial T)_q$
+와 같은 reaction-entropy 정보로 정합한다 — 단 이 정합은 \S\ref{sec:ch4_revxi} 준평형 극한 한정이며, 본 검산은
+reaction-entropy 정보의 \emph{동일성}을 보일 뿐 cell-level 수치 등식을 닫지 않는다(닫힘 조건은 \S\ref{sec:ch4_revxi}
+의 width$\cdot D_q$ 유효 범위). \textbf{비가역과의 대비.} 본 절 가역열은 \emph{reaction} entropy $\Delta S_j$
+(평형, $\partial U/\partial T$)에서, \S\ref{sec:ch4_tr} 비가역열은 transition entropy production(비평형, $\eta_j$)
+에서 나온다 — 둘은 별개 entropy 이며(Chapter 2: reaction entropy $\ne$ activation entropy), 한 뿌리($U_j(T)$ 와
+$V_{\eq,j}(\xi_j)$)에서 갈라진 가역/비가역 두 갈래다.
+\end{verifybox}
+
+% ====================================================================
+\section{가역 열 (2): transition entropy basis 와 double counting 금지}\label{sec:ch4_revxi}
+% ====================================================================
+Chapter 1$\cdot$2 의 핵심 내부 상태변수는 $\xi_j$ 다. 따라서 상변이의 entropy 변화는 \emph{진행률 시간율}
+$\dd\xi_j/\dd t$ 를 통해서도 표현된다 — 식~\eqref{eq:ch4_rev_ocv} 의 OCV 계수 방식과 \emph{같은 entropy 정보}를 더
+미시적으로 쓴 것이다. $\Delta S_j$ = $j$번째 유효 전이의 방전 방향 mol electron(또는 Li-equiv) 1 mol 당 entropy
+change 로 두면
+\begin{equation}
+\dot{\mathcal Q}_{\rev,\xi}=\sum_{j=1}^{N_p}s_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_j}{F}\,\frac{\dd\xi_j}{\dd t}.
+\label{eq:ch4_rev_xi}
+\end{equation}
+\begin{verifybox}
+\textbf{차원.} $T[\mathrm K]\cdot\Delta S_j[\mathrm{J/(mol\,K)}]\cdot(Q_j/F)[\mathrm{mol}]\cdot
+(\dd\xi_j/\dd t)[\mathrm{s^{-1}}]=\mathrm{J/s}=\mathrm W$ — 가역 발열률. 직접 입력은 $\dd\xi_j/\dd t$(휴지 구간서
+정전류 좌표 변환 금지, \S\ref{sec:ch4_rest}).
+\end{verifybox}
+
+\textbf{double counting 금지(택일 + 정합 제약).} 식~\eqref{eq:ch4_rev_ocv} 와 식~\eqref{eq:ch4_rev_xi} 는
+\emph{같은 평형 entropy 정보}를 서로 다른 수준에서 표현하므로, 둘을 독립 발열항으로 동시에 자유롭게 더하면
+double counting 이다(평형 $V_{n,\OCV}$ 온도계수에 이미 transition/background entropy 가 반영). 따라서 택일한다:
+\begin{enumerate}[label=\Alph*),leftmargin=2.0em]
+\item \textbf{OCV 중심}: 전체 가역 열을 식~\eqref{eq:ch4_rev_ocv} 로 대표; $\Delta S_j$ 는 분해 해석/파라미터
+  interpretation 용으로만 쓴다.
+\item \textbf{Transition entropy 중심}: $\Delta S_j,h_\bg$ 로 분해하되, OCV $\partial V/\partial T$ 는 독립항이
+  아니라 $\Delta S_j,h_\bg$ 를 묶는 \emph{equilibrium consistency condition}(Chapter 2 정합식)으로 둔다:
+\end{enumerate}
+\begin{equation}
+\boxed{\;s_{\rev,n}^{\conv}|I|\,T\left(\frac{\partial V_{n,\OCV}}{\partial T}\right)_q
+=s_\bg^{\conv}\,T\,h_\bg\,\dot Q_\bg^{\prog}
++\sum_j s_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_j}{F}\,\frac{\dd\xi_{\eq,j}}{\dd t}\;.}
+\label{eq:ch4_consistency}
+\end{equation}
+\begin{boundbox}
+\textbf{이 정합은 reaction-entropy 성분에 한정한다(strict 등호 아님).} 식~\eqref{eq:ch4_consistency} 의 정합은
+\emph{reaction-entropy 성분($\propto\partial U_j/\partial T$)에 한정}해 성립한다. 좌변 $(\partial V_{n,\OCV}/\partial T)_q$
+는 식~\eqref{eq:ch4_ocv_dvdt} 의 $(\partial\xi_{\eq,j}/\partial T)_{V_n}$ 경유로 추가로 logistic width 온도계수 항
+$-(V_n-U_j)(\partial w_j/\partial T)/w_j^2$ 와 분모 정규화를 포함하므로, 두 방식은 \emph{부분적으로만} 같은
+정보다 — width$\cdot$분모 기여는 OCV 방식 고유다. 따라서 double-counting 차단은 reaction-entropy 성분에 부과되며,
+strict 등호는 $\partial w_j/\partial T=0$(또는 등온$\cdot$준정적 $+$ 단일 우세 전이) 전제 하에서만 닫힌다.
+\end{boundbox}
+\textbf{부호 규약 정합 주의.} 좌$\cdot$우변의 $s^{\conv}$ 는 모두 \emph{동일한 heat-positive 규약}에서 유도돼야 본
+제약이 부호 모순 없이 닫힌다(서로 다른 bookkeeping 규약으로 독립 도입하면 같은 reaction entropy 가 좌우에서 반대
+부호로 들어와 제약이 깨진다). \textbf{준평형 전제.} 좌변 OCV 계수는 \emph{평형}($\xi_j=\xi_{\eq,j}$) 미분이고
+우변 가역열 항(식~\eqref{eq:ch4_rev_xi})은 \emph{실제} 진행률 $\dd\xi_j/\dd t$ 를 쓰므로, 두 표현이 ``같은
+entropy 정보''로 정합하는 것은 \emph{준평형 극한}($\xi_j\approx\xi_{\eq,j}$)에 한정된다 — 가역열의 정의역 자체가
+준평형이므로 이 한정은 모순이 아니라 적용범위 명시다.
+
+% ====================================================================
+\section{Background heat 와 coordinate shift}\label{sec:ch4_bg}
+% ====================================================================
+$Q_\bg$ 는 배경 누적 용량이지 entropy 자체가 아니다. background reversible heat 를 쓰려면 별도 background
+\emph{reversible-heat potential coefficient} 가 필요하다. 여기서 $V_{\bg,\eq}$ 는 background 용량 $Q_\bg(V_n,T)$
+를 \emph{평형 $V_n$ 축으로 본} 가역분 전위좌표($\partial Q_\bg/\partial V_n>0$ 로 일대일), $h_\bg$ 는 그 온도계수다:
+\begin{equation}
+h_\bg(V_n,T)\equiv\left(\frac{\partial V_{\bg,\eq}}{\partial T}\right),\qquad
+\dot{\mathcal Q}_{\rev,\bg}=s_\bg^{\conv}\,T\,h_\bg(V_n,T)\,\dot Q_\bg^{\prog}.
+\label{eq:ch4_qrev_bg}
+\end{equation}
+\begin{verifybox}
+\textbf{차원.} $\dot{\mathcal Q}_{\rev,\bg}=s_\bg^{\conv}\,T[\mathrm K]\cdot h_\bg[\mathrm{V/K}]\cdot
+\dot Q_\bg^{\prog}[\mathrm{C/s}=\mathrm A]=\mathrm{K\cdot(V/K)\cdot A}=\mathrm{V\,A}=\mathrm W$ — 발열률 단위.
+$h_\bg$ 가 entropy $[\mathrm{J/(mol\,K)}]$ 가 아니라 \emph{per-charge 전위계수} $[\mathrm{V/K}]$ 라 전이 항의
+$/F$ 가 흡수돼 별도 $/F$ 없이 [W]가 닫힌다 — 이 점이 명칭을 ``background entropy coefficient''가 아니라
+``background reversible-heat potential coefficient''로 두는 이유다.
+\end{verifybox}
+\textbf{total derivative 와 progress 의 구분.} 전하 보존식 (C1) 을 시간 미분하면 $Q_\bg$ 가 $(V_n,T)$ 의 함수
+이므로 전미분 연쇄법칙으로 $\dot Q_\bg^{\mathrm{tot}}=(\partial Q_\bg/\partial V_n)\dd V_n/\dd t+(\partial Q_\bg/
+\partial T)\dd T/\dd t$ 다. 이를 progress 와 coordinate shift 로 나눈다:
+\begin{equation}
+\dot Q_\bg^{\mathrm{tot}}=\dot Q_\bg^{\prog}+\dot Q_\bg^{\coord},\qquad
+\dot Q_\bg^{\prog}=\frac{\partial Q_\bg}{\partial V_n}\frac{\dd V_n}{\dd t},\qquad
+\dot Q_\bg^{\coord}=\frac{\partial Q_\bg}{\partial T}\frac{\dd T}{\dd t}.
+\label{eq:ch4_qbg_split}
+\end{equation}
+여기서 \emph{$\dot Q_\bg^{\prog}$(전위 구동 progress)만} heat-generating 반응 진행으로 식~\eqref{eq:ch4_qrev_bg}
+에 들어가고, $\dot Q_\bg^{\coord}$(온도 변화에 따른 capacity-coordinate shift)는 그대로 reaction rate 로 넣지
+않는다 — 이 구분을 빠뜨리면 단순 온도 drift 가 가역 발열로 오계상된다(Chapter 2 계승). 등온 정전류 구간서는
+실용적으로 전류 보존으로 $\dot Q_\bg^{\prog}\approx|I|-\sum_j Q_j(\dd\xi_j/\dd t)$ 로 쓸 수 있으나, \emph{비등온
+서는 $\dot Q_\bg^{\coord}$ 항 때문에 이 근사를 그대로 쓰지 않는다}:
+\begin{equation}
+\dot Q_\bg^{\prog}\ \approx\ |I|-\sum_j Q_j\frac{\dd\xi_j}{\dd t}\qquad(\text{등온 정전류 한정}).
+\label{eq:ch4_qbg_iso}
+\end{equation}
+
+% ====================================================================
+\section{Transport 및 물리적 병목 발열}\label{sec:ch4_transport}
+% ====================================================================
+강구동 제한을 임의 cap 이 아니라 \emph{물리적 병목}으로 두는 Chapter 1 의 원칙을 발열에도 유지한다. 선형
+near-equilibrium 에서 transport dissipation 은 $I^2R$ 형으로 근사되나, 일반적으로는 flux$\times$force 가 더
+기본이다. 선형 근사:
+\begin{equation}
+\dot{\mathcal Q}_{\transp,n}\approx I^2 R_{\transp,n}\qquad(\text{선형 near-equilibrium},\ R_{\transp,n}>0\Rightarrow\ge0),
+\label{eq:ch4_transport_i2r}
+\end{equation}
+(여기서 $I$ 는 transport 채널을 통과하는 \emph{외부} 전류; 채널 flux 환산이 필요하면 아래 $J_\ell$ 형을 쓴다.)
+고율/nonlinear transport:
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\transp,n}=\sum_\ell J_\ell\,X_\ell\ \ge\ 0\;,}
+\label{eq:ch4_transport_ff}
+\end{equation}
+$J_\ell$=물질 flux, $X_\ell$=그 공액 force(chemical-potential / electrolyte-potential / concentration
+gradient). 이는 식~\eqref{eq:ch4_fluxforce} 의 transport 채널 specialization 이며 2법칙으로 $\ge0$ 이다(porous
+insertion electrode 의 thermal/transport 발열 모델 \cite{thomasnewman2003}).
+\begin{verifybox}
+\textbf{차원.} $I^2R=\mathrm{A^2\cdot\Omega}=\mathrm{A^2\cdot V/A}=\mathrm{A\,V}=\mathrm W$; flux$\times$force
+$J_\ell X_\ell$ 도 공액쌍이라 [W] — 정합.
+\end{verifybox}
+\textbf{비중복(double-count 금지).} 본 절 $\dot{\mathcal Q}_{\transp,n}$ 은 계면 반응 affinity 에 흡수되지
+\emph{않는} 전해질/고체상 transport 채널(bulk$\cdot$분리막 ohmic)에 한정하며, \S\ref{sec:ch4_general} 계면
+$\eta_\conc/\eta_\ohm$($\sum_j n_j^{\eff}I_j\eta_j$ 에 이미 포함)과 \emph{비중복}이다 — 두 항을 함께 쓸 때 ohmic
+dissipation 을 이중 계상하지 않는다.
+\begin{boundbox}
+\textbf{세 저항의 구분 유지.} Chapter 1 의 $R_n$ 은 apparent voltage-axis coefficient($V_\app-V_n=s_I|I|R_n$)
+이므로 $I^2R$ heat resistance 로 \emph{직접} 쓰지 않는다:
+\begin{equation}
+R_n\ne R_{n,\eff},\qquad R_n\ne R_{\ct,n},\qquad R_{\ct,n}\ne R_{n,\eff}.
+\label{eq:ch4_Rsep}
+\end{equation}
+(i) $R_n$ $=$ apparent voltage-axis shift(Chapter 1), (ii) $R_{\ct,n}=RT/(FA_\eff j_{0,n})$ $=$
+charge-transfer small-signal, (iii) $R_{n,\eff}$ $=$ heat-generation effective($\dot{\mathcal Q}_\irr=I^2R_{n,\eff}$
+형, 선형 응답 한정). $R_{n,\eff}$ 사용은 independent physical/calorimetric constraint 가 있을 때만 허용한다
+(동시 자유 피팅 금지 — Chapter 1 식별성 chain 계승).
+\end{boundbox}
+
+% ====================================================================
+\section{휴지 구간 relaxation heat (Chapter 2 후보의 확정 분해)}\label{sec:ch4_rest}
+% ====================================================================
+휴지 구간에서는 $I=0,\ \dd q/\dd t=0$ 이지만 내부 진행률은 (C3) 으로 계속 완화된다: $\dd\xi_j/\dd t=
+r_j^+(1-\xi_j)-r_j^-\xi_j\ne0$. 외부 전류에 의한 ohmic heat 는 사라지나(전류 $0$), 내부 자유에너지 감소와 entropy
+production 은 남는다. Chapter 2 가 \emph{후보}로만 남긴 휴지 relaxation heat 를 본 장에서 가역/비가역으로
+\emph{분해}한다:
+\begin{equation}
+\dot{\mathcal Q}_{\rlx,n}=\dot{\mathcal Q}_{\rev,n}^{\rlx}+\dot{\mathcal Q}_{\irr,n}^{\rlx}.
+\label{eq:ch4_rest_split}
+\end{equation}
+\textbf{비가역 성분은 식~\eqref{eq:ch4_micro_macro} 가 그대로 적용된다.} 휴지 중에도 \emph{내부} transition
+current $I_j=Q_j(\dd\xi_j/\dd t)\ne0$ 이므로(외부 $|I|=0$ 이라도 전이들이 서로 다른 속도로 완화하며 내부 전류를
+주고받음), 비가역 성분은
+\begin{equation}
+\dot{\mathcal Q}_{\irr,n}^{\rlx}=\sum_j n_j^{\eff}\,I_j\,\eta_j\ \ge\ 0\qquad(\text{외부 }|I|=0,\ I_j=Q_j\dot\xi_j\ne0),
+\label{eq:ch4_rest_irr}
+\end{equation}
+이고(식~\eqref{eq:ch4_qirr_general} 와 동형, 단 $\sum_j I_j$ 가 외부 전류가 아니라 \emph{내부} 전류이며, 총 내부
+전류 보존 $\sum_j I_j+I_\bg^{\prog}=0$ 은 \emph{별개} 진술이다). \textbf{이 $\ge0$ 의 근거는 전류 보존이 아니다}:
+휴지서도 모든 전이가 \emph{공통 무대} $V_n$ 을 공유하므로 각 항에서 $I_j\,(\propto\xi_{\eq,j}-\xi_j)$ 와
+$\eta_j\,(=V_n-V_{\eq,j}(\xi_j))$ 가 같은 부호이고(위 미시=거시 검산의 항별 부호 논증을 휴지구간에 그대로 재적용),
+따라서 항별 $n_j^{\eff}I_j\eta_j\ge0$ 에서 합 $\ge0$ 이 따라온다. 가역 성분은 transition entropy
+basis(식~\eqref{eq:ch4_rev_xi}, 단 휴지서 $\dd\xi_j/\dd t$ 직접 사용)이며
+\begin{equation}
+\boxed{\;\dot{\mathcal Q}_{\rev,n}^{\rlx}=\sum_{j=1}^{N_p}s_{\rev,\xi,j}^{\conv}\,T\,\Delta S_j\,\frac{Q_j}{F}\,\frac{\dd\xi_j}{\dd t}\qquad(\text{외부 }|I|=0,\ \dd\xi_j/\dd t\ \text{직접})\;.}
+\label{eq:ch4_rest_rev}
+\end{equation}
+\textbf{좌표 변환 금지.} 휴지/가변전류 구간에서는 $|I|/Q_\cell$ 이 시간 상수가 아니므로 정전류 좌표 변환
+$\dd\xi_j/\dd t=(|I|/Q_\cell)\dd\xi_j/\dd q$ 를 쓰지 않고 $\dd\xi_j/\dd t$ 를 직접 쓴다.
+\begin{flagbox}
+\textbf{가역/비가역 분리 비율은 독립 검증 필요.} 식~\eqref{eq:ch4_rest_split} 의 비가역 성분
+(식~\eqref{eq:ch4_rest_irr})은 entropy production 으로 $\ge0$ 임이 보장되나, 가역 성분과의 \emph{분리 비율}은
+forward/backward rate 의 detailed-balance 정합 정도에 달려 있다. detailed balance 가 정확히 성립하면
+식~\eqref{eq:ch4_micro_macro} 가 비가역 성분을 닫지만, branch 비대칭(Chapter 5)에서는 $\mathcal A_j^{\chem}$ 가
+일반화되어 분리 비율이 달라진다. 따라서 독립 calorimetry/rest-temperature response 없이 가역/비가역을 임의 분리
+하지 않는다(Chapter 2 가 후보로 남긴 이유의 확정 분해이되, \emph{정량} 비율은 검증 전제).
+\end{flagbox}
+
+% ====================================================================
+\section{전기--열 coupling 계산 순서와 온도 되먹임}\label{sec:ch4_order}
+% ====================================================================
+온도는 Chapter 1--3 의 다음 항들에 되먹임된다: $Q_\bg(V_n,T)$, $\xi_{\eq,j}(V_n,T)$, $U_j(T)$, $w_j(T)$,
+$r_j^\pm(\cdot,T)$, $k_j(\cdot,T)$, $R_n(q,T,|I|)$, $V_{n,\OCV}(q,T)$. 따라서 비등온 발열 계산에서 $V_n,\xi_j,T$
+를 독립 후처리하지 않고 같은 시간 적분 루프에서 갱신한다(순환 의존성). 계산 순서:
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item 외부 전류로 $q(t)$ 갱신: $\dd q/\dd t=|I|/Q_\cell$.
+\item 현재 $q,T,\{\xi_j\}$ 에서 전하 보존식 (C1) 으로 $V_n$ root-find(implicit algebraic — 수치 solver 는
+  Chapter 1 부록으로 분리; 논리 공백$\cdot$물리 충돌 아님).
+\item $V_n,T$ 에서 $\xi_{\eq,j}$, $\mathcal A_j$, $r_j^\pm$ 또는 $k_j$, 그리고 $\eta_j=V_\drive-V_{\eq,j}(\xi_j)$
+  (기본형 $V_\drive=V_n$) 계산.
+\item $\dd\xi_j/\dd t$, $I_j$, $\dot n_j$ 계산. 가역열 option B$\cdot$consistency(식~\eqref{eq:ch4_consistency})
+  입력을 위해 $\dd\xi_{\eq,j}/\dd t=(\partial\xi_{\eq,j}/\partial V_n)(\dd V_n/\dd t)+(\partial\xi_{\eq,j}/\partial T)(\dd T/\dd t)$
+  도 함께 산출.
+\item 비가역 열: 일반형 $\sum_j n_j^{\eff}I_j\eta_j$(식~\eqref{eq:ch4_qirr_general}) / transport
+  flux$\times$force(식~\eqref{eq:ch4_transport_ff}).
+\item 가역 열: OCV coefficient(식~\eqref{eq:ch4_rev_ocv}) 또는 transition entropy basis(식~\eqref{eq:ch4_rev_xi})
+  중 택일(정합 제약 식~\eqref{eq:ch4_consistency}).
+\item background heat 사용 시 $\dot Q_\bg^{\prog}$ 와 $\dot Q_\bg^{\coord}$ 분리(식~\eqref{eq:ch4_qbg_split}).
+\item 내부 열원 $\dot{\mathcal Q}_{\src,n}$(식~\eqref{eq:ch4_decomp}) 계산.
+\item 열수지식(식~\eqref{eq:ch4_balance})으로 $T(t)$ 갱신.
+\item 갱신 $T(t)$ 는 위 되먹임 항들에 반영(Chapter 2 순환).
+\end{enumerate}
+(수치 적분기$\cdot$root-find solver 구현과 수렴 판정은 본 이론 장 범위 밖이며 Chapter 1 부록으로 분리한다 —
+이론식과 피팅 실무의 분리.)
+\begin{boundbox}
+\textbf{되먹임이 ICA tail 에 미치는 영향(Chapter 2 계승).} 비가역 발열 $\to T\uparrow\to k_j\uparrow$
+($L_{q,j}=|I|/(Q_\cell k_j)\downarrow$, Chapter 1 spectrum shift) $\to$ 꼬리 단축; 동시에 ideal $w_j=RT/F\uparrow$
+로 평형 peak 폭 증가($n_j^{\eff}=RT/(Fw_j)$ 변화). 두 효과가 경쟁하므로 비등온 ICA tail 을 단일 부호로 단정하지
+않는다(Chapter 1$\cdot$2 의 온도 tail 분해와 정합). 본 장 비가역 발열 $\sum_j n_j^{\eff}I_j\eta_j$ 가 이 되먹임의
+열원 항이다.
+\end{boundbox}
+
+% ====================================================================
+\section{식별성과 필요한 실험 제약}\label{sec:ch4_ident}
+% ====================================================================
+물리 우선 모델에서도 식별성은 사라지지 않는다. 해결책은 임의 clipping 이 아니라 독립 실험과 물리적 prior 다.
+다음 항들은 강하게 상관된다:
+\begin{equation}
+\eta_n\leftrightarrow\mathcal A_n\leftrightarrow r_j^\pm\leftrightarrow R_{n,\eff}\leftrightarrow\Delta S_j\leftrightarrow h_\bg.
+\label{eq:ch4_ident}
+\end{equation}
+\begin{longtable}{p{0.36\textwidth} >{\raggedright\arraybackslash}p{0.52\textwidth}}
+\toprule 실험/자료 & 제한 가능한 항 \\ \midrule \endhead
+저율 OCV 온도 series & $(\partial V_{n,\OCV}/\partial T)_q$, $\Delta S_j$, $h_\bg$ \\
+pulse/current interrupt & immediate polarization $=$ ohmic $+R_{\ct,n}$ 합(분리 불가; 일부 $R_n$) \\
+EIS/small-signal & $R_{\ct,n}$ 단독 분리, transport time constant, film \\
+calorimetry & $\dot{\mathcal Q}_{\irr}$, $\dot{\mathcal Q}_{\rev}$, heat scale \\
+rest relaxation 온도 응답 & $\dot{\mathcal Q}_{\rlx,n}$ 후보(가역/비가역 분리) 검증 \\
+rate series & rate limitation, $r_j^\pm$ \\
+\bottomrule
+\end{longtable}
+독립 자료 없이 동시 자유 결정 금지: (1) OCV coefficient vs transition entropy basis(double counting),
+(2) $R_n,R_{\ct,n},R_{n,\eff}$, (3) $\Delta S_j,h_\bg$ 와 rest relaxation heat, (4) transport heat vs
+hysteresis-like voltage loss.
+
+\textbf{calorimetry 부재 시 미식별 클래스.} 발열 절대 스케일과 가역/비가역 분리를 닫으려면 열량/온도 응답 자료가
+필요하다. 이 자료가 없으면 다음 세 항은 \emph{미식별}이다: (a) 발열 절대 스케일(순수 전기 측정은 $\eta_j\cdot I_j$
+의 \emph{상대} 곱만 줄 뿐 절대 [W]를 닫지 못함), (b) 가역/비가역 분리 비율(\S\ref{sec:ch4_rest} 비고),
+(c) $R_{n,\eff}$. 이 경우 발열식은 \emph{상대 분해}로만 쓰며, 절대 스케일과 분리 비율은 미확정으로 표기한다.
+\begin{flagbox}
+초기 탐색서 heat residual / effective heat gain / capped heat correction / apparent $I^2R$ 가 피팅을 안정화할
+수 있으나 \emph{물리 모델 기본식이 아니다}. 논문용 해석에서는 transport / charge-transfer / entropy coefficient /
+relaxation entropy production / hysteresis loss 로 분해하거나 단순 empirical residual 로 명시하고 주 결론에서
+제외한다(solver/numerical 구현은 Chapter 1 부록).
+\end{flagbox}
+
+% ====================================================================
+\section{Chapter 5 로 전달되는 항목}\label{sec:ch4_transmit}
+% ====================================================================
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em]
+\item \textbf{Chapter 5}: 충전 branch $\dot{\mathcal Q}_{\rev}$ 부호 convention(branch 부호 $s$ 의 \emph{유도});
+  branch-dependent entropy coefficient; hysteresis heat vs polarization heat 분리; charge/discharge asymmetric
+  affinity/rate(정/역 split 의 detailed-balance 이탈 $\Rightarrow\xi_{\sstat,j}\ne\xi_{\eq,j}$); full-cell
+  voltage gap heat 해석. 본 장 일반형 $\sum_j n_j^{\eff}I_j\eta_j$ 의 부호 양정치는 detailed-balance 기본형
+  전제이며, branch 비대칭에서 $\mathcal A_j^{\chem}$ 의 일반화가 Chapter 5 과제다.
+\item \textbf{Chapter 1 부록}: $\dd\xi_j/\dd t$ 기반 heat-rate 계산; stiff kinetics $+$ thermal ODE 결합 수치
+  해법; 직접 배리어 분포 적분서 heat-rate 동시 계산; calorimetry 부재 시 발열 항을 피팅하지 않고 forward
+  prediction 으로만 두는 제한(Chapter 1$\cdot$2 의 forward-only 원칙).
+\end{enumerate}
+
+% ====================================================================
+\section{Chapter 4 의 결론}\label{sec:ch4_concl}
+% ====================================================================
+첫째, 비가역 열은 임의 heat correction 이 아니라 flux$\times$force entropy production $T\dot S_\irr=\sum_\alpha
+J_\alpha X_\alpha\ge0$(식~\eqref{eq:ch4_fluxforce}), 전기화학적으로 $T\dot S_{\irr,n}=J_n\mathcal A_n\ge0$
+(식~\eqref{eq:ch4_JA})에서 출발한다. ``$I\eta$ 단독''(부호 미정렬)은 entropy production 의 일반 정의가 아니다.
+
+둘째, \textbf{미시 transition entropy production $\dot{\mathcal Q}_{\irr,j}^{\tr}=(Q_j/F)RT(\mathcal J_j^+-\mathcal J_j^-)
+\ln(\mathcal J_j^+/\mathcal J_j^-)\ge0$ 은 거시 $n_j^{\eff}I_j\eta_j$ 로 정확히 환원}된다
+(식~\eqref{eq:ch4_micro_macro}). 이 환원은 (i) Chapter 1 detailed balance, (ii) $n_j^{\eff}=RT/(Fw_j)$,
+(iii) \textbf{기본형 $V_\drive=V_n$}(과전압 $\eta_j$ 기준 전위의 단일화)을 전제로 닫히며, 부호 인자 $s$ 가
+명시된다. 이로써 Chapter 2(거시 flux$\times$overpotential)$\cdot$Chapter 1(미시 정/역 속도, $n_j^{\eff}$)$\cdot$
+본 장(entropy production)이 한 표현으로 닫히고, 평형서 $I_j\to0$ 로 발산 없이 0 이 된다.
+
+셋째, \textbf{비가역 발열 일반형은 $\dot{\mathcal Q}_\irr=\sum_j n_j^{\eff}I_j\eta_j\ge0$}
+(식~\eqref{eq:ch4_qirr_general})이며, \emph{Chapter 2 의 $\sum_j I_j\eta_j$ 는 그 ideal-width($n_j^{\eff}=1$)
+특수해}다(일반/특수 위계, 모순 아님). $n_j^{\eff}$ 가중은 임의 피팅 인자가 아니라 detailed-balance 정합이 강제한
+물리 인자다.
+
+넷째, 가역 열은 평형 전위 온도계수(Bernardi, 식~\eqref{eq:ch4_rev_ocv}) 또는 transition entropy basis
+(식~\eqref{eq:ch4_rev_xi})에서 출발하며, 두 방식을 독립항으로 동시에 자유롭게 더하면 double counting 이다
+(정합 제약 식~\eqref{eq:ch4_consistency}). Bernardi 가역열이 미시 reaction entropy $\Delta S_j$ 의 합과 정합함을
+재확인했고(검산 \S\ref{sec:ch4_revOCV}), reaction entropy 는 activation entropy 와 별개다.
+
+다섯째, Chapter 1 의 $R_n$ 은 apparent voltage-axis coefficient 이므로 heat-generation resistance 가 아니다
+($R_n\ne R_{\ct,n}\ne R_{n,\eff}$, 식~\eqref{eq:ch4_Rsep}). transport/병목 발열은 flux$\times$force
+(식~\eqref{eq:ch4_transport_ff}) 또는 독립 제약된 $I^2R_{n,\eff}$ 로만 쓰며, 강구동 rate limitation 을 soft cap
+으로 절단하지 않는다.
+
+여섯째, 휴지 구간에서도 외부 $|I|=0$ 이지만 내부 transition flux $I_j\ne0$ 의 dissipation
+$\sum_j n_j^{\eff}I_j\eta_j\ge0$ 이 남는다(식~\eqref{eq:ch4_rest_irr}; Chapter 2 가 후보로 남긴 relaxation heat 의
+확정 분해). 본 장의 $\dot{\mathcal Q}_{\irr},\dot{\mathcal Q}_{\rev},\dot{\mathcal Q}_{\rlx},\dot{\mathcal Q}_{\transp}$
+는 Chapter 5 의 charge/discharge branch 및 hysteresis heat 해석으로 전달된다. 이로써 Chapter 1 의 ``열역학$=$방향
+(가역/entropy), 동역학$=$속도(비가역/소산)'' 분업이 entropy-production 수준에서 \emph{정량}되되 앞 장과 충돌하지
+않는다.
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962); Dover reprint (1984). [flux--force entropy production; 교과서]
+\bibitem{prigogine1967} I. Prigogine, \emph{Introduction to Thermodynamics of Irreversible Processes}, 3rd ed., Interscience (1967). [entropy production; 교과서]
+\bibitem{schnakenberg1976} J. Schnakenberg, ``Network Theory of Microscopic and Macroscopic Behavior of Master Equation Systems,'' \emph{Rev. Mod. Phys.} \textbf{48}, 571 (1976). DOI: 10.1103/RevModPhys.48.571.
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI: 10.1149/1.2113792.
+\bibitem{rao1997} L. Rao, J. Newman, ``Heat-Generation Rate and General Energy Balance for Insertion Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{144}, 2697 (1997). DOI: 10.1149/1.1837884.
+\bibitem{thomasnewman2003} K. E. Thomas, J. Newman, ``Thermal Modeling of Porous Insertion Electrodes,'' \emph{J. Electrochem. Soc.} \textbf{150}, A176 (2003). DOI: 10.1149/1.1531194.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). DOI: 10.1149/1.1646152.
+\end{thebibliography}
+
+\end{document}
