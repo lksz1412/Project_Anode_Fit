@@ -1,0 +1,61 @@
+# HANDOVER — Ch2~5 야간 자율 초안 (2026-06-07)
+
+## Chain 헤더 (거슬러 올라갈 위치)
+- 본 handover ← (Ch1 작업: F 교과서화 + G §8~10 이해보완, 동일 세션 연속 — 별도 handover 없이 본 문서가 Ch1 완료 후 Ch2~5 진입 기록)
+- 상위 트랙 인계: `Claude/results/Archive_oldtrack/HANDOVER_RB_2026-06-02b.md`(구-track rb-rebuild) — 구-track Ch1~5 는 archive 로 이동, 신규 트랙으로 재작성 중.
+
+## 1. 본 세션 지시 (전문, 생략 없이)
+사용자: "지금 작업한 내용과, 형식 그리고 작업방법을 그대로 따와서 챕터2~5를 밤새 진행한다. 현재 새벽 2시30분이므로 나는 자러가니 니가 최대한 현재 챕터1과 정합성이 있도록 초안 작성을 해놓길 바란다. 당연히 작업은 계획서 → 절 별로 작업 → 문제 없을 때까지 검수 → 앞 절과의 관계 검토 → (끝까지 반복) → 저장 → 커밋,푸쉬 같은 형식을 지켜야하는건 동일한데, 이제 챕터 2부터는 이전 챕터까지도 함께 검토를 진행해야한다."
+- 즉 Ch1(확정본) 의 \*내용 방식·형식·register·작업방법\* 그대로 Ch2~5 초안, Ch1 최대 정합, Ch2부터 \*이전 챕터까지 함께 검토\*.
+
+## 2. 수행 결과 (chapter 별 상태)
+프로젝트 P1: Ch2=발열, Ch3=반응속도론, Ch4=통합 상태방정식, Ch5=히스테리시스.
+계획서: `Claude/plans/2026-06-07-ch2-5-rebuild-consistent-with-ch1-plan.md`(챕터 H).
+구-track 물리 source: `Claude/work/oldtrack_src/graphite_ica_ch[2-5]_rebuilt.tex`(zip 백업서 추출, 물리 \*재료\*).
+
+| Ch | 파일 | 줄/p | 빌드 | Codex 검수 | 상태 |
+|---|---|---|---|---|---|
+| **2 발열** | `graphite_ica_ch2.tex` | 589·12p | GREEN | \*완료\*(8 MAJOR+MINOR) → \*핵심 5건 수정\* | **검수+1차정정** |
+| **3 반응속도론** | `graphite_ica_ch3.tex` | 762·16p | GREEN | \*미실시\* | **초안(빌드 clean)** |
+| **4 통합 상태방정식** | `graphite_ica_ch4.tex` | 841·16p | GREEN | \*미실시\* | **초안(빌드 clean)** |
+| **5 히스테리시스** | `graphite_ica_ch5.tex` | 838·16p | GREEN | \*미실시\* | **초안(빌드 clean)** |
+
+- Ch2 = Claude 직접 작성(exemplar). Ch3~5 = 병렬 subagent 가 Ch1·Ch2 exemplar + 구-track 물리로 port(엄격 표기/register 규칙). 4개 전부 독립 컴파일 GREEN(0 err/undefined ref·cite/overfull; 잔존 경고는 한글 italic 폰트 fallback — Ch1 과 동일 무해).
+- 커밋·푸쉬 완료(버전마다, origin/rb-rebuild-2026-05-30): `310310a`(Ch2)·`5a0fffe`(Ch3-5 초안)·`ed80de2`(Ch2 정정). [[feedback_anode_fit_auto_commit_push]] 적용.
+- 표기 정합 맵 일관 적용: $s_{\phi,j}{\to}s$·$Q_{j,\tot}{\to}Q_j$·$\chi_j{\to}\chi$·$V_{n,\app}{\to}V_\app$·$V_{n,\drive}{\to}V_\drive$·$\Delta S_{\rxn,j}{\to}\Delta S_j$. $Q_p\cdot\Theta$ 미사용(Ch1 형식). linkbox→inheritbox, \AL/BOUNDED/CHARTER/AL원장절 → 박스 흡수. "질문./물리./(무비약)" 라벨 0. 각 챕터 inherit 절(C1~C6/C7)로 Ch1(·앞 챕터) 기준식 수령.
+
+## 3. 미완료 항목 (다음 세션 우선순위)
+
+### (A) Ch2 잔여 Codex 정정 — \*부분 수정, 나머지 미반영\*
+Codex Ch2 검수(8 MAJOR) 중 \*수정 완료\*: C4 k_act/k_eff 구분·$\dot{\mathcal Q}_{\rev,j}$ rename(q 충돌)·서론 ΔS_j conflation·열 kernel 1/L(per-time↔per-capacity)·"novel" 제거.
+\*미반영(다음 세션)\*:
+- **B4**: `eq:ch2_consistency` boxed 등호가 boundbox 의 부분조건과 어긋남 → 가정(등온·준정적·단일 우세 transition 또는 $D_q$ 정규화)을 식 display 안에 명시하거나 reaction-entropy 성분만 투영.
+- **B6**: $\dot{\mathcal Q}_{\irr}=|I|\eta$ 축약 시 background·ohmic 전류 처리 명시(현재 $\eta\ge0$ 전제만).
+- **B7**: `eq:ch2_sigma`·`eq:ch2_qirrkin_ext` 의 bare $k_j$ → $k_j^{\eff}$(또는 활성화 지배 한정 명시).
+- **C1**: $I_j$·$s^{\conv}$·$h_\bg$ 가 정의 전 사용(first-use 인라인 정의 추가). $\dd q_{\irr,\kin,j}$ 의 소문자 q(열) → $\mathcal Q$ 로 rename(잔여 q 충돌).
+- **A1**: C3 의 $k_j^{\eff}$ 사용을 Ch1 $k_j$(=$r^++r^-$) 의 압축임을 한 줄 명시.
+
+### (B) Ch3·Ch4·Ch5 — \*deep Codex 물리·정합 검수 미실시\* (최우선)
+초안은 빌드 clean 이나 \*물리 정확성·Ch1 정합·이전 챕터 정합\*은 Claude/Codex 깊은 검수를 \*안 거침\*. subagent 가 Ch2 를 exemplar 로 썼으므로 \*Ch2 와 같은 결함이 전파됐을 가능성\* 높음(특히 k_eff/k_act 구분, q 기호 충돌, prose conflation). 각 챕터:
+1. Codex foreground 적대 검수(Ch2 검수 프롬프트 양식 재사용) — A.Ch1정합 B.물리정확 C.무비약 D.register E.\*이전 챕터 정합\*(Ch3↔Ch2, Ch4↔Ch1-3, Ch5↔Ch1-4 의 inherit 식 ↔ 앞 챕터 실제 식·전달항목 교차매핑).
+2. 판정(타당/오바/구라) → 수정 → 재검수 문제 0까지 → 커밋.
+3. subagent 보고의 의심점 확인: Ch5 의 $\Pi_j$(Ch2 가역열 표기와 대조)·reynier/bazant 인용 위치 / Ch3 의 $\chi\equiv\beta_j$ 조건부 동일물 / Ch4 의 bernardi1985 서지.
+
+### (C) 통합·교차 (그 다음)
+- 4개 챕터 inherit 식이 \*서로\* 일치하는지 횡단(Ch2 가 넘긴 전달항목 ↔ Ch3 inherit, …). 병렬 작성이라 drift 가능 — 교차 reconcile.
+- master 문서(\\include) 또는 cross-file \eqref 연결은 추후(현재 의미 인용).
+- 충전 branch 부호 $s$(Ch1 방전 +1) ↔ $s^b$(Ch5 충전 −1) 확장 일관 재확인.
+
+## 4. 다음 세션 주의
+- \*\*[[feedback_full_file_read_required]]\*\*: Ch3~5 검수 시 전문 정독(subagent 산출이라 더 엄격). [[feedback_multiagent_review_chunking]]: 분량 있으면 절별 청킹.
+- \*\*Ch2 가 exemplar\*\* — Ch2 의 확정 표기·박스·register 가 Ch3~5 정합 기준. Ch2 잔여 정정(A)을 먼저 끝내고 그 기준으로 Ch3~5 검수.
+- \*\*표기 충돌\*\*: 소문자 q(용량좌표, Ch1)는 \*열 기호로 재사용 금지\* — 열은 $\mathcal Q$/$\dot{\mathcal Q}$. Ch3~5 도 점검.
+- \*\*k_j 계열\*\*: Ch1 = $k_j$(완화율, eq:keff Eyring), $k_j^{\eff}$(직렬 1/k_eff=1/k_act+1/k_lim). 혼용 주의.
+- 구-track 의 \AL/CHARTER/AL원장/BOUNDED/GS-4 메타는 Ch1 에 없음 → 박스 흡수(가정원장 별도 절 X). Ch3~5 도 동일.
+- 커밋·푸쉬는 버전마다 자동([[feedback_anode_fit_auto_commit_push]]). Codex 는 \*foreground(`--wait`)\*로만(백그라운드 시 턴 끊김·hung 사례 있었음).
+- `Claude/work/oldtrack_src/` 는 구-track 물리 \*재료\*(읽기). 원본 Ch1·구-track 수정 금지.
+
+## 5. 산출물 위치
+- 신규 챕터: `Claude/docs/graphite_ica_ch{2,3,4,5}.tex`(+`.pdf`).
+- 계획서: `Claude/plans/2026-06-07-ch2-5-rebuild-consistent-with-ch1-plan.md`.
+- Ch1 확정본: `Claude/docs/graphite_ica_ch1.tex`(952줄·20p, F·G 완료) — 기준.
