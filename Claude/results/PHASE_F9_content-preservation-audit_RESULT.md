@@ -43,5 +43,18 @@
 - (가) 신규 Ch1 의 \emph{부록}(또는 별도 챕터)으로 \emph{이식·교과서화} — 본문 "부록" 참조가 실체를 갖게 됨, 또는
 - (나) 의도적 분리 유지(신규 Ch1 = 핵심 도출 전용, 피팅/수치는 별도 트랙).
 
+## Addendum (F.9b) — Appendix B 필수성 판단 (사용자 기준: 필수면 본문, 아니면 부록)
+**대상 정독**: `Archive_old/graphite_ica_ch1_appendixB_fitting.tex` L114~313(도입·데이터 분리·S1~S6 구현·DAE 엔진).
+
+**결정적 근거(부록 자체 규정, L116-119·143-144)**: "본 부록은 이론장(Ch1–5)의 결과를 \textbf{수정 없이 입력으로 받아} 그 위에 \emph{피팅 방법론} 계층만 적층한다. 이론장 본문 기본식은 수정하지 않는다." + 전 절 "\textbf{구 Chapter 6}".
+
+**판단: 본문 필수 아님 → 부록/별도 챕터가 맞음.**
+- Appendix B = Ch1 을 \emph{입력으로 소비}하는 \emph{하류 피팅·수치 방법론}(원래 Chapter 6). Ch1 논리가 이것에 의존하지 않음(역방향 의존).
+- 내용 = S1~S6 \emph{수치 구현}(root-find·DAE 엔진·Volterra closure Plan A/B)·식별성 규칙·GITT/Arrhenius/C-rate \emph{피팅 절차}·calorimetry·full-cell 확장. 전부 "이론을 데이터로 어떻게 거는가"(실무), \emph{이론 전개 자체가 아님}.
+- 신규 Ch1 본문은 자족적: 도출 사슬 완비 + eq:simplefit(닫힌 근사식) + S1~S4 \emph{식별 순서}(개념) + §falsify = \emph{이론 수준에서 직접 피팅 가능}(사용자 첫째 목표 충족). 수치 구현은 그 위 계층.
+- 본문 "부록" 참조 2곳(q_a 창 선택 L432 · χ 회귀 \emph{절차} L797) = \emph{실무 디테일}만 deferral, 도출 논리는 그것 없이 완결. → 비필수 확정.
+
+**조치**: 사용자 기준상 본문 이식 \emph{불요}(필수 아님). Appendix B 는 별도 부록/챕터로 유지가 맞음(archive 보존). → \emph{Ch1 본문 변경 없음}. 다만 "부록"이 신규 구조에 실체로 존재하려면 별도 chapter-scale 포맷화 작업이 필요 — 이는 Ch1 교과서화와 구분되는 신규 deliverable라 사용자 확인 후 진행.
+
 ## Read Coverage
-- 신규-track 전문(F.0~F.8) + 구-track ch1_rebuilt 섹션 구조 정독 + topic grep 대조 + zip/archive/git 이력 전수 탐색.
+- 신규-track 전문(F.0~F.8) + 구-track ch1_rebuilt 섹션 구조 + **Appendix B L114~313 정독** + topic grep 대조 + zip/archive/git 이력 전수 탐색.
