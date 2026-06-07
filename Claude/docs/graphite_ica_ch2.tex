@@ -1,8 +1,8 @@
 % ====================================================================
-% graphite_ica_ch2.tex — Chapter 2 (재편 후 신규: 전기화학 반응속도론)
-%   의존: Chapter 1 만 기반(1→2). 발열(Ch3)·히스테리시스(Ch4)가 본 장을 기반.
-%   ★ 통합 문건 규율: 인계/recap/전달 절 금지, 기호규약에 이전 장 언급 금지.
-%   ★ 절 단위 작성: 한 절씩 작성→검수→정합→다음 절. (현재 §1 까지)
+% graphite_ica_ch2.tex — Chapter 2 (재편 후 신규: 충방전 히스테리시스)
+%   Chapter 1 의 후속절. Ch1 평형 dQ/dV(전이별 logistic + 정규용액 Ω_j)를
+%   충방전 branch 로 확장 — 전반부: 비단조 μ→spinodal→ΔU_hys 완전 유도(확정 수식),
+%   후반부: 충방전 피팅·활용 가능 방향 파라미터화. Ch1 만 기반(BV/DFN X = Ch4).
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
@@ -18,9 +18,9 @@
 \setstretch{1.12}
 \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
-  pdftitle={흑연 음극 전기화학 반응속도론 — Chapter 2}}
+  pdftitle={흑연 음극 충방전 히스테리시스 — Chapter 2}}
 \pagestyle{fancy}\fancyhf{}
-\lhead{흑연 음극 전기화학 반응속도론 — Ch.2}\rhead{\thepage/\pageref{LastPage}}
+\lhead{흑연 음극 충방전 히스테리시스 — Ch.2}\rhead{\thepage/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 
 \newtheorem*{keybox}{핵심}
@@ -36,16 +36,16 @@
 \newcommand{\drive}{\mathrm{drive}}
 \newcommand{\cell}{\mathrm{cell}}
 \newcommand{\bg}{\mathrm{bg}}
-\newcommand{\ext}{\mathrm{ext}}
 \newcommand{\OCV}{\mathrm{OCV}}
-\newcommand{\sstat}{\mathrm{ss}}
-\newcommand{\ct}{\mathrm{ct}}
-\newcommand{\act}{\mathrm{act}}
-\newcommand{\lima}{\mathrm{lim}}
-\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\kin}{\mathrm{kin}}
+\newcommand{\obs}{\mathrm{obs}}
 
 \renewcommand{\theequation}{2.\arabic{equation}}
-\title{\textbf{\LARGE Chapter 2}\\[0.35em]\Large 흑연 음극 전이의 전기화학 반응속도론}
+\title{\textbf{\LARGE Chapter 2}\\[0.35em]\Large 흑연 음극의 충방전 히스테리시스}
 \author{}
 \date{}
 
@@ -56,268 +56,250 @@
 \section*{서론}
 \addcontentsline{toc}{section}{서론}
 % ====================================================================
-흑연 음극에서 각 staging 전이가 \emph{진행하는 속도}는 그 전이의 계면에서 일어나는 전기화학 전하전달 반응이
-정한다. 전이 진행률 $\xi_j$ 의 변화는 정방향(전이 완성, 탈리튬화)과 역방향(재리튬화) 두 반쪽 과정의 경쟁이며,
-\emph{그 경쟁의 불균형}이 net 진행을 정하고 \emph{두 반쪽의 절대 크기}가 비가역 소산을 정한다. 같은 반응을
-계면 전류로 보면 전류$\cdot$과전압$\cdot$교환전류$\cdot$전하전달 저항이라는 측정 가능한 양으로 드러난다.
+앞 장은 흑연 음극의 $\dd Q/\dd V$ peak 를 \emph{방전 한 방향}으로 다뤘다. 그러나 같은 전이를 충전과 방전으로
+오가면, 같은 용량(SOC)에서 전위와 $\dd Q/\dd V$ peak 위치가 서로 \emph{갈린다} — 충방전 히스테리시스다. 이
+갈림은 두 기원을 갖는다: 전류를 $0$ 으로 보내도 남는 \emph{열역학적} 부분과, 과전압$\cdot$지연으로 생겼다가
+$|I|\to0$ 에서 사라지는 \emph{동역학적}(분극) 부분이다.
 
-본 장은 이 전기화학 반응속도론을 다음 순서로 전개한다. 먼저 정$\cdot$역 flux 와 그 공액 구동력(반응 친화도)을
-세우고(\S\ref{sec:nch2_flux}), 이를 계면 전류로 옮겨 반응 과전압과 Butler--Volmer 전류식을 얻는다
-(\S\ref{sec:nch2_bv}). 소신호 한계에서 전하전달 저항을, 평형 한계에서 교환전류밀도와 그 온도$\cdot$조성 의존을
-유도한다(\S\ref{sec:nch2_rct}--\ref{sec:nch2_i0}). 끝으로 정상 진행률이 평형값에서 벗어나는 조건
-(\S\ref{sec:nch2_ss})과 외부 전류의 전이별 분배(\S\ref{sec:nch2_current})를 본다. 전개는 방전(탈리튬화) 방향
-$s=+1$ 을 기본으로 하며, 각 결과는 차원$\cdot$극한 검산과 평형$\cdot$가역 극한에서의 환원을 함께 보인다.
+본 장은 두 단계로 간다. \textbf{전반부}는 그 갈림의 열역학적 부분을 정규용액 상호작용 $\Omega_j$ 에서 — 비단조
+화학퍼텐셜과 spinodal 을 거쳐 — \emph{비약 없이} 유도해, 충방전 branch 전위와 히스테리시스 gap $\Delta U_j^\hys$
+의 \emph{확정 수식}을 세운다. 동역학적 부분은 평형 곡선 위의 율 의존 분극으로 얹는다. \textbf{후반부}는 그 확정
+수식을 충방전 모두에 대해 피팅하고 활용할 수 있는 방향으로 파라미터화한다. 전개는 방전(탈리튬화) 방향 $s=+1$ 을
+기본으로 하며, 각 결과는 단상 극한($\Omega_j\le2RT$)에서 앞 장의 단일 peak 로 환원됨을 검산한다.
 
 \tableofcontents
 \newpage
 
 % ====================================================================
-\section{기호와 규약}\label{sec:nch2_notation}
+\section{기호와 규약}\label{sec:hys_notation}
 % ====================================================================
 본 장에서 새로 도입하는 기호는 다음과 같다.
-\begin{longtable}{p{0.16\textwidth} p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.60\textwidth}}
+\begin{longtable}{p{0.17\textwidth} p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.61\textwidth}}
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-$\mathcal J_j^+,\ \mathcal J_j^-$ & 1/s & 전이 $j$ 의 forward$\cdot$backward \emph{flux} $=r_j^+(1-\xi_j)$, $r_j^-\xi_j$ (점유율 가중; 속도 $r_j^\pm$ 와 구별) \\
-$\mathcal A_j^{\mathrm{net}}$ & J/mol & net 반응을 구동하는 유효 친화도 $=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$ \\
-$\eta_j$ & V & 전이 $j$ 의 반응 과전압 — 계면 전하전달을 구동하는 전위 편차 ($\eta_j=\mathcal A_j^{\mathrm{net}}/F$) \\
-$V_{\eq,j}(\xi_j)$ & V & 현재 진행률 $\xi_j$ 에서 전이 $j$ 가 평형이 되는 국소 평형 전위 \\
-$i_j$ & A/m$^2$ & 전이 $j$ 의 계면 반응 전류밀도 (Butler--Volmer) \\
-$i_{0,j}(q,T)$ & A/m$^2$ & 전이 $j$ 의 교환전류밀도 — 평형($\eta_j=0$)에서의 정$=$역 전류 크기 \\
-$\alpha_j$ & --- & anodic 전달계수 ($=\chi$, 전이상태의 forward 분율 위치) \\
-$R_{\ct,j}$ & $\Omega\,\mathrm{m^2}$ & 전하전달 저항 (소신호 $\partial\eta_j/\partial i_j|_{\eta_j\to0}$) \\
-$A_\eff$ & m$^2$ & 유효 반응 면적 (전류밀도$\to$전류 환산) \\
-$I_j$ & A & 전이 $j$ 의 lumped 전류 $=Q_j\,\dd\xi_j/\dd t$ \\
-$I_\bg$ & A & 배경(staging 으로 분리되지 않는) 반응 전류 \\
-$\dot S_{\irr}$ & W/K & 비가역 entropy 생성률 (2법칙 $\ge0$); $T\dot S_\irr$=소산 power [W] \\
+$b$ & --- & branch 지표 $\in\{\dis,\chg\}$ (방전$\cdot$충전) \\
+$V_{\eq,j}(\xi)$ & V & 전이 $j$ 의 평형 전위 — 진행률 $\xi$ 의 함수(정규용액 일반형) \\
+$\xi_{s,j}^\pm$ & --- & 전이 $j$ 의 spinodal 진행률(평형 전위가 극값인 점) \\
+$U_j^b$ & V & branch $b$ 의 유효 중심 전위 ($b\in\{\dis,\chg\}$) \\
+$\Delta U_j^\hys$ & V & 전이 $j$ 의 열역학적 히스테리시스 gap $=U_j^\dis-U_j^\chg$ \\
+$w_j^b$ & V & branch $b$ 의 유효 전이 폭 \\
+$h_j$ & --- & 전이 $j$ 의 기억(memory) 상태 $\in[-1,1]$ (부분 cycle) \\
+$\Delta V_\obs$ & V & 같은 SOC 에서 관측되는 충방전 전위차(방전$-$충전) \\
+$\Delta V_\hys$ & V & 그중 열역학적(참) 히스테리시스 성분 ($|I|\to0$ 잔존) \\
+$\Delta V_\pol,\Delta V_\kin$ & V & 분극$\cdot$kinetic lag 성분 ($|I|\to0$ 소멸) \\
 \bottomrule
 \end{longtable}
-$F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$, $\mathrm{J/C}=\mathrm V$. flux $\mathcal J_j^\pm$ 와
-net 변화율 $\dd\xi_j/\dd t=\mathcal J_j^+-\mathcal J_j^-$ 의 단위는 $\mathrm{s^{-1}}$($\xi_j$ 무차원).
+$F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$, $\mathrm{J/C}=\mathrm V$. 진행률 $\xi$$\cdot$용량
+$Q$$\cdot$전위 $V$ 의 단위$\cdot$부호 규약은 본 시리즈 공통이며 방전 $s=+1$ 을 기본으로 한다.
 
 % ====================================================================
-\section{정$\cdot$역 flux 와 flux--force 짝}\label{sec:nch2_flux}
+\section{무엇을 유도할 것인가 — 관측 gap 의 분해}\label{sec:hys_decomp}
 % ====================================================================
-전이 $j$ 의 진행률 변화 $\dd\xi_j/\dd t=r_j^+(1-\xi_j)-r_j^-\xi_j$(식~(1.16))의 우변 두 항은 각각 한 방향으로만
-흐르는 \emph{단방향 flux}다. forward(전이 완성, 탈리튬화)는 아직 전이 안 된 분율 $(1-\xi_j)$ 에 정방향 속도
-$r_j^+$ 가, backward(재리튬화)는 이미 전이된 분율 $\xi_j$ 에 역방향 속도 $r_j^-$ 가 작용한 것이다:
+같은 SOC 에서 방전 전위 $V^\dis$ 와 충전 전위 $V^\chg$ 의 차를 관측 gap 으로 둔다:
 \begin{equation}
-\mathcal J_j^+\equiv r_j^+(1-\xi_j),\qquad \mathcal J_j^-\equiv r_j^-\xi_j,\qquad
-\frac{\dd\xi_j}{\dd t}=\mathcal J_j^+-\mathcal J_j^-.
-\label{eq:nch2_Jpm}
+\Delta V_\obs\equiv V^\dis-V^\chg.
+\label{eq:hys_obs}
 \end{equation}
-
-\textbf{왜 net 이 아니라 정$\cdot$역을 따로 보는가.} 진행률만 따지면 net flux $\mathcal J_j^+-\mathcal J_j^-$ 로
-충분하다. 그러나 반응이 만드는 \emph{비가역성}은 net 이 아니라 \emph{두 단방향 flux 의 불균형}이 정한다.
-평형에서는 $\mathcal J_j^+=\mathcal J_j^-$ 라 net 은 $0$ 이지만 두 flux 자체는 $0$ 이 아니며(정$\cdot$역이 같은
-크기로 끊임없이 오간다), \emph{그 둘이 같아질 때만} 비가역 생성이 사라진다. 따라서 net 으로 합치기 전의 단방향
-flux 를 살려 두어야 소산을 옳게 센다.
-
-\textbf{공액 구동력의 유도.} 비평형 열역학에서 화학 반응의 entropy 생성은 \emph{flux} 와 \emph{공액 affinity} 의
-곱으로 적힌다 \cite{degrootmazur1962,prigogine1967}. 그 affinity 는 두 단방향 flux 비의 로그에서 나온다. 정$\cdot$역
-속도비는 \emph{detailed balance} 가 정하므로(식~(1.25), $r_j^+/r_j^-=e^{\mathcal A_j/RT}$), flux 비는
+이 관측 gap 은 서로 다른 기원의 합이다. (i) 충$\cdot$방전이 \emph{서로 다른 평형 branch} 에 있어서 생기는
+\emph{열역학적} 차 $\Delta V_\hys$ — 전류를 $0$ 으로 줄여도(준평형 GITT 종점) 남는다. (ii) 같은 SOC 라도 전류가
+흐르면 분극$\cdot$지연이 충$\cdot$방전에서 \emph{반대 부호}로 더해지는 \emph{동역학적} 차 $\Delta V_\pol+\Delta
+V_\kin$ — $|I|\to0$ 에서 사라진다:
 \begin{equation}
-\frac{\mathcal J_j^+}{\mathcal J_j^-}=\frac{r_j^+}{r_j^-}\cdot\frac{1-\xi_j}{\xi_j}
-=e^{\mathcal A_j/RT}\,\frac{1-\xi_j}{\xi_j}
-\label{eq:nch2_Jratio}
+\boxed{\;\Delta V_\obs=\underbrace{\Delta V_\hys}_{|I|\to0\ \text{잔존(열역학)}}
++\underbrace{\Delta V_\pol+\Delta V_\kin}_{|I|\to0\ \text{소멸(동역학)}}\;,\qquad
+\Delta V_\hys=\lim_{|I|\to0}\Delta V_\obs.\;}
+\label{eq:hys_split}
 \end{equation}
-다(첫 등호는 정의~\eqref{eq:nch2_Jpm}, 둘째는 식~(1.25) 대입; 구동력 $\mathcal A_j=sF(V_\drive-U_j)$ 는
-식~(1.23)). 내부 상태 $0<\xi_j<1$, $r_j^\pm>0$ 을 가정하며(끝점은 극한으로 처리), 양변에 $RT\ln(\cdot)$ 을
-취하면 $\ln(ab)=\ln a+\ln b$ 로
-\begin{equation}
-\boxed{\;\mathcal A_j^{\mathrm{net}}\equiv RT\ln\frac{\mathcal J_j^+}{\mathcal J_j^-}
-=\mathcal A_j-RT\ln\frac{\xi_j}{1-\xi_j}\;,}
-\label{eq:nch2_Anet}
-\end{equation}
-즉 net 반응을 구동하는 유효 친화도 $\mathcal A_j^{\mathrm{net}}$ 는 \emph{중심 기준} 구동력 $\mathcal A_j$ 에서
-현재 점유율의 configurational 항 $RT\ln[\xi_j/(1-\xi_j)]$ 을 뺀 것이다. 앞 항은 ``전이 중심에서 얼마나 벗어났나''
-(열역학 구동), 뒤 항은 ``현재 얼마나 진행됐나''(엔트로피적 되돌림)를 재며, 둘의 차가 실제 net 구동이다.
-
-\begin{verifybox}
-\textbf{평형 검산.} 평형 $\xi_j=\xi_{\eq,j}$ 에서는 식~(1.11) logistic 의 logit 이
-$\ln[\xi_{\eq,j}/(1-\xi_{\eq,j})]=\mathcal A_j/RT$(기본형 $V_\drive=V_n$, $w_j=RT/F$)이므로
-$\mathcal A_j^{\mathrm{net}}=\mathcal A_j-\mathcal A_j=0$ — net 친화도가 $0$ 이라 정$\cdot$역 flux 가 같아지고
-($\mathcal J_j^+=\mathcal J_j^-$) net 진행과 소산이 동시에 멎는다. \textbf{차원.} $\mathcal J_j^\pm$ 비는 무차원,
-$RT\ln(\cdot)=\mathrm{J/mol}=\mathcal A_j$ 와 정합.
-\end{verifybox}
-
-\textbf{소산의 부호(De Donder).} net flux $(\mathcal J_j^+-\mathcal J_j^-)$ 와 그 공액력 $\mathcal A_j^{\mathrm{net}}
-=RT\ln(\mathcal J_j^+/\mathcal J_j^-)$ 는 \emph{같은 부호}다($a>b\Leftrightarrow\ln(a/b)>0$). 따라서
-\begin{equation}
-(\mathcal J_j^+-\mathcal J_j^-)\,\mathcal A_j^{\mathrm{net}}\ \ge\ 0,
-\label{eq:nch2_dedonder}
-\end{equation}
-등호는 평형($\mathcal J_j^+=\mathcal J_j^-$)에서만 성립한다. 이는 ``net 반응은 친화도 내리막으로만 일어난다''는
-2법칙의 반응 형태(De Donder 부등식)이며 \cite{degrootmazur1962}, 정$\cdot$역 flux 를 살려 둔 덕에 부호가 항별로
-닫힌다.
+\textbf{$\Delta V_\obs\ne\Delta V_\hys$ 임을 분명히 한다}: 유한 전류에서 관측 gap 을 통째로 히스테리시스로
+읽으면 분극$\cdot$지연을 참 히스테리시스로 오인한다. 본 장 전반부는 \emph{열역학} 성분 $\Delta V_\hys$ 의 확정
+수식(\S\ref{sec:hys_spinodal}--\ref{sec:hys_branch})을, 동역학 성분(\S\ref{sec:hys_pol})을 그 위에 분리해 둔다.
+$\Delta V_\hys$ 를 데이터로 얻는 길은 저율 외삽($|I|\to0$) 또는 양방향 GITT 완화 종점이다.
 
 % ====================================================================
-\section{계면 실현 — 반응 과전압과 Butler--Volmer 전류}\label{sec:nch2_bv}
+\section{비단조 평형 전위와 spinodal — 유도 (1)}\label{sec:hys_spinodal}
 % ====================================================================
-식~\eqref{eq:nch2_Anet} 의 $\mathcal A_j^{\mathrm{net}}$ 는 \emph{현재 상태} $\xi_j$ 가 \emph{국소 평형}에서 벗어난
-정도를 몰당 에너지로 잰 것이다. 전기화학에서 같은 양을 \emph{전위} 단위로 적은 것이 반응 과전압 $\eta_j$ 다.
+열역학 히스테리시스의 근원은 \emph{전이 자체가 일차 상전이}라는 데 있다. 전이 $j$ 의 삽입 화학퍼텐셜은 정규용액
+형(식~(1.9))
+\begin{equation}
+\mu_j(\xi)=\mu_j^0+RT\ln\frac{\xi}{1-\xi}+\Omega_j(1-2\xi)
+\label{eq:hys_mu}
+\end{equation}
+이고($\xi$=진행률, $\Omega_j$=정규용액 상호작용), 전기화학 평형 조건(식~(1.10)) $sF(V-U_j^0)=\mu_j(\xi)$ 를
+$V$ 에 대해 풀면 평형 전위가 진행률의 함수로
+\begin{equation}
+V_{\eq,j}(\xi)=U_j+\frac{RT}{sF}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j}{sF}(1-2\xi),
+\qquad U_j\equiv U_j^0+\frac{\mu_j^0}{sF},
+\label{eq:hys_Veq}
+\end{equation}
+이 된다. $\Omega_j=0$ 이면 둘째 항만 남아 식~(1.11) logistic 의 역함수(단조)로 환원된다 — 앞 장의 단상 peak 다.
 
-\textbf{국소 평형 전위.} 전이 $j$ 가 현재 진행률 $\xi_j$ 에서 평형이 되려면, 평형 진행률 식~(1.11)이 바로 그 $\xi_j$
-를 주는 전위여야 한다. $\xi_j=[1+e^{-s(V-U_j)/w_j}]^{-1}$ 을 $V$ 에 대해 풀면($e^{-s(V-U_j)/w_j}=(1-\xi_j)/\xi_j$
-에서 로그)
+\textbf{비단조성과 spinodal.} 진행률에 대한 기울기는
 \begin{equation}
-V_{\eq,j}(\xi_j)=U_j+\frac{w_j}{s}\,\ln\frac{\xi_j}{1-\xi_j}
-\label{eq:nch2_Veq}
+\frac{\dd V_{\eq,j}}{\dd\xi}=\frac{1}{sF}\Big[\frac{RT}{\xi(1-\xi)}-2\Omega_j\Big].
+\label{eq:hys_slope}
 \end{equation}
-이 \emph{국소 평형 전위}다 — 전이 중심 $U_j$ 에서 현재 점유율만큼 logit 으로 이동한 값. \textbf{반응 과전압}은
-구동 전위가 이 국소 평형에서 벗어난 정도다:
+양 끝($\xi\to0,1$)에서 $RT/[\xi(1-\xi)]\to\infty$ 라 기울기는 양수다. 그러나 $\Omega_j$ 가 충분히 크면 중간
+영역에서 음수가 된다 — $\xi=\tfrac12$ 에서 $RT/[\xi(1-\xi)]=4RT$ 이므로, $\Omega_j>2RT$ 면 거기서
+$\dd V_{\eq,j}/\dd\xi<0$ 다. 음의 기울기 구간은 진행과 전위가 반대로 움직이는 \emph{역학적으로 불안정}한
+영역(spinodal 내부)이라, 한 전이가 균질하게 통과할 수 없다 — 즉 상분리(일차 상전이)다. 기울기가 $0$ 인
+\emph{spinodal} 진행률은 식~\eqref{eq:hys_slope} 을 $0$ 으로 두어 $\xi(1-\xi)=RT/(2\Omega_j)$, 곧
 \begin{equation}
-\boxed{\;\eta_j\equiv s\big[V_\drive-V_{\eq,j}(\xi_j)\big]
-=s(V_\drive-U_j)-w_j\ln\frac{\xi_j}{1-\xi_j}\;.}
-\label{eq:nch2_eta}
-\end{equation}
-\textbf{$\mathcal A_j^{\mathrm{net}}$ 과의 일치.} 기본형 $w_j=RT/F$ 에서 식~\eqref{eq:nch2_eta} 에 $F$ 를 곱하면
-$F\eta_j=sF(V_\drive-U_j)-RT\ln[\xi_j/(1-\xi_j)]=\mathcal A_j-RT\ln[\xi_j/(1-\xi_j)]=\mathcal A_j^{\mathrm{net}}$ —
-반응 과전압은 식~\eqref{eq:nch2_Anet} 의 net 친화도를 전위로 옮긴 \emph{같은 양}이며, 평형($\xi_j=\xi_{\eq,j}$)에서
-$\eta_j=0$ 이다.
-
-\textbf{계면 전류로의 변환.} 반응을 \emph{전하}의 흐름으로 보면, 평형($\eta_j=0$)에서 정$\cdot$역 반쪽 전류가 같은
-크기 $i_{0,j}$(교환전류밀도)로 흐른다. 과전압이 걸리면 그것이 두 반쪽 장벽을 \emph{비대칭}으로 옮긴다 — 전이상태가
-반응 좌표상 forward 쪽으로 $\alpha_j$ 만큼 위치하므로(식~(1.24) 의 장벽 분할과 같은 기제, $\alpha_j=\chi$), forward
-장벽은 $\alpha_jF\eta_j$ 만큼 낮아지고 backward 장벽은 $(1-\alpha_j)F\eta_j$ 만큼 높아진다. 두 반쪽 전류의 차가
-net 반응 전류밀도다 \cite{bardfaulkner,newman2004}:
-\begin{equation}
-\boxed{\;i_j=i_{0,j}\Big[\exp\!\Big(\frac{\alpha_jF\eta_j}{RT}\Big)-\exp\!\Big(-\frac{(1-\alpha_j)F\eta_j}{RT}\Big)\Big]\;.}
-\label{eq:nch2_bv}
-\end{equation}
-두 전달계수의 합 $\alpha_j+(1-\alpha_j)=1$ 은 자유 선택이 아니라 정$\cdot$역이 \emph{같은 전이상태}를 공유함의
-귀결이다(식~(1.24)$\to$(1.25)에서 합$=1$ 이 detailed balance 를 강제한 것과 같다).
-\begin{verifybox}
-\textbf{평형$\cdot$부호$\cdot$차원.} $\eta_j=0$ 이면 두 지수가 $1$ 이라 $i_j=0$(net 전류 소멸). $\eta_j>0$(forward
-구동)이면 첫 지수 $>1$, 둘째 $<1$ 라 $i_j>0$(방전 방향). 지수 $F\eta_j/RT$ 는 무차원($\mathrm{(C/mol)\cdot V}
-=\mathrm{J/mol}=RT$), $i_j$ 는 $i_{0,j}$ 와 같은 $\mathrm{A/m^2}$.
-\end{verifybox}
-\textbf{flux 와의 정합.} 전이 전류는 정의상 $I_j=Q_j\,\dd\xi_j/\dd t=Q_j(\mathcal J_j^+-\mathcal J_j^-)$ 이고 그
-밀도가 $i_j=I_j/A_\eff$ 다(\S\ref{sec:nch2_current}). 식~\eqref{eq:nch2_bv} 의 Butler--Volmer 형은 이 밀도를
-과전압으로 적은 것으로, 교환전류 $i_{0,j}$ 를 \emph{국소 상태} $\xi_j$ 에서 평가하면 단방향 flux 의 전하 표현과
-정확히 같고, 평형 부근에서는 \S\ref{sec:nch2_i0} 의 $i_{0,j}(\xi_{\eq,j})$ 로 근사한다 — 어느 쪽이든 새 동역학이
-아니라 같은 정$\cdot$역 속도론의 계면 표현이다.
-
-% ====================================================================
-\section{소신호 한계 — 전하전달 저항}\label{sec:nch2_rct}
-% ====================================================================
-작은 과전압 $|F\eta_j|\ll RT$ 에서 식~\eqref{eq:nch2_bv} 의 두 지수를 1차로 전개한다($e^x\simeq1+x$):
-\begin{equation}
-i_j\simeq i_{0,j}\Big[\big(1+\tfrac{\alpha_jF\eta_j}{RT}\big)-\big(1-\tfrac{(1-\alpha_j)F\eta_j}{RT}\big)\Big]
-=i_{0,j}\,\frac{[\alpha_j+(1-\alpha_j)]F\eta_j}{RT}=i_{0,j}\,\frac{F\eta_j}{RT}.
-\label{eq:nch2_lin}
-\end{equation}
-상수 $1$ 이 상쇄되고 전달계수 합이 $1$ 이라, 소신호 전류는 과전압에 \emph{선형}이며 $\alpha_j$ 에 무관하다(detailed
-balance 의 flux 비가 분할 위치에 무관한 것과 같은 상쇄). 그 비례의 역수가 전하전달 저항이다:
-\begin{equation}
-\boxed{\;R_{\ct,j}=\frac{\partial\eta_j}{\partial i_j}\Big|_{\eta_j\to0}=\frac{RT}{F\,i_{0,j}}\;.}
-\label{eq:nch2_rct}
+\boxed{\;\xi_{s,j}^\pm=\frac12\pm\frac12\sqrt{1-\frac{2RT}{\Omega_j}}\;,\qquad(\Omega_j>2RT).\;}
+\label{eq:hys_spinodal}
 \end{equation}
 \begin{verifybox}
-\textbf{차원.} $RT/(F\,i_{0,j})=\mathrm{(J/mol)}/[\mathrm{(C/mol)(A/m^2)}]=\mathrm{(J/C)/(A/m^2)}
-=\mathrm V/(\mathrm{A/m^2})=\Omega\,\mathrm{m^2}$(면적 비저항). 전류로 환산하면 $R_{\ct,j}/A_\eff$ [$\Omega$].
+\textbf{조건$\cdot$극한.} 실수 spinodal 은 $1-2RT/\Omega_j>0$, 곧 $\Omega_j>2RT$ 에서만 존재한다(상전이 임계).
+$\Omega_j\to2RT^+$ 면 $\xi_{s,j}^\pm\to\tfrac12$(두 spinodal 합쳐짐), $\Omega_j\to\infty$ 면
+$\xi_{s,j}^-\to0$, $\xi_{s,j}^+\to1$. \textbf{단상 환원.} $\Omega_j\le2RT$ 면 식~\eqref{eq:hys_slope} 이 전
+구간 양수($V_{\eq,j}$ 단조)라 spinodal 도 히스테리시스도 없다 — 앞 장 단일 peak.
 \end{verifybox}
-$R_{\ct,j}$ 는 \emph{전하전달 한 성분}의 저항이다 — 측정 전위축을 미는 분극 계수 $R_n$(식~(1.3),
-$V_\app-V_n=s_I|I|R_n$)에는 ohmic$\cdot$농도분극$\cdot$film 이 함께 섞이므로, $R_{\ct,j}$ 는 그 일부이지 $R_n$
-자체가 아니다(둘의 분리는 다채널 측정이 필요).
 
 % ====================================================================
-\section{교환전류밀도와 온도$\cdot$조성 의존}\label{sec:nch2_i0}
+\section{충방전 branch 와 히스테리시스 gap $\Delta U_j^\hys$ — 유도 (2)}\label{sec:hys_branch}
 % ====================================================================
-교환전류밀도 $i_{0,j}$ 는 평형($\eta_j=0$)에서의 정$=$역 반쪽 전류 크기다. 평형에서 두 단방향 flux 가 같으므로
-($\mathcal J_j^+=\mathcal J_j^-=\mathcal J_{0,j}$), forward flux $\mathcal J_{0,j}=r_j^+(1-\xi_{\eq,j})$ 에 활성화
-속도 $r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$(식~(1.24))를 넣는다. 평형에서는 detailed balance
-(식~(1.25))로 $e^{\mathcal A_j/RT}=\xi_{\eq,j}/(1-\xi_{\eq,j})$ 이므로 $e^{\chi\mathcal A_j/RT}=[\xi_{\eq,j}
-/(1-\xi_{\eq,j})]^{\chi}$ 이고, 따라서 $\mathcal J_{0,j}\propto k_0e^{-\Delta G_{a,j}/RT}\,\xi_{\eq,j}^{\,\chi}
-(1-\xi_{\eq,j})^{1-\chi}$ 다. 전류로 환산하면($\alpha_j=\chi$)
+비단조 $V_{\eq,j}(\xi)$ 는 $\xi$ 가 작을 때 상승하다 $\xi_{s,j}^-$ 에서 \emph{극대}, 사이 불안정 구간에서 하강,
+$\xi_{s,j}^+$ 에서 \emph{극소}, 다시 상승한다. 한 전이는 불안정 구간($\xi_{s,j}^-<\xi<\xi_{s,j}^+$)을 균질하게
+지날 수 없으므로, \textbf{방전}(탈리튬화, $\xi$ 증가)은 \emph{극대} $\xi_{s,j}^-$ 까지 metastable 하게 따라간
+뒤 상분리하고, \textbf{충전}(리튬화, $\xi$ 감소)은 \emph{극소} $\xi_{s,j}^+$ 까지 따라간 뒤 상분리한다. 따라서
+branch 의 유효 중심 전위는 각 극값이고
 \begin{equation}
-i_{0,j}(q,T)=i_{0,j}^{\mathrm{ref}}\;g_j(\xi_{\eq,j})\;\exp\!\Big[-\frac{E_{a,j}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big],
-\qquad g_j(\xi)=\xi^{\,\alpha_j}(1-\xi)^{\,1-\alpha_j},
-\label{eq:nch2_i0}
+U_j^\dis=V_{\eq,j}(\xi_{s,j}^-),\qquad U_j^\chg=V_{\eq,j}(\xi_{s,j}^+),
+\label{eq:hys_branchU}
 \end{equation}
-형이다($E_{a,j}$=교환전류의 유효 활성화 에너지, $g_j$=조성 활성도 인자). \textbf{조성 의존의 함의
-($0<\alpha_j<1$).} $g_j(\xi)$ 는 $\dd\ln g_j/\dd\xi=\alpha_j/\xi-(1-\alpha_j)/(1-\xi)=0$ 에서, 곧 $\xi=\alpha_j$
-에서 극대이고(대칭 $\alpha_j=\tfrac12$ 면 전이 중간 $\xi=\tfrac12$), 양 끝($\xi\to0,1$)에서 $0$ 으로 떨어진다. 따라서
-교환전류는 전이 중간에서 가장 크고 \emph{양극단에서 작아}, 식~\eqref{eq:nch2_rct} 로 전하전달 저항 $R_{\ct,j}$ 가
-\emph{전이 끝에서 커진다} — stage 경계 부근에서 전하전달이 느려져 분극이 커지는 거동과 정합한다.
+방전 branch 가 충전 branch 보다 높다($U_j^\dis>U_j^\chg$). 히스테리시스 gap 은 두 극값의 차다. 식~\eqref{eq:hys_Veq}
+에 $\xi_{s,j}^\pm=\tfrac12\pm\tfrac12 u_j$($u_j\equiv\sqrt{1-2RT/\Omega_j}$)를 넣고 빼면, $\ln[(1-u_j)/(1+u_j)]
+=-2\,\mathrm{artanh}\,u_j$ 를 써서
+\begin{equation}
+\boxed{\;\Delta U_j^\hys=U_j^\dis-U_j^\chg=\frac{2}{sF}\Big[\Omega_j\,u_j-2RT\,\mathrm{artanh}\,u_j\Big],
+\qquad u_j=\sqrt{1-\frac{2RT}{\Omega_j}}\;.}
+\label{eq:hys_dU}
+\end{equation}
+이로써 히스테리시스 gap 이 \emph{정규용액 상호작용 $\Omega_j$ 와 온도에서 유도}됐다 — 임의로 둔 피팅 상수가
+아니다.
+\begin{verifybox}
+\textbf{부호$\cdot$극한.} $\Omega_j\to2RT^+$ 면 $u_j\to0$, $\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j\to
+(\Omega_j-2RT)u_j\to0^+$ 이라 $\Delta U_j^\hys\to0$(임계서 히스테리시스 소멸, 앞 장 단일 peak 로 환원).
+$\Omega_j$ 가 커질수록 $\Delta U_j^\hys$ 단조 증가($\Omega_j u_j$ 가 선형으로 지배). 수치 감: $\Omega_j=4RT$
+면 $u_j=\sqrt{0.5}\approx0.707$, $\Delta U_j^\hys\approx(2/sF)(4RT\cdot0.707-2RT\cdot0.881)\approx2.1\,RT/(sF)$
+($25^\circ$C 서 $\approx54$ mV). 차원: $\Omega_j,RT$ 가 $\mathrm{J/mol}$, $sF$ 가 $\mathrm{C/mol}$ 이라
+$\mathrm{J/C}=\mathrm V$.
+\end{verifybox}
 \begin{boundbox}
-\textbf{온도 의존.} 식~\eqref{eq:nch2_i0} 의 Arrhenius 인자로 저온에서 $i_{0,j}$ 가 작아져 $R_{\ct,j}$ 가
-커진다($E_{a,j}>0$). 이는 활성화 속도 $r_j^\pm$ 가 저온서 급감하는 것과 같은 근원이며, 같은 전이의 활성화
-배리어가 \emph{속도}(완화)와 \emph{전류}(교환)에 일관되게 나타남을 뜻한다.
+\textbf{유도 가정(명시).} 식~\eqref{eq:hys_branchU} 는 branch 가 \emph{spinodal 한계}까지 metastable 하게
+간다는 \emph{상한} 가정이다. 핵생성(nucleation)이 spinodal 전에 상전이를 시작하면 실제 branch 는 binodal 쪽으로
+좁혀져 $\Delta U_j^\hys$ 가 식~\eqref{eq:hys_dU} 보다 작아진다. 다입자 전극에서는 입자별 채움 순서가 집단
+거동을 매끄럽게 해 그 사이 어딘가가 된다 \cite{dreyer2010}. 따라서 식~\eqref{eq:hys_dU} 는 $\Omega_j$ 가
+정하는 \emph{최대} 열역학 히스테리시스이며, 실측 $\Delta U_j^\hys$ 가 이보다 작으면 nucleation/다입자 평활화로
+해석한다(후반부 파라미터화에서 이 자유도를 둔다).
 \end{boundbox}
 
 % ====================================================================
-\section{비평형 정상상태와 평형 이탈 조건}\label{sec:nch2_ss}
+\section{branch 별 평형 $\dd Q/\dd V$}\label{sec:hys_dQdV}
 % ====================================================================
-정상 진행률은 진행이 멈추는 점, $\dd\xi_j/\dd t=0$ 의 해다. 식~\eqref{eq:nch2_Jpm} 에서 \emph{detailed balance 를
-가정하지 않고}
+관측 dQ/dV 의 \emph{평형} 부분은 각 branch 의 중심 전위 $U_j^b$ 둘레에 선 peak 다. 일차 상전이(두-상) 구간은
+전위가 거의 평탄하므로, branch $b$ 의 평형 진행은 중심 $U_j^b$$\cdot$유효 폭 $w_j^b$ 의 logistic 로 적는다(앞 장
+식~(1.11) 의 branch 판):
 \begin{equation}
-r_j^+(1-\xi_{\sstat,j})=r_j^-\xi_{\sstat,j}\ \Longrightarrow\
-\xi_{\sstat,j}=\frac{r_j^+}{r_j^++r_j^-}=\frac{1}{1+r_j^-/r_j^+}
-\label{eq:nch2_xiss}
+\xi_{\eq,j}^b(V)=\frac{1}{1+\exp[-s(V-U_j^b)/w_j^b]},\qquad
+\frac{\dd Q}{\dd V}\Big|_{\eq}^b=\sum_{j}Q_j\,\frac{\dd\xi_{\eq,j}^b}{\dd V},
+\label{eq:hys_dQdV}
 \end{equation}
-을 얻는다. 여기 정$\cdot$역 비 $r_j^-/r_j^+$ 를 무엇으로 넣느냐가 결과를 가른다.
-
-\textbf{두 경우.} (i) \emph{detailed balance 가 성립}하면 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$(식~(1.25))이라
-\begin{equation}
-\xi_{\sstat,j}=\frac{1}{1+e^{-\mathcal A_j/RT}}=\xi_{\eq,j},
-\label{eq:nch2_ss_eq}
-\end{equation}
-즉 정상 진행률이 \emph{평형값과 일치}한다(기본형 $V_\drive=V_n$ 에서 식~(1.11)과 동형) — 방향에 무관,
-히스테리시스 없음. (ii) detailed balance 가 깨져 비가 $r_j^+/r_j^-=e^{\mathcal A_j/RT}\,C_j$ ($C_j\ne1$)가 되는
-경우다. 이 $C_j$ 는 정$\cdot$역이 \emph{같은 전이상태}를 공유하지 않거나(비대칭 활성도) 분기에 따라 중심 전위가
-이동할 때 생기며, $RT\ln C_j$ 는 중심 전위의 이동 $U_j\to U_j-(RT/sF)\ln C_j$ 로 흡수된다 — 곧 식~\eqref{eq:nch2_Anet}
-의 net 친화도가 $\mathcal A_j^{\mathrm{net}}\to\mathcal A_j+RT\ln C_j-RT\ln[\xi_j/(1-\xi_j)]$ 로 함께 이동한다.
-그러면 정상 진행률은
-\begin{equation}
-\xi_{\sstat,j}=\frac{1}{1+C_j^{-1}e^{-\mathcal A_j/RT}}\ \ne\ \xi_{\eq,j},
-\label{eq:nch2_ss_neq}
-\end{equation}
-로 평형값에서 \emph{벗어난다}.
-
+$U_j^\dis,U_j^\chg$ 는 식~\eqref{eq:hys_branchU} 로 $\Delta U_j^\hys$ 만큼 떨어져 있어 \emph{충$\cdot$방전 peak
+위치가 갈린다}. 유효 폭 $w_j^b$ 는 두-상 구간에서 좁아지며(평탄 전위 → 날카로운 peak), 그 정도도 $\Omega_j$ 에
+따른다 — branch-restricted $V_{\eq,j}(\xi)$ 의 중심 둘레 기울기에서 따라온다.
 \begin{keybox}
-\textbf{히스테리시스의 동역학적 기원.} 평형 진행률 $\xi_{\eq,j}$ 는 평형 전위가 정하는 열역학량이라 충$\cdot$방전에
-무관하다. 그러나 정상 진행률 $\xi_{\sstat,j}$ 는 정$\cdot$역 비를 통해 \emph{동역학}에 의존하므로, detailed balance
-가 깨지는 인자 $C_j$ 가 충전과 방전에서 다르면 두 방향의 정상 진행률이 갈린다 — 이것이 같은 평형 곡선 위에서도
-충$\cdot$방전 궤적이 갈라지는 \emph{kinetic 히스테리시스}의 뿌리다. 어떤 물리가 $C_j$ 를 $1$ 에서 벗어나게
-하는지는 강구동$\cdot$분기 거동에서 구체화된다.
+\textbf{충$\cdot$방전 dQ/dV 의 갈림(평형).} 각 전이의 평형 peak 이 방전에서 $U_j^\dis$, 충전에서 $U_j^\chg$ 에
+서며 그 간격이 $\Delta U_j^\hys$(식~\eqref{eq:hys_dU})다. $\Delta U_j^\hys\to0$($\Omega_j\le2RT$) 극한에서 두
+peak 이 겹쳐 앞 장의 단일 dQ/dV 로 환원된다 — 본 장은 그 위에 \emph{branch 분리}만 얹었다.
 \end{keybox}
 
 % ====================================================================
-\section{전이 전류와 전류 분배}\label{sec:nch2_current}
+\section{동역학 분극 — 율 의존 성분}\label{sec:hys_pol}
 % ====================================================================
-앞서 본 계면 전류와 전이 진행을 외부 전류와 잇는다. 전하 보존식 $Q_\cell q=Q_\bg(V_n,T)+\sum_j Q_j\xi_j$
-(식~(1.1))의 양변을 시간 미분하면(연쇄율; $Q_\bg$ 는 $(V_n,T)$ 의 함수)
+유한 전류에서는 §\ref{sec:hys_dQdV} 의 평형 branch 위에 앞 장의 동역학이 얹힌다. 두 기여가 있다. \textbf{(가)
+apparent 분극}: 측정 전위는 내부 전위에서 $V_\app=V_n+s_I|I|R_n$ (식~(1.3))만큼 밀린다. 방전($s_I=+1$)은 관측을
+위로, 충전($s_I=-1$)은 아래로 밀므로, 같은 SOC 의 관측 충방전 gap 이 평형 gap 보다 $2|I|R_n$ 만큼 \emph{더}
+벌어진다 — 이것이 식~\eqref{eq:hys_split} 의 $\Delta V_\pol$ 다:
 \begin{equation}
-Q_\cell\frac{\dd q}{\dd t}=\frac{\partial Q_\bg}{\partial V_n}\frac{\dd V_n}{\dd t}
-+\frac{\partial Q_\bg}{\partial T}\frac{\dd T}{\dd t}+\sum_{j=1}^{N_p} Q_j\frac{\dd\xi_j}{\dd t}.
-\label{eq:nch2_balance_dt}
+\Delta V_\pol=(s_I|I|R_n)^\dis-(s_I|I|R_n)^\chg=2|I|R_n,\qquad \lim_{|I|\to0}\Delta V_\pol=0.
+\label{eq:hys_pol}
 \end{equation}
-등온 정전류 방전($\dd T/\dd t=0$, $Q_\cell\,\dd q/\dd t=|I|$)에서 좌변 $=|I|$ 이고, 우변을 배경 진행 전류와 전이
-전류로 묶으면
-\begin{equation}
-\boxed{\;|I|=I_\bg+\sum_{j=1}^{N_p}I_j,\qquad I_\bg=\frac{\partial Q_\bg}{\partial V_n}\frac{\dd V_n}{\dd t},\qquad
-I_j=Q_j\frac{\dd\xi_j}{\dd t}\;.}
-\label{eq:nch2_current}
-\end{equation}
-\begin{verifybox}
-\textbf{차원$\cdot$부호.} $I_j=Q_j[\mathrm C]\cdot\dd\xi_j/\dd t[\mathrm{s^{-1}}]=\mathrm A$;
-$I_\bg=(\partial Q_\bg/\partial V_n)[\mathrm{C/V}]\cdot\dd V_n/\dd t[\mathrm{V/s}]=\mathrm A$. 방전 단일방향
-($s=+1$)에서 모든 전이가 같은 방향이라 $\dd\xi_j/\dd t\ge0\Rightarrow I_j\ge0$; 배경 미분용량
-$\partial Q_\bg/\partial V_n=C_\bg\ge\epsilon_Q>0$(식~(1.2))이라 $I_\bg$ 부호는 $\dd V_n/\dd t$ 가 정하며,
-$I_\bg\ge0$ 인 영역에서 $\sum_j I_j\le|I|$ 다.
-\end{verifybox}
-이 $I_j=Q_j\,\dd\xi_j/\dd t$ 가 식~\eqref{eq:nch2_bv} 의 계면 전류와 $i_j=I_j/A_\eff$ 로 이어지며, 전이별
-진행을 외부에서 흘린 전하에 귀속시킨다. 비등온에서는 $(\partial Q_\bg/\partial T)(\dd T/\dd t)$ 항이 더해지므로,
-온도 변화에 따른 배경 용량 이동을 반응 전류로 오계상하지 않도록 progress 와 분리해야 한다.
+\textbf{(나) kinetic lag}: 각 branch 에서 진행률이 평형 목표를 즉시 못 따라가 peak 에 비대칭 꼬리가 붙는다 — 앞
+장의 지연 길이 $L_{q,j}=|I|/(Q_\cell k_j)$ (식~(1.19))가 그대로 적용되며, peak 위치를 진행 방향으로 더 밀어
+관측 gap 에 $\Delta V_\kin$ 을 더한다. 저온$\cdot$고율일수록($k_j\downarrow$, $|I|\uparrow$) 커지고 $|I|\to0$
+에서 사라진다.
+\begin{keybox}
+\textbf{참/분극의 분리.} $\Delta V_\hys$(열역학, 식~\eqref{eq:hys_dU})는 $|I|\to0$ 에서 \emph{남고}, $\Delta
+V_\pol+\Delta V_\kin$(동역학, 식~\eqref{eq:hys_pol})은 \emph{사라진다}. 따라서 저율 외삽($|I|\to0$)이나 양방향
+GITT 완화 종점이 둘을 가른다 — 유한 율의 관측 gap 을 통째로 히스테리시스로 쓰면 $R_n$$\cdot$lag 를 참
+히스테리시스로 오계상한다(식~\eqref{eq:hys_split} 의 요지). 빠른 kinetics 극한 $k_j\to\infty$ 에서 $\Delta
+V_\kin\to0$, 무전류에서 $\Delta V_\pol\to0$ 이라 관측 gap 이 $\Delta V_\hys$ 로 수렴한다.
+\end{keybox}
+
+% ====================================================================
+\section{부분 cycle 과 기억}\label{sec:hys_memory}
+% ====================================================================
+완전 충전$\to$완전 방전(major loop)에서는 각 전이가 §\ref{sec:hys_branch} 의 해당 branch($\xi_{s,j}^\mp$ 한계)
+위에 있다. 그러나 \emph{부분} cycle — 충전 도중 방전으로 뒤집는 등 — 에서는 전이가 spinodal 한계에 닿기 전에
+방향이 바뀌어, 두 branch 사이의 \emph{scanning curve} 위에 놓인다. 이 경로는 반전 지점에 의존하는 \emph{기억}을
+가지며(return-point memory \cite{sethna1993}), 기억 상태 $h_j\in[-1,1]$($+1$=방전 branch, $-1$=충전 branch,
+사이=scanning)로 요약한다.
+\begin{boundbox}
+\textbf{범위.} 본 장의 확정 수식과 후반부 파라미터화는 \emph{major loop}(완전 충/방전 branch)를 핵심 대상으로
+한다 — 피팅 데이터(저율 충/방전 전곡선)가 major loop 이기 때문이다. 부분 cycle 의 scanning curve 정량화는
+$h_j$ 의 완화 모델을 더 요구하며, major-loop branch($U_j^\dis,U_j^\chg$)를 양 끝으로 하는 보간으로 두되 그 상세
+거동은 본 장 범위 밖으로 표기한다.
+\end{boundbox}
+
+% ====================================================================
+\section{충방전 파라미터화 — 피팅$\cdot$활용 방향}\label{sec:hys_param}
+% ====================================================================
+\S\ref{sec:hys_decomp}--\ref{sec:hys_memory} 의 확정 수식을 충방전 모두에 대해 피팅하고 활용할 수 있는 파라미터
+집합으로 정리한다. \textbf{억지로 줄이지 않되, 유도가 묶어 주는 것은 묶는다}: 열역학 히스테리시스의 여러 양
+($\Delta U_j^\hys$, spinodal $\xi_{s,j}^\pm$, branch 폭 $w_j^b$)은 \emph{독립 파라미터가 아니라} 하나의
+$\Omega_j$ 에서 식~\eqref{eq:hys_spinodal}--\eqref{eq:hys_dU} 로 함께 따라온다. 따라서 전이 $j$ 의 파라미터는
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+열역학(평형 dQ/dV$\cdot$히스테리시스) & $U_j$(평균 중심), $\Omega_j$, $w_j$(기준 폭), $Q_j$(용량), $\partial U_j/\partial T$ \\
+\;\;($\Omega_j$ 에서 유도: $\Delta U_j^\hys,\xi_{s,j}^\pm,w_j^b$) & + 필요 시 nucleation 축소 인자 $\gamma_j\in(0,1]$ ($\Delta U_j^\hys\to\gamma_j\Delta U_j^\hys$) \\
+동역학(율 의존 분극$\cdot$lag) & $k_j$(즉 $\Delta G_{a,j},\chi$), $R_n$ \\
+부분 cycle(선택) & 기억 완화(major-loop 보간; 범위 밖 상세) \\
+\bottomrule
+\end{tabular}
+\end{center}
+이다. $\Omega_j$ 하나가 $\Delta U_j^\hys$$\cdot$spinodal$\cdot$branch 폭을 동시에 정하므로 \emph{branch 마다
+중심$\cdot$폭을 따로 자유 피팅하지 않는다}(과파라미터화 방지) — 단, 다입자 nucleation 평활화로 실측
+$\Delta U_j^\hys$ 가 spinodal 상한보다 작을 수 있어 축소 인자 $\gamma_j$ 한 자유도만 허용한다(\S\ref{sec:hys_branch}
+boundbox). 동역학은 앞 장의 $k_j,R_n$ 을 그대로 쓴다 — 충$\cdot$방전 공통 또는 약한 branch 의존만 둔다.
+
+% ====================================================================
+\section{데이터에서 파라미터로, 그리고 예측}\label{sec:hys_fit}
+% ====================================================================
+앞 절 파라미터가 어느 데이터에서 닫히는지의 \emph{정방향}을 정리한다(상세 식별성$\cdot$알고리즘은 피팅 장).
+\begin{enumerate}[label=\arabic*),leftmargin=2.0em,itemsep=2pt]
+\item \textbf{충$\cdot$방전 저율 OCV / 준평형(15/23/45℃)}: $|I|\to0$ 극한이라 분극$\cdot$lag 가 사라져
+$\Delta V_\obs\to\Delta V_\hys$(식~\eqref{eq:hys_split}). 충$\cdot$방전 dQ/dV peak 위치에서 $U_j^\dis,U_j^\chg$
+$\to$ 평균 중심 $U_j$ 와 gap $\Delta U_j^\hys$; 식~\eqref{eq:hys_dU} 의 역으로 $\Omega_j$(필요 시 $\gamma_j$);
+peak 폭$\cdot$면적에서 $w_j,Q_j$; 세 온도의 $U_j$ 기울기에서 $\partial U_j/\partial T$.
+\item \textbf{0.1C$\cdot$0.2C $\times$ 15/23/45℃}: 율($0.1$ vs $0.2$C)과 온도 의존 broadening/shift 에서
+$R_n$ 과 $k_j(\Delta G_{a,j},\chi)$ 를 — 앞 장 $L_{q,j}\propto|I|/k_j$ 와 Arrhenius 로 — 분리.
+\item \textbf{예측}: 위 집합 $\{U_j,\Omega_j(\gamma_j),w_j,Q_j,\partial U_j/\partial T,\ k_j,R_n\}$ 으로 임의 율
+$\cdot$온도에서 충$\cdot$방전 dQ/dV 를 — 평형 branch(\S\ref{sec:hys_dQdV}) $+$ 동역학 분극(\S\ref{sec:hys_pol})
+으로 — 재구성한다.
+\end{enumerate}
+\begin{keybox}
+\textbf{닫힘 구조.} 열역학 파라미터는 \emph{충$\cdot$방전 저율 OCV} 에서, 동역학 파라미터는 \emph{율 series}
+에서 닫힌다 — 두 데이터원이 분리돼 있어 식별이 단계적이다. 히스테리시스의 핵심 한 양 $\Omega_j$ 가 저율 충방전
+gap 에서 직접 닫히므로, 다른 율$\cdot$온도의 충방전 dQ/dV 예측이 가능하다. 이는 앞 장의 (방전) 피팅 흐름을
+충방전 양방향으로 \emph{확장}한 것이다.
+\end{keybox}
 
 % ====================================================================
 \begin{thebibliography}{99}
-\bibitem{eyring1935} H. Eyring, ``The Activated Complex in Chemical Reactions,'' \emph{J. Chem. Phys.} \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
-\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and driving force of chemical reactions,'' \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI: 10.1039/TF9383400011.
-\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods: Fundamentals and Applications}, 2nd ed., Wiley (2001). ISBN 978-0-471-04372-0.
-\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley-Interscience (2004). ISBN 978-0-471-47756-3.
-\bibitem{degrootmazur1962} S. R. de Groot, P. Mazur, \emph{Non-Equilibrium Thermodynamics}, North-Holland (1962); Dover reprint (1984).
-\bibitem{prigogine1967} I. Prigogine, \emph{Introduction to Thermodynamics of Irreversible Processes}, 3rd ed., Interscience (1967).
+\bibitem{dreyer2010} W. Dreyer \emph{et al.}, ``The thermodynamic origin of hysteresis in insertion batteries,'' \emph{Nature Materials} \textbf{9}, 448 (2010). DOI: 10.1038/nmat2730.
+\bibitem{sethna1993} J. P. Sethna \emph{et al.}, ``Hysteresis and hierarchies: Dynamics of disorder-driven first-order phase transformations,'' \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993). DOI: 10.1103/PhysRevLett.70.3347.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``The entropy and enthalpy of lithium intercalation into graphite,'' \emph{J. Power Sources} \textbf{119--121}, 850 (2004). DOI: 10.1016/j.jpowsour.2003.11.037.
 \end{thebibliography}
 
 \end{document}
