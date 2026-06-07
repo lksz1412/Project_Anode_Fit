@@ -103,9 +103,10 @@ $\partial Q_\bg/\partial V_n\ge\epsilon_Q>0$ 로 해가 유일.\\
 이상 폭 $w_j=RT/F$. 도함수 $\partial\xi_{\eq,j}/\partial V_n=s\,\xi_{\eq,j}(1-\xi_{\eq,j})/w_j$.\\
 \textbf{(C3) 완화 동역학.} $\dd\xi_j/\dd t=k_j^{\eff}\,[\xi_{\eq,j}(V_n,T)-\xi_j]$($k_j^{\eff}$=활성화+병목 직렬
 합성), 정전류 구간서 $\dd\xi_j/\dd t=(|I|/Q_\cell)\,\dd\xi_j/\dd q$.\\
-\textbf{(C4) 유효 배리어$\cdot$Eyring.} $k_j\simeq k_0\,e^{-\Delta G_{a,j}/RT}$($k_0=k_BT/h$ 현상론),
-$\Delta G_{\eff,j}=\Delta G_{a,j}-\chi\mathcal A_j$, $\mathcal A_j=sF(V_\drive-U_j)$(구동력, 기본 $V_\drive=V_n$),
-$\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$. 직렬 율속 $1/k_j^{\eff}=1/k_{j,\mathrm{act}}+1/k_{j,\lim}$.\\
+\textbf{(C4) 유효 배리어$\cdot$Eyring.} 활성화 율 $k_{j,\mathrm{act}}\simeq k_0\,e^{-\Delta G_{\eff,j}/RT}$($k_0=k_BT/h$
+현상론, $\mathcal A_j\gtrsim RT$ 활성화 지배), $\Delta G_{\eff,j}=\Delta G_{a,j}-\chi\mathcal A_j$, $\mathcal A_j=sF(V_\drive-U_j)$
+(구동력, 기본 $V_\drive=V_n$), $\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$. 병목 직렬 율속
+$1/k_j^{\eff}=1/k_{j,\mathrm{act}}+1/k_{j,\lim}$(활성화 지배면 $k_j^{\eff}\simeq k_{j,\mathrm{act}}$).\\
 \textbf{(C5) 세 전위.} 내부 $V_n$(보존식 해)$\cdot$측정 $V_\app=V_n+s_I|I|R_n$(분극 포함)$\cdot$구동 $V_\drive$(기본
 $=V_n$)$\cdot$평형 $V_{n,\OCV}$. \emph{서로 다른 물리량}.\\
 \textbf{(C6) Butler--Volmer 방향성 장벽.} forward/backward 비 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$(detailed balance),
@@ -127,12 +128,12 @@ $n^{\eff}=1$ 특수형을 닫았다.
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
 $r_j^+,\ r_j^-$ & 1/s & 전이 $j$ 의 forward(방전 방향)$\cdot$backward(역방향) transition rate \\
 $\xi_{\sstat,j}$ & --- & 비평형 정상(stationary) 진행률 target $=r_j^+/(r_j^++r_j^-)$ \\
-$\beta_j$ & --- & transfer coefficient $0\le\beta_j\le1$; \emph{대칭 Marcus 1차$\cdot$정상 target 극한 한정}으로 Chapter 1 의 $\chi$ 와 동일물($\beta_j\equiv\chi$) — 일반은 별개 \\
+$\beta_j$ & --- & forward 장벽을 낮추는 transfer coefficient $0\le\beta_j\le1$; Chapter 1 의 $\chi$ 와 \emph{같은} 전달계수라 $\beta_j\equiv\chi$ (대칭 Marcus 는 $\chi=\tfrac12$ 의 한 특수값일 뿐 동일시의 조건이 아니다) \\
 $\Delta G_j^{+\ddagger},\Delta G_j^{-\ddagger}$ & J/mol & forward/backward intrinsic 활성화 자유에너지(구동력 $0$ 기준) \\
 $\Delta H_j^{\pm\ddagger},\Delta S_j^{\pm\ddagger}$ & {\footnotesize J/mol;\,J/(mol\,K)} & forward/backward 활성화 엔탈피$\cdot$엔트로피(Eyring; $\Delta G_j^{\pm\ddagger}=\Delta H_j^{\pm\ddagger}-T\Delta S_j^{\pm\ddagger}$) \\
 $\nu_j^+,\nu_j^-$ & 1/s & forward/backward Eyring prefactor $=(k_BT/h)\kappa^\pm$ \\
 $a_j^+,a_j^-$ & --- & site availability/activity/phase accessibility factor (forward/backward) \\
-$C_j(\xi_j,T)$ & --- & rate-ratio 의 configurational baseline(prefactor$\cdot$intrinsic barrier$\cdot$activity 비) \\
+$C_j(\xi_j,V_n,T)$ & --- & rate-ratio 의 configurational baseline(prefactor$\cdot$intrinsic barrier$\cdot$activity 비) \\
 $n_j^{\eff}$ & --- & effective electron number $=RT/(Fw_j)$ (이상 $w_j=RT/F$ 서 $1$) \\
 $\tilde\eta_j$ & V & affinity 의 전위 정규화 $=\mathcal A_j/(n_j^{\eff}F)$, \emph{중심} $U_j$ 기준; Chapter 2 의 heat-force $\eta_j$(국소 평형 기준)와 별개 \\
 $\eta_n$ & V & 계면 charge-transfer 과전압 $=\phi_s-\phi_e-U_n$ (Butler--Volmer 입력) \\
@@ -348,14 +349,14 @@ $a_j^\pm$=site availability/activity/phase accessibility(무차원), $\nu_j^\pm$
 두 식의 비의 로그를 취한다. 지수의 차가 로그의 차이므로
 \begin{equation}
 \ln\frac{r_j^+}{r_j^-}=\underbrace{\ln\frac{\nu_j^+a_j^+}{\nu_j^-a_j^-}
--\frac{\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}}{RT}}_{\equiv\,C_j(\xi_j,T)}
+-\frac{\Delta G_j^{+\ddagger}-\Delta G_j^{-\ddagger}}{RT}}_{\equiv\,C_j(\xi_j,V_n,T)}
 +\frac{\beta_j\mathcal A_j+(1-\beta_j)\mathcal A_j}{RT}.
 \label{eq:ch3_ratio_raw}
 \end{equation}
 $\mathcal A_j$ 항의 계수가 $\beta_j+(1-\beta_j)=1$ 로 합쳐지므로(forward 의 $+\beta_j\mathcal A_j$ 와 backward 장벽
 증가가 비에서 $-[-(1-\beta_j)\mathcal A_j]=+(1-\beta_j)\mathcal A_j$ 로 더해짐)
 \begin{equation}
-\boxed{\;\ln\frac{r_j^+}{r_j^-}=C_j(\xi_j,T)+\frac{\mathcal A_j}{RT}\;.}
+\boxed{\;\ln\frac{r_j^+}{r_j^-}=C_j(\xi_j,V_n,T)+\frac{\mathcal A_j}{RT}\;.}
 \label{eq:ch3_ratio_B}
 \end{equation}
 \textbf{핵심 관찰($\beta_j$ 의 상쇄).} ratio 의 $\mathcal A_j$-기울기는 $1/RT$ 로 \emph{$\beta_j$ 에 무관}하다
@@ -475,7 +476,7 @@ $\eta_n$ 으로 쓴 Butler--Volmer(BV) 형이다. 이는 \S\ref{sec:ch3_levelB} 
 charge-transfer} 수준에서 다시 쓴 것이며, BV 의 cathodic $\alpha_n$ 은 Level B forward $\beta_j$ 와 \emph{상보}
 관계 $\alpha_n=1-\beta_j$(anodic 측 대응; 동일 값이 아닌 상보 관계)에 있다 \cite{bardfaulkner,newman2004}:
 \begin{equation}
-\boxed{\;j_n=j_{0,n}(T,\theta)\Big[\exp\!\Big(\frac{(1-\alpha_n)F\eta_n}{RT}\Big)
+\boxed{\;j_n=j_{0,n}(T,\theta_j)\Big[\exp\!\Big(\frac{(1-\alpha_n)F\eta_n}{RT}\Big)
 -\exp\!\Big(-\frac{\alpha_n F\eta_n}{RT}\Big)\Big]\;.}
 \label{eq:ch3_bv}
 \end{equation}
@@ -652,7 +653,7 @@ prefactor$\cdot$barrier$\cdot$exchange current$\cdot$transport 가 모두 온도
 Arrhenius 형
 \begin{equation}
 \nu_j(T)=\nu_{j,\mathrm{ref}}\exp\!\Big[-\frac{E_{\nu,j}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big],\quad
-j_{0,n}(T,\theta)=j_{0,n}^{\mathrm{ref}}(\theta)\exp\!\Big[-\frac{E_{a,j_0}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big].
+j_{0,n}(T,\theta_j)=j_{0,n}^{\mathrm{ref}}(\theta)\exp\!\Big[-\frac{E_{a,j_0}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big].
 \label{eq:ch3_T}
 \end{equation}
 \textbf{차원 검산.} 지수 $E/R\cdot(1/T)=\mathrm{(J/mol)}/\mathrm{(J/(mol\,K))}\cdot\mathrm{K^{-1}}$ 무차원이라
@@ -674,16 +675,16 @@ forward/backward 비대칭으로 확장한 것이다.
 
 \textbf{공선형 쌍(다온도 fit 으로 풀리지 않는 것).} (i) $\{\nu_j^\pm,a_j^\pm\}$ 는 $\ln(\nu a)$ 로만 진입하므로
 \emph{곱}만 식별된다(개별 분리 불가). (ii) $\{E_{\nu,j},\Delta H_{a,j}^\ddagger\}$ 는 동일 $1/T$ 기울기로 들어가
-\emph{합}만 식별된다. (iii) $\beta_j(=\alpha)$ 는 \emph{온도} fit 으로 풀리지 않으며, 분리하려면 \emph{등온} Tafel
+\emph{합}만 식별된다. (iii) $\beta_j$ 는 \emph{온도} fit 으로 풀리지 않으며, 분리하려면 \emph{등온} Tafel
 스윕이 필요하다(forward/backward 비대칭은 $\eta$-기울기로만 드러남). 다음 항들은 강하게 상관된다:
 \begin{equation}
-j_{0,n}(T,\theta)\leftrightarrow\nu_j(T)\leftrightarrow\Delta G_{a,j}(T)\leftrightarrow\beta_j(=\chi)
+j_{0,n}(T,\theta_j)\leftrightarrow\nu_j(T)\leftrightarrow\Delta G_{a,j}(T)\leftrightarrow\beta_j(=\chi)
 \leftrightarrow k_{j,\lim}\leftrightarrow R_n\leftrightarrow\rho_G(G;T).
 \label{eq:ch3_ident_chain}
 \end{equation}
 같은 ICA/rate 자료만으로 이 모두를 독립 결정할 수 없으므로 독립 실험$\cdot$사전 물리 제약$\cdot$단계적 검증이
 필요하다 \cite{weppner1977,dubarry2012}(Chapter 1$\cdot$2 의 forward-only$\cdot$식별성 원칙 계승). 위 사슬의
-$\beta_j(=\chi)$ 는 조건부 동일물(대칭 Marcus$\cdot$정상 target 극한 한정)임에 유의한다.
+$\beta_j(=\chi)$ 는 Chapter 1 의 전달계수와 \emph{같은} 양이다(대칭 Marcus 는 $\chi=\tfrac12$ 특수값).
 \begin{boundbox}
 \textbf{병목 도입 층위 명시(비대칭 $\Rightarrow$ detailed balance 충돌).} Level A 에서 $k_{j,\lim}$ 은
 $\xi_j\to\xi_{\eq,j}$ 완화 mobility 의 병목이다(대칭, ratio 불변). Level B 에서는 제한이 $r_j^+$, $r_j^-$, 또는
