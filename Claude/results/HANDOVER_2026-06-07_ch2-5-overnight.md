@@ -26,6 +26,8 @@
 
 ## 3. 미완료 항목 (다음 세션 우선순위)
 
+> **진척 갱신(세션 연장)**: Ch2·Ch3·Ch4·Ch5 \*전부 Codex 검수 완료\*. 적용 정정: Ch2 핵심 6 / Ch3 핵심 7(k_act·β_j≡χ·C_j(V_n)·α_n·θ_j·register) / Ch4 safe(피팅X·q) + \*\*𝒜_j 일반형 cross-chapter 통일(28220f5)\*\* / Ch5 B-1 "유도" 과단언 정직화(248bc22). \*\*𝒜_j 해법은 Ch3(보유)·Ch4(완료)·Ch5(branch n_eff^b) 정합 완성.\*\* 아래는 \*잔여\* 미반영.
+
 ### (A) Ch2 잔여 Codex 정정 — \*부분 수정, 나머지 미반영\*
 Codex Ch2 검수(8 MAJOR) 중 \*수정 완료\*: C4 k_act/k_eff 구분·$\dot{\mathcal Q}_{\rev,j}$ rename(q 충돌)·서론 ΔS_j conflation·열 kernel 1/L(per-time↔per-capacity)·"novel" 제거.
 \*미반영(다음 세션)\*:
