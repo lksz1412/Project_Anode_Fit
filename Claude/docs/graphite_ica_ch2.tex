@@ -120,8 +120,9 @@ flux 를 살려 두어야 소산을 옳게 센다.
 =e^{\mathcal A_j/RT}\,\frac{1-\xi_j}{\xi_j}
 \label{eq:nch2_Jratio}
 \end{equation}
-다(첫 등호는 정의~\eqref{eq:nch2_Jpm}, 둘째는 식~(1.25) 대입). 양변에 $RT\ln(\cdot)$ 을 취하면
-$\ln(ab)=\ln a+\ln b$ 로
+다(첫 등호는 정의~\eqref{eq:nch2_Jpm}, 둘째는 식~(1.25) 대입; 구동력 $\mathcal A_j=sF(V_\drive-U_j)$ 는
+식~(1.23)). 내부 상태 $0<\xi_j<1$, $r_j^\pm>0$ 을 가정하며(끝점은 극한으로 처리), 양변에 $RT\ln(\cdot)$ 을
+취하면 $\ln(ab)=\ln a+\ln b$ 로
 \begin{equation}
 \boxed{\;\mathcal A_j^{\mathrm{net}}\equiv RT\ln\frac{\mathcal J_j^+}{\mathcal J_j^-}
 =\mathcal A_j-RT\ln\frac{\xi_j}{1-\xi_j}\;,}
@@ -190,9 +191,11 @@ net 반응 전류밀도다 \cite{bardfaulkner,newman2004}:
 구동)이면 첫 지수 $>1$, 둘째 $<1$ 라 $i_j>0$(방전 방향). 지수 $F\eta_j/RT$ 는 무차원($\mathrm{(C/mol)\cdot V}
 =\mathrm{J/mol}=RT$), $i_j$ 는 $i_{0,j}$ 와 같은 $\mathrm{A/m^2}$.
 \end{verifybox}
-\textbf{flux 와의 정합.} 이 net 전류에 면적과 전이 전하를 환산하면 $i_jA_\eff=Q_j(\mathcal J_j^+-\mathcal J_j^-)
-=Q_j\,\dd\xi_j/\dd t=I_j$(\S\ref{sec:nch2_current})다 — Butler--Volmer 전류는 식~\eqref{eq:nch2_Jpm} 단방향
-flux 의 전하 표현이지 새 동역학이 아니다.
+\textbf{flux 와의 정합.} 전이 전류는 정의상 $I_j=Q_j\,\dd\xi_j/\dd t=Q_j(\mathcal J_j^+-\mathcal J_j^-)$ 이고 그
+밀도가 $i_j=I_j/A_\eff$ 다(\S\ref{sec:nch2_current}). 식~\eqref{eq:nch2_bv} 의 Butler--Volmer 형은 이 밀도를
+과전압으로 적은 것으로, 교환전류 $i_{0,j}$ 를 \emph{국소 상태} $\xi_j$ 에서 평가하면 단방향 flux 의 전하 표현과
+정확히 같고, 평형 부근에서는 \S\ref{sec:nch2_i0} 의 $i_{0,j}(\xi_{\eq,j})$ 로 근사한다 — 어느 쪽이든 새 동역학이
+아니라 같은 정$\cdot$역 속도론의 계면 표현이다.
 
 % ====================================================================
 \section{소신호 한계 — 전하전달 저항}\label{sec:nch2_rct}
@@ -220,17 +223,20 @@ $V_\app-V_n=s_I|I|R_n$)에는 ohmic$\cdot$농도분극$\cdot$film 이 함께 섞
 % ====================================================================
 \section{교환전류밀도와 온도$\cdot$조성 의존}\label{sec:nch2_i0}
 % ====================================================================
-교환전류밀도 $i_{0,j}$ 는 평형($\eta_j=0$)에서의 정$=$역 반쪽 전류 크기다. 평형에서 두 단방향 flux 는
-$\mathcal J_j^+=\mathcal J_j^-=\mathcal J_{0,j}$ 로 같고, forward flux $\mathcal J_j^+=r_j^+(1-\xi_{\eq,j})$ 에
-활성화 속도 $r_j^+\propto k_0\,e^{-\Delta G_{a,j}/RT}$(식~(1.17)$\cdot$(1.24))를 넣으면, 전류 환산 후
+교환전류밀도 $i_{0,j}$ 는 평형($\eta_j=0$)에서의 정$=$역 반쪽 전류 크기다. 평형에서 두 단방향 flux 가 같으므로
+($\mathcal J_j^+=\mathcal J_j^-=\mathcal J_{0,j}$), forward flux $\mathcal J_{0,j}=r_j^+(1-\xi_{\eq,j})$ 에 활성화
+속도 $r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$(식~(1.24))를 넣는다. 평형에서는 detailed balance
+(식~(1.25))로 $e^{\mathcal A_j/RT}=\xi_{\eq,j}/(1-\xi_{\eq,j})$ 이므로 $e^{\chi\mathcal A_j/RT}=[\xi_{\eq,j}
+/(1-\xi_{\eq,j})]^{\chi}$ 이고, 따라서 $\mathcal J_{0,j}\propto k_0e^{-\Delta G_{a,j}/RT}\,\xi_{\eq,j}^{\,\chi}
+(1-\xi_{\eq,j})^{1-\chi}$ 다. 전류로 환산하면($\alpha_j=\chi$)
 \begin{equation}
 i_{0,j}(q,T)=i_{0,j}^{\mathrm{ref}}\;g_j(\xi_{\eq,j})\;\exp\!\Big[-\frac{E_{a,j}}{R}\Big(\frac1T-\frac1{T_{\mathrm{ref}}}\Big)\Big],
-\qquad g_j(\xi)=(1-\xi)^{\alpha_j}\,\xi^{\,1-\alpha_j},
+\qquad g_j(\xi)=\xi^{\,\alpha_j}(1-\xi)^{\,1-\alpha_j},
 \label{eq:nch2_i0}
 \end{equation}
-형이다($E_{a,j}$=교환전류의 유효 활성화 에너지, $g_j$=조성 활성도 인자 — 정$\cdot$역이 각각 빈자리$\cdot$채움
-분율에 비례하므로 그 기하 평균 형태). \textbf{조성 의존의 함의.} $g_j(\xi)$ 는 $\xi=1-\alpha_j$ 부근(대칭
-$\alpha_j=\tfrac12$ 면 $\xi=\tfrac12$, 전이 중간)에서 극대이고 양 끝($\xi\to0,1$)에서 $0$ 으로 떨어진다. 따라서
+형이다($E_{a,j}$=교환전류의 유효 활성화 에너지, $g_j$=조성 활성도 인자). \textbf{조성 의존의 함의
+($0<\alpha_j<1$).} $g_j(\xi)$ 는 $\dd\ln g_j/\dd\xi=\alpha_j/\xi-(1-\alpha_j)/(1-\xi)=0$ 에서, 곧 $\xi=\alpha_j$
+에서 극대이고(대칭 $\alpha_j=\tfrac12$ 면 전이 중간 $\xi=\tfrac12$), 양 끝($\xi\to0,1$)에서 $0$ 으로 떨어진다. 따라서
 교환전류는 전이 중간에서 가장 크고 \emph{양극단에서 작아}, 식~\eqref{eq:nch2_rct} 로 전하전달 저항 $R_{\ct,j}$ 가
 \emph{전이 끝에서 커진다} — stage 경계 부근에서 전하전달이 느려져 분극이 커지는 거동과 정합한다.
 \begin{boundbox}
@@ -256,13 +262,17 @@ r_j^+(1-\xi_{\sstat,j})=r_j^-\xi_{\sstat,j}\ \Longrightarrow\
 \xi_{\sstat,j}=\frac{1}{1+e^{-\mathcal A_j/RT}}=\xi_{\eq,j},
 \label{eq:nch2_ss_eq}
 \end{equation}
-즉 정상 진행률이 \emph{평형값과 일치}한다(식~(1.11)과 동형) — 방향에 무관, 히스테리시스 없음. (ii) 어떤 물리
-(방향성 병목, 비대칭 활성도, 분기별 중심 전위)가 비를 $r_j^+/r_j^-=e^{\mathcal A_j/RT}\,C_j$ ($C_j\ne1$)로 바꾸면
+즉 정상 진행률이 \emph{평형값과 일치}한다(기본형 $V_\drive=V_n$ 에서 식~(1.11)과 동형) — 방향에 무관,
+히스테리시스 없음. (ii) detailed balance 가 깨져 비가 $r_j^+/r_j^-=e^{\mathcal A_j/RT}\,C_j$ ($C_j\ne1$)가 되는
+경우다. 이 $C_j$ 는 정$\cdot$역이 \emph{같은 전이상태}를 공유하지 않거나(비대칭 활성도) 분기에 따라 중심 전위가
+이동할 때 생기며, $RT\ln C_j$ 는 중심 전위의 이동 $U_j\to U_j-(RT/sF)\ln C_j$ 로 흡수된다 — 곧 식~\eqref{eq:nch2_Anet}
+의 net 친화도가 $\mathcal A_j^{\mathrm{net}}\to\mathcal A_j+RT\ln C_j-RT\ln[\xi_j/(1-\xi_j)]$ 로 함께 이동한다.
+그러면 정상 진행률은
 \begin{equation}
 \xi_{\sstat,j}=\frac{1}{1+C_j^{-1}e^{-\mathcal A_j/RT}}\ \ne\ \xi_{\eq,j},
 \label{eq:nch2_ss_neq}
 \end{equation}
-정상 진행률이 평형값에서 \emph{벗어난다}.
+로 평형값에서 \emph{벗어난다}.
 
 \begin{keybox}
 \textbf{히스테리시스의 동역학적 기원.} 평형 진행률 $\xi_{\eq,j}$ 는 평형 전위가 정하는 열역학량이라 충$\cdot$방전에
@@ -293,7 +303,7 @@ I_j=Q_j\frac{\dd\xi_j}{\dd t}\;.}
 \textbf{차원$\cdot$부호.} $I_j=Q_j[\mathrm C]\cdot\dd\xi_j/\dd t[\mathrm{s^{-1}}]=\mathrm A$;
 $I_\bg=(\partial Q_\bg/\partial V_n)[\mathrm{C/V}]\cdot\dd V_n/\dd t[\mathrm{V/s}]=\mathrm A$. 방전 단일방향
 ($s=+1$)에서 모든 전이가 같은 방향이라 $\dd\xi_j/\dd t\ge0\Rightarrow I_j\ge0$; 배경 미분용량
-$\partial Q_\bg/\partial V_n=C_\bg\ge\epsilon>0$(식~(1.2))이라 $I_\bg$ 부호는 $\dd V_n/\dd t$ 가 정하며,
+$\partial Q_\bg/\partial V_n=C_\bg\ge\epsilon_Q>0$(식~(1.2))이라 $I_\bg$ 부호는 $\dd V_n/\dd t$ 가 정하며,
 $I_\bg\ge0$ 인 영역에서 $\sum_j I_j\le|I|$ 다.
 \end{verifybox}
 이 $I_j=Q_j\,\dd\xi_j/\dd t$ 가 식~\eqref{eq:nch2_bv} 의 계면 전류와 $i_j=I_j/A_\eff$ 로 이어지며, 전이별
