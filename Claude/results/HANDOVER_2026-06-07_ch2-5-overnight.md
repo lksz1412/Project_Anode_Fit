@@ -51,6 +51,27 @@ Codex Ch2 검수(8 MAJOR) 중 \*수정 완료\*: C4 k_act/k_eff 구분·$\dot{\m
 - **E(MAJOR)**: Ch2 가 넘긴 $\eta_j$ \*메커니즘 분해\*($\eta_\kin+\eta_\ohm+\eta_\conc$)를 Ch3 가 apparent $R_n$ 분해만 하고 닫지 않음. → $\eta_j$ 메커니즘 분해 표 추가(apparent $R_n$ shift 와 분리).
 - **MINOR**: C4 가 $k_{j,\mathrm{act}}\simeq k_0 e^{-(\Delta G_a-\chi\mathcal A_j)/RT}$($\mathcal A_j\gtrsim RT$) 형 미재현(Ch2 와 동일 k_eff/k_act) · 미인덱스 $\theta$(→$\theta_j$) · `eq:ch3_drive` overfull 위험(aligned 분할).
 
+#### Ch4 Codex 검수 결과 (실시 완료 — fix-list)
+\*수정 완료\*: "(피팅 X)"→"피팅 대상 아님"·$q_{\rev,j}$→$\dot{\mathcal Q}_{\rev,j}$(q 충돌).
+\*미반영(다음 세션)\*:
+- **A/E(MAJOR) 𝒜_j 일반형**: Ch4 가 $\mathcal A_j=sF(V_\drive-U_j)$(Ch1 이상형)만 계승, Ch3 일반형 $\mathcal A_j=s\,n_j^{\eff}F(V_\drive-U_j)$ 미반영(L121 C4·L217·L220·L399). → \*\*cross-chapter 해법(아래 §𝒜)\*\*.
+- **B4(MAJOR)**: `eq:ch4_qrev_micro`($s I_j\Pi_j$)가 Ch2 boxed Bernardi $\dot{\mathcal Q}_{\rev,j}=T\Delta S_j I_j/(sF)=I_j\Pi_j$(Ch2 L293-300)와 명시 연결·reaction/activation entropy 분리 출처 미연결. → Ch2 식 명시 참조 추가.
+- **B5(MAJOR/SUSPECT)**: 전기-열 coupling 순서서 $\dd\xi_{\eq,j}/\dd t$ 안에 $(\partial\xi_{\eq}/\partial T)(\dd T/\dd t)$ 가 $\dd T/\dd t$ 결정(L733) 전에 쓰임 = same-step 순환(Ch2 L480-492 회피 패턴과 불일치). → implicit DAE 명시 / predictor / 순서 재배치.
+- **MINOR**: `eq:ch4_affinity_eta` $s$ 일반화 박스(방전 한정, $s$ 는 Ch5 이월 명시) · $R_{\transp,n}$ 미정의 기호 → 기호표 추가 · L313 "이 절이 본 장의 핵심이다" rhetorical 제거.
+
+#### Ch5 Codex 검수 결과 (실시 완료 — fix-list, \*가장 많은 HIGH\*)
+\*미반영(다음 세션, 정밀 물리)\*:
+- **B-1(HIGH) 충전 logistic 부호**: Ch5 가 충전서 logistic 지수 부호 반전을 "유도"라 주장하나, Ch1 좌표 $\xi_j=1-\theta_j$ 유지하면 평형 logistic 은 충·방전 모두 단조증가 → 부호 반전은 \*좌표변환 없이는 가정\*. → 충전 진행 좌표 $\zeta_j=1-\xi_j$ 도입해 명시 유도, 또는 "규약 선택"으로 수위 낮춤(L247-259·257). \*\*Ch1 정합의 핵심\*\*.
+- **B-2(HIGH) 두 평형**: Ch5 가 branch 평형 $\xi_{\eq,j}^b$ 와 metastable $\xi_{\tar,j}^b$ 둘 도입. Ch1 은 detailed-balance 진평형 $\xi_{\eq,j}$ \*하나\*. → $\xi_{\eq,j}$=진평형 예약, $\xi_{\tar,j}^b$=metastable target 전용.
+- **A/B-3(HIGH) η 에 부호 삽입**: $\eta_j^b=s_{\phi,j}^b[V_\drive-V_{\eq,j}^b]$ 재정의 — Ch2/Ch4 는 η 에 부호 안 넣고 affinity 에서 처리(이중 부호 충돌). + L477/487 $\eta_{\prog}^\chg$ 부호 모순(>0 then <0). → $\eta_j^b=V_\drive-V_{\eq,j}^b$(무부호), 부호는 $I_j$/affinity 로; signed 진행력은 별도 명명.
+- **B-6(HIGH) full-cell η_loss 부호**: `eq:ch5_fullcell` 정의부와 L595-596 닫힘의 $(\Delta V_{n,\pol}-\Delta V_{p,\pol})$ 부호 순서 불일치. → 부호 정합.
+- **B-4(MED)**: 방전 단독 극한 환원이 $\dd Q_\bg=0$ 조건 요구 — Ch1 보존식은 $Q_\bg$ 포함이라 조건 없이 환원돼야. → 기준 상수 조정.
+- **MED/SUSPECT**: $n_j^{\eff,b}$ 일관(기저 $n^{\eff}$ 혼용 L271-275) · $R_{n,\pol}^b\equiv R_n^b+R_\ct^b$ 이중계산 위험 · $U_j^b$ 반응방향 부호($-1/(s^bF)\partial G^b/\partial n$) · $\Delta S_j^b=s^b F\partial U_j^b/\partial T$ 명시 · hysteresis center/$h_j$ 완화는 \*ansatz\* 명시.
+- **정상 확인**: $\Pi_j$(Ch2 정합)·$\chi$(Ch1 전달계수)·$Q_j$(구-track 잔재 0)·$q_\stt$(Ch1 q 와 구분).
+
+#### §𝒜 — 𝒜_j cross-chapter 해법 (Ch1/3/4/5 일관, \*반드시 한 번에\*)
+detailed balance($\ln(r^+/r^-)=\mathcal A_j/RT$)가 logistic logit $(V_n-U_j)/w_j$ 와 \*모든 $V_n$\*에서 같으려면 $\mathcal A_j=(RT/w_j)(V_n-U_j)=s\,n_j^{\eff}F(V_n-U_j)$, $n_j^{\eff}=RT/(Fw_j)$. \*\*즉 일반형 $\mathcal A_j=s\,n_j^{\eff}F(V_\drive-U_j)$ 가 옳고, Ch1 의 $sF$ 는 이상($w_j=RT/F$, $n^{\eff}=1$) 특수형.\*\* → Ch3(보유, reconcile box)·Ch4(미반영)·Ch5(branch $n^{\eff,b}$) \*모두 일반형으로 통일\*하고, "Ch1 $sF$=이상 특수형" 한 줄 reconcile 을 각 챕터 inherit 에 둔다. Codex Ch3-A3(재정의 우려)는 이 reconcile 로 해소(일반형이 물리적으로 옳음).
+
 ### (C) 통합·교차 (그 다음)
 - 4개 챕터 inherit 식이 \*서로\* 일치하는지 횡단(Ch2 가 넘긴 전달항목 ↔ Ch3 inherit, …). 병렬 작성이라 drift 가능 — 교차 reconcile.
 - master 문서(\\include) 또는 cross-file \eqref 연결은 추후(현재 의미 인용).
