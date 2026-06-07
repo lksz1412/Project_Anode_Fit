@@ -1,8 +1,8 @@
 % ====================================================================
 % graphite_ica_ch2.tex — Chapter 2 (재편 후 신규: 충방전 히스테리시스)
 %   Chapter 1 의 후속절. Ch1 평형 dQ/dV(전이별 logistic + 정규용액 Ω_j)를
-%   충방전 branch 로 확장 — 전반부: 비단조 μ→spinodal→ΔU_hys 완전 유도(확정 수식),
-%   후반부: 충방전 피팅·활용 가능 방향 파라미터화. Ch1 만 기반(BV/DFN X = Ch4).
+%   충방전 branch 로 확장 — 배경(상분리 열역학 사전지식) → 전반부 완전 유도(spinodal→ΔU_hys)
+%   → 후반부 피팅 파라미터화. Ch1 만 기반(BV/DFN X = Ch4).
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
@@ -24,6 +24,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 \newtheorem*{keybox}{핵심}
+\newtheorem*{stagebox}{흑연 staging 배경}
 \newtheorem*{boundbox}{유효 범위}
 \newtheorem*{flagbox}{비고}
 \newtheorem*{rigorbox}{심화}
@@ -56,16 +57,29 @@
 \section*{서론}
 \addcontentsline{toc}{section}{서론}
 % ====================================================================
-앞 장은 흑연 음극의 $\dd Q/\dd V$ peak 를 \emph{방전 한 방향}으로 다뤘다. 그러나 같은 전이를 충전과 방전으로
-오가면, 같은 용량(SOC)에서 전위와 $\dd Q/\dd V$ peak 위치가 서로 \emph{갈린다} — 충방전 히스테리시스다. 이
-갈림은 두 기원을 갖는다: 전류를 $0$ 으로 보내도 남는 \emph{열역학적} 부분과, 과전압$\cdot$지연으로 생겼다가
-$|I|\to0$ 에서 사라지는 \emph{동역학적}(분극) 부분이다.
+앞 장은 흑연 음극의 $\dd Q/\dd V$ peak 를 \emph{방전 한 방향}으로 다뤘다. 그러나 같은 전극을 충전과 방전으로
+오가면, \emph{같은 용량(SOC)에서 전위가 서로 다르다} — 방전 전위가 충전 전위보다 높다. 전압--용량 곡선
+$V(q)$ 는 닫힌 고리(loop)를 그리고, $\dd Q/\dd V$ 의 같은 staging peak 이 충전과 방전에서 다른 전위에 선다.
+이것이 \textbf{충방전 히스테리시스}이며, 흑연에서 그 크기는 수십 mV 에 이른다.
 
-본 장은 두 단계로 간다. \textbf{전반부}는 그 갈림의 열역학적 부분을 정규용액 상호작용 $\Omega_j$ 에서 — 비단조
-화학퍼텐셜과 spinodal 을 거쳐 — \emph{비약 없이} 유도해, 충방전 branch 전위와 히스테리시스 gap $\Delta U_j^\hys$
-의 \emph{확정 수식}을 세운다. 동역학적 부분은 평형 곡선 위의 율 의존 분극으로 얹는다. \textbf{후반부}는 그 확정
-수식을 충방전 모두에 대해 피팅하고 활용할 수 있는 방향으로 파라미터화한다. 전개는 방전(탈리튬화) 방향 $s=+1$ 을
-기본으로 하며, 각 결과는 단상 극한($\Omega_j\le2RT$)에서 앞 장의 단일 peak 로 환원됨을 검산한다.
+히스테리시스는 단순한 측정 잡음이 아니다. 첫째, 같은 전위라도 충/방전에 따라 SOC 가 달라 \emph{SOC 추정에
+계통 오차}를 준다. 둘째, 고리 면적만큼 \emph{왕복 에너지 손실}이 생긴다. 셋째, $\dd Q/\dd V$ 분석에서 peak
+위치가 방향에 따라 이동하므로, 충/방전 peak 을 따로 해석하지 않으면 전이 중심 전위를 잘못 읽는다. 따라서 충방전
+dQ/dV 를 \emph{방향별로} 기술하고 피팅할 수 있어야 한다.
+
+히스테리시스에는 \emph{성격이 다른} 두 기원이 섞여 있다. 하나는 전이가 \textbf{일차 상전이}(두 상이 공존)이기
+때문에 충$\cdot$방전이 서로 다른 \emph{준안정 분기}를 따라가서 생기는 \textbf{열역학적}(참) 히스테리시스로,
+전류를 $0$ 으로 줄여도(준평형) 남는다. 다른 하나는 과전압$\cdot$확산 지연이 충$\cdot$방전에서 반대로 더해지는
+\textbf{동역학적}(분극) 히스테리시스로, $|I|\to0$ 에서 사라진다. 이 둘을 섞으면 분극을 참 히스테리시스로
+오인한다.
+
+본 장은 다음 순서로 간다. \S\ref{sec:hys_bg} 가 충방전 히스테리시스를 읽는 데 필요한 \emph{사전 지식} — 일차
+상전이, 정규용액 상호작용, 상분리(binodal$\cdot$spinodal)와 준안정성 — 을 세운다. 그 위에서 \textbf{전반부}
+(\S\ref{sec:hys_decomp}--\ref{sec:hys_pol})가 열역학적 히스테리시스를 정규용액 상호작용 $\Omega_j$ 에서 비약
+없이 유도해 충방전 분기 전위와 gap $\Delta U_j^\hys$ 의 \emph{확정 수식}을 세우고, 동역학적 분극을 그 위에
+분리한다. \textbf{후반부}(\S\ref{sec:hys_param}--\ref{sec:hys_fit})는 그 확정 수식을 충방전 모두에 대해
+피팅하고 활용할 수 있는 방향으로 파라미터화한다. 전개는 방전(탈리튬화) 방향 $s=+1$ 을 기본으로 하며, 각 결과는
+단상 극한($\Omega_j\le2RT$)에서 앞 장의 단일 peak 로 환원됨을 검산한다.
 
 \tableofcontents
 \newpage
@@ -76,15 +90,19 @@ $|I|\to0$ 에서 사라지는 \emph{동역학적}(분극) 부분이다.
 본 장에서 새로 도입하는 기호는 다음과 같다.
 \begin{longtable}{p{0.17\textwidth} p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.61\textwidth}}
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$g_j(\xi)$ & J/mol & 전이 $j$ 의 (정규용액) 몰당 자유에너지 \\
+$\Omega_j$ & J/mol & 정규용액 상호작용 에너지(상분리 구동; $\Omega_j>0$=인력적) \\
 $b$ & --- & branch 지표 $\in\{\dis,\chg\}$ (방전$\cdot$충전) \\
 $V_{\eq,j}(\xi)$ & V & 전이 $j$ 의 평형 전위 — 진행률 $\xi$ 의 함수(정규용액 일반형) \\
-$\xi_{s,j}^\pm$ & --- & 전이 $j$ 의 spinodal 진행률(평형 전위가 극값인 점) \\
-$U_j^b$ & V & branch $b$ 의 유효 중심 전위 ($b\in\{\dis,\chg\}$) \\
+$\xi_{s,j}^\pm$ & --- & spinodal 진행률($g_j''=0$, 평형 전위가 극값인 점) \\
+$\xi_{b,j}^\pm$ & --- & binodal 진행률(공통 접선, 평형 두-상 경계) \\
+$U_j^b$ & V & branch $b$ 의 유효 중심 전위 \\
 $\Delta U_j^\hys$ & V & 전이 $j$ 의 열역학적 히스테리시스 gap $=U_j^\dis-U_j^\chg$ \\
-$w_j^b$ & V & branch $b$ 의 유효 전이 폭 \\
-$h_j$ & --- & 전이 $j$ 의 기억(memory) 상태 $\in[-1,1]$ (부분 cycle) \\
-$\Delta V_\obs$ & V & 같은 SOC 에서 관측되는 충방전 전위차(방전$-$충전) \\
-$\Delta V_\hys$ & V & 그중 열역학적(참) 히스테리시스 성분 ($|I|\to0$ 잔존) \\
+$w_j^b$ & V & branch $b$ 의 유효 전이 폭(독립 파라미터) \\
+$\gamma_j$ & --- & nucleation/다입자 축소 인자 $\in(0,1]$ \\
+$h_j$ & --- & 기억(memory) 상태 $\in[-1,1]$ (부분 cycle) \\
+$\Delta V_\obs$ & V & 같은 SOC 의 관측 충방전 전위차(방전$-$충전) \\
+$\Delta V_\hys$ & V & 그중 열역학(참) 성분 ($|I|\to0$ 잔존) \\
 $\Delta V_\pol,\Delta V_\kin$ & V & 분극$\cdot$kinetic lag 성분 ($|I|\to0$ 소멸) \\
 \bottomrule
 \end{longtable}
@@ -92,17 +110,79 @@ $F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$, $\mathrm{J/C}=\mathrm
 $Q$$\cdot$전위 $V$ 의 단위$\cdot$부호 규약은 본 시리즈 공통이며 방전 $s=+1$ 을 기본으로 한다.
 
 % ====================================================================
+\section{사전 지식 — 상전이와 상분리 열역학}\label{sec:hys_bg}
+% ====================================================================
+충방전 히스테리시스의 뿌리는 staging 전이가 \emph{일차 상전이}이고, 그 일차성이 정규용액 상호작용에서 나오며,
+그로 인한 \emph{상분리}가 충$\cdot$방전에 서로 다른 분기를 만든다는 데 있다. 본 절은 이 세 고리를 — 뒤의 유도가
+딛고 설 — 사전 지식으로 세운다.
+
+\subsection{흑연 staging 은 일차 상전이다}
+흑연 리튬화는 층간을 한 번에 채우지 않고 staging($4\to3\to2\mathrm L\to2\to1$) 으로 단계적으로 채운다. 각 stage
+전이는 고용체(연속 채움)가 아니라 \emph{두 상이 공존}하는 \textbf{일차 상전이}다 — 예컨대 stage-2$\leftrightarrow$
+stage-1 전이는 두 stage 가 한 입자 안에서 경계를 두고 공존하며 진행한다. 일차 상전이의 표식은 평형 전위가 두-상
+구간에서 \emph{거의 평탄}(plateau)하다는 것이고, 그 평탄 전위 둘레에서 $\dd Q/\dd V$ 가 \emph{날카로운} peak 를
+만든다. 충방전 히스테리시스는 이 일차성 — 두 상 사이의 \emph{불연속적} 전이 — 때문에 생긴다(고용체라면
+히스테리시스가 없다).
+
+\subsection{정규용액 자유에너지와 상호작용 $\Omega_j$}
+전이 $j$ 의 진행률 $\xi$(전환된 분율)에 대한 몰당 자유에너지는 \emph{혼합 entropy}와 \emph{상호작용 enthalpy}의
+합으로, 정규용액(regular solution) 모형이 그 최소 형태다:
+\begin{equation}
+g_j(\xi)=g_j^0+\underbrace{RT\big[\xi\ln\xi+(1-\xi)\ln(1-\xi)\big]}_{\text{혼합 entropy }(-TS_\mathrm{mix})}
++\underbrace{\Omega_j\,\xi(1-\xi)}_{\text{상호작용 enthalpy}}.
+\label{eq:hys_g}
+\end{equation}
+혼합 entropy 항은 두 ``성분''(전환/미전환 자리)을 섞으면 무질서가 늘어 자유에너지를 \emph{낮추는}(섞이려는) 항이고,
+$\Omega_j\,\xi(1-\xi)$ 는 같은 종끼리 모이려는($\Omega_j>0$, 인력적) 상호작용 항으로 \emph{분리}를 부추긴다. 그
+미분이 삽입 화학퍼텐셜
+\begin{equation}
+\mu_j(\xi)=\frac{\dd g_j}{\dd\xi}=\mu^0+RT\ln\frac{\xi}{1-\xi}+\Omega_j(1-2\xi)
+\label{eq:hys_mu}
+\end{equation}
+이며(앞 장 식~(1.9)이 평형 peak 를 세울 때 쓴 바로 그 화학퍼텐셜이다 — 여기서는 그 \emph{상분리} 함의를 본다),
+$\Omega_j$ 의 물리적 기원은 삽입 Li 사이의 유효 상호작용$\cdot$층간 격자 변형$\cdot$staging 질서화 에너지다.
+
+\subsection{상분리 — 이중 우물, binodal, spinodal, 준안정성}
+$\Omega_j$ 가 크면 $g_j(\xi)$ 가 \emph{이중 우물}(가운데가 위로 볶록)이 되어, 한 균질 상보다 두 상($\xi$ 가
+작은 상 $+$ 큰 상)으로 갈라지는 편이 자유에너지가 낮아진다 — \textbf{미스시빌리티 갭}(상분리). 이 갈림은 두
+경계로 규정된다.
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \textbf{binodal}(공존선) $\xi_{b,j}^\pm$: 두 상이 \emph{평형}으로 공존하는 조성. $g_j$ 의 \emph{공통
+  접선}(common tangent)이 닿는 두 점으로, 그 사이가 평형 두-상 영역(공통 접선이 곧 평탄 전위)이다.
+\item \textbf{spinodal} $\xi_{s,j}^\pm$: $g_j''(\xi)=0$(변곡점)으로 정해지는 \emph{역학적 불안정} 경계. spinodal
+  \emph{안쪽}($g_j''<0$)은 무한소 요동에도 즉시 분리되는 \emph{불안정} 영역이고, binodal 과 spinodal \emph{사이}
+  ($g_j''>0$ 이나 공통 접선 아래)는 \emph{준안정}(metastable)이다.
+\end{itemize}
+준안정 영역에서는 새 상의 \emph{핵}이 임계 크기를 넘어야(\emph{핵생성 장벽}) 상전이가 시작된다. 장벽이 크면
+시스템이 균질 상(metastable branch)을 따라 \emph{spinodal 까지 과주행}한 뒤에야 분리한다. \textbf{충$\cdot$방전이
+서로 다른 분기를 따라 과주행하는 것이 곧 열역학적 히스테리시스의 근원}이다 — 충전은 한쪽 분기, 방전은 반대쪽
+분기를 spinodal 한계까지 따라가므로 평형 전위가 갈린다.
+
+\subsection{두 기원과 다입자 평활화}
+정리하면 충방전 히스테리시스는 두 기원의 합이다. (i) \textbf{열역학적}(참): 충$\cdot$방전이 서로 다른 준안정
+분기를 따라가 평형 전위가 갈림 — $|I|\to0$ 에서 \emph{남는다}(본 장 전반부가 $\Omega_j$ 에서 유도). (ii)
+\textbf{동역학적}(분극): 과전압$\cdot$지연이 방향마다 반대로 더해짐 — $|I|\to0$ 에서 \emph{사라진다}.
+\begin{flagbox}
+\textbf{단일 입자 vs 다입자.} 위 spinodal 과주행은 \emph{단일 입자} 그림이다. 실제 전극은 입자 집단이라, 입자마다
+임계 핵생성이 조금씩 다른 전위에서 일어나 \emph{하나씩 차례로} 전환된다(다입자 그림 \cite{dreyer2010}). 이
+집단 거동은 단일 입자의 spinodal 과주행보다 분기 갈림을 \emph{매끄럽게$\cdot$좁게} 만든다. 따라서 단일 입자
+spinodal gap 이 열역학 히스테리시스의 \emph{상한}이고, 실측은 그 아래(nucleation$\cdot$다입자 평활화)에 놓인다 —
+이 자유도를 뒤의 축소 인자 $\gamma_j$ 로 둔다(\S\ref{sec:hys_branch}).
+\end{flagbox}
+
+% ====================================================================
 \section{무엇을 유도할 것인가 — 관측 gap 의 분해}\label{sec:hys_decomp}
 % ====================================================================
-같은 SOC 에서 방전 전위 $V^\dis$ 와 충전 전위 $V^\chg$ 의 차를 관측 gap 으로 둔다:
+앞 절 배경 위에서, 먼저 \emph{무엇을} 유도해야 하는지를 관측량의 분해로 못 박는다. 같은 SOC 에서 방전 전위
+$V^\dis$ 와 충전 전위 $V^\chg$ 의 차를 관측 gap 으로 둔다:
 \begin{equation}
 \Delta V_\obs\equiv V^\dis-V^\chg.
 \label{eq:hys_obs}
 \end{equation}
-이 관측 gap 은 서로 다른 기원의 합이다. (i) 충$\cdot$방전이 \emph{서로 다른 평형 branch} 에 있어서 생기는
-\emph{열역학적} 차 $\Delta V_\hys$ — 전류를 $0$ 으로 줄여도(준평형 GITT 종점) 남는다. (ii) 같은 SOC 라도 전류가
-흐르면 분극$\cdot$지연이 충$\cdot$방전에서 \emph{반대 부호}로 더해지는 \emph{동역학적} 차 $\Delta V_\pol+\Delta
-V_\kin$ — $|I|\to0$ 에서 사라진다:
+이 관측 gap 은 성격이 다른 두 기원의 합이다(\S\ref{sec:hys_bg}). (i) 충$\cdot$방전이 \emph{서로 다른 준안정
+분기}에 있어 생기는 \emph{열역학적} 차 $\Delta V_\hys$ — 전류를 $0$ 으로 줄여도(준평형 GITT 종점) 남는다. (ii)
+같은 SOC 라도 전류가 흐르면 분극$\cdot$지연이 충$\cdot$방전에서 \emph{반대 부호}로 더해지는 \emph{동역학적} 차
+$\Delta V_\pol+\Delta V_\kin$ — $|I|\to0$ 에서 사라진다:
 \begin{equation}
 \boxed{\;\Delta V_\obs=\underbrace{\Delta V_\hys}_{|I|\to0\ \text{잔존(열역학)}}
 +\underbrace{\Delta V_\pol+\Delta V_\kin}_{|I|\to0\ \text{소멸(동역학)}}\;,\qquad
@@ -111,121 +191,121 @@ V_\kin$ — $|I|\to0$ 에서 사라진다:
 \end{equation}
 \textbf{$\Delta V_\obs\ne\Delta V_\hys$ 임을 분명히 한다}: 유한 전류에서 관측 gap 을 통째로 히스테리시스로
 읽으면 분극$\cdot$지연을 참 히스테리시스로 오인한다. 본 장 전반부는 \emph{열역학} 성분 $\Delta V_\hys$ 의 확정
-수식(\S\ref{sec:hys_spinodal}--\ref{sec:hys_branch})을, 동역학 성분(\S\ref{sec:hys_pol})을 그 위에 분리해 둔다.
-$\Delta V_\hys$ 를 데이터로 얻는 길은 저율 외삽($|I|\to0$) 또는 양방향 GITT 완화 종점이다.
+수식(\S\ref{sec:hys_spinodal}--\ref{sec:hys_branch})을, 동역학 성분(\S\ref{sec:hys_pol})을 그 위에 분리해
+둔다. $\Delta V_\hys$ 를 데이터로 얻는 길은 저율 외삽($|I|\to0$) 또는 양방향 GITT 완화 종점이다.
 
 % ====================================================================
 \section{비단조 평형 전위와 spinodal — 유도 (1)}\label{sec:hys_spinodal}
 % ====================================================================
-열역학 히스테리시스의 근원은 \emph{전이 자체가 일차 상전이}라는 데 있다. 전이 $j$ 의 삽입 화학퍼텐셜은 정규용액
-형(식~(1.9))
-\begin{equation}
-\mu_j(\xi)=\mu^0+RT\ln\frac{\xi}{1-\xi}+\Omega_j(1-2\xi)
-\label{eq:hys_mu}
-\end{equation}
-이고($\xi$=진행률, $\Omega_j$=정규용액 상호작용), 전기화학 평형 조건(식~(1.10)) $sF(V-U_j^0)=\mu_j(\xi)$ 를
-$V$ 에 대해 풀면 평형 전위가 진행률의 함수로
+\S\ref{sec:hys_bg} 의 상분리를 \emph{전위}의 언어로 옮긴다. 전기화학 평형 조건(앞 장 식~(1.10)) $sF(V-U_j^0)
+=\mu_j(\xi)$ 에 정규용액 화학퍼텐셜 식~\eqref{eq:hys_mu} 를 넣고 $V$ 에 대해 풀면, 평형 전위가 진행률의 함수로
 \begin{equation}
 V_{\eq,j}(\xi)=U_j+\frac{RT}{sF}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j}{sF}(1-2\xi),
 \qquad U_j\equiv U_j^0+\frac{\mu^0}{sF},
 \label{eq:hys_Veq}
 \end{equation}
-이 된다. $\Omega_j=0$ 이면 둘째 항만 남아 식~(1.11) logistic 의 역함수(단조)로 환원된다 — 앞 장의 단상 peak 다.
+가 된다($U_j$=전이 중심 전위). $\Omega_j=0$(이상 혼합)이면 둘째 항만 남아 앞 장 식~(1.11) logistic 의 역함수
+(단조)로 환원된다 — 단상 peak 다. $\Omega_j$ 항은 그 단조 곡선에 \emph{되돌림}을 더한다.
 
-\textbf{비단조성과 spinodal.} 진행률에 대한 기울기는
+\textbf{비단조성 = 상분리의 전위적 표현.} 진행률에 대한 기울기는
 \begin{equation}
-\frac{\dd V_{\eq,j}}{\dd\xi}=\frac{1}{sF}\Big[\frac{RT}{\xi(1-\xi)}-2\Omega_j\Big].
+\frac{\dd V_{\eq,j}}{\dd\xi}=\frac{1}{sF}\,\frac{\dd\mu_j}{\dd\xi}
+=\frac{1}{sF}\Big[\frac{RT}{\xi(1-\xi)}-2\Omega_j\Big].
 \label{eq:hys_slope}
 \end{equation}
-양 끝($\xi\to0,1$)에서 $RT/[\xi(1-\xi)]\to\infty$ 라 기울기는 양수다. 그러나 $\Omega_j$ 가 충분히 크면 중간
-영역에서 음수가 된다 — $\xi=\tfrac12$ 에서 $RT/[\xi(1-\xi)]=4RT$ 이므로, $\Omega_j>2RT$ 면 거기서
-$\dd V_{\eq,j}/\dd\xi<0$ 다. 음의 기울기 구간은 진행과 전위가 반대로 움직이는 \emph{역학적으로 불안정}한
-영역(spinodal 내부)이라, 한 전이가 균질하게 통과할 수 없다 — 즉 상분리(일차 상전이)다. 기울기가 $0$ 인
-\emph{spinodal} 진행률은 식~\eqref{eq:hys_slope} 을 $0$ 으로 두어 $\xi(1-\xi)=RT/(2\Omega_j)$, 곧
+여기서 $\dd\mu_j/\dd\xi=g_j''(\xi)$ 이므로, \textbf{$V_{\eq,j}$ 의 기울기가 $0$ 인 곳이 곧 \S\ref{sec:hys_bg} 의
+spinodal($g_j''=0$)}이다 — 상분리의 역학적 불안정 경계가 전위 곡선의 극값으로 나타난다. 양 끝($\xi\to0,1$)에서
+$RT/[\xi(1-\xi)]\to\infty$ 라 기울기는 양수지만, 중간에서 $\Omega_j$ 가 충분히 크면 음수가 된다 —
+$\xi=\tfrac12$ 에서 $RT/[\xi(1-\xi)]=4RT$ 이므로 \textbf{$\Omega_j>2RT$ 면 거기서 $\dd V_{\eq,j}/\dd\xi<0$}다.
+음의 기울기는 진행과 전위가 반대로 움직이는 역학적 불안정 영역으로, 한 전이가 균질하게 통과할 수 없다(상분리).
+기울기가 $0$ 인 spinodal 진행률은 식~\eqref{eq:hys_slope} 을 $0$ 으로 두어 $\xi(1-\xi)=RT/(2\Omega_j)$, 곧
 \begin{equation}
 \boxed{\;\xi_{s,j}^\pm=\frac12\pm\frac12\sqrt{1-\frac{2RT}{\Omega_j}}\;,\qquad(\Omega_j>2RT).\;}
 \label{eq:hys_spinodal}
 \end{equation}
 \begin{verifybox}
-\textbf{조건$\cdot$극한.} 실수 spinodal 은 $1-2RT/\Omega_j>0$, 곧 $\Omega_j>2RT$ 에서만 존재한다(상전이 임계).
-$\Omega_j\to2RT^+$ 면 $\xi_{s,j}^\pm\to\tfrac12$(두 spinodal 합쳐짐), $\Omega_j\to\infty$ 면
-$\xi_{s,j}^-\to0$, $\xi_{s,j}^+\to1$. \textbf{단상 환원.} $\Omega_j\le2RT$ 면 식~\eqref{eq:hys_slope} 이 전
-구간 양수($V_{\eq,j}$ 단조)라 spinodal 도 히스테리시스도 없다 — 앞 장 단일 peak.
+\textbf{임계 조건$\cdot$극한.} 실수 spinodal 은 $1-2RT/\Omega_j>0$, 곧 $\Omega_j>2RT$ 에서만 존재한다 — 이것이
+상전이 임계 조건이며, 임계 온도 $T_{c,j}=\Omega_j/2R$ 위($T>T_{c,j}$)에서는 상분리가 없다. $\Omega_j\to2RT^+$
+면 $\xi_{s,j}^\pm\to\tfrac12$(두 spinodal 합쳐짐), $\Omega_j\to\infty$ 면 $\xi_{s,j}^-\to0,\ \xi_{s,j}^+\to1$.
+\textbf{단상 환원.} $\Omega_j\le2RT$ 면 식~\eqref{eq:hys_slope} 이 전 구간 양수($V_{\eq,j}$ 단조)라 spinodal 도
+히스테리시스도 없다 — 앞 장 단일 peak.
 \end{verifybox}
 
 % ====================================================================
-\section{충방전 branch 와 히스테리시스 gap $\Delta U_j^\hys$ — 유도 (2)}\label{sec:hys_branch}
+\section{충방전 분기와 히스테리시스 gap $\Delta U_j^\hys$ — 유도 (2)}\label{sec:hys_branch}
 % ====================================================================
-비단조 $V_{\eq,j}(\xi)$ 는 $\xi$ 가 작을 때 상승하다 $\xi_{s,j}^-$ 에서 \emph{극대}, 사이 불안정 구간에서 하강,
-$\xi_{s,j}^+$ 에서 \emph{극소}, 다시 상승한다. 한 전이는 불안정 구간($\xi_{s,j}^-<\xi<\xi_{s,j}^+$)을 균질하게
-지날 수 없으므로, \textbf{방전}(탈리튬화, $\xi$ 증가)은 \emph{극대} $\xi_{s,j}^-$ 까지 metastable 하게 따라간
-뒤 상분리하고, \textbf{충전}(리튬화, $\xi$ 감소)은 \emph{극소} $\xi_{s,j}^+$ 까지 따라간 뒤 상분리한다. 따라서
-branch 의 유효 중심 전위는 각 극값이고
+비단조 $V_{\eq,j}(\xi)$ 는 $\xi$ 가 작을 때 상승하다 $\xi_{s,j}^-$ 에서 \emph{극대}, 사이 불안정 구간
+($\xi_{s,j}^-<\xi<\xi_{s,j}^+$, $\dd V_{\eq,j}/\dd\xi<0$)에서 하강, $\xi_{s,j}^+$ 에서 \emph{극소}, 다시 상승한다.
+한 전이는 이 불안정 구간을 균질하게 지날 수 없으므로 \S\ref{sec:hys_bg} 의 준안정 분기를 따라간다. \textbf{방전}
+(탈리튬화, $\xi$ 증가)은 상승하는 분기를 \emph{극대} $\xi_{s,j}^-$ 까지 따라간 뒤 상분리하고, \textbf{충전}
+(리튬화, $\xi$ 감소)은 반대 끝에서 상승해 온 분기를 \emph{극소} $\xi_{s,j}^+$ 까지 따라간 뒤 상분리한다. 따라서
+각 분기의 유효 중심 전위는 그 극값이고
 \begin{equation}
 U_j^\dis=V_{\eq,j}(\xi_{s,j}^-),\qquad U_j^\chg=V_{\eq,j}(\xi_{s,j}^+),
 \label{eq:hys_branchU}
 \end{equation}
-방전 branch 가 충전 branch 보다 높다($U_j^\dis>U_j^\chg$). 히스테리시스 gap 은 두 극값의 차다. 식~\eqref{eq:hys_Veq}
-에 $\xi_{s,j}^\pm=\tfrac12\pm\tfrac12 u_j$($u_j\equiv\sqrt{1-2RT/\Omega_j}$)를 넣고 빼면, $\ln[(1-u_j)/(1+u_j)]
-=-2\,\mathrm{artanh}\,u_j$ 를 써서
+극대가 극소보다 높으므로 \emph{방전 분기가 충전 분기보다 위}에 있다($U_j^\dis>U_j^\chg$) — 방전 전위가 충전보다
+높다는 관찰과 부호가 맞는다. 히스테리시스 gap 은 두 극값의 차다. 식~\eqref{eq:hys_Veq} 에 $\xi_{s,j}^\pm
+=\tfrac12\pm\tfrac12 u_j$($u_j\equiv\sqrt{1-2RT/\Omega_j}$)를 넣어 빼면, 로그 항은 $\ln[(1-u_j)/(1+u_j)]
+=-2\,\mathrm{artanh}\,u_j$, $\Omega_j$ 항은 $(1-2\xi)$ 가 $\pm u_j$ 로 갈려
 \begin{equation}
 \boxed{\;\Delta U_j^\hys=U_j^\dis-U_j^\chg=\frac{2}{sF}\Big[\Omega_j\,u_j-2RT\,\mathrm{artanh}\,u_j\Big],
 \qquad u_j=\sqrt{1-\frac{2RT}{\Omega_j}}\;.}
 \label{eq:hys_dU}
 \end{equation}
 이로써 히스테리시스 gap 이 \emph{정규용액 상호작용 $\Omega_j$ 와 온도에서 유도}됐다 — 임의로 둔 피팅 상수가
-아니다.
+아니다. 더 강한 상호작용(큰 $\Omega_j$)일수록 분기 갈림이 크다.
 \begin{verifybox}
-\textbf{부호$\cdot$극한.} $\Omega_j\to2RT^+$ 면 $u_j\to0$ 이고 $\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j
-\to\tfrac43RT\,u_j^3$(즉 $\Delta U_j^\hys\to(8RT/3sF)\,u_j^3\to0^+$) 이라 임계서 히스테리시스가 소멸한다
-(앞 장 단일 peak 로 환원).
-$\Omega_j$ 가 커질수록 $\Delta U_j^\hys$ 단조 증가($\Omega_j u_j$ 가 선형으로 지배). 수치 감: $\Omega_j=4RT$
-면 $u_j=\sqrt{0.5}\approx0.707$, $\Delta U_j^\hys\approx(2/sF)(4RT\cdot0.707-2RT\cdot0.881)\approx2.1\,RT/(sF)$
-($25^\circ$C 서 $\approx54$ mV). 차원: $\Omega_j,RT$ 가 $\mathrm{J/mol}$, $sF$ 가 $\mathrm{C/mol}$ 이라
-$\mathrm{J/C}=\mathrm V$.
+\textbf{부호$\cdot$극한$\cdot$수치.} $\Omega_j\to2RT^+$ 면 $u_j\to0$ 이고 $\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j
+\to\tfrac43RT\,u_j^3$(즉 $\Delta U_j^\hys\to(8RT/3sF)\,u_j^3\to0^+$) 이라 임계서 히스테리시스가 매끄럽게 소멸한다
+(앞 장 단일 peak 로 환원). $\Omega_j$ 가 커질수록 $\Delta U_j^\hys$ 단조 증가($\Omega_j u_j$ 가 선형 지배).
+수치 감: $\Omega_j=4RT$ 면 $u_j=\sqrt{0.5}\approx0.707$, $\mathrm{artanh}(0.707)\approx0.881$, $\Delta U_j^\hys
+\approx(2/sF)(4RT\cdot0.707-2RT\cdot0.881)\approx2.1\,RT/(sF)\approx54$ mV($25^\circ$C). 차원: $\Omega_j,RT$ 가
+$\mathrm{J/mol}$, $sF$ 가 $\mathrm{C/mol}$ 이라 $\mathrm{J/C}=\mathrm V$.
 \end{verifybox}
 \begin{boundbox}
-\textbf{유도 가정(명시).} 식~\eqref{eq:hys_branchU} 는 branch 가 \emph{spinodal 한계}까지 metastable 하게
-간다는 \emph{상한} 가정이다. 핵생성(nucleation)이 spinodal 전에 상전이를 시작하면 실제 branch 는 binodal 쪽으로
-좁혀져 $\Delta U_j^\hys$ 가 식~\eqref{eq:hys_dU} 보다 작아진다. 다입자 전극에서는 입자별 채움 순서가 집단
-거동을 매끄럽게 해 그 사이 어딘가가 된다 \cite{dreyer2010}. 따라서 식~\eqref{eq:hys_dU} 는 $\Omega_j$ 가
-정하는 \emph{최대} 열역학 히스테리시스이며, 실측 $\Delta U_j^\hys$ 가 이보다 작으면 nucleation/다입자 평활화로
-해석한다(후반부 파라미터화에서 이 자유도를 둔다).
+\textbf{유도 가정(spinodal=상한)과 축소 인자 $\gamma_j$.} 식~\eqref{eq:hys_branchU} 는 각 분기가 \emph{spinodal
+한계}까지 준안정하게 과주행한다는 \emph{상한} 가정이다. 실제로는 핵생성이 spinodal 전(binodal 쪽)에서 상전이를
+시작하고, 다입자 평활화(\S\ref{sec:hys_bg})가 분기 갈림을 더 좁히므로, 실측 $\Delta U_j^\hys$ 는 식~\eqref{eq:hys_dU}
+의 spinodal 상한보다 작다. 이 차이를 한 자유도 $\gamma_j\in(0,1]$ 로 흡수해 $\Delta U_j^\hys\to\gamma_j\,
+\Delta U_j^\hys|_\mathrm{spin}$ 로 둔다($\gamma_j=1$=spinodal 상한, 작을수록 nucleation/다입자 평활화). binodal
+하한($\gamma_j$ 최솟값)은 공통 접선으로 정해지나, 피팅에서는 $\gamma_j$ 한 양으로 충분하다.
 \end{boundbox}
 
 % ====================================================================
-\section{branch 별 평형 $\dd Q/\dd V$}\label{sec:hys_dQdV}
+\section{분기별 평형 $\dd Q/\dd V$}\label{sec:hys_dQdV}
 % ====================================================================
-관측 dQ/dV 의 \emph{평형} 부분은 각 branch 의 중심 전위 $U_j^b$ 둘레에 선 peak 다. 일차 상전이(두-상) 구간은
-전위가 거의 평탄하므로, branch $b$ 의 평형 진행은 중심 $U_j^b$$\cdot$유효 폭 $w_j^b$ 의 logistic 로 적는다(앞 장
-식~(1.11) 의 branch 판):
+관측 dQ/dV 의 \emph{평형} 부분은 각 분기의 중심 전위 $U_j^b$ 둘레에 선 peak 다. 일차 상전이(두-상) 구간은
+전위가 거의 평탄하므로, 분기 $b$ 의 평형 진행은 중심 $U_j^b$$\cdot$유효 폭 $w_j^b$ 의 logistic 로 적는다(앞 장
+식~(1.11) 의 분기 판):
 \begin{equation}
 \xi_{\eq,j}^b(V)=\frac{1}{1+\exp[-s(V-U_j^b)/w_j^b]},\qquad
-\frac{\dd Q}{\dd V}\Big|_{\eq}^b=\sum_{j}Q_j\,\frac{\dd\xi_{\eq,j}^b}{\dd V},
+\frac{\dd Q}{\dd V}\Big|_{\eq}^b=\sum_{j}Q_j\,\frac{\dd\xi_{\eq,j}^b}{\dd V}.
 \label{eq:hys_dQdV}
 \end{equation}
-$U_j^\dis,U_j^\chg$ 는 식~\eqref{eq:hys_branchU} 로 $\Delta U_j^\hys$ 만큼 떨어져 있어 \emph{충$\cdot$방전 peak
-위치가 갈린다}. 유효 폭 $w_j^b$ 는 두-상 구간에서 좁아진다(평탄 전위 → 날카로운 peak). 그 값은 각 branch 의
-dQ/dV peak 폭으로 두며, 본 장에서 $\Omega_j$ 로부터 닫힌 함수로 유도하지는 않고 독립 파라미터로 남긴다.
+$U_j^\dis,U_j^\chg$ 는 식~\eqref{eq:hys_branchU} 로 $\Delta U_j^\hys$(또는 $\gamma_j\Delta U_j^\hys$)만큼 떨어져
+있어 \emph{충$\cdot$방전 peak 위치가 갈린다}. 유효 폭 $w_j^b$ 는 두-상 구간에서 좁아진다(평탄 전위 → 날카로운
+peak); 그 값은 각 분기의 dQ/dV peak 폭으로 두며, 본 장에서 $\Omega_j$ 로부터 닫힌 함수로 유도하지 않고 독립
+파라미터로 남긴다.
 \begin{keybox}
 \textbf{충$\cdot$방전 dQ/dV 의 갈림(평형).} 각 전이의 평형 peak 이 방전에서 $U_j^\dis$, 충전에서 $U_j^\chg$ 에
 서며 그 간격이 $\Delta U_j^\hys$(식~\eqref{eq:hys_dU})다. $\Delta U_j^\hys\to0$($\Omega_j\le2RT$) 극한에서 두
-peak 이 겹쳐 앞 장의 단일 dQ/dV 로 환원된다 — 본 장은 그 위에 \emph{branch 분리}만 얹었다.
+peak 이 겹쳐 앞 장의 단일 dQ/dV 로 환원된다 — 본 장은 그 위에 \emph{분기 분리}만 얹었다.
 \end{keybox}
 
 % ====================================================================
 \section{동역학 분극 — 율 의존 성분}\label{sec:hys_pol}
 % ====================================================================
-유한 전류에서는 §\ref{sec:hys_dQdV} 의 평형 branch 위에 앞 장의 동역학이 얹힌다. 두 기여가 있다. \textbf{(가)
-apparent 분극}: 측정 전위는 내부 전위에서 $V_\app=V_n+s_I|I|R_n$ (식~(1.3))만큼 밀린다. 방전($s_I=+1$)은 관측을
-위로, 충전($s_I=-1$)은 아래로 밀므로, 같은 SOC 의 관측 충방전 gap 이 평형 gap 보다 $2|I|R_n$ 만큼 \emph{더}
-벌어진다 — 이것이 식~\eqref{eq:hys_split} 의 $\Delta V_\pol$ 다:
+유한 전류에서는 \S\ref{sec:hys_dQdV} 의 평형 분기 위에 앞 장의 동역학이 얹힌다. 두 기여가 있다. \textbf{(가)
+apparent 분극}: 측정 전위는 내부 전위에서 $V_\app=V_n+s_I|I|R_n$(앞 장 식~(1.3))만큼 밀린다. 방전($s_I=+1$)은
+관측을 위로, 충전($s_I=-1$)은 아래로 밀므로, 같은 SOC 의 관측 충방전 gap 이 평형 gap 보다 \emph{더} 벌어진다 —
+이것이 식~\eqref{eq:hys_split} 의 $\Delta V_\pol$ 다:
 \begin{equation}
-\Delta V_\pol=(s_I|I|R_n)^\dis-(s_I|I|R_n)^\chg=2|I|R_n,\qquad \lim_{|I|\to0}\Delta V_\pol=0.
+\Delta V_\pol=(s_I|I|R_n)\big|^\dis-(s_I|I|R_n)\big|^\chg=2|I|R_n,\qquad \lim_{|I|\to0}\Delta V_\pol=0.
 \label{eq:hys_pol}
 \end{equation}
-\textbf{(나) kinetic lag}: 각 branch 에서 진행률이 평형 목표를 즉시 못 따라가 peak 에 비대칭 꼬리가 붙는다 — 앞
-장의 지연 길이 $L_{q,j}=|I|/(Q_\cell k_j)$ (식~(1.19))가 그대로 적용되며, peak 위치를 진행 방향으로 더 밀어
+\textbf{(나) kinetic lag}: 각 분기에서 진행률이 평형 목표를 즉시 못 따라가 peak 에 비대칭 꼬리가 붙는다 — 앞
+장의 지연 길이 $L_{q,j}=|I|/(Q_\cell k_j)$(식~(1.19))가 그대로 적용되며, peak 위치를 진행 방향으로 더 밀어
 관측 gap 에 $\Delta V_\kin$ 을 더한다. 저온$\cdot$고율일수록($k_j\downarrow$, $|I|\uparrow$) 커지고 $|I|\to0$
 에서 사라진다.
 \begin{keybox}
@@ -239,15 +319,15 @@ V_\kin\to0$, 무전류에서 $\Delta V_\pol\to0$ 이라 관측 gap 이 $\Delta V
 % ====================================================================
 \section{부분 cycle 과 기억}\label{sec:hys_memory}
 % ====================================================================
-완전 충전$\to$완전 방전(major loop)에서는 각 전이가 §\ref{sec:hys_branch} 의 해당 branch($\xi_{s,j}^\mp$ 한계)
+완전 충전$\to$완전 방전(major loop)에서는 각 전이가 \S\ref{sec:hys_branch} 의 해당 분기($\xi_{s,j}^\mp$ 한계)
 위에 있다. 그러나 \emph{부분} cycle — 충전 도중 방전으로 뒤집는 등 — 에서는 전이가 spinodal 한계에 닿기 전에
-방향이 바뀌어, 두 branch 사이의 \emph{scanning curve} 위에 놓인다. 이 경로는 반전 지점에 의존하는 \emph{기억}을
-가지며(return-point memory \cite{sethna1993}), 기억 상태 $h_j\in[-1,1]$($+1$=방전 branch, $-1$=충전 branch,
-사이=scanning)로 요약한다.
+방향이 바뀌어, 두 분기 사이의 \emph{scanning curve} 위에 놓인다. 이 경로는 반전 지점에 의존하는 \emph{기억}을
+가지며(되돌림점 기억, return-point memory \cite{sethna1993}), 기억 상태 $h_j\in[-1,1]$($+1$=방전 분기, $-1$=
+충전 분기, 사이=scanning)로 요약한다.
 \begin{boundbox}
-\textbf{범위.} 본 장의 확정 수식과 후반부 파라미터화는 \emph{major loop}(완전 충/방전 branch)를 핵심 대상으로
+\textbf{범위.} 본 장의 확정 수식과 후반부 파라미터화는 \emph{major loop}(완전 충/방전 분기)를 핵심 대상으로
 한다 — 피팅 데이터(저율 충/방전 전곡선)가 major loop 이기 때문이다. 부분 cycle 의 scanning curve 정량화는
-$h_j$ 의 완화 모델을 더 요구하며, major-loop branch($U_j^\dis,U_j^\chg$)를 양 끝으로 하는 보간으로 두되 그 상세
+$h_j$ 의 완화 모델을 더 요구하며, major-loop 분기($U_j^\dis,U_j^\chg$)를 양 끝으로 하는 보간으로 두되 그 상세
 거동은 본 장 범위 밖으로 표기한다.
 \end{boundbox}
 
@@ -257,22 +337,21 @@ $h_j$ 의 완화 모델을 더 요구하며, major-loop branch($U_j^\dis,U_j^\ch
 \S\ref{sec:hys_decomp}--\ref{sec:hys_memory} 의 확정 수식을 충방전 모두에 대해 피팅하고 활용할 수 있는 파라미터
 집합으로 정리한다. \textbf{억지로 줄이지 않되, 유도가 묶어 주는 것은 묶는다}: 히스테리시스 gap 과 spinodal
 ($\Delta U_j^\hys$, $\xi_{s,j}^\pm$)은 \emph{독립 파라미터가 아니라} 하나의 $\Omega_j$ 에서 식~\eqref{eq:hys_spinodal}
---\eqref{eq:hys_dU} 로 함께 따라온다(branch 폭 $w_j^b$ 는 별도 — \S\ref{sec:hys_dQdV}). 따라서 전이 $j$ 의 파라미터는
-
+--\eqref{eq:hys_dU} 로 함께 따라온다(분기 폭 $w_j^b$ 는 별도 — \S\ref{sec:hys_dQdV}). 따라서 전이 $j$ 의 파라미터는
 \begin{center}
 \begin{tabular}{ll}
 \toprule
-열역학(평형 dQ/dV$\cdot$히스테리시스) & $U_j$(평균 중심), $\Omega_j$, $w_j^b$(branch 폭, 독립), $Q_j$(용량), $\partial U_j/\partial T$ \\
-\;\;($\Omega_j$ 에서 유도: $\Delta U_j^\hys,\xi_{s,j}^\pm$) & + 필요 시 nucleation 축소 인자 $\gamma_j\in(0,1]$ ($\Delta U_j^\hys\to\gamma_j\Delta U_j^\hys$) \\
+열역학(평형 dQ/dV$\cdot$히스테리시스) & $U_j$(평균 중심), $\Omega_j$, $\gamma_j$(축소 인자), $w_j^b$(분기 폭), $Q_j$(용량), $\partial U_j/\partial T$ \\
+\;\;($\Omega_j$ 에서 유도: $\Delta U_j^\hys,\xi_{s,j}^\pm$) & \\
 동역학(율 의존 분극$\cdot$lag) & $k_j$(즉 $\Delta G_{a,j},\chi$), $R_n$ \\
 부분 cycle(선택) & 기억 완화(major-loop 보간; 범위 밖 상세) \\
 \bottomrule
 \end{tabular}
 \end{center}
-이다. $\Omega_j$ 하나가 $\Delta U_j^\hys$ 와 spinodal 을 동시에 정하므로 \emph{branch 중심을 따로 자유 피팅하지
-않는다}(중심차 $=\Delta U_j^\hys$ 는 $\Omega_j$ 가 정함; 과파라미터화 방지) — 단, 다입자 nucleation 평활화로 실측
-$\Delta U_j^\hys$ 가 spinodal 상한보다 작을 수 있어 축소 인자 $\gamma_j$ 한 자유도만 허용한다(\S\ref{sec:hys_branch}
-boundbox). 동역학은 앞 장의 $k_j,R_n$ 을 그대로 쓴다 — 충$\cdot$방전 공통 또는 약한 branch 의존만 둔다.
+이다. $\Omega_j$ 하나가 $\Delta U_j^\hys$ 와 spinodal 을 동시에 정하므로 \emph{분기 중심을 따로 자유 피팅하지
+않는다}(중심차 $=\gamma_j\Delta U_j^\hys$ 는 $\Omega_j,\gamma_j$ 가 정함; 과파라미터화 방지). 단 분기 폭 $w_j^b$,
+nucleation/다입자 축소 $\gamma_j$ 는 별도 자유도로 두어 \emph{억지로 줄이지 않는다} — 필요한 만큼 둔다. 동역학은
+앞 장의 $k_j,R_n$ 을 그대로 쓰며 충$\cdot$방전 공통 또는 약한 분기 의존만 둔다.
 
 % ====================================================================
 \section{데이터에서 파라미터로, 그리고 예측}\label{sec:hys_fit}
@@ -281,19 +360,20 @@ boundbox). 동역학은 앞 장의 $k_j,R_n$ 을 그대로 쓴다 — 충$\cdot$
 \begin{enumerate}[label=\arabic*),leftmargin=2.0em,itemsep=2pt]
 \item \textbf{충$\cdot$방전 저율 OCV / 준평형(15/23/45℃)}: $|I|\to0$ 극한이라 분극$\cdot$lag 가 사라져
 $\Delta V_\obs\to\Delta V_\hys$(식~\eqref{eq:hys_split}). 충$\cdot$방전 dQ/dV peak 위치에서 $U_j^\dis,U_j^\chg$
-$\to$ 평균 중심 $U_j$ 와 gap $\Delta U_j^\hys$; 식~\eqref{eq:hys_dU} 의 역으로 $\Omega_j$(필요 시 $\gamma_j$);
-peak 폭$\cdot$면적에서 $w_j,Q_j$; 세 온도의 $U_j$ 기울기에서 $\partial U_j/\partial T$.
+$\to$ 평균 중심 $U_j$ 와 gap $\gamma_j\Delta U_j^\hys$; 식~\eqref{eq:hys_dU} 의 역으로 $\Omega_j$(spinodal 상한
+가정 시 $\gamma_j=1$, 아니면 $\gamma_j$ 와 함께); peak 폭$\cdot$면적에서 $w_j^b,Q_j$; 세 온도의 $U_j$ 기울기에서
+$\partial U_j/\partial T$.
 \item \textbf{0.1C$\cdot$0.2C $\times$ 15/23/45℃}: 율($0.1$ vs $0.2$C)과 온도 의존 broadening/shift 에서
 $R_n$ 과 $k_j(\Delta G_{a,j},\chi)$ 를 — 앞 장 $L_{q,j}\propto|I|/k_j$ 와 Arrhenius 로 — 분리.
-\item \textbf{예측}: 위 집합 $\{U_j,\Omega_j(\gamma_j),w_j,Q_j,\partial U_j/\partial T,\ k_j,R_n\}$ 으로 임의 율
-$\cdot$온도에서 충$\cdot$방전 dQ/dV 를 — 평형 branch(\S\ref{sec:hys_dQdV}) $+$ 동역학 분극(\S\ref{sec:hys_pol})
+\item \textbf{예측}: 위 집합 $\{U_j,\Omega_j,\gamma_j,w_j^b,Q_j,\partial U_j/\partial T,\ k_j,R_n\}$ 으로 임의
+율$\cdot$온도에서 충$\cdot$방전 dQ/dV 를 — 평형 분기(\S\ref{sec:hys_dQdV}) $+$ 동역학 분극(\S\ref{sec:hys_pol})
 으로 — 재구성한다.
 \end{enumerate}
 \begin{keybox}
 \textbf{닫힘 구조.} 열역학 파라미터는 \emph{충$\cdot$방전 저율 OCV} 에서, 동역학 파라미터는 \emph{율 series}
-에서 닫힌다 — 두 데이터원이 분리돼 있어 식별이 단계적이다. 히스테리시스의 핵심 한 양 $\Omega_j$ 가 저율 충방전
-gap 에서 직접 닫히므로, 다른 율$\cdot$온도의 충방전 dQ/dV 예측이 가능하다. 이는 앞 장의 (방전) 피팅 흐름을
-충방전 양방향으로 \emph{확장}한 것이다.
+에서 닫힌다 — 두 데이터원이 분리돼 있어 식별이 단계적이다. 히스테리시스의 핵심 한 양 $\Omega_j$(와 축소
+$\gamma_j$)가 저율 충방전 gap 에서 직접 닫히므로, 다른 율$\cdot$온도의 충방전 dQ/dV 예측이 가능하다. 이는 앞
+장의 (방전) 피팅 흐름을 충방전 양방향으로 \emph{확장}한 것이다.
 \end{keybox}
 
 % ====================================================================
