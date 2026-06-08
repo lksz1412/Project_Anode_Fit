@@ -34,10 +34,16 @@ Steps 32–54 (Phase 2.1–2.8).
 - **확정 PASS** — G2.1~G2.7 편집 반영(grep/diff), 빌드 0 undefined(G2.8 빌드분).
 - **확정 PASS** — 손검: eq:hys_master_center U_dis/chg=U_j±½γ_jΔU_hys, ΔU_hys=(2/sF)[Ω u−2RT artanh u]=eq:hys_dU 일치; eq:hys_master = Ch1 eq:master의 분기 확장. Ω≤2RT→ΔU→0 단일 peak, I→0→ΔV_obs→ΔV_hys 환원 검산 정합.
 - **확정 PASS** — Ch1↔Ch2 인용: (1.3)vapp·(1.4)dQdV·(1.19)Lq 정확. 단일문건 규율(§1 Chapter-1 언급 0, 신규 절은 도착식이지 인계/전달/결론 절 아님) 유지.
-- **미검증** — Codex 교차 적대검수: 본 phase 직후 foreground 1회 예정.
+- **확정 PASS** — Codex 교차 적대검수(foreground, agent ade8faf5) 완료. 신규 master 식·연결편집 검증; 원문 대조로 Ch1 인용(1.3/1.4/1.19) 일치 확인. 지적 4건 시정:
+  - B1 eq:hys_master_center: u_j 허수 방지 정의역 가드 `(Ω>2RT; Ω≤2RT⇒ΔU=0)` 추가.
+  - B2 §2.1: "Ω_j>0가 두 상으로 갈라지게"→"충분히 크면(Ω>2RT)" 상분리 기준 정정.
+  - S2 환원검산: 분기 폭 단상 폭 합쳐짐(w_dis=w_chg=w_j) 명시.
+  - S4 §2.1: "고용체라면 히스테리시스 없다"→"열역학적 히스테리시스 없다(분극 남음)".
+  - S1(eq:master 꼬리 게이트)·S3(충전 꼬리 방향)은 underbrace 조건/Ch1 단방향성으로 이미 커버 — 정상 판정.
+  재빌드 9p, 0 undefined.
 
 ## Gate
-**CONDITIONAL PASS** — 빌드·손검·정합 PASS. Codex 교차검수 직후 실행.
+**PASS** — 빌드·손검·Ch1정합·Codex(MAJOR 시정 후 0) 전부 PASS.
 
 ## Confirmed Non-Changes
 - 정확성 확인 유도(V_eq 2.5·spinodal 2.7·ΔU_hys 2.10 본체) 불변. 기존 §hys_param·§hys_fit 보존(신규 master 절이 통합·강화). 기존 라벨 불변(신규 sec:hys_master·eq:hys_master(_center)만 add).

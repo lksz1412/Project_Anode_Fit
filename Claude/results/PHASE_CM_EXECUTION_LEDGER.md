@@ -21,4 +21,6 @@ Branch: `rb-rebuild-2026-05-30`. Start commit: 9f06579.
 | 2.5 | 42-44 | 42-44 | ch2-dQdV | w_j^b 근거·bare V→V_n | PASS | PHASE_CM_ch2_RESULT.md | V_n 통일·근거 | G2.5 | 45 |
 | 2.6 | 45-46 | 45-46 | ch2-bib | reynier2004 orphan | PASS | PHASE_CM_ch2_RESULT.md | \cite 추가 | G2.6 | 47 |
 | 2.7 | 47-51 | 47-51 | ch2-master | 신규 충방전 종합식 sec:hys_master | PASS | PHASE_CM_ch2_RESULT.md | eq:hys_master(_center) 손검 | G2.7 | 52 |
-| 2.8 | 52-54 | 52-54 | ch2-verify | 빌드·Ch1정합·커밋(Codex 직후) | COND | PHASE_CM_ch2_RESULT.md | 빌드 0 undefined 9p; Codex 진행 | G2.8-build | done |
+| 2.8 | 52-54 | 52-54 | ch2-verify | 빌드·Ch1정합·Codex·커밋 | PASS | PHASE_CM_ch2_RESULT.md | 빌드 0 undefined 9p; Codex B1·B2·S2·S4 시정 후 MAJOR 0 | G2.8 | done |
+
+**Codex 교차검수(agent ade8faf5)**: Ch1 eq:master 정상(꼬리 게이트 underbrace 명시), §stattools C2-1 수정 정상(상수 오프셋 분산무관·eq:superpose 정합), 연결편집 모순 0. Ch2 B1(u_j 정의역)·B2(상분리 기준)·S2(분기폭)·S4(고용체 열역학 한정) 시정 완료. Ch1↔Ch2 인용(1.3/1.4/1.19) 원문 대조 일치.
