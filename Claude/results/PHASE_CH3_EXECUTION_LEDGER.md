@@ -8,8 +8,8 @@ Plan: `Claude/plans/2026-06-09-ch3-heat-build-plan.md` (v2). Branch `rb-rebuild-
 | 3.1 | 1-2 | 서론 | T 생성+히스 열원 동기·도착점 thread | PASS | 2p clean | G3.1 | 3 |
 | 3.2 | 3-4 | §1 기호 | 새 기호 표(Chapter-N 0) | PASS | clean | G3.2 | 5 |
 | 3.3 | 5-9 | §2 배경 | Bernardi 유도·세 갈래 분리(손검 부호·차원) | PASS | 3p clean | G3.3 | 10 |
-| 3.4 | 10-13 | §3 가역열 | q_rev (Ch1 1.15) | PENDING | | G3.4 | 14 |
-| 3.5 | 14-18 | §4 히스열 | q_hys (Ch2 ΔU_hys, 율무관) ★ | PENDING | | G3.5 | 19 |
+| 3.4 | 10-13 | §3 가역열 | q_rev=−IT∂V/∂T (Ch1 1.15)·부호·worked 30mJ | PASS | 4p clean | G3.4 | 14 |
+| 3.5 | 14-18 | §4 히스열 | q_hys=I·½γΔU_hys 율무관·loop면적 등가·worked 16mV ★ | PASS | 4p clean (ext 수정) | G3.5 | 19 |
 | 3.6 | 19-22 | §5 분극열 | q_pol (R_n+완화) | PENDING | | G3.6 | 23 |
 | 3.7 | 23-25 | §6 전이별 | dQ/dV·분기 연결 | PENDING | | G3.7 | 26 |
 | 3.8 | 26-29 | §7 열수지 | T(t)·τ_th·ΔT∞ | PENDING | | G3.8 | 30 |
