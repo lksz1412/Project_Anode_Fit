@@ -47,5 +47,15 @@
 - §8~§11: textbook 보강분 Codex 수치 검증 통과(FWHM·융합·진단표). clean.
 - **Ch1 종합: 누락·왜곡 0, 잔여 결함 1건 시정, 24p clean.**
 
-### Ch2 (진행 예정)
-(§서론부터 동일 루프)
+### 최대 effort 재패스 (2026-06-09, effort 리셋 후)
+박사님: effort 자동 하향 의심 → 최대 effort로 §1부터 재검토. NO Workflow(순차 master 루프, 상시 지시 > ultracode 기본값).
+- **Ch1 §1**: 표 전 항목 손검 통과. finding: $r_{a,j}$ 표 $(0,1]$ vs §8 $(0,1)$ → §8을 $(0,1]$로 시정(완료).
+- **Ch1 §2**: 전하보존·유일성(C_bg>0 단조·중간값 정리·평형분기 a fortiori) 손검 정확.
+- **Ch1 §3**: Stirling→μ(1.9)→eqcond(1.10)→logistic 부호반전→FWHM 3.53→dU/dT 전수 손검 정확.
+- **Ch1 §4·§5**: eq:relax 항등식·Eyring·L_q·db(χ상쇄)·keff·LqV 손검 정확.
+- **Ch1 §6·§7·§8–§11**: 이번 턴 검증 완료(§7 잔여 C2-1·worked example·master·진단표). 
+- **Ch1 종합(최대 effort): clean, 24p. 신규 시정 = §8 r_{a,j} 정의역.**
+
+### Ch2 (최대 effort 재패스 — 진행 중)
+- 이번 턴 §서론~§11 정독 완료, finding 2건 시정(§1 인력적→동종선호, §10 Ω_j/γ_j 식별성). 11p clean.
+- 잔여: 최대 effort 재손검 §1부터(다음 진행).
