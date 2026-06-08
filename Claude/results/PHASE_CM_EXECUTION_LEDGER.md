@@ -36,4 +36,6 @@ Branch: `rb-rebuild-2026-05-30`. Start commit: 9f06579.
 | 3.6 | 77-81 | 77-81 | ch2-§7 | 과전압 3원·kinetic lag 정량·수치 | PASS | 〃 | G3.6 | 82 |
 | 3.7 | 82-84 | 82-84 | ch2-§8 | Preisach·FORC·포락선 | PASS | 〃 | G3.7 | 85 |
 | 3.8 | 85-87 | 85-87 | ch2-§6 | 수치 예제 박스 | PASS | 〃 | G3.8 | 88 |
-| 3.9 | 88-90 | 88-90 | verify | 빌드 overfull0/undef0·Codex·커밋 | COND | 〃 | G3.9-build | done |
+| 3.9 | 88-90 | 88-90 | verify | 빌드 overfull0/undef0·Codex·커밋 | PASS | 〃 | G3.9 | done |
+
+**Codex 교차검수(agent a96db2fa)**: §6 수치 전부 정상(T_c596K·ξ_s{0.15,0.85}·ΔU54mV·γ32mV·8RT→0.22V), eq:hys_gpp·T_c·공통접선·lever rule·CNT 스케일링 정상. 보강 정밀도 5건 시정(vdW 부호↔−P, spinodal 장벽=준안정 최솟값 소멸, ΔV_kin factor 2, FORC 제약, major-loop 분기 명칭) → 재빌드 11p clean.

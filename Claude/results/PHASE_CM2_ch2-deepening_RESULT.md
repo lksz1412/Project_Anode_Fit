@@ -31,10 +31,10 @@ Steps 55–90 (Phase 3.1–3.9).
 ## Validation (4-tier)
 - **확정 PASS** — G3.1(절번호 2.x/1.x·overfull0)·G3.2~G3.8(보강 요소 grep 존재)·빌드 clean.
 - **확정 PASS** — 신규 수치 손검: T_c=2T=596K, ξ_s±=½±½√0.5≈{0.146,0.854}, γ·54=32.4mV, Ω=8RT→8.59RT/F=0.221V, |I|R_n=8mV·ΔV_pol=16mV 전부 재현. g''=RT/[ξ(1−ξ)]−2Ω=eq:hys_slope 정합. CNT·Preisach·vdW 표준.
-- **미검증** — Codex 교차검수: 본 phase 직후 foreground.
+- **확정 PASS** — Codex 교차검수(agent a96db2fa) 완료. eq:hys_gpp·T_c·공통접선·lever rule·§6 수치(T_c596K·ξ_s·54mV·32mV·0.22V·ΔV_pol16mV) 전부 정상 판정. 보강 정밀도 5건 시정: (2)vdW 부호대응 전위↔−P 명시, (3)spinodal 장벽=준안정 최솟값 소멸(CNT식 0 아님), (4)ΔV_kin factor 2(양분기), (6①)FORC "직접 잰다"→"제약", (6②)"spinodal 분기"→"major-loop 분기"(γ<1 정합), (1)볼록성 Ω>0 명시. 재빌드 11p 0 undefined·0 overfull.
 
 ## Gate
-**CONDITIONAL PASS** — 빌드·손검 PASS. Codex 직후.
+**PASS** — 빌드·손검·Codex(시정 후 0) 전부 PASS.
 
 ## Confirmed Non-Changes
 - 정확성 확인 유도(V_eq·spinodal·ΔU_hys·master) 식 본체 불변(eq:hys_gpp는 §4가 이미 쓰던 g''을 §2에 numbered로 승격, §4는 참조로 전환). 라벨 보존(신규 eq:hys_gpp만 add). 단일문건 규율 유지.
