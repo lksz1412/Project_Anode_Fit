@@ -24,3 +24,16 @@ Branch: `rb-rebuild-2026-05-30`. Start commit: 9f06579.
 | 2.8 | 52-54 | 52-54 | ch2-verify | 빌드·Ch1정합·Codex·커밋 | PASS | PHASE_CM_ch2_RESULT.md | 빌드 0 undefined 9p; Codex B1·B2·S2·S4 시정 후 MAJOR 0 | G2.8 | done |
 
 **Codex 교차검수(agent ade8faf5)**: Ch1 eq:master 정상(꼬리 게이트 underbrace 명시), §stattools C2-1 수정 정상(상수 오프셋 분산무관·eq:superpose 정합), 연결편집 모순 0. Ch2 B1(u_j 정의역)·B2(상분리 기준)·S2(분기폭)·S4(고용체 열역학 한정) 시정 완료. Ch1↔Ch2 인용(1.3/1.4/1.19) 원문 대조 일치.
+
+## PHASE_CM2 (Ch2 내용 심화 + 표기) — plan `2026-06-08-ch2-content-deepening-plan.md`
+| Phase | Planned | Actual | Block | Purpose | Status | Result | Gate | Next |
+|---|---:|---:|---|---|---|---|---|---:|
+| 3.1 | 55-58 | 55-58 | fmt | 절번호 2.x/1.x·식 2.12/2.13 다단·overfull0 | PASS | PHASE_CM2_ch2-deepening_RESULT.md | G3.1 | 59 |
+| 3.2 | 59-63 | 59-63 | ch2-§2.2 | 정규용액 미시기원·g''·T_c·공통접선·vdW | PASS | 〃 | G3.2 | 64 |
+| 3.3 | 64-68 | 64-68 | ch2-§2.3 | 세영역·핵생성 CNT·과주행·Dreyer | PASS | 〃 | G3.3 | 69 |
+| 3.4 | 69-72 | 69-72 | ch2-§4 | vdW loop·Maxwell·g'' 참조 | PASS | 〃 | G3.4 | 73 |
+| 3.5 | 73-76 | 73-76 | ch2-§5 | loop 일주·분기선택·U_j 중심 | PASS | 〃 | G3.5 | 77 |
+| 3.6 | 77-81 | 77-81 | ch2-§7 | 과전압 3원·kinetic lag 정량·수치 | PASS | 〃 | G3.6 | 82 |
+| 3.7 | 82-84 | 82-84 | ch2-§8 | Preisach·FORC·포락선 | PASS | 〃 | G3.7 | 85 |
+| 3.8 | 85-87 | 85-87 | ch2-§6 | 수치 예제 박스 | PASS | 〃 | G3.8 | 88 |
+| 3.9 | 88-90 | 88-90 | verify | 빌드 overfull0/undef0·Codex·커밋 | COND | 〃 | G3.9-build | done |
