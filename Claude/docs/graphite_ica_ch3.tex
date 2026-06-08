@@ -1,0 +1,176 @@
+% ====================================================================
+% graphite_ica_ch3.tex — Chapter 3 (신규: 흑연 음극의 발열)
+%   Ch1(전하보존·평형 peak·∂U/∂T·완화) + Ch2(충방전 히스테리시스·분기·R_n) 위에서
+%   가역 entropic 열 + 히스테리시스 소산열(율 무관) + 분극열(율 의존) + 열 수지 T(t).
+%   도착점 = 한 줄의 피팅 가능한 Q_gen 모델식 + 열 수지 + T(t) 예측.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극의 발열 — Chapter 3}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극의 발열 — Ch.3}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{boundbox}{유효 범위}
+\newtheorem*{flagbox}{비고}
+\newtheorem*{rigorbox}{심화}
+\newtheorem*{verifybox}{검산}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\amb}{\mathrm{amb}}
+\newcommand{\Th}{\mathrm{th}}
+\newcommand{\ohm}{\mathrm{ohm}}
+\newcommand{\lag}{\mathrm{lag}}
+
+\renewcommand{\theequation}{3.\arabic{equation}}
+\renewcommand{\thesection}{3.\arabic{section}}
+\title{\textbf{\LARGE Chapter 3}\\[0.35em]\Large 흑연 음극의 발열: 가역 entropic 열·히스테리시스 소산열·분극열}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서론}
+\addcontentsline{toc}{section}{서론}
+% ====================================================================
+앞 장들은 흑연 음극의 $\dd Q/\dd V$ peak(평형 isotherm·동역학 꼬리)와 충방전 히스테리시스(준안정 분기 갈림)를
+전하 보존 위에서 닫았다. 그 논리에서 \emph{온도} $T$ 는 줄곧 \emph{입력}이었다 — 평형 폭 $w_j=RT/F$, 속도상수
+$k_j$ 의 Arrhenius 인자, 그리고 히스테리시스 gap $\Delta U_j^\hys(\Omega_j,T)$ 까지 모두 외부에서 주어지는 $T$ 로
+계산했다. 그러나 실제 셀에서 $T$ 는 외부 입력이 아니다: 충방전 중 음극이 스스로 \emph{열을 내고}, 그 열이 국소
+$T$ 를 올리며, 바뀐 $T$ 는 다시 앞 장들의 모든 온도 의존 항으로 되먹임된다. 앞 장들이 ``$T$ 가 주어지면 peak 와
+분기는 어떻게 되는가''를 답했다면, 본 장은 그 앞단의 물음 — ``$T$ 는 어디서 오는가, 음극은 왜 얼마나 열을
+내는가''에 답한다.
+
+발열은 세 갈래로 갈린다. \textbf{가역 entropic 열}은 삽입 반응의 엔트로피 변화에서 오며, 앞 장 식~(1.15) 의
+$\partial U_j/\partial T=\Delta S_j/(sF)$ 위에 선다. \textbf{비가역 소산열}은 다시 둘로 나뉜다 — 하나는 전류에
+비례하는 \emph{분극}(저항 강하$\cdot$지연)이고, 다른 하나는 \textbf{충방전 히스테리시스}다. 후자가 본 장이 직전 장
+(히스테리시스) 위에 서는 까닭이다: 충전과 방전이 가역 평형 전위의 \emph{위$\cdot$아래로 갈린} 분기(식~(2.x))를
+따라가므로, 같은 전하를 충$\cdot$방전으로 오가면 그 분기 차 $\gamma_j\Delta U_j^\hys$ 만큼의 에너지가 열로
+흩어진다 — 그리고 이 손실은 \emph{전류를 $0$ 으로 줄여도 남는} 열역학적 발열이라, $|I|\to0$ 에서 사라지는 분극열과
+성격이 근본적으로 다르다.
+
+\textbf{도착점은 하나의 식이다.} 본 장은 마지막 절(\S\ref{sec:h_master})에서 발열률 $Q_\gen$ 을 \emph{한 줄}로
+모으고, 열 수지 $m c_p\,\dot T=Q_\gen-hA_s(T-T_\amb)$ 와 묶어 국소 온도 $T(t)$ 를 예측하는 닫힌 모델을 세운다. 앞
+장들에서 \emph{이미 닫힌} 파라미터 $\{U_j,\partial U_j/\partial T,\Omega_j,\gamma_j,R_n,k_j\}$ 에 \emph{새 열
+파라미터} $\{c_p,\,hA_s\}$ 둘만 더하면, 임의의 율$\cdot$환경 온도에서 음극의 발열과 승온을 예측한다. 그에 이르도록
+\emph{각 절은 그 식의 한 항을 세운다} — 가역열(\S\ref{sec:h_rev}), 히스테리시스 소산열(\S\ref{sec:h_hys}),
+분극열(\S\ref{sec:h_pol}), 열 수지(\S\ref{sec:h_balance}), 그리고 $T\leftrightarrow$peak 자기일관 되먹임
+(\S\ref{sec:h_feedback}).
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{기호와 규약}\label{sec:h_notation}
+% ====================================================================
+본 장에서 새로 도입하는 기호는 다음과 같다. 전하$\cdot$전위$\cdot$진행률$\cdot$부호 규약은 본 시리즈 공통이며,
+방전 $s=+1$ 을 기본으로 하고 \emph{발열}을 $Q_\gen>0$ 으로 둔다.
+\begin{longtable}{p{0.13\textwidth} p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.63\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$Q_\gen$ & W & 음극 발열률($>0$=발열) \\
+$q_\rev$ & W & 가역 entropic 열률 \\
+$q_\hys$ & W & 히스테리시스 소산 열률(율 무관 성분) \\
+$q_\pol$ & W & 분극 소산 열률(율 의존 성분) \\
+$\eta_\hys$ & V & 분기 이탈 과전압 $=\sum_j\tfrac12\gamma_j\Delta U_j^\hys$ \\
+$\eta_\pol$ & V & 분극 과전압 $=|I|R_n+$완화 지연 \\
+$V_{n,\OCV}^\rev$ & V & 가역(gap 없는) 평형 음극 전위 — 참 평형 기준(binodal/mean) \\
+$m$ & kg & 음극(또는 셀) 유효 질량 \\
+$c_p$ & J/(kg\,K) & 유효 비열 \\
+$h$ & W/(m$^2$K) & 대류 열전달계수 \\
+$A_s$ & m$^2$ & 방열 표면적 \\
+$hA_s$ & W/K & 집중 냉각 컨덕턴스 \\
+$T_\amb$ & K & 환경(주위) 온도 \\
+$\tau_\Th$ & s & 열 시상수 $=mc_p/(hA_s)$ \\
+$\Delta T_\infty$ & K & 정상상태 승온 $=Q_\gen/(hA_s)$ \\
+$I,\ s_I$ & A,\ --- & 전류와 그 부호 규약(방전 $s_I=+1$) \\
+\bottomrule
+\end{longtable}
+$F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$. 전이별 양 $\{U_j,\partial U_j/\partial T,\Omega_j,
+\gamma_j,Q_j,R_n,k_j\}$ 는 앞 장들에서 닫혀 본 장의 \emph{기지 입력}이다.
+
+% ====================================================================
+\section{사전 지식 — 에너지 수지와 발열의 세 갈래}\label{sec:h_bg}
+% ====================================================================
+음극을 하나의 제어부피로 보고 열역학 1법칙을 쓴다. 단위 시간에 반응이 내놓는 화학에너지(엔탈피)와 외부 회로가
+가져가는 전기적 일의 차가 열로 나타난다. 정전류 $I$ 에서 반응 진행 속도는 전하 보존(식~(1.1))으로 $I/(sF)$
+$[\mathrm{mol/s}]$ 에 비례한다.
+
+\textbf{반응 엔탈피와 전기적 일.} 반응의 Gibbs 에너지는 평형 전위로 $\Delta G=-sF\,V_{n,\OCV}^\rev$ 이고
+엔탈피는 $\Delta H=\Delta G+T\Delta S$ 다. 엔트로피는 $\Delta S=-\partial\Delta G/\partial T=sF\,\partial
+V_{n,\OCV}^\rev/\partial T$ (앞 장 식~(1.15) 의 $\partial U_j/\partial T=\Delta S_j/(sF)$ 를 평형 전위 전체로 모은
+것). 단위 시간에 반응이 내놓는 엔탈피는 $-\Delta H\cdot I/(sF)=I\,V_{n,\OCV}^\rev-I\,T\,\partial
+V_{n,\OCV}^\rev/\partial T$ 이고, 외부가 가져가는(또는 넣는) 전기적 일은 음극 측정 전위로 $I\,V_\app$ 다. 그 차가
+발열률이다:
+\begin{equation}
+\boxed{\;Q_\gen=\underbrace{I\,(V_\app-V_{n,\OCV}^\rev)}_{q_\irr\ \ge\ 0\ \text{(소산)}}
+\;-\;\underbrace{I\,T\,\frac{\partial V_{n,\OCV}^\rev}{\partial T}}_{q_\rev\ \text{(가역 entropic)}}\;}
+\label{eq:h_bernardi}
+\end{equation}
+이것이 표준 \textbf{Bernardi 발열식}~\cite{bernardi1985} 의 음극 판이다. \emph{음극은 방전 시 산화로 전위가 평형
+\emph{위}로 밀리므로}($V_\app>V_{n,\OCV}^\rev$, 즉 과전압 $\eta\equiv V_\app-V_{n,\OCV}^\rev$ 가 전류와 같은
+방향) $q_\irr=I\eta\ge0$ — \emph{항상 발열}. 가역 항 $q_\rev=-I\,T\,\partial V_{n,\OCV}^\rev/\partial T$ 는
+부호가 가변이라($\partial V/\partial T<0$ 이면 방전서 발열), 전류를 뒤집으면 발열↔흡열이 바뀐다.
+\begin{verifybox}
+\textbf{차원$\cdot$부호.} $q_\irr=I\eta$: $\mathrm{A\cdot V=W}$ \checkmark. $q_\rev=IT\,\partial V/\partial T$:
+$\mathrm{A\cdot K\cdot(V/K)=W}$ \checkmark. $|I|\to0$ 에서 $q_\irr\to0$(소산은 전류가 있어야), 가역 항도
+$\propto I$ 라 무전류서 발열 없음 — 단 \emph{히스 성분}은 아래처럼 $\eta_\hys$ 가 $|I|$ 와 무관해 단위 전하당 열이
+남는다.
+\end{verifybox}
+
+\textbf{비가역 몫이 다시 둘로 갈린다 — 본 장이 직전 장 위에 서는 곳.} 가역 기준 $V_{n,\OCV}^\rev$ 를 \emph{gap
+없는 참 평형}(직전 장의 binodal/Maxwell 평탄 전위)으로 두면, 측정 전위의 이탈 $\eta=V_\app-V_{n,\OCV}^\rev$ 는
+\emph{두 성분}의 합이다:
+\begin{equation}
+\eta=\underbrace{\eta_\hys}_{\text{분기 이탈(율 무관)}}+\underbrace{\eta_\pol}_{\text{분극(율 의존)}},\quad
+\eta_\hys=\sum_j\tfrac12\gamma_j\Delta U_j^\hys,\quad \eta_\pol=|I|R_n+\text{완화 지연}.
+\label{eq:h_eta_split}
+\end{equation}
+충$\cdot$방전이 가역 평형의 \emph{위$\cdot$아래}로 갈린 분기(식~(2.x), $U_j^{\dis/\chg}=U_j\pm\tfrac12\gamma_j
+\Delta U_j^\hys$)에 앉아 있다는 사실 자체가 $\eta_\hys$ 만큼의 \emph{율 무관} 과전압을 만들고, 그 위에 전류 비례
+분극 $\eta_\pol$ 이 얹힌다. 따라서 발열은 \emph{세 갈래}다:
+\begin{equation}
+\boxed{\;Q_\gen=q_\rev+q_\hys+q_\pol,\qquad q_\hys=I\,\eta_\hys,\quad q_\pol=I\,\eta_\pol\;.}
+\label{eq:h_three}
+\end{equation}
+\begin{keybox}
+\textbf{발열의 세 갈래.} \emph{가역 entropic}($q_\rev$, 부호 가변, $\partial U_j/\partial T$ 에서) $+$
+\emph{히스테리시스 소산}($q_\hys$, \emph{율 무관} — 단위 전하당 $\tfrac12\gamma_j\Delta U_j^\hys$ 라 $|I|\to0$ 에서도
+남음) $+$ \emph{분극 소산}($q_\pol$, 율 의존, $|I|\to0$ 소멸). 다음 세 절이 각각을 앞 장 결과 위에서 닫는다.
+\end{keybox}
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI: 10.1149/1.2113792.
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley-Interscience (2004). ISBN 978-0-471-47756-3.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). DOI: 10.1149/1.1646152.
+\end{thebibliography}
+
+\end{document}
