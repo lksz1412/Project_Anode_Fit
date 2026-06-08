@@ -46,8 +46,11 @@ Plan: `Claude/plans/2026-06-09-ch3-heat-build-plan.md` (v2). Branch `rb-rebuild-
 | 3.16 | §4 | 준정적 비가역(핵생성 장벽)·binodal/spinodal 발열 상하한·다입자 | PASS clean |
 | 3.17 | §5 | 과전압 3분해(ohmic·η_ct·확산)·완화 소산 | PASS 9p |
 | 3.19 | §7 | lumped 타당성 Biot·Duhamel 시변 해·다cycle(가역 상쇄/비가역 누적) | PASS 9p |
-| 3.18·3.20·3.21·3.22 | §6·§8·§9/10·§11 | (남음) | TODO |
-| 3.23 | 전체 | 빌드·Codex·커밋 | TODO |
+| 3.20 | §8 | 선형 안정성 dQ_gen/dT<hA_s·runaway 임계 | PASS 9p |
+| 3.22 | §11 | 종합 worked(0.2C 방전 세갈래·ΔT∞·되먹임) | PASS 9p |
+| 3.18·3.21 | §6·§9/10 | (원 깊이 유지, 후속 보강 가능) | 보류 |
+| 3.23 | 전체 | 빌드 9p 0/0·Codex·커밋 | 진행 |
+보강: 서론·§2·§3·§4·§5·§7·§8·§11 (8/10절) 교과서 깊이. 8p→9p.
 
 ## Findings (절별)
 - 신규 작성, 8p, overfull 0·undefined 0. 단일문건 규율: 본문 챕터명 0·§1 Chapter-N 0.
