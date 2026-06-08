@@ -49,8 +49,10 @@ Plan: `Claude/plans/2026-06-09-ch3-heat-build-plan.md` (v2). Branch `rb-rebuild-
 | 3.20 | §8 | 선형 안정성 dQ_gen/dT<hA_s·runaway 임계 | PASS 9p |
 | 3.22 | §11 | 종합 worked(0.2C 방전 세갈래·ΔT∞·되먹임) | PASS 9p |
 | 3.18·3.21 | §6·§9/10 | (원 깊이 유지, 후속 보강 가능) | 보류 |
-| 3.23 | 전체 | 빌드 9p 0/0·Codex·커밋 | 진행 |
+| 3.23 | 전체 | 빌드 9p 0/0·Codex·커밋 | PASS |
 보강: 서론·§2·§3·§4·§5·§7·§8·§11 (8/10절) 교과서 깊이. 8p→9p.
+**Codex 보강검수(agent a1edb01)**: 수치 전부 정상(가역30·히스16·분극8mV; C_th50·ΔT∞0.24K). 2법칙·과전압 3분해·Biot/Duhamel 정상. 확정 시정 1: **§3 ∂S_mix/∂θ=R ln[(1−θ)/θ] 단조**(S_mix와 미분 혼용 오류)→부호 진동은 비이상 staging ordering서. 완화 2: §4 γ_j>0 조건(아무리 느려도→핵생성 충분시), §8 포함항 합 부호·Arrhenius 대표(유일 X). 재빌드 9p 0/0.
+§6·§9/10은 원 깊이 유지(후속 보강 가능).
 
 ## Findings (절별)
 - 신규 작성, 8p, overfull 0·undefined 0. 단일문건 규율: 본문 챕터명 0·§1 Chapter-N 0.
