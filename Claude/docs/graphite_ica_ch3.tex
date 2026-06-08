@@ -301,6 +301,17 @@ $1$ C 당 약 $16$ mJ, \emph{율 무관}. 같은 전이 한 번 방전(전하 $Q
 ohmic$\cdot$전하전달 몫 $|I|^2R_n$ 은 Joule 형이라 전류 부호와 무관하게 $\ge0$. 완화 지연 몫 $q_\lag$ 은 진행률이
 평형을 즉시 못 따라가 생긴 과전압 $\times$ 전류로, 저온$\cdot$고율서 $L_{q,j}$(식~(1.19))가 커질수록 커진다.
 
+\textbf{과전압의 세 갈래(소산 출처).} 분극 과전압 $\eta_\pol$ 자체가 셋으로 나뉜다 — (i) \emph{ohmic}
+$\eta_\ohm=|I|R_\ohm$(전해질$\cdot$접촉 저항; Joule 열 $I^2R_\ohm$), (ii) \emph{전하전달} $\eta_\mathrm{ct}\approx
+(RT/F)\,|I|/i_0$(소전류 선형, 교환전류 $i_0$; 열 $\eta_\mathrm{ct}I\approx I^2RT/(Fi_0)$), (iii) \emph{확산(농도)}
+$\eta_\mathrm{conc}$(고체상$\cdot$전해질 농도 분극). 세 저항이 $R_n=R_\ohm+RT/(Fi_0)+R_\mathrm{conc}$ 로 묶여 앞
+장의 유효 분극 저항이 된다(소전류 선형화). 셋 다 $\propto I^2$ 라 \emph{고율서 급증}하며 $|I|\to0$ 소멸한다.
+
+\textbf{완화 지연 소산($q_\lag$).} 위 \emph{순간} 과전압과 별도로, 진행률 $\xi_j$ 가 평형 목표를 \emph{시간 지연}으로
+못 따라가 생긴 과전압도 소산한다 — 앞 장 완화(식~(1.16))의 지연 $r_j=\xi_{\eq,j}-\xi_j$ 에 대응하는 과전압이
+전류와 곱해 $q_\lag$ 이 되고, 지연 길이 $L_{q,j}$(식~(1.19))가 큰 저온$\cdot$고율서 커지며 $|I|\to0$(지연 $0$)서
+사라진다. 정량은 율 series 피팅으로 $R_n$ 과 함께 닫으므로 따로 분리하지 않는다.
+
 \textbf{율 의존 — 히스와 분리.} $q_\pol\propto|I|^2$(또는 $|I|\times$과전압)라 $|I|\to0$ 에서 \emph{사라진다}.
 따라서 저율 외삽($|I|\to0$)이 분극열을 떼어내고 히스열($q_\hys$, 율 무관)만 남긴다 — 직전 장의 ``참/분극
 분리''가 발열에도 그대로 적용된다.
@@ -348,6 +359,22 @@ $\sim1.6$ mV(히스의 $1/10$). \emph{저율 히스 지배, 고율 분극 지배
 $Q_\gen\sim I\times54\,\mathrm{mV}$. 소형 셀 $hA_s\sim0.1\,\mathrm{W/K}$, $I\sim1$ A 면 $Q_\gen\sim54$ mW,
 $\Delta T_\infty\sim0.5$ K. 고율($5$C)$\cdot$단열 근접서는 수 K 이상.
 \end{verifybox}
+
+\textbf{집중 모델은 언제 타당한가 — Biot 수.} 식~\eqref{eq:h_balance} 은 전극 \emph{내부}가 균일 $T$ 라 본다.
+이는 내부 전도가 표면 방열보다 빠를 때 — \emph{Biot 수} $Bi=hL/k_\Th\ll1$($L$=특성 두께, $k_\Th$=열전도도) —
+성립한다. 박막 전극$\cdot$소형 셀은 보통 $Bi\ll1$ 이라 집중 모델로 충분하며 내부 온도 분포(DFN 식 공간 해)는
+불필요하다. $Bi\gtrsim1$(두껍거나 큰 셀)이면 표면--중심 온도차가 생겨 두께 방향 해가 필요하나, 본 장은 $Bi\ll1$
+lumped 에 한정한다.
+
+\textbf{시변 발열과 다 cycle.} $Q_\gen(t)$ 가 시간에 변하면(SOC 따라 세 갈래가 변함) 해는 Duhamel 적분
+\begin{equation}
+T(t)=T_\amb+\frac{1}{mc_p}\int_0^t e^{-(t-t')/\tau_\Th}\,Q_\gen(t')\,\dd t'
+\label{eq:h_duhamel}
+\end{equation}
+즉 $Q_\gen$ 을 시상수 $\tau_\Th$ 로 \emph{평활한 누적}이 승온이다. 반복 cycle 에서 한 cycle 적분을 보면, 가역열은
+왕복서 $\oint(-IT\,\partial U/\partial T)\,\dd t\approx0$ 으로 \emph{상쇄}되고 히스$\cdot$분극(항상 발열)만 누적되므로
+— \textbf{cycle 누적 순 승온은 비가역(히스$+$분극) 발열이 정한다}. 가역열은 \emph{cycle 안에서} 데웠다 식히는
+진동만 만든다.
 
 % ====================================================================
 \section{$T\leftrightarrow$peak 자기일관 되먹임}\label{sec:h_feedback}

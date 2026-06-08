@@ -42,7 +42,12 @@ Plan: `Claude/plans/2026-06-09-ch3-heat-build-plan.md` (v2). Branch `rb-rebuild-
 |---|---|---|---|
 | 3.13 | 서론 | "왜 발열을(ICA·수명·안전)" 큰 그림 | PASS clean |
 | 3.14 | §2 | 2법칙 엔트로피생성 σ̇=Iη/T≥0·De Donder·세갈래 규모비교; **eq:h_three 정합 시정(q_hys=|I|Σα)** | PASS clean |
-| 3.15~3.22 | §3~§11 | (진행 예정) | TODO |
+| 3.15 | §3 | 삽입 엔트로피 두 출처·staging ∂U/∂T 부호 물리 | PASS clean |
+| 3.16 | §4 | 준정적 비가역(핵생성 장벽)·binodal/spinodal 발열 상하한·다입자 | PASS clean |
+| 3.17 | §5 | 과전압 3분해(ohmic·η_ct·확산)·완화 소산 | PASS 9p |
+| 3.19 | §7 | lumped 타당성 Biot·Duhamel 시변 해·다cycle(가역 상쇄/비가역 누적) | PASS 9p |
+| 3.18·3.20·3.21·3.22 | §6·§8·§9/10·§11 | (남음) | TODO |
+| 3.23 | 전체 | 빌드·Codex·커밋 | TODO |
 
 ## Findings (절별)
 - 신규 작성, 8p, overfull 0·undefined 0. 단일문건 규율: 본문 챕터명 0·§1 Chapter-N 0.
