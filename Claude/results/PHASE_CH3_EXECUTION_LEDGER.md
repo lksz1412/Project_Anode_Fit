@@ -37,6 +37,13 @@ Plan: `Claude/plans/2026-06-09-ch3-heat-build-plan.md` (v2). Branch `rb-rebuild-
 | 참/분극 분리 | Ch2 **2.5** | §2·§5 | .aux 대조 ✓ |
 | T_c=Ω/2R | Ch2(verifybox) | §4·§8 되먹임 | 무번호(검산박스) |
 
+## 볼륨 보강 (Phase 3.13~, plan `2026-06-09-ch3-volume-enhancement-plan.md`)
+| Phase | 절 | 보강 | Status |
+|---|---|---|---|
+| 3.13 | 서론 | "왜 발열을(ICA·수명·안전)" 큰 그림 | PASS clean |
+| 3.14 | §2 | 2법칙 엔트로피생성 σ̇=Iη/T≥0·De Donder·세갈래 규모비교; **eq:h_three 정합 시정(q_hys=|I|Σα)** | PASS clean |
+| 3.15~3.22 | §3~§11 | (진행 예정) | TODO |
+
 ## Findings (절별)
 - 신규 작성, 8p, overfull 0·undefined 0. 단일문건 규율: 본문 챕터명 0·§1 Chapter-N 0.
 - 손검: Bernardi 부호(음극 방전 전위 상승→q_irr=I(V_app−V_OCV)≥0)·q_hys 율무관·loop면적 등가·환원검산 통과.
