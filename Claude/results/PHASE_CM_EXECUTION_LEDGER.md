@@ -14,11 +14,11 @@ Branch: `rb-rebuild-2026-05-30`. Start commit: 9f06579.
 | 1.7 | 19-23 | 19-23 | ch1-synth | 분포↔단일지수·메타·부록 | PASS | PHASE_CM_ch1_RESULT.md | 선택 명시·메타/부록 제거 | G1.7 | 24 |
 | 1.8 | 24-28 | 24-28 | ch1-master | 신규 최종 종합식 절 sec:master | PASS | PHASE_CM_ch1_RESULT.md | eq:master 손검·4요소 | G1.8 | 29 |
 | 1.9 | 29-31 | 29-31 | ch1-verify | 빌드·커밋(Codex 말미 일괄) | COND | PHASE_CM_ch1_RESULT.md | 빌드 0 undefined 21p; Codex 보류 | G1.9-build | 32 |
-| 2.1 | 32-34 | | ch2-notation | γ_j 정의역·서론 thread | PENDING | | | G2.1 | 35 |
-| 2.2 | 35-36 | | ch2-staging | 일차성 보강 | PENDING | | | G2.2 | 37 |
-| 2.3 | 37-39 | | ch2-origins | 두 기원 중복 축약 | PENDING | | | G2.3 | 40 |
-| 2.4 | 40-41 | | ch2-branch | ΔU_hys 로그 이중화 | PENDING | | | G2.4 | 42 |
-| 2.5 | 42-44 | | ch2-dQdV | w_j^b 근거·bare V→V_n | PENDING | | | G2.5 | 45 |
-| 2.6 | 45-46 | | ch2-bib | reynier2004 orphan | PENDING | | | G2.6 | 47 |
-| 2.7 | 47-51 | | ch2-master | 신규 충방전 종합식 절 | PENDING | | | G2.7 | 52 |
-| 2.8 | 52-54 | | ch2-verify | 빌드·Ch1정합·Codex·커밋 | PENDING | | | G2.8 | done |
+| 2.1 | 32-34 | 32-34 | ch2-notation | γ_j 정의역·서론 thread | PASS | PHASE_CM_ch2_RESULT.md | γ_j [0,1]·thread | G2.1 | 35 |
+| 2.2 | 35-36 | 35-36 | ch2-staging | 일차성 보강 | PASS | PHASE_CM_ch2_RESULT.md | 일차성 기원 문장 | G2.2 | 37 |
+| 2.3 | 37-39 | 37-39 | ch2-origins | 두 기원 중복 축약 | PASS | PHASE_CM_ch2_RESULT.md | §3 포인터화 | G2.3 | 40 |
+| 2.4 | 40-41 | 40-41 | ch2-branch | ΔU_hys 로그 이중화 | PASS | PHASE_CM_ch2_RESULT.md | −4 artanh·2u 명시 | G2.4 | 42 |
+| 2.5 | 42-44 | 42-44 | ch2-dQdV | w_j^b 근거·bare V→V_n | PASS | PHASE_CM_ch2_RESULT.md | V_n 통일·근거 | G2.5 | 45 |
+| 2.6 | 45-46 | 45-46 | ch2-bib | reynier2004 orphan | PASS | PHASE_CM_ch2_RESULT.md | \cite 추가 | G2.6 | 47 |
+| 2.7 | 47-51 | 47-51 | ch2-master | 신규 충방전 종합식 sec:hys_master | PASS | PHASE_CM_ch2_RESULT.md | eq:hys_master(_center) 손검 | G2.7 | 52 |
+| 2.8 | 52-54 | 52-54 | ch2-verify | 빌드·Ch1정합·커밋(Codex 직후) | COND | PHASE_CM_ch2_RESULT.md | 빌드 0 undefined 9p; Codex 진행 | G2.8-build | done |
