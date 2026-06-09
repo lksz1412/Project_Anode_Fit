@@ -647,7 +647,11 @@ $|I|/(Q_\cell k_j)=(\mathrm{C/s})/(\mathrm C\cdot\mathrm{s^{-1}})=1$ — $q$ 와
 \emph{국소 근사}다}: 정확한 지연 해는
 \[ r_j(q)=r_j(q_a)\exp\!\Big[-\int_{q_a}^q\frac{\dd q'}{L_{q,j}(q')}\Big] \]
 이고, 꼬리 감쇠 길이 안에서 구동력 $\mathcal A_j$(따라서 $k_j$)가 천천히 변해 $|\dd L_{q,j}/\dd q|\ll1$ 일 때만 $L_{q,j}$ 를
-그 구간 상수로 보고 적분 밖으로 뺀다(slowly-varying). 급변 구간에서는 단일 지수가 깨져 \S\ref{sec:dist} 의 중첩으로 넘어간다.
+그 구간 상수로 보고 적분 밖으로 뺀다(slowly-varying). 이 조건을 구동력으로 구체화하면 — $V_\drive=V_n$ 이라 $\mathcal A_j$
+가 꼬리 좌표 자체를 따라 변하므로, 한 감쇠 길이 $L_{V,j}$ 동안 $\ln L_q$ 의 변화량
+$|\partial\ln L_{q,j}/\partial V_n|\,L_{V,j}=(\chi F/RT)L_{V,j}\ll1$(식~\eqref{eq:LqV}) — 이어야 한다. 전형값($\chi=0.5$,
+$L_{V,j}\sim5$ mV, $25^\circ$C)으로 $\approx0.1$ 이라 성립하나 \emph{경계적}이다: $\chi$ 가 크거나 꼬리가 길면 위반되고,
+그때 꼬리는 위치마다 감쇠율이 변하는 형으로 휘어 \S\ref{sec:dist} 의 중첩으로 넘어간다.
 \end{verifybox}
 
 \subsection{온도$\cdot$C-rate 의존 — 관찰과의 일치}
@@ -661,6 +665,8 @@ L_{q,j}\simeq\frac{|I|}{Q_\cell}\frac{h}{k_BT}\exp\!\Big[\frac{\Delta G_{a,j}}{R
 \end{cases}
 \label{eq:tailTC}
 \end{equation}
+(``peak 낮아짐''은 직접 효과가 아니라 \emph{면적 보존 경유}다 — 꼬리로 미뤄지는 용량만큼 중심이 깎인다;
+꼬리 우세 시의 한계는 \S\ref{sec:synth} 3$\times$3 표의 단서 참조.)
 
 \textbf{단일지수에서 늘어진(stretched) 꼬리로 — 후반부의 동기.} 위 꼬리는 \emph{한 입자$\cdot$한 배리어}
 $\Delta G_{a,j}$ 가정의 \emph{단일 지수}다. 그러나 실제 전극의 꼬리는 그보다 \emph{늘어져}(stretched) 관측된다 —
@@ -895,8 +901,9 @@ exponential)를 준다. \S\ref{sec:dist} 는 이 \emph{네 본문 도구}(변수
 \item \textbf{입자별 배리어 차이.} 큰 입자/작은 입자, 결정성이 좋은/나쁜 입자, staging 환경이 다른 도메인은
   같은 전이라도 넘어야 할 활성화 장벽이 다르다.
 \item \textbf{배리어 분포.} 한 값 대신 \emph{분포} $\rho_G(G)$ 로 기술한다(\S\ref{sec:stattools} 의 밀도;
-  정규화 식~\eqref{eq:norm} $\int_0^\infty\rho_G(G)\,\dd G=1$). $\rho_G$ 는 입자 크기 분포$\cdot$국소 상태에서
-  오는 \emph{독립} 물리량이며, 각 집단이 관측 $\dd Q$ 에 내는 \emph{용량 몫}까지 흡수한 \emph{용량 가중} 분포다. (구동력 $\mathcal A_j$ 는 집단 공통 —
+  정규화 식~\eqref{eq:norm} $\int_0^\infty\rho_G(G)\,\dd G=1$). $\rho_G$ 는 꼬리에서 역산하지 않고 입자 크기$\cdot$국소
+  상태 분포에 용량-반경 매핑을 곱해 \emph{독립으로 모형}하는 용량-분율 분포다(\S\ref{sec:stattools} 식별 주의$\cdot$아래
+  boundbox). (구동력 $\mathcal A_j$ 는 집단 공통 —
   동일 평균장 $V_n$ — 이라 분포는 배리어 $G$ 에만 둔다.)
 \item \textbf{집단별 꼬리 길이.} 장벽 $G$ 인 집단은 식~\eqref{eq:Lq},~\eqref{eq:keff} 로 자신의 꼬리
   길이 $L_{q}(G)\simeq\dfrac{|I|}{Q_\cell}\dfrac{h}{k_BT}\,e^{(G-\chi\mathcal A_j)/RT}$ 를 갖는다(\emph{활성화 지배}
@@ -950,6 +957,9 @@ $A_L=0$). 본문에는 이 형식이 필요 없다 — 식~\eqref{eq:superpose} 
 입자 \emph{내부}의 일차 전이로 이미 그 입자의 평형 $\xi_{\eq,j}$ 형태에 흡수돼 있고, 본 절의 독립은 \emph{입자 \emph{간}}
 (서로 다른 입자)에만 적용된다 — 내부 협동 $\ne$ 집단 간 독립이라 모순이 아니다. 또 $\rho_G$ 가 배리어 $G$ \emph{하나}로 모든 집단
 차이를 흡수한다는 것($r_a(G)\cdot L_V(G)$ 와의 상관이 평균장$\cdot$단일전위 $V_n$ 근사로 제한)이 본 절의 최강 가정이다.
+같은 맥락에서 $q_a$ 는 평형 형태가 정하는 \emph{집단 공통} 좌표라 — 빠른 집단(작은 $L_q$)은 $q_a$ 이전에 이미 거의
+완화하고 느린 집단은 상승부 잔여가 남을 수 있어 — $r_a(G)$ 를 공통 $q_a$ 에서 평가하는 것은 분포 폭이 상승부 폭보다
+좁을 때의 \emph{1차 근사}다(그 상관은 꼬리를 더 무겁게 미는 방향이라 stretched 결론을 약화시키지 않는다).
 또 stretched 꼬리에서 $\rho_G$ 로의 역산은
 \emph{비유일}하므로($\rho_G$ 외 다른 메커니즘도 같은 꼬리를 낼 수 있다), $\rho_G$ 를 꼬리에서 역산하지 않고
 독립 측정/모형한 $\rho_G$ 로 \emph{forward 예측}만 한다(\S\ref{sec:falsify}).
@@ -958,8 +968,9 @@ $A_L=0$). 본문에는 이 형식이 필요 없다 — 식~\eqref{eq:superpose} 
 % ====================================================================
 \section{종합: 피팅 가능한 식과 3$\times$3 의존성}\label{sec:synth}
 % ====================================================================
-위 다섯 \emph{물리} 절(전하 보존 $\to$ 평형 $\to$ 지연 $\to$ 유효 배리어 $\to$ 분포; 통계 도구절
-\S\ref{sec:stattools} 제외)을 묶으면 $\dd Q/\dd V$ 가 $(V;\,T,|I|,V_\drive)$ 의 닫힌 함수가 된다. peak 의
+위 여섯 \emph{물리} 절(전하 보존 $\to$ 평형 $\to$ 정규용액 $\to$ 지연 $\to$ 유효 배리어 $\to$ 분포; 통계 도구절
+\S\ref{sec:stattools} 제외 — 정규용액은 본 절의 \emph{방전 단일 전이} 닫힌식엔 $w_j$ 의 물리적 근거(식~\eqref{eq:weff})로,
+충방전 분기엔 \S\ref{sec:hys_branch} 로 들어간다)를 묶으면 $\dd Q/\dd V$ 가 $(V;\,T,|I|,V_\drive)$ 의 닫힌 함수가 된다. peak 의
 위치$\cdot$너비$\cdot$높이는 세 인자에 \emph{각각} 어떻게 반응하는가? 그리고 실무에 바로 쓸 가장 단순한 식은?
 
 \subsection{닫힌 형태 — ``평형에서 지연을 뺀 것의 미분''}

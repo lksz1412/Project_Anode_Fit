@@ -20,3 +20,9 @@ Plan: `Claude/plans/2026-06-10-full-rereview-physics-pedagogy-plan.md` (GO 6-10 
 | 6 | §전하보존 | 175–245(전문) | — | Faraday 계상 근거+선형분할(서로소 자리)·C_bg>0 물리출처(단상 안정성)·plateau 발산=서론 peak 정의와 연결 | (물리 결함 없음 — 이전 라운드 수렴 확인) | 35p 0/0 |
 | 7 | §평형peak | 256–438(전문) | s 이중고정 해소(규약/관측 역할 분리) | (iii) s-흡수 괄호 단순화·"perturbation"→임계까지 포함 정정 | 유도부(Stirling·logistic·FWHM)는 검산 일치라 무수정 | 0/0 |
 | 8 | §정규용액 | 441–549(전문) | "한 연속"→한 모수축+질적 경계(임계) 정정·V_eq 정의 인용 정정 | z[ε]=유효 척도(장거리 층간 탄성 뭉뚱그림, Daumas–Hérold)·spinodal 닫힌꼴 본절 제시(spine) | g''·T_c·binodal 연립·w_eff 검산 일치 | 0/0 |
+| 9 | §동역학 | 552–679(전문) | — | eq:tailTC "peak 낮아짐"=면적보존 경유 주석·slowly-varying 조건 구체화 (χF/RT)L_V≪1≈0.1 수치 | relax·Lq·rsol·tail 재검산 일치 | 0/0 |
+| 10 | §유효배리어 | 682–809(전문) | — | — | r⁺/r⁻ 지수·χ상쇄·LqV 감쇠인자 재검산 일치, 3구간·Marcus bound·직렬율속 정비완료 — 보강시 중복 | 0/0 |
+| 11 | §통계도구 | 812–890(전문) | — | — | 4도구+jacobian 격하·varprop·KWW 조건부 정비완료 | 0/0 |
+| 12 | §분포 | 893–962(전문) | (b) "독립 물리량"→독립 모형(매핑 경로) 정합 | boundbox 공통 q_a 1차근사 한계+상관 방향(stretched 강화) | superpose·보존·rigorbox 검산 일치 | 0/0 |
+| 13 | §종합 | 965–1136(전문) | 물리 절 목록 "다섯"→여섯(정규용액 누락 적발)+진입 경로 명시 | — | closed·simplefit·S1–S4·arrhenius 재검산 일치 | 0/0 |
+| 14 | §겹침 | 1139–1194(전문) | — | — | 반치반폭 유도·분기 peak쌍 확장·forward 절차 정비완료 — 무수정 | 0/0 |
