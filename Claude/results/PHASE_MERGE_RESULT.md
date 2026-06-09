@@ -33,6 +33,8 @@
 ## 4. 잔여(경미, 차후) — 4-tier: 미검증/추정 아님, 명시 defer
 - λ(Marcus) 정성 인용 전용 명시 / V_{n,OCV} 사용처 / k_j 인자2 bridge 1줄 / 전하보존 비평형 V_n=Q_bg^{-1} 서술 보강 / S5 γ·Ω 분리 다온도 의존 표기. 모두 결론 무영향(의존성·기울기 보존), 정합 1줄 보강감.
 
-## 5. 미완
-- PART A 본문 자체는 물리 건전(검수서 확정오류 0)·§정규용액·통합 master 로 연결됨. 단 "구 Ch1 복사" 한계는 잔존(경미 정합). 50p 는 패딩 아닌 PART A genuine 심화로만.
-- 구 ch2 아카이브·정식 ch1 승격은 최종 확정 후.
+## 5. 승격 완료(M19) + genuine 심화
+- merged → **graphite_ica_ch1.tex 승격**, 구 ch2→old/, Ch3/Ch4 인계 식번호 라벨기준 재매핑(전부 0/0). merged.tex 제거(ch1 이 정식).
+- **심화 1 — 유효 폭 $w_j^\eff=(RT/F)(1-\Omega_j/2RT)$ (식 eq:weff, 패딩 아님·전부 사용)**: 평형조건 $V_n$ 미분서 손유도. (a) staging peak 가 이상 $RT/F$ 보다 날카로운 까닭, (b) $w_j$ 에 물리근거·\emph{온도의존}($w_j(T)=(RT-\Omega/2)/F$, 한 온도 $w_j\to\Omega_j\to$ 타 온도 예측), (c) 폭의 $\Omega_j$ = gap 의 $\Omega_j$ \emph{과결정 교차검증}(§검증). §정규용액 도입→§master $w_j$ 행 근거→§검증 일치, 완전 통합.
+- **심화 2 — DVA($\dd V/\dd Q$) 절(sec:dva)**: 프로젝트 목표(ICA·DVA) 정합. peak↔valley 대응(DVA peak=stage 경계, ICA peak=plateau), 왜 둘 다(경계 강건성·용량 직접성·교차검증·노화 LLI/LAM), 같은 $\{w_j,\Omega_j,\gamma_j,R_n\}$ — 새 물리 아님, 같은 모델 두 그림. eq:weff·eq:Lq·sec:hys_branch 인용(통합).
+- ch1 **30p** 0/0. 심화로 식번호 재차 이동 → Ch3(1.20/1.21/1.23/1.48/1.49)·Ch4(1.20/1.27/1.28/1.29) 재매핑·재빌드 undef 0. 분량은 패딩 아닌 실질 결과.
