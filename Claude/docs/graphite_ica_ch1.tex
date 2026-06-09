@@ -591,8 +591,10 @@ $\xi_{\eq,j}(1-\xi_{\eq,j})\to0$, 따라서 $\dd\xi_{\eq,j}/\dd q\simeq0$ 이다
 \boxed{\;L_{q,j}=\frac{|I|}{Q_\cell\,k_j}\;}.
 \label{eq:Lq}
 \end{equation}
-여기 $k_j=r_j^++r_j^-$ 이나, 꼬리 영역($\mathcal A_j\gtrsim RT$)에서는 \emph{forward 우세}라 $k_j\simeq r_j^+=k_j^\eff$
-(식~\eqref{eq:keff})로 읽는다 — 즉 본 식과 아래 모든 꼬리 표현의 $k_j$ 는 \emph{유효 속도} $k_j^\eff$ 다. peak 중심의
+여기 $k_j=r_j^++r_j^-$ 이나, 꼬리 영역($\mathcal A_j\gtrsim RT$)에서는 \emph{forward 우세}라 $k_j\simeq r_j^+\equiv k_j^{\mathrm{fwd}}$
+(식~\eqref{eq:keff})로 읽는다 — 즉 본 식과 아래 모든 꼬리 표현의 $k_j$ 는 이 forward 속도 $k_j^{\mathrm{fwd}}$ 다(이는
+\S\ref{sec:barrier} 의 \emph{직렬 율속} $k_j^\eff$ 와 다른 양 — $k_j^\eff$ 는 $k_{j,\mathrm{act}}\!\simeq\!k_j^{\mathrm{fwd}}$ 를 공율속과
+직렬 합성한 것). peak 중심의
 $k_j\simeq2r_j^+$ 와의 인자 차는 $L_q$ \emph{절대값}을 정확히 $2$배 바꾸지만, 그것은 피팅 prefactor $k_0$ 에 흡수돼
 \emph{온도$\cdot$전위 의존성과 Arrhenius 기울기}(본 장이 뽑는 양)에는 무영향이다(절대값은 $k_0$ 와 함께 닫힘) —
 ``무영향''은 절대값이 아니라 \emph{의존성}에 대해서다.
@@ -1041,10 +1043,11 @@ $\approx5.6\,Q_\cell/\mathrm V$ — \emph{평형만 보면 저온서 더 좁고 
 e^{\Delta H_a/RT}$ 는 $\Delta H_a=40$ kJ/mol 이면 $25^\circ$C$\to-15^\circ$C 에서 약 $12$배 길어져(\S\ref{sec:lag}),
 꼬리가 평형 폭을 넘어서면($L_{V,j}\gtrsim w_j$) 관측 peak 는 거꾸로 \emph{저온서 넓고$\cdot$낮고$\cdot$비대칭}이
 된다 — 표의 너비$\cdot$높이 $T$ 열에서 평형과 꼬리가 반대로 미는 바로 그 칸이다. 이 한 예가 본 장 전체의
-관찰(저온 긴 꼬리)을 수치로 압축한다. \emph{이 수치는 뒤에서 쓰인다}: $91$ mV 는 \emph{이상 극한($\Omega_j=0$)
-상한}이라($\Omega_j\ne0$ 실측 staging peak 는 $w^\eff$ 로 더 좁다, 식~\eqref{eq:weff}), $S_1$ 의 OCV peak 판독에서
-\emph{상한 sanity-check}(읽은 FWHM 이 $91$ mV 를 넘으면 이상 폭보다 넓음=꼬리 오염 신호)이고, 다음 절 융합 판정
-(\S\ref{sec:overlap})이 동일 폭 가정 하 이 규모를 전이 간격과 비교하는 입력으로 받는다.
+관찰(저온 긴 꼬리)을 수치로 압축한다. \emph{이 수치는 뒤에서 쓰인다}: $91$ mV 는 \emph{이상 극한($\Omega_j=0$) FWHM
+상한}이다 — 실측 staging peak 는 더 좁다(단상 $\Omega_j<2RT$ 면 $w^\eff$ 로, 식~\eqref{eq:weff}; 상분리 $\Omega_j>2RT$ 면
+plateau 라 더욱 날카로움, \S\ref{sec:hys_peak}). 따라서 $S_1$ 의 OCV peak 판독에서 \emph{상한 sanity-check}(읽은 FWHM 이
+$91$ mV 를 넘으면 이상 폭보다 넓음=꼬리 오염 신호)으로만 쓰고 — \emph{등호로 닫지 않는다}; 다음 절 융합 판정
+(\S\ref{sec:overlap})도 이 $91$ mV 를 \emph{이상 상한 규모}로(동일 폭 가정 하) 전이 간격과 비교하는 입력으로 받는다.
 \end{verifybox}
 
 \textbf{식별 순서(비순환).} \emph{평형항과 꼬리항을 한 데이터에서 동시}에 자유 피팅하면 둘이 같은 전위창서 섞여
@@ -1189,8 +1192,9 @@ stage \emph{plateau}를 표시}한다 — 같은 전이의 양쪽 정보다.
   잡음 모형 의존 정량 문제로 본 장 범위 밖).
 \item \textbf{용량의 직접성}: ICA peak \emph{면적}은 곧 $Q_j$(전이 용량)다 — DVA 에선 valley 폭으로 간접적이다.
 \item \textbf{교차검증}: \emph{DVA valley} 수 $=$ ICA \emph{peak} 수 $=N_p$(둘 다 $U_j$ 표시; DVA \emph{peak}=경계는 전이
-  \emph{사이}라 별개로 셈), \emph{DVA valley 위치 $=$ ICA peak 위치 $=U_j$}. 같은 양을 두 좌표에서 읽어 — 독립 정보는
-  아니나 서로 다른 추정 경로의 \emph{일치}로 잡음$\cdot$기저선 오류를 잡는다.
+  \emph{사이}라 별개로 셈), \emph{DVA valley 위치 $=$ ICA peak 위치 $=U_j$}. 두 좌표는 전단사라 \emph{독립 정보가 아니므로
+  잡음을 통계적으로 줄이진 못한다} — 다만 같은 데이터를 두 표현에서 읽어 \emph{판독$\cdot$기저선 처리의 \textbf{절차 오류}}
+  (peak 누락$\cdot$경계 오지정 등)를 교차 점검하는 데 그친다(비통계적).
 \end{enumerate}
 노화 진단에서 \emph{DVA peak 간격}의 변화가 전극별 용량 손실(LLI$\cdot$LAM)을 분리하는 표준 도구인 것도 같은
 이유다 \cite{dubarry2012,bloom2005} — 경계 위치가 강건하기 때문.
