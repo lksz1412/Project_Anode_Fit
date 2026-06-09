@@ -7,7 +7,10 @@ Plan: `Claude/plans/2026-06-10-full-rereview-physics-pedagogy-plan.md` (GO 6-10 
 | Phase/Subphase | Planned Steps | Actual Steps | Block | Purpose | Status | Plan | Result | Machine Artifacts | Validation | Gate | Next Step |
 |---|---:|---:|---|---|---|---|---|---|---|---|---:|
 | 1.1 | 1–3 | 1–3 | setup | 지침·메모리 재확인, _Fable 사본, 절 지도, baseline 빌드+스냅샷 | PASS | plans/2026-06-10-full-rereview-physics-pedagogy-plan.md | (본 ledger 헤더) | *_Fable.tex/pdf/aux | 빌드 3×0/0, 스냅샷 기록 | PASS_FRR_SETUP | 4 |
-| 1.2 | 4–14 | — | ch1 PART A | 절별 재작업(서론~겹침) | IN_PROGRESS | 〃 | PHASE_FRR_ch1_RESULT.md(작성중) | — | — | — | 4 |
+| 1.2/1.3 | 4–21 | 4–21 | ch1 절별 | 18절 전문 정독 재작업 | PASS | 〃 | PHASE_FRR_ch1_RESULT.md | ch1_Fable.pdf 35p | 빌드 0/0·절별 기록 | PASS_FRR_CH1_SECTIONS | 22 |
+| 1.4 | 22–24 | 22–24 | ch1 gate | 2-pass·인계 불변·규율 0·result | PASS | 〃 | 〃 | .aux 스냅샷 | 인계 전수 일치 | PASS_FRR_CH1_GATE | 25 |
+| 3.1–3.3 | 25–38 | 25–38 | ch3 | 11절 전문 정독·η_hys 가중 정합·앞 장 표현 | PASS | 〃 | PHASE_FRR_ch3_RESULT.md | ch3_Fable.pdf 9p | 빌드 0/0·인계 일치 | PASS_FRR_CH3_GATE | 39 |
+| 4.1–4.3 | 39–49 | 39–49 | ch4 | 8절 전문 정독·전 유도 검산 일치(무수정) | PASS | 〃 | PHASE_FRR_ch4_RESULT.md | (무수정) | 검산 전수 일치 | PASS_FRR_CH4_GATE | 50 |
 
 ## Ch1_Fable 절 지도 (baseline 행 기준)
 서론 61–110 · §기호 113–170 · §전하보존 171–240 · §평형peak 241–425 · §정규용액 426–533 · §동역학 534–659 · §유효배리어 660–783 · §통계 784–864 · §분포 865–936 · §종합 937–1110 · §겹침 1111–1168 · §DVA 1169–1211 · §분기 1212–1296 · §분기dQdV 1297–1323 · §분극 1324–1359 · §부분cycle 1360–1379 · §master 1380–1526 · §검증 1527–끝
