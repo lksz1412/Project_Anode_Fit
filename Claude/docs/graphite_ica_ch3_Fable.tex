@@ -1,0 +1,479 @@
+% ====================================================================
+% graphite_ica_ch3.tex — Chapter 3 (신규: 흑연 음극의 발열)
+%   Ch1(전하보존·평형 peak·∂U/∂T·완화) + Ch2(충방전 히스테리시스·분기·R_n) 위에서
+%   가역 entropic 열 + 히스테리시스 소산열(율 무관) + 분극열(율 의존) + 열 수지 T(t).
+%   도착점 = 한 줄의 피팅 가능한 Q_gen 모델식 + 열 수지 + T(t) 예측.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극의 발열 — Chapter 3}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극의 발열 — Ch.3}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{boundbox}{유효 범위}
+\newtheorem*{flagbox}{비고}
+\newtheorem*{rigorbox}{심화}
+\newtheorem*{verifybox}{검산}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\amb}{\mathrm{amb}}
+\newcommand{\Th}{\mathrm{th}}
+\newcommand{\ohm}{\mathrm{ohm}}
+\newcommand{\lag}{\mathrm{lag}}
+
+\renewcommand{\theequation}{3.\arabic{equation}}
+\renewcommand{\thesection}{3.\arabic{section}}
+\title{\textbf{\LARGE Chapter 3}\\[0.35em]\Large 흑연 음극의 발열: 가역 entropic 열·히스테리시스 소산열·분극열}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서론}
+\addcontentsline{toc}{section}{서론}
+% ====================================================================
+앞 장들은 흑연 음극의 $\dd Q/\dd V$ peak(평형 isotherm·동역학 꼬리)와 충방전 히스테리시스(준안정 분기 갈림)를
+전하 보존 위에서 닫았다. 그 논리에서 \emph{온도} $T$ 는 줄곧 \emph{입력}이었다 — 평형 폭 $w_j=RT/F$, 속도상수
+$k_j$ 의 Arrhenius 인자, 그리고 히스테리시스 gap $\Delta U_j^\hys(\Omega_j,T)$ 까지 모두 외부에서 주어지는 $T$ 로
+계산했다. 그러나 실제 셀에서 $T$ 는 외부 입력이 아니다: 충방전 중 음극이 스스로 \emph{열을 내고}, 그 열이 국소
+$T$ 를 올리며, 바뀐 $T$ 는 다시 앞 장들의 모든 온도 의존 항으로 되먹임된다. 앞 장들이 ``$T$ 가 주어지면 peak 와
+분기는 어떻게 되는가''를 답했다면, 본 장은 그 앞단의 물음 — ``$T$ 는 어디서 오는가, 음극은 왜 얼마나 열을
+내는가''에 답한다.
+
+발열은 세 갈래로 갈린다. \textbf{가역 entropic 열}은 삽입 반응의 엔트로피 변화에서 오며, 앞 장 식~(1.15) 의
+$\partial U_j/\partial T=\Delta S_j/(sF)$ 위에 선다. \textbf{비가역 소산열}은 다시 둘로 나뉜다 — 하나는 전류에
+비례하는 \emph{분극}(저항 강하$\cdot$지연)이고, 다른 하나는 \textbf{충방전 히스테리시스}다. 후자가 본 장이 직전 장
+(히스테리시스) 위에 서는 까닭이다: 충전과 방전이 가역 평형 전위의 \emph{위$\cdot$아래로 갈린} 분기(식~(1.49))를
+따라가므로, 같은 전하를 충$\cdot$방전으로 오가면 그 분기 차 $\gamma_j\Delta U_j^\hys$ 만큼의 에너지가 열로
+흩어진다 — 그리고 이 손실은 \emph{전류를 $0$ 으로 줄여도 남는} 열역학적 발열이라, $|I|\to0$ 에서 사라지는 분극열과
+성격이 근본적으로 다르다.
+
+\textbf{왜 발열을 알아야 하는가.} 첫째, 발열이 만든 국소 $T$ 는 앞 장들의 \emph{모든} 온도 의존 항 — 평형 폭
+$w_j=RT/F$, 속도상수 $k_j$(Arrhenius), 히스 gap $\Delta U_j^\hys(T)$ — 을 바꾼다. $T$ 를 상수로 두고 ICA 를
+읽으면 peak 의 위치$\cdot$너비$\cdot$분기 간격을 잘못 본다. 둘째, 누적 발열에 의한 국소 과열은 \emph{열화}(SEI
+성장$\cdot$용량 손실)를 가속한다. 셋째, 양의 되먹임 부반응이 끼면 \emph{열 폭주}(safety)의 출발점이 된다. 즉
+발열은 ICA 정밀도$\cdot$수명$\cdot$안전을 잇는 \emph{앞단} 물리이며, 본 장은 그 발열을 앞 장들의 \emph{이미 닫힌}
+양으로부터 정량한다.
+
+\textbf{도착점은 하나의 식이다.} 본 장은 마지막 절(\S\ref{sec:h_master})에서 발열률 $Q_\gen$ 을 \emph{한 줄}로
+모으고, 열 수지 $m c_p\,\dot T=Q_\gen-hA_s(T-T_\amb)$ 와 묶어 국소 온도 $T(t)$ 를 예측하는 닫힌 모델을 세운다. 앞
+장들에서 \emph{이미 닫힌} 파라미터 $\{U_j,\partial U_j/\partial T,\Omega_j,\gamma_j,R_n,k_j\}$ 에 \emph{새 열
+파라미터} $\{c_p,\,hA_s\}$ 둘만 더하면, 임의의 율$\cdot$환경 온도에서 음극의 발열과 승온을 예측한다. 그에 이르도록
+\emph{각 절은 그 식의 한 항을 세운다} — 가역열(\S\ref{sec:h_rev}), 히스테리시스 소산열(\S\ref{sec:h_hys}),
+분극열(\S\ref{sec:h_pol}), 열 수지(\S\ref{sec:h_balance}), 그리고 $T\leftrightarrow$peak 자기일관 되먹임
+(\S\ref{sec:h_feedback}).
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{기호와 규약}\label{sec:h_notation}
+% ====================================================================
+본 장에서 새로 도입하는 기호는 다음과 같다. 전하$\cdot$전위$\cdot$진행률$\cdot$부호 규약은 본 시리즈 공통이며,
+방전 $s=+1$ 을 기본으로 하고 \emph{발열}을 $Q_\gen>0$ 으로 둔다.
+\begin{longtable}{p{0.13\textwidth} p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.63\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+$Q_\gen$ & W & 음극 발열률($>0$=발열) \\
+$q_\rev$ & W & 가역 entropic 열률 \\
+$q_\hys$ & W & 히스테리시스 소산 열률(율 무관 성분) \\
+$q_\pol$ & W & 분극 소산 열률(율 의존 성분) \\
+$\eta_\hys$ & V & 분기 이탈 과전압 $=\sum_j\tfrac12\gamma_j\Delta U_j^\hys$ \\
+$\eta_\pol$ & V & 분극 과전압 $=|I|R_n+$완화 지연 \\
+$V_{n,\OCV}^\rev$ & V & 가역(gap 없는) 평형 음극 전위 — 참 평형 기준(binodal/mean) \\
+$m$ & kg & 음극(또는 셀) 유효 질량 \\
+$c_p$ & J/(kg\,K) & 유효 비열 \\
+$h$ & W/(m$^2$K) & 대류 열전달계수 \\
+$A_s$ & m$^2$ & 방열 표면적 \\
+$hA_s$ & W/K & 집중 냉각 컨덕턴스 \\
+$T_\amb$ & K & 환경(주위) 온도 \\
+$\tau_\Th$ & s & 열 시상수 $=mc_p/(hA_s)$ \\
+$\Delta T_\infty$ & K & 정상상태 승온 $=Q_\gen/(hA_s)$ \\
+$I,\ s_I$ & A,\ --- & 전류와 그 부호 규약(방전 $s_I=+1$) \\
+\bottomrule
+\end{longtable}
+$F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$. 전이별 양 $\{U_j,\partial U_j/\partial T,\Omega_j,
+\gamma_j,Q_j,R_n,k_j\}$ 는 앞 장들에서 닫혀 본 장의 \emph{기지 입력}이다.
+
+% ====================================================================
+\section{사전 지식 — 에너지 수지와 발열의 세 갈래}\label{sec:h_bg}
+% ====================================================================
+음극을 하나의 제어부피로 보고 열역학 1법칙을 쓴다. 단위 시간에 반응이 내놓는 화학에너지(엔탈피)와 외부 회로가
+가져가는 전기적 일의 차가 열로 나타난다. 정전류 $I$ 에서 반응 진행 속도는 전하 보존(식~(1.1))으로 $I/(sF)$
+$[\mathrm{mol/s}]$ 에 비례한다.
+
+\textbf{가역 몫과 비가역 몫.} 가역 기준 $V_{n,\OCV}^\rev$ 는 충$\cdot$방전 분기의 \emph{평균 중심}(식~(1.49) 의
+$U_j$, gap 없는 참 평형)을 진행에 따라 모은 평형 전위다. 발열은 그 위에서 \emph{가역}(entropic)과 \emph{비가역}
+(소산) 두 몫으로 갈린다.
+\emph{가역}: 반응 엔트로피 $\Delta S=sF\,\partial V_{n,\OCV}^\rev/\partial T$(앞 장 식~(1.15) 의 $\partial
+U_j/\partial T=\Delta S_j/(sF)$ 를 $V_{n,\OCV}^\rev$ 전체로 모은 것)가 정하는 열로, 단위 전하당 $-T\,\partial
+V_{n,\OCV}^\rev/\partial T$, 율로는 $q_\rev=-I\,T\,\partial V_{n,\OCV}^\rev/\partial T$.
+\emph{비가역}: 전극은 가역 평형에서 \emph{과전압} $\eta\equiv V_\app-V_{n,\OCV}^\rev$ 만큼 벗어나야 전류를 흘리고,
+그 여분 전기적 일이 되돌릴 수 없이 열로 흩어진다: $q_\irr=I\,\eta=I(V_\app-V_{n,\OCV}^\rev)$. 음극은 방전 시
+산화로 전위가 평형 \emph{위}로 밀리므로($\eta>0$, 전류와 같은 방향) $q_\irr\ge0$ — \emph{항상 발열}. 둘을 합치면
+표준 \textbf{Bernardi 발열식}~\cite{bernardi1985} 의 음극 판이다:
+\begin{equation}
+\boxed{\;Q_\gen=\underbrace{I\,(V_\app-V_{n,\OCV}^\rev)}_{q_\irr\ \ge\ 0\ \text{(소산)}}
+\;-\;\underbrace{I\,T\,\frac{\partial V_{n,\OCV}^\rev}{\partial T}}_{q_\rev\ \text{(가역 entropic)}}\;.}
+\label{eq:h_bernardi}
+\end{equation}
+가역 항은 부호가 가변이라($\partial V/\partial T<0$ 이면 방전서 발열) 전류를 뒤집으면 발열↔흡열이 바뀌고,
+비가역 항은 전류 방향과 무관하게 항상 발열이다.
+\begin{verifybox}
+\textbf{차원$\cdot$부호.} $q_\irr=I\eta$: $\mathrm{A\cdot V=W}$ \checkmark. $q_\rev=IT\,\partial V/\partial T$:
+$\mathrm{A\cdot K\cdot(V/K)=W}$ \checkmark. $|I|\to0$ 에서 $q_\irr\to0$(소산은 전류가 있어야), 가역 항도
+$\propto I$ 라 무전류서 발열 없음 — 단 \emph{히스 성분}은 아래처럼 $\eta_\hys$ 가 $|I|$ 와 무관해 단위 전하당 열이
+남는다.
+\end{verifybox}
+
+\textbf{2법칙 — 비가역열은 왜 항상 발열인가.} 비가역 소산이 $\ge0$ 인 것은 우연이 아니라 \emph{열역학 2법칙}의
+직접 결과다. 전극 반응의 \emph{엔트로피 생성률}은 친화도(affinity) $\mathcal A$ 와 flux 의 곱으로
+\begin{equation}
+\dot\sigma=\frac{\mathcal A\,\dot\xi}{T}=\frac{(F\eta)\,(I/F)}{T}=\frac{I\,\eta}{T}\ \ge\ 0
+\label{eq:h_entprod}
+\end{equation}
+(De Donder 부등식; 친화도 $\mathcal A=F\eta$ 는 앞 장들의 $\mathcal A_j=sF(V_\drive-U_j)$ 와 같은 구조다). 생성된
+엔트로피에 $T$ 를 곱한 것이 곧 소산열 $q_\irr=T\dot\sigma=I\eta\ge0$ 이다 — \emph{과전압과 전류가 같은 방향이라
+그 곱이 음이 될 수 없다}. 가역열은 이와 달리 \emph{엔트로피 교환}(반응 엔트로피 $\Delta S$ 의 출입)이라 부호가
+자유롭다(발열/흡열). 즉 같은 ``$IT\partial U/\partial T$''라도 가역열은 2법칙이 부호를 묶지 않고, 비가역열만 묶는다.
+
+\textbf{비가역 몫이 다시 둘로 갈린다 — 본 장이 직전 장 위에 서는 곳.} 가역 기준 $V_{n,\OCV}^\rev$ 를 \emph{gap
+없는 참 평형}(직전 장의 binodal/Maxwell 평탄 전위)으로 두면, 측정 전위의 이탈 $\eta=V_\app-V_{n,\OCV}^\rev$ 는
+\emph{두 성분}의 합이다:
+\begin{equation}
+\eta=\underbrace{\eta_\hys}_{\text{분기 이탈(율 무관)}}+\underbrace{\eta_\pol}_{\text{분극(율 의존)}},\quad
+\eta_\hys=\sum_j\tfrac12\gamma_j\Delta U_j^\hys,\quad \eta_\pol=|I|R_n+\text{완화 지연}.
+\label{eq:h_eta_split}
+\end{equation}
+충$\cdot$방전이 가역 평형의 \emph{위$\cdot$아래}로 갈린 분기(식~(1.49), $U_j^{\dis/\chg}=U_j\pm\tfrac12\gamma_j
+\Delta U_j^\hys$)에 앉아 있다는 사실 자체가 $\eta_\hys$ 만큼의 \emph{율 무관} 과전압을 만들고, 그 위에 전류 비례
+분극 $\eta_\pol$ 이 얹힌다. 따라서 발열은 \emph{세 갈래}다:
+\begin{equation}
+\boxed{\;Q_\gen=q_\rev+q_\hys+q_\pol,\quad q_\hys=|I|\textstyle\sum_j\alpha_j\tfrac12\gamma_j\Delta U_j^\hys\ge0,\ \ q_\pol=|I|^2R_n+q_\lag\ge0\;.}
+\label{eq:h_three}
+\end{equation}
+($\alpha_j=|I_j|/|I|$=전이 $j$ 전류 분율; 자세한 $q_\hys$ 는 \S\ref{sec:h_hys}, $q_\pol$ 은 \S\ref{sec:h_pol}.)
+\begin{verifybox}
+\textbf{세 갈래 규모 비교(단위 전하당, $25^\circ$C 대표).} 가역 $|{-}T\partial U/\partial T|\sim30$ mV(부호 가변)
+$\cdot$ 히스 $\tfrac12\gamma\Delta U_j^\hys\sim16$ mV(율 무관) $\cdot$ 분극 $|I|R_n\sim8$ mV($0.2$C, 율 의존). 셋이
+\emph{같은 수십 mV 규모}라 어느 하나도 못 버린다 — 저율선 히스$\cdot$가역이, 고율선 분극이 커진다.
+\end{verifybox}
+\begin{keybox}
+\textbf{발열의 세 갈래.} \emph{가역 entropic}($q_\rev$, 부호 가변, $\partial U_j/\partial T$ 에서) $+$
+\emph{히스테리시스 소산}($q_\hys$, \emph{율 무관} — 단위 전하당 $\tfrac12\gamma_j\Delta U_j^\hys$ 라 $|I|\to0$ 에서도
+남음) $+$ \emph{분극 소산}($q_\pol$, 율 의존, $|I|\to0$ 소멸). 다음 세 절이 각각을 앞 장 결과 위에서 닫는다.
+\end{keybox}
+
+% ====================================================================
+\section{가역 entropic 열}\label{sec:h_rev}
+% ====================================================================
+가역열은 Bernardi 식~\eqref{eq:h_bernardi} 의 둘째 항 $q_\rev=-I\,T\,\partial V_{n,\OCV}^\rev/\partial T$ 다. 그
+온도계수를 앞 장 결과 위에서 전개한다(재유도 아니라 인계).
+
+\textbf{전이별 합으로.} 가역 평형 전위 $V_{n,\OCV}^\rev(q)$ 는 진행에 따라 전이 $j$ 의 평탄을 차례로 지난다. 한
+전이의 평형 중심 전위 $U_j$ 의 온도계수는 앞 장 식~(1.15) 로 $\partial U_j/\partial T=\Delta S_j/(sF)$
+($\Delta S_j$=전이 $j$ 의 삽입 반응 엔트로피)다. 어느 전이가 국소 활성인지는 평형 가중 $\dd\xi_{\eq,j}/\dd q$ 가
+정하므로 전체 온도계수는 그 가중 평균이고, 한 평탄을 지날 때는 그 전이의 값이 그대로다:
+\begin{equation}
+\frac{\partial V_{n,\OCV}^\rev}{\partial T}=\frac{\sum_j(\partial U_j/\partial T)\,\dd\xi_{\eq,j}/\dd q}
+{\sum_j\dd\xi_{\eq,j}/\dd q}\ \xrightarrow{\text{한 평탄}}\ \frac{\Delta S_\mathrm{loc}}{sF}.
+\label{eq:h_dVdT}
+\end{equation}
+따라서 가역열은
+\begin{equation}
+\boxed{\;q_\rev=-I\,T\,\frac{\partial V_{n,\OCV}^\rev}{\partial T}=-\frac{I\,T}{sF}\,\Delta S_\mathrm{loc}\;}
+\label{eq:h_qrev}
+\end{equation}
+($\Delta S_\mathrm{loc}$=국소 활성 전이의 반응 엔트로피).
+
+\textbf{삽입 엔트로피의 두 출처.} $\Delta S_j$ 는 어디서 오는가? 둘이다. (i) \emph{배열(configurational) 엔트로피}
+— 격자기체 섞임 엔트로피 $S_\mathrm{mix}=-R[\theta\ln\theta+(1-\theta)\ln(1-\theta)]$(앞 장 식~(1.6))의 \emph{부분몰}
+형 $\partial S_\mathrm{mix}/\partial\theta=R\ln\dfrac{1-\theta}{\theta}$ — $\theta\to0$ 서 $+\infty$, $\theta=\tfrac12$
+서 $0$, $\theta\to1$ 서 $-\infty$ 로 $\theta$ 에 \emph{단조}하다. (ii) \emph{진동$\cdot$전자 엔트로피} — Li 가 들어가며
+층간 격자 진동 모드와 전자 상태가 바뀌는 몫. 둘의 합이 $\partial U_j/\partial T=\Delta S_j/(sF)$ 를 정한다.
+
+\textbf{왜 부호가 바뀌는가 — staging 질서화.} \emph{이상 배열 항만으론 $\theta$ 에 단조}라 부호 진동을 못 낸다.
+진동을 만드는 것은 \emph{staging 질서}(비이상 ordering)다: stage 1$\cdot$2 처럼 질서 잡힌 상은 Li 가 규칙적으로
+자리잡아 배열 엔트로피가 \emph{이상 값보다 억눌리고}, 그 사이 무질서 영역은 덜 억눌린다. 그 비이상 ordering
+엔트로피(와 진동$\cdot$전자 몫)가 $\Delta S_j$(나아가 $\partial U_j/\partial T$)에 \emph{골과 마루}를 새겨 부호를
+바꾼다 — 측정된 흑연 $\partial U/\partial T(\mathrm{SOC})$ 곡선의 진동이 곧 staging 질서화의 지문이며(배열 ordering
+이 주되나 유일하진 않음)~\cite{reynier2004}, 이것이 아래 가역열을 SOC 따라 데웠다 식혔다 하게 만든다.
+
+\textbf{부호의 물리.} 흑연은 staging 전이에 따라 $\partial U_j/\partial T$ 의 부호가 SOC 로 바뀐다(엔트로피 측정으로
+알려짐~\cite{reynier2004}). $\partial U/\partial T<0$ 구간에서 방전($I>0$)은 $q_\rev>0$(발열), $\partial
+U/\partial T>0$ 구간에서는 $q_\rev<0$(흡열) — 즉 가역열은 \emph{같은 셀이 SOC 에 따라 데웠다 식었다} 한다.
+전류를 뒤집으면(충전) 부호가 통째로 바뀐다. 이것이 분극$\cdot$히스 소산열(항상 발열)과 가역열을 구별하는
+표식이다.
+\begin{verifybox}
+\textbf{worked example.} $\partial U_j/\partial T\simeq-0.1\ \mathrm{mV/K}$(흑연 대표 규모), $T=298$ K 에서 단위
+전하당 가역열 $=-T\,\partial U/\partial T=298\times0.1\times10^{-3}=29.8$ mV $\approx0.03$ V — 통과 전하 $1$ C 당
+약 $30$ mJ. 같은 전이의 분극 과전압(수십 mV)과 비슷한 규모라 \emph{무시할 수 없다}.
+\end{verifybox}
+
+% ====================================================================
+\section{히스테리시스 소산열}\label{sec:h_hys}
+% ====================================================================
+\textbf{분기 이탈이 곧 과전압.} 직전 장에서 충$\cdot$방전은 가역 평형 $V_{n,\OCV}^\rev$ 의 위$\cdot$아래로 갈린
+분기 $U_j^{\dis/\chg}=U_j\pm\tfrac12\gamma_j\Delta U_j^\hys$(식~(1.49))를 따라간다. 따라서 측정 전위는 가역 평형에서
+분기 쪽으로 $\tfrac12\gamma_j\Delta U_j^\hys$ 만큼 \emph{이미} 벗어나 있다 — 전류와 무관하게. 이 이탈이
+$\eta_\hys$ 이고, Bernardi 소산 $q_\irr=I\eta$ 의 일부로 열이 된다:
+\begin{equation}
+\boxed{\;q_\hys=\sum_j I_j\,\tfrac12\gamma_j\Delta U_j^\hys=|I|\sum_j\alpha_j\,\tfrac12\gamma_j\Delta U_j^\hys\ \ge0\;,\qquad
+\alpha_j\equiv\frac{|I_j|}{|I|},\ \ I_j=Q_j\dot\xi_j\;.}
+\label{eq:h_qhys}
+\end{equation}
+($\Delta U_j^\hys=\tfrac{2}{sF}[\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j]$, $u_j=\sqrt{1-2RT/\Omega_j}$, 식~(1.48);
+$I_j=Q_j\dot\xi_j$=전이 $j$ 로 가는 전류, $\alpha_j$=그 분율, $\sum_j\alpha_j\le1$.) 방전은 $U_j^\dis$(위)에서,
+충전은 $U_j^\chg$(아래)에서 각각 분기 이탈 $\tfrac12\gamma_j\Delta U_j^\hys$ 만큼 벗어나고 전이 전류 $I_j$ 가 그
+분기와 같은 부호라, 절댓값 $|I|$ 로 적으면 \emph{충$\cdot$방전 양쪽 다 발열}($q_\hys\ge0$).
+
+\textbf{율 무관 — 본 장 핵심.} $\eta_\hys$ 는 $|I|$ 를 포함하지 않는다. 즉 \emph{단위 전하당} 히스 발열
+$\tfrac12\gamma_j\Delta U_j^\hys$ 은 율과 무관하며 $|I|\to0$(준평형)에서도 \emph{남는다}. 이것이 분극열
+($\eta_\pol\propto|I|$, $|I|\to0$ 소멸)과 근본적으로 다른 점이다 — 히스테리시스는 \emph{열역학적} 손실이라 아무리
+천천히 cycle 해도 사라지지 않는다.
+
+\textbf{cycle loop 면적과의 등가(검산).} 한 완전 cycle(방전$+$충전)에서 $V$--$q$ 곡선이 감싸는 면적이 곧 소산
+에너지다. 전이 $j$ 당
+\begin{equation}
+\oint V\,\dd Q\Big|_j=(U_j^\dis-U_j^\chg)\,Q_j=\gamma_j\Delta U_j^\hys\,Q_j\quad[\mathrm{V\cdot C=J}],
+\label{eq:h_loop}
+\end{equation}
+이고($Q$=쿨롱 단위 전하) 이는 $\int_\mathrm{cycle}q_\hys\,\dd t$(방전 $\tfrac12\gamma_j\Delta U_j^\hys Q_j$ $+$ 충전
+$\tfrac12\gamma_j\Delta U_j^\hys Q_j$)와 정확히 같다 — 식~\eqref{eq:h_qhys} 의 시간 적분 $=$ loop 면적. \checkmark
+
+\textbf{준정적인데 왜 비가역인가.} 분극열은 빨리 밀어붙여 생긴 손실이라 천천히 하면 사라진다. 히스 손실은 다르다 —
+충$\cdot$방전이 \emph{서로 다른 준안정 분기}를 따라가는 것은 핵생성 장벽 때문이다. 장벽이 충분히 크면(실측 흑연)
+율을 늦춰도 계는 준안정 분기를 계속 따라가($\gamma_j>0$) \emph{비가역}으로 남고, 무한히 느리고 핵생성이 쉬운
+극한에서만 binodal(가역, $\gamma_j\to0$)로 환원된다. 가역 경로(공통 접선$=$binodal)는 두 분기 \emph{사이}를
+지나므로, 실제 분기 경로와 가역 경로가 감싸는 면적이 곧 되돌릴 수 없이 흩어진 일이다 — 유한 $\gamma_j$ 에서 그
+loop 면적은 율을 늦춰도 남는 열역학적 손실이다($\dot\sigma\ge0$, 식~\eqref{eq:h_entprod} 의 cycle 적분).
+
+\textbf{발열의 상$\cdot$하한.} 분기 갈림은 binodal(가역, gap $0$)과 spinodal(상한, $\gamma=1$) 사이에 놓인다.
+핵생성이 spinodal \emph{전}에 일어나 $\gamma_j<1$ 이면 히스 발열도 그만큼 준다 — \emph{히스 발열은 $0$(완전 가역)과
+spinodal 상한 $\tfrac12\Delta U_j^\hys|_\mathrm{spin}$ 사이}이며 $\gamma_j$ 가 그 위치를 정한다. 다입자 전극에서는
+입자마다 $\gamma_j$ 가 조금씩 달라(핵생성 임계 분산) 발열이 \emph{매끄럽게 분산}된다(직전 장 Dreyer 다입자 평활).
+
+\textbf{온도 의존(되먹임 씨앗).} $\Delta U_j^\hys(\Omega_j,T)$ 는 가열되면 줄어든다($T\to T_{c,j}=\Omega_j/2R$ 에서
+$\to0$, 식~(1.48)). 따라서 히스 발열은 \emph{자기 제한적}이다 — 발열이 $T$ 를 올리면 gap 이 줄어 히스열이 준다(음의
+되먹임; \S\ref{sec:h_feedback}).
+\begin{verifybox}
+\textbf{worked example.} 직전 장 예제($\Omega_j=4RT$, $\gamma_j=0.6$, $25^\circ$C)서 $\Delta U_j^\hys\approx54$
+mV, 분기 갈림 $\gamma_j\Delta U_j^\hys\approx32$ mV. 단위 전하당 히스 발열 $=\tfrac12\times32=16$ mV — 통과 전하
+$1$ C 당 약 $16$ mJ, \emph{율 무관}. 같은 전이 한 번 방전(전하 $Q_j$)이면 $16\,\mathrm{mV}\times Q_j$ 만큼 발열.
+\end{verifybox}
+
+% ====================================================================
+\section{분극 소산열}\label{sec:h_pol}
+% ====================================================================
+나머지 비가역 몫은 \emph{분극}이다 — 전류가 있어야 생기고 그에 비례한다. 측정 전위는 내부 전위에서 $|I|R_n$
+만큼(식~(1.3)), 또 완화 지연(식~(1.23) 꼬리)만큼 평형에서 더 벗어나며, 그 이탈이 소산열이 된다:
+\begin{equation}
+\boxed{\;q_\pol=I\,\eta_\pol=|I|^2R_n+q_\lag\;,\qquad \eta_\pol=|I|R_n+(\text{완화 과전압})\;.}
+\label{eq:h_qpol}
+\end{equation}
+ohmic$\cdot$전하전달 몫 $|I|^2R_n$ 은 Joule 형이라 전류 부호와 무관하게 $\ge0$. 완화 지연 몫 $q_\lag$ 은 진행률이
+평형을 즉시 못 따라가 생긴 과전압 $\times$ 전류로, 저온$\cdot$고율서 $L_{q,j}$(식~(1.23))가 커질수록 커진다.
+
+\textbf{과전압의 세 갈래(소산 출처).} 분극 과전압 $\eta_\pol$ 자체가 셋으로 나뉜다 — (i) \emph{ohmic}
+$\eta_\ohm=|I|R_\ohm$(전해질$\cdot$접촉 저항; Joule 열 $I^2R_\ohm$), (ii) \emph{전하전달} $\eta_\mathrm{ct}\approx
+(RT/F)\,|I|/i_0$(소전류 선형, 교환전류 $i_0$; 열 $\eta_\mathrm{ct}I\approx I^2RT/(Fi_0)$), (iii) \emph{확산(농도)}
+$\eta_\mathrm{conc}$(고체상$\cdot$전해질 농도 분극). 세 저항이 $R_n=R_\ohm+RT/(Fi_0)+R_\mathrm{conc}$ 로 묶여 앞
+장의 유효 분극 저항이 된다(소전류 선형화). 셋 다 $\propto I^2$ 라 \emph{고율서 급증}하며 $|I|\to0$ 소멸한다.
+
+\textbf{완화 지연 소산($q_\lag$).} 위 \emph{순간} 과전압과 별도로, 진행률 $\xi_j$ 가 평형 목표를 \emph{시간 지연}으로
+못 따라가 생긴 과전압도 소산한다 — 앞 장 완화(식~(1.20))의 지연 $r_j=\xi_{\eq,j}-\xi_j$ 에 대응하는 과전압이
+전류와 곱해 $q_\lag$ 이 되고, 지연 길이 $L_{q,j}$(식~(1.23))가 큰 저온$\cdot$고율서 커지며 $|I|\to0$(지연 $0$)서
+사라진다. 정량은 율 series 피팅으로 $R_n$ 과 함께 닫으므로 따로 분리하지 않는다.
+
+\textbf{율 의존 — 히스와 분리.} $q_\pol\propto|I|^2$(또는 $|I|\times$과전압)라 $|I|\to0$ 에서 \emph{사라진다}.
+따라서 저율 외삽($|I|\to0$)이 분극열을 떼어내고 히스열($q_\hys$, 율 무관)만 남긴다 — 직전 장의 ``참/분극
+분리''가 발열에도 그대로 적용된다.
+\begin{verifybox}
+\textbf{worked example.} $R_n\sim20\ \Omega\,\mathrm{cm^2}$, $0.2$C($|I|\sim0.4\ \mathrm{mA/cm^2}$)서 단위 전하당
+분극열 $=|I|R_n\approx8$ mV — 히스 $16$ mV 의 절반. 율을 $1$C 로 올리면 $\sim40$ mV(히스 초과), $0.04$C 로 내리면
+$\sim1.6$ mV(히스의 $1/10$). \emph{저율 히스 지배, 고율 분극 지배}.
+\end{verifybox}
+
+% ====================================================================
+\section{전이별 발열과 $\dd Q/\dd V$ 연결}\label{sec:h_perpeak}
+% ====================================================================
+세 갈래를 전이 $j$ 별로 묶으면 발열의 SOC 프로파일이 $\dd Q/\dd V$ peak$\cdot$분기 구조를 그대로 따라감이
+드러난다. 통과 전하가 전이 $j$ 를 진행시키는 구간($\dd\xi_{\eq,j}/\dd q$ 가 큰 peak 둘레)에서 그 전이의 발열이
+집중되며:
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \emph{히스열}은 분기 갈림 $\gamma_j\Delta U_j^\hys$ 가 큰 전이(큰 $\Omega_j$)에서 크다.
+\item \emph{가역열}은 $\partial U_j/\partial T$(식~(1.15))가 부호를 바꾸는 전이서 \emph{발열↔흡열}이 갈린다 — 발열
+  곡선이 SOC 따라 음으로 내려가는 골.
+\item \emph{분극$\cdot$완화열}은 꼬리(저온$\cdot$고율, 식~(1.23))서 커져 peak 뒤로 끌린다.
+\end{itemize}
+따라서 \textbf{발열률의 SOC 곡선은 $\dd Q/\dd V$ peak 위치에서 봉우리를, 가역열 부호 전환에서 골을 갖는다} —
+발열(또는 미소 온도 변화)을 측정하면 거꾸로 전이 구조를 읽을 수 있다(열량 기반 ICA).
+
+% ====================================================================
+\section{열 수지와 국소 온도 $T(t)$}\label{sec:h_balance}
+% ====================================================================
+발열률 $Q_\gen$ 이 정해지면 국소 온도는 집중(lumped) 열 수지로 닫힌다 — 발열과 환경으로의 방열(Newton 냉각)의
+차가 내부 에너지를 올린다:
+\begin{equation}
+\boxed{\;m c_p\frac{\dd T}{\dd t}=Q_\gen-hA_s(T-T_\amb)\;.}
+\label{eq:h_balance}
+\end{equation}
+\textbf{시상수와 정상 승온.} $Q_\gen$ 이 (느리게 변해) 국소 상수면 해는 $T(t)=T_\amb+\Delta T_\infty(1-e^{-t/\tau_\Th})$ 로,
+\begin{equation}
+\tau_\Th=\frac{mc_p}{hA_s},\qquad \Delta T_\infty=\frac{Q_\gen}{hA_s}.
+\label{eq:h_tau}
+\end{equation}
+열 시상수 $\tau_\Th$ 만에 정상 승온 $\Delta T_\infty$ 의 $63\%$ 에 이른다.
+
+\textbf{극한 검산.} $h\to\infty$(완전 냉각): $\Delta T_\infty\to0$, $T\to T_\amb$ — \emph{등온}(앞 장들의
+``$T$=입력'' 가정 회복). $h\to0$(단열): $\Delta T_\infty\to\infty$, $T$ 가 계속 오름 — 열 runaway 의 극한.
+\begin{verifybox}
+\textbf{worked example.} $0.2$C 방전서 단위 전하당 총 발열 $\sim(16_\hys+8_\pol+30_\rev)\approx54$ mV, 전류 $I$ 면
+$Q_\gen\sim I\times54\,\mathrm{mV}$. 소형 셀 $hA_s\sim0.1\,\mathrm{W/K}$, $I\sim1$ A 면 $Q_\gen\sim54$ mW,
+$\Delta T_\infty\sim0.5$ K. 고율($5$C)$\cdot$단열 근접서는 수 K 이상.
+\end{verifybox}
+
+\textbf{집중 모델은 언제 타당한가 — Biot 수.} 식~\eqref{eq:h_balance} 은 전극 \emph{내부}가 균일 $T$ 라 본다.
+이는 내부 전도가 표면 방열보다 빠를 때 — \emph{Biot 수} $Bi=hL/k_\Th\ll1$($L$=특성 두께, $k_\Th$=열전도도) —
+성립한다. 박막 전극$\cdot$소형 셀은 보통 $Bi\ll1$ 이라 집중 모델로 충분하며 내부 온도 분포(DFN 식 공간 해)는
+불필요하다. $Bi\gtrsim1$(두껍거나 큰 셀)이면 표면--중심 온도차가 생겨 두께 방향 해가 필요하나, 본 장은 $Bi\ll1$
+lumped 에 한정한다.
+
+\textbf{시변 발열과 다 cycle.} $Q_\gen(t)$ 가 시간에 변하면(SOC 따라 세 갈래가 변함) 해는 Duhamel 적분
+\begin{equation}
+T(t)=T_\amb+\frac{1}{mc_p}\int_0^t e^{-(t-t')/\tau_\Th}\,Q_\gen(t')\,\dd t'
+\label{eq:h_duhamel}
+\end{equation}
+즉 $Q_\gen$ 을 시상수 $\tau_\Th$ 로 \emph{평활한 누적}이 승온이다. 반복 cycle 에서 한 cycle 적분을 보면, 가역열은
+왕복서 $\oint(-IT\,\partial U/\partial T)\,\dd t\approx0$ 으로 \emph{상쇄}되고 히스$\cdot$분극(항상 발열)만 누적되므로
+— \textbf{cycle 누적 순 승온은 비가역(히스$+$분극) 발열이 정한다}. 가역열은 \emph{cycle 안에서} 데웠다 식히는
+진동만 만든다.
+
+% ====================================================================
+\section{$T\leftrightarrow$peak 자기일관 되먹임}\label{sec:h_feedback}
+% ====================================================================
+발열이 $T$ 를 올리면 바뀐 $T$ 가 앞 장들의 온도 의존 항으로 되돌아와 다시 발열을 바꾼다. 닫힌 loop 는
+\begin{equation}
+T\ \longrightarrow\ \big\{w_j(T)=\tfrac{RT}{F},\ k_j(T)\ (\text{식~(1.21)}),\ \Delta U_j^\hys(\Omega_j,T)\ (\text{식~(1.48)})\big\}\ \longrightarrow\ Q_\gen\ \xrightarrow{\eqref{eq:h_balance}}\ T.
+\label{eq:h_loop_fb}
+\end{equation}
+\textbf{되먹임은 대체로 \emph{음}(자기 제한적)이다.} (i) 가열은 히스 gap 을 줄인다 — $\Delta U_j^\hys(\Omega_j,T)$ 가
+$T\to T_{c,j}=\Omega_j/2R$ 에서 $\to0$(식~(1.48))이라 $q_\hys$ 가 준다(가장 강한 음의 되먹임; 임계 위에서 히스 발열
+$0$). (ii) 가열은 $k_j$ 를 키워(식~(1.21)) 완화 지연 $L_{q,j}$(1.23)를 줄여 분극$\cdot$완화열을 줄인다. (iii)
+$R_n(T)$ 도 보통 가열서 줄어 ohmic 열이 준다. 세 경로 모두 \emph{가열→발열 감소}라, 본 장 발열원만으로는 음극이
+\emph{스스로 폭주하지 않는다}. (가역열은 부호 가변이라 SOC 따라 데우거나 식힌다.) \emph{단 이 자기제한은
+$\Omega_j,\gamma_j$ 가 $T$-무관$\cdot$활성화 엔탈피 $\Delta H_{a,j}>0$$\cdot$$R_n(T)$ 감소 가정 하의 \emph{부호}이며,
+일반적 폭주 부재의 증명은 아니다} — 강한 $T$ 의존이나 부호 역전이 있으면 따로 점검한다.
+
+\textbf{선형 안정성과 runaway 임계.} 정량으로, 열 수지~\eqref{eq:h_balance} 의 고정점 $T^\ast$(발열$=$방열) 둘레서
+작은 교란 $\delta T$ 는 $mc_p\,\dot{\delta T}=(\dd Q_\gen/\dd T-hA_s)\,\delta T$ 로 진화하므로 \emph{안정 조건}은
+\begin{equation}
+\frac{\dd Q_\gen}{\dd T}\ <\ hA_s.
+\label{eq:h_stability}
+\end{equation}
+본 장 \emph{포함} 발열원의 합은 $\dd Q_\gen/\dd T<0$(히스 gap$\cdot$완화 소산$\cdot$$R_n(T)$ 가 가열서 감소; 가역열은
+cycle 평균 $0$)이라 안정 조건을 충족한다 — \emph{포함한 항만}의 판정이다. \emph{열 runaway}는 그 합에 양의
+$\dd/\dd T$ 항이 더해져 식~\eqref{eq:h_stability} 가 깨질 때 시작되며, \emph{대표적}(유일하진 않음)인 것이
+Arrhenius 부반응 $Q_\mathrm{side}\propto e^{-E_a/RT}$($\dd Q_\mathrm{side}/\dd T=Q_\mathrm{side}E_a/(RT^2)>0$)이다 —
+그 항을 본 장 모델 위에 더해 $\dd(Q_\gen+Q_\mathrm{side})/\dd T>hA_s$ 가 되는 임계 온도를 판정한다(부반응 자체는
+본 장 밖).
+\begin{boundbox}
+\textbf{자기일관 해.} 식~\eqref{eq:h_loop_fb} 는 매 시점 $T$ 에서 $Q_\gen(T)$ 를 풀고 식~\eqref{eq:h_balance} 로
+$T$ 를 갱신하는 \emph{자기일관} 문제다. 본 장은 그 \emph{구조}(음의 되먹임$\cdot$안정성)를 정성으로 닫고, 정식
+자기일관 수치해(되먹임 변수 동시해)는 피팅 장에 둔다.
+\end{boundbox}
+
+% ====================================================================
+\section{파라미터화와 데이터$\to$예측}\label{sec:h_param}
+% ====================================================================
+\textbf{피팅 파라미터.} 발열 모델은 앞 장들에서 \emph{이미 닫힌} 양에 \emph{새 열 파라미터 둘}만 더한다.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{0.24\textwidth} p{0.34\textwidth} p{0.32\textwidth}}
+\toprule
+구분 & 파라미터 & 닫는 데이터 \\
+\midrule
+앞 장들 기지 & $\{U_j,\partial U_j/\partial T,\Omega_j,\gamma_j,Q_j,R_n,k_j\}$ & 저율 OCV$\cdot$충방전 gap$\cdot$율 series \\
+신규 \emph{열} & $C_\Th\!\equiv\!mc_p,\ hA_s$($T_\amb$ 기지) & 열량계 또는 온도 transient \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{데이터$\to$파라미터(정방향).} (1) $\partial U_j/\partial T$ = 전위 측정(potentiometric entropy) → 가역열(이미
+앞 장 입력). (2) $\Omega_j,\gamma_j$ = 저율 충방전 gap(식~(1.48) 역) → 히스열(이미 앞 장 입력). (3) $C_\Th\!=\!mc_p$ 와 $hA_s$ = 열량계(ARC$\cdot$
+등온 microcalorimetry)로 $Q_\gen$ 직접, 또는 정전류 펄스 후 온도 transient $T(t)$ 에서 $\tau_\Th=C_\Th/hA_s$$\cdot$
+$\Delta T_\infty=Q_\gen/hA_s$(식~\eqref{eq:h_tau}) 회귀 — $m,c_p$ 따로 알 필요 없이 곱 $C_\Th$ 가 닫힌다.
+\textbf{예측.} 위 집합으로 임의 율$\cdot$$T_\amb$$\cdot$방향에서 $Q_\gen(t)$ 와 $T(t)$ 를 식~\eqref{eq:h_balance} 로
+적분 예측한다 — \emph{전기화학 피팅(앞 장들)이 끝나 있으면 열 예측은 새 파라미터 둘로 닫힌다}.
+
+% ====================================================================
+\section{종합 모델식 — 한 줄}\label{sec:h_master}
+% ====================================================================
+앞 절들의 항을 하나로 모은다.
+\begin{equation}
+\boxed{\;\begin{aligned}
+Q_\gen&=\underbrace{|I|\textstyle\sum_j\alpha_j\tfrac12\gamma_j\Delta U_j^\hys}_{q_\hys\ge0\ \text{(히스, 전하당 율무관)}}
++\underbrace{|I|^2R_n+q_\lag}_{q_\pol\ge0\ \text{(분극, 율의존)}}
+-\underbrace{I\,T\,\frac{\partial V_{n,\OCV}^\rev}{\partial T}}_{q_\rev\ \text{(가역, 부호 가변)}},\\[3pt]
+m c_p\,\frac{\dd T}{\dd t}&=Q_\gen-hA_s(T-T_\amb).
+\end{aligned}\;}
+\label{eq:h_master}
+\end{equation}
+$\Delta U_j^\hys=\tfrac{2}{sF}[\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j]$(식~(1.48)), $\partial V_{n,\OCV}^\rev/\partial T$ 는
+$\partial U_j/\partial T$(식~(1.15)) 평형 가중. 파라미터 $=$ 앞 장들 기지 $+\{c_p,hA_s\}$.
+
+\textbf{환원 검산.} (i) $\Omega_j\le2RT$(상분리 없음): $\Delta U_j^\hys=0$ → 히스열 $0$, 발열=가역$+$분극. (ii)
+$|I|\to0$(준평형): 분극$\cdot$가역열 $0$($\propto I$), \emph{히스열만} 단위 전하당 $\tfrac12\gamma_j\Delta U_j^\hys$ 로
+남음(열역학적 손실). (iii) $h\to\infty$: 등온 $T\to T_\amb$ — 앞 장들의 ``$T$=입력'' 회복.
+\begin{keybox}
+\textbf{이 두 식으로 끝난다.} 앞 장들 피팅값 $+$ 신규 $\{c_p,hA_s\}$ 로 임의 율$\cdot$환경 온도에서 음극
+발열 $Q_\gen(t)$ 와 승온 $T(t)$ 를 예측하고, 그 $T$ 는 다시 앞 장 peak$\cdot$분기로 되먹임된다(자기일관,
+\S\ref{sec:h_feedback}). 전기화학(앞 장들)에서 열(본 장)로 가는 다리가 파라미터 \emph{둘}로 놓인다.
+\end{keybox}
+\begin{verifybox}
+\textbf{종합 worked example — 한 번의 $0.2$C 방전($T_\amb=25^\circ$C, 단열 근접).} 대표 셀 $C_\Th=mc_p\sim50\
+\mathrm{J/K}$, $hA_s\sim0.1\ \mathrm{W/K}$($\tau_\Th=C_\Th/hA_s\sim500$ s), $I\sim1$ A. 단위 전하당 발열은 SOC
+따라 변한다 — 질서 staging peak 둘레서 히스 $\sim16$ mV $\cdot$ 분극 $\sim8$ mV $\cdot$ 가역 $\pm30$ mV(부호 진동).
+알짜 비가역(히스$+$분극) $\sim24$ mV/charge 라 $Q_\gen^\irr\sim I\!\times\!24\,\mathrm{mV}\sim24$ mW; 가역열은 SOC
+따라 $\pm30$ mW 출렁이되 방전 전체 적분은 $-T\Delta S_\mathrm{tot}$. 정상 승온 $\Delta T_\infty\sim Q_\gen^\irr/(hA_s)
+\sim0.24$ K(비가역분)에 가역 진동 $\pm0.3$ K 가 얹혀, $T(t)$ 가 \emph{전체 상승 $+$ SOC 진동}을 보인다. 그 $T$
+변화가 다시 $w_j,k_j,\Delta U_j^\hys$ 를 흔들어 ICA peak 를 미세 이동시킨다(되먹임). \emph{이 한 예가 본 장 전체 —
+세 갈래 발열$\cdot$열 수지$\cdot$되먹임 — 을 한 방전 곡선으로 압축한다}.
+\end{verifybox}
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}, 5 (1985). DOI: 10.1149/1.2113792.
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley-Interscience (2004). ISBN 978-0-471-47756-3.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). DOI: 10.1149/1.1646152.
+\end{thebibliography}
+
+\end{document}
