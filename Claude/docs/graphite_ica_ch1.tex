@@ -388,7 +388,9 @@ $\dd\xi_{\eq,j}/\dd z=\xi_{\eq,j}(1-\xi_{\eq,j})$. 연쇄율 $\dd z/\dd V_n=s/w_
 상분리($\Omega_j>2RT$, \S\ref{sec:regsol})에서 등온선이 비단조면 $\xi_{\eq}(V_n)$ 가 다가라 이 적분 형태는 깨지나,
 \emph{총 전하 $Q_j$ 자체는 물질량 보존}으로 유지되고 평형 기여는 plateau(Maxwell 공통접선)로 대체된다. \emph{최종식과의 연결.} 이 평형 peak 의 세 양 $\{U_j,w_j,Q_j\}$ 가
 최종 피팅식(\S\ref{sec:master})의 \emph{평형 상승부} 항을 이루며, 꼬리가 사라진 저율 OCV 에서 직접 닫힌다
-(\S\ref{sec:synth} S1).
+(\S\ref{sec:synth} S1). \emph{단 높이 $Q_j/(4w_j)$$\cdot$FWHM $3.53w_j$ 의 logistic 공식은 \textbf{단상}($\Omega_j<2RT$)
+한정}이고, 상분리 staging peak($\Omega_j>2RT$)에서는 $w_j$ 가 평형 폭이 아니라 broadening 현상학 폭(\S\ref{sec:hys_peak}
+$\cdot$\S\ref{sec:master})이라 그 logistic 높이/면적 공식을 그대로 쓰지 않는다(중심 $U_j$$\cdot$용량 $Q_j$ 만 직접 운반).
 
 \begin{verifybox}
 \textbf{FWHM 유도.} $g(z)=\xi_{\eq,j}(1-\xi_{\eq,j})$ 는 $z=0$ 서 최대 $\tfrac14$. 절반 $\tfrac18$ 되는 점:
@@ -1156,7 +1158,9 @@ peak 에 닿아 \emph{융합이 시작}된다. $L_{V,j}\propto|I|\,e^{\Delta H_a
 \textbf{분리 가능성의 한계.} peak 가 완전히 융합하면 $j$별 \emph{면적}($Q_j$) 분리는 고율 데이터만으로는 불가능
 하다(\S\ref{sec:synth} 공선형 논리의 겹침판). \emph{저율 OCV anchor 가 있을 때만} 융합 peak 의 합산 정보를
 전이별로 되돌릴 수 있다 — 그래서 본 절은 ``저율로 고정, 고율로 예측''의 forward 방향만 허용한다(역산 금지,
-\S\ref{sec:dist} 비유일성과 정합).
+\S\ref{sec:dist} 비유일성과 정합). \emph{분기 영역 확장}: 본 절 합산은 단상($\Omega_j\le2RT$, 전이당 peak 하나)을
+전제로 적었으나, $\Omega_j>2RT$ 전이는 충$\cdot$방전 \emph{두} 중심 $U_j^{\dis/\chg}$ 의 peak 쌍(\S\ref{sec:hys_peak})이라
+$\sum_j$ 가 방향별 중심 각각으로 확장된다 — 통합식~\eqref{eq:hys_master} 의 $\sum_j$ 가 그 겹침까지 포함한다.
 
 % ====================================================================
 \section{보완 관점: $\dd V/\dd Q$ (DVA)}\label{sec:dva}
@@ -1443,7 +1447,9 @@ $w_j=w_j^\eff=(RT/F)(1-\Omega_j/2RT)$ 라는 \emph{평형 예측}(식~\eqref{eq:
 \emph{전이당 $\{\Omega_j,\gamma_j\}$ 둘만 더}하면 충방전이 닫힌다(분기 영역의 $w_j$ 는 위처럼 독립 피팅).
 \emph{부분 cycle}(분기 폭의 일부 $\eta$ 만 진행)을 다룰 때는 식~\eqref{eq:hys_partial} 대로 분기 폭이 $h_j(\eta)$ 배로
 줄어, 식~\eqref{eq:hys_master} 의 중심이 $U_j^{d}=U_j+\sigma_d\tfrac12\,h_j(\eta)\,\gamma_j\Delta U_j^\hys$ 로 일반화된다
-(완전 cycle 은 $h_j=1$ 이라 위와 동일). 부분 cycle 데이터가 있을 때만 $h_j$ 보간을 더한다.
+(완전 cycle 은 $h_j=1$ 이라 위와 동일). \emph{식별 분리}: 절편이 $h_j(\eta)\gamma_j$ 곱이라 둘이 공선형이므로 — $\gamma_j$ 는
+\emph{완전 cycle}($\eta=1,\,h_j=1$) gap 에서 먼저 닫고, $h_j(\eta)$ 는 \emph{부분 cycle} 데이터에서만 분리한다(완전
+cycle 데이터가 $\gamma_j$ 를 고정하는 전제). 부분 cycle 데이터가 있을 때만 $h_j$ 보간을 더한다.
 
 \subsection{피팅 파라미터 — 전이당 무엇을, 어느 데이터로}
 \begin{center}
@@ -1453,15 +1459,15 @@ $w_j=w_j^\eff=(RT/F)(1-\Omega_j/2RT)$ 라는 \emph{평형 예측}(식~\eqref{eq:
 파라미터 & 의미 & 닫는 데이터 & 식 \\
 \midrule
 $U_j$ & 평형 중심 전위 & 저율 OCV peak \emph{위치} & \eqref{eq:eqpeak} \\
-$w_j$ & 평형 폭 $=(RT/F)(1-\Omega_j/2RT)$(단상; 분기 영역은 현상학적 폭) & 저율 OCV peak \emph{너비}(다온도 $\to\Omega_j$; gap-경로와 \emph{내적 일관성}) & \eqref{eq:weff} \\
+$w_j$ & 평형 폭 $=(RT/F)(1-\Omega_j/2RT)$(단상; 분기 영역은 현상학적 폭) & 저율 OCV peak \emph{너비}(이게 닫는 1차 미지수는 $w_j$; 그 다온도 형태는 gap-경로 $\Omega_j$ 의 \emph{검증}—독립 자유도 아님) & \eqref{eq:weff} \\
 $Q_j$ & 전이 용량 & 저율 OCV peak \emph{면적} & \eqref{eq:eqpeak} \\
 $R_n$ & 분극 저항 & 전류 차단 IR-drop(GITT) & \eqref{eq:vapp} \\
 $\chi$ & 전달 계수 & 다율 $\partial\ln L_{q,j}/\partial V$ & \eqref{eq:LqV} \\
 $\Delta H_{a,j}$ & 활성화 엔탈피 & 다온도 Arrhenius 기울기 & \eqref{eq:arrhenius} \\
 $C_\bg$ & 배경 미분용량 & 저율 OCV 기저선 & \eqref{eq:dQdV} \\
 ($\rho_G$ 폭) & 배리어 분포 폭(선택) & 꼬리 stretched 휨 & \eqref{eq:superpose} \\
-$\Omega_j$ & 정규용액 상호작용(상분리) & 충방전 gap $|I|\!\to\!0$ 절편의 \emph{온도 의존} & \eqref{eq:hys_dU} \\
-$\gamma_j$ & 분기 축소(다입자, $\le1$) & 충방전 gap $|I|\!\to\!0$ 절편 \emph{크기} & \eqref{eq:hys_center} \\
+$\Omega_j$ & 정규용액 상호작용(상분리) & \emph{1차}: 충방전 gap $|I|\!\to\!0$ 절편의 \emph{온도 의존}(폭 $w_j(T)$ 는 같은 $g_j''$ 라 \emph{검증}용, 자유도 중복 셈 금지) & \eqref{eq:hys_dU} \\
+$\gamma_j$ & 분기 축소(다입자, $\le1$) & 충방전 gap $|I|\!\to\!0$ 절편 \emph{크기}($\Omega_j$ 고정 후 분리) & \eqref{eq:hys_center} \\
 \bottomrule
 \end{tabular}
 \end{center}

@@ -14,7 +14,7 @@
 | 6 | R1 이월 처리 | eq:charge 방전기준+q 단조 명시·겹침 반치반폭 유도·γ 평탄 물리조건(τ_nuc≪1/율)·R_n SOC 의존 falsifiable | 33p 0/0 | (이번) |
 | 7 | R1 이월 처리 | gate T_c 수치가늠(Ω~5kJ/mol→T_c~300K 측정창 근처)·8중→10중 가정(C_bg·반쪽전지)·91mV=이상 상한 정직화 | 33p 0/0 | (이번) |
 | 8 | fresh 4창 재검(새 결함, 다수 내 R1~7 수정이 들임) | dξ/dV<0 spinodal구간 한정·변곡점≠극소·T_c 수치 vs caveat 화해·통합 master 꼬리 방전전용·∫dξ=1→물질량보존·ρ_G 용량분율 정규화·varprop-KWW 공존 | 34p 0/0 | (이번) |
-| 9 | | | | |
+| 9 | R8 잔여 | Ω 표 1차(gap)/검증(폭) 자유도 중복금지·§overlap 분기 peak쌍 확장·eqpeak 높이/면적 logistic 단상한정·γ(완전cycle)·h_j(부분cycle) 식별분리 | 34p 0/0 | (이번) |
 | 10 | | | | |
 
 ## Round 별 상세
