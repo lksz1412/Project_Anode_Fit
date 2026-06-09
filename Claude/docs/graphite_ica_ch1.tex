@@ -464,7 +464,9 @@ $T<T_{c,j}$($\Omega_j>2RT$)면 이중 우물(상분리).
   (i) 화학퍼텐셜 일치 $g_j'(\xi_b^-)=g_j'(\xi_b^+)$($=\mu$, 같은 기울기), (ii) 대평형(grand potential) 일치
   $g_j(\xi_b^-)-\mu\,\xi_b^-=g_j(\xi_b^+)-\mu\,\xi_b^+$(상 교환이 자유에너지를 안 바꿈 $\Leftrightarrow$ 같은 절편).
   (i)$+$(ii)가 곧 \emph{한 직선이 $g_j$ 를 두 점서 접한다}는 \emph{공통 접선} 기하이며, 그 접선 기울기가 평탄
-  전위(plateau)다.
+  전위(plateau)다 — 이 binodal plateau 전위가 곧 \emph{가역 평형 중심} $U_j$ 에 대응하고, 히스 분기의 $\gamma_j\to0$
+  극한(\S\ref{sec:hys_branch})이 이 binodal(가역)로 수렴한다. 본 장 정량은 spinodal$\cdot$$\Omega_j$ 로 닫고 binodal 은
+  이 \emph{가역 기준}으로 쓴다.
 \item \textbf{spinodal} $\xi_{s,j}^\pm$ — $g_j''=0$ 의 \emph{역학적 불안정} 경계. 안쪽($g_j''<0$)은 무한소 요동에도
   즉시 분리(불안정), binodal--spinodal 사이($g_j''>0$ 이나 공통 접선 위)는 \emph{준안정}.
 \end{itemize}
@@ -654,8 +656,10 @@ $k_j$ 를 바꾸는 방식이다 — 다음 절.}
 
 \subsection{구동력}
 \S\ref{sec:stage} 에서 구동 전위 $V_\drive$(기본 $=V_n$)를 두었다. 전이 $j$ 의 \textbf{구동력}(affinity)은
-구동 전위가 전이 중심에서 벗어난 정도로, 식~\eqref{eq:eqcond} 의 평형 구동과 같은 형태의 몰당 자유에너지다(기본형
-$V_\drive=V_n$ 에서 $\mathcal A_j/RT=s(V_n-U_j)/w_j$ — 식~\eqref{eq:logistic} 의 logit 구동항과 동일):
+구동 전위가 전이 중심에서 벗어난 정도로, 식~\eqref{eq:eqcond} 의 전기화학 평형 조건($\mu_\mathrm{Li}=\mu^0-sF(V_n-U_j)$)
+에서 \emph{독립}으로 오는 몰당 자유에너지다(logistic 에서 빌린 것이 아님; 기본형 $V_\drive=V_n$ 에서 $\mathcal A_j/RT=
+s(V_n-U_j)/w_j$ 가 식~\eqref{eq:logistic} 의 logit 과 \emph{같아지는} 것은 \emph{순환이 아니라} 평형 열역학과 동역학
+detailed balance 두 경로가 같은 logistic 을 내는 \emph{정합 검증}이다):
 \begin{equation}
 \mathcal A_j=sF\,(V_\drive-U_j).
 \label{eq:affinity}
@@ -731,9 +735,10 @@ $\Delta G^\ddagger(\mathcal A)=\dfrac{(\lambda-\mathcal A)^2}{4\lambda}=\dfrac{\
 +\dfrac{\mathcal A^2}{4\lambda}$ 의 $\mathcal A=0$ 1차 전개는 계수 $\partial\Delta G^\ddagger/\partial\mathcal A|_0
 =-\tfrac12$, 즉 대칭 극한 $\chi=\tfrac12$ 을 \emph{유추}로 준다 \cite{marcus1956}. $|\mathcal A_j|\sim\lambda$(큰
 과전위$\cdot$역전 영역)에서는 2차 곡률로 깨진다. \emph{intercalation 상전이로의 1차 근거는 BV/BEP 경험식이고,
-Marcus 는 그 선형 형태의 물리적 유추로만 인용한다.} \textbf{본 장의 유효 작동 창은 $RT\lesssim\mathcal A_j\ll\lambda$}
-— forward 우세로 $k_j\simeq r_j^+$ 가 서고(아래 한계), 선형 배리어 낮춤이 Marcus 2차로 깨지기 전이며,
-$\lambda\gg RT$ 라 이 창이 존재한다.
+Marcus 는 그 선형 형태의 물리적 유추로만 인용한다.} \textbf{본 장의 유효 작동 창은 $3RT\lesssim\mathcal A_j\ll\lambda$}
+— forward 우세로 단일지수 꼬리가 정확하고($\mathcal A_j\gtrsim3RT$, 위), $\chi$ 의 $\mathcal A_j$-상수 근사 상대오차가 Marcus
+2차항 $\mathcal A_j^2/4\lambda$ 대 $\chi\mathcal A_j$ 비 $\sim\mathcal A_j/4\lambda$ 로 작다($\mathcal A_j=3RT,\ \lambda\gg RT$ 면 $\ll1$).
+$\lambda\gg RT$ 라 이 창($3RT\sim\lambda$)이 존재한다.
 \end{boundbox}
 \begin{boundbox}
 \textbf{속도 제한(직렬 시간척도; 불연속 절단을 피하는 구현).} 전하전달이 빨라도 수송$\cdot$유한 자리$\cdot$
