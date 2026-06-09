@@ -41,6 +41,17 @@
 **PASS(커밋 fa01000+다음)**: ✅이상 Ω=0 "전개순서" framing ✅binodal=공통접선 연립유도(대평형 일치) ✅이중우물 국소→전역(양끝볼록+가운데오목) ✅3×3 위치 단상한정 caveat ✅"분해"→forward 합산(절 제목·intro) ✅DVA N_p valley 세기.
 **잔여(다음 배치, MEDIUM, 결론 무영향 정합 보강)**: 창1 보존vs수지·Faraday 정당화·Q_bg(V_n) 물리출처·s_I 기준전극. 창3 고율 peak 낮아짐(분자 r_a도 증가)·post-peak dξ_eq/dq≈0 vs 평형지배·χ 선형성 BEP 출처·저온 좁다vs길다 정량화해. 창4 jacobian orphan·독립완화 vs 협동상전이 스케일분리·G 정의·"지수적 증폭" 표현. 창5 S1/S2 독립측정(공선형 아님)·전이간 독립≠전이내 독립. 창2 w_eff FWHM 치환 caveat 강화.
 
+## 2차 재검 (7창, 수정본 대상) — 박사님 "또 찾을걸" 적중
+2차는 \*\*내 1차 수정이 들인 새 결함\*\*까지 적발. **PASS(이번 커밋)**:
+- ★\*\*DEF-1/C6 중심\*\*: eq:hys_master logistic 상승부가 분기영역(Ω>2RT)서 무효(w_eff<0·flagbox "logistic 아님") → \*\*분기 peak 형상=평형형 아닌 \*현상학적 폭\*(다입자·동역학 broadening); w_j 지위 단상(평형 w_eff 예측) vs 분기(독립 피팅)\*\* 해결(D5도 동시).
+- \*\*DVA "더 낮은 분산"(내가 들인 오류)\*\*: 역수 잡음증폭·전단사 전제 모순·peak/valley 혼동 → "기저선 분리(정보 아닌 표현 이점)".
+- \*\*"전이대 §dist 흡수"(내가 들인 오류)\*\*: A_j-공통 보정은 ρ_G(G-분산)으로 생성 불가 → "k_j=r⁺+r⁻ 전체 쓰면 자동 포함, 단일지수는 prefactor에 잠근 ≳3RT 근사".
+- s vs σ_d: V_eq는 방향불변 상태함수(s=+1 고정), σ_d는 분극에만, 분기차는 어깨 선택.
+- DVA valley 단일-w_j 비겹침 한정·깊이 C_bg·Ω 내적일관성. keybox 5중→8중 가정(γ 전류무관·분극선형/R_n·전이비중첩)+"파라미터 주어지면 한 식" 격하.
+
+**2차 잔여(다음, MEDIUM)**: 창1 q-param plateau dV_n/dq→0 발산(내 fix 미비)·ε_Q "안정성"용어·lumped "흡수"·서론 arc·Faraday·g'' forward-leak·q단조vsV_n비단조. 창2 ★면적보존 ∫dξ=1 비단조서 붕괴·binodal orphan·이중우물 대칭의존·perturbation 단어·z[ε]·spinodal 닫힌식 위치. 창3 k_j 인자2 절대값·varprop유한분산vsKWW·ρ_G확산출처·r_a(G) 순환·post-peak·"지수적증폭"·jacobian·χ-BEP falsify. 창4 "분해"소제목·S1/S2독립·91mV동어반복·DVA자기모순·꼬리방향. 창5 분극 ln i·ξ_s어깨vs binodal·γ·Ω곱비식별·γ→0=binodal동치. 창6 falsify-i 순환(S0)·Ω삼중식별·u_j 두정의·정량vs정성.
+→ \*\*반복 적출은 수렴 중이나 매 라운드 새 결함(특히 수정이 들인 것) 발견\*\* — 깊은 검수 정상.
+
 ## 진행 (6-09~10)
 ch1 30→32p. Tier1(spine 6+2)·Tier2(HIGH 9)·Tier3 일부(6) PASS, 전부 prose라 식번호 불변(Ch3/Ch4 안전). 커밋 ae12fb9·358e272·fa01000·(다음). 핵심: \emph{spine 모순(유일성↔다가성)·과대주장(독립 과결정·식 하나)·작동창 모순}을 정직하게 닫음. 잔여는 MEDIUM 정합 보강(결론 무영향).
 
