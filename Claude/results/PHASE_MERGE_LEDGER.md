@@ -11,7 +11,8 @@ Plan: `Claude/plans/2026-06-09-merge-ch1-ch2-single-chapter-plan.md`. 작업본 
 | M3 | §4 평형 peak | 구1 §3 | 이상 logistic | (존재) |
 | M4 | §정규용액·상분리(sec:regsol) | 구2 §2 이동 | Ω≠0 확장·g''/T_c·binodal/spinodal·**lever rule CUT·CNT 정성 trim·vdW 도구 KEEP·Dreyer KEEP** ★ | PASS 25p (앞 §3 eq:mu/smix 내부 인용, 뒤 sec:hys_branch forward) |
 | M5–M10 | §6–§11 | 구1 §4–§9 | 동역학·통계·종합(방전)·겹침 + worked 피팅anchor 통합 | TODO |
-| M11–M15 | §12–§16 | 구2 §4–§8 | spinodal분기·ΔU_hys·분기dQ/dV·분극(3분해 trim)·부분cycle(Preisach trim) | TODO |
+| M11–M12 | §충방전 분기(sec:hys_branch) | 구2 §4+§5 | V_eq 부호반전·spinodal ξ_s±·ΔU_hys·γ_j 중심 — §정규용액 g'' 위에서, **master 직접 손검(Codex 0)** | PASS 26p, undefined 0 |
+| M13–M15 | §분기dQ/dV·분극·부분cycle | 구2 §6–§8 | (분극 3분해 trim·Preisach trim) | TODO |
 | M16 | §17 통합 종합식 | 신설 | eq:master+eq:hys_master 한 절 ★ | TODO |
 | M17 | §18 데이터→예측 | 구1§8+구2§10 | 전 파라미터 피팅·예측 | TODO |
 | M18 | §19 검증·반증 | 구1§11+히스 | 진단표 falsify 사용 | TODO |

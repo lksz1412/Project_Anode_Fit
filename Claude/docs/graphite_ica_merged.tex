@@ -1038,6 +1038,78 @@ peak 에 닿아 \emph{융합이 시작}된다. $L_{V,j}\propto|I|\,e^{\Delta H_a
 \S\ref{sec:dist} 비유일성과 정합).
 
 % ====================================================================
+\section{충방전 분기와 히스테리시스 gap $\Delta U_j^\hys$}\label{sec:hys_branch}
+% ====================================================================
+지금까지(평형 peak $+$ 정규용액 상분리 $+$ 동역학)는 \emph{방전 한 방향}의 $\dd Q/\dd V$ 를 닫았다. 이제 같은
+전극을 충전과 방전으로 오갈 때 — 같은 SOC 에서 전위가 갈리는 \emph{충방전 히스테리시스} — 로 넓힌다. 그 뿌리는
+\S\ref{sec:regsol} 의 상분리다: 충$\cdot$방전이 서로 다른 준안정 분기(spinodal 과주행)를 따라가기 때문.
+
+\subsection{비단조 평형 전위 $V_{\eq,j}(\xi)$}
+\S\ref{sec:regsol} 의 상분리를 \emph{전위}의 언어로 옮긴다. 평형 조건 식~\eqref{eq:eqcond}
+$\mu_\mathrm{Li}(\theta_{\eq,j})=\mu^0-sF(V_n-U_j)$ 에 화학퍼텐셜 식~\eqref{eq:mu}(이제 $\Omega_j\ne0$)를 넣고
+$\theta=1-\xi$ 로 바꾸면 — $\ln[\theta/(1-\theta)]=-\ln[\xi/(1-\xi)]$, $(1-2\theta)=-(1-2\xi)$ 라 두 항 부호가 함께
+뒤집혀 —
+\begin{equation}
+V_{\eq,j}(\xi)=U_j+\frac{RT}{sF}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j}{sF}(1-2\xi).
+\label{eq:hys_Veq}
+\end{equation}
+$\Omega_j=0$ 이면 둘째 항만 남아 앞 절 logistic 식~\eqref{eq:logistic} 의 역함수(단조)다. $\Omega_j$ 항이
+\emph{되돌림}을 더한다. 기울기는
+\begin{equation}
+\frac{\dd V_{\eq,j}}{\dd\xi}=\frac{1}{sF}\Big[\frac{RT}{\xi(1-\xi)}-2\Omega_j\Big]=\frac{1}{sF}\,g_j''(\xi),
+\label{eq:hys_slope}
+\end{equation}
+즉 \emph{전위 곡선의 기울기가 곧 \S\ref{sec:regsol} 의 자유에너지 곡률}(식~\eqref{eq:regsol_gpp})이다 —
+$V_{\eq,j}$ 기울기 $0$ 인 곳이 spinodal($g_j''=0$). $\Omega_j>2RT$ 면 $\xi=\tfrac12$($RT/[\xi(1-\xi)]=4RT$) 둘레서
+음의 기울기(역학적 불안정)다. 기울기 $0$ 인 spinodal 진행률은 식~\eqref{eq:hys_slope}$=0$ 에서
+$\xi(1-\xi)=RT/(2\Omega_j)$, 곧
+\begin{equation}
+\boxed{\;\xi_{s,j}^\pm=\tfrac12\pm\tfrac12\sqrt{1-\tfrac{2RT}{\Omega_j}}\;,\qquad(\Omega_j>2RT).\;}
+\label{eq:hys_spinodal}
+\end{equation}
+\begin{verifybox}
+\textbf{임계$\cdot$환원.} 실수 spinodal 은 $\Omega_j>2RT$($T<T_{c,j}=\Omega_j/2R$, \S\ref{sec:regsol})에서만. $\Omega_j
+\to2RT^+$ 면 $\xi_{s,j}^\pm\to\tfrac12$, $\Omega_j\to\infty$ 면 $\to0,1$. $\Omega_j\le2RT$ 면 $V_{\eq,j}$ 단조라
+spinodal$\cdot$히스 없음 — 앞 절 단일 peak.
+\end{verifybox}
+
+\subsection{충방전 분기와 gap}
+비단조 $V_{\eq,j}$ 는 $\xi_{s,j}^-$ 서 \emph{극대}, 불안정 구간서 하강, $\xi_{s,j}^+$ 서 \emph{극소}, 다시 상승한다.
+한 전이는 불안정 구간을 균질하게 못 지나 \S\ref{sec:regsol} 의 준안정 분기를 따른다. \textbf{방전}(탈리튬화, $\xi$
+증가)은 상승 분기를 극대 $\xi_{s,j}^-$ 까지, \textbf{충전}(리튬화, $\xi$ 감소)은 반대 끝에서 극소 $\xi_{s,j}^+$ 까지
+과주행한 뒤 상분리한다. 분기의 유효 중심 전위는 그 극값이고
+\begin{equation}
+U_j^\dis=V_{\eq,j}(\xi_{s,j}^-),\qquad U_j^\chg=V_{\eq,j}(\xi_{s,j}^+),
+\label{eq:hys_branchU}
+\end{equation}
+극대$>$극소라 $U_j^\dis>U_j^\chg$ — 방전 전위가 충전보다 높다는 관찰과 부호가 맞는다. gap 은 두 극값 차다.
+$\xi_{s,j}^\pm=\tfrac12\pm\tfrac12 u_j$($u_j\equiv\sqrt{1-2RT/\Omega_j}$)를 식~\eqref{eq:hys_Veq} 에 넣어 빼면 —
+방전 끝점서 $\tfrac{\xi}{1-\xi}=\tfrac{1-u_j}{1+u_j}$, 충전서 $\tfrac{1+u_j}{1-u_j}$, $(1-2\xi)=\pm u_j$ — 로그 항
+차 $2\ln\tfrac{1-u_j}{1+u_j}=-4\,\mathrm{artanh}\,u_j$, $\Omega_j$ 항 차 $2u_j$ 라
+\begin{equation}
+\boxed{\;\Delta U_j^\hys=U_j^\dis-U_j^\chg=\frac{2}{sF}\big[\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j\big],\quad
+u_j=\sqrt{1-\tfrac{2RT}{\Omega_j}}\;.}
+\label{eq:hys_dU}
+\end{equation}
+이로써 히스테리시스 gap 이 \emph{정규용액 $\Omega_j$ 와 온도에서 유도}됐다 — 임의 피팅 상수가 아니다.
+\begin{verifybox}
+\textbf{극한$\cdot$수치.} $\Omega_j\to2RT^+$ 면 $\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j\to\tfrac43RT u_j^3$ 라
+$\Delta U_j^\hys\to(8RT/3sF)u_j^3\to0^+$(임계서 매끄럽게 소멸). $\Omega_j=4RT$ 면 $u_j=\sqrt{0.5}\approx0.707$,
+$\mathrm{artanh}(0.707)\approx0.881$, $\Delta U_j^\hys\approx(2/sF)(4{\cdot}0.707-2{\cdot}0.881)RT\approx2.1\,RT/(sF)
+\approx54$ mV($25^\circ$C). 차원: $\Omega,RT$ J/mol, $sF$ C/mol $\Rightarrow$ V.
+\end{verifybox}
+\begin{boundbox}
+\textbf{spinodal 상한과 축소 $\gamma_j$.} 식~\eqref{eq:hys_branchU} 는 각 분기가 spinodal 까지 과주행하는 \emph{상한}
+이다. 실제로는 핵생성이 spinodal 전에 시작되고 다입자 평활화(\S\ref{sec:regsol} Dreyer)가 갈림을 좁히므로, 실측
+gap 은 그 아래다. 한 자유도 $\gamma_j\in[0,1]$ 로 흡수해 \emph{유효 분기 중심}을
+\begin{equation}
+U_j^{\dis/\chg}=U_j\pm\tfrac12\gamma_j\Delta U_j^\hys
+\label{eq:hys_center}
+\end{equation}
+로 둔다($\gamma_j=1$ spinodal 상한, $\gamma_j\to0$ binodal=가역). $\Omega_j$ 와 $\gamma_j$ 한 양씩이면 충분하다.
+\end{boundbox}
+
+% ====================================================================
 \section{종합 모델식과 피팅$\cdot$예측 — 한 줄로}\label{sec:master}
 % ====================================================================
 앞 절들이 \emph{각 절은 그 식의 한 항}이라 했다. 이제 그 항들을 하나로 모은다. 관측 $\dd Q/\dd V$ 는
