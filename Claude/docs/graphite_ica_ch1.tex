@@ -450,7 +450,8 @@ entropy 항 $+RT/[\xi(1-\xi)]>0$ 은 항상 볼록(섞이려 함), 상호작용 
 (뭉치려 함). 양 끝($\xi\to0,1$)서는 entropy 가 발산해 $g_j''>0$(볼록)이지만, 가운데서 $\Omega_j$ 가 크면 $-2\Omega_j$ 가
 이겨 $g_j''<0$(오목)다. \emph{가운데 오목 구간이 $g_j$ 를 위로 밀어 그 \textbf{양쪽} 볼록 구간에 극소가 하나씩} 생기므로
 — 두 골, 곧 \emph{이중 우물}이다(국소 $g''<0$ 한 점이 아니라 ``양끝 볼록 $+$ 가운데 오목''의 \emph{전역} 조합이 두 최소를
-만든다). 경계는 $g_j''$ 이 가장 작은 $\xi=\tfrac12$ 서 $4RT-2\Omega_j=0$, 곧
+만든다; $g_j$ 가 $\xi\!\leftrightarrow\!1-\xi$ \emph{대칭}이라 $g_j'(\xi)=\mu_c$ 가 $\xi=\tfrac12$ 외 두 대칭근을 더 가져 극소가
+\emph{정확히 둘} — 변곡점 둘이 곧 극소 둘인 것은 이 대칭의 결과, 비대칭계면 깨짐). 경계는 $g_j''$ 이 가장 작은 $\xi=\tfrac12$ 서 $4RT-2\Omega_j=0$, 곧
 \textbf{임계 온도 $T_{c,j}=\Omega_j/2R$}: $T>T_{c,j}$($\Omega_j<2RT$)면 한 우물(고용체 단상; 단 $\Omega_j\ne0$ 이면 순수
 logistic 이 아니라 좁아진 peak — 아래 $w^\eff$, ``logistic 그대로''는 $\Omega_j=0$ 한정),
 $T<T_{c,j}$($\Omega_j>2RT$)면 이중 우물(상분리).
@@ -905,7 +906,9 @@ $A_L=0$). 본문에는 이 형식이 필요 없다 — 식~\eqref{eq:superpose} 
 \end{rigorbox}
 \begin{boundbox}
 \textbf{독립 완화 가정·비유일성.} 식~\eqref{eq:superpose} 는 입자 집단이 \emph{서로 독립}으로 완화한다고 본다
-(평균장; 상경계 결합$\cdot$협동 효과 무시) \cite{funabiki1999}. 또 $\rho_G$ 가 배리어 $G$ \emph{하나}로 모든 집단
+(평균장) \cite{funabiki1999}. \emph{협동성과의 화해(스케일 분리)}: \S\ref{sec:regsol} 의 협동(상분리$\cdot$핵생성)은 한
+입자 \emph{내부}의 일차 전이로 이미 그 입자의 평형 $\xi_{\eq,j}$ 형태에 흡수돼 있고, 본 절의 독립은 \emph{입자 \emph{간}}
+(서로 다른 입자)에만 적용된다 — 내부 협동 $\ne$ 집단 간 독립이라 모순이 아니다. 또 $\rho_G$ 가 배리어 $G$ \emph{하나}로 모든 집단
 차이를 흡수한다는 것($r_a(G)\cdot L_V(G)$ 와의 상관이 평균장$\cdot$단일전위 $V_n$ 근사로 제한)이 본 절의 최강 가정이다.
 또 stretched 꼬리에서 $\rho_G$ 로의 역산은
 \emph{비유일}하므로($\rho_G$ 외 다른 메커니즘도 같은 꼬리를 낼 수 있다), $\rho_G$ 를 꼬리에서 역산하지 않고
@@ -1331,12 +1334,14 @@ charge-transfer 과전위는 $\eta_\mathrm{ct}\propto\ln|I|$(비선형, \S\ref{s
 완전 충방전이 아니라 중간 SOC 에서 방향을 바꾸면(부분 cycle), 한 전이는 분기를 끝까지 못 돌아 \emph{minor loop}
 를 그린다. 핵심 관측은 \textbf{return-point memory}: 방향을 되돌리면 계가 직전 전환점으로 \emph{되돌아와} 큰 loop
 에 합류한다(상분리 1차 전이의 일반적 성질~\cite{sethna1993}). 본 장은 이를 \emph{전이별 한 보간 인자}로 최소
-기술한다: 전환율이 분기 폭의 일부 $\eta\in[0,1]$ 만 진행했으면 유효 gap 이
+기술한다: 전환점 $\xi_\mathrm{turn}$ 의 분기 내 \emph{정규화 위치} $\eta\equiv(\xi_\mathrm{turn}-\xi_{s,j}^-)/(\xi_{s,j}^+-\xi_{s,j}^-)\in[0,1]$
+만 진행했으면 유효 gap 이
 \begin{equation}
 \Delta U_{j}^{\hys,\,\mathrm{part}}=h_j(\eta)\,\Delta U_j^\hys,\qquad h_j(0)=0,\;h_j(1)=1,
 \label{eq:hys_partial}
 \end{equation}
-로 줄어든다($h_j$ 단조 증가; 데이터 없으면 \emph{선형 기본형} $h_j(\eta)=\eta$, 곡률은 부분 cycle 데이터로 보정).
+로 줄어든다($h_j$ 단조 증가; 데이터 없으면 \emph{무정보 기본형} $h_j(\eta)=\eta$ — 물리 도출이 아니라 최대-무지 prior,
+곡률은 부분 cycle 데이터로 보정).
 완전 cycle 만 다루면 $h_j=1$ 이라 앞 절들이 그대로고, 부분 cycle 데이터가 있을 때 $h_j$ 가 major-loop 사이의 보간을
 준다. \textbf{한계의 정직한 명시}: 단일 스칼라 $h_j(\eta)$ 는 minor loop 의 \emph{gap 크기}만 근사하고, return-point
 memory 의 본질인 \emph{경로 의존}(같은 $\xi$ 라도 어느 전환점에서 왔는가, 중첩된 nested loop)은 담지 못한다 — 그것은
