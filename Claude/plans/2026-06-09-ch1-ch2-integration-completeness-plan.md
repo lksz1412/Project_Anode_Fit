@@ -1,82 +1,96 @@
-# Ch1·Ch2 통합·완결성 계획 — 추가분 댕글링 해소 (앞 도입 + 뒤 사용)
+# Ch1·Ch2 통합·완결성 계획 v2 — 절 재작성 수준 · keep/cut 확정
 
 ## Summary
-박사님 지적(6-09): Ch1$\cdot$Ch2 에 보강한 내용(worked example$\cdot$vdW$\cdot$lever rule$\cdot$CNT$\cdot$Preisach$\cdot$진단표 등)이 \emph{앞뒤 문맥에 안 물리고 standalone 으로 끼워져} "댕글링 본드처럼 덜렁" — 유용해 보이나 \emph{어디서도 도입$\cdot$사용 안 되어 쓸 수 없는 orphan}. 본 계획은 \textbf{양을 더 늘리지 않고}, 각 추가분이 \emph{(a) 앞이 도입(motivation) + (b) 뒤가 사용(downstream 인용$\cdot$대입$\cdot$환원)} 두 고리에 물리도록 엮어 **완결성(orphan 0)** 을 만든다. 두 고리를 못 채우는 진짜 orphan 은 \emph{trim}. 방식 = 절 단위$\cdot$챕터 단위 루프(절마다 빌드$\cdot$앞 절 정합), 최대 effort, NO Workflow, master 직접 손검, Codex 적대검수, result/ledger, auto-commit. spine = 각 챕터의 최종 피팅식(Ch1 eq:master, Ch2 eq:hys\_master)과 피팅 절차.
+박사님 지적(6-09): 보강분이 앞뒤 단절·미사용 "댕글링" — \emph{교과서로 못 쓸} orphan. 본 계획은 \textbf{각 추가분을 살릴지(살리면 \emph{절을 다시 쓰는 수준}으로 spine에 완전 통합) / 버릴지(제거) 확정}하고, 그 결정대로 절을 \emph{재작성}한다. 패치(연결 한 줄) 아님 — \textbf{KEEP 항목은 앞이 도입·뒤가 사용하도록 절 구조를 다시 짜고, CUT 항목은 깨끗이 제거}. 결과는 모든 문장이 흐름의 일부이고 downstream에서 쓰이는 완결 교과서. 방식 = 절 단위·챕터 단위 루프(절마다 빌드·정합), 최대 effort, NO Workflow, master 직접 손검, Codex 적대검수, result/ledger, auto-commit. spine = Ch1 eq:master(최종 피팅식)·S1–S4, Ch2 eq:hys\_master·§9/§10 피팅.
 
-## Current Ground Truth
-- Ch1 24p$\cdot$Ch2 11p, 빌드 clean, 직전 커밋 `aaa4de4`(브랜치 rb-rebuild-2026-05-30).
-- 최근 보강(PHASE_CM·CM2·TXB·DEEP_REVIEW)으로 추가된 항목이 spine 미연결 의심.
-- **댕글링 후보(audit 으로 확정):**
-  - Ch1: §3/§8 worked example(FWHM·높이)·§8 3×3 칸별·§9 융합 worked·§11 경쟁기전 진단표 — 도입/사용 고리 점검.
-  - Ch2: §2.2 lever rule$\cdot$common tangent·vdW Maxwell·§2.3 CNT 장벽식($\Delta G^\ast\propto\gamma_s^3/\Delta g^2$)·§2.4 Dreyer 풍선·§7 과전압 3분해·§8 Preisach/FORC — downstream 사용처 점검(특히 Preisach·CNT·lever rule 의심).
-- 완결성 = \emph{모든} 추가분이 앞 도입 + 뒤 사용에 물림(`feedback_integrated_content_no_dangling`).
+## Current Ground Truth — keep/cut 결정표 (audit 확정, 박사님 확인 대상)
+**판정 기준**: 앞 도입(직전이 동기) · 뒤 사용(최종식·피팅·뒤 절·진단이 인용/대입/환원). 둘 다면 KEEP, 한쪽이면 \emph{재작성으로 양쪽 채움}, 둘 다 불가면 CUT.
 
-**기존 결정(불변):** 정확성 확인 유도·식·라벨·인계 번호 보존. 단일문건 규율. NO Workflow. 챕터 통째 배치 X.
+### Ch1 (대체로 통합 — 약한 고리 절 재작성, CUT 없음)
+| 추가분 | 앞 | 뒤 | 결정·조치 |
+|---|---|---|---|
+| §3 "최종식과 연결" thread | ✓ | ✓ master 평형항 | KEEP |
+| §4 stretched→§dist 다리 | ✓ | ✓ §6/§7 | KEEP |
+| §8 worked example(FWHM 91·높이) | ✓ | △ 3×3 예시뿐 | **KEEP+재작성**: master 파라미터 표/S1이 이 수치 규모를 \emph{명시 인용}(피팅 anchor) |
+| §8 3×3 칸별 walkthrough | ✓ | ✓ 표 설명 | KEEP |
+| §9 융합 worked | ✓ | △ | **KEEP+재작성**: OCV-anchored 절차(S$_1'$~)가 융합 개시 기준을 \emph{사용} |
+| §11 경쟁기전 진단표 | ✓ | △ | **KEEP+재작성**: falsify (i)(ii) 본문이 표 행을 \emph{명시 참조}하며 전개 |
+
+### Ch2 (orphan 다수 — CUT/TRIM 확정)
+| 추가분 | 앞 | 뒤 | 결정·조치 |
+|---|---|---|---|
+| §2.2 g''(eq:hys_gpp) | ✓ | ✓ §4 slope | KEEP |
+| §2.2 T_c=Ω/2R | ✓ | ✓ §4·§5·§8 | KEEP |
+| §2.2 미시기원 z[ε_AB..] | ✓ | △ Ω 동기 | KEEP(축약·Ω 정의로 흡수) |
+| §2.2 common tangent | ✓ | ✓ binodal=가역기준 | KEEP |
+| §2.2 **lever rule $f^+$** | ✓ | ✗ 미사용 | **CUT**(두-상 분율 어디도 안 씀) |
+| §2.2 vdW/Maxwell | ✓ | △ §4 | **KEEP+재작성**: §4 비단조 전위가 vdW·Maxwell을 \emph{명시 도구}로 사용(평탄=가역기준 도출) |
+| §2.3 **CNT 식 $\Delta G^\ast\propto\gamma_s^3/\Delta g^2$** | ✓ | ✗ 정성만 | **TRIM**(정성 핵생성 장벽만 남기고 식·$r^\ast$ 제거; 단 $\gamma_j$ 근거로 §5가 \emph{명시 인용}하면 핵심 1줄 KEEP) |
+| §2.4 Dreyer 풍선 | ✓ | △ §5 다입자 | KEEP(§5 $\gamma_j$ 분산에 연결) |
+| §6 수치 예제 | ✓ | ✓ ΔU_hys | KEEP |
+| §7 **과전압 3분해(ohmic·ct·확산)** | ✓ | ✗ Ch2 피팅 lumped $R_n$ | **TRIM**(Ch2는 lumped $R_n$; 3분해는 Ch3 §5가 담당 → Ch2서 1줄로 축약, 중복 제거) |
+| §8 **Preisach/FORC/hysteron** | ✓ | ✗ 부분cycle 범위밖 | **TRIM**(return-point memory + $h_j$ 보간만 — §9 major-loop 보간에 연결; FORC·hysteron 엘라보 제거) |
+| §10 식별성(Ω/γ 3온도) | ✓ | ✓ 피팅 | KEEP |
+
+**CUT/TRIM 확정 후보**: lever rule(CUT) · CNT 식(TRIM) · Ch2 과전압 3분해(TRIM) · Preisach/FORC(TRIM). → Decisions Required 에서 박사님 확인.
 
 ## Phase Range
-| Phase | 이름 | Steps | 산출 |
+| Phase | 이름 | Steps | 대상 |
 |---|---|---:|---|
-| C0 | 댕글링 감사(Ch1·Ch2 전수) | 1–4 | 추가분별 (앞 도입?·뒤 사용?) 태그표 |
-| C1.1~ | Ch1 절별 통합(댕글링 절만) | 5–14 | 앞 motivation·뒤 usage ref 엮기 / trim |
-| C1.v | Ch1 빌드·정합·커밋 | 15–16 | |
-| C2.1~ | Ch2 절별 통합(댕글링 절만) | 17–28 | 〃 |
-| C2.v | Ch2 빌드·Codex·커밋 | 29–31 | |
+| K0 | keep/cut 확정(박사님 GO/조정) | 1 | 결정표 |
+| K1.x | Ch1 절 재작성 통합(§8·§9·§11) | 2–9 | KEEP 강화(뒤 사용처 신설) |
+| K1.v | Ch1 빌드·정합·커밋 | 10–11 | |
+| K2.x | Ch2 절 재작성 통합/제거(§2·§7·§8) | 12–22 | CUT/TRIM + KEEP 재작성 |
+| K2.v | Ch2 빌드·Codex·커밋 | 23–25 | |
 
 ## Non-goals
-- \emph{새 내용 추가 금지}(통합 작업 — 연결 문장$\cdot$forward/back ref$\cdot$사용처 신설/이동, 또는 trim). 양 늘리기 아님.
-- 정확성 확인 유도·식·식번호·인계 번호 변경 금지(연결만).
-- 단일문건 규율(Chapter-N 0·인계/전달/결론 절 0) 유지. 챕터 통째 배치 X. NO Workflow.
+- 새 \emph{물리} 추가 금지(통합·제거·사용처 신설). 정확성 확인 유도·식·식번호·인계 번호 보존.
+- CUT는 \emph{미사용 orphan}만 — 정확 물리 손실 X. 단일문건 규율·NO Workflow·챕터 통째 배치 X.
 
 ## Implementation Changes
-- 수정: `graphite_ica_ch1.tex`·`graphite_ica_ch2.tex`(절별 연결 Edit/trim). 빌드 pdf.
-- Result: `PHASE_INTEG_RESULT.md`. Ledger: `PHASE_INTEG_LEDGER.md`(절별 댕글링→조치).
+- 수정: `graphite_ica_ch1.tex`·`graphite_ica_ch2.tex`(절 재작성 Edit). 빌드 pdf.
+- Result: `PHASE_INTEG_RESULT.md`(항목별 앞 도입·뒤 사용 위치 또는 CUT 사유). Ledger: `PHASE_INTEG_LEDGER.md`.
 
-## Phase C0 — 댕글링 감사
-- **Steps 1–4.** Ch1·Ch2 전수 정독, \emph{최근 추가분}(box/예제/배경 단락)마다 두 고리 태그: \textbf{앞 도입}(직전 맥락이 왜 필요한지 깔았나) / \textbf{뒤 사용}(뒤 절·최종식·피팅 절차·표가 인용$\cdot$대입$\cdot$환원하나). 각 항목 → {통합됨 / 앞만 / 뒤만 / orphan} 분류 + 조치(엮기 위치 또는 trim).
-- **Gate GC0:** 추가분별 태그표(절·항목·앞?·뒤?·조치) 완성, orphan 목록 확정.
+## Phase K0 — keep/cut 확정
+- **Step 1.** 위 결정표를 박사님이 확정(GO 또는 특정 CUT/TRIM 항목 "살려라" 지정 → 그 항목은 사용처 신설로 KEEP). 그 전엔 K1 착수 X(load-bearing). \emph{"결정표대로 GO" 시 표 그대로 확정하고 즉시 K1.1}.
+- **Gate GK0:** 항목별 KEEP/CUT/TRIM 최종 확정 기록.
 
-## Phase C1.x — Ch1 절별 통합 (댕글링 절만)
-- **Steps 5–14.** GC0 의 Ch1 orphan/한쪽고리 항목을 절 순서대로 — 각 항목:
-  - \emph{앞 도입 결핍}: 직전 단락에 "왜 지금 이걸 보는가" 한 줄(앞 결과에서 자연 연결).
-  - \emph{뒤 사용 결핍}: 그 결과(수치·식·개념)를 \emph{실제로 쓰는} 자리 만들기 — 예) §8 worked example 의 수치를 \emph{최종식 파라미터 표/피팅 S1–S4} 가 인용하거나, 3×3 표 해석이 master 식 항으로 연결되게. 진단표→§falsify 본문 논리와 명시 연결.
-  - \emph{진짜 orphan}: trim(내용 손실 아닌 중복/장식 제거).
-  - 절마다 빌드 + 앞 절 정합.
-- **Gate GC1.x:** 각 처리 항목이 앞 도입+뒤 사용 양 고리 충족(또는 trim) — grep/정독 확인, 라벨·식 보존, 빌드 clean.
+## Phase K1.x — Ch1 절 재작성 통합
+- **Steps 2–9.** §8: worked example 수치를 \emph{최종식 파라미터 표/S1 anchor}가 인용하도록 §8.3/§master 재작성(예시→피팅 규모 근거). §9: 융합 개시 기준을 OCV-anchored S$'$ 절차가 \emph{입력으로 사용}하도록 재작성. §11: 진단표를 falsify 본문이 행별로 끌어 전개(표=논리의 뼈대). 절마다 빌드·앞 절 정합.
+- **Gate GK1.x:** 각 KEEP 항목이 \emph{뒤 사용처에서 실제 인용}됨(grep \eqref/\S\ref/표 참조), 앞 도입 자연, 라벨·식 보존, 빌드 clean.
 
-## Phase C1.v — Ch1 빌드·정합·커밋
-- **Steps 15–16.** 2-pass overfull 0·undefined 0; "추가분 orphan 0" 재확인; ch1 커밋·푸쉬.
+## Phase K1.v — Ch1 빌드·커밋
+- **Steps 10–11.** 2-pass 0/0; "Ch1 orphan 0" 재확인; 커밋·푸쉬.
 
-## Phase C2.x — Ch2 절별 통합 (댕글링 절만)
-- **Steps 17–28.** GC0 의 Ch2 항목 — 특히:
-  - §2.2 \textbf{lever rule}: phase 분율 $f^+$ 를 뒤가 안 쓰면 — 두-상 구간 dQ/dV/용량 분배 설명에 연결하거나 trim.
-  - §2.2 \textbf{vdW Maxwell}: §4 비단조 전위와 명시 연결(이미 일부) 강화, 안 쓰면 축약.
-  - §2.3 \textbf{CNT 장벽식}: $\gamma_j$(축소 인자) 물리 근거로 §5 boundbox 가 \emph{명시 인용}하게(현재 정성만) — 또는 정성으로 축약.
-  - §2.4 \textbf{Dreyer 풍선}: §5 다입자 평활$\cdot$$\gamma_j$ 분산에 연결.
-  - §7 \textbf{과전압 3분해}: §파라미터/피팅이 $R_n$ 분해를 \emph{쓰는}지(식별 절에서 $R_n=R_\ohm+\dots$ 인용) — 안 쓰면 §pol 안에서 닫기.
-  - §8 \textbf{Preisach/FORC}: §param/§fit 또는 부분 cycle 활용이 \emph{쓰지} 않으면 — major-loop 파라미터화와 연결(scanning=보간 근거)하거나 핵심만 남기고 trim.
-  - 절마다 빌드 + 앞 절·Ch1 정합.
-- **Gate GC2.x:** 각 항목 양 고리 충족/또는 trim, 단일문건 규율, 라벨·식·인계 보존, 빌드 clean.
+## Phase K2.x — Ch2 절 재작성 통합/제거
+- **Steps 12–22.**
+  - §2.2: lever rule \textbf{CUT}; common tangent·vdW는 \emph{binodal=가역 평형 기준}·§4 도구로 \emph{쓰이게} 재작성; 미시기원 축약.
+  - §2.3: CNT를 \emph{$\gamma_j$ 의 물리적 근거}로 §5 boundbox가 명시 인용하게 1줄로 \textbf{TRIM}(식 제거, 정성+연결 유지).
+  - §2.4: Dreyer를 §5 $\gamma_j$ 분산에 연결.
+  - §7: 과전압 3분해 \textbf{TRIM}(lumped $R_n$ 1줄; 상세는 Ch3 인계 언급 없이 제거 — Ch2 spine은 $R_n$ 만).
+  - §8: Preisach/FORC \textbf{TRIM} → return-point memory + $h_j$ 가 \emph{§9 major-loop 보간을 뒷받침}하게 최소화.
+  - 절마다 빌드·앞 절·Ch1 정합.
+- **Gate GK2.x:** CUT 항목 제거 확인(grep 0), KEEP 항목 뒤 사용처 인용 확인, 단일문건 규율, 라벨·식·인계 보존, 빌드 clean.
 
-## Phase C2.v — Ch2 빌드·Codex·커밋
-- **Steps 29–31.** 2-pass 0/0; "추가분 orphan 0" 재확인; Codex foreground(통합이 물리 왜곡 0·연결 타당·orphan 0); result+ledger; ch2 커밋·푸쉬.
+## Phase K2.v — Ch2 빌드·Codex·커밋
+- **Steps 23–25.** 2-pass 0/0; "Ch2 orphan 0" 재확인; Codex foreground(통합 물리 무손상·연결 타당·orphan 0·CUT 부작용 0); result+ledger; 커밋·푸쉬.
 
 ## Implementation Interfaces
-- 처리 단위 = \emph{추가분 1개}. 각 처리에 두 고리 명시 기록(앞 도입 위치·뒤 사용 위치 또는 trim 사유).
-- 연결 수단: 직전 단락 motivation 한 줄 / 뒤 절·식·표의 \eqref·\S\ref 인용 / 사용처 신설(예: 파라미터 표가 worked 수치 참조). 새 \emph{물리} 추가 X.
+- 처리 단위 = 결정표 1행. KEEP = 절 재작성으로 앞 도입+뒤 사용 양 고리; CUT = 제거; TRIM = 핵심만+연결.
+- "뒤 사용" 실체 = 최종식 항·파라미터 표·피팅 단계·진단·환원검산이 그 결과를 \eqref/\S\ref/수치로 인용.
 - Result 11항목·Ledger 12-col.
 
 ## Test Plan
-- 빌드 2-pass overfull 0·undefined 0.
-- **완결성 검수**: 추가분 태그표가 전부 {통합됨 또는 trim} — orphan 0. 각 항목의 앞 도입·뒤 사용 위치를 result 에 명시(정독 증명).
-- 라벨·식번호·인계 번호 보존 grep. 단일문건 규율 grep. Codex foreground 1회(연결 타당·물리 무손상).
+- 빌드 2-pass 0/0. 결정표 전 항목 {KEEP-통합 검증 / CUT-제거 검증}. 각 KEEP의 앞·뒤 위치 result 명시(완결성 증명). 라벨·식번호·인계 grep 보존. 단일문건 규율 grep. Codex foreground 1회.
 
 ## Assumptions
-- A1: "추가분"은 최근 보강 커밋(PHASE_CM/CM2/TXB/DEEP_REVIEW)에서 add 된 box/예제/배경. git diff 로 식별 가능.
-- A2: trim 은 \emph{중복$\cdot$장식} 제거지 정확한 물리 손실 아님 — 경계 시 보존+연결 우선.
-- A3: 완결성 우선이라 \emph{양은 줄 수도} 있음(orphan trim). 박사님 "양 늘린 건 좋다"는 \emph{유지하되 엮기} 의미로 해석(엮기 불가 orphan만 trim).
+- A1: CUT/TRIM으로 \emph{양이 줄 수도} 있음 — 완결성이 양보다 우선(박사님 "교과서를 저따위로 쓰면 고소"). "양 늘린 건 좋다"는 \emph{쓰이는 한}에서 유지.
+- A2: CUT은 미사용 장식/중복만; 정확 물리·인계는 보존.
 
-## Decisions Required
-- D-1 (trim vs 엮기 경계): 진짜 orphan(어디에도 못 씀)은 trim 이 기본. 단 박사님이 특정 항목(예 Preisach·CNT)을 \emph{반드시 살려라} 하면 사용처를 신설해서라도 엮음. 기본 = 엮기 우선, 불가 시 trim. (audit 후 orphan 목록 제시 시 박사님 지정 가능)
+## Decisions Required (Phase K0 — GK0)
+- **D-1 CUT 확정**: lever rule(\textbf{CUT}). 동의? 아니면 두-상 dQ/dV 분율 설명에 사용처 신설해 KEEP?
+- **D-2 TRIM 확정**: (a) CNT 식→정성, (b) Ch2 과전압 3분해→lumped, (c) Preisach/FORC→return-point+$h_j$. 각 동의? 특정 항목 "완전 살려라"면 사용처 신설로 KEEP.
+- \emph{권고 = 표대로(lever rule CUT · 나머지 TRIM)}. "결정표대로 GO" 시 그대로 실행.
 
 ## Correction History
-- 2026-06-09 v1: 박사님 "추가분이 앞뒤 문맥 단절·댕글링·미사용, 제대로 쓸 수 있게 보완 최우선, 절별·챕터별 루프 완결성" 수용. 메모리 `feedback_integrated_content_no_dangling` 신설. 통합(연결/trim) 작업 — 새 내용 추가 아님. GC0 감사 후 GO 시 C1→C2 절별 연속.
+- 2026-06-09 v1→v2: 박사님 "거의 다시 쓰는 수준·살릴지 버릴지 확정·제대로 작성·교과서를 저따위로 쓰면 고소" 수용. v1의 막연한 "연결 한 줄"을 \textbf{절 재작성 수준 + 항목별 keep/cut 확정표}로 격상. orphan(lever rule·CNT식·Ch2 3분해·Preisach)을 CUT/TRIM 확정, KEEP은 뒤 사용처 신설로 완전 통합. GK0 확정 시 K1→K2 절별 연속.
