@@ -9,7 +9,7 @@ Plan: `Claude/plans/2026-06-09-merge-ch1-ch2-single-chapter-plan.md`. 작업본 
 | M1 | §2 기호 | 구1+2 | 통합 표 | TODO |
 | M2 | §3 전하보존 | 구1 §2 | 이식 | (ch1 그대로 존재) |
 | M3 | §4 평형 peak | 구1 §3 | 이상 logistic | (존재) |
-| M4 | §5 정규용액·상분리 | 구2 §2 이동 | Ω≠0 확장·peak 비단조·spinodal 배경·**lever rule CUT·CNT trim·vdW 도구화** ★ | TODO |
+| M4 | §정규용액·상분리(sec:regsol) | 구2 §2 이동 | Ω≠0 확장·g''/T_c·binodal/spinodal·**lever rule CUT·CNT 정성 trim·vdW 도구 KEEP·Dreyer KEEP** ★ | PASS 25p (앞 §3 eq:mu/smix 내부 인용, 뒤 sec:hys_branch forward) |
 | M5–M10 | §6–§11 | 구1 §4–§9 | 동역학·통계·종합(방전)·겹침 + worked 피팅anchor 통합 | TODO |
 | M11–M15 | §12–§16 | 구2 §4–§8 | spinodal분기·ΔU_hys·분기dQ/dV·분극(3분해 trim)·부분cycle(Preisach trim) | TODO |
 | M16 | §17 통합 종합식 | 신설 | eq:master+eq:hys_master 한 절 ★ | TODO |
