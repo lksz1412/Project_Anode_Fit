@@ -14,7 +14,18 @@
 | + | ε_Q 균일하한이 유일성에 불필요(창1) | 유일성=연속+C_bg>0+치역; ε_Q는 조건수(안정성)용으로 분리 | 〃 |
 | + | V_drive=V_n "보수적" 무근거(창1) | "계면 과전압 흡수 lumped 근사(고상 재배열·핵생성 지배 시 타당)"로 | 〃 |
 
-## Tier 2 — HIGH (다음 보완)
+## Tier 2 — HIGH (PASS, 커밋 358e272·fa01000)
+- ✅ spinodal→분기 방향성: 출발점 ξ≈0/1이 어깨 고정 유도.
+- ✅ stretched-exp: heavier-tailed; stretched는 특정 ρ_G(KWW 핵) 조건부 + ρ_G 물리출처(입자크기→확산→L).
+- ✅ DVA: eq:master→eq:total 참조, "새 정보 0"=전단사→추정 강건성(분산↓), N_p valley 세기.
+- ✅ "식 하나로 끝난다": 5중 가정(활성화지배·ρ_G→δ·prefactor T-안정·q_a 고정·ξ=½ 대칭)+ΔS_a 비식별 caveat.
+- ✅ 반증(i): 구동항 보정 후 \emph{잔여}이지 L_q 자체 전위의존(모형 예측) 아님 + 활성화지배 선행.
+- ✅ (T_c−T)^{3/2}: 평균장 임계근방 한정·실측창 T_c서 멀면 약화 검정.
+- ✅ gap separability: γ_j 전류독립 전제(저~중율 한정).
+- ✅ 공통 R_n: falsifiable(전이별 기울기 같아야)·기각시 R_{n,j}.
+- ✅ h_j: 선형 기본형 η·경로의존(RPM nested loop)은 못 담음 명시.
+
+### Tier 2 — 잔여(다음)
 - **창2-#1**: w_eff가 eq:eqpeak FWHM(3.53w) 무효화 — 면적보존 regular-solution서 미검(중심매칭 caveat은 있음, 강화 필요).
 - **창2-#3 / 창6-#2**: spinodal→충방전 분기 \emph{방향성} 유도 공백(방향 자체는 정합) — 출발점(ξ≈0/1)→어깨 연결 한 줄.
 - **창4-D1**: stretched-exp가 ρ_G 미지정 채 단정 — "heavier-tailed; 특정 ρ_G(KWW) 하"로 약화 + ρ_G 물리출처(입자크기→확산→L 분포).
@@ -26,8 +37,12 @@
 - **창6-#5**: gap 선형분해 separability(γ_j 전류독립) 미검 → 저~중율 한정 명시.
 - **창6-#7 / 창7-M2**: h_j 형태 공백·RPM 경로의존 손실 → 선형 기본형 명시 또는 한계.
 
-## Tier 3 — MEDIUM (배치 보완)
-창1: 보존vs수지·Faraday 정당화·Q_bg(V_n) 물리출처·s_I 기준전극. 창2: 이상 Ω=0 "전개순서" framing·binodal=공통접선 유도(대평형 일치)·이중우물 국소→전역. 창3: 고율 peak 낮아짐(분자 r_a도 증가)·post-peak dξ_eq/dq≈0 vs 평형지배·χ 선형성 BEP 출처·저온 좁다vs길다 정량화해. 창4: jacobian orphan·독립완화 vs 협동상전이 스케일분리·G 정의 흔들림. 창5: 3×3 위치 V_drive무관 단상한정·S1/S2 독립측정(공선형 아님)·"분해"→forward·전이간 독립≠전이내 독립·DVA N_p 세기. 창6: 공통 R_n 근거(falsifiable로 승격).
+## Tier 3 — MEDIUM
+**PASS(커밋 fa01000+다음)**: ✅이상 Ω=0 "전개순서" framing ✅binodal=공통접선 연립유도(대평형 일치) ✅이중우물 국소→전역(양끝볼록+가운데오목) ✅3×3 위치 단상한정 caveat ✅"분해"→forward 합산(절 제목·intro) ✅DVA N_p valley 세기.
+**잔여(다음 배치, MEDIUM, 결론 무영향 정합 보강)**: 창1 보존vs수지·Faraday 정당화·Q_bg(V_n) 물리출처·s_I 기준전극. 창3 고율 peak 낮아짐(분자 r_a도 증가)·post-peak dξ_eq/dq≈0 vs 평형지배·χ 선형성 BEP 출처·저온 좁다vs길다 정량화해. 창4 jacobian orphan·독립완화 vs 협동상전이 스케일분리·G 정의·"지수적 증폭" 표현. 창5 S1/S2 독립측정(공선형 아님)·전이간 독립≠전이내 독립. 창2 w_eff FWHM 치환 caveat 강화.
+
+## 진행 (6-09~10)
+ch1 30→32p. Tier1(spine 6+2)·Tier2(HIGH 9)·Tier3 일부(6) PASS, 전부 prose라 식번호 불변(Ch3/Ch4 안전). 커밋 ae12fb9·358e272·fa01000·(다음). 핵심: \emph{spine 모순(유일성↔다가성)·과대주장(독립 과결정·식 하나)·작동창 모순}을 정직하게 닫음. 잔여는 MEDIUM 정합 보강(결론 무영향).
 
 ## 방식
 master 직접 수정(서브세션 검수 OK), prose 위주(식번호 불변→Ch3/Ch4 안전), 절마다 빌드. Tier 순차.
