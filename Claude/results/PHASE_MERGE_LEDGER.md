@@ -18,7 +18,12 @@ Plan: `Claude/plans/2026-06-09-merge-ch1-ch2-single-chapter-plan.md`. 작업본 
 | M18 | §검증·반증 | 구1+히스 | 기존 진단표 + **충방전 히스 반증**(\|I\|→0 절편 유무·온도 (T_c−T)^{3/2} 소멸) | PASS 29p |
 | M17 | §데이터→예측 | 구1§8(통합 master서 흡수) | S1–S5·walkthrough·예측 양방향 | (통합 master 절에 포함) |
 | M2–M10 PART A | 구1 §2–§9 | 정합 | 평형/동역학 물리는 건전·§정규용액·통합 master로 연결됨. 잔여=경미 정합 점검 | 부분(복사 본문+forward 연결) |
-| M19 | 최종 검증 | — | 50p+ 여부·orphan 0·Codex 적대검수·구ch2 아카이브·ch1 승격·커밋 | TODO (현재 29p) |
+| M19 | 최종 검증·승격 | — | 6창 검수+3-Pass 수정 완료·잔여 findings 보강·**merged→ch1.tex 승격·구 ch2→old/ 아카이브·Ch3/Ch4 인계 식번호 재매핑(라벨 기준)·ch1/ch3/ch4 전부 0/0** | PASS |
+
+## 승격·인계 재매핑 (M19)
+- merged.tex → **graphite_ica_ch1.tex 승격**(병합 단일 챕터, 29p 0/0). 구 graphite_ica_ch2.tex/pdf → `old/` 아카이브. merged.tex 는 작업 사본으로 잔존(ch1 과 동일 내용).
+- **Ch3/Ch4 인계 식번호 라벨 기준 재매핑**(구 ch1/ch2 .aux ↔ merged .aux 대조): relax 1.16→1.18·eyring 1.17→1.19·Lq 1.19→1.21·affinity 1.23→1.25·bv 1.24→1.26·db 1.25→1.27·smix Ch3 (1.7)→1.6(기존 오인용 시정)·ΔU_hys 2.10→1.45·U_dis/chg 2.14→1.46. 플레이스홀더 충돌 방지. ch3 9p·ch4 6p 재빌드 undefined 0.
+- 50p 미달(29p)은 패딩 회피 결과 — 분리 중복(정규용액 배경) dedup. 추가 분량은 PART A genuine 심화로만(차후).
 
 ## keep/cut 적용 추적
 - CUT: lever rule(구2 §2). TRIM: CNT식→정성(구2§2.3), 과전압3분해→lumped(구2§7), Preisach/FORC→return-point+h_j(구2§8).

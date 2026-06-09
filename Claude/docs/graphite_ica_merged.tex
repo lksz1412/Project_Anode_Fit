@@ -195,7 +195,9 @@ C_\bg\equiv\frac{\partial Q_\bg}{\partial V_n}\ \ge\ \epsilon_Q\ >\ 0
 \end{equation}
 가 양이면 충분하다($C_\bg$=잔류 chemical capacitance). $\epsilon_Q$(단위 C/V)는 임의 정규화 상수가 아니라 ``양의
 미분용량''이라는 물리 조건이며, 단조성과 우변 목표가 $Q_\bg$ 치역 안에 있다는 조건이 함께면 중간값 정리로 해가
-유일하다 \cite{bazant2013}.
+유일하다 \cite{bazant2013}. \emph{비평형}에서 staging 항 $\sum_j Q_j\xi_j$ 은 주어진 입력이라 $V_n$-상수이므로,
+$V_n$ 은 배경 $Q_\bg(V_n,T)$ 의 단조성 하나로 닫힌다 — 전이항은 배경에 남길 잔여 전하를 통해 $V_n$ 을 \emph{간접}
+으로 민다(평형 분기에서만 아래처럼 $\xi_{\eq,j}(V_n)$ 의 직접 의존이 더해진다).
 
 \textbf{평형 극한 = OCV.} 평형(또는 충분히 느린 조건)에서는 $\xi_j=\xi_{\eq,j}(V_n,T)$(다음 절에서 정의)이고,
 식~\eqref{eq:charge} 의 해가 곧 \emph{평형 음극 전위} $V_{n,\OCV}(q,T)$ 다(평형 분기에서는 우변이 $C_\bg+\sum_j
@@ -532,6 +534,9 @@ $\xi_{\eq,j}(1-\xi_{\eq,j})\to0$, 따라서 $\dd\xi_{\eq,j}/\dd q\simeq0$ 이다
 \boxed{\;L_{q,j}=\frac{|I|}{Q_\cell\,k_j}\;}.
 \label{eq:Lq}
 \end{equation}
+여기 $k_j=r_j^++r_j^-$ 이나, 꼬리 영역($\mathcal A_j\gtrsim RT$)에서는 \emph{forward 우세}라 $k_j\simeq r_j^+=k_j^\eff$
+(식~\eqref{eq:keff}; peak 중심의 $k_j\simeq2r_j^+$ 와의 인자 차는 그 영역이 평형 상승부로 지배되어 꼬리 절대값에
+무영향)로 읽는다 — 즉 본 식과 아래 모든 꼬리 표현의 $k_j$ 는 \emph{유효 속도} $k_j^\eff$ 다.
 이 1계 선형 ODE 의 해는 $q_a$(꼬리 시작점 — 조작적으로 평형 항이 포화해 $\dd\xi_{\eq,j}/\dd q$ 가 정점값의 일정
 분율(예 $\sim5\%$) 이하로 떨어지는 \emph{단일} 좌표 = 상승부에서 꼬리로 넘어가는 곳; 정확한 창은 피팅에서 선택, \S\ref{sec:synth} S1)에서 적분해
 \begin{equation}

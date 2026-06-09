@@ -97,7 +97,7 @@ net 변화율 $\dd\xi_j/\dd t=\mathcal J_j^+-\mathcal J_j^-$ 의 단위는 $\mat
 % ====================================================================
 \section{정$\cdot$역 flux 와 flux--force 짝}\label{sec:nch2_flux}
 % ====================================================================
-전이 $j$ 의 진행률 변화 $\dd\xi_j/\dd t=r_j^+(1-\xi_j)-r_j^-\xi_j$(식~(1.16))의 우변 두 항은 각각 한 방향으로만
+전이 $j$ 의 진행률 변화 $\dd\xi_j/\dd t=r_j^+(1-\xi_j)-r_j^-\xi_j$(식~(1.18))의 우변 두 항은 각각 한 방향으로만
 흐르는 \emph{단방향 flux}다. forward(전이 완성, 탈리튬화)는 아직 전이 안 된 분율 $(1-\xi_j)$ 에 정방향 속도
 $r_j^+$ 가, backward(재리튬화)는 이미 전이된 분율 $\xi_j$ 에 역방향 속도 $r_j^-$ 가 작용한 것이다:
 \begin{equation}
@@ -114,14 +114,14 @@ flux 를 살려 두어야 소산을 옳게 센다.
 
 \textbf{공액 구동력의 유도.} 비평형 열역학에서 화학 반응의 entropy 생성은 \emph{flux} 와 \emph{공액 affinity} 의
 곱으로 적힌다 \cite{degrootmazur1962,prigogine1967}. 그 affinity 는 두 단방향 flux 비의 로그에서 나온다. 정$\cdot$역
-속도비는 \emph{detailed balance} 가 정하므로(식~(1.25), $r_j^+/r_j^-=e^{\mathcal A_j/RT}$), flux 비는
+속도비는 \emph{detailed balance} 가 정하므로(식~(1.27), $r_j^+/r_j^-=e^{\mathcal A_j/RT}$), flux 비는
 \begin{equation}
 \frac{\mathcal J_j^+}{\mathcal J_j^-}=\frac{r_j^+}{r_j^-}\cdot\frac{1-\xi_j}{\xi_j}
 =e^{\mathcal A_j/RT}\,\frac{1-\xi_j}{\xi_j}
 \label{eq:nch2_Jratio}
 \end{equation}
-다(첫 등호는 정의~\eqref{eq:nch2_Jpm}, 둘째는 식~(1.25) 대입; 구동력 $\mathcal A_j=sF(V_\drive-U_j)$ 는
-식~(1.23)). 내부 상태 $0<\xi_j<1$, $r_j^\pm>0$ 을 가정하며(끝점은 극한으로 처리), 양변에 $RT\ln(\cdot)$ 을
+다(첫 등호는 정의~\eqref{eq:nch2_Jpm}, 둘째는 식~(1.27) 대입; 구동력 $\mathcal A_j=sF(V_\drive-U_j)$ 는
+식~(1.25)). 내부 상태 $0<\xi_j<1$, $r_j^\pm>0$ 을 가정하며(끝점은 극한으로 처리), 양변에 $RT\ln(\cdot)$ 을
 취하면 $\ln(ab)=\ln a+\ln b$ 로
 \begin{equation}
 \boxed{\;\mathcal A_j^{\mathrm{net}}\equiv RT\ln\frac{\mathcal J_j^+}{\mathcal J_j^-}
@@ -177,7 +177,7 @@ $\eta_j=0$ 이다.
 
 \textbf{계면 전류로의 변환.} 반응을 \emph{전하}의 흐름으로 보면, 평형($\eta_j=0$)에서 정$\cdot$역 반쪽 전류가 같은
 크기 $i_{0,j}$(교환전류밀도)로 흐른다. 과전압이 걸리면 그것이 두 반쪽 장벽을 \emph{비대칭}으로 옮긴다 — 전이상태가
-반응 좌표상 forward 쪽으로 $\alpha_j$ 만큼 위치하므로(식~(1.24) 의 장벽 분할과 같은 기제, $\alpha_j=\chi$), forward
+반응 좌표상 forward 쪽으로 $\alpha_j$ 만큼 위치하므로(식~(1.26) 의 장벽 분할과 같은 기제, $\alpha_j=\chi$), forward
 장벽은 $\alpha_jF\eta_j$ 만큼 낮아지고 backward 장벽은 $(1-\alpha_j)F\eta_j$ 만큼 높아진다. 두 반쪽 전류의 차가
 net 반응 전류밀도다 \cite{bardfaulkner,newman2004}:
 \begin{equation}
@@ -185,7 +185,7 @@ net 반응 전류밀도다 \cite{bardfaulkner,newman2004}:
 \label{eq:nch2_bv}
 \end{equation}
 두 전달계수의 합 $\alpha_j+(1-\alpha_j)=1$ 은 자유 선택이 아니라 정$\cdot$역이 \emph{같은 전이상태}를 공유함의
-귀결이다(식~(1.24)$\to$(1.25)에서 합$=1$ 이 detailed balance 를 강제한 것과 같다).
+귀결이다(식~(1.26)$\to$(1.27)에서 합$=1$ 이 detailed balance 를 강제한 것과 같다).
 \begin{verifybox}
 \textbf{평형$\cdot$부호$\cdot$차원.} $\eta_j=0$ 이면 두 지수가 $1$ 이라 $i_j=0$(net 전류 소멸). $\eta_j>0$(forward
 구동)이면 첫 지수 $>1$, 둘째 $<1$ 라 $i_j>0$(방전 방향). 지수 $F\eta_j/RT$ 는 무차원($\mathrm{(C/mol)\cdot V}
@@ -225,8 +225,8 @@ $V_\app-V_n=s_I|I|R_n$)에는 ohmic$\cdot$농도분극$\cdot$film 이 함께 섞
 % ====================================================================
 교환전류밀도 $i_{0,j}$ 는 평형($\eta_j=0$)에서의 정$=$역 반쪽 전류 크기다. 평형에서 두 단방향 flux 가 같으므로
 ($\mathcal J_j^+=\mathcal J_j^-=\mathcal J_{0,j}$), forward flux $\mathcal J_{0,j}=r_j^+(1-\xi_{\eq,j})$ 에 활성화
-속도 $r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$(식~(1.24))를 넣는다. 평형에서는 detailed balance
-(식~(1.25))로 $e^{\mathcal A_j/RT}=\xi_{\eq,j}/(1-\xi_{\eq,j})$ 이므로 $e^{\chi\mathcal A_j/RT}=[\xi_{\eq,j}
+속도 $r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}$(식~(1.26))를 넣는다. 평형에서는 detailed balance
+(식~(1.27))로 $e^{\mathcal A_j/RT}=\xi_{\eq,j}/(1-\xi_{\eq,j})$ 이므로 $e^{\chi\mathcal A_j/RT}=[\xi_{\eq,j}
 /(1-\xi_{\eq,j})]^{\chi}$ 이고, 따라서 $\mathcal J_{0,j}\propto k_0e^{-\Delta G_{a,j}/RT}\,\xi_{\eq,j}^{\,\chi}
 (1-\xi_{\eq,j})^{1-\chi}$ 다. 전류로 환산하면($\alpha_j=\chi$)
 \begin{equation}
@@ -257,7 +257,7 @@ r_j^+(1-\xi_{\sstat,j})=r_j^-\xi_{\sstat,j}\ \Longrightarrow\
 \end{equation}
 을 얻는다. 여기 정$\cdot$역 비 $r_j^-/r_j^+$ 를 무엇으로 넣느냐가 결과를 가른다.
 
-\textbf{두 경우.} (i) \emph{detailed balance 가 성립}하면 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$(식~(1.25))이라
+\textbf{두 경우.} (i) \emph{detailed balance 가 성립}하면 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$(식~(1.27))이라
 \begin{equation}
 \xi_{\sstat,j}=\frac{1}{1+e^{-\mathcal A_j/RT}}=\xi_{\eq,j},
 \label{eq:nch2_ss_eq}
