@@ -669,6 +669,63 @@ $V_\app=V_n+s_I|I|R_n$, 구동은 $V_\drive=V_n$(기본형)이다. 관측 $\dd Q
 \end{keybox}
 
 % ====================================================================
+\section{평형 peak 기준선}\label{sec:eqpeak}
+% ====================================================================
+무대가 완성되었으니 첫 질문을 묻는다. 전류가 거의 흐르지 않는 평형에서 전이 $j$ 의 peak 는 어디에 서고,
+얼마나 넓고, 얼마나 높은가. 이 기준선이 있어야 전류가 흐를 때의 변화를 그로부터의 \emph{이탈}로 읽을 수
+있다.
+
+\subsection{logistic 의 미분 — 종 모양}
+평형 추종이 성립하면 관측식~\eqref{eq:dQdV} 의 $\dd\xi_j/\dd V_n$ 에 평형 등온선의 기울기가 들어간다.
+식~\eqref{eq:logistic} 을 $z\equiv s(V_n-U_j)/w_j$ 로 미분하면 — $\xi_{\eq}=(1+e^{-z})^{-1}$ 에서
+$\dd\xi_{\eq}/\dd z=e^{-z}/(1+e^{-z})^2$ 인데, 이는 정확히 $\xi_{\eq}(1-\xi_{\eq})$ 와 같다 —
+\begin{equation}
+\frac{\dd\xi_{\eq,j}}{\dd V_n}\;=\;\frac{s\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}.
+\label{eq:dxidV}
+\end{equation}
+$\xi(1-\xi)$ 는 $\xi=\tfrac12$ 에서 최대 $\tfrac14$ 인 종 모양이므로, peak 의 세 양이 바로 읽힌다:
+\begin{equation}
+\boxed{\;V_\peak=U_j(T),\qquad
+\Big(\frac{\dd Q}{\dd V_n}\Big)^{\text{net}}_{\max}=\frac{Q_j}{4w_j},\qquad
+\int\Big(\frac{\dd Q}{\dd V_n}-C_\bg\Big)\dd V_n=Q_j\;.}
+\label{eq:eqpeak}
+\end{equation}
+위치는 전이 중심 $U_j$, 순높이는 $Q_j/(4w_j)$, 배경을 뺀 면적은 용량 $Q_j$ 그대로다(면적 보존 —
+$\int_0^1\dd\xi=1$). 너비는 별도 지표를 유도하지 않는다 — 종의 반높이 너비가 $w_j$ 의 서너 배 규모라는
+사실이면 충분하고, 본 문건의 주 토픽인 꼬리는 어차피 이 단봉 지표 바깥의 이야기다. 실무 판독에는 ``면적이
+$Q_j$, 높이가 $Q_j/4w_j$ 이므로 너비 규모는 그 비''라는 관계가 더 쓸모 있다. 폭 파라미터 $w_j$ 자체는
+이상 극한에서 $RT/F$($25.7$ mV, $25^\circ$C), 상호작용이 있으면 식~\eqref{eq:weff} 의 $w^{\eff}$ 로
+좁아진다.
+
+\subsection{온도가 기준선을 움직이는 두 길}
+\emph{폭과 높이.} $w_j\propto T$ 이므로 저온일수록 평형 peak 는 좁고($w$ 감소) 높다(면적 보존). 뒤에서
+보겠지만 관측은 정반대 — 저온에서 넓고 낮다 — 인데, 그 역전이 바로 동역학 꼬리의 증거가 된다.
+
+\emph{위치.} 전이 중심도 온도에 따라 움직인다. 삽입 반응의 자유에너지가 $\Delta G_j=-sFU_j$ 이므로
+(평형 전위의 정의 그 자체다), Gibbs 관계 $\partial\Delta G_j/\partial T=-\Delta S_j$ 로
+\begin{equation}
+\frac{\partial U_j}{\partial T}=\frac{\Delta S_j}{sF}.
+\label{eq:dUdT}
+\end{equation}
+$\Delta S_j$ 는 삽입 \emph{반응} 엔트로피로, 속도에 들어가는 활성화 엔트로피 $\Delta S_{a,j}$ 와 다른
+양이다 \cite{reynier2004}. 수치로는 $|\Delta S_j|$ 가 수 J/(mol\,K) 수준이라
+$|\partial U_j/\partial T|\sim0.01$--$0.1$ mV/K — $30$ K 측정창에서 위치가 $0.3$--$3$ mV 움직이는
+규모다. 작아 보여도 다온도 피팅에서는 온도마다 $U_j(T)$ 를 따로 읽어야 하는 이유가 된다
+(\S\ref{sec:master}).
+
+\emph{상분리 영역의 평형 기여.} $\Omega_j>2RT$ 전이의 평형 기여는 종 모양이 아니라
+공통 접선의 plateau(\S\ref{sec:regsol}) — 이상적으로는 무한히 날카로운 선 — 이다. 실측에서 그것이 유한
+폭의 봉우리로 보이는 까닭은 평형이 아니라 broadening(입자 분포$\cdot$동역학)에 있으며, 그 처리는
+\S\ref{sec:hyspeak} 에서 한다.
+
+\begin{keybox}
+\textbf{기준선의 요지와 한계.} 평형 peak 는 중심 $U_j(T)$, 순높이 $Q_j/4w_j$, 면적 $Q_j$ 의 대칭 종이고,
+저온일수록 좁고 높다. 그러나 관측은 저온$\cdot$고율에서 넓고 낮고 비대칭이다 — 평형만으로는 관측을 설명할
+수 없고, 전류가 흐를 때 평형을 따라가지 못하는 \emph{동역학}이 꼬리의 주인이다. 다음 절이 그 경쟁 —
+C-rate 가지 — 을 연다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
