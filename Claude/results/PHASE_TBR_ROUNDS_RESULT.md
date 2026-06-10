@@ -19,3 +19,6 @@ spine-결합 worked example 6건 신설(전부 앞 도입·뒤 사용 — orphan
 
 ## R6 (step 102) — 해설 비약(전제 단계 전개)
 정정: R5 의 페이지 기록 44p 는 오기 — 실측 43p 였음. R6 적발 8건 전부 보강: ★GITT 약어 확장+펄스-휴지 프로토콜 설명(S2 첫 등장)+S0 판정 근거(확산=반무한 해 sqrt t / 계면=1차 완화 지수형 — 식별 사슬 첫 gate 의 전제) / KWW 약어 확장+Laplace 변환 2단계 전개(자족성 약속 이행) / gamma→0 두 서술(regsol 'binodal 수렴' vs hys_branch 'plateau 아님') 표면 모순 다리 / eta_ct~ln|I| 의 Tafel 근거(eq:bv 역함수) / LLI·LAM 확장 / EIS+Nyquist 반원 전제 / Daumas–Herold 도메인 그림 설명 / SEI 확장. 빌드 44p 0/0, 식번호 불변.
+
+## R7 (step 103) — 그림 라운드
+정정: R6 append 의 44p 도 오기(실측 43p). 교과서에 그림 0개였던 결손 해소 — TikZ 4개 신설+본문 참조 결속: Fig1 정규용액 이중 우물(Omega=3RT 실곡선·공통접선·binodal/spinodal 점, §1.4)·Fig2 vdW loop 와 충방전 분기(Omega=4RT 실곡선·과주행 화살표·Delta U_hys, §1.12)·Fig3 피팅식 한 전이의 해부(상승부+꼬리+합, V_a 점화 계단의 모델 성질 명시, §1.16 master 직후)·Fig4 S0→S5 식별 사슬 흐름도(동결 출력 라벨, §1.16). 곡선 좌표는 실함수 수치(g/RT·V_eq·logistic+지수)로 생성. positioning 라이브러리 누락 1회 빌드 실패→즉시 수정. 빌드 45p 0/0, 식번호 불변.
