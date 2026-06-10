@@ -201,6 +201,85 @@ $R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Farad
 \end{longtable}
 
 % ====================================================================
+\section{근본식 — 활성화 장벽과 반응 속도}\label{sec:rate}
+% ====================================================================
+상전이에는 두 질문이 있다. ``일어날 수 있는가''와 ``얼마나 빨리 일어나는가''다. 앞의 것은 열역학의 질문이고
+뒤의 것은 속도론의 질문인데, 측정은 언제나 유한한 전류$\cdot$유한한 시간에서 이루어지므로 \emph{관측을
+지배하는 것은 속도}다. 그래서 본 문건은 속도식에서 출발한다. 이 절이 세우는 식 하나가 끝까지 모든 절의
+척추가 된다.
+
+\subsection{장벽 그림 — 왜 속도는 지수인가}
+한 자리의 리튬이 빠져나가는 사건(탈리튬화의 기본 단계)을 생각하자. 출발 상태(채워진 자리)와 도착 상태(빈
+자리$+$용액 속 이온)는 각각 자유에너지의 골짜기다. 그 사이에는 결합을 끊고 주변을 재배열해야 하는, 에너지가
+높은 중간 고개 — \emph{전이상태} — 가 있다. 고개의 높이, 곧 출발 골짜기에서 고개까지의 자유에너지 차가
+\emph{활성화 자유에너지} $\Delta G_a$ 다(그림~\ref{fig:barrier}).
+
+사건이 일어나려면 열요동이 그 고개를 넘을 에너지를 공급해야 한다. 온도 $T$ 의 계에서 어떤 자유도가 에너지
+$E$ 이상을 우연히 갖출 확률은 Boltzmann 분포에 따라 $e^{-E/k_BT}$ 에 비례한다. 몰 단위로 쓰면 분모가
+$RT$($R=k_BN_A$)가 된다. 여기에 ``단위 시간에 고개를 넘으려고 시도하는 횟수''를 곱하면 속도가 된다.
+전이상태 이론은 그 시도 빈도의 보편 척도로 $k_0=k_BT/h$ 를 준다 \cite{eyring1935} — 양자역학적 진동
+시간척도의 역수로, $25^\circ$C 에서 약 $6\times10^{12}\ \mathrm{s^{-1}}$ 이다. 둘을 곱한 것이 본 문건의
+근본식이다:
+\begin{equation}
+\boxed{\;k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big],\qquad
+k_0=\frac{k_BT}{h},\qquad \Delta G_a=\Delta H_a-T\Delta S_a\;.}
+\label{eq:eyring}
+\end{equation}
+$\Delta G_a$ 의 분해에서 $\Delta H_a$ 는 고개를 넘는 데 드는 에너지(결합 끊기$\cdot$격자 변형)이고,
+$\Delta S_a$ 는 전이상태가 출발 상태보다 얼마나 ``느슨한가''(경로의 수)다. 등호가 아니라 $\simeq$ 로 적은
+까닭은, 실제 계에서 $k_0$ 가 $O(1)$ 수 인자$\cdot$활동도$\cdot$유효 시도 자유도를 흡수하는 현상론적
+prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절대값은 prefactor 에 묻고 의존성만 뽑는'' 전략의
+근거가 된다(\S\ref{sec:tempbranch}).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=3.2cm]
+\draw[->] (-0.2,0) -- (6.4,0) node[below] {반응 좌표};
+\draw[->] (-0.2,0) -- (-0.2,1.25) node[above] {\footnotesize 자유에너지};
+\draw[thick] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
+\draw[densely dashed,gray,thick] plot[smooth] coordinates {(3,1.0) (3.5,0.787) (4,0.44) (4.5,0.1) (5,-0.06) (5.5,0.0) (6,0.15)};
+\node[below] at (1,0.08) {\footnotesize 채워진 자리};
+\node[below] at (5,0.08) {\footnotesize 빈 자리$+$이온};
+\node[above] at (3,1.0) {\footnotesize 전이상태};
+\draw[<->] (1,0.12) -- (1,0.98) node[pos=0.5,right] {\footnotesize $\Delta G_a$};
+\draw[->,gray] (5.6,0.45) -- (5.3,0.12) node[pos=0,above] {\footnotesize 전위가 한쪽을 기울임(\S\ref{sec:potbranch})};
+\end{tikzpicture}
+\caption{활성화 장벽 그림. 실선은 평형 전위에서의 자유에너지 풍경 — 두 골짜기(채워진 자리/빈 자리)와 그
+사이의 전이상태 고개다. 사건의 속도는 고개 높이 $\Delta G_a$ 의 Boltzmann 인자에 시도 빈도 $k_0$ 를 곱한
+식~\eqref{eq:eyring} 을 따른다. 파선은 극판 전위가 구동력을 줄 때의 풍경 — 한쪽 골짜기가 내려가면서 고개도
+함께 낮아진다. 온도는 고개를 바꾸지 않는 대신 지수의 분모($RT$)로 들어와 넘는 확률 자체를 키운다.}
+\label{fig:barrier}
+\end{figure}
+
+\subsection{세 인자의 진입점 — 본 문건의 지도}
+서론에서 예고한 대로, 관측의 세 인자는 전부 식~\eqref{eq:eyring} 의 서로 다른 자리로 들어온다. 본 문건의
+나머지는 이 세 가지를 하나씩 닫는 과정이다.
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.2em,itemsep=2pt]
+\item \textbf{온도 — 지수의 분모.} $T$ 는 $e^{-\Delta G_a/RT}$ 의 분모에 직접 앉는다. 장벽이 수십
+  kJ/mol 이면 수십 도의 온도 변화가 속도를 \emph{한 자릿수} 바꾼다 — 예컨대 $\Delta H_a=40$ kJ/mol 일 때
+  $25^\circ\mathrm C\to-15^\circ\mathrm C$ 에서 $e^{(\Delta H_a/R)(1/258-1/298)}\approx e^{2.5}\approx12$
+  배 느려진다. 이것이 ``저온에서 꼬리가 길어진다''의 뿌리이며, \S\ref{sec:tempbranch} 가 Arrhenius 회귀로
+  닫는다.
+\item \textbf{극판 전위 — 장벽 높이.} 전위는 두 골짜기의 상대 높이를 기울이고, 같은 전이상태를 공유하는
+  정$\cdot$역 두 방향의 장벽을 비대칭으로 옮긴다. 정방향 장벽은 $\Delta G_a-\chi\mathcal A$ 로 낮아진다
+  — 구동력 $\mathcal A$ 와 전달 계수 $\chi$ 는 \S\ref{sec:fwdrev}$\cdot$\S\ref{sec:potbranch} 에서
+  정의$\cdot$전개된다. 이것이 ``전위가 깊을수록 꼬리가 짧다''의 뿌리다.
+\item \textbf{C-rate — 요구 속도와의 경쟁.} 전류 $|I|$ 는 단위 시간당 일정량의 전환을 \emph{요구}한다.
+  계가 낼 수 있는 속도는 $k$ 가 정하므로, 요구가 공급을 넘는 만큼 전환은 뒤처진다 — 그 뒤처짐(지연)이
+  관측 peak 의 꼬리다. \S\ref{sec:lag} 가 이 경쟁을 미분방정식으로 닫는다.
+\end{enumerate}
+한 가지가 남는다. 속도식은 ``얼마나 빨리''만 말할 뿐 ``어디를 향해''는 말하지 않는다. 방향과 목적지 —
+평형 — 는 정방향과 역방향 속도의 \emph{균형}에서 나오며, 그 균형을 쓰려면 두 방향의 속도가 무엇에 의해
+달라지는지, 곧 자유에너지의 언어가 필요하다. 다음 절이 그 언어를 공대 물리 독자 기준으로 처음부터 준비한다.
+
+\begin{verifybox}
+\textbf{수치$\cdot$차원.} $k_0=k_BT/h=(1.381\times10^{-23}\times298.15)/(6.626\times10^{-34})
+\approx6.2\times10^{12}\ \mathrm{s^{-1}}$($25^\circ$C). 지수는 무차원( J/mol $\div$ J/mol ), $k$ 의
+차원은 $k_0$ 가 운반하는 $\mathrm{s^{-1}}$. 극한 검산 — $\Delta G_a\to0$ 이면 $k\to k_0$(장벽 없는
+시도 빈도), $T\to0$ 이면 $k\to0$(요동 없음).
+\end{verifybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
