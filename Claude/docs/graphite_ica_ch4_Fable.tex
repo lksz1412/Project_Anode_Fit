@@ -1,6 +1,6 @@
 % ====================================================================
-% graphite_ica_ch4.tex — Chapter 4 (재편 후 신규: 전기화학 반응속도론)
-%   재편(6-08): Chapter 4 = 전기화학 반응속도론(미래 DFN 모듈). Ch1 기반.
+% graphite_ica_ch4_Fable.tex — Chapter 2 (반응속도론; 파일명 ch4 는 역사적 명칭 — 6-08 재편)
+%   재편(6-08): Chapter 2 = 전기화학 반응속도론(미래 DFN 모듈). 병합 Ch1 기반.
 %   ★ 통합 문건 규율: 인계/recap/전달 절 금지, 기호규약에 이전 장 언급 금지.
 %   ★ 절 단위 작성: 한 절씩 작성→검수→정합→다음 절. (현재 §1 까지)
 % ====================================================================
@@ -94,9 +94,10 @@ $\dot S_{\irr}$ & W/K & 비가역 entropy 생성률 (2법칙 $\ge0$); $T\dot S_\
 $F=96485\ \mathrm{C/mol}$, $R=8.314\ \mathrm{J/(mol\,K)}$, $\mathrm{J/C}=\mathrm V$. flux $\mathcal J_j^\pm$ 와
 net 변화율 $\dd\xi_j/\dd t=\mathcal J_j^+-\mathcal J_j^-$ 의 단위는 $\mathrm{s^{-1}}$($\xi_j$ 무차원).
 \begin{boundbox}
-\textbf{본 장 닫힌식의 기본형 전제.} 이하 닫힌 결과($V_{\eq,j}$ 역산$\cdot$$F\eta_j=\mathcal A_j^{\mathrm{net}}$ 동치$\cdot$
-$i_{0,j}$ 의 $\xi^{\alpha}(1-\xi)^{1-\alpha}$ 형)는 \emph{기본형}($V_\drive=V_n$, $w_j=RT/F$, 이상 격자기체
-$\Omega_j=0$) 위의 것이다. $\Omega_j\ne0$ 이면 활동도 보정이 들어가 식의 \emph{계수}가 바뀌나(예: $g_j(\xi)$ 에
+\textbf{본 장 닫힌식의 기본형 전제(결과별 귀속).} $V_{\eq,j}$ 역산$\cdot$$F\eta_j=\mathcal A_j^{\mathrm{net}}$ 동치$\cdot$
+$i_{0,j}$ 의 $\xi^{\alpha}(1-\xi)^{1-\alpha}$ 형은 \emph{이상 격자기체}($\Omega_j=0$, $w_j=RT/F$)만 요구하고 임의
+$V_\drive$ 에 성립한다(식~(1.27)이 임의 구동 전위로 정의되므로 — 일반형 과전압 분리에도 그대로 쓰인다).
+$V_\drive=V_n$ 이 실제로 필요한 곳은 \emph{평형 동정}($\xi_\sstat=\xi_{\eq}$ 검산$\cdot$(2.9)의 $\xi_{\eq}$ 평가)뿐이다. $\Omega_j\ne0$ 이면 활동도 보정이 들어가 식의 \emph{계수}가 바뀌나(예: $g_j(\xi)$ 에
 활동도 인자), BV$\cdot$$R_\ct$$\cdot$교환전류라는 \emph{구조}와 부호$\cdot$극한 결론은 유지된다.
 \end{boundbox}
 
@@ -155,8 +156,11 @@ $RT\ln(\cdot)=\mathrm{J/mol}=\mathcal A_j$ 와 정합.
 등호는 평형($\mathcal J_j^+=\mathcal J_j^-$)에서만 성립한다. 이는 ``net 반응은 친화도 내리막으로만 일어난다''는
 2법칙의 반응 형태(De Donder 부등식)이며 \cite{degrootmazur1962}, 정$\cdot$역 flux 를 살려 둔 덕에 부호가 항별로
 닫힌다. 전이 전부를 모은 \emph{entropy 생성률}로 쓰면
-\[ \dot S_\irr=\sum_j\frac{Q_j}{F}\,\big(\mathcal J_j^+-\mathcal J_j^-\big)\,\frac{\mathcal A_j^{\mathrm{net}}}{T}\ \ge\ 0
-\quad[\mathrm{W/K}] \]
+\begin{equation}
+\dot S_\irr=\sum_j\frac{Q_j}{F}\,\big(\mathcal J_j^+-\mathcal J_j^-\big)\,\frac{\mathcal A_j^{\mathrm{net}}}{T}\ \ge\ 0
+\quad[\mathrm{W/K}]
+\label{eq:nch2_sirr}
+\end{equation}
 ($Q_j/F$=전이 $j$ 의 몰수 환산) — 기호표의 $\dot S_\irr$ 가 이 양이고, $T\dot S_\irr$ 가 소산 power 다.
 
 % ====================================================================
@@ -272,7 +276,7 @@ r_j^+(1-\xi_{\sstat,j})=r_j^-\xi_{\sstat,j}\ \Longrightarrow\
 \xi_{\sstat,j}=\frac{1}{1+e^{-\mathcal A_j/RT}}=\xi_{\eq,j},
 \label{eq:nch2_ss_eq}
 \end{equation}
-즉 정상 진행률이 \emph{평형값과 일치}한다(기본형 $V_\drive=V_n$ 에서 식~(1.11)과 동형) — 방향에 무관,
+즉 정상 진행률이 \emph{평형값과 일치}한다(기본형 $V_\drive=V_n$, $w_j=RT/F$ 에서 식~(1.11)과 동형) — 방향에 무관,
 히스테리시스 없음. (ii) detailed balance 가 깨져 비가 $r_j^+/r_j^-=e^{\mathcal A_j/RT}\,C_j$ ($C_j\ne1$)가 되는
 경우다. 이 $C_j$ 는 정$\cdot$역이 \emph{같은 전이상태}를 공유하지 않거나(비대칭 활성도) 분기에 따라 중심 전위가
 이동할 때 생기며, $RT\ln C_j$ 는 중심 전위의 이동 $U_j\to U_j-(RT/sF)\ln C_j$ 로 흡수된다 — 곧 식~\eqref{eq:nch2_Anet}
