@@ -1655,6 +1655,172 @@ $\gamma_j$ 가 약분되는 $\gamma$-무관 판별량이다. 절편이 온도에
 \S\ref{sec:master} 와 본 절에서 회수되었다.
 
 % ====================================================================
+\section{예시 구현 — 모델 함수에서 round-trip 까지}\label{sec:code}
+% ====================================================================
+``이 절(\S\ref{sec:master})만 보고 피팅 코드를 짤 수 있어야 한다''는 선언은 검증 가능해야 한다. 이
+절이 그 검증이다 — 아래 코드는 본 문건의 식과 알고리즘 단계만을 직역한 것으로, 모든 주석의 (1.x)/M/S
+번호가 출처다. 문건 밖 지식은 쓰지 않았고, 수록 전 실행으로 검증했다(\S\ref{sec:codeverify}).
+피팅(최소화) 루틴 자체는 부록하지 않는다 — (5) 의 가중 최소제곱 규정만 지키면 어떤 LSQ 라이브러리든
+무방하며, 본 절의 몫은 그 루틴에 넣을 \emph{모델 함수와 잔차의 구성}이다.
+
+\subsection{모델 함수 — 식~\eqref{eq:hysmaster} 의 직역}\label{sec:codemodel}
+\begin{footnotesize}
+\begin{verbatim}
+# -*- coding: utf-8 -*-
+# graphite_ica_model.py — Ch.1 (v2) 의 식만으로 구성한 dQ/dV 모델.
+# 주석의 (1.x)/M*/S* 는 전부 본 문건의 식 번호와 알고리즘 단계다.
+import numpy as np
+
+R, F = 8.314, 96485.0                        # §1.1 표
+KB, H = 1.380649e-23, 6.62607015e-34         # Boltzmann, Planck
+
+
+def dU_hys(T, Omega):
+    """(1.34) spinodal 상한 gap [V].
+    M1 의 명시 분기: Omega <= 2RT 면 0 (제곱근이 NaN 인 영역)."""
+    if Omega <= 2.0 * R * T:
+        return 0.0
+    u = np.sqrt(1.0 - 2.0 * R * T / Omega)
+    return (2.0 / F) * (Omega * u - 2.0 * R * T * np.arctanh(u))
+
+
+def U_branch(T, U, Omega, gamma, sigma_d, h_eta=1.0):
+    """(1.35) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
+    return U + sigma_d * 0.5 * (h_eta * gamma) * dU_hys(T, Omega)
+
+
+def xi_eq(Vn, Ud, w):
+    """(1.11) 의 꼴 — M2. 중심은 분기 중심 U^d, 폭 w 는 S1 동결값
+    (박스의 RT/F 는 이상 극한 — 하드코딩 금지)."""
+    return 1.0 / (1.0 + np.exp(-(Vn - Ud) / w))
+
+
+def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi, A):
+    """M3 — (1.27) 의 역:
+      ln L_q = ln(T*/T) + dHa/RT + b - chi*A/RT,  T* = |I|h/(Q_cell kB).
+    b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
+    A 는 꼬리 컷 한 점의 구동력 (1.7) — 전이당 상수로 동결.
+    전이대(A < 3RT)의 보편형 괄호 인자는 속도에 곱 => L 은 나눈다."""
+    T_star = I_abs * H / (Q_cell * KB)
+    val = np.log(T_star / T) + dHa_eff / (R * T) + b - chi * A / (R * T)
+    if A < 3.0 * R * T:
+        val -= np.log(1.0 + np.exp(-A / (R * T)))
+    return val
+
+
+def r_a_connect(Lq, dxi_dq_at_qa):
+    """M4 의 접속값 분기 (L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a}.
+    그 외(꼬리-우세)는 r_a 가 (0, xi_eq(q_a)] 범위의 자유 파라미터."""
+    return Lq * dxi_dq_at_qa
+
+
+def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
+    """(1.38) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    par 의 구성 (괄호는 그 값을 닫는 단계):
+      Cbg(Vn)      배경 미분용량 함수 [Q_cell/V] (S1 동결 spline)
+      Rn           lumped 분극 [V per |I|] (S2 직독)
+      chi          전달 계수 (S3)
+      transitions  전이 dict 리스트:
+        U, w, Q        평형 3량 (1.20)/(1.13) (S1)
+        dHa_eff, b     (1.27)+M3 (S4; 히스 전이는 chi*Omega 흡수
+                       유효값 — S5 후 dHa = dHa_eff + chi*Omega 복원)
+        Omega, gamma   (1.34)/(1.35) (S5; 비분기 전이는 0)
+        Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
+                       해당 율의 측정 V(q), 예측 시 OCV 해에서 읽음)
+        r_a            잔류 지연 (M4 분기 결과), h_eta (기본 1)
+    """
+    Vn = V_app - sigma_d * I_abs * par['Rn']           # (1.17)
+    y = np.asarray(par['Cbg'](Vn), dtype=float)        # (1.16)
+    for tr in par['transitions']:
+        Ud = U_branch(T, tr['U'], tr['Omega'], tr['gamma'],
+                      sigma_d, tr.get('h_eta', 1.0))   # M1
+        xe = xi_eq(Vn, Ud, tr['w'])                    # M2
+        A = F * (tr['Va'] - Ud)                        # (1.7), s=+1
+        Lq = np.exp(ln_Lq(T, I_abs, Q_cell, tr['dHa_eff'],
+                          tr['b'], par['chi'], A))     # M3 (동결)
+        LV = abs(tr['dVdq_qa']) * Lq                   # M4
+        ra = tr['r_a']
+        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.38) 종
+        sup = (sigma_d * (Vn - tr['Va']) >= 0.0)       # indicator
+        tail = (ra / LV) * np.exp(
+            -sigma_d * (Vn - tr['Va']) / LV) * sup     # (1.38) 꼬리
+        y = y + tr['Q'] * (bell + tail)
+    return y                                           # M6: V_app 축
+\end{verbatim}
+\end{footnotesize}
+
+읽는 순서는 M1$\to$M6 그대로다. \texttt{dQdV\_app} 의 인자 \texttt{par} 가 식~\eqref{eq:hysmaster}
+의 파라미터 벡터 $\bm\theta$ 이고, 각 항목 옆 주석이 그 값을 닫는 단계(S1--S5)다. 방전이면
+\texttt{sigma\_d=+1}, 충전이면 $-1$ — 코드 어디에도 방향 분기문이 없다는 사실이 \S\ref{sec:master}
+의 ``$\sigma_d$ 세 작용처'' 설계 그대로다(분극 부호$\cdot$분기 중심$\cdot$꼬리 방향이 전부 부호 하나로
+처리된다).
+
+\subsection{단계 회귀의 골격}\label{sec:codestage}
+\begin{footnotesize}
+\begin{verbatim}
+# ---- 단계 회귀의 골격 — 최소화 루틴은 독자 몫((5): 가중 LSQ 만 지키면 됨)
+def s1_residual(theta, V, y_meas, Np):
+    """S1 잔차: 저율 OCV 의 다-peak 동시 회귀.
+    theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
+    저율(r_a -> 0)이라 (1.31) 의 종 항만 남는다."""
+    model = np.full_like(V, theta[-1])
+    for j in range(Np):
+        U, w, Q = theta[3 * j:3 * j + 3]
+        xe = xi_eq(V, U, w)
+        model = model + Q * xe * (1.0 - xe) / w
+    return y_meas - model
+
+# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.26)
+# S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
+#     기울기 = -dHa/R, b = -절편                              ... (1.27)
+# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.36)
+\end{verbatim}
+\end{footnotesize}
+
+S1 만 잔차 함수가 필요하고(다-peak 동시 회귀 — (6) 보충 규정), S3$\cdot$S4 는 직선 회귀, S5 는
+2-파라미터 비선형 한 건이다. 사슬의 실행 순서$\cdot$동결 규칙$\cdot$컷 정의는 (1)--(8)이 이미
+규정했으므로 여기서는 반복하지 않는다 — 골격 주석의 식 번호를 따라가면 된다.
+
+\subsection{실행 검증과 대응표}\label{sec:codeverify}
+수록 코드를 그대로 실행해 세 가지를 확인했다(코드$\cdot$로그는 결과 저장소에 보존).
+\emph{(i) 수치 재현} — \texttt{dU\_hys}$(4RT,25^\circ\mathrm C)=54.8$ mV: \S\ref{sec:hys} 의
+$\approx55$ mV 그대로. \emph{(ii) 면적 보존} — 꼬리-우세 전이($r_a=0.3$) 하나를 식~\eqref{eq:hysmaster}
+로 평가해 배경 차감 적분하면 $0.3998$ vs 참 $Q=0.4000$: 종의 $(1-r_a)$ 와 꼬리의 $r_a$ 가 정확히
+합쳐진다(\S\ref{sec:synth} 의 회계). 이때 절편 $b$ 는 임의값이 아니라 목표 $L_q$ 에서
+식~\eqref{eq:arrhenius} 의 역으로 푼 자기일관 값이어야 한다 — 임의의 $b$ 는 $L_q$ 를 수십~수백 배
+어긋나게 만들므로, 합성 시험을 직접 짜는 독자가 가장 먼저 만나는 함정이다. \emph{(iii) 미니
+round-trip} — 3전이 저율 합성($1\%$ 잡음)에서 \texttt{s1\_residual} $+$ Gauss--Newton 으로
+$U_j$ 를 $\pm0.2$ mV, $w_j$ 를 $\pm0.2$ mV, $Q_j$ 를 $\pm0.001$ 안에서 회복했다. 유한 율
+꼬리 경로(컷$\cdot$sub-window$\cdot$$\chi$ 회귀$\cdot$$(1-r_a)$ 회계)와 충방전 gap
+경로($\Omega,\gamma$ 회복)의 전 파이프라인 round-trip 은 (7) 의 규정대로 별도 수행되어 같은 결론을
+주었다 — 본 절의 함수가 그 시험들이 소비한 사양과 동일하다.
+
+코드와 문건의 대응을 한 표로 닫는다:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{0.22\textwidth} p{0.30\textwidth} p{0.36\textwidth}}
+\toprule
+함수 & 문건 출처 & 비고 \\
+\midrule
+\texttt{dU\_hys} & 식~\eqref{eq:hysdU}, M1 & $\Omega\le2RT$ 명시 분기(NaN 영역) \\
+\texttt{U\_branch} & 식~\eqref{eq:hyscenter}, M1 & 부분 cycle 은 $h(\eta)\gamma$ \\
+\texttt{xi\_eq} & 식~\eqref{eq:logistic} 의 꼴, M2 & 폭은 S1 동결값 \\
+\texttt{ln\_Lq} & 식~\eqref{eq:arrhenius} 의 역, M3 & 전이대는 괄호 인자로 나눔 \\
+\texttt{r\_a\_connect} & M4 & $L_V<w/3$ 분기의 접속값 \\
+\texttt{dQdV\_app} & 식~\eqref{eq:hysmaster}, M1--M6 & $(1-r_a)$ 종 $+$ indicator 꼬리 \\
+\texttt{s1\_residual} & 식~\eqref{eq:simplefit} 종 항, S1 & 저율 $r_a\to0$ 극한 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keybox}
+\textbf{구현의 요지.} 문건의 닫힌 식들은 그대로 코드가 된다 — 모델은 식~\eqref{eq:hysmaster} 의 직역
+한 함수, 식별은 S1--S5 의 잔차$\cdot$직선$\cdot$2-파라미터 회귀가 전부다. 실행 검증이 수치$\cdot$
+보존$\cdot$회복의 세 축에서 통과했으므로, 서론의 약속 — 이 문건만으로 피팅 코드를 세울 수 있다 — 은
+선언이 아니라 확인된 사실이다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
