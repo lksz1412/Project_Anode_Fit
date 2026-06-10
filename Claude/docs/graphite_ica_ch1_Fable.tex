@@ -1356,9 +1356,9 @@ $\sum_j$ 가 그 겹침까지 포함한다. 이로써 여러 전이의 합산이
 % ====================================================================
 \section{보완 관점: $\dd V/\dd Q$ (DVA)}\label{sec:dva}
 % ====================================================================
-지금까지 $\dd Q/\dd V$(ICA)를 세웠다. 같은 측정 곡선 $Q(V)$ 의 \emph{역미분} $\dd V/\dd Q$(differential voltage
-analysis, DVA)는 \emph{같은 물리를 상보적 좌표}로 드러낸다 — 새 파라미터 없이 같은 $\{U_j,w_j,Q_j\}$ 가 다른
-형태로 나타난다. 본 절은 둘의 대응과, 왜 둘을 함께 쓰는지를 못박는다(새 모델 아님).
+지금까지 $\dd Q/\dd V$(ICA)를 세웠다. 같은 측정 곡선 $Q(V)$ 의 역미분 $\dd V/\dd Q$ — differential voltage
+analysis, DVA — 는 같은 물리를 상보적 좌표로 드러낸다. 새 파라미터는 없으며, 같은 $\{U_j,w_j,Q_j\}$ 가 다른
+형태로 나타날 뿐이다. 본 절은 둘의 대응 관계와 둘을 함께 쓰는 이유를 정리한다. 새 모델이 아니다.
 
 \subsection{peak $\leftrightarrow$ valley 대응}
 정의상 점별로 $\dd V/\dd Q=(\dd Q/\dd V)^{-1}$ 다(다전이 합 식~\eqref{eq:total} 의 점별 역수). 따라서
@@ -1373,11 +1373,11 @@ stage \emph{plateau}를 표시}한다 — 같은 전이의 양쪽 정보다.
 
 \subsection{왜 둘을 함께 쓰나}
 \begin{enumerate}[label=(\roman*),leftmargin=2.0em,itemsep=2pt]
-\item \textbf{기저선 분리($\ne$ 더 많은 정보)}: $\dd V/\dd Q$ 와 $\dd Q/\dd V$ 는 전단사라 \emph{정보량이 같다} —
-  어느 좌표도 본질적으로 우월하지 않다(역수는 오히려 작은 $\dd Q/\dd V$ 영역서 잡음을 $1/y^2$ 로 \emph{증폭}한다).
-  실무 이점은 \emph{분산 감소가 아니라 표현}이다: plateau 에서 ICA peak 는 배경 $C_\bg$ 와 겹쳐 기저선 분리가 어려운
-  반면, DVA 는 stage 경계의 급변을 \emph{형상}으로 도드라지게 해 경계 SOC 의 \emph{판독}을 쉽게 한다(분산 비교 자체는
-  잡음 모형 의존 정량 문제로 본 장 범위 밖).
+\item \textbf{기저선 분리 — 더 많은 정보가 아니다}: $\dd V/\dd Q$ 와 $\dd Q/\dd V$ 는 전단사 관계라
+  정보량이 같고, 어느 좌표도 본질적으로 우월하지 않다. 역수는 오히려 $\dd Q/\dd V$ 가 작은 영역에서 잡음을
+  $1/y^2$ 로 증폭한다. 실무 이점은 분산 감소가 아니라 표현에 있다. plateau 에서 ICA peak 는 배경 $C_\bg$ 와
+  겹쳐 기저선 분리가 어려운 반면, DVA 는 stage 경계의 급변을 형상으로 도드라지게 해 경계 SOC 의 판독을 쉽게
+  한다. 분산의 정량 비교 자체는 잡음 모형에 의존하는 문제라 본 장 범위 밖이다.
 \item \textbf{용량의 직접성}: ICA peak \emph{면적}은 곧 $Q_j$(전이 용량)다 — DVA 의 vs-$V$ 좌표에선 valley 폭으로
   간접적이다(단 $\dd V/\dd Q$ 를 \emph{vs-$Q$} 로 그리면 경계 간 $\Delta Q$ 로 $Q_j$ 직독 — 좌표 선택의 문제).
 \item \textbf{교차검증}: \emph{DVA valley} 수 $=$ ICA \emph{peak} 수 $=N_p$(둘 다 $U_j$ 표시; DVA \emph{peak}=경계는 전이
@@ -1395,8 +1395,18 @@ $1/[C_\bg+Q_j/(4w_j)]$ ($C_\bg$ 포함), 폭은 $w_j$(단상이면 식~\eqref{eq
 식~\eqref{eq:Lq} 동역학 꼬리, 충$\cdot$방전 갈림은 \S\ref{sec:hys_branch} 분기. \emph{단 valley 의 단일-$w_j$ 귀속은 전이
 \textbf{비겹침} 영역에 한한다} — 겹치면 합의 역수라 전이별로 안 쪼개진다(\S\ref{sec:overlap} forward-only 와 같은 제약).
 또 폭(\S\ref{sec:regsol})과 gap 의 $\Omega_j$ 는 같은 $g_j''$ 의 사영이라 \emph{독립이 아닌 내적 일관성}이다(\S\ref{sec:falsify}).
-그러므로 본 장 피팅은 $\dd Q/\dd V$ 로 하고, $\dd V/\dd Q$ 는 \emph{경계 SOC 판독을 쉽게}(기저선 분리; 새 정보 아님)
-하는 데 병용한다 — 같은 모델식의 두 그림.
+그러므로 본 장의 피팅은 $\dd Q/\dd V$ 로 하고, $\dd V/\dd Q$ 는 경계 SOC 의 판독을 쉽게 하는 데 병용한다.
+새 정보가 아니라 같은 모델식의 두 그림이다.
+
+\medskip
+\textbf{방전 본론의 종결.} 이로써 방전 $\dd Q/\dd V$ 의 이론이 완결되었다. 내부 전위의 정의(\S\ref{sec:stage})
+에서 출발해 평형 기준선(\S\ref{sec:eqpeak}$\cdot$\S\ref{sec:regsol})과 동역학 꼬리(\S\ref{sec:lag}$\cdot$
+\S\ref{sec:barrier}), 입자 분포(\S\ref{sec:dist})를 지나, 닫힌식과 식별 절차(\S\ref{sec:synth}), 다전이 합산
+(\S\ref{sec:overlap}), 상보 좌표(본 절)까지 닫았다. 이후의 절들은 이 본론 위에 세우는 \emph{확장}이다.
+\S\ref{sec:regsol} 에서 이미 등장한 상분리가 충전과 방전을 가르는 분기를 만들기 때문에, 다음 절부터 그
+히스테리시스를 같은 골격 위에 얹는다(\S\ref{sec:hys_branch}--\S\ref{sec:hys_partial}). 마지막으로
+\S\ref{sec:master} 가 방전 한 줄 피팅식과 그 양방향 통합형을, 측정 파일에서 파라미터까지 가는 피팅 알고리즘과
+함께 닫는다.
 
 % ====================================================================
 \section{충방전 분기와 히스테리시스 gap $\Delta U_j^\hys$}\label{sec:hys_branch}
