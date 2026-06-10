@@ -139,6 +139,68 @@ stage 3$\cdot$4$\cdot$2L 은 더 희박한 조성이다(조성은 근사). 각 s
 \newpage
 
 % ====================================================================
+\section{기호와 규약}\label{sec:notation}
+% ====================================================================
+본문에 들어가기 전에 기호$\cdot$단위$\cdot$부호 규약을 정리한다. 각 양은 처음 쓰이는 곳에서 다시 물리적으로
+동기 부여할 것이므로, 이 표는 필요할 때 돌아와 찾아보는 사전으로 쓰면 된다. 표의 배열은 본 문건의 전개
+순서를 따른다 — 속도식과 장벽이 먼저, 열역학이 그 다음, 관측축과 꼬리$\cdot$분기가 그 뒤다.
+
+\textbf{전이 인덱스.} 상전이는 $j=1,\dots,N_p$ 로 여럿이다($N_p\approx3\sim4$ — 관측 유효 전이 수). 각
+전이에는 Li 점유율 $\theta_j$ 와 방전 진행률 $\xi_j\equiv1-\theta_j$ 를 둔다. 방전(탈리튬화)이 진행하면
+$\theta_j$ 가 $1\to0$ 으로 줄고 $\xi_j$ 가 $0\to1$ 로 커진다. 한 전이만 논하는 문맥에서는 $j$ 를 생략할 수
+있으나, 박스로 강조된 최종 결과식에는 항상 $j$ 를 단다.
+
+\textbf{부호 규약.} 진행 방향 부호 $s\in\{+1,-1\}$ 는 전이의 방전 방향을 표시하며 본 문건은 방전 기준
+$s=+1$ 로 고정한다. 전류 부호 $s_I$ 는 방전 시 분극이 측정 전위를 올리는 방향을 $+$ 로 잡으며 같은 기준에서
+$s_I=+1$ 이다. 충방전 양방향을 다룰 때의 방향 부호 $\sigma_d=\pm1$ 은 \S\ref{sec:master} 에서 도입한다.
+요지만 미리 두면 — $s$ 는 평형 곡선의 정의 안에 $+1$ 로 고정된 채 남고(평형 곡선은 진행 방향에 불변인
+상태함수이므로), 방향에 따라 실제로 바뀌는 것은 $\sigma_d$ 가 맡으며 그 작용처는 분극 부호, 분기 중심 선택,
+꼬리의 지지$\cdot$감쇠 방향 셋이다.
+
+\begin{longtable}{p{0.15\textwidth} p{0.13\textwidth} p{0.64\textwidth}}
+\toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+\multicolumn{3}{l}{\emph{— 속도식과 장벽(\S\ref{sec:rate}$\cdot$\S\ref{sec:fwdrev}) —}}\\
+$k_j,\ k_0$ & 1/s & 전이 $j$ 의 완화 속도상수($=r_j^++r_j^-$), Eyring prefactor $k_0=k_BT/h$ \\
+$\Delta G_{a,j}$ & J/mol & 활성화 자유에너지 $=\Delta H_{a,j}-T\Delta S_{a,j}$ \\
+$\Delta H_{a,j},\Delta S_{a,j}$ & {\footnotesize J/mol;\,J/(mol\,K)} & 활성화 엔탈피$\cdot$엔트로피(\emph{속도}에 들어감 — 반응 엔트로피 $\Delta S_j$ 와 다른 양) \\
+$r_j^\pm$ & 1/s & 전이 $j$ 의 정(탈리튬화)/역(재리튬화) 방향 속도 \\
+$\chi$ & --- & 전달 계수 $0\le\chi\le1$(구동력 중 정방향 장벽을 낮추는 몫; 전기화학 표준 표기 $\alpha$) \\
+$\mathcal A_j$ & J/mol & 전이 $j$ 의 구동력(affinity) $=sF(V_\drive-U_j)$ \\
+$\Delta G_{\eff,j}$ & J/mol & 유효 활성화 자유에너지 $=\Delta G_{a,j}-\chi\mathcal A_j$ \\
+$k_j^{\eff},k_{j,\lim}$ & 1/s & 직렬 율속 합성 $1/k_j^{\eff}=1/k_j+1/k_{j,\lim}$ 의 유효 속도와 공율속 \\
+$\lambda$ & J/mol & Marcus 재구성 에너지(선형 근사의 한계 척도) \\
+\multicolumn{3}{l}{\emph{— 열역학(\S\ref{sec:thermo}$\cdot$\S\ref{sec:regsol}) —}}\\
+$G,\ \mu$ & J;\,J/mol & Gibbs 자유에너지, 화학퍼텐셜 $\mu=\partial G/\partial n$ \\
+$\theta_j$ & --- & 전이 $j$ 의 Li 점유율(방전 시 $1\to0$) \\
+$\xi_j,\ \xi_{\eq,j}$ & --- & 진행률 $=1-\theta_j$ 와 그 평형값 \\
+$\Omega_j$ & J/mol & 정규용액 상호작용 에너지($>2RT$ 면 상분리$\cdot$히스) \\
+$U_j(T)$ & V & 전이 $j$ 의 평형 중심 전위 \\
+$\Delta S_j$ & J/(mol\,K) & 삽입 반응 엔트로피($\partial U_j/\partial T=\Delta S_j/(sF)$) \\
+$w_j$ & V & 전이 폭 척도(이상 극한 $RT/F$; \S\ref{sec:eqpeak}) \\
+$T_{c,j},\ \xi_{s,j}^\pm$ & K;\,--- & 임계 온도 $=\Omega_j/2R$; 불안정 경계(spinodal) 진행률 \\
+\multicolumn{3}{l}{\emph{— 관측축(\S\ref{sec:charge}) —}}\\
+$V_n$ & V & \emph{내부} 음극 전위 — 전하 보존식의 해 \\
+$V_\app$ & V & 측정 전위 $=V_n+s_I|I|R_n$ \\
+$V_\drive$ & V & 속도를 구동하는 전위(기본형 $V_\drive=V_n$) \\
+$Q_j,\ Q_\cell$ & C & 전이 $j$ 의 용량, 셀 총 방전 용량 \\
+$q$ & --- & 무차원 용량 좌표 $=\int|I|\,\dd t/Q_\cell$ \\
+$Q_\bg,\ C_\bg$ & C;\,C/V & 배경 누적 용량과 그 미분용량 $\partial Q_\bg/\partial V_n$ \\
+$R_n$ & $\Omega$ & 음극 유효 분극 저항(lumped) \\
+\multicolumn{3}{l}{\emph{— 지연과 꼬리(\S\ref{sec:lag}$\cdot$\S\ref{sec:dist}) —}}\\
+$r_j$ & --- & 지연 $=\xi_{\eq,j}-\xi_j$(첨자 없는 $r_j$ — 속도 $r_j^\pm$ 와 구별) \\
+$L_{q,j},\ L_{V,j}$ & ---;\,V & 용량축$\cdot$전압축 꼬리 특성 길이($L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$) \\
+$q_a,\ V_{a,j},\ r_{a,j}$ & ---;\,V;\,--- & 꼬리 시작 좌표$\cdot$전위$\cdot$잔류 지연 \\
+$\rho_G(G),\ \sigma_G$ & mol/J;\,J/mol & 활성화 장벽의 용량-분율 밀도($\int\rho_G\dd G=1$)와 표준편차 \\
+\multicolumn{3}{l}{\emph{— 충방전 확장(\S\ref{sec:hys} 이하) —}}\\
+$\gamma_j$ & --- & 분기 축소 인자(다입자$\cdot$핵생성) $0\le\gamma_j\le1$ \\
+$\Delta U_j^\hys$ & V & 충방전 분기 gap 의 spinodal 상한(식~\eqref{eq:hysdU}) \\
+$U_j^{\dis},U_j^{\chg}$ & V & 방전$\cdot$충전 분기 중심 $=U_j\pm\tfrac12\gamma_j\Delta U_j^\hys$ \\
+$\sigma_d$ & --- & 방향 부호(방전 $+1$/충전 $-1$) \\
+$R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Faraday, Boltzmann, Planck \\
+\bottomrule
+\end{longtable}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
