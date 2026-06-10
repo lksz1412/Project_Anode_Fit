@@ -1398,8 +1398,27 @@ FWHM($\approx91$ mV)이 간격($100$ mV)보다
 작아 \emph{겨우 분리}된다. 전류를 키워 꼬리 $L_{V,j}$ 가 $\sim100$ mV 로 자라면(조건 (ii)) $j$ 의 꼬리가 $j{+}1$
 peak 에 닿아 \emph{융합이 시작}된다. $L_{V,j}\propto|I|\,e^{\Delta H_a/RT}$ 라 저온일수록 더 \emph{낮은} 전류에서
 융합이 개시된다 — 관측의 ``저온$\cdot$고율서 peak 가 겹친다''가 이 부등식의 등호로 정량화된다. 일단 융합하면 두
-전이의 면적이 한 봉우리에 섞여, 저율 anchor 없이는 $Q_j$ 를 되돌릴 수 없다(아래).
+전이의 면적이 한 봉우리에 섞여, 저율 anchor 없이는 $Q_j$ 를 되돌릴 수 없다(아래). 그림~\ref{fig:fusion} 이
+이 과정을 모식으로 보인다.
 \end{verifybox}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.62cm,y=20cm]
+\draw[->] (-3,0) -- (10.6,0) node[below] {$(V_n-U_1)/w$};
+\draw[->] (-3,0) -- (-3,0.30) node[above] {\footnotesize $\dd Q/\dd V$(임의 단위)};
+\draw[thick] plot[smooth] coordinates {(-3,0.0462) (-2.3,0.0825) (-1.7,0.1374) (-1,0.2039) (-0.3,0.2573) (0.3,0.2699) (1,0.246) (1.7,0.2211) (2,0.2182) (2.3,0.2235) (3,0.2507) (3.7,0.2709) (4.3,0.2514) (5,0.194) (5.7,0.1281) (6.3,0.0759) (7,0.0422) (7.7,0.0226) (8.3,0.0118) (9,0.0061) (10,0.0023)};
+\draw[thick,densely dashed] plot[smooth] coordinates {(-3,0.036) (-2.3,0.0644) (-1.7,0.1072) (-1,0.1591) (-0.3,0.2007) (0.3,0.2105) (1,0.1919) (1.7,0.1724) (2,0.1702) (2.3,0.2592) (3,0.2674) (3.7,0.2721) (4.3,0.2476) (5,0.1949) (5.7,0.1368) (6,0.1117) (6.3,0.1732) (7,0.1294) (7.7,0.0993) (8.3,0.0784) (9,0.0633) (10,0.0474)};
+\node[below,gray] at (0,-0.006) {\footnotesize $U_1$};
+\node[below,gray] at (3.9,-0.006) {\footnotesize $U_2$};
+\node at (7.6,0.16) {\footnotesize 고율(꼬리 융합)};
+\node at (-1.6,0.23) {\footnotesize 저율(분리)};
+\end{tikzpicture}
+\caption{두 인접 전이의 융합 모식(중심 간격 $3.9\,w$). 실선은 저율 — 두 peak 사이 골이 깊어 분리가 읽힌다.
+파선은 고율 — 각 전이의 동역학 꼬리($L_V=4w$)가 다음 전이 쪽으로 뻗어 골을 메우고 뒤쪽 어깨를 들어 올리며,
+면적이 섞이기 시작한다. 저온도 같은 방향으로 작용한다(꼬리 길이 $\propto|I|\,e^{\Delta H_a/RT}$). 융합
+후의 식별은 \S\ref{sec:overlap} 의 forward 합산만 허용된다.}
+\label{fig:fusion}
+\end{figure}
 
 \textbf{OCV-anchored forward 합산$\cdot$예측(절차).} 융합한 고율 데이터에서 $j$별 기여를 \emph{역산}하면 비유일이다(\S\ref{sec:dist}). 대신 저율 정보를 anchor 로 \emph{forward} 예측한다:
 \begin{enumerate}[label=\textbf{S$_\arabic*'$.},leftmargin=2.8em,itemsep=2pt]
@@ -1593,10 +1612,33 @@ $8RT_0$ & $1193$ K & $135.1$ & $132.9$ & $127.0$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-창 안($15\to45^\circ$C) 상대 감소는 각각 $-28\%$, $-16\%$, $-6\%$ 다. $T_{c,j}$ 가 측정창에 가까울수록
+창 안($15\to45^\circ$C) 상대 감소는 각각 $-28\%$, $-16\%$, $-6\%$ 다. 같은 내용을 곡선으로 보면
+그림~\ref{fig:gapT} 다. $T_{c,j}$ 가 측정창에 가까울수록
 절편의 온도 의존이 가파르고, 깊은 2상측($8RT_0$)은 $-6\%$ 라 측정 불확도에 묻히기 쉽다 — 피팅 알고리즘
 (6$'$)의 퇴화 분기(lumped $\Delta_j$ 강등)가 필요한 까닭이 이 수치에서 그대로 보인다.
 \end{verifybox}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.05cm,y=0.022cm]
+\fill[gray!15] (288,0) rectangle (318,245);
+\draw[->] (265,0) -- (478,0) node[below] {$T$ [K]};
+\draw[->] (265,0) -- (265,245) node[above] {\footnotesize $\Delta U_j^\hys$ [mV]};
+\draw[thick] plot[smooth] coordinates {(270,28.1) (290,23.2) (310,18.7) (330,14.6) (350,10.9) (370,7.6) (390,4.8) (410,2.5) (430,0.8) (445,0.05)};
+\draw[thick,densely dashed] plot[smooth] coordinates {(270,63.6) (290,57.3) (310,51.2) (330,45.5) (350,40.1) (370,35) (390,30.2) (410,25.7) (430,21.5) (450,17.6) (470,14)};
+\draw[thick,densely dotted] plot[smooth] coordinates {(270,233.7) (290,224.4) (310,215.3) (330,206.5) (350,198) (370,189.7) (390,181.6) (410,173.7) (430,166) (450,158.6) (470,151.3)};
+\node[right] at (430,40) {\footnotesize $3RT_0$};
+\node[right] at (455,28) {\footnotesize $4RT_0$};
+\node[right] at (440,175) {\footnotesize $8RT_0$};
+\fill (447,0) circle (0.8pt) node[below] {\footnotesize $T_{c}(3RT_0)$};
+\node[below,gray] at (303,-12) {\footnotesize 측정창};
+\end{tikzpicture}
+\caption{spinodal gap $\Delta U_j^\hys(T)$(식~\eqref{eq:hys_dU})의 온도 의존, $\Omega_j=3/4/8RT_0$
+($T_0=298$ K). 음영이 측정창($15$--$45^\circ$C)이다. $T_{c,j}$ 가 창에 가까운 곡선($3RT_0$)은 창 안에서도
+가파르게 줄어 $\Omega_j$ 가 절편의 온도 의존으로 잘 식별되는 반면, 깊은 2상측($8RT_0$)은 창 안에서 거의
+평탄해 lumped $\Delta_j$ 퇴화 처리(피팅 알고리즘 (6$'$))가 필요하다. $T\to T_{c,j}$ 에서 $(T_c-T)^{3/2}$
+멱으로 매끄럽게 소멸한다(\S\ref{sec:falsify}(ii)).}
+\label{fig:gapT}
+\end{figure}
 \begin{boundbox}
 \textbf{$U_j$-대칭과 축소 $\gamma_j$.} 두 spinodal 극값은 $U_j$ 에 \emph{대칭}이다 — 식~\eqref{eq:hys_Veq} 의 로그항과
 $\Omega$ 항이 모두 $\xi=\tfrac12$ 대칭이라 $\tfrac12[V_{\eq}(\xi_s^-)+V_{\eq}(\xi_s^+)]=U_j$(끝점 $\xi_s^\pm=\tfrac12\pm
