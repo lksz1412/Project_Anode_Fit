@@ -33,7 +33,7 @@ def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
       T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
     A_d = sigma_d*F*(Va - U^d) >= 0 — 자기 방향으로 양수인 구동력.
-    chi_d = chi(방전) / 1-chi(충전) — 같은 전이상태의 합-1 강제(1.8);
+    chi_d: 방전이면 chi, 충전이면 1-chi — 같은 전이상태의 합-1 강제(1.8);
     충전 회귀와 S3 chi 의 합치가 그 가정의 검정이다(§1.15).
     전이대(A_d < 3RT)의 보편형 괄호 인자는 속도에 곱 => L 은 나눈다."""
     T_star = I_abs * H / (Q_cell * KB)
@@ -65,8 +65,8 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
       chi          전달 계수 (S3; 충전 가지는 1-chi 로 자동 적용)
       transitions  전이 dict 리스트:
         U, w, Q        평형 3량 (1.20)/(1.13) (S1)
-        dHa_eff, b     (1.27)+M3 (S4; Omega!=0 전이는 chi*Omega 흡수
-                       유효값 — S5 후 dHa = dHa_eff + chi*Omega 복원)
+        dHa_eff, b     (1.27)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
+                       유효값 — S5 후 dHa = dHa_eff + chi_d*Omega 복원)
         Omega, gamma   (1.34)/(1.35) (S5; 비분기 전이는 0)
         Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
                        해당 율의 측정 V(q), 예측 시 OCV 해에서 읽음)
