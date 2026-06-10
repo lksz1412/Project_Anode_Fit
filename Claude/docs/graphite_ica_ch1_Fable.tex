@@ -1109,11 +1109,12 @@ $A_L=0$). 본문에는 이 형식이 필요 없다 — 식~\eqref{eq:superpose} 
 % ====================================================================
 \section{종합: 피팅 가능한 식과 3$\times$3 의존성}\label{sec:synth}
 % ====================================================================
-위 여섯 \emph{물리} 절(전하 보존 $\to$ 평형 $\to$ 정규용액 $\to$ 지연 $\to$ 유효 배리어 $\to$ 분포; 통계 도구절
-\S\ref{sec:stattools} 제외)을 묶으면 $\dd Q/\dd V$ 가 $(V;\,T,|I|,V_\drive)$ 의 닫힌 함수가 된다. 이 중 정규용액은
-본 절의 \emph{방전 단일 전이} 닫힌식에는 $w_j$ 의 물리적 근거(식~\eqref{eq:weff})로 들어가고, 충방전 분기 몫은
-\S\ref{sec:hys_branch} 에서 합류한다. peak 의
-위치$\cdot$너비$\cdot$높이는 세 인자에 \emph{각각} 어떻게 반응하는가? 그리고 실무에 바로 쓸 가장 단순한 식은?
+여기까지 여섯 개의 물리 절 — 전하 보존, 평형, 정규용액, 지연, 유효 배리어, 분포(통계 도구절 \S\ref{sec:stattools}
+는 도구이므로 제외) — 이 각각 한 조각씩을 닫았다. 이 절은 그것들을 묶는다. 묶으면 $\dd Q/\dd V$ 가
+$(V;\,T,|I|,V_\drive)$ 의 닫힌 함수가 된다. 이 중 정규용액의 몫은 둘로 갈린다. 본 절의 방전 단일 전이 닫힌식에는
+$w_j$ 의 물리적 근거(식~\eqref{eq:weff})로 들어가고, 충방전 분기 몫은 \S\ref{sec:hys_branch} 에서 합류한다.
+본 절이 답할 질문은 둘이다. peak 의 위치$\cdot$너비$\cdot$높이는 세 인자에 각각 어떻게 반응하는가. 그리고
+실무에 바로 쓸 가장 단순한 식은 무엇인가.
 
 \subsection{닫힌 형태 — ``평형에서 지연을 뺀 것의 미분''}
 \textbf{\S\ref{sec:dist} 의 꼬리를 상승부와 한 식으로 묶기.} \S\ref{sec:dist} 는 \emph{한 전이의 꼬리}(post-peak)만
@@ -1121,8 +1122,10 @@ $A_L=0$). 본문에는 이 형식이 필요 없다 — 식~\eqref{eq:superpose} 
 이제 둘을 \emph{하나의 닫힌 식}으로 묶으면, \S\ref{sec:eqpeak} 의 평형 peak 가 rise 를, 식~\eqref{eq:superpose} 가
 그 뒤 꼬리를 담당함이 한눈에 드러난다.
 
-관측 peak 항은 식~\eqref{eq:dQdV} 의 $Q_j\,\dd\xi_j/\dd V_n$ 이다. 실제 전환율 $\xi_j$ 는 평형 목표 $\xi_{\eq,j}$ 를
-지연만큼 못 따라가므로(\S\ref{sec:lag}), 그 모자란 양을 집단 평균한 \emph{가중 평균 지연}
+관측 peak 항은 식~\eqref{eq:dQdV} 의 $Q_j\,\dd\xi_j/\dd V_n$ 이다. 실제 전환율은 어느 영역에서나
+$\xi_j=\xi_{\eq,j}-r_j$ 로 적을 수 있으며, 지연 $r_j$ 의 거동은 \S\ref{sec:lag} 의 일반해가 전 구간에서 정해
+준다. 상승부에서는 극한 (i)에 따라 $r_j\simeq L_q\,\dd\xi_{\eq,j}/\dd q$ 의 소량이고, post-peak 에서는 극한
+(ii)에 따라 지수 감쇠다. 입자 집단을 들이면 이 지연을 집단 평균해야 하므로, \emph{가중 평균 지연}
 \[
 \bar r_j(q)\equiv\int_0^\infty\rho_G(G)\,r_j(q;G)\,\dd G,\qquad
 r_j(q;G)=r_a(G)\,e^{-(q-q_a)/L_q(G)}\quad(\text{집단 }G\text{ 의 지연, 식~\eqref{eq:rsol}})
@@ -1147,11 +1150,12 @@ $\bar r_j$ 미분의 다른 표기였던 것이다. 그러므로 peak 전체는
 \;-\;\underbrace{Q_j\frac{\dd\bar r_j}{\dd V_n}}_{\text{지연이 깎는 꼬리}}\;.}
 \label{eq:closed}
 \end{equation}
-이것이 종합식이다 — 모호한 결합 연산이 아니라 \emph{평형 전환율에서 지연을 뺀 것의 미분}이라는 \emph{정의된}
-형태다. peak \emph{앞쪽}(상승부)에서는 지연이 작아 평형 항 $Q_j\dd\xi_{\eq,j}/\dd V_n$ 이 지배하고, peak
-\emph{뒤쪽}에서는 $\dd\xi_{\eq,j}/\dd V_n\to0$ 이라 $-Q_j\dd\bar r_j/\dd V_n$ 의 지수 꼬리(식~\eqref{eq:superpose})가
-지배한다. 빠른 kinetics 극한($\bar r_j\to0$)에서 평형 peak(\S\ref{sec:eqpeak})로 복귀하므로 식이 무결하다. 측정축은
-$V_n\to V_\app=V_n+s_I|I|R_n$ 환산.
+이것이 종합식이다. 모호한 결합 연산이 아니라 \emph{평형 전환율에서 지연을 뺀 것의 미분}이라는, 정의된 형태다.
+두 영역의 분담은 \S\ref{sec:lag} 일반해의 두 극한 그대로다. peak 앞쪽(상승부)에서는 극한 (i)대로 지연이
+$O(L_q)$ 의 소량이라 평형 항 $Q_j\dd\xi_{\eq,j}/\dd V_n$ 이 지배하고, peak 뒤쪽에서는
+$\dd\xi_{\eq,j}/\dd V_n\to0$ 이라 극한 (ii)의 지수 꼬리 $-Q_j\dd\bar r_j/\dd V_n$(식~\eqref{eq:superpose})이
+지배한다. 빠른 kinetics 극한($\bar r_j\to0$)에서는 평형 peak(\S\ref{sec:eqpeak})로 복귀하므로 식이 무결하다.
+측정축으로는 $V_n\to V_\app=V_n+s_I|I|R_n$ 으로 환산한다.
 
 \subsection{3$\times$3 의존성 표 (실무 산출물)}
 표의 \emph{행}은 peak 의 위치$\cdot$너비$\cdot$높이, \emph{열}은 세 인자($T\downarrow$$\cdot$$|I|\uparrow$$\cdot$$V_\drive\uparrow$)다.
@@ -1225,25 +1229,29 @@ $91$ mV 를 넘으면 이상 폭보다 넓음=꼬리 오염 신호)로만 쓰고
 (\S\ref{sec:overlap})도 이 $91$ mV 를 \emph{이상 상한 규모}로(동일 폭 가정 하) 전이 간격과 비교하는 입력으로 받는다.
 \end{verifybox}
 
-\textbf{식별 순서(비순환).} \emph{평형항과 꼬리항을 한 데이터에서 동시}에 자유 피팅하면 둘이 같은 전위창서 섞여
-공선형이라 분리 불가다(공선형은 \emph{평형$\leftrightarrow$꼬리} 축의 문제). 두 종류의 식별을 구분한다: (a) \textbf{독립
-측정}으로 애초에 공선형이 없는 것 — 저율 OCV(S1)는 꼬리가 \emph{물리적으로 부재}($|I|\to0$)라 한 곡선이어도
-$\{U_j,w_j,Q_j\}$ 가 \emph{서로 직교한 peak 모멘트}(위치=중심(1차 모멘트), 너비=중심 곡률, 면적=0차 모멘트(적분))라 동시에 분리되고,
-전류 차단(S2)은 \emph{다른 관측량}(전압 도약)이다; (b) \textbf{공선형 해소} — $\chi$(S3)와 $\Delta H_a$(S4)는 둘 다 꼬리
-지수에 섞이므로 \emph{직교 측정축}(등온 다전위 vs 다온도)으로 한 겹씩 벗긴다. 즉 독립 실험으로 \emph{먼저}
-고정해 뒤 단계의 기지값으로 만들면, 각 단계에 미지수가 하나씩만 남아 순환이 끊긴다. 아래 \emph{순차} 제약이 그
-벗김의 순서이며 — 각 단계는 \emph{무엇을 고정하고, 무엇이 분리되며, 공선형이 어떻게 해소되는가}로 읽는다.
+\textbf{식별 순서(비순환).} 평형항과 꼬리항을 한 데이터에서 동시에 자유 피팅하면, 둘이 같은 전위창에서 섞여
+공선형이 되어 분리할 수 없다. 이 공선형은 평형$\leftrightarrow$꼬리 축의 문제다. 해법으로 두 종류의 식별을
+구분한다. (a) \textbf{독립 측정으로 애초에 공선형이 없는 경우.} 저율 OCV(S1)에서는 꼬리가 물리적으로 부재
+($|I|\to0$)하므로, 한 곡선이어도 $\{U_j,w_j,Q_j\}$ 가 서로 직교한 peak 모멘트 — 위치는 중심(1차 모멘트),
+너비는 중심 곡률, 면적은 0차 모멘트(적분) — 라서 동시에 분리된다. 전류 차단(S2)은 전압 도약이라는 별개의
+관측량이다. (b) \textbf{공선형을 해소해야 하는 경우.} $\chi$(S3)와 $\Delta H_a$(S4)는 둘 다 꼬리 지수에
+섞이므로, 직교 측정축 — 등온 다전위 대 다온도 — 으로 한 겹씩 벗긴다. 요컨대 독립 실험으로 먼저 고정해 뒤 단계의
+기지값으로 만들면, 각 단계에 미지수가 하나씩만 남아 순환이 끊긴다. 아래의 순차 제약이 그 벗김의 순서이며, 각
+단계는 ``무엇을 고정하고, 무엇이 분리되며, 공선형이 어떻게 해소되는가''로 읽는다.
 \begin{enumerate}[label=\textbf{S\arabic*.},leftmargin=2.6em,itemsep=2pt]
 \item \textbf{저율 OCV}($|I|\to0$, 꼬리가 사라진 평형). 고정$\to\{U_j,w_j,Q_j\}$. 분리 근거: 동역학 꼬리가
   없어 평형 peak(식~\eqref{eq:eqpeak})만 남으므로 위치$\cdot$너비$\cdot$면적이 곧 $U_j,w_j,Q_j$.
 \item \textbf{펄스/전류 차단}. 고정$\to R_n$. 분리 근거: 전류 차단 직후 전압의 즉각 도약(IR-drop) $\Delta V=
   s_I|I|R_n$ 에서 $R_n$ 을 읽는다(GITT) \cite{weppner1977}. $R_n$ 과 $\chi$ 가 둘 다 꼬리를 늘려 공선형이므로
   $R_n$ 을 \emph{먼저} 묶는다.
-\item \textbf{다전류/전위} ($\chi$ 를 \emph{Arrhenius 앞에서} 먼저). 고정$\to\chi$. 분리 근거: 식~\eqref{eq:LqV} 의
-  $\partial\ln L_{q,j}/\partial V_\drive$ 기울기에서 $\chi$ 가 나온다(활성화 지배 극한 $-\chi sF/RT$; 공율속 유한이면
-  식~\eqref{eq:LqV} 의 감쇠인자 $k_{j,\lim}/(k_{j,\mathrm{act}}+k_{j,\lim})$ 보정. $\mathcal A_j$ 는 S1$\cdot$S2 기지값). \textbf{$\chi$ 를 다음 단계(S4)보다 먼저 확정}해, S4 의 구동항 보정 $\chi\mathcal A_j$ 를 기지값으로
-  만든다 — 이 순서가 ``$\chi$ 와 $\Delta H_a$ 가 둘 다 꼬리에 들어가 공선형''인 순환 의존을 끊어 비순환으로 식별한다.
-  (실측: 고정 $T$, S1$\cdot$S2 로 환산한 동일 SOC$\cdot$tail window 에서 $\ln L_{q,j}$ 를 $V_\drive$ 로 회귀; 상세 절차는 피팅 장.)
+\item \textbf{다전류/전위} — $\chi$ 를 Arrhenius 앞에서 먼저 확정한다. 고정$\to\chi$. 분리 근거:
+  식~\eqref{eq:LqV} 의 $\partial\ln L_{q,j}/\partial V_\drive$ 기울기에서 $\chi$ 가 나온다. 활성화 지배
+  극한에서 그 기울기는 $-\chi sF/RT$ 이고, 공율속이 유한하면 식~\eqref{eq:LqV} 의 감쇠인자
+  $k_{j,\lim}/(k_{j,\mathrm{act}}+k_{j,\lim})$ 로 보정한다. 이때 $\mathcal A_j$ 는 S1$\cdot$S2 의 기지값으로
+  계산된다. $\chi$ 를 다음 단계 S4 보다 먼저 확정하는 까닭은, S4 의 구동항 보정 $\chi\mathcal A_j$ 를 기지값으로
+  만들기 위해서다. 이 순서가 ``$\chi$ 와 $\Delta H_a$ 가 둘 다 꼬리에 들어가 공선형''인 순환 의존을 끊는다.
+  실측으로는 고정 $T$ 에서, S1$\cdot$S2 로 환산한 동일 SOC$\cdot$tail window 의 $\ln L_{q,j}$ 를 $V_\drive$ 로
+  회귀한다(상세 절차는 \S\ref{sec:master} 의 피팅 알고리즘).
 \item \textbf{다온도 Arrhenius}. 고정$\to\Delta H_a$(순수, 기울기에서; $\Delta S_a$ 는 절편 $\Delta S_a/R+\text{const}$
   \emph{조합}으로만 — 절 끝에서 상술). \emph{보정의 대수 유도}: 식~\eqref{eq:simplefit}
   에 $\Delta G_a=\Delta H_a-T\Delta S_a$ 를 넣으면
