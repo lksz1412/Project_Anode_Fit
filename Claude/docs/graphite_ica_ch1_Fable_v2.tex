@@ -1275,6 +1275,202 @@ Preisach 류 모형의 소관으로 본 문건 범위 밖이다 \cite{sethna1993
 \end{keybox}
 
 % ====================================================================
+\section{통합식과 피팅 알고리즘}\label{sec:master}
+% ====================================================================
+모든 조각을 모은다. 먼저 방전 한 줄 식을 닫고, 분기 중심과 분극 부호만 방향별로 바꿔 충방전 통합형으로
+넓힌 뒤, 측정 파일에서 파라미터까지 가는 알고리즘을 사양 수준으로 적는다 — 이 절만 보고 피팅 코드를 짤 수
+있어야 한다는 것이 목표다.
+
+\subsection{방전 한 줄 식과 양방향 통합형}
+측정 전위를 $V_n=V_\app-s_I|I|R_n$ 으로 환산한 뒤, 전이 $j=1,\dots,N_p$ 에 대해
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V_\app}=C_\bg(V_n,T)+\sum_{j=1}^{N_p}Q_j\bigg[
+\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
++\frac{r_{a,j}}{L_{V,j}}\,e^{-(V_n-V_{a,j})/L_{V,j}}\bigg]\;,}
+\label{eq:master}
+\end{equation}
+꼬리 항은 단방향 지지 $s(V_n-V_{a,j})\ge0$ 위에서만 산다. 각 항의 출처 — $\xi_{\eq,j}$ 는
+식~\eqref{eq:logistic}, $L_{q,j}$ 는 식~\eqref{eq:Lq} 에 식~\eqref{eq:keff} 를 넣은
+$L_{q,j}=(|I|h/Q_\cell k_BT)\,e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT}$,
+$L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$, $\mathcal A_j=sF(V_n-U_j)$ — 가 전부 근본식
+~\eqref{eq:eyring} 의 가지들이다.
+
+충방전 양방향은 두 가지만 바꾼다. 전이 중심을 분기 중심으로($U_j\to U_j^{d}$,
+식~\eqref{eq:hyscenter}), 분극 부호를 방향 부호로($s_I\to\sigma_d$):
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V_\app}\Big|^{d}=C_\bg+\sum_{j=1}^{N_p}Q_j\bigg[
+\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
++\frac{r_{a,j}^d}{L_{V,j}^d}\,e^{-\sigma_d(V_n-V_{a,j}^d)/L_{V,j}^d}\bigg]_{U_j\to U_j^{d}},\quad
+V_n=V_\app-\sigma_d|I|R_n\;.}
+\label{eq:hysmaster}
+\end{equation}
+지수의 $\sigma_d$ 와 지지 조건 $\sigma_d(V_n-V_{a,j}^d)\ge0$ 이 충전 꼬리의 거울상 감쇠를 처리한다.
+평형 곡선 안의 $s$ 는 방전 규약 $+1$ 로 고정된 채 남는다 — 방향에 따라 바뀌는 것은 $\sigma_d$ 의 세
+작용처(분극 부호$\cdot$분기 중심$\cdot$꼬리 방향)뿐이다. 충전 꼬리의 크기 $\{r^{\chg},L^{\chg}\}$ 는
+방전과 대칭이라는 보장이 없어 방향별 독립 파라미터다 — 충전 데이터의 같은 회귀로 따로 닫으며, 그때 역방향
+속도가 율속이 되므로 회귀 계수가 $\chi$ 에서 $1-\chi^{\chg}$ 로 바뀐다(가로축을
+$|\mathcal A_j|/(sF)=|V_n-U_j^{\chg}|$ 로 두면 같은 직선 회귀다).
+
+환원 검산 둘 — $\Omega_j\le2RT$ 면 $\Delta U^\hys=0$ 이라 식~\eqref{eq:hysmaster} 가 양방향 모두
+방전식~\eqref{eq:master} 로 되돌아가고(히스는 상분리의 산물임이 식에서 드러난다), $|I|\to0$ 이면 분극이
+사라지고 gap 절편 $\gamma_j\Delta U_j^\hys$ 만 남아 식~\eqref{eq:hysobsgap} 과 정합한다.
+
+\subsection{피팅 알고리즘 — 측정 파일에서 파라미터까지}
+아래의 단계 (1)--(7)과 한눈 참조표 (8)이 사양이다.
+
+\textbf{(1) 입력.} 정전류 구간별 시계열 $(t_i,V_{\app,i},I_i,T_i)$ 와 방향 라벨. 데이터셋 — 준평형
+($0.05$C 또는 GITT)$\cdot$$0.1$C$\cdot$$0.2$C $\times$ $15/23/45^\circ$C $\times$ 충방전, 그리고 전류
+차단 transient. GITT(galvanostatic intermittent titration technique)는 정전류 펄스 뒤 전류를 끊고 완화를
+기록하는 펄스--휴지 측정으로 \cite{weppner1977}, 차단 도약이 $R_n$ 을, 완화 형상이 율속 기전(S0)을 준다.
+반쪽전지 척도가 전제다.
+
+\textbf{(2) 전처리.} $Q_i=\sum|I|\Delta t$ 누적 후 $q_i=Q_i/Q_\cell$. 미분은 생 차분 대신 균일 $V$
+격자 재표집 후 Savitzky--Golay(국소 다항) 평활 미분 — \emph{평활 창은 가장 좁은 peak 반높이 폭의 $1/5$
+이하}(과평활은 $w_j$ 에 양의 편향). $V_\app\to V_n$ 환산은 $R_n$ 확정 후 1회 재적용으로 충분하다(위치
+평행이동이라 형상 불변).
+
+\textbf{(3) 검출과 초기값.} 기준 온도의 준평형 방전에서 prominence(주변 골 대비 돌출) 상위 봉우리로
+$N_p$ 를 확정해 전 데이터셋에 \emph{동결}한다 — 다른 조건에서는 새로 검출하지 않고 예상 위치 근방에서
+대응시키며, 미검출이면 융합 플래그를 단다. 충$\cdot$방전 peak 는 전위 순서로 1:1 짝짓고, 중심차가 분해능과
+$2|I|R_n$ 합을 유의하게 넘는 전이만 히스 전이로 분류한다. 초기값 — $U_j^{(0)}$ 는 peak 위치(히스 전이는
+충방전 중심의 \emph{중점} — 방전 위치 그대로 쓰면 $\tfrac12\gamma\Delta U^\hys$ 의 계통 오프셋이
+들어간다), $w_j^{(0)}$ 는 면적/높이 비에서, $Q_j^{(0)}$ 는 배경 차감 면적, $C_\bg$ 는 peak 간 골의
+anchor 점을 지나는 저차 spline 으로 두고 S1 에서 동결.
+
+\textbf{(3$'$) 꼬리 컷과 창.} $q_{a,j}$ 는 저율로 고정한 $\xi_{\eq,j}(V_n)$ 과 해당 율의 측정
+$V_n(q)$ 로 평가한 $\dd\xi_{\eq,j}/\dd q$ 가 정점값의 $5\%$ 로 떨어지는 정점 이후 첫 교차점(컷 분율
+전 데이터셋 공통, plateau 구간 제외). tail window 는 $[q_{a,j},$ 다음 peak 상승 개시$)$ 를 sub-window 로
+나눠 각 창의 로그기울기에서 국소 $L_V$ 를 얻고, 창 중심 $V_n$ 과 짝지어 $(V_\drive,\ln L_q)$ 점을
+만든다.
+
+\textbf{(4) 모델 평가(의사코드).} 파라미터
+$\bm\theta=\{U_j,w_j,Q_j,\Delta H_{a,j}\}\cup\{C_\bg,R_n,\chi,\text{절편}\}$
+($+$충방전이면 $\{\Omega_j,\gamma_j\}$)와 조건 $(T,|I|,d)$ 에서:
+\begin{enumerate}[label=\textbf{M\arabic*.},leftmargin=2.4em,itemsep=1pt]
+\item $u_j,\ \Delta U_j^\hys,\ U_j^d$ 계산(식~\eqref{eq:hysdU}$\cdot$\eqref{eq:hyscenter};
+  $\Omega_j\le2RT$ 면 $\Delta U^\hys=0$ 자동 환원).
+\item $V_n$ 격자에서 $\xi_{\eq,j}$ 평가(식~\eqref{eq:logistic}, 중심 $U_j^d$).
+\item $L_{q,j}$ 를 $q_a$ 한 점의 $\mathcal A_j(V_{a,j})$ 로 평가해 전이당 \emph{상수로 동결}(지수
+  꼬리는 상수 $L$ 의 닫힌 해 — 격자 점별 대입 금지). 컷이 $\mathcal A<3RT$ 에 걸리면 보편형 괄호 인자를
+  곱한다.
+\item $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$ — 기울기는 피팅 시 해당 율의 측정 $V(q)$ 에서, 예측 시
+  보존식~\eqref{eq:charge} 의 평형 해 $V_{n,\OCV}(q)$ 에서 읽는다. $r_{a,j}$ 의 엄밀값은 일반해의 기억
+  적분이며, 실무는 regime 으로 가른다 — $L_V\ll w$ 면 접속값 $L_{q}(\dd\xi_{\eq}/\dd q)|_{q_a}$,
+  꼬리-우세($L_V\gtrsim w$)면 $O(1)$ 로 포화하므로 $(0,\xi_{\eq}(q_a)]$ 범위의 자유 파라미터.
+\item 식~\eqref{eq:hysmaster} 로 합산.
+\item $V_\app=V_n+\sigma_d|I|R_n$ 으로 측정축 복귀.
+\end{enumerate}
+모듈 골격 — preprocess$\to$detect\_peaks$\to$cut\_qa$\to$model\_eval(M1--M6)$\to$stage\_S0$\dots$S5
+$\to$predict$\to$roundtrip.
+
+\textbf{(5) 목적함수.} 전역 동시 최소화는 공선형으로 금지. 각 단계 안에서 가중 최소제곱
+$\chi^2=\sum_i[y_i-\widehat y_i]^2/\sigma_i^2$ — 가중은 평활 잔차에서 추정한 잡음. $\dd V/\dd Q$
+좌표 피팅은 작은 $\dd Q/\dd V$ 영역의 잡음을 $1/y^2$ 로 증폭하므로 비권장.
+
+\textbf{(6) 단계별 회귀 — 입출력.} 각 단계의 출력은 이후 단계에서 \emph{동결}된다
+(그림~\ref{fig:chain}).
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{0.07\textwidth} p{0.24\textwidth} p{0.36\textwidth} p{0.22\textwidth}}
+\toprule
+단계 & 입력 데이터 & 회귀(자유 파라미터) & 출력(동결) \\
+\midrule
+S0 & GITT 완화 transient & 판정 — $\sqrt t$(확산 율속) vs 지수(계면 율속) & 활성화 지배 확인 \\
+S1 & 저율 OCV(각 $T$) & 검출 직독 $+$ 다-peak 동시 국소 회귀 & $\{U_j,w_j,Q_j\},C_\bg$ \\
+S2 & 전류 차단 도약 & $\Delta V=s_I|I|R_n$ 직독 & $R_n$ \\
+S3 & 등온 다전위 꼬리 & $\ln L_q$ vs $V_\drive$ 기울기 $-\chi sF/RT$ & $\chi$ \\
+S4 & 다온도 꼬리 & $y(T)$ vs $1/T$(식~\eqref{eq:arrhenius}) & $\Delta H_{a,j}$, 절편 \\
+S5 & 다율 충방전 gap(각 $T$) & 절편$\cdot$기울기 분해 $+$ 절편 $T$-형 비선형 회귀 & $\gamma_j,\Omega_j$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+보충 규정 — S1 의 ``직독$+$회귀''는 직독만으로는 겹침이 면적$\cdot$중심에 계통 오염을 넣기 때문에
+필수다(검출 초기값으로 다-peak 평형식을 동시 최소제곱). S4 의 기준점은 전 온도 공통 SOC(예: 각 전이의
+$q_a$). S5 는 절편 3점을 $(\gamma_j,\Omega_j)$ 의 2-파라미터 비선형 최소제곱으로 풀되, 절편의 상대 온도
+기울기가 측정 불확도보다 작으면 깊은 2상측 퇴화로 판정하고 lumped gap
+$\Delta_j\equiv\gamma_j\Delta U_j^\hys$ 한 개(온도 상수)로 강등해 M1 에 직접 쓴다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[box/.style={draw,rounded corners=2pt,minimum height=8mm,inner sep=4pt,font=\footnotesize,align=center},
+  lab/.style={font=\scriptsize,gray,align=center}]
+\node[box] (s0) at (0,0) {S0\\수송 진단};
+\node[box] (s1) at (2.45,0) {S1\\저율 OCV};
+\node[box] (s2) at (4.9,0) {S2\\전류 차단};
+\node[box] (s3) at (7.35,0) {S3\\다율 꼬리};
+\node[box] (s4) at (9.8,0) {S4\\다온도};
+\node[box] (s5) at (12.25,0) {S5\\충방전 gap};
+\draw[->] (s0) -- (s1); \draw[->] (s1) -- (s2); \draw[->] (s2) -- (s3);
+\draw[->] (s3) -- (s4); \draw[->] (s4) -- (s5);
+\node[lab,below=2mm of s0] {활성화 지배\\확정};
+\node[lab,below=2mm of s1] {$U_j,w_j,Q_j,C_\bg$};
+\node[lab,below=2mm of s2] {$R_n$};
+\node[lab,below=2mm of s3] {$\chi$};
+\node[lab,below=2mm of s4] {$\Delta H_{a,j}$};
+\node[lab,below=2mm of s5] {$\gamma_j,\Omega_j$};
+\end{tikzpicture}
+\caption{비순환 식별 사슬. 각 단계의 출력(아래 라벨)은 다음 단계에서 동결된 기지값으로 쓰여 단계마다
+미지수가 하나씩만 남는다. 화살표를 거슬러 자유화하면 공선형이 되살아난다.}
+\label{fig:chain}
+\end{figure}
+
+\textbf{(7) 예측$\cdot$검증$\cdot$진단.} $U_j(T)$ 는 세 온도 S1 값의 선형 회귀로 외삽(기울기가 곧
+$\Delta S_j/sF$), 분기 영역 $w_j(T)$ 와 $C_\bg(V,T)$ 는 측정 온도 간 선형 보간. 전 단계 후 피팅에 쓰지
+않은 hold-out 조건(예: $0.5$C$\cdot$$5^\circ$C, 다른 율의 gap)을 예측해 대조한다 — \emph{피팅이 아니라
+외삽 예측이 진짜 시험이다}. 잔차는 진단으로 읽는다:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{0.30\textwidth} p{0.28\textwidth} p{0.30\textwidth}}
+\toprule
+증상 & 의심 원인 & 처방 \\
+\midrule
+꼬리가 반로그서 아래로 휨 & $\rho_G$ 분포 넓음 & 분포 적분 켜기(식~\eqref{eq:superpose}) \\
+gap--$|I|$ 아래로 오목 & $\eta_{\mathrm{ct}}\propto\ln|I|$ 우세 & 저율 한정$\cdot$$R_{\mathrm{ct}}$ 분리 \\
+gap--$|I|$ 위로 볼록 & 확산 한계$\cdot$$\gamma_j(|I|)$ & 율 하향$\cdot$수송 진단 \\
+Arrhenius 비선형 & 공율속$\cdot$경쟁 꼬리원 & S0 재진단(\S\ref{sec:falsify}) \\
+충방전 면적 불일치 & 용량 미평형(데이터 품질) & 전처리$\cdot$cycle 안정화 \\
+절편 $T$-의존 $<$ 불확도 & 깊은 2상측 퇴화 & lumped $\Delta_j$ 강등 \\
+전이별 gap 기울기 상이 & lumped $R_n$ 위배 & $R_{n,j}$ 세분 \\
+\bottomrule
+\end{tabular}
+\end{center}
+코드 자체의 검증은 round-trip — 알려진 $\bm\theta^\ast$ 로 합성 곡선을 만들고 측정 수준 잡음을 더해 전
+파이프라인이 $\bm\theta^\ast$ 를 회복하는지 본다(동결 사슬이 공선형을 실제로 끊는지, 평활 창이 $w$ 에
+편향을 넣지 않는지가 정량으로 드러난다).
+
+\textbf{(8) 한눈 참조표.}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{0.09\textwidth} p{0.27\textwidth} p{0.17\textwidth} p{0.12\textwidth} p{0.21\textwidth}}
+\toprule
+기호 & 물리적 의미 & 닫는 데이터(단계) & 정의식 & 전형 규모($25^\circ$C) \\
+\midrule
+$U_j$ & 평형 중심 전위 & 저율 OCV(S1, 각 $T$) & \eqref{eq:eqpeak} & $0.08$--$0.21$ V vs Li \\
+$w_j$ & 폭(평형/현상학) & 저율 OCV(S1) & \eqref{eq:weff} & $\lesssim25.7$ mV \\
+$Q_j$ & 전이 용량 & 저율 OCV(S1) & \eqref{eq:eqpeak} & $0.1$--$0.5\,Q_\cell$ \\
+$C_\bg$ & 배경 미분용량 & 저율 OCV(S1) & \eqref{eq:cbg} & peak 높이의 $\lesssim10\%$ \\
+$R_n$ & lumped 분극 저항 & 전류 차단(S2) & \eqref{eq:vapp} & $10$--$100\ \Omega\,$cm$^2$(면적당) \\
+$\chi$ & 전달 계수 & 다율 꼬리(S3) & \eqref{eq:LqV} & $0.3$--$0.7$ \\
+$\Delta H_{a,j}$ & 활성화 엔탈피 & 다온도(S4) & \eqref{eq:arrhenius} & $30$--$60$ kJ/mol \\
+$r_{a,j}$ & 꼬리 잔류 지연 & 꼬리 진폭(S3 부산물) & M4 & $O(0.1$--$1)$ \\
+$\gamma_j$ & 분기 축소 인자 & gap 절편 크기(S5) & \eqref{eq:hyscenter} & $0.3$--$0.8$ \\
+$\Omega_j$ & 상호작용 에너지 & gap 절편 $T$-의존(S5) & \eqref{eq:hysdU} & 히스 전이서 $>5$ kJ/mol \\
+($\rho_G$ 폭) & 장벽 분포(선택) & 꼬리 휨 & \eqref{eq:superpose} & $\sigma_G\sim$수 kJ/mol \\
+($h_j$) & 부분 cycle 보간(선택) & minor loop & \S\ref{sec:hyspol} & $h\approx\eta$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+전형 규모는 초기값$\cdot$sanity check 용 어림이며 실제 값은 데이터가 정한다.
+
+\begin{keybox}
+\textbf{가정의 울타리.} ``식 하나로 끝난다''는 다음 안에서다 — ① 활성화 지배(아니면 S0 수송 진단 선행)
+② 좁은 $\rho_G$(휘면 분포 적분) ③ prefactor $T$-안정 ④ $q_a$ 컷 공통 고정 ⑤ 분기 중심의
+$\xi=\tfrac12$ 대칭 ⑥ $\gamma_j$ 전류$\cdot$온도 무관(저$\sim$중율) ⑦ 분극 선형$\cdot$lumped
+$R_n$ ⑧ 전이 간 독립 가산 ⑨ $C_\bg$ 를 S1 에서 동결 ⑩ 반쪽전지 환산 선행. 어느 하나가 깨지면 해당
+추가 절차가 켜진다 — 깨짐의 검출법이 다음 절의 주제다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
