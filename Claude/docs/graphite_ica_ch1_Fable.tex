@@ -152,7 +152,7 @@ $T_{c,j},\ \xi_{s,j}^\pm$ & K;\,--- & 전이 $j$ 임계온도 $=\Omega_j/2R$; sp
 $\gamma_j$ & --- & 분기 축소 인자(다입자) $0\le\gamma_j\le1$ ($1$=spinodal 상한, $0$=가역) \\
 $\Delta U_j^\hys$ & V & 충방전 평형 분기 gap $=\tfrac{2}{sF}[\Omega_j u_j-2RT\,\mathrm{artanh}\,u_j]$, $u_j=\sqrt{1-2RT/\Omega_j}$ \\
 $U_j^{\dis},\,U_j^{\chg}$ & V & 방전$\cdot$충전 분기 중심 $=U_j\pm\tfrac12\gamma_j\Delta U_j^\hys$ \\
-$\mathcal A_j$ & J/mol & 전이 $j$ 의 구동력(affinity) $=sF(V_\drive-U_j)$ \\
+$\mathcal A_j$ & J/mol & 전이 $j$ 의 구동력(affinity) $=sF(V_\drive-U_j)$($\Omega\ne0$ 일반화는 \S\ref{sec:lag} 주) \\
 $\Delta G_{a,j}$ & J/mol & 활성화 자유에너지 $=\Delta H_{a,j}-T\Delta S_{a,j}$ \\
 $\Delta H_{a,j},\Delta S_{a,j}$ & {\footnotesize J/mol;\,J/(mol\,K)} & 활성화 엔탈피$\cdot$엔트로피(\emph{속도}에 들어감) \\
 $\Delta G_{\eff,j}$ & J/mol & 유효 활성화 자유에너지 $=\Delta G_{a,j}-\chi\mathcal A_j$ \\
@@ -889,7 +889,7 @@ A_L(L)\,\dd L=\rho_G(G)\,\dd G\quad\Longrightarrow\quad A_L(L)=\rho_G\big(G(L)\b
 빠른 집단(작은 $L$)은 peak 근처에서 감쇠를 마치고 느린 집단(큰 $L$)은 꼬리를 멀리까지 연장한다. 단일 지수 $e^{-x/L}$ 를 여러 $L$
 에 대해 분율로 가중 중첩하면(식~\eqref{eq:wavg}), 결과는 \emph{더 이상 단일 지수가 아니라 더 무거운(heavier-tailed)
 꼬리} — 초기에 빠르고 후미에서 완만 — 가 된다. \emph{그 점근형이 \textbf{정확히} stretched exponential
-$e^{-(x/L_0)^\beta}$($0<\beta<1$)이 되는 것은 $\rho_G$ 가 특정 두꺼운-꼬리 분포(KWW 의 역-Laplace 핵)일 때}이며 $\beta$ 는
+$e^{-(x/L_{\mathrm{KWW}})^\beta}$($0<\beta<1$; $L_{\mathrm{KWW}}$=KWW 척도 — \S\ref{sec:dist} rigorbox 의 $L_0$ 와 별개)이 되는 것은 $\rho_G$ 가 특정 두꺼운-꼬리 분포(KWW 의 역-Laplace 핵)일 때}이며 $\beta$ 는
 그 분포가 정한다 \cite{lindsey1980,johnston2006,svare2000}. 즉 ``stretched''는 \emph{$\rho_G$ 형태에 대한 조건부} 결론이다
 (임의 $\rho_G$ 가 stretched 를 주지는 않는다 — 좁은 $\rho_G$ 면 거의 단일 지수, 두꺼운 꼬리면 KWW).
 
@@ -916,7 +916,8 @@ exponential)를 준다. \S\ref{sec:dist} 는 이 \emph{네 본문 도구}(변수
   정규화 식~\eqref{eq:norm} $\int_0^\infty\rho_G(G)\,\dd G=1$). $\rho_G$ 는 꼬리에서 역산하지 않고 입자 크기$\cdot$국소
   상태 분포에 용량-반경 매핑을 곱해 \emph{독립으로 모형}하는 용량-분율 분포다(\S\ref{sec:stattools} 식별 주의$\cdot$아래
   boundbox). (구동력 $\mathcal A_j$ 는 집단 공통 —
-  동일 평균장 $V_n$ — 이라 분포는 배리어 $G$ 에만 둔다.)
+  동일 평균장 $V_n$ — 이라 분포는 배리어 $G$ 에만 둔다; 이는 이상형 $\mathcal A_j=sF(V_\drive-U_j)$ 기준이고,
+  $\Omega\ne0$ 일반화의 $\xi_j$ 의존 몫은 꼬리 포화창서 $\Delta\xi$ 가 작아 1차 무시.)
 \item \textbf{집단별 꼬리 길이.} 장벽 $G$ 인 집단은 식~\eqref{eq:Lq},~\eqref{eq:keff} 로 자신의 꼬리
   길이 $L_{q}(G)\simeq\dfrac{|I|}{Q_\cell}\dfrac{h}{k_BT}\,e^{(G-\chi\mathcal A_j)/RT}$ 를 갖는다(\emph{활성화 지배}
   $k_j^{\eff}\simeq k_{j,\mathrm{act}}$ 형 — \emph{이하 \S\ref{sec:dist}$\cdot$\S\ref{sec:synth} 닫힌식 공통 scope};
@@ -1206,7 +1207,7 @@ peak 에 닿아 \emph{융합이 시작}된다. $L_{V,j}\propto|I|\,e^{\Delta H_a
 \textbf{분리 가능성의 한계.} peak 가 완전히 융합하면 $j$별 \emph{면적}($Q_j$) 분리는 고율 데이터만으로는 불가능
 하다(\S\ref{sec:synth} 공선형 논리의 겹침판). \emph{저율 OCV anchor 가 있을 때만} 융합 peak 의 합산 정보를
 전이별로 되돌릴 수 있다 — 그래서 본 절은 ``저율로 고정, 고율로 예측''의 forward 방향만 허용한다(역산 금지,
-\S\ref{sec:dist} 비유일성과 정합). \emph{분기 영역 확장}: 본 절 합산은 단상($\Omega_j\le2RT$, 전이당 peak 하나)을
+\S\ref{sec:dist} 비유일성과 정합). \emph{분기 영역 확장}: 본 절 합산은 단상$\cdot$임계($\Omega_j\le2RT$, 전이당 peak 하나)를
 전제로 적었으나, $\Omega_j>2RT$ 전이는 충$\cdot$방전 \emph{두} 중심 $U_j^{\dis/\chg}$ 의 peak 쌍(\S\ref{sec:hys_peak})이라
 $\sum_j$ 가 방향별 중심 각각으로 확장된다 — 통합식~\eqref{eq:hys_master} 의 $\sum_j$ 가 그 겹침까지 포함한다.
 
@@ -1476,7 +1477,9 @@ U_j^{d}=U_j+\sigma_d\tfrac12\gamma_j\Delta U_j^\hys,\qquad V_n=V_\app-\sigma_d|I
 \textbf{단 적용 범위}: 이 양방향성은 \emph{열역학 중심}($U_j^d$, 분기)과 \emph{분극 부호}($\sigma_d$, IR)에 대해 엄밀하다 —
 \emph{꼬리항}($r_{a,j},L_{V,j}$)은 \S\ref{sec:lag} 가 방전(탈리튬화) 동역학에서만 유도했으므로(\S\ref{sec:synth} 가 충전
 동역학을 범위 밖으로 명시), 충전 분기의 꼬리는 $\sigma_d$ 로 풀리는 양이 \emph{아니라} 방향별 독립 파라미터
-$\{r_{a,j}^\chg,L_{V,j}^\chg\}$ 다(리튬화 동역학이 대칭이라는 보장 없음). 본 식의 ``한 식''은 \emph{중심$\cdot$분극}에
+$\{r_{a,j}^\chg,L_{V,j}^\chg\}$ 다(리튬화 동역학이 대칭이라는 보장 없음). 감쇠 \emph{방향}도 거울상이다 — 충전
+꼬리는 $V_n<V_{a}^{\chg}$ 쪽으로 트레일하므로 지지 조건이 $\sigma_d(V_n-V_{a,j}^{d})\ge0$ 으로 반전된다(박스의
+지수형은 방전 $\sigma_d=+1$ 표기). 본 식의 ``한 식''은 \emph{중심$\cdot$분극}에
 한해 양방향이고, 꼬리는 방향별로 따로 닫는다.
 \textbf{환원 검산 두 개로} 통합이 일관됨을 확인한다:
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
@@ -1536,13 +1539,14 @@ $\gamma_j$ & 분기 축소(핵생성$\cdot$다입자, $\le1$) & 충방전 gap $|
 식별은 \textbf{S0$\to$S5} 순서다(\S\ref{sec:synth} 의 S1–S4 에 \emph{선행 진단} S0 와 \emph{충방전} S5 를 더한 것) —
 각 단계가 앞 단계 기지값을 써 미지수를 하나씩만 남겨 공선형을 끊는다:
 \textbf{S0}(선행) 수송 형상 진단(GITT 완화가 $\sqrt t$ Cottrell 형 vs 지수형, \S\ref{sec:falsify}(i))으로 \emph{활성화
-지배}($k_{j,\mathrm{act}}\ll k_{j,\lim}$)를 \emph{확정}하고 $k_{j,\lim}$ 을 추정 — S3 의 $\chi$ 분리(eq:LqV 감쇠인자)가 이 확정에
+지배}($k_{j,\mathrm{act}}\ll k_{j,\lim}$)를 \emph{확정}하고 $k_{j,\lim}$ 을 추정 — S3 의 $\chi$ 분리(식~\eqref{eq:LqV} 감쇠인자)가 이 확정에
 의존하므로 \textbf{S3 앞에 와야 순환이 없다}(\S\ref{sec:falsify}(i) 는 그 \emph{반복$\cdot$정량} 점검). \textbf{S1} 저율
 OCV($|I|\!\to\!0$)$\to\{U_j,w_j,Q_j,C_\bg\}$; \textbf{S2} 전류 차단$\to R_n$; \textbf{S3} 다율(동일 율 내 여러 tail $V_\drive$
 점 회귀; 두 율은 $L_q\propto|I|$ 교차검증)$\to\chi$; \textbf{S4} 다온도 Arrhenius$\to\Delta H_{a,j}$($\Delta S_{a,j}$ 는 절편
 조합으로만 — 단독 비식별); \textbf{S5}(충방전 시) 여러 율의 충방전 gap
 $\Delta V_{\mathrm{obs},j}(|I|)$ 를 $|I|\!\to\!0$ 으로 외삽 — 절편 \emph{크기}$\to\gamma_j$, 절편의 \emph{온도 의존}
-$\to\Omega_j$, 기울기$\to R_n$ 교차확인(식~\eqref{eq:hys_obsgap}). 각 단계가 앞 단계 기지값을 써 미지수를
+$\to\Omega_j$(단 깊은 2상측 $T_{c,j}\gg$창 이면 절편의 $T$-의존이 포화해 $\Omega_j$ \emph{하한}만 잡힌다 —
+\S\ref{sec:falsify}(ii) regime 분기), 기울기$\to R_n$ 교차확인(식~\eqref{eq:hys_obsgap}). 각 단계가 앞 단계 기지값을 써 미지수를
 하나씩만 남긴다. 여러 전이가 겹치면 식~\eqref{eq:total} 의 합산으로 저율-anchored \emph{forward} 예측한다(역산
 금지 — \S\ref{sec:overlap}).
 \begin{keybox}

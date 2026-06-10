@@ -2,7 +2,7 @@
 % graphite_ica_ch4_Fable.tex — Chapter 2 (반응속도론; 파일명 ch4 는 역사적 명칭 — 6-08 재편)
 %   재편(6-08): Chapter 2 = 전기화학 반응속도론(미래 DFN 모듈). 병합 Ch1 기반.
 %   ★ 통합 문건 규율: 인계/recap/전달 절 금지, 기호규약에 이전 장 언급 금지.
-%   ★ 절 단위 작성: 한 절씩 작성→검수→정합→다음 절. (현재 §1 까지)
+%   ★ 절 단위 작성: 한 절씩 작성→검수→정합→다음 절. (서론+§1–§6 완결)
 % ====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
@@ -97,7 +97,8 @@ net 변화율 $\dd\xi_j/\dd t=\mathcal J_j^+-\mathcal J_j^-$ 의 단위는 $\mat
 \textbf{본 장 닫힌식의 기본형 전제(결과별 귀속).} $V_{\eq,j}$ 역산$\cdot$$F\eta_j=\mathcal A_j^{\mathrm{net}}$ 동치$\cdot$
 $i_{0,j}$ 의 $\xi^{\alpha}(1-\xi)^{1-\alpha}$ 형은 \emph{이상 격자기체}($\Omega_j=0$, $w_j=RT/F$)만 요구하고 임의
 $V_\drive$ 에 성립한다(식~(1.27)이 임의 구동 전위로 정의되므로 — 일반형 과전압 분리에도 그대로 쓰인다).
-$V_\drive=V_n$ 이 실제로 필요한 곳은 \emph{평형 동정}($\xi_\sstat=\xi_{\eq}$ 검산$\cdot$(2.9)의 $\xi_{\eq}$ 평가)뿐이다. $\Omega_j\ne0$ 이면 활동도 보정이 들어가 식의 \emph{계수}가 바뀌나(예: $g_j(\xi)$ 에
+$V_\drive=V_n$ 이 실제로 필요한 곳은 \emph{평형 동정}(각 절의 평형 검산$\cdot$$\xi_\sstat=\xi_{\eq}$ 동정$\cdot$
+식~\eqref{eq:nch2_i0} 의 $\xi_{\eq,j}$ 평가)뿐이다. $\Omega_j\ne0$ 이면 활동도 보정이 들어가 식의 \emph{계수}가 바뀌나(예: $g_j(\xi)$ 에
 활동도 인자), BV$\cdot$$R_\ct$$\cdot$교환전류라는 \emph{구조}와 부호$\cdot$극한 결론은 유지된다.
 \end{boundbox}
 
@@ -185,8 +186,8 @@ V_{\eq,j}(\xi_j)=U_j+\frac{w_j}{s}\,\ln\frac{\xi_j}{1-\xi_j}
 \end{equation}
 \textbf{$\mathcal A_j^{\mathrm{net}}$ 과의 일치.} 기본형 $w_j=RT/F$ 에서 식~\eqref{eq:nch2_eta} 에 $F$ 를 곱하면
 $F\eta_j=sF(V_\drive-U_j)-RT\ln[\xi_j/(1-\xi_j)]=\mathcal A_j-RT\ln[\xi_j/(1-\xi_j)]=\mathcal A_j^{\mathrm{net}}$ —
-반응 과전압은 식~\eqref{eq:nch2_Anet} 의 net 친화도를 전위로 옮긴 \emph{같은 양}이며, 평형($\xi_j=\xi_{\eq,j}$)에서
-$\eta_j=0$ 이다.
+반응 과전압은 식~\eqref{eq:nch2_Anet} 의 net 친화도를 전위로 옮긴 \emph{같은 양}이며, 평형($\xi_j=\xi_{\eq,j}$,
+기본형 $V_\drive=V_n$)에서 $\eta_j=0$ 이다.
 
 \textbf{계면 전류로의 변환.} 반응을 \emph{전하}의 흐름으로 보면, 평형($\eta_j=0$)에서 정$\cdot$역 반쪽 전류가 같은
 크기 $i_{0,j}$(교환전류밀도)로 흐른다. 과전압이 걸리면 그것이 두 반쪽 장벽을 \emph{비대칭}으로 옮긴다 — 전이상태가
