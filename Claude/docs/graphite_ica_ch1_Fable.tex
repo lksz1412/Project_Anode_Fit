@@ -1626,7 +1626,7 @@ $8RT_0$ & $1193$ K & $135.1$ & $132.9$ & $127.0$ \\
 \draw[thick] plot[smooth] coordinates {(270,28.1) (290,23.2) (310,18.7) (330,14.6) (350,10.9) (370,7.6) (390,4.8) (410,2.5) (430,0.8) (445,0.05)};
 \draw[thick,densely dashed] plot[smooth] coordinates {(270,63.6) (290,57.3) (310,51.2) (330,45.5) (350,40.1) (370,35) (390,30.2) (410,25.7) (430,21.5) (450,17.6) (470,14)};
 \draw[thick,densely dotted] plot[smooth] coordinates {(270,233.7) (290,224.4) (310,215.3) (330,206.5) (350,198) (370,189.7) (390,181.6) (410,173.7) (430,166) (450,158.6) (470,151.3)};
-\node[right] at (430,40) {\footnotesize $3RT_0$};
+\node[right] at (370,13) {\footnotesize $3RT_0$};
 \node[right] at (455,28) {\footnotesize $4RT_0$};
 \node[right] at (440,175) {\footnotesize $8RT_0$};
 \fill (447,0) circle (0.8pt) node[below] {\footnotesize $T_{c}(3RT_0)$};
@@ -2083,6 +2083,19 @@ $\widehat{\dd Q/\dd V}(V_\app;\bm\theta)$ 는 다음 순서로 계산한다.
   $\{r_{a,j}^\chg,L_{V,j}^\chg\}$ 는 방향별로 따로 닫는다(\S\ref{sec:master} 통합형의 적용 범위 주).
 \item 측정축으로 되돌린다: $V_\app=V_n+\sigma_d|I|R_n$.
 \end{enumerate}
+
+파이프라인 전체를 모듈로 나누면 다음 골격이 된다 — 각 함수가 본 소절의 어느 항목을 구현하는지 주석으로
+적었다.
+\begin{quote}\ttfamily\footnotesize
+preprocess(raw) $\to$ (q, V$_{\mathrm{app}}$, dQdV, T, d)\quad\rmfamily — (2) 전처리\\
+\ttfamily detect\_peaks(dQdV$_{\mathrm{OCV}}$) $\to$ (N$_p$, U$^{(0)}$, w$^{(0)}$, Q$^{(0)}$,
+C$_{\mathrm{bg}}^{(0)}$)\quad\rmfamily — (3) 검출$\cdot$초기값\\
+\ttfamily cut\_qa($\xi_{\mathrm{eq}}$, V$_n$(q)) $\to$ (q$_a$, V$_a$, windows)\quad\rmfamily — (3$'$) 컷$\cdot$창\\
+\ttfamily model\_eval($\theta$; T, I, d, grid) $\to$ dQdV$_{\mathrm{hat}}$\quad\rmfamily — (4) M1--M6\\
+\ttfamily stage\_S0(gitt) $\dots$ stage\_S5(gaps)\quad\rmfamily — (6) 단계 회귀(각 단계 출력 동결)\\
+\ttfamily predict($\theta$; T, I, d) $\to$ curve\quad\rmfamily — (7) 예측($V_{n,\mathrm{OCV}}(q)$ 자체 생성)\\
+\ttfamily roundtrip($\theta^\ast$, noise) $\to$ report\quad\rmfamily — (7) 코드 검증
+\end{quote}
 
 \textbf{(5) 목적함수.} 전역 동시 최소화는 공선형 때문에 금지된다(\S\ref{sec:synth}). 각 단계 안에서의 잔차는
 가중 최소제곱
