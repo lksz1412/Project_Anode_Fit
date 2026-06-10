@@ -1360,8 +1360,11 @@ $\bm\theta=\{U_j,w_j,Q_j,\Delta H_{a,j}\}\cup\{C_\bg,R_n,\chi,\text{절편}\}$
 \item 식~\eqref{eq:hysmaster} 로 합산.
 \item $V_\app=V_n+\sigma_d|I|R_n$ 으로 측정축 복귀.
 \end{enumerate}
-모듈 골격 — preprocess$\to$detect\_peaks$\to$cut\_qa$\to$model\_eval(M1--M6)$\to$stage\_S0$\dots$S5
-$\to$predict$\to$roundtrip.
+모듈 골격은 다음과 같다:
+\begin{quote}\ttfamily\footnotesize
+preprocess $\to$ detect\_peaks $\to$ cut\_qa $\to$ model\_eval(M1--M6)\\
+$\to$ stage\_S0 $\cdots$ stage\_S5 $\to$ predict $\to$ roundtrip
+\end{quote}
 
 \textbf{(5) 목적함수.} 전역 동시 최소화는 공선형으로 금지. 각 단계 안에서 가중 최소제곱
 $\chi^2=\sum_i[y_i-\widehat y_i]^2/\sigma_i^2$ — 가중은 평활 잔차에서 추정한 잡음. $\dd V/\dd Q$
