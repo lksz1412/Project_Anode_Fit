@@ -955,6 +955,93 @@ C-rate(\S\ref{sec:lag})$\cdot$전위(\S\ref{sec:potbranch})$\cdot$온도(본 절
 \end{keybox}
 
 % ====================================================================
+\section{합성 — 방전 닫힌식과 세 인자 의존}\label{sec:synth}
+% ====================================================================
+재료가 모두 준비되었다. 평형 기준선(\S\ref{sec:eqpeak})과 세 가지(\S\ref{sec:lag}--
+\S\ref{sec:tempbranch})를 한 식으로 합치면, 방전 $\dd Q/\dd V$ 가 $(V;\,T,|I|,V_\drive)$ 의 닫힌
+함수가 된다.
+
+\subsection{닫힌식 — 평형에서 지연을 뺀 것의 미분}
+실제 진행률은 어느 영역에서나 $\xi_j=\xi_{\eq,j}-r_j$ 로 적을 수 있고, 지연 $r_j$ 의 거동은
+\S\ref{sec:lag} 의 일반해가 전 구간에서 정해 준다 — 상승부에서는 $O(L_q)$ 의 소량, 꼬리에서는 지수
+감쇠다. 입자 분포까지 넣으면 지연은 집단 평균 $\bar r_j=\int\rho_G\,r_j(q;G)\,\dd G$ 로 바뀐다. 이를
+관측식~\eqref{eq:dQdV} 에 넣으면
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V_n}
+=\underbrace{C_\bg+Q_j\frac{\dd\xi_{\eq,j}}{\dd V_n}}_{\text{평형 peak (상승부)}}
+\;-\;\underbrace{Q_j\frac{\dd\bar r_j}{\dd V_n}}_{\text{지연이 만드는 꼬리}}\;.}
+\label{eq:closed}
+\end{equation}
+모호한 결합이 아니라 ``평형 전환율에서 지연을 뺀 것의 미분''이라는 정의된 형태다. 두 영역의 분담은 일반해의
+두 극한 그대로다 — 상승부에서는 지연 미분이 소량이라 평형 항이 지배하고, 꼬리에서는 평형 항이 포화로 죽어
+지연 미분(식~\eqref{eq:superpose})만 남는다. 빠른 동역학 극한($\bar r\to0$)에서 평형 기준선으로
+복귀하므로 식이 무결하다.
+
+분포가 좁은 실무 기본형은 $\rho_G\to\delta$ 극한이다:
+\begin{equation}
+\frac{\dd Q}{\dd V_n}\;\simeq\;C_\bg+Q_j\bigg[
+\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
++\frac{r_{a,j}}{L_{V,j}}\,e^{-(V_n-V_{a,j})/L_{V,j}}\,\mathbf 1\{s(V_n-V_{a,j})\ge0\}\bigg].
+\label{eq:simplefit}
+\end{equation}
+상승부는 logistic 미분의 종, 꼬리는 $V_{a,j}$ 에서 점화되는 단방향 지수다(그림~\ref{fig:anatomy}). 꼬리
+진폭의 $r_{a,j}$ 는 시작점의 잔류 지연 — 전이가 꼬리로 넘기는 미완 분율 — 이며, 꼬리 면적이
+$Q_j\,r_{a,j}$ 가 되어 용량 보존이 자동으로 성립한다. 이 인자를 빼먹으면 꼬리 항만으로 $Q_j$ 가 소진되는
+이중 계상이 생긴다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.62cm,y=19cm]
+\draw[->] (-4,0) -- (10.6,0) node[below] {$(V_n-U_j)/w_j$};
+\draw[->] (-4,0) -- (-4,0.28) node[above] {\footnotesize $\dd Q/\dd V$(임의 단위)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-4,0.0177) (-3.5,0.0285) (-3,0.0452) (-2.5,0.0701) (-2,0.105) (-1.5,0.1491) (-1,0.1966) (-0.5,0.235) (0,0.25) (0.5,0.235) (1,0.1966) (1.5,0.1491) (2,0.105) (2.5,0.0701) (3,0.0452) (3.5,0.0285) (4,0.0177) (4.5,0.0109) (5,0.0066) (5.5,0.0041) (6,0.0025) (6.5,0.0015) (7,0.0009) (8,0.0003) (9,0.0001) (10,0)};
+\draw[dashed,thick] plot[smooth] coordinates {(2.25,0.1033) (2.75,0.0874) (3.25,0.074) (3.75,0.0626) (4.25,0.053) (4.75,0.0449) (5.25,0.038) (5.75,0.0322) (6.25,0.0272) (6.75,0.023) (7.25,0.0195) (7.75,0.0165) (8.25,0.014) (8.75,0.0118) (9.25,0.01) (9.75,0.0085)};
+\draw[thick] plot[smooth] coordinates {(-4,0.0177) (-3.5,0.0285) (-3,0.0452) (-2.5,0.0701) (-2,0.105) (-1.5,0.1491) (-1,0.1966) (-0.5,0.235) (0,0.25) (0.5,0.235) (1,0.1966) (1.5,0.1491) (2,0.105) (2.25,0.1895) (2.75,0.1439) (3.25,0.1099) (3.75,0.0851) (4.25,0.0669) (4.75,0.0534) (5.25,0.0432) (5.75,0.0353) (6.25,0.0291) (6.75,0.0242) (7.25,0.0202) (7.75,0.0169) (8.25,0.0142) (8.75,0.012) (9.25,0.0101) (9.75,0.0085)};
+\draw[gray] (0,0) -- (0,0.255); \node[below,gray] at (0,-0.005) {\footnotesize $U_j$};
+\draw[gray] (2.2,0) -- (2.2,0.19); \node[below,gray] at (2.2,-0.005) {\footnotesize $V_{a,j}$};
+\draw[<->,gray] (2.2,0.155) -- (5.2,0.155) node[pos=0.6,above] {\footnotesize $\sim L_{V,j}$};
+\node at (-2.6,0.16) {\footnotesize 평형 상승부};
+\node at (6.3,0.06) {\footnotesize 동역학 꼬리};
+\end{tikzpicture}
+\caption{닫힌식~\eqref{eq:simplefit} 한 전이의 해부(모식). 점선은 평형 상승부, 파선은 동역학 꼬리, 실선이
+합이다. 꼬리는 $V_{a,j}$ 에서 진폭 $r_{a,j}/L_{V,j}$ 로 점화되어 단방향으로만 산다 — $V_{a,j}$ 의 작은
+계단은 지시함수 점화의 모델 성질이며 실측에서는 평활이 뭉갠다.}
+\label{fig:anatomy}
+\end{figure}
+
+\subsection{세 인자 의존 한눈에}
+각 칸은 어느 식의 어느 항에서 읽히는지로 적는다($s=+1$ 방전 기준).
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{0.10\textwidth} p{0.27\textwidth} p{0.24\textwidth} p{0.26\textwidth}}
+\toprule
+ & \textbf{온도 $T\downarrow$} & \textbf{C-rate $|I|\uparrow$} & \textbf{구동 전위 $V_\drive\uparrow$} \\
+\midrule
+위치 & $U_j(T)$ 이동~\eqref{eq:dUdT} & 분극 $+s_I|I|R_n$~\eqref{eq:vapp} & 평형 중심 불변(속도만 바꿈) \\
+너비 & 평형 좁힘 vs 꼬리 넓힘~\eqref{eq:Lq} \emph{경쟁} & 꼬리 $L\propto|I|$ 넓힘 & 장벽$\downarrow$ 꼬리 좁힘~\eqref{eq:LqV} \\
+높이 & 면적 보존으로 너비와 반대 & 낮춤 & 높임 \\
+\bottomrule
+\end{tabular}
+\end{center}
+표의 핵심은 온도 열이다. 평형은 저온에서 peak 를 좁히고 높이지만(\S\ref{sec:eqpeak}), 꼬리는 저온에서
+지수적으로 길어진다(\S\ref{sec:lag}). 꼬리 길이가 평형 폭을 넘는 순간($L_{V,j}\gtrsim w_j$ — 저온$\cdot$
+유한 전류에서 일반적) 경쟁이 뒤집혀 관측은 ``저온에서 넓고 낮고 비대칭''이 된다 — 서론의 관측이 부호까지
+설명되었다.
+
+\subsection{식별의 원칙 — 비순환}
+닫힌식의 파라미터를 한 데이터에서 동시에 자유 피팅하면 같은 전위창에 섞인 항들이 공선형이 되어 분리되지
+않는다. 해법은 독립 측정으로 \emph{먼저} 고정해 다음 단계의 기지값으로 만드는 순차 사슬이다 — 저율
+OCV 에서 평형 3량($U,w,Q$)과 배경을, 전류 차단에서 $R_n$ 을, 등온 다전위에서 $\chi$ 를, 다온도에서
+$\Delta H_a$ 를, 이 순서로 한 겹씩 벗긴다. 각 단계에 미지수가 하나씩만 남는 이 사슬의 실행 절차 전체는
+\S\ref{sec:master} 의 피팅 알고리즘이 닫는다.
+
+\begin{keybox}
+\textbf{합성의 요지.} 방전 한 전이는 ``평형 상승부 $+$ 단방향 지수 꼬리''(식~\eqref{eq:simplefit})로
+닫혔고, 세 인자의 작용처가 표 한 장에 정리되었다. 남은 일은 둘이다 — 전이가 여럿일 때의 합산
+(\S\ref{sec:overlap})과, 충방전 양방향$\cdot$피팅 알고리즘으로의 확장(\S\ref{sec:hys} 이하)이다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
