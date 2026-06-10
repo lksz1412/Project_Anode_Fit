@@ -11,7 +11,7 @@
 
 ## 2. 수행 결과
 - 계획: `Claude/plans/2026-06-10-ch1-textbook-rewrite-plan.md`(11-section). Ledger: `PHASE_TBR_EXECUTION_LEDGER.md`. 라운드: `PHASE_TBR_ROUNDS_RESULT.md`. Result: `PHASE_TBR_ch1_RESULT.md`. 검수 보조: `TBR_BEFORE_AFTER_REVIEW_AID.md`.
-- 본작업 T.1 = 절별 재작성 18단위(절당 커밋) + T.2 게이트. 보완 T.R = **R1~R16**(문체 전수/흐름 통독/★코드 작성 시뮬/★신규 물리 적대 검산/분량/해설 비약/그림/검증/실용/진단표/그림2/확인/50p 돌파/검증/확인/★PDF 시각 판독).
+- 본작업 T.1 = 절별 재작성 18단위(절당 커밋) + T.2 게이트. 보완 T.R = **R1~R17**(R17=실행 실증: 문건 사양 그대로의 피팅 코드 round-trip PASS)(문체 전수/흐름 통독/★코드 작성 시뮬/★신규 물리 적대 검산/분량/해설 비약/그림/검증/실용/진단표/그림2/확인/50p 돌파/검증/확인/★PDF 시각 판독).
 - 최종: `Claude/docs/graphite_ica_ch1_Fable.tex|pdf` = **50p/2428행/그림 9/연습문제 7/참조표·진단표·모듈 스켈레톤**, 빌드 0/0, 번호식 55 불변(ch3·ch4 인계 13종 포함), 원본 불가침. R15 텍스트 수렴 0건 + R16 시각 판독 무결. 커밋 `d7d6c4d`→`5f35297`(약 50커밋, 전부 push, branch rb-rebuild-2026-05-30).
 - 사용자 4클래스: 인용 문구 3건 grep 0건 실증, 일반해-먼저 재구성(§1.5·§1.6), 본론 종결/확장 선언(§1.11/§1.12), 피팅 알고리즘 소절(§1.16) — 상세는 `TBR_BEFORE_AFTER_REVIEW_AID.md`.
 
