@@ -1815,7 +1815,25 @@ Q_j^{(0)}=\int(\text{배경 차감 peak}_j)\,\dd V,\qquad C_\bg^{(0)}=\text{peak
 \end{gather*}
 히스가 보이는 전이의 $U_j^{(0)}$ 는 충$\cdot$방전 저율 peak 중심의 중점으로 잡는다(walkthrough 1). 읽은
 FWHM 이 이상 상한 $3.53\,RT/F\approx91$ mV($25^\circ$C)를 넘으면 꼬리 오염 신호이므로 초기값 단계에서 경고를
-띄운다(\S\ref{sec:synth} worked example).
+띄운다(\S\ref{sec:synth} worked example). 이 단계의 운용 규칙 셋을 못 박아 둔다. 첫째, \emph{$N_p$ 의 확정과
+동결} — $N_p$ 는 기준 온도(예 $23^\circ$C)의 저율 OCV 방전에서 prominence 가 최대 peak 순높이의 $5\%$ 이상인
+봉우리로 확정해 전 데이터셋에 동결한다. 다른 온도$\cdot$율$\cdot$방향에서는 새로 검출하지 않고 동결된 $U_j$ 의
+예상 위치 근방에서 대응 peak 를 찾으며, 미검출이면 융합 플래그를 단다(\S\ref{sec:overlap}). 둘째,
+\emph{충$\cdot$방전 peak 의 짝짓기} — 전위 순서대로 1:1 로 맺고, 개수가 다르면 면적이 가장 비슷한 쌍부터
+맺는다. 중심차가 측정 분해능과 $2|I|R_n$ 의 합을 유의하게 넘는 전이만 ``히스가 보이는 전이''로 분류해 중점
+절차를 켜며, $w_j$ 와 $Q_j$ 는 양방향 평균으로 읽는다. 면적은 물질량 보존상 양방향이 같아야 하므로
+(\S\ref{sec:hys_peak}), 그 차이는 오히려 데이터 품질의 진단 플래그다. 셋째, \emph{배경의 함수형} —
+$C_\bg(V_n)$ 은 peak 간 골의 anchor 점들을 지나는 저차 spline(또는 구간 상수)으로 두고 S1 에서 형상을
+동결하며, 온도별 OCV 에서 각각 읽는다.
+
+\textbf{(3$'$) 꼬리 시작점 $q_a$ 와 tail window 의 조작 규정.} \S\ref{sec:lag} 의 정의 — 평형 항의 포화 —
+를 코드로 옮기면 다음과 같다. 저율 OCV 로 고정한 $\xi_{\eq,j}(V_n)$ 과 피팅 대상 율의 측정 $V_n(q)$ 로
+연쇄율 $\dd\xi_{\eq,j}/\dd q=(\dd\xi_{\eq,j}/\dd V_n)(\dd V_n/\dd q)$ 를 평가하고, 그 값이 전이
+정점값의 $5\%$ 로 떨어지는 정점 이후 첫 교차점을 $q_{a,j}$ 로 잡는다. 컷 분율 $5\%$ 는 전 데이터셋에 공통
+고정한다(가정 ④). 교차점이 $\dd V_n/\dd q$ 가 매우 작은 plateau 구간에 떨어지면 그 구간을 제외하고 첫 단상
+지점으로 민다(\S\ref{sec:lag} 의 plateau 제외 단서와 동일). tail window 는 $[q_{a,j},$ 다음 peak 의 상승
+개시$)$ 로 잡고, S3 회귀를 위해 그 창을 몇 개의 sub-window 로 나눠 각 창의 로그기울기에서 국소 $L_V$ 를 얻은
+뒤, 창 중심의 $V_n$ 을 $V_\drive$ 로 짝지어 $(V_\drive,\ln L_q)$ 점들을 만든다.
 
 \textbf{(4) 모델 평가(의사코드).} 파라미터 벡터
 $\bm\theta=\{U_j,w_j,Q_j,\Delta H_{a,j}\}_{j=1}^{N_p}\cup\{C_\bg,R_n,\chi,\text{Arrhenius 절편}\}$
@@ -1827,16 +1845,24 @@ $\widehat{\dd Q/\dd V}(V_\app;\bm\theta)$ 는 다음 순서로 계산한다.
   $\Omega_j\le2RT$ 면 $\Delta U_j^\hys=0$ 으로 두어 방전식으로 자동 환원된다. 방전 전용이면 $U_j^d=U_j$.
 \item $V_n$ 격자에서 $\xi_{\eq,j}=[1+e^{-s(V_n-U_j^d)/w_j}]^{-1}$(식~\eqref{eq:logistic})를 평가한다.
 \item 구동력 $\mathcal A_j=sF(V_n-U_j^d)$ 로 꼬리 길이
-  $L_{q,j}=(|I|h/Q_\cell k_BT)\,e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT}$ 를 평가한다 —
-  $T\Delta S_a$ 는 단독이 아니라 Arrhenius 절편 조합으로 들어간다(\S\ref{sec:synth} S4).
-\item 측정 $V(q)$ 의 국소 기울기로 $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$ 로 환산하고, 꼬리 시작점
-  $V_{a,j}=V_n(q_{a,j})$ 를 $q_a$ 컷(가정 ④)에서 읽는다. 잔류 지연의 기본값은 \S\ref{sec:lag} 일반해
+  $L_{q,j}=(|I|h/Q_\cell k_BT)\,e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT}$ 를 평가한다.
+  $T\Delta S_a$ 는 단독이 아니라 Arrhenius 절편 조합으로 들어간다(\S\ref{sec:synth} S4). 평가는 $q_a$ 한 점의
+  $\mathcal A_j(V_{a,j})$ 로 하여 전이당 \emph{상수}로 동결한다 — 식~\eqref{eq:master} 의 지수 꼬리는 상수
+  $L$ 의 닫힌 해이므로 격자 점별 $L(V_n)$ 대입은 금지된다(slowly-varying 검산, \S\ref{sec:lag}). $q_a$ 컷이
+  $\mathcal A_j<3RT$ 에 걸리면 보편형 보정 인자 $(1+e^{-\mathcal A_j/RT})$ 를 $k_j$ 에 곱한다
+  (\S\ref{sec:barrier}).
+\item $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$ 로 환산하고, 꼬리 시작점 $V_{a,j}=V_n(q_{a,j})$ 를 $q_a$ 컷
+  (가정 ④)에서 읽는다. 기울기 $|\dd V_n/\dd q|_{q_a}$ 는 피팅 시에는 피팅 대상 율의 측정 $V(q)$ 평활
+  기울기에서 읽고, 측정이 없는 조건을 예측할 때는 S1 파라미터로 닫힌 전하 보존식~\eqref{eq:charge} 의 평형 해
+  $V_{n,\OCV}(q)$ 의 기울기로 대체한다(또는 최근접 측정 율의 $V(q)$ 를 재사용한다). 잔류 지연의 기본값은 \S\ref{sec:lag} 일반해
   극한 (i)의 접속값 $r_{a,j}=L_{q,j}\,(\dd\xi_{\eq,j}/\dd q)\big|_{q_a}$ 로 두며 — 상승부 해와 꼬리 해가
   $q_a$ 에서 연속이 되는 값이다 — 분포 폭이나 컷 민감도가 클 때는 $r_{a,j}\in(0,\,\xi_{\eq,j}(q_a)]$ 범위의
   자유 파라미터로 풀어 준다(그 경우 $\bm\theta$ 에 추가).
 \item 항을 합산한다: $\widehat y=C_\bg+\sum_jQ_j\big[\xi_{\eq,j}(1-\xi_{\eq,j})/w_j
-  +(r_{a,j}/L_{V,j})\,e^{-(V_n-V_{a,j})/L_{V,j}}\,\mathbf 1\{\sigma_d(V_n-V_{a,j})\ge0\}\big]$
-  (식~\eqref{eq:hys_master}; 지시함수 $\mathbf 1$ 은 꼬리의 단방향 지지).
+  +(r_{a,j}^d/L_{V,j}^d)\,e^{-\sigma_d(V_n-V_{a,j}^d)/L_{V,j}^d}\,\mathbf 1\{\sigma_d(V_n-V_{a,j}^d)\ge0\}\big]$
+  (식~\eqref{eq:hys_master}). 지수 안의 $\sigma_d$ 가 충전 분기의 거울상 감쇠를 처리하고 지시함수
+  $\mathbf 1$ 이 단방향 지지를 처리한다 — 방전($\sigma_d=+1$)에서 본문 표기로 환원되며, 충전 꼬리 파라미터
+  $\{r_{a,j}^\chg,L_{V,j}^\chg\}$ 는 방향별로 따로 닫는다(\S\ref{sec:master} 통합형의 적용 범위 주).
 \item 측정축으로 되돌린다: $V_\app=V_n+\sigma_d|I|R_n$.
 \end{enumerate}
 
@@ -1867,9 +1893,24 @@ S5 & 다율 충방전 gap(각 $T$) & 절편$\cdot$기울기 분해(식~\eqref{eq
 \end{tabular}
 \end{center}
 
+\textbf{(6$'$) 회귀의 보충 규정.} S3 와 S4 는 (3$'$)의 sub-window 점들로 다음과 같이 돈다. S3 는 고정 $T$
+에서 $(V_\drive,\ln L_q)$ 점들을 직선 회귀해 기울기 $-\chi sF/RT$ 에서 $\chi$ 를 얻는다. S4 는 전 온도
+공통의 기준점 $q^*$ — 예컨대 각 전이의 $q_a$ — 에서 $L_q(T)$ 와
+$\mathcal A_j(T)=sF(V_n(q^*;T)-U_j(T))$ 를 평가해 식~\eqref{eq:arrhenius} 의 $y(T)$ 를 만들고 $1/T$ 로
+회귀한다. S5 의 절편은 온도 3점에 대해 절편$(T)=\gamma_j\,\Delta U_j^\hys(T;\Omega_j)$ 의 2-파라미터
+비선형 최소제곱으로 풀며, 초기값은 $\Omega_j^{(0)}=4RT_{\mathrm{room}}$ 과
+$\gamma_j^{(0)}=$절편$/\Delta U^\hys(\Omega_j^{(0)})$ 로 둔다. 단 절편의 상대 온도 기울기
+$|\dd\ln(\text{절편})/\dd T|$ 가 측정창에서 그 측정 불확도보다 작으면 깊은 2상측 퇴화로 판정한다
+(\S\ref{sec:falsify}(ii)). 그 경우 $(\gamma_j,\Omega_j)$ 의 분리를 포기하고, lumped gap
+$\Delta_j\equiv\gamma_j\Delta U_j^\hys$ 한 개를 온도 상수로 두어 M1 에 직접 쓴다. 충전 꼬리를 닫을 때는
+S3$\cdot$S4 를 충전 방향 데이터로 반복하되, 역방향 속도가 율속이 되므로 유효 기울기가
+$-(1-\chi^{\chg})sF/RT$ 형으로 바뀐다 — $|\mathcal A_j|$ 를 가로축으로 같은 회귀를 돈다.
+
 \textbf{(7) 수렴과 검증.} 단계가 끝날 때마다 그 출력은 이후 단계에서 동결한다 — 뒤 단계에서 자유화하면
-공선형이 되살아난다(\S\ref{sec:overlap} S$_4'$ 의 같은 규율). 전 단계가 끝나면 피팅에 쓰지 않은 hold-out 조건
-(예: $0.5$C, $5^\circ$C, 또는 다른 율의 충방전 gap)을 예측해 측정과 대조한다 — walkthrough 의 검증 시험
+공선형이 되살아난다(\S\ref{sec:overlap} S$_4'$ 의 같은 규율). 예측에 필요한 온도 보간 규칙도 여기서 닫는다. $U_j(T)$ 는 세 온도의 S1 값을 선형 회귀해 외삽하며, 그 기울기가
+곧 $\Delta S_j/(sF)$ 다(식~\eqref{eq:dUdT}). 분기 영역의 $w_j(T)$ 와 $C_\bg(V,T)$ 는 평형 예측이 없으므로
+측정 온도 사이는 선형 보간하고, 측정창 바깥은 최근접 온도 값을 유지하며 불확도 플래그를 단다. 전 단계가 끝나면
+피팅에 쓰지 않은 hold-out 조건(예: $0.5$C, $5^\circ$C, 또는 다른 율의 충방전 gap)을 예측해 측정과 대조한다 — walkthrough 의 검증 시험
 그대로다. 잔차의 패턴은 진단으로 읽는다. 꼬리가 단일지수에서 벗어나 휘면 $\rho_G$ 분포 적분을 켜고
 (\S\ref{sec:dist}), gap--$|I|$ 곡선이 휘면 \S\ref{sec:hys_pol} 의 곡률 진단을, Arrhenius 가 비선형이면
 \S\ref{sec:falsify} 의 경쟁 원인 배제를 적용한다. 이로써 측정 파일에서 파라미터, 그리고 임의 조건의 예측 곡선까지
