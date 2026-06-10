@@ -939,15 +939,14 @@ $k_{j,\mathrm{act}}$ 만 통하므로(연쇄율 $\partial\ln k_j^{\eff}/\partial
 % ====================================================================
 \section{입자 분포를 다루는 통계적 기술}\label{sec:stattools}
 % ====================================================================
-\textbf{도구 정비 막간.} 앞 절들이 \emph{한 입자}의 물리를 닫았다면, 여기서 잠시 멈춰 \emph{입자 집단}을 다룰
-통계 도구를 벼린다 — \S\ref{sec:lag} 가 예고하고 \S\ref{sec:barrier} 가 가리킨 \emph{늘어진 꼬리}가 이 도구로
-정량화된다.
-\S\ref{sec:barrier} 까지 한 전이를 활성화 배리어 \emph{한 값} $\Delta G_{a,j}$ 로 다뤘으나, 실제 전극은
-입자 집단마다 배리어가 다르다(\S\ref{sec:dist}). 따라서 관측은 \emph{배리어 분포}에 대한 합이며, 이를 기술하려면
-분포$\cdot$가중 평균$\cdot$분산 전파$\cdot$연속 중첩의 \emph{네 본문 도구}가 필요하다(다섯째 \emph{변수 변환}/Jacobian 은
-본문 spine 엔 안 들어가고 \S\ref{sec:dist} rigorbox 의 길이-분포 형식 점검 \emph{전용}이다 — 아래 별도 표시). 본 절은
-이를 확률과 미적분만으로 본 문제에 맞게 \emph{자족적으로} 확립한다 — 이후 \S\ref{sec:dist} 가 그대로 인용하며, 본 절의
-결과식은 \S\ref{sec:dist} 의 \emph{입력}이다.
+\textbf{도구 정비 막간.} 앞 절들이 한 입자의 물리를 닫았다. 여기서 잠시 멈춰, 입자 \emph{집단}을 다룰 통계
+도구를 준비한다. \S\ref{sec:lag} 가 예고하고 \S\ref{sec:barrier} 가 가리킨 늘어진 꼬리가 바로 이 도구로
+정량화된다. \S\ref{sec:barrier} 까지는 한 전이를 활성화 배리어 한 값 $\Delta G_{a,j}$ 로 다뤘다. 그러나 실제
+전극에서는 입자 집단마다 배리어가 다르므로(\S\ref{sec:dist}), 관측은 배리어 \emph{분포}에 대한 합이 된다. 이를
+기술하는 데 필요한 본문 도구는 넷이다 — 분포, 가중 평균, 분산 전파, 연속 중첩. 다섯째 도구인 변수 변환(Jacobian)
+은 본문 spine 에는 들어가지 않으며, \S\ref{sec:dist} rigorbox 의 길이-분포 형식 점검 전용이다(아래에 별도로
+표시). 본 절은 이 도구들을 확률과 미적분만으로, 본 문제에 맞게 자족적으로 확립한다. 이후 \S\ref{sec:dist} 가
+그대로 인용하므로, 본 절의 결과식은 \S\ref{sec:dist} 의 입력이다.
 
 \subsection{활성화 배리어의 분포와 밀도}
 전극 입자 집단은 크기$\cdot$결정성$\cdot$국소 staging 이 제각각이라 활성화 배리어 $G$ 가 단일 값이 아니라 분포를
@@ -1003,19 +1002,22 @@ A_L(L)\,\dd L=\rho_G(G)\,\dd G\quad\Longrightarrow\quad A_L(L)=\rho_G\big(G(L)\b
 본문에는 분율 보존만으로 충분하다.
 
 \subsection{지수 감쇠의 연속 중첩}
-빠른 집단(작은 $L$)은 peak 근처에서 감쇠를 마치고 느린 집단(큰 $L$)은 꼬리를 멀리까지 연장한다. 단일 지수 $e^{-x/L}$ 를 여러 $L$
-에 대해 분율로 가중 중첩하면(식~\eqref{eq:wavg}), 결과는 \emph{더 이상 단일 지수가 아니라 더 무거운(heavier-tailed)
-꼬리} — 초기에 빠르고 후미에서 완만 — 가 된다. \emph{그 점근형이 \textbf{정확히} stretched exponential
-$e^{-(x/L_{\mathrm{KWW}})^\beta}$($0<\beta<1$; $L_{\mathrm{KWW}}$=KWW 척도 — \S\ref{sec:dist} rigorbox 의 $L_0$ 와 별개)이 되는 것은 $\rho_G$ 가 특정 두꺼운-꼬리 분포(KWW 의 역-Laplace 핵)일 때}이며 $\beta$ 는
-그 분포가 정한다 \cite{lindsey1980,johnston2006,svare2000}. 즉 ``stretched''는 \emph{$\rho_G$ 형태에 대한 조건부} 결론이다
-(임의 $\rho_G$ 가 stretched 를 주지는 않는다 — 좁은 $\rho_G$ 면 거의 단일 지수, 두꺼운 꼬리면 KWW).
+빠른 집단(작은 $L$)은 peak 근처에서 감쇠를 마치고, 느린 집단(큰 $L$)은 꼬리를 멀리까지 연장한다. 단일 지수
+$e^{-x/L}$ 를 여러 $L$ 에 대해 분율로 가중 중첩하면(식~\eqref{eq:wavg}), 결과는 더 이상 단일 지수가 아니라 더
+무거운(heavier-tailed) 꼬리 — 초기에 빠르고 후미에서 완만한 형 — 가 된다. 그 점근형이 \emph{정확히} stretched
+exponential $e^{-(x/L_{\mathrm{KWW}})^\beta}$($0<\beta<1$)이 되는 것은 $\rho_G$ 가 특정 두꺼운-꼬리 분포, 곧
+KWW 의 역-Laplace 핵일 때이며, 지수 $\beta$ 는 그 분포가 정한다 \cite{lindsey1980,johnston2006,svare2000}.
+여기서 $L_{\mathrm{KWW}}$ 는 KWW 척도로, \S\ref{sec:dist} rigorbox 의 $L_0$ 와는 별개의 양이다. 요컨대
+``stretched''는 $\rho_G$ 형태에 대한 조건부 결론이다. 임의의 $\rho_G$ 가 stretched 를 주지는 않는다 — 좁은
+$\rho_G$ 면 거의 단일 지수가 되고, 두꺼운 꼬리면 KWW 가 된다.
 
 \begin{keybox}
-\textbf{요약.} 입자 분포는 밀도 $\rho_G$(정규화 식~\eqref{eq:norm})로, 관측은 그에 대한 가중 평균
-$\int f\rho_G\,\dd G$(식~\eqref{eq:wavg})로 기술된다. 길이가 배리어의 지수이므로 배리어 표준편차는 로그-길이 표준편차
-$\sigma_G/RT$ 로 전파되고(식~\eqref{eq:varprop}) 저온에서 꼬리가 더 늘어진다. 배리어 분포는 길이 분포로 분율
-보존 변환되며(식~\eqref{eq:jacobian}), 지수 감쇠의 연속 중첩은 더 무거운 꼬리(특정 두꺼운-꼬리 $\rho_G$ 하 stretched
-exponential)를 준다. \S\ref{sec:dist} 는 이 \emph{네 본문 도구}(변수 변환은 rigorbox 전용)로 입자 분포를 정량화한다 — 새 물리가 아니라 분율 가중 합산이다.
+\textbf{요약.} 입자 분포는 밀도 $\rho_G$(정규화 식~\eqref{eq:norm})로 기술하고, 관측은 그에 대한 가중 평균
+$\int f\rho_G\,\dd G$(식~\eqref{eq:wavg})로 기술한다. 길이가 배리어의 지수이므로, 배리어 표준편차는 로그-길이
+표준편차 $\sigma_G/RT$ 로 전파되고(식~\eqref{eq:varprop}) 저온에서 꼬리가 더 늘어진다. 배리어 분포는 분율 보존에
+의해 길이 분포로 변환되며(식~\eqref{eq:jacobian}), 지수 감쇠의 연속 중첩은 더 무거운 꼬리를 준다 — 특정 두꺼운-꼬리
+$\rho_G$ 에서는 stretched exponential 이 된다. 다음 절(\S\ref{sec:dist})은 이 네 본문 도구(변수 변환은 rigorbox
+전용)로 입자 분포를 정량화한다. 거기서 일어나는 일은 새 물리가 아니라 분율 가중 합산이다.
 \end{keybox}
 
 % ====================================================================
