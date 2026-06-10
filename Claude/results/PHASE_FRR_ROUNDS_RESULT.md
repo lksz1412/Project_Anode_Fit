@@ -26,3 +26,13 @@
 **검수**: 4창 전문 정독. 적발 **7건**(16→7 — 강한 수렴, 전부 표기·scope 급. R.2 핵심 수정 2건은 직접 검산으로 \emph{정확} 판정: 친화도 일반화 logit 일치·이중계상 논거, 로그기울기 −2R·artanh u/[Ωu−2RT·artanh u]→−3/(2(T_c−T)) 계수 정확).
 **수정**: ch1 — 겹침 단상 라벨(≤2RT→단상·임계)·KWW L_0→L_KWW 충돌 해소·A_j 집단공통 scope(이상형 기준, Ω≠0 ξ-의존은 포화창 1차 무시)+표 포인터·bare eq:LqV→\eqref·충전 꼬리 감쇠 방향 거울상(σ_d 반전 지지조건) 명시·S5에 깊은 2상측 ill-conditioning cross-caveat. ch3 — 표 s_I 댕글링→s 통일(부호 일관 전수 재검산: 구규약 잔존 0). ch4 — (2.9) 하드코드→\eqref{eq:nch2_i0}+귀속 열거 포괄·헤더 마커 갱신·η_j=0 에 V_drive=V_n 병기.
 **빌드**: 35p/10p/6p 전부 0/0. 인계 불변.
+
+## R.4 (steps 56-57)
+**검수**: 3창(ch1 전/후·ch3+ch4 장간) 전문 정독. 적발 **15건**(새 각도: 장간 정합·기호 레지스트리).
+**핵심 수정**:
+- ★ch1 wing 방향 정정: 원거리 wing 감쇠 길이 RT/F 고정(>w^eff)·진폭 e^{−Ω/RT} 억제 → matched logistic보다 \emph{무겁다}(점근 1−ξ≈e^{−Ω/RT}e^{−F(V−U)/RT} 재유도); 반치는 좁아 3.53w^eff가 FWHM \emph{과대} 추정 — 기존 "wing 더 빨리" 반대 방향 정정.
+- ★ch3 α_j(전류분율)→f_j 개명 12곳(ch4 α_j=전달계수와 기호 충돌 해소; \sum 붙음 1곳 수동 정정).
+- ch1: A_j 표 포인터 lag→barrier·Marcus 비 χ 인자(A/2λ)·모멘트 라벨(위치=1차·면적=0차)·접촉저항 dangling(S2 R_n으로 분리 명시→"세 후보" 정합)·walkthrough S3 율별 회귀(합산 금지)·eq:hys_dQdV C_bg 추가·dubarry→bardfaulkner·S5 γ cascade.
+- ch3: De Donder에 (2.4)–(2.5) 인용·η_ct=(RT/F)|I|/(i₀A_eff) 단위 정합+(2.10)–(2.11) 인용·worked 면적당 프레임 선언·h_dVdT "주항" 정직화(∂Q_bg/∂T·w(T) 항 무시 명시, (2.16) 대조)·T(0)=T_amb.
+- ch4: 	hesection 2.x 정합·C_j 흡수 "등온 한정"(∂U/∂T에 −(R/sF)lnC 흔적 — entropy 측정 구별 가능).
+**빌드**: 35p/10p/6p 전부 0/0.
