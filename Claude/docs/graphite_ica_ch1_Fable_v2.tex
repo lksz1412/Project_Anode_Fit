@@ -85,16 +85,16 @@
 % ====================================================================
 리튬이온전지 흑연 음극의 \textbf{incremental capacity analysis}(ICA)는 충방전 곡선 $Q(V)$ 의 미분
 $\dd Q/\dd V$ 를 본다 \cite{bloom2005,dubarry2012}. 흑연은 리튬과 단계적 staging 상전이(stage
-$4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)를 거치며, 여기서 $2\mathrm L$ 은 stage-2 의 희박(dilute) 단계를
+$4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)를 거치며, 여기서 $2\mathrm L$ 은 stage-2 의 희박하고 면내 질서가 풀린(liquid-like) 단계를
 가리킨다 \cite{dahn1991,ohzuku1993,funabiki1999}. 각 상전이가 일어나는 전위에서 $\dd Q/\dd V$ 에는
-\textbf{peak} 가 선다. 일차 상전이 동안 두 상이 공존하면 전위는 거의 평탄하게 머무는데, 그동안에도 전하는 계속
-흘러 들어간다. 좁은 $\dd V$ 구간에 큰 $\dd Q$ 가 몰리는 것이므로 미분 $\dd Q/\dd V$ 는 그 전위에서 치솟는다.
+\textbf{peak} 가 선다. 일차 상전이 동안 두 상이 공존하면 전위는 거의 평탄하게 머무는데(왜 평탄한지는 \S\ref{sec:regsol}
+가 닫는다), 그동안에도 전하는 계속 흘러 들어간다. 좁은 $\dd V$ 구간에 큰 $\dd Q$ 가 몰리는 것이므로 미분 $\dd Q/\dd V$ 는 그 전위에서 치솟는다.
 따라서 ``전위 평탄 구간 $=$ ICA peak''가 본 문건 전체가 다루는 대상의 정의가 된다.
 
 본 문건이 설명하고 피팅하려는 \textbf{관측}은 다음이다.
 \begin{quote}\itshape
-$\dd Q/\dd V$ 의 상전이 peak 는 그 \textbf{위치$\cdot$너비$\cdot$높이}가 \textbf{(a) 온도, (b) C-rate(전류),
-(c) 극판 전위} 세 가지에 따라 변한다. 특히 온도가 낮을수록, 그리고 전류가 클수록 peak 의 꼬리(tail)가 길게
+$\dd Q/\dd V$ 의 상전이 peak 는 그 \textbf{위치$\cdot$너비$\cdot$높이}가 \textbf{(a) 온도, (b) 극판
+전위, (c) C-rate(전류)} 세 가지에 따라 변한다. 특히 온도가 낮을수록, 그리고 전류가 클수록 peak 의 꼬리(tail)가 길게
 늘어져 다음 peak 와 겹친다. 나아가 같은 전이가 충전과 방전에서 서로 다른 전위에 peak 를 남기며(충방전
 히스테리시스), 이 갈림에는 전류를 $0$ 으로 줄여도 사라지지 않는 성분이 있다.
 \end{quote}
@@ -108,8 +108,8 @@ k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big]
 들어가는 자리는 각각 다음과 같다. \emph{온도}는 지수의 분모에 직접 앉아 속도를 지수적으로 바꾼다.
 \emph{극판 전위}는 장벽 높이 $\Delta G_a$ 자체를 기울여 낮춘다. \emph{C-rate} 는 전류가 요구하는 전환
 속도와 이 $k$ 의 경쟁으로 들어와, $k$ 가 따라가지 못하는 만큼이 꼬리가 된다. 평형 열역학조차 이 식의 밖에
-있지 않다 — 정방향과 역방향의 속도가 같아져 알짜 진행이 멈추는 \emph{정지점}이 곧 평형이며, 평형 등온선은
-속도식에서 \emph{유도되는} 결과다(\S\ref{sec:fwdrev}). 이 구성 덕분에 문건의 어느 식을 만나든 ``이 항이
+있지 않다 — 정방향과 역방향의 속도가 같아져 알짜 진행이 멈추는 \emph{정지점}이 곧 평형이며, 평형 등온선은 그
+정지점으로 \emph{회수된다}(\S\ref{sec:fwdrev}). 이 구성 덕분에 문건의 어느 식을 만나든 ``이 항이
 속도식의 어느 자리에서 왔는가''를 되짚을 수 있다.
 
 \textbf{본론은 방전이고, 도착점은 피팅이다.} 주 전개는 방전(탈리튬화) $\dd Q/\dd V$ 다. 속도식과 그
@@ -129,7 +129,7 @@ k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big]
 채운다 \cite{dahn1991,ohzuku1993}. stage 번호 $n$ 은 대략 ``리튬으로 채운 한 층마다 빈 갤러리 $n-1$ 개''를
 뜻한다. 채울수록 $n$ 이 줄어 stage 1$=\mathrm{LiC_6}$(완전 채움)$\cdot$stage 2$=\mathrm{LiC_{12}}$ 가 되며,
 stage 3$\cdot$4$\cdot$2L 은 더 희박한 조성이다(조성은 근사). 각 stage 전이가 $\dd Q/\dd V$ 에 peak 를 하나씩
-남기고, 인접 전이의 중심 전위 차가 전이폭 이하이면 융합해 관측 peak 수가 $N_p\approx3\sim4$ 가 된다 — 본
+남기고, 인접 전이의 중심 전위 차가 전이폭 이하이면 융합해 관측 peak 수가 $N_p\approx3\text{--}4$ 가 된다 — 본
 문건이 전이 $j=1,\dots,N_p$ 로 다루는 대상이다. 위 채움 순서는 리튬화(충전) 방향이고, 본 문건의 주 전개는
 방전$=$탈리튬화 기준이므로 진행은 그 역순이다 — 점유율 $\theta_j$ 가 $1\to0$ 으로 줄고 stage 는 역방향으로
 풀린다.
@@ -145,21 +145,24 @@ stage 3$\cdot$4$\cdot$2L 은 더 희박한 조성이다(조성은 근사). 각 s
 동기 부여할 것이므로, 이 표는 필요할 때 돌아와 찾아보는 사전으로 쓰면 된다. 표의 배열은 본 문건의 전개
 순서를 따른다 — 속도식과 장벽이 먼저, 열역학이 그 다음, 관측축과 꼬리$\cdot$분기가 그 뒤다.
 
-\textbf{전이 인덱스.} 상전이는 $j=1,\dots,N_p$ 로 여럿이다($N_p\approx3\sim4$ — 관측 유효 전이 수). 각
+\textbf{전이 인덱스.} 상전이는 $j=1,\dots,N_p$ 로 여럿이다($N_p\approx3\text{--}4$ — 관측 유효 전이 수). 각
 전이에는 Li 점유율 $\theta_j$ 와 방전 진행률 $\xi_j\equiv1-\theta_j$ 를 둔다. 방전(탈리튬화)이 진행하면
 $\theta_j$ 가 $1\to0$ 으로 줄고 $\xi_j$ 가 $0\to1$ 로 커진다. 한 전이만 논하는 문맥에서는 $j$ 를 생략할 수
 있으나, 박스로 강조된 최종 결과식에는 항상 $j$ 를 단다.
 
-\textbf{부호 규약.} 진행 방향 부호 $s\in\{+1,-1\}$ 는 전이의 방전 방향을 표시하며 본 문건은 방전 기준
-$s=+1$ 로 고정한다. 전류 부호 $s_I$ 는 방전 시 분극이 측정 전위를 올리는 방향을 $+$ 로 잡으며 같은 기준에서
-$s_I=+1$ 이다. 충방전 양방향을 다룰 때의 방향 부호 $\sigma_d=\pm1$ 은 \S\ref{sec:master} 에서 도입한다.
+\textbf{부호 규약.} 본 문건의 모든 전위는 흑연 음극 \emph{반쪽전지} 전위(vs Li/Li$^+$)다 — 측정이
+full-cell 이면 양극 기여를 제거한 환산이 선행되어야 한다(\S\ref{sec:master}). 진행 방향 부호
+$s\in\{+1,-1\}$ 는 전이의 방전 방향을 표시하며 본 문건은 방전 기준 $s=+1$ 로 고정한다. 전류 부호
+$s_I$ 는 전류 방향의 부호(방전 $+1$)다 — 방전(탈리튬화)은 산화 방향이라 분극(저항 강하,
+\S\ref{sec:charge})이 측정 전위를 내부 전위 \emph{위로} 올리며, 그 부호 약속이
+$V_\app=V_n+s_I|I|R_n$ 에 들어간다. 충방전 양방향을 다룰 때의 방향 부호 $\sigma_d=\pm1$ 은 \S\ref{sec:master} 에서 도입한다.
 요지만 미리 두면 — $s$ 는 평형 곡선의 정의 안에 $+1$ 로 고정된 채 남고(평형 곡선은 진행 방향에 불변인
 상태함수이므로), 방향에 따라 실제로 바뀌는 것은 $\sigma_d$ 가 맡으며 그 작용처는 분극 부호, 분기 중심 선택,
 꼬리의 지지$\cdot$감쇠 방향 셋이다.
 
 \begin{longtable}{p{0.15\textwidth} p{0.13\textwidth} p{0.64\textwidth}}
 \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
-\multicolumn{3}{l}{\emph{— 속도식과 장벽(\S\ref{sec:rate}$\cdot$\S\ref{sec:fwdrev}) —}}\\
+\multicolumn{3}{l}{\emph{— 속도식과 장벽(\S\ref{sec:rate}$\cdot$\S\ref{sec:fwdrev}$\cdot$\S\ref{sec:potbranch}) —}}\\
 $k_j,\ k_0$ & 1/s & 전이 $j$ 의 완화 속도상수($=r_j^++r_j^-$), Eyring prefactor $k_0=k_BT/h$ \\
 $\Delta G_{a,j}$ & J/mol & 활성화 자유에너지 $=\Delta H_{a,j}-T\Delta S_{a,j}$ \\
 $\Delta H_{a,j},\Delta S_{a,j}$ & {\footnotesize J/mol;\,J/(mol\,K)} & 활성화 엔탈피$\cdot$엔트로피(\emph{속도}에 들어감 — 반응 엔트로피 $\Delta S_j$ 와 다른 양) \\
@@ -176,7 +179,7 @@ $\xi_j,\ \xi_{\eq,j}$ & --- & 진행률 $=1-\theta_j$ 와 그 평형값 \\
 $\Omega_j$ & J/mol & 정규용액 상호작용 에너지($>2RT$ 면 상분리$\cdot$히스) \\
 $U_j(T)$ & V & 전이 $j$ 의 평형 중심 전위 \\
 $\Delta S_j$ & J/(mol\,K) & 삽입 반응 엔트로피($\partial U_j/\partial T=\Delta S_j/(sF)$) \\
-$w_j$ & V & 전이 폭 척도(이상 극한 $RT/F$; \S\ref{sec:eqpeak}) \\
+$w_j$ & V & 전이 폭 척도(이상 극한 $RT/F$, \S\ref{sec:fwdrev} 에서 유도; 운용은 \S\ref{sec:eqpeak}) \\
 $T_{c,j},\ \xi_{s,j}^\pm$ & K;\,--- & 임계 온도 $=\Omega_j/2R$; 불안정 경계(spinodal) 진행률 \\
 \multicolumn{3}{l}{\emph{— 관측축(\S\ref{sec:charge}) —}}\\
 $V_n$ & V & \emph{내부} 음극 전위 — 전하 보존식의 해 \\
@@ -217,8 +220,8 @@ $R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Farad
 사건이 일어나려면 열요동이 그 고개를 넘을 에너지를 공급해야 한다. 온도 $T$ 의 계에서 어떤 자유도가 에너지
 $E$ 이상을 우연히 갖출 확률은 Boltzmann 분포에 따라 $e^{-E/k_BT}$ 에 비례한다. 몰 단위로 쓰면 분모가
 $RT$($R=k_BN_A$)가 된다. 여기에 ``단위 시간에 고개를 넘으려고 시도하는 횟수''를 곱하면 속도가 된다.
-전이상태 이론은 그 시도 빈도의 보편 척도로 $k_0=k_BT/h$ 를 준다 \cite{eyring1935} — 양자역학적 진동
-시간척도의 역수로, $25^\circ$C 에서 약 $6\times10^{12}\ \mathrm{s^{-1}}$ 이다. 둘을 곱한 것이 본 문건의
+전이상태 이론은 그 시도 빈도의 보편 척도로 $k_0=k_BT/h$ 를 준다 \cite{eyring1935} — 열적 시간척도
+$h/k_BT$ 의 역수로, $25^\circ$C 에서 약 $6\times10^{12}\ \mathrm{s^{-1}}$ 이다. 둘을 곱한 것이 본 문건의
 근본식이다:
 \begin{equation}
 \boxed{\;k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big],\qquad
@@ -237,17 +240,17 @@ prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절
 \draw[->] (-0.2,0) -- (6.4,0) node[below] {반응 좌표};
 \draw[->] (-0.2,0) -- (-0.2,1.25) node[above] {\footnotesize 자유에너지};
 \draw[thick] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
-\draw[densely dashed,gray,thick] plot[smooth] coordinates {(3,1.0) (3.5,0.787) (4,0.44) (4.5,0.1) (5,-0.06) (5.5,0.0) (6,0.15)};
+\draw[densely dashed,gray,thick] plot[smooth] coordinates {(2.5,0.808) (3,0.92) (3.5,0.768) (4,0.43) (4.5,0.092) (5,-0.06) (5.5,0.052) (6,0.35)};
 \node[below] at (1,0.08) {\footnotesize 채워진 자리};
 \node[below] at (5,0.08) {\footnotesize 빈 자리$+$이온};
 \node[above] at (3,1.0) {\footnotesize 전이상태};
 \draw[<->] (1,0.12) -- (1,0.98) node[pos=0.5,right] {\footnotesize $\Delta G_a$};
-\draw[->,gray] (5.6,0.45) -- (5.3,0.12) node[pos=0,above] {\footnotesize 전위가 한쪽을 기울임(\S\ref{sec:potbranch})};
+\draw[->,gray] (5.6,0.45) -- (5.3,0.12) node[pos=0,above] {\footnotesize 전위가 한쪽을 기울임(\S\ref{sec:fwdrev}$\cdot$\S\ref{sec:potbranch})};
 \end{tikzpicture}
 \caption{활성화 장벽 그림. 실선은 평형 전위에서의 자유에너지 풍경 — 두 골짜기(채워진 자리/빈 자리)와 그
 사이의 전이상태 고개다. 사건의 속도는 고개 높이 $\Delta G_a$ 의 Boltzmann 인자에 시도 빈도 $k_0$ 를 곱한
 식~\eqref{eq:eyring} 을 따른다. 파선은 극판 전위가 구동력을 줄 때의 풍경 — 한쪽 골짜기가 내려가면서 고개도
-함께 낮아진다. 온도는 고개를 바꾸지 않는 대신 지수의 분모($RT$)로 들어와 넘는 확률 자체를 키운다.}
+함께 낮아진다(그림은 $\chi=\tfrac12$: 두 골짜기 높이차의 절반만큼 고개가 내려간 경우다). 온도는 고개를 바꾸지 않는 대신 지수의 분모($RT$)로 들어와 넘는 확률 자체를 키운다.}
 \label{fig:barrier}
 \end{figure}
 
@@ -257,18 +260,21 @@ prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절
 \begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.2em,itemsep=2pt]
 \item \textbf{온도 — 지수의 분모.} $T$ 는 $e^{-\Delta G_a/RT}$ 의 분모에 직접 앉는다. 장벽이 수십
   kJ/mol 이면 수십 도의 온도 변화가 속도를 \emph{한 자릿수} 바꾼다 — 예컨대 $\Delta H_a=40$ kJ/mol 일 때
-  $25^\circ\mathrm C\to-15^\circ\mathrm C$ 에서 $e^{(\Delta H_a/R)(1/258-1/298)}\approx e^{2.5}\approx12$
-  배 느려진다. 이것이 ``저온에서 꼬리가 길어진다''의 뿌리이며, \S\ref{sec:tempbranch} 가 Arrhenius 회귀로
+  $25^\circ\mathrm C\to-15^\circ\mathrm C$ 에서 지수 인자만으로
+  $e^{(\Delta H_a/R)(1/258-1/298)}\approx e^{2.5}\approx12$ 배 느려진다($k_0\propto T$ 의 선형 몫까지
+  넣으면 $\sim$14배 — Arrhenius 관행은 이를 절편에 흡수한다). 이것이 ``저온에서 꼬리가 길어진다''의 뿌리이며, \S\ref{sec:tempbranch} 가 Arrhenius 회귀로
   닫는다.
 \item \textbf{극판 전위 — 장벽 높이.} 전위는 두 골짜기의 상대 높이를 기울이고, 같은 전이상태를 공유하는
   정$\cdot$역 두 방향의 장벽을 비대칭으로 옮긴다. 정방향 장벽은 $\Delta G_a-\chi\mathcal A$ 로 낮아진다
   — 구동력 $\mathcal A$ 와 전달 계수 $\chi$ 는 \S\ref{sec:fwdrev}$\cdot$\S\ref{sec:potbranch} 에서
-  정의$\cdot$전개된다. 이것이 ``전위가 깊을수록 꼬리가 짧다''의 뿌리다.
+  정의$\cdot$전개된다. 전위는 외부에서 거는 노브가 아니라 같은 스캔 안에서 전이마다 다르게 놓이는 내부
+  좌표다 — 깊은 전이일수록 구동이 세서 꼬리가 짧다는 \emph{전이 간 비교}가 이 가지의 관측 얼굴이다.
 \item \textbf{C-rate — 요구 속도와의 경쟁.} 전류 $|I|$ 는 단위 시간당 일정량의 전환을 \emph{요구}한다.
   계가 낼 수 있는 속도는 $k$ 가 정하므로, 요구가 공급을 넘는 만큼 전환은 뒤처진다 — 그 뒤처짐(지연)이
   관측 peak 의 꼬리다. \S\ref{sec:lag} 가 이 경쟁을 미분방정식으로 닫는다.
 \end{enumerate}
-한 가지가 남는다. 속도식은 ``얼마나 빨리''만 말할 뿐 ``어디를 향해''는 말하지 않는다. 방향과 목적지 —
+닫는 순서는 전개의 필요를 따라 (c)$\to$(b)$\to$(a) 다 — 꼬리(C-rate)를 먼저 세워야 전위와 온도가 그
+길이에 새겨지는 방식을 물을 수 있기 때문이다. 한 가지가 남는다. 속도식은 ``얼마나 빨리''만 말할 뿐 ``어디를 향해''는 말하지 않는다. 방향과 목적지 —
 평형 — 는 정방향과 역방향 속도의 \emph{균형}에서 나오며, 그 균형을 쓰려면 두 방향의 속도가 무엇에 의해
 달라지는지, 곧 자유에너지의 언어가 필요하다. 다음 절이 그 언어를 공대 물리 독자 기준으로 처음부터 준비한다.
 
@@ -1044,7 +1050,7 @@ $\Delta H_a$ 를, 이 순서로 한 겹씩 벗긴다. 각 단계에 미지수가
 % ====================================================================
 \section{다전이 합산과 겹침}\label{sec:overlap}
 % ====================================================================
-흑연은 전이가 여럿이고($N_p\approx3\sim4$), 관측의 한 축은 ``저온$\cdot$고율에서 peak 가 겹친다''였다.
+흑연은 전이가 여럿이고($N_p\approx3\text{--}4$), 관측의 한 축은 ``저온$\cdot$고율에서 peak 가 겹친다''였다.
 방전 본론의 마지막 조각으로 이 합산을 닫는다.
 
 \subsection{합산은 보존, 독립은 가정}
