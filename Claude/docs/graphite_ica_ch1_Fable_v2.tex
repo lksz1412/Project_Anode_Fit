@@ -1,0 +1,164 @@
+% ====================================================================
+% graphite_ica_ch1_Fable_v2.tex — Chapter 1 (백지 재작성 v2)
+%   흑연 음극 dQ/dV(ICA) 이론 — 반응속도론(Eyring) 척추 구성:
+%   모든 식이 하나의 속도식 k = k0 exp(-dG_a/RT) 에서 가지를 친다.
+%   온도/전위/C-rate 세 영향과 평형 열역학을 그 식 위에서 전개해
+%   실무 피팅에 쓸 닫힌 식과 알고리즘에 도달한다.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 dQ/dV 이론: 속도식에서 피팅까지 — Chapter 1 (v2)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 $dQ/dV$ 이론 — Ch.1 (v2)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{stagebox}{흑연 staging 배경}
+\newtheorem*{boundbox}{유효 범위}
+\newtheorem*{flagbox}{비고}
+\newtheorem*{rigorbox}{심화}
+\newtheorem*{verifybox}{검산}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\ext}{\mathrm{ext}}
+\newcommand{\OCV}{\mathrm{OCV}}
+\newcommand{\sstat}{\mathrm{ss}}
+\newcommand{\peak}{\mathrm{peak}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\obs}{\mathrm{obs}}
+
+\renewcommand{\theequation}{1.\arabic{equation}}
+\renewcommand{\thesection}{1.\arabic{section}}
+\title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 $dQ/dV$ 이론: 하나의 속도식에서 피팅까지}
+\author{}
+\date{}
+
+% TOC: widen number boxes (two-digit section numbers overflow article's 1.5em default)
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{2.3em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil
+      \nobreak\hb@xt@\@pnumwidth{\hss #2\kern-\p@\kern\p@}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
+\makeatother
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서론}
+\addcontentsline{toc}{section}{서론}
+% ====================================================================
+리튬이온전지 흑연 음극의 \textbf{incremental capacity analysis}(ICA)는 충방전 곡선 $Q(V)$ 의 미분
+$\dd Q/\dd V$ 를 본다 \cite{bloom2005,dubarry2012}. 흑연은 리튬과 단계적 staging 상전이(stage
+$4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)를 거치며, 여기서 $2\mathrm L$ 은 stage-2 의 희박(dilute) 단계를
+가리킨다 \cite{dahn1991,ohzuku1993,funabiki1999}. 각 상전이가 일어나는 전위에서 $\dd Q/\dd V$ 에는
+\textbf{peak} 가 선다. 일차 상전이 동안 두 상이 공존하면 전위는 거의 평탄하게 머무는데, 그동안에도 전하는 계속
+흘러 들어간다. 좁은 $\dd V$ 구간에 큰 $\dd Q$ 가 몰리는 것이므로 미분 $\dd Q/\dd V$ 는 그 전위에서 치솟는다.
+따라서 ``전위 평탄 구간 $=$ ICA peak''가 본 문건 전체가 다루는 대상의 정의가 된다.
+
+본 문건이 설명하고 피팅하려는 \textbf{관측}은 다음이다.
+\begin{quote}\itshape
+$\dd Q/\dd V$ 의 상전이 peak 는 그 \textbf{위치$\cdot$너비$\cdot$높이}가 \textbf{(a) 온도, (b) C-rate(전류),
+(c) 극판 전위} 세 가지에 따라 변한다. 특히 온도가 낮을수록, 그리고 전류가 클수록 peak 의 꼬리(tail)가 길게
+늘어져 다음 peak 와 겹친다. 나아가 같은 전이가 충전과 방전에서 서로 다른 전위에 peak 를 남기며(충방전
+히스테리시스), 이 갈림에는 전류를 $0$ 으로 줄여도 사라지지 않는 성분이 있다.
+\end{quote}
+
+\textbf{접근 — 모든 식은 하나의 속도식에서 가지를 친다.} 위 관측의 세 인자는 서로 무관해 보이지만, 본 문건은
+이들을 한 식의 세 갈래로 통일한다. 그 식은 활성화 장벽을 넘는 반응의 속도식
+\begin{equation*}
+k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big]
+\end{equation*}
+이며, \S\ref{sec:rate} 에서 식~\eqref{eq:eyring} 로 정식 도입되어 끝까지 본 문건의 척추가 된다. 세 인자가
+들어가는 자리는 각각 다음과 같다. \emph{온도}는 지수의 분모에 직접 앉아 속도를 지수적으로 바꾼다.
+\emph{극판 전위}는 장벽 높이 $\Delta G_a$ 자체를 기울여 낮춘다. \emph{C-rate} 는 전류가 요구하는 전환
+속도와 이 $k$ 의 경쟁으로 들어와, $k$ 가 따라가지 못하는 만큼이 꼬리가 된다. 평형 열역학조차 이 식의 밖에
+있지 않다 — 정방향과 역방향의 속도가 같아져 알짜 진행이 멈추는 \emph{정지점}이 곧 평형이며, 평형 등온선은
+속도식에서 \emph{유도되는} 결과다(\S\ref{sec:fwdrev}). 이 구성 덕분에 문건의 어느 식을 만나든 ``이 항이
+속도식의 어느 자리에서 왔는가''를 되짚을 수 있다.
+
+\textbf{본론은 방전이고, 도착점은 피팅이다.} 주 전개는 방전(탈리튬화) $\dd Q/\dd V$ 다. 속도식과 그
+정지점(평형)을 세우고, 상호작용이 평형을 어떻게 비트는지(\S\ref{sec:regsol}), 관측축이 무엇인지
+(\S\ref{sec:charge})를 정의한 뒤, 세 인자의 가지를 차례로 닫으면 방전 ICA 전체가 한 줄 피팅식과 실행
+가능한 알고리즘(\S\ref{sec:master})으로 모인다. 충방전 히스테리시스는 그 본론 위에 세우는 \emph{확장}이다 —
+방전 전개에서 이미 등장한 상분리가 분기를 만들기 때문에, 전이 중심과 분극 부호만 방향별로 바꾸면 양방향이
+같은 골격으로 닫힌다(\S\ref{sec:hys} 이하).
+
+\textbf{읽는 두 경로.} 이론 독자는 절 순서대로 읽으면 된다 — 각 절이 앞 절의 결과만 써서 닫히도록 배열되어
+있다. 피팅이 급한 실무 독자는 \S\ref{sec:master} 의 통합식과 알고리즘$\cdot$한눈 참조표를 먼저 보고, 각 항의
+유도가 궁금할 때 해당 절로 거슬러 올라와도 된다. 다만 식의 적용 한계(가정 울타리와 반증 조건)는
+\S\ref{sec:master} 와 \S\ref{sec:falsify} 에 있으므로, 어느 경로든 그 둘은 건너뛰지 않기를 권한다.
+
+\begin{stagebox}
+흑연의 리튬화는 층간 갤러리를 단번에 채우지 않고 \emph{stage} 순서 $4\to3\to2\mathrm L\to2\to1$ 로 단계적으로
+채운다 \cite{dahn1991,ohzuku1993}. stage 번호 $n$ 은 대략 ``리튬으로 채운 한 층마다 빈 갤러리 $n-1$ 개''를
+뜻한다. 채울수록 $n$ 이 줄어 stage 1$=\mathrm{LiC_6}$(완전 채움)$\cdot$stage 2$=\mathrm{LiC_{12}}$ 가 되며,
+stage 3$\cdot$4$\cdot$2L 은 더 희박한 조성이다(조성은 근사). 각 stage 전이가 $\dd Q/\dd V$ 에 peak 를 하나씩
+남기고, 인접 전이의 중심 전위 차가 전이폭 이하이면 융합해 관측 peak 수가 $N_p\approx3\sim4$ 가 된다 — 본
+문건이 전이 $j=1,\dots,N_p$ 로 다루는 대상이다. 위 채움 순서는 리튬화(충전) 방향이고, 본 문건의 주 전개는
+방전$=$탈리튬화 기준이므로 진행은 그 역순이다 — 점유율 $\theta_j$ 가 $1\to0$ 으로 줄고 stage 는 역방향으로
+풀린다.
+\end{stagebox}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
+\bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
+\bibitem{funabiki1999} A. Funabiki, M. Inaba, Z. Ogumi et al., ``Stage Transformation of Lithium-Graphite Intercalation Compounds Caused by Electrochemical Lithium Intercalation,'' \emph{J. Electrochem. Soc.} \textbf{146}, 2443 (1999). DOI: 10.1149/1.1391953.
+\bibitem{dreyer2010} W. Dreyer \emph{et al.}, ``The thermodynamic origin of hysteresis in insertion batteries,'' \emph{Nature Materials} \textbf{9}, 448 (2010). DOI: 10.1038/nmat2730.
+\bibitem{sethna1993} J. P. Sethna \emph{et al.}, ``Hysteresis and hierarchies: Dynamics of disorder-driven first-order phase transformations,'' \emph{Phys. Rev. Lett.} \textbf{70}, 3347 (1993). DOI: 10.1103/PhysRevLett.70.3347.
+\bibitem{mckinnon1983} W. R. McKinnon, R. R. Haering, ``Physical Mechanisms of Intercalation,'' in \emph{Modern Aspects of Electrochemistry} \textbf{15}, 235 (1983). DOI: 10.1007/978-1-4615-7461-3\_4.
+\bibitem{bazant2013} M. Z. Bazant, ``Theory of Chemical Kinetics and Charge Transfer based on Nonequilibrium Thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}, 1144 (2013). DOI: 10.1021/ar300145c.
+\bibitem{eyring1935} H. Eyring, ``The Activated Complex in Chemical Reactions,'' \emph{J. Chem. Phys.} \textbf{3}, 107 (1935). DOI: 10.1063/1.1749604.
+\bibitem{marcus1956} R. A. Marcus, ``On the Theory of Oxidation-Reduction Reactions Involving Electron Transfer. I,'' \emph{J. Chem. Phys.} \textbf{24}, 966 (1956). DOI: 10.1063/1.1742723.
+\bibitem{evanspolanyi1938} M. G. Evans, M. Polanyi, ``Inertia and driving force of chemical reactions,'' \emph{Trans. Faraday Soc.} \textbf{34}, 11 (1938). DOI: 10.1039/TF9383400011.
+\bibitem{bardfaulkner} A. J. Bard, L. R. Faulkner, \emph{Electrochemical Methods: Fundamentals and Applications}, 2nd ed., Wiley (2001). ISBN 978-0-471-04372-0.
+\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of Lithium Intercalation into Graphites and Disordered Carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). DOI: 10.1149/1.1646152.
+\bibitem{lindsey1980} C. P. Lindsey, G. D. Patterson, ``Detailed comparison of the Williams--Watts and Cole--Davidson functions,'' \emph{J. Chem. Phys.} \textbf{73}, 3348 (1980). DOI: 10.1063/1.440530.
+\bibitem{johnston2006} D. C. Johnston, ``Stretched exponential relaxation arising from a continuous sum of exponential decays,'' \emph{Phys. Rev. B} \textbf{74}, 184430 (2006). DOI: 10.1103/PhysRevB.74.184430.
+\bibitem{svare2000} I. Svare, S. W. Martin, F. Borsa, ``Stretched exponentials with $T$-dependent exponents from fixed distributions of energy barriers for relaxation times in fast-ion conductors,'' \emph{Phys. Rev. B} \textbf{61}, 228 (2000). DOI: 10.1103/PhysRevB.61.228.
+\bibitem{weppner1977} W. Weppner, R. A. Huggins, ``Determination of the Kinetic Parameters of Mixed-Conducting Electrodes (GITT),'' \emph{J. Electrochem. Soc.} \textbf{124}, 1569 (1977). DOI: 10.1149/1.2133112.
+\bibitem{dubarry2012} M. Dubarry, C. Truchot, B. Y. Liaw, ``Synthesize battery degradation modes via a diagnostic and prognostic model,'' \emph{J. Power Sources} \textbf{219}, 204 (2012). DOI: 10.1016/j.jpowsour.2012.07.016.
+\bibitem{newman2004} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley-Interscience (2004). ISBN 978-0-471-47756-3.
+\bibitem{bloom2005} I. Bloom, A. N. Jansen, D. P. Abraham et al., ``Differential voltage analyses of high-power, lithium-ion cells. 1. Technique and application,'' \emph{J. Power Sources} \textbf{139}, 295 (2005). DOI: 10.1016/j.jpowsour.2004.07.021.
+\end{thebibliography}
+
+\end{document}
