@@ -566,7 +566,7 @@ $\mu_\mathrm{Li}(\theta)=\mu^0-sF(V_n-U_j)$ 를 $V_n$ 으로 미분하면 $[RT/(
 \frac{\dd\xi_{\eq,j}}{\dd V_n}\Big|_{\xi=1/2}=\frac{sF}{4RT-2\Omega_j}
 \end{equation*}
 이고, 이상 logistic 의 중심 기울기
-$s/(4w_j)$(식~\eqref{eq:logistic})와 맞추면 \emph{유효 폭}
+$s/(4w_j)$(식~\eqref{eq:dxidV} 의 $\xi=\tfrac12$ 값)와 맞추면 \emph{유효 폭}
 \begin{equation}
 \boxed{\;w_j^\eff=\frac{RT}{F}\Big(1-\frac{\Omega_j}{2RT}\Big)=\frac{RT}{F}\Big(1-\frac{T_{c,j}}{T}\Big)\qquad(\Omega_j<2RT).\;}
 \label{eq:weff}
@@ -576,7 +576,8 @@ $w_j^\eff$ 는 peak \emph{중심 곡률}만 이상 logistic 과 맞춘 \emph{국
 \emph{과대} 추정하고(편향은 $\Omega_j\to2RT$ 서 커짐), \emph{원거리 wing} 은 감쇠 길이가 $\Omega_j$ 무관 $RT/F$($>w_j^\eff$)
 로 고정된 채 진폭만 $e^{-\Omega_j/RT}$ 로 억제돼 오히려 \emph{무겁다}(점근의 출처: wing $\xi\to1$ 서 상호작용 항이 $\Omega_j(1-2\xi)\to-\Omega_j$ 로 포화하므로
 평형 조건~\eqref{eq:eqcond} 이 $RT\ln[\xi/(1-\xi)]\simeq sF(V_n-U_j)+\Omega_j$ 로 닫혀
-$1-\xi\simeq e^{-\Omega_j/RT}e^{-F(V_n-U_j)/RT}$ — 감쇠 길이는 $RT/F$ 고정, 진폭만 $\Omega_j$ 가 억제한다).
+$1-\xi\simeq e^{-\Omega_j/RT}e^{-sF(V_n-U_j)/RT}$($s{=}+1$ 방전 규약) — 감쇠 길이는 $RT/F$ 고정, 진폭만
+$\Omega_j$ 가 억제한다).
 중심 곡률만 정확, 전역 모양은 근사다. 즉 상호작용이 클수록($\Omega_j\to2RT$) peak 가 \emph{좁아지고},
 $\Omega_j\to2RT^-$($T\to T_{c,j}^+$) 극한에서 폭이 $0$ 으로 — 그 지점이 곧 상분리(delta 형 plateau)의 시작이다(식 단서
 $\Omega_j<2RT$ 와 정합: 경계는 극한값). \textbf{이것이
@@ -785,8 +786,7 @@ Boltzmann 인자 $e^{\mathcal A_j/RT}$ 와 같으려면 지수의 두 몫의 합
 즉 \S\ref{sec:eqpeak} 의 logistic~\eqref{eq:logistic} 과 \emph{정확히 일치}한다 — \S\ref{sec:lag} 에서 전방참조로
 둔 $\xi_{\sstat,j}=\xi_{\eq,j}$ 가 여기서 \emph{증명}된다. 단 이 닫힌 증명은 \emph{이상 극한}($\Omega_j=0$,
 $w_j=RT/F$) 위의 것이다 — $\Omega_j\ne0$ 이면 친화도를 $\mathcal A_j=sF(V_\drive-U_j)-\Omega_j(1-2\xi_j)$ 로(상호작용
-몫만 추가 — \emph{혼합 엔트로피 항은 넣지 않는다}: 식~\eqref{eq:relax} 의 점유 prefactor $(1-\xi_j)\cdot\xi_j$ 가
-이미 그 통계를 담당하므로, 전체 $\mu_\mathrm{Li}$ 차를 쓰면 logit 이 이중 계상된다) 일반화하면 같은 논법이
+몫만 추가 — 혼합 엔트로피 항을 넣지 않는 까닭은 식~\eqref{eq:affinity} 직후의 이중 계상 논거 그대로) 일반화하면 같은 논법이
 $\Omega_j\ne0$ 등온선을 정확히 재생하며, 본 장 꼬리 결론(forward 우세 감쇠)은 이 세부에 둔감하다. \textbf{장벽 이동은 평형 target 을 옮기지 않는다}: 평형은 두
 상태의 \emph{자유에너지 차}($\mathcal A_j$)가 정하고, 장벽(활성화)은 \emph{거기 도달하는 속도}만 정한다(전이상태
 이론의 표준 역할 분리; $\chi$ 가 식~\eqref{eq:db} 에서 상쇄되는 것이 그 표현).
@@ -808,7 +808,7 @@ k_j\simeq k_0\exp\!\Big[-\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big]\quad(\m
 단일지수가 깨지지만 관측이 평형 상승부(\S\ref{sec:eqpeak})로 지배되므로 무관하다. (ii) $\mathcal A_j\gtrsim3RT$ \emph{원거리
 꼬리}서 단일지수가 \emph{정확}하다(보정 $\lesssim5\%$, 식~\eqref{eq:keff} box). (iii) 사이의 \emph{전이대}
 $RT\lesssim\mathcal A_j\lesssim3RT$ 에서는 단일지수($k_j\simeq r_j^+$)가 \emph{선도 근사}일 뿐 보정 인자
-$(1+e^{-\mathcal A_j/RT})$ 가 최대 $\sim37\%$($\mathcal A_j=RT$)까지 살아 있다. \textbf{이 보정은 $\mathcal A_j(=V_n)$ 의 함수라
+$(1+e^{-\mathcal A_j/RT})$ 가 최대 $\sim37\%$($\mathcal A_j=RT$)까지 살아 있다. \textbf{이 보정은 $\mathcal A_j$ 를 통해 $V_n$ 만의 함수라
 \emph{집단 공통}이므로 \S\ref{sec:dist} 의 $\rho_G$($G$-분산) 중첩으로는 생성되지 않는다}(뒤 \S\ref{sec:dist} 의
 분포 적분은 배리어 $G$ 에\emph{만} 걸리므로, $V_n$ 만의 함수인 이 인자는 좁은$\cdot$넓은 분포 어느 쪽에서도 적분
 \emph{밖}으로 빠져나가는 공통 인자다) — 즉 \emph{$\rho_G$ 가 흡수하지 못한다}. 정직한 처리는 식~\eqref{eq:Lq} 의 $k_j$ 를 forward
@@ -1383,7 +1383,7 @@ plateau 가 아니라 \emph{히스 소멸}을 가리키는 규약적 하한 — 
 외삽한 값 — \S\ref{sec:hys_pol})은 $\gamma_j\Delta U_j^\hys$ 의 \emph{곱}이라 한 온도의 절편만으론 $\gamma_j$ 와 $\Omega_j$ 가 분리되지 않는다 — \emph{1차
 경로는 절편의 온도 의존}이다(식~\eqref{eq:hys_dU} 의 $\Delta U_j^\hys(T)$ 형이 $\Omega_j$ 를 정하고, 크기가 $\gamma_j$
 를 정한다 — \S\ref{sec:master} S5$\cdot$파라미터 표와 동일; $\gamma_j$ 는 측정창서 $T$-무관 전제). 단상 온도 구간이
-있으면 평형 폭 $w^\eff(T)$(식~\eqref{eq:weff})가 \emph{검증} 경로가 되나, 히스가 있는 전이는 측정 온도창에서 $\Omega_j>2RT$
+있으면 평형 폭 $w^\eff(T)$(식~\eqref{eq:weff})가 \emph{검증} 경로가 되나, 창 전체에서 히스가 보이는 전이는 그 창이 전부 2상측($\Omega_j>2RT$, $T<T_{c,j}$)임이
 라 폭-경로가 무효임에 유의(같은 $g_j''$ 사영이라 어차피 \emph{내적 일관성}용, \S\ref{sec:falsify}).
 \end{boundbox}
 
