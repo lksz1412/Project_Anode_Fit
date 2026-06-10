@@ -795,15 +795,18 @@ $k_j$ 를 바꾸는 방식이며, 다음 절이 그것을 다룬다.
 % ====================================================================
 \section{전위에 의한 유효 배리어}\label{sec:barrier}
 % ====================================================================
-관찰의 핵심은 ``온도에 의한 배리어 \emph{외에}, 극판 전위가 배리어를 추가로 낮춘다''는 것이었다.
-전위는 식~\eqref{eq:eyring} 의 $\Delta G_{a,j}$ 에 어떻게 들어가는가?
+앞 절은 완화 속도 $k_j$ 의 온도 의존을 Eyring 배리어로 닫았다. 그러나 관찰의 핵심은 ``온도에 의한 배리어
+\emph{외에}, 극판 전위가 배리어를 추가로 낮춘다''는 것이었다. 그렇다면 전위는 식~\eqref{eq:eyring} 의
+$\Delta G_{a,j}$ 에 어떻게 들어가는가. 이 절은 구동력을 정의하고, 정/역 속도의 보편형을 세운 뒤, 꼬리 영역의
+forward 극한을 그로부터 뽑는다.
 
 \subsection{구동력}
-\S\ref{sec:stage} 에서 구동 전위 $V_\drive$(기본 $=V_n$)를 두었다. 전이 $j$ 의 \textbf{구동력}(affinity)은
-구동 전위가 전이 중심에서 벗어난 정도로, 식~\eqref{eq:eqcond} 의 전기화학 평형 조건($\mu_\mathrm{Li}=\mu^0-sF(V_n-U_j)$)
-에서 \emph{독립}으로 오는 몰당 자유에너지다(logistic 에서 빌린 것이 아님; 기본형 $V_\drive=V_n$ 에서 $\mathcal A_j/RT=
-s(V_n-U_j)/w_j$ 가 식~\eqref{eq:logistic} 의 logit 과 \emph{같아지는} 것은 \emph{순환이 아니라} 평형 열역학과 동역학
-detailed balance 두 경로가 같은 logistic 을 내는 \emph{정합 검증}이다):
+\S\ref{sec:stage} 에서 구동 전위 $V_\drive$(기본형 $V_\drive=V_n$)를 두었다. 전이 $j$ 의 \textbf{구동력}
+(affinity)은 구동 전위가 전이 중심에서 벗어난 정도이며, 식~\eqref{eq:eqcond} 의 전기화학 평형 조건
+$\mu_\mathrm{Li}=\mu^0-sF(V_n-U_j)$ 에서 \emph{독립적으로} 오는 몰당 자유에너지다. logistic 에서 빌려 온 양이
+아니다. 기본형 $V_\drive=V_n$ 에서 $\mathcal A_j/RT=s(V_n-U_j)/w_j$ 가 식~\eqref{eq:logistic} 의 logit 과
+같아지는데, 이는 순환 논법이 아니라 평형 열역학과 동역학 detailed balance 라는 두 독립 경로가 같은 logistic 을
+내는 정합 검증이다:
 \begin{equation}
 \mathcal A_j=sF\,(V_\drive-U_j).
 \label{eq:affinity}
@@ -856,31 +859,40 @@ $\Omega_j\ne0$ 등온선을 정확히 재생하며, 본 장 꼬리 결론(forwar
 상태의 \emph{자유에너지 차}($\mathcal A_j$)가 정하고, 장벽(활성화)은 \emph{거기 도달하는 속도}만 정한다(전이상태
 이론의 표준 역할 분리; $\chi$ 가 식~\eqref{eq:db} 에서 상쇄되는 것이 그 표현).
 
-\textbf{완화 속도의 유효 배리어(regime 명시).} 완화 속도는 $k_j=r_j^++r_j^-$ 다. 방전(탈리튬화)에서 전이가
-\emph{완성}되는 꼬리 영역은 구동 전위가 전이 중심을 forward 방향으로 지난 곳이므로($\xi_j$ 가 1 로 갈 때
-$V_n>U_j$, 따라서 $\mathcal A_j=sF(V_n-U_j)>0$, $s=+1$), 식~\eqref{eq:db} 로 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$ 다.
-이 비가 충분히 크면($\mathcal A_j\gtrsim RT$, forward 우세) $r_j^-$ 를 무시해 $k_j\simeq r_j^+$ — 상대 보정은
-$r_j^-/r_j^+=e^{-\mathcal A_j/RT}$ 라 $\mathcal A_j=RT$ 서 약 $37\%$($3RT$ 서 $\sim5\%$)이므로, 단일지수 꼬리는 $\mathcal A_j$ 가
-\emph{수 $RT$($\gtrsim3RT$, 보정 $\lesssim5\%$)} 이상일 때 정확하다:
+\textbf{완화 속도의 보편형, 그리고 forward 극한.} 완화 속도는 정/역 속도의 합 $k_j=r_j^++r_j^-$ 다.
+식~\eqref{eq:bv} 의 두 속도와 detailed balance 식~\eqref{eq:db} 를 쓰면, 구동력의 크기에 제한 없이 성립하는
+보편형이 바로 닫힌다:
+\begin{equation*}
+k_j=r_j^+\big(1+e^{-\mathcal A_j/RT}\big)
+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}\big(1+e^{-\mathcal A_j/RT}\big).
+\end{equation*}
+괄호 인자 $(1+e^{-\mathcal A_j/RT})$ 가 역방향 몫의 전부다. 이제 이 보편형에서 꼬리 영역의 극한을 뽑는다.
+방전(탈리튬화)에서 전이가 완성되는 꼬리 영역은 구동 전위가 전이 중심을 forward 방향으로 지난 곳이다 — $\xi_j$ 가
+$1$ 로 갈 때 $V_n>U_j$ 이므로 $\mathcal A_j=sF(V_n-U_j)>0$($s=+1$)이다. 그러면 역방향 몫은 $e^{-\mathcal A_j/RT}$
+로 억제되며, 그 크기는 $\mathcal A_j=RT$ 에서 약 $37\%$, $3RT$ 에서 약 $5\%$ 다. 따라서 구동력이 수 $RT$ 를 넘는
+곳($\mathcal A_j\gtrsim3RT$, 보정 $\lesssim5\%$)에서는 역방향을 버린 forward 극한이 정확하다:
 \begin{equation}
 \boxed{\;\Delta G_{\eff,j}=\Delta G_{a,j}-\chi\,\mathcal A_j\;,\qquad
 k_j\simeq k_0\exp\!\Big[-\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big]\quad(\mathcal A_j\gtrsim 3RT)\;.}
 \label{eq:keff}
 \end{equation}
-구동력이 클수록($\mathcal A_j>0$) forward 유효 배리어가 낮아져 완화 속도 $k_j$ 가 커진다 — \emph{평형 target 은
-\S\ref{sec:eqpeak} 그대로}. \textbf{이것이 ``전위가 배리어를 낮춘다''의 정확한 자리다(평형이 아니라 속도).}
-\emph{유효 작동 창(세 구간).} (i) $\mathcal A_j\approx0$ 인 peak \emph{중심부}는 $r_j^+\approx r_j^-$, $k_j\simeq2r_j^+$ 라
-단일지수가 깨지지만 관측이 평형 상승부(\S\ref{sec:eqpeak})로 지배되므로 무관하다. (ii) $\mathcal A_j\gtrsim3RT$ \emph{원거리
-꼬리}서 단일지수가 \emph{정확}하다(보정 $\lesssim5\%$, 식~\eqref{eq:keff} box). (iii) 사이의 \emph{전이대}
-$RT\lesssim\mathcal A_j\lesssim3RT$ 에서는 단일지수($k_j\simeq r_j^+$)가 \emph{선도 근사}일 뿐 보정 인자
-$(1+e^{-\mathcal A_j/RT})$ 가 최대 $\sim37\%$($\mathcal A_j=RT$)까지 살아 있다. \textbf{이 보정은 $\mathcal A_j$ 를 통해 $V_n$ 만의 함수라
+구동력이 클수록($\mathcal A_j>0$) forward 유효 배리어가 낮아져 완화 속도 $k_j$ 가 커진다. 평형 target 은
+\S\ref{sec:eqpeak} 그대로 남는다. \textbf{이것이 ``전위가 배리어를 낮춘다''의 정확한 자리다 — 전위가 바꾸는
+것은 평형이 아니라 속도다.}
+\emph{유효 작동 창 — 보편형이 가르는 세 구간.} 보편형의 괄호 인자를 기준으로 작동 창이 셋으로 갈린다.
+(i) $\mathcal A_j\approx0$ 인 peak \emph{중심부}에서는 $r_j^+\approx r_j^-$ 라 $k_j\simeq2r_j^+$ 가 되어
+단일지수 형이 깨지지만, 그 구간의 관측은 평형 상승부(\S\ref{sec:eqpeak})가 지배하므로 무관하다.
+(ii) $\mathcal A_j\gtrsim3RT$ 의 \emph{원거리 꼬리}에서는 단일지수가 정확하다(보정 $\lesssim5\%$,
+식~\eqref{eq:keff} box). (iii) 그 사이의 \emph{전이대} $RT\lesssim\mathcal A_j\lesssim3RT$ 에서는 단일지수
+($k_j\simeq r_j^+$)가 선도 근사일 뿐, 보편형의 보정 인자 $(1+e^{-\mathcal A_j/RT})$ 가 최대 $\sim37\%$
+($\mathcal A_j=RT$)까지 살아 있다. \textbf{이 보정은 $\mathcal A_j$ 를 통해 $V_n$ 만의 함수라
 \emph{집단 공통}이므로 \S\ref{sec:dist} 의 $\rho_G$($G$-분산) 중첩으로는 생성되지 않는다}(뒤 \S\ref{sec:dist} 의
 분포 적분은 배리어 $G$ 에\emph{만} 걸리므로, $V_n$ 만의 함수인 이 인자는 좁은$\cdot$넓은 분포 어느 쪽에서도 적분
-\emph{밖}으로 빠져나가는 공통 인자다) — 즉 \emph{$\rho_G$ 가 흡수하지 못한다}. 정직한 처리는 식~\eqref{eq:Lq} 의 $k_j$ 를 forward
-근사 $r_j^+$ 가 아니라 \emph{완화 전체} $k_j=r_j^+(1+e^{-\mathcal A_j/RT})$ 로 쓰는 것이고, 그러면 보정이 $L_q$ 에 자동
-포함된다(단일지수 $r_j^+$ 형은 그 인자를 피팅 prefactor $k_0$ 에 잠근 $\gtrsim3RT$ 한정 근사). \emph{따라서 ``꼬리식을
-$\mathcal A_j\gtrsim RT$ 에 쓴다''는 선도형이 그렇다는 뜻이고, 정확성은 $\gtrsim3RT$ 한정}이다. (파라미터 식별: $\{\Delta G_{a,j},\chi,k_0\}$ 피팅$\cdot$
-$V_\drive=V_n$ 측정$\cdot$$U_j$ 열역학 입력 — \S\ref{sec:synth} S1–S4.)
+\emph{밖}으로 빠져나가는 공통 인자다) — 즉 \emph{$\rho_G$ 가 흡수하지 못한다}. 정직한 처리는 식~\eqref{eq:Lq} 의 $k_j$ 를 forward 근사 $r_j^+$ 가 아니라 위 \emph{보편형 그대로} 쓰는 것이며,
+그러면 보정이 $L_q$ 에 자동 포함된다. 단일지수 $r_j^+$ 형은 그 인자를 피팅 prefactor $k_0$ 에 잠근, $\gtrsim3RT$
+한정의 극한 근사다. 따라서 ``꼬리식을 $\mathcal A_j\gtrsim RT$ 에 쓴다''는 말은 선도형이 그렇다는 뜻이고, 정확성은
+$\gtrsim3RT$ 에 한한다. 파라미터의 식별은 \S\ref{sec:synth} S1--S4 에서 다룬다 — $\{\Delta G_{a,j},\chi,k_0\}$
+는 피팅으로, $V_\drive=V_n$ 은 측정으로, $U_j$ 는 열역학 입력으로 닫힌다.
 \begin{boundbox}
 \textbf{선형의 한계(Marcus 유추)와 작동 창.} $-\chi\mathcal A_j$ 는 \emph{소구동력 1차} 근사다. Marcus 포물면
 $\Delta G^\ddagger(\mathcal A)=\dfrac{(\lambda-\mathcal A)^2}{4\lambda}=\dfrac{\lambda}{4}-\dfrac{\mathcal A}{2}
@@ -916,12 +928,12 @@ $k_{j,\mathrm{act}}$ 만 통하므로(연쇄율 $\partial\ln k_j^{\eff}/\partial
 환원된다; 유한 공율속이면 그만큼 \emph{감쇠}하나 인자 $\in(0,1]$ 이라 \emph{부호}($\chi>0$ 이면 $<0$ — 전위 의존)는
 그대로다(\S\ref{sec:falsify} 반증 지문이 율속 비율에 견고한 까닭).
 \begin{keybox}
-\textbf{세 인자의 peak 진입.} 구동 전위가 커지면 forward 유효 배리어가 낮아져 꼬리가 \emph{짧아진다}. 또 측정축에서는 분극
-$s_I|I|R_n$(식~\eqref{eq:vapp})이 apparent peak 위치를 밀어, C-rate 가 \emph{위치} 이동에도 기여한다. \emph{이로써
-세 인자(온도$\cdot$C-rate$\cdot$전위)가 모두 $k_j$ 와 $L_{q,j}$ 를 통해 peak 에 들어왔다.} 남은 물리는 하나 —
-전극 입자가 \emph{동일하지 않다}는 것이다. 그 비균질이 \S\ref{sec:lag} 에서 예고한 \emph{늘어진}(stretched) 꼬리를
-만든다. 이를 다루려면 분포$\cdot$가중 평균$\cdot$분산 전파의 통계 도구가 필요하므로 — \emph{다음 절
-(\S\ref{sec:stattools})은 잠시 그 도구를 정비}하고, 그 위에서 \S\ref{sec:dist} 가 입자 분포를 정량화한다.
+\textbf{세 인자의 peak 진입.} 구동 전위가 커지면 forward 유효 배리어가 낮아져 꼬리가 짧아진다. 측정축에서는
+분극 $s_I|I|R_n$(식~\eqref{eq:vapp})이 apparent peak 위치를 밀므로, C-rate 는 위치 이동에도 기여한다. 이로써
+세 인자 — 온도$\cdot$C-rate$\cdot$전위 — 가 모두 $k_j$ 와 $L_{q,j}$ 를 통해 peak 에 들어왔다. 남은 물리는
+하나다. 전극 입자가 동일하지 않다는 것이다. 그 비균질이 \S\ref{sec:lag} 에서 예고한 늘어진(stretched) 꼬리를
+만든다. 이를 다루려면 분포$\cdot$가중 평균$\cdot$분산 전파의 통계 도구가 필요하므로, 다음 절(\S\ref{sec:stattools})
+에서 잠시 그 도구를 정비하고, 그 위에서 \S\ref{sec:dist} 가 입자 분포를 정량화한다.
 \end{keybox}
 
 % ====================================================================
