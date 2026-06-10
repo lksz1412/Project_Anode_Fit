@@ -1411,9 +1411,11 @@ $1/[C_\bg+Q_j/(4w_j)]$ ($C_\bg$ 포함), 폭은 $w_j$(단상이면 식~\eqref{eq
 % ====================================================================
 \section{충방전 분기와 히스테리시스 gap $\Delta U_j^\hys$}\label{sec:hys_branch}
 % ====================================================================
-지금까지(평형 peak $+$ 정규용액 상분리 $+$ 동역학)는 \emph{방전 한 방향}의 $\dd Q/\dd V$ 를 닫았다. 이제 같은
-전극을 충전과 방전으로 오갈 때 — 같은 SOC 에서 전위가 갈리는 \emph{충방전 히스테리시스} — 로 넓힌다. 그 뿌리는
-\S\ref{sec:regsol} 의 상분리다: 충$\cdot$방전이 서로 다른 준안정 분기(spinodal 과주행)를 따라가기 때문이다.
+여기서부터 확장이 시작된다. 방전 본론(\S\ref{sec:stage}--\S\ref{sec:dva})은 한 방향의 $\dd Q/\dd V$ 를
+닫았다. 이제 같은 전극을 충전과 방전으로 오갈 때, 같은 SOC 에서 전위가 갈리는 \emph{충방전 히스테리시스}로
+넓힌다. 새 물리는 거의 필요하지 않다. 그 뿌리는 \S\ref{sec:regsol} 에서 이미 세운 상분리이기 때문이다 —
+충전과 방전이 서로 다른 준안정 분기를 따라 spinodal 까지 과주행하기에 두 방향의 전위가 갈린다. 본 절은 그
+갈림(gap)을 정규용액 $\Omega_j$ 와 온도의 닫힌 식으로 유도한다.
 
 \subsection{비단조 평형 전위 $V_{\eq,j}(\xi)$}
 \S\ref{sec:regsol} 의 상분리를 \emph{전위}의 언어로 옮긴다. 평형 조건 식~\eqref{eq:eqcond}
@@ -1485,14 +1487,17 @@ $\gamma_j\in[0,1]$ 로 흡수해
 U_j^{\dis/\chg}=U_j\pm\tfrac12\gamma_j\Delta U_j^\hys
 \label{eq:hys_center}
 \end{equation}
-로 둔다 — $\gamma_j$ 의 \emph{선형} 스케일링은 1차 근사다($\gamma_j=1$ spinodal 상한, $\gamma_j\to0$ 은 binodal 잔류
-plateau 가 아니라 \emph{히스 소멸}을 가리키는 규약적 하한 — 다중 전환점의 엄밀한 취급은 이력을 \emph{전환점 분포의 중첩}으로 쓰는 Preisach 류라 본 장 범위 밖,
-\S\ref{sec:hys_partial}). $\Omega_j$ 와 $\gamma_j$ 한 양씩이면 충분하다. \textbf{식별 주의}: 관측 gap \emph{절편}(여러 율의 충방전 gap $\Delta V_{\mathrm{obs},j}(|I|)$ 를 $|I|\to0$ 으로
-외삽한 값 — \S\ref{sec:hys_pol})은 $\gamma_j\Delta U_j^\hys$ 의 \emph{곱}이라 한 온도의 절편만으론 $\gamma_j$ 와 $\Omega_j$ 가 분리되지 않는다 — \emph{1차
-경로는 절편의 온도 의존}이다(식~\eqref{eq:hys_dU} 의 $\Delta U_j^\hys(T)$ 형이 $\Omega_j$ 를 정하고, 크기가 $\gamma_j$
-를 정한다 — \S\ref{sec:master} S5$\cdot$파라미터 표와 동일; $\gamma_j$ 는 측정창서 $T$-무관 전제). 단상 온도 구간이
-있으면 평형 폭 $w^\eff(T)$(식~\eqref{eq:weff})가 \emph{검증} 경로가 되나, 창 전체에서 히스가 보이는 전이는 그 창이 전부 2상측($\Omega_j>2RT$, $T<T_{c,j}$)이라
-폭-경로가 무효임에 유의(같은 $g_j''$ 사영이라 어차피 \emph{내적 일관성}용, \S\ref{sec:falsify}(iii)).
+로 둔다. $\gamma_j$ 의 선형 스케일링은 1차 근사다. $\gamma_j=1$ 은 spinodal 상한이고, $\gamma_j\to0$ 은
+binodal 잔류 plateau 가 아니라 히스 소멸을 가리키는 규약적 하한이다. 다중 전환점의 엄밀한 취급은 이력을 전환점
+분포의 중첩으로 쓰는 Preisach 류 모형을 요구하므로 본 장 범위 밖이다(\S\ref{sec:hys_partial}). 정량에는
+$\Omega_j$ 와 $\gamma_j$ 한 양씩이면 충분하다. \textbf{식별 주의.} 관측 gap 의 \emph{절편} — 여러 율의 충방전 gap $\Delta V_{\mathrm{obs},j}(|I|)$ 를
+$|I|\to0$ 으로 외삽한 값(\S\ref{sec:hys_pol}) — 은 $\gamma_j\Delta U_j^\hys$ 의 곱이므로, 한 온도의 절편만으로는
+$\gamma_j$ 와 $\Omega_j$ 가 분리되지 않는다. 1차 식별 경로는 절편의 온도 의존이다. 식~\eqref{eq:hys_dU} 의
+$\Delta U_j^\hys(T)$ 형이 $\Omega_j$ 를 정하고, 크기가 $\gamma_j$ 를 정한다. 이는 \S\ref{sec:master} 의
+S5$\cdot$파라미터 표와 동일한 절차이며, $\gamma_j$ 가 측정창에서 $T$-무관이라는 전제 위에 선다. 단상 온도
+구간이 있으면 평형 폭 $w^\eff(T)$(식~\eqref{eq:weff})가 검증 경로가 된다. 다만 창 전체에서 히스가 보이는
+전이는 그 창이 전부 2상측($\Omega_j>2RT$, $T<T_{c,j}$)이라 폭-경로가 무효임에 유의한다 — 폭과 gap 은 같은
+$g_j''$ 의 사영이라 어차피 내적 일관성 점검용이다(\S\ref{sec:falsify}(iii)).
 \end{boundbox}
 
 % ====================================================================
