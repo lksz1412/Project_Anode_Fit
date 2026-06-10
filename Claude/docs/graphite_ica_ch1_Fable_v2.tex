@@ -819,6 +819,57 @@ $L_{q,j}=|I|/(Q_\cell k_j)$ 에 근본식이 그대로 들어가므로 $L_{q,j}\
 \end{keybox}
 
 % ====================================================================
+\section{전위 가지 — 유효 장벽}\label{sec:potbranch}
+% ====================================================================
+둘째 가지다. \S\ref{sec:fwdrev} 에서 전위(구동력 $\mathcal A_j$)가 정$\cdot$역 장벽을 비대칭으로
+옮기는 것까지 보았으니, 남은 일은 그것이 \emph{꼬리 길이}에 어떻게 새겨지는지 닫는 것이다.
+
+\subsection{유효 장벽과 forward 극한}
+꼬리 영역은 구동 전위가 전이 중심을 지나간 곳($\mathcal A_j>0$)이므로 정방향이 우세하다.
+\S\ref{sec:fwdrev} 의 보편형 $k_j=r_j^+(1+e^{-\mathcal A_j/RT})$ 에서 괄호 인자는
+$\mathcal A_j=RT$ 에서 $37\%$, $3RT$ 에서 $5\%$ — 구동력이 수 $RT$ 를 넘으면 역방향 몫을 버린 forward
+극한이 정확하다:
+\begin{equation}
+\boxed{\;\Delta G_{\eff,j}=\Delta G_{a,j}-\chi\,\mathcal A_j,\qquad
+k_j\simeq k_0\,\exp\!\Big[-\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big]
+\quad(\mathcal A_j\gtrsim3RT)\;.}
+\label{eq:keff}
+\end{equation}
+근본식~\eqref{eq:eyring} 의 장벽 자리에 $\Delta G_{\eff}$ 가 앉았을 뿐 형태는 그대로다 — 전위는 평형
+목적지를 옮기지 않고(그건 $U_j$ 의 몫) 도달 \emph{속도}만 바꾼다. 전이대
+$RT\lesssim\mathcal A_j\lesssim3RT$ 에서는 forward 형이 선도 근사일 뿐이므로, 정밀이 필요하면 보편형
+괄호 인자를 그대로 곱한다 — 이 보정은 전위만의 함수라 모든 입자에 공통이고, 뒤에서 입자 분포로는 흡수되지
+않는 인자임을 \S\ref{sec:tempbranch} 가 쓴다.
+
+\subsection{꼬리 길이의 전위 의존}
+식~\eqref{eq:keff} 를 식~\eqref{eq:Lq} 에 넣으면 $L_{q,j}\propto1/k_j$ 라
+\begin{equation}
+\frac{\partial\ln L_{q,j}}{\partial V_\drive}
+\;=\;-\,\frac{k_{j,\lim}}{k_j+k_{j,\lim}}\,\frac{\chi sF}{RT}\;\le\;0.
+\label{eq:LqV}
+\end{equation}
+구동이 깊을수록 장벽이 낮아지고 꼬리가 짧아진다 — 관측의 ``전위$\uparrow\Rightarrow$꼬리$\downarrow$''
+가 닫혔다. 앞 인자는 직렬 율속의 감쇠다. 전하전달이 아무리 빨라도 수송$\cdot$유한 자리 같은 다른 단계가
+전체를 제한할 수 있으므로, 임의의 절단 대신 직렬 합성 $1/k_j^{\eff}=1/k_j+1/k_{j,\lim}$ 으로 두면 —
+$k_{j,\lim}\to\infty$ 의 활성화 지배 극한에서 인자가 $1$ 로, 기울기가 순수 $-\chi sF/RT$ 로 환원된다.
+유한 공율속이면 기울기가 그만큼 죽지만 부호는 유지된다. 활성화 지배 여부 자체는 측정으로 판정한다
+(\S\ref{sec:falsify} 의 수송 진단).
+
+\begin{boundbox}
+\textbf{선형 근사의 한계.} $-\chi\mathcal A$ 는 소구동력 1차 근사다. Marcus 포물면의 2차 항은 상대
+크기 $\sim\mathcal A/2\lambda$($\lambda$=재구성 에너지)로 들어오므로 \cite{marcus1956}, 본 문건의
+작동 창은 $3RT\lesssim\mathcal A_j\ll\lambda$ 다 — forward 극한이 정확하면서 선형이 아직 유효한 띠.
+삽입 상전이에서 $\lambda\gg RT$ 라 이 창은 넉넉하다.
+\end{boundbox}
+
+\begin{keybox}
+\textbf{전위 가지의 요지.} 전위는 근본식의 장벽을 $\chi\mathcal A_j$ 만큼 낮춰(식~\eqref{eq:keff})
+꼬리를 짧게 한다(식~\eqref{eq:LqV}). 측정축에서는 분극 $s_I|I|R_n$(식~\eqref{eq:vapp})이 peak
+\emph{위치}를 평행이동시키는 별도의 전위 효과도 있다 — 형상(꼬리)은 $\Delta G_{\eff}$ 가, 위치는 분극이
+맡는 분업이다. 이제 마지막 가지 — 온도 — 와, 입자가 하나가 아니라는 사실이 남았다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
