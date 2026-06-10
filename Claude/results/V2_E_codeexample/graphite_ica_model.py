@@ -27,34 +27,45 @@ def xi_eq(Vn, Ud, w):
     return 1.0 / (1.0 + np.exp(-(Vn - Ud) / w))
 
 
-def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi, A):
+def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
     """M3 — (1.27) 의 역:
-      ln L_q = ln(T*/T) + dHa/RT + b - chi*A/RT,  T* = |I|h/(Q_cell kB).
+      ln L_q = ln(T*/T) + dHa/RT + b - chi_d*A_d/RT,
+      T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
-    A 는 꼬리 컷 한 점의 구동력 (1.7) — 전이당 상수로 동결.
-    전이대(A < 3RT)의 보편형 괄호 인자는 속도에 곱 => L 은 나눈다."""
+    A_d = sigma_d*F*(Va - U^d) >= 0 — 자기 방향으로 양수인 구동력.
+    chi_d = chi(방전) / 1-chi(충전) — 같은 전이상태의 합-1 강제(1.8);
+    충전 회귀와 S3 chi 의 합치가 그 가정의 검정이다(§1.15).
+    전이대(A_d < 3RT)의 보편형 괄호 인자는 속도에 곱 => L 은 나눈다."""
     T_star = I_abs * H / (Q_cell * KB)
-    val = np.log(T_star / T) + dHa_eff / (R * T) + b - chi * A / (R * T)
-    if A < 3.0 * R * T:
-        val -= np.log(1.0 + np.exp(-A / (R * T)))
+    val = (np.log(T_star / T) + dHa_eff / (R * T) + b
+           - chi_d * A_d / (R * T))
+    if A_d < 3.0 * R * T:
+        val -= np.log(1.0 + np.exp(-A_d / (R * T)))
     return val
 
 
 def r_a_connect(Lq, dxi_dq_at_qa):
     """M4 의 접속값 분기 (L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a}.
+    dxi_dq_at_qa 는 자기 방향 진행의 크기(>0)로 넣는다.
     그 외(꼬리-우세)는 r_a 가 (0, xi_eq(q_a)] 범위의 자유 파라미터."""
     return Lq * dxi_dq_at_qa
 
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
     """(1.38) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
+    는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
+    방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
+    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.38) — 충전
+    평가에는 충전 데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
+    T 의 closure((7) 의 T-회귀로 생성).
     par 의 구성 (괄호는 그 값을 닫는 단계):
       Cbg(Vn)      배경 미분용량 함수 [Q_cell/V] (S1 동결 spline)
       Rn           lumped 분극 [V per |I|] (S2 직독)
-      chi          전달 계수 (S3)
+      chi          전달 계수 (S3; 충전 가지는 1-chi 로 자동 적용)
       transitions  전이 dict 리스트:
         U, w, Q        평형 3량 (1.20)/(1.13) (S1)
-        dHa_eff, b     (1.27)+M3 (S4; 히스 전이는 chi*Omega 흡수
+        dHa_eff, b     (1.27)+M3 (S4; Omega!=0 전이는 chi*Omega 흡수
                        유효값 — S5 후 dHa = dHa_eff + chi*Omega 복원)
         Omega, gamma   (1.34)/(1.35) (S5; 비분기 전이는 0)
         Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
@@ -67,9 +78,11 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
         Ud = U_branch(T, tr['U'], tr['Omega'], tr['gamma'],
                       sigma_d, tr.get('h_eta', 1.0))   # M1
         xe = xi_eq(Vn, Ud, tr['w'])                    # M2
-        A = F * (tr['Va'] - Ud)                        # (1.7), s=+1
+        A_d = sigma_d * F * (tr['Va'] - Ud)            # (1.7) 방향형
+        chi_d = par['chi'] if sigma_d > 0 \
+            else 1.0 - par['chi']                      # (1.8) 합-1
         Lq = np.exp(ln_Lq(T, I_abs, Q_cell, tr['dHa_eff'],
-                          tr['b'], par['chi'], A))     # M3 (동결)
+                          tr['b'], chi_d, A_d))        # M3 (동결)
         LV = abs(tr['dVdq_qa']) * Lq                   # M4
         ra = tr['r_a']
         bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.38) 종
@@ -84,7 +97,8 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
 def s1_residual(theta, V, y_meas, Np):
     """S1 잔차: 저율 OCV 의 다-peak 동시 회귀.
     theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
-    저율(r_a -> 0)이라 (1.31) 의 종 항만 남는다."""
+    저율(r_a -> 0)이라 (1.31) 의 종 항만 남는다. 배경을 상수 하나로
+    둔 것은 예시 단순화 — 실데이터는 (3) 의 anchor spline 을 쓴다."""
     model = np.full_like(V, theta[-1])
     for j in range(Np):
         U, w, Q = theta[3 * j:3 * j + 3]

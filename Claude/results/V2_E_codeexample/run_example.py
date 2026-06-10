@@ -31,12 +31,16 @@ par = dict(
 V = np.linspace(-0.20, 1.20, 14001)
 y = dQdV_app(V, T0, 0.1, 1.0, +1, par)
 area = np.trapezoid(y - 0.5, V)                 # 배경 차감 면적
-print(f"(ii) 전이 면적 = {area:.4f}  (참 Q=0.4000)")
+print(f"(ii) 전이 면적(방전) = {area:.4f}  (참 Q=0.4000)")
 assert abs(area - 0.40) < 0.004                 # 보존 (1-r_a)+r_a=1
-yc = dQdV_app(V, T0, 0.1, 1.0, -1,              # 충전 가지 동작 확인
+# 충전 가지 — 방향별 꼬리 파라미터(여기선 대칭 가정의 예시값)로 평가:
+# A_d = sigma_d*F*(Va-Ud) = -F*(0.060-0.120) > 0, chi_d = 1-chi.
+yc = dQdV_app(V, T0, 0.1, 1.0, -1,
               {**par, 'transitions': [dict(par['transitions'][0],
                                            Va=0.060)]})
-assert np.all(np.isfinite(yc))
+area_c = np.trapezoid(yc - 0.5, V)
+print(f"(ii) 전이 면적(충전) = {area_c:.4f}  (참 Q=0.4000)")
+assert np.all(np.isfinite(yc)) and abs(area_c - 0.40) < 0.004
 
 # (iii) S1 미니 round-trip — 3전이 저율 종 합성 + 1% 잡음 -> 회복
 TRUE = [(0.210, 0.018, 0.15), (0.120, 0.010, 0.40),
