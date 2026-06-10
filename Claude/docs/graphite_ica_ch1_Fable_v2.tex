@@ -280,6 +280,96 @@ prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절
 \end{verifybox}
 
 % ====================================================================
+\section{열역학 다리 — $G$ 에서 $\mu$ 까지}\label{sec:thermo}
+% ====================================================================
+앞 절의 속도식은 ``얼마나 빨리''를 말했다. 방향과 목적지를 말하려면 두 골짜기의 \emph{높이}를 재는 언어가
+필요하다. 그 언어가 Gibbs 자유에너지 $G$ 와 화학퍼텐셜 $\mu$ 다. 이 절은 두 양을 정의에서부터 차례로
+세운다 — 열역학을 물리 쪽에서 배운 독자가 ``화학퍼텐셜은 $G$ 의 미분''이라는 화학 쪽 관행을 처음 만나도
+끊기지 않도록, 건너뛰는 단계 없이 간다.
+
+\subsection{$G$ — 등온$\cdot$등압 세계의 퍼텐셜}
+역학에서 공은 퍼텐셜 에너지가 낮아지는 쪽으로 구른다. 온도와 압력이 일정하게 유지되는 계 — 전지가 정확히
+그렇다 — 에도 같은 역할을 하는 양이 있다. 열역학 제2법칙(고립계의 엔트로피 증가)을 ``계$+$열저장고''에
+적용하고 등온$\cdot$등압 조건을 넣으면, 계 자신의 양들만으로 쓴 자발성의 지표
+\begin{equation}
+G\;\equiv\;H-TS
+\label{eq:gibbsdef}
+\end{equation}
+가 나온다. 자발적 변화는 언제나 $G$ 가 낮아지는 방향으로 일어나고, $G$ 가 극소가 되면 멈춘다. 식의 두 항이
+경쟁한다 — 계는 에너지($H$)를 낮추고 싶어 하고, 동시에 무질서($S$)를 키우고 싶어 하며, 온도가 그 경쟁의
+환율($-TS$)을 정한다. 저온에서는 에너지가, 고온에서는 엔트로피가 이긴다. 본 문건에서 만나는 모든 평형$\cdot$
+상분리$\cdot$온도 의존이 이 한 경쟁의 변주다.
+
+\subsection{$\mu$ — 입자 하나를 더할 때의 $G$}
+이제 계에 입자를 넣고 빼는 상황 — 리튬이 흑연에 들어가고 나오는 상황 — 을 다루려면, ``입자 수가 하나(1몰)
+변할 때 $G$ 가 얼마나 변하는가''를 재는 양이 필요하다. 그것이 화학퍼텐셜의 정의다:
+\begin{equation}
+\mu\;\equiv\;\frac{\partial G}{\partial n}\Big|_{T,P}.
+\label{eq:mudef}
+\end{equation}
+물이 높이차를 따라 흐르듯, 입자는 $\mu$ 가 높은 곳에서 낮은 곳으로 흐른다 — 옮겨가는 것이 전체 $G$ 를
+낮추기 때문이다. 두 장소의 $\mu$ 가 같아지면 옮겨갈 이유가 사라지고, 그것이 \emph{입자 교환의 평형}이다.
+요컨대 $\mu$ 는 ``입자 한 몰이 그 자리에서 갖는 값어치''이고, 평형은 값어치의 일치다. 앞 절 장벽 그림과
+이으면 — 두 골짜기의 높이 차가 곧 두 자리의 $\mu$ 차이며, $\mu$ 차가 $0$ 이 되는 곳에서 정$\cdot$역
+속도가 같아진다(\S\ref{sec:fwdrev} 에서 정량화).
+
+\subsection{격자기체의 $\mu(\theta)$ — 채움에 따라 값어치가 변한다}
+흑연의 한 전이를 ``동등한 자리 $N$ 개에 리튬이 차고 비는'' 격자기체로 보자. 점유율 $\theta$(찬 분율)에서
+$G$ 는 어떻게 변하는가. 두 몫이 있다.
+
+\emph{(i) 섞임 엔트로피.} $N$ 자리 중 $n=N\theta$ 자리를 고르는 경우의 수는 $W=N!/[n!(N-n)!]$ 이고,
+Boltzmann 관계 $S_{\mathrm{mix}}=k_B\ln W$ 에 Stirling 근사 $\ln m!\simeq m\ln m-m$ 을 적용하면(세
+계승에 각각 적용하면 선형항이 상쇄된다)
+\begin{equation}
+S_{\mathrm{mix}}=-k_BN\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big].
+\label{eq:smix}
+\end{equation}
+자리 1몰당 자유에너지 몫은 $-TS_{\mathrm{mix}}$ 를 환산한 $RT[\theta\ln\theta+(1-\theta)\ln(1-\theta)]$ 다.
+
+\emph{(ii) 상호작용.} 점유된 이웃끼리의 초과 에너지를 평균장으로 어림하면, 무작위 배치에서
+``찬 자리$\cdot$빈 자리'' 쌍의 분율이 $\theta(1-\theta)$ 에 비례하므로 1몰당 $\Omega\,\theta(1-\theta)$
+로 쓴다. 척도 $\Omega$ 는 최근접쌍만이 아니라 층간 탄성 같은 장거리 성분까지 뭉뚱그린 \emph{유효} 값으로
+읽는다 — 같은 stage 안에서도 리튬이 국소 도메인 단위로 채워지며 층의 굽힘을 동반한다는 그림
+(Daumas--H\'erold 도메인)이 그 장거리 성분의 기원이다 \cite{mckinnon1983}.
+
+두 몫을 더해 자리 1몰당 자유에너지 $\bar g(\theta)$ 를 만들고 식~\eqref{eq:mudef} 대로 $\theta$ 로
+미분하면 — $\theta\ln\theta$ 의 미분은 $\ln\theta+1$, $(1-\theta)\ln(1-\theta)$ 의 미분은
+$-\ln(1-\theta)-1$ 이라 두 상수가 상쇄되고, $\theta(1-\theta)$ 의 미분은 $1-2\theta$ — 삽입 리튬의
+화학퍼텐셜이 닫힌다:
+\begin{equation}
+\boxed{\;\mu_{\mathrm{Li}}(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}+\Omega\,(1-2\theta)\;.}
+\label{eq:mu}
+\end{equation}
+각 항을 읽어 두자. 로그 항은 섞임 엔트로피의 몫이다 — 거의 빈 격자($\theta\to0$)에서는 들어갈 자리가
+많아 들어가는 쪽의 값어치가 크게 낮고($\mu\to-\infty$), 거의 찬 격자($\theta\to1$)에서는 반대다. 즉
+\emph{채울수록 한 개 더 채우는 값어치가 단조로 오른다}. $\Omega$ 항은 상호작용의 몫이다 — $\Omega>0$
+(동종 이웃 선호)이면 반쯤 찬 영역에서 값어치를 \emph{내려} 단조성을 약화시키며, 이것이 뒤에서 상분리의
+씨앗이 된다(\S\ref{sec:regsol}).
+
+\subsection{전기화학 퍼텐셜 — 하전 입자의 값어치}
+리튬은 이온 Li$^+$ 와 전자 $e^-$ 로 갈라져 드나들므로, 값어치에는 전기적인 일도 들어간다. 전하 $zF$(1몰)를
+전위 $\phi$ 인 곳에 두는 일은 $zF\phi$ 이고, 이를 화학퍼텐셜에 더한 것을 전기화학 퍼텐셜
+$\tilde\mu=\mu+zF\phi$ 라 한다. 전극의 전자는 $z=-1$ 이라 $\tilde\mu_{e^-}=\mu_{e^-}^0-FV$ — 전극
+전위 $V$ 가 오르면 전자의 값어치는 내려간다. 삽입 반응
+$\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\text{흑연})}$ 의 평형은 양변의 전기화학 퍼텐셜이
+같다는 조건이며, 전해질 쪽 항들을 한 상수 $sFU^0$ 로 묶으면
+\begin{equation}
+\mu_{\mathrm{Li}}(\theta_{\eq})=\mu^0-sF\,(V-U)
+\label{eq:eqcond}
+\end{equation}
+형태가 된다($U$ 는 $\mu^0$ 까지 흡수해 재정의한 전이 중심 전위). 부호를 물리로 읽으면 — 전극 전위 $V$ 가
+오르면(전자 값어치 하락) 평형 점유율은 내려가야 하므로 우변이 $V$ 에 감소해야 하고, 그것이 식의 음부호다.
+즉 ``$V$ 를 올리면 탈리튬화가 진행된다''가 이 한 식에 들어 있다.
+
+\begin{keybox}
+\textbf{다리의 요지.} $G$ 는 등온$\cdot$등압 세계의 퍼텐셜이고, $\mu=\partial G/\partial n$ 은 입자
+1몰의 값어치이며, 평형은 값어치의 일치다. 격자기체에서 $\mu(\theta)$ 는 섞임 엔트로피의 로그 항과 상호작용
+$\Omega$ 항으로 닫히고(식~\eqref{eq:mu}), 전극에서는 전자 일 $-FV$ 가 더해져 평형 조건~\eqref{eq:eqcond}
+이 된다. 다음 절은 이 언어를 앞 절의 속도식에 합류시킨다 — 정$\cdot$역 속도의 비가 바로 이 $\mu$ 차로
+정해지고, 그 균형점에서 평형 등온선이 \emph{유도된다}.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
