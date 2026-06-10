@@ -1023,20 +1023,21 @@ $\rho_G$ 에서는 stretched exponential 이 된다. 다음 절(\S\ref{sec:dist}
 % ====================================================================
 \section{배리어 분포와 중첩}\label{sec:dist}
 % ====================================================================
-지금까지 한 전이의 배리어 $\Delta G_{a,j}$ 를 \emph{한 값}으로 다뤘다. 그러나 실제 전극의 입자는
-크기$\cdot$국소 staging$\cdot$결정성$\cdot$결정립계가 제각각이다. 이 차이를 무시할 수 없다 — 관측 peak/꼬리는
-\emph{여러 입자 집단의 합}이기 때문이다. 어떻게 합치는가?
+지금까지 한 전이의 배리어 $\Delta G_{a,j}$ 를 한 값으로 다뤘다. 그러나 실제 전극의 입자는 크기$\cdot$국소
+staging$\cdot$결정성$\cdot$결정립계가 제각각이다. 이 차이는 무시할 수 없다. 관측되는 peak 와 꼬리는 여러 입자
+집단의 합이기 때문이다. 그렇다면 어떻게 합치는가 — 앞 절에서 준비한 통계 도구가 여기서 쓰인다.
 
 \textbf{입자 분포 $\to$ 배리어 분포 $\to$ 중첩(네 단계).}
 \begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.2em,itemsep=2pt]
 \item \textbf{입자별 배리어 차이.} 큰 입자/작은 입자, 결정성이 좋은/나쁜 입자, staging 환경이 다른 도메인은
   같은 전이라도 넘어야 할 활성화 장벽이 다르다.
-\item \textbf{배리어 분포.} 한 값 대신 \emph{분포} $\rho_G(G)$ 로 기술한다(\S\ref{sec:stattools} 의 밀도;
-  정규화 식~\eqref{eq:norm} $\int_0^\infty\rho_G(G)\,\dd G=1$). $\rho_G$ 는 꼬리에서 역산하지 않고 입자 크기$\cdot$국소
-  상태 분포에 용량-반경 매핑을 곱해 \emph{독립으로 모형}하는 용량-분율 분포다(\S\ref{sec:stattools} 식별 주의$\cdot$아래
-  boundbox). (구동력 $\mathcal A_j$ 는 집단 공통 —
-  동일 평균장 $V_n$ — 이라 분포는 배리어 $G$ 에만 둔다; 이는 이상형 $\mathcal A_j=sF(V_\drive-U_j)$ 기준이고,
-  $\Omega\ne0$ 일반화의 $\xi_j$ 의존 몫은 꼬리 포화창서 $\Delta\xi$ 가 작아 1차 무시.)
+\item \textbf{배리어 분포.} 한 값 대신 분포 $\rho_G(G)$ 로 기술한다. 이는 \S\ref{sec:stattools} 의 밀도이며
+  정규화는 식~\eqref{eq:norm}, $\int_0^\infty\rho_G(G)\,\dd G=1$ 이다. $\rho_G$ 는 꼬리에서 역산하지 않는다 —
+  입자 크기$\cdot$국소 상태 분포에 용량-반경 매핑을 곱해 독립적으로 모형하는 용량-분율 분포다
+  (\S\ref{sec:stattools} 식별 주의$\cdot$아래 boundbox). 분포를 배리어 $G$ 에만 두는 까닭은 구동력
+  $\mathcal A_j$ 가 집단 공통 — 모든 입자가 같은 평균장 $V_n$ 을 본다 — 이기 때문이다. 이 공통성은 이상형
+  $\mathcal A_j=sF(V_\drive-U_j)$ 기준의 말이며, $\Omega\ne0$ 일반화에서 생기는 $\xi_j$ 의존 몫은 꼬리
+  포화창에서 $\Delta\xi$ 가 작아 1차에서 무시한다.
 \item \textbf{집단별 꼬리 길이.} 장벽 $G$ 인 집단은 식~\eqref{eq:Lq},~\eqref{eq:keff} 로 자신의 꼬리 길이
   \begin{equation*}
   L_{q}(G)\simeq\frac{|I|}{Q_\cell}\frac{h}{k_BT}\,e^{(G-\chi\mathcal A_j)/RT}
@@ -1058,19 +1059,24 @@ $\rho_G$ 에서는 stretched exponential 이 된다. 다음 절(\S\ref{sec:dist}
 \end{aligned}\;}
 \label{eq:superpose}
 \end{equation}
-\textbf{중첩 결과의 해석.} 빠른 집단(작은 $G$, 작은 $L_q$)은 peak 근처에서 감쇠를 마치고, 느린 집단(큰 $G$)이 꼬리를 멀리까지
-연장한다. ($\rho_G\to\delta(G-\bar G)$ 극한에서 적분이 sifting 으로 닫혀 식~\eqref{eq:simplefit} 의 단일 지수
-($L_V=L_V(\bar G)$)로 \emph{정확히} 환원된다 — \S\ref{sec:synth} 와 정합.) \emph{용량 보존}: 일반 분포에서 꼬리 면적은
-$Q_j\!\int\!\rho_G(G)\,r_a(G)\,\dd G=Q_j\overline{r_a}$ 이고, 포화 근사 $\overline{r_a}=1-\overline{\xi_j(q_a)}$ 로 미완 용량과
-같아 전이 총 용량 $Q_j$ 를 넘지 않는다. 단일 지수의 \emph{연속 중첩}은 단일 지수보다 \emph{무거운} 꼬리를 주며,
-$\rho_G$ 가 충분히 두꺼운 꼬리를 가질 때 그 점근형이 \emph{stretched(늘어진)} 꼬리(KWW)다 \cite{lindsey1980,johnston2006,svare2000} —
+\textbf{중첩 결과의 해석.} 빠른 집단(작은 $G$, 작은 $L_q$)은 peak 근처에서 감쇠를 마치고, 느린 집단(큰 $G$)이
+꼬리를 멀리까지 연장한다. 분포가 좁아지는 극한 $\rho_G\to\delta(G-\bar G)$ 에서는 적분이 sifting 으로 닫혀
+식~\eqref{eq:simplefit} 의 단일 지수($L_V=L_V(\bar G)$)로 정확히 환원된다 — \S\ref{sec:synth} 와 정합한다.
+\emph{용량 보존}도 성립한다. 일반 분포에서 꼬리 면적은 $Q_j\!\int\!\rho_G(G)\,r_a(G)\,\dd G=Q_j\overline{r_a}$
+이고, 포화 근사에서 $\overline{r_a}=1-\overline{\xi_j(q_a)}$ 는 미완 용량과 같으므로 전이 총 용량 $Q_j$ 를 넘지
+않는다. 단일 지수의 연속 중첩은 단일 지수보다 무거운 꼬리를 주며, $\rho_G$ 가 충분히 두꺼운 꼬리를 가질 때 그
+점근형이 stretched(늘어진) 꼬리, 곧 KWW 형이다 \cite{lindsey1980,johnston2006,svare2000}.
 \textbf{\S\ref{sec:lag} 가 예고한 ``실측 꼬리의 늘어짐''이 바로 이 분포 중첩의 귀결}이며, 단일 입자 단일지수
-(\S\ref{sec:lag})는 분포가 좁은($\rho_G\to\delta$) 극한일 뿐이다. (어떤 $\rho_G$ 가 두꺼운 꼬리를 주는지는 물리에서
-온다: 입자 반경 $a$ 분포 $\to$ 확산$\cdot$staging 시간 $\to$ 배리어/길이 $G\!\sim\!\ln a$ 사상이 $\rho_G$ 꼬리를 정한다.)
+(\S\ref{sec:lag})는 분포가 좁은($\rho_G\to\delta$) 극한일 뿐이다. 어떤 $\rho_G$ 가 두꺼운 꼬리를 주는지는
+물리에서 온다 — 입자 반경 $a$ 의 분포가 확산$\cdot$staging 시간을 거쳐 배리어로 가는 사상 $G\sim\ln a$ 가
+$\rho_G$ 의 꼬리를 정한다.
 
-\textbf{저온 꼬리 확장(분산 전파 — \S\ref{sec:stattools}).} 식~\eqref{eq:superpose} 의 $L_V(G)$ 는 $\ln(L_V/L_{V,0})=G/RT$(기준 길이 $L_{V,0}$ 가 구동항 $\chi\mathcal A_j$ 등 집단 공통 상수를 흡수해 무차원화;
-$\because L_V\propto L_q\propto e^{(G-\chi\mathcal A_j)/RT}$ 이고 $\chi\mathcal A_j$ 는 상수 오프셋이라 비에서 탈락)이므로, 배리어 분산 $\sigma_G^2$ 가 $\mathrm{Var}[\ln(L_V/L_{V,0})]=\sigma_G^2/(RT)^2$(식~\eqref{eq:varprop} 을 $L_V\propto L_q$ 로 적용), 즉
-표준편차 $\sigma_G/RT$ 로 전파된다. \textbf{저온일수록($RT\downarrow$) 길이 분산이 커져 꼬리가 더 늘어진다} — 고정된
+\textbf{저온 꼬리 확장(분산 전파 — \S\ref{sec:stattools}).} 식~\eqref{eq:superpose} 의 $L_V(G)$ 는
+$\ln(L_V/L_{V,0})=G/RT$ 를 만족한다. 기준 길이 $L_{V,0}$ 는 구동항 $\chi\mathcal A_j$ 등 집단 공통 상수를 흡수해
+로그를 무차원화하는 역할이다 — $L_V\propto L_q\propto e^{(G-\chi\mathcal A_j)/RT}$ 에서 $\chi\mathcal A_j$ 는
+상수 오프셋이라 비에서 탈락하기 때문이다. 따라서 배리어 분산 $\sigma_G^2$ 는
+$\mathrm{Var}[\ln(L_V/L_{V,0})]=\sigma_G^2/(RT)^2$ 로, 곧 표준편차 $\sigma_G/RT$ 로 전파된다
+(식~\eqref{eq:varprop} 을 $L_V\propto L_q$ 에 적용한 것). \textbf{저온일수록($RT\downarrow$) 길이 분산이 커져 꼬리가 더 늘어진다} — 고정된
 배리어 분포가 온도를 통해 늘어짐을 만드는 메커니즘이며, 이것이 관측의 ``저온 긴 꼬리''를 \emph{입자 분포까지
 포함해} 설명한다. \emph{단 이 $\sigma_G/RT$ 척도는 $\sigma_G$ 유한한 $\rho_G$(좁은$\cdot$중간 폭)에서 정량적}이다 —
 점근형이 정확한 KWW stretched 가 되는 두꺼운-꼬리 $\rho_G$ 에선 $\sigma_G$ 가 발산할 수 있어, 그 영역은 stretched
