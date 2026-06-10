@@ -726,6 +726,99 @@ C-rate 가지 — 을 연다.
 \end{keybox}
 
 % ====================================================================
+\section{C-rate 가지 — 지연과 꼬리}\label{sec:lag}
+% ====================================================================
+근본식의 첫 가지를 연다. \S\ref{sec:rate} 의 지도 (c)에서 말했듯 C-rate 는 속도식에 \emph{경쟁}으로
+들어온다 — 전류가 단위 시간당 요구하는 전환량과, 계가 식~\eqref{eq:eyring} 로 낼 수 있는 완화 속도의
+경쟁이다. 요구가 공급을 넘는 만큼 전환은 뒤처지고, 그 뒤처짐이 관측 peak 의 꼬리가 된다. 이 절은 그 경쟁을
+하나의 보편 미분방정식으로 적고, 닫힌 일반해를 구한 뒤, 상승부와 꼬리를 같은 해의 두 극한으로 읽는다.
+
+\subsection{측정축으로 옮긴 운동방정식}
+정전류 방전에서 용량 좌표는 $\dd q/\dd t=|I|/Q_\cell$ 로 흐른다. 운동방정식~\eqref{eq:relax} 을 $q$
+미분으로 바꾸고, 지연 $r_j\equiv\xi_{\eq,j}-\xi_j$ 의 변화율로 다시 적자. 지연의 변화율은 목표의
+변화율에서 실제 진행의 변화율을 뺀 것이므로, 영역 제한 없이 성립하는 보편 방정식이 나온다:
+\begin{equation}
+\frac{\dd r_j}{\dd q}\;=\;\frac{\dd\xi_{\eq,j}}{\dd q}\;-\;\frac{r_j}{L_{q,j}},\qquad
+\boxed{\;L_{q,j}=\frac{|I|}{Q_\cell\,k_j}\;.}
+\label{eq:Lq}
+\end{equation}
+첫째 항은 평형 목표의 이동이 지연을 \emph{공급}하는 원천이고, 둘째 항은 완화가 지연을 \emph{소거}하는
+감쇠다. 무차원 길이 $L_{q,j}$ 가 요구와 공급의 비 그 자체다 — 분자 $|I|/Q_\cell$ 는 요구 속도, 분모
+$k_j$ 는 식~\eqref{eq:eyring} 의 공급 속도이고, 근본식의 세 인자가 전부 이 한 양을 통해 꼬리로 들어온다.
+꼬리 영역($\mathcal A_j\gtrsim RT$)에서는 정방향이 우세해 $k_j\simeq r_j^+$ 로 읽으며, 보편형의 괄호
+인자 $(1+e^{-\mathcal A_j/RT})$ 가 살아 있는 전이대의 처리는 \S\ref{sec:potbranch} 에서 정리한다.
+
+\subsection{일반해 — 지수 기억}
+식~\eqref{eq:Lq} 는 1계 선형 상미분방정식이므로 적분인자로 닫힌 일반해를 갖는다. $L_{q,j}$ 가 적분
+구간에서 천천히 변한다는 가정 아래(정량 조건은 아래 검산),
+\begin{equation*}
+r_j(q)\;=\;r_j(q_0)\,e^{-(q-q_0)/L_{q,j}}
+\;+\;\int_{q_0}^{q}e^{-(q-q')/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q'}\,\dd q'.
+\end{equation*}
+지연은 두 몫의 합이다 — 초기 지연의 지수 감쇠와, 과거의 목표 변화율을 지수 커널로 가중해 누적한
+\emph{기억}이다. 계는 용량축에서 길이 $L_{q,j}$ 만큼의 최근 과거만 기억한다(그림~\ref{fig:kernel}).
+수치 감을 들어 두면 — $0.1$C 에서 $k_j=10^{-3}\ \mathrm{s^{-1}}$ 이면
+$L_{q,j}=(0.1/3600)/10^{-3}\approx0.028$, 전체 방전의 $3\%$ 거리다. 저온으로 $k_j$ 가 $12$배
+느려지면(\S\ref{sec:rate} 의 수치) $L_{q,j}\approx0.33$ — 기억이 전이 하나를 통째로 덮는 길이가 된다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.58cm,y=17cm]
+\draw[->] (-4,0) -- (10.9,0) node[below] {$(q-q_{\peak})/(\text{상승부 폭})$};
+\draw[->] (-4,0) -- (-4,0.33) node[above] {\footnotesize (임의 단위)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-4,0.0177) (-3,0.0452) (-2.5,0.0701) (-2,0.105) (-1.5,0.1491) (-1,0.1966) (-0.5,0.235) (0,0.25) (0.5,0.235) (1,0.1966) (1.5,0.1491) (2,0.105) (2.5,0.0701) (3,0.0452) (3.5,0.0285) (4,0.0177) (5,0.0066) (6,0.0025) (7,0.0009) (8,0.0003) (10,0.0)};
+\draw[thick] plot[smooth] coordinates {(-4,0.0087) (-3,0.027) (-2.5,0.0438) (-2,0.0686) (-1.5,0.1034) (-1,0.1482) (-0.5,0.1989) (0,0.2469) (0.5,0.2808) (1,0.2932) (1.5,0.2831) (2,0.2561) (2.5,0.2199) (3,0.1815) (3.5,0.1452) (4,0.1136) (5,0.0661) (6,0.0369) (7,0.02) (8,0.0107) (9,0.0056) (10,0.0029)};
+\node at (-1.9,0.17) {\footnotesize 원천 $\dd\xi_{\eq}/\dd q$};
+\node at (4.3,0.18) {\footnotesize 지연 $r_j(q)$};
+\draw[<->,gray] (1,0.305) -- (2.5,0.305) node[pos=0.5,above] {\footnotesize $\sim L_{q,j}$};
+\end{tikzpicture}
+\caption{일반해의 기억 거동(모식, $L_{q,j}=1.5\times$상승부 폭). 점선은 원천(평형 목표의 변화율), 실선은
+기억 적분으로 계산한 지연이다. 지연은 원천을 길이 $L_{q,j}$ 만큼 뒤따르며 누적하다가 — 정점이 원천보다 늦고
+높다 — 원천이 포화로 꺼진 뒤에는 순수 지수 감쇠로 넘어간다.}
+\label{fig:kernel}
+\end{figure}
+
+\subsection{두 극한 — 상승부와 꼬리}
+\emph{극한 (i): 상승부.} 목표가 기억 길이에 비해 천천히 변하면 적분 안의 $\dd\xi_{\eq}/\dd q'$ 를
+현재값으로 꺼낼 수 있어 $r_j\simeq L_{q,j}\,(\dd\xi_{\eq,j}/\dd q)+O(L_{q,j}^2)$ — 지연은 목표
+변화율에 비례하는 소량이다. 빠른 동역학 극한($k\to\infty$, $L_q\to0$)에서 $r\to0$, 평형 추종이
+회복된다. 상승부의 관측이 평형 peak 기준선으로 지배되는 근거가 이것이다.
+
+\emph{극한 (ii): 꼬리.} peak 를 지나면 목표가 포화해 원천이 꺼진다. 꼬리 시작점 $q_a$ 를 ``원천
+$\dd\xi_{\eq,j}/\dd q$ 가 정점값의 일정 분율(예 $5\%$) 이하로 떨어지는 첫 좌표''로 정의하면(컷은 전
+데이터셋 공통 고정 — \S\ref{sec:master}), 일반해에서 동차 몫만 남는다:
+\begin{equation}
+r_j(q)\;=\;r_{a,j}\,\exp\!\Big[-\frac{q-q_a}{L_{q,j}}\Big]\qquad(q\ge q_a),\qquad
+r_{a,j}\equiv r_j(q_a).
+\label{eq:rsol}
+\end{equation}
+지연이 길이 $L_{q,j}$ 로 지수 감쇠하고, 관측 항 $\dd\xi_j/\dd q=-\dd r_j/\dd q$ 도 같은 지수형이다.
+전압축으로 옮기면 — post-peak 에서 $V_n(q)$ 의 국소 기울기로 환산해 —
+\begin{equation}
+\frac{\dd Q}{\dd V_n}\Big|_{\text{tail}}\;\propto\;
+\exp\!\Big[-\frac{V_n-V_{a,j}}{L_{V,j}}\Big]\quad\big(s(V_n-V_{a,j})\ge0\big),\qquad
+L_{V,j}=\Big|\frac{\dd V_n}{\dd q}\Big|_{q_a}L_{q,j}.
+\label{eq:tail}
+\end{equation}
+꼬리는 단방향이다 — 방전 진행 방향으로만 트레일한다.
+
+\begin{verifybox}
+\textbf{상수 $L_q$ 의 정량 조건.} 일반해는 $L_{q,j}$ 를 적분 밖으로 꺼냈다. 유효 조건은 한 감쇠 길이
+동안 $\ln L_q$ 의 변화가 작다는 것 — 전위 의존(\S\ref{sec:potbranch})으로 환산하면
+$(\chi F/RT)\,L_{V,j}\ll1$ 이다. 전형값($\chi=0.5$, $L_V=5$ mV, $25^\circ$C)으로 $\approx0.1$ —
+성립하나 경계적이며, 꼬리가 길어지면 위반되어 \S\ref{sec:tempbranch} 의 분포 중첩으로 넘어간다.
+차원 검산 — $L_{q,j}=[\mathrm{C/s}]/([\mathrm C][\mathrm{s^{-1}}])=$ 무차원 ✓.
+\end{verifybox}
+
+\begin{keybox}
+\textbf{C-rate 가지의 요지.} 꼬리는 요구와 공급의 경쟁에서 진 몫이다. 특성 길이
+$L_{q,j}=|I|/(Q_\cell k_j)$ 에 근본식이 그대로 들어가므로 $L_{q,j}\propto|I|\,e^{\Delta G_{a,j}/RT}$ —
+고율일수록, 저온일수록 꼬리가 길다. 관측의 ``저온$\cdot$고율 긴 꼬리''가 닫힌 식으로 설명되었다. 남은
+가지는 둘 — 전위가 $\Delta G_a$ 를 낮추는 길(\S\ref{sec:potbranch})과, 온도$\cdot$입자 분포가 꼬리
+모양을 다듬는 길(\S\ref{sec:tempbranch})이다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
