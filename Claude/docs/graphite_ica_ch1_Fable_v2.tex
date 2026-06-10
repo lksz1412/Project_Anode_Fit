@@ -1183,6 +1183,98 @@ $\Delta U_j^\hys(\Omega_j,T)$(식~\eqref{eq:hysdU})에 축소 인자 $\gamma_j$ 
 \end{keybox}
 
 % ====================================================================
+\section{[확장] 관측 gap — peak 쌍과 분극의 분리}\label{sec:hyspol}
+% ====================================================================
+앞 절의 분기 중심은 전류를 끊어도 남는 \emph{열역학} 갈림이다. 실측 충방전 gap 에는 거기에 전류가 만드는
+\emph{동역학} 분극이 더해져 있다. 이 절은 둘을 관측에서 분리하는 절차 — 본 확장의 실용 핵심 — 를 세운다.
+
+\subsection{관측되는 peak 쌍}\label{sec:hyspeak}
+충$\cdot$방전 각 방향에서 전이 $j$ 의 상승부는 자기 분기 중심 $U_j^{\dis/\chg}$ 에 선다. 형상의 지위에
+주의가 필요하다. 분기가 존재하는 영역($\Omega_j>2RT$)의 평형 기여는 plateau — 이상적으로는 무한히 날카로운
+선 — 인데, 실측 peak 가 유한 폭의 종으로 보이는 까닭은 두 가지 broadening 이다. 입자마다 분기 전위가
+조금씩 달라 선이 입자 분포의 폭만큼 번지고(\S\ref{sec:hys} 의 다입자 그림), 동역학 지연이 비대칭 꼬리를
+더한다(\S\ref{sec:lag}). 따라서 분기 영역의 폭 $w_j$ 는 평형 예측이 아니라 broadening 이 정하는
+\emph{현상학적 피팅 폭}이다 — 단상 영역에서 $w_j$ 가 식~\eqref{eq:weff} 의 검증 가능한 평형 예측인 것과
+지위가 다르다. 이 단서 위에서 한 전이는 ICA 에 \textbf{면적$\cdot$폭이 같고 중심만
+$\gamma_j\Delta U_j^\hys$ 어긋난 거울 쌍}으로 나타난다 — 면적은 물질량 보존(같은 전하), 폭은 같은
+broadening, 중심만 분기가 가른다.
+
+\subsection{절편과 기울기 — 두 기원의 분해}
+측정 전위로 옮기면 분극이 방향에 따라 반대로 더해진다
+($V_{\peak}^{\dis/\chg}=U_j^{\dis/\chg}\pm|I|R_n$). 따라서 관측 gap 은
+\begin{equation}
+\boxed{\;\Delta V_{\obs,j}(|I|)\;=\;
+\underbrace{\gamma_j\,\Delta U_j^\hys}_{\text{열역학}(|I|\to0\ \text{잔존})}
+\;+\;\underbrace{2|I|R_n}_{\text{동역학}(|I|\to0\ \text{소멸})}\;.}
+\label{eq:hysobsgap}
+\end{equation}
+여러 율에서 gap 을 재어 $|I|\to0$ 으로 외삽하면 \textbf{절편이 열역학, 기울기가 동역학}이다. 이 한 줄
+분해가 본 확장의 실용 핵심이다 — 절편이 $0$ 이 아니라는 사실 자체가 상분리($\Omega_j>2RT$)의 증거이고,
+절편의 온도 의존이 $\Omega_j$ 를, 크기가 $\gamma_j$ 를 정한다.
+
+가산 분해에는 전제가 둘 있다. $\gamma_j$ 가 전류에 무관해야 하고(핵생성$\cdot$전환 시간상수가 구동
+시간보다 짧아 과주행이 율-무관 수준에 고정되는 저$\sim$중율 조건), 분극이 선형($|I|R_n$)이어야 한다. 둘 다
+gap--$|I|$ 곡선의 \emph{곡률}로 검출된다 — 아래로 오목하면 charge-transfer 의 로그 포화
+($\eta_{\mathrm{ct}}\propto\ln|I|$ — 계면 속도가 과전위에 지수이므로 그 역함수, Tafel 거동), 위로
+볼록하면 확산 한계나 $\gamma_j(|I|)$ 의 신호다. 공통 $R_n$ 의 채택도 falsifiable 하다 — 모든 전이$\cdot$
+SOC 에서 기울기가 같아야 하므로, 유의하게 갈리면 전이별 $R_{n,j}$ 로 세분한다.
+
+\subsection{절편의 온도 의존 — $\Omega$ 식별의 크기 감각}
+절편$(T)=\gamma_j\Delta U_j^\hys(T)$ 가 실제로 어떤 크기로 변하는지 $\gamma_j=0.6$ 으로 보면(mV):
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lcccc}
+\toprule
+$\Omega_j$ & $T_{c,j}$ & $15^\circ$C & $23^\circ$C & $45^\circ$C \\
+\midrule
+$3RT_0$ & $447$ K & $14.2$ & $13.1$ & $10.2$ \\
+$4RT_0$ & $596$ K & $34.7$ & $33.2$ & $29.3$ \\
+$8RT_0$ & $1193$ K & $135.1$ & $132.9$ & $127.0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+($T_0=298$ K 기준 배수.) 측정창 안($15\to45^\circ$C) 상대 감소가 각각 $-28\%/-16\%/-6\%$ — 임계가
+가까울수록 가파르다(그림~\ref{fig:gapT}). 깊은 2상측($8RT_0$)에서는 $-6\%$ 가 측정 불확도에 묻히기 쉬워
+$(\gamma_j,\Omega_j)$ 분리가 퇴화한다 — 그 경우 lumped gap 한 개로 강등하는 처리를 피팅 알고리즘이
+규정한다(\S\ref{sec:master}).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.05cm,y=0.022cm]
+\fill[gray!15] (288,0) rectangle (318,245);
+\draw[->] (265,0) -- (478,0) node[below] {$T$ [K]};
+\draw[->] (265,0) -- (265,245) node[above] {\footnotesize $\Delta U_j^\hys$ [mV]};
+\draw[thick] plot[smooth] coordinates {(270,28.1) (290,23.2) (310,18.7) (330,14.6) (350,10.9) (370,7.6) (390,4.8) (410,2.5) (430,0.8) (445,0.05)};
+\draw[thick,densely dashed] plot[smooth] coordinates {(270,63.6) (290,57.3) (310,51.2) (330,45.5) (350,40.1) (370,35) (390,30.2) (410,25.7) (430,21.5) (450,17.6) (470,14)};
+\draw[thick,densely dotted] plot[smooth] coordinates {(270,233.7) (290,224.4) (310,215.3) (330,206.5) (350,198) (370,189.7) (390,181.6) (410,173.7) (430,166) (450,158.6) (470,151.3)};
+\node[right] at (370,13) {\footnotesize $3RT_0$};
+\node[right] at (455,28) {\footnotesize $4RT_0$};
+\node[right] at (440,175) {\footnotesize $8RT_0$};
+\fill (447,0) circle (0.8pt) node[below] {\footnotesize $T_{c}(3RT_0)$};
+\node[below,gray] at (303,-12) {\footnotesize 측정창};
+\end{tikzpicture}
+\caption{spinodal gap $\Delta U_j^\hys(T)$(식~\eqref{eq:hysdU}), $\Omega_j=3/4/8RT_0$. 음영이
+측정창($15$--$45^\circ$C)이다. $T_{c,j}$ 가 창에 가까울수록 창 안의 감소가 가팔라 $\Omega_j$ 식별이
+잘 되고, 깊은 2상측은 거의 평탄해 퇴화 처리가 필요하다. $T\to T_{c,j}$ 에서 $(T_c-T)^{3/2}$ 멱으로
+소멸한다.}
+\label{fig:gapT}
+\end{figure}
+
+\subsection{부분 cycle — 한 문단의 보간}
+완전 충방전이 아니라 중간에서 방향을 바꾸면 전이가 분기를 끝까지 돌지 못해 gap 이 작게 열린다. 전환점의
+분기 내 정규화 위치를 $\eta\in[0,1]$ 라 할 때 유효 gap 을 $h_j(\eta)\,\gamma_j\Delta U_j^\hys$
+($h_j$ 단조, $h_j(1)=1$)로 보간하며, 데이터가 없으면 $h_j(\eta)=\eta$ 를 기본형으로 쓴다. 완전 cycle 만
+다루면 $h_j=1$ 이라 앞의 식들이 그대로다 — 다중 전환점의 경로 의존(중첩 loop)은 전환점 분포를 쓰는
+Preisach 류 모형의 소관으로 본 문건 범위 밖이다 \cite{sethna1993}.
+
+\begin{keybox}
+\textbf{관측 gap 의 요지.} 실측 gap $=$ 열역학 절편 $+$ 동역학 기울기(식~\eqref{eq:hysobsgap}). 절편의
+존재가 상분리의 증거, 절편의 온도 의존이 $\Omega_j$ 의 열쇠, 기울기가 $R_n$ 의 교차 확인이다. 이제 모든
+조각이 준비되었다 — 다음 절이 방전 한 줄 식과 양방향 통합식, 그리고 측정 파일에서 파라미터까지 가는
+알고리즘을 닫는다.
+\end{keybox}
+
+% ====================================================================
 \begin{thebibliography}{99}
 \bibitem{dahn1991} J. R. Dahn, ``Phase diagram of Li$_x$C$_6$,'' \emph{Phys. Rev. B} \textbf{44}, 9170 (1991). DOI: 10.1103/PhysRevB.44.9170.
 \bibitem{ohzuku1993} T. Ohzuku, Y. Iwakoshi, K. Sawai, ``Formation of Lithium-Graphite Intercalation Compounds in Nonaqueous Electrolytes,'' \emph{J. Electrochem. Soc.} \textbf{140}, 2490 (1993). DOI: 10.1149/1.2220849.
