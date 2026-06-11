@@ -58,8 +58,9 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
     단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
     는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
     방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
-    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.38) — 충전
-    평가에는 충전 데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
+    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.38) — Omega!=0
+    전이는 chi_d 를 통해 dHa_eff 도 방향별이다. 충전 평가에는 충전
+    데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
     T 의 closure((7) 의 T-회귀로 생성).
     par 의 구성 (괄호는 그 값을 닫는 단계):
       Cbg(Vn)      배경 미분용량 함수 [Q_cell/V] (S1 동결 spline)
