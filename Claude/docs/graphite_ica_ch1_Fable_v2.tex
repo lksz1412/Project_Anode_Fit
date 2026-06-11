@@ -1201,8 +1201,14 @@ C-rate(\S\ref{sec:lag})$\cdot$전위(\S\ref{sec:potbranch})$\cdot$온도(본 절
 \subsection{닫힌식 — 평형에서 지연을 뺀 것의 미분}
 실제 진행률은 어느 영역에서나 $\xi_j=\xi_{\eq,j}-r_j$ 로 적을 수 있고, 지연 $r_j$ 의 거동은
 \S\ref{sec:lag} 의 일반해가 전 구간에서 정해 준다 — 상승부에서는 $O(L_q)$ 의 소량, 꼬리에서는 지수
-감쇠다. 입자 분포까지 넣으면 지연은 집단 평균 $\bar r_j=\int\rho_G\,r_j(q;G)\,\dd G$ 로 바뀐다. 이를
-관측식~\eqref{eq:dQdV} 에 넣으면
+감쇠다. 입자 분포까지 넣으면 지연은 집단 평균 $\bar r_j=\int\rho_G\,r_j(q;G)\,\dd G$ 로 바뀐다.
+$\xi_j=\xi_{\eq,j}-\bar r_j$ 의 미분은 선형으로 갈라지므로
+\begin{equation}
+\frac{\dd\xi_j}{\dd V_n}\;=\;\frac{\dd\xi_{\eq,j}}{\dd V_n}\;-\;\frac{\dd\bar r_j}{\dd V_n}
+\label{eq:xidecomp}
+\end{equation}
+이고, 이를 관측식~\eqref{eq:dQdV} 의 $\dd\xi_j/\dd V_n$ 자리에 넣으면(전이 하나를 대표로 적는다 —
+합산 복원은 \S\ref{sec:overlap})
 \begin{equation}
 \boxed{\;\frac{\dd Q}{\dd V_n}
 =\underbrace{C_\bg+Q_j\frac{\dd\xi_{\eq,j}}{\dd V_n}}_{\text{평형 peak (상승부)}}
@@ -1215,6 +1221,15 @@ C-rate(\S\ref{sec:lag})$\cdot$전위(\S\ref{sec:potbranch})$\cdot$온도(본 절
 지연 미분(식~\eqref{eq:superpose})만 남는다. 빠른 동역학 극한($\bar r\to0$)에서 평형 기준선으로
 복귀하므로 식이 무결하다.
 
+두 항을 닫힌 꼴로 채우자. 상승부 항은 식~\eqref{eq:dxidV} 의 종 그대로이고, 꼬리 항은
+식~\eqref{eq:rsol} 을 전압축으로 옮긴 $\bar r_j=r_{a,j}\,e^{-(V_n-V_{a,j})/L_{V,j}}$
+(식~\eqref{eq:tail} 의 지수)를 미분한 것이다 — 지수의 부호가 미분에서 한 번 더 나와 음의 부호와
+상쇄되므로
+\begin{equation}
+-\frac{\dd\bar r_j}{\dd V_n}\;=\;+\frac{r_{a,j}}{L_{V,j}}\,e^{-(V_n-V_{a,j})/L_{V,j}}
+\qquad\big(s(V_n-V_{a,j})\ge0\big).
+\label{eq:taildiff}
+\end{equation}
 분포가 좁은 실무 기본형은 $\rho_G\to\delta$ 극한이다:
 \begin{equation}
 \frac{\dd Q}{\dd V_n}\;\simeq\;C_\bg+Q_j\bigg[
