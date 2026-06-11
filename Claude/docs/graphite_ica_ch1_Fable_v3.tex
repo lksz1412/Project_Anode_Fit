@@ -336,17 +336,24 @@ $R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Farad
 높은 중간 고개 — \emph{전이상태} — 가 있다. 고개의 높이, 곧 출발 골짜기에서 고개까지의 자유에너지 차가
 \emph{활성화 자유에너지} $\Delta G_a$ 다(그림~\ref{fig:barrier}).
 
-사건이 일어나려면 열요동이 그 고개를 넘을 에너지를 공급해야 한다. 온도 $T$ 의 계에서 어떤 자유도가 에너지
-$E$ 이상을 우연히 갖출 확률은 Boltzmann 분포에 따라 $e^{-E/k_BT}$ 에 비례한다. 몰 단위로 쓰면 분모가
-$RT$($R=k_BN_A$)가 된다. 여기에 ``단위 시간에 고개를 넘으려고 시도하는 횟수''를 곱하면 속도가 된다.
-전이상태 이론은 그 시도 빈도의 보편 척도로 $k_0=k_BT/h$ 를 준다 \cite{eyring1935} — 열적 시간척도
-$h/k_BT$ 의 역수로, $25^\circ$C 에서 약 $6\times10^{12}\ \mathrm{s^{-1}}$ 이다. 둘을 곱한 것이 본 문건의
-근본식이다:
+사건이 일어나려면 열요동이 그 고개를 넘을 에너지를 공급해야 한다. 온도 $T$ 의 계에서 한 자유도가
+입자당 에너지 $E^*$ 이상을 우연히 갖출 확률은 Boltzmann 분포를 따른다. 몰 단위 장벽
+$\Delta G_a=N_AE^*$ 로 옮겨 적으면
+\begin{equation}
+P(E\ge E^*)\;\propto\;e^{-E^*/k_BT}
+\;=\;e^{-\Delta G_a/RT}\qquad(R=k_BN_A).
+\label{eq:boltz}
+\end{equation}
+속도는 ``단위 시간당 시도 횟수 $\times$ 한 번 시도가 넘을 확률''이다. 전이상태 이론이 시도 빈도의
+보편 척도 $k_0=k_BT/h$ 를 주므로 \cite{eyring1935}, 식~\eqref{eq:boltz} 에 $k_0$ 를 곱하면 본
+문건의 근본식이 된다:
 \begin{equation}
 \boxed{\;k\;\simeq\;k_0\,\exp\!\Big[-\frac{\Delta G_a}{RT}\Big],\qquad
 k_0=\frac{k_BT}{h},\qquad \Delta G_a=\Delta H_a-T\Delta S_a\;.}
 \label{eq:eyring}
 \end{equation}
+$k_0=k_BT/h$ 는 열적 시간척도 $h/k_BT$ 의 역수 — $25^\circ$C 에서 약
+$6\times10^{12}\ \mathrm{s^{-1}}$ — 다.
 $\Delta G_a$ 의 분해에서 $\Delta H_a$ 는 고개를 넘는 데 드는 에너지(결합 끊기$\cdot$격자 변형)이고,
 $\Delta S_a$ 는 전이상태가 출발 상태보다 얼마나 ``느슨한가''(경로의 수)다. 등호가 아니라 $\simeq$ 로 적은
 까닭은, 실제 계에서 $k_0$ 가 $O(1)$ 수 인자$\cdot$활동도$\cdot$유효 시도 자유도를 흡수하는 현상론적
