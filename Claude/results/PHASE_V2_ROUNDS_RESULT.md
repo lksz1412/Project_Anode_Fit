@@ -183,3 +183,43 @@
 - P.R9: Codex 잔존 적발 3건 수정 — 코드 docstring/골격 주석의 `dHa` 표기 2곳 → `dHa_eff`, tex 1410 "S4 산출 ΔH" → ΔH^eff(통일 완결).
 - P.R10 종합 게이트 **전 항목 PASS**: run_example 실행 PASS(54.8mV·방전/충전 면적 0.3998/0.4000·S1 회복)·verbatim 재동기·분할 diff PASS(72자 내)·빌드 0/0/0/39p·시각 스윕(P.R6) 결함 0.
 - **V.P 종료**: 절별 루프 17 + 전체 검수 10 = 이번 pass 수정 총 32+21+11+3 = **67건**. 챕터 누적 검수 V.R 14 + E.R 10 + V.P 10 = **34회**.
+
+# V.T — 어조·유도 복원 pass (사용자 4차 피드백: 티배깅 제거 + 전 유도 전개 + 중간식 번호)
+
+계획: `Claude/plans/2026-06-11-ch1-v2-tone-derivation-pass-plan.md` (Correction History 수정 1 포함).
+산출: 39p→42p, 번호식 38→69개 (중간식 31개 신설), 코드 주석 신번호 재매핑 20곳.
+
+## T.2–T.9 (steps 193–201) — 절별 유도 전개 [정독→인벤토리→refute→수정→재정독→build_gate→커밋]
+- §1.3 Stirling 전 단계(eq:W/stirlingexp/lnW/smix/gbar/mixderiv/eqbalance/eqexpand), §1.4 db 3단·kuniv·stationary·logisticsolve+★ξ_ss→ξ_eq 전환 복원, §1.5 isoslope/logslope/weff 매칭·gxi/gpp/이차방정식, §1.7 belliden(underbrace 항별), §1.8 적분인자 3단(intfactor/intfacint/memory), §1.10 LqT 조립→lnLq 분해→ydef 이항→arrhenius 박스(기울기+절편), §1.13 hyssub/hysdiff(3줄 align)/hysdU, §1.14 hyspeakpos+차 계산.
+- T.4 사고·정정: echo 비단정 게이트가 overfull 1 을 통과시켜 커밋됨 → 정직 정정 커밋(b4f899d) + ★단정형 build_gate.py 도입(err/of/undef≠0 → exit 1).
+
+## T.10a–f (steps 202–207) — 잔여 절 통합 렌즈 정독
+- §1.2 "공대 물리 독자" 어조 잔여 제거(4차 피드백 명시 건). §1.6 chargederiv, §1.9 dlnk/dlnkeff 3단, §1.11 xidecomp/taildiff, §1.13 hyscrit(임계 Taylor align), §1.7 relaxq. §1.12·§1.15·§1.16·서론·기호 정독 정상.
+
+## T.R1–R3 (steps 208–209) — Codex+Fable 전문 통독 병행 → 삼각검증
+- Codex(1–2136행): 신규 유도 대수 전수 CONFIRMED(확정 오류 0), 6대 스팟체크(ydef 부호사슬·dlnkeff 약분·hyscrit 8RT/3sF·belliden·hyssub ±·적분인자 지수 결합) 전부 ✓. SUSPECT 1: spinodal 이차식 분모 표기.
+- Fable(전수 재계산 12+곳·절편 표 9칸·그림 좌표 일치): 확정 2(코드 주석 구번호 17곳 — R5 매핑표 확보 / step 함수 자기모순), 의심 1(Faraday 항등 vs 이중층), 제안 2(U 재정의 명시·r_j 표기 충돌). 티배깅 잔존 0 확인.
+- 삼각 수정 5건(8a43c25): step 함수 평형 등온선 한정, 패러데이 몫 완화, U≡U⁰−μ⁰/(sF) 명시, r_j 구별구, RT/(2Ω) 괄호.
+
+## T.R4 (병행) — 석박사 독자 3-페르소나 시뮬 (기계공학 박사/화학 박사/데이터 분석 석사)
+- 수치 스폿체크 12+ 전부 일치 보고("수식 오류 급 없음"). 중 5건: φ→V 다리, 무부반응 울타리, "열역학 불요" 수사, S0 모형식, S4 평가점. 하 7건. 종합 "권한다".
+
+## T.R5 (step 210) — 코드 주석 (1.x) 신번호 일괄 재매핑 (4d981d9)
+- .aux 신번호 69개 추출 + eq_numbers_baseline.txt(구 38개) 전수 대조 → 20곳 치환(hysdU 1.34→1.63 등). verbatim 재동기 + 분할 diff True/True + run_example 재실행 PASS(54.8mV/0.3998·0.4000/S1 회복 — 수치 불변).
+
+## T.R6 (step 211) — 42p 전 페이지 시각 스윕
+- 레이아웃 결함 0, 신규 display 전부 정상 렌더. 포착 1: 대응표 ln_Lq 행 "(1.52) 의 역"→eq:lnLq 직접 지칭 통일(+b 자기일관 문장).
+
+## T.R7 (병행) — Codex 최종 게이트
+- 참조 무결성(1.50/1.51/1.52 분업)·코드 주석 번호 전수 일치 CONFIRMED. 블로커 0. SUGGESTION 3(eq:tail 방전 표기·Ω 흡수 모니터링 유지·S3 골격 주석 전제) — 통과 판정.
+
+## T.R8 (step 212) — 검수 권고 일괄 반영 12건 (b12316d)
+- 채택: φ→V 다리 문장, Ω 부호 읽기, "열역학은 detailed balance 한 곳으로만" 완화, eq:tail 대입+방전 표기 포인터, λ 수십 kJ/mol 정량, 울타리 ⑮ 무부반응(검출=면적 불일치 행)+⑯ χ 전이 공통, 진단표 행 보강, S4 평가점 명문화(전이-내 진행률 기준), S0 두 모형식+S2 직독 창 bullet, detect_peaks N_p 합치, S3 골격 주석 전제(py — 재동기·diff·실행 PASS).
+- 기각: cut_qa 의사코드 확장(절 범위 자기 고지 존재), 읽기 경로/역할 지칭 어구(수준 언급 아님 — Codex 후보를 Fable 이 반박, master 동의).
+
+## T.R9–R10 (steps 213–214) — 최종 정독 + 종합 게이트
+- R9: 이번 턴 미커버 잔여 4구간(§1.3 전반·§1.4·§1.5·§1.14 후반) 정독 — 신규 결함 0. R8 수정부 문맥 정합 확인.
+- R10 종합 게이트: build 0/0/0 42p ✓ · verbatim diff True/True ✓ · run_example PASS ✓ · 티배깅 잔존 0(3원 확인) ✓ · 신규 유도 대수 재검산 0오류(2원 독립) ✓ · 코드 주석 번호 전수 일치 ✓ · 전 커밋 푸쉬 ✓.
+
+Read coverage: 본 pass 에서 master 직접 정독 = 전 절(절별 루프 + T.10 sweep + R9 잔여 청크), 에이전트 전문 통독 3회(Codex×2 1–2136행, Fable fresh 1회, 독자 시뮬 1회 — 각각 겹침 없는 연속 청크 보고), 42p 시각 전수.
+미해결/리스크: 없음 — 블로커 0. ch3/ch4 의 ch1 식 번호 참조는 별도 재매핑 phase(기존 결정대로 v2 확정 후).
