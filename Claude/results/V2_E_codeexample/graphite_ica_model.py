@@ -52,13 +52,13 @@ def r_a_connect(Lq, dxi_dq_at_qa):
 
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
-    """(1.77) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    """(1.78) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
     반환은 방향 정렬된 ICA 크기다 — signed dQ/dV 데이터와 맞출 때는
     sigma_d*dQ/dV >= 0 이 되도록 부호를 정렬한다((2) 의 규약).
     단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
     는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
     방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
-    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.77) — Omega!=0
+    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.78) — Omega!=0
     전이는 chi_d 를 통해 dHa_eff 도 방향별이다. 충전 평가에는 충전
     데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
     T 의 closure((7) 의 T-회귀로 생성).
@@ -88,11 +88,11 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
                           tr['b'], chi_d, A_d))        # M3 (동결)
         LV = abs(tr['dVdq_qa']) * Lq                   # M4
         ra = tr['r_a']
-        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.77) 종
+        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.78) 종
         sup = (sigma_d * (Vn - tr['Va']) >= 0.0)       # indicator
         dv = -sigma_d * (Vn - tr['Va']) / LV
         tail = (ra / LV) * np.exp(
-            np.where(sup, dv, -np.inf))                # (1.77) 꼬리
+            np.where(sup, dv, -np.inf))                # (1.78) 꼬리
         # 비지지 쪽은 exp(-inf)=0 — 지수 양수 폭주(inf*0=NaN) 차단
         y = y + tr['Q'] * (bell + tail)
     return y                                           # M6: V_app 축

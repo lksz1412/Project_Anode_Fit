@@ -35,5 +35,10 @@ CHECKS = [
     '... ({hysobsgap})',
 ]
 bad = [t for t in CHECKS if t.format(**nums) not in py]
-print(f"comment gate: {len(CHECKS)-len(bad)}/{len(CHECKS)} ok" + (f" — STALE: {bad}" if bad else ""))
+import sys as _s
+try:
+    _s.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+print(f"comment gate: {len(CHECKS)-len(bad)}/{len(CHECKS)} ok" + (f" -- STALE: {bad}" if bad else ""))
 sys.exit(1 if bad else 0)
