@@ -223,3 +223,32 @@
 
 Read coverage: 본 pass 에서 master 직접 정독 = 전 절(절별 루프 + T.10 sweep + R9 잔여 청크), 에이전트 전문 통독 3회(Codex×2 1–2136행, Fable fresh 1회, 독자 시뮬 1회 — 각각 겹침 없는 연속 청크 보고), 42p 시각 전수.
 미해결/리스크: 없음 — 블로커 0. ch3/ch4 의 ch1 식 번호 참조는 별도 재매핑 phase(기존 결정대로 v2 확정 후).
+
+# V.U — 친절 수식 보강 + 그림 개선 pass (사용자 5차 피드백: "여전히 부족 — 중간 수식 추가 보완(특히 1.8, 1.11–1.13) + 이미지 대체/생성")
+
+계획: `Claude/plans/2026-06-12-ch1-v2-friendly-math-figures-pass-plan.md`. 가정 2건 명시(이미지=TikZ 생성 채택 — 저작권·실계산 일관성 / GO 대기 없이 무중단).
+산출: 43p, 신규 번호식 10개(kernelint·risefollow·tailrate·tail 진폭 승격·areacons·kinshift·Ifuse·veqslope·hyssym·dHeff), 그림 6개 개편+1개 신설.
+
+## U.1–U.4 (steps 215–218) — 수식 친절 보강
+- §1.8: 커널 적분 닫힌 꼴(kernelint)→상승부 추종(risefollow, O(L²) 출처 명시)→꼬리 동차해 도출문(q_a 재시작)→관측항 미분(tailrate, 포화 underbrace)→★eq:tail 을 ∝ 에서 진폭 Q_j r_a/L_V 닫힌 등식으로 승격(superpose·simplefit·taildiff 와 진폭 통일).
+- §1.11: 면적 회계 직접 적분(areacons — 치환적분+정규화 지수)·kinetic 이동 규모(kinshift — 커널 평균=L_q).
+- §1.12: 융합 시작 전류 닫힌 꼴(Ifuse — L_V=ΔU 풀이, 온도 민감도 읽기).
+- §1.13: 극값=spinodal 번호식(veqslope=g″)·분기 중심 대칭(hyssym — 역수 로그·±u 상쇄)·Veq 풀이 단계 명시.
+
+## U.5–U.11 (steps 219–225) — 그림 개편·신설 (전부 python 실계산 좌표)
+- barrier→2패널(평형/구동 — 비대칭 장벽 화살표 ΔG_a∓χA·A·χA 하강, eq:bv 시각 짝). doublewell→안정성 띠 음영(불안정/준안정/안정 + 핵생성 주석). kernel→2케이스(추종 L=0.3 실적분 곡선 신규 — risefollow·kinshift 시각 검증, 기존 1.5 곡선 재검산 0.2471 vs 0.2469). anatomy→성분 면적 음영(0.685×종 + 꼬리 = areacons 시각 짝). fusion→전이 1 꼬리 몫 띠(진폭 0.0875 역산 일치). vdwloop→과주행 경로+분리 낙하+mosaic 진행+가역 한계. ★staging 도식 신설(서론 — 5패널 갤러리 채움, 2L 옅음, 방향 화살표).
+
+## U.R1–R3 (steps 226–227) — Codex+Fable 병행 → 삼각
+- 신규 수식 9건·그림 7건 전부 독립 재검산 CONFIRMED(0 오류). 확정 1(계통): 신규 식 8개 삽입으로 코드 주석 번호 재-stale(12곳, aux 재검증 매핑으로 일괄 갱신). tail 지수 np.where 마스킹(inf·0=NaN 강건성 — 수치 불변, run PASS). ★단정형 comment_gate.py 신설(aux↔주석 자동 대조 20패턴 — 3차 재발 차단). 기타: M3 b_j 중복 압축·kernel 캡션 전방참조 완화·barrier A 화살표 끝점·doublewell 핵생성 주석 3노드 정렬.
+
+## U.R4–R6 (steps 228–229) — 독자 시뮬+43p 시각 전수 → 16건
+- 시각 상 1(kernel 라벨-곡선 관통 2곳)·중 1(vdwloop 충전 라벨 관통)·하 3 — 전부 재배치로 해소(렌더 재검증). 독서 중 2(hyssym 단락 이음 다리·Ω 흡수 최고밀도 단락→번호식 eq:dHeff 분리+문장 분할, hysmaster 1.77→1.78 주석 동기)·하 6(면적 prose 선취 압축·Ifuse 평가점 규약·doublewell/kernel 캡션 anchor·σ_d 3중 진술 축약·기준선 keybox 중복·(3′) 인과 재배열).
+
+## U.R7–R8 (step 230) — Codex 최종 → 잔여 해소
+- 참조 무결성 321호출/미정의 0·부호·좌표 전 항목 통과. 필수 1(미인용 라벨 5개)→자연 인용처 5곳 추가(kinshift→§1.14 상한 점검, Ifuse→융합 플래그, veqslope→vdwloop 캡션, hyssym→hyscenter 도입, kernelint→O(L²) 출처). fusion 저율 라벨 곡선 인접 이동.
+
+## U.R9–R10 (steps 231–232) — 최종 정독+종합 게이트
+- 최다 수정 3블록 문맥 확인 + kernel/fusion 재렌더 PASS. 종합: build 0/0/0 43p ✓ · comment 20/20 ✓ · verbatim diff True/True ✓ · run_example PASS(수치 불변) ✓ · 미정의 참조 0 ✓ · 43p 시각 전수(에이전트) ✓ · 전 커밋 푸쉬 ✓.
+
+Read coverage: master 직접 = 보강 4절 전문+수정부 재정독+최다 수정 3블록 최종 확인. 에이전트 = Codex 전문 2회·Fable fresh 전문 1회·독자 시뮬 1회·시각 43p 1회(각자 연속 청크 보고).
+미해결/리스크: 없음. ch3/ch4 재매핑은 기존 결정대로 별도 phase.
