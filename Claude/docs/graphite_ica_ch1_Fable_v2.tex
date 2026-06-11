@@ -1029,7 +1029,26 @@ M3).
 일반화해 두자 — 전하전달이 아무리 빨라도 수송$\cdot$유한 자리 같은 다른 단계가 전체를 제한할 수
 있으므로, 임의의 절단 대신 직렬 합성 $1/k_j^{\eff}=1/k_j+1/k_{j,\lim}$ 으로 두고
 $L_{q,j}\propto1/k_j^{\eff}$ 로 읽는다($k_{j,\lim}$ 은 전위 무관으로 둔다 — 전위 의존이 있으면 아래
-수송 진단에 걸린다). 미분하면
+수송 진단에 걸린다). 두 단계로 미분하자. 먼저 활성화 속도 자체 — 식~\eqref{eq:keff} 에 로그를 취하면
+$\ln k_j=\ln k_0-(\Delta G_{a,j}-\chi\mathcal A_j)/RT$ 이고, 이 중 $V_\drive$ 에 의존하는 것은
+$\mathcal A_j=sF(V_\drive-U_j)$ 뿐이라
+\begin{equation}
+\frac{\partial\ln k_j}{\partial V_\drive}
+=\frac{\chi}{RT}\,\frac{\partial\mathcal A_j}{\partial V_\drive}
+=\frac{\chi sF}{RT}.
+\label{eq:dlnk}
+\end{equation}
+다음으로 직렬 합성 — $\ln k_j^{\eff}=-\ln\big[1/k_j+1/k_{j,\lim}\big]$ 을 미분하면 전위 의존이
+있는 $1/k_j$ 항만 살아
+\begin{equation}
+\frac{\partial\ln k_j^{\eff}}{\partial V_\drive}
+=\frac{1/k_j}{1/k_j+1/k_{j,\lim}}\,\frac{\partial\ln k_j}{\partial V_\drive}
+=\frac{k_{j,\lim}}{k_j+k_{j,\lim}}\,\frac{\chi sF}{RT}
+\label{eq:dlnkeff}
+\end{equation}
+($\partial(1/k_j)/\partial V_\drive=-(1/k_j)\,\partial\ln k_j/\partial V_\drive$ 를 넣고 두 음의
+부호가 상쇄된 것이고, 둘째 등식은 분자$\cdot$분모에 $k_jk_{j,\lim}$ 을 곱해 정리한 것이다).
+$L_{q,j}\propto1/k_j^{\eff}$ 의 로그 미분은 이것의 부호 반전이므로
 \begin{equation}
 \frac{\partial\ln L_{q,j}}{\partial V_\drive}
 \;=\;-\,\frac{k_{j,\lim}}{k_j+k_{j,\lim}}\,\frac{\chi sF}{RT}\;\le\;0.
