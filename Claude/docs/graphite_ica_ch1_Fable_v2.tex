@@ -297,21 +297,18 @@ prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절
 % ====================================================================
 앞 절의 속도식은 ``얼마나 빨리''를 말했다. 방향과 목적지를 말하려면 두 골짜기의 \emph{높이}를 재는 언어가
 필요하다. 그 언어가 Gibbs 자유에너지 $G$ 와 화학퍼텐셜 $\mu$ 다. 이 절은 두 양을 정의에서부터 차례로
-세운다 — 열역학을 물리 쪽에서 배운 독자가 ``화학퍼텐셜은 $G$ 의 미분''이라는 화학 쪽 관행을 처음 만나도
-끊기지 않도록, 건너뛰는 단계 없이 간다.
+세우고, 격자기체의 닫힌 꼴 $\mu(\theta)$ 와 전기화학 평형 조건까지 가는 단계를 전부 적는다.
 
 \subsection{$G$ — 등온$\cdot$등압 세계의 퍼텐셜}
-역학에서 공은 퍼텐셜 에너지가 낮아지는 쪽으로 구른다. 온도와 압력이 일정하게 유지되는 계 — 전지가 정확히
-그렇다 — 에도 같은 역할을 하는 양이 있다. 열역학 제2법칙(고립계의 엔트로피 증가)을 ``계$+$열저장고''에
-적용하자. 등압에서 계가 내놓는 열이 $-\Delta H$($H$ 는 등압 출입열을 재는 엔탈피)이므로 저장고의
-엔트로피 변화는 $-\Delta H/T$ — 전체 증가 조건 $\Delta S-\Delta H/T\ge0$ 을 재배열하면
-$\Delta(H-TS)\le0$ 이 된다. 즉 계 자신의 양들만으로 쓴 자발성의 지표
+온도와 압력이 일정하게 유지되는 계 — 전지가 정확히 그렇다 — 에서 자발성과 평형을 판정하는 퍼텐셜은
+Gibbs 자유에너지
 \begin{equation}
 G\;\equiv\;H-TS
 \label{eq:gibbsdef}
 \end{equation}
-가 나온다. 자발적 변화는 언제나 $G$ 가 낮아지는 방향으로 일어나고, $G$ 가 극소가 되면 멈춘다. 식의 두 항이
-경쟁한다 — 계는 에너지($H$)를 낮추고 싶어 하고, 동시에 무질서($S$)를 키우고 싶어 하며, 온도가 그 경쟁의
+다. 자발적 변화는 언제나 $G$ 가 낮아지는 방향으로 일어나고, $G$ 가 극소가 되면 멈춘다 — 여기까지는
+정의만 적어 두면 충분하고, 본 문건이 거듭 쓰게 될 것은 식의 \emph{구조}다. 두 항이 경쟁한다 — 계는
+에너지($H$)를 낮추고 싶어 하고, 동시에 무질서($S$)를 키우고 싶어 하며, 온도가 그 경쟁의
 환율($-TS$)을 정한다. 저온에서는 에너지가, 고온에서는 엔트로피가 이긴다. 본 문건에서 만나는 모든 평형$\cdot$
 상분리$\cdot$온도 의존이 이 한 경쟁의 변주다.
 
@@ -337,9 +334,27 @@ $G$ 는 어떻게 변하는가. 세 몫이 있다.
 엔트로피를 뭉친 값 — 가 채운 만큼 선형으로 쌓인다: 1몰당 $\mu^0\theta$. 미분하면 상수 $\mu^0$ 가
 되는 몫이다.
 
-\emph{(i) 섞임 엔트로피.} $N$ 자리 중 $n=N\theta$ 자리를 고르는 경우의 수는 $W=N!/[n!(N-n)!]$ 이고,
-Boltzmann 관계 $S_{\mathrm{mix}}=k_B\ln W$ 에 Stirling 근사 $\ln m!\simeq m\ln m-m$ 을 적용하면(세
-계승에 각각 적용하면 선형항이 상쇄된다)
+\emph{(i) 섞임 엔트로피.} $N$ 자리 중 $n=N\theta$ 자리를 고르는 경우의 수는
+\begin{equation}
+W=\frac{N!}{n!\,(N-n)!}
+\label{eq:W}
+\end{equation}
+이고, 엔트로피는 Boltzmann 관계 $S_{\mathrm{mix}}=k_B\ln W$ 로 닫힌다. $\ln W$ 의 세 계승에
+Stirling 근사 $\ln m!\simeq m\ln m-m$ 을 각각 적용하면
+\begin{align}
+\ln W&=\ln N!-\ln n!-\ln(N-n)!\notag\\
+&\simeq\big(N\ln N-N\big)-\big(n\ln n-n\big)-\big[(N-n)\ln(N-n)-(N-n)\big]
+\label{eq:stirlingexp}\\
+&=N\ln N-n\ln n-(N-n)\ln(N-n)\notag
+\end{align}
+— 선형항은 $-N+n+(N-n)=0$ 으로 정확히 상쇄된다. $n=N\theta$ 를 넣고, 첫 항을
+$N\ln N=n\ln N+(N-n)\ln N$ 으로 갈라 같은 인자끼리 묶으면
+\begin{equation}
+\ln W=-n\ln\frac{n}{N}-(N-n)\ln\frac{N-n}{N}
+=-N\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big],
+\label{eq:lnW}
+\end{equation}
+곧
 \begin{equation}
 S_{\mathrm{mix}}=-k_BN\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big].
 \label{eq:smix}
@@ -353,11 +368,24 @@ $\theta^2=\theta-\theta(1-\theta)$ 의 선형 몫은 방금의 기준 몫($\mu^0
 읽는다 — 같은 stage 안에서도 리튬이 국소 도메인 단위로 채워지며 층의 굽힘을 동반한다는 그림
 (Daumas--H\'erold 도메인)이 그 장거리 성분의 기원이다 \cite{mckinnon1983}.
 
-세 몫을 더해 자리 1몰당 자유에너지 $\bar g(\theta)$ 를 만들자. 자리 몰수 $N_s$ 가 고정이라
-$n=N_s\theta$, 곧 $\partial G/\partial n=\partial\bar g/\partial\theta$ 이므로
-식~\eqref{eq:mudef} 의 미분은 $\theta$ 미분이다. 실행하면 기준 몫은 상수 $\mu^0$ 로 남고, $\theta\ln\theta$ 의 미분은 $\ln\theta+1$, $(1-\theta)\ln(1-\theta)$ 의 미분은
-$-\ln(1-\theta)-1$ 이라 두 상수가 상쇄되고, $\theta(1-\theta)$ 의 미분은 $1-2\theta$ — 삽입 리튬의
-화학퍼텐셜이 닫힌다:
+세 몫을 더하면 자리 1몰당 자유에너지가
+\begin{equation}
+\bar g(\theta)\;=\;\mu^0\theta\;+\;RT\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big]
+\;+\;\Omega\,\theta(1-\theta)
+\label{eq:gbar}
+\end{equation}
+로 닫힌다. 자리 몰수 $N_s$ 가 고정이라 $n=N_s\theta$, 곧
+$\partial G/\partial n=\partial\bar g/\partial\theta$ 이므로 식~\eqref{eq:mudef} 의 미분은
+$\theta$ 미분이다. 항별로 실행하면
+\begin{align}
+\frac{\partial}{\partial\theta}\big[\mu^0\theta\big]&=\mu^0,\notag\\
+RT\,\frac{\partial}{\partial\theta}\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big]
+&=RT\big[(\ln\theta+1)-\big(\ln(1-\theta)+1\big)\big]=RT\ln\frac{\theta}{1-\theta},
+\label{eq:mixderiv}\\
+\Omega\,\frac{\partial}{\partial\theta}\big[\theta(1-\theta)\big]&=\Omega\,(1-2\theta)
+\notag
+\end{align}
+— 둘째 줄에서 두 상수 $+1$ 과 $-1$ 이 상쇄된다. 셋을 모으면 삽입 리튬의 화학퍼텐셜이 닫힌다:
 \begin{equation}
 \boxed{\;\mu_{\mathrm{Li}}(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}+\Omega\,(1-2\theta)\;.}
 \label{eq:mu}
@@ -375,10 +403,21 @@ $\tilde\mu=\mu+zF\phi$ 라 한다. 전극의 전자는 $z=-1$ 이라 $\tilde\mu_
 전위 $V$ 가 오르면 전자의 값어치는 내려간다. 삽입 반응
 $\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\text{흑연})}$ 의 평형 조건은 $G$ 극소다 —
 반응이 $\dd n$ 만큼 진행할 때의 1차 변화가 $0$, 곧
-$\tilde\mu_{\mathrm{Li}^+}+\tilde\mu_{e^-}=\tilde\mu_{\mathrm{Li}}$ 다(앞 소절의
-``값어치 일치''를 반응 양변에 적용한 것). 전해질 쪽 $\tilde\mu_{\mathrm{Li}^+}$ — 활동도 로그 항
-포함 — 와 기준전극 환산을 주어진 $T$ 에서 상수로 보고(운전 중 전해질 조성 불변 가정) 한 덩이 $sFU^0$
-로 묶으면
+\begin{equation}
+\tilde\mu_{\mathrm{Li}^+}+\tilde\mu_{e^-}=\tilde\mu_{\mathrm{Li}}
+\label{eq:eqbalance}
+\end{equation}
+다(앞 소절의 ``값어치 일치''를 반응 양변에 적용한 것). 각 항을 펼쳐 적으면
+\begin{equation}
+\big[\mu^0_{\mathrm{Li}^+}+RT\ln a_{\mathrm{Li}^+}+F\phi_{\mathrm{elyte}}\big]
++\big[\mu^0_{e^-}-FV\big]
+=\mu_{\mathrm{Li}}(\theta_{\eq})
+\label{eq:eqexpand}
+\end{equation}
+이다 — $a_{\mathrm{Li}^+}$ 는 전해질 Li$^+$ 활동도, $\phi_{\mathrm{elyte}}$ 는 전해질 전위, $V$ 는
+전극 전위다. 좌변에서 $-FV$ 만 전위에 따라 변하고 나머지는 주어진 $T$ 에서 상수다(운전 중 전해질 조성
+불변 가정 — 활동도$\cdot$전해질 전위$\cdot$기준전극 환산이 전부 여기 묶인다). 그 상수 덩이를
+$sFU^0$ 로 쓰면
 \begin{equation}
 \mu_{\mathrm{Li}}(\theta_{\eq})=\mu^0-sF\,(V-U)
 \label{eq:eqcond}
