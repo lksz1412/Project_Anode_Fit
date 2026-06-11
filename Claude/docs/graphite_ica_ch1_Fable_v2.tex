@@ -817,8 +817,17 @@ $V_\app=V_n+s_I|I|R_n$, 구동은 $V_\drive=V_n$(기본형)이다. 관측 $\dd Q
 
 \subsection{logistic 의 미분 — 종 모양}
 평형 추종이 성립하면 관측식~\eqref{eq:dQdV} 의 $\dd\xi_j/\dd V_n$ 에 평형 등온선의 기울기가 들어간다.
-식~\eqref{eq:logistic} 을 $z\equiv s(V_n-U_j)/w_j$ 로 미분하면 — $\xi_{\eq}=(1+e^{-z})^{-1}$ 에서
-$\dd\xi_{\eq}/\dd z=e^{-z}/(1+e^{-z})^2$ 인데, 이는 정확히 $\xi_{\eq}(1-\xi_{\eq})$ 와 같다 —
+식~\eqref{eq:logistic} 을 $z\equiv s(V_n-U_j)/w_j$ 로 치환해 미분하자. $\xi_{\eq}=(1+e^{-z})^{-1}$
+에서
+\begin{equation}
+\frac{\dd\xi_{\eq}}{\dd z}
+=\frac{e^{-z}}{(1+e^{-z})^{2}}
+=\underbrace{\frac{1}{1+e^{-z}}}_{\xi_{\eq}}\cdot
+\underbrace{\frac{e^{-z}}{1+e^{-z}}}_{1-\xi_{\eq}}
+=\xi_{\eq}\,(1-\xi_{\eq})
+\label{eq:belliden}
+\end{equation}
+이고, 연쇄율 $\dd z/\dd V_n=s/w_j$ 를 곱하면
 \begin{equation}
 \frac{\dd\xi_{\eq,j}}{\dd V_n}\;=\;\frac{s\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}.
 \label{eq:dxidV}
