@@ -1522,13 +1522,24 @@ sF\,\frac{\dd V_{\eq,j}}{\dd\xi}
 \fill (0.1464,1.0657) circle (0.6pt) node[above] {\footnotesize $\xi_s^-$};
 \fill (0.8536,-1.0657) circle (0.6pt) node[below] {\footnotesize $\xi_s^+$};
 \draw[<->] (1.0,-1.0657) -- (1.0,1.0657) node[pos=0.35,right] {\footnotesize $\Delta U_j^\hys$};
-\draw[->,very thick,gray] (0.04,0.55) -- (0.12,1.0) node[pos=0.3,left] {\footnotesize 방전};
-\draw[->,very thick,gray] (0.96,-0.55) -- (0.88,-1.0) node[pos=0.3,right] {\footnotesize 충전};
+% 과주행 경로(곡선 좌표 그대로): 방전 = 상승 준안정 가지 -> xi_s^- 에서 분리 점화 -> plateau 낙하
+\draw[->,very thick] plot[smooth] coordinates {(0.02,-0.0518) (0.04,0.5019) (0.06,0.7685) (0.08,0.9177) (0.1,1.0028) (0.12,1.0476) (0.1464,1.0657)};
+\draw[->,densely dashed,thick] (0.1464,1.0657) -- (0.1464,0.09);
+\draw[->,thick] (0.16,0.06) -- (0.52,0.06);
+\node at (0.345,0.21) {\scriptsize 공존 진행(mosaic)};
+\draw[->,very thick] plot[smooth] coordinates {(0.98,0.0518) (0.96,-0.5019) (0.94,-0.7685) (0.92,-0.9177) (0.9,-1.0028) (0.88,-1.0476) (0.8536,-1.0657)};
+\draw[->,densely dashed,thick] (0.8536,-1.0657) -- (0.8536,-0.09);
+\draw[->,thick] (0.84,-0.06) -- (0.48,-0.06);
+\node[left] at (0.075,0.72) {\footnotesize 방전 과주행};
+\node[right] at (0.93,-0.72) {\footnotesize 충전 과주행};
+\node at (0.62,-0.28) {\scriptsize 가역 한계($\gamma\to0$): plateau $V=U_j$($y=0$ 축)};
 \end{tikzpicture}
-\caption{비단조 평형 전위~\eqref{eq:Veq}($\Omega_j=4RT$). 방전은 상승 준안정 가지를 타고 극대
-$\xi_s^-$ 까지, 충전은 반대쪽 극소 $\xi_s^+$ 까지 과주행한다. 두 극값의 차가 spinodal 상한 gap
-$\Delta U_j^\hys$ 이고(위첨자 sup 는 spinodal 상한 표시), 실측 분기는 축소 인자 $\gamma_j$
-만큼 그 안쪽에 선다.}
+\caption{비단조 평형 전위~\eqref{eq:Veq}($\Omega_j=4RT$)와 과주행 경로. 방전(굵은 경로, 좌상)은
+상승 준안정 가지를 타고 극대 $\xi_s^-$ 까지 과주행한 뒤, 분리가 점화되며 공존 plateau($V=U_j$, $y=0$
+축)로 낙하해(점선 화살표) mosaic 공존으로 진행한다. 충전(우하)은 거울상으로 극소 $\xi_s^+$ 까지
+과주행한다. 두 극값의 차가 spinodal 상한 gap $\Delta U_j^\hys$ 이고(위첨자 sup 는 spinodal 상한
+표시), 실측 분기는 축소 인자 $\gamma_j$ 만큼 그 안쪽에 선다 — $\gamma\to0$ 의 가역 한계에서 두
+경로가 모두 $y=0$ 의 plateau 로 합쳐진다.}
 \label{fig:vdwloop}
 \end{figure}
 
