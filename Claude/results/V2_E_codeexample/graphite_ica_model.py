@@ -53,6 +53,8 @@ def r_a_connect(Lq, dxi_dq_at_qa):
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
     """(1.38) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    반환은 방향 정렬된 ICA 크기다 — signed dQ/dV 데이터와 맞출 때는
+    sigma_d*dQ/dV >= 0 이 되도록 부호를 정렬한다((2) 의 규약).
     단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
     는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
     방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
