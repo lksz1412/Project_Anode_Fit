@@ -240,22 +240,44 @@ prefactor 로 작동하기 때문이다. 이 흡수는 뒤의 피팅에서 ``절
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1.5cm,y=3.2cm]
-\draw[->] (-0.2,0) -- (6.4,0) node[below] {반응 좌표};
-\draw[->] (-0.2,0) -- (-0.2,1.25) node[above] {\footnotesize 자유에너지};
+\begin{tikzpicture}[x=0.72cm,y=2.55cm]
+% ---- (a) 평형 풍경 ----
+\draw[->] (-0.2,-0.3) -- (6.4,-0.3) node[below] {\scriptsize 반응 좌표};
+\draw[->] (-0.2,-0.3) -- (-0.2,1.2) node[above] {\scriptsize 자유에너지};
 \draw[thick] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
-\draw[densely dashed,gray,thick] plot[smooth] coordinates {(2.5,0.808) (3,0.92) (3.5,0.768) (4,0.43) (4.5,0.092) (5,-0.06) (5.5,0.052) (6,0.35)};
-\node[below] at (1,0.08) {\footnotesize 채워진 자리};
-\node[below] at (5,0.08) {\footnotesize 빈 자리$+$이온};
-\node[above] at (3,1.0) {\footnotesize 전이상태};
-\draw[<->] (1,0.12) -- (1,0.98) node[pos=0.5,right] {\footnotesize $\Delta G_a$};
-\draw[->,gray] (5.6,0.45) -- (5.3,0.12) node[pos=0,above] {\footnotesize 전위가 한쪽을 기울임(\S\ref{sec:fwdrev}$\cdot$\S\ref{sec:potbranch})};
+\node[below] at (1,0.08) {\scriptsize 채워진 자리};
+\node[below] at (5,0.08) {\scriptsize 빈 자리$+$이온};
+\node[above] at (3,1.0) {\scriptsize 전이상태};
+\draw[densely dotted,gray] (1,0.1) -- (2.0,0.1);
+\draw[densely dotted,gray] (3,1.0) -- (2.0,1.0);
+\draw[<->] (2.0,0.11) -- (2.0,0.99) node[pos=0.45,left] {\scriptsize $\Delta G_a$};
+\node at (3,-0.55) {\footnotesize (a) 평형 — 두 골짜기 같은 높이, $\mathcal A=0$};
+\begin{scope}[xshift=8.1cm]
+% ---- (b) 구동 풍경: g(x)=f0(x)-A*s(x), A=0.35, chi=1/2 ----
+\draw[->] (-0.2,-0.3) -- (6.4,-0.3) node[below] {\scriptsize 반응 좌표};
+\draw[densely dotted,thin,gray] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
+\draw[thick] plot[smooth] coordinates {(0,0.550) (0.5,0.232) (1,0.100) (1.5,0.188) (2,0.463) (2.5,0.737) (3,0.825) (3.5,0.649) (4,0.288) (4.5,-0.074) (5,-0.250) (5.5,-0.118) (6,0.200)};
+\draw[->,thick] (2.92,1.0) -- (2.92,0.84) ;
+\node[above] at (2.92,1.0) {\scriptsize 고개 $\chi\mathcal A$ 하강};
+\draw[densely dotted,gray] (1.05,0.1) -- (1.7,0.1);
+\draw[densely dotted,gray] (2.92,0.828) -- (1.7,0.828);
+\draw[<->] (1.7,0.11) -- (1.7,0.818) node[pos=0.5,left] {\scriptsize $\Delta G_a-\chi\mathcal A$};
+\draw[densely dotted,gray] (5,-0.25) -- (4.35,-0.25);
+\draw[densely dotted,gray] (2.92,0.828) -- (4.35,0.828);
+\draw[<->] (4.35,-0.24) -- (4.35,0.818) node[pos=0.62,right] {\scriptsize $\Delta G_a+(1\!-\!\chi)\mathcal A$};
+\draw[densely dotted,gray] (1.05,0.1) -- (5.95,0.1);
+\draw[<->] (5.95,0.1) -- (5.95,-0.24) node[pos=0.5,right] {\scriptsize $\mathcal A$};
+\node at (3,-0.55) {\footnotesize (b) 구동 $\mathcal A>0$($\chi=\tfrac12$) — 같은 고개, 비대칭 이동};
+\end{scope}
 \end{tikzpicture}
-\caption{활성화 장벽 그림. 실선은 평형 전위에서의 자유에너지 풍경 — 두 골짜기(채워진 자리/빈 자리)와 그
-사이의 전이상태 고개다. 사건의 속도는 고개 높이 $\Delta G_a$ 의 Boltzmann 인자에 시도 빈도 $k_0$ 를 곱한
-식~\eqref{eq:eyring} 을 따른다. 파선은 극판 전위가 구동력을 줄 때의 풍경 — 한쪽 골짜기가 내려가면서 고개도
-함께 낮아진다(그림은 $\chi=\tfrac12$: 두 골짜기 높이차의 절반만큼 고개가 내려간 경우다). 온도는 풍경을 기울이지 않는 대신 지수의 분모($RT$)로 들어와 넘는 확률 자체를 키운다(고개
-높이의 엔트로피 몫 $-T\Delta S_a$ 는 \S\ref{sec:tempbranch} 의 절편으로 처리된다).}
+\caption{활성화 장벽 그림(실계산: $f_0(x)$ 이중 골짜기에 구동 기울임 $-\mathcal A\,s(x)$ 를 더한 것,
+$\mathcal A=0.39\,\Delta G_a$). (a) 평형 — 두 골짜기가 같은 높이이고 사건 속도는 고개 높이
+$\Delta G_a$ 의 Boltzmann 인자에 시도 빈도 $k_0$ 를 곱한 식~\eqref{eq:eyring} 을 따른다. (b) 구동력
+$\mathcal A_j$ 가 도착 골짜기를 $\mathcal A$ 만큼 내리면 같은 고개를 공유하는 두 방향의 장벽이
+\emph{비대칭}으로 변한다 — 정방향은 $\Delta G_a-\chi\mathcal A$ 로 낮아지고 역방향은
+$\Delta G_a+(1-\chi)\mathcal A$ 로 높아진다(\S\ref{sec:fwdrev} 식~\eqref{eq:bv} 의 시각 짝;
+점선은 (a)의 평형 풍경). 온도는 풍경을 기울이지 않는 대신 지수의 분모($RT$)로 들어와 넘는 확률 자체를
+키운다(고개 높이의 엔트로피 몫 $-T\Delta S_a$ 는 \S\ref{sec:tempbranch} 의 절편으로 처리된다).}
 \label{fig:barrier}
 \end{figure}
 
