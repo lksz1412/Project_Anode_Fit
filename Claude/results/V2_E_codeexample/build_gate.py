@@ -3,7 +3,8 @@
 exit 1 (V.P P.R3·V.T T.4 에서 echo 비단정 게이트가 overfull 커밋을 통과시킨
 사고의 재발 방지)."""
 import io, sys, re
-log = io.open(r'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_v2.log',
+ver = sys.argv[1] if len(sys.argv) > 1 else 'v2'
+log = io.open(rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_{ver}.log',
               encoding='utf-8', errors='replace').read()
 err = len(re.findall(r'^!', log, re.M))
 of = log.count('Overfull')

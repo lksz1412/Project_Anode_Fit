@@ -5,7 +5,9 @@ graphite_ica_model.py 주석의 하드코딩 (1.x) 가 현재 .aux 의 식번호
 새 식이 추가되어 번호가 밀리면 이 게이트가 즉시 FAIL 한다.)"""
 import io, re, sys
 
-AUX = r'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_v2.aux'
+import sys as _sv
+_ver = _sv.argv[1] if len(_sv.argv) > 1 else 'v2'
+AUX = rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_{_ver}.aux'
 PY = r'D:\Projects\Project_Anode_Fit\Claude\results\V2_E_codeexample\graphite_ica_model.py'
 
 aux = io.open(AUX, encoding='utf-8', errors='replace').read()
