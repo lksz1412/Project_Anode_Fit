@@ -901,11 +901,29 @@ $k_j$ 는 식~\eqref{eq:eyring} 의 공급 속도이고, 근본식의 세 인자
 
 \subsection{일반해 — 지수 기억}
 식~\eqref{eq:Lq} 는 1계 선형 상미분방정식이므로 적분인자로 닫힌 일반해를 갖는다. $L_{q,j}$ 가 적분
-구간에서 천천히 변한다는 가정 아래(정량 조건은 아래 검산),
-\begin{equation*}
+구간에서 천천히 변한다는 가정 아래(정량 조건은 아래 검산) 적분인자 $e^{q/L_{q,j}}$ 를 잡으면, 곱의
+미분이 좌변을 완전 미분 하나로 묶어 준다:
+\begin{equation}
+\frac{\dd}{\dd q}\Big(r_j\,e^{q/L_{q,j}}\Big)
+=e^{q/L_{q,j}}\Big(\frac{\dd r_j}{\dd q}+\frac{r_j}{L_{q,j}}\Big)
+=e^{q/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q}.
+\label{eq:intfactor}
+\end{equation}
+첫 등식이 곱의 미분이고, 둘째 등식은 식~\eqref{eq:Lq} 를 $\dd r_j/\dd q+r_j/L_{q,j}
+=\dd\xi_{\eq,j}/\dd q$ 로 이항해 대입한 것이다. 양변을 $q_0$ 부터 $q$ 까지 적분하면 좌변은 완전
+미분이라 양 끝값의 차만 남고,
+\begin{equation}
+r_j(q)\,e^{q/L_{q,j}}-r_j(q_0)\,e^{q_0/L_{q,j}}
+=\int_{q_0}^{q}e^{q'/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q'}\,\dd q',
+\label{eq:intfacint}
+\end{equation}
+전체에 $e^{-q/L_{q,j}}$ 를 곱해 $r_j(q)$ 를 꺼내면 — 지수들이 $e^{-(q-q_0)/L}$, $e^{-(q-q')/L}$ 로
+합쳐져 — 닫힌 일반해가 나온다:
+\begin{equation}
 r_j(q)\;=\;r_j(q_0)\,e^{-(q-q_0)/L_{q,j}}
 \;+\;\int_{q_0}^{q}e^{-(q-q')/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q'}\,\dd q'.
-\end{equation*}
+\label{eq:memory}
+\end{equation}
 지연은 두 몫의 합이다 — 초기 지연의 지수 감쇠와, 과거의 목표 변화율을 지수 커널로 가중해 누적한
 \emph{기억}이다. 계는 용량축에서 길이 $L_{q,j}$ 만큼의 최근 과거만 기억한다(그림~\ref{fig:kernel}).
 수치 감을 들어 두면 — $0.1$C 에서 $k_j=10^{-3}\ \mathrm{s^{-1}}$ 이면
