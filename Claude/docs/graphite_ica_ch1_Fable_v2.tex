@@ -1057,18 +1057,37 @@ $L_{q,j}\propto1/k_j^{\eff}$ 로 읽는다($k_{j,\lim}$ 은 전위 무관으로 
 형식과, 입자가 하나가 아니라는 사실(장벽의 분포)이 온도와 결합해 꼬리를 \emph{늘어뜨리는} 방식이다.
 
 \subsection{Arrhenius 회귀 — 엔탈피만 기울기에 남기기}
-식~\eqref{eq:Lq} 에 식~\eqref{eq:keff} 를 넣고 로그를 취하면
-\begin{equation*}
-\ln L_{q,j}\;=\;\ln\frac{T_*}{T}\;+\;\frac{\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j}{RT},
-\qquad T_*\equiv\frac{|I|\,h}{Q_\cell\,k_B}
-\end{equation*}
-($T_*$ 는 로그를 무차원화하는 특성 온도). 우변에서 $1/T$ 의 계수가 되는 것은 $\Delta H_{a,j}$ 와 구동항
-$\chi\mathcal A_j$ 뿐이고, $-\Delta S_{a,j}/R$ 는 온도 무관 절편으로 빠진다. 따라서 측정한
-$\ln L_{q,j}$ 에서 로그 인자와 구동항을 이항한 양을 $1/T$ 로 회귀하면 기울기가 순수 엔탈피가
-된다(구동항의 평가점은 전 온도 공통 SOC — \S\ref{sec:master} S4):
+식~\eqref{eq:Lq} 에 식~\eqref{eq:keff} 를 넣자. $k_0=k_BT/h$(식~\eqref{eq:eyring})이므로
 \begin{equation}
-\boxed{\;y(T)\equiv\ln\frac{T_*}{L_{q,j}\,T}-\frac{\chi\,\mathcal A_j(T)}{RT}
-\quad\text{를 }\tfrac1T\text{ 로 회귀}\;\Rightarrow\;\text{기울기}=-\frac{\Delta H_{a,j}}{R}\;.}
+L_{q,j}=\frac{|I|}{Q_\cell\,k_j}
+\simeq\frac{|I|}{Q_\cell}\cdot\frac{h}{k_BT}\,
+\exp\!\Big[\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big]
+=\frac{T_*}{T}\,\exp\!\Big[\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big],
+\qquad T_*\equiv\frac{|I|\,h}{Q_\cell\,k_B}
+\label{eq:LqT}
+\end{equation}
+($T_*$ 는 로그를 무차원화하는 특성 온도 — 셋째 등식은 $|I|h/Q_\cell k_B$ 를 $T_*$ 로 묶은 것뿐이다).
+로그를 취하고 $\Delta G_{a,j}=\Delta H_{a,j}-T\Delta S_{a,j}$ 로 갈라 적으면
+\begin{equation}
+\ln L_{q,j}\;=\;\ln\frac{T_*}{T}\;+\;\frac{\Delta H_{a,j}-\chi\mathcal A_j}{RT}
+\;-\;\frac{\Delta S_{a,j}}{R}.
+\label{eq:lnLq}
+\end{equation}
+우변에서 $1/T$ 의 계수가 되는 것은 $\Delta H_{a,j}$ 와 구동항 $\chi\mathcal A_j$ 뿐이고,
+$-\Delta S_{a,j}/R$ 는 온도 무관 절편으로 빠진다. 그러니 측정량 쪽으로 이항을 두 번 하자 — 로그 인자
+$\ln(T_*/T)$ 를 좌변으로 옮겨 $\ln L_{q,j}-\ln(T_*/T)=\ln[L_{q,j}T/T_*]$ 로 묶고, 기지값이 된
+구동항 $\chi\mathcal A_j/RT$ 도 좌변으로 옮긴 뒤 전체 부호를 뒤집으면
+\begin{equation}
+y(T)\;\equiv\;\ln\frac{T_*}{L_{q,j}\,T}-\frac{\chi\,\mathcal A_j(T)}{RT}
+\;=\;-\frac{\Delta H_{a,j}}{R}\cdot\frac1T\;+\;\frac{\Delta S_{a,j}}{R}
+\label{eq:ydef}
+\end{equation}
+— 순수하게 $1/T$ 에 선형인 측정량이 나온다. 따라서(구동항의 평가점은 전 온도 공통 SOC —
+\S\ref{sec:master} S4):
+\begin{equation}
+\boxed{\;y(T)\text{ 를 }\tfrac1T\text{ 로 회귀}\;\Rightarrow\;
+\text{기울기}=-\frac{\Delta H_{a,j}}{R},\qquad
+\text{절편}=+\frac{\Delta S_{a,j}}{R}\ \text{(결합값)}\;.}
 \label{eq:arrhenius}
 \end{equation}
 구동항 보정에 쓰는 $\chi$ 는 전위 가지(\S\ref{sec:potbranch})에서 \emph{먼저} 닫아 기지값으로 넣는다 —
