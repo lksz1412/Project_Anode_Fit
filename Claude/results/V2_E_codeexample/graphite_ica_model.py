@@ -8,7 +8,7 @@ KB, H = 1.380649e-23, 6.62607015e-34         # Boltzmann, Planck
 
 
 def dU_hys(T, Omega):
-    """(1.63) spinodal 상한 gap [V].
+    """(1.70) spinodal 상한 gap [V].
     M1 의 명시 분기: Omega <= 2RT 면 0 (제곱근이 NaN 인 영역)."""
     if Omega <= 2.0 * R * T:
         return 0.0
@@ -17,7 +17,7 @@ def dU_hys(T, Omega):
 
 
 def U_branch(T, U, Omega, gamma, sigma_d, h_eta=1.0):
-    """(1.65) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
+    """(1.73) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
     return U + sigma_d * 0.5 * (h_eta * gamma) * dU_hys(T, Omega)
 
 
@@ -28,7 +28,7 @@ def xi_eq(Vn, Ud, w):
 
 
 def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
-    """M3 — (1.50) 그대로:
+    """M3 — (1.53) 그대로:
       ln L_q = ln(T*/T) + dHa_eff/RT + b - chi_d*A_d/RT,
       T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
@@ -52,13 +52,13 @@ def r_a_connect(Lq, dxi_dq_at_qa):
 
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
-    """(1.69) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    """(1.77) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
     반환은 방향 정렬된 ICA 크기다 — signed dQ/dV 데이터와 맞출 때는
     sigma_d*dQ/dV >= 0 이 되도록 부호를 정렬한다((2) 의 규약).
     단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
     는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
     방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
-    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.69) — Omega!=0
+    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.77) — Omega!=0
     전이는 chi_d 를 통해 dHa_eff 도 방향별이다. 충전 평가에는 충전
     데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
     T 의 closure((7) 의 T-회귀로 생성).
@@ -68,9 +68,9 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
       chi          전달 계수 (S3; 충전 가지는 1-chi 로 자동 적용)
       transitions  전이 dict 리스트:
         U, w, Q        평형 3량 (1.36)/(1.25) (S1)
-        dHa_eff, b     (1.52)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
+        dHa_eff, b     (1.55)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
                        유효값 — S5 후 dHa = dHa_eff + chi_d*Omega 복원)
-        Omega, gamma   (1.63)/(1.65) (S5; 비분기 전이는 0)
+        Omega, gamma   (1.70)/(1.73) (S5; 비분기 전이는 0)
         Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
                        해당 율의 측정 V(q), 예측 시 OCV 해에서 읽음)
         r_a            잔류 지연 (M4 분기 결과), h_eta (기본 1)
@@ -88,10 +88,12 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
                           tr['b'], chi_d, A_d))        # M3 (동결)
         LV = abs(tr['dVdq_qa']) * Lq                   # M4
         ra = tr['r_a']
-        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.69) 종
+        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.77) 종
         sup = (sigma_d * (Vn - tr['Va']) >= 0.0)       # indicator
+        dv = -sigma_d * (Vn - tr['Va']) / LV
         tail = (ra / LV) * np.exp(
-            -sigma_d * (Vn - tr['Va']) / LV) * sup     # (1.69) 꼬리
+            np.where(sup, dv, -np.inf))                # (1.77) 꼬리
+        # 비지지 쪽은 exp(-inf)=0 — 지수 양수 폭주(inf*0=NaN) 차단
         y = y + tr['Q'] * (bell + tail)
     return y                                           # M6: V_app 축
 
@@ -100,7 +102,7 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
 def s1_residual(theta, V, y_meas, Np):
     """S1 잔차: 저율 OCV 의 다-peak 동시 회귀.
     theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
-    저율(r_a -> 0)이라 (1.58) 의 종 항만 남는다. 배경을 상수 하나로
+    저율(r_a -> 0)이라 (1.61) 의 종 항만 남는다. 배경을 상수 하나로
     둔 것은 예시 단순화 — 실데이터는 (3) 의 anchor spline 을 쓴다."""
     model = np.full_like(V, theta[-1])
     for j in range(Np):
@@ -109,8 +111,8 @@ def s1_residual(theta, V, y_meas, Np):
         model = model + Q * xe * (1.0 - xe) / w
     return y_meas - model
 
-# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.48)
+# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.51)
 #     (방전 s=+1, S0-pass 활성화 지배 극한 — 직렬 감쇠 인자 1)
 # S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
-#     기울기 = -dHa_eff/R, b = -절편                  ... (1.51)·(1.52)
-# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.67)
+#     기울기 = -dHa_eff/R, b = -절편                  ... (1.54)·(1.55)
+# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.75)
