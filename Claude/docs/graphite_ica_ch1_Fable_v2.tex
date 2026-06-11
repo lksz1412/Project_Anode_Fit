@@ -472,9 +472,12 @@ r_j^-=k_0\,e^{-(\Delta G_{a,j}+(1-\chi)\mathcal A_j)/RT}.
 \end{equation}
 두 계수 $\chi$ 와 $1-\chi$ 의 합이 정확히 $1$ 인 것은 선택이 아니라 강제다 — 정$\cdot$역에 독립
 계수 $\chi,\chi'$ 를 허용해 보면 비가 $e^{(\chi+\chi')\mathcal A_j/RT}$ 가 되는데, 이 비가
-열역학이 정하는 Boltzmann 비와 모든 구동력에서 같으려면 $\chi+\chi'=1$ 일 수밖에 없다. 두 식의 비를 취하면
+열역학이 정하는 Boltzmann 비와 모든 구동력에서 같으려면 $\chi+\chi'=1$ 일 수밖에 없다. 두 식의 비를 취하면 — $k_0$ 와 $e^{-\Delta G_{a,j}/RT}$ 가 약분되고 지수만 남아 —
 \begin{equation}
-\frac{r_j^+}{r_j^-}=\exp\!\Big[\frac{\mathcal A_j}{RT}\Big]
+\frac{r_j^+}{r_j^-}
+=\frac{e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}}{e^{-(\Delta G_{a,j}+(1-\chi)\mathcal A_j)/RT}}
+=\exp\!\Big[\frac{\chi\mathcal A_j+(1-\chi)\mathcal A_j}{RT}\Big]
+=\exp\!\Big[\frac{\mathcal A_j}{RT}\Big]
 \label{eq:db}
 \end{equation}
 로 $\chi$ 가 상쇄되는데, 이 비는 두 골짜기의 자유에너지 차가 정하는 Boltzmann 점유비와 같아야 한다 —
@@ -494,21 +497,35 @@ k_j\equiv r_j^++r_j^-,\quad \xi_{\sstat,j}\equiv\frac{r_j^+}{r_j^++r_j^-}.
 \label{eq:relax}
 \end{equation}
 둘째 등호는 근사가 아니라 대수적 재배열이다 — 알짜 변화율은 언제나 ``현재가 정지점 $\xi_{\sstat}$ 에서
-벗어난 만큼 $\times$ 완화 속도 $k$'' 꼴로 쓸 수 있다. 완화 속도의 보편형을 미리 적어 두면, 식~\eqref{eq:db}
-로
-\begin{equation*}
-k_j\;=\;r_j^+\big(1+e^{-\mathcal A_j/RT}\big)
+벗어난 만큼 $\times$ 완화 속도 $k$'' 꼴로 쓸 수 있다. 완화 속도의 보편형을 미리 적어 두면, 식~\eqref{eq:db} 로 $r_j^-=r_j^+e^{-\mathcal A_j/RT}$
+이므로
+\begin{equation}
+k_j\;=\;r_j^++r_j^-\;=\;r_j^+\big(1+e^{-\mathcal A_j/RT}\big)
 \;=\;k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT}\big(1+e^{-\mathcal A_j/RT}\big)
-\end{equation*}
+\label{eq:kuniv}
+\end{equation}
 이며, 괄호 인자가 역방향 몫의 전부다 — 구동력이 수 $RT$ 를 넘으면 이 인자가 $1$ 로 죽는다는 사실을
 \S\ref{sec:potbranch} 가 쓴다.
 
-이제 정지점을 보자. $\dd\xi_j/\dd t=0$ 에서
-\begin{equation*}
+이제 정지점을 보자. $\dd\xi_j/\dd t=0$ 은 식~\eqref{eq:relax} 에서
+$r_j^+(1-\xi_j)=r_j^-\xi_j$ 이므로
+\begin{equation}
 \frac{\xi_{\sstat,j}}{1-\xi_{\sstat,j}}=\frac{r_j^+}{r_j^-}=e^{\mathcal A_j/RT}
-\end{equation*}
-이고, 기본형 $V_\drive=V_n$($V_n$ 은 계가 실제로 느끼는 내부 전위 — \S\ref{sec:charge} 에서
-정의된다)에서 $\mathcal A_j=sF(V_n-U_j)$ 를 넣어 $\xi$ 에 대해 풀면
+\label{eq:stationary}
+\end{equation}
+이다. 기본형 $V_\drive=V_n$($V_n$ 은 계가 실제로 느끼는 내부 전위 — \S\ref{sec:charge} 에서
+정의된다)에서 $\mathcal A_j=sF(V_n-U_j)$ 를 넣고 $\xi_{\sstat,j}$ 에 대해 풀면
+\begin{equation}
+\xi_{\sstat,j}
+=\frac{e^{sF(V_n-U_j)/RT}}{1+e^{sF(V_n-U_j)/RT}}
+=\frac{1}{1+e^{-sF(V_n-U_j)/RT}}
+\label{eq:logisticsolve}
+\end{equation}
+— 둘째 등식은 분모$\cdot$분자를 $e^{sF(V_n-U_j)/RT}$ 로 나눈 것이다. 여기서 표기를 하나 정리한다.
+이 정지점은 detailed balance~\eqref{eq:db} 가 열역학과 묶어 둔 점이라 곧 열역학 평형 그 자체이고
+— 실제로 식~\eqref{eq:eqcond} 을 점유율로 풀어도 같은 식이 나온다(아래 검산) — 그래서 여기서부터는
+정지점 표기 $\xi_{\sstat}$ 대신 평형값 표기 $\xi_{\eq}$ 를 쓴다. 폭 척도를 $w_j\equiv RT/F$ 로
+묶어 결과를 박스로 두면
 \begin{equation}
 \boxed{\;\xi_{\eq,j}(V_n,T)=\frac{1}{1+\exp\!\big[-s(V_n-U_j)/w_j\big]}\;,\qquad
 w_j=\frac{RT}{F}\ \text{(이상 극한)}\;.}
