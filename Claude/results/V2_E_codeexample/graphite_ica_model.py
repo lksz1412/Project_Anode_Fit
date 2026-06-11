@@ -110,6 +110,7 @@ def s1_residual(theta, V, y_meas, Np):
     return y_meas - model
 
 # S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.48)
+#     (방전 s=+1, S0-pass 활성화 지배 극한 — 직렬 감쇠 인자 1)
 # S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
 #     기울기 = -dHa_eff/R, b = -절편                  ... (1.51)·(1.52)
 # S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.67)
