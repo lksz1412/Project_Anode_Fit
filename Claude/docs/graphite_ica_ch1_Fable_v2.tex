@@ -1407,7 +1407,7 @@ $L_{q,j}=\big(|I|h/(Q_\cell k_BT)\big)\,e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\
 $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$, $\mathcal A_j=sF(V_n-U_j)$ — 가 전부 근본식
 ~\eqref{eq:eyring} 의 가지들이다. 꼬리 구동력에서 상호작용 몫(일반형의 $-\Omega_j(1-2\xi_j)$ — \S\ref{sec:regsol})은 떼었다 —
 깊은 꼬리($\xi_j\to1$)에서 $+\Omega_j$ 상수가 되어 $\Delta H_{a,j}$ 에 $-\chi\Omega_j$ 로
-흡수되며, $\Omega_j\ne0$ 인 모든 전이에서 S4(아래 (6) 의 식별 단계) 산출 $\Delta H_{a,j}$ 는
+흡수되며, $\Omega_j\ne0$ 인 모든 전이에서 S4(아래 (6) 의 식별 단계) 산출 $\Delta H_{a,j}^{\eff}$ 는
 그만큼 재정의된 \emph{유효값}이다. 복원 경로는 둘 — 히스 전이는 S5 가 $\Omega_j$ 를 닫은 뒤
 $\Delta H_{a,j}=\Delta H_{a,j}^{\eff}+\chi_d\Omega_j$($\chi_d$: 방전 $\chi$, 충전 $1-\chi$ —
 방향별로 피팅했으면 복원도 방향별), 분기 없는($0<\Omega_j\le2RT$) 전이는
@@ -1749,7 +1749,7 @@ def xi_eq(Vn, Ud, w):
 
 def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
     """M3 — (1.27) 의 역:
-      ln L_q = ln(T*/T) + dHa/RT + b - chi_d*A_d/RT,
+      ln L_q = ln(T*/T) + dHa_eff/RT + b - chi_d*A_d/RT,
       T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
     A_d = sigma_d*F*(Va - U^d) >= 0 — 자기 방향으로 양수인 구동력.
@@ -1843,7 +1843,7 @@ def s1_residual(theta, V, y_meas, Np):
 
 # S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.26)
 # S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
-#     기울기 = -dHa/R, b = -절편                              ... (1.27)
+#     기울기 = -dHa_eff/R, b = -절편                          ... (1.27)
 # S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.36)
 \end{verbatim}
 \end{footnotesize}

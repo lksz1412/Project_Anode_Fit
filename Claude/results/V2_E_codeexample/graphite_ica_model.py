@@ -29,7 +29,7 @@ def xi_eq(Vn, Ud, w):
 
 def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
     """M3 — (1.27) 의 역:
-      ln L_q = ln(T*/T) + dHa/RT + b - chi_d*A_d/RT,
+      ln L_q = ln(T*/T) + dHa_eff/RT + b - chi_d*A_d/RT,
       T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
     A_d = sigma_d*F*(Va - U^d) >= 0 — 자기 방향으로 양수인 구동력.
@@ -111,5 +111,5 @@ def s1_residual(theta, V, y_meas, Np):
 
 # S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.26)
 # S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
-#     기울기 = -dHa/R, b = -절편                              ... (1.27)
+#     기울기 = -dHa_eff/R, b = -절편                          ... (1.27)
 # S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.36)
