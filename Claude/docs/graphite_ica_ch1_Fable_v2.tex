@@ -778,13 +778,21 @@ V_\app=V_n+s_I|I|R_n.
 $V_n$ 은 $\xi_j$ 를 입력으로 받는 보존식의 해다. 고리를 모순 없이 닫는 길은 미분 경로의 구분이다. 한
 순간($q$ 고정)에는 동역학이 정해 둔 $\{\xi_j(q)\}$ 를 고정하고 보존식을 $V_n$ 에 대해 푼다. 그러나
 관측되는 $\dd Q/\dd V$ 는 한 순간이 아니라 \emph{궤적}을 따라 보는 양이므로, $\xi_j$ 와 $V_n$ 이 모두
-$q$ 의 함수임을 살린 연쇄율
+$q$ 의 함수임을 살려야 한다. 보존식~\eqref{eq:charge} 의 양변을 궤적 좌표 $q$ 로 미분하면 — 좌변은
+$Q_\cell$ 이 나오고, 우변은 $V_n(q)$ 와 $\xi_j(q)$ 각각의 연쇄율로 갈라져 —
+\begin{equation}
+Q_\cell\;=\;C_\bg\,\frac{\dd V_n}{\dd q}\;+\;\sum_jQ_j\,\frac{\dd\xi_j}{\dd q}
+\label{eq:chargederiv}
+\end{equation}
+이다. 누적 전하가 $Q=Q_\cell\,q$ 라 $\dd Q/\dd q=Q_\cell$ 이므로, 식~\eqref{eq:chargederiv} 의
+양변을 $\dd V_n/\dd q$ 로 나누면
 \begin{equation}
 \frac{\dd Q}{\dd V_n}\;=\;\frac{\dd Q/\dd q}{\dd V_n/\dd q}
 \;=\;C_\bg+\sum_jQ_j\,\frac{\dd\xi_j}{\dd V_n}
 \label{eq:dQdV}
 \end{equation}
-로 닫는다(둘째 등호는 보존식~\eqref{eq:charge} 의 양변을 궤적을 따라 미분한 것). $\xi_j$ 를 $V_n$ 의
+로 닫힌다 — 마지막 항의 $(\dd\xi_j/\dd q)/(\dd V_n/\dd q)=\dd\xi_j/\dd V_n$ 이 궤적을 따라
+정의되는 연쇄율 그 자체다. $\xi_j$ 를 $V_n$ 의
 직접 함수로 보고 $\dd\xi_j/\dd V_n$ 을 그대로 쓸 수 있는 것은 평형 추종이 성립하는 영역에 한하며, 전류가
 흘러 추종이 깨지는 영역의 처리는 \S\ref{sec:lag} 가 맡는다. 분모 $\dd V_n/\dd q\to0$ 인 이상적
 plateau 에서 이 연쇄율이 발산하는 것은 결함이 아니라 서론의 ``전위 평탄 구간 $=$ peak'' 그 자체다 — 무한히
