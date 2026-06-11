@@ -1393,7 +1393,18 @@ $\Delta H_a$ 를, 이 순서로 한 겹씩 벗긴다. 각 단계에 미지수가
 서로 닿을 만큼 좁은 때 — 와, \emph{동역학 꼬리가 다음 전이까지 닿는 경우}
 $L_{V,j}\gtrsim|U_{j+1}-U_j|$ 다. 둘째가 저온$\cdot$
 고율 겹침의 주범이다. $L_{V,j}\propto|I|\,e^{\Delta H_a/RT}$ 이므로 저온일수록 더 낮은 전류에서 융합이
-시작된다(그림~\ref{fig:fusion}).
+시작된다(그림~\ref{fig:fusion}). 정량판도 한 줄이다 — $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$ 에
+식~\eqref{eq:LqT} 의 $L_{q,j}$ 를 넣고, 융합 문턱 $L_{V,j}=|U_{j+1}-U_j|$ 와 같다고 두어 $|I|$ 에
+대해 풀면 융합 시작 전류가 닫힌 꼴로 나온다:
+\begin{equation}
+|I|_{\text{fuse},j}(T)\;=\;\frac{Q_\cell\,k_BT}{h}\cdot
+\frac{|U_{j+1}-U_j|}{|\dd V_n/\dd q|_{q_a}}\,
+\exp\!\Big[-\frac{\Delta G_{a,j}-\chi\mathcal A_j}{RT}\Big].
+\label{eq:Ifuse}
+\end{equation}
+앞 인자들은 온도에 완만하지만 지수 인자는 가파르다 — 장벽이 $40$ kJ/mol 규모면 $25\to-15^\circ$C
+에서 $|I|_{\text{fuse}}$ 가 한 자릿수 이상 내려간다(\S\ref{sec:rate} (a) 의 같은 수치). 측정
+설계에서 이 식은 ``어느 율까지 분리 peak 를 기대할 수 있나''의 사전 어림으로 쓰인다.
 
 \begin{figure}[t]
 \centering
