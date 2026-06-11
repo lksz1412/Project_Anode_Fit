@@ -422,7 +422,8 @@ $sFU^0$ 로 쓰면
 \mu_{\mathrm{Li}}(\theta_{\eq})=\mu^0-sF\,(V-U)
 \label{eq:eqcond}
 \end{equation}
-형태가 된다($U$ 는 $U^0$ 에 $\mu^0$ 까지 흡수해 재정의한 전이 중심 전위 — 이렇게 정의된 $U_j$ 는
+형태가 된다($U$ 는 $U^0$ 에 $\mu^0$ 까지 흡수해 재정의한 전이 중심 전위, 명시로는
+$U\equiv U^0-\mu^0/(sF)$ — 이렇게 정의된 $U_j$ 는
 삽입 반응의 비배치 몫 자유에너지를 전위로 환산한 값 $\Delta G_j=-sFU_j$ 라는 지위를 가지며,
 \S\ref{sec:eqpeak} 의 온도 의존이 이 지위를 쓴다). 부호를 물리로 읽으면 — 전극 전위 $V$ 가
 오르면(전자 값어치 하락) 평형 점유율은 내려가야 하므로 우변이 $V$ 에 감소해야 하고, 그것이 식의 음부호다.
@@ -535,7 +536,8 @@ w_j=\frac{RT}{F}\ \text{(이상 극한)}\;.}
 Eyring 속도와 detailed balance 만으로 logistic 이 닫혔고, \S\ref{sec:thermo} 의 평형 조건
 ~\eqref{eq:eqcond} 을 점유율로 풀어도 정확히 같은 식이 나온다(두 경로의 일치가 구성의 자기 검증이다).
 폭 척도 $w_j=RT/F$ 는 $25^\circ$C 에서 $25.7$ mV — 평형 전이가 전위축에서 차지하는 기본 너비다. 이
-logistic 은 매끄러운 곡선이지 계단이 아니며, 본 문건은 어떤 step 함수도 쓰지 않는다.
+logistic 은 매끄러운 곡선이지 계단이 아니며, 본 문건의 평형 등온선에는 어떤 step 함수도 들어가지
+않는다(뒤에서 꼬리 점화에 쓰는 지시함수는 평형이 아니라 동역학 접속 장치다).
 
 \begin{verifybox}
 \textbf{극한$\cdot$수치.} $V_n\gg U_j$ 면 $\xi_{\eq}\to1$(탈리튬화 완료), $V_n\ll U_j$ 면 $0$,
@@ -691,8 +693,8 @@ g_j''(\xi)=\frac{RT}{\xi(1-\xi)}-2\Omega_j
 \label{eq:gpp}
 \end{equation}
 이고(로그 몫의 1계 미분 $\ln[\xi/(1-\xi)]$ 을 한 번 더 미분하면 $1/[\xi(1-\xi)]$;
-$\xi(1-\xi)$ 의 2계 미분은 $-2$), $g_j''=0$ 은 $\xi(1-\xi)=RT/2\Omega_j$ — 곧 이차방정식
-$\xi^2-\xi+RT/2\Omega_j=0$ — 이다. 근의 공식으로 풀면
+$\xi(1-\xi)$ 의 2계 미분은 $-2$), $g_j''=0$ 은 $\xi(1-\xi)=RT/(2\Omega_j)$ — 곧 이차방정식
+$\xi^2-\xi+RT/(2\Omega_j)=0$ — 이다. 근의 공식으로 풀면
 \begin{equation}
 \xi_{s,j}^\pm=\tfrac12\pm\tfrac12\,u_j,\qquad u_j\equiv\sqrt{1-\frac{2RT}{\Omega_j}}
 \qquad(\Omega_j>2RT),
@@ -732,7 +734,8 @@ $\Omega_j\le2RT$ 면 전 구간 $g''>0$ 이라 갈라짐 자체가 없다 ✓.
 
 \subsection{전하 보존 — $V_n$ 은 풀려서 나오는 값이다}
 외부 회로로 흘린 방전 전하는 음극의 상태 변화로 정확히 계상된다. 근거는 Faraday 법칙이다 — 전자 하나가
-나갈 때마다 Li$^+$ 하나가 빠져나가므로, 흘린 전하와 $F\times$(빠진 Li 몰수)는 항등으로 같다. 빠진 Li 는
+나갈 때마다 Li$^+$ 하나가 빠져나가므로, 흘린 전하의 패러데이 몫은 $F\times$(빠진 Li 몰수)와 항등으로
+같다. 빠진 Li 는
 서로소인 두 종류의 자리에서 나오므로 합이 교차항 없이 갈라진다. 첫째는 staging 전이로 분리되는 몫
 $\sum_jQ_j\xi_j$ 이고, 둘째는 그렇게 분리되지 않는 배경 몫 $Q_\bg(V_n,T)$ — 희박 고용체의 연속 삽입,
 표면$\cdot$결함 자리, 전기이중층(이중층만은 Li 삽입이 아닌 비패러데이 전하지만 같은 단조 배경으로
@@ -899,7 +902,8 @@ $\dd q/\dd t$ 로 나누면(기본형에서 $\xi_{\sstat}=\xi_{\eq}$ 이므로) 
 =\frac{Q_\cell\,k_j}{|I|}\,\big(\xi_{\eq,j}-\xi_j\big).
 \label{eq:relaxq}
 \end{equation}
-이제 지연 $r_j\equiv\xi_{\eq,j}-\xi_j$ 의 변화율로 다시 적자.
+이제 지연 $r_j\equiv\xi_{\eq,j}-\xi_j$(위첨자 없는 $r_j$ — 속도 $r_j^\pm$ 와 다른 양이다)의
+변화율로 다시 적자.
 $\dd r_j/\dd q=\dd\xi_{\eq,j}/\dd q-\dd\xi_j/\dd q$ — 목표의 변화율에서 실제 진행의 변화율을
 뺀 것 — 에 식~\eqref{eq:relaxq} 를 넣으면, 영역 제한 없이 성립하는 보편 방정식이 나온다:
 \begin{equation}
