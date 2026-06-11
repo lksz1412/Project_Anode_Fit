@@ -1452,8 +1452,17 @@ $\Delta U_j^\hys(\Omega_j,T)$(식~\eqref{eq:hysdU})에 축소 인자 $\gamma_j$ 
 꼬리의 예측이다.
 
 \subsection{절편과 기울기 — 두 기원의 분해}
-측정 전위로 옮기면 분극이 방향에 따라 반대로 더해진다
-($V_{\peak}^{\dis/\chg}=U_j^{\dis/\chg}\pm|I|R_n$). 따라서 관측 gap 은
+측정 전위로 옮기면 분극이 방향에 따라 반대로 더해진다 — 측정식~\eqref{eq:vapp} 의 분극 항이 전류
+방향을 따르므로(방전 $+$, 충전 $-$; \S\ref{sec:master} 의 방향 부호로는 $\sigma_d|I|R_n$) 두 방향의
+peak 위치는
+\begin{equation}
+V_{\peak,j}^{\dis}=U_j^{\dis}+|I|R_n,\qquad
+V_{\peak,j}^{\chg}=U_j^{\chg}-|I|R_n
+\label{eq:hyspeakpos}
+\end{equation}
+이다. 위에서 아래를 빼면 분극은 $2|I|R_n$ 으로 \emph{더해지고}, 중심의 차는 분기 중심
+~\eqref{eq:hyscenter} 의 $\pm\tfrac12$ 대칭에서 $U_j^{\dis}-U_j^{\chg}=\gamma_j\Delta U_j^\hys$
+다. 따라서 관측 gap 은
 \begin{equation}
 \boxed{\;\Delta V_{\obs,j}(|I|)\;=\;
 \underbrace{\gamma_j\,\Delta U_j^\hys}_{\text{열역학}(|I|\to0\ \text{잔존})}
