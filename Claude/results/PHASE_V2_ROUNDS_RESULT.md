@@ -252,3 +252,29 @@ Read coverage: 본 pass 에서 master 직접 정독 = 전 절(절별 루프 + T.
 
 Read coverage: master 직접 = 보강 4절 전문+수정부 재정독+최다 수정 3블록 최종 확인. 에이전트 = Codex 전문 2회·Fable fresh 전문 1회·독자 시뮬 1회·시각 43p 1회(각자 연속 청크 보고).
 미해결/리스크: 없음. ch3/ch4 재매핑은 기존 결정대로 별도 phase.
+
+# V3 — 수식 자기완결 pass (사용자 6차 피드백: "해설 안 봐도 수식만 따라가도 이해되게 — v3 로")
+
+계획: `Claude/plans/2026-06-12-ch1-v3-equation-selfcontained-plan.md`. v2 동결 보존, `graphite_ica_ch1_Fable_v3.tex` 분기.
+산출: 44p, 신규 display 12개(boltz·smixmol·meanfield·constbundle·emu·chisum·affgen·lever·gprime·unique·dUdT 사슬형 개편 포함), 수식-only 추적 13/13 절 PASS.
+
+## V3.0–V3.6, V3.14 (steps 233–240) — 셋업+절별 변환+코드 이전
+- V3.0: v2→v3 사본·버전 표기·build/comment 게이트 버전 인자화.
+- V3.1 §1.2: eq:boltz(입자당→몰 한 사슬) + "k₀×확률" 곱 다리 — eyring 이 (1.2)가 됨. V3.2 §1.3: eq:smixmol(몰 환산)·eq:meanfield(cθ² 분해, Ω≡−c 부호 수식화)·eq:constbundle(상수 묶음 underbrace → U 재정의 2단 사슬). V3.3 §1.4: eq:chisum(χ+χ′=1 강제 — 요구 등호 표기). V3.4 §1.5: eq:affgen(일반 구동력)·eq:lever(지렛대)·eq:gprime(plateau 동일성). V3.5 §1.6: eq:unique(유일성 미분). V3.6 §1.7: eq:dUdT 3부 사슬화.
+- §1.8–§1.14 는 V.T·V.U 에서 이미 사슬화 — 추적 시험으로 검증(아래).
+- V3.14: 코드 주석 20곳 v3 번호 재매핑 + 헤더 v3 + verbatim 재동기·diff·실행 PASS.
+
+## V3.R1–R3 (steps 241–242) — 수식-only 추적 1차 + Codex 대수 → 끊김 12곳 수선
+- R1(추적): 11/13 PASS, FAIL §1.3(prose-only 정의: μ̃·μ⁰·펼침 규칙)·§1.11((1−r_a) 다리). R2(Codex): 신규 10 display 전부 CONFIRMED.
+- R3: smix 다리 출처화·μ⁰ 기호표 등재·gbar 다리 식번호·★eq:emu 신설(전기화학 퍼텐셜 display)·eqbalance/eqexpand 다리에 펼침 규칙 인라인·gxi 1차 항 제거 선언·eqpeak/LqV/superpose/hyspeakpos 다리 인용·simplefit (1−r_a) 뭉침 다리+후행 중복 제거. emu 삽입 +1 이동을 comment_gate 가 즉시 적발 → 주석 20곳 갱신·재동기·diff·실행 PASS.
+
+## V3.R4–R6 (steps 243–244) — 재추적 + 44p 시각 + 최약 고리 보강
+- R4: ★13/13 절 PASS(직전 FAIL 해소·새 끊김 0·코드 주석 번호 추적 중 전수 일치 확인). R5: 44p 시각 결함 0.
+- R6: simplefit 뭉침의 지위 명시(형상 근사·면적 areacons 봉인)·dUdT 전제 출처(eqcond+gibbsdef)·gxi 전기 일 몫 출처·gxi 직후 중복 압축.
+
+## V3.R7–R10 (steps 245–246) — Codex 최종 + 마감
+- R7(Codex, worker 3원): v3 추적 CONFIRMED(R6 패치 포함)·수치 전부 일치·σ_d 부호 논리 ✓·★v2→v3 정규화 전문 diff = "유도 전개·참조 삽입·주석 번호 갱신뿐 — 물리 드리프트 0". 오케스트레이터 합본은 로그 종단 truncation — worker 증거는 로그 보존(정직 기록). R8: 제안 1건(gxi 다리 eq:emu 직접 인용) 반영.
+- R9: R6 패치 3곳 문맥 확인 + 전 라운드 누적 정독. R10 종합 게이트: build v3 0/0/0 44p ✓ · comment v3 20/20 ✓ · verbatim diff ✓ · run_example PASS(수치 불변) ✓ · 수식-only 추적 13/13 ✓ · 44p 시각 ✓ · v2 동결 무수정 ✓ · 전 커밋 푸쉬 ✓.
+
+Read coverage: master 직접 = 변환 절 전문+패치 문맥, 에이전트 = 추적 2회(전문)·Codex 2회(전문)·시각 44p.
+미해결/리스크: py 는 이제 v3 기준(v2 의 verbatim 은 동결 시점 정합 — v2 게이트는 아카이브). ch3/ch4 재매핑 별도 phase 유지.
