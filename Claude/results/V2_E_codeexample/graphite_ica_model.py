@@ -102,6 +102,8 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
 def s1_residual(theta, V, y_meas, Np):
     """S1 잔차: 저율 OCV 의 다-peak 동시 회귀.
     theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
+    히스 전이 포함 시 충/방 저율 공동 회귀로 확장한다 — U^dis/U^chg
+    분리, w·Q 방향 공유 강제(본문 S1 보충 규정). 본 골격은 단방향.
     저율(r_a -> 0)이라 (1.71) 의 종 항만 남는다. 배경을 상수 하나로
     둔 것은 예시 단순화 — 실데이터는 (3) 의 anchor spline 을 쓴다."""
     model = np.full_like(V, theta[-1])
