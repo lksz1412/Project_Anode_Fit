@@ -34,7 +34,7 @@ def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
 
 
 def r_a_connect(Lq, dxi_dq_at_qa):
-    """M4 접속 분기(L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a}."""
+    """M4 접속 분기(L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a} — par['r_a'] 생성용."""
     return Lq * dxi_dq_at_qa
 
 
@@ -60,7 +60,8 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
 
 # ---- 단계 회귀의 골격 — 해설·규약은 본문, 목적함수는 (5) 의 가중 LSQ
 def s1_residual(theta, V, y_meas, Np):
-    """S1 잔차 — theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0]; (1.79) 종 항만."""
+    """S1 잔차 — theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0]; (1.79) 종 항만.
+    Cbg0 은 상수 근사 — 실데이터는 (3) 의 anchor spline."""
     model = np.full_like(V, theta[-1])
     for j in range(Np):
         U, w, Q = theta[3 * j:3 * j + 3]
