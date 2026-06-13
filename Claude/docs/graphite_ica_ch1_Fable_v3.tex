@@ -571,14 +571,15 @@ RT\,\frac{\partial}{\partial\theta}\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\
 \draw[thick] plot[smooth] coordinates {(0.03,-1.8076) (0.06,-1.4308) (0.1,-1.1426) (0.15,-0.902) (0.2,-0.7209) (0.3,-0.4406) (0.4,-0.2108) (0.5,0) (0.6,0.2108) (0.7,0.4406) (0.8,0.7209) (0.85,0.902) (0.9,1.1426) (0.94,1.4308) (0.97,1.8076)};
 \draw[thick,densely dashed] plot[smooth] coordinates {(0.03,-1.0744) (0.06,-0.7444) (0.1,-0.5186) (0.15,-0.356) (0.2,-0.2529) (0.3,-0.1286) (0.4,-0.0548) (0.5,0) (0.6,0.0548) (0.7,0.1286) (0.8,0.2529) (0.85,0.356) (0.9,0.5186) (0.94,0.7444) (0.97,1.0744)};
 \draw[thick,densely dotted] plot[smooth] coordinates {(0.03,-0.3412) (0.06,-0.058) (0.1,0.1054) (0.15,0.19) (0.2,0.2151) (0.3,0.1834) (0.4,0.1012) (0.5,0) (0.6,-0.1012) (0.7,-0.1834) (0.8,-0.2151) (0.85,-0.19) (0.9,-0.1054) (0.94,0.058) (0.97,0.3412)};
-\node[right] at (0.86,1.352) {\scriptsize $\Omega=0$(로그 항)};
-\node[right] at (0.9,0.546) {\scriptsize $\Omega=1.5RT$};
+\node[right] at (0.98,1.56) {\scriptsize $\Omega=0$(로그 항)};
+\node[right] at (0.98,1.07) {\scriptsize $\Omega=1.5RT$};
 \node[right] at (0.66,-0.39) {\scriptsize $\Omega=3RT$(비단조)};
-\node[left,gray] at (0.2,1.144) {\scriptsize $\Omega(1-2\theta)$ 몫($\Omega=3RT$)};
+\node[right,gray] at (0.03,1.75) {\scriptsize $\Omega(1-2\theta)$ 몫($\Omega=3RT$)};
 \end{tikzpicture}
 \caption{화학퍼텐셜~\eqref{eq:mu} 의 해부(실계산). 실선은 $\Omega=0$ 의 로그(섞임 엔트로피) 몫 —
 채울수록 값어치가 단조로 오른다. 회색 가는 선은 상호작용 몫 $\Omega(1-2\theta)$($\Omega=3RT$) —
-반대 기울기의 직선이다. 둘을 더하면: $\Omega=1.5RT$(파선)는 가운데가 평평해진 단조 곡선,
+반대 기울기의 직선이다. 로그 몫에 각자의 $\Omega(1-2\theta)$ 를 더하면: $\Omega=1.5RT$(파선)는
+가운데가 평평해진 단조 곡선,
 $\Omega=3RT>2RT$(점선)는 \emph{비단조} — 한 값어치에 세 조성이 대응하며, 이것이 상분리의 씨앗이다
 (\S\ref{sec:regsol}).}
 \label{fig:mudecomp}
@@ -752,8 +753,8 @@ $r_j^+(1-\xi_j)=r_j^-\xi_j$ 이므로 — 마지막 등호의 비는 식~\eqref{
 \draw[densely dotted,gray] (0.5,0) -- (0.5,0.75);
 \fill[gray] (0.5,0.75) circle (0.8pt);
 \node[right] at (0.06,1.95) {\scriptsize 정방향 $r^+(1-\xi)$($\mathcal A>0$: $r^+=2r^-$)};
-\node[right] at (0.55,1.25) {\scriptsize 역방향 $r^-\xi$};
-\node[left,gray] at (0.42,1.42) {\scriptsize $\mathcal A=0$ 쌍};
+\node[right] at (0.73,0.85) {\scriptsize 역방향 $r^-\xi$};
+\node[gray] at (0.85,1.78) {\scriptsize 회색: $\mathcal A=0$ 쌍};
 \end{tikzpicture}
 \caption{정지점의 시각화(실계산). 정방향 플럭스 $r^+(1-\xi)$ 는 차 있는 자리가 줄며 감소하는 직선,
 역방향 $r^-\xi$ 는 빈 자리가 늘며 증가하는 직선 — 교점이 정지점~\eqref{eq:stationary} 이다.
@@ -920,7 +921,7 @@ g_j'(\xi_b^-)\;=\;g_j'(\xi_b^+)
 \label{eq:cotangent}
 \end{equation}
 이 두 접점 $\xi_b^\pm$ 가 갈라짐의 끝 조성 — \textbf{binodal(공존 조성)} — 이다. 본 모형은
-$g_j$ 가 $\xi=\tfrac12$ 대칭이라 공통 접선이 수평($g_j'=0$)이고, 식~\eqref{eq:gprime} 로
+$g_j$ 가 $\xi=\tfrac12$ 대칭이라 공통 접선이 수평($g_j'=0$)이고, 아래 식~\eqref{eq:gprime} 로
 \begin{equation}
 RT\ln\frac{\xi_b}{1-\xi_b}+\Omega_j\,(1-2\xi_b)\;=\;0
 \qquad(\text{자명근 }\xi=\tfrac12\text{(언덕 꼭대기) 를 제외한 두 근 }\xi_b,\ 1-\xi_b)
@@ -997,7 +998,7 @@ $\Omega_j/2RT$ 가 전 영역을 가른다:
 \begin{equation}
 \frac{\Omega_j}{2RT}\;\begin{cases}
 =0 & \text{이상 logistic}~\eqref{eq:logistic},\ w=RT/F\\[2pt]
-\in(0,1) & \text{좁힘}~\eqref{eq:weff},\ w^{\eff}<RT/F\\[2pt]
+\in(0,1] & \text{좁힘}~\eqref{eq:weff},\ w^{\eff}<RT/F\ \ (=1\text{: 임계, }w^{\eff}=0)\\[2pt]
 >1 & \text{상분리}~\eqref{eq:spinodal},\ \text{plateau}+\text{히스테리시스}
 \end{cases}
 \label{eq:omegaaxis}
@@ -1145,7 +1146,7 @@ Q_\bg(V_n)=Q_\cell\,q-\sum_jQ_j\xi_j
 \fill (-0.8954,1.216) circle (1pt);
 \draw[densely dotted] (-0.8954,1.216) -- (-0.8954,0);
 \node[below] at (-0.8954,-0.18) {\scriptsize $V_n^{\,*}$};
-\node[right] at (0.8,3.306) {\scriptsize 우변: $0.471+Q_\bg(V_n)$ — $C_\bg>0$ 라 단조};
+\node[right] at (0.5,2.1) {\scriptsize 우변: $0.471+Q_\bg(V_n)$ — $C_\bg>0$ 라 단조};
 \node[right] at (-3.0,1.444) {\scriptsize 좌변: $Q_\cell\,q=0.5$};
 \end{tikzpicture}
 \caption{보존식~\eqref{eq:charge} 이 $V_n$ 을 정하는 장면 — 본문 worked example 의 수치 그대로
@@ -1550,14 +1551,15 @@ y(T)\;\equiv\;\ln\frac{T_*}{L_{q,j}\,T}-\frac{\chi\,\mathcal A_j(T)}{RT}
 \fill (5.9264,0.21315) circle (1.2pt); \fill (4.4272,0.6867) circle (1.2pt); \fill (0.6912,1.8669) circle (1.2pt);
 \draw[gray] (0.6912,2.9883) -- (4.4272,1.9698) -- (5.9264,1.55925);
 \draw[gray] (5.9264,1.55925) circle (1.2pt); \draw[gray] (4.4272,1.9698) circle (1.2pt); \draw[gray] (0.6912,2.9883) circle (1.2pt);
-\node[below right] at (2.2,1.05) {\scriptsize $y(T)$~\eqref{eq:ydef}: 기울기 $-\Delta H_a/R$};
-\node[above left,gray] at (5.0,1.995) {\scriptsize 보정 전($\chi\mathcal A$ 미제거): 기울기 오염};
+\node[below right] at (3.4,0.5) {\scriptsize $y(T)$~\eqref{eq:ydef}: 기울기 $-\Delta H_a/R$};
+\node[above left,gray] at (5.4,2.55) {\scriptsize 보정 전($\chi\mathcal A$ 미제거): 기울기 오염};
 \node[below] at (3.1,-0.45) {\scriptsize $45^\circ$C $\leftarrow$ \quad\quad $\to$ $15^\circ$C};
 \end{tikzpicture}
 \caption{Arrhenius 회귀~\eqref{eq:arrhenius} 의 시각(실계산: $\Delta H_a=40$ kJ/mol, 절편 $12$,
 세 온도 $15/23/45^\circ$C). 검정 점·직선은 보정된 측정량 $y(T)$~\eqref{eq:ydef} — 정확히
 $1/T$ 에 선형이고 기울기가 $-\Delta H_a/R$ 다. 회색 점은 구동항 $\chi\mathcal A_j/RT$ 를 빼지 않은
-경우($\chi\mathcal A=2.9$ kJ/mol 예시) — 점이 위로 밀리고 기울기가 오염된다. S4 가 $\chi$ 를
+경우($\chi\mathcal A\approx2.9$ kJ/mol 에 로그 인자 잔류가 겹친 예시 — offset 이 온도마다 달라
+기울기가 겉보기 수 kJ/mol 오염된다). S4 가 $\chi$ 를
 \emph{먼저} 닫는 이유(\S\ref{sec:master})가 이 그림이다.}
 \label{fig:arrplot}
 \end{figure}
@@ -1674,7 +1676,7 @@ $\xi_j=\xi_{\eq,j}-\bar r_j$ 의 미분은 선형으로 갈라지므로
 \begin{equation}
 \bar r_j\;\simeq\;\begin{cases}
 L_{q,j}\,\dd\xi_{\eq,j}/\dd q & \text{상승부($L_{q,j}\ll$ 폭): 평형 항 지배}\\[2pt]
-r_{a,j}\,e^{-(q-q_a)/L_{q,j}} & \text{꼬리(원천 소멸): 지연 미분~\eqref{eq:superpose} 만 잔존}
+r_{a,j}\,e^{-(q-q_a)/L_{q,j}} & \text{꼬리(원천 소멸): 지연 미분(분포 일반형~\eqref{eq:superpose})만 잔존}
 \end{cases}
 \label{eq:twolimits}
 \end{equation} 빠른 동역학 극한($\bar r\to0$)에서 평형 기준선으로
@@ -2075,9 +2077,9 @@ V_{\peak,j}^{\chg}=U_j^{\chg}-|I|R_n
 \draw[thick,densely dashed] plot[smooth] coordinates {(0.12,0.5745) (0.96,1.1328) (1.8,1.4157) (2.64,1.6066) (3.48,1.7509) (4.32,1.867) (5.16,1.9641) (6,2.0475)};
 \draw[thick,densely dotted] plot[smooth] coordinates {(0,0.425) (1.2,0.8126) (2.4,1.2954) (3.6,1.8734) (4.8,2.5466) (6,3.315)};
 \draw[<->,gray] (0.25,0.02) -- (0.25,0.425) node[pos=0.5,right] {\scriptsize 절편 $\gamma_j\Delta U_j^\hys$(열역학)};
-\node[right] at (4.6,1.955) {\scriptsize 선형~\eqref{eq:hysobsgap}: 기울기 $2R_n$};
+\node[right] at (4.4,1.42) {\scriptsize 선형~\eqref{eq:hysobsgap}: 기울기 $2R_n$};
 \node[right] at (3.4,1.19) {\scriptsize Tafel 휨(기울기 감소)};
-\node[left] at (5.9,2.975) {\scriptsize 확산$\cdot$$\gamma(|I|)$ 휨(증가)};
+\node[left] at (5.7,3.35) {\scriptsize 확산$\cdot$$\gamma(|I|)$ 휨(증가)};
 \end{tikzpicture}
 \caption{관측 gap 의 분해~\eqref{eq:hysobsgap} (실계산: 절편 $33$ mV, 기울기 $20$ mV/단위).
 실선이 가산 분해의 예측 — $|I|\to0$ 절편이 열역학 갈림, 기울기가 분극이다. 파선은 charge-transfer
