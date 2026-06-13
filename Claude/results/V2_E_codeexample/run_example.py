@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """run_example.py — graphite_ica_model.py 의 실행 검증 (E.1 게이트).
-검증 3건: (i) (1.84) 수치 = 본문 55 mV(Omega=4RT), (ii) (1.92) 평가의
+검증 3건: (i) (1.88) 수치 = 본문 55 mV(Omega=4RT), (ii) (1.96) 평가의
 면적 보존(종+꼬리 = Q_j), (iii) S1 잔차 골격으로 3전이 회복 round-trip.
 """
 import sys
@@ -19,8 +19,8 @@ print(f"(i) dU_hys(4RT,25C) = {g:.1f} mV  (본문 ~55 mV)")
 assert abs(g - 54.8) < 0.5
 assert dU_hys(T0, 1.9 * R * T0) == 0.0          # M1 분기
 
-# (ii) (1.92) 평가 + 면적 보존 — 1전이, 방전, r_a=0.3 (꼬리-우세)
-# b 는 임의값이 아니라 자기일관 — 목표 L_q=0.02 를 (1.67)으로
+# (ii) (1.96) 평가 + 면적 보존 — 1전이, 방전, r_a=0.3 (꼬리-우세)
+# b 는 임의값이 아니라 자기일관 — 목표 L_q=0.02 를 (1.69)으로
 # 풀면 b = ln L_q - ln(T*/T) - dHa/RT + chi*A/RT (+전이대 보정) = 10.95
 par = dict(
     Cbg=lambda Vn: np.full_like(Vn, 0.5),       # [/V] = 0.0005/mV

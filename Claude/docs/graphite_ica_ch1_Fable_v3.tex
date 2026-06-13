@@ -1053,16 +1053,27 @@ Q_\cell\;=\;C_\bg\,\frac{\dd V_n}{\dd q}\;+\;\sum_jQ_j\,\frac{\dd\xi_j}{\dd q}
 로 닫힌다 — 마지막 항의 $(\dd\xi_j/\dd q)/(\dd V_n/\dd q)=\dd\xi_j/\dd V_n$ 이 궤적을 따라
 정의되는 연쇄율 그 자체다. $\xi_j$ 를 $V_n$ 의
 직접 함수로 보고 $\dd\xi_j/\dd V_n$ 을 그대로 쓸 수 있는 것은 평형 추종이 성립하는 영역에 한하며, 전류가
-흘러 추종이 깨지는 영역의 처리는 \S\ref{sec:lag} 가 맡는다. 분모 $\dd V_n/\dd q\to0$ 인 이상적
-plateau 에서 이 연쇄율이 발산하는 것은 결함이 아니라 서론의 ``전위 평탄 구간 $=$ peak'' 그 자체다 — 무한히
-날카로운 이상 peak 를 유한한 모양으로 만드는 것이 다음 절부터의 일이다.
+흘러 추종이 깨지는 영역의 처리는 \S\ref{sec:lag} 가 맡는다. 이상적 plateau 에서는 연쇄율이
+발산하는데, 이는 결함이 아니라 서론의 ``전위 평탄 구간 $=$ peak'' 그 자체다:
+\begin{equation}
+\frac{\dd V_n}{\dd q}\to0
+\quad\Longrightarrow\quad
+\frac{\dd Q}{\dd V_n}=\frac{Q_\cell}{\dd V_n/\dd q}\to\infty.
+\label{eq:plateaudiv}
+\end{equation}
+무한히 날카로운 이상 peak 를 유한한 모양으로 만드는 것이 다음 절부터의 일이다.
 
 \begin{verifybox}
 \textbf{Worked example — 보존식이 $V_n$ 을 정하는 한 장면.} $N_p=3$,
 $Q_1=Q_2=Q_3=0.3\,Q_\cell$, 배경 몫 $0.1\,Q_\cell$ 의 가상 음극에서 방전이 $q=0.5$ 까지 진행했고, 그
-순간의 동역학 상태가 $\xi_1=1.00$, $\xi_2=0.55$, $\xi_3=0.02$ 라 하자. 전이 몫의 합은
-$0.3\times(1.00+0.55+0.02)=0.471\,Q_\cell$ 이므로, 보존식~\eqref{eq:charge} 는 배경이
-$0.029\,Q_\cell$ 을 담도록 $V_n$ 을 요구한다. $C_\bg>0$ 의 단조성에 의해 그런 $V_n$ 은 정확히 하나다.
+순간의 동역학 상태가 $\xi_1=1.00$, $\xi_2=0.55$, $\xi_3=0.02$ 라 하자. 보존식~\eqref{eq:charge}
+를 $Q_\bg$ 에 대해 풀면
+\begin{equation*}
+Q_\bg(V_n)=Q_\cell\,q-\sum_jQ_j\xi_j
+=\big[0.5-0.3\,(1.00+0.55+0.02)\big]Q_\cell
+=0.029\,Q_\cell
+\end{equation*}
+— $C_\bg>0$ 의 단조성에 의해 이를 만족하는 $V_n$ 은 정확히 하나다.
 피팅 알고리즘(\S\ref{sec:master})이 미측정 조건을 예측할 때 평형 해 $V_{n,\OCV}(q)$ 를 생성하는 것도
 같은 풀이다.
 \end{verifybox}
@@ -1210,7 +1221,13 @@ r_j(q)\;=\;r_j(q_0)\,e^{-(q-q_0)/L_{q,j}}
 \label{eq:memory}
 \end{equation}
 지연은 두 몫의 합이다 — 초기 지연의 지수 감쇠와, 과거의 목표 변화율을 지수 커널로 가중해 누적한
-\emph{기억}이다. 계는 용량축에서 길이 $L_{q,j}$ 만큼의 최근 과거만 기억한다(그림~\ref{fig:kernel}).
+\emph{기억}이다. 둘째 몫은 합성곱 그 자체다:
+\begin{equation}
+r_j(q)\Big|_{r_j(q_0)=0}
+=\big(K*\tfrac{\dd\xi_{\eq,j}}{\dd q}\big)(q),
+\qquad K(\Delta q)=e^{-\Delta q/L_{q,j}}\ \ (\Delta q\ge0).
+\label{eq:conv}
+\end{equation} 계는 용량축에서 길이 $L_{q,j}$ 만큼의 최근 과거만 기억한다(그림~\ref{fig:kernel}).
 수치 감을 들어 두면 — $0.1$C 에서 $k_j=10^{-3}\ \mathrm{s^{-1}}$ 이면
 $L_{q,j}=(0.1/3600)/10^{-3}\approx0.028$, 전체 방전의 $3\%$ 거리다. 저온으로 $k_j$ 가 $12$배
 느려지면(\S\ref{sec:rate} 의 수치) $L_{q,j}\approx0.33$ — 기억이 전이 하나를 통째로 덮는 길이가 된다.
@@ -1383,7 +1400,12 @@ $L_{q,j}\propto1/k_j^{\eff}$ 의 로그 미분은 식~\eqref{eq:dlnkeff} 의 부
 \begin{boundbox}
 \textbf{선형 근사의 한계.} $-\chi\mathcal A$ 는 소구동력 1차 근사다. Marcus 포물면의 2차 항은 상대
 크기 $\sim\mathcal A/2\lambda$($\lambda$=재구성 에너지)로 들어오므로 \cite{marcus1956}, 본 문건의
-작동 창은 $3RT\lesssim\mathcal A_j\ll\lambda$ 다 — forward 극한이 정확하면서 선형이 아직 유효한 띠.
+작동 창은
+\begin{equation*}
+3RT\;\lesssim\;\mathcal A_j\;\ll\;\lambda
+\qquad(\text{좌: forward 극한}~\eqref{eq:keff},\ \text{우: 선형 근사})
+\end{equation*}
+— forward 극한이 정확하면서 선형이 아직 유효한 띠다.
 삽입 상전이에서 $\lambda$ 는 이온 전달에 동반되는 용매$\cdot$격자 재구성이 묶인 수십 kJ/mol
 규모 — $RT\approx2.5$ kJ/mol 의 십수 배 이상 — 라 이 창은 넉넉하다.
 \end{boundbox}
@@ -1452,8 +1474,8 @@ $k_0$ 가 흡수한 $O(1)$ 인자$\cdot$활동도 몫이 측정창 안에서 온
 $[G,G+\dd G]$ 에 드는 집단이 담당하는 용량 분율이고, $\int\rho_G\,\dd G=1$ 로 정규화한다. 각 집단은
 자신의 장벽으로 자신의 꼬리 길이 $L_q(G)\propto e^{(G-\chi\mathcal A)/RT}$ 를 갖는다.
 
-여기서 온도가 두 번째로 등장한다. 길이의 로그는 $\ln L_q=\text{const}+G/RT$ 로 장벽에 \emph{선형}이므로,
-장벽의 표준편차 $\sigma_G$ 는 로그-길이의 표준편차로
+여기서 온도가 두 번째로 등장한다. 길이의 로그는 $\ln L_q=\text{const}+G/RT$ 로 장벽에
+\emph{선형}이므로 $\partial\ln L_q/\partial G=1/RT$ — 장벽의 표준편차 $\sigma_G$ 는 선형 전파로
 \begin{equation}
 \sigma_{\ln L}\;=\;\frac{\sigma_G}{RT}
 \label{eq:varprop}
@@ -1469,8 +1491,14 @@ $e^{\pm2}$ — 양쪽으로 각각 일곱 배, 양끝 간 쉰다섯 배 — 로 
 e^{-(V_n-V_a)/L_V(G)}\,\dd G\qquad\big(s(V_n-V_a)\ge0\big).
 \label{eq:superpose}
 \end{equation}
-분포가 한 값으로 좁아지는 극한($\rho_G\to\delta$)에서는 적분이 닫혀 \S\ref{sec:lag} 의 단일지수로
-정확히 환원된다(전이대 컷의 괄호 인자는 \S\ref{sec:potbranch} 대로 적분 \emph{밖}의 공통 인자 —
+분포가 한 값으로 좁아지는 극한에서는 적분이 닫혀 \S\ref{sec:lag} 의 단일지수로 정확히 환원된다:
+\begin{equation}
+\rho_G\to\delta(G-\bar G):\quad
+\frac{\dd Q}{\dd V_n}\Big|_{\text{tail}}
+\;\to\;\frac{Q_j\,r_a(\bar G)}{L_V(\bar G)}\,e^{-(V_n-V_{a})/L_V(\bar G)}
+\;=\;\text{식}~\eqref{eq:tail}
+\label{eq:deltareduce}
+\end{equation}(전이대 컷의 괄호 인자는 \S\ref{sec:potbranch} 대로 적분 \emph{밖}의 공통 인자 —
 분포로 흡수되지 않는다). 분포가 넓으면 빠른 집단이 먼저 죽고 느린 집단이 꼬리를 끌어, 반로그 좌표에서 직선(단일지수)이던
 것이 두 끝을 잇는 현 \emph{아래로} 처지는 볼록 곡선이 된다(그림~\ref{fig:superpose} — 초기엔 빠른
 집단이 기울기를 가파르게, 후미엔 느린 집단이 완만하게 만든다). 실측 꼬리의 ``늘어짐''(stretched)이 이
@@ -1537,9 +1565,14 @@ $\xi_j=\xi_{\eq,j}-\bar r_j$ 의 미분은 선형으로 갈라지므로
 \label{eq:closed}
 \end{equation}
 평형 종과 꼬리를 임의로 이어 붙인 것이 아니라 ``평형 전환율에서 지연을 뺀 것의 미분''이라는 정의된
-형태다. 두 영역의 분담은 일반해의
-두 극한 그대로다 — 상승부에서는 지연 미분이 소량이라 평형 항이 지배하고, 꼬리에서는 평형 항이 포화로 죽어
-지연 미분(식~\eqref{eq:superpose})만 남는다. 빠른 동역학 극한($\bar r\to0$)에서 평형 기준선으로
+형태다. 두 영역의 분담은 일반해의 두 극한~\eqref{eq:risefollow}$\cdot$\eqref{eq:rsol} 그대로다:
+\begin{equation}
+\bar r_j\;\simeq\;\begin{cases}
+L_{q,j}\,\dd\xi_{\eq,j}/\dd q & \text{상승부($L_{q,j}\ll$ 폭): 평형 항 지배}\\[2pt]
+r_{a,j}\,e^{-(q-q_a)/L_{q,j}} & \text{꼬리(원천 소멸): 지연 미분~\eqref{eq:superpose} 만 잔존}
+\end{cases}
+\label{eq:twolimits}
+\end{equation} 빠른 동역학 극한($\bar r\to0$)에서 평형 기준선으로
 복귀하므로 식이 무결하다.
 
 두 항을 닫힌 꼴로 채우자. 상승부 항은 식~\eqref{eq:dxidV} 의 종 그대로이고, 꼬리 항은
@@ -1929,8 +1962,13 @@ V_{\peak,j}^{\chg}=U_j^{\chg}-|I|R_n
 온도 소멸 검정까지 가야 한다), 절편의 온도 의존이 $\Omega_j$ 를, 크기가 $\gamma_j$ 를 정한다.
 
 가산 분해와 그 뒤의 $(\gamma_j,\Omega_j)$ 분리에는 전제가 셋 있다. $\gamma_j$ 가 전류에 무관해야
-하고(핵생성$\cdot$전환 시간상수가 구동 시간보다 짧아 과주행이 율-무관 수준에 고정되는 저$\sim$중율
-조건), 측정창 안에서 온도에도 무관해야 하며(절편의 온도 의존을 전부 $\Delta U^\hys(T)$ 에 귀속시키는
+하고 — 핵생성$\cdot$전환 대기 시간 $\tau_{\mathrm{nuc}}$ 가 분기 구간 통과 시간보다 짧아
+\begin{equation*}
+\tau_{\mathrm{nuc}}\;\ll\;\tau_{\mathrm{drive}}
+\sim\frac{(\xi_b^+-\xi_b^-)\,Q_j}{|I|}
+\end{equation*}
+이 성립하는 저$\sim$중율 조건(과주행이 율-무관 수준에 고정된다) — , 측정창 안에서 온도에도 무관해야
+하며(절편의 온도 의존을 전부 $\Delta U^\hys(T)$ 에 귀속시키는
 S5 회귀의 전제 — 위반은 S5 의 계통 잔차로 드러난다), 분극이 선형($|I|R_n$)이어야 한다. 첫째$\cdot$
 셋째 전제는 gap--$|I|$ 곡선의 \emph{휨}으로 검출된다 — 기울기가 점점 줄면 charge-transfer 의 Tafel 거동($\eta_{\mathrm{ct}}\propto\ln|I|$)의 신호고
 — 계면 속도가 과전위에 지수적이라 그 역함수가 로그형으로 늘며 기울기만 준다 — 기울기가 점점
@@ -2324,9 +2362,17 @@ $\gamma_j\approx0$ 인지는 (iii) 의 단상 폭 사영이 가른다(그때 식
 $|I|\to0$ 에서 완전히 겹쳐야 한다).
 \emph{(ii) 온도 소멸} — 절편은 $T\to T_{c,j}$ 에서 $(T_c-T)^{3/2}$ 멱으로 매끄럽게 소멸해야 한다.
 측정창이 $T_{c,j}$ 에서 한참 아래(깊은 2상측)면 멱이 보이지 않으므로, 어느 검정을 쓸지는 절편의
-\emph{상대(로그) 온도 기울기}로 사전 판별한다 — 임계 근방이면 $\sim3/[2(T_c-T)]$ 로 가파르고 멀면
-완만하다. 측정 기울기 $\sigma$ 에서 $T_c-T\approx3/(2\sigma)$ 를 역산해 측정창과 비교하면 판별이
-수치 규칙이 된다. 절대 기울기는 미지의 $\gamma_j$ 가 곱해져 있어 판별량으로 부적격이고, 로그 기울기만이
+\emph{상대(로그) 온도 기울기}로 사전 판별한다. 임계 근방에서 식~\eqref{eq:hyscrit} 의 멱을 로그
+미분하면
+\begin{equation}
+\bigg|\frac{\dd\ln\Delta U_j^\hys}{\dd T}\bigg|
+\;\xrightarrow{\ \Delta U^\hys\propto(T_{c}-T)^{3/2}\ }\;
+\frac{3}{2\,(T_{c,j}-T)}
+\quad\Longrightarrow\quad
+T_{c,j}-T\;\approx\;\frac{3}{2\sigma}
+\label{eq:logslopeT}
+\end{equation}
+($\sigma$: 측정한 로그 기울기 크기) — 역산값을 측정창과 비교하면 판별이 수치 규칙이 된다. 절대 기울기는 미지의 $\gamma_j$ 가 곱해져 있어 판별량으로 부적격이고, 로그 기울기만이
 $\gamma_j$ 가 약분되는 $\gamma$-무관 판별량이다. 절편이 온도에 아예 무관하면 정규용액 그림이 틀렸다는
 신호다(표면 재구성$\cdot$기계적 응력 기원 히스 등). \emph{(iii) 내적 일관성} — 단상 온도 구간이 있으면
 폭 $w^{\eff}(T)$(식~\eqref{eq:weff})에서도 $\Omega_j$ 가 사영된다. 단 폭과 gap 은 같은 자유에너지
@@ -2361,7 +2407,7 @@ KB, H = 1.380649e-23, 6.62607015e-34         # Boltzmann, Planck
 
 
 def dU_hys(T, Omega):
-    """(1.84) spinodal 상한 gap [V].
+    """(1.88) spinodal 상한 gap [V].
     M1 의 명시 분기: Omega <= 2RT 면 0 (제곱근이 NaN 인 영역)."""
     if Omega <= 2.0 * R * T:
         return 0.0
@@ -2370,7 +2416,7 @@ def dU_hys(T, Omega):
 
 
 def U_branch(T, U, Omega, gamma, sigma_d, h_eta=1.0):
-    """(1.87) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
+    """(1.91) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
     return U + sigma_d * 0.5 * (h_eta * gamma) * dU_hys(T, Omega)
 
 
@@ -2381,7 +2427,7 @@ def xi_eq(Vn, Ud, w):
 
 
 def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
-    """M3 — (1.67) 그대로:
+    """M3 — (1.69) 그대로:
       ln L_q = ln(T*/T) + dHa_eff/RT + b - chi_d*A_d/RT,
       T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
     b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
@@ -2405,13 +2451,13 @@ def r_a_connect(Lq, dxi_dq_at_qa):
 
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
-    """(1.92) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
+    """(1.96) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
     반환은 방향 정렬된 ICA 크기다 — signed dQ/dV 데이터와 맞출 때는
     sigma_d*dQ/dV >= 0 이 되도록 부호를 정렬한다((2) 의 규약).
     단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
     는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
     방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
-    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.92) — Omega!=0
+    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.96) — Omega!=0
     전이는 chi_d 를 통해 dHa_eff 도 방향별이다. 충전 평가에는 충전
     데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
     T 의 closure((7) 의 T-회귀로 생성).
@@ -2420,10 +2466,10 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
       Rn           lumped 분극 [V per |I|] (S2 직독)
       chi          전달 계수 (S3; 충전 가지는 1-chi 로 자동 적용)
       transitions  전이 dict 리스트:
-        U, w, Q        평형 3량 (1.50)/(1.32) (S1)
-        dHa_eff, b     (1.69)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
+        U, w, Q        평형 3량 (1.51)/(1.32) (S1)
+        dHa_eff, b     (1.71)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
                        유효값 — S5 후 dHa = dHa_eff + chi_d*Omega 복원)
-        Omega, gamma   (1.84)/(1.87) (S5; 비분기 전이는 0)
+        Omega, gamma   (1.88)/(1.91) (S5; 비분기 전이는 0)
         Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
                        해당 율의 측정 V(q), 예측 시 OCV 해에서 읽음)
         r_a            잔류 지연 (M4 분기 결과), h_eta (기본 1)
@@ -2441,11 +2487,11 @@ def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
                           tr['b'], chi_d, A_d))        # M3 (동결)
         LV = abs(tr['dVdq_qa']) * Lq                   # M4
         ra = tr['r_a']
-        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.92) 종
+        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.96) 종
         sup = (sigma_d * (Vn - tr['Va']) >= 0.0)       # indicator
         dv = -sigma_d * (Vn - tr['Va']) / LV
         tail = (ra / LV) * np.exp(
-            np.where(sup, dv, -np.inf))                # (1.92) 꼬리
+            np.where(sup, dv, -np.inf))                # (1.96) 꼬리
         # 비지지 쪽은 exp(-inf)=0 — 지수 양수 폭주(inf*0=NaN) 차단
         y = y + tr['Q'] * (bell + tail)
     return y                                           # M6: V_app 축
@@ -2469,7 +2515,7 @@ def s1_residual(theta, V, y_meas, Np):
     theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
     히스 전이 포함 시 충/방 저율 공동 회귀로 확장한다 — U^dis/U^chg
     분리, w·Q 방향 공유 강제(본문 S1 보충 규정). 본 골격은 단방향.
-    저율(r_a -> 0)이라 (1.75) 의 종 항만 남는다. 배경을 상수 하나로
+    저율(r_a -> 0)이라 (1.79) 의 종 항만 남는다. 배경을 상수 하나로
     둔 것은 예시 단순화 — 실데이터는 (3) 의 anchor spline 을 쓴다."""
     model = np.full_like(V, theta[-1])
     for j in range(Np):
@@ -2478,11 +2524,11 @@ def s1_residual(theta, V, y_meas, Np):
         model = model + Q * xe * (1.0 - xe) / w
     return y_meas - model
 
-# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.65)
+# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.67)
 #     (방전 s=+1, S0-pass 활성화 지배 극한 — 직렬 감쇠 인자 1)
 # S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
-#     기울기 = -dHa_eff/R, b = -절편                  ... (1.68)·(1.69)
-# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.89)
+#     기울기 = -dHa_eff/R, b = -절편                  ... (1.70)·(1.71)
+# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.93)
 \end{verbatim}
 \end{footnotesize}
 
