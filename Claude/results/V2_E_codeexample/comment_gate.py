@@ -7,7 +7,8 @@ import io, re, sys
 
 import sys as _sv
 _ver = _sv.argv[1] if len(_sv.argv) > 1 else 'v2'
-AUX = rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_{_ver}.aux'
+_stem = _ver if '_' in _ver else f'Fable_{_ver}'  # full stem(예: Opus_v4) 또는 Fable_ 접두
+AUX = rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_{_stem}.aux'
 PY = r'D:\Projects\Project_Anode_Fit\Claude\results\V2_E_codeexample\graphite_ica_model.py'
 
 aux = io.open(AUX, encoding='utf-8', errors='replace').read()

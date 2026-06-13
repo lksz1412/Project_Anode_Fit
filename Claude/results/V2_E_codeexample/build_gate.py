@@ -4,7 +4,8 @@ exit 1 (V.P P.R3·V.T T.4 에서 echo 비단정 게이트가 overfull 커밋을 
 사고의 재발 방지)."""
 import io, sys, re
 ver = sys.argv[1] if len(sys.argv) > 1 else 'v2'
-log = io.open(rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_Fable_{ver}.log',
+stem = ver if '_' in ver else f'Fable_{ver}'  # full stem(예: Opus_v4) 또는 Fable_ 접두(예: v3)
+log = io.open(rf'D:\Projects\Project_Anode_Fit\Claude\docs\graphite_ica_ch1_{stem}.log',
               encoding='utf-8', errors='replace').read()
 err = len(re.findall(r'^!', log, re.M))
 of = log.count('Overfull')
