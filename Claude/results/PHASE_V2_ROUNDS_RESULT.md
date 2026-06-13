@@ -312,3 +312,18 @@ Read coverage: 6창 전담(연결부 포함)×1 + Codex 전문×1 + prose 전문
 
 게이트: 매 커밋 build v3 0/0/0(현 47p)+comment 20/20+diff·run PASS. v2 동결.
 잔여(다음 턴 후보): 기존 그림 6종(isofamily·doublewell·kernel·anatomy·fusion·vdwloop) 축 눈금 일괄 — W4 계획의 품질 항목 중 미완(신규 5종은 전부 눈금 포함).
+
+# X — 코드 절 개편·절간 다리·특수 케이스 회수·그림 재설계 pass (사용자 8차 피드백)
+
+계획: `Claude/plans/2026-06-13-ch1-v3-x-pass-plan.md`.
+## X.1 (74f2cdc) — 코드 절 전면 개편
+- D2Coding 모노 폰트(한글 코딩체 — 타자기 cmtt 대체), verbatim small + 96자 폭(기존 68자 — 두 줄 나눔 합침·본문 폭 채움), 주석을 식번호·단계 표지만으로 축소(120→75행 — 해설은 본문 문단으로: 단위·par 구성·방향 규약·np.where 가드). comment_gate 재템플릿 15/15. 코드 페이지 43–44 렌더 검증.
+## X.2 (753b1d0) — 절간 다리 13곳
+- 각 절 도입이 앞 절 결과식 번호를 명시적으로 받음(eyring→1.3/1.4, mu+eqcond→1.4, logistic+mu→1.5, kuniv+logistic+isotherm→1.6, …, keff+hysobsgap→1.16) — "절 사이가 뜬다" 지적 해소.
+## X.3 (69e1e74) — 일반식→특수 케이스 회수 6곳
+- eq:mu verifybox(희박 활동도·θ=½·중심 기울기 문턱)·eq:tail 면적 회수·eq:arrhenius verifybox(고전 환원+창 낙차 1.57=그림 일치)·eq:Ifuse 온도비(0.07 — prefactor 약분)·eq:hysobsgap 두 코너·eq:master |I|→0(s1_residual 이 통합식의 극한). 단정 게이트가 overfull 2회 적발 → 출처 줄 display 승격으로 근본 해소.
+## X.4 (b246fbf) — 그림 재설계
+- ★mudecomp↔isofamily 중복 해소: mudecomp 를 분해 전용(1.5RT 가족 곡선 제거)으로 재설계, 두 캡션 상호 결속("같은 식의 다른 두 절단"). 기존 6종(isofamily·doublewell·kernel·anatomy·fusion·vdwloop) 축 눈금. 7페이지 전부 렌더 검증.
+## X.R (본 커밋) — fresh 수렴
+- ★확정 0 PASS: 다리 13곳의 식번호가 실제 절 결과인지 전수 확인·Ifuse 0.07 재계산·코드 식번호 전수·코드 렌더(96자 줄이 마진 19mm 안쪽) 판정 "양호". 제안 4 중 3 반영(폭 110자 초과를 게이트가 적발 → 분할), 1 기각(§1.17 하드코딩 — 장 구조 동결).
+게이트: 매 커밋 0/0/0 + comment 15/15 + diff·run PASS + ★렌더 게이트(변경 페이지 전부 확인 — 8차 피드백 반영).
