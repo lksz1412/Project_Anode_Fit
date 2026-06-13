@@ -562,6 +562,15 @@ RT\,\frac{\partial}{\partial\theta}\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\
 (동종 이웃 선호)이면 채움에 따른 값어치의 오르막을 $-2\Omega$ 의 \emph{기울기로 깎아} 단조성을
 약화시키며, 이것이 뒤에서 상분리의 씨앗이 된다(\S\ref{sec:regsol} — 그림~\ref{fig:mudecomp}).
 
+\begin{verifybox}
+\textbf{특수 케이스 회수.} (i) $\Omega=0$, $\theta\ll1$: 식~\eqref{eq:mu} 가
+$\mu\to\mu^0+RT\ln\theta$ — 희박 용질의 로그 활동도 꼴(식~\eqref{eq:eqexpand} 의
+$RT\ln a_{\mathrm{Li^+}}$ 와 같은 형태)로 환원된다. (ii) $\theta=\tfrac12$: 로그$\cdot$상호작용
+몫이 동시에 $0$ — $\mu=\mu^0$. (iii) 중심 기울기
+$\partial\mu/\partial\theta|_{1/2}=4RT-2\Omega$ 가 $\Omega=2RT$ 에서 $0$:
+\S\ref{sec:regsol} 의 상분리 문턱이 이 식 한 줄에 이미 들어 있다.
+\end{verifybox}
+
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[x=8.2cm,y=1cm]
@@ -1409,6 +1418,9 @@ $(\chi F/RT)\,L_{V,j}\ll1$ 이다. 전형값($\chi=0.5$, $L_V=5$ mV, $25^\circ$C
 $\mathcal A_j(V)$ 의 드리프트를 살리는 것이다 — 운용상으로는 sub-window 국소 $L_V$ 가 그 드리프트를 $\chi$ 회귀의
 신호로 흡수한다(\S\ref{sec:master}) — 기울기 $|\dd V_n/\dd q|$ 자체의 드리프트도 같은
 sub-window 처방이 받는다.
+꼬리 면적 회수 — $\int_{V_{a}}^{\infty}(\dd Q/\dd V_n)|_{\text{tail}}\,\dd V_n
+=(Q_jr_{a,j}/L_{V,j})\cdot L_{V,j}=Q_j\,r_{a,j}$: 꼬리가 운반하는 전하가 정확히 잔류 지연 몫이다
+(빠른 완화 극한은 $r_a\to0$ 과 함께 꼬리가 면적째 소멸 — 평형 복귀).
 차원 검산 — $L_{q,j}=[\mathrm{C/s}]/([\mathrm C][\mathrm{s^{-1}}])=$ 무차원 ✓.
 \end{verifybox}
 
@@ -1570,6 +1582,14 @@ $1/T$ 에 선형이고 기울기가 $-\Delta H_a/R$ 다. 회색 점은 구동항
 \emph{먼저} 닫는 이유(\S\ref{sec:master})가 이 그림이다.}
 \label{fig:arrplot}
 \end{figure}
+
+\begin{verifybox}
+\textbf{특수 케이스 회수.} $\chi\mathcal A_j\to0$ 이면 $y=\ln[T_*/(L_{q,j}T)]$ — 보정 없는
+고전 Arrhenius 회귀로 환원된다. 수치 — $\Delta H_a=40$ kJ/mol, 측정창 $15\to45^\circ$C 는
+$\Delta(1/T)=3.27\times10^{-4}\ \mathrm{K^{-1}}$ 이라
+$\Delta y=(\Delta H_a/R)\,\Delta(1/T)\approx1.57$ — 그림~\ref{fig:arrplot} 직선의 낙차
+그대로이고, $\Delta H_a$ 의 상대오차 어림 $\approx\delta y/1.57$ 로도 쓰인다.
+\end{verifybox}
 
 구동항 보정에 쓰는 $\chi$ 는 전위 가지(\S\ref{sec:potbranch})에서 \emph{먼저} 닫아 기지값으로
 넣는다(그림~\ref{fig:arrplot}) —
@@ -1836,8 +1856,16 @@ $L_{V,j}\gtrsim|U_{j+1}-U_j|$ 다. 둘째가 저온$\cdot$
 \end{equation}
 앞 인자들은 온도에 완만하지만 지수 인자는 가파르다 — 장벽이 $40$ kJ/mol 규모면 $25\to-15^\circ$C
 에서 $|I|_{\text{fuse}}$ 가 한 자릿수 이상 내려간다(\S\ref{sec:rate} (a) 의 같은 수치). $\mathcal A_j$ 의
-평가점은 꼬리 컷점 — \S\ref{sec:master} M3 의 규약 그대로다. 측정 설계에서 이 식은 ``어느 율까지
-분리 peak 를 기대할 수 있나''의 사전 어림으로 쓰인다.
+평가점은 꼬리 컷점 — \S\ref{sec:master} M3 의 규약 그대로다. 두 온도의 \emph{비}를 취하면
+prefactor$\cdot$엔트로피 몫이 약분되어 코너가 한 줄로 떨어진다:
+\begin{equation*}
+\frac{|I|_{\text{fuse}}(T_2)}{|I|_{\text{fuse}}(T_1)}
+\simeq\frac{T_2}{T_1}\,
+\exp\!\Big[-\frac{\Delta H_a^{\eff}-\chi\mathcal A}{R}\Big(\frac1{T_2}-\frac1{T_1}\Big)\Big]
+\;\approx\;0.07\qquad(25\to-15^\circ\mathrm C,\ 40\ \mathrm{kJ/mol})
+\end{equation*}
+— $25^\circ$C 에서 $0.5$C 까지 분리되던 전이쌍이 $-15^\circ$C 에선 $\sim0.035$C 부터 융합한다.
+측정 설계에서 이 식은 ``어느 율까지 분리 peak 를 기대할 수 있나''의 사전 어림으로 쓰인다.
 
 \begin{figure}[t]
 \centering
@@ -2074,8 +2102,11 @@ V_{\peak,j}^{\chg}=U_j^{\chg}-|I|R_n
 \;+\;\underbrace{2|I|R_n}_{\text{동역학}(|I|\to0\ \text{소멸})}\;.}
 \label{eq:hysobsgap}
 \end{equation}
-여러 율에서 gap 을 재어 $|I|\to0$ 으로 외삽하면 \textbf{절편이 열역학, 기울기가 동역학}이다
-(그림~\ref{fig:gapI}).
+두 코너가 식에서 바로 떨어진다 — $\Omega_j\le2RT$(또는 $\gamma_j=0$)이면 절편이 $0$:
+$\Delta V_{\obs}=2|I|R_n$ 의 원점 통과 순수 분극 직선(\S\ref{sec:falsify}(i) 의 기각 기준).
+$|I|\to0$ 이면 $\Delta V_{\obs}\to\gamma_j\Delta U_j^\hys$ — 서론 관측의 ``전류를 $0$ 으로
+줄여도 사라지지 않는 성분''이 식의 절편으로 회수된다. 그래서 여러 율에서 gap 을 재어 $|I|\to0$ 으로
+외삽하면 \textbf{절편이 열역학, 기울기가 동역학}이다(그림~\ref{fig:gapI}).
 
 \begin{figure}[t]
 \centering
@@ -2193,11 +2224,25 @@ $\Omega_j$ 의 열쇠, 기울기가 $R_n$ 의 상한 점검이다. 이제 모든
 &+\frac{r_{a,j}}{L_{V,j}}\,e^{-(V_n-V_{a,j})/L_{V,j}}\,\mathbf 1\{s(V_n-V_{a,j})\ge0\}\bigg]\end{aligned}\;}
 \label{eq:master}
 \end{equation}
-indicator $\mathbf 1\{\cdot\}$ 가 꼬리의 단방향 지지를 코드 그대로 강제한다. 각 항의 출처 — $\xi_{\eq,j}$ 는
-식~\eqref{eq:logistic}, $L_{q,j}$ 는 식~\eqref{eq:Lq} 에 식~\eqref{eq:keff} 를 넣은
-$L_{q,j}=\big(|I|h/(Q_\cell k_BT)\big)\,e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT}$,
-$L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$, $\mathcal A_j=sF(V_n-U_j)$ — 가 전부 근본식
-~\eqref{eq:eyring} 의 가지들이다. 꼬리 구동력에서 상호작용 몫(일반형의 $-\Omega_j(1-2\xi_j)$ — \S\ref{sec:regsol})은 떼었다.
+indicator $\mathbf 1\{\cdot\}$ 가 꼬리의 단방향 지지를 코드 그대로 강제한다. 저율 극한이 식별
+사슬의 anchor 와 정확히 만난다 — $|I|\to0$ 에서 $L_{q,j}\propto|I|\to0$(식~\eqref{eq:Lq})이라
+$r_{a,j}\to0$, $(1-r_{a,j})\to1$, $V_\app\to V_n$ 이고
+\begin{equation*}
+\frac{\dd Q}{\dd V_\app}\;\xrightarrow{\ |I|\to0\ }\;
+C_\bg+\sum_jQ_j\,\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\end{equation*}
+— S1 이 저율 OCV 에 피팅하는 평형 모델(\texttt{s1\_residual})이 통합식의 한 극한임이 식으로
+확인된다.
+
+각 항의 출처를 한 줄로 모으면 — $\xi_{\eq,j}$ 는 식~\eqref{eq:logistic}, $L_{q,j}$ 는
+식~\eqref{eq:Lq} 에 식~\eqref{eq:keff} 를 넣은
+\begin{equation*}
+L_{q,j}=\frac{|I|\,h}{Q_\cell k_BT}\,
+e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT},
+\qquad L_{V,j}=\Big|\frac{\dd V_n}{\dd q}\Big|_{q_a}L_{q,j},
+\qquad \mathcal A_j=sF(V_n-U_j)
+\end{equation*}
+— 이고 전부 근본식~\eqref{eq:eyring} 의 가지들이다. 꼬리 구동력에서 상호작용 몫(일반형의 $-\Omega_j(1-2\xi_j)$ — \S\ref{sec:regsol})은 떼었다.
 깊은 꼬리($\xi_j\to1$)에서 그 몫은 상수 $+\Omega_j$ 가 되어 활성화 엔탈피에 흡수되고,
 $\Omega_j\ne0$ 인 모든 전이에서 S4(아래 (6) 의 식별 단계)가 내는 것은 그만큼 재정의된
 \emph{유효값}이다:
