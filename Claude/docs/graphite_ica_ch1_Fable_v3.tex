@@ -9,6 +9,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=22mm]{geometry}
 \usepackage{kotex}
+\setmonofont{D2Coding}[Scale=MatchLowercase]
 \usepackage{amsmath,amssymb,mathtools,bm}
 \usepackage{booktabs,longtable,array}
 \usepackage{enumitem}
@@ -2528,20 +2529,18 @@ $\gamma_j$ 가 약분되는 $\gamma$-무관 판별량이다. 절편이 온도에
 무방하며, 본 절의 몫은 그 루틴에 넣을 \emph{모델 함수와 잔차의 구성}이다.
 
 \subsection{모델 함수 — 식~\eqref{eq:hysmaster} 의 직역}\label{sec:codemodel}
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
 # -*- coding: utf-8 -*-
-# graphite_ica_model.py — Ch.1 (v3) 의 식만으로 구성한 dQ/dV 모델.
-# 주석의 (1.x)/M*/S* 는 전부 본 문건의 식 번호와 알고리즘 단계다.
+# graphite_ica_model.py — Ch.1 (v3) 식의 직역. 주석은 식 번호·단계 표지만 단다(해설은 §1.17 본문).
 import numpy as np
 
-R, F = 8.314, 96485.0                        # §1.1 표
-KB, H = 1.380649e-23, 6.62607015e-34         # Boltzmann, Planck
+R, F = 8.314, 96485.0
+KB, H = 1.380649e-23, 6.62607015e-34
 
 
 def dU_hys(T, Omega):
-    """(1.88) spinodal 상한 gap [V].
-    M1 의 명시 분기: Omega <= 2RT 면 0 (제곱근이 NaN 인 영역)."""
+    """(1.88) spinodal 상한 gap [V] — Omega <= 2RT 면 0 (M1 명시 분기)."""
     if Omega <= 2.0 * R * T:
         return 0.0
     u = np.sqrt(1.0 - 2.0 * R * T / Omega)
@@ -2549,107 +2548,68 @@ def dU_hys(T, Omega):
 
 
 def U_branch(T, U, Omega, gamma, sigma_d, h_eta=1.0):
-    """(1.91) 분기 중심 U^d. 부분 cycle 이면 gamma -> h(eta)*gamma (M1)."""
+    """(1.91) 분기 중심 U^d — 부분 cycle 은 gamma -> h(eta)*gamma (M1)."""
     return U + sigma_d * 0.5 * (h_eta * gamma) * dU_hys(T, Omega)
 
 
 def xi_eq(Vn, Ud, w):
-    """(1.27) 의 꼴 — M2. 중심은 분기 중심 U^d, 폭 w 는 S1 동결값
-    (박스의 RT/F 는 이상 극한 — 하드코딩 금지)."""
+    """(1.27) 의 꼴 — M2 (중심 U^d, 폭 w 는 S1 동결값)."""
     return 1.0 / (1.0 + np.exp(-(Vn - Ud) / w))
 
 
 def ln_Lq(T, I_abs, Q_cell, dHa_eff, b, chi_d, A_d):
-    """M3 — (1.69) 그대로:
-      ln L_q = ln(T*/T) + dHa_eff/RT + b - chi_d*A_d/RT,
-      T* = |I|h/(Q_cell kB) — |I|/Q_cell 는 rate [1/s] 비로만 쓰인다.
-    b = -dS_a/R 결합값 (S4 의 y-절편의 부호 반전).
-    A_d = sigma_d*F*(Va - U^d) >= 0 — 자기 방향으로 양수인 구동력.
-    chi_d: 방전이면 chi, 충전이면 1-chi — 같은 전이상태의 합-1 강제(1.21);
-    충전 회귀와 S3 chi 의 합치가 그 가정의 검정이다(§1.15).
-    전이대(A_d < 3RT)의 보편형 괄호 인자는 속도에 곱 => L 은 나눈다."""
+    """(1.69) — M3. A_d >= 0 방향형; 전이대(A_d < 3RT)는 괄호 인자로 나눈다."""
     T_star = I_abs * H / (Q_cell * KB)
-    val = (np.log(T_star / T) + dHa_eff / (R * T) + b
-           - chi_d * A_d / (R * T))
+    val = np.log(T_star / T) + dHa_eff / (R * T) + b - chi_d * A_d / (R * T)
     if A_d < 3.0 * R * T:
         val -= np.log(1.0 + np.exp(-A_d / (R * T)))
     return val
 
 
 def r_a_connect(Lq, dxi_dq_at_qa):
-    """M4 의 접속값 분기 (L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a}.
-    dxi_dq_at_qa 는 자기 방향 진행의 크기(>0)로 넣는다.
-    그 외(꼬리-우세)는 r_a 가 (0, xi_eq(q_a)] 범위의 자유 파라미터."""
+    """M4 접속 분기(L_V < w/3): r_a = L_q * (dxi_eq/dq)|_{q_a}."""
     return Lq * dxi_dq_at_qa
 
 
 def dQdV_app(V_app, T, I_abs, Q_cell, sigma_d, par):
-    """(1.96) 양방향 통합식의 평가 — M1~M6. 반환 단위 [Q_cell/V].
-    반환은 방향 정렬된 ICA 크기다 — signed dQ/dV 데이터와 맞출 때는
-    sigma_d*dQ/dV >= 0 이 되도록 부호를 정렬한다((2) 의 규약).
-    단위 규약: Q(전이)·Cbg 는 Q_cell 정규화(무차원, /V), I_abs/Q_cell
-    는 rate [1/s] 가 되도록 넣는다(T* 가 그 비만 쓴다).
-    방향 규약: 평형 3량과 (Omega,gamma,chi)는 방향 공통이지만, 꼬리
-    파라미터 {Va, dVdq_qa, r_a, b}는 방향별 독립이다(1.96) — Omega!=0
-    전이는 chi_d 를 통해 dHa_eff 도 방향별이다. 충전 평가에는 충전
-    데이터에서 닫은 값을 담은 par 를 쓴다. Cbg 는 해당
-    T 의 closure((7) 의 T-회귀로 생성).
-    par 의 구성 (괄호는 그 값을 닫는 단계):
-      Cbg(Vn)      배경 미분용량 함수 [Q_cell/V] (S1 동결 spline)
-      Rn           lumped 분극 [V per |I|] (S2 직독)
-      chi          전달 계수 (S3; 충전 가지는 1-chi 로 자동 적용)
-      transitions  전이 dict 리스트:
-        U, w, Q        평형 3량 (1.51)/(1.32) (S1)
-        dHa_eff, b     (1.71)+M3 (S4; Omega!=0 전이는 chi_d*Omega 흡수
-                       유효값 — S5 후 dHa = dHa_eff + chi_d*Omega 복원)
-        Omega, gamma   (1.88)/(1.91) (S5; 비분기 전이는 0)
-        Va, dVdq_qa    꼬리 컷 전위(3'), |dV/dq|_{q_a} (M4 — 피팅 시
-                       해당 율의 측정 V(q), 예측 시 OCV 해에서 읽음)
-        r_a            잔류 지연 (M4 분기 결과), h_eta (기본 1)
-    """
-    Vn = V_app - sigma_d * I_abs * par['Rn']           # (1.45)
-    y = np.asarray(par['Cbg'](Vn), dtype=float)        # (1.43)
+    """(1.96) 양방향 통합식의 평가, M1~M6 — 반환은 방향 정렬 ICA 크기 [Q_cell/V]."""
+    Vn = V_app - sigma_d * I_abs * par['Rn']                                       # (1.45)
+    y = np.asarray(par['Cbg'](Vn), dtype=float)                                    # (1.43)
     for tr in par['transitions']:
-        Ud = U_branch(T, tr['U'], tr['Omega'], tr['gamma'],
-                      sigma_d, tr.get('h_eta', 1.0))   # M1
-        xe = xi_eq(Vn, Ud, tr['w'])                    # M2
-        A_d = sigma_d * F * (tr['Va'] - Ud)            # (1.19) 방향형
-        chi_d = par['chi'] if sigma_d > 0 \
-            else 1.0 - par['chi']                      # (1.21) 합-1
-        Lq = np.exp(ln_Lq(T, I_abs, Q_cell, tr['dHa_eff'],
-                          tr['b'], chi_d, A_d))        # M3 (동결)
-        LV = abs(tr['dVdq_qa']) * Lq                   # M4
+        Ud = U_branch(T, tr['U'], tr['Omega'], tr['gamma'], sigma_d, tr.get('h_eta', 1.0))  # M1
+        xe = xi_eq(Vn, Ud, tr['w'])                                                # M2
+        A_d = sigma_d * F * (tr['Va'] - Ud)                                        # (1.19) 방향형
+        chi_d = par['chi'] if sigma_d > 0 else 1.0 - par['chi']                    # (1.21) 합-1
+        Lq = np.exp(ln_Lq(T, I_abs, Q_cell, tr['dHa_eff'], tr['b'], chi_d, A_d))   # M3 (동결)
+        LV = abs(tr['dVdq_qa']) * Lq                                               # M4
         ra = tr['r_a']
-        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']  # (1.96) 종
-        sup = (sigma_d * (Vn - tr['Va']) >= 0.0)       # indicator
+        bell = (1.0 - ra) * xe * (1.0 - xe) / tr['w']                              # (1.96) 종
+        sup = (sigma_d * (Vn - tr['Va']) >= 0.0)
         dv = -sigma_d * (Vn - tr['Va']) / LV
-        tail = (ra / LV) * np.exp(
-            np.where(sup, dv, -np.inf))                # (1.96) 꼬리
-        # 비지지 쪽은 exp(-inf)=0 — 지수 양수 폭주(inf*0=NaN) 차단
+        tail = (ra / LV) * np.exp(np.where(sup, dv, -np.inf))                      # (1.96) 꼬리
         y = y + tr['Q'] * (bell + tail)
-    return y                                           # M6: V_app 축
+    return y                                                                       # M6: V_app 축
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
-읽는 순서는 M1$\to$M6 그대로다. \texttt{dQdV\_app} 의 인자 \texttt{par} 가 식~\eqref{eq:hysmaster}
-의 파라미터 벡터 $\bm\theta$ 에 조건$\cdot$직독량($V_a$, $|\dd V/\dd q|_{q_a}$, $h_\eta$)을
-더해 담은 것이고, 각 항목 옆 주석이 그 값을 닫는 단계(S1--S5)다. 방전이면
-\texttt{sigma\_d=+1}, 충전이면 $-1$. 방향이 \emph{값}을 바꾸는 두 자리 — 구동력
-$A_d=\sigma_dF(V_a-U^d)$ 와 계수 $\chi_d$ — 만 \texttt{M3} 호출부에서 갈라지며, 나머지 방향
-처리($\sigma_d$ 의 세 작용처, 방향별 꼬리 파라미터의 \texttt{par})는 docstring 의 방향 규약
-그대로라 여기 반복하지 않는다.
+읽는 순서는 M1$\to$M6 그대로다. 코드 주석은 식 번호와 단계 표지만 달았다 — 각 줄의 의미$\cdot$
+단위$\cdot$방향 규약은 전부 \S\ref{sec:master} 가 이미 정의한 것의 직역이기 때문이다. 짚을 것만
+짚는다. \texttt{par} 는 식~\eqref{eq:hysmaster} 의 파라미터 벡터 $\bm\theta$ 에 조건$\cdot$직독량
+($V_a$, $|\dd V/\dd q|_{q_a}$, $h_\eta$)을 더해 담은 사전이고, 각 값을 닫는 단계는 (4) 의 목록과
+같다. $Q_j$ 와 $C_\bg$ 는 $Q_\cell$ 정규화(무차원·/V), $|I|/Q_\cell$ 는 rate [1/s] — $T_*$ 가
+그 비만 쓴다. 방전이면 \texttt{sigma\_d=+1}, 충전이면 $-1$ 이고, 방향이 \emph{값}을 바꾸는 두 자리
+— 구동력 $A_d=\sigma_dF(V_a-U^d)\ge0$ 과 계수 $\chi_d$(방전 $\chi$$\cdot$충전 $1-\chi$,
+식~\eqref{eq:chisum}) — 만 \texttt{M3} 호출부에서 갈라진다. 꼬리의 \texttt{np.where} 는 비지지
+쪽 지수를 $-\infty$ 로 막아 $\exp$ 가 정확히 $0$ 이 되게 하는 강건성 장치다. 평형 3량과
+$(\Omega_j,\gamma_j,\chi)$ 는 방향 공통, 꼬리 파라미터는 방향별 독립(\S\ref{sec:master}) —
+충전 평가에는 충전 데이터에서 닫은 \texttt{par} 를 쓴다.
 
 \subsection{단계 회귀의 골격}\label{sec:codestage}
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
-# ---- 단계 회귀의 골격 — 최소화 루틴은 독자 몫((5): 가중 LSQ 만 지키면 됨)
+# ---- 단계 회귀의 골격 — 해설·규약은 본문, 목적함수는 (5) 의 가중 LSQ
 def s1_residual(theta, V, y_meas, Np):
-    """S1 잔차: 저율 OCV 의 다-peak 동시 회귀.
-    theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0].
-    히스 전이 포함 시 충/방 저율 공동 회귀로 확장한다 — U^dis/U^chg
-    분리, w·Q 방향 공유 강제(본문 S1 보충 규정). 본 골격은 단방향.
-    저율(r_a -> 0)이라 (1.79) 의 종 항만 남는다. 배경을 상수 하나로
-    둔 것은 예시 단순화 — 실데이터는 (3) 의 anchor spline 을 쓴다."""
+    """S1 잔차 — theta = [U_1, w_1, Q_1, ..., U_Np, w_Np, Q_Np, Cbg0]; (1.79) 종 항만."""
     model = np.full_like(V, theta[-1])
     for j in range(Np):
         U, w, Q = theta[3 * j:3 * j + 3]
@@ -2657,13 +2617,11 @@ def s1_residual(theta, V, y_meas, Np):
         model = model + Q * xe * (1.0 - xe) / w
     return y_meas - model
 
-# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT        ... (1.67)
-#     (방전 s=+1, S0-pass 활성화 지배 극한 — 직렬 감쇠 인자 1)
-# S4: y(T) = ln(T*/(L_q T)) - chi*A/RT 를 1/T 로 회귀 —
-#     기울기 = -dHa_eff/R, b = -절편                  ... (1.70)·(1.71)
-# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ      ... (1.93)
+# S3: (V_drive, ln L_q) 점들의 직선 기울기 = -chi*F/RT (방전, S0-pass)      ... (1.67)
+# S4: y(T) 를 1/T 로 회귀 — 기울기 = -dHa_eff/R, b = -절편                  ... (1.70)·(1.71)
+# S5: 절편(T) 3점 -> (gamma, Omega) 2-파라미터 비선형 LSQ                   ... (1.93)
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 S1 만 잔차 함수가 필요하고(다-peak 동시 회귀 — (6) 보충 규정), S3$\cdot$S4 는 직선 회귀, S5 는
 2-파라미터 비선형 한 건이다. 사슬의 실행 순서$\cdot$동결 규칙$\cdot$컷 정의는 (1)--(8)이 이미
