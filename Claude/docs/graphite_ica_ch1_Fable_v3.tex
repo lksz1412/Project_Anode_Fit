@@ -558,7 +558,32 @@ RT\,\frac{\partial}{\partial\theta}\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\
 많아 들어가는 쪽의 값어치가 크게 낮고($\mu\to-\infty$), 거의 찬 격자($\theta\to1$)에서는 반대다. 즉
 \emph{채울수록 한 개 더 채우는 값어치가 단조로 오른다}. $\Omega$ 항은 상호작용의 몫이다 — $\Omega>0$
 (동종 이웃 선호)이면 채움에 따른 값어치의 오르막을 $-2\Omega$ 의 \emph{기울기로 깎아} 단조성을
-약화시키며, 이것이 뒤에서 상분리의 씨앗이 된다(\S\ref{sec:regsol}).
+약화시키며, 이것이 뒤에서 상분리의 씨앗이 된다(\S\ref{sec:regsol} — 그림~\ref{fig:mudecomp}).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=8.2cm,y=1cm]
+\draw[->] (0,-2.184) -- (0,2.288) node[above] {\footnotesize $[\mu_{\mathrm{Li}}(\theta)-\mu^0]/RT$};
+\draw[->] (-0.02,0) -- (1.06,0) node[below] {$\theta$};
+\foreach \yy in {-4,-2,2,4} {\draw (0.006,{\yy*0.52}) -- (-0.006,{\yy*0.52}) node[left] {\scriptsize $\yy$};}
+\foreach \xx in {0.5,1} {\draw (\xx,0.04) -- (\xx,-0.04) node[below] {\scriptsize $\xx$};}
+\draw[gray,thin] plot[smooth] coordinates {(0.03,1.4664) (0.06,1.3728) (0.1,1.248) (0.15,1.092) (0.2,0.936) (0.3,0.624) (0.4,0.312) (0.5,0) (0.6,-0.312) (0.7,-0.624) (0.8,-0.936) (0.85,-1.092) (0.9,-1.248) (0.94,-1.3728) (0.97,-1.4664)};
+\draw[thick] plot[smooth] coordinates {(0.03,-1.8076) (0.06,-1.4308) (0.1,-1.1426) (0.15,-0.902) (0.2,-0.7209) (0.3,-0.4406) (0.4,-0.2108) (0.5,0) (0.6,0.2108) (0.7,0.4406) (0.8,0.7209) (0.85,0.902) (0.9,1.1426) (0.94,1.4308) (0.97,1.8076)};
+\draw[thick,densely dashed] plot[smooth] coordinates {(0.03,-1.0744) (0.06,-0.7444) (0.1,-0.5186) (0.15,-0.356) (0.2,-0.2529) (0.3,-0.1286) (0.4,-0.0548) (0.5,0) (0.6,0.0548) (0.7,0.1286) (0.8,0.2529) (0.85,0.356) (0.9,0.5186) (0.94,0.7444) (0.97,1.0744)};
+\draw[thick,densely dotted] plot[smooth] coordinates {(0.03,-0.3412) (0.06,-0.058) (0.1,0.1054) (0.15,0.19) (0.2,0.2151) (0.3,0.1834) (0.4,0.1012) (0.5,0) (0.6,-0.1012) (0.7,-0.1834) (0.8,-0.2151) (0.85,-0.19) (0.9,-0.1054) (0.94,0.058) (0.97,0.3412)};
+\node[right] at (0.86,1.352) {\scriptsize $\Omega=0$(로그 항)};
+\node[right] at (0.9,0.546) {\scriptsize $\Omega=1.5RT$};
+\node[right] at (0.66,-0.39) {\scriptsize $\Omega=3RT$(비단조)};
+\node[left,gray] at (0.2,1.144) {\scriptsize $\Omega(1-2\theta)$ 몫($\Omega=3RT$)};
+\end{tikzpicture}
+\caption{화학퍼텐셜~\eqref{eq:mu} 의 해부(실계산). 실선은 $\Omega=0$ 의 로그(섞임 엔트로피) 몫 —
+채울수록 값어치가 단조로 오른다. 회색 가는 선은 상호작용 몫 $\Omega(1-2\theta)$($\Omega=3RT$) —
+반대 기울기의 직선이다. 둘을 더하면: $\Omega=1.5RT$(파선)는 가운데가 평평해진 단조 곡선,
+$\Omega=3RT>2RT$(점선)는 \emph{비단조} — 한 값어치에 세 조성이 대응하며, 이것이 상분리의 씨앗이다
+(\S\ref{sec:regsol}).}
+\label{fig:mudecomp}
+\end{figure}
+
 
 \subsection{전기화학 퍼텐셜 — 하전 입자의 값어치}
 리튬은 이온 Li$^+$ 와 전자 $e^-$ 로 갈라져 드나들므로, 값어치에는 전기적인 일도 들어간다. 전하 $zF$(1몰)를
@@ -709,8 +734,36 @@ $r_j^+(1-\xi_j)=r_j^-\xi_j$ 이므로 — 마지막 등호의 비는 식~\eqref{
 \frac{\xi_{\sstat,j}}{1-\xi_{\sstat,j}}=\frac{r_j^+}{r_j^-}=e^{\mathcal A_j/RT}
 \label{eq:stationary}
 \end{equation}
-이다. 기본형 $V_\drive=V_n$($V_n$ 은 계가 실제로 느끼는 내부 전위 — \S\ref{sec:charge} 에서
-정의된다)에서 $\mathcal A_j=sF(V_n-U_j)$ 를 넣고 $\xi_{\sstat,j}$ 에 대해 풀면
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=4.6cm,y=1.15cm]
+\draw[->] (0,0) -- (0,2.25) node[above] {\footnotesize 플럭스 [임의 단위]};
+\draw[->] (-0.01,0) -- (1.08,0) node[below] {$\xi$};
+\foreach \xx in {0.5,1} {\draw (\xx,0.03) -- (\xx,-0.03) node[below] {\scriptsize \xx};}
+\foreach \yy in {1,2} {\draw (0.005,\yy) -- (-0.005,\yy) node[left] {\scriptsize \yy};}
+\draw[thick] (0,2) -- (1,0);
+\draw[thick,densely dashed] (0,0) -- (1,1);
+\draw[gray] (0,1.5) -- (1,0);
+\draw[gray,densely dashed] (0,0) -- (1,1.5);
+\draw[densely dotted] (0.6667,0) -- (0.6667,0.6667);
+\fill (0.6667,0.6667) circle (0.8pt);
+\node[below] at (0.6667,-0.18) {\scriptsize $\xi_{\sstat}$};
+\draw[densely dotted,gray] (0.5,0) -- (0.5,0.75);
+\fill[gray] (0.5,0.75) circle (0.8pt);
+\node[right] at (0.06,1.95) {\scriptsize 정방향 $r^+(1-\xi)$($\mathcal A>0$: $r^+=2r^-$)};
+\node[right] at (0.55,1.25) {\scriptsize 역방향 $r^-\xi$};
+\node[left,gray] at (0.42,1.42) {\scriptsize $\mathcal A=0$ 쌍};
+\end{tikzpicture}
+\caption{정지점의 시각화(실계산). 정방향 플럭스 $r^+(1-\xi)$ 는 차 있는 자리가 줄며 감소하는 직선,
+역방향 $r^-\xi$ 는 빈 자리가 늘며 증가하는 직선 — 교점이 정지점~\eqref{eq:stationary} 이다.
+$\mathcal A>0$($r^+=2r^-$ 예시, 검정 쌍)이면 교점이 $\xi_{\sstat}=2/3$ 로 밀리고, $\mathcal A=0$
+(회색 쌍)이면 $\tfrac12$ — 구동력이 정지점을 미는 방식~\eqref{eq:logisticsolve} 그 자체다.}
+\label{fig:fluxcross}
+\end{figure}
+
+이다(그림~\ref{fig:fluxcross}). 기본형 $V_\drive=V_n$($V_n$ 은 계가 실제로 느끼는 내부 전위 —
+\S\ref{sec:charge} 에서 정의된다)에서 $\mathcal A_j=sF(V_n-U_j)$ 를 넣고 $\xi_{\sstat,j}$ 에 대해 풀면
 \begin{equation}
 \xi_{\sstat,j}
 =\frac{e^{sF(V_n-U_j)/RT}}{1+e^{sF(V_n-U_j)/RT}}
@@ -1075,8 +1128,33 @@ Q_\bg(V_n)=Q_\cell\,q-\sum_jQ_j\xi_j
 \end{equation*}
 — $C_\bg>0$ 의 단조성에 의해 이를 만족하는 $V_n$ 은 정확히 하나다.
 피팅 알고리즘(\S\ref{sec:master})이 미측정 조건을 예측할 때 평형 해 $V_{n,\OCV}(q)$ 를 생성하는 것도
-같은 풀이다.
+같은 풀이다(그림~\ref{fig:chargesolve}).
 \end{verifybox}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=1cm]
+\draw[->] (-3.2,0) -- (3.4,0) node[below] {\footnotesize $(V_n-V_0)/w_\bg$};
+\draw[->] (-3.2,0) -- (-3.2,4.1) node[above] {\footnotesize 전하 $[Q_\cell]$};
+\foreach \xx in {-2,0,2} {\draw (\xx,0.04) -- (\xx,-0.04) node[below] {\scriptsize \xx};}
+\draw (-3.16,0.456) -- (-3.24,0.456) node[left] {\scriptsize 0.48};
+\draw (-3.16,1.976) -- (-3.24,1.976) node[left] {\scriptsize 0.52};
+\draw (-3.16,3.496) -- (-3.24,3.496) node[left] {\scriptsize 0.56};
+\draw[thick] plot[smooth] coordinates {(-3,0.2942) (-2.5,0.4023) (-2,0.567) (-1.5,0.8072) (-1,1.136) (-0.5,1.5487) (0,2.014) (0.5,2.4793) (1,2.892) (1.5,3.2208) (2,3.461) (2.5,3.6257) (3,3.7338)};
+\draw[thick,densely dashed] (-3.2,1.216) -- (3.2,1.216);
+\fill (-0.8954,1.216) circle (1pt);
+\draw[densely dotted] (-0.8954,1.216) -- (-0.8954,0);
+\node[below] at (-0.8954,-0.18) {\scriptsize $V_n^{\,*}$};
+\node[right] at (0.8,3.306) {\scriptsize 우변: $0.471+Q_\bg(V_n)$ — $C_\bg>0$ 라 단조};
+\node[right] at (-3.0,1.444) {\scriptsize 좌변: $Q_\cell\,q=0.5$};
+\end{tikzpicture}
+\caption{보존식~\eqref{eq:charge} 이 $V_n$ 을 정하는 장면 — 본문 worked example 의 수치 그대로
+(실계산: $Q_\bg=0.1\,Q_\cell\,\sigma((V_n-V_0)/w_\bg)$ 예시 배경). 우변(실선)은
+식~\eqref{eq:unique} 의 단조성 덕에 한 번만 좌변(파선 수평선)과 만나고, 그 교점 $V_n^*$
+($Q_\bg=0.029\,Q_\cell$)가 내부 전위다.}
+\label{fig:chargesolve}
+\end{figure}
+
 
 \begin{keybox}
 \textbf{관측축의 요지.} $V_n$ 은 전하 보존식~\eqref{eq:charge} 의 해이고, 측정은
@@ -1458,7 +1536,32 @@ y(T)\;\equiv\;\ln\frac{T_*}{L_{q,j}\,T}-\frac{\chi\,\mathcal A_j(T)}{RT}
 \text{절편}=+\frac{\Delta S_{a,j}}{R}\ \text{(결합값)}\;.}
 \label{eq:arrhenius}
 \end{equation}
-구동항 보정에 쓰는 $\chi$ 는 전위 가지(\S\ref{sec:potbranch})에서 \emph{먼저} 닫아 기지값으로 넣는다 —
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\draw[->] (-0.2,0) -- (6.6,0) node[below] {\footnotesize $1000/T$ [1/K]};
+\draw[->] (-0.2,0) -- (-0.2,3.4) node[above] {\footnotesize $y$(무차원)};
+\foreach \xx/\lab in {1.6/3.2,4.8/3.4} {\draw (\xx,0.04) -- (\xx,-0.04) node[below] {\scriptsize \lab};}
+\foreach \yy/\lab in {0.42/-4.5,1.47/-3.5} {\draw (-0.16,\yy) -- (-0.24,\yy) node[left] {\scriptsize \lab};}
+\draw[thick] (0.6912,1.8669) -- (5.9264,0.21315);
+\fill (5.9264,0.21315) circle (1.2pt); \fill (4.4272,0.6867) circle (1.2pt); \fill (0.6912,1.8669) circle (1.2pt);
+\draw[gray] (0.6912,2.9883) -- (4.4272,1.9698) -- (5.9264,1.55925);
+\draw[gray] (5.9264,1.55925) circle (1.2pt); \draw[gray] (4.4272,1.9698) circle (1.2pt); \draw[gray] (0.6912,2.9883) circle (1.2pt);
+\node[below right] at (2.2,1.05) {\scriptsize $y(T)$~\eqref{eq:ydef}: 기울기 $-\Delta H_a/R$};
+\node[above left,gray] at (5.0,1.995) {\scriptsize 보정 전($\chi\mathcal A$ 미제거): 기울기 오염};
+\node[below] at (3.1,-0.45) {\scriptsize $45^\circ$C $\leftarrow$ \quad\quad $\to$ $15^\circ$C};
+\end{tikzpicture}
+\caption{Arrhenius 회귀~\eqref{eq:arrhenius} 의 시각(실계산: $\Delta H_a=40$ kJ/mol, 절편 $12$,
+세 온도 $15/23/45^\circ$C). 검정 점·직선은 보정된 측정량 $y(T)$~\eqref{eq:ydef} — 정확히
+$1/T$ 에 선형이고 기울기가 $-\Delta H_a/R$ 다. 회색 점은 구동항 $\chi\mathcal A_j/RT$ 를 빼지 않은
+경우($\chi\mathcal A=2.9$ kJ/mol 예시) — 점이 위로 밀리고 기울기가 오염된다. S4 가 $\chi$ 를
+\emph{먼저} 닫는 이유(\S\ref{sec:master})가 이 그림이다.}
+\label{fig:arrplot}
+\end{figure}
+
+구동항 보정에 쓰는 $\chi$ 는 전위 가지(\S\ref{sec:potbranch})에서 \emph{먼저} 닫아 기지값으로
+넣는다(그림~\ref{fig:arrplot}) —
 이 순서가 ``$\chi$ 와 $\Delta H_a$ 가 둘 다 꼬리 지수에 섞이는'' 공선형을 끊는 열쇠이며, 피팅 절차의
 단계 설계(\S\ref{sec:master})가 그대로 이 순서다. $\Delta S_{a,j}$ 는 prefactor 와 결합한 절편으로만
 나오므로 단독으로는 식별되지 않는다 — 절대값은 prefactor 에 묻고 의존성만 뽑는다는 \S\ref{sec:rate} 의
@@ -1956,7 +2059,31 @@ V_{\peak,j}^{\chg}=U_j^{\chg}-|I|R_n
 \;+\;\underbrace{2|I|R_n}_{\text{동역학}(|I|\to0\ \text{소멸})}\;.}
 \label{eq:hysobsgap}
 \end{equation}
-여러 율에서 gap 을 재어 $|I|\to0$ 으로 외삽하면 \textbf{절편이 열역학, 기울기가 동역학}이다. 이 한 줄
+여러 율에서 gap 을 재어 $|I|\to0$ 으로 외삽하면 \textbf{절편이 열역학, 기울기가 동역학}이다
+(그림~\ref{fig:gapI}).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\draw[->] (0,0) -- (6.5,0) node[below] {\footnotesize $|I|$ [임의 단위]};
+\draw[->] (0,0) -- (0,3.6) node[above] {\footnotesize $\Delta V_{\obs}$ [mV]};
+\foreach \xx/\lab in {3/0.5,6/1} {\draw (\xx,0.04) -- (\xx,-0.04) node[below] {\scriptsize \lab};}
+\foreach \yy/\lab in {0.425/33,1.87/50,3.145/65} {\draw (0.04,\yy) -- (-0.04,\yy) node[left] {\scriptsize \lab};}
+\draw[thick] plot coordinates {(0,0.425) (1.2,0.765) (2.4,1.105) (3.6,1.445) (4.8,1.785) (6,2.125)};
+\draw[thick,densely dashed] plot[smooth] coordinates {(0.12,0.5745) (0.96,1.1328) (1.8,1.4157) (2.64,1.6066) (3.48,1.7509) (4.32,1.867) (5.16,1.9641) (6,2.0475)};
+\draw[thick,densely dotted] plot[smooth] coordinates {(0,0.425) (1.2,0.8126) (2.4,1.2954) (3.6,1.8734) (4.8,2.5466) (6,3.315)};
+\draw[<->,gray] (0.25,0.02) -- (0.25,0.425) node[pos=0.5,right] {\scriptsize 절편 $\gamma_j\Delta U_j^\hys$(열역학)};
+\node[right] at (4.6,1.955) {\scriptsize 선형~\eqref{eq:hysobsgap}: 기울기 $2R_n$};
+\node[right] at (3.4,1.19) {\scriptsize Tafel 휨(기울기 감소)};
+\node[left] at (5.9,2.975) {\scriptsize 확산$\cdot$$\gamma(|I|)$ 휨(증가)};
+\end{tikzpicture}
+\caption{관측 gap 의 분해~\eqref{eq:hysobsgap} (실계산: 절편 $33$ mV, 기울기 $20$ mV/단위).
+실선이 가산 분해의 예측 — $|I|\to0$ 절편이 열역학 갈림, 기울기가 분극이다. 파선은 charge-transfer
+의 Tafel 휨(기울기 점감), 점선은 확산 한계$\cdot$$\gamma_j(|I|)$ 의 휨(점증) — 두 휨이 가산 분해
+전제의 위반 지문이며 진단표(\S\ref{sec:master})가 받는다.}
+\label{fig:gapI}
+\end{figure}
+ 이 한 줄
 분해가 본 확장의 실용 핵심이다 — $0$ 이 아닌 절편은 상분리($\Omega_j>2RT$)의 \emph{증거 후보}이고
 (표면 재구성$\cdot$기계적 응력 기원 히스도 잔존 절편을 만든다 — 확증은 \S\ref{sec:falsify}(ii) 의
 온도 소멸 검정까지 가야 한다), 절편의 온도 의존이 $\Omega_j$ 를, 크기가 $\gamma_j$ 를 정한다.
