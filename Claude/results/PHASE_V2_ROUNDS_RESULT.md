@@ -327,3 +327,30 @@ Read coverage: 6창 전담(연결부 포함)×1 + Codex 전문×1 + prose 전문
 ## X.R (본 커밋) — fresh 수렴
 - ★확정 0 PASS: 다리 13곳의 식번호가 실제 절 결과인지 전수 확인·Ifuse 0.07 재계산·코드 식번호 전수·코드 렌더(96자 줄이 마진 19mm 안쪽) 판정 "양호". 제안 4 중 3 반영(폭 110자 초과를 게이트가 적발 → 분할), 1 기각(§1.17 하드코딩 — 장 구조 동결).
 게이트: 매 커밋 0/0/0 + comment 15/15 + diff·run PASS + ★렌더 게이트(변경 페이지 전부 확인 — 8차 피드백 반영).
+
+# V4 — [확장] 적층 준안정 절 신설 (사용자 요청: 문헌 검색 내용을 수식적으로 접목)
+
+배경: 직전 인터넷 논문 검색(Mercer 2021·Allart 2018·Didier 2020·Schmitt 2022·Wang 2025·Persson 2010)에서
+확인된 "방향별 임계 조성 비대칭 = 준안정 적층(stacking) 기원"을 v3에 수식 접목. v3 동결, v4 분기.
+
+## V4.1 (3600df1·275a766) — 신규 절 + 자가정정
+- graphite_ica_ch1_Fable_v4.tex 분기, 버전 표기 갱신.
+- 문서 끝(§1.17 코드 뒤)에 새 [확장] §1.18 "적층 준안정 — 방향별 임계 조성의 미시 기원"(sec:stacking):
+  둘째 order parameter σ(AB↔AA) 결합 자유에너지 eq:gcoupled → σ saddle-node spinodal → 방향별 임계
+  조성 eq:xistack(ξ_open/ξ_close) **유도**(박사 70/30 점유율 = ξ_c=0.5 대칭 경우) → athermal 적층 gap
+  eq:dvstack(2κ/sF) → gap 분해 eq:gapsplit. v3 대칭 spinodal은 B→0 빠른-적층 코너로 회수.
+- 신규 그림 fig:stackloop(방향별 σ 이력 루프, 실좌표·렌더 검증 p.48). 검증 DOI 참고문헌 6편 추가.
+- ★배치 결정: 코드 절 뒤 배치로 master/code 식번호 무이동 → comment_gate 15/15 불변·공유 .py 무수정·v3 무손상.
+- ★자가정정(275a766): "B→0에서 ΔV_stack→0"은 물리 오류(ΔV_stack=2κ/sF는 B 무관) → 올바른 회수는
+  폭 Δξ_stack→0으로 bistable 창이 닫혀 가역 step이 되는 것(방향 offset 소멸)으로 정정.
+
+## V4.R (3208a92) — 물리 + 인용/prose 감사 (Codex + Fable 병행)
+- Codex(물리): 차원 6식·σ우물·saddle-node(2/3√3=0.3849)·xistack·dvstack 전부 CONFIRMED, 0 확정 오류.
+  ★Ω_eff=Ω+O(κ²/B) 괄호 = B→0에서 부정확(cusp; κ≪B에서만 유효) 지적.
+- Fable(인용/prose): 6편 서지 ground-truth 완전 일치, 인용-사실 경계 "모범적"(가설 3중 표시), 다리
+  (γ_j·ΔU^hys·식번호·(T_c−T)^{3/2}) 정확. Ω_eff orphan + 차원 전보체 + schmitt2022 온도결과 미활용 지적.
+- 두 감사 합치 3건 반영: Ω_eff 괄호 제거(정성 문장으로), 차원 1:1 분리, schmitt2022 온도-게이트 정확 활용.
+- 판정: 양쪽 PASS, 확정 결함 0. v4 게이트 0/0/0 50p + comment 15/15.
+
+비고: 본 절은 운영 모델 밖 "가설적 미시 기원"으로 3중 명시. 피팅 사슬(§1.15)은 이를 γ_j 한 양으로 이미
+흡수 — 즉 v4는 v3의 피팅 능력을 바꾸지 않고 그 γ_j의 미시 해석·반증 칼날(athermal 바닥)만 추가.
