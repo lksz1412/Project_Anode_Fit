@@ -284,7 +284,7 @@ def invert_QV(Q_query, V_grid, Q_of_V):
 #  BDD BatteryData_Matching 규약 그대로:  modi_Capa = Q*A + B  (A=loading, B=slippage).
 # ===========================================================================
 
-def build_electrode_curves(V_grid, transitions, Cbg, s, loading, offset):
+def build_electrode_curves(V_grid, transitions, Cbg, s, loading, offset, reverse=False):
     """합성 전극 참조곡선 (BDD modi_Capa/modi_Volt/modi_dVdQ 형식).
 
     (1) 출처식 : electrode_dQdV (1.82) + electrode_QV (∫1.82).
@@ -296,17 +296,27 @@ def build_electrode_curves(V_grid, transitions, Cbg, s, loading, offset):
                  공선형(load→0.5, Q_j→2 배가 풀셀 불변; 문건 §1.11 경고한 collinearity).
                  → peak-basis 피팅에서는 loading=1 로 고정하고 Q_j 가 용량을 담게 한다.
                  BDD 처럼 '측정 참조곡선'(자체 임의 용량 스케일)을 쓸 때만 loading 자유.
+                 ★ reverse: 풀셀에서 음극은 충전(Q↑) 시 리튬화 → V_AN 감소이므로 용량축을
+                 반전한다(modi_Capa=loading·(Q_max−Q_e)+offset, dV/dQ<0). 그러면 풀셀
+                 dV/dQ_FC = dV/dQ_CT − dV/dQ_AN 이 두 양수의 합(직렬)이 되어 물리적이다.
+                 BDD 가 측정 음극 곡선을 이 방향으로 저장하는 것과 일치. 양극은 reverse=False.
     (4) x축    : 내부 V(전위) 격자에서 생성하되, 출력 modi_Capa 가 Q 축 좌표.
 
-    반환: (modi_Capa, Volt=V_grid, modi_dVdQ).
+    반환: (modi_Capa, Volt, modi_dVdQ) — modi_Capa 오름차순 정렬(interp 요건).
     """
     V_grid = np.asarray(V_grid, dtype=float)
     g = electrode_dQdV(V_grid, transitions, Cbg, s)
     g = np.maximum(g, 1e-12)                               # 0분모 방지
     Q_e = electrode_QV(V_grid, transitions, Cbg, s, Q0=0.0)
-    modi_Capa = loading * Q_e + offset                    # BDD modi_Capa = Capa*A + B
-    modi_dVdQ = (1.0 / g) / loading                       # dV/dQ on FC capacity axis
-    return modi_Capa, V_grid, modi_dVdQ
+    if not reverse:
+        modi_Capa = loading * Q_e + offset                # BDD modi_Capa = Capa*A + B
+        modi_dVdQ = (1.0 / g) / loading                   # dV/dQ on FC capacity axis (양)
+        return modi_Capa, V_grid, modi_dVdQ
+    # 음극 반전: full-cell Q 증가 = 리튬화 = V 감소 → 용량축 반전, dV/dQ 음
+    modi_Capa = loading * (Q_e[-1] - Q_e) + offset
+    modi_dVdQ = -(1.0 / g) / loading
+    order = np.argsort(modi_Capa)                          # Capa 오름차순 정렬
+    return modi_Capa[order], V_grid[order], modi_dVdQ[order]
 
 
 def full_cell_from_electrodes(Q_query, AN, CT):
@@ -398,7 +408,7 @@ def unpack_params(theta, n_an, n_ct):
 
 def staged_fit(V_an, V_ct, Q_grid, meas, theta0, n_an, n_ct, stages,
                Cbg_an=0.0, Cbg_ct=0.0, s_an=+1.0, s_ct=+1.0,
-               weights=(1.0, 1.0, 1.0), bounds=None, verbose=True):
+               weights=(1.0, 1.0, 1.0), bounds=None, reverse_an=True, verbose=True):
     """풀셀 → 양·음극 분해 단계 피팅. ★ 사용자 원안의 '최종 피팅'.
 
     (1) 출처식 : 잔차 = fc_residual ([확장] 3채널). 단계 사슬 = §1.11/§1.16.
@@ -428,7 +438,7 @@ def staged_fit(V_an, V_ct, Q_grid, meas, theta0, n_an, n_ct, stages,
 
     def residual_full(th, W):
         an_trs, ct_trs, la, oa, lc, oc = unpack_params(th, n_an, n_ct)
-        AN = build_electrode_curves(V_an, an_trs, Cbg_an, s_an, la, oa)
+        AN = build_electrode_curves(V_an, an_trs, Cbg_an, s_an, la, oa, reverse=reverse_an)
         CT = build_electrode_curves(V_ct, ct_trs, Cbg_ct, s_ct, lc, oc)
         return fc_residual(Q_grid, meas, AN, CT, *W)
 

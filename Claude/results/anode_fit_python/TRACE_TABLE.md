@@ -75,14 +75,25 @@
 2. **dV/dQ 채널의 rugged landscape**: 날카로운 LCO peak(w≈12mV)은 dV/dQ 가 미세 정렬 어긋남에
    폭발적 민감 → 바늘구멍 cost. **평활한 V_FC(=적분)로 거친 정렬 먼저, dV/dQ(=미분)로 미세 정렬**
    (coarse-to-fine). 이게 BDD 가 어려운 단계에 optuna 전역탐색을 쓰는 이유.
-3. **절대 offset(slippage) softness** (§1.12 비유일성): 단일 풀셀곡선서 인벤토리 절대 offset 은
-   ~1% 용량 수준 softness. peak 형상·재구성 풀셀은 정밀하나 off 는 1% 잔여 불확실 — 정직히 보고.
-4. **비순환 staging 필수**: 전역 동시 자유 피팅은 공선형으로 발산(§1.16 "전역 동시 최소화 금지").
+3. **★ 전압 gauge 자유도** (정확): 모든 peak 위치를 공통 δ 만큼 이동(U_j→U_j−δ, 양·음극 동시)하면
+   V_CT·V_AN 둘 다 δ 내려가 **V_FC=V_CT−V_AN 불변**. 즉 풀셀은 전극의 **상대** 위치만 결정하고
+   **절대 전위 기준은 비식별**. → 반쪽셀 참조의 한 peak(예: LCO 주 3930mV)를 **anchor 로 고정**해
+   gauge 잠금(`reverse_an`·anchor 미적용 시 ~15mV 균일 이동으로 드러남).
+4. **음극 반전(reverse) = 물리 부호** (정확): 풀셀 충전(Q↑) 시 음극 리튬화 → V_AN **감소** → dV/dQ_AN<0
+   → dV/dQ_FC=dV/dQ_CT−dV/dQ_AN 이 두 양수의 **합**(직렬 저항). 미반영 시 풀셀 dV/dQ 가 음으로
+   내려가는 비물리. `build_electrode_curves(reverse=True)`(음극)로 BDD 측정 음극 곡선 방향과 일치.
+5. **인접 peak 면적 비유일** (§1.12): 흑연 120/85mV 처럼 가까운 두 peak 은 합은 결정되나 개별 면적
+   분배가 비유일 → 반쪽셀 참조로 면적·폭을 ±40% 구속(붕괴 방지).
+6. **절대 offset(slippage) softness** (§1.12): 단일 풀셀곡선서 인벤토리 절대 offset 은 ~1% 용량 softness.
+7. **비순환 staging 필수**: 전역 동시 자유 피팅은 공선형으로 발산(§1.16 "전역 동시 최소화 금지").
    자유도 점진 개방·직전 동결이 식별성을 만든다 = 사용자의 "RMSE3/RMSE4/더 많은 단계" 의 근거.
 
 ## 7. 실행 검증 (수록 코드 = 실행 파일)
 
 - `test_anode_fit_lib.py` — T2~T4: bell 정점=Q/4w (1.51)·dU_hys=54.76mV (1.88)·면적보존 (1.80)·
   V↔Q 일관 (1.42/1.47)·풀셀 환원. **ALL PASS**.
-- `roundtrip_fullcell.py` — T5: LCO/흑연 풀셀 합성(잡음 1%) → staged_fit 분해 회복.
-  음극·양극 peak ±8mV·면적 ±0.013, off_ct ±0.013, 재구성 V_FC RMSE 0.64mV(≪잡음 3mV). **PASS**.
+- `roundtrip_fullcell.py` — T5: LCO/흑연 풀셀 합성(잡음 1%, 음극 reverse) → staged_fit 분해 회복.
+  gauge anchor(LCO 주 peak) + 면적·폭 참조 구속. 음극·양극 peak ±4mV·면적 ±0.028, off_ct ±0.007,
+  재구성 V_FC RMSE 0.73mV(≪잡음 5.9mV). **PASS**.
+- `plot_samples.py` — 함수 개형 샘플 4 그림: ① 단일 peak 해부(종/꼬리/r_a/L_V) ② 세 인자(T·C-rate)
+  의존 ③ 전극=peak 합 + OCV 곡선 ④ LCO/흑연 풀셀 분해(V·dV/dQ·dQ/dV, x=Q). PNG fig1~4.
