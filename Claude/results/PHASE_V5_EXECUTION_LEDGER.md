@@ -16,6 +16,15 @@
 ## Next Step
 Phase 1.3: N회 가변-청크 검수(R1~, 수렴 2×0). 매 라운드 청크·렌즈 전환. 검수 sub 병렬→master 삼각검증·직접수정.
 
+| 17 | 1.3 | R1 | 식 충실성 적대 검산(6 sub, 절별) | v5.tex | v5 전체↔v4 §1.1~§1.17 | GREEN 40p | 식오류 0 / 승격식 5 무번호화·참조 2 inline | 식 1:1 / 절별 | R1 PASS | (커밋) | 코드주석 (1.x) 정합 복원·검증 |
+
+## Phase 1.3 R1 결과 (식 충실성)
+- 6 sub 전원: 전 numbered 식·boxed·align·figure TikZ·Python 코드(문자 일치)·표(S0–S5/진단/참조표8/gap표) **v4와 1:1 verbatim 확정**. 식 변형·부호·첨자·누락 **0**.
+- §1.18 누출 0(sec:stacking grep 0), dangling 종속절 삭제 확인, 심볼표 §1.18 5행 삭제 확인.
+- §7.5 특별항목 전부 반영: eq:affinity 이중계상 논거·eq:chisum ∀𝒜 양화·두경로 verifybox·(3')M4 수치(5%/3RT/w/3/+0.07→+0.03)·울타리 ①–⑯(③⑨⑩ 삭제) 보존.
+- keybox 전면 삭제 = 의도된 설계(스펙 §1, 핵심 결론은 식 흐름에 보존) — 결함 아님.
+- **수정(R1)**: 승격식 5개(eq:v5-*) 무번호화(equation*) → v5 식번호 v4 정렬 복원 → §1.17 코드 주석 하드코딩 (1.x) 유효 유지(9/9 검증: vapp=1.45·logistic=1.27·chisum=1.21·affinity=1.19·cbg=1.43·lnLq=1.69·simplefit=1.79·hysdU=1.88·hyscenter=1.91·hysmaster=1.96). 미참조 label 문제 동시 소거. 재빌드 undefined ref 0·overfull 0.
+
 ## Phase 1.2 Gate 1.2 결과 (확정)
 - xelatex 2-pass exit 0, 40 페이지.
 - undefined reference/citation **0** (전 \eqref·\ref·\cite 해소).
