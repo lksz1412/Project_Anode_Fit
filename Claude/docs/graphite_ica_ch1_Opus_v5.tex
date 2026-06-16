@@ -655,7 +655,7 @@ w_j^{\eff}\;=\;\frac{RT}{F}\Big(1-\frac{\Omega_j}{2RT}\Big)
 \end{figure}
 
 \subsection{갈라짐의 물리 — 섞임이 손해가 되는 순간}
-식~\eqref{eq:gbar} 를 $\xi=1-\theta$ 로 옮기되 곡선 모양을 바꾸지 않는 $\xi$ 의 1차 몫을 상수 $g_j^0$ 와 함께 떼면
+식~\eqref{eq:gbar} 를 $\xi=1-\theta$ 로 옮기면 기준 잔여 $-\mu^0\xi$ 와 전기 일 몫($\propto\xi$, 식~\eqref{eq:emu})이 $\xi$ 의 1차(직선) 몫이 되는데, 공통 접선 판정(식~\eqref{eq:chordtest})은 1차항에 불변이므로 이를 상수 $g_j^0$ 와 함께 떼면
 \begin{equation}
 g_j(\xi)=g_j^0+RT\big[\xi\ln\xi+(1-\xi)\ln(1-\xi)\big]+\Omega_j\,\xi(1-\xi)
 \label{eq:gxi}
@@ -680,7 +680,7 @@ g_j'(\xi_b^-)\;=\;g_j'(\xi_b^+)
 \;=\;\frac{g_j(\xi_b^+)-g_j(\xi_b^-)}{\xi_b^+-\xi_b^-}.
 \label{eq:cotangent}
 \end{equation}
-이 두 접점 $\xi_b^\pm$ 가 \textbf{binodal(공존 조성)}. $g_j$ 가 $\xi=\tfrac12$ 대칭이라 공통 접선이 수평($g_j'=0$)이고, 식~\eqref{eq:gprime} 로
+이 두 접점 $\xi_b^\pm$ 가 \textbf{binodal(공존 조성)}. $g_j$ 가 $\xi=\tfrac12$ 대칭이라 공통 접선이 수평($g_j'=0$)이고, 아래 식~\eqref{eq:gprime} 의 $g_j'$ 에 $g_j'=0$ 을 넣으면
 \begin{equation}
 RT\ln\frac{\xi_b}{1-\xi_b}+\Omega_j\,(1-2\xi_b)\;=\;0
 \qquad(\text{자명근 }\xi=\tfrac12\text{(언덕 꼭대기) 를 제외한 두 근 }\xi_b,\ 1-\xi_b)
@@ -692,7 +692,7 @@ g_j'(\xi)\;=\;RT\ln\frac{\xi}{1-\xi}+\Omega_j\,(1-2\xi)
 \;=\;sF\,(V_{\eq,j}-U_j).
 \label{eq:gprime}
 \end{equation}
-접선 위에서 기울기가 일정 $\Rightarrow$ 갈라진 동안 평형 전위가 한 값에 머문다(\emph{평탄 전위}, plateau; 대칭 모형에서 $g'=0$ 이라 정확히 $U_j$). 좁은 $\dd V$ 에 큰 $\dd Q$ — ICA peak 의 정체가 이 접선이다. 가운데 언덕 구간은 $g''<0$ 이라 미소 요동에도 즉시 무너지고(그 경계 $g''=0$ 의 두 변곡점이 \textbf{spinodal}, 아래 식~\eqref{eq:spinodal}), binodal--spinodal 사이는 $g''>0$ 라 갈라짐이 전역 이득이나 핵생성 장벽(\S\ref{sec:rate} 의 언덕)을 넘어야 도달하는 \emph{준안정}이다 — 이 과주행이 히스테리시스의 씨앗이다(\S\ref{sec:hys}).
+접선 위에서 기울기가 일정 $\Rightarrow$ 갈라진 동안 평형 전위가 한 값에 머문다(\emph{평탄 전위}, plateau; 대칭 모형에서 $g'=0$ 이라 정확히 $U_j$). 좁은 $\dd V$ 에 큰 $\dd Q$ — ICA peak 의 정체가 이 접선이다. 가운데 언덕 구간은 $g''<0$ 이라 미소 요동에도 즉시 무너지고(그 경계 $g''=0$ 의 두 변곡점이 \textbf{spinodal}, 아래 식~\eqref{eq:spinodal}), binodal--spinodal 사이는 $g''>0$ 라 갈라짐이 전역 이득이나 핵생성 장벽(\S\ref{sec:rate} 의 언덕)을 넘어야 도달하는 \emph{준안정}이다 — 이 과주행이 히스테리시스의 씨앗이다(\S\ref{sec:hys}). 단상 평형은 단일 자리 운동방정식~\eqref{eq:relax} 의 정지점이나, 공존 plateau 는 갈라질 자유도를 가진 다입자 앙상블의 정지 상태로 받쳐진다 — 단일 평균장 궤적은 갈라지지 못해 준안정 가지(과주행)를 따른다.
 
 \begin{figure}[t]
 \centering
@@ -770,7 +770,7 @@ C_\bg\equiv\frac{\partial Q_\bg}{\partial V_n}\;>\;0
 \;=\;C_\bg\;>\;0
 \label{eq:unique}
 \end{equation}
-— 우변이 $V_n$ 의 단조 증가 함수이므로 해는 있다면 하나뿐이고, 잔여 전하가 배경 치역 안에 있는 한 존재도 보장된다($C_\bg>0$ 은 배경 단상 안정성의 귀결). 평형에서는 $\xi_j=\xi_{\eq,j}(V_n)$ 이라 우변 기울기에 $Q_j\,\dd\xi_{\eq,j}/\dd V_n$ 이 더해지는데, \S\ref{sec:regsol} 의 $\Omega_j>2RT$ 비단조 등온선은 이 기울기가 음이 되는 구간을 가져 한 $V_n$ 에 평형 해가 공존한다 — ``OCV $=$ 보존식의 평형 해''는 단상에서는 유일해, 상분리 구간에서는 이력이 고르는 분기에 대한 조건부 명제이며, 이 다가성이 \S\ref{sec:hys} 분기의 관측축 쪽 얼굴이다.
+— 우변이 $V_n$ 단조 증가($C_\bg>0$, 배경 단상 안정성)이므로 해는 유일하고 배경 치역 안에서 존재가 보장된다. 평형($\xi_j=\xi_{\eq,j}(V_n)$)에서는 우변 기울기가 $C_\bg+\sum_jQ_j\,\dd\xi_{\eq,j}/\dd V_n$ 이고, \S\ref{sec:regsol} 의 $\Omega_j>2RT$ 비단조 구간에서 이것이 $<0$ 이 되어 한 $V_n$ 에 평형 해가 공존한다 — ``OCV $=$ 보존식의 평형 해''는 단상 유일$\cdot$상분리 구간 이력 분기의 조건부 명제(\S\ref{sec:hys})다.
 
 \subsection{세 전위 — 내부$\cdot$측정$\cdot$구동}
 측정 전위는 내부 전위에 분극이 더해진 값이다:
@@ -1687,11 +1687,14 @@ $\Omega_j$ & 상호작용 에너지 & gap 절편 $T$-의존(S5) & \eqref{eq:hysd
 \textbf{가정의 울타리(유효범위 조건).}
 ① 활성화 지배(아니면 S0 수송 진단 선행).
 ② 좁은 $\rho_G$(휘면 분포 적분~\eqref{eq:superpose}).
+③ prefactor$\cdot$활동도 $T$-안정(절편 분리의 전제 — \S\ref{sec:tempbranch}).
 ④ $q_a$ 컷 공통 고정($5\%$, (3$'$)).
 ⑤ 분기 중심의 $\xi=\tfrac12$ 대칭(식~\eqref{eq:hyssym}).
 ⑥ $\gamma_j$ 전류$\cdot$온도 무관($\tau_{\mathrm{nuc}}\ll\tau_{\mathrm{drive}}$, 저$\sim$중율).
 ⑦ 분극 선형$\cdot$lumped $R_n$.
 ⑧ 전이 간 독립 가산.
+⑨ $C_\bg$ 를 S1 에서 동결.
+⑩ 반쪽전지 환산 선행.
 ⑪ 전이당 상수-$L$ 동결(위반 지문 = 진단표 후미 가속).
 ⑫ $V_\drive=V_n$ lumped(계면 과전압의 $V_n$ 흡수).
 ⑬ 운전 중 전해질 조성 불변($U_j$ 상수; 저온$\cdot$고율 농도 분극에서 먼저 깨짐).
