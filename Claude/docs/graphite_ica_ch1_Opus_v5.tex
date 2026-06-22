@@ -23,6 +23,7 @@
 \usetikzlibrary{positioning}
 \setstretch{1.12}
 \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}% 긴 인라인식이 줄끝에 걸린 정당 줄을 마지막 패스에서 흡수(overfull 0; 내용 불변)
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
   pdftitle={흑연 음극 dQ/dV 이론: 수식-구동 — Chapter 1 (v5)}}
 \pagestyle{fancy}\fancyhf{}
@@ -977,7 +978,7 @@ r_{a,j}\equiv r_j(q_a).
 \;\simeq\;\frac{r_{a,j}}{L_{q,j}}\,\exp\!\Big[-\frac{q-q_a}{L_{q,j}}\Big]
 \label{eq:tailrate}
 \end{equation}
-— 같은 지수형, 진폭 $r_{a,j}/L_{q,j}$. 전압축으로 옮기면 — 관측 꼬리 몫은 연쇄율(\S\ref{sec:charge}) $Q_j(\dd\xi_j/\dd q)/(\dd V_n/\dd q)$ 이고, post-peak 국소 기울기로 $q-q_a=(V_n-V_{a,j})/|\dd V_n/\dd q|_{q_a}$ 를 식~\eqref{eq:tailrate} 지수에 대입하면
+— 같은 지수형, 진폭 $r_{a,j}/L_{q,j}$. 전압축으로 옮기면 — 관측 꼬리 몫은 연쇄율(\S\ref{sec:charge})로 $Q_j(\dd\xi_j/\dd q)$ 를 $\dd V_n/\dd q$ 로 나눈 것이고, post-peak 국소 기울기로 $q-q_a$ 를 ($V_n-V_{a,j}$ 를 $|\dd V_n/\dd q|_{q_a}$ 로 나눈 값) 식~\eqref{eq:tailrate} 지수에 대입하면
 \begin{equation}
 \frac{\dd Q}{\dd V_n}\Big|_{\text{tail}}
 =\frac{Q_j\,r_{a,j}}{L_{V,j}}\,
@@ -1277,7 +1278,7 @@ e^{-(V_n-V_{a,j})/L_{V,j}}\,\dd V_n}_{=\,Q_j\,r_{a,j}}
 \begin{equation*}
 L_{V,j}\;\gtrsim\;|U_{j+1}-U_j|.
 \end{equation*}
-둘째가 저온$\cdot$고율 겹침의 주범이다($L_{V,j}\propto|I|\,e^{\Delta H_a/RT}$ — 저온일수록 낮은 전류에서 융합 시작; 그림~\ref{fig:fusion}). $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$ 에 식~\eqref{eq:LqT} 의 $L_{q,j}$ 를 넣고 융합 문턱 $L_{V,j}=|U_{j+1}-U_j|$ 을 등호로 두어 $|I|$ 에 대해 풀면
+둘째가 저온$\cdot$고율 겹침의 주범이다($L_{V,j}\propto|I|\,e^{\Delta H_a/RT}$ — 저온일수록 낮은 전류에서 융합 시작; 그림~\ref{fig:fusion}). $L_{V,j}=|\dd V_n/\dd q|_{q_a}L_{q,j}$(식~\eqref{eq:tail}) 에 식~\eqref{eq:LqT} 의 $L_{q,j}$ 를 넣고 융합 문턱 $L_{V,j}=|U_{j+1}-U_j|$ 을 등호로 두어 $|I|$ 에 대해 풀면
 \begin{equation}
 |I|_{\text{fuse},j}(T)\;=\;\frac{Q_\cell\,k_BT}{h}\cdot
 \frac{|U_{j+1}-U_j|}{|\dd V_n/\dd q|_{q_a}}\,
@@ -1543,7 +1544,7 @@ e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT},
 \Delta H_{a,j}^{\eff}\;=\;\Delta H_{a,j}-\chi_d\,\Omega_j.
 \label{eq:dHeff}
 \end{equation}
-($\chi_d$ 는 방전 $\chi$, 충전 $1-\chi$ — 충전 깊은 꼬리는 $\xi\to0$ 거울이라 $r^-$ 장벽의 상수 몫이 같은 $+\Omega$ 로 흡수.) 복원은 둘 — 히스 전이는 S5 가 $\Omega_j$ 를 닫은 뒤 식~\eqref{eq:dHeff} 를 역산, 분기 없는($0<\Omega_j\le2RT$) 전이는 단상 폭 절편 $-\Omega_j/2F$(식~\eqref{eq:weff})에서 읽는다.
+($\chi_d$ 는 방전 $\chi$, 충전 $1-\chi$(식~\eqref{eq:chisum} 합-1) — 충전 깊은 꼬리는 $\xi\to0$ 거울이라 $r^-$ 장벽의 상수 몫이 같은 $+\Omega$ 로 흡수.) 복원은 둘 — 히스 전이는 S5 가 $\Omega_j$ 를 닫은 뒤 식~\eqref{eq:dHeff} 를 역산, 분기 없는($0<\Omega_j\le2RT$) 전이는 단상 폭 절편 $-\Omega_j/2F$(식~\eqref{eq:weff})에서 읽는다.
 
 충방전 양방향은 두 가지만 바꾼다 — 전이 중심을 분기 중심으로($U_j\to U_j^{d}$, 식~\eqref{eq:hyscenter}), 분극 부호를 방향 부호로($s_I\to\sigma_d$):
 \begin{equation}
