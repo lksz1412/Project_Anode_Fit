@@ -1265,7 +1265,8 @@ e^{-(V_n-V_a)/L_V(G)}\,\dd G\qquad\big(s(V_n-V_a)\ge0\big).
 \;\to\;\frac{Q_j\,r_a(\bar G)}{L_V(\bar G)}\,e^{-(V_n-V_{a})/L_V(\bar G)}
 \;=\;\text{식}~\eqref{eq:tail}
 \label{eq:deltareduce}
-\end{equation}(전이대 컷 괄호 인자는 \S\ref{sec:potbranch} 대로 적분 \emph{밖}의 공통 인자 — 분포 비흡수). 분포가 넓으면 빠른 집단이 먼저 죽고 느린 집단이 꼬리를 끌어, 반로그에서 직선이던 것이 현 \emph{아래로} 처지는 볼록 곡선이 된다(그림~\ref{fig:superpose}) — 실측 ``늘어짐''의 귀결이다. 감쇠율 $\kappa=1/L$ 율 밀도 $\tilde\rho(\kappa)$ 의 가중 적분은 Laplace 변환 꼴이라, 점근형이 stretched exponential $e^{-(x/L_{\mathrm{KWW}})^\beta}$(Kohlrausch--Williams--Watts)가 되는 것은 $\rho_G$ 가 그 역변환 핵일 때다 \cite{lindsey1980,johnston2006,svare2000}. 운용 규칙: $\rho_G$ 는 꼬리에서 \emph{역산하지 않는다}(역문제 악조건 ill-posed — forward 모형해 데이터 대조; 분포족$\cdot$입자크기$\to G$ 맵은 이후 장, 잔차 운용은 \S\ref{sec:master} 진단표). 따름정리: 고정 $\rho_G$ 이면 식~\eqref{eq:varprop} 에 의해 늘어짐 지수 $\beta$ 가 저온일수록 작아져야 하고 \cite{svare2000}, $\beta$ 가 온도 무관이면 고정 장벽 분포 그림이 기각된다.
+\end{equation}
+(전이대 컷 괄호 인자는 \S\ref{sec:potbranch} 대로 적분 \emph{밖}의 공통 인자 — 분포 비흡수). 분포가 넓으면 빠른 집단이 먼저 죽고 느린 집단이 꼬리를 끌어, 반로그에서 직선이던 것이 현 \emph{아래로} 처지는 볼록 곡선이 된다(그림~\ref{fig:superpose}) — 실측 ``늘어짐''의 귀결이다. 감쇠율 $\kappa=1/L$ 율 밀도 $\tilde\rho(\kappa)$ 의 가중 적분은 Laplace 변환 꼴이라, 점근형이 stretched exponential $e^{-(x/L_{\mathrm{KWW}})^\beta}$(Kohlrausch--Williams--Watts)가 되는 것은 $\rho_G$ 가 그 역변환 핵일 때다 \cite{lindsey1980,johnston2006,svare2000}. 운용 규칙: $\rho_G$ 는 꼬리에서 \emph{역산하지 않는다}(역문제 악조건 ill-posed — forward 모형해 데이터 대조; 분포족$\cdot$입자크기$\to G$ 맵은 이후 장, 잔차 운용은 \S\ref{sec:master} 진단표). 따름정리: 고정 $\rho_G$ 이면 식~\eqref{eq:varprop} 에 의해 늘어짐 지수 $\beta$ 가 저온일수록 작아져야 하고 \cite{svare2000}, $\beta$ 가 온도 무관이면 고정 장벽 분포 그림이 기각된다.
 
 \begin{figure}[t]
 \centering
@@ -1484,9 +1485,9 @@ e^{(\Delta H_{a,j}-T\Delta S_{a,j}-\chi\mathcal A_j)/RT},
 V_n&=V_\app-\sigma_d|I|R_n\end{aligned}\;}
 \label{eq:hysmaster}
 \end{equation}
-꼬리 항에는 indicator $\mathbf 1\{\sigma_d(V_n-V_{a,j}^d)\ge0\}$ 가 곱해진다(박스 밖). 평형 곡선 안 $s$ 는 방전 규약 $+1$ 고정, 방향이 바꾸는 것은 $\sigma_d$ 의 세 작용처(분극 부호$\cdot$분기 중심$\cdot$꼬리 방향)뿐이다. 충전 꼬리 파라미터 일체($\{r^{\chg},L^{\chg}\}$)는 방향별 독립이고 $\Omega\ne0$ 전이는 $\chi_d$ 를 통해 $\Delta H^{\eff}$ 도 방향별이다. 충전 회귀는 같은 직선이되 율속이 역방향이라 계수가 $\chi\to1-\chi$ 로 바뀐다(합-1 강제, 식~\eqref{eq:chisum}); 가로축을 $|V_n-U_j^{\chg}|$ 로 두면 충전 기울기가 $-(1-\chi)F/RT$ 와 합치하는지가 독립 검정이다.
+꼬리 항에는 indicator $\mathbf 1\{\sigma_d(V_n-V_{a,j}^d)\ge0\}$ 가 곱해진다(박스 밖). 평형 곡선 안 $s$ 는 방전 규약 $+1$ 고정, 방향이 바꾸는 것은 $\sigma_d$ 의 작용처(분극 부호$\cdot$분기 중심$\cdot$꼬리 방향, 그리고 동역학 $L_q$ 평가 시 꼬리 구동력 정렬 $\mathcal A_j^d=\sigma_d F(V_{a,j}-U_j^d)\ge0$)뿐이다. 충전 꼬리 파라미터 일체($\{r^{\chg},L^{\chg}\}$)는 방향별 독립이고 $\Omega\ne0$ 전이는 $\chi_d$ 를 통해 $\Delta H^{\eff}$ 도 방향별이다. 충전 회귀는 같은 직선이되 율속이 역방향이라 계수가 $\chi\to1-\chi$ 로 바뀐다(합-1 강제, 식~\eqref{eq:chisum}); 가로축을 $|V_n-U_j^{\chg}|$ 로 두면 충전 기울기가 $-(1-\chi)F/RT$ 와 합치하는지가 독립 검정이다.
 
-환원 검산 둘 — $\Omega_j\le2RT$ 면 $\Delta U^\hys=0$, 분기 중심이 단일 $U_j$ 로 합쳐져 $|I|\to0$ 에서 두 방향 곡선이 완전히 겹친다(히스는 상분리의 산물). 상분리가 있어도($\Omega_j>2RT$) $|I|\to0$ 이면 gap 절편 $\gamma_j\Delta U_j^\hys$ 만 남아 식~\eqref{eq:hysobsgap} 과 정합한다.
+환원 검산 둘 — $\Omega_j\le2RT$ 면 $\Delta U^\hys=0$, 분기 중심이 단일 $U_j$ 로 합쳐져 $|I|\to0$ 에서 두 방향 곡선이 완전히 겹친다(히스는 상분리의 산물). 상분리가 있어도($\Omega_j>2RT$) $|I|\to0$ 이면 gap 절편 $\gamma_j\Delta U_j^\hys$ 만 남아 식~\eqref{eq:hysobsgap}(\S\ref{sec:hyspol} 에서 유도) 과 정합한다.
 
 \subsection{피팅 알고리즘 — 측정 파일에서 파라미터까지}
 단계 (1)--(7)과 참조표 (8)이 사양이다.
