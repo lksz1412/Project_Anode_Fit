@@ -42,3 +42,31 @@
 - R6 master signpost "(§hyspol 에서 유도)": R3 요청 추가분, R6은 약간 무겁다 보나 정확·비차단 → 유지.
 
 빌드 0/0/0 41p · undefined 0 · 20 bibitem.
+
+## Wave 3 (R9–R10) — 완료, 수렴
+| R | 청크 / 렌즈 | 확정 결함 |
+|---|---|---|
+| R9 | 직전 수정분 / 새 결함(회귀) | **0** (Wave1–2 수정 6건 정착, 깨진참조·의미변질·물리오류 0, 클린 빌드. σ_d 추가식 양방향 A_d≥0 정확) |
+| R10 | 전체 / completeness-critic | **0** (절순서 흐름도 일치·97식·undefined 0·20 bibitem 전부 인용·figure 16 orphan 0·forward 27건 산문 받침·수치 독립 재현) |
+→ **연속 2R(R9·R10) 0결함 → 수렴.**
+
+## 10-round 종합
+| R | 렌즈 | 확정→수정 |
+|---|---|---|
+| R1 물리재유도 | 0 | — |
+| R2 G-follow·의존 | 0 CRIT | — (sub 과장 2 기각) |
+| R3 흐름·완결성 | 0 break | — |
+| R4 부호·정의역 | 1 | σ_d 작용처 보완 |
+| R5 시각 41p | 0 | — |
+| R6 v5↔v6 보존 | 0 | — (v6≥v5) |
+| R7 Task A 정합 | 2 | [F] 4RT/dead branch·검토 line번호 |
+| R8 인용 | 1 | D-H 1969 원전 추가 |
+| R9 회귀 | 0 | — |
+| R10 수렴 | 0 | — |
+
+**수정 누적 6**(σ_d 작용처·master→hysobsgap signpost·L1268 오타·D-H 원전·[F] 코멘트·검토 line번호). **삼각 기각 다수**(binodal/gprime·regsol peak·sec:inputs U^d·j첨자·s_I·eq:total·W3 docstring — v5내재 soft 또는 sub 과장). 물리·유도 오류 0(재배열은 블록 통째 이동).
+
+## 4-tier 최종
+- **확정**: 10라운드 수렴(R9·R10 연속 0), v6 빌드 0/0/0 41p·undefined 0·20 bibitem·97식, 완성도 v6≥v5, 의존 무붕괴, σ_d 정확.
+- **추정(결함 아님·비차단)**: 폰트 글리프 경고(✓·①류 "Missing character") = v5 내재·R5 시각라운드서 정상 렌더 확인(폴백)·build_gate 무관. 차기 개정 시 amssymb 치환 선택.
+- **미검증**: 없음(물리·시각·G-follow·보존·인용·코드정합 전수).
