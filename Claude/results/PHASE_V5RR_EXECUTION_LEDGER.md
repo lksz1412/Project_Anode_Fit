@@ -19,3 +19,4 @@
 | 23 | R3 | R3a | 시각 렌더 sweep + 홀리스틱 회귀(편집6영역) 2 sub 병렬 | v5.pdf/tex(read) | 40p 전수 | 0/0/0 | 1/1 | 시각·홀리스틱 | — | — | §1.7 내 워딩 결함 적발 |
 | 24 | R3 | R3b | §1.7 워딩 정정(방향불변)·fig:barrier 참조 추가 | v5.tex | §1.7·§1.2 | 0/0/0 40p | 2/2 | 정정 | — | — | 0.39/0.35 false alarm 기각 |
 | 25 | R3 | R3c-R3d | fresh completeness-critic(0)+master 재정독(0) | v5.tex(read) | 전체·편집영역 | 0/0/0+15/15 | 0/0 | 수렴 | R3 PASS | (본 커밋) | 연속2R 0=수렴 |
+| 26 | R4 | 종합 | 종합게이트(v5 0/0/0·comment15·v3/v4/.py 무손상·run PASS)+RESULT 11항목 | PHASE_V5RR_* | — | 0/0/0+15/15 | — | — | R4 PASS | (본 커밋) | V5RR 완료·수렴 |
