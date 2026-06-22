@@ -12,3 +12,7 @@
 | 6-10 | R1 | 절별 ×5 | 검수 sub A~E 병렬 head→tail(물리·화학·수리+보존+정합) | v5,v3(read) | §1.1~§1.17 전 | — | (지적 다수) | 절별 3렌즈 | — | — | 물리오류 0, 산문다리 손실만 |
 | 11 | R1 | 삼각 | 확정수정 3: §1.8 dash→괄호·dHeff χ_d ref·Ifuse L_V ref. sub B L607 오타주장 기각 | v5.tex | §1.8·§1.15·§1.12 | 0/0/0 40p | 3/3 | 삼각검증 | — | — | false positive 1 거름 |
 | 12 | R1 | gate | R1 result+ledger, Phase R1 commit | PHASE_V5RR_* | — | 0/0/0+15/15 | — | — | R1 PASS | (본 커밋) | — |
+| 13-16 | R2 | 식 C1-C4 | Wave A 검수 sub×4(1.1~1.63) 4축 적대 재유도+SymPy | v5(read) | 식 1.1~1.63 | — | 유도오류 0 | 수식별 4축 | — | — | 전자일부호·평형심장부 등 PASS |
+| 17-20 | R2 | 식 C5-C7+Codex | Wave B sub×3(1.64~1.97)+Codex(샌드박스 실패) | v5(read) | 식 1.64~1.97 | — | 유도오류 0 | 수식별 4축 | — | — | 임계멱 8RT/3·σ_d⊥s PASS, 교차모델 미가동 |
+| 21 | R2 | 삼각·수정 | 확정수정 3: (1.21)χ'다리·(1.67)≤0 s-scope·(1.51)순높이 s-frame. R1 sub C 부호가정·C6 (1.75)우려 기각 | v5.tex | §1.4·§1.9·§1.7 | 0/0/0 40p | 3/3 | 삼각검증 | — | — | false positive 2 거름 |
+| 22 | R2 | gate | R2 result+ledger, Phase R2 commit | PHASE_V5RR_* | — | 0/0/0+15/15 | — | — | R2 PASS | (본 커밋) | 유도오류 0 |

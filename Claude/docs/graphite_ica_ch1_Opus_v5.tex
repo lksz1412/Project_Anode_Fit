@@ -516,7 +516,7 @@ r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT},\qquad
 r_j^-=k_0\,e^{-(\Delta G_{a,j}+(1-\chi)\mathcal A_j)/RT}.
 \label{eq:bv}
 \end{equation}
-정$\cdot$역에 독립 계수 $\chi,\chi'$ 를 허용해 비를 만들면, 모든 구동력 $\mathcal A_j$ 에서 Boltzmann 점유비와 같아야 하므로
+식~\eqref{eq:bv} 의 역방향 계수 $(1-\chi)$ 를 잠시 독립 $\chi'$($r_j^-\propto e^{-\chi'\mathcal A_j/RT}$)로 풀어 비를 만들면, 모든 구동력 $\mathcal A_j$ 에서 Boltzmann 점유비와 같아야 하므로
 \begin{equation}
 \frac{r_j^+}{r_j^-}\bigg|_{\chi,\chi'}
 =\;e^{(\chi+\chi')\mathcal A_j/RT}
@@ -860,7 +860,7 @@ Q_\bg(V_n)=Q_\cell\,q-\sum_jQ_j\xi_j
 \int\Big(\frac{\dd Q}{\dd V_n}-C_\bg\Big)\dd V_n=Q_j\;.}
 \label{eq:eqpeak}
 \end{equation}
-위치 $=$ 전이 중심 $U_j$, 순높이 $=Q_j/(4w_j)$, 배경 차감 면적 $=Q_j$($\int_0^1\dd\xi=1$ — 분리 peak 기준, 겹침 합산은 \S\ref{sec:overlap}). 너비는 별도 지표 없이 면적/높이 비로 읽으며, $w_j$ 는 이상 극한에서 $RT/F$($25.7$ mV, $25^\circ$C), 상호작용 시 식~\eqref{eq:weff} 의 $w^{\eff}$ 로 좁아진다.
+위치 $=$ 전이 중심 $U_j$, 순높이 $=Q_j/(4w_j)$(방전 $s=+1$ 크기 — 충전 가지는 부호만 반전, 통합형 \S\ref{sec:master}), 배경 차감 면적 $=Q_j$($\int_0^1\dd\xi=1$ — 분리 peak 기준, 겹침 합산은 \S\ref{sec:overlap}). 너비는 별도 지표 없이 면적/높이 비로 읽으며, $w_j$ 는 이상 극한에서 $RT/F$($25.7$ mV, $25^\circ$C), 상호작용 시 식~\eqref{eq:weff} 의 $w^{\eff}$ 로 좁아진다.
 
 \begin{verifybox}
 \textbf{수치 재현.} $Q_j=0.3\,Q_\cell$, $w_j=25.7$ mV 면 순높이 $Q_j/(4w_j)=0.3/(4\times0.0257)\approx2.9\,Q_\cell/\mathrm V$, 배경 차감 면적 $=0.3\,Q_\cell$. 극한 — $w\to0$ 에서 높이 발산$\cdot$면적 불변(이상 plateau ICA 선), $T$ 상승 시 $w\propto T$ 라 종이 낮고 넓어진다(면적 보존).
@@ -1039,7 +1039,7 @@ L_{q,j}\propto\frac1{k_j^{\eff}}.
 ($\partial(1/k_j)/\partial V_\drive=-(1/k_j)\,\partial\ln k_j/\partial V_\drive$ 를 넣어 두 음부호가 상쇄, 둘째 등식은 분자$\cdot$분모에 $k_jk_{j,\lim}$ 을 곱한 것). $L_{q,j}\propto1/k_j^{\eff}$ 의 로그 미분은 식~\eqref{eq:dlnkeff} 의 부호 반전이므로
 \begin{equation}
 \frac{\partial\ln L_{q,j}}{\partial V_\drive}
-\;=\;-\,\frac{k_{j,\lim}}{k_j+k_{j,\lim}}\,\frac{\chi sF}{RT}\;\le\;0.
+\;=\;-\,\frac{k_{j,\lim}}{k_j+k_{j,\lim}}\,\frac{\chi sF}{RT}\;\le\;0\quad(s=+1).
 \label{eq:LqV}
 \end{equation}
 구동이 깊을수록 꼬리가 짧아진다 — ``전위$\uparrow\Rightarrow$꼬리$\downarrow$'' 가 닫혔다. 앞 인자는 $k_{j,\lim}\to\infty$ 활성화 지배 극한에서 $1$ 로(기울기 $-\chi sF/RT$), 유한 공율속이면 기울기가 죽지만 부호 유지. 등온 기울기에서 $\chi$ 와 감쇠 인자가 함께 퇴화하므로 식별 사슬은 활성화 지배 확인(\S\ref{sec:master} S0) 위에서만 돈다 — 활성화 지배 여부는 측정으로 판정(\S\ref{sec:falsify} 수송 진단).

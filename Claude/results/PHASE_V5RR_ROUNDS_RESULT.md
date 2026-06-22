@@ -69,3 +69,37 @@ v5 §1.1~§1.17 전 범위(5 sub 분담 head→tail) + v3 동일 절 대조. mas
 
 ### Gate R1 = PASS
 build_gate Opus_v5 0/0/0 40p · comment_gate 15/15 · overfull 0 회복 · 절별 보존 감사 PASS(물리오류 0).
+
+---
+
+## Phase R2 — ★수식별 루핑 (완료, 사용자 핵심)
+
+### 수행
+- 식 97개를 의존 클러스터 7로 분담. Wave A(C1 1.1–1.18·C2 1.19–1.32·C3 1.33–1.51·C4 1.52–1.63) + Wave B(C5 1.64–1.74·C6 1.75–1.83·C7 1.84–1.97) = 검수 sub 7 병렬. 각 식을 **의존집합 전체에 대해 (i)물리 (ii)화학 (iii)수리(대수 한 단계·부호·차원·극한) (iv)선행식 정합** 적대 재유도(다수 sub가 SymPy/Python 독립 검산 동반).
+- 교차모델 Codex(codex:rescue, 히스 1.84–1.97 부호) 시도 → **Windows 샌드박스 오류(740 CreateProcessAsUserW)로 파일 접근 실패**. C7 Claude sub가 수치+해석 양면 재유도로 동일 범위 커버 → in-model 삼각으로 대체(교차모델은 이번 미가동, 정직 기록).
+
+### 확정 결과 (4-tier: 확정) — ★유도 오류 0
+- **식 (1.1)~(1.97) 전부 (i)~(iv) 4축 PASS. 물리·화학·수리 유도 오류 0건.** 핵심 재검산 통과:
+  - 과거 codex 의심처 **전자 일 −FV 부호(1.14→1.18 eqcond)** — s=+1·z=−1 규약서 flip 없이 정합(C1, SymPy).
+  - 평형 심장부(BV→detailed balance χ 상쇄→정지점→logistic) round-trip 닫힘(C2, SymPy).
+  - g(ξ)·공통접선·spinodal ξ_s±=½±½√(1−2RT/Ω)·Ω/2RT 3-case(C3, 수치 binodal 0.0707/spinodal 0.2113).
+  - 꼬리 사슬 기억적분·연쇄율 다리(1.62→1.63 prefactor Q_j r_a/L_V 정확 폐합, master overfull 수정 의미 보존)(C4).
+  - Arrhenius y(T) χ𝒜 상쇄가 𝒜(T) 온도의존 무관하게 정확(C5, SymPy), 입자분포 σ_lnL=σ_G/RT.
+  - 합성 면적보존·kinshift ⟨Δq⟩=L_q·Ifuse round-trip(0.07/0.035C)(C6).
+  - **히스 임계멱: ΔU_hys 닫힌꼴·계수 8RT/3·멱 (T_c−T)^{3/2}·dU_hys 54.8mV, σ_d⊥s=+1 직교**(C7, 수치+해석).
+- **수정 3건 적용**(수식-follow 완성도):
+  1. (1.21)chisum — (1.20)의 (1−χ)를 독립 χ'로 푸는 재파라미터화 다리 1구 추가(C2 G-follow 갭 해소).
+  2. (1.67)LqV — ≤0 부등호에 `(s=+1)` scope 명시(s 노출된 채 s=+1 가정 숨던 것).
+  3. (1.51)eqpeak — 순높이에 "방전 s=+1 크기, 충전 부호반전·통합형 §1.15" note(s-인자 테마 정본 해소).
+
+### 삼각검증서 정리한 sub 지적 (빈 통과/과잉수정 방지)
+- **(1.47)dQdV "dV_n/dq<0" 가정(R1 sub C)** → **거짓 확정**: 방전 s=+1 탈리튬화에서 V_n↑(q↑), dV_n/dq>0 → (1.47)(1.48)(1.51) 전부 양수 정합(C3 삼각).
+- **(1.75)xidecomp "선행 없는 뿌리"(baseline·C6 HIGH)** → **충분 판정**: 정의 ξ_j=ξ_eq−r̄ 가 (1.75) 직전 display equation*(line 1165)로 명시 → 다리 present. 비수정.
+
+### 비수정 (4-tier: 추정 — D2, v3 계승·규약 내 정합)
+- (1.63)tail 지수 방향 일반성·(1.60)risefollow O(L²) 부호 — O(·) 크기/σ_d 이연 안에서 정합, numbered 식 본문(verbatim v3) 수정 회피.
+- (1.9) site 개수 N vs (1.11) N_s 표기 분열 — verbatim v3 식 본문, 수치 무영향. 추정 보고.
+- (1.93) 기울기 2R_n에 L_V kinetic 이동 합산 가능(C7) — 본문 산문에 이미 단서, v3 계승.
+
+### Gate R2 = PASS
+97식 전부 (i)~(iv) 판정 완료(미판정 0) · 유도 오류 0 · 수정 3건 재빌드 0/0/0 40p · comment 15/15 · 약점3(1.95 R1해소/1.75 충분/1.83 R1해소) 처리 완료.
