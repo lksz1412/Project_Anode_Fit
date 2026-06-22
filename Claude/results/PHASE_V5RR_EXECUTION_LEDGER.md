@@ -16,3 +16,6 @@
 | 17-20 | R2 | 식 C5-C7+Codex | Wave B sub×3(1.64~1.97)+Codex(샌드박스 실패) | v5(read) | 식 1.64~1.97 | — | 유도오류 0 | 수식별 4축 | — | — | 임계멱 8RT/3·σ_d⊥s PASS, 교차모델 미가동 |
 | 21 | R2 | 삼각·수정 | 확정수정 3: (1.21)χ'다리·(1.67)≤0 s-scope·(1.51)순높이 s-frame. R1 sub C 부호가정·C6 (1.75)우려 기각 | v5.tex | §1.4·§1.9·§1.7 | 0/0/0 40p | 3/3 | 삼각검증 | — | — | false positive 2 거름 |
 | 22 | R2 | gate | R2 result+ledger, Phase R2 commit | PHASE_V5RR_* | — | 0/0/0+15/15 | — | — | R2 PASS | (본 커밋) | 유도오류 0 |
+| 23 | R3 | R3a | 시각 렌더 sweep + 홀리스틱 회귀(편집6영역) 2 sub 병렬 | v5.pdf/tex(read) | 40p 전수 | 0/0/0 | 1/1 | 시각·홀리스틱 | — | — | §1.7 내 워딩 결함 적발 |
+| 24 | R3 | R3b | §1.7 워딩 정정(방향불변)·fig:barrier 참조 추가 | v5.tex | §1.7·§1.2 | 0/0/0 40p | 2/2 | 정정 | — | — | 0.39/0.35 false alarm 기각 |
+| 25 | R3 | R3c-R3d | fresh completeness-critic(0)+master 재정독(0) | v5.tex(read) | 전체·편집영역 | 0/0/0+15/15 | 0/0 | 수렴 | R3 PASS | (본 커밋) | 연속2R 0=수렴 |
