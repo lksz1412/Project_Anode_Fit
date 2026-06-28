@@ -9,8 +9,8 @@
 | Phase0.1 | 1-4 | 1-4 | setup | v11 정독·곡선식 인벤토리 | PASS | plan | v7-00_spine/v11_flowchart.md | Anode_Fit_v11_final.py | v11 1-706 정독·11노드 매핑 | PASS_SPINE_INVENTORY | 5 |
 | Phase0.2 | 5-9 | 5-9 | setup | 플로우차트·AUTHOR_BRIEF | PASS | plan | v7-00_spine/AUTHOR_BRIEF.md | v11_flowchart.md | 노드↔메서드 1:1·brief 9항 | PASS_BRIEF | 10 |
 | Phase1.1 | 10-14 | 10-14 | build | 9종 독립 작성(자체10회) | PASS | plan | v7-01..09/ | NOTE/PDF ×9 | 9/9 xelatex 0-err·ref undef 0·렌더 fig 영어전용(01/03 주석만 한글) | PASS_9_DRAFTS | 15 |
-| Phase2.1 | 15-18 | — | review | 검토1 교차 | PENDING | plan | PHASE2_v7_review9.md | — | — | — | 19 |
-| Phase3.1 | 19-22 | — | build | 보완 9종(방향성만) | PENDING | plan | v7-01..09/*b.tex | — | — | — | 23 |
+| Phase2.1 | 15-18 | 15-18 | review | 검토1 교차 | PASS | plan | PHASE2_v7_review9.md | REVIEW1×9 | 9종 6렌즈·系統 A-상수 결함 적발·v7-04/05 베이스 | PASS_REVIEW1 | 19 |
+| Phase3.1 | 19-22 | 19-22 | build | 보완 9종(방향성만) | PASS | plan | v7-01..09/*b.tex | NOTEb/PDF×9 | 9/9 0-err·新부호회귀 0·flowchart 분극 정정(v7-05b 적발) | PASS_9_SUPPL | 23 |
 | Phase4.1 | 23-25 | — | review | 검토2 | PENDING | plan | PHASE4_v7_review9b.md | — | — | — | 26 |
 | Phase5.1 | 26-30 | — | build | 체리픽 v7-10(v6합류) | PENDING | plan | v7-10/ | — | — | — | 31 |
 | Phase6.1 | 31-33 | — | review | v7-10 재검수 | PENDING | plan | PHASE6_v7_review_v10.md | — | — | — | 34 |
@@ -30,7 +30,7 @@
 | 7 | v7-07 | Codex | ① | ✅done | v7-07/v7-07.tex | 12p·32KB·TikZ4·0-err·fig 영어전용 |
 | 8 | v7-08 | Codex | ① | ✅done | v7-08/v7-08.tex | 9p·24KB·TikZ4·0-err·fig 영어전용 |
 | 9 | v7-09 | Codex | ① | ✅done | v7-09/v7-09.tex | 9p·28KB·TikZ6·0-err·fig 영어전용 |
-| 10–18 | v7-01b…09b | 원모델 재지시 | ② | pending | v7-NN/v7-NNb.tex | 방향성만 |
+| 10–18 | v7-01b…09b | 원모델 재지시 | ② | ✅done | v7-NN/v7-NNb.tex | 방향성만·9/9 0-err / 01b15p·02b14p·03b15p·04b16p·05b18p·06b16p·07b13p·08b10p·09b11p / 系統 A-상수 교정 반영 |
 | 19 | v7-10 | Opus | ③ | pending | v7-10/v7-10.tex | v6 합류 체리픽 |
 | 20 | v7-11 | master→Opus | ④ | pending | v7-11/v7-11.tex | 최종·정식10회 |
 
