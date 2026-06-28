@@ -13,8 +13,8 @@
 | Phase3.1 | 19-22 | 19-22 | build | 보완 9종(방향성만) | PASS | plan | v7-01..09/*b.tex | NOTEb/PDF×9 | 9/9 0-err·新부호회귀 0·flowchart 분극 정정(v7-05b 적발) | PASS_9_SUPPL | 23 |
 | Phase4.1 | 23-25 | 23-25 | review | 검토2 | PASS | plan | PHASE4_v7_review9b.md | REVIEW2×9 | 보완 회귀 3건 적발(이식금지)·v7-06b 30/30 | PASS_REVIEW2 | 26 |
 | Phase5.1 | 26-30 | 26-30 | build | 체리픽 v7-10(v6합류) | PASS | plan | v7-10/v7-10.tex | v7-10.pdf | 베이스 v7-06b+G-usable graft·v6 물리 교차검증·0-err 16p | PASS_CHERRYPICK | 31 |
-| Phase6.1 | 31-33 | — | review | v7-10 재검수 | PENDING | plan | PHASE6_v7_review_v10.md | — | — | — | 34 |
-| Phase7.1 | 34-39 | — | build | v7-11 최종+10회 | PENDING | plan | v7-11/ | — | — | — | 40 |
+| Phase6.1 | 31-33 | 31-33 | review | v7-10 재검수 | PASS | plan | PHASE6_v7_review_v10.md | REVIEW_A/B | 빈통과 거부·보완 6건·부호 8/8·인자표 0오류 | PASS_REVIEW_V10 | 34 |
+| Phase7.1 | 34-39 | 34-39 | build | v7-11 최종+10회 | PASS | plan | v7-11/v7-11.tex | v7-11.pdf·ROUND×4 | 6보완·최종4갈래 CRIT/HIGH 0·부호8/8·유도수학정확·G-usable닫힘·3-pass 0-err 17p | PASS_V7_FINAL | 40 |
 | Phase8.1 | 40-42 | — | wrap | 종합·메타평가 | PENDING | plan | PHASE8_v7_FINAL_RESULT.md | — | — | — | — |
 
 ## 11 문건 상태
@@ -32,7 +32,9 @@
 | 9 | v7-09 | Codex | ① | ✅done | v7-09/v7-09.tex | 9p·28KB·TikZ6·0-err·fig 영어전용 |
 | 10–18 | v7-01b…09b | 원모델 재지시 | ② | ✅done | v7-NN/v7-NNb.tex | 방향성만·9/9 0-err / 01b15p·02b14p·03b15p·04b16p·05b18p·06b16p·07b13p·08b10p·09b11p / 系統 A-상수 교정 반영 |
 | 19 | v7-10 | Opus | ③ | ✅done | v7-10/v7-10.tex | 베이스 v7-06b + 전 인자표·6단계 재현 graft·v6 교차검증·16p 0-err |
-| 20 | v7-11 | master→Opus | ④ | pending | v7-11/v7-11.tex | 최종·정식10회 |
+| 20 | v7-11 | master→Opus | ④ | ✅done | v7-11/v7-11.tex | ★최종 권고본 — 6보완(유도다리·참조·표기)·17p·3-pass 0-err·부호 8/8·G-usable 닫힘 |
+
+> **★완료: 20/20 산출. 최종 권고본 = v7-11/v7-11.tex (17p).**
 
 ## 커밋 로그
 - 88b249e (시작): 계획서 + v11_final spine 도입.
