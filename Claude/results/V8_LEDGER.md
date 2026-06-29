@@ -7,7 +7,7 @@
 |---|---:|---:|---|---|---|---|---|---|---|---|---:|
 | 0.1 | 1-4 | 1-4 | setup | v7-11·v5 정독·유도 인벤토리 | PASS | plan | (brief 내장) | AUTHOR_BRIEF_v8 | v7↔v5 매핑·11식 유도단계 | PASS_INV | 5 |
 | 0.2 | 5-9 | 5-9 | setup | v8 brief·폴더 | PASS | plan | AUTHOR_BRIEF_v8.md | v8-01..11/ | 유도 의무·그림경쟁 명문 | PASS_BRIEF | 10 |
-| 1.1 | 10-14 | — | build | 9종 독립(v7-11+v5·자체10회) | IN_PROGRESS | plan | v8-01..09/ | — | — | — | 15 |
+| 1.1 | 10-14 | 10-14 | build | 9종 독립(v7-11+v5·자체10회) | PASS | plan | v8-01..09/ | NOTE/PDF×9 | 9/9 xelatex 0-err·렌더 그림 한글 0·배치 보존·유도 복원·그림 6~9개(경쟁) | PASS_9_DRAFTS | 15 |
 | 2.1 | 15-18 | — | review | 검토1(+G-derive) | PENDING | plan | PHASE2_v8_review9.md | — | — | — | 19 |
 | 3.1 | 19-22 | — | build | 보완 9(방향성만) | PENDING | plan | v8-NNb | — | — | — | 23 |
 | 4.1 | 23-25 | — | review | 검토2 | PENDING | plan | PHASE4_v8_review9b.md | — | — | — | 26 |
@@ -19,9 +19,9 @@
 ## 11 문건
 | # | 버전 | 모델 | 단계 | 상태 | 비고 |
 |---|---|---|---|---|---|
-| 1-3 | v8-01/02/03 | Sonnet | ① | pending | v7-11+v5, 유도 복원 |
-| 4-6 | v8-04/05/06 | Opus | ① | pending | |
-| 7-9 | v8-07/08/09 | Codex | ① | pending | |
+| 1-3 | v8-01/02/03 | Sonnet | ① | ✅done | 18/18/18p·그림 6/7/8·유도 11식 복원·부호 8/8·0-err |
+| 4-6 | v8-04/05/06 | Opus | ① | ✅done | 22/21/21p·그림 8/8/9·유도 복원·자체 다중검수·부호 8/8·0-err (06=529 2회 후 재가동) |
+| 7-9 | v8-07/08/09 | Codex | ① | ✅done | 20/21/20p·그림 5/6/6·유도 복원·부호 8/8·0-err |
 | 10-18 | v8-01b…09b | 재지시 | ② | pending | 방향성만 |
 | 19 | v8-10 | Opus | ③ | pending | v6 합류·그림 경쟁 |
 | 20 | v8-11 | master→Opus | ④ | pending | 최종 |
