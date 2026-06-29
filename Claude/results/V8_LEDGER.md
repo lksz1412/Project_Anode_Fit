@@ -12,8 +12,8 @@
 | 3.1 | 19-22 | 19-22 | build | 보완 9(방향성만) | PASS | plan | v8-NNb×9 | NOTEb/PDF×9 | 9/9 0-err 19~22p·D-PEAK 8종 정정·v8-01b 표값/v8-04b fig 정정·Codex one-shot(절차 미준수 시인) | PASS_9_SUPPL | 23 |
 | 4.1 | 23-25 | 23-25 | review | 검토2 | PASS | plan | PHASE4_v8_review9b.md | REVIEW2×9 | D-PEAK 정정 직접검산·보완회귀 3종 적발·베이스 v8-06b 34/35 | PASS_REVIEW2 | 26 |
 | 5.1 | 26-30 | 26-30 | build | 체리픽 v8-10(v6·그림경쟁) | PASS | plan | v8-10/v8-10.tex | v8-10.pdf | 베이스 v8-06b+D-PEAK2 문턱불연속·그림 9(경쟁승자)·3-pass 0-err 21p | PASS_CHERRYPICK | 31 |
-| 6.1 | 31-33 | — | review | v8-10 재검수 | PENDING | plan | PHASE6_v8_review_v10.md | — | — | — | 34 |
-| 7.1 | 34-39 | — | build | v8-11 최종+10회 | PENDING | plan | v8-11/ | — | — | — | 40 |
+| 6.1 | 31-33 | 31-33 | review | v8-10 재검수 | PASS | plan | PHASE6_v8_review_v10.md | REVIEW_A/B | 빈통과거부·확정 CRIT/HIGH 0·LOW 폴리시 4·부호 8/8·11식 G-derive 통과 | PASS_REVIEW_V10 | 34 |
+| 7.1 | 34-39 | 34-39 | build | v8-11 최종+10회 | PASS | plan | v8-11/v8-11.tex | v8-11.pdf·ROUND×3 | 폴리시 4·doublewell 메모 제거·최종 3갈래 CRIT/HIGH/MED 0·부호 8/8·G-usable 닫힘·3-pass 0-err 21p | PASS_V8_FINAL | 40 |
 | 8.1 | 40-43 | — | wrap | 종합·메타·스킬화 | PENDING | plan | PHASE8_v8_FINAL_RESULT.md | Project_skills/ | — | — | — |
 
 ## 11 문건
@@ -24,7 +24,9 @@
 | 7-9 | v8-07/08/09 | Codex | ① | ✅done | 20/21/20p·그림 5/6/6·유도 복원·부호 8/8·0-err |
 | 10-18 | v8-01b…09b | 재지시 | ② | ✅done | 방향성만·9/9 0-err(01b19·02b19·03b19·04b22·05b21·06b21·07b20·08b21·09b21p)·D-PEAK 8종 정정(01은 무보유 유지)·새 회귀 self-test |
 | 19 | v8-10 | Opus | ③ | ✅done | 베이스 v8-06b(34/35)+D-PEAK2 문턱 정직기술·그림 9(v7-11 5+신규 4)·3-pass 0-err 21p |
-| 20 | v8-11 | master→Opus | ④ | pending | 최종 |
+| 20 | v8-11 | master→Opus | ④ | ✅done | ★최종 권고본 — 유도 확장 교과서판·21p·그림 9·부호 8/8·11식 G-derive·3-pass 0-err |
+
+> **★완료: 20/20 산출. 최종 권고본 = v8-11/v8-11.tex (21p, 유도 과정 포함 교과서 확장판).**
 
 ## 커밋 로그
 - (시작 예정): v8 계획서 + AUTHOR_BRIEF_v8 + ledger.
