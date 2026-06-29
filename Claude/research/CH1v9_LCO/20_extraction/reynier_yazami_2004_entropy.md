@@ -1,0 +1,22 @@
+# 추출카드 — Reynier/Yazami 2004 "Entropy of Li intercalation in LixCoO2" (★전자 엔트로피 크기 anchor)
+
+- **저자·연도·DOI**: Y. Reynier, J. Graetz, T. Swan-Wood, P. Rez, R. Yazami, B. Fultz, *J. Electrochem. Soc.* **151**, A422 (2004) — 또는 동 그룹 Phys. Rev. B 70, 174304 (2004) "Entropy of Li intercalation in LixCoO2". CaltechAUTHORS e9xj1-c1x65 / record 2974.
+- **축**: C1(엔트로피 계수)·C4(calorimetry)·C2(★전자 엔트로피).
+- **핵심 방법**: 전기화학셀 평형전압의 **온도 의존성** 측정 → 리튬화 엔트로피 ΔS_lith(x), 0.5<x≤1.0. + **inelastic neutron scattering**(phonon 엔트로피) + **LDA 전자구조 계산**(전자 엔트로피) + Li-vacancy **configurational** 엔트로피. 세 기여로 분해.
+- **지배식**:
+  - 리튬화 엔트로피: $\Delta S_{\mathrm{lith}}(x) = F\,\dfrac{\partial U_{ocv}(x,T)}{\partial T}$ (전위 온도계수 ↔ 부분 몰 엔트로피).
+  - 분해: $\Delta S_{\mathrm{lith}} = \Delta S_{\mathrm{config}} + \Delta S_{\mathrm{phonon}} + \Delta S_{\mathrm{electronic}}$.
+  - configurational(ideal): $\Delta S_{\mathrm{config}} = -R[x\ln x + (1-x)\ln(1-x)]$ (정렬 구조 x=1/2·5/6 가정 시 보정).
+  - electronic(축퇴 전자기체 Sommerfeld): $S_e \simeq \frac{\pi^2}{3}k_B^2\,T\,g(E_F)$ (LDA 로 작은 값 산출).
+- **정량값(값·단위·조건·불확도)**:
+  - **ΔS_lith 최대 ~9.0 kB/atom (overall, 0.5<x≤1.0 전체구간)**; **O3 hexagonal 구조 내에서는 ~4.2 kB/atom**. tier A(다중 검색 cross). (overall 9.0 은 O3 + 고전압 전이 합산 폭)
+  - **★전자 엔트로피 ΔS_e ≈ 0.18 kB/atom (metallic phase, x=0.833, LDA)** — 작은 값. tier B(단일 검색 snippet).
+  - **configurational 엔트로피가 O3 상 ΔS 조성의존성의 절반 이상(>½)** 지배. phonon 은 음(−)의 ΔS 대부분 설명하나 x 의존성은 작음.
+  - 전자+configurational 변화가 **MIT 에 comparable importance** (원저자 결론).
+- **타당·한계**: ★우리 전자 엔트로피 항의 **크기(order of magnitude)** anchor — O3 상 내 전자 항은 작다(~0.18 kB/atom)지만 MIT 부근에서 비중↑. 한계: full-text 유료(Caltech login gated) → 분해 J/mol/K 표·g(E_F) 정확값 미확보, 0.18 kB/atom 은 snippet tier B. 측정 ∂U/∂T 의 온도범위·불확도 미확보.
+- **우리 의도 관련성**:
+  - ★전자 엔트로피 식·크기 둘 다: $S_e\propto T\,g(E_F)$ 형(Sommerfeld), O3 내 ~0.18 kB/atom. → forward 의 전자 항은 **작지만 MIT 구간(x≈0.75–0.95)에서 두드러짐**으로 plug-in.
+  - LCO ΔS(x): O3 ~4.2 / overall ~9.0 kB/atom — Ch1 의 U_j(T)=(−ΔH+TΔS)/F 의 ΔS 입력 스케일.
+  - config 식 $-R[x\ln x+(1-x)\ln(1-x)]$ + 정렬구조(x=1/2, 5/6) 보정 = 양극 엔트로피 backbone.
+- **정독범위**: abstract + 다중 검색 snippet(검색 grounding) cross. full-text = gated(login) → snippet.
+- **tier**: ΔS 9.0/4.2 kB/atom **A**; 전자 0.18 kB/atom **B**; 분해 정설(config>½, phonon 음) **A**; J/mol/K 표·g(E_F) **C(미확보)**.

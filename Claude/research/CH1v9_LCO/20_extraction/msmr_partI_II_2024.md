@@ -1,0 +1,21 @@
+# 추출카드 — MSMR Part I/II (Verbrugge 2024) — ★양극 적용 forward 프레임 (C6·L5)
+
+- **저자·연도·DOI**:
+  - Part I: "Quantifying the Temperature Dependence of the MSMR Model. Part 1: Parameterization for a MCMB Graphite", *JES* (2024), DOI 10.1149/2754-2734/ad7d1c.
+  - Part II: "… Part II. Estimation of Entropy Coefficient for MCMB Graphite", *JES* (2024), DOI 10.1149/1945-7111/ad70d9.
+  - (원 MSMR: Verbrugge, Baker, Koch 외; PyBaMM 구현 정독으로 식 확정.)
+- **축**: C6(양극 엔트로피 추정·MSMR-cathode) · L5(forward 일반화).
+- **핵심 방법**: MSMR(Multi-Species Multi-Reaction) — OCV 를 다중 reaction(gallery) 의 합으로. 각 reaction j 가 독립 **logistic**. 온도 가변 충방전 데이터로 Xⱼ, Uⱼ⁰, ωⱼ 의 T-의존 추정 → 엔트로피계수 ∂U/∂T.
+- **★지배식 (PyBaMM 문서 정독, tier A)**:
+  - reaction site 점유: $x_j = \dfrac{X_j}{1+\exp[f\,(U-U_j^0)/\omega_j]}$, $f=F/(RT)$.
+  - 총 조성: $x = \sum_j x_j = \sum_j \dfrac{X_j}{1+\exp[f(U-U_j^0)/\omega_j]}$.
+  - 역(전위 명시): $U_j = U_j^0 + \dfrac{\omega_j}{f}\ln\!\Big(\dfrac{X_j-x_j}{x_j}\Big)$.
+  - 미분용량: $dx/dU = \sum_j \dfrac{dx_j}{dU}$ (각 항 logistic 도함수) ↔ dQ/dV.
+  - 엔트로피계수: $\partial U/\partial T$ 는 **Uⱼ⁰(T) 의 온도의존**으로 진입(각 reaction 의 표준전위 선형 T-항). → ∂U/∂T = Σ_j 기여.
+- **정량값**: graphite MCMB 의 Xⱼ·Uⱼ⁰·ωⱼ·∂Uⱼ⁰/∂T 추정(Part I/II) — 수치표 full-text 유료(미확보, tier C). 식 구조는 tier A.
+- **타당·한계**: ★우리 Ch1 의 **전이별 logistic + U_j(T) forward 와 수학적으로 동형**임을 입증 — MSMR 의 $x_j=X_j/(1+\exp[f(U-U_j^0)/\omega_j])$ = Ch1 transition-logistic, $\omega_j$=비-Nernst(disorder) 폭, $U_j^0$=전이 표준전위. **양극 적용 선례**(MSMR 은 graphite·LiFePO4·spinel·Si 에 검증 — 양극 포함). 한계: graphite parameterization paper(LCO 직접 파라미터 X) → LCO Xⱼ·Uⱼ⁰ 는 우리가 Xia·Motohashi 전이로 채워야. 수치표 미확보.
+- **우리 의도 관련성 (L5 forward 일반화 — 핵심 anchor)**:
+  - Ch1 LCO 일반화 = **MSMR 식을 그대로 채택**: 전이 j ∈ {MIT(3.9 V), order–disorder(4.05–4.20 V), [고전압 O3→H1-3 4.55 V …]} 에 (Uⱼ⁰, Xⱼ, ωⱼ) 배치 → $x(U)$ forward. ∂U/∂T = ΔS(x)/F 는 Uⱼ⁰(T) 선형항(=각 전이 ΔS_j) 으로.
+  - ★전자 엔트로피 plug-in: MIT reaction 의 ΔS_j 에 전자항 $S_e\propto T g(E_F)$ (Motohashi g(E_F)=13, Reynier 0.18 kB/atom) 을 가산 → 같은 logistic 구조 안에서 전자 엔트로피 통합.
+- **정독범위**: PyBaMM MSMR 문서 **full**(식 확정); JES Part I/II abstract+검색 snippet(유료 수치표 미확보).
+- **tier**: MSMR 식·양극 적용성 **A**; graphite 수치표·LCO 파라미터 **C(미확보·우리 산출)**.

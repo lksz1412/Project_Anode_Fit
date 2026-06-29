@@ -1,0 +1,23 @@
+# 추출카드 — Motohashi et al. 2009 (electronic phase diagram, ★g(E_F)·전이 엔트로피)
+
+- **저자·연도·DOI**: T. Motohashi, T. Ono, Y. Sugimoto 외, "Electronic phase diagram of the layered cobalt oxide system, LixCoO2 (0≤x≤1)", *Phys. Rev. B* **80**, 165114 (2009). arXiv 0909.3556. **★full-text PDF 정독(29 p, pdftotext)**.
+- **축**: C2(★상전이·전자 엔트로피) 주, C3(dQ/dV·OCV) 보조.
+- **핵심 방법**: dc-magnetic susceptibility χ(T) + 59Co-NMR/NQR + OCV·dV/dx. 전 조성 0≤x≤1 단상 다결정 시료(x=0, 0.12, 0.35, 0.40, 0.50, 0.60, 0.67, 0.70, 1.0). 전자 상도 작성.
+- **지배식/구조 결과**:
+  - **D(E_F) = 13 electrons/eV (per f.u.) for CoO2 (x=0)** — χ₀(Pauli) 차이로 산출. **★전자 엔트로피 직접 입력값**(Sommerfeld). (x↓ 일수록 χ₀↑ = D(E_F)↑ = Fermi 준위 상태밀도 증가). tier A(본문 정독).
+  - 자기 임계점 **xc = 0.35~0.40**: x<xc = **Pauli-paramagnetic metal**(itinerant, χ₀ 큼), x>xc = **Curie-Weiss metal**(μ_eff = 0.28~0.35 μ_B/Co⁴⁺).
+  - first-order 상전이 x=0.50, 0.67, 0.70 = charge ordering. x=0.40 에 30 K AF hump.
+  - MIT: Li1CoO2 는 band insulator → Li 탈리 시 metal. Ménétrier [38] 재인용: MIT 가 x=0.94 아닌 **x=1−δ**, O3-R1 하한이 결함 민감.
+- **정량값(값·단위·조건·불확도)**:
+  - **D(E_F)=13 e/eV (CoO2)** [tier A].
+  - **전이 엔트로피(latent heat 유래): ΔS = 0.47 J/K·mol (x=0.5), 1.49 J/K·mol (x=2/3)** — 이상 mixing 값(−R[½ln½+½ln½]=5.76, −R[⅓ln⅓+⅔ln⅔]=5.29 J/K·mol)보다 훨씬 작음 → charge ordering 불완전(부분 국재). tier A(본문).
+  - dV/dx 5개 dip: **x = 0.94–0.75, ~0.55, ~0.48, ~0.36, 0.25–0.12** — 0.94–0.75 = MIT biphasic, 0.55/0.48 = x≈½ Li/vac 정렬, 0.36 ≈ x=⅓. tier A(본문).
+  - 7상: O3-R1~R4, O3-M(monoclinic, P2/m @x=½), H1-3(@x≈0.12), O1(@x=0).
+  - thermoelectric power S₃₀₀K = 75 μV/K (x=0.7, Curie-Weiss 영역, 대 spin-entropy). tier A.
+- **타당·한계**: ★g(E_F)=13 e/eV 가 우리 Sommerfeld 전자 엔트로피의 **직접 수치 입력**. 전이 엔트로피 0.47/1.49 J/K·mol 는 charge-ordering(전자) 엔트로피의 실측 스케일. 한계: D(E_F)=13 은 x=0(CoO2) 값 — Li-rich(x→1, 절연체)에서는 g(E_F)→0; 중간 조성 g(E_F)(x) 곡선은 미제공(보간 필요).
+- **우리 의도 관련성 (★전자 엔트로피 anchor 2개)**:
+  - (a) **식·크기**: $S_e\simeq\frac{\pi^2}{3}k_B^2 T g(E_F)$, $g(E_F)$=13 e/eV@CoO2 → 300 K 환산 ~수십 mJ/mol·K 급. x 의존: 절연체(x≈1) g(E_F)≈0 → metal(x↓) g(E_F)↑. **전자 엔트로피의 x-게이트**가 MIT(x≈0.75–0.95)에서 켜짐.
+  - (b) charge-ordering ΔS(0.47/1.49 J/K·mol @ x=½,⅔) = 전자+config 결합 전이의 실측 latent-heat 엔트로피.
+  - (c) dV/dx dip 위치 = LCO 전이 logistic 배치(0.94–0.75 MIT plateau, 0.55/0.48 order–disorder).
+- **정독범위**: **full**(arXiv 0909.3556 PDF, pdftotext layout, abstract·dV/dx·χ·discussion 본문 정독).
+- **tier**: D(E_F)=13 e/eV·ΔS 0.47/1.49·dV/dx dip·xc=0.35–0.40 모두 **A**(본문 직접).
