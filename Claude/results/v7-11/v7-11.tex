@@ -638,8 +638,12 @@ $[1-\rho]/[1,-\rho]$ 로, 아니면 같은 점화식 루프로 평가한다. $L_
 \label{eq:peakshape}
 \end{equation}
 이것이 코드의 \code{peak\_shape = (ksi\_eq - occ\_lagged) / lag\_len\_V} 다($\xi_\mathrm{lag}$ 는 점화식~\eqref{eq:lowpass}
-의 출력). $L_V$ 가 작으면 $\xi_\mathrm{lag}\to$ 한 칸 뒤처진 $\xi_\eq$ 라, 식~\eqref{eq:peakshape} 가 이산 미분
-$\to\dd\xi_\eq/\dd V$ 의 종으로 환원된다 — 곧 평형 peak 식~\eqref{eq:eqpeak} 로 돌아간다. 코드의 분기 조건이 이 환원을 명시한다:
+의 출력). 매끈한 차분 $(\xi_\eq-\xi_\mathrm{lag})/L_V$ 가 미분 $\dd\xi_\eq/\dd V$ 의 종으로 수렴하는 극한은
+$L_V\gg\Delta_\mathrm{grid}$($\rho\to1$)이다 — 반대로 $L_V\to0$ 이면 $\rho\to0$ 이라 $\xi_\mathrm{lag}\to\xi_\eq$
+(같은 칸; 한 칸 뒤처짐이 아니다)이고 분자 $(\xi_\eq-\xi_\mathrm{lag})$ 와 분모 $L_V$ 가 함께 $0$ 인 $0/0$ 이라 종으로 매끈히
+환원되지 \emph{않는다}. 작은 $L_V$ 의 평형 회복은 이 식의 극한이 아니라 코드의 \emph{이산 분기 스위치}가 담당한다 —
+문턱 $L_V<\nu\Delta_\mathrm{grid}$ 에서 꼬리 분기와 평형 종의 진폭이 정확히 같지는 않아 작은 불연속이 있을 수 있는,
+수치 안정용 모드 전환이다:
 \begin{equation}
 \text{peak\_shape}=
 \begin{cases}
