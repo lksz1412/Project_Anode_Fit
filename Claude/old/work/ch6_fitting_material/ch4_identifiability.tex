@@ -1,0 +1,38 @@
+% ====================================================================
+% Ch6(피팅 장) 통합용 추출 재료 — Chapter 4 에서 이관한 "발열 통합의 식별성과 실험 제약"
+%   원칙: 식별성·실험 프로토콜(피팅 방법론)은 물리 장(Ch1~5)이 아니라 Ch6(구 Appendix B)에 둔다(F.9b).
+%   추후 ch2_identifiability.tex, ch3_identifiability.tex, Archive_old/...appendixB_fitting.tex 와 병합.
+%   참조 라벨(eq:ch4_*, \S\ref{sec:ch4_*})은 통합 시 재지정 필요.
+%   출처: graphite_ica_ch4.tex §13 (2026-06-07 추출, 전체 절). Ch4 물리는 §1~§12에 잔류.
+% ====================================================================
+\section{발열 통합의 식별성과 필요한 실험 제약 (Ch4 entropy production)}\label{sec:ch6_ch4_ident}
+물리 우선 모델에서도 식별성은 사라지지 않는다. 해결책은 임의 clipping 이 아니라 독립 실험과 물리적 prior 다.
+다음 항들은 강하게 상관된다:
+\begin{equation}
+\eta_n\leftrightarrow\mathcal A_n\leftrightarrow r_j^\pm\leftrightarrow R_{n,\eff}\leftrightarrow\Delta S_j\leftrightarrow h_\bg.
+\label{eq:ch4_ident}
+\end{equation}
+\begin{longtable}{p{0.36\textwidth} >{\raggedright\arraybackslash}p{0.52\textwidth}}
+\toprule 실험/자료 & 제한 가능한 항 \\ \midrule \endhead
+저율 OCV 온도 series & $(\partial V_{n,\OCV}/\partial T)_q$, $\Delta S_j$, $h_\bg$ \\
+pulse/current interrupt & immediate polarization $=$ ohmic $+R_{\ct,n}$ 합(분리 불가; 일부 $R_n$) \\
+EIS/small-signal & $R_{\ct,n}$ 단독 분리, transport time constant, film \\
+calorimetry & $\dot{\mathcal Q}_{\irr}$, $\dot{\mathcal Q}_{\rev}$, heat scale \\
+rest relaxation 온도 응답 & $\dot{\mathcal Q}_{\rlx,n}$ 후보(가역/비가역 분리) 검증 \\
+rate series & rate limitation, $r_j^\pm$ \\
+\bottomrule
+\end{longtable}
+독립 자료 없이 동시 자유 결정 금지: (1) OCV coefficient vs transition entropy basis(double counting),
+(2) $R_n,R_{\ct,n},R_{n,\eff}$, (3) $\Delta S_j,h_\bg$ 와 rest relaxation heat, (4) transport heat vs
+hysteresis-like voltage loss.
+
+\textbf{calorimetry 부재 시 미식별 클래스.} 발열 절대 스케일과 가역/비가역 분리를 닫으려면 열량/온도 응답 자료가
+필요하다. 이 자료가 없으면 다음 세 항은 \emph{미식별}이다: (a) 발열 절대 스케일(순수 전기 측정은 $\eta_j\cdot I_j$
+의 \emph{상대} 곱만 줄 뿐 절대 [W]를 닫지 못함), (b) 가역/비가역 분리 비율(Ch4 휴지 구간 비고), (c) $R_{n,\eff}$.
+이 경우 발열식은 \emph{상대 분해}로만 쓰며, 절대 스케일과 분리 비율은 미확정으로 표기한다.
+\begin{flagbox}
+초기 탐색서 heat residual / effective heat gain / capped heat correction / apparent $I^2R$ 가 피팅을 안정화할
+수 있으나 \emph{물리 모델 기본식이 아니다}. 논문용 해석에서는 transport / charge-transfer / entropy coefficient /
+relaxation entropy production / hysteresis loss 로 분해하거나 단순 empirical residual 로 명시하고 주 결론에서
+제외한다(solver/numerical 구현은 Ch6).
+\end{flagbox}

@@ -1,0 +1,50 @@
+You are a LaTeX writing sub-agent. Working directory: D:\Projects\Project_Anode_Fit
+
+Read these four files in full (no skipping):
+1. D:\Projects\Project_Anode_Fit\Claude\results\v8-07\v8-07.tex -- your draft
+2. D:\Projects\Project_Anode_Fit\Claude\results\v7-00_spine\Anode_Fit_v11_final.py -- code reference
+3. D:\Projects\Project_Anode_Fit\Claude\results\v7-11\v7-11.tex -- layout and table reference
+4. D:\Projects\Project_Anode_Fit\Claude\results\v8-00_spine\AUTHOR_BRIEF_v8.md -- author brief, section 7 sign conventions
+
+DO NOT read REVIEW1.md.
+
+Apply three targeted corrections, then run a self-test and write outputs.
+
+CORRECTION 1 - D-PEAK near L890:
+Current text WRONGLY claims small L_V causes xi_lag to fall one cell behind xi_eq producing bell reduction.
+CORRECT physics: rho=exp(-Delta_grid/L_V).
+L_V to 0 implies rho to 0 implies xi_lag snaps to xi_eq each step (no lag) implies peak goes to 0.
+The smooth (xi_eq-xi_lag)/L_V to dxi_eq/dV reduction is the OPPOSITE limit L_V >> Delta_grid (rho to 1).
+Small-L_V equilibrium recovery is handled by the code eq:branch switch, not the lag mechanism.
+Action: delete the wrong sentence; replace with correct 3-part explanation:
+  (a) rho recurrence definition.
+  (b) L_V to 0: rho to 0, xi_lag snaps to xi_eq, peak to 0, eq:branch switch ensures equilibrium recovery.
+  (c) L_V >> Delta_grid: rho to 1, xi_lag lags, finite peak survives, smooth dxi_eq/dV reduction recovered.
+Write in fluent Korean academic prose matching surrounding text.
+
+CORRECTION 2 - D-UBR:
+Find the paragraph or equation block introducing eq:Ubranch (U_branch definition).
+Add a sentence stating: eq:Ubranch is a phenomenological ansatz (현상학적 매개변수화),
+not derived from first principles, but motivated by observed voltage-branch behavior.
+
+CORRECTION 3 - D-WEFF:
+Find the w_eff section. The bridge sF*(dV/dxi)|_{1/2}=4Fw appears without intermediate algebra.
+Insert 2-4 display math lines showing how the HWHM definition of w_eff leads to
+sF=dq/dxi|_{xi=1/2} and then to the bridge equation sF*(dV/dxi)|_{1/2}=4Fw.
+Match surrounding LaTeX math style.
+
+SELF-TEST after all three edits:
+Check all 8 sign-convention items from AUTHOR_BRIEF_v8.md section 7 against v8-07b.tex.
+Verify: no orphaned cross-references, no broken equation environments, no contradictions near edits.
+
+OUTPUTS:
+1. Write D:\Projects\Project_Anode_Fit\Claude\results\v8-07\v8-07b.tex
+   Keep original v8-07.tex untouched. No other directories.
+2. Write D:\Projects\Project_Anode_Fit\Claude\results\v8-07\NOTEb.md with four sections:
+   Corrections Applied: bullet per correction, line range, 2-sentence summary.
+   Sign-Convention Self-Test: 8-row table columns item|status(OK/FIXED/WARN)|note.
+   Regression Check: pass/fail per category plus warnings.
+   Compile: 2-pass xelatex if on PATH; report exit codes and PDF; else xelatex not found.
+3. If xelatex available produce PDF.
+
+Autonomous. No clarifying questions. Ambiguous: physics-consistent interpretation.

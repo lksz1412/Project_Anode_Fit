@@ -1,0 +1,34 @@
+% ====================================================================
+% Ch6(피팅 장) 통합용 추출 재료 — Chapter 3 에서 이관한 "kinetic 파라미터 식별성"
+%   원칙: 식별성·실험 프로토콜(피팅 방법론)은 물리 장(Ch1~5)이 아니라 Ch6(구 Appendix B)에 둔다(F.9b).
+%   추후 Archive_old/graphite_ica_ch1_appendixB_fitting.tex 및 ch2_identifiability.tex 와 병합.
+%   참조 라벨(eq:ch3_*, \S\ref{sec:ch3_*})은 통합 시 재지정 필요.
+%   출처: graphite_ica_ch3.tex §11 (2026-06-07 추출). 물리 kinetics(eq:ch3_T, eq:ch3_eyring,
+%   ΔH‡/ΔS‡ 다온도 분리, 병목 도입 boundbox)는 Ch3 본문에 잔류.
+% ====================================================================
+\section{전이 kinetics 파라미터의 식별성 (Ch3 미시 반응속도론)}\label{sec:ch6_ch3_ident}
+Chapter 3 은 forward/backward transition rate $r_j^\pm$, transfer coefficient $\beta_j(=\chi)$, effective
+electron number $n_j^{\eff}$, exchange current $j_{0,n}$, charge-transfer 저항 $R_\ct$, mobility 병목
+$k_{j,\lim}$ 를 미시적으로 세웠다. 이 파라미터들은 같은 ICA/rate 관측에 공선형으로 들어가 단일 데이터셋의
+동시 자유 피팅으로는 분리되지 않는다. 다온도 Eyring 분해(Ch3 식~\eqref{eq:ch3_eyring})로 일부가 풀리지만,
+나머지는 등온 Tafel 스윕·독립 실험·물리적 prior 로 한 겹씩 벗긴다(Chapter 1$\cdot$2 의 비순환 식별 논리 계승).
+
+\textbf{공선형 쌍(다온도 fit 으로 풀리지 않는 것).} (i) $\{\nu_j^\pm,a_j^\pm\}$ 는 $\ln(\nu a)$ 로만 진입하므로
+\emph{곱}만 식별된다(개별 분리 불가). (ii) $\{E_{\nu,j},\Delta H_{a,j}^\ddagger\}$ 는 동일 $1/T$ 기울기로 들어가
+\emph{합}만 식별된다. (iii) $\beta_j$ 는 \emph{온도} fit 으로 풀리지 않으며, 분리하려면 \emph{등온} Tafel
+스윕이 필요하다(forward/backward 비대칭은 $\eta$-기울기로만 드러남). 다음 항들은 강하게 상관된다:
+\begin{equation}
+j_{0,n}(T,\theta_j)\leftrightarrow\nu_j(T)\leftrightarrow\Delta G_{a,j}(T)\leftrightarrow\beta_j(=\chi)
+\leftrightarrow k_{j,\lim}\leftrightarrow R_n\leftrightarrow\rho_G(G;T).
+\label{eq:ch3_ident_chain}
+\end{equation}
+같은 ICA/rate 자료만으로 이 모두를 독립 결정할 수 없으므로 독립 실험$\cdot$사전 물리 제약$\cdot$단계적 검증이
+필요하다 \cite{weppner1977,dubarry2012}(Chapter 1$\cdot$2 의 forward-only$\cdot$식별성 원칙 계승). 위 사슬의
+$\beta_j(=\chi)$ 는 Chapter 1 의 전달계수와 \emph{같은} 양이다(대칭 Marcus 는 $\chi=\tfrac12$ 특수값).
+
+\textbf{세 저항의 동시 자유 피팅 금지(Ch3 식~\eqref{eq:ch3_Rn_not_equal}).} apparent shift $R_n$,
+charge-transfer $R_\ct$, heat-generation $R_{n,\eff}$ 는 서로 다른 물리량이며 단일 $I$--$V$ 곡선으로는
+$\eta_{\ct,n}$(따라서 $R_\ct$)만 식별 가능하고 나머지는 lumped residual 에 흡수된다. 분리에는
+$T\times|I|\times f$(EIS/GITT/pulse) 다채널 신호가 필요하다($R_n$ 5항 분해는 Ch3 §R_n 표 참조). $\beta_j$
+barrier-lowering 기울기와 $\eta_{\ct,n}$ Tafel 기울기가 단일 전극에서 공선형일 수 있으므로, 다중 $T\times|I|$ +
+pulse/GITT 로 $\eta_\ct$ 를 독립 분리한 \emph{후}에만 $\beta_j$ 귀속이 성립한다 \cite{weppner1977}.

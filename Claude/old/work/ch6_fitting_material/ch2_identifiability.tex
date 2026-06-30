@@ -1,0 +1,34 @@
+% ====================================================================
+% Ch6(피팅 장) 통합용 추출 재료 — Chapter 2 에서 이관한 "식별성과 필요한 실험 제약"
+%   원칙: 식별성·실험 프로토콜(피팅 방법론)은 물리 장(Ch1~5)이 아니라 Ch6(구 Appendix B)에 둔다(F.9b).
+%   추후 Archive_old/graphite_ica_ch1_appendixB_fitting.tex 의 sec:ch6_identif 등과 병합.
+%   참조 라벨(eq:ch2_*, \S\ref{sec:ch2_*})은 통합 시 재지정 필요.
+%   출처: graphite_ica_ch2.tex §12 (2026-06-07 추출), 발열 챕터의 열원 식별성.
+% ====================================================================
+\section{발열 파라미터의 식별성과 필요한 실험 제약 (Ch2 열원 계층)}\label{sec:ch6_ch2_ident}
+물리 우선 모델이라 해서 식별성(identifiability) 문제가 사라지지는 않는다. 발열 항에는 서로 다른 물리
+기원이 같은 관측(전압·표면 온도)에 거의 같은 방식으로 들어가는 상관 쌍이 있어, 단일 데이터셋의 동시 자유
+피팅으로는 분리되지 않는다. 해결책은 임의 clipping 이 아니라 독립 실험과 물리적 prior 로 한 겹씩 벗기는
+것이다(Chapter 1 의 비순환 식별 논리와 같은 원리). 주요 상관 쌍과 그 해소 경로:
+
+\begin{itemize}
+\item $R_n$ 과 $R_{n,\eff}$: apparent 전압축 이동 계수 대 실제 dissipated heat 저항. pulse/current-interrupt/impedance
+  로 ohmic·charge-transfer 성분을 분리.
+\item $(\partial V_{n,\OCV}/\partial T)_q$ 와 $\Delta S_j$: 둘 다 가역열을 설명하므로 동시에 자유로 두면 double
+  counting. 저율 OCV series 가 좌변 온도계수를 고정하면 우변 $\{h_\bg,\Delta S_j\}$ 합이 제약된다(Ch2 정합식).
+\item $\Delta S_j$(reaction)와 $\Delta S_{a,j}$(activation): 전자는 평형 entropy($\partial U_j/\partial T$),
+  후자는 rate prefactor 의 별개 양 — 대입 금지.
+\item $k_{j,\mathrm{act}}$ 와 $k_{j,\lim}$: 전위에 의한 활성화 가속과 물리적 율속 병목의 분리(Chapter 1 계승; transport 진단).
+\item $Q_\bg$ 와 $h_\bg$: 배경 용량 저장소와 그 entropy coefficient. 저속 OCV 의 SOC 분해 + progress/coordinate-shift 분리로 해소.
+\item $h_T A$ 와 내부 열원: 표면 온도만 측정하면 heat generation 과 heat loss 가 상호 보상해 분리 불가 — 독립 열손실 교정 또는 calorimetry 필요.
+\end{itemize}
+필요한 독립 실험 제약(순차):
+\begin{enumerate}
+\item 저율 OCV/quasi-OCV 온도 series: $(\partial V_{n,\OCV}/\partial T)_q$, $U_j(T)$, $w_j(T)$, reaction entropy $\partial U_j/\partial T$ 를 평형 분기에서 제약.
+\item rate series: $k_{j,\mathrm{act}}$, $k_{j,\lim}$, transport limitation, tail broadening 분리.
+\item pulse/current-interrupt/impedance: ohmic 대 charge-transfer($R_n$ vs $R_{n,\eff}$).
+\item 휴지 완화 자료: $\xi_j$ 완화와 thermal relaxation 분리.
+\item calorimetry/온도 측정: heat source scale·가역/비가역 분리, heat loss($h_T A$) 교정, 비가역열 tail 의 forward-prediction 검정.
+\end{enumerate}
+한계: calorimetry 자료가 없으면 가역열 대 비가역열 분해가 전압 자료만으로는 닫히지 않으며, $\partial U_j/\partial T$ 의
+staging별 분해도 측정된 anode entropy profile 의 SOC 분리를 전제로만 위계화된다.

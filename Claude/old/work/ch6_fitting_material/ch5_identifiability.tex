@@ -1,0 +1,39 @@
+% ====================================================================
+% Ch6(피팅 장) 통합용 추출 재료 — Chapter 5 에서 이관한 "히스테리시스 branch 식별성과 실험 제약"
+%   원칙: 식별성·실험 프로토콜(피팅 방법론)은 물리 장(Ch1~5)이 아니라 Ch6(구 Appendix B)에 둔다(F.9b).
+%   추후 ch2/ch3/ch4_identifiability.tex, Archive_old/...appendixB_fitting.tex 와 병합.
+%   참조 라벨(eq:ch5_*, \S\ref{sec:ch5_*})은 통합 시 재지정 필요.
+%   출처: graphite_ica_ch5.tex §13 (2026-06-07 추출, 전체 절). Ch5 물리는 §1~§12에 잔류.
+% ====================================================================
+\section{히스테리시스 branch 파라미터의 식별성과 실험 제약 (Ch5 충방전 비대칭)}\label{sec:ch6_ch5_ident}
+branch 항들은 강하게 상관되어, 같은 충방전 곡선만으로 동시 결정할 수 없다. 해결책은 임의 clipping 이 아니라 독립
+실험과 물리적 prior 다(Chapter 1 의 forward-only$\cdot$식별성 원칙 계승). 식별 대상 파라미터는
+$\{U_j^b,\,w_j^b,\,k_j^b,\,\lambda_j^b,\,\Delta S_j^b,\,R_n^b\}$ 이다 — 충전 부호 인자 $s_{\phi,j}^b$ 는
+Ch5 §충전 branch 부호 인자 유도에서 유도된 상수($\pm1$)라 식별 대상이 \emph{아니고}, loop 면적 $E_{\mathrm{loop}}$ 는
+피팅 파라미터가 아니라 관측량이다.
+\begin{longtable}{p{0.34\textwidth} >{\raggedright\arraybackslash}p{0.54\textwidth}}
+\toprule 상관되는 항 & 주의점 \\ \midrule \endhead
+$\Delta V_\hys$ 와 $\Delta V_\pol$ & voltage gap 을 모두 hysteresis 로 해석 금지($\Delta V_\obs\ne\Delta V_\hys$; $|I_s|\to0$ 외삽으로 분리) \\
+$U_j^b$ 와 $R_n^b$ & branch offset(평형 분지)과 polarization shift 가 peak 위치를 모두 변화 \\
+$k_j^b,\ h_j,\ \lambda_j^b$ & kinetic lag 와 memory relaxation 이 꼬리/peak shift 를 모두 설명 가능 — 실험축 분리: $k_j^b\leftarrow$ 율 series, $\lambda_j^b\leftarrow$ rest relaxation 시간상수, $h_j\leftarrow$ rest 후 재기동(메모리 잔존 여부) \\
+$\Delta S_j^b$ 와 hysteresis heat & branch heat 비대칭을 가역 열과 hysteresis loss 가 중복 설명 위험 \\
+full-cell $V_p$ 와 음극 $V_n$ & full-cell 서 양극/음극 기여 중첩(reference electrode 필요) \\
+\bottomrule
+\end{longtable}
+\textbf{필요 실험.} 저율 charge/discharge 비교(GITT/저율 OCV — true hysteresis vs polarization 분리), rest
+relaxation(memory 소멸 vs 유지 판별), current interrupt/pulse(immediate polarization), 율 series(kinetic lag
+vs hysteresis), 온도 series($\Delta S_j^b$, $U_j^b(T)$), reference electrode/half-cell reconstruction(full-cell
+분해), calorimetry/temperature response(가역/비가역/hysteresis heat 분리).
+
+\textbf{$U_j^b$ 의 polarization$\cdot$lag-독립 고정(양방향 GITT).} branch 중심 $U_j^b$ 를 polarization$\cdot$kinetic
+lag 와 독립으로 고정하려면, 각 SOC 격자에서 충$\cdot$방전 \emph{양방향} GITT 완화 종점($I=0$ OCV)을 측정해
+$U_j^\dis-U_j^\chg=\Delta V_\hys$ 를 직접 추출한다(완화 종점이라 kinetic lag 가 배제됨). 저율 연속 곡선의
+$|I_s|\to0$ 외삽 단독은 polarization 만 제거하여 hysteresis 와 kinetic lag 를 분리하지 못하므로, 양방향 완화 종점
+측정과 병용해야 한다.
+
+\begin{boundbox}
+\textbf{empirical branch fit 의 격하.} 초기 비교에서 충전/방전을 별도 empirical branch 곡선으로 피팅할 수 있으나
+물리 모델 기본식이 아니다. 그 곡선이 metastable 자유에너지 branch / domain memory / nucleation barrier /
+polarization / transport / aging 중 무엇인지 분리되지 않으면 논문용 물리 결론에 쓰지 않고, 단순 empirical
+residual 로 명시한 뒤 주 결론에서 제외한다. 수치 해법$\cdot$validation pipeline 은 Ch6 로 분리한다.
+\end{boundbox}
