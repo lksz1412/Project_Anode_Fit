@@ -47,8 +47,17 @@
 - ml2024 = **Teichert et al., JMPS 190, 105727 (2024)**, 10.1016/j.jmps.2024.105727, arXiv 2302.08991.
 → ★체리픽 인용 마스터: Reimers&Dahn(10.1149/1.2221184)·Ménétrier&Delmas JMC9 1135(10.1039/a900016j)·Motohashi PRB80 165114(arXiv 0909.3556)·Xia/Lu/Meng/Ceder JES154 A337(10.1149/1.2509021)·Reynier PRB70 174304·**Świderska-Mocek PCCP21 2115(10.1039/c8cp06638h)**·**MSMR ECS Adv3 042501**·Teichert JMPS190 105727.
 
+## ★검토2 V2 — 인용 마스터 확정 (체리픽은 이걸 그대로 사용)
+- **검증된 LCO bibitem 8건 완성형** = `review2/V2_citations_master.md`. 인용 최정확 보완본 = **v9-05**(여기서 인용부 graft).
+- DOI 확정: Reynier PRB70 174304 = 10.1103/PhysRevB.70.174304 · MSMR ECS Adv3 042501 = 10.1149/2754-2734/ad7d1c · Świderska-Mocek = 10.1039/c8cp06638h.
+- ★체리픽 필수: v9-03 ml2024 "R.Aronson" 폐기→Teichert. +0.83 mV/K 6종 오귀인→Świderska-Mocek. MSMR 구버전 3종→ECS Adv.
+
 ## ★주의 — 인용 fabrication 감시 (9b 보완 중 발견)
 9b 보완 작가들이 인용 재구축 시 *저자명·연도를 임의 생성*할 위험(v9-03 "R. Aronson" 사례). 체리픽 시 **모든 LCO 인용을 추출카드(full-text 정독분)·확정 ref 와 대조** 후 채택. 확정 ref: Teichert(위)·Xia/Lu/Meng/Ceder 2007·Motohashi/Ono/Sugimoto PRB80·Reimers/Dahn·Ménétrier/Delmas·Reynier/Graetz/…/Yazami/Fultz 2004.
 
-## 조립 지침 (확정되면)
-best-base 초안 1 선정 → 차원별 최선 절 graft(이식금지 리스트 명문) → ΔS_e 부호 통일 → 이중계산 B 확인 → xelatex 0-error → 정식 10회.
+## ★조립 스펙 확정 (검토2 V1·V2)
+- **base = v9-06**(부호 PASS·흐름·단/전셀 분리·∝T²·4항 게이트 1위).
+- **graft map**: 규약문=v9-03 / 유도rigor+단위다리+게이트 닫힌식=v9-04 / 분포 5단·3-view=v9-04 / decomp(이중계산B)=v9-03 / σ_d 매핑=v9-05 / **★LCO 참고문헌 통째=v9-05**(`review2/V2_citations_master.md` 마스터 8건) / 부호 self-test=v9-02.
+- **★이식 금지(do-not-port)**: v9-03 bibitem(Aronson fabrication·CRIT)·v9-04 bibitem(dangling)·v9-06 익명 ml2024·v9-01 캡션.
+- **조립 후 정정**: v9-01 캡션 "양봉우리"→"음봉우리"(혹시 graft 시)·v9-07 부등식 명시·v9-08 오타 — base=v9-06 라 대부분 무관, graft 시만 주의.
+- 절차: v9-06 복사 → 위 graft → V2 마스터 인용 8건 삽입(작가 bibitem 폐기) → ΔS_e=∂S_e/∂x<0 전수 확인 → 이중계산 B 확인 → xelatex 0-error → 정식 10회 → v9-11.
