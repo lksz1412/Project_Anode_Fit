@@ -4,10 +4,13 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## 현재 문건 (docs/ 버전 폴더) — ★최신 = Ch1_v10·Ch2_v5
+## 현재 문건 (docs/ 버전 폴더) — ★★release 1.0.10 = Ch1 문건 + 코드 matched
+> ★1.0.10 = 코드(`../results/code/Anode_Fit_v1.0.10.py`) 와 **동일 버전·matched**. dQ/dV 정상 종개형 코드 실증 = `../results/code/figs/anode_fit_v1_0_10_dqdv.png`. 검증보고 = `../results/process/GRAPH_VERIFY_RESULT.md`.
+
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
 |---|---|---|---|
-| **Ch1_v10/graphite_ica_ch1_v10.tex** | ★★Ch1 v10 **최신**(34p) — v9 + **종모양 broadening 복원**(전이별·현상학적 w·**집합 다입자 통계역학** apparent-U=U_j+η 앙상블·중심 상수·**사이즈 효과 제외**) + w 이중지위 + **w_eff 제거**. LCO 전자 엔트로피·분포 보존 | chapter1, v10, broadening, 종모양, 현상학적 w, 집합 통계역학, ensemble, apparent-U, w_eff 제거, LCO, 전자엔트로피 | 2026-07-01 |
+| **★Ch1_v1.0.10/graphite_ica_ch1_v1.0.10.tex** | ★★★**release 1.0.10**(34p) = Ch1 v10-11 내용 + 버전 1.0.10 라벨 — **코드 Anode_Fit_v1.0.10.py 와 동일 버전·matched**. broadening(집합 통계역학·사이즈 제외)·w 이중지위·w_eff 제거. dQ/dV 정상 종개형 실증 | 1.0.10, release, matched, Ch1, broadening, 코드 동일버전, 종개형 | 2026-07-01 |
+| Ch1_v10/graphite_ica_ch1_v10.tex | Ch1 v10(34p, 내부 빌드 계보) — release 1.0.10 의 내용 본체. v9 + broadening 복원·집합 통계역학·사이즈 제외·w_eff 제거 | chapter1, v10, broadening, 집합 통계역학, apparent-U, w_eff 제거 | 2026-07-01 |
 | **Ch2_v5/graphite_ica_ch2_v5.tex** | ★★Ch2 v5 **최신**(13p) — v4 + **w_eff(Ω) 절 제거** + w=두-상 현상학적 자유 피팅 + 종 폭 기원은 Ch1 broadening 참조. 통계열역학 본체 보존 | chapter2, v5, w_eff 제거, 자유피팅, 통계열역학, 분포, 섞임 | 2026-07-01 |
 | Ch1_v9/graphite_ica_ch1_v9.tex | Ch1 v9(30p) — 흑연+LCO 통합(전자 엔트로피). ⚠️**broadening 누락 → v10 으로 대체됨** | chapter1, v9, LCO, superseded | 2026-06-30 |
 | Ch2_v4/graphite_ica_ch2_v4.tex | Ch2 v4(13p) — 통계열역학. ⚠️**§C w_eff 잘못 → v5 로 대체됨** | chapter2, v4, w_eff, superseded | 2026-06-30 |
