@@ -1,0 +1,265 @@
+% ====================================================================
+% graphite_ica_ch2_v3.tex — Chapter 2 (v3: 가역 발열·엔트로피 계수, 백지 재작성)
+%   ★백지 — v2/rebuilt/old/roadmap_v1 미참고. Ch1(graphite_ica_ch1 v8-11) 토대.
+%   주제: Ch1 의 평형 전위 U_j(T) 로부터 전이별 엔트로피 계수 ∂U_j/∂T=ΔS_rxn,j/F 를
+%        세우고, 다온도 dQ/dV 피팅으로 ΔS(x) 와 가역 발열 Q̇_rev=−I·T·∂U/∂T(Bernardi)
+%        을 추정하는 경로를 1차 문헌 근거로 닫는다(초안).
+%   상태: draft (조사→초안). 완본·실데이터 피팅·v9 통합은 교수님 검토 후.
+%   build: xelatex 2-pass (kotex).
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\setmonofont{D2Coding}[Scale=MatchLowercase]
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v3): 가역 발열과 엔트로피 계수}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v3, 가역 발열·엔트로피)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\newtheorem*{keybox}{핵심}
+\newtheorem*{srcbox}{문헌 근거}
+\newtheorem*{warnbox}{주의}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\oc}{\mathrm{oc}}
+\renewcommand{\theequation}{2.\arabic{equation}}
+\renewcommand{\thesection}{2.\arabic{section}}
+\title{\textbf{\LARGE Chapter 2}\\[0.35em]\Large 흑연 음극 $dQ/dV$ 의 가역 발열과 엔트로피 계수\\[0.2em]\large — Chapter 1 의 평형 전위에서 $\partial U/\partial T\cdot\Delta S(x)\cdot\dot Q_\rev$ 로 (v3 초안)}
+\author{}\date{}
+
+\begin{document}
+\maketitle
+
+% ====================================================================
+\section*{서 — Chapter 1 의 평형 전위에 이미 들어 있던 ``열''}
+\addcontentsline{toc}{section}{서}
+% ====================================================================
+Chapter 1 은 흑연 음극의 $\dd Q/\dd V$ 한 곡선을, 전이별 평형 중심 전위
+$U_j(T)=(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F$ 위에 세운 평형 종과, 그 위에 얹힌 동역학 꼬리로
+설명했다. 이 장은 \emph{새 물리를 더하지 않는다}. 다만 Ch1 이 이미 가진 한 가지를 끄집어낸다 —
+평형 중심의 \emph{온도 의존} $\partial U_j/\partial T$ 다. 열역학 1$\cdot$2법칙에서 이 양은 곧 반응
+엔트로피이고, 전지가 충방전하며 흡수$\cdot$방출하는 \emph{가역(엔트로피) 발열}의 원천이다. 곧 Chapter 1
+의 $dQ/dV$ 모델을 \emph{여러 온도에서} 맞추면, 각 전이의 $U_j(T)$ 기울기에서 $\Delta S_{\rxn,j}$ 가
+나오고, 그것이 가역 발열 $\dot Q_\rev$ 을 준다. 본 장은 그 사슬
+\[
+\boxed{\;\text{다온도 } dQ/dV \;\to\; U_j(T)\;\to\;\partial U_j/\partial T=\Delta S_{\rxn,j}/F\;\to\;\dot Q_\rev=-I\,T\,\partial U/\partial T\;}
+\]
+을 1차 문헌 근거 위에서 닫는다. 본 장은 \emph{초안}이다: 사슬의 양 끝(정전 식·가역 발열 정의)은 문헌으로
+확정에 준하고(\S\ref{sec:bernardi}, \S\ref{sec:profile}), 가운데 고리($dQ/dV(T)$ 직접 추출)는 기존
+$OCV(T)\cdot$MSMR 선례를 template 로 삼아 \emph{우리 기여 지점}으로 표시한다(\S\ref{sec:estimate}).
+
+% ====================================================================
+\section{가역열과 비가역열 — Bernardi 에너지 수지}\label{sec:bernardi}
+% ====================================================================
+전지 셀의 발열은 가역(reversible, 엔트로피) 성분과 비가역(irreversible) 성분으로 갈린다. Bernardi,
+Pawlikowski, Newman 의 일반 에너지 수지 \cite{bernardi1985} 에서, 부반응$\cdot$혼합$\cdot$상변화를
+무시한 단일 활물질 한계의 발열률은
+\begin{equation}
+\dot Q \;=\; I\,(U_\oc-V) \;-\; I\,T\,\frac{\partial U_\oc}{\partial T},
+\label{eq:bernardi}
+\end{equation}
+이다($I>0$ 방전, $V$ 단자 전압, $U_\oc$ 개방회로(평형) 전위). 우변 첫 항 $I(U_\oc-V)=I\,\eta\ge0$ 은
+과전압 $\eta$ 의 소산 — \emph{비가역열} $\dot Q_\irr$(2법칙상 항상 발열). 둘째 항이 \emph{가역열}
+\begin{equation}
+\boxed{\;\dot Q_\rev \;=\; -\,I\,T\,\frac{\partial U_\oc}{\partial T}\;,}
+\label{eq:qrev}
+\end{equation}
+이며, $\partial U_\oc/\partial T$(엔트로피 계수, entropy coefficient)의 부호에 따라 흡열($\dot Q_\rev<0$)
+또는 발열($>0$)이 된다 — 비가역열과 달리 \emph{양방향}이다 \cite{bernardi1985,standardised2024}.
+
+\begin{srcbox}
+$\dot Q_\rev$ 의 엔트로피 계수 형태는 전기화학 열역학의 정전이다: 평형 전위와 반응 깁스 에너지가
+$\Delta G=-nFU_\oc$ 로 묶이고, $\Delta S=-\partial(\Delta G)/\partial T$ 에서
+$\Delta S=+nF\,\partial U_\oc/\partial T$ 가 나오므로 $\dot Q_\rev=-IT\,\partial U/\partial T
+= -(I/nF)\,T\,\Delta S$ 다 \cite{newman,msmr_partI}. (★부호 규약: $\Delta S=+nF\,\partial U/\partial T$.
+일부 문헌 표기의 $-$ 부호는 $U_\oc$ 대신 셀 전압 정의 차이에서 오며, 본 장은 평형 전위 $U_\oc$ 기준 $+$
+규약으로 통일한다.)
+\end{srcbox}
+
+이 장의 표적은 둘째 항이다. 첫째 항(비가역)은 Chapter 1 의 과전압$\cdot$분극$\cdot$동역학 꼬리가 만드는
+entropy production 으로, 저온$\cdot$고율서 긴 꼬리 = 큰 lag = 큰 $\eta$ = 큰 $\dot Q_\irr$ 로 나타난다
+— 본 장은 가역열에 집중하고 비가역열은 Ch1 의 동역학과 연결만 짚는다(\S\ref{sec:caveat}).
+
+% ====================================================================
+\section{Chapter 1 의 $U_j(T)$ 에서 전이별 엔트로피 계수}\label{sec:coeff}
+% ====================================================================
+Chapter 1 의 전이별 평형 중심은 $U_j(T)=(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F$ 였다. 온도로 미분하면
+\begin{equation}
+\boxed{\;\frac{\partial U_j}{\partial T}\;=\;\frac{\Delta S_{\rxn,j}}{F}\;,}
+\label{eq:coeff}
+\end{equation}
+곧 \emph{각 전이의 엔트로피 계수가 그 전이의 반응 엔트로피}다($n=1$, Li 1몰당). 이것이 \S\ref{sec:bernardi}
+의 가역열에 그대로 들어간다 — 전이들이 중첩된 실제 곡선에서 관측 엔트로피 계수는 전이별 기여의
+용량 가중 합이고, 가역 발열은
+\begin{equation}
+\dot Q_\rev \;=\; -\,I\,T\,\frac{\partial U_\oc}{\partial T}
+\;=\; -\,\frac{I\,T}{F}\,\overline{\Delta S_{\rxn}}(x),
+\qquad
+\overline{\Delta S_\rxn}(x)=\frac{\sum_j Q_j\,g_j(x)\,\Delta S_{\rxn,j}}{\sum_j Q_j\,g_j(x)},
+\label{eq:qrev_sum}
+\end{equation}
+로 닫힌다($g_j(x)$ = 전이 $j$ 의 국소 가중, Ch1 의 $\xi_{\eq,j}(1-\xi_{\eq,j})$ 종 모양에서 옴 —
+전이가 진행 중인 SOC 에서 그 전이의 $\Delta S$ 가 지배). 즉 \textbf{Chapter 1 의 평형 구조가 가역 발열을
+이미 결정}하며, 남은 일은 $\Delta S_{\rxn,j}$ 를 실데이터에서 \emph{어떻게} 얻느냐다(\S\ref{sec:estimate}).
+
+\begin{keybox}
+가역 발열에 들어가는 것은 \emph{반응(평형) 엔트로피} $\Delta S_{\rxn,j}=F\,\partial U_j/\partial T$ 뿐이다.
+이는 Chapter 1 동역학 꼬리의 \emph{활성화 엔트로피} $\Delta S_{a,j}$(Eyring prefactor 의 온도의존)와
+\textbf{전혀 다른 양}이다 — 혼동 금지(\S\ref{sec:caveat}).
+\end{keybox}
+
+% ====================================================================
+\section{흑연 staging 엔트로피 프로파일 — 문헌값과 Chapter 1 정합}\label{sec:profile}
+% ====================================================================
+$\Delta S_{\rxn,j}$ 가 가역 발열을 결정하므로, 흑연의 \emph{측정된} 엔트로피 프로파일이 검증 기준이다.
+문헌은 흑연 전극의 부분몰 엔트로피 $\Delta S(x)$ 와 엔트로피 계수 $\partial U/\partial T(x)$ 를 다음으로
+보고한다:
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item 저 Li 분율($x<0.2$\,–\,$0.25$)에서 $\Delta S>0$(혼합/configurational 기여), 고 분율에서 $\Delta S<0$
+(vibrational 기여) — Reynier, Yazami, Fultz \cite{reynier2003}; 일관되게 Allart 등 \cite{allart2018}.
+\item 정량(potentiometric, full-cell$\cdot$전극 분리): 전극 $\Delta S\approx +29$ J\,mol$^{-1}$K$^{-1}$
+@\,$x=0.08$, $-5\sim-16$ J\,mol$^{-1}$K$^{-1}$ @\,$x>0.5$ \cite{allart2018}; MCMB 흑연 $\partial U/\partial T
+\approx+3\sim4$ mV/K @저-$x$, $\sim0.2$ SOC 부근 부호 반전 \cite{msmr_partII}.
+\item stage\,2$\to$1 전이($x\approx0.5$)에서 엔트로피의 급격한 재증가(이상 거동) \cite{reynier2003,allart2018}.
+\end{itemize}
+
+\begin{srcbox}
+★\textbf{Chapter 1 정합(정량).} Chapter 1 \texttt{GRAPHITE\_STAGING\_LIT} 의 전이별 $\Delta S_{\rxn,j}$ 는
+$+29\to0\to-5\to-16$ J\,mol$^{-1}$K$^{-1}$(stage $4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)로, 문헌 흑연
+$\Delta S(x)$ \cite{allart2018} 와 \emph{부호$\cdot$규모가 정량 일치}한다($+29$@저-$x$, $-16$@$x>0.5$ 정확
+대응; 표~\ref{tab:ds}). 곧 Chapter 1 의 엔트로피 값은 문헌 근거에 닿아 있으며, 가역 발열 사슬의 입력이
+임의값이 아님을 뒷받침한다.
+\end{srcbox}
+
+\begin{table}[t]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\caption{Chapter 1 전이별 $\Delta S_{\rxn,j}$ ↔ 문헌 흑연 $\Delta S(x)$(Allart 등 \cite{allart2018}, 전극 분리).}
+\label{tab:ds}
+\begin{tabular}{l c c c}
+\toprule
+전이 & $x$ 범위 & Ch1 $\Delta S_{\rxn,j}$ [J\,mol$^{-1}$K$^{-1}$] & 문헌 $\Delta S(x)$ \\
+\midrule
+$4\!\to\!3$ & 0.08–0.16 & $+29.0$ & $+29$ @\,$x{=}0.08$ (양 끝, 정확) \\
+$3\!\to\!2\mathrm L$ & 0.16–0.25 & $0.0$ & 중간 하강 구간 $0\!\to\!-16$ (범위) \\
+$2\mathrm L\!\to\!2$ & 0.25–0.50 & $-5.0$ & 중간 하강 구간 (범위) \\
+$2\!\to\!1$ & 0.50–1.00 & $-16.0$ & $-16$ @\,$x{>}0.5$ (양 끝, 정확) \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize $\dagger$ Chapter 1 의 4 주요 plateau 전이와 Allart 등 \cite{allart2018} 의 세분 region(dilute
+LiC$_{24}$ 포함, 양 끝 reg IV/reg I)은 $x$-경계가 $1{:}1$ 이 아니다. \emph{양 끝}($+29$ @저-$x$, $-16$ @$x{>}0.5$)
+은 정확 대응하고, 중간 두 전이는 $\Delta S$ 가 $0\to-16$ 으로 하강하는 \emph{구간 안}에 놓인다(점-대-점이 아닌
+범위 정합). 해상도 차이일 뿐 추세$\cdot$부호는 일관.}
+\end{table}
+
+엔탈피 쪽은 \emph{기준 차이}에 주의한다. Chapter 1 의 $\Delta H_{\rxn,j}$ 는 \emph{전이별}(differential)
+반응 엔탈피이고, calorimetry 의 형성 엔탈피(LiC$_6$ $-13.9$, LiC$_{12}$ $-24.8$ kJ/mol\,Li
+\cite{chemmater2015})는 \emph{누적}(formation, graphite+Li 금속 기준)이라 직접 등치할 수 없다 — 비교하려면
+형성 엔탈피의 $x$-미분으로 환산해야 한다. Chapter 1 내부에서는 $\Delta H_{\rxn,j}$ 가 $U_j\cdot\Delta S_{\rxn,j}$
+와 식~\eqref{eq:coeff} 의 역관계로 일관된다(예: stage\,2$\to$1 에서 $-FU+FT\,\partial U/\partial T=-13.0$
+kJ/mol, 표값과 일치).
+
+% ====================================================================
+\section{반응 엔트로피 vs 활성화 엔트로피 — 혼동 금지}\label{sec:caveat}
+% ====================================================================
+가역 발열의 핵심 함정은 두 엔트로피의 혼동이다. \textbf{반응 엔트로피} $\Delta S_{\rxn,j}=F\,\partial U_j/\partial T$
+는 \emph{평형} 상태함수로, 가역 발열~\eqref{eq:qrev} 에 들어간다. \textbf{활성화 엔트로피} $\Delta S_{a,j}$ 는
+Chapter 1 의 동역학 꼬리(Eyring 속도 $k_j\propto\exp[-(\Delta H_{a}-T\Delta S_a)/RT]$)의 prefactor
+온도의존으로, \emph{비가역} 동역학을 지배한다. 둘은 차원은 같으나 물리가 다르고, 가역 발열에는 $\Delta S_{\rxn}$
+\emph{만} 들어간다 \cite{msmr_partI}.
+
+\begin{warnbox}
+\textbf{히스테리시스 하 ``가역''의 경계.} 흑연 OCV 는 충방전 사이 history-dependent(준안정 stacking,
+stage II 무질서)이라 단일 $\partial U/\partial T$ 가 경로의존이다 \cite{hysteresis2018}. 본 장은 가역 발열을
+\emph{평형(또는 충방전 평균) 엔트로피 계수}로 정의하고, 히스/과전압이 만드는 entropy production
+$\sigma\ge0$ 은 비가역열로 분리한다. 경로의존 측정 불확실도의 정량은 본 초안서 미확보(공백).
+\end{warnbox}
+
+% ====================================================================
+\section{다온도 $dQ/dV$ 에서 $\partial U/\partial T$ 추정 — 경로와 선례}\label{sec:estimate}
+% ====================================================================
+사슬의 가운데 고리: 여러 온도 $T_k$ 에서 측정한 $dQ/dV$ 를 Chapter 1 모델로 동시에 맞춰, 전이별 중심
+$U_j(T_k)$ 의 온도 기울기에서 $\Delta S_{\rxn,j}$ 를 얻는다. 방법론적 template 은 다중 반응(multi-reaction)
+모델의 $OCV(T)$ 회귀다:
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \textbf{MSMR(Multi-Species, Multi-Reaction)} 은 흑연 OCV 를 반응별 항의 합으로 보고, 각 반응의
+$U_j^0(T)$ 를 온도의 연속함수(저차 다항)로 두어 $\dd U_j^0/\dd T$(=엔트로피 계수)를 추정한다
+\cite{msmr_partI,msmr_partII}. 이는 Chapter 1 의 전이별 logistic 구조와 직접 대응한다(반응 $j$ $\leftrightarrow$
+전이 $j$).
+\item \textbf{Potentiometric/dynamic 엔트로피 측정} 은 $OCV(T)$ 의 온도 응답을 직접 재며, 표준 protocol 과
+불확도(예: full-cell $\partial U/\partial T$ 0.3–0.5 mV/K @0–20\% SOC, std.dev $\sim$µV/K 급)가 보고된다
+\cite{standardised2024}.
+\item \textbf{$dQ/dV$ 기반 부분몰 엔트로피} 의 prototype: incremental capacity 와 entropy profiling 을 결합해
+부분몰 $\Delta S\cdot\Delta H$ 를 격자기체(Bragg–Williams 확장) 틀에서 얻은 선례가 있다
+\cite{occupation2019}(단 dilute $0<x<0.1$ 한정; 본 초안은 모델 식 원문 미확보로 \emph{방법 수준}만 인용).
+\end{itemize}
+
+\begin{keybox}
+\textbf{우리 기여 지점.} 위 선례는 대부분 \emph{$OCV(T)$} 또는 dilute 한계를 쓴다. Chapter 1 의 \emph{전} 전이
+$dQ/dV$ 모델을 다온도로 동시 피팅해 \emph{peak 위치$\cdot$이동}에서 전이별 $\partial U_j/\partial T$ 를 뽑는
+경로는 — MSMR 을 template, Allart 값을 검증, Bernardi 를 출구로 삼아 — 직접 선례가 약한 \emph{신규 각}이다.
+지난 연구가 미진했던 자리가 바로 여기이며, 본 장이 그 경로를 근거 위에 정의한다(정확도 실증은 실데이터
+후속 단계).
+\end{keybox}
+
+\textbf{피팅 함정(문헌 경고).} 저율 준평형 데이터 사용(고율은 동역학 오염), 평활은 가장 좁은 peak 반높이
+폭의 $1/5$ 이하(과평활→폭 양의 편향), peak 분해 시 전이 중심 우선순위, 연속함수$\cdot$저차로 과적합 억제
+\cite{msmr_partI,msmr_partII}. Chapter 1 의 $R_n\cdot$동역학 꼬리는 \emph{비가역} 성분이므로, $\partial U/\partial T$
+추정 전에 분극$\cdot$히스를 분리해야 한다(Chapter 1 의 $V_n=V_\mathrm{app}-\sigma_d|I|R_n$ 환산).
+
+% ====================================================================
+\section{가역 발열 합산과 한계}\label{sec:synth}
+% ====================================================================
+전이별 $\Delta S_{\rxn,j}$ 가 정해지면 가역 발열은 식~\eqref{eq:qrev_sum} 로 닫힌다 — SOC 에 따라
+$\overline{\Delta S_\rxn}(x)$ 의 부호가 바뀌어(저-$x$ 양 $\Rightarrow$ 방전서 $\dot Q_\rev>0$ 발열,
+고-$x$ 음 $\Rightarrow$ 흡열) 흡$\cdot$발열이 교대한다. stage\,2$\to$1($x\approx0.5$)의 큰 음의 $\Delta S$
+는 가역 발열의 두드러진 신호를 남긴다. 이는 calorimetry 의 가역 흡열 직접 관측과 정합한다
+\cite{standardised2024}.
+
+\textbf{한계$\cdot$갭(정직).} (1) $dQ/dV(T)$ 직접 추정의 정확도는 실데이터 round-trip 으로만 확정(후속).
+(2) 히스 하 경로의존 $\partial U/\partial T$ 불확실도 정량 미확보. (3) Electrochim.\,Acta 2019 prototype 의
+모델 식$\cdot$절대 ΔS/ΔH 원문 미확보(유료) — 방법만 인용. (4) DFT 절대 엔탈피는 interlayer 기술 난점으로
+실험 우선 \cite{jpcc2021}. (5) 형성↔전이별 엔탈피 환산식은 본 초안 범위 밖.
+
+% ====================================================================
+\section*{맺음 — 다음 단계}
+\addcontentsline{toc}{section}{맺음}
+% ====================================================================
+본 장(초안)은 Chapter 1 의 평형 전위에서 가역 발열로 가는 사슬을 1차 문헌 근거 위에 정의했다: 정전 식
+(Bernardi)·흑연 엔트로피 프로파일(Allart/Reynier, Ch1 정량 정합)은 확정에 준하고, 다온도 $dQ/dV$ 직접
+추정은 MSMR template 위의 신규 각으로 표시했다. \textbf{다음}: (i) Electrochim.\,Acta 2019 등 prototype
+full-text 확보로 $dQ/dV\to\Delta S$ 식 정밀화, (ii) 실데이터 다온도 $dQ/dV$ round-trip 으로 추정 정확도
+실증, (iii) Chapter 1 과의 v9 통합(가역/비가역 발열을 한 인과 사슬로). 교수님 검토 입력 대기.
+
+% ====================================================================
+\begin{thebibliography}{99}
+\bibitem{bernardi1985} D. Bernardi, E. Pawlikowski, J. Newman, ``A General Energy Balance for Battery Systems,'' \emph{J. Electrochem. Soc.} \textbf{132}(1), 5--12 (1985). DOI: 10.1149/1.2113792.
+\bibitem{newman} J. Newman, K. E. Thomas-Alyea, \emph{Electrochemical Systems}, 3rd ed., Wiley (2004). (OCV($T$): slope $=\Delta S$, intercept $=\Delta H$.)
+\bibitem{reynier2003} Y. Reynier, R. Yazami, B. Fultz, ``The entropy and enthalpy of lithium intercalation into graphite,'' \emph{J. Power Sources} \textbf{119--121}, 850--855 (2003). DOI: 10.1016/S0378-7753(03)00285-4.
+\bibitem{allart2018} D. Allart \emph{et al.}, ``Model of Lithium Intercalation into Graphite by Potentiometric Analysis with Equilibrium and Entropy Change Curves of the Graphite Electrode,'' \emph{J. Electrochem. Soc.} \textbf{165}(2), A380 (2018). DOI: 10.1149/2.1251802jes.
+\bibitem{occupation2019} ``Transitions of lithium occupation in graphite: A physically informed model in the dilute lithium occupation limit supported by electrochemical and thermodynamic measurements,'' \emph{Electrochimica Acta} (2019). DOI: 10.1016/j.electacta.2019.135634. [방법 수준 인용 — 원문 식 미확보.]
+\bibitem{chemmater2015} ``Intercalation Compounds from LiH and Graphite: Relative Stability of Metastable Stages\ldots,'' \emph{Chem. Mater.} \textbf{27} (2015). DOI: 10.1021/acs.chemmater.5b00235. [형성 ΔH calorimetry — abstract tier.]
+\bibitem{jpcc2021} ``Thermodynamic Analysis of Li-Intercalated Graphite by First-Principles with Vibrational and Configurational Contributions,'' \emph{J. Phys. Chem. C} \textbf{125} (2021). DOI: 10.1021/acs.jpcc.1c08992. [abstract tier.]
+\bibitem{msmr_partI} ``Quantifying the Entropy and Enthalpy of Insertion Materials for Battery Applications Via the Multi-Species, Multi-Reaction Model,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad1d27.
+\bibitem{msmr_partII} ``Quantifying the Temperature Dependence of the MSMR Model Part II: Estimation of Entropy Coefficient for Meso-Carbon Micro-Bead Graphite,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad70d9.
+\bibitem{standardised2024} ``A Standardised Potentiometric Method for the Effective Parameterisation of Reversible Heating in a Lithium-Ion Cell,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad4918.
+\bibitem{hysteresis2018} ``Uncertainties in entropy due to temperature path dependent voltage hysteresis in Li-ion cells,'' \emph{J. Power Sources} (2018). DOI: 10.1016/j.jpowsour.2018.05.060.
+\end{thebibliography}
+
+\end{document}
