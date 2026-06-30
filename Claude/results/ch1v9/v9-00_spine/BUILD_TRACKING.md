@@ -14,5 +14,15 @@
 | v9-08 | Codex | task-mqzubt5e-wv3k7e | ✅ 1430줄·PDF·0err·흑연보존 |
 | v9-09 | Codex | task-mqzux6sc-b49ild | 🔄 재기동(구 task-mqzuc614 큐 정체→폐기) |
 
-## 다음 (B.3)
+## B.3 검토1 ✅ (5/5: R1 전자엔트로피·R2 부호·R3 분포B·R4 보존빌드·R5 인용)
+- 종합 = `SUPPLEMENT_BRIEF.md`·판정 = `CHERRYPICK_PLAN.md`. ★ΔS_e 부호 = 삽입 ∂S_e/∂x<0 확정(master 직접 검증). 흑연 9/9 보존. 인용 전면 재구축 필요.
+
+## B.3 9b 보완 (방향성-만) 가동
+| 작가 | 9b job-id |
+|---|---|
+| v9-01 | adc1ecad45534ae59 | v9-02 | ab74159d72bbd6591 | v9-03 | abe0207e051565ab5 |
+| v9-04 | a49c1f44ecbee5d0f | v9-05 | a6e2c9a70e74862d5 | v9-06 | a02a716fbf776b92b |
+| v9-07 | task-mqzw77rl-6rubrw | v9-08 | task-mqzw7nyt-tawjzh | v9-09 | task-mqzw810g-lidabl |
+
+## 다음 (B.3 cont)
 9종 완료 → 커밋#1 → 검토1(G-derive·부호·LCO 정합·전자 엔트로피 유도 렌즈) → 방향성-만 보완(9b) → 검토2 → Opus 체리픽 v9c → adversarial 재검수 → Ch1 v9 최종 + 정식 10회 → 커밋#2~4.

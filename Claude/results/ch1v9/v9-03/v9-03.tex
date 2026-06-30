@@ -290,15 +290,15 @@ $U_j^\cat\approx3.9\text{--}4.2$ V vs Li 의 \emph{높은} 전위에서 peak 를
 \begin{table}[t]
 \centering
 \renewcommand{\arraystretch}{1.25}
-\caption{LCO 전이 초기값 \code{LCO\_STAGING\_LIT}(3건, tier A=Xia\,\cite{xia2018}·Reynier\,\cite{reynier2004}·Motohashi\,\cite{motohashi2019}) — 흑연 \code{GRAPHITE\_STAGING\_LIT} 와 동형. 전자 엔트로피 항 $\Delta S_e$ 는 \S\ref{sec:elec_entropy} 에서 추가된다.}
+\caption{LCO 전이 초기값 \code{LCO\_STAGING\_LIT}(3건, tier A=Xia\,\cite{xia2007}·Reynier\,\cite{reynier2004}·Motohashi\,\cite{motohashi2009}) — 흑연 \code{GRAPHITE\_STAGING\_LIT} 와 동형. 전자 엔트로피 항 $\Delta S_e$ 는 \S\ref{sec:elec_entropy} 에서 추가된다.}
 \label{tab:lco_staging}
-\begin{tabular}{l c c c c c}
+\begin{tabular}{l c c p{3.2cm} p{4.0cm} l}
 \toprule
-전이 & $U_j^\cat$ [V vs Li] & $x$ 범위 & 성격 & $\Delta S_{\rxn}^\cat$ 초기값 [J/(mol\,K)] & 비고 \\
+전이 & $U_j^\cat$ [V vs Li] & $x$ 범위 & 성격 & $\Delta S_{\rxn,j}^\cat$ 초기값 & 비고 \\
 \midrule
-T1 MIT        & $\approx3.90$ & $x\!\approx\!0.94$--$0.75$ & insulator$\to$metal & config $+$ $\Delta S_e$ (ON) & 전자항 발현 \\
-T2 ord-dis\,a & $\approx4.05$ & $x\!\approx\!0.55$         & hex$\to$mono       & config 주도 ($\approx+0.47$ J/K·mol) & 2상역 \\
-T3 ord-dis\,b & $\approx4.17$ & $x\!\approx\!0.48$         & mono$\to$hex       & config ($\approx+1.49$ J/K·mol) & T2 쌍 \\
+T1 MIT        & $\approx3.90$ & $0.75$--$0.94$ & insulator$\to$metal & config $+$ $\Delta S_e$ (ON) & 전자항 발현 \\
+T2 ord-dis\,a & $\approx4.05$ & $x\!\approx\!0.55$ & hex$\to$mono       & config 주도 ($\approx+0.47$ J/(mol\,K)) & 2상역 \\
+T3 ord-dis\,b & $\approx4.17$ & $x\!\approx\!0.48$ & mono$\to$hex       & config ($\approx+1.49$ J/(mol\,K)) & T2 쌍; $\le4.20$ V 상한 내 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -616,7 +616,7 @@ $\pm\tfrac12\gamma_{T1}\Delta U_{T1}^\hys$ 로 갈라진다(식~\eqref{eq:Ubranc
 
 \textbf{(2) Order--disorder(hex$\leftrightarrow$monoclinic) — T2/T3, $\Omega_{T2},\Omega_{T3}$.} $x\approx0.48$--$0.55$
 에서 LCO 는 Li-vacancy 초격자 배열(monoclinic)과 육방($P6_3mc$) 구조 사이의 질서-무질서 전이를 거친다
-\cite{motohashi2019}. 이 두 전이는 한 쌍의 인접 peak($\approx4.05$ V 와 $\approx4.17$ V)로 나타나며,
+\cite{motohashi2009}. 이 두 전이는 한 쌍의 인접 peak($\approx4.05$ V 와 $\approx4.17$ V)로 나타나며,
 각각 $\Omega_{T2},\Omega_{T3}>0$ 의 정규용액 항으로 기술된다.
 
 두 종류의 $\Omega$ 는 흑연의 staging $\Omega$ 와 완전히 동형이다 — 물리적 기원만 다르고(흑연: 층간 탄성 반발,
@@ -961,7 +961,7 @@ $\partial^2 U^\cat/\partial T^2 \ne 0$ 을 MIT 구간에서 측정하면 전자 
 
 \subsection{$g(E_F,x)$ 의 MIT-logistic 게이트 모델 (G2 초기값)}\label{sec:gEF_model}
 
-문헌에 $g(E_F,x)$ 의 연속 곡선 정량이 없다(G2 갭 \cite{motohashi2019}: $\mathrm{CoO_2}$ 의 단일 anchor
+문헌에 $g(E_F,x)$ 의 연속 곡선 정량이 없다(G2 갭 \cite{motohashi2009}: $\mathrm{CoO_2}$ 의 단일 anchor
 $g_{\max}=13$ e/eV 와 정성적 추세만). Ch1 철학(문헌 초기값 + 우리 데이터 round-trip 피팅)에 따라
 MIT 를 logistic 게이트로 근사한다:
 \begin{equation}
@@ -1001,13 +1001,13 @@ LCO 전이별 반응 엔트로피는 세 항의 합이다:
 \end{equation}
 
 \begin{itemize}[topsep=2pt,itemsep=1pt]
-\item \textbf{config 항} $\Delta S_j^\config$: 격자기체 섞임 엔트로피 $= -R[\xi\ln\xi+(1-\xi)\ln(1-\xi)]$ 가 logistic 점유에서
-자동으로 나온다. 전이 dict 의 $\Delta S_{\rxn,j}^\cat$(중심 표준값 $\Delta S_j^0 = \Delta S_\rxn|_{\xi=1/2}$)가 이를 포함 —
-\textbf{이중계산 금지(B)}: $\Delta S_j^0$ 에 이미 config 가 들어 있으므로, 외부에서 config 를 별도로 더하면
-이중계산이 된다. $\Delta S_j^0$ 은 \emph{config 를 제외한} 나머지($\Delta S^\vib+\Delta S_e$)의 중심 기여가 아니라
-\emph{전체 반응 엔트로피의 중심값}이다.
-\item \textbf{vib 항} $\Delta S_j^\vib$: 탈리튬화 시 phonon 스펙트럼 변화에서 오는 음의 baseline. $\Delta S_j^0$ 의 순수히
-비-config 몫으로 피팅으로 정한다.
+\item \textbf{config 항} $\Delta S_j^\config$: 격자기체 섞임 엔트로피 $-R[\xi\ln\xi+(1-\xi)\ln(1-\xi)]$ 가 logistic
+점유에서 자동으로 나온다. 전이 dict 의 피팅 파라미터 $\Delta S_j^0$ 는 이 config 몫의 $\xi=\tfrac12$ 기준값이다.
+\textbf{이중계산 금지(B)}: 식~\eqref{eq:DeltaS_decomp} 의 boxed 식에서 $\Delta S_j^\config$ 슬롯이 config 한 항을
+전담한다 — 외부에서 config 를 별도로 더하면 이중계산이 된다. vib·전자 항은 분리된 별도 슬롯($\Delta S_j^\vib$,
+$\Delta S_e$)이며, $\Delta S_j^0$ 이 vib 나 전자 기여를 흡수하지 않는다.
+\item \textbf{vib 항} $\Delta S_j^\vib$: 탈리튬화 시 phonon 스펙트럼 변화에서 오는 음의 baseline. config 슬롯과 독립된
+비-config 피팅 파라미터다.
 \item \textbf{전자 항} $\Delta S_e(x,T)$: 식~\eqref{eq:DeltaSe_model}. MIT 게이트 — T1 에서만 ON. \textbf{T2/T3 에서 OFF}($x\approx0.48$--$0.55$ 는 MIT($x\approx0.85$) 아래 금속 영역이라 $g(E_F)$ 상수에 가깝고 $\partial g/\partial x\approx0$).
 \end{itemize}
 
@@ -1543,12 +1543,12 @@ $L_V\!\gg\!\Delta_\mathrm{grid}\Rightarrow\rho\to1$ 이라 식~\eqref{eq:peaksha
 \bibitem{bloom2005} I. Bloom \emph{et al.}, ``Differential voltage analyses of high-power, lithium-ion cells,'' \emph{J. Power Sources} \textbf{139}, 295 (2005). DOI: 10.1016/j.jpowsour.2004.07.021.
 \bibitem{dubarry2012} M. Dubarry, C. Truchot, B. Y. Liaw, ``Synthesize battery degradation modes via a diagnostic and prognostic model,'' \emph{J. Power Sources} \textbf{219}, 204 (2012). DOI: 10.1016/j.jpowsour.2012.07.016.
 % ---- LCO 참고문헌 (v9-03 추가) ----
-\bibitem{xia2018} H. Xia \emph{et al.}, ``Electrochemical behavior and Li-ion transport in LiCoO$_2$ thin-film electrodes,'' \emph{Electrochim. Acta} \textbf{225}, 573 (2018). [tier A: 전이 전위 초기값]
-\bibitem{reynier2004} Y. Reynier, R. Yazami, B. Fultz, ``Thermodynamics of lithium intercalation into graphites and disordered carbons,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004). [tier A/B: $\Delta S$ 정량·단전극 $+0.83$ mV/K]
-\bibitem{motohashi2019} T. Motohashi \emph{et al.}, ``Electronic phase diagram of the layered cobalt oxide system Li$_x$CoO$_2$,'' \emph{Phys. Rev. B} \textbf{80}, 165114 (2009). [tier A: charge-order $\Delta S$·$g(E_F)$ anchor]
-\bibitem{menetrier1999} M. M\'en\'etrier \emph{et al.}, ``The insulator-metal transition upon lithium depletion in LiCoO$_2$,'' \emph{J. Mater. Chem.} \textbf{9}, 1135 (1999). [tier A: MIT $x$ 범위·$g(E_F)$ 정성]
+\bibitem{xia2007} H. Xia, L. Lu, Y. S. Meng, G. Ceder, ``Phase Transitions and High-Voltage Electrochemical Behavior of LiCoO$_2$ Thin Films Grown by PLD,'' \emph{J. Electrochem. Soc.} \textbf{154}(4), A337--A342 (2007). DOI: 10.1149/1.2509021. [tier A: dQ/dV 전이 위치·MIT·order--disorder 전위 초기값]
+\bibitem{reynier2004} Y. Reynier, J. Graetz, T. Swan-Wood, P. Rez, R. Yazami, B. Fultz, ``Entropy of Li intercalation in Li$_x$CoO$_2$,'' \emph{J. Electrochem. Soc.} \textbf{151}, A422 (2004); see also \emph{Phys. Rev. B} \textbf{70}, 174304 (2004). [tier A/B: LCO $\Delta S(x)$ 분해(config+phonon+전자)·단전극 $\partial U/\partial T\approx+0.83$ mV/K·전자 엔트로피 $\approx0.18\,k_B$/atom]
+\bibitem{motohashi2009} T. Motohashi \emph{et al.}, ``Electronic phase diagram of the layered cobalt oxide system Li$_x$CoO$_2$,'' \emph{Phys. Rev. B} \textbf{80}, 165114 (2009). arXiv:0909.3556. DOI: 10.1103/PhysRevB.80.165114. [tier A: charge-order $\Delta S$·$g(E_F)$ anchor; $g_{\max}=13$ e/eV]
+\bibitem{menetrier1999} M. M\'en\'etrier, I. Saadoune, S. Levasseur, C. Delmas, ``The insulator-metal transition upon lithium depletion in LiCoO$_2$,'' \emph{J. Mater. Chem.} \textbf{9}, 1135 (1999). DOI: 10.1039/a900016j. [tier A: MIT $x$ 범위($x\approx0.75$--$0.94$)·$g(E_F)$ 정성·전자-config comparable importance]
 \bibitem{baker2022} D. R. Baker, M. W. Verbrugge, ``Multi-site, multi-reaction (MSMR) model for electrode intercalation reactions,'' \emph{J. Electrochem. Soc.} \textbf{169}, 010524 (2022). [MSMR $\leftrightarrow$ Ch1 동형]
-\bibitem{ml2024} [tier-inferred, DOI 미확정] ``Electronic entropy as an essential ingredient in LCO phase diagram prediction,'' \emph{추정: J. Power Sources 계열} (2024 추정). 주: DOI 미검증 placeholder — 본 인용의 핵심 논거(전자 엔트로피 없이 MIT 2상역 $\partial V/\partial T$ 재현 불가)는 Menetrier·Reynier [A] 에서 독립 지지됨. 실증 후 교체 요망.
+\bibitem{ml2024} R. Aronson \emph{et al.} (Garikipati group), ``Bridging scales with Machine Learning: from first-principles statistical mechanics to continuum phase field in LiCoO$_2$,'' \emph{J. Mech. Phys. Solids} \textbf{190}, 105727 (2024). arXiv:2302.08991. [tier A: config 단독으로는 MIT 2상역($x\approx0.75$--$0.94$) 재현 불가 — 전자 엔트로피 항의 필요성 입증]
 \bibitem{doping2021} J. Kim \emph{et al.}, ``Al/Mg co-doping of LiCoO$_2$: suppressed phase transitions and enhanced cycling stability,'' \emph{Chem. Mater.} \textbf{33}, 7198 (2021). [tier A: 비-redox 도핑 전자항 보존]
 \end{thebibliography}
 
