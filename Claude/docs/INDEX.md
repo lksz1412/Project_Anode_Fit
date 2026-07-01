@@ -18,6 +18,12 @@
 | Ch1_v7/v7-11.tex | Ch1 v7(17p) — 코드흐름 간결판 | chapter1, v7, 간결, 코드흐름 | 2026-06-30 |
 | Ch2_v3/graphite_ica_ch2_v3.tex | Ch2 v3(5p) — 가역 발열 survey 초안 | chapter2, v3, 가역발열, Bernardi, 초안 | 2026-06-30 |
 | _archive/ | 구버전(Opus_v4/v5/v6·Fable_v3·원본 ch1/ch2 — ★broadening 설명 원천) + 빌드산물(.aux/.log) + Archive_old/rebuilt | archive, 구버전, broadening 원천, Opus, Fable | 2026-06-30 |
+| Fable_점검/FABLE_AUDIT_note_A5_ch2-code.md | Fable 이력 감사 A5 — Ch2(v3→v4→v5→v1.0.10) + 코드(v11_final→v1.0.10) 트랙. w_eff narrowing 오류가 2라운드 적대검수를 통과하고 코드실행 검증(CODE_w_check.md)에서야 발각된 경위·v12 교훈 5건 | Fable, 감사, 이력, w_eff, narrowing, 적대검수, use_w_eff, LCO seam, q_rev, v12 교훈 | 2026-07-02 |
+| Fable_점검/FABLE_AUDIT_note_A4_v9-v1011.md | Fable 이력 감사 A4 — Ch1(v9→v10→v1.0.10→v1.0.11) 트랙. broadening 기작③ ρ(U_j)→ρ(U_app) 재정초(R1 오판#1)·"폭 구조결함" CRIT 오판·철회(R1 오판#2, 인계무결성검수가 반증)·LCO 6절 산문회귀가 v9 시점부터 존재함을 원문대조로 확인·v1.0.11 은 docs 폴더가 v1.0.10 과 byte-identical(Phase 1.1 이후 미착수, 진행중 중단) 확인·v12 교훈 4건 | Fable, 감사, 이력, R1 오판, 철회, ρ(U_j), apparent-U, 폭 구조결함, LCO 산문회귀, v1.0.11 중단, byte-identical, v12 교훈 | 2026-07-02 |
+| **Fable_점검/FABLE_AUDIT_01_history_v3-v1011.md** | ★Fable 이력 전수감사 **종합**(v3→v1.0.11) — 계보·전환별 장단점/문제점 표·관통 패턴 6(설계doc 순응검수 한계·실행기반 검증 결정력 등)·★방향성 유실 표(Eyring 척추 미계승·S0-S5 절삭·§1.18 park)·v12 교훈 9·4-tier | Fable, 감사, 종합, 이력, 계보, Eyring 척추, 방향성 유실, v12 교훈, 관통 패턴 | 2026-07-02 |
+| Fable_점검/FABLE_AUDIT_note_A2_v5-v7.md | Fable 이력 감사 A2 — v5→v6(흐름도 재조립·97식 보존 손실0)·v6→v7(코드 수식-구동 재편, 전 유도·해석해·S0-S5 식별·KWW 의도적 절삭 = 재-스코핑, 사용자 사후 불만→v8 촉발). 배열↔깊이 독립 축 교훈 | Fable, 감사, v6, v7, 재조립, 재스코핑, S0-S5, KWW, 절삭, 배열과 깊이 | 2026-07-02 |
+| Fable_점검/FABLE_AUDIT_note_A3_v7-v9.md | Fable 이력 감사 A3 — v7→v8(유도 4단 복원·KNOWN_DEFECTS 6종 정정·D-PEAK "v8서 생김"은 근거미발견)·v8→v9(LCO 통합·흑연 byte 보존·ΔS_e 역부호 5건 적발). broadening 후퇴 정량(v4/v5 ~2771/1883줄→v7 894줄) | Fable, 감사, v8, v9, KNOWN_DEFECTS, D-PEAK, LCO, 유도 복원, broadening 후퇴 | 2026-07-02 |
+| Fable_점검/FABLE_AUDIT_note_A1_v3-v5.md | Fable 이력 감사 A1 — Ch1 v3(Fable)→v4(Opus)→v5(Opus) 전환. v3→v4=순수 추가(§1.18 적층, §1.1~1.17 바이트 동일)이나 최초 무계획 배치작성이 σ충돌·B/κ 산수오류 배출 후 V4R redo·Fable_v4→Opus_v4 개명. v4→v5=수식-구동 장르전환(97식 verbatim·산문 32% 압축·keybox 14→1·athermal 훅 소거)+V5.R8 미게이트 회귀·구트랙 버전번호 충돌 경고·v12 교훈 8건 | Fable, 감사, 이력, v3, v4, v5, 적층, stacking, 수식-구동, keybox, verbatim, athermal, V5RR, 장르 전환, park, v12 교훈 | 2026-07-02 |
 
 ## ★재작업 진행 중 (2026-06-30, `../plans/2026-06-30-rework-broadening-restore-weff-fix-reorg-plan.md`)
 - **Ch1 v10**(예정) = v9 정정·통합 — broadening 복원 + w 이중지위 + w_eff 제거 + 기존 LCO/분포 유지.

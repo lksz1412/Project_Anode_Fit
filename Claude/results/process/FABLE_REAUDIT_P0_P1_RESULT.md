@@ -51,3 +51,12 @@
 | v1.0.10 | 2026-07-01 code-doc-sync | v1.0.10(35p)+코드 742줄 | V1010_* 다수 | HANDOVER_v1.0.11 |
 | v1.0.11 | 2026-07-02(파일명 07-07) | 증판+P1.1 supplement | V1011_* | (본 재검으로 supersede) |
 
+### Step 8-12 — 전환 분석 5기 완료 + 종합 (Phase 1.2-1.3 ✅)
+- 5기 전부 완료: A1(Fable, v3→v5)·A2(v5→v7)·A3(v7→v9)·A4(v9→v1.0.11)·A5(Ch2·코드). 노트 = `docs/Fable_점검/FABLE_AUDIT_note_A1~A5`.
+- **종합 감사 문건 = `docs/Fable_점검/FABLE_AUDIT_01_history_v3-v1011.md`** — 계보(권위기록 경고 포함)·전환별 장단점/문제점 표·관통 패턴 6·★방향성 유실 표(Eyring 척추 미계승 F-1·S0-S5 절삭·§1.18 park·KWW scope-out)·v12 교훈 9·4-tier.
+- 핵심 확정: v3→v6 자산 보존 양호(v4=순수추가·v5=식 verbatim·v6=손실0) / v7 의도적 재-스코핑이 왕복의 기점 / w_eff 오류가 설계doc 순응 검수 2R을 통과, 실행 실측이 반증(프로세스 1급 교훈) / LCO 산문은 v9 기원 / v1.0.11 byte 동일.
+- gate PASS: 전 버전 커버(누락 0)·판정 줄근거(노트 인용)·문건 완결. INDEX 3행 추가(A2·A3·종합).
+- (minor housekeeping) INDEX의 docs 구조 서술이 구구조(Ch1_v1.0.10/ 폴더식) — 현 docs/v1.0.10/ 통합 구조와 불일치. 챕터 4 정리 시 일괄 갱신 예정.
+
+**챕터 1 종료. → 챕터 2(내용 감사) 착수.**
+
