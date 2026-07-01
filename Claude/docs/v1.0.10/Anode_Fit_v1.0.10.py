@@ -163,6 +163,28 @@ def func_chi_d(chi: float, sigma_d: int) -> float:
     return chi if sigma_d >= 0 else (1.0 - chi)
 
 
+# ===== LCO 양극 확장: 전자 엔트로피(MIT) — Ch1 sec:lco, eq:dSegate =============
+EV_TO_J = 1.602176634e-19  # eV→J 다리 (elementary charge; eq:gunit: g_J = g_eV / e_V)
+
+
+def func_dSe_molar(x: ScalarOrArray, T: float,
+                   g_max_eV: float, x_MIT: float, dx_MIT: float) -> ScalarOrArray:
+    """부분몰 전자 엔트로피 ΔS_e(x,T) [J/(mol·K)] — MIT 게이트형(Ch1 eq:dSegate).
+
+    금속-절연체 전이(MIT) 창 안에서 상태밀도 g(E_F) 가 급변하며 부분몰 전자 엔트로피가
+    골(음의 피크)을 이룬다. σ=1/(1+exp(−(x−x_MIT)/dx_MIT)) 로 창을 열고 σ(1−σ) 게이트:
+        ΔS_e = −(π²/3)·R·(k_B·T/e_V)·(g_max_eV/dx_MIT)·σ(1−σ)
+    ★단위 3중 가드: 부호 leading −(삽입 시 g 감소, Ch1 규약 ΔS_e<0) · ÷e_V(eV⁻¹→J⁻¹,
+      곱하면 ~4e37배 오류) · 몰당 R·k_B(자리당 k_B² 아님; N_A k_B²=R k_B). 검산:
+      g_max_eV=13·dx_MIT=0.05·T=298 → 골 깊이 ≈ −45.7 J/mol/K (Ch1 검증값 −46 정합).
+    x-의존 골이나 U_j(T) 온도이동에만 작용(면적·폭 불변, Ch1 sec:lco-decomp).
+    """
+    z = (np.asarray(x, dtype=float) - x_MIT) / dx_MIT
+    sig = 1.0 / (1.0 + np.exp(-z))
+    gate = sig * (1.0 - sig)
+    return -(np.pi**2 / 3.0) * R * (kB * T / EV_TO_J) * (g_max_eV / dx_MIT) * gate
+
+
 # --- (B) 입력 가드 헬퍼 — 비유한/음수 차단(named, 작은 단위) ------------------
 def _finite(name: str, value: float) -> float:
     """유한성 가드. NaN/±inf 면 ValueError(메시지에 인자명)."""
@@ -357,7 +379,7 @@ class GraphiteAnodeDischargeDQDV:
         dqdv = baseline
         for tr in self.transitions:
             if 'dH_rxn' in tr and 'dS_rxn' in tr:
-                U_j = float(func_U_j(T, tr['dH_rxn'], tr['dS_rxn']))
+                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)))
             else:
                 U_j = tr['U']
             n_j = self._n_factor(tr, T)
@@ -431,7 +453,7 @@ class GraphiteAnodeDischargeDQDV:
         for tr in self.transitions:
             # 평형 중심 U_j(T) — 배열 T 대응
             if 'dH_rxn' in tr and 'dS_rxn' in tr:
-                U_j = func_U_j(T_work, tr['dH_rxn'], tr['dS_rxn'])     # array
+                U_j = func_U_j(T_work, tr['dH_rxn'], self._effective_dS_rxn(tr, T_work))     # array
             else:
                 U_j = float(tr['U'])
 
@@ -507,6 +529,72 @@ class GraphiteAnodeDischargeDQDV:
             I_use = _finite_nonneg("I_abs", I_abs)
         return self.dqdv(V_app, T, I_use, Q_cell, s=sigma_d)
 
+    # ===== 가역 발열 · 전자엔트로피 seam (P4: LCO 양극·발열 확장) ================
+    def _effective_dS_rxn(self, tr: Dict[str, Any],
+                          T: Union[float, np.ndarray]) -> ScalarOrArray:
+        """전이의 유효 표준 엔트로피 ΔS_rxn [J/(mol·K)] — 흑연 base = 항등(값 그대로).
+
+        ★seam: equilibrium·dqdv·entropy_coefficient 세 경로가 공유하는 dS_rxn 진입점.
+        LCO 서브클래스가 전자항 ΔS_e 를 이 한 곳에서 가산 → 세 산출의 T1 전자항 일치
+        (검토1 ⑤ 결함 해소). 흑연은 tr['dS_rxn'] 을 그대로 반환하므로 func_U_j 인자가
+        완전히 동일 → 흑연 곡선 byte 0-diff 보장(가산·부동소수점 연산 자체가 없음).
+        """
+        return tr['dS_rxn']
+
+    def entropy_coefficient(self, V_n: ScalarOrArray,
+                            T: float = 298.15) -> ScalarOrArray:
+        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식(eq:weighted 완전식).
+
+        관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (R/F)·ln[ξ_j/(1−ξ_j)]).
+        첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
+        봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
+        w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
+        다른 산출(직교; 이중계산 아님). 평형 점유 ξ_eq(|I|→0) 기준.
+        """
+        T = _finite_pos("T", T)
+        V = np.atleast_1d(np.asarray(V_n, dtype=float))
+        num = np.zeros_like(V)
+        den = np.zeros_like(V)
+        eps = 1e-12
+        for tr in self.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                dS_eff = self._effective_dS_rxn(tr, T)
+                U_j = func_U_j(T, tr['dH_rxn'], dS_eff)
+            else:
+                dS_eff = 0.0
+                U_j = float(tr['U'])
+            n_j = self._n_factor(tr, T)
+            w = self._width(tr, T)
+            xi = np.asarray(func_ksi_eq(T, V, U_j, n_j), dtype=float)
+            g = xi * (1.0 - xi) / w
+            xi_c = np.clip(xi, eps, 1.0 - eps)
+            config = (R / F) * np.log(xi_c / (1.0 - xi_c))
+            Qg = tr['Q'] * g
+            num = num + Qg * (dS_eff / F + config)
+            den = den + Qg
+        dUdT = np.where(den > 0.0, num / np.maximum(den, eps), 0.0)
+        return dUdT
+
+    def reversible_heat(self, V_n: ScalarOrArray, T: float = 298.15,
+                        I: float = 1.0) -> ScalarOrArray:
+        """가역 발열 q_rev = −I·T·∂U_oc/∂T [W] (Ch2 eq:qrev, ★T 한 번).
+
+        ∂U_oc/∂T 가 이미 [V/K] 이므로 −I·T·(∂U/∂T) 로 T 는 한 번만 곱한다(T² 금지).
+        방전 I>0: ΔS>0(∂U/∂T>0) → q_rev<0 흡열 / ΔS<0(∂U/∂T<0) → 발열(Ch2 부호규약).
+        """
+        T = _finite_pos("T", T)
+        return -float(I) * T * self.entropy_coefficient(V_n, T)
+
+    def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray,
+                          I: float) -> ScalarOrArray:
+        """비가역 발열(과전압 소산) q_irr = I·(U_oc−V) ≥ 0 [W] — lumped(Ch2 eq:qrev 첫 항).
+
+        ★3분해(I²R_n + I·η_ct + I·η_diff)는 Ch2 에 boxed 식이 없다(warnbox·eq:qrev 는
+        lumped 만 제시) → 본 구현은 lumped 만 둔다. 개별 과전압 분해는 다온도·율의존
+        피팅 단계의 과제(근거 미발견, 옵션)로 분리한다.
+        """
+        return np.asarray(I) * (np.asarray(U_oc, dtype=float) - np.asarray(V, dtype=float))
+
     @staticmethod
     def _direction_to_sigma(direction: Union[int, str]) -> int:
         """방향 입력(문자열/정수)을 σ_d(+1 방전 / −1 충전)로 환산.
@@ -522,6 +610,55 @@ class GraphiteAnodeDischargeDQDV:
                 f"direction must be discharge/charge (or +1/-1), got {direction!r}.")
         val = _finite("direction", direction)
         return +1 if val >= 0 else -1
+
+
+# ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco ==============================
+#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d. 방전 σ_d=+1(LCO 리튬화)·
+#   부호 골격 흑연 동일(Ch1 sec:lco-map L304-307). 전자항(MIT)은 'electronic' 전이에
+#   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
+#   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,
+#     피팅 함수의 시연용 초기값). U(298) 는 dH_rxn/dS_rxn 로 목표 전위에 정합.
+LCO_MSMR_LIT = [
+    {   # 주 평탄역(order phase, U≈3.930 V) — x≈0.75-0.95
+        'U': 3.930, 'w': 0.030, 'Q': 0.55,
+        'dH_rxn': -377400.0, 'dS_rxn': +6.0, 'n': 1.0,
+    },
+    {   # order-disorder(≈3.880 V) — x≈0.5, MIT 창 포함 → 전자 엔트로피 골(ΔS_e<0)
+        'U': 3.880, 'w': 0.024, 'Q': 0.30,
+        # ΔH = T_ref·ΔS_eff − F·U — 전자항 ΔS_e(T_ref) 를 흡수해 T_ref 평탄역이 U 에
+        #   놓이게 재보정(측정 OCV=총엔트로피 반영). ΔS_e 는 ∂U/∂T(가역열)에만 작용.
+        'dH_rxn': -389174.0, 'dS_rxn': -4.0, 'n': 1.0,
+        'electronic': True, 'x_center': 0.50,
+        'g_max_eV': 13.0, 'x_MIT': 0.50, 'dx_MIT': 0.05,
+    },
+    {   # 고전위 곁가지(≈4.050 V) — x≈0.35
+        'U': 4.050, 'w': 0.028, 'Q': 0.15,
+        'dH_rxn': -391360.0, 'dS_rxn': -2.0, 'n': 1.0,
+    },
+]
+
+
+class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
+    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d).
+
+    흑연 음극 모델을 그대로 상속한다 — 곡선 골격(분극·히스 분기·평형/꼬리·면적보존
+    DC=1)은 부호까지 동일하다(Ch1 sec:lco-map: 방전 σ_d=+1 은 LCO 엔 리튬화이며
+    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다).
+
+    유일한 확장 = 금속-절연체 전이(MIT)의 전자 엔트로피 항을 seam _effective_dS_rxn
+    한 곳에서 'electronic' 전이의 ΔS_rxn 에 가산하는 것뿐이다(Ch1 sec:lco-code). 이
+    항은 U_j(T) 의 온도이동에만 작용하고 봉우리 면적·폭은 바꾸지 않는다. equilibrium·
+    dqdv·entropy_coefficient(발열) 세 경로가 같은 seam 을 공유하므로 T1 전자항이 세
+    산출에 일관되게 반영된다.
+    """
+
+    def _effective_dS_rxn(self, tr: Dict[str, Any],
+                          T: Union[float, np.ndarray]) -> ScalarOrArray:
+        dS = tr['dS_rxn']
+        if tr.get('electronic'):
+            dS = dS + func_dSe_molar(tr['x_center'], T,
+                                     tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT'])
+        return dS
 
 
 # ===== 전이 초기값 데이터셋 — 사용자 원형 보존(GRAPHITE_STAGING_LIT) ==========
