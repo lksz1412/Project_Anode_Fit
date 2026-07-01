@@ -549,7 +549,9 @@ class GraphiteAnodeDischargeDQDV:
         첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
         봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
         w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
-        다른 산출(직교; 이중계산 아님). 평형 점유 ξ_eq(|I|→0) 기준.
+        다른 산출(직교; 이중계산 아님). 평형 점유 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
+        (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
+        전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
         """
         T = _finite_pos("T", T)
         V = np.atleast_1d(np.asarray(V_n, dtype=float))
