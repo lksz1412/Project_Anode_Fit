@@ -3,7 +3,10 @@
 > 기반: `docs/v1.0.10/HANDOVER_v1.0.11.md`(rev.2) + `V1010_HANDOVER_INTEGRITY_REPORT.md` + `V1010_LCO_STYLE_REPORT.md`. 작업 방식 = v1.0.10과 완전 동일(9종·검수 별세션·커밋 4/phase·master commit·Agent만·Sonnet5). ★물리 불변 개정(R1 재설계 철회).
 
 ## Summary
-v1.0.11은 **물리 불변** 증판이다. 인계 무결성 대검수로 v1.0.10 인계는 견고함이 확정됐고(broadening 복원·KNOWN_DEFECTS·전자엔트로피·Ch2·두 축 보존), 실 개선은 셋: ① **LCO 절 수식화**(흑연 forward 틀을 LCO에 재적용하는 6개 절의 줄글 결론 → G-derive 수식 사슬, 물리·결과식·부호·수치 불변) ② **인계 minor 정합**(문서 라벨·기록 stale) ③ **default 사용성**(n=1 병합 표시 — 모델 불변, 표시만). ★**broadening 물리 재설계·ρ(U_app)/PSD convolution·near-delta 강제는 금지**(Non-goals). 본 계획은 `docs/v1.0.11/` 증판 폴더에 Ch1/Ch2 문건·코드·figs·guide 최종 산출물을 모은다.
+v1.0.11은 **물리 보존·논리 검증** 증판이다. 인계 무결성 대검수로 v1.0.10 인계는 견고함이 확정됐으나(broadening 복원·KNOWN_DEFECTS·전자엔트로피·Ch2·두 축 보존), ★**기존 작업이 답이라는 무오류 가정은 하지 않는다** — 수식화·감사 과정에서 물리 논리의 소당성을 지속 검증하고, 실제 결함이 발견되면 보완수정한다. 실 작업은 셋: ① **LCO 절 수식화 겸 논리 감사**(흑연 forward 틀을 LCO에 재적용하는 6개 절의 줄글 결론 → G-derive 수식 사슬로, 그 과정에서 각 유도의 논리 소당성 검증·진짜 문제면 수정) ② **인계 minor 정합** ③ **default 사용성**(표시).
+- ★**물리 원칙**: 개념 **검증**은 지속하되(기존 broadening/apparent-U/η·부호·극한 취급이 논리적으로 맞는지 재확인), **신규 개념을 불필요하게 끌어오지 말 것**(ρ(U_app)/PSD convolution·ρ_G 배리어 모델 등 = 검증은 하되 근거 없이 도입 X). 재설계는 "금지"가 아니라 "진짜 논리 결함이 확인될 때만·최소·근거 대조 후".
+- ★**방식(완성도 최우선·토큰 감수)**: 매 Phase **작성 = 9종 경쟁-체리픽**(3S·3O·3C 무통신 → master 체리픽 장점 통합) + **검수 = 9종 유니온**(3S·3O·3C 무통신 → 단점 전부 합집합 → 10차 재검 오적발 필터). 단일 검토1 아님.
+- 본 계획은 `docs/v1.0.11/` 증판 폴더에 Ch1/Ch2 문건·코드·figs·guide 최종 산출물을 모은다.
 
 ## Current Ground Truth
 - **인계 견고(확정)**: `V1010_HANDOVER_INTEGRITY_REPORT.md` — v10 broadening word-for-word 보존·KNOWN_DEFECTS 6대·전자엔트로피 무손실·Ch2 무결·두 축 유지. R1 "구조결함" 철회.
@@ -24,12 +27,12 @@ v1.0.11은 **물리 불변** 증판이다. 인계 무결성 대검수로 v1.0.10
 | 3 (default 사용성) | 3.1 | 기본값 표시·그래프·샘플 이미지 | 25-27 | n 초기값 or 라벨·figs·글자깨짐0 |
 | 4 (최종 점검) | 4.1 | 상호충실도·완성도 최종(9종) | 28-32 | adversarial·마감·result·이월 목록 |
 
-## Non-goals (★불가침)
-- **broadening 물리 재설계 금지**(bell=의도 apparent-U/η·near-delta 강제 X·ρ(U_app)/PSD convolution X·ρ_G 배리어 모델 X). **use_w_eff 부활·radius 역변환 금지.**
-- **LCO 수식화는 전개 형식만** — 물리·결과식·부호·수치 불변(새 물리 X). sec:lco-map·lco-Se·lco-gate·N7-9·전자엔트로피 절 손대지 말 것(byte 보존).
-- **v1.0.10 원본 in-place 수정 금지**(별도 v1.0.11 폴더). 이전 result·핸드오버 덮어쓰기 금지.
-- **오적발 재개정 금지**(bell·면적·논리점핑 6·E2/E3/z_cut). **흑연 회귀 0-diff·전자엔트로피 byte** 유지.
-- default 사용성은 **초기값/라벨만**(모델식 불변).
+## Non-goals (★경계 — 절대금지가 아니라 근거 없는 확장 지양)
+- **신규 개념 불필요 도입 지양**: ρ(U_app)/PSD convolution·ρ_G 배리어 모델·다입자 적분 기계장치는 **검증은 하되 근거 없이 도입 X**(6-30 [과제 MODEL-1] scope-out·forward-only). use_w_eff 부활·radius 역변환도 재유도로 정당화되지 않으면 X. — 단 **논리 결함이 실증되면 최소 보완은 허용**(무오류 가정 금지).
+- **LCO 수식화 우선 = 전개 형식**(줄글→수식). 물리·결과식·부호·수치는 **원칙적으로 불변**이되, 수식화 중 유도가 실제로 논리 결함(비약이 아닌 오류)이면 근거 대조 후 보완수정(그 경우 Correction History·result에 근거 기록). sec:lco-map·lco-Se·lco-gate·N7-9·전자엔트로피 절은 검증 대상이나 무결 시 손대지 말 것(byte 보존).
+- **v1.0.10 원본 in-place 수정 금지**(별도 v1.0.11 폴더). 이전 result·핸드오버 덮어쓰기 금지(정정=addendum).
+- **오적발 재개정 금지**(bell·면적·논리점핑 6·E2/E3/z_cut — 이미 코드실행·기록으로 오적발 확정). **흑연 회귀 0-diff** 유지(단 근거 있는 물리 보완으로 곡선이 바뀌면 의도적 회귀+ledger 사유).
+- default 사용성은 **초기값/라벨** 중심(모델식은 논리 결함 없으면 불변).
 
 ## Implementation Changes
 - **Phase 0**: `docs/v1.0.11/` = `docs/v1.0.10/` 복사(Ch1 tex·Ch2 tex·`Anode_Fit_v1.0.11.py`·figs/·FITTING_GUIDE.md). 헤더 버전 v1.0.11로.
@@ -40,10 +43,12 @@ v1.0.11은 **물리 불변** 증판이다. 인계 무결성 대검수로 v1.0.10
 - Step 1: `docs/v1.0.11/` 생성(v1.0.10 복사)·헤더 버전 갱신. gate=파일 존재·xelatex 기존 0-error 재현.
 - Step 2: 전제 검증 — LCO 6절 줄번호·"필요한 수식 사슬"(REPORT §1)·손대지 말 절 경계를 실제 tex와 대조(load-bearing 전제). 거짓이면 STOP→Correction History.
 
-## Phase 1.1 — sec:lco-center·hys 수식화 (Steps 3-8, 9종)
-- Step 3(9 드래프트, 3S·3O·3C 무통신): sec:lco-center(∂U/∂T: ΔG=−sFU→∂U/∂T=ΔS/F 다리+(a→d)·전극무관 eq:n0map 대입) + sec:lco-hys(μ(θ)→g″→spinodal→ΔU_hys에 LCO Ω_j 실제 대입 중간식) 수식 사슬 supplement. **커밋①**.
-- Step 4: 검토1(별세션)+보완. **커밋②**. Step 5: master 체리픽 vN-10. **커밋③**. Step 6: adversarial(별세션)+finalizer(Ch1 tex 실편입·재빌드). **커밋④**. Step 7-8: 물리 불변 검증(결과식 diff=식 추가만·부호·수치 불변)·앞 절 정합.
-- gate: center·hys 각 (a)→(d) 사슬·"같은 틀 적용" 서술 3회→LCO 대입 유도로·물리 결과식 불변·xelatex 0-error.
+## Phase 1.1 — sec:lco-center·hys 수식화 (Steps 3-8, 9종 작성+9종 검수)
+> ★흐름 = Implementation Interfaces 표준(작성 9종 체리픽 + 검수 9종 유니온 + 10차 + finalizer). Phases 1.2·1.3·4.1도 동일 흐름.
+- **작성**: Step 3 = 9 드래프트(3S·3O·3C 무통신) — sec:lco-center(∂U/∂T: ΔG=−sFU→∂U/∂T=ΔS/F 다리+(a→d)·전극무관 eq:n0map 대입) + sec:lco-hys(μ(θ)→g″→spinodal→ΔU_hys에 LCO Ω_j 실제 대입 중간식) 수식 사슬 supplement + **각 유도 논리 소당성 자체감사**. 커밋①. Step 4 = master 체리픽 vN-10. 커밋②.
+- **검수**: Step 5 = 검수 9종 유니온(3S·3O·3C, 단점 합집합·물리 논리·부호·극한·G-derive·G-follow refute). 커밋③. Step 6 = master union 종합 + 10차 재검(별세션, 진짜결함/오적발/강등·물리 소당성 확정). 커밋④.
+- **마감**: Step 7 = finalizer(체리픽+확정결함 반영, Ch1 tex 실편입·재빌드). 커밋⑤. Step 8 = 물리 불변 검증(결과식 diff=식 추가만·부호·수치 불변; 보완 시 근거 대조)·앞 절 정합·result.
+- gate: center·hys 각 (a)→(d) 사슬·"같은 틀 적용" 서술 3회→LCO 대입 유도로·물리 결과식 불변(or 근거 있는 보완)·논리 소당성 확정·xelatex 0-error.
 
 ## Phase 1.2 — sec:lco-peak·decomp 수식화 (Steps 9-14, 9종)
 - Step 9-12(9종 루프): sec:lco-peak(ξ_eq,j→dξ/dV→ΣQ_j peak_shape→center/height/area 박스, j∈{T1,T2,T3}) + sec:lco-decomp(Z=Z_config·Z_elec→슬롯 ΔS⁰_j→이중계산 금지식 박스). 커밋 4회.
@@ -69,12 +74,14 @@ v1.0.11은 **물리 불변** 증판이다. 인계 무결성 대검수로 v1.0.10
 - Step 32: `V1011_P*_RESULT.md`·이월 목록(LCO round-trip 피팅·H-6 overfull·H-8 placeholder). gate=두 축 무결·LCO 수식-주도 달성·물리 불변·CRIT/HIGH 0·PDF 0-error.
 
 ## Implementation Interfaces
-- LCO 수식화 = **추가만**(결과박스·부호·수치 불변, diff=식 사슬 삽입). Serena 심볼 도구(tex는 절 단위 편집). 흑연 회귀 0-diff·전자엔트로피 byte. Result 11항목·ledger 12-col. Codex 거울 동반 커밋.
+- ★**매 작업 Phase 표준 흐름(완성도 최우선)**: (1) **작성 9종 경쟁**(3S·3O·3C 무통신 드래프트, Sonnet=Sonnet5)→커밋① (2) master **체리픽 vN-10**(9 드래프트 장점 통합·근거 recipe)→커밋② (3) **검수 9종 유니온**(3S·3O·3C 무통신, 단점 **전부 합집합**·refute·가장약한1곳·빈통과금지)→커밋③ (4) master **union 종합 + 10차 재검**(별세션, 진짜결함/오적발/강등 필터·물리 논리 소당성 확정)→커밋④ (5) master **finalizer**(체리픽+확정결함 반영, tex/코드 실편입·재빌드, 물리 불변 검증 or 근거 있는 보완)→커밋⑤. 검수=작업과 다른 세션·commit master 전용·Agent만(Workflow X).
+- LCO 수식화 = 원칙 **추가만**(결과박스·부호·수치 불변, diff=식 사슬 삽입)이되 **논리 결함 실증 시 근거 대조 후 보완**(그 경우 result에 근거·전후 대조). Serena 심볼 도구(tex는 절 단위 편집·통째 배치 금지). 흑연 회귀 0-diff·전자엔트로피 byte. Result 11항목·ledger 12-col. Codex 거울 동반 커밋.
 
 ## Test Plan
-- LCO 수식화: 6절 각 (a)→(d) 사슬 존재·물리 결과식 diff 0(식 추가만)·부호검산·G-usable(LCO ∂U/∂T·세 봉우리 산출)·xelatex 0-error.
-- 코드: 흑연 회귀 0-diff(np.array_equal)·default 4 staging 분리 실측·전자엔트로피 −45.68·글자깨짐 0.
-- 인계 minor: 버전라벨·byte 기록·forward-ref 반영. ★오적발 6건 재검 금지·broadening 물리 불변.
+- LCO 수식화: 6절 각 (a)→(d) 사슬 존재·**각 유도 논리 소당성 확정**(비약0·부호·차원·극한·detailed balance 재검)·물리 결과식 diff 0(식 추가만; 보완 시 근거 대조 전후)·G-usable(LCO ∂U/∂T·세 봉우리 산출)·xelatex 0-error.
+- 검수 9종 유니온 + 10차: 단점 합집합 → 진짜결함/오적발/강등 필터(오적발 6건 재소환 금지). 완성도 = 검수 수렴(연속 2R 0확정결함)까지.
+- 코드: 흑연 회귀 0-diff(np.array_equal; 근거 있는 보완 시 의도적 회귀+ledger)·default 4 staging 분리 실측·전자엔트로피 −45.68·글자깨짐 0.
+- 인계 minor: 버전라벨·byte 기록·forward-ref 반영. ★신규 개념(ρ/PSD) 근거 없는 도입 0.
 
 ## Assumptions
 - LCO "필요한 수식 사슬"(REPORT §1)은 흑연 forward 패턴·v9 AUTHOR_BRIEF G-derive 기준 — 물리 불변 전제.
