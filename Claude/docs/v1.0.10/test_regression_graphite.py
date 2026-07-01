@@ -3,6 +3,10 @@
       python p4_regression.py verify    (편입 後, np.array_equal bit 일치)
 """
 import sys, importlib.util, hashlib
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # cp949 콘솔서도 실행 보장
+except Exception:
+    pass
 import numpy as np
 _trapz = getattr(np, "trapezoid", getattr(np, "trapz", None))  # numpy 2.x: trapezoid
 

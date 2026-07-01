@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 """P4 편입 검증 — LCO 양극 dQ/dV + 가역 발열 + 전자엔트로피 + 그래프."""
+import sys
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # cp949 콘솔서도 실행 보장
+except Exception:
+    pass
 import importlib.util
 import numpy as np
 import matplotlib

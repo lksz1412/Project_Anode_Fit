@@ -654,9 +654,19 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
 
     def _effective_dS_rxn(self, tr: Dict[str, Any],
                           T: Union[float, np.ndarray]) -> ScalarOrArray:
+        """LCO 유효 표준 엔트로피 = ΔS_rxn + (MIT 전이면) 전자항 ΔS_e.
+
+        ★전자항은 기준온도 T_ref 에서 동결한 상수 오프셋으로 더한다(단일-기준 근사).
+          → dS_eff 가 T-무관이 되어 U_j(T)=(−ΔH+T·dS_eff)/F 가 T-선형이고
+            ∂U_oc/∂T=dS_eff/F 가 평형 peak(equilibrium·dqdv)와 발열(entropy_coefficient)
+            세 경로에서 factor-2 없이 일관된다(검토1·adversarial 항목7 해소).
+          ΔS_e 의 Sommerfeld T-스케일(∝T)과 eq:U1T2 의 center-T_ref 별도적분(½=a_e/2F
+            인자)은 다온도 round-trip 피팅 단계의 과제로 분리한다(P4 미구현, 라벨).
+        """
         dS = tr['dS_rxn']
         if tr.get('electronic'):
-            dS = dS + func_dSe_molar(tr['x_center'], T,
+            T_ref = 298.15
+            dS = dS + func_dSe_molar(tr['x_center'], T_ref,
                                      tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT'])
         return dS
 
