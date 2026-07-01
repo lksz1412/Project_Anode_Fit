@@ -1,5 +1,7 @@
 # Anode_Fit v1.0.10 — 문제점 대검수 보고 문건 (v1.0.10 마무리)
 
+> ★★★ **[정정 배너 — R1 철회]** 본 문건 §0·§1의 **R1 "폭 모델 구조 결함(near-delta 생성 불가, CRIT)"은 이후 인계 무결성 대검수(9종+10차, 기록 SPEC 대조 + 코드 직접 실행)에서 오판으로 확정·철회**됐다. bell/4전이 병합은 **의도된 apparent-U/η 물리**(폭을 좁히면 n=0.1→4 staging near-delta 완전분리·v11_final byte 동일·회귀 아님)이며, 두-상 w는 SPEC 명시 현상학적 자유 피팅폭이다. **"near-delta+broadening 2층 재설계"는 위험**(복원된 broadening 물리 붕괴). 유효 결론은 `V1010_HANDOVER_INTEGRITY_REPORT.md` + `HANDOVER_v1.0.11.md`(rev.2)를 따르라. 아래 §1 R1은 SUPERSEDED. ★★★
+>
 > 9종 절별 루핑 검수(3S·3O·3C, 각 그래프 직접 실행·개형 실측) → 단점 union → 10차 재검(코드 직접 실행·물리 재검산·오적발 필터). 이 검수가 v1.0.10의 마지막 단계. 개정은 v1.0.11 핸드오버(`HANDOVER_v1.0.11.md`). **v1.0.10 코드/문건 자체는 이 검수로 수정하지 않음(진단·동결).**
 > 원자료: `../../results/process/V1010_INSPECT_draft_{S1-3,O1-3,C1-3}.md` · `V1010_INSPECT_UNION.md` · `V1010_INSPECT_verify10.md`.
 

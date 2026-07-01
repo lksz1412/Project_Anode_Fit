@@ -1,82 +1,78 @@
-# Anode_Fit v1.0.11 개정 작업계획서 (v1.0.10 → v1.0.11 핸드오버)
+# Anode_Fit v1.0.11 개정 작업계획서 (v1.0.10 → v1.0.11 핸드오버) — 정정본 rev.2
 
-> Chain: v1.0.10 문제점 대검수(9종 절별 루핑 + 10차 재검, `V1010_PROBLEM_REPORT.md`) → 본 핸드오버. v1.0.10은 진단으로 동결, 개정은 v1.0.11에서 수행. 표준 11-section 양식.
+> Chain: v1.0.10 문제점 대검수(9종+10차) → **인계 무결성 대검수(9종 Sonnet5/Opus/Codex + 10차, 기록 SPEC 대조, `V1010_HANDOVER_INTEGRITY_REPORT.md`)** + **LCO 수식-주도 검수(3종, `V1010_LCO_STYLE_REPORT.md`)** → 본 핸드오버 rev.2. v1.0.10 동결, 개정은 v1.0.11. 표준 11-section.
+> ★rev.1(구본)의 **R1 "폭 모델 구조결함" CRIT은 오판으로 철회**됨(Correction History 참조). 본 rev.2가 유효본.
 
 ## Summary
-v1.0.10 문제검수가 확정한 진짜 문제(R1 CRIT · R2-R4 HIGH · R5-R6 MED · R7 문서)를 v1.0.11에서 개정한다. 뿌리는 **R1 폭 모델 구조 결함**(두-상 staging 전이에 단일자리 Nernstian 폭 `w=nRT/F` 보편 적용 → 4 전이 뭉갠 bell 병합, near-delta+broadening 2층 부재) 하나이며 R2(꼬리 default OFF)가 그 파생. 나머지는 저비용 실 결함·문서 정합·강등 이월. **오적발(논리점핑 6·면적 3·E2·E3·z_cut)은 개정 대상 아님**(쫓지 말 것). 이번 계획은 진단→설계→구현→검증까지 다루되, ★**설계 승인(Decision Gate)까지가 이 핸드오버 범위** — 물리 모델 변경(R1)은 사용자/교수 검토 후 GO.
+v1.0.11은 **물리 불변** 개정이다 — v1.0.10 인계는 견고함(broadening 복원·KNOWN_DEFECTS·전자엔트로피·Ch2·두 축 전부 보존, 기록 SPEC 대조로 확인)이 확정됐고, 실 개선은 세 가지: ① **LCO 절 수식화**(흑연 forward 틀을 LCO에 재적용하는 6개 절이 "같은 틀 적용/한 줄 더한다"식 줄글 결론 → G-derive 수식 사슬로, 물리·결과식·부호 불변) ② **인계 무결성 minor 정합**(문서 라벨·기록 stale) ③ **default 사용성**(기본 n=1이 4 staging 미표시 — 모델 불변, 표시만). ★**R1 물리 재설계는 철회**(bell은 의도된 apparent-U/η 물리·near-delta 강제 금지). 오적발(bell·면적·논리점핑 6·E2/E3/z_cut)은 개정 대상 아님.
 
 ## Current Ground Truth
-- **확정 사실(10차 실측)**: 단일전이 FWHM=90.57mV·Ω 무관·4-staging peak 1개·면적 wide-window 1.000000(물리 정상)·L_V≤0.00125×격자문턱(꼬리 OFF)·충전꼬리 본문↔캡션 부호 모순·FITTING_GUIDE Ω 하한 vs Ch1 solid-solution 충돌.
-- **원천 파일**: `Anode_Fit_v1.0.10.py`(742줄)·`graphite_ica_ch1_v1.0.10.tex`(35p)·`graphite_ica_ch2_v1.0.10.tex`(13p)·`FITTING_GUIDE.md`. 검수 원자료 `results/process/V1010_INSPECT_*`. cross-version `old/_archive/{v3,v4,v5}`·`old/Ch1_v{8,9,10}`.
-- **기존 결정 계승**: use_w_eff 제거 정당(Ω>2RT 음수폭 버그) — 되살리지 않음. radius/PSD 역변환 배제·forward-only 정당 — 유지. 흑연 회귀 0-diff 원칙 유지.
-- **미확인**: R1의 올바른 near-delta+broadening 2층 물리 형태(Maxwell 참 폭=kBT 가장자리 곡률 계산·실측 broadening 규모)는 미확정 — 설계 단계 과제. 두-상 초기 폭의 실측 앵커 값 미확정.
+- **인계 견고(9종+10차·기록 SPEC 대조 확정)**: v10 broadening 복원 word-for-word 보존·KNOWN_DEFECTS 6대 정정 보존·전자엔트로피 무손실 강화·Ch2 무결·두 축(G-derive/G-follow) 유지.
+- **★R1 철회(10차 코드 실행 확정)**: 폭을 좁히면(n=0.1→w=2.57mV) 병합 bell이 **4 staging near-delta로 완전 분리** — 모델은 다봉 생성 가능. 단일 bell = 기본값 n=1의 결과, **구조결함 아님**. v1.0.10=v11_final byte 동일(회귀 아님)·면적 0.970000 보존. 두-상 w=SPEC 명시 현상학적 자유 피팅폭(near-delta 낼 의무 없음).
+- **LCO 줄글 회귀(3종 확정)**: sec:lco-center(∂U/∂T 괄호 전보체)·sec:lco-hys("같은 틀 적용"×3·Ω_j spinodal 대입 없음)·sec:lco-peak(3전이 박스식 없음)·sec:lco-decomp(config 슬롯 줄글)·전자항 plug-in("한 줄 더한다")·MSMR(변환 사슬 미폐쇄). 정상=sec:lco-map(도입)·lco-Se(완전유도)·lco-gate·N7-9.
+- **원천**: `Anode_Fit_v1.0.10.py`·`graphite_ica_ch1_v1.0.10.tex`·`graphite_ica_ch2_v1.0.10.tex`·`FITTING_GUIDE.md`. 검수 `results/process/V1010_HANDOVER_INSPECT_*`·`V1010_LCO_STYLE_*`. cross-version `old/`·`results/code/Anode_Fit_v11_final.py`.
+- **기존 결정 계승(불가침)**: use_w_eff 제거·radius/PSD 역변환 배제·forward-only·bell=의도 물리·흑연 회귀 0-diff.
 
 ## Phase Range
 | 챕터 | Phase | 이름 | Steps | 산출 |
 |---|---|---|---|---|
-| 1 (R1 CRIT) | 1.1 | 폭 구조 결함 진단·물리 확정 | 1-3 | near-delta+broadening 2층 물리 명세 |
-| 1 | 1.2 | 모델 설계 (Decision Gate) | 4-6 | 설계안·API 변경 청사진·사용자 GO |
-| 1 | 1.3 | 구현·검증(흑연 4 staging 분리·면적·회귀) | 7-11 | 개정 코드·그래프·회귀 |
-| 2 (R2-R4 HIGH) | 2.1 | R3 본문 부호 정정 (저비용 선행) | 12 | Ch1 L1609-10 정정·재빌드 |
-| 2 | 2.2 | R4 FITTING_GUIDE Ω 하한 전이별 재작성 | 13-14 | guide 정합 |
-| 2 | 2.3 | R2 꼬리 활성화 or 그래프 라벨 명시 | 15-17 | 꼬리 default 재설정·검증 |
-| 3 (R5-R7) | 3.1 | R5 v4 단상 narrowing prose 각주 복원 | 18 | Ch1 각주(코드 미개입) |
-| 3 | 3.2 | R6 irreversible_heat 가드·R7 표시/글리프 | 19-20 | 코드 가드·회귀 명칭·폰트 |
-| 4 (강등 이월) | 4.1 | 클러스터 D round-trip 피팅(LCO 물리값·T² 곡률) | 21-25 | 실측 피팅·전자항 T1 재정렬·Sommerfeld 복원 |
+| 1 (LCO 수식화, 물리불변) | 1.1 | sec:lco-center·hys 수식 사슬 | 1-4 | ∂U/∂T·정규용액 LCO 대입 유도 |
+| 1 | 1.2 | sec:lco-peak·decomp 수식 사슬 | 5-8 | 3전이 peak 박스·분해 슬롯·이중계산 금지식 |
+| 1 | 1.3 | plug-in·MSMR 수식 사슬 + 재빌드 | 9-12 | forward 사슬·MSMR→eqpeak·PDF 0-error |
+| 2 (인계 minor) | 2.1 | 기록/라벨 정합 | 13-16 | byte-claim·버전라벨·w_eff 주석·forward-ref·동반개정 제약 |
+| 2 | 2.2 | ρ_G 진단 예고 prose(모델 X) | 17 | stretched-tail 후속장 예고 |
+| 3 (default 사용성, 모델불변) | 3.1 | 기본값 표시 개선 | 18-20 | n 초기값 4 staging 분리 or 그래프 라벨·꼬리 default 라벨 |
+| 4 (이월) | 4.1 | LCO round-trip 피팅·잔여 | 21-25 | x_MIT 0.85·T1 재정렬·T3·T_ref 해제·overfull 재확인 |
 
-## Non-goals
-- **오적발 개정 금지**: 논리점핑 6·면적(G1)·E2·E3·z_cut·q_rev/seam 무결 — 손대지 말 것(10차 오적발 확정).
-- **use_w_eff 부활 금지**(정당 제거). **radius/PSD 역변환 도입 금지**(ill-posed).
-- **v1.0.10 파일 in-place 수정 금지** — v1.0.11은 별도 버전 폴더/파일(`docs/v1.0.11/`)로 증판(v1.0.10 원본 불가침).
-- Phase 1.2 Decision Gate 전 R1 물리 모델 변경 **착수 금지**(사용자/교수 GO 대기).
-- 흑연 forward 무관 일반론(KWW·Marcus·lever) 재유입 금지(header 의도적 컷 계승).
+## Non-goals (★불가침 — v1.0.11이 하지 말 것)
+- **★broadening 물리 재설계 금지**: bell=의도된 apparent-U/η 물리. **near-delta 강제·"near-delta+broadening 2층 convolution 구현" 금지** — 문서가 이미 그 2층을 코드차원 0으로 서술·흡수하고 있으며, 실제 ρ(U_app)/PSD convolution 구현은 SPEC이 ill-posed·forward-only로 배제한 역산 부활 → 복원된 broadening 물리 붕괴(10차 경고).
+- **use_w_eff 부활 금지**·**radius/PSD 역변환 도입 금지**·**ρ_G 배리어분포 모델 기계장치 도입 금지**(6-30 [과제 MODEL-1] scope-out 유지 — 진단 prose 예고만 허용).
+- **LCO 수식화는 전개 형식만**: 물리·결과식·부호·수치 불변(줄글→수식, 새 물리 X). 전자엔트로피·gate·map 절 손대지 말 것.
+- **v1.0.10 파일 in-place 수정 금지** — v1.0.11은 `docs/v1.0.11/` 별도 증판(원본 불가침).
+- 오적발(bell·면적 ratio·논리점핑 6·E2/E3/z_cut·use_w_eff 제거) 재개정 금지.
 
 ## Implementation Changes
-- 신규 버전 폴더 `docs/v1.0.11/`(v1.0.10 복사 후 증판) — 코드·Ch1·Ch2·figs·guide.
-- 개정: 코드 `_width`/`GRAPHITE_STAGING_LIT`(R1)·`dqdv` 꼬리 디폴트(R2)·`irreversible_heat`(R6) · Ch1 §width·L1609-10(R3)·단상 각주(R5) · FITTING_GUIDE Ω 하한(R4)·표시 명칭(R7).
-- 신규 ledger `V1011_EXECUTION_LEDGER.md` · 각 Phase result `results/process/V1011_P*_RESULT.md`.
+- 신규 `docs/v1.0.11/`(v1.0.10 복사 후 증판). 개정: Ch1 LCO 6절 수식 사슬 추가(Ch1)·헤더 byte-claim/버전라벨(Ch1·Ch2)·코드 헤더 w_eff 주석·FITTING_GUIDE. 신규 ledger·Phase result.
 
-## Phase 1.1 — 폭 구조 결함 진단·물리 확정 (Steps 1-3)
-- Step 1: Maxwell 공통접선 두-상 평형 dQ/dV의 참 폭 유도(kBT 가장자리 곡률·유한 Ω 효과)·near-delta 규모 정량. 입력=Ch1 broadening 절·regular-solution. 산출=참 평형 폭 닫힌식. gate=식→식 유도 완결·수치 검산.
-- Step 2: 관측 유한 폭의 물리 기원 분리 — 열역학(near-delta) vs kinetic 분극(꼬리) vs 이질성(apparent-U 분포). 실측 broadening 규모 앵커. gate=3원 분리 명세.
-- Step 3: 2층 모델 요구사항 확정(평형 near-delta core + phenomenological broadening layer, Ω 반영 채널). gate=요구사항 명세서.
+## Phase 1.1 — sec:lco-center·hys 수식화 (Steps 1-4)
+- Step 1: sec:lco-center ∂U_j/∂T — ΔG=−sFU→∂U/∂T=ΔS_rxn/F 다리 문장 + (a출발→b미분→c중간식→d박스). 전극무관 논증을 식 eq:n0map 대입으로. 
+- Step 2: sec:lco-hys — 흑연 μ(θ)→g″→spinodal→ΔU_hys 사슬에 LCO Ω_j(T2 0.47·T3 1.49 등) **실제 대입 중간식**. "같은 틀 적용" 서술 3회를 LCO-특화 대입 유도로.
+- Step 3-4: 자체검수·앞 절 정합·빌드. gate=center·hys 각 결과박스 위 (a)→(d) 사슬·물리 불변(diff=식 추가만).
 
-## Phase 1.2 — 모델 설계 · Decision Gate (Steps 4-6)
-- Step 4: 설계안 N종(예: (a)near-delta+Gaussian/Lorentzian broadening 합성곱 (b)Ω-의존 유효폭 재도입(음수폭 가드) (c)전이별 broadening 자유 파라미터 분리) 비교·물리 타당성. 
-- Step 5: API 변경 청사진(`_width` 확장·transition dict 키·흑연 회귀 영향·면적보존 유지). 
-- Step 6: **★Decision Gate** — 사용자/교수에 설계안 제시, GO 대기(물리 모델 변경은 승인 필수). 중단 조건=GO 전 구현 금지.
+## Phase 1.2 — sec:lco-peak·decomp (Steps 5-8)
+- Step 5: sec:lco-peak — ξ_eq,j→dξ/dV→ΣQ_j peak_shape_j(j∈{T1,T2,T3})→center/height/area 박스(LCO 3전이 합산식).
+- Step 6: sec:lco-decomp — Z=Z_config·Z_elec→슬롯 정의 ΔS_j^config=ΔS⁰_j→이중계산 금지식 박스(ΔS_slot≠ΔS⁰_j+R ln[(1−ξ)/ξ]).
+- Step 7-8: 검수·정합·빌드.
 
-## Phase 1.3 — 구현·검증 (Steps 7-11)
-- Step 7-8: 승인 설계 구현(Serena, 흑연 경로 회귀 영향 최소화). Step 9: 4 staging 분리 실측(local max 4개·FWHM 전이별). Step 10: 면적보존·온도의존·부호 회귀. Step 11: 그래프 재생성·bell→spike 확인. gate=4 peak 분리·면적 1.000·회귀 PASS.
+## Phase 1.3 — plug-in·MSMR + 재빌드 (Steps 9-12)
+- Step 9: 전자항 plug-in forward 사슬 x=x(ξ_eq,1(V))→ΔS_e,1(V,T)→ΔS_rxn,1(V,T)→U_1(T)→dQ/dV.
+- Step 10: MSMR→정규화→대응대입(f=−σ_d)→ξ_eq,j→peak 박스.
+- Step 11-12: 전체 정합·xelatex 0-error·PDF. gate=LCO 6절 전부 수식-주도·G-usable(문건으로 LCO ∂U/∂T·세 봉우리 산출 가능)·물리 불변.
 
-## Phase 2.1-2.3 — HIGH 실결함 (Steps 12-17)
-- Step 12 (R3): Ch1 L1609-10 "V가 큰 쪽"→"낮은 V 쪽" 1문장 정정·부호검산 재실행·재빌드. gate=본문↔캡션↔코드 일치.
-- Step 13-14 (R4): FITTING_GUIDE Ω 하한을 전이별로(단상 후보 Ω<2RT 허용·two-phase만 Ω>2RT) 재작성. gate=Ch1 solid-solution 구분과 정합.
-- Step 15-17 (R2): 디폴트 dVdq_qa/L_V 재설정으로 꼬리 활성화 or graph suite "C-rate 의존"이 ohmic-shift임을 명시. 실측 꼬리 개형 확인. gate=꼬리 활성 or 라벨 정직.
+## Phase 2.1-2.2 — 인계 minor (Steps 13-17)
+- Step 13(H-1): 전자엔트로피 "byte-identical" 기록(헤더 L9·L32·PHASE_RESULT·FIX_LIST A2)을 "additive·물리무손실"로 재기술.
+- Step 14(H-2): 버전 라벨 Ch1 L71/L73 "(v9)"·Ch2 L2/L35/L37 "v5" → "v1.0.11".
+- Step 15(H-5): 코드 헤더 L43 w^eff 주석 잔재 제거. Step 16(H-4·H-7): L503-505→L1126-29 forward-ref 1줄·Ch1§broadening↔Ch2파생C 동반개정 제약 명기.
+- Step 17(H-3): σ_G/RT stretched-tail 저온 꼬리 진단을 **"후속 kinetic-barrier 장 소관" 예고 prose로만**(★모델 복원 X — Non-goals 준수).
 
-## Phase 3.1-3.2 — MED·문서 (Steps 18-20)
-- Step 18 (R5): Ch1에 v4 단상 narrowing `w_eff=(RT/F)(1−Ω/2RT)`(Ω<2RT 평형 예측) prose 각주 복원(코드 미개입). 
-- Step 19 (R6): `irreversible_heat` q_irr 부호 가드 또는 docstring caller 계약 강화. 
-- Step 20 (R7): 회귀 "면적=Q assert" 명칭↔gate(golden bit-exact) 정합·PNG 한글 폰트.
+## Phase 3.1 — default 사용성 (Steps 18-20, 모델 불변)
+- Step 18: 기본 initial-value가 4 staging 분리를 보이도록 전이별 폭 초기값 조정(n_j 또는 'w') — 모델식 불변, 초기값만. or Step 19: 릴리스 그래프에 "n=1 초기값 병합·피팅 시 분리" 라벨 + 꼬리 default OFF "C-rate=ohmic-shift" 정직 라벨. Step 20: 그래프 재생성·글자 깨짐 방지(영어 라벨 or 한글폰트).
 
-## Phase 4.1 — 강등 이월 (Steps 21-25)
-- Step 21-25: 클러스터 D — LCO 실측 round-trip 피팅(x_MIT=0.85·전자항 T1=MIT 재정렬·T3 4.17 추가)·T_ref 동결 해제(`func_dSe_molar` T 전달·eq:U1T2 center-T_ref 별도적분 ½=a_e/2F). ★독립 실측 데이터 필요 시 Decision Gate.
+## Phase 4.1 — 이월 (Steps 21-25)
+- Step 21-25: LCO round-trip 피팅(x_MIT 0.85·전자항 T1 재정렬·T3 4.17 추가·T_ref 동결 해제 eq:U1T2 ½ 적분)·H-6 overfull 실컴파일 재확인. ★실측 데이터 필요 시 Decision Gate.
 
 ## Implementation Interfaces
-- 개정 코드는 흑연 forward 회귀(np.array_equal 골든) 유지가 원칙이나, R1은 폭 물리 변경이라 **의도적 회귀**(골든 재캡처+변경 사유 ledger). transition dict 신규 키(broadening 파라미터)는 하위호환(부재 시 기존 거동). 결과 문건 = 11항목·ledger 12-col. 그래프는 4 staging 분리·spike/bell 라벨 명시.
+- LCO 수식화 = **추가만**(결과박스·부호·수치 불변, diff=식 사슬 삽입). 흑연 회귀 0-diff·전자엔트로피 절 byte 보존. 결과 문건 11항목·ledger 12-col. LaTeX 0-error.
 
 ## Test Plan
-- R1: 4 staging local max 개수·전이별 FWHM·면적보존(wide window 1.000)·Ω 의존성(폭이 Ω 반영되는지)·온도의존.
-- R2: L_V vs 격자문턱·C-rate 곡선 변화(꼬리 vs ohmic 분리).
-- R3: 본문↔캡션↔코드 방향 일치·부호검산 재실행.
-- R4: guide bounds로 단상 전이 Ω<2RT 피팅 가능성.
-- 전반: LaTeX 0-error 재빌드·회귀 스크립트·논리 의존성 검수(단 오적발 6건 재검 금지).
+- LCO 수식화: 6절 각 (a)→(d) 사슬 존재·물리 결과식 diff 0(식 추가만)·G-usable(LCO ∂U/∂T·세 봉우리 산출 가능)·xelatex 0-error.
+- default: n 초기값으로 4 staging 분리 실측(모델식 불변 확인)·글자 깨짐 0.
+- 인계 minor: 버전 라벨·byte 기록·forward-ref 반영. ★오적발 6건 재검 금지.
 
 ## Assumptions
-- R1의 올바른 2층 물리 형태는 Phase 1.1-1.2에서 확정(현재 미확정) — 설계 승인 전 임시.
-- 두-상 초기 폭 실측 앵커는 문헌/GITT 값 필요 시 별도 확보.
-- LCO round-trip(Phase 4)은 실측 데이터 가용성에 의존 — 없으면 tier-C 유지·이월.
+- LCO 수식화의 "필요한 수식 사슬"(V1010_LCO_STYLE_REPORT §1)은 흑연 forward 패턴·v9 AUTHOR_BRIEF G-derive 기준 — 물리 불변 전제.
+- default 4 staging 분리 폭 초기값은 문헌/피팅 값 필요 시 별도 확보(Phase 4 이월 가능).
 
 ## Correction History
-- 본 핸드오버 = v1.0.10 문제검수(9종+10차)의 첫 산출. 이전 계획 없음.
-- ★10차 재검이 union의 오적발(논리점핑 6·면적 3·E2·E3·z_cut) 기각 → v1.0.11 개정 대상에서 제외(과거 계획이 이들을 포함했다면 여기서 정정). R1이 유일 CRIT임을 확정, 나머지 저비용·강등으로 재baseline.
+- **★rev.1 → rev.2 (최우선 정정)**: rev.1의 **R1 "폭 모델 구조결함(near-delta 생성 불가, CRIT)" + "near-delta+broadening 2층 재설계"를 철회**한다. 근거 = 인계 무결성 대검수(9종+10차, 기록 SPEC 대조 + 코드 직접 실행): (1) 폭을 좁히면 n=0.1→4 staging near-delta 완전분리 → 모델은 다봉 생성 가능·**구조결함 아님** (2) 단일 bell=기본값 n=1의 결과·v11_final byte 동일(회귀 아님)·의도된 apparent-U/η 물리 (3) "2층 재설계"는 문서가 이미 코드차원 0으로 서술·흡수한 것을 실제 convolution으로 구현하려는 것이라, SPEC이 ill-posed·forward-only로 배제한 ρ(U_app)/PSD 역산을 부활시켜 **v3세대 복원 broadening 물리를 붕괴**시킬 위험. rev.1이 R1을 기록 SPEC(broadening_w_design·6-30 핸드오버) 미대조로 오판했음. → R1은 "default n=1 표시 문제(사용성, 모델 불변)"로 재규정, 물리 재설계 삭제.
+- rev.1의 R2(꼬리 default OFF)·R3(본문-캡션 부호)·R4(FITTING_GUIDE Ω 충돌)는 유효하나 minor로 재분류(Phase 2-3). R5/R6/R7도 인계 minor로 흡수. LCO 수식화가 rev.2 신규 최대 항목.
