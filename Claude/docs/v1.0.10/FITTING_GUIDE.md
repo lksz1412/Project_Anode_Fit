@@ -37,7 +37,7 @@
 ## 4. 그래프 suite (검증·복원)
 기존: `plot_dqdv.py`(흑연 4패널)·`demo_lco_heat.py`(흑연/LCO dQdV+q_rev) = PASS. 신규 validation suite `graph_suite_p5.py`:
 - **V1** 흑연+LCO dQ/dV 나란히 — MSMR 동형, 두 전극 한 프레임.
-- **V2** round-trip 복원 parity(입력 ΔS → forward U_j(T) → 회귀 ΔŜ, y=x) — ★식별성 핵심 신뢰 가드.
+- **V2** round-trip 복원 parity(입력 ΔS → forward U_j(T) → 회귀 ΔŜ, y=x) — ★FD round-trip 수치 무결 가드(ΔS↔∂U/∂T 정의 정합; 잡음 데이터 통계적 식별성 증명 아님).
 - **V3** q_rev(V) 흡·발열 교대(ΔS 부호전환 음영) — eq:qrev 부호규약.
 - **V4** ∂U/∂T 완전식 vs 단순식 vs FD — 파생 A 수치검증(config 항·완전식≈FD).
 - **V5** 온도의존 peak 이동(258–318K) — U_j(T)=ΔS/F 이동.
