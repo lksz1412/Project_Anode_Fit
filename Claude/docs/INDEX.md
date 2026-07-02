@@ -4,7 +4,18 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## 현재 문건 (docs/ 버전 폴더) — ★★release 1.0.10 = Ch1 문건 + 코드 matched
+## 현재 문건 (docs/ 버전 폴더) — ★★★release 1.0.12 (Fable 재검·v12 재작성, 2026-07-02)
+> ★1.0.12 = `v1.0.12/` 한 폴더 증판본(Ch1+Ch2+코드+가이드+데모, 코드 matched). Fable 5대 지시 산출: 감사(`Fable_점검/`)→N=10 경쟁 작성·체리픽·검수 union·10차 재검(verify10)→finalizer 3커밋. 구 1.0.10 블록은 아래 유지(superseded).
+
+| 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
+|---|---|---|---|
+| **★v1.0.12/graphite_ica_ch1_v1.0.12.tex** | ★★★Ch1 v1.0.12(41p, 0-err) — LCO 6절 줄글→(a)-(d) 수식사슬(신설 eq:lco-* 26) + ★방향규약 원자정정(f=+σ_d pairing·F-2 전극중립 한정·세 작용처) + F-1 config +Rln[ξ/(1-ξ)] + B-3 Ω 지위 + H-1 BW 연동 등 verify10 전판정 반영 | 1.0.12, Ch1, LCO 수식화, f=+σ_d, msmrmap, configsplit, 방향 규약, release | 2026-07-02 |
+| **★v1.0.12/graphite_ica_ch2_v1.0.12.tex** | ★★★Ch2 v1.0.12(14p, 0-err) — H-1 BW V_eq 부호 정정 + H-2 w_j 지위 일원화(keybox 단상 한정·값 vs 함수형 층위·파생A 전제 명시) | 1.0.12, Ch2, 발열, BW 부호, w 지위, keybox, 파생A 조건부 | 2026-07-02 |
+| **★v1.0.12/Anode_Fit_v1.0.12.py** | ★★★코드 v1.0.12 — 흑연+LCO(MSMR)+가역열, 회귀 13/13·demo IDENTICAL. 주석 f=+σ_d 동기화·σ_d 한정 보강(방향 의존 3작용처·전극 인지 확장 = P4 과제) | 1.0.12, 코드, LCOCathodeDQDV, 회귀, f=+σ_d | 2026-07-02 |
+| v1.0.12/FITTING_GUIDE.md | 피팅 가이드 v1.0.12 — tier 표·5-Phase round-trip + ★방향규약 §0(LCO 충전↦direction=+1) + S0-S5 비순환 식별사슬·울타리 16·잔차 진단표(D3 선별 복원) + ν≈8-10 권고(D5) + LCO Ω 지위(B-3) | 피팅, 가이드, S0-S5, 식별 사슬, 울타리, 진단표, ν, min_lag_grid_steps, Ω 미배정 | 2026-07-02 |
+| v1.0.12/sample_test_v1012.py (+.png) | 종합 샘플 데모 2×2(흑연 staging 분리·LCO MSMR·q_rev 이중축·ΔS_e 게이트 골 −45.7) — glyph 경고 0·영어 라벨·결정론 해시 검증 | 샘플, 데모, 이미지, glyph, dQ/dV, 발열 | 2026-07-02 |
+
+## 구버전 문건 — release 1.0.10 (superseded by 1.0.12)
 > ★1.0.10 = 코드(`../results/code/Anode_Fit_v1.0.10.py`) 와 **동일 버전·matched**. dQ/dV 정상 종개형 코드 실증 = `../results/code/figs/anode_fit_v1_0_10_dqdv.png`. 검증보고 = `../results/process/GRAPH_VERIFY_RESULT.md`.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
