@@ -115,7 +115,8 @@ U_\mathrm{an}/\partial T$ (캐소드$-$애노드 차감)는 \emph{범위 밖}이
 각 자리는 비어 있거나(에너지 0) Li 하나가 점유한다(에너지 $\varepsilon_0$). 자리들은 전해질을 통해 Li 저장조
 (상대극 Li 금속)와 평형을 이루므로 전기화학 퍼텐셜 $\mu$ 가 고정된 \emph{대정준}(grand-canonical) 문제다.
 이 절은 그 분배함수를 세우고, 거기서 점유 분포 $\avg{n}$ 을 끌어낸 뒤, 그것이 Chapter 1 이 \emph{이미 쓰고
-있던} logistic 평형 점유의 기원임을 보인다. 이 유도의 통계역학 배경(ensemble$\cdot$Gibbs 인자$\cdot$화학퍼텐셜
+있던} logistic 평형 점유의 기원임을 보이고, 자리 사이 상호작용을 켠 다자리 평균장(Bragg--Williams,
+\S\ref{ssec:BW})으로 절을 닫는다. 이 유도의 통계역학 배경(ensemble$\cdot$Gibbs 인자$\cdot$화학퍼텐셜
 $\mu$ 의 의미)은 Chapter 1 의 Part 0(통계역학 기초)이 처음부터 자세히 세웠다 — 여기서는 발열 논의에 필요한
 최소 사슬만 자기완결로 다시 놓는다.
 
@@ -167,7 +168,7 @@ Chapter 1 의 전이별 \emph{logistic 평형 종}이다($\xi\to1$ 고전위$\cd
 \begin{keybox}
 Chapter 1 의 평형 종 $\xi_\eq$ 는 \emph{현상학적 곡선맞춤}이 아니라 \emph{격자기체 점유 분포의 여집합}(탈리튬화
 진행률 $=1-\theta$)이다. logistic 폭 $w=RT/F$ 는(자리당 $n_j{=}1$ 기준; 전이별 유효 폭 서식 $w_j=n_jRT/F$ 는
-\S\ref{sec:revheat}$\cdot$코드 \texttt{func\_w}) \emph{단상 전이($\Omega_j\le2RT$, 균질 고용체)에 한해} 임의
+후술 \S\ref{ssec:overlap}$\cdot$\S\ref{sec:revheat}$\cdot$코드 \texttt{func\_w}) \emph{단상 전이($\Omega_j\le2RT$, 균질 고용체)에 한해} 임의
 모수가 아니라 단일 자리 2-상태 분배함수~\eqref{eq:Z1} 가 정하는 분포의 열적 폭 — 곧 측정 폭으로 검증
 가능한 \emph{평형 예측} — 이다. \emph{두-상 전이}($\Omega_j>2RT$; 흑연 staging 의
 $2\mathrm L\!\to\!2\cdot2\!\to\!1$ 가 피팅 후에도 여기 남는 전이다)에는 이 유도가 닿지 않는다 —
@@ -453,10 +454,10 @@ config$+$vib 가 지배한다. 본 장 주 사례에서 electronic 은 보정항
 % ====================================================================
 실제 흑연 곡선은 단일 전이가 아니라 여러 전이가 \emph{겹쳐} 있다. 한 SOC 에서 여러 전이의 점유 분포가 동시에
 변하고 있고, 측정 $\partial U_\oc/\partial T(x)$ 는 그 분포들의 가중 합으로 나타난다. 이 절은 (A) 겹침 가중식을
-음함수 미분으로 닫고 수치로 검증하며, (B) 이중계산을 분리하고, (D) 히스테리시스 분기별 $\partial U/\partial T$ 를
-가역/비가역으로 어떻게 가르는지를 닫힌식으로 다룬다. (이상 격자기체의 폭 $w=RT/F$ 는 단상 평형 예측이지만,
-두-상 봉우리의 \emph{실현 폭}은 평형이 정하는 양이 아니라 현상학적 자유 피팅 폭이다 — 그 \emph{지위}는
-\S\ref{sec:revheat} 종합식에서 못 박고, 폭의 \emph{기원}은 Chapter 1 broadening 절이 다룬다.)
+음함수 미분으로 닫고 수치로 검증하며, (B) 이중계산을 분리하고, (C) 폭 $w_j$ 의 이중지위 — 단상 평형 예측 vs
+두-상 현상학적 자유 피팅 폭 — 를 못 박고(\S\ref{ssec:weff}; \S\ref{sec:revheat} 종합식이 재확인, 폭의
+\emph{기원}은 Chapter 1 broadening 절), (D) 히스테리시스 분기별 $\partial U/\partial T$ 를
+가역/비가역으로 어떻게 가르는지를 닫힌식으로 다룬다.
 
 \subsection{파생 A — 겹침의 $dQ/dV$-비중 가중 (계단이 아닌 연속 블렌드)}\label{ssec:overlap}
 관측 평형 전위 $U_\oc(x,T)$ 는 모든 전이의 점유가 합쳐 전하 보존을 만족하는 음함수로 정의된다
@@ -720,14 +721,14 @@ config 를 더한 \emph{완전식}을 쓴다:
 g_j=\frac{\xi_j(1-\xi_j)}{w_j}\;}
 \]
 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$. \emph{입력} = $\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Ch1 의
-$\xi_j(V,T)$(eq~\eqref{eq:logistic}). 여기서 $\Delta S^0_j\equiv\Delta S_{\rxn,j}$ 는 봉우리 중심 표준값(파생 B 의
+$\xi_j(V,T)$(식~\eqref{eq:logistic}). 여기서 $\Delta S^0_j\equiv\Delta S_{\rxn,j}$ 는 봉우리 중심 표준값(파생 B 의
 정의)이고, $w_j$ 는 전이별 폭이다 — \emph{단상} 전이($\Omega<2RT$)에서는 평형이 예측하는 양(이상 극한
 $w_j=RT/F$)이지만, 흑연 staging 의 \emph{두-상} 전이($\Omega>2RT$)에서는 평형 예측 $nRT/F$ 가 아니라 다온도
 $dQ/dV$ 로 \emph{피팅하는 현상학적 자유 폭}이다(파생 C \S\ref{ssec:weff}; 폭의 broadening 기원은 Chapter 1
 broadening 절). 주어진 탈리튬화 분율 $\bar x$(식~\eqref{eq:implicit} 좌표)에서 $\xi_j$ 를 평가하려면 먼저 전하 보존
 음함수~\eqref{eq:implicit} $\sum_j Q_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$ 를 풀어 $U_\oc$ 를 얻고, 그 $U_\oc$ 를
 $\xi_j(V,T)$ 에 되먹인다. $\Delta S^0_j$ 는 다온도 $dQ/dV$ 동시 피팅으로 얻고 나머지는 Ch1 모수이며, 단일 전이 지배 영역에서 이 식은
-eq~\eqref{eq:single_config} 로 환원된다.
+식~\eqref{eq:single_config} 로 환원된다.
 \end{keybox}
 
 \textbf{한계$\cdot$갭(정직).} 본 장의 닫힌식에는 다음 공백이 남는다: (1) 봉우리 내부 config 항을 포함한
@@ -737,7 +738,7 @@ eq~\eqref{eq:single_config} 로 환원된다.
 모형 자체의 차수 한계가 아니라, 그 완전식이 가정하는 logistic 전이형$\cdot$파라미터 집합 $\{\Delta S^0_j,Q_j,U_j,w_j\}$
 가 실측 흑연을 얼마나 충실히 재현하는지를 \emph{실데이터 round-trip 피팅}으로 확정하는 일이다(시뮬레이션 검증과
 실측 검증의 구분). (2) 히스테리시스 하 경로의존 $\partial U_\oc/\partial T$ 의 측정 불확실도
-정량화는 본 장 범위 밖이며, 파생 D 는 가역/비가역 분리의 틀만 제시한다 \cite{hysteresis2018}. (3) 상호작용
+정량화는 본 장 범위 밖이며, 파생 D(\S\ref{ssec:hys})는 가역/비가역 분리의 틀만 제시한다 \cite{hysteresis2018}. (3) 상호작용
 $\Omega$ 의 온도 의존(파생 C 의 2차 항)과 그 흑연에서의 값은 아직 확보하지 못했다. (4) electronic 항의 절대값은
 흑연에서 소수로 취급했으며, LCO 의 MIT 예외는 분포 언어의 사례로만 다뤘다. (5) 전셀 합성은 본 장의 범위
 밖이고, 그 근거는 서두 범위 박스에 명시했다.
@@ -756,7 +757,7 @@ $\{\Delta S^0_j,Q_j,U_j,w_j\}$ 중 전이별 중심 표준값 $\Delta S^0_j$ 는
 \item 회귀한 $U_j(T)$ 의 중심 기울기에서 $\Delta S^0_j=F\,\dd U_j/\dd T$ 를 얻고, Allart 등의 전극 분리
 $\Delta S(x)$ \cite{allart2018} 와 부호$\cdot$규모를 대조해 검증한다(표~\ref{tab:ds}).
 \item 봉우리 \emph{내부}의 $x$-의존은 따로 입력하지 않는다 — 식~\eqref{eq:single_config} 의 분포 config 항
-$(R/F)\ln[\xi_j/(1-\xi_j)]$ 가 자동으로 채우며, 마지막으로 종합식과 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$
+$(n_jR/F)\ln[\xi_j/(1-\xi_j)]$ 가 자동으로 채우며, 마지막으로 종합식과 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$
 (Bernardi 출구 \cite{bernardi1985})로 가역 발열을 산출한다.
 \end{enumerate}
 \end{procedurebox}

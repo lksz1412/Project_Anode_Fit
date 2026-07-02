@@ -166,7 +166,7 @@ def func_chi_d(chi: float, sigma_d: int) -> float:
     return chi if sigma_d >= 0 else (1.0 - chi)
 
 
-# ===== LCO 양극 확장: 전자 엔트로피(MIT) — Ch1 sec:lco, eq:dSegate =============
+# ===== LCO 양극 확장: 전자 엔트로피(MIT) — Ch1 sec:lco-Se, eq:dSegate =============
 EV_TO_J = 1.602176634e-19  # eV→J 다리 (elementary charge; eq:gunit: g_J = g_eV / e_V)
 
 
@@ -555,7 +555,7 @@ class GraphiteAnodeDischargeDQDV:
 
     def entropy_coefficient(self, V_n: ScalarOrArray,
                             T: float = 298.15) -> ScalarOrArray:
-        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식(eq:weighted 완전식).
+        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.6 keybox 종합식).
 
         관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
         ★config 항 계수 = ∂w_j/∂T = n_j·R/F (v1.0.13 R2 정정 — 구판은 R/F 로 n_j=1 특수형;
@@ -605,7 +605,7 @@ class GraphiteAnodeDischargeDQDV:
                           I: float) -> ScalarOrArray:
         """비가역 발열(과전압 소산) q_irr = I·(U_oc−V) ≥ 0 [W] — lumped(Ch2 eq:qrev 첫 항).
 
-        ★3분해(I²R_n + I·η_ct + I·η_diff)는 Ch2 에 boxed 식이 없다(warnbox·eq:qrev 는
+        ★3분해(I²R_n + I·η_ct + I·η_diff)는 Ch2 에 boxed 식이 없다(eq:qrev 주변 prose·srcbox 는
         lumped 만 제시) → 본 구현은 lumped 만 둔다. 개별 과전압 분해는 다온도·율의존
         피팅 단계의 과제(근거 미발견, 옵션)로 분리한다.
         """
@@ -628,7 +628,7 @@ class GraphiteAnodeDischargeDQDV:
         return +1 if val >= 0 else -1
 
 
-# ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco ==============================
+# ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco-code ==============================
 #   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
 #   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화)·
 #   부호 골격 흑연 동일(Ch1 Part II sec:lco-map·sec:lco-direction). 전자항(MIT)은 'electronic' 전이에
@@ -660,7 +660,7 @@ LCO_MSMR_LIT = [
 
 
 class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
-    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j,
+    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco-code: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j,
     f↔+σ_d — 진행률↔진행률 pairing, 원계열 f=F/RT>0 의 재모수화).
 
     흑연 음극 모델을 그대로 상속한다 — 곡선 골격(분극·히스 분기·평형/꼬리·면적보존
