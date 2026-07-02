@@ -89,10 +89,11 @@ ax[1, 0].legend(fontsize=8, loc="lower left")
 
 # (d) electronic entropy MIT gate dS_e(x) -- func_dSe_molar
 xx = np.linspace(0.2, 1.0, 400)
-ax[1, 1].plot(xx, m.func_dSe_molar(xx, 298.15, 13.0, 0.50, 0.05), "C3", lw=1.8,
-              label="x_MIT = 0.50 (LCO_MSMR_LIT demo value)")
-ax[1, 1].plot(xx, m.func_dSe_molar(xx, 298.15, 13.0, 0.85, 0.05), "C1", lw=1.4, ls="--",
-              label="x_MIT = 0.85 (physical anchor)")
+x_mit_demo = float(m.LCO_MSMR_LIT[0]["x_MIT"])  # v1.0.13 loop B: T1 realigned to physical anchor 0.85
+ax[1, 1].plot(xx, m.func_dSe_molar(xx, 298.15, 13.0, x_mit_demo, 0.05), "C3", lw=1.8,
+              label=f"x_MIT = {x_mit_demo:.2f} (LCO_MSMR_LIT = physical anchor)")
+ax[1, 1].plot(xx, m.func_dSe_molar(xx, 298.15, 13.0, 0.50, 0.05), "C1", lw=1.4, ls="--",
+              label="x_MIT = 0.50 (pre-v1.0.13 tier-C demo, reference)")
 ax[1, 1].axhline(-46, color="gray", ls=":", lw=0.8)
 ax[1, 1].set_title("(d) LCO electronic entropy gate dS_e(x) (MIT)")
 ax[1, 1].set_xlabel("x in LixCoO2 [-]")
@@ -119,5 +120,5 @@ print(f"(b) LCO 0.2C finite={finite(yl_02)} | max dQ/dV={yl_02.max():.3f} "
 print(f"(c) q_rev finite={finite(qg) and finite(ql)} | "
       f"graphite [{qg.min():.3f},{qg.max():.3f}] W | LCO [{ql.min():.3f},{ql.max():.3f}] W")
 print(f"(d) dS_e gate depth @x_MIT: "
-      f"{float(m.func_dSe_molar(0.50, 298.15, 13.0, 0.50, 0.05)):.2f} J/(mol K) (target ~ -46)")
+      f"{float(m.func_dSe_molar(0.85, 298.15, 13.0, 0.85, 0.05)):.2f} J/(mol K) (target ~ -46)")
 print("=== SAMPLE TEST v1.0.13 DONE ===")
