@@ -134,7 +134,7 @@ def _causal_lowpass(source_signal: np.ndarray,
 
 # ===== 보완: 분기 중심·유효폭·유효장벽·전달계수 — 인자 전부 노출 ===============
 def func_dU_hys(T: float, Omega: float) -> float:
-    """spinodal 상한 분기 gap ΔU_hys [V] (eq:hysdU). func_U_j_hys 내부와 동일식.
+    """spinodal 상한 분기 gap ΔU_hys [V] (eq:dUhys). func_U_j_hys 내부와 동일식.
     Ω≤2RT 면 0(제곱근 NaN 영역 명시 분기). Ω 만 인자(하드코딩 없음)."""
     two_RT = 2.0 * R * T
     if Omega <= two_RT:
@@ -145,7 +145,7 @@ def func_dU_hys(T: float, Omega: float) -> float:
 
 def func_U_branch(T: float, U_j: float, Omega: float, gamma: float,
                   sigma_d: int, h_eta: float = 1.0) -> float:
-    """분기 중심 U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys (eq:hyscenter).
+    """분기 중심 U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch).
     partial_hys 를 h_eta(부분 cycle 인자, 기본 1.0)로 노출 — 하드코딩 제거.
     원형 func_U_j_hys 와 같은 물리(그 함수의 partial_hys=1.0 하드코딩만 인자화)."""
     return float(U_j + 0.5 * sigma_d * h_eta * gamma * func_dU_hys(T, Omega))
@@ -159,7 +159,7 @@ def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float) -> float:
 
 
 def func_chi_d(chi: float, sigma_d: int) -> float:
-    """방향별 전달계수 χ_d (eq:chisum 합-1): 방전(σ_d≥0) χ_d=χ, 충전 χ_d=1−χ.
+    """방향별 전달계수 χ_d (eq:chid 합-1): 방전(σ_d≥0) χ_d=χ, 충전 χ_d=1−χ.
     꼬리 깊은 쪽 거울 대칭(방전 ξ→1 / 충전 ξ→0)으로 역방향 장벽 상수몫이 갈린다.
     ★기본 규칙 — 생성자 chi_split 인자에 다른 callable 을 주입해 교체 가능
        (예: 비대칭 분배, 부분 cycle 보정 규칙). 시그니처 = (chi, sigma_d)->χ_d."""
@@ -312,7 +312,7 @@ class GraphiteAnodeDischargeDQDV:
         (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — v12에서 제거.)"""
         return func_w(T, self._n_factor(tr, T))
 
-    # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chisum) -----------
+    # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chid) -----------
     def _chi_d(self, sigma_d: int) -> float:
         """전달계수 χ_d = chi_split(χ, σ_d). 기본 func_chi_d(방전 χ / 충전 1−χ).
         ★규칙 자체는 self.chi_split 로 교체 가능(히스/χ_d 확장성)."""
@@ -321,7 +321,7 @@ class GraphiteAnodeDischargeDQDV:
     # ---- (D) χ_d·ΔH_a^eff 응집 헬퍼 -------------------------------------
     def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int,
                         use_dH_eff: Optional[bool] = None) -> Tuple[float, float]:
-        """방향별 (χ_d, ΔH_a^eff) 한 곳에서 산출(eq:chisum·eq:dHeff).
+        """방향별 (χ_d, ΔH_a^eff) 한 곳에서 산출(eq:chid·eq:dHeff).
         use_dH_eff=False 면 ΔH_a^eff=ΔH_a(보강 없음). per-tr override(None=전역)."""
         chi_d = self._chi_d(sigma_d)
         ud = self.use_dH_eff if use_dH_eff is None else bool(use_dH_eff)
@@ -332,7 +332,7 @@ class GraphiteAnodeDischargeDQDV:
     def _resolve_lag_length(self, transition: Dict[str, Any], T: float,
                             I: float, Q_cell: float, n_j: float,
                             sigma_d: int = +1) -> float:
-        """전이 하나의 지연 길이 L_V [V] (eq:tail: L_V=|dV/dq|_qa·L_q).
+        """전이 하나의 지연 길이 L_V [V] (eq:LV: L_V=|dV/dq|_qa·L_q).
 
         - 'L_V' 직접 지정이 있으면 그대로(피팅·테스트, 동역학 우회).
         - 없으면 동역학 산출: 컷 affinity A → func_L_q → ×|dVdq_qa|.
@@ -402,7 +402,7 @@ class GraphiteAnodeDischargeDQDV:
              I_abs: float,
              Q_cell: float,
              s: int = +1) -> ScalarOrArray:
-        """관측 dQ/dV (eq:hysmaster).
+        """관측 dQ/dV (eq:vn 분극 → eq:sum 합산).
 
         V_app  : 인가 전위 격자 [V] (스칼라 또는 배열)
         T      : 온도 [K] (스칼라 등온, 또는 V_app 길이 배열 = 비등온 T(V))
@@ -433,7 +433,7 @@ class GraphiteAnodeDischargeDQDV:
         if not np.all(np.isfinite(T_input)) or np.any(T_input <= 0.0):
             raise ValueError("T must be finite and > 0 (K).")
 
-        # 분극: V_n = V_app − σ_d|I|R_n (eq:hysmaster)
+        # 분극: V_n = V_app − σ_d|I|R_n (eq:vn)
         V_n = V_in - sigma_d * I_abs * self.Rn
 
         v_lo, v_hi = float(np.min(V_n)), float(np.max(V_n))
@@ -464,14 +464,14 @@ class GraphiteAnodeDischargeDQDV:
             else:
                 U_j = float(tr['U'])
 
-            # ★히스테리시스 분기 중심 U^d = U + ½·σ_d·h_η·γ·ΔU_hys (eq:hyscenter)
+            # ★히스테리시스 분기 중심 U^d = U + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch)
             #   — σ_d 로 방·충 반대 이동. 평형 종 자체는 방향 불변(아래 ksi 에는
             #     중심만 σ_d 로 갈린 형태로 들어감 = 곡선상 분기 반영). γ=0 → 0.
             Omega = float(tr.get('Omega', 0.0))
             gamma = float(tr.get('gamma', 0.0))
             h_eta = float(tr.get('h_eta', 1.0))
             if gamma != 0.0 and Omega > 0.0:
-                # 분기 shift = func_U_branch(U_j=0) (전이당 상수, σ_d 방향·eq:hyscenter)
+                # 분기 shift = func_U_branch(U_j=0) (전이당 상수, σ_d 방향·eq:Ubranch)
                 #   → 배열 중심 U_j 에 가산. (公開 헬퍼 활성화 = 인라인 식 중복 제거.)
                 hys_shift = func_U_branch(T_rep, 0.0, Omega, gamma, sigma_d, h_eta)
                 center = U_j + hys_shift
@@ -500,7 +500,7 @@ class GraphiteAnodeDischargeDQDV:
                     occ_lagged = _causal_lowpass(ksi_arr, grid_step, lag_len_V)
                 else:
                     occ_lagged = _causal_lowpass(ksi_arr[::-1], grid_step, lag_len_V)[::-1]
-                # dQ/dV = Q·(ξ_eq − r̄)/L_V 의 이산형(eq:closed: 평형−지연의 미분)
+                # dQ/dV = Q·(ξ_eq − r̄)/L_V 의 이산형(eq:peakshape: 평형−지연의 미분)
                 peak_shape = (ksi_eq - occ_lagged) / lag_len_V
 
             dqdv_work = dqdv_work + tr['Q'] * peak_shape

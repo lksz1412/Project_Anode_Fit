@@ -257,7 +257,7 @@ V(\xi)=U_j+\frac{RT}{F}\ln\!\frac{\xi}{1-\xi}
 \label{eq:dVdT_config}
 \end{equation}
 임을 확인한다(둘째 항의 계수 $R/F$ 는 자리당 $n_j{=}1$ 서식 — 전이별 일반형은 $n_jR/F$ 다, 후술
-\S\ref{ssec:overlap} 식~\eqref{eq:dxidT};$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 를 첫 항으로 쓰고, $w=RT/F$ 의 명시적 $T$ 의존이
+\S\ref{ssec:overlap} 식~\eqref{eq:dxidT}; $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 를 첫 항으로 쓰고, $w=RT/F$ 의 명시적 $T$ 의존이
 둘째 항을 낳음; 점유 $\theta=1-\xi$ 이므로 $\partial S_\config/\partial\theta|_{\theta=1-\xi}=-R\ln[(1-\xi)/\xi]
 =+R\ln[\xi/(1-\xi)]$ — Li 삽입은 점유 $\theta$ 를 늘리는 방향이라 부호가 $+$ 로 맞물린다). 곧 \textbf{Chapter 1 의
 logistic 폭 $w=RT/F$ 가 이미 부분몰 configurational 엔트로피를 담고 있었다}. 봉우리 내부 $\partial U_\oc/\partial T(x)$
@@ -523,7 +523,7 @@ config 항은 $z_j$ 의 로그 구조 탓에 그리드 \emph{양끝에서 계속
 모델 안에서 자동 생성된다.
 
 ★\textbf{전제 명시(검증의 조건부).} 이 검증의 $w_j(T)$ 는 현행 코드(\texttt{func\_w}/\texttt{\_width})가
-\emph{모든} 전이(흑연 두-상 staging 포함)에 강제하는 열적 서식 $w_j=n_jRT/F$
+\texttt{'n'} 키 보유 전이(검증 데이터셋은 전 전이 해당; \texttt{'w'}-단독 전이는 $T$-동결 폭)에 강제하는 열적 서식 $w_j=n_jRT/F$
 ($\partial w_j/\partial T=n_jR/F$) 하에서 평가된 것이다 — 자유 피팅되는 것은 진폭 $n_j$(또는 기준온도의
 $w$)뿐이고 $T$-의존의 함수형은 고정이다. 따라서 완전식의 표시-정밀도 일치는 그 서식이 낳는 $w(T)$ 조각
 (식~\eqref{eq:dxidT} 둘째 항)까지 포함한 \emph{해석 미분 사슬의 자기일관성} 검증이지, 두-상 전이의
@@ -627,8 +627,8 @@ $\Delta S$ 만 남기 때문이다:
 분기 중심 $U_j^{(d)}=U_j+\tfrac12\sigma_d\,\Delta U_j^\hys$ 가 서로 달라 같은 $x$ 에서 $g_j^{(\mathrm{ch})}\!\ne\!g_j^{(\mathrm{dis})}$ 이면
 겹침 가중식~\eqref{eq:hys_branch} 의 config 곡률 때문에 두 분기 평균이 $\Delta S_{\rxn,j}/F$ 로 정확히 떨어지는 것은
 $\Delta U^\hys$ 의 1차 차수까지이고, 유한 $\Delta U^\hys$ 에선 고차 보정이 남는다.
-히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, 한 사이클당 $\propto I\,\Delta U^\hys$ 의 entropy
-production(소산열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역열에 섞이지 않는다.
+히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, $\propto I\,\Delta U^\hys$ 의 소산율(한 사이클당
+$\propto Q_\mathrm{cycle}\,\Delta U^\hys$ 의 entropy production 소산열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역열에 섞이지 않는다.
 \begin{keybox}
 \textbf{혼동 금지.} 가역 발열은 분기 평균~\eqref{eq:hys_rev} 로, 히스 gap 은 비가역열로 \emph{분리} 계산한다.
 $\partial U^\rev/\partial T$ 는 분포 재배열의 가역 엔트로피이고, $\Delta U^\hys$ 는 경로 비가역성의 소산이다.
