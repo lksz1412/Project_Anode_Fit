@@ -2819,7 +2819,8 @@ N8 & $(\xi_\eq-\xi_\mathrm{lag})/L_V$, 역전 & \eqref{eq:peakshape},\eqref{eq:r
 N9 & $C_\bg+\sum_jQ_j[\cdot]$ & \eqref{eq:sum} & \code{dqdv\_work},\code{np.interp} \\
 \midrule
 \multicolumn{4}{l}{\emph{— LCO 양극 추가(같은 골격, 파라미터+1항) —}}\\
-N0$'$ & \code{LCO\_MSMR\_LIT}(3 전이) & 표~\ref{tab:lco-staging} & \code{LCOCathodeDQDV}$\cdot$전이 dict$\cdot$\code{\_delith\_is\_discharge} \\
+N0$'$ & \code{LCO\_MSMR\_LIT}(3 전이) & 표~\ref{tab:lco-staging} & \code{LCOCathodeDQDV}$\cdot$전이 dict \\
+\multicolumn{4}{l}{\emph{\quad(N0$'$ 보강: \code{\_delith\_is\_discharge} 셀 라벨$\to$탈리튬화 부호 환산 = \S\ref{sec:lco-code})}}\\
 N2$'$ & $\partial U_j/\partial T=\Delta S^\mathrm{cat}/F$ & \eqref{eq:lco-dUdT} & \code{func\_U\_j}(동일) \\
 N5$+$ & $\Delta S_{e,j}^{\,\mathrm{mol}}=N_A\tfrac{\pi^2}{3}k_B^2T\,\partial g/\partial x<0$ (삽입, 몰당) & \eqref{eq:dSemolar},\eqref{eq:ggate} & $\Delta S_e$ plug-in(전자항) \\
 N9$'$ & $\Delta S^\mathrm{cat}=$config$+$vib$+$elec & \eqref{eq:lco-decomp} & MSMR 동형 \eqref{eq:msmr} \\
