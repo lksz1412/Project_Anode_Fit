@@ -36,7 +36,7 @@
 #     func_w · func_U_j · func_U_j_hys · func_ksi_eq · func_L_q · _causal_lowpass
 #     · GRAPHITE_STAGING_LIT.
 #
-#   [근거 문건] graphite_ica_ch1_Opus_v6.tex — 커브식 명세. 본 구현이 따르는 식:
+#   [근거 문건] graphite_ica_ch1_v1.0.13.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
 #     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vapp/eq:hysmaster)
 #     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (func_U_j)
 #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:hysdU)
@@ -82,6 +82,8 @@ def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float) -> ScalarOrArray:
 
 def func_U_j_hys(T: float, U_j: float, Omega: float, gamma: float,
                  s: int = 1, last_eta: float = 1.0, last_rest: int = 600) -> float:
+    # [지위] 사용자 원형 보존 함수 — 현 활성 경로(equilibrium/dqdv)는 분리형
+    #   func_dU_hys + func_U_branch 를 호출하며 본 함수는 미호출(동등 물리, CODE_MAP orphan(b)).
     two_RT = 2.0 * R * T
     if Omega <= two_RT:
         dU_j_hys = 0.0
@@ -240,6 +242,10 @@ class GraphiteAnodeDischargeDQDV:
     z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = ξ_eq 5%)
     A_cap_RT : float           : 컷 affinity 상한 A ≤ A_cap_RT·RT (기본 4.0)
     """
+
+    # 탈리튬화에 대응하는 셀 라벨(Ch1 eq:lco-sigmaslot): 음극(흑연) = 방전.
+    #   curve() 의 direction 라벨→σ_d 환산에만 쓰이고, dqdv(s=...) 저수준 경로는 무관.
+    _delith_is_discharge: bool = True
 
     def __init__(self, transitions: List[Dict[str, Any]], x: float = 0.5,
                  Rn: float = 0.0, Cbg: Union[float, Callable] = 0.0,
@@ -522,6 +528,11 @@ class GraphiteAnodeDischargeDQDV:
         반환 = dqdv(V_app, T, |I|, Q_cell, σ_d) 결과(동일 배열/스칼라 규약).
         """
         sigma_d = self._direction_to_sigma(direction)
+        if not self._delith_is_discharge:
+            # 전극 인지 환산(Ch1 eq:lco-sigmaslot): σ_d 슬롯의 물리 = 탈리튬화 = +1.
+            # 양극(LCO)은 '충전' 라벨이 탈리튬화이므로 셀 라벨 부호를 뒤집어 먹인다.
+            # 저수준 경로(dqdv 의 s 인자 직접 지정)는 환산 없이 물리 부호 그대로.
+            sigma_d = -sigma_d
         Q_cell = _finite_pos("Q_cell", Q_cell)
         if I_abs is None:
             c = _finite_nonneg("c_rate", c_rate)
@@ -618,22 +629,24 @@ class GraphiteAnodeDischargeDQDV:
 # ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco ==============================
 #   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
 #   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화)·
-#   부호 골격 흑연 동일(Ch1 sec:lco-map L304-307). 전자항(MIT)은 'electronic' 전이에
+#   부호 골격 흑연 동일(Ch1 Part II sec:lco-map·sec:lco-direction). 전자항(MIT)은 'electronic' 전이에
 #   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
 #   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,
 #     피팅 함수의 시연용 초기값). U(298) 는 dH_rxn/dS_rxn 로 목표 전위에 정합.
 LCO_MSMR_LIT = [
-    {   # 주 평탄역(order phase, U≈3.930 V) — x≈0.75-0.95
+    {   # T1 주 평탄역(MIT, U≈3.930 V) — x≈0.75-0.95, MIT 창 포함 → 전자 엔트로피 골(ΔS_e<0)
+        # ΔH = T_ref·ΔS_eff − F·U — 전자항 ΔS_e(T_ref)≈−45.678 을 흡수해 T_ref 평탄역이
+        #   U 에 놓이게 재보정(측정 OCV=총엔트로피 반영). ΔS_e 는 ∂U/∂T(가역열)에만 작용.
+        # [v1.0.13 루프 B] 전자항을 물리 anchor(T1=MIT, x_MIT≈0.85 — Ch1 tab:lco-staging)
+        #   dict 로 재정렬(구판은 중간 dict x_MIT=0.50 tier-C 시연 배정).
         'U': 3.930, 'w': 0.030, 'Q': 0.55,
-        'dH_rxn': -377400.0, 'dS_rxn': +6.0, 'n': 1.0,
+        'dH_rxn': -391017.4, 'dS_rxn': +6.0, 'n': 1.0,
+        'electronic': True, 'x_center': 0.85,
+        'g_max_eV': 13.0, 'x_MIT': 0.85, 'dx_MIT': 0.05,
     },
-    {   # order-disorder(≈3.880 V) — x≈0.5, MIT 창 포함 → 전자 엔트로피 골(ΔS_e<0)
+    {   # order-disorder(≈3.880 V) — x≈0.5 (전자항 흡수 해제로 ΔH 재보정)
         'U': 3.880, 'w': 0.024, 'Q': 0.30,
-        # ΔH = T_ref·ΔS_eff − F·U — 전자항 ΔS_e(T_ref) 를 흡수해 T_ref 평탄역이 U 에
-        #   놓이게 재보정(측정 OCV=총엔트로피 반영). ΔS_e 는 ∂U/∂T(가역열)에만 작용.
-        'dH_rxn': -389174.0, 'dS_rxn': -4.0, 'n': 1.0,
-        'electronic': True, 'x_center': 0.50,
-        'g_max_eV': 13.0, 'x_MIT': 0.50, 'dx_MIT': 0.05,
+        'dH_rxn': -375555.7, 'dS_rxn': -4.0, 'n': 1.0,
     },
     {   # 고전위 곁가지(≈4.050 V) — x≈0.35
         'U': 4.050, 'w': 0.028, 'Q': 0.15,
@@ -651,10 +664,12 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
     ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다 — 단
     이는 평형·∂U/∂T 경로 한정이다. 평형 종은 방향 불변이나, 방향 의존 작용처
     (분극·분기·꼬리)에 LCO 데이터를 걸 때는 셀 라벨이 아니라 탈리튬화 여부로 s 를
-    준다(충전 곡선↦s=+1 — Ch1 sec:lco-peak 방향 슬롯 한정). 현재 LCO_MSMR_LIT 는
-    Omega·dH_a 미배정으로 분기·꼬리 비활성이라 실질 방향 의존은 분극뿐이고,
-    _direction_to_sigma 의 전극 인지 확장(전극 타입→탈리튬화 부호 환산)은 P4
-    코드개정 과제로 남긴다).
+    준다(충전 곡선↦s=+1 — Ch1 sec:lco-direction 방향 규약, eq:lco-sigmaslot). 현재 LCO_MSMR_LIT 는
+    Omega·dH_a 미배정으로 분기·꼬리 비활성이라 실질 방향 의존은 분극뿐이다.
+    ★전극 인지 환산(v1.0.13 루프 B 구현): 본 클래스는 _delith_is_discharge=False 라
+    curve() 의 direction 셀 라벨('charge'/'discharge')이 자동으로 탈리튬화 부호로
+    환산된다 — LCO 충전 곡선은 direction='charge' 그대로 주면 σ_d=+1 슬롯에 간다.
+    저수준 dqdv(s=...) 는 환산 없이 물리 부호(탈리튬화=+1)를 직접 받는다).
 
     유일한 확장 = 금속-절연체 전이(MIT)의 전자 엔트로피 항을 seam _effective_dS_rxn
     한 곳에서 'electronic' 전이의 ΔS_rxn 에 가산하는 것뿐이다(Ch1 sec:lco-code). 이
@@ -662,6 +677,9 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
     dqdv·entropy_coefficient(발열) 세 경로가 같은 seam 을 공유하므로 T1 전자항이 세
     산출에 일관되게 반영된다.
     """
+
+    # 양극(LCO): 탈리튬화 = '충전' 라벨 (Ch1 eq:lco-sigmaslot — curve() 라벨 환산용)
+    _delith_is_discharge: bool = False
 
     def _effective_dS_rxn(self, tr: Dict[str, Any],
                           T: Union[float, np.ndarray]) -> ScalarOrArray:

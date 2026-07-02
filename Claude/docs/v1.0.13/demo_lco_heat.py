@@ -18,17 +18,17 @@ spec = importlib.util.spec_from_file_location("anodefit_v1013", CODE)
 m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
 print("=== 1. 전자엔트로피 골 깊이 검산 (Ch1 -46 J/mol/K) ===")
-dSe_center = float(m.func_dSe_molar(0.50, 298.15, 13.0, 0.50, 0.05))
-print(f"  func_dSe_molar(x=x_MIT=0.50) = {dSe_center:.2f} J/mol/K  (기대 ~ -45.7)")
-dSe_far = float(m.func_dSe_molar(0.20, 298.15, 13.0, 0.50, 0.05))
+dSe_center = float(m.func_dSe_molar(0.85, 298.15, 13.0, 0.85, 0.05))
+print(f"  func_dSe_molar(x=x_MIT=0.85, T1 anchor) = {dSe_center:.2f} J/mol/K  (기대 ~ -45.7)")
+dSe_far = float(m.func_dSe_molar(0.20, 298.15, 13.0, 0.85, 0.05))
 print(f"  func_dSe_molar(x=0.20, 창 밖) = {dSe_far:.3f} J/mol/K  (기대 ~ 0)")
 
 print("=== 2. seam 3경로 공유 — LCO 전자전이 dS_eff = dS_rxn + dSe ===")
 lco = m.LCOCathodeDQDV(m.LCO_MSMR_LIT, x=0.5, Rn=0.01, Cbg=0.0)
-tr_e = m.LCO_MSMR_LIT[1]  # electronic 전이
+tr_e = m.LCO_MSMR_LIT[0]  # electronic 전이(T1=MIT — v1.0.13 루프 B 재정렬)
 dS_eff = float(lco._effective_dS_rxn(tr_e, 298.15))
-print(f"  전자전이: dS_rxn={tr_e['dS_rxn']:+.1f} + dSe({dSe_center:.1f}) = dS_eff={dS_eff:.2f}")
-tr_n = m.LCO_MSMR_LIT[0]  # 비전자 전이
+print(f"  전자전이(T1): dS_rxn={tr_e['dS_rxn']:+.1f} + dSe({dSe_center:.1f}) = dS_eff={dS_eff:.2f}")
+tr_n = m.LCO_MSMR_LIT[1]  # 비전자 전이
 print(f"  비전자전이: dS_eff={float(lco._effective_dS_rxn(tr_n, 298.15)):.2f} (=dS_rxn {tr_n['dS_rxn']:+.1f}, 항등)")
 graph = m.GraphiteAnodeDischargeDQDV(m.GRAPHITE_STAGING_LIT, x=0.5, Rn=0.01, Cbg=0.0)
 print(f"  흑연 base seam 항등: {float(graph._effective_dS_rxn(m.GRAPHITE_STAGING_LIT[0], 298.15)):.2f} (=dS_rxn +29.0)")
