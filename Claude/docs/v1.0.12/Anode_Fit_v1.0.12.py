@@ -616,7 +616,8 @@ class GraphiteAnodeDischargeDQDV:
 
 
 # ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco ==============================
-#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d. 방전 σ_d=+1(LCO 리튬화)·
+#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
+#   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화)·
 #   부호 골격 흑연 동일(Ch1 sec:lco-map L304-307). 전자항(MIT)은 'electronic' 전이에
 #   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
 #   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,
@@ -642,11 +643,18 @@ LCO_MSMR_LIT = [
 
 
 class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
-    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d).
+    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j,
+    f↔+σ_d — 진행률↔진행률 pairing, 원계열 f=F/RT>0 의 재모수화).
 
     흑연 음극 모델을 그대로 상속한다 — 곡선 골격(분극·히스 분기·평형/꼬리·면적보존
     DC=1)은 부호까지 동일하다(Ch1 sec:lco-map: 방전 σ_d=+1 은 LCO 엔 리튬화이며
-    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다).
+    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다 — 단
+    이는 평형·∂U/∂T 경로 한정이다. 평형 종은 방향 불변이나, 방향 의존 작용처
+    (분극·분기·꼬리)에 LCO 데이터를 걸 때는 셀 라벨이 아니라 탈리튬화 여부로 s 를
+    준다(충전 곡선↦s=+1 — Ch1 sec:lco-peak 방향 슬롯 한정). 현재 LCO_MSMR_LIT 는
+    Omega·dH_a 미배정으로 분기·꼬리 비활성이라 실질 방향 의존은 분극뿐이고,
+    _direction_to_sigma 의 전극 인지 확장(전극 타입→탈리튬화 부호 환산)은 P4
+    코드개정 과제로 남긴다).
 
     유일한 확장 = 금속-절연체 전이(MIT)의 전자 엔트로피 항을 seam _effective_dS_rxn
     한 곳에서 'electronic' 전이의 ΔS_rxn 에 가산하는 것뿐이다(Ch1 sec:lco-code). 이
