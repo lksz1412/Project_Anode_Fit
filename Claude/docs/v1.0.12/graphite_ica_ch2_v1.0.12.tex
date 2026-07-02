@@ -188,20 +188,20 @@ g(\theta) \;=\; g_0 \;+\; RT\bigl[\theta\ln\theta + (1-\theta)\ln(1-\theta)\bigr
 모수 $\Omega$, regular-solution 형)다. $\Omega>0$ 은 같은 종끼리 뭉치려는 인력(상분리 경향), $\Omega<0$ 은
 교대 정렬(규칙화) 경향을 뜻한다. 평형 전위는 $\theta$ 1몰 삽입당 자유에너지 변화이므로
 \begin{equation}
-V_\eq(\theta) \;=\; U_j \;+\; \frac{RT}{F}\ln\!\frac{\theta}{1-\theta} \;+\; \frac{\Omega}{F}\,(1-2\theta),
+V_\eq(\theta) \;=\; U_j \;-\; \frac{RT}{F}\ln\!\frac{\theta}{1-\theta} \;-\; \frac{\Omega}{F}\,(1-2\theta),
 \label{eq:Veq_BW}
 \end{equation}
-가 되어, 식~\eqref{eq:Vxi} 의 이상 격자기체에 상호작용 항 $\Omega(1-2\theta)/F$ 가 더해진다. 이 상호작용의
+가 되어, 식~\eqref{eq:Vxi} 의 이상 격자기체에 상호작용 항 $-\Omega(1-2\theta)/F$ 가 더해진다. 이 상호작용의
 \emph{열역학적} 결과는 상분리 임계다: $\Omega$ 가 임계값을 넘으면 평형 등온선이 비단조가 되어 분포가 쌍봉
 (bimodal)으로 갈리며 \emph{상분리}(plateau)가 일어난다. 임계 조건은 $\partial V_\eq/\partial\theta=0$ 의 첫 등장, 곧
 \begin{equation}
-\frac{\dd V_\eq}{\dd\theta} \;=\; \frac{RT}{F}\frac{1}{\theta(1-\theta)} \;-\; \frac{2\Omega}{F},
+\frac{\dd V_\eq}{\dd\theta} \;=\; -\frac{RT}{F}\frac{1}{\theta(1-\theta)} \;+\; \frac{2\Omega}{F},
 \qquad
-\theta=\tfrac12\text{ 에서 }\;\frac{\dd V_\eq}{\dd\theta}\Big|_{1/2}=\frac{4RT-2\Omega}{F},
+\theta=\tfrac12\text{ 에서 }\;\frac{\dd V_\eq}{\dd\theta}\Big|_{1/2}=\frac{2\Omega-4RT}{F},
 \label{eq:slope_BW}
 \end{equation}
 이 0 이 되는 $\Omega=2RT$ 다. $\Omega<2RT$ 면 등온선이 단조(균질 고용체), $\Omega>2RT$ 면 중앙에서
-기울기가 음으로 뒤집혀(불안정) 상분리한다. 이 임계 $\Omega=2RT$ 가 \S\ref{sec:limits} 에서 핵심 코너로 다시
+기울기가 양으로 뒤집혀(불안정) 상분리한다. 이 임계 $\Omega=2RT$ 가 \S\ref{sec:limits} 에서 핵심 코너로 다시
 나온다. (한편 그 두-상 영역에서 \emph{실측} 봉우리가 갖는 유한 폭은 평형 등온선이 정하는 양이 아니라 현상학적
 피팅 폭이다 — \S\ref{sec:revheat} 종합식의 $w_j$ 지위와 Chapter 1 broadening 절을 보라.)
 
@@ -584,6 +584,10 @@ $\Delta S$ 만 남기 때문이다:
 \;=\;\tfrac12\Bigl(\frac{\partial U_\oc^\mathrm{ch}}{\partial T}+\frac{\partial U_\oc^\mathrm{dis}}{\partial T}\Bigr)\;.}
 \label{eq:hys_rev}
 \end{equation}
+이 상쇄는 두 분기의 봉우리 형태 $g_j^{(d)}$ 가 같다고 본 \emph{선형화 근사}($\Delta U_j^\hys\!\ll\!w_j$)에서 정확하다 —
+분기 중심 $U_j^{(d)}=U_j\pm\tfrac12\Delta U_j^\hys$ 가 서로 달라 같은 $x$ 에서 $g_j^{(\mathrm{ch})}\!\ne\!g_j^{(\mathrm{dis})}$ 이면
+겹침 가중식~\eqref{eq:hys_branch} 의 config 곡률 때문에 두 분기 평균이 $\Delta S_{\rxn,j}/F$ 로 정확히 떨어지는 것은
+$\Delta U^\hys$ 의 1차 차수까지이고, 유한 $\Delta U^\hys$ 에선 고차 보정이 남는다.
 히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, 한 사이클당 $\propto I\,\Delta U^\hys$ 의 entropy
 production(소산열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역열에 섞이지 않는다.
 \begin{keybox}
@@ -613,7 +617,7 @@ $\xi\to0$ (만충, Li-rich) & config $\to-\infty$ & 배열 선택지 소멸; 만
 $\xi=\tfrac12$ (봉우리 중심) & $=\Delta S_{\rxn,j}/F$ & config$=0$; 중심 표준값 정확 회수(파생 B 일관) \\
 $\Omega\to2RT^-$ & 상분리 임계(plateau) & 평형 등온선 비단조화$\to$plateau; \emph{실측} 두-상 폭은 현상학적 피팅(\S\ref{ssec:weff}) \\
 단일 봉우리 (겹침 0) & $=\Delta S_{\rxn,j}/F+$ config & 가중식~\eqref{eq:weighted} 이 단일 전이로 환원 \\
-고온 ($\kB T\!\sim\!E_F$ 근접) & electronic $\propto T$ 우세화 & FD Sommerfeld~\eqref{eq:Se}; $S_e$ 선형 증가 \\
+고온 ($\kB T\!\sim\!E_F$ 근접) & electronic $\propto T$ 우세화 & FD Sommerfeld~\eqref{eq:Se} 는 축퇴 극한 $\kB T\!\ll\!E_F$ 전용 — \emph{정성적} 방향(전자 기여 증대)만 유효, $\kB T\!\sim\!E_F$ 에선 정량 부적용 \\
 \bottomrule
 \end{tabular}
 \end{table}
