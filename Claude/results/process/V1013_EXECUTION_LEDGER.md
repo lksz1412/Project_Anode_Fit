@@ -15,6 +15,7 @@
 | 6.1 | Ch2 정합·가이드·샘플·마감 | 41–45 | Ch2·GUIDE·sample·result·INDEX | 두 축·상호충실도 | ⬜ |
 
 ## 진행 로그 (append-only)
+- 2026-07-03 새벽: P1.1(79e83fc)→P2.1 N=6+체리픽(3fc811a)→커밋A Part 0+C-1(8c4f21e)→커밋B Part II 통합(4b9480f)→루프 A/B(4f1ab12 — 전극 인지 σ_d·T1 재정렬·회귀 불변)→압축 p2/p3(377b5e6)·p1/p4(1bb914c)→용어·overfull 0(363dcf9)→P6 선행(95768e0). P5 R1(Fable×3 통독): 물리 불변 3/3 PASS·HIGH 4(전부 라벨·층위·충실도 — 물리식 위반 0)·MED 18 → master 삼각검증·정정 30여 건(363f5fd). 압축 처분 기록: p3 signcheck 콜론계 기각·p3 잔여 2쌍(생략부 인용)·p4 2쌍 R6 이월. R2(절 단위·⑧렌즈) 발진.
 - 2026-07-02 야간 GO: 우선순위 서열 접수(마스터 rev.4). docs/v1.0.13/ 증판(tex 2·py·guide·스크립트 5·figs/) + 버전 문자열 정밀 패치(계보 연장).
 - **P1.1 ✅ (S1–S5)**: 구조맵(master — Part 0 배치=N0 직후·Part II 순서·라벨 불변 원칙·리스크) / 용어표(27용어·18약자 — ★FD 약자 충돌(Fermi–Dirac vs finite difference 동일 챕터)·전이/천이 이원화·MSMR 정의 1750줄 지연·GITT/OCV/SOC/DFT 미병기·격자 다의성) / 산문예산(★LCO 밀도 5.75 < 흑연 8.04 — 말 많음의 실체는 구조; outlier=broadening 59문장/1식; 목표 확정 = 세부계획 추기) / CODE_MAP(boxed 30 전수·orphan 13 전부 선언된 항목·창작 0·dead code `func_U_j_hys` 발견 — 루프 A 처분 대상). gate: 4산출물+스크립트 존재·라인 정합 검산 PASS.
 - **P2.1 진행**: Codex C1·C2 전 스텝(s1 갈래1 → s2 갈래2+figure) 완료(32.5KB·26.8KB — 스텝별 구동·폴링 감시 준수, 거짓 양성 폴러 1회 교정). F1·F2(Fable)·S1·S2(Sonnet) 가동 중.

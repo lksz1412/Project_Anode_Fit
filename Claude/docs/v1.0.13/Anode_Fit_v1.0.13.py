@@ -557,7 +557,9 @@ class GraphiteAnodeDischargeDQDV:
                             T: float = 298.15) -> ScalarOrArray:
         """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식(eq:weighted 완전식).
 
-        관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (R/F)·ln[ξ_j/(1−ξ_j)]).
+        관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
+        ★config 항 계수 = ∂w_j/∂T = n_j·R/F (v1.0.13 R2 정정 — 구판은 R/F 로 n_j=1 특수형;
+          기본 데이터셋 n_j=1.0 에서는 수치 동일(bit-exact), n_j≠1 피팅 시에만 발현).
         첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
         봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
         w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
@@ -582,7 +584,7 @@ class GraphiteAnodeDischargeDQDV:
             xi = np.asarray(func_ksi_eq(T, V, U_j, n_j), dtype=float)
             g = xi * (1.0 - xi) / w
             xi_c = np.clip(xi, eps, 1.0 - eps)
-            config = (R / F) * np.log(xi_c / (1.0 - xi_c))
+            config = (n_j * R / F) * np.log(xi_c / (1.0 - xi_c))
             Qg = tr['Q'] * g
             num = num + Qg * (dS_eff / F + config)
             den = den + Qg
