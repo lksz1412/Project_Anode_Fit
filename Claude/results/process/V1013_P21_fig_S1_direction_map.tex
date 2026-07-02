@@ -1,0 +1,56 @@
+% V1013 P2.1 draft S1 -- Figure candidate for Part II intro (branch 2).
+% Purpose: close the "charge/discharge label <-> delithiation direction" correspondence
+% for the two electrodes side by side, so a reader can see in one picture why the
+% *label* (charge/discharge) and the *physical content* fed to sigma_d (delithiation=+1)
+% coincide for graphite but invert for LCO. Content is a direct diagram of the confirmed
+% convention (verify10 B-2, f=+sigma_d; sec:lco-map; sec:lco-peak (a) footnote) -- no new
+% physics, no numbers invented. Standalone-compilable snippet (uses the same
+% tikz/positioning/arrows.meta libraries already loaded by graphite_ica_ch1_v1.0.13.tex).
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=6mm and 10mm,
+  box/.style={draw,rounded corners=2pt,minimum width=34mm,minimum height=8mm,align=center,font=\scriptsize,fill=black!4},
+  hd/.style={font=\scriptsize\bfseries},
+  ar/.style={-{Latex[length=1.6mm]},thick},
+  lab/.style={font=\scriptsize,align=center}]
+
+% -------- Graphite anode column --------
+\node[hd] (ghd) at (-3.2,3.0) {graphite anode (this doc's main thread)};
+\node[box] (gdis) at (-3.2,1.9) {cell label: discharge\\ $\sigma_d=+1$};
+\node[box,below=of gdis] (gdel) {physical content:\\ delithiation ($\xi:0\to1$)};
+\node[box,below=of gdel] (gup) {$V$ rises};
+\draw[ar] (gdis) -- (gdel);
+\draw[ar] (gdel) -- (gup);
+\node[lab,below=3mm of gup] {label = physics\\(coincide)};
+
+\node[box] (gchg) at (-3.2,-1.9) {cell label: charge\\ $\sigma_d=-1$};
+\node[box,above=of gchg] (glith) {physical content:\\ lithiation ($\xi:1\to0$)};
+\draw[ar] (gchg) -- (glith);
+\draw[ar] (glith) -- (gup.south) [in=180,out=0];
+
+% -------- LCO cathode column --------
+\node[hd] (lhd) at (3.6,3.0) {LCO cathode (Part II)};
+\node[box] (lchg) at (3.6,1.9) {cell label: charge\\ $\sigma_d=+1$ (delith. slot)};
+\node[box,below=of lchg] (ldel) {physical content:\\ delithiation ($\xi:0\to1$)};
+\node[box,below=of ldel] (lup) {$V$ rises};
+\draw[ar] (lchg) -- (ldel);
+\draw[ar] (ldel) -- (lup);
+\node[lab,below=3mm of lup] {label $\ne$ physics\\(inverted)};
+
+\node[box] (ldis) at (3.6,-1.9) {cell label: discharge\\ $\sigma_d=-1$};
+\node[box,above=of ldis] (llith) {physical content:\\ lithiation ($\xi:1\to0$)};
+\draw[ar] (ldis) -- (llith);
+\draw[ar] (llith) -- (lup.south) [in=180,out=0];
+
+% -------- shared bottom note --------
+\node[lab,align=center] at (0.2,-4.6) {model input slot always reads \emph{delithiation $=+1$}\\(3 direction-dependent loci: polarization \S\ref{sec:pol}, branch \S\ref{sec:hys}, tail \S\ref{sec:tail} --\\ equilibrium species itself is direction-symmetric, $\xi\leftrightarrow1-\xi$)};
+
+\draw[densely dashed,gray] (0.2,3.6) -- (0.2,-5.3);
+\end{tikzpicture}
+\caption{충$\cdot$방전 셀 라벨과 탈리튬화 방향의 대응 — 흑연 음극(왼쪽)은 라벨(방전)과 물리(탈리튬화)가 겹치지만, LCO
+양극(오른쪽)은 \emph{충전}이 탈리튬화라 겹치지 않는다. 모델에 먹이는 방향 인자 $\sigma_d$ 는 두 전극 모두 셀 라벨이
+아니라 탈리튬화 여부로 정해진다(f=$+\sigma_d$, \texttt{V1012\_P43\_verify10.md} \S2 확정 판정) — 이 슬롯이 갈라놓는
+것은 분극$\cdot$분기$\cdot$꼬리 세 작용처뿐이고, 평형 종 자체는 $\xi\leftrightarrow1-\xi$ 대칭이라 방향 불변이다.}
+\label{fig:p2-directionmap}
+\end{figure}
