@@ -37,19 +37,19 @@
 #     · GRAPHITE_STAGING_LIT.
 #
 #   [근거 문건] graphite_ica_ch1_v1.0.13.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
-#     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vapp/eq:hysmaster)
-#     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (func_U_j)
-#     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:hysdU)
-#     · 분기 중심   U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys                (eq:hyscenter)
-#     · 폭          w = nRT/F  — 두-상 전이에선 현상학적 자유 피팅 폭  (func_w)
-#     · 평형 점유   ξ_eq = logistic[ s(V_n−U)/w ]                   (func_ksi_eq)
-#     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:dxidV)
-#     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chisum)
+#     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
+#     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (eq:Uj/func_U_j)
+#     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
+#     · 분기 중심   U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys                (eq:Ubranch)
+#     · 폭          w = nRT/F  — 두-상 전이에선 현상학적 자유 피팅 폭  (eq:wbase/func_w)
+#     · 평형 점유   ξ_eq = logistic[ s(V_n−U)/w ]                   (eq:xieq/func_ksi_eq)
+#     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:belliden)
+#     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chid)
 #     · 지연 길이   L_q = (|I|h/Q_cell kB T)·e^{(ΔH_a^eff−χ_d A)/RT}/(1+e^{−A/RT})
-#                   L_V = |dV_n/dq|_qa · L_q                        (eq:lnLq/func_L_q/eq:tail)
+#                   L_V = |dV_n/dq|_qa · L_q                        (eq:Lqfull/eq:LV/func_L_q)
 #     · 유효장벽    ΔH_a^eff = ΔH_a − χ_d·Ω                         (eq:dHeff)
-#     · 꼬리        인과 지수기억 (eq:memory 합성곱) — σ_d 방향                (eq:tail/eq:conv)
-#     · 합산        dQ/dV = C_bg + Σ_j Q_j[ 평형 peak − 지연 꼬리 ]   (eq:closed/eq:hysmaster)
+#     · 꼬리        인과 지수기억 (eq:memory 합성곱) — σ_d 방향                (eq:peakshape)
+#     · 합산        dQ/dV = C_bg + Σ_j Q_j[ 평형 peak − 지연 꼬리 ]   (eq:sum)
 #
 #   [v04 → v04b 변경 요약]
 #     (A) func_chi_d 모듈 함수 신설 + 생성자 chi_split: Callable[[float,int],float]
@@ -239,7 +239,7 @@ class GraphiteAnodeDischargeDQDV:
     chi_split : callable        : (chi, σ_d)→χ_d 방향별 전달계수 규칙(기본 func_chi_d).
                                  ★주입 교체 가능 — 히스/χ_d 분배 규칙을 사용자가 바꿈.
     use_dH_eff : bool          : ΔH_a^eff=ΔH_a−χ_d·Ω 보강 적용(기본 True; eq:dHeff)
-    z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = ξ_eq 5%)
+    z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = 미분 종 ξ(1−ξ) 정점 5% 컷)
     A_cap_RT : float           : 컷 affinity 상한 A ≤ A_cap_RT·RT (기본 4.0)
     """
 
@@ -440,7 +440,7 @@ class GraphiteAnodeDischargeDQDV:
         v_span = max(v_hi - v_lo, self.v_span_floor)
         n_work = max(self.n_work_min, V_n.size * 2)
 
-        # 작업 격자(꼬리 여유 — 저전위쪽 더 넓게: 꼬리가 양방향 모두 들어오도록)
+        # 작업 격자(꼬리 여유 — 기본 패딩 대칭 0.15/0.15: 꼬리가 양방향 모두 들어오도록)
         V_work = np.linspace(v_lo - self.grid_pad_lo * v_span, v_hi + self.grid_pad_hi * v_span, n_work)
         grid_step = V_work[1] - V_work[0]
 
@@ -641,14 +641,16 @@ LCO_MSMR_LIT = [
         #   U 에 놓이게 재보정(측정 OCV=총엔트로피 반영). ΔS_e 는 ∂U/∂T(가역열)에만 작용.
         # [v1.0.13 루프 B] 전자항을 물리 anchor(T1=MIT, x_MIT≈0.85 — Ch1 tab:lco-staging)
         #   dict 로 재정렬(구판은 중간 dict x_MIT=0.50 tier-C 시연 배정).
+        #   역산 상수 = 본 모듈 F=96485.0 (CODATA 96485.332 로 역산하면 −391017.4,
+        #   순전파 U(298) +13 μV 어긋남 — 코드 자체 상수 기준으로 정합).
         'U': 3.930, 'w': 0.030, 'Q': 0.55,
-        'dH_rxn': -391017.4, 'dS_rxn': +6.0, 'n': 1.0,
+        'dH_rxn': -391016.1, 'dS_rxn': +6.0, 'n': 1.0,
         'electronic': True, 'x_center': 0.85,
         'g_max_eV': 13.0, 'x_MIT': 0.85, 'dx_MIT': 0.05,
     },
-    {   # order-disorder(≈3.880 V) — x≈0.5 (전자항 흡수 해제로 ΔH 재보정)
+    {   # order-disorder(≈3.880 V) — x≈0.5 (전자항 흡수 해제로 ΔH 재보정, F=96485.0 역산)
         'U': 3.880, 'w': 0.024, 'Q': 0.30,
-        'dH_rxn': -375555.7, 'dS_rxn': -4.0, 'n': 1.0,
+        'dH_rxn': -375554.4, 'dS_rxn': -4.0, 'n': 1.0,
     },
     {   # 고전위 곁가지(≈4.050 V) — x≈0.35
         'U': 4.050, 'w': 0.028, 'Q': 0.15,
