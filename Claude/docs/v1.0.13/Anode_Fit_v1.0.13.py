@@ -45,7 +45,7 @@
 #     · 평형 진행률 ξ_eq = logistic[ s(V_n−U)/w ]                   (eq:xieq/func_ksi_eq)
 #     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:belliden)
 #     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chid)
-#     · 지연 길이   L_q = (|I|h/Q_cell kB T)·e^{(ΔH_a^eff−χ_d A)/RT}/(1+e^{−A/RT})
+#     · 지연 길이   L_q = (|I|h/Q_cell kB T)·e^{(ΔH_a^eff−TΔS_a−χ_d A)/RT}/(1+e^{−A/RT})
 #                   L_V = |dV_n/dq|_qa · L_q                        (eq:Lqfull/eq:LV/func_L_q)
 #     · 유효장벽    ΔH_a^eff = ΔH_a − χ_d·Ω                         (eq:dHeff)
 #     · 꼬리        인과 지수기억 (eq:memory 합성곱) — σ_d 방향                (eq:peakshape)
@@ -309,7 +309,7 @@ class GraphiteAnodeDischargeDQDV:
     # ---- 폭 w (자유 피팅 파라미터: w|n 직접 지정, 없으면 n=1) ----------------
     def _width(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
         """전이 폭 w [V] = nRT/F(=func_w). w|n 직접 지정 우선, 없으면 n=1.
-        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — v12에서 제거.)"""
+        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)"""
         return func_w(T, self._n_factor(tr, T))
 
     # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chid) -----------
@@ -630,7 +630,8 @@ class GraphiteAnodeDischargeDQDV:
 
 # ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco-code ==============================
 #   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
-#   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화)·
+#   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화 — 평형·∂U/∂T 경로 한정,
+#   방향 작용처의 슬롯은 탈리튬화=+1 = LCO 충전, eq:lco-sigmaslot; curve 라벨은 자동 환산)·
 #   부호 골격 흑연 동일(Ch1 Part II sec:lco-map·sec:lco-direction). 전자항(MIT)은 'electronic' 전이에
 #   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
 #   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,

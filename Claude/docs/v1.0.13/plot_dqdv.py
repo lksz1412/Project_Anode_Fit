@@ -1,7 +1,7 @@
 """Anode_Fit 1.0.13 dQ/dV 개형 검증 플롯.
 
 use_w_eff 제거(v12=1.0.10) 후 코드가 *정상 종모양* dQ/dV 를 그리는지,
-radius `fig_bell_vs_spike.png` 식으로 4패널 생성·저장.
+4패널 생성·저장.
 (추측 아님 — Anode_Fit 모듈 실제 호출.)
 """
 from __future__ import annotations
@@ -51,7 +51,7 @@ def main() -> None:
 
     fig, ax = plt.subplots(2, 2, figsize=(15, 9))
     fig.suptitle(
-        "Anode_Fit 1.0.10 (use_w_eff removed) - dQ/dV bell shapes (code actual output)",
+        "Anode_Fit 1.0.13 - dQ/dV bell shapes (code actual output)",
         fontsize=13, fontweight="bold",
     )
 

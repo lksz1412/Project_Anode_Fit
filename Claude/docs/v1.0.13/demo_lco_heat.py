@@ -33,12 +33,12 @@ print(f"  비전자전이: dS_eff={float(lco._effective_dS_rxn(tr_n, 298.15)):.2
 graph = m.GraphiteAnodeDischargeDQDV(m.GRAPHITE_STAGING_LIT, x=0.5, Rn=0.01, Cbg=0.0)
 print(f"  흑연 base seam 항등: {float(graph._effective_dS_rxn(m.GRAPHITE_STAGING_LIT[0], 298.15)):.2f} (=dS_rxn +29.0)")
 
-print("=== 3. LCO dQ/dV 개형 (방전 σ_d=+1) ===")
+print("=== 3. LCO dQ/dV 개형 (충전=탈리튬화, s=+1 — eq:lco-sigmaslot) ===")
 Vc = np.linspace(3.75, 4.15, 1200)
 y_lco = np.asarray(lco.dqdv(Vc, T=298.15, I_abs=0.05, Q_cell=1.0, s=+1), dtype=float)
 peaks_V = [Vc[i] for i in range(1, len(Vc)-1) if y_lco[i] > y_lco[i-1] and y_lco[i] >= y_lco[i+1] and y_lco[i] > 0.5]
 print(f"  finite={np.all(np.isfinite(y_lco))} min={y_lco.min():.3f} max={y_lco.max():.3f}")
-print(f"  국소 피크 전위(≈전이 U): {[f'{v:.3f}' for v in peaks_V]}  (목표 3.880·3.930·4.050)")
+print(f"  국소 피크 전위: {[f'{v:.3f}' for v in peaks_V]}  (전이 U=3.880·3.930·4.050 — 폭 겹침으로 병합 피크, 분해하려면 w 축소)")
 
 print("=== 4. 가역 발열 q_rev = -I·T·dU/dT (T 한 번) ===")
 Vg = np.linspace(0.03, 0.34, 1000)
@@ -58,8 +58,8 @@ for I, lab in [(0.02, "0.02C"), (0.2, "0.2C"), (1.0, "1.0C")]:
 ax[0].set_title("(a) Graphite anode dQ/dV (discharge)"); ax[0].set_xlabel("V [V]"); ax[0].set_ylabel("dQ/dV"); ax[0].legend(fontsize=8)
 # (b) LCO dQ/dV
 for I, lab in [(0.02, "0.02C"), (0.05, "0.05C"), (0.2, "0.2C")]:
-    ax[1].plot(Vc, lco.dqdv(Vc, T=298.15, I_abs=I, Q_cell=1.0, s=+1), label=f"dis {lab}")
-ax[1].set_title("(b) LCO cathode dQ/dV (discharge, MSMR)"); ax[1].set_xlabel("V [V]"); ax[1].set_ylabel("dQ/dV"); ax[1].legend(fontsize=8)
+    ax[1].plot(Vc, lco.dqdv(Vc, T=298.15, I_abs=I, Q_cell=1.0, s=+1), label=f"chg {lab}")
+ax[1].set_title("(b) LCO cathode dQ/dV (charge = delithiation s=+1, MSMR)"); ax[1].set_xlabel("V [V]"); ax[1].set_ylabel("dQ/dV"); ax[1].legend(fontsize=8)
 # (c) q_rev
 ax[2].plot(Vg, qg, label="graphite q_rev", color="C0")
 ax[2].plot(Vc, ql, label="LCO q_rev", color="C3")

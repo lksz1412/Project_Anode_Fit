@@ -2,7 +2,7 @@
 
 > `Anode_Fit_v1.0.13.py`(흑연 음극 + LCO 양극 MSMR + 가역 발열)를 실측 dQ/dV·엔트로피 계수에 피팅하는 워크플로. 파라미터 tier·round-trip 절차·초기값/경계·수렴 판정 + **역방향 식별 사슬(S0–S5)·가정 울타리·잔차 진단표**(v5 §1.15 자산 선별 복원 — D3). 이론 근거 = Ch1(dQ/dV·LCO)·Ch2(발열). ★흑연 회귀 0-diff 는 피팅 전 과정 불변(LCO 편입이 흑연 경로 무섭동).
 
-## 0. 방향 규약 (★LCO 데이터 걸기 전 필독 — Ch1 sec:lco-peak 방향 슬롯 한정)
+## 0. 방향 규약 (★LCO 데이터 걸기 전 필독 — Ch1 sec:lco-direction, eq:lco-sigmaslot)
 
 - 모델의 방향 인자 σ_d 의 물리 내용은 셀 라벨이 아니라 **탈리튬화(산화) 진행 = +1** 이다(Ch1 eq:lco-sigmaslot). 흑연 음극 하프셀은 방전=탈리튬화라 라벨=물리가 겹치지만, **LCO 하프셀은 충전이 탈리튬화**다.
   - ★**v1.0.13 전극 인지 환산 구현**: `LCOCathodeDQDV.curve()` 는 셀 라벨을 그대로 받는다 — **LCO 충전 곡선 ↦ `direction="charge"`** 로 주면 내부에서 자동으로 σ_d=+1(탈리튬화)로 환산된다(`_delith_is_discharge=False`). 라벨을 손으로 뒤집어 넣지 말 것. 저수준 `dqdv(s=...)` 는 환산 없이 물리 부호(탈리튬화=+1)를 직접 받는다.
@@ -29,14 +29,14 @@
 
 - ★**LCO Ω_j 지위(B-3)**: `LCO_MSMR_LIT` 세 dict 전부 `'Omega'` 키 미배정 → 코드는 `Ω=0` 폴백으로 **히스 분기 비활성**. Ch1 §lco-hys 의 spinodal·gap 식은 Ω_j^cat 이 round-trip 으로 배정될 때를 위한 구조식이고, 두-상 거동은 **Ω_j^cat>2RT 로 피팅되는 전이에 한해** 발효된다. LCO 충·방전 pair 를 확보하기 전에는 tier-2 를 LCO 에 열지 말 것.
 - 가드: 코드 `_finite_pos`/`_finite_nonneg` 가 T·I·Q_cell·dict 값의 유한·부호를 fail-fast. bound(n>0·χ∈[0,1]·dVdq_qa>0·dx_MIT>0)는 fitting wrapper 스키마에서 별도 강제.
-- ★**ν(`min_lag_grid_steps`) 권고(D5)**: 기본값 2.0(보수)은 유지하되, **실측 rate-series 피팅 시 ν≈8–10 권장** — 꼬리 활성 문턱(`L_V < ν·ΔV_grid` 시 꼬리 off)의 이산 점프(~23% 급 L_V 불연속)를 완화한다. ν 는 이산화 가드 파라미터일 뿐 모델식(Eyring L_q·L_V)은 불변이며, 상향 시 흑연 회귀 해시가 의도적으로 변하므로 ledger 에 기록 후 재베이스라인.
+- ★**ν(`min_lag_grid_steps`) 권고(D5)**: 기본값 2.0(보수)은 유지하되, **실측 rate-series 피팅 시 ν≳10 권장**(닫힌꼴 점프 $1-(1/ν)/(e^{1/ν}-1)$: ν=2→~23%, ν=8→6.1%(5% 초과), ν=10→4.9% — Ch1 R3 정정) — 꼬리 활성 문턱(`L_V < ν·ΔV_grid` 시 꼬리 off)의 이산 점프를 완화한다. ν 는 이산화 가드 파라미터일 뿐 모델식(Eyring L_q·L_V)은 불변이며, 상향 시 흑연 회귀 해시가 의도적으로 변하므로 ledger 에 기록 후 재베이스라인.
 
 ## 2. Round-trip 절차 (5-Phase, 과식별 회피 = tier 단계 개방)
 
 - **Phase A — peak 골격**(저율 등온): tier-1(U_j 또는 ΔH/ΔS·n·Q·Cbg)만 개방. `equilibrium()` 또는 저율 `dqdv()`로 봉우리 위치·폭·면적 맞춤. 게이트: ΣQ_j∈[0.95,1.05]Q_total·U_j 순서. (= 식별 사슬 S1)
 - **Phase B — 히스·비대칭**(충·방전 pair): tier-2(Ω·γ·χ·Rn) 개방, tier-1 고정. 충전/방전 곡선 gap·분극 이동. (= S2+S5; LCO 는 §1 의 Ω 지위 주의 — pair 데이터 확보 전 개방 금지)
-- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3; ν≈8–10 권고 적용 지점)
-- **Phase D — 다온도·LCO 전자항**: tier-4(dS_rxn·dS_a) + LCO 전자항(g_max·x_MIT·dx) 개방. `entropy_coefficient()`·`reversible_heat()`를 다온도 엔트로피 계수에 맞춤. ★**전자항 dict 를 T1=MIT(최고 x·최저 V) 로 재정렬**(Ch1 tab:lco-staging, 현 시연은 중간 dict). ★다온도 시 `func_dSe_molar` 의 T 인자 전달로 Sommerfeld T-스케일 복원(현 T_ref 동결 근사 해제)·eq:U1T2 center-T_ref 별도적분(½=a_e/2F) 구현. (= S4; 고정점 1회 갱신은 초기 근사 — 수렴은 이 단계서 수치 확인, Ch1 §lco-code)
+- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3; ν≳10 권고 적용 지점)
+- **Phase D — 다온도·LCO 전자항**: tier-4(dS_rxn·dS_a) + LCO 전자항(g_max·x_MIT·dx) 개방. `entropy_coefficient()`·`reversible_heat()`를 다온도 엔트로피 계수에 맞춤. 전자항 dict 는 T1=MIT(x_MIT=0.85 물리 anchor)로 **재정렬 완료(v1.0.13 루프 B)** — Ch1 tab:lco-staging. ★다온도 시 `func_dSe_molar` 의 T 인자 전달로 Sommerfeld T-스케일 복원(현 T_ref 동결 근사 해제)·eq:U1T2 center-T_ref 별도적분(½=a_e/2F) 구현. (= S4; 고정점 1회 갱신은 초기 근사 — 수렴은 이 단계서 수치 확인, Ch1 §lco-code)
 - **Phase E — 검증**(holdout): 미사용 T·C-rate 에서 예측 vs 실측. **흑연 0-diff 회귀 assert**(LCO 편입 후에도 흑연 불변).
 
 ## 3. 역방향 식별 사슬 S0–S5 (비순환 — v5 §1.15 선별 복원)
@@ -76,7 +76,7 @@
 | 절편 T-의존 < 불확도 | 깊은 2상측 퇴화 | lumped Δ_j 강등(S5 규정) |
 | 전이별 gap 기울기 상이 | lumped R_n 위배(울타리 ⑦) | R_{n,j} 세분 |
 | S0 완화가 혼합형(두 모형 다 잔차) | 다공 전극의 확산·반응 혼재 | 판정 보류·EIS 병행 |
-| LCO 봉우리는 맞는데 rate/히스 거동이 반대 | **방향 규약 오적용(§0)** — 셀 라벨로 σ_d 부여 | LCO 충전 곡선 ↦ direction=+1 재확인 |
+| LCO 봉우리는 맞는데 rate/히스 거동이 반대 | **방향 규약 오적용(§0)** — 셀 라벨로 σ_d 부여 | LCO 충전 곡선 ↦ `curve(direction='charge')`(자동 σ_d=+1 환산) 또는 저수준 `dqdv(s=+1)` 재확인 — `curve(direction=+1)` 은 전극 인지 반전을 거쳐 σ_d=−1 이 되므로 금지 |
 
 ## 6. 수렴·물리제약 판정
 
@@ -93,6 +93,6 @@
 - **V3** q_rev(V) 흡·발열 교대(ΔS 부호전환 음영) — eq:qrev 부호규약.
 - **V4** ∂U/∂T 완전식 vs 단순식 vs FD — 파생 A 수치검증(config 항·완전식≈FD; 전제 = w=nRT/F 서식, Ch2 파생A srcbox 조건부).
 - **V5** 온도의존 peak 이동(258–318K) — U_j(T)=ΔS/F 이동.
-- **V6** 전자항 골 ΔS_e(x) (x_MIT=0.50 vs 0.85 오버레이) — eq:dSegate·x_MIT 불일치 실증.
+- **V6** 전자항 골 ΔS_e(x) (x_MIT=0.50 vs 0.85 오버레이) — eq:dSegate·구판 시연(0.50) 대비 물리 anchor(0.85) 참조 오버레이.
 - **V7** 다온도 T² 곡률(선형 기준선 + eq:U1T2 예상곡률) — ★현 동결근사=선형, 다온도 피팅 구현 후 유효(오도 방지 주의).
 - **V9** 면적보존 회귀(∫dQdV dV vs Q_j) — eq:eqpeak 면적=Q.

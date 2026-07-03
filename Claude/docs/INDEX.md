@@ -12,7 +12,7 @@
 | v1.0.13/graphite_ica_ch1_v1.0.13.tex | Ch1 v1.0.13(50p, 0-err·overfull 0) — Part 0(eq:sm-* 24·TikZ 3)+Part I 순수 흑연+Part II LCO 단일 우산(eq:lco-sigmaslot·fig:lco-dirmap)·C-1 Δμ=+sF(V−U) 정정 | 1.0.13, Part 0, 통계역학, Part II, sigmaslot, 재구조화 | 2026-07-03 |
 | v1.0.13/graphite_ica_ch2_v1.0.13.tex | Ch2 v1.0.13(14p) — FD 약자 분리·Part 0 교차참조·C-2 각주·revheat/weff 압축·코너(corner case) 병기 | 1.0.13, Ch2, FD, revheat, weff | 2026-07-03 |
 | v1.0.13/Anode_Fit_v1.0.13.py | 코드 v1.0.13 — curve() 전극 인지 σ_d 환산(_delith_is_discharge)·LCO 전자항 T1(x_MIT 0.85) 재정렬·회귀 verify 13/13(golden 프로젝트 내) | 1.0.13, 코드, 전극 인지, T1 재정렬, golden | 2026-07-03 |
-| v1.0.13/FITTING_GUIDE.md | 가이드 v1.0.13 — §0 전극 인지 규약(charge 라벨 그대로)·전자항 0.85 정렬 반영·S0-S5 승계 | 피팅, 가이드, 전극 인지, x_MIT 0.85 | 2026-07-03 |
+| v1.0.13/FITTING_GUIDE.md | 가이드 v1.0.13 — §0 전극 인지 규약(charge 라벨 그대로·`direction=+1` 처방 금지 명시)·ν≳10 정정(닫힌꼴, R3)·전자항 0.85 재정렬 완료 반영·S0-S5 승계 | 피팅, 가이드, 전극 인지, x_MIT 0.85, ν, min_lag_grid_steps | 2026-07-03 |
 | v1.0.13/sample_test_v1013.py (+.png) | 샘플 2×2 — T1 재정렬 반영(anchor=demo=0.85)·glyph 0 재검증 | 샘플, 데모, x_MIT | 2026-07-03 |
 
 ## 구버전 문건 — release 1.0.12 (직전 안정판)
