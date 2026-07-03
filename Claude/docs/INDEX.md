@@ -4,8 +4,8 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## ★진행 중 — v1.0.13 (통계역학-first 재구조화, 2026-07-03 야간 작업 중)
-> `v1.0.13/` = 사용자 지적 7건 반영판(작업 중 — P5 검수 라운드 진행): Part 0 통계역학 기초 신설·LCO 전부 후방 Part II 통합·산문 압축·용어 영어 원어 정책·overfull 0·문건-코드 루프(σ_d 전극 인지·전자항 T1=0.85 재정렬). 마스터플랜 = `../plans/2026-07-02-v1013-restructure-master-plan.md`.
+## ★현행 릴리스 — v1.0.13 (통계역학-first 재구조화, 2026-07-04 완주)
+> `v1.0.13/` = 사용자 지적 7건 반영판(**P1~P6.1 완주** — Fable 10회 가변-청크 검수 종결, 물리 실결함 3건 정정): Part 0 통계역학 기초 신설·LCO 전부 후방 Part II 통합·산문 압축·용어 영어 원어 정책·overfull 0·문건-코드 루프(σ_d 전극 인지·전자항 T1=0.85 재정렬·스칼라 평형 강제·'w'-단독 config 게이트). 마스터플랜 = `../plans/2026-07-02-v1013-restructure-master-plan.md` · 결과 = `../results/V1013_RESULT.md` · 인계 = `v1.0.13/HANDOVER_v1.0.13.md`.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
 |---|---|---|---|
@@ -13,7 +13,9 @@
 | v1.0.13/graphite_ica_ch2_v1.0.13.tex | Ch2 v1.0.13(14p) — FD 약자 분리·Part 0 교차참조·C-2 각주·revheat/weff 압축·코너(corner case) 병기 | 1.0.13, Ch2, FD, revheat, weff | 2026-07-03 |
 | v1.0.13/Anode_Fit_v1.0.13.py | 코드 v1.0.13 — curve() 전극 인지 σ_d 환산(_delith_is_discharge)·LCO 전자항 T1(x_MIT 0.85) 재정렬·회귀 verify 13/13(golden 프로젝트 내) | 1.0.13, 코드, 전극 인지, T1 재정렬, golden | 2026-07-03 |
 | v1.0.13/FITTING_GUIDE.md | 가이드 v1.0.13 — §0 전극 인지 규약(charge 라벨 그대로·`direction=+1` 처방 금지 명시)·ν≳10 정정(닫힌꼴, R3)·전자항 0.85 재정렬 완료 반영·§7 suite V1-V9 완비(graph_suite 는 이식 전 v1.0.10 소재 표기)·S0-S5 승계 | 피팅, 가이드, 전극 인지, x_MIT 0.85, ν, graph_suite | 2026-07-03 |
-| v1.0.13/sample_test_v1013.py (+.png) | 샘플 2×2 — T1 재정렬 반영(anchor=demo=0.85)·glyph 0 재검증 | 샘플, 데모, x_MIT | 2026-07-03 |
+| v1.0.13/sample_test_v1013.py (+.png) | 샘플 2×2 — T1 재정렬 반영(anchor=demo=0.85)·(c) Bernardi 라벨 병기·glyph 0 재검증 | 샘플, 데모, x_MIT | 2026-07-04 |
+| v1.0.13/HANDOVER_v1.0.13.md | v1.0.13 완주 세션 인계 — Chain(v1.0.11→v1.0.12→본), 지시 전문·작업 요약·부호 함정 3종 주의·이월 4건 | 핸드오버, 인계, chain, 부호 함정 | 2026-07-04 |
+| v1.0.13/graph_suite_v1013.py | V1-V9 검증 suite v1.0.13 이식(v1.0.10 유래 — CODE·figs 경로 현행화) | suite, V8, 검증 그래프 | 2026-07-04 |
 
 ## 구버전 문건 — release 1.0.12 (직전 안정판)
 > ★1.0.12 = `v1.0.12/` 한 폴더 증판본(Ch1+Ch2+코드+가이드+데모, 코드 matched). Fable 5대 지시 산출: 감사(`Fable_점검/`)→N=10 경쟁 작성·체리픽·검수 union·10차 재검(verify10)→finalizer 3커밋. 구 1.0.10 블록은 아래 유지(superseded).
