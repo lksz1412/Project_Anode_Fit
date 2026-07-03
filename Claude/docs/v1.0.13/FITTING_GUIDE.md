@@ -87,7 +87,7 @@
 
 ## 7. 그래프 suite (검증·복원)
 
-기존: `plot_dqdv.py`(흑연 4패널)·`demo_lco_heat.py`(흑연/LCO dQdV+q_rev)·`sample_test_v1013.py`(2×2 종합 데모) = PASS. 신규 validation suite `graph_suite_p5.py`:
+기존: `plot_dqdv.py`(흑연 4패널)·`demo_lco_heat.py`(흑연/LCO dQdV+q_rev)·`sample_test_v1013.py`(2×2 종합 데모) = PASS. 신규 validation suite `graph_suite_p5.py`(★현재 v1.0.10 폴더 소재·v1.0.10 코드 import — v1.0.13 이식 전):
 - **V1** 흑연+LCO dQ/dV 나란히 — MSMR 동형, 두 전극 한 프레임.
 - **V2** round-trip 복원 parity(입력 ΔS → forward U_j(T) → 회귀 ΔŜ, y=x) — ★FD round-trip 수치 무결 가드(ΔS↔∂U/∂T 정의 정합; 잡음 데이터 통계적 식별성 증명 아님 — 통계적 식별성은 §3 round-trip 잡음 주입이 담당).
 - **V3** q_rev(V) 흡·발열 교대(ΔS 부호전환 음영) — eq:qrev 부호규약.
@@ -95,4 +95,5 @@
 - **V5** 온도의존 peak 이동(258–318K) — U_j(T)=ΔS/F 이동.
 - **V6** 전자항 골 ΔS_e(x) (x_MIT=0.50 vs 0.85 오버레이) — eq:dSegate·구판 시연(0.50) 대비 물리 anchor(0.85) 참조 오버레이.
 - **V7** 다온도 T² 곡률(선형 기준선 + eq:U1T2 예상곡률) — ★현 동결근사=선형, 다온도 피팅 구현 후 유효(오도 방지 주의).
+- **V8** LCO q_rev 전자전이 서명 — eq:dSegate 골의 발열 흔적.
 - **V9** 면적보존 회귀(∫dQdV dV vs Q_j) — eq:eqpeak 면적=Q.

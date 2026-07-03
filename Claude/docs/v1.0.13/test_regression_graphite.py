@@ -1,6 +1,6 @@
 """P4 흑연 회귀 하네스 — 편입 前 골든 캡처 / 편입 後 byte 일치 검증.
 사용: python test_regression_graphite.py capture   (편입 前)
-      python p4_regression.py verify    (편입 後, np.array_equal bit 일치)
+      python test_regression_graphite.py verify    (편입 後, np.array_equal bit 일치)
 """
 import sys, importlib.util, hashlib
 try:
@@ -56,6 +56,8 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "verify"
     m = load()
     out = graphite_outputs(m)
+    if mode not in ("capture", "verify"):
+        print(f"unknown mode: {mode!r} (capture|verify)"); sys.exit(2)
     if mode == "capture":
         np.savez(GOLD, **out)
         print(f"GOLDEN CAPTURED: {len(out)} arrays -> {GOLD}")

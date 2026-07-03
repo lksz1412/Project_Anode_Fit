@@ -404,7 +404,8 @@ class GraphiteAnodeDischargeDQDV:
              s: int = +1) -> ScalarOrArray:
         """관측 dQ/dV (eq:vn 분극 → eq:sum 합산).
 
-        V_app  : 인가 전위 격자 [V] (스칼라 또는 배열)
+        V_app  : 인가 전위 격자 [V] (스칼라 또는 배열; 스칼라·단일점은 스윕 이력이
+                 없어 꼬리 미적용 — 평형 분기 강제. 동역학 꼬리는 배열 스윕에서만)
         T      : 온도 [K] (스칼라 등온, 또는 V_app 길이 배열 = 비등온 T(V))
         I_abs  : 전류 크기 |I| (>= 0)
         Q_cell : 셀 용량(전하) — q=Q/Q_cell 환산 (> 0)
@@ -437,6 +438,11 @@ class GraphiteAnodeDischargeDQDV:
         V_n = V_in - sigma_d * I_abs * self.Rn
 
         v_lo, v_hi = float(np.min(V_n)), float(np.max(V_n))
+        # 퇴화 스팬 가드: 스칼라·단일점 입력은 스윕 이력이 없어 인과 꼬리를 정의할 수 없다.
+        #   floor 스팬(1e-6 V) 위 작업 격자는 grid_step 이 인위적으로 작아져 꼬리 분기
+        #   (L_V < ν·Δ_grid)가 그리드-의존으로 뒤집히므로, 이 경우 평형 분기를 강제한다
+        #   (배열 스윕 경로는 불변 — 흑연 회귀 bit-exact 유지).
+        degenerate_span = (v_hi - v_lo) < self.v_span_floor
         v_span = max(v_hi - v_lo, self.v_span_floor)
         n_work = max(self.n_work_min, V_n.size * 2)
 
@@ -488,8 +494,8 @@ class GraphiteAnodeDischargeDQDV:
             lag_len_V = self._resolve_lag_length(
                 tr, T_rep, I_abs, Q_cell, n_rep, sigma_d)
 
-            if (not np.isfinite(lag_len_V)) or lag_len_V < self.min_lag_grid_steps * grid_step:
-                # 저율·|I|→0·동역학 키 부재 → 지연 sub-grid → 평형 종 직접(eq:eqpeak)
+            if degenerate_span or (not np.isfinite(lag_len_V)) or lag_len_V < self.min_lag_grid_steps * grid_step:
+                # 저율·|I|→0·동역학 키 부재·퇴화 스팬(스칼라 입력) → 평형 종 직접(eq:eqpeak)
                 peak_shape = ksi_eq * (1.0 - ksi_eq) / w
             else:
                 ksi_arr = np.asarray(ksi_eq, dtype=float)
@@ -560,6 +566,8 @@ class GraphiteAnodeDischargeDQDV:
         관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
         ★config 항 계수 = ∂w_j/∂T = n_j·R/F (v1.0.13 R2 정정 — 구판은 R/F 로 n_j=1 특수형;
           기본 데이터셋 n_j=1.0 에서는 수치 동일(bit-exact), n_j≠1 피팅 시에만 발현).
+        ★config 항은 폭의 열적 서식 w=nRT/F('n' 키 경로) 전제 — 'w'-단독 전이는 폭이
+          T-동결(∂w/∂T=0)이라 config 항을 가산하지 않는다(단순식이 옳음, Ch2 파생 A srcbox).
         첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
         봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
         w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
@@ -584,7 +592,12 @@ class GraphiteAnodeDischargeDQDV:
             xi = np.asarray(func_ksi_eq(T, V, U_j, n_j), dtype=float)
             g = xi * (1.0 - xi) / w
             xi_c = np.clip(xi, eps, 1.0 - eps)
-            config = (n_j * R / F) * np.log(xi_c / (1.0 - xi_c))
+            if tr.get('n') is not None:
+                # 열적 폭 w=nRT/F: ∂w/∂T = n·R/F → config 항 가산 (Ch2 eq:dxidT 둘째 조각)
+                config = (n_j * R / F) * np.log(xi_c / (1.0 - xi_c))
+            else:
+                # 'w'-단독 = T-동결 폭: ∂w/∂T = 0 → config 항 없음 (단순식)
+                config = 0.0
             Qg = tr['Q'] * g
             num = num + Qg * (dS_eff / F + config)
             den = den + Qg
@@ -597,6 +610,9 @@ class GraphiteAnodeDischargeDQDV:
 
         ∂U_oc/∂T 가 이미 [V/K] 이므로 −I·T·(∂U/∂T) 로 T 는 한 번만 곱한다(T² 금지).
         방전 I>0: ΔS>0(∂U/∂T>0) → q_rev<0 흡열 / ΔS<0(∂U/∂T<0) → 발열(Ch2 부호규약).
+        ★라벨 층위 주의: 이 '방전(I>0)'은 Bernardi 셀-수지 라벨(흑연 하프셀 = 리튬화)로,
+          curve() 의 direction='discharge'(σ_d=+1, 탈리튬화)와 반대 화학 방향이다 —
+          부호는 라벨이 아니라 전류 부호 I 로 읽는다(Ch2 eq:qrev 라벨 층위 주의).
         """
         T = _finite_pos("T", T)
         return -float(I) * T * self.entropy_coefficient(V_n, T)

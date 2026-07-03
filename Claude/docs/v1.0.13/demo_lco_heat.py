@@ -38,7 +38,7 @@ Vc = np.linspace(3.75, 4.15, 1200)
 y_lco = np.asarray(lco.dqdv(Vc, T=298.15, I_abs=0.05, Q_cell=1.0, s=+1), dtype=float)
 peaks_V = [Vc[i] for i in range(1, len(Vc)-1) if y_lco[i] > y_lco[i-1] and y_lco[i] >= y_lco[i+1] and y_lco[i] > 0.5]
 print(f"  finite={np.all(np.isfinite(y_lco))} min={y_lco.min():.3f} max={y_lco.max():.3f}")
-print(f"  국소 피크 전위: {[f'{v:.3f}' for v in peaks_V]}  (전이 U=3.880·3.930·4.050 — 폭 겹침으로 병합 피크, 분해하려면 w 축소)")
+print(f"  국소 피크 전위: {[f'{v:.3f}' for v in peaks_V]}  (전이 U=3.880·3.930·4.050 — 폭 겹침으로 병합 피크, 분해하려면 n 축소(또는 'n' 제거 후 w))")
 
 print("=== 4. 가역 발열 q_rev = -I·T·dU/dT (T 한 번) ===")
 Vg = np.linspace(0.03, 0.34, 1000)
@@ -46,7 +46,8 @@ qg = np.asarray(graph.reversible_heat(Vg, T=298.15, I=1.0), dtype=float)
 ql = np.asarray(lco.reversible_heat(Vc, T=298.15, I=1.0), dtype=float)
 print(f"  흑연 q_rev: finite={np.all(np.isfinite(qg))} range=[{qg.min():.4f},{qg.max():.4f}] W")
 print(f"  LCO  q_rev: finite={np.all(np.isfinite(ql))} range=[{ql.min():.4f},{ql.max():.4f}] W")
-# 부호: dU/dT = -q_rev/(I·T). 방전 I>0, dU/dT>0(ΔS>0)→흡열 q<0
+# 부호: dU/dT = -q_rev/(I·T). 방전 I>0(★Bernardi 셀 라벨 — 흑연 하프셀=리튬화,
+#   curve 의 direction='discharge'(탈리튬화)와 반대 방향), dU/dT>0(ΔS>0)→흡열 q<0
 dUdT_g = np.asarray(graph.entropy_coefficient(Vg, 298.15))
 print(f"  흑연 dU/dT range=[{dUdT_g.min()*1e3:.3f},{dUdT_g.max()*1e3:.3f}] mV/K")
 
@@ -64,7 +65,7 @@ ax[1].set_title("(b) LCO cathode dQ/dV (charge = delithiation s=+1, MSMR)"); ax[
 ax[2].plot(Vg, qg, label="graphite q_rev", color="C0")
 ax[2].plot(Vc, ql, label="LCO q_rev", color="C3")
 ax[2].axhline(0, color="k", lw=0.5, ls=":")
-ax[2].set_title("(c) reversible heat q_rev = -I T dU/dT"); ax[2].set_xlabel("V [V]"); ax[2].set_ylabel("q_rev [W]"); ax[2].legend(fontsize=8)
+ax[2].set_title("(c) q_rev = -I T dU/dT (I>0 = cell discharge; graphite: lithiation)"); ax[2].set_xlabel("V [V]"); ax[2].set_ylabel("q_rev [W]"); ax[2].legend(fontsize=8)
 plt.tight_layout()
 out = FIGS + r"\P4_lco_heat_validation.png"
 plt.savefig(out, dpi=110)
