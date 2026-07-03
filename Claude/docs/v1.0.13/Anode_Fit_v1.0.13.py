@@ -42,7 +42,7 @@
 #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
 #     · 분기 중심   U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys                (eq:Ubranch)
 #     · 폭          w = nRT/F  — 두-상 전이에선 현상학적 자유 피팅 폭  (eq:wbase/func_w)
-#     · 평형 점유   ξ_eq = logistic[ s(V_n−U)/w ]                   (eq:xieq/func_ksi_eq)
+#     · 평형 진행률 ξ_eq = logistic[ s(V_n−U)/w ]                   (eq:xieq/func_ksi_eq)
 #     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:belliden)
 #     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chid)
 #     · 지연 길이   L_q = (|I|h/Q_cell kB T)·e^{(ΔH_a^eff−χ_d A)/RT}/(1+e^{−A/RT})
@@ -480,7 +480,7 @@ class GraphiteAnodeDischargeDQDV:
 
             n_j = self._n_factor(tr, T_work)
             w = self._width(tr, T_work)
-            # 평형 점유 ξ_eq — 방향 s 는 logistic 부호. 분기중심 center 사용.
+            # 평형 진행률 ξ_eq — 방향 s 는 logistic 부호. 분기중심 center 사용.
             ksi_eq = func_ksi_eq(T_work, V_work, center, n_j, sigma_d)
 
             # 지연 길이 — 전이당 상수(대표 T_rep·대표 n)로 1회. χ_d·ΔH_eff 방향별.
@@ -563,7 +563,7 @@ class GraphiteAnodeDischargeDQDV:
         첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
         봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
         w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
-        다른 산출(직교; 이중계산 아님). 평형 점유 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
+        다른 산출(직교; 이중계산 아님). 평형 진행률 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
         (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
         전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
         """
