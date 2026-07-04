@@ -3,7 +3,8 @@
 %   상분리의 열역학: 혼합 자유에너지·공통접선(binodal)·spinodal·Maxwell
 %   construction·핵생성 vs spinodal 분해 — 사전지식 없는 독자를 위한 자족적 유도.
 %   지위: ★독립 초안 — 본문(Ch1) 편입 여부는 사용자 검토 후 결정(계획 Step 7).
-%   기호는 본문 Part 0 과 동일(ξ = 조성/점유율, Ω = 상호작용 파라미터).
+%   ★기호 배향 주의: 본 부록 ξ = B(Li 점유) 자리 분율 = 본문 θ(점유율)에 해당.
+%   본문 진행률 ξ(=1−θ)와는 여집합 — f 는 우함수라 결과 동일, 1계 미분은 부호 반전.
 %   본문 참조는 라벨이 아니라 절 번호 텍스트로만 적는다(독립 컴파일 유지).
 %   build: xelatex -interaction=nonstopmode 2-pass (kotex).
 % ====================================================================
@@ -51,8 +52,13 @@
 같은 내용을 화학퍼텐셜 곡선의 언어로 옮기면 Maxwell construction 의 등면적 규칙이
 된다(\S\ref{app:maxwell}). 마지막으로 준안정 영역과 불안정 영역에서 상분리가 실제로 진행되는 두
 동역학 경로, 곧 핵생성(nucleation)과 spinodal 분해(spinodal decomposition)를
-구분한다(\S\ref{app:kinetics}). 기호는 본문 Part 0 과 동일하게 맞춘다: $\xi$ 는 조성(삽입 전극에서는
-자리 점유율 또는 전이 진행률), $\Omega$ 는 상호작용 파라미터[J/mol]이다.
+구분한다(\S\ref{app:kinetics}). 기호에 관해 한 가지를 명확히 해 둔다. 본 부록의 $\xi$ 는 B 성분(삽입
+전극에서는 Li 이 점유한 자리)의 분율, 곧 본문 Part 0 의 \emph{점유율} $\theta$ 에 해당하며, 본문의 전이
+진행률 $\xi(=1-\theta)$ 와는 여집합 관계다. 혼합 자유에너지 $f$ 는 우함수 대칭 $f(\xi)=f(1-\xi)$ 을
+가지므로 binodal$\cdot$spinodal$\cdot$Maxwell 의 모든 결과는 두 좌표에서 동일하지만, 1계
+미분(화학퍼텐셜, 나아가 전위 결선)은 반대칭 $f'(1-\xi)=-f'(\xi)$ 이라 부호가 뒤집힌다 --- 본문
+\S1.5 가 그 부호 처리를 우함수 대칭 논거로 닫고 있으므로, 본 부록의 $\mu(\xi)$ 를 본문의 진행률 좌표에
+옮길 때는 그 논거를 따라야 한다. $\Omega$ 는 본문과 동일한 상호작용 파라미터[J/mol]이다.
 
 \section{혼합 자유에너지 곡선 --- 격자 모형으로부터의 유도}\label{app:mixfe}
 
@@ -93,7 +99,8 @@ U_\mathrm{mix}
 Avogadro 수)로 정의하면 몰당 혼합 에너지는 $\Omega\,\xi(1-\xi)$ 이고, $\Omega>0$ 는 동종 쌍 선호,
 곧 상분리 경향을 뜻한다.
 
-\textbf{(d) 박스 --- 정규 용액 자유에너지.} 두 결과를 $g=u-Ts$ 로 묶으면 몰당 혼합 자유에너지는
+\textbf{(d) 박스 --- 정규 용액 자유에너지.} 두 결과를 $f=u_\mathrm{mix}-Ts_\mathrm{mix}$ 로 묶으면
+몰당 혼합 자유에너지는
 \begin{equation}
 \boxed{\;f(\xi)=RT\bigl[\xi\ln\xi+(1-\xi)\ln(1-\xi)\bigr]+\Omega\,\xi(1-\xi)\;}
 \label{eq:app-fxi}
@@ -452,8 +459,9 @@ $\Omega=2RT$ 는 Part 0(\S1.2)의 자유에너지 및 문턱식과 동일하며,
 왜 비볼록이면 분해가 이득인지(\S\ref{app:chord}), 분해의 종착 조성이 무엇인지(\S\ref{app:binodal})
 --- 를 채운다. 둘째, spinodal 닫힌 근 식~\eqref{eq:app-spinodal} 은 \S1.5 가 히스테리시스 gap 의
 상한을 닫을 때 쓰는 근과 같은 식이다. 셋째, Maxwell construction(\S\ref{app:maxwell})은 두-상
-plateau 가 단일 평형 전위로 나타나는 근거이자, 실측 곡선이 그 전위에 델타로 모이지 않는 이유(준안정
-가지 과주행)를 진술할 기준선이다. 넷째, 핵생성 대 spinodal 분해의 구분(\S\ref{app:kinetics})은 본문
+plateau 가 단일 평형 전위로 나타나는 근거이자, 실측 plateau \emph{전위가 그 Maxwell 전위에서
+벗어나는} 이유(준안정 가지 과주행 --- 히스테리시스 분기)를 진술할 기준선이다; 봉우리의 유한
+\emph{폭}의 기원은 별개의 질문으로, 본문 broadening 절의 소관이다. 넷째, 핵생성 대 spinodal 분해의 구분(\S\ref{app:kinetics})은 본문
 범위 밖의 동역학이지만, ``spinodal 까지 과주행한다'' 는 \S1.5 의 서술이 어떤 동역학적 그림을
 전제하는지 --- 준안정 가지에서 핵생성이 지수 억제로 지연되는 동안 소인이 전위를 계속 옮긴다는 것 ---
 를 물리적으로 뒷받침한다.
