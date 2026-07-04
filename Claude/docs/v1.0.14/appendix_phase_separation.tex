@@ -51,7 +51,7 @@
 같은 내용을 화학퍼텐셜 곡선의 언어로 옮기면 Maxwell construction 의 등면적 규칙이
 된다(\S\ref{app:maxwell}). 마지막으로 준안정 영역과 불안정 영역에서 상분리가 실제로 진행되는 두
 동역학 경로, 곧 핵생성(nucleation)과 spinodal 분해(spinodal decomposition)를
-구분한다(\S\ref{app:kinetics}). 전개의 표준적 원천은 상전이 교과서 [A3]·[A4] 와 열역학 동역학 교과서
+구분한다(\S\ref{app:kinetics}). 전개의 표준적 원천은 상전이 교과서 [A3]·[A4] 와 재료 동역학(kinetics) 교과서
 [A5] 이며, 절별 1차 문헌은 해당 자리에 표기한다. 기호에 관해 한 가지를 명확히 해 둔다. 본 부록의 $\xi$ 는 B 성분(삽입
 전극에서는 Li 이 점유한 자리)의 분율, 곧 본문 Part 0 의 \emph{점유율} $\theta$ 에 해당하며, 본문의 전이
 진행률 $\xi(=1-\theta)$ 와는 여집합 관계다. 혼합 자유에너지 $f$ 는 우함수 대칭 $f(\xi)=f(1-\xi)$ 을
@@ -250,8 +250,8 @@ f''(\xi)=\frac{RT}{\xi(1-\xi)}-2\Omega=0
 $T/T_c=4\xi(1-\xi)$ 의 포물선형 곡선이고, 역시 꼭대기 $(\tfrac12,\,T_c)$ 에서 binodal 과 만난다.
 
 \textbf{(c) 중간식 --- 세 영역의 분류.} binodal 과 spinodal 은 임계점에서만 만나고 그 아래 온도에서는
-binodal 이 바깥, spinodal 이 안쪽에 놓인다(그림~\ref{fig:app-phasediag} 의 상평형도 --- $\Omega=3RT$
-등온선의 네 교점이 그림~\ref{fig:app-tangent} 의 $\xi_b^\pm,\xi_s^\pm$ 과 같은 값이다). 이는 두 판정의 논리적 포함 관계의 기하적 표현이다:
+binodal 이 바깥, spinodal 이 안쪽에 놓인다(그림~\ref{fig:app-phasediag} 의 상평형도가 이 포함 관계를
+온도 축 전체에서 보인다). 이는 두 판정의 논리적 포함 관계의 기하적 표현이다:
 국소 불안정($f''<0$)이면 반드시 전역 불안정이지만, 전역 불안정이어도 국소적으로는 안정할 수 있다.
 따라서 조성 축은 세 영역으로 나뉜다.
 \begin{center}
@@ -397,7 +397,8 @@ gap 의 상한이 된다.
 
 \textbf{(a) 출발 --- 유한 요동의 비용과 이득.} 준안정 영역에서는 $f''>0$ 이므로 무한소 요동은 모두
 되돌아간다. 분해가 시작되려면 새 상의 작은 영역(핵)이 유한 크기로 생겨야 하는데(고전 핵생성 이론 [A3]·[A5]), 핵의
-부피는 자유에너지를 낮추지만($\Delta g_v<0$, 단위 부피당 구동력) 모상과의 계면은 계면 에너지
+부피는 자유에너지를 낮추지만($\Delta g_v<0$ — 앞 절들의 몰당 분해 이득을 부피당으로 환산한 구동력
+$\Delta g_v\simeq\Delta f_\mathrm{sep}/v_m$, $v_m$ = 몰부피) 모상과의 계면은 계면 에너지
 $\gamma$[J/m$^2$]만큼 비용을 문다. 반지름 $r$ 의 구형 핵에 대해
 \begin{equation}
 \Delta G(r)=\frac{4}{3}\pi r^3\,\Delta g_v+4\pi r^2\gamma
@@ -413,7 +414,8 @@ r^\ast=\frac{2\gamma}{|\Delta g_v|}\,,\qquad
 \end{equation}
 을 얻는다. $r<r^\ast$ 인 핵은 계면 비용이 지배하여 녹아 없어지고, $r>r^\ast$ 인 핵만 성장한다. 핵생성
 속도는 열적 요동이 이 장벽을 넘는 빈도이므로 $\propto\exp(-\Delta G^\ast/k_BT)$ 로 지수 억제되며,
-구동력 $|\Delta g_v|$ 가 작은 binodal 근처에서는 $\Delta G^\ast\propto|\Delta g_v|^{-2}$ 가 발산하여
+binodal 접점에서 $\Delta f_\mathrm{sep}\to0$(\S\ref{app:chord} 의 박스)이라 그 근처에서
+$|\Delta g_v|\to0$ 이 되고 $\Delta G^\ast\propto|\Delta g_v|^{-2}$ 가 발산하여
 분해가 사실상 일어나지 않는다. 준안정 상태가 실험적으로 오래 관찰되는 이유가 이것이다.
 
 \subsection{불안정 영역 --- spinodal 분해}\label{app:spindecomp}

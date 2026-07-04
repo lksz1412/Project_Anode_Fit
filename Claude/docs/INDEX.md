@@ -13,7 +13,8 @@
 | v1.0.14/graphite_ica_ch2_v1.0.14.tex | Ch2 v1.0.14(14p) — Ξ₁ 기호 통일·q(T) 흡수 각주·vib 단일 자리 원형 연결·msmr 키 구분 주석 | 1.0.14, Ch2, Ξ₁, vib | 2026-07-04 |
 | v1.0.14/appendix_phase_separation.tex | ★독립 초안(8p) — binodal·spinodal·Maxwell·핵생성/CH 분해 자족 유도+그림 2·ξ=θ 배향 주의 — **편입/폐기 사용자 검토 대기** | spinodal, binodal, Maxwell, 핵생성, 부록 초안 | 2026-07-04 |
 | v1.0.14/Anode_Fit_v1.0.14.py | 코드 v1.0.14 — docstring eq 참조 보강(원형 보존 구역 불변)·회귀 13/13 | 1.0.14, 코드, eq 참조 | 2026-07-04 |
-| v1.0.14/FITTING_GUIDE.md | 가이드 v1.0.14 — §7 graph_suite_v1014 이식 완료 반영 | 피팅, 가이드, graph_suite | 2026-07-04 |
+| v1.0.14/FITTING_GUIDE.md | 가이드 v1.0.14 — Ω 하한 정정(≥0, 조건부 발효)·dS_rxn silent 트랩 고지·Phase C 사구간/문턱 수치·s_I→σ_d·내부 이력 표지 제거·§7 suite 이식 완료 | 피팅, 가이드, Ω 하한, silent 트랩, graph_suite | 2026-07-04 |
+| v1.0.14/figs/ | graph_suite_v1014 산출 png(V1–V9 검증 패널) | 검증 그래프, suite 산출 | 2026-07-04 |
 
 ## ★현행 릴리스 — v1.0.13 (통계역학-first 재구조화, 2026-07-04 완주)
 > `v1.0.13/` = 사용자 지적 7건 반영판(**P1~P6.1 완주** — Fable 10회 가변-청크 검수 종결, 물리 실결함 3건 정정): Part 0 통계역학 기초 신설·LCO 전부 후방 Part II 통합·산문 압축·용어 영어 원어 정책·overfull 0·문건-코드 루프(σ_d 전극 인지·전자항 T1=0.85 재정렬·스칼라 평형 강제·'w'-단독 config 게이트). 마스터플랜 = `../plans/2026-07-02-v1013-restructure-master-plan.md` · 결과 = `../results/V1013_RESULT.md` · 인계 = `v1.0.13/HANDOVER_v1.0.13.md`.

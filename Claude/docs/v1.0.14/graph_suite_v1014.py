@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """v1.0.14 그래프 suite — 검증·복원 (V1-V9 핵심 패널). 이론 근거 Ch1·Ch2 (v1.0.14).
 
-[이식 유래] docs/v1.0.10/graph_suite_p5.py (P5 산출) 를 v1.0.14 으로 이식(P6.1).
+[이식 유래] docs/v1.0.10/graph_suite_p5.py (P5 산출) → v1.0.13(graph_suite_v1013.py, v1.0.13 P6.1 이식)
+→ v1.0.14 승계(본 파일 — v1.0.14 P1.1 복사 후 버전 문자열 현행화).
 로직 무변경 원칙 — v1.0.14 에서 어긋나는 최소 지점만 수정:
   (1) CODE/OUT 경로: v1.0.10 → v1.0.14 (import 대상 = Anode_Fit_v1.0.14.py, 출력 = v1.0.14\\figs).
   (2) V6 라벨 현행화: 현행 LCO_MSMR_LIT 는 loop B 재정렬로 x_MIT=0.85(물리 anchor)가 코드값 —

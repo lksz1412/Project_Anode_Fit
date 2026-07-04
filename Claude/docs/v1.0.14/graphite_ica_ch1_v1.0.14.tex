@@ -1194,7 +1194,9 @@ w_j=\frac{n_jRT}{F}\qquad(\text{기본 폭}),
 \textbf{★폭 $w_j$ 의 이중지위 — 같은 식, 다른 지위.} 식~\eqref{eq:wbase} 의 \emph{값}은 한 줄이지만, 그것이
 \emph{무엇을 뜻하는지}는 전이의 상분리 여부로 갈린다. \emph{단상($\Omega_j\le2RT$, 연속 고용체)}에서는 $w_j=n_jRT/F$
 가 등온선 폭에 대한 \emph{검증 가능한 평형 예측}이다 — 평형 단일 입자 dQ/dV 가 logistic
-미분 종(\S\ref{sec:eqpeak} 에서 유도)이고, 그 폭이 곧 $n_jRT/F$ 라($n_j\!\approx\!1$ 이면 $RT/F\!\approx\!25.7$ mV), 측정 폭으로 직접 검증된다.
+미분 종(\S\ref{sec:eqpeak} 에서 유도)이고, 그 폭이 곧 $n_jRT/F$ 라($n_j\!\approx\!1$ 이면 $RT/F\!\approx\!25.7$ mV), 측정 폭으로 직접 검증된다. 엄밀히 이 닫힌 폭은 이상 극한($\Omega_j=0$) 기준이고,
+$0<\Omega_j<2RT$ 에서는 평형 등온선의 중심 기울기가 $(1-\Omega_j/2RT)$ 배 좁아진 유효 폭을 주되 그
+값 역시 평형이 결정하므로 첫째 지위(평형 예측)라는 성격은 변하지 않는다(Chapter 2 파생 C 와 동일 취지).
 \emph{두-상($\Omega_j>2RT$, 상분리 plateau)}에서는 평형이 예측하는 것이 폭이 아니라 \emph{날카로운 선}(델타)이므로,
 같은 $w_j$ 가 더는 평형 예측이 아니라 \emph{broadening 이 정하는 현상학적 자유 피팅 폭}이다(\S\ref{sec:broadening}).
 어느 지위인지는 인위적 구분이 아니라 그 전이의 \emph{$\Omega_j$ 값}이 가르며, 같은 식~\eqref{eq:wbase} 가 두 경우 모두에
@@ -1449,8 +1451,8 @@ $\dd q/\dd V\!\to\!\infty$). Maxwell 공통접선이 정의하는 것은 그 공
 실측 종으로 펼쳐지는 그림)를 그림~\ref{fig:broadening} 에 둔다.
 
 \emph{① 유한율속 비대칭 꼬리(동역학 몫).} 첫째는 이 문건이 이미 모델로 담은 출처로, \emph{전류가 켜야} 생긴다 — 유한
-전류면 단일 입자라 하더라도 표면 진행률이 평형 목표를 뒤따라(또는 앞서) 과전압 $\eta$ 가 진행 중에 변하며 peak 을 한쪽으로
-밀고 꼬리를 늘인다. 이것이 바로 \S\ref{sec:lag}--\S\ref{sec:tail} 의 동역학 지연 길이 $L_{V,j}$ 와 인과 꼬리
+전류면 단일 입자라 하더라도 표면 진행률이 평형 목표를 뒤따르며 과전압 $\eta$ 가 진행 중에 변하고, peak 을 한쪽으로
+밀며 꼬리를 늘인다. 이것이 바로 \S\ref{sec:lag}--\S\ref{sec:tail} 의 동역학 지연 길이 $L_{V,j}$ 와 인과 꼬리
 $(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$ 이며, C-rate 가 오를수록 심해지고 $|I|\!\to\!0$ 에서
 \emph{소멸}한다($L_V\propto|I|$ — \S\ref{sec:lag}; Fly 등\cite{fly2020}).
 
@@ -1582,7 +1584,8 @@ $\sigma_\mathrm{sym}=\sqrt{1+1.25^2}\,\sigma_\mathrm{int}\approx1.6\,\sigma_\mat
 \Delta U(r)\;=\;\frac{2\gamma V_m}{F\,r}
 \label{eq:gibbsthomson}
 \end{equation}
-($\gamma$ = 계면 에너지[J/m$^2$] — 분기 축소 인자 $\gamma_j$ 와 무관한 별개 기호, $V_m$ = 삽입상
+($\gamma$ = 계면 에너지[J/m$^2$] — 분기 축소 인자 $\gamma_j$(그림$\cdot$검산표에서는 $\gamma$ 로
+약기)와 무관한 별개 기호, $V_m$ = 삽입상
 몰부피)이고, 둘째는 동역학 채널 — 고체 확산 평형화 시간
 $\tau(r)=r^2/D$ 의 분산이다. 이제 실조건 수치를 대입한다. \emph{열역학 채널}: 흑연 호스트 몰부피
 $6M_\mathrm{C}/\rho_\mathrm{graphite}=6\times12.011/2.26\approx31.9$ cm$^3$/mol
@@ -1727,6 +1730,9 @@ $\dd\xi_\eq/\dd q$ 가 정점의 일정 분율(약 $5\%$)로 떨어지는 좌표
 \qquad z_\mathrm{cut}=4.357,\ A_\mathrm{cap}=4.0\ (\text{기본}).
 \label{eq:Acut}
 \end{equation}
+기본 상태($n_j{=}1$)에서는 $z_\mathrm{cut}n_jRT=4.357RT>A_\mathrm{cap}RT=4.0RT$ 라 상한이 걸려 실효
+컷은 $z=4.0$(정점의 약 $7\%$)이고, $5\%$ 컷 분기는 $n_j<A_\mathrm{cap}/z_\mathrm{cut}\approx0.92$ 로
+피팅될 때 활성화된다.
 \emph{부호의 핵심} — 컷 affinity 의 \emph{크기}는
 충$\cdot$방전 동일($n_j>0$ 라 항상 양수)이고, 방향은 아래 $\chi_d\cdot\Delta H_a^\eff$ 가 받는다. 방향 부호 $\sigma_d$ 를
 $\min$ 안에 넣으면 충전에서 상한이 음수가 되어 물리적으로 무의미해지므로, 크기는 항상 양수로 두고 방향은 전달
@@ -1785,7 +1791,8 @@ $\partial\ln L_q/\partial V=0$ 이다(전이당 한 스칼라). 부등식 $\part
 \mathcal A\!\uparrow\Rightarrow$ 유효 장벽$\downarrow\Rightarrow L_q\downarrow$(꼬리 짧아짐)이고, 이 단조성이 ``꼬리 컷점을
 원천 정점의 일정 분율로 잡는다''는 컷 규칙의 정당성이다. 한편 $|I|$ 의존은 동결 뒤에도 살아 있다 — $L_q\propto|I|$($T_*\propto|I|$)라 $|I|\to0$
 에서 $L_V\to0$, 다음 절의 꼬리가 사라지고 평형 peak 으로 환원된다. 지연 길이를 직접 지정하면 동역학 계산을 우회해
-그 값을 쓰고, $I\le0$ 이거나 활성화 엔탈피 입력이 없으면 $L_V=0$ 이다.
+그 값을 쓰고, $I\le0$ 이거나 활성화 엔탈피 입력이 없거나 컷점 OCV 기울기 $|\dd V/\dd q|_{q_a}$ 가
+$0$(기본값$\cdot$미입력)이면 $L_V=0$ 이다.
 
 N7 의 진행을 정리하면 — 다중도 $n_j$(입력 가드로 크기만 취함 — 정상 입력은 항상 양수)에서 컷 affinity $\mathcal A$(식~\eqref{eq:Acut})로,
 방향별 전달 계수와 유효 장벽(식~\eqref{eq:chid}$\cdot$\eqref{eq:dHeff})으로, 용량축 지연 길이
@@ -1883,8 +1890,8 @@ $\nu=2$ 다(지연이 격자 두 칸보다 짧으면 평형 종을 직접 쓴다
 $1-(1/\nu)\big/\!\big(e^{1/\nu}-1\big)$ (전이 면적은 정확히, 중심 peak 높이는 문턱 $L_V\!\ll\!w_j$ 인 기본 격자 영역에서 같은 인자)라, \emph{기본값 $\nu=2$ 에선 $\sim23\%$}(면적 $\approx0.77$)에 이르는 상당한 점프다.
 이는 sub-grid 지연의 수치 불안정을 피하기 위한 실용적 선택이며($\nu$ 를 키우면
 전환점이 더 깊은 꼬리로 밀려 점프가 $\approx50\%/\nu$ 급으로 줄어 — $\nu{=}8$: $6.1\%$, $\nu{=}10$: $4.9\%$, 곧 $5\%$ 이내로 낮추려면 $\nu\!\gtrsim\!10$ 이
-필요하다\footnote{$L_V$ 를 최적화 도구로 피팅할 때 $L_V$ 가 이 문턱을 지나면 목적함수가 $\sim23\%$ 점프해 landscape 가
-비평활해진다.}), 꼬리식 자신의 $L_V\to0$ 소멸
+필요하다\footnote{$L_V$ 를 최적화 도구로 피팅할 때 $L_V$ 가 이 문턱을 지나면 모델 곡선의 해당 전이
+기여가 $\sim23\%$ 점프해 목적함수 landscape 에 불연속이 생긴다.}), 꼬리식 자신의 $L_V\to0$ 소멸
 ($0/0$)은 이미 평형 분기 영역에 들어가 꼬리식이 적용되지 않는 구간이다.
 
 \subsection{★충전 격자 역전 — 인과 방향}
@@ -1988,6 +1995,12 @@ $2\!\to\!1$   & 0.085 & $-13000$ & $-16.0$ & 0.50 & 13000 & 40000 & 0.30 \\
 스케일이고(전이별 수치의 전용 문헌 anchor 는 근거 미발견 — 실측 계면 활성화 에너지의 문헌 범위
 $25$--$59$ kJ/mol 와 겹치는 출발점), $|\dd V/\dd q|_{q_a}$ 는 컷 OCV 기울기(피팅), $\Omega$ 는 정규용액
 추정(전이별 문헌 anchor 없음 — 피팅 출발점)이다.
+초기 상태의 실현 크기를 정직하게 적어 두면 — 표의 $\Delta H_a$ 초기값에서 대표 조건(298 K$\cdot$C/10)의
+$L_{V,j}$ 는 $10^{-10}$--$10^{-8}$ V 규모로 격자 문턱($\nu\Delta_\mathrm{grid}\sim10^{-4}$ V)에 크게 못
+미치므로, $\gamma$ 미배정($=0$)$\cdot$$R_n=0$ 과 함께 \emph{초기 상태의 곡선은 꼬리$\cdot$분기 없는 평형
+종 전용}이다(분기$\cdot$꼬리는 피팅 개방 후 활성). $k_0=k_BT/h$$\cdot$$\Delta S_a{=}0$ 전제에서 가시적
+꼬리는 $\Delta H_a\gtrsim7$--$8\times10^4$ J/mol 또는 음의 $\Delta S_a$ 배정을 요구하므로, 인용 문헌
+범위($25$--$59$ kJ/mol)는 절대값 anchor 가 아니라 경향 anchor 로 읽는다.
 여기까지가 흑연(Part I)의 결과 사슬이다 — 다음 절부터 이 골격을 두 번째 전극 LCO 양극에 건다(Part II).
 
 % ====================================================================
@@ -2037,8 +2050,9 @@ LCO 전이표는 그 충전 진행을 전위 오름차순으로 적는다.
 하프셀(코인, $\le$4.2--4.5 V)은 세 전이를 남긴다\cite{xia2007}: $\sim$3.90 V 의 절연체$\to$금속 전이(insulator-to-metal transition, MIT), $\sim$4.05 V 와
 $\sim$4.17 V 의 한 쌍 order--disorder 전이다(고전압 $\sim$4.55 V 의 O3$\to$H1-3 는 하프셀 상한이 $\le$4.2--4.5 V 면
 범위 밖이라 옵션으로 둔다). 이 값들은 흑연과 마찬가지로 \emph{신뢰값이 아니라 초기값}이며\footnote{신뢰
-등급 표기(본 문건 전역): tier A $=$ 1차 문헌의 정량 확정값, tier B $=$ 대표/부분 스케일 anchor(전이별
-정밀값 아님), tier C $=$ 추정$\cdot$placeholder(round-trip 피팅으로 갱신 예정).}(tier — 1차 문헌
+등급 표기(본 문건 전역): tier A $=$ 1차 문헌의 정량 확정값, tier B $=$ 대표/부분 스케일 anchor 또는
+2차 출처 경유 확인값(1차 원문 직접 확정 아님), tier C $=$ 추정$\cdot$placeholder(round-trip 피팅으로
+갱신 예정).}(tier — 1차 문헌
 Xia\cite{xia2007}$\cdot$Reynier\cite{reynier2004}$\cdot$Motohashi\cite{motohashi2009} 에서 읽은 출발점), 우리 시료 데이터로
 피팅해 override 하는 전제다.
 
@@ -2302,7 +2316,7 @@ u_j^\mathrm{cat}=\sqrt{1-\frac{2RT}{\Omega_j^\mathrm{cat}}}\qquad(\Omega_j^\math
 \label{eq:lco-spinodal}
 \end{equation}
 이고 $\Omega_j^\mathrm{cat}<2RT$ 이면 $u_j^\mathrm{cat}$ 이 허수, 등호에선 $u=0$ 이라 그 전이의 spinodal gap 은 없다(gap $0$ 으로 연속 —
-흑연 전이와 같은 분기 처리).
+흑연 식~\eqref{eq:dUhys} 와 같은 경우 구분).
 
 \textbf{(c) 중간식 — LCO 전위 곡선에 spinodal 대입.}
 LCO 전이 $j$ 의 평형 전위 곡선은 식~\eqref{eq:Veq} 에 $U_j^\mathrm{cat},\Omega_j^\mathrm{cat}$ 를 넣어
@@ -3100,7 +3114,8 @@ $\gamma_j$ & \code{gamma} & 분기 축소 인자 \\
 $\Delta U_j^\hys$ & \code{func\_dU\_hys} & 분기 gap \\
 $h_{\eta,j}$ & \code{h\_eta} & 부분 cycle 인자 \\
 $U_j^{\,d}$ & \code{func\_U\_branch} & 방향별 분기 중심 \\
-$\chi$ & \code{chi}(생성자 인자 \code{x}) & 전달 계수(분할 규칙 주입 \code{chi\_split}) \\
+$\chi$ & \code{chi}(생성자 인자 \code{x}) & 전달 계수(분할 규칙 주입 \code{chi\_split}) — 인자명
+\code{x} 는 조성 $x$(Li 함량)와 무관한 역사적 명칭 \\
 $\chi_d$ & \code{func\_chi\_d} & 방향별 전달 계수 \\
 $\mathcal A$ & \code{A} & 컷 affinity \\
 $\Delta H_{a,j},\Delta S_{a,j}$ & \code{dH\_a},\,\code{dS\_a} & 활성화 열역학 입력 \\
