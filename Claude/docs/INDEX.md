@@ -14,7 +14,8 @@
 | v1.0.14/appendix_phase_separation.tex | ★독립 문건(8p, **별도 유지 확정** — 편입 안 함) — binodal·spinodal·Maxwell·핵생성/CH 자족 유도+그림 2·ξ=θ 배향 주의 | spinodal, binodal, Maxwell, 핵생성, 별도 부록 | 2026-07-04 |
 | v1.0.14/Anode_Fit_v1.0.14.py | 코드 v1.0.14 — docstring eq 참조 16곳(원형 보존 구역 불변)·회귀 13/13 | 1.0.14, 코드, eq 참조 | 2026-07-04 |
 | v1.0.14/FITTING_GUIDE.md | 가이드 v1.0.14 — Ω 하한 ≥0·χ tier-3·dS_rxn/dVdq_qa 식별 트랩·문턱 70–74 kJ/mol·r_a 정의 | 피팅, 가이드, Ω 하한, χ tier, silent 트랩, 문턱 | 2026-07-04 |
-| v1.0.14/HANDOVER_v1.0.14.md | v1.0.14 완주 세션 인계 — Chain(v1.0.12→v1.0.13→본)·검토 대기 2건·이월 목록 | 핸드오버, 인계, chain | 2026-07-04 |
+| v1.0.14/HANDOVER_v1.0.14.md | v1.0.14 완주 세션 인계 — Chain(v1.0.12→v1.0.13→본)·검토 결과 반영·이월 목록 | 핸드오버, 인계, chain | 2026-07-04 |
+| v1.0.14/HANDOVER_v1.0.15_KICKOFF.md | 세션 마무리 인계 — 검토 반영(fig15·spinodal 별도 유지)+★v1.0.15 계획 rev.3 확정(이산 격자 완전 퇴출·점별 단일 아키텍처, 실행은 차기 세션 GO 후)·주의 7건(원형 보존 orphan·회귀 재정초·문턱 재산출 등) | 핸드오버, kickoff, 격자 퇴출, 점별, v1.0.15 | 2026-07-04 |
 | v1.0.14/figs/ | suite·sample·demo 산출 png(V1–V9 검증 패널 포함) | 검증 그래프, suite 산출 | 2026-07-04 |
 
 ## 구버전 문건 — v1.0.13 (직전 안정판, superseded by 1.0.14)
