@@ -158,35 +158,57 @@ $\dd Q/\dd V$ 상전이 peak 의 위치$\cdot$너비$\cdot$높이는 (a) 온도 
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[
-  node distance=4.3mm and 5.5mm,
-  stage/.style={draw,rounded corners=2pt,minimum height=7.4mm,inner xsep=4pt,inner ysep=2.5pt,font=\scriptsize,align=center,fill=black!4},
-  core/.style={stage,fill=black!10},
+  node distance=4.0mm and 7mm,
+  font=\scriptsize,
+  stage/.style={draw,rounded corners=1.5pt,minimum height=7.6mm,inner xsep=4pt,inner ysep=2.4pt,align=center},
+  loopstage/.style={stage,fill=black!8},
+  branchstage/.style={stage,fill=black!18,minimum width=32mm},
+  sel/.style={draw,thick,rounded corners=1.5pt,minimum height=6.2mm,inner xsep=4pt,inner ysep=2pt,align=center,fill=white},
+  core/.style={stage,fill=black!55,text=white},
   io/.style={font=\scriptsize\itshape,align=center},
-  ar/.style={-{Latex[length=1.6mm]},thick}]
-% input row
+  ar/.style={-{Latex[length=1.5mm]},thick},
+  arthin/.style={-{Latex[length=1.2mm]},semithick}]
+% ---- pre-loop: input mapping and polarization (run once) ----
 \node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
-% spine
-\node[stage,below=5mm of in] (n0) {N0\\map inputs};
-\node[stage,below=of n0] (n1) {N1: polarization\\$V_n=V_\app-\sigma_d|I|R_n$};
-\node[stage,below=of n1] (n2) {N2: center\\$U_j(T)=(-\Delta H+T\Delta S)/F$};
-\node[stage,below=of n2] (n3) {N3: hysteresis branch\\center $\to U_j+\tfrac12\sigma_d h_\eta\gamma\,\Delta U_\hys$};
-\node[stage,below=of n3] (n4) {N4/N5: width $w$, $\xi_\eq$\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U)/w]$};
-\node[stage,below=of n4] (n6) {N6: equilibrium peak\\$Q_j\,\xi_\eq(1-\xi_\eq)/w$};
-\node[stage,below=of n6] (n7) {N7: lag length $L_V$\\$A,\chi_d,\Delta H_a^\eff,L_q,L_V$};
-\node[stage,below=of n7] (n8) {N8: causal memory tail\\$(\xi_\eq-\xi_\mathrm{lag})/L_V$, charge reversal};
-\node[core,below=of n8] (n9) {N9: sum + interp\\$C_\bg+\sum_j Q_j[\cdot]$};
+\node[stage,below=5mm of in] (n0) {N0: map inputs\quad 식~\eqref{eq:n0map}};
+\node[stage,below=of n0] (n1) {N1: polarization\quad 식~\eqref{eq:vn}\\$V_n=V_\app-\sigma_d|I|R_n$};
+% ---- per-transition loop body ----
+\node[loopstage,below=of n1] (n2) {N2: center $U_j(T)$\quad 식~\eqref{eq:Uj}\\$U_j=(-\Delta H_\rxn+T\Delta S_\rxn)/F$};
+\node[loopstage,below=of n2] (n3) {N3: hysteresis branch\quad 식~\eqref{eq:Ubranch}\\center $\to U_j+\tfrac12\sigma_d h_\eta\gamma_j\Delta U_j^\hys$};
+\node[loopstage,below=of n3] (n45) {N4/N5: width, $\xi_\eq$\quad 식~\eqref{eq:wbase}\eqref{eq:xieq}\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U_j^{\,d})/w_j]$};
+% branch: equilibrium species (N6) vs causal tail (N7-N8) — eq:branch selects
+\node[branchstage,below left=8mm and 3mm of n45] (n6) {N6: equilibrium peak\quad 식~\eqref{eq:eqpeak}\\$Q_j\,\xi_\eq(1-\xi_\eq)/w_j$};
+\node[branchstage,below right=8mm and 3mm of n45] (n78) {N7/N8: lag $L_V$ + causal tail\quad 식~\eqref{eq:LV}\eqref{eq:peakshape}\\$Q_j(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$};
+\coordinate (mid) at ($(n6)!0.5!(n78)$);
+\node[sel,below=8mm of mid] (bsel) {branch select\ \ 식~\eqref{eq:branch}\\$L_{V,j}\!<\!\nu\Delta_\mathrm{grid}$: N6\quad else: N7/N8};
+% ---- post-loop: sum over transitions j, once ----
+\node[core,below=6mm of bsel] (n9) {N9: sum $+$ interp\quad 식~\eqref{eq:sum}\\$C_\bg+\sum_jQ_j[\cdot]_j$};
 \node[io,below=4.5mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
-\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n4,n4/n6,n6/n7,n7/n8,n8/n9,n9/out}
-  \draw[ar] (\a) -- (\b);
-% per-transition loop bracket
+% ---- arrows ----
+\draw[ar] (in) -- (n0);
+\draw[ar] (n0) -- (n1);
+\draw[ar] (n1) -- (n2);
+\draw[ar] (n2) -- (n3);
+\draw[ar] (n3) -- (n45);
+\draw[arthin] (n45.south) -| ($(n45.south)+(-1.05,-4mm)$) -- (n6.north);
+\draw[arthin] (n45.south) -| ($(n45.south)+(1.05,-4mm)$) -- (n78.north);
+\draw[arthin] (n6.south) |- (bsel.north west);
+\draw[arthin] (n78.south) |- (bsel.north east);
+\draw[ar] (bsel) -- (n9);
+\draw[ar] (n9) -- (out);
+% ---- per-transition loop bracket ----
 \begin{scope}[on background layer]
-\node[draw,dashed,rounded corners,fit=(n2)(n3)(n4)(n6)(n7)(n8),inner sep=3.4mm,label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$}] (loop) {};
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n45)(n6)(n78)(bsel),inner sep=3.2mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$}] (loop) {};
 \end{scope}
 \end{tikzpicture}
 \caption{한 곡선을 그리는 계산 진행(spine). 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$
-이 N0 에서 모델 입력으로 환산되고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1), 전이 $j$ 마다 평형 중심$\cdot$히스
-분기$\cdot$폭$\cdot$평형 진행률$\cdot$평형 peak$\cdot$지연 길이$\cdot$인과 꼬리를 계산해(N2--N8) 합산$\cdot$역보간한다(N9).
-파선 상자는 전이별 반복 계산 단위다.}
+이 N0 에서 모델 입력으로 환산되고(식~\eqref{eq:n0map}), 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1,
+식~\eqref{eq:vn}), 파선 상자 안(전이별 반복 계산 단위, $j=1..N_p$)에서 전이 $j$ 마다 평형 중심(N2)$\cdot$히스
+분기(N3)$\cdot$폭$\cdot$평형 진행률(N4/N5)을 잇달아 계산한다. 옅은 회색 상자 둘(N6 vs N7/N8)은 그 뒤
+갈리는 두 경로다 — 식~\eqref{eq:branch} 의 문턱 $L_{V,j}<\nu\Delta_\mathrm{grid}$ 이 평형 종(N6, 식~\eqref{eq:eqpeak})과
+지연 꼬리(N7/N8, 식~\eqref{eq:LV}$\cdot$\eqref{eq:peakshape}) 중 하나를 고르는 분기 선택(굵은 테두리 상자)으로 합류한다.
+모든 전이가 이 loop 를 마치면 N9(진한 상자, 식~\eqref{eq:sum})가 배경과 합산$\cdot$역보간한다.}
 \label{fig:spine}
 \end{figure}
 
@@ -273,34 +295,59 @@ $R,F,k_B,h$ & {\footnotesize J/(mol\,K), C/mol, J/K, J\,s} & 기체상수, Farad
 \centering
 \begin{tikzpicture}[x=1.05cm,y=0.5cm,
   lab/.style={font=\scriptsize,align=center},
+  sub/.style={font=\tiny,align=center,black!55},
   fill4/.style={fill=black!72},fillL/.style={fill=black!24}]
-% five stage columns, each shows graphene layers (lines) and Li-filled galleries (bands)
-% column x-centers
+% ---- (top) five stage columns: graphene layers + Li-filled galleries ----
 \def\colw{0.85}
-% stage 4: 1 filled gallery of 4
-\foreach \x/\name/\filled/\style in {0/{stage 4}/{1}/fill4, 1.4/{stage 3}/{1}/fill4, 2.8/{stage 2L}/{all}/fillL, 4.2/{stage 2}/{all}/fill4, 5.6/{stage 1}/{dense}/fill4}{
+\foreach \x/\name/\ratio in {0/{stage 4}/{1:4}, 1.4/{stage 3}/{1:3}, 2.8/{stage 2L}/{1:2L},
+                              4.2/{stage 2}/{1:2}, 5.6/{stage 1}/{1:1}}{
   \draw[semithick] (\x,0)--(\x+\colw,0);
   \foreach \k in {1,2,3,4,5,6}{\draw[semithick] (\x,0.6*\k)--(\x+\colw,0.6*\k);}
-  \node[lab,below] at (\x+\colw/2,-0.25) {\name};
+  \node[lab,below] at (\x+\colw/2,-0.15) {\name};
+  \node[sub,below] at (\x+\colw/2,-0.95) {(\ratio)};
 }
-% galleries (bands between layers) — explicit per column for clarity
-% stage 4: every 4th gallery filled
+% galleries (bands between layers) — explicit per column, periodicity = staging index
 \foreach \k in {1,5}{\fill[black!72] (0,0.6*\k-0.42) rectangle (0+\colw,0.6*\k-0.18);}
-% stage 3: every 3rd
 \foreach \k in {1,4}{\fill[black!72] (1.4,0.6*\k-0.42) rectangle (1.4+\colw,0.6*\k-0.18);}
-% stage 2L: every 2nd, light (liquid-like)
 \foreach \k in {1,3,5}{\fill[black!24] (2.8,0.6*\k-0.42) rectangle (2.8+\colw,0.6*\k-0.18);}
-% stage 2: every 2nd, dark
 \foreach \k in {1,3,5}{\fill[black!72] (4.2,0.6*\k-0.42) rectangle (4.2+\colw,0.6*\k-0.18);}
-% stage 1: all galleries
 \foreach \k in {1,2,3,4,5,6}{\fill[black!72] (5.6,0.6*\k-0.42) rectangle (5.6+\colw,0.6*\k-0.18);}
 \draw[-{Latex[length=1.8mm]},thick] (0,4.05)--(6.45,4.05) node[pos=0.5,above,font=\scriptsize] {lithiation (charge): $4\to3\to2\mathrm L\to2\to1$};
-\draw[{Latex[length=1.8mm]}-,thick] (0,-1.05)--(6.45,-1.05) node[pos=0.5,below,font=\scriptsize] {delithiation (discharge): main direction, $\theta_j:1\to0$};
+\draw[{Latex[length=1.8mm]}-,thick] (0,-1.85)--(6.45,-1.85) node[pos=0.5,below,font=\scriptsize] {delithiation (discharge): main direction, $\theta_j:1\to0$};
+% ---- (bottom) real dQ/dV axis: eq:eqpeak evaluated at tab:staging initial values ----
+% x maps V in [0.05,0.25] onto the same gallery width [0,6.45]: x=6.45*(0.25-V)/0.20 (V decreasing rightward)
+% yshift chosen (real cm, independent of the y=0.5cm/unit gallery above) so the tallest
+% peak label (2->1, local y~10.9) clears the gallery's bottom arrow+label with margin.
+\begin{scope}[yshift=-4.15cm,y=0.21cm]
+\draw[-{Latex[length=1.5mm]}] (-0.9,0) -- (7.6,0) node[right,font=\scriptsize] {$V$ [V]};
+\draw[-{Latex[length=1.5mm]}] (-0.9,0) -- (-0.9,11.3) node[above,font=\scriptsize,align=center] {$\dd Q/\dd V$\\{\tiny[$Q_\cell/$V]}};
+\foreach \xx/\vv in {0/0.25,1.6125/0.20,3.225/0.15,4.8375/0.10,6.45/0.05}{
+  \draw (\xx,0.35)--(\xx,-0.35) node[below,font=\scriptsize] {\vv};}
+\foreach \yy in {0,4,8}{\draw (-0.95,\yy)--(-0.85,\yy) node[left,font=\tiny] {\yy};}
+% 4->3 (U=0.210, w=0.020, Q=0.10)
+\draw[thick] plot[smooth] coordinates {(4.515,0.033) (4.3215,0.045) (4.128,0.06) (3.9345,0.08) (3.741,0.107) (3.5475,0.142) (3.354,0.188) (3.1605,0.247) (2.967,0.322) (2.7735,0.414) (2.58,0.525) (2.3865,0.653) (2.193,0.793) (1.9995,0.937) (1.806,1.069) (1.6125,1.175) (1.419,1.238) (1.2255,1.247) (1.032,1.201) (0.8385,1.109) (0.645,0.983) (0.4515,0.842) (0.258,0.699) (0.0645,0.566) (-0.129,0.449) (-0.3225,0.35) (-0.516,0.27)};
+% 3->2L (U=0.140, w=0.016, Q=0.12)
+\draw[densely dashed,thick] plot[smooth] coordinates {(6.063,0.056) (5.8695,0.082) (5.676,0.117) (5.4825,0.168) (5.289,0.24) (5.0955,0.339) (4.902,0.472) (4.7085,0.647) (4.515,0.865) (4.3215,1.119) (4.128,1.388) (3.9345,1.634) (3.741,1.811) (3.5475,1.875) (3.354,1.811) (3.1605,1.634) (2.967,1.388) (2.7735,1.119) (2.58,0.865) (2.3865,0.647) (2.193,0.472) (1.9995,0.339) (1.806,0.24) (1.6125,0.168) (1.419,0.117) (1.2255,0.082) (1.032,0.056)};
+% 2L->2 (U=0.120, w=0.014, Q=0.25)
+\draw[black!55,thick] plot[smooth] coordinates {(6.45,0.119) (6.2565,0.181) (6.063,0.275) (5.8695,0.415) (5.676,0.621) (5.4825,0.917) (5.289,1.33) (5.0955,1.875) (4.902,2.543) (4.7085,3.274) (4.515,3.94) (4.3215,4.374) (4.128,4.442) (3.9345,4.119) (3.741,3.511) (3.5475,2.785) (3.354,2.086) (3.1605,1.496) (2.967,1.041) (2.7735,0.708) (2.58,0.475) (2.3865,0.315) (2.193,0.208) (1.9995,0.137)};
+% 2->1 (U=0.085, w=0.012, Q=0.50)
+\draw[very thick] plot[smooth] coordinates {(7.224,0.301) (7.0305,0.491) (6.837,0.797) (6.6435,1.282) (6.45,2.029) (6.2565,3.133) (6.063,4.658) (5.8695,6.545) (5.676,8.502) (5.4825,9.977) (5.289,10.399) (5.0955,9.579) (4.902,7.872) (4.7085,5.888) (4.515,4.103) (4.3215,2.72) (4.128,1.745) (3.9345,1.096) (3.741,0.679) (3.5475,0.417)};
+% legend, placed in a region genuinely clear of all four curves (x<2.6, y>6.8; verified
+% against the coordinate lists above -- the tallest curve there, 4->3, peaks at 1.247)
+\draw[thick] (0.15,10.85)--(0.75,10.85); \node[right,font=\tiny] at (0.8,10.85) {$4\to3$, $U{=}0.210$ V};
+\draw[densely dashed,thick] (0.15,9.55)--(0.75,9.55); \node[right,font=\tiny] at (0.8,9.55) {$3\to2\mathrm L$, $U{=}0.140$ V};
+\draw[black!55,thick] (0.15,8.25)--(0.75,8.25); \node[right,font=\tiny,black!55] at (0.8,8.25) {$2\mathrm L\to2$, $U{=}0.120$ V};
+\draw[very thick] (0.15,6.95)--(0.75,6.95); \node[right,font=\tiny] at (0.8,6.95) {$2\to1$, $U{=}0.085$ V};
+\end{scope}
 \end{tikzpicture}
-\caption{흑연 staging 의 갤러리 채움 도식. 수평선이 그래핀 층, 음영 띠가 리튬이 든 층간 갤러리다.
-채울수록 stage 번호가 줄어 stage 1($\mathrm{LiC_6}$, 완전 채움)에 닿고, 각 stage 전이가 $\dd Q/\dd V$ 에 peak
-하나를 남긴다. stage $2\mathrm L$ 은 면내 질서가 풀린 단계라 옅게 표시했다. 코드의 전이 리스트 4건이 이 전이들의
-초기값이며($U\approx0.21/0.14/0.12/0.085$ V), 본 문건 방향은 방전(탈리튬화)이다.}
+\caption{흑연 staging 의 갤러리 채움 도식(위)과 대응 $\dd Q/\dd V$ peak(아래, 식~\eqref{eq:eqpeak} 의
+초기값 수치 평가 --- $\dd Q/\dd V=Q_j\xi_\eq(1-\xi_\eq)/w_j$, 표~\ref{tab:staging} 의 $U_j,Q_j,w_j$).
+위: 수평선이 그래핀 층, 음영 띠가 리튬이 든 층간 갤러리다. 채울수록 stage 번호가 줄어 stage 1($\mathrm{LiC_6}$,
+완전 채움)에 닿고, 열 아래 비율(1:4$\to$1:1)이 각 stage 의 갤러리 점유 주기다. stage $2\mathrm L$ 은 면내 질서가
+풀린 단계라 옅게 표시했다. 아래: 네 초기값 전이의 실제 peak --- 높이 $Q_j/(4w_j)$ 는 전이마다 크게 다르다
+($2\to1$ 이 가장 큼, $10.4\,Q_\cell/$V). \emph{주의} --- 위 갤러리 열 간격은 범주형(등간격 스케치)이고 아래 $V$
+축은 실제 전위 스케일(비등간격 --- $3\to2\mathrm L$ 과 $2\mathrm L\to2$ 은 겨우 $20$ mV 차이라 갤러리 열 간격에
+선형 정렬되지 않는다)이라, 둘은 전이명(예 $2\to1$)으로만 대응시킨다. 본 문건 방향은 방전(탈리튬화)이다.}
 \label{fig:staging}
 \end{figure}
 
@@ -1146,29 +1193,56 @@ U_j & \text{그 외(분기 없음)}.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=9.2cm,y=1.7cm]
-\draw[-{Latex[length=1.6mm]}] (0,-1.45) -- (0,1.55) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
-\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
-\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
-% non-monotone V_eq(xi) for Omega=4RT — exact 4dp: y = ln[xi/(1-xi)] + 4(1-2 xi)
-\draw[thick] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.1,1.0028) (0.1464,1.0657) (0.2,1.0137) (0.3,0.7527) (0.4,0.3945) (0.5,0) (0.6,-0.3945) (0.7,-0.7527) (0.8,-1.0137) (0.8536,-1.0657) (0.9,-1.0028) (0.92,-0.9177) (0.95,-0.6556) (0.98,0.0518)};
-\fill (0.1464,1.0657) circle (0.5pt) node[above,font=\scriptsize] {$\xi_s^-$};
-\fill (0.8536,-1.0657) circle (0.5pt) node[below,font=\scriptsize] {$\xi_s^+$};
-\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.0657) -- (1.0,1.0657) node[pos=0.4,right,font=\scriptsize] {$\Delta U_j^\hys$};
-% discharge overshoot path (rising branch up to xi_s^-)
-\draw[-{Latex[length=1.6mm]},very thick] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.1,1.0028) (0.1464,1.0657)};
-\draw[-{Latex[length=1.4mm]},densely dashed] (0.1464,1.0) -- (0.1464,0.08);
-\node[font=\scriptsize] at (0.32,1.30) {discharge overshoot};
-% charge overshoot path
-\draw[-{Latex[length=1.6mm]},very thick] plot[smooth] coordinates {(0.98,0.0518) (0.95,-0.6556) (0.92,-0.9177) (0.9,-1.0028) (0.8536,-1.0657)};
-\draw[-{Latex[length=1.4mm]},densely dashed] (0.8536,-1.0) -- (0.8536,-0.08);
-\node[font=\scriptsize] at (0.68,-1.30) {charge overshoot};
-\node[font=\scriptsize] at (0.24,-0.55) {$\gamma\!\to\!0$: plateau at $U_j$ ($y=0$)};
+% T3 fig:hysloop  (opus2 — quantitative-density)
+% Coordinates = exact numeric evaluation of eq:Veq, Omega_j = 4RT, s=+1 (see T3_calc.py):
+%   y(xi) = (sF/RT)(V_eq - U_j) = ln[xi/(1-xi)] + 4(1-2 xi)
+% spinodal xi_s^-=0.1464 (y=+1.0657), xi_s^+=0.8536 (y=-1.0657); gap = 2.1314 RT/F.
+\begin{tikzpicture}[x=8.8cm,y=1.62cm,>=Latex]
+% ---- spinodal (g''<0) unstable band ----
+\begin{scope}[on background layer]
+  \fill[black!8] (0.146447,-1.5) rectangle (0.853553,1.62);
+\end{scope}
+% ---- axes ----
+\draw[->] (0,-1.5) -- (0,1.62) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[->] (-0.02,0) -- (1.07,0) node[below,font=\scriptsize] {$\xi$};
+% x ticks
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.035) -- (\xx,-0.035) node[below,font=\scriptsize] {\xx};}
+% y ticks with exact values
+\foreach \yy in {1.0657,-1.0657} {\draw (0.008,\yy) -- (-0.008,\yy);}
+\node[left,font=\scriptsize] at (-0.01,1.0657) {$+1.066$};
+\node[left,font=\scriptsize] at (-0.01,-1.0657) {$-1.066$};
+% ---- Maxwell plateau line y=0 ----
+\draw[densely dashed,black!55] (0,0) -- (1.06,0);
+\node[font=\scriptsize,black!55,fill=white,inner sep=1pt,anchor=west] at (0.04,-0.62) {Maxwell $V_\eq{=}U_j$ ($y{=}0$)};
+% ---- full non-monotone V_eq(xi) ----
+\draw[thick] plot[smooth,tension=0.7] coordinates {(0.0150,-0.3046) (0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657) (0.1800,1.0437) (0.2200,0.9743) (0.2700,0.8454) (0.3300,0.6518) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.6700,-0.6518) (0.7300,-0.8454) (0.7800,-0.9743) (0.8200,-1.0437) (0.8536,-1.0657) (0.9100,-0.9664) (0.9300,-0.8533) (0.9500,-0.6556) (0.9700,-0.2839) (0.9850,0.3046)};
+% ---- discharge overshoot: rising branch up to xi_s^- ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657)};
+% ---- charge overshoot: falling branch down to xi_s^+ ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.9700,-0.2839) (0.9500,-0.6556) (0.9300,-0.8533) (0.9100,-0.9664) (0.8536,-1.0657)};
+% ---- spinodal markers + exact coordinate readouts + droplines ----
+\draw[densely dotted,black!60] (0.146447,1.0657) -- (0.146447,0);
+\draw[densely dotted,black!60] (0.853553,-1.0657) -- (0.853553,0);
+\draw (0.146447,0.035) -- (0.146447,-0.035) node[below,font=\scriptsize] {0.146};
+\draw (0.853553,0.035) -- (0.853553,-0.035) node[below,font=\scriptsize] {0.854};
+\fill (0.146447,1.0657) circle (0.9pt);
+\fill (0.853553,-1.0657) circle (0.9pt);
+\node[anchor=south west,font=\scriptsize] at (0.165,1.075) {$\xi_s^-\!=\!(0.146,{+}1.066)$};
+\node[anchor=north east,font=\scriptsize] at (0.835,-1.075) {$\xi_s^+\!=\!(0.854,{-}1.066)$};
+% ---- gap annotation ----
+\draw[<->,line width=0.9pt] (1.02,-1.0657) -- (1.02,1.0657);
+\node[right,font=\scriptsize,align=left] at (1.02,0.14) {$\Delta U_j^\hys$\\$=2.131\,RT/F$};
+% ---- overshoot direction labels (corners) ----
+\node[anchor=west,font=\scriptsize] at (0.03,1.47) {discharge overshoot $\xi\!\uparrow$};
+\node[anchor=east,font=\scriptsize] at (0.98,-1.47) {charge overshoot $\xi\!\downarrow$};
+\node[font=\scriptsize,black!60] at (0.63,1.40) {$g''<0$ (unstable band)};
 \end{tikzpicture}
-\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ — 좌표는 식 그대로의 수치 평가)와 과주행. 방전(굵은 경로,
-좌상)은 극대 $\xi_s^-$ 까지, 충전(우하)은 극소 $\xi_s^+$ 까지 과주행해 중심이 갈라진다. 두 극값 차가 spinodal 상한
-gap $\Delta U_j^\hys$(식~\eqref{eq:dUhys}), 실측 분기는 $\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}). $\gamma\to0$
-가역 한계에서 두 경로가 $y=0$ plateau 로 합쳐진다.}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ --- 좌표는 식 그대로의 수치 평가:
+$y=\ln[\xi/(1-\xi)]+4(1-2\xi)$). 굵은 화살표 경로가 과주행 --- 방전은 상승 가지를 극대 $\xi_s^-{=}(0.146,{+}1.066)$
+까지, 충전은 하강 가지를 극소 $\xi_s^+{=}(0.854,{-}1.066)$ 까지(식~\eqref{eq:spinodal}, $u_j{=}\sqrt{1/2}$). 두 극값의
+전위 차가 spinodal 상한 gap $\Delta U_j^\hys=2.131\,RT/F$(식~\eqref{eq:dUhys}; $298$ K 에서 $54.8$ mV), 실측 분기는
+$\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}). 회색 띠는 $g''<0$ 불안정 구간, 파선은 $\gamma\!\to\!0$ 가역 한계의 Maxwell
+plateau($y{=}0$)다.}
 \label{fig:hysloop}
 \end{figure}
 
@@ -1254,65 +1328,107 @@ $z=\sigma_d(V-U_j^{\,d})/w_j$ 이며, 오버플로를 피하기 위해 $z\ge0/z<
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=0.72cm,y=2.55cm]
-% ---- (a) equilibrium landscape ----
-\draw[->] (-0.2,-0.3) -- (6.4,-0.3) node[below,font=\scriptsize] {reaction coordinate};
-\draw[->] (-0.2,-0.3) -- (-0.2,1.2) node[above,font=\scriptsize] {free energy};
-\draw[thick] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
-\node[below,font=\scriptsize] at (1,0.08) {filled site};
-\node[below,font=\scriptsize] at (5,0.08) {empty site + ion};
+% T4 fig:barrier  (opus2 — quantitative-density)
+% Eyring activation landscape (eq:bv), reaction coordinate x, wells at x=1,5, TS at x=3.
+% G_base(x)=0.1+0.9 sin^2[pi(x-1)/4] on [1,5]; driven G(x)=G_base-A*phi(x), phi=(x-1)/4 (T4_calc.py).
+% A=0.5, chi=1/2 -> forward barrier dG_a-chi A=0.65, reverse dG_a+(1-chi)A=1.15, peak down chi A=0.25.
+\begin{tikzpicture}[x=0.70cm,y=2.4cm,>=Latex]
+% =============== (a) equilibrium ===============
+\begin{scope}
+\draw[->] (-0.3,-0.5) -- (6.5,-0.5) node[right,font=\scriptsize] {rxn coord};
+\draw[->] (-0.3,-0.5) -- (-0.3,1.18) node[above,font=\scriptsize] {free energy $G$};
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (5.5,0.1) (6,0.1)};
+\node[below,font=\scriptsize] at (1,0.06) {filled site};
+\node[below,font=\scriptsize] at (5,0.06) {empty site $+$ ion};
 \node[above,font=\scriptsize] at (3,1.0) {transition state};
-\draw[densely dotted,gray] (1,0.1) -- (2.0,0.1);
-\draw[densely dotted,gray] (3,1.0) -- (2.0,1.0);
-\draw[<->] (2.0,0.11) -- (2.0,0.99) node[pos=0.45,left,font=\scriptsize] {$\Delta G_a$};
-\node[font=\scriptsize] at (3,-0.5) {(a) equilibrium: $A=0$};
-\begin{scope}[xshift=8.1cm]
-% ---- (b) driven landscape: A>0, chi=1/2 ----
-\draw[->] (-0.2,-0.3) -- (6.4,-0.3) node[below,font=\scriptsize] {reaction coordinate};
-\draw[densely dotted,thin,gray] plot[smooth] coordinates {(0,0.55) (0.5,0.232) (1,0.1) (1.5,0.232) (2,0.55) (2.5,0.868) (3,1.0) (3.5,0.868) (4,0.55) (4.5,0.232) (5,0.1) (5.5,0.232) (6,0.55)};
-\draw[thick] plot[smooth] coordinates {(0,0.550) (0.5,0.232) (1,0.100) (1.5,0.188) (2,0.463) (2.5,0.737) (3,0.825) (3.5,0.649) (4,0.288) (4.5,-0.074) (5,-0.250) (5.5,-0.118) (6,0.200)};
-\draw[->,thick] (2.92,1.0) -- (2.92,0.84) ;
-\node[above,font=\scriptsize] at (2.92,1.02) {peak down by $\chi A$};
-\draw[densely dotted,gray] (1.05,0.1) -- (1.7,0.1);
-\draw[densely dotted,gray] (2.92,0.828) -- (1.7,0.828);
-\draw[<->] (1.7,0.11) -- (1.7,0.818) node[pos=0.5,left,font=\scriptsize] {$\Delta G_a-\chi A$};
-\draw[densely dotted,gray] (1.05,0.1) -- (5.95,0.1);
-\draw[<->] (5.95,0.1) -- (5.95,-0.25) node[pos=0.5,right,font=\scriptsize] {$A$};
-\node[font=\scriptsize] at (3,-0.5) {(b) driven $A>0$ ($\chi=1/2$)};
+% dG_a arrow at x=2
+\draw[densely dotted,black!55] (1,0.1) -- (2.05,0.1);
+\draw[densely dotted,black!55] (3,1.0) -- (2.05,1.0);
+\draw[<->] (2.05,0.1) -- (2.05,1.0) node[pos=0.5,left,font=\scriptsize] {$\Delta G_a{=}0.90$};
+\node[font=\scriptsize,below] at (3,-0.68) {(a) equilibrium: $\mathcal A{=}0$ (two wells equal)};
+\end{scope}
+% =============== (b) driven ===============
+\begin{scope}[xshift=6.3cm]
+\draw[->] (-0.3,-0.5) -- (6.7,-0.5) node[right,font=\scriptsize] {rxn coord};
+% reference (a) dotted
+\draw[densely dotted,thin,black!50] plot[smooth] coordinates {(0,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (6,0.1)};
+% driven curve
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.1693) (2,0.425) (2.5,0.6807) (3,0.75) (3.5,0.5557) (4,0.175) (4.5,-0.2057) (5,-0.4) (5.5,-0.4) (6,-0.4)};
+% peak down by chi A
+\draw[->,thick] (3,0.99) -- (3,0.77);
+\node[above,font=\scriptsize] at (3,1.0) {peak $\downarrow\,\chi\mathcal A{=}0.25$};
+% forward barrier at x=1.7
+\draw[densely dotted,black!55] (1,0.1) -- (1.7,0.1);
+\draw[densely dotted,black!55] (3,0.75) -- (1.7,0.75);
+\draw[<->] (1.7,0.1) -- (1.7,0.75) node[pos=0.5,left,font=\scriptsize,align=right] {$\Delta G_a{-}\chi\mathcal A$\\$=0.65$};
+% reverse barrier at x=4.3
+\draw[densely dotted,black!55] (5,-0.4) -- (4.3,-0.4);
+\draw[densely dotted,black!55] (3,0.75) -- (4.3,0.75);
+\draw[<->] (4.3,-0.4) -- (4.3,0.75) node[pos=0.5,right,font=\scriptsize,align=left] {$\Delta G_a{+}(1{-}\chi)\mathcal A$\\$=1.15$};
+% affinity A drop at x=5.8
+\draw[densely dotted,black!55] (5,0.1) -- (5.85,0.1);
+\draw[densely dotted,black!55] (5,-0.4) -- (5.85,-0.4);
+\draw[<->] (5.85,0.1) -- (5.85,-0.4) node[pos=0.5,right,font=\scriptsize] {$\mathcal A{=}0.50$};
+\node[font=\scriptsize,below] at (3,-0.68) {(b) driven $\mathcal A{>}0$ ($\chi{=}\tfrac12$)};
+\node[font=\scriptsize,anchor=south west] at (-0.2,-0.48) {$\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$};
 \end{scope}
 \end{tikzpicture}
-\caption{활성화 장벽 그림. (a) 평형 — 두 골짜기 같은 높이, 속도는 Eyring 식. (b) 구동력 $\mathcal A_j$ 가
-도착 골짜기를 내리면 정방향 장벽 $\Delta G_a-\chi\mathcal A$, 역방향 $\Delta G_a+(1-\chi)\mathcal A$ 로 비대칭 이동
-(식~\eqref{eq:bv}; 두 속도의 비가 식~\eqref{eq:db} detailed balance). 점선은 (a). 온도는 분모 $RT$ 로 진입.
-이 그림이 식~\eqref{eq:xieq} logistic 과 \S\ref{sec:lag} 의 $L_q$ 두 결과의 공통 출발점이다.}
+\caption{활성화 장벽 그림 --- Eyring 속도식(식~\eqref{eq:bv})의 반응 좌표 개형(좌표는 모형 이중웰 퍼텐셜
+$G_\mathrm{base}{=}0.1{+}0.9\sin^2[\pi(x{-}1)/4]$ 의 수치 평가, 구동은 진행률 $\phi$ 를 따라 $\mathcal A$ 만큼 기울임).
+(a) 평형($\mathcal A{=}0$) --- 두 골 같은 높이, 장벽 $\Delta G_a{=}0.90$. (b) 구동력 $\mathcal A_j{=}sF(V_n{-}U_j){>}0$
+($\chi{=}\tfrac12$)가 도착 골을 $\mathcal A{=}0.50$ 내려 정점을 $\chi\mathcal A{=}0.25$ 낮추면, 정방향 장벽
+$\Delta G_a{-}\chi\mathcal A{=}0.65$ 로 하강$\cdot$역방향 $\Delta G_a{+}(1{-}\chi)\mathcal A{=}1.15$ 로 상승(점선 $=$(a)).
+$\chi\!\cdot\!(1{-}\chi)$ 분할이 detailed balance(식~\eqref{eq:db})를 강제하고, 유효 장벽은 $\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$
+다. 이 그림이 logistic(식~\eqref{eq:xieq})과 $L_q$ 의 공통 출발점이다.}
 \label{fig:barrier}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=4.2cm,y=1.0cm]
-\draw[-{Latex[length=1.4mm]}] (0,0) -- (0,2.35) node[above,font=\scriptsize] {flux [arb.]};
-\draw[-{Latex[length=1.4mm]}] (-0.01,0) -- (1.1,0) node[below,font=\scriptsize] {$\xi$};
-\foreach \xx in {0.5,1} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
-% forward r+ (1-xi): decreasing line from 2 to 0
-\draw[thick] (0,2) -- (1,0);
-% reverse r- xi: increasing line from 0 to 1
-\draw[thick,densely dashed] (0,0) -- (1,1);
-% A=0 pair (gray)
-\draw[gray] (0,1.5) -- (1,0);
-\draw[gray,densely dashed] (0,0) -- (1,1.5);
-% intersection black: 2(1-xi)=xi -> xi=2/3
-\draw[densely dotted] (0.6667,0) -- (0.6667,0.6667);
-\fill (0.6667,0.6667) circle (0.9pt);
-\node[below,font=\scriptsize] at (0.6667,-0.16) {$\xi_\eq$};
-\fill[gray] (0.5,0.75) circle (0.9pt);
-\node[right,font=\scriptsize] at (0.05,1.95) {forward $r^+(1-\xi)$};
-\node[right,font=\scriptsize] at (0.75,0.55) {reverse $r^-\xi$};
-\node[gray,font=\scriptsize] at (0.86,1.72) {gray: $A=0$};
+% T5 fig:flux  (opus2 — quantitative-density)
+% Forward flux r+(1-xi) vs reverse r- xi; stationary point = intersection = xi_eq (eq:logisticsolve).
+% r- = 1 fixed => reverse line y=xi common to all cases; three affinities overlaid (T5_calc.py):
+%   A/RT=0     r+/r-=1  xi_eq=1/2   ; A/RT=ln2  r+/r-=2  xi_eq=2/3 ; A/RT=2RT ln2  r+/r-=4  xi_eq=4/5.
+\begin{tikzpicture}[x=6.0cm,y=1.42cm,>=Latex]
+% ---- readout above the plot (clear of all curves) ----
+\node[anchor=south west,align=left,font=\scriptsize] at (-0.02,4.62)
+  {reverse $r^-\xi$ ($r^-{=}1$)\ $\cdot$\ forward $r^+(1-\xi)$, $r^+{=}e^{\mathcal A/RT}{=}1,2,4$\\[1pt]
+   $\xi_\eq=\dfrac{r^+}{r^++r^-}=\dfrac{1}{1+e^{-\mathcal A/RT}}=\tfrac12,\ \tfrac23,\ \tfrac45$ (교점, on line $y{=}\xi$)};
+% ---- axes ----
+\draw[->] (0,0) -- (0,4.5) node[left,font=\scriptsize] {flux [arb.]};
+\draw[->] (-0.01,0) -- (1.14,0) node[below,font=\scriptsize] {$\xi$};
+% ---- common reverse line  y = r- xi ----
+\draw[line width=1.3pt] (0,0) -- (1,1);
+\node[anchor=south east,font=\scriptsize] at (0.99,0.99) {$r^-\xi$};
+% ---- forward lines r+(1-xi) ----
+\draw[thick]               (0,4) -- (1,0);
+\draw[dashed]              (0,2) -- (1,0);
+\draw[gray,densely dashed] (0,1) -- (1,0);
+% intercept labels + y ticks
+\node[anchor=west,font=\scriptsize]      at (0.02,4.13) {$r^+{=}4$};
+\node[anchor=west,font=\scriptsize]      at (0.02,2.13) {$r^+{=}2$};
+\node[gray,anchor=west,font=\scriptsize] at (0.02,1.13) {$r^+{=}1$};
+\foreach \yv in {1,2,4} {\draw (0.008,\yv) -- (-0.008,\yv) node[left,font=\scriptsize] {\yv};}
+% ---- intersections + droplines + x ticks (xi_eq) ----
+\foreach \xe in {0.5,0.6667,0.8} {
+  \draw[densely dotted,black!55] (\xe,\xe) -- (\xe,0);
+  \fill (\xe,\xe) circle (1.1pt);
+}
+\draw (0.5,0.03) -- (0.5,-0.03) node[below,font=\scriptsize] {$\tfrac12$};
+\draw (0.6667,0.03) -- (0.6667,-0.03);
+\node[below,font=\scriptsize] at (0.6667,-0.19) {$\tfrac23$};
+\draw (0.8,0.03) -- (0.8,-0.03) node[below,font=\scriptsize] {$\tfrac45$};
+\draw (1,0.03) -- (1,-0.03) node[below,font=\scriptsize] {1};
+% ---- forward family label (clear top-left triangle) ----
+\node[anchor=west,font=\scriptsize] at (0.30,3.15) {forward $r^+(1-\xi)$};
+% ---- moves-right note (below ticks) ----
+\node[anchor=north,font=\scriptsize] at (0.66,-0.42) {$\xi_\eq$ moves right as $\mathcal A\!\uparrow$};
 \end{tikzpicture}
-\caption{정지점 유도. 정방향 플럭스 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(증가 직선)의 교점이 정지점
-$\xi_\eq$(식~\eqref{eq:logisticsolve}). $\mathcal A>0$($r^+=2r^-$, 검정)이면 $\xi_\eq=2/3$, $\mathcal A=0$
-(회색)이면 $\tfrac12$ — detailed balance(식~\eqref{eq:db})가 평형을 정한다.}
+\caption{정지점 유도 --- 정$\cdot$역 플럭스의 교점(식~\eqref{eq:logisticsolve}; 좌표는 식 그대로의 수치 평가).
+정방향 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(공통 증가 직선, $r^-{=}1$)의 교점이 정지점 $\xi_\eq$. affinity 를
+$\mathcal A/RT=0,\ln2,2\ln2$ 로 올리면 $r^+/r^-=e^{\mathcal A/RT}=1,2,4$ 라 교점이 $\xi_\eq=\tfrac12\to\tfrac23\to\tfrac45$
+로 이동한다(모두 $y{=}\xi$ 선 위) --- 곧 $\xi_\eq=r^+/(r^++r^-)=1/(1+e^{-\mathcal A/RT})$ 로, detailed balance
+(식~\eqref{eq:db})가 $\chi$ 와 무관하게 평형을 정한다.}
 \label{fig:flux}
 \end{figure}
 
@@ -1362,25 +1478,60 @@ $\xi=1-\theta$)의 차이다.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1.05cm,y=1.0cm]
-% left axis: xi_eq (S-curve), right: dxi/dV bell — shared z-axis
-\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (4.5,0) node[below,font=\scriptsize] {$z=\sigma_d(V-U_j^{\,d})/w_j$};
-\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (-4.3,3.4) node[above,font=\scriptsize] {$\xi_\eq$ \&\ $w\,|d\xi/dV|$};
-\foreach \xx in {-4,-2,2,4} {\draw (\xx,0.04) -- (\xx,-0.04) node[below,font=\scriptsize] {\xx};}
-\draw (-4.26,3.0) -- (-4.34,3.0) node[left,font=\scriptsize] {1};
-\draw (-4.26,1.5) -- (-4.34,1.5) node[left,font=\scriptsize] {0.5};
-% xi_eq = 1/(1+e^-z) scaled by 3
-\draw[thick] plot[smooth] coordinates {(-4,0.0540) (-3,0.1423) (-2,0.3576) (-1,0.8068) (0,1.5) (1,2.1932) (2,2.6424) (3,2.8577) (4,2.9460)};
-\node[right,font=\scriptsize] at (2.6,2.35) {$\xi_\eq$ (logistic)};
-% derivative xi(1-xi) max 0.25 scaled by 3 -> max 0.75
-\draw[densely dashed,thick] plot[smooth] coordinates {(-4,0.0530) (-3.5,0.0854) (-3,0.1355) (-2.5,0.2103) (-2,0.3150) (-1.5,0.4474) (-1,0.5898) (-0.5,0.7050) (0,0.7500) (0.5,0.7050) (1,0.5898) (1.5,0.4474) (2,0.3150) (2.5,0.2103) (3,0.1355) (3.5,0.0854) (4,0.0530)};
-\node[right,font=\scriptsize] at (1.9,1.00) {$w\,|d\xi/dV|=\xi(1-\xi)$};
-\draw[densely dotted] (0,0)--(0,0.75);
-\node[below,font=\scriptsize] at (0,-0.32) {center $U_j^{\,d}$};
+% T6 fig:logistic  (opus2 — quantitative-density)
+% Dual axis: left = xi_eq logistic (eq:xieq), right = derivative bell w|dxi/dV|->dxi/dV in 1/V
+% (eq:belliden).  T-dependence of width w=n RT/F, n=1, at T=268/298/328 K (T6_calc.py):
+%   w = 23.094 / 25.680 / 28.265 mV ; peak dxi/dV = 1/(4w) = 10.825 / 9.735 / 8.845 /V ;
+%   FWHM = 3.5255 w = 81.4 / 90.5 / 99.7 mV.  Center tangent slope of xi_eq = 1/(4w).
+% x-coord = (V-U) in mV (global x=0.042cm). Left axis scale 3.0 (xi 0..1 -> tikz 0..3.0);
+% right axis scale 0.27273 (dxi/dV 0..11/V -> tikz 0..3.0).
+\begin{tikzpicture}[x=0.042cm,y=1cm,>=Latex]
+% ---- frame + axes ----
+\draw[->] (-85,0) -- (92,0);
+\node[font=\scriptsize] at (8,-0.60) {$(V-U_j^{\,d})$ [mV]};
+\draw[->] (-85,0) -- (-85,3.25) node[above,font=\scriptsize] {$\xi_\eq$};
+\draw[->] (85,0) -- (85,3.25) node[above,font=\scriptsize] {$\dd\xi/\dd V$ [1/V]};
+% left ticks (xi): 0,0.5,1 -> 0,1.5,3.0
+\foreach \yv/\lab in {0/0, 1.5/0.5, 3.0/1} {\draw (-85,\yv) -- (-89,\yv) node[left,font=\scriptsize] {\lab};}
+% right ticks (dxi/dV): 0,3,6,9 -> 0,0.818,1.636,2.455
+\foreach \yv/\lab in {0.818/3, 1.636/6, 2.455/9} {\draw (85,\yv) -- (89,\yv) node[right,font=\scriptsize] {\lab};}
+% x ticks
+\foreach \xx in {-80,-40,0,40,80} {\draw (\xx,0.04) -- (\xx,-0.04) node[below,font=\scriptsize] {\xx};}
+% ---- derivative bells (right axis, scale 0.27273) ----
+\begin{scope}[yscale=0.27273]
+% 268K solid
+\draw[thick] plot[smooth] coordinates {(-85,1.0386) (-75,1.5595) (-65,2.3099) (-55,3.3530) (-45,4.7267) (-35,6.3945) (-25,8.1841) (-15,9.7592) (-5,10.6992) (0,10.8251) (5,10.6992) (15,9.7592) (25,8.1841) (35,6.3945) (45,4.7267) (55,3.3530) (65,2.3099) (75,1.5595) (85,1.0386)};
+% 298K dashed
+\draw[thick,dashed] plot[smooth] coordinates {(-85,1.3235) (-75,1.8898) (-65,2.6585) (-55,3.6627) (-45,4.9035) (-35,6.3180) (-25,7.7495) (-15,8.9500) (-5,9.6436) (0,9.7353) (5,9.6436) (15,8.9500) (25,7.7495) (35,6.3180) (45,4.9035) (55,3.6627) (65,2.6585) (75,1.8898) (85,1.3235)};
+% 328K dotted
+\draw[thick,dotted] plot[smooth] coordinates {(-85,1.5878) (-75,2.1740) (-65,2.9309) (-55,3.8697) (-45,4.9708) (-35,6.1642) (-25,7.3179) (-15,8.2503) (-5,8.7761) (0,8.8449) (5,8.7761) (15,8.2503) (25,7.3179) (35,6.1642) (45,4.9708) (55,3.8697) (65,2.9309) (75,2.1740) (85,1.5878)};
+% peak dots
+\fill (0,10.8251) circle (2.2pt); \fill (0,9.7353) circle (2.2pt); \fill (0,8.8449) circle (2.2pt);
+% FWHM of 298K bell: half-max 4.8677 /V at (V-U)=+-45.27 mV
+\draw[<->,black!55] (-45.27,4.8677) -- (45.27,4.8677);
+\node[fill=white,inner sep=1pt,font=\scriptsize,black!55] at (0,4.8677) {FWHM $3.53w{=}90.5$ mV (298 K)};
+\end{scope}
+% ---- representative logistic xi_eq (298K, left axis, scale 3.0), gray ----
+\begin{scope}[yscale=3.0]
+\draw[gray] plot[smooth] coordinates {(-85,0.0352) (-70,0.0615) (-55,0.1051) (-40,0.1740) (-25,0.2742) (-10,0.4039) (0,0.5000) (10,0.5961) (25,0.7258) (40,0.8260) (55,0.8949) (70,0.9385) (85,0.9648)};
+% center tangent, slope 1/(4w): (-40,0.1106)->(40,0.8894)
+\draw[densely dotted] (-40,0.1106) -- (40,0.8894);
+\fill[gray] (0,0.5) circle (2.2pt);
+\node[gray,font=\scriptsize,anchor=west] at (52,0.78) {$\xi_\eq$ (298 K)};
+\node[font=\scriptsize,anchor=north west,align=left] at (10,0.47) {tangent slope\\$=1/(4w)$};
+\end{scope}
+% ---- legend (quantitative), above the plot to clear the bells ----
+\node[anchor=south west,font=\scriptsize,align=left] at (-72,3.35)
+  {268 K (solid): $w{=}23.1$ mV, peak $10.83$/V\\
+   298 K (dashed): $w{=}25.7$ mV, peak $9.74$/V\\
+   328 K (dotted): $w{=}28.3$ mV, peak $8.85$/V};
 \end{tikzpicture}
-\caption{평형 진행률과 그 미분. 실선 $=\xi_\eq$ logistic(식~\eqref{eq:xieq}), 파선 $=$ 폭으로 규격화한
-미분 $w_j|d\xi_\eq/dV|=\xi_\eq(1-\xi_\eq)$ — $z=0$(중심 $U_j^{\,d}$)에서 최대 $\tfrac14$ 인 종 모양. 이 종이
-다음 절의 평형 peak 이고, 방향에 불변(양수)이다.}
+\caption{평형 진행률 $\xi_\eq$ 와 그 미분 --- 폭 $w_j{=}n_jRT/F$ ($n_j{=}1$)의 온도 의존(좌표는 식 그대로의
+수치 평가). 오른축 종(bell)이 $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$(식~\eqref{eq:belliden})로 세 온도
+$T{=}268/298/328$ K 에서 폭 $w{=}23.1/25.7/28.3$ mV, 정점 $1/(4w){=}10.83/9.74/8.85$ /V (검은 점)를 갖는다
+--- 온도가 오르면 종이 낮고 넓어진다(면적 보존). 왼축 회색 $S$-곡선이 대응 logistic(식~\eqref{eq:xieq}, 298 K)이고,
+중심 접선의 기울기가 정확히 $1/(4w)$ 라 $w$ 의 기하적 의미를 준다. FWHM $=2\ln(3{+}2\sqrt2)\,w=3.53\,w=90.5$ mV
+(298 K). 종은 방향 불변(양수)이다.}
 \label{fig:logistic}
 \end{figure}
 
@@ -1539,31 +1690,54 @@ ill-posed 성질과 같은 뿌리), 비대칭 꼬리는 $L_{V,j}$ 가 담당하�
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=0.72cm,y=22.0cm]
-\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (10.8,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
-\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (-6.3,0.275) node[above,font=\scriptsize] {$\dd Q/\dd V$ (임의 단위)};
-\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
-% (0) equilibrium delta at plateau potential
-\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.262);
-\node[font=\scriptsize,align=center] at (-3.15,0.255) {평형 델타(Maxwell 전위)};
-% (ii) intrinsic logistic-derivative bell, w=1
-\draw[black!60] plot[smooth] coordinates {(-6,0.0025) (-5,0.0066) (-4,0.0177) (-3,0.0452) (-2,0.1050) (-1,0.1966) (-0.5,0.2350) (0,0.2500) (0.5,0.2350) (1,0.1966) (1.5,0.1491) (2,0.1050) (2.5,0.0701) (3,0.0452) (4,0.0177) (5,0.0066) (6,0.0025) (7,0.0009) (8,0.0003)};
-\node[font=\scriptsize,black!60] at (2.55,0.205) {② 내재 $n_jRT/F$};
-% (ii)x(iii) broadened bell, effective scale 1.6w
-\draw[densely dashed] plot[smooth] coordinates {(-6,0.0140) (-5,0.0252) (-4,0.0438) (-3,0.0721) (-2,0.1082) (-1,0.1419) (-0.5,0.1525) (0,0.1562) (0.5,0.1525) (1,0.1419) (1.5,0.1264) (2,0.1082) (2.5,0.0895) (3,0.0721) (4,0.0438) (5,0.0252) (6,0.0140) (7,0.0077) (8,0.0042)};
-\node[font=\scriptsize,align=left] at (-4.0,0.128) {②$\otimes$③ 분산 가법\\$\sigma_\eta=1.25\,\sigma_\mathrm{int}$, 유효 scale $1.6\,w_j$};
-% (i) finite-rate skewed: C conv one-sided exp, L=1.5w
-\draw[thick] plot[smooth] coordinates {(-6,0.0074) (-5,0.0134) (-4,0.0238) (-3,0.0408) (-2,0.0656) (-1,0.0959) (-0.5,0.1106) (0,0.1232) (0.5,0.1322) (1,0.1365) (1.5,0.1358) (2,0.1305) (2.5,0.1213) (3,0.1097) (4,0.0833) (5,0.0587) (6,0.0392) (7,0.0251) (8,0.0156) (9,0.0094) (10,0.0056)};
-\draw[-{Latex[length=1.3mm]},gray] (4.4,0.093) -- (7.6,0.040);
-\node[font=\scriptsize] at (6.8,0.098) {$+$① 지수 꼬리 $\ell=L_{V,j}$};
-\end{tikzpicture}
-\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}; 좌표는 식 그대로의 수치 평가). 평형
-델타(수직 화살)에 ② 내재 logistic 미분 종(폭 $w_j$, 가는 실선)이 얹히고, ③ 앙상블 $\eta$ 산포와의
-합성곱이 분산 가법으로 종을 넓히며(예시 — $\eta$ 산포의 표준편차를 내재 몫의 $1.25$ 배로 두면
-$\sigma_\mathrm{sym}=\sqrt{1+1.25^2}\,\sigma_\mathrm{int}\approx1.6\,\sigma_\mathrm{int}$, 같은
-함수족이면 유효 scale $1.6w_j$ — 파선으로 표시), ① 유한율속이 한쪽 지수
-꼬리(예시 $L_V=1.5w_j$ 와의 단측 합성곱 — 수치 적분)를 늘여 종을 소인 방향으로 민다(굵은 실선). 대칭
-두 몫은 $w_j$ 하나에 흡수되고 비대칭 꼬리만 $L_{V,j}$ 로 분리된다.}
+% T8 candidate (sonnet3) for fig:widthbudget — same 4-stage story as the existing figure,
+% now narrated as a waterfall (stacked baselines + stage arrows, brief's "panel separation or
+% stage arrows" option) on a SHARED x-axis so the three width scales are directly comparable
+% by eye. Stage (2)(x)(3) is a TRUE numerical convolution (not the chapter's "same family"
+% shortcut) — T8_calc.py finds the true peak is ~10% lower than the shortcut's logistic-bell
+% estimate, reported honestly in the caption alongside the exact (chapter's own) variance sum.
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[x=0.75cm,y=2.6cm]
+\draw[-{Latex[length=1.6mm]}] (-7.3,-0.15) -- (11.3,-0.15) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.4mm]}] (-7.1,-0.15) -- (-7.1,1.62) node[above,font=\scriptsize] {$\dd Q/\dd V$ stages (stacked baselines)};
+% ---- stage 1: equilibrium delta at baseline 0 ----
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.30);
+\node[font=\tiny] at (0,0.36) {eq.\ delta (Maxwell $U_j$)};
+\draw[densely dotted] (-7.1,0) -- (11.1,0);
+% ---- stage 2: intrinsic bell, baseline 0.45 ----
+\draw[densely dotted] (-7.1,0.45) -- (11.1,0.45);
+\draw[black!55] plot[smooth] coordinates {(-6.32,0.4518) (-5.60,0.4537) (-4.88,0.4575) (-4.16,0.4651) (-3.44,0.4801) (-2.72,0.5080) (-2.00,0.5550) (-1.28,0.6202) (-0.56,0.6814) (0.16,0.6984) (0.88,0.6572) (1.60,0.5898) (2.32,0.5315) (3.04,0.4936) (3.76,0.4722) (4.48,0.4611) (5.20,0.4555) (5.92,0.4527) (6.64,0.4513) (7.36,0.4506) (8.08,0.4503) (8.80,0.4502) (9.52,0.4501) (10.24,0.4500)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-1.81,0.37) -- (1.81,0.37) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{int}{=}1.81w_j$};
+\node[black!55,font=\tiny] at (2.6,0.62) {(2) intrinsic $n_jRT/F$};
+% ---- stage 3: (2)(x)(3) TRUE Gaussian convolution, baseline 0.90 ----
+\draw[densely dotted] (-7.1,0.90) -- (11.1,0.90);
+\draw[densely dashed,thick] plot[smooth] coordinates {(-6.32,0.9125) (-5.60,0.9206) (-4.88,0.9322) (-4.16,0.9477) (-3.44,0.9667) (-2.72,0.9879) (-2.00,1.0087) (-1.28,1.0262) (-0.56,1.0372) (0.16,1.0398) (0.88,1.0333) (1.60,1.0190) (2.32,0.9997) (3.04,0.9783) (3.76,0.9579) (4.48,0.9403) (5.20,0.9266) (5.92,0.9166) (6.64,0.9099) (7.36,0.9056) (8.08,0.9031) (8.80,0.9016) (9.52,0.9008) (10.24,0.9004)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-2.90,0.81) -- (2.90,0.81) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{sym}{=}2.90w_j$};
+\node[font=\tiny,align=left] at (5.6,1.13) {(2)$\otimes$(3) ensemble $\eta$\\$\sigma_\eta{=}1.25\sigma_\mathrm{int}$};
+% ---- stage 4: +(1) causal exponential tail, baseline 1.35 ----
+\draw[densely dotted] (-7.1,1.35) -- (11.1,1.35);
+\draw[thick] plot[smooth] coordinates {(-6.32,1.3559) (-5.60,1.3601) (-4.88,1.3665) (-4.16,1.3757) (-3.44,1.3881) (-2.72,1.4035) (-2.00,1.4212) (-1.28,1.4394) (-0.56,1.4561) (0.16,1.4688) (0.88,1.4756) (1.60,1.4757) (2.32,1.4691) (3.04,1.4571) (3.76,1.4416) (4.48,1.4249) (5.20,1.4086) (5.92,1.3941) (6.64,1.3821) (7.36,1.3726) (8.08,1.3656) (8.80,1.3605) (9.52,1.3569) (10.24,1.3545)};
+\draw[-{Latex[length=1.3mm]},gray] (2.0,1.51) -- (4.6,1.44);
+\node[font=\tiny] at (2.7,1.58) {$+$(1) causal tail, $L_V{=}1.5w_j$};
+\draw[{Bar[width=1.1mm]}-{Bar[width=1.1mm]}] (1.24,1.27) -- (2.74,1.27) node[pos=0.5,below,font=\tiny] {$L_V$};
+% ---- stage-transition connector arrows in the clear right margin ----
+\draw[-{Latex[length=1.4mm]}] (9.9,0.02) -- (9.9,0.43);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.47) -- (9.9,0.88);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.92) -- (9.9,1.33);
+\end{tikzpicture}%
+}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}), 네 단계를 공유 $x$ 축 위 계단(waterfall)으로
+서사화 --- 아래에서 위로 쌓아 폭이 실제로 넓어지는 것을 한눈에 비교한다(점선 = 각 단계의 기준선, 오른쪽 여백의
+수직 화살표가 단계 전이). 맨 아래 굵은 화살 = 평형 델타(Maxwell 전위). 회색 = ② 내재 logistic 미분 종(폭
+$\sigma_\mathrm{int}=1.81w_j$). 파선 = ②$\otimes$③ --- \emph{실제 수치 합성곱}(Gaussian 예시
+$\sigma_\eta=1.25\,\sigma_\mathrm{int}$)으로
+얻은 결과이며 분산은 정확히 가법이다 --- $\sigma_\mathrm{sym}=\sqrt{\sigma_\mathrm{int}^2+\sigma_\eta^2}$
+$=2.90w_j$ 의 피타고라스 형태로, 본문 식~\eqref{eq:widthbudget} 과 일치한다. 다만 본문이 쓰는 ``같은 함수족이면 유효 scale
+$1.6w_j$'' 지름길로 재현한 logistic 종은 이 실제 합성곱보다 peak 가 약 $10\%$ 높다(분산은
+정확해도 \emph{모양}까지 같은 logistic 족은 아님 --- 근사의 한계를 명시해 둔다). 굵은 실선 = $+$① 인과
+지수 꼬리($L_V=1.5w_j$, 식~\eqref{eq:lowpass} 와 동일한 1차 저역통과 재귀로 계산)가 종을 오른쪽으로 밀며,
+peak 위치가 중심에서 이동한다. 세 척도($\sigma_\mathrm{int}$·$\sigma_\mathrm{sym}$·꼬리 길이 $L_V$)는
+치수선 길이로 직접 대비된다.}
 \label{fig:widthbudget}
 \end{figure}
 
@@ -1913,35 +2087,54 @@ $1-(1/\nu)\big/\!\big(e^{1/\nu}-1\big)$ (전이 면적은 정확히, 중심 peak
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1.05cm,y=0.95cm]
-% discharge panel (left)
+% T7 fig:reversal  (opus2 — quantitative-density; GENUINE low-pass numeric, not schematic)
+% peak shape = (xi_eq - xi_lag)/L_V, xi_lag from first-order low-pass recurrence eq:lowpass
+% (T7_calc.py): w=1, U=0, dgrid=0.05w, L_V=1.5w, rho=0.96722.
+%   discharge sigma_d=+1: peak-shape max 0.1923 at V=+1.00 w (tail -> higher V).
+%   charge   sigma_d=-1: Reverse[LowPass[Reverse[xi_eq]]] (eq:reversal) = exact mirror,
+%                        max 0.1923 at V=-1.00 w (tail -> lower V).
+%   equilibrium species (dotted) = xi_eq(1-xi_eq)/w, peak 0.25 at 0, direction-invariant.
+% Panels stacked vertically for full text width.
+\begin{tikzpicture}[x=0.72cm,y=8cm,>=Latex]
+% ================= (a) DISCHARGE (top) =================
 \begin{scope}
-\draw[-{Latex[length=1.6mm]}] (-3.4,0) -- (3.4,0) node[below,font=\scriptsize] {$V$};
-\draw[-{Latex[length=1.6mm]}] (-3.4,0) -- (-3.4,2.7) node[above,font=\scriptsize] {peak};
-% bell (equilibrium) dotted
-\draw[densely dotted,thick] plot[smooth] coordinates {(-3,0.27) (-2,0.66) (-1.5,1.04) (-1,1.55) (-0.5,2.02) (0,2.2) (0.5,2.02) (1,1.55) (1.5,1.04) (2,0.66) (3,0.27)};
-% discharge tail: shifted/broadened to higher V (right)
-\draw[thick] plot[smooth] coordinates {(-3,0.18) (-2,0.45) (-1.5,0.74) (-1,1.18) (-0.5,1.68) (0,2.0) (0.5,2.04) (1,1.78) (1.5,1.4) (2,1.02) (2.5,0.72) (3,0.5)};
-\draw[-{Latex[length=1.4mm]},gray] (1.6,1.6)--(2.6,1.0);
-\node[font=\scriptsize] at (1.7,2.0) {tail $\to$ higher $V$};
-\node[font=\scriptsize,below] at (0,-0.42) {(a) discharge $\sigma_d=+1$: progress $V\uparrow$};
+\draw[->] (-6.3,0) -- (9.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-6.3,0) -- (-6.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(-6,0.0000) (-4.8,0.0028) (-3.6,0.0102) (-3,0.0183) (-2.4,0.0319) (-1.8,0.0536) (-1.2,0.0850) (-0.6,0.1239) (0,0.1620) (0.6,0.1871) (1.0,0.1923) (1.2,0.1912) (1.8,0.1760) (2.4,0.1492) (3,0.1190) (3.6,0.0908) (4.2,0.0671) (4.8,0.0485) (5.4,0.0345) (6,0.0242) (6.9,0.0140) (7.8,0.0079) (8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (1.0,0.1923) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[right,font=\scriptsize] at (1.2,0.205) {$({+}1.00w,\,0.192)$ tail};
+\draw[->,line width=0.9pt] (-5.6,0.275) -- (-2.4,0.275);
+\node[right,font=\scriptsize] at (-5.6,0.292) {progress $V\!\uparrow$ (time $\to$)};
+\draw[->,gray] (4.0,0.15) -- (6.6,0.075);
+\node[right,font=\scriptsize] at (4.4,0.175) {tail $\to$ higher $V$};
+\node[right,font=\scriptsize] at (2.6,0.265) {(a) discharge $\sigma_d{=}{+}1$};
 \end{scope}
-% charge panel (right)
-\begin{scope}[xshift=7.3cm]
-\draw[-{Latex[length=1.6mm]}] (-3.4,0) -- (3.4,0) node[below,font=\scriptsize] {$V$};
-\draw[-{Latex[length=1.6mm]}] (-3.4,0) -- (-3.4,2.7) node[above,font=\scriptsize] {peak};
-\draw[densely dotted,thick] plot[smooth] coordinates {(-3,0.27) (-2,0.66) (-1.5,1.04) (-1,1.55) (-0.5,2.02) (0,2.2) (0.5,2.02) (1,1.55) (1.5,1.04) (2,0.66) (3,0.27)};
-% charge tail: mirror — broadened to lower V (left)
-\draw[thick] plot[smooth] coordinates {(-3,0.5) (-2.5,0.72) (-2,1.02) (-1.5,1.4) (-1,1.78) (-0.5,2.04) (0,2.0) (0.5,1.68) (1,1.18) (1.5,0.74) (2,0.45) (3,0.18)};
-\draw[-{Latex[length=1.4mm]},gray] (-1.6,1.6)--(-2.6,1.0);
-\node[font=\scriptsize] at (-1.5,2.0) {tail $\to$ lower $V$};
-\node[font=\scriptsize,below] at (0,-0.42) {(b) charge $\sigma_d=-1$: progress $V\downarrow$ (grid reversed)};
+% ================= (b) CHARGE (bottom, mirror) =================
+\begin{scope}[yshift=-2.9cm]
+\draw[->] (-9.3,0) -- (6.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-9.3,0) -- (-9.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-8,-4,0,4} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(6,0.0000) (4.8,0.0028) (3.6,0.0102) (3,0.0183) (2.4,0.0319) (1.8,0.0536) (1.2,0.0850) (0.6,0.1239) (0,0.1620) (-0.6,0.1871) (-1.0,0.1923) (-1.2,0.1912) (-1.8,0.1760) (-2.4,0.1492) (-3,0.1190) (-3.6,0.0908) (-4.2,0.0671) (-4.8,0.0485) (-5.4,0.0345) (-6,0.0242) (-6.9,0.0140) (-7.8,0.0079) (-8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (-1.0,0.1923) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[left,font=\scriptsize] at (-1.2,0.205) {tail $({-}1.00w,\,0.192)$};
+\draw[<-,line width=0.9pt] (2.4,0.275) -- (5.6,0.275);
+\node[left,font=\scriptsize] at (6.1,0.292) {progress $V\!\downarrow$ (grid rev.)};
+\draw[->,gray] (-4.0,0.15) -- (-6.6,0.075);
+\node[left,font=\scriptsize] at (-4.4,0.175) {tail $\to$ lower $V$};
+\node[left,font=\scriptsize] at (-2.6,0.265) {(b) charge $\sigma_d{=}{-}1$ (mirror of a)};
 \end{scope}
 \end{tikzpicture}
-\caption{인과 꼬리의 방향. 점선 $=$ 평형 종($\xi_\eq(1-\xi_\eq)/w$, 방향 불변). 실선 $=$ peak shape
-with tail. (a) 방전은 진행이 $V\!\uparrow$ 라 꼬리가 높은 $V$ 쪽으로 늘어진다(격자 그대로). (b) 충전은 진행이
-$V\!\downarrow$ 라 격자를 뒤집어 필터한 뒤 되돌려(역순 저역통과의 재역순) 꼬리가 낮은 $V$ 쪽으로 — 방전의 거울. 두 경우 모두
-peak 는 양수.}
+\caption{인과 꼬리의 방향 --- 좌표는 저역통과 점화식(식~\eqref{eq:lowpass})의 수치 평가($w{=}1$, $L_V{=}1.5w$,
+$\rho{=}e^{-\Delta_\mathrm{grid}/L_V}{=}0.967$). 점선 $=$ 평형 종 $\xi_\eq(1-\xi_\eq)/w$(정점 $0.25$@중심, 방향 불변),
+실선 $=$ peak shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape}). (a) 방전은 진행이 $V\!\uparrow$ 라
+꼬리가 높은 $V$ 쪽으로, 정점 $({+}1.00w,\,0.192)$(격자 그대로). (b) 충전은 진행이 $V\!\downarrow$ 라 격자를 뒤집어
+필터한 뒤 되돌려(식~\eqref{eq:reversal}) 꼬리가 낮은 $V$ 쪽으로, 정점 $({-}1.00w,\,0.192)$ --- 방전의 정확한 거울.
+두 경우 모두 peak 는 양수.}
 \label{fig:reversal}
 \end{figure}
 
