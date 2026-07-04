@@ -172,7 +172,8 @@ EV_TO_J = 1.602176634e-19  # eV→J 다리 (elementary charge; eq:gunit: g_J = g
 
 def func_dSe_molar(x: ScalarOrArray, T: float,
                    g_max_eV: float, x_MIT: float, dx_MIT: float) -> ScalarOrArray:
-    """부분몰 전자 엔트로피 ΔS_e(x,T) [J/(mol·K)] — MIT 게이트형(Ch1 eq:dSegate).
+    """부분몰 전자 엔트로피 ΔS_e(x,T) [J/(mol·K)] — MIT 게이트형(Ch1 eq:dSegate;
+    몰당 환산·게이트 대입형은 eq:dSemolar·eq:ggate).
 
     금속-절연체 전이(MIT) 창 안에서 상태밀도 g(E_F) 가 급변하며 부분몰 전자 엔트로피가
     골(음의 피크)을 이룬다. σ=1/(1+exp(−(x−x_MIT)/dx_MIT)) 로 창을 열고 σ(1−σ) 게이트:
@@ -299,7 +300,7 @@ class GraphiteAnodeDischargeDQDV:
 
     # ---- 폭 다중도 n -----------------------------------------------------
     def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
-        """폭 다중도 n. 'n' 직접, 또는 'w' 에서 n=w·F/(RT) 역산, 없으면 1."""
+        """폭 다중도 n (eq:wbase 의 n_j). 'n' 직접, 또는 'w' 에서 n=w·F/(RT) 역산, 없으면 1."""
         if tr.get('n') is not None:
             return tr['n']
         if tr.get('w') is not None:
@@ -308,7 +309,7 @@ class GraphiteAnodeDischargeDQDV:
 
     # ---- 폭 w (자유 피팅 파라미터: w|n 직접 지정, 없으면 n=1) ----------------
     def _width(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
-        """전이 폭 w [V] = nRT/F(=func_w). w|n 직접 지정 우선, 없으면 n=1.
+        """전이 폭 w [V] = nRT/F(=func_w, eq:wbase). w|n 직접 지정 우선, 없으면 n=1.
         (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)"""
         return func_w(T, self._n_factor(tr, T))
 
@@ -349,7 +350,7 @@ class GraphiteAnodeDischargeDQDV:
             return 0.0
 
         # [원본 _init_L_V 의도 복원] 미정의였던 s/OCV/U/dOCVdsto 를 물리로 연결:
-        #   · A = 꼬리 컷점 affinity. 원천 dξ_eq/dq 가 정점의 ~5%(z_cut=4.357)로
+        #   · A = 꼬리 컷점 affinity(eq:Acut). 원천 dξ_eq/dq 가 정점의 ~5%(z_cut=4.357)로
         #         떨어지는 컷에서 A=z_cut·n·RT (충·방전 동일 크기), A_cap_RT·RT 상한.
         #         (원본 `min(s·F·(OCV−U), 4RT)` 의 등가형 — s 는 크기에 안 들어가고
         #          방향은 아래 χ_d/ΔH_eff 가 받는다. s 를 min 밖에 두면 충전서 음수
@@ -446,7 +447,7 @@ class GraphiteAnodeDischargeDQDV:
         v_span = max(v_hi - v_lo, self.v_span_floor)
         n_work = max(self.n_work_min, V_n.size * 2)
 
-        # 작업 격자(꼬리 여유 — 기본 패딩 대칭 0.15/0.15: 꼬리가 양방향 모두 들어오도록)
+        # 작업 격자(eq:vwork; 꼬리 여유 — 기본 패딩 대칭 0.15/0.15: 꼬리가 양방향 모두 들어오도록)
         V_work = np.linspace(v_lo - self.grid_pad_lo * v_span, v_hi + self.grid_pad_hi * v_span, n_work)
         grid_step = V_work[1] - V_work[0]
 
@@ -494,6 +495,7 @@ class GraphiteAnodeDischargeDQDV:
             lag_len_V = self._resolve_lag_length(
                 tr, T_rep, I_abs, Q_cell, n_rep, sigma_d)
 
+            # 분기 스위치(eq:branch): L_V < ν·Δ_grid(ν=min_lag_grid_steps) 면 평형 종, 그 외 꼬리.
             if degenerate_span or (not np.isfinite(lag_len_V)) or lag_len_V < self.min_lag_grid_steps * grid_step:
                 # 저율·|I|→0·동역학 키 부재·퇴화 스팬(스칼라 입력) → 평형 종 직접(eq:eqpeak)
                 peak_shape = ksi_eq * (1.0 - ksi_eq) / w
@@ -501,7 +503,7 @@ class GraphiteAnodeDischargeDQDV:
                 ksi_arr = np.asarray(ksi_eq, dtype=float)
                 # ★꼬리 방향(eq:memory 인과 합성곱은 "진행 방향의 과거"를 기억):
                 #   방전(σ_d=+1): 진행=V 증가 → 격자 오름차순 그대로.
-                #   충전(σ_d=−1): 진행=V 감소 → 격자 뒤집어 필터 후 되돌림(방향 반전).
+                #   충전(σ_d=−1): 진행=V 감소 → 격자 뒤집어 필터 후 되돌림(방향 반전, eq:reversal).
                 if sigma_d >= 0:
                     occ_lagged = _causal_lowpass(ksi_arr, grid_step, lag_len_V)
                 else:
@@ -511,6 +513,7 @@ class GraphiteAnodeDischargeDQDV:
 
             dqdv_work = dqdv_work + tr['Q'] * peak_shape
 
+        # 역보간: 작업 격자 → 관측 전위 격자로 되돌림(eq:sum 의 "합산·역보간" 중 후자).
         dqdv_out = np.interp(V_n, V_work, dqdv_work)
         return float(dqdv_out[0]) if is_scalar else dqdv_out
 
@@ -522,7 +525,7 @@ class GraphiteAnodeDischargeDQDV:
               Q_cell: float = 1.0,
               T: Union[float, np.ndarray] = 298.15,
               I_abs: Optional[float] = None) -> ScalarOrArray:
-        """실험조건 → dQ/dV 상위 편의 메서드(내부는 dqdv 재사용, 새 물리 X).
+        """실험조건 → dQ/dV 상위 편의 메서드(내부는 dqdv 재사용, 새 물리 X; 환산은 eq:n0map).
 
         V_app     : 인가 전위 격자 [V]
         direction : 방향 — 'discharge'/'d'/'dis'/+1  또는 'charge'/'c'/'chg'/−1
@@ -568,7 +571,8 @@ class GraphiteAnodeDischargeDQDV:
           기본 데이터셋 n_j=1.0 에서는 수치 동일(bit-exact), n_j≠1 피팅 시에만 발현).
         ★config 항은 폭의 열적 서식 w=nRT/F('n' 키 경로) 전제 — 'w'-단독 전이는 폭이
           T-동결(∂w/∂T=0)이라 config 항을 가산하지 않는다(단순식이 옳음, Ch2 파생 A srcbox).
-        첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함), 둘째 항 =
+        첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함;
+        LCO 개별 전이의 이 관계식은 eq:lco-dUdT), 둘째 항 =
         봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
         w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
         다른 산출(직교; 이중계산 아님). 평형 진행률 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
@@ -704,7 +708,8 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
 
     def _effective_dS_rxn(self, tr: Dict[str, Any],
                           T: Union[float, np.ndarray]) -> ScalarOrArray:
-        """LCO 유효 표준 엔트로피 = ΔS_rxn + (MIT 전이면) 전자항 ΔS_e.
+        """LCO 유효 표준 엔트로피 = ΔS_rxn + (MIT 전이면) 전자항 ΔS_e
+        (config+vib+electronic 분해; eq:lco-decomp).
 
         ★전자항은 기준온도 T_ref 에서 동결한 상수 오프셋으로 더한다(단일-기준 근사).
           → dS_eff 가 T-무관이 되어 U_j(T)=(−ΔH+T·dS_eff)/F 가 T-선형이고
