@@ -1,0 +1,32 @@
+\begin{tikzpicture}[x=0.58cm,y=0.92cm,
+  axis/.style={-{Latex[length=1.4mm]},semithick},
+  guide/.style={thin,black!45,densely dotted},
+  lab/.style={font=\scriptsize,align=center}]
+\begin{scope}
+\draw[axis] (-4.35,0) -- (4.45,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$};
+\draw[axis] (-4.35,0) -- (-4.35,2.65) node[above,font=\scriptsize] {peak};
+\foreach \x in {-4,-2,0,2,4}{\draw (\x,0.045) -- (\x,-0.045) node[below,font=\tiny] {\x};}
+\draw[black!50,densely dotted,semithick] plot[smooth] coordinates {(-4.0000,0.1590) (-3.6000,0.2330) (-3.2000,0.3387) (-2.8000,0.4863) (-2.4000,0.6863) (-2.0000,0.9449) (-1.6000,1.2579) (-1.2000,1.6010) (-0.8000,1.9252) (-0.4000,2.1623) (0.0000,2.2500) (0.4000,2.1623) (0.8000,1.9252) (1.2000,1.6010) (1.6000,1.2579) (2.0000,0.9449) (2.4000,0.6863) (2.8000,0.4863) (3.2000,0.3387) (3.6000,0.2330) (4.0000,0.1590)};
+\draw[thick] plot[smooth] coordinates {(-4.0000,0.0000) (-3.6000,0.0828) (-3.2000,0.1725) (-2.8000,0.2821) (-2.4000,0.4243) (-2.0000,0.6106) (-1.6000,0.8486) (-1.2000,1.1372) (-0.8000,1.4599) (-0.4000,1.7808) (0.0000,2.0491) (0.4000,2.2140) (0.8000,2.2445) (1.2000,2.1415) (1.6000,1.9342) (2.0000,1.6657) (2.4000,1.3780) (2.8000,1.1027) (3.2000,0.8586) (3.6000,0.6538) (4.0000,0.4889)};
+\draw[-{Latex[length=1.3mm]},semithick] (-2.8,2.42) -- (2.8,2.42) node[midway,above,font=\scriptsize] {time/progress};
+\draw[-{Latex[length=1.2mm]},gray] (1.05,2.20) -- (3.05,0.92);
+\node[lab] at (0,-0.55) {(a) discharge $\sigma_d=+1$: grid as-is};
+\node[lab] at (2.55,2.05) {causal tail\\to higher $V$};
+\end{scope}
+\begin{scope}[xshift=10.2cm]
+\draw[axis] (-4.35,0) -- (4.45,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$};
+\draw[axis] (-4.35,0) -- (-4.35,2.65) node[above,font=\scriptsize] {peak};
+\foreach \x in {-4,-2,0,2,4}{\draw (\x,0.045) -- (\x,-0.045) node[below,font=\tiny] {\x};}
+\draw[black!50,densely dotted,semithick] plot[smooth] coordinates {(-4.0000,0.1590) (-3.6000,0.2330) (-3.2000,0.3387) (-2.8000,0.4863) (-2.4000,0.6863) (-2.0000,0.9449) (-1.6000,1.2579) (-1.2000,1.6010) (-0.8000,1.9252) (-0.4000,2.1623) (0.0000,2.2500) (0.4000,2.1623) (0.8000,1.9252) (1.2000,1.6010) (1.6000,1.2579) (2.0000,0.9449) (2.4000,0.6863) (2.8000,0.4863) (3.2000,0.3387) (3.6000,0.2330) (4.0000,0.1590)};
+\draw[thick] plot[smooth] coordinates {(-4.0000,0.4889) (-3.6000,0.6538) (-3.2000,0.8586) (-2.8000,1.1027) (-2.4000,1.3780) (-2.0000,1.6657) (-1.6000,1.9342) (-1.2000,2.1415) (-0.8000,2.2445) (-0.4000,2.2140) (0.0000,2.0491) (0.4000,1.7808) (0.8000,1.4599) (1.2000,1.1372) (1.6000,0.8486) (2.0000,0.6106) (2.4000,0.4243) (2.8000,0.2821) (3.2000,0.1725) (3.6000,0.0828) (4.0000,0.0000)};
+\draw[-{Latex[length=1.3mm]},semithick] (2.8,2.42) -- (-2.8,2.42) node[midway,above,font=\scriptsize] {time/progress};
+\draw[-{Latex[length=1.2mm]},gray] (-1.05,2.20) -- (-3.05,0.92);
+\node[lab] at (0,-0.55) {(b) charge $\sigma_d=-1$: reverse grid};
+\node[lab] at (-2.55,2.05) {causal tail\\to lower $V$};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향 개선안. 점선은 방향 불변인 평형 종 $\xi_\eq(1-\xi_\eq)/w$ 이고, 실선은
+저역통과 점화식으로 얻은 peak shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$ 이다. 좌표는 $L_V/w=0.85$ 와
+$\Delta V/w=0.1$ 격자에서 T7\_calc.py 로 실제 저역통과를 계산한 뒤 표시용으로 정규화했다. 방전은 진행이
+$V\uparrow$ 라 꼬리가 높은 $V$ 쪽으로, 충전은 격자를 뒤집어 필터한 뒤 되돌리므로 낮은 $V$ 쪽으로 늘어진다.}
+\label{fig:reversal}

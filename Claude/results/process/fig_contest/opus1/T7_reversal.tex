@@ -1,0 +1,39 @@
+% T7 fig:reversal (opus1) — causal tail direction, discharge vs charge as mirror images.
+% Equilibrium bell (dotted, direction-invariant): xi_eq(1-xi_eq)/w  [eq:eqpeak].
+% Peak with tail (solid): (xi_eq - xi_lag)/L_V  [eq:peakshape], xi_lag from 1st-order low-pass [eq:lowpass];
+% charge = reverse -> low-pass -> reverse [eq:reversal].  w=1, L_V=1.5, grid 0.05; common display x8.8 (T7_calc.py).
+\centering
+\begin{tikzpicture}[x=0.42cm,y=0.95cm,font=\scriptsize]
+% ================= (a) discharge =================
+\begin{scope}
+\draw[-{Latex[length=1.5mm]}] (-4.4,0) -- (6.4,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.5mm]}] (-4.4,0) -- (-4.4,2.55) node[above,font=\scriptsize] {peak};
+% equilibrium bell (dotted)
+\draw[densely dotted,thick] plot[smooth] coordinates {(-4.0,0.1554) (-3.6,0.2278) (-3.2,0.3312) (-2.8,0.4755) (-2.4,0.6710) (-2.0,0.9239) (-1.6,1.2299) (-1.2,1.5655) (-0.8,1.8824) (-0.4,2.1143) (0.0,2.2000) (0.4,2.1143) (0.8,1.8824) (1.2,1.5655) (1.6,1.2299) (2.0,0.9239) (2.4,0.6710) (2.8,0.4755) (3.2,0.3312) (3.6,0.2278) (4.0,0.1554) (4.4,0.1054) (4.8,0.0712) (5.2,0.0480) (5.6,0.0323) (6.0,0.0217)};
+% peak with tail (solid) — skews to higher V
+\draw[thick] plot[smooth] coordinates {(-4.0,0.0597) (-3.6,0.0897) (-3.2,0.1329) (-2.8,0.1945) (-2.4,0.2808) (-2.0,0.3988) (-1.6,0.5540) (-1.2,0.7476) (-0.8,0.9720) (-0.4,1.2080) (0.0,1.4254) (0.4,1.5911) (0.8,1.6798) (1.2,1.6828) (1.6,1.6088) (2.0,1.4777) (2.4,1.3130) (2.8,1.1356) (3.2,0.9610) (3.6,0.7992) (4.0,0.6554) (4.4,0.5314) (4.8,0.4269) (5.2,0.3404) (5.6,0.2698) (6.0,0.2127)};
+\draw[-{Latex[length=1.4mm]},gray] (2.2,1.35)--(4.4,0.62);
+\node[font=\scriptsize] at (2.5,1.62) {tail $\to$ higher $V$};
+\draw[-{Latex[length=1.3mm]},gray!70] (-3.6,2.35)--(-1.6,2.35) node[right,font=\scriptsize,black] {progress};
+\node[font=\scriptsize,below,align=center] at (1.0,-0.42) {(a) discharge $\sigma_d{=}{+}1$: progress $V\!\uparrow$};
+\end{scope}
+% ================= (b) charge (mirror) =================
+\begin{scope}[xshift=5.6cm]
+\draw[-{Latex[length=1.5mm]}] (-4.4,0) -- (6.4,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.5mm]}] (-4.4,0) -- (-4.4,2.55) node[above,font=\scriptsize] {peak};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-4.0,0.1554) (-3.6,0.2278) (-3.2,0.3312) (-2.8,0.4755) (-2.4,0.6710) (-2.0,0.9239) (-1.6,1.2299) (-1.2,1.5655) (-0.8,1.8824) (-0.4,2.1143) (0.0,2.2000) (0.4,2.1143) (0.8,1.8824) (1.2,1.5655) (1.6,1.2299) (2.0,0.9239) (2.4,0.6710) (2.8,0.4755) (3.2,0.3312) (3.6,0.2278) (4.0,0.1554) (4.4,0.1054) (4.8,0.0712) (5.2,0.0480) (5.6,0.0323) (6.0,0.0217)};
+% peak with tail (solid) — mirror, skews to lower V
+\draw[thick] plot[smooth] coordinates {(-4.0,0.6554) (-3.6,0.7992) (-3.2,0.9610) (-2.8,1.1356) (-2.4,1.3130) (-2.0,1.4777) (-1.6,1.6088) (-1.2,1.6829) (-0.8,1.6799) (-0.4,1.5912) (0.0,1.4256) (0.4,1.2081) (0.8,0.9723) (1.2,0.7479) (1.6,0.5545) (2.0,0.3994) (2.4,0.2816) (2.8,0.1954) (3.2,0.1342) (3.6,0.0914) (4.0,0.0619) (4.4,0.0417) (4.8,0.0281) (5.2,0.0188) (5.6,0.0125) (6.0,0.0082)};
+\draw[-{Latex[length=1.4mm]},gray] (-2.2,1.35)--(-4.4,0.62);
+\node[font=\scriptsize] at (-2.3,1.62) {tail $\to$ lower $V$};
+\draw[{Latex[length=1.3mm]}-,gray!70] (1.6,2.35)--(3.6,2.35) node[left,font=\scriptsize,black,xshift=-2.0cm] {progress};
+\node[font=\scriptsize,below,align=center] at (1.0,-0.42) {(b) charge $\sigma_d{=}{-}1$: progress $V\!\downarrow$ (grid reversed)};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향 --- 방전과 충전의 거울 구조. 점선 $=$ 평형 종 $\xi_\eq(1-\xi_\eq)/w$(식~\eqref{eq:eqpeak},
+방향 불변). 실선 $=$ 꼬리를 얹은 peak shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape}; $\xi_\mathrm{lag}$
+는 1차 저역통과 식~\eqref{eq:lowpass}의 출력 --- 좌표는 그 점화식의 수치 평가). (a) 방전은 진행이 $V\!\uparrow$ 라
+꼬리가 \emph{나중에 지나는} 높은 $V$ 쪽으로(격자 그대로). (b) 충전은 진행이 $V\!\downarrow$ 라 격자를 뒤집어 필터한 뒤
+되돌려(식~\eqref{eq:reversal}) 꼬리가 낮은 $V$ 쪽으로 --- 방전의 거울. ``인과 기억''은 언제나 진행상 과거를 향하고,
+두 경우 모두 peak 는 양수다.}
+\label{fig:reversal}

@@ -1,0 +1,70 @@
+% T1 candidate (sonnet3) for fig:spine — hierarchical spine + explicit loop + explicit branch.
+% Coordinates: pure flow-diagram (no physical curve to evaluate numerically); the equation
+% tags attached to every node are cross-checked against the chapter's own node<->equation
+% table (tab:nodemap) by T1_calc.py, and the nu=2 branch jump quoted implicitly by the
+% decision node is reproduced there from the closed form at l.1890 of the chapter text.
+\begin{tikzpicture}[
+  node distance=4.3mm and 7mm,
+  stage/.style={draw,rounded corners=2pt,minimum height=7.6mm,inner xsep=4pt,inner ysep=2.6pt,
+    font=\scriptsize,align=center,fill=black!4},
+  core/.style={stage,fill=black!10},
+  io/.style={font=\scriptsize\itshape,align=center},
+  tageq/.style={font=\tiny,text=black!55,align=left},
+  dec/.style={draw,densely dashed,rounded corners=1pt,minimum height=6.2mm,inner sep=2.2pt,
+    font=\tiny,align=center,fill=black!7},
+  ar/.style={-{Latex[length=1.6mm]},thick}]
+% ---- input ----
+\node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
+% ---- main spine, N0-N1 outside the loop ----
+\node[stage,below=5mm of in,label={[tageq]right:eq.~\eqref{eq:n0map}}]
+  (n0) {N0: map inputs\\$\sigma_d,\;|I|$};
+\node[stage,below=of n0,label={[tageq]right:eq.~\eqref{eq:vn}}]
+  (n1) {N1: polarization\\$V_n=V_\app-\sigma_d|I|R_n$};
+% ---- per-transition loop body: N2..N8 ----
+\node[stage,below=of n1,label={[tageq]right:eq.~\eqref{eq:Uj}}]
+  (n2) {N2: center\\$U_j(T)=(-\Delta H+T\Delta S)/F$};
+\node[stage,below=of n2,label={[tageq]right:eq.~\eqref{eq:dUhys}, \eqref{eq:Ubranch}}]
+  (n3) {N3: hysteresis branch\\center $\to U_j^{\,d}=U_j+\tfrac12\sigma_d h_\eta\gamma\,\Delta U_j^\hys$};
+\node[stage,below=of n3,label={[tageq]right:eq.~\eqref{eq:wbase}, \eqref{eq:xieq}}]
+  (n45) {N4/N5: width $w_j$, progress $\xi_\eq$\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U^d)/w]$};
+\node[dec,below=6mm of n45,label={[tageq]right:eq.~\eqref{eq:branch}, $\nu{=}2$}]
+  (dec) {$L_{V,j}\;\overset{?}{<}\;\nu\,\Delta_\mathrm{grid}$};
+\node[stage,below left=11mm and 3mm of dec,label={[tageq]left:eq.~\eqref{eq:eqpeak}}]
+  (n6) {N6: equilibrium peak\\$Q_j\,\xi_\eq(1-\xi_\eq)/w$};
+\node[stage,below right=11mm and 3mm of dec,label={[tageq]right:eq.~\eqref{eq:LV}}]
+  (n7) {N7: lag length\\$\mathcal A,\chi_d,\Delta H_a^\eff,L_q,L_V$};
+\node[stage,below=of n7,label={[tageq]right:eq.~\eqref{eq:peakshape}, \eqref{eq:reversal}}]
+  (n8) {N8: causal memory tail\\$(\xi_\eq-\xi_\mathrm{lag})/L_V$, charge reversal};
+% ---- merge back to N9, outside the loop ----
+\node[fit=(n6)(n8),inner sep=0pt] (branchfit) {};
+\node[core,below=9mm of branchfit,label={[tageq]right:eq.~\eqref{eq:sum}}]
+  (n9) {N9: sum + interp\\$C_\bg+\sum_jQ_j[\cdot]$};
+\node[io,below=4.5mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
+% ---- spine arrows ----
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n45}
+  \draw[ar] (\a) -- (\b);
+\draw[ar] (n45) -- (dec);
+\draw[ar] (dec) -- node[pos=0.38,above,sloped,font=\tiny] {yes: short lag} (n6);
+\draw[ar] (dec) -- node[pos=0.38,above,sloped,font=\tiny] {no: finite lag} (n7);
+\draw[ar] (n7) -- (n8);
+\draw[ar] (n6) |- (n9);
+\draw[ar] (n8) |- (n9);
+\draw[ar] (n9) -- (out);
+% ---- per-transition loop: solid box (not dashed) + explicit recirculation icon ----
+\begin{scope}[on background layer]
+\node[draw,rounded corners,fit=(n2)(n3)(n45)(dec)(n6)(n7)(n8),inner sep=3.8mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$}]
+  (loop) {};
+\end{scope}
+\draw[ar,densely dotted] (loop.south east) to[out=-20,in=20,looseness=2.8]
+  node[midway,right,font=\tiny\itshape,align=left,rotate=90,yshift=1.8mm] {iterate $j\to j+1$}
+  (loop.north east);
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 각 노드 옆 회색 소자는 그 단계의 근거 식 번호(표~\ref{tab:nodemap}
+과 동일 대응, 부록 검증 스크립트 \texttt{T1\_calc.py}). 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$ 이 N0 에서
+모델 입력으로 환산되고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1), 전이 $j$ 마다(실선 상자 $=$ 전이별 반복 계산
+단위, 우측 점선 화살표가 $j\to j+1$ 반복을 표시) 평형 중심$\cdot$히스 분기$\cdot$폭$\cdot$평형 진행률을 계산해(N2--N5)
+지연 길이 $L_{V,j}$ 기준(식~\eqref{eq:branch}, $\nu{=}2$)으로 갈린다 — 지연이 격자 두 칸보다 짧으면 평형 peak
+(N6)으로 직행, 그 외엔 지연 길이(N7)$\to$인과 꼬리(N8)를 거쳐 같은 N9 에서 합류한다. N9 가 모든 전이를
+합산$\cdot$역보간한다.}
+\label{fig:spine}

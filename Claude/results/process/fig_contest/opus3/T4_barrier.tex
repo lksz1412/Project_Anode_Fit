@@ -1,0 +1,49 @@
+% T4 fig:barrier (opus3) — structure reinvention: instead of two side-by-side panels, ONE
+% reaction hop (departure well -> TS -> arrival well) with equilibrium (dotted) and driven
+% (solid) landscapes overlaid, so the chi / (1-chi) barrier split is read as the difference
+% between the two curves at a single transition state. Analytic surface (T4_calc.py):
+%   G0(x)   = 0.55 - 0.45 cos(pi (x-1)/2)      (equilibrium)
+%   Gdrv(x) = G0(x) - A (x-1)/4,  A=0.35, chi=1/2, dGa=0.9.
+\centering
+\begin{tikzpicture}[x=1.12cm,y=2.4cm,font=\scriptsize]
+% axes
+\draw[-{Latex[length=1.5mm]}] (0.7,-0.42) -- (5.7,-0.42) node[below] {reaction coordinate};
+\draw[-{Latex[length=1.5mm]}] (0.7,-0.42) -- (0.7,1.18) node[above] {free energy};
+% equilibrium landscape (dotted, A=0)
+\draw[densely dotted,thick,black!65] plot[smooth] coordinates {(1.000,0.1000) (1.333,0.1603) (1.667,0.3250) (2.000,0.5500) (2.333,0.7750) (2.667,0.9397) (3.000,1.0000) (3.333,0.9397) (3.667,0.7750) (4.000,0.5500) (4.333,0.3250) (4.667,0.1603) (5.000,0.1000)};
+% driven landscape (solid, A>0)
+\draw[very thick] plot[smooth] coordinates {(1.000,0.1000) (1.333,0.1311) (1.667,0.2667) (2.000,0.4625) (2.333,0.6583) (2.667,0.7939) (3.000,0.8250) (3.333,0.7355) (3.667,0.5417) (4.000,0.2875) (4.333,0.0333) (4.667,-0.1605) (5.000,-0.2500)};
+% wells + TS markers
+\fill (1,0.1) circle (0.6pt); \fill (5,-0.25) circle (0.6pt); \fill (3,0.825) circle (0.6pt);
+\node[below] at (1,0.06) {filled site};
+\node[below] at (5,-0.29) {empty site $+$ ion};
+\node[above] at (3,1.02) {TS};
+% chi*A drop at TS
+\draw[-{Latex[length=1.2mm]}] (3,1.0) -- (3,0.845);
+\node[right,font=\tiny] at (3.02,0.93) {$\chi\mathcal A$};
+% forward barrier bracket (shortened) at x=1.9
+\draw[densely dotted,gray] (1,0.1)--(1.9,0.1);
+\draw[densely dotted,gray] (3,0.825)--(1.9,0.825);
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]}] (1.9,0.1)--(1.9,0.825);
+\node[left,align=right,font=\tiny] at (1.88,0.47) {fwd\\$\Delta G_a{-}\chi\mathcal A$};
+% reverse barrier bracket (lengthened) at x=4.1
+\draw[densely dotted,gray] (5,-0.25)--(4.1,-0.25);
+\draw[densely dotted,gray] (3,0.825)--(4.1,0.825);
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]}] (4.1,-0.25)--(4.1,0.825);
+\node[right,align=left,font=\tiny] at (4.12,0.30) {rev\\$\Delta G_a{+}(1{-}\chi)\mathcal A$};
+% well drop A at right edge
+\draw[densely dotted,gray] (5,0.1)--(5.5,0.1);
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]}] (5.5,0.1)--(5.5,-0.25);
+\node[right,font=\tiny] at (5.5,-0.075) {$\mathcal A$};
+% side annotations (below the plot, full-width clear zone)
+\node[anchor=north west,font=\tiny] at (0.7,-0.60) {detailed balance: $r^+/r^-=e^{\mathcal A/RT}$ (식~\eqref{eq:db})};
+\node[anchor=north west,font=\tiny] at (0.7,-0.80) {eff.\ enthalpy: $\Delta H_a^\eff=\Delta H_a-\chi_d\Omega$};
+\end{tikzpicture}
+\caption{활성화 장벽 --- 한 반응 hop 위에 평형(점선, $\mathcal A{=}0$)과 구동(실선, $\mathcal A{>}0$,
+$\chi{=}\tfrac12$) 자유에너지면을 겹쳐 그렸다. 좌표는 반응좌표에 대한 raised-cosine 면의 수치 평가다. 구동력이
+전이상태를 $\chi\mathcal A$ 만큼 내려($\chi$ 분할) 정방향 장벽은 $\Delta G_a-\chi\mathcal A$ 로 짧아지고, 역방향은
+도착 골이 $\mathcal A$ 만큼 낮아져 $\Delta G_a+(1-\chi)\mathcal A$ 로 길어진다(식~\eqref{eq:bv}). 두 속도의 비가
+detailed balance $r^+/r^-=e^{\mathcal A/RT}$(식~\eqref{eq:db})이며 이 그림이 식~\eqref{eq:xieq} logistic 과
+\S\ref{sec:lag} 의 $L_q$ 의 공통 출발점이다. 유효 장벽은 상호작용을 흡수한 $\Delta H_a^\eff=\Delta H_a-\chi_d\Omega$
+로 들어간다.}
+\label{fig:barrier}

@@ -1,0 +1,50 @@
+% T2 fig:staging (opus1) — staging gallery filling tied to the dQ/dV peaks it leaves.
+% TOP: five stage columns (graphene layers + Li-filled galleries), both charge/discharge directions.
+% BOTTOM: real dQ/dV(V) = sum_j Q_j xi_j(1-xi_j)/w_j, xi_j=logistic((V-U_j)/w_j)  [eq:xieq,eq:eqpeak]
+% with U_j=0.210/0.140/0.120/0.085 V, w_j=0.020/0.016/0.014/0.012 V (doc initial values).
+% V axis runs high->low left->right so each transition sits above the peak it produces (coords: T2_calc.py).
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize,
+  lab/.style={font=\scriptsize,align=center}]
+\def\colw{0.85}
+% ---- TOP: five stage columns ----
+\foreach \x/\name in {0/{stage 4},1.4/{stage 3},2.8/{stage 2L},4.2/{stage 2},5.6/{stage 1}}{
+  \foreach \k in {0,1,2,3,4,5,6}{\draw[semithick] (\x,0.40*\k)--(\x+\colw,0.40*\k);}
+  \node[lab,below] at (\x+\colw/2,-0.24) {\name};
+}
+% Li-filled galleries: gallery g centered at 0.40*g-0.20 (band height 0.14). stage n -> every n-th gallery.
+\foreach \g in {1,5}{\fill[black!72] (0,0.40*\g-0.27) rectangle (0+\colw,0.40*\g-0.13);}          % stage 4
+\foreach \g in {1,4}{\fill[black!72] (1.4,0.40*\g-0.27) rectangle (1.4+\colw,0.40*\g-0.13);}        % stage 3
+\foreach \g in {1,3,5}{\fill[black!26] (2.8,0.40*\g-0.27) rectangle (2.8+\colw,0.40*\g-0.13);}      % stage 2L (light)
+\foreach \g in {1,3,5}{\fill[black!72] (4.2,0.40*\g-0.27) rectangle (4.2+\colw,0.40*\g-0.13);}      % stage 2
+\foreach \g in {1,2,3,4,5,6}{\fill[black!72] (5.6,0.40*\g-0.27) rectangle (5.6+\colw,0.40*\g-0.13);}% stage 1
+% direction arrows (both preserved)
+\draw[-{Latex[length=1.8mm]},thick] (0,2.72)--(6.45,2.72) node[pos=0.5,above,font=\scriptsize]{lithiation (charge): $4\to3\to2\mathrm L\to2\to1$};
+\draw[{Latex[length=1.8mm]}-,thick] (0,2.48)--(6.45,2.48) node[pos=0.5,below,font=\scriptsize]{delithiation (discharge): main direction, $\theta_j:1\to0$};
+% ---- BOTTOM: dQ/dV(V) axis (origin shifted down for clearance from stage labels) ----
+\begin{scope}[yshift=-4.6cm]
+  \draw[-{Latex[length=1.6mm]}] (0,0)--(6.65,0) node[right,font=\scriptsize]{$V$ [V]};
+  \draw[-{Latex[length=1.6mm]}] (0,0)--(0,2.75) node[above,font=\scriptsize]{$\dd Q/\dd V$};
+  % V ticks (axis reads high->low, left->right)
+  \foreach \xx/\vv in {0.000/0.25,1.612/0.20,3.225/0.15,4.837/0.10,6.450/0.05}{
+     \draw (\xx,0.03)--(\xx,-0.03) node[below,font=\scriptsize]{\vv};}
+  % the curve (T2_calc.py, eq:xieq * eq:eqpeak summed over 4 transitions)
+  \draw[thick] plot[smooth] coordinates {(6.450,0.214) (6.343,0.273) (6.235,0.345) (6.127,0.431) (6.020,0.531) (5.913,0.645) (5.805,0.769) (5.697,0.895) (5.590,1.017) (5.482,1.126) (5.375,1.213) (5.321,1.248) (5.214,1.298) (5.106,1.326) (4.999,1.340) (4.891,1.348) (4.784,1.358) (4.676,1.374) (4.569,1.398) (4.461,1.428) (4.354,1.458) (4.246,1.484) (4.192,1.492) (4.085,1.500) (3.977,1.492) (3.870,1.467) (3.762,1.425) (3.655,1.370) (3.547,1.302) (3.440,1.224) (3.332,1.141) (3.225,1.055) (3.118,0.970) (3.010,0.889) (2.902,0.814) (2.795,0.748) (2.687,0.692) (2.580,0.647) (2.472,0.613) (2.365,0.589) (2.258,0.575) (2.150,0.569) (2.042,0.570) (1.935,0.576) (1.827,0.584) (1.720,0.593) (1.612,0.601) (1.505,0.605) (1.398,0.606) (1.290,0.600) (1.182,0.589) (1.075,0.571) (0.967,0.548) (0.860,0.520) (0.752,0.487) (0.645,0.452) (0.537,0.415) (0.430,0.378) (0.323,0.340) (0.215,0.305) (0.107,0.270) (0.000,0.239)};
+  % peak markers + staggered labels (transition and its U value), short dotted leaders
+  \foreach \xx/\yy/\lx/\ly/\txt in {%
+      1.290/0.600/1.29/1.02/{$4\!\to\!3$, $0.210$},
+      3.547/1.302/2.72/2.28/{$3\!\to\!2\mathrm L$, $0.140$},
+      4.192/1.492/4.35/2.62/{$2\mathrm L\!\to\!2$, $0.120$},
+      5.321/1.248/6.05/2.10/{$2\!\to\!1$, $0.085$}}{
+     \fill (\xx,\yy) circle (0.9pt);
+     \draw[densely dotted,black!55] (\xx,\yy) -- (\lx,\ly-0.10);
+     \node[font=\tiny,anchor=south] at (\lx,\ly) {\txt};}
+\end{scope}
+\end{tikzpicture}
+\caption{흑연 staging 갤러리 채움과 그것이 남기는 $\dd Q/\dd V$ peak. 위 --- 수평선은 그래핀 층,
+음영 띠는 리튬이 든 층간 갤러리(stage $n$ 은 매 $n$-번째 갤러리 채움; stage $2\mathrm L$ 은 면내 질서가 풀려
+옅게). 아래 --- 네 전이의 초기값 $U_j{=}0.210/0.140/0.120/0.085$ V, $w_j{=}0.020/0.016/0.014/0.012$ V
+로 평가한 $\dd Q/\dd V=\sum_j Q_j\,\xi_\eq(1-\xi_\eq)/w_j$(식~\eqref{eq:xieq}$\cdot$\eqref{eq:eqpeak}; 좌표는 식
+그대로의 수치 평가). $V$ 축은 높은 전위가 왼쪽이라 stage 전이 순서($4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)와
+아래 peak 순서가 그대로 대응하고, 점선이 각 전이를 자기 peak 에 잇는다.}
+\label{fig:staging}

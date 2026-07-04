@@ -1,0 +1,41 @@
+% T5 candidate (sonnet3) for fig:flux — three affinity cases overlaid (curve family), all
+% under a common total-rate budget r+ + r- = 3 (disclosed simplification for a fair overlay),
+% with each intersection cross-checked against eq:logisticsolve (T5_calc.py) — detailed
+% balance (eq:db) drawn in explicitly via the A/RT = ln(r+/r-) labels at each crossing.
+\begin{tikzpicture}[x=4.6cm,y=1.05cm]
+\draw[-{Latex[length=1.4mm]}] (0,0) -- (0,2.55) node[above,font=\scriptsize] {flux [arb.]};
+\draw[-{Latex[length=1.4mm]}] (-0.01,0) -- (1.12,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,1} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% ---- case ratio=1 (A=0): gray ----
+\draw[gray] (0,1.5) -- (1,0);
+\draw[gray,densely dashed] (0,0) -- (1,1.5);
+\fill[gray] (0.5,0.75) circle (0.9pt);
+\node[gray,font=\tiny] at (0.5,0.62) {$\xi_\eq{=}\tfrac12$};
+% ---- case ratio=2 (main, matches existing figure): black ----
+\draw[thick] (0,2.0) -- (1,0);
+\draw[thick,densely dashed] (0,0) -- (1,1.0);
+\fill (0.6667,0.6667) circle (0.9pt);
+\node[font=\scriptsize] at (0.60,0.80) {$\xi_\eq{=}\tfrac23$};
+% ---- case ratio=4 (new, stronger affinity): black dotted ----
+\draw[densely dotted,thick] (0,2.4) -- (1,0);
+\draw[densely dotted,thick] (0,0) -- (1,0.6);
+\fill (0.8,0.48) circle (0.9pt);
+\node[font=\tiny] at (0.86,0.34) {$\xi_\eq{=}0.8$};
+% ---- labels for the two lines (main case) ----
+\node[right,font=\scriptsize] at (0.03,2.42) {forward $r^+(1-\xi)$};
+\node[right,font=\scriptsize] at (0.78,0.62) {reverse $r^-\xi$};
+% ---- affinity progression annotation, tied to detailed balance ----
+\node[draw,rounded corners=1pt,font=\tiny,align=left,inner sep=2.6pt,fill=black!4] at (0.30,2.10)
+  {$r^+/r^-=e^{A/RT}$ (eq.~\eqref{eq:db})\\
+   gray: $A{=}0$ ($\xi_\eq{=}\tfrac12$)\\
+   black: $A{=}RT\ln2$ ($\xi_\eq{=}\tfrac23$)\\
+   dotted: $A{=}RT\ln4$ ($\xi_\eq{=}0.8$)};
+\end{tikzpicture}
+\caption{정지점 유도, 세 affinity 사례 오버레이(공통 총속도 규격화 $r^++r^-=3$ 하에서 비교 — 실제 모델의
+$k_j$ 가 $A$ 에 무관하다는 뜻은 아니며, 비교를 위한 부기적 규격화임을 명시). 정방향 플럭스 $r^+(1-\xi)$(감소
+직선)와 역방향 $r^-\xi$(증가 직선)의 교점이 정지점 $\xi_\eq$(식~\eqref{eq:logisticsolve}). $A$ 가 커질수록
+($\mathcal A/RT=\ln(r^+/r^-)$, detailed balance 식~\eqref{eq:db}) 교점이 오른쪽(높은 $\xi_\eq$)으로 이동한다 —
+회색 $A{=}0$($\xi_\eq{=}\tfrac12$) $\to$ 검정 $A{=}RT\ln2$($\xi_\eq{=}\tfrac23$, 기존 그림과 동일 대응)
+$\to$ 점선 $A{=}RT\ln4$($\xi_\eq{=}0.8$). 세 교점 모두 식~\eqref{eq:logisticsolve} 의 닫힌 꼴과 정확히
+일치함을 T5\_calc.py 가 검산한다.}
+\label{fig:flux}

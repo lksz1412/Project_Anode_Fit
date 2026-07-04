@@ -1,0 +1,32 @@
+\begin{tikzpicture}[x=4.2cm,y=1.0cm]
+\draw[-{Latex[length=1.4mm]}] (0,0) -- (0,2.35) node[above,font=\scriptsize] {flux [arb.]};
+\draw[-{Latex[length=1.4mm]}] (-0.01,0) -- (1.1,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,1} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% ---- A=0 pair (gray, reference) ----
+\draw[gray] (0,1.5) -- (1,0);
+\draw[gray,densely dashed] (0,0) -- (1,1.5);
+\fill[gray] (0.5,0.75) circle (0.9pt);
+\node[gray,font=\scriptsize] at (0.86,1.62) {gray: $\mathcal A=0$};
+% ---- A<0 pair (dotted, third overlay case) ----
+\draw[densely dotted,thick] (0,1) -- (1,0);
+\draw[densely dotted,thick] (0,0) -- (1,2);
+\fill (0.3333,0.3333) circle (0.9pt);
+\node[font=\scriptsize] at (0.30,0.20) {$\xi_\eq{=}\tfrac13$};
+% ---- A>0 main case (solid black) ----
+\draw[thick] (0,2) -- (1,0);
+\draw[thick,densely dashed] (0,0) -- (1,1);
+\draw[densely dotted] (0.6667,0) -- (0.6667,0.6667);
+\fill (0.6667,0.6667) circle (0.9pt);
+\node[below,font=\scriptsize] at (0.6667,-0.16) {$\xi_\eq{=}\tfrac23$};
+\node[font=\scriptsize] at (0.14,1.98) {forward $r^+(1-\xi)$};
+\node[font=\scriptsize] at (0.80,0.62) {reverse $r^-\xi$};
+\draw[-{Latex[length=1.2mm]}] (0.55,1.85) -- (0.72,0.72);
+\node[font=\scriptsize,align=left] at (0.72,1.55) {$\mathcal A\!\uparrow$\\shifts $\xi_\eq\!\uparrow$};
+\end{tikzpicture}
+\caption{정지점 유도(식~\eqref{eq:logisticsolve}), 세 affinity 값을 겹쳐 detailed balance(식~\eqref{eq:db})가
+교점을 어떻게 옮기는지 보인다 — 세 경우 모두 정방향 플럭스 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(증가
+직선)의 교점이 정지점 $\xi_\eq=r^+/(r^++r^-)$(직선의 정확한 교점, 근사 아님). 검정 실선쌍은
+$\mathcal A>0$($r^+{=}2r^-$)로 $\xi_\eq=2/3$, 회색쌍은 $\mathcal A=0$($r^+{=}r^-$)로 $\xi_\eq=1/2$, 점선쌍은
+$\mathcal A<0$($r^+{=}r^-/2$)로 $\xi_\eq=1/3$ — 화살표가 가리키듯 $\mathcal A$ 가 커질수록 교점이 오른쪽($\xi_\eq\uparrow$)으로
+이동한다.}
+\label{fig:flux}

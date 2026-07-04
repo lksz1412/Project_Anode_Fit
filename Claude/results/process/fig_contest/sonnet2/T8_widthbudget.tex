@@ -1,0 +1,32 @@
+\begin{tikzpicture}[x=0.72cm,y=22.0cm]
+\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (10.8,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (-6.3,0.285) node[above,font=\scriptsize] {$\dd Q/\dd V$ (임의 단위)};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+% ---- step 0: equilibrium delta at the Maxwell/plateau potential ----
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.27);
+\node[font=\scriptsize,align=center] at (-3.6,0.262) {0: 평형 델타\\(Maxwell $U_j$)};
+% ---- step (ii): intrinsic logistic-derivative bell f0, w=1 (numeric, T8_calc.py) ----
+\draw[black!55] plot[smooth] coordinates {(-6,0.0025) (-5,0.0066) (-4,0.0177) (-3,0.0452) (-2,0.1050) (-1,0.1966) (-0.5,0.2350) (0,0.2500) (0.5,0.2350) (1,0.1966) (1.5,0.1491) (2,0.1050) (2.5,0.0701) (3,0.0452) (4,0.0177) (5,0.0066) (6,0.0025) (7,0.0009) (8,0.0003) (9,0.0001) (10,0.0000)};
+\node[font=\scriptsize,black!55] at (2.65,0.205) {\textcircled{\scriptsize 2} 내재 $f_0=\xi_\eq(1-\xi_\eq)$};
+% ---- step (ii)(x)(iii): numeric convolution with Gaussian eta-kernel (sigma_eta=1.25 sigma_int) ----
+\draw[densely dashed,thick] plot[smooth] coordinates {(-6,0.0157) (-5,0.0300) (-4,0.0516) (-3,0.0795) (-2,0.1087) (-1,0.1314) (-0.5,0.1378) (0,0.1400) (0.5,0.1378) (1,0.1314) (1.5,0.1214) (2,0.1087) (2.5,0.0944) (3,0.0795) (4,0.0516) (5,0.0300) (6,0.0157) (7,0.0075) (8,0.0033) (9,0.0014) (10,0.0005)};
+\node[font=\scriptsize,align=left] at (-4.3,0.115) {\textcircled{\scriptsize 2}$\otimes$\textcircled{\scriptsize 3} 분산 가법(수치 합성곱)\\$\sigma_\eta{=}1.25\sigma_\mathrm{int}\Rightarrow\sigma_\mathrm{sym}{=}1.601\sigma_\mathrm{int}$};
+% ---- step (i): + one-sided exponential causal tail (L_V=1.5w), numeric convolution ----
+\draw[thick] plot[smooth] coordinates {(-6,0.0074) (-5,0.0151) (-4,0.0280) (-3,0.0470) (-2,0.0710) (-1,0.0962) (-0.5,0.1074) (0,0.1165) (0.5,0.1231) (1,0.1265) (1.5,0.1266) (2,0.1233) (2.5,0.1171) (3,0.1085) (4,0.0867) (5,0.0635) (6,0.0431) (7,0.0273) (8,0.0164) (9,0.0095) (10,0.0053)};
+\draw[-{Latex[length=1.3mm]},gray] (4.6,0.088) -- (7.4,0.033);
+\node[font=\scriptsize] at (6.9,0.093) {\textcircled{\scriptsize 1}$+$지수 꼬리 $L_V{=}1.5w_j$};
+% ---- step-arrow narration: 0 -> (ii) -> (ii)(x)(iii) -> +(i), reading order ----
+\draw[-{Latex[length=1.1mm]},gray] (0.15,0.255) to[bend left=18] (2.0,0.21);
+\draw[-{Latex[length=1.1mm]},gray] (0.7,0.145) to[bend left=15] (-1.0,0.135);
+\draw[-{Latex[length=1.1mm]},gray] (1.7,0.130) to[bend right=15] (3.6,0.113);
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}; 좌표는 각 단계를 실제로 수치 합성곱한
+결과 — 손으로 어림한 곡선이 아니라 T8\_calc.py 가 $f_0\!\to\!f_0{*}\mathcal N(0,\sigma_\eta)\!\to\!(\cdot){*}\mathrm{Exp}_{L_V}$
+를 수행한 값). 화살 0은 평형 델타(Maxwell 전위). 회색 실선(\textcircled{\scriptsize 2})이 내재
+logistic 미분 종 $f_0=\xi_\eq(1-\xi_\eq)$($w_j{=}1$, 분산 $\pi^2/3$). 파선(\textcircled{\scriptsize
+2}$\otimes$\textcircled{\scriptsize 3})은 $\eta$ 산포(Gaussian, $\sigma_\eta{=}1.25\sigma_\mathrm{int}$)와의
+합성곱 — 분산 가법으로 유효 폭이 정확히 $1.601\,\sigma_\mathrm{int}$ 로 넓어짐을 수치가 재확인한다(회색
+화살표가 단계 순서를 잇는다). 굵은 실선(\textcircled{\scriptsize 1}$+$)은 그 위에 한쪽 지수 꼬리
+($L_V{=}1.5w_j$)를 추가 합성곱해 무게중심이 양의 방향으로 밀린 최종 모양이다. 대칭 두 몫은 $w_j$ 하나에
+흡수되고 비대칭 꼬리만 $L_{V,j}$ 로 분리된다.}
+\label{fig:widthbudget}

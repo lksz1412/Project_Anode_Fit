@@ -1,0 +1,30 @@
+\begin{tikzpicture}[x=9.2cm,y=1.7cm]
+\draw[-{Latex[length=1.6mm]}] (0,-1.45) -- (0,1.55) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% Maxwell (equal-area) potential: y=0 line, the sigma_d-independent center U_j
+\draw[densely dashed,gray] (-0.02,0) -- (1.06,0) node[pos=0.985,above,font=\scriptsize,gray] {Maxwell $U_j$ ($y=0$)};
+% non-monotone V_eq(xi) for Omega=4RT — exact 4dp (T3_calc.py)
+\draw[thick] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.1,1.0028) (0.1464,1.0657) (0.2,1.0137) (0.3,0.7527) (0.4,0.3945) (0.5,0) (0.6,-0.3945) (0.7,-0.7527) (0.8,-1.0137) (0.8536,-1.0657) (0.9,-1.0028) (0.92,-0.9177) (0.95,-0.6556) (0.98,0.0518)};
+\fill (0.1464,1.0657) circle (0.5pt) node[above,font=\scriptsize] {$\xi_s^-$};
+\fill (0.8536,-1.0657) circle (0.5pt) node[below,font=\scriptsize] {$\xi_s^+$};
+\draw[densely dotted] (0.1464,1.0657) -- (1.0,1.0657);
+\draw[densely dotted] (0.8536,-1.0657) -- (1.0,-1.0657);
+\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.0657) -- (1.0,1.0657) node[pos=0.5,right,font=\scriptsize,align=left] {$\Delta U_j^\hys$\\(spinodal\\upper bound)};
+% discharge overshoot path (rising branch up to xi_s^-), arrow shows travel direction
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.1,1.0028) (0.1464,1.0657)};
+\draw[densely dotted] (0.1464,1.0) -- (0.1464,0.08);
+\node[font=\scriptsize] at (0.30,1.32) {discharge overshoot $\to\xi_s^-$};
+% charge overshoot path
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.98,0.0518) (0.95,-0.6556) (0.92,-0.9177) (0.9,-1.0028) (0.8536,-1.0657)};
+\draw[densely dotted] (0.8536,-1.0) -- (0.8536,-0.08);
+\node[font=\scriptsize] at (0.66,-1.32) {charge overshoot $\to\xi_s^+$};
+\node[font=\scriptsize,align=center,gray] at (0.24,-0.55) {$\gamma\!\to\!0$: plateau\\at Maxwell $U_j$};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ — 좌표는 식 그대로의 수치 평가,
+검산 = T3\_calc.py). 회색 파선은 Maxwell(등면적) 전위 $U_j$($y=0$) — 히스 없는 평형 중심이다. 굵은
+화살 경로가 방전(좌상, 극대 $\xi_s^-$ 까지)$\cdot$충전(우하, 극대 $\xi_s^+$ 까지) 과주행 방향이고, 두 극값
+차 $\Delta U_j^\hys$(우측 이중 화살, 식~\eqref{eq:dUhys})가 실측 분기 gap 의 spinodal \emph{상한}이다(실측은
+$\gamma_j$ 만큼 안쪽, 식~\eqref{eq:Ubranch}). $\gamma\!\to\!0$ 가역 한계에서 두 경로가 Maxwell plateau 로
+합쳐진다.}
+\label{fig:hysloop}

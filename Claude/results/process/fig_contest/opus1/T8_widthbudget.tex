@@ -1,0 +1,41 @@
+% T8 fig:widthbudget (opus1) — two-phase broadening budget, narrated as a 4-step accumulation.
+% (0) equilibrium delta at Maxwell potential; (2) intrinsic logistic-derivative bell f2=(1/4w)sech^2(x/2w);
+% (2)x(3) variance addition sigma_eta=1.25 sigma_int -> effective scale 1.6w; (1) +one-sided exp tail L_V=1.5w.
+% eq:widthbudget.  x=(V-U_j)/w_j (w=1).  All curves = numeric evaluation/convolution (coords: T8_calc.py).
+\centering
+\begin{tikzpicture}[x=0.55cm,y=8.5cm,font=\scriptsize]
+\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (10.9,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (-6.3,0.290) node[above,font=\scriptsize] {$\dd Q/\dd V$ (arb.)};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+% (0) equilibrium delta
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.262);
+\node[font=\scriptsize,anchor=south west] at (0.15,0.262) {(0) 평형 델타(Maxwell 전위)};
+% (2) intrinsic logistic-derivative bell
+\draw[black!60] plot[smooth] coordinates {(-6,0.0025) (-5,0.0066) (-4,0.0177) (-3,0.0452) (-2,0.1050) (-1,0.1966) (-0.5,0.2350) (0,0.2500) (0.5,0.2350) (1,0.1966) (1.5,0.1491) (2,0.1050) (2.5,0.0701) (3,0.0452) (4,0.0177) (5,0.0066) (6,0.0025) (7,0.0009) (8,0.0003)};
+% (2)x(3) broadened bell (variance addition)
+\draw[densely dashed] plot[smooth] coordinates {(-6,0.0140) (-5,0.0252) (-4,0.0438) (-3,0.0721) (-2,0.1082) (-1,0.1419) (-0.5,0.1525) (0,0.1562) (0.5,0.1525) (1,0.1419) (1.5,0.1264) (2,0.1082) (2.5,0.0895) (3,0.0721) (4,0.0438) (5,0.0252) (6,0.0140) (7,0.0077) (8,0.0042) (9,0.0022) (10,0.0012)};
+% (1) finite-rate skewed tail
+\draw[thick] plot[smooth] coordinates {(-6,0.0074) (-5,0.0135) (-4,0.0239) (-3,0.0410) (-2,0.0659) (-1,0.0963) (-0.5,0.1112) (0,0.1238) (0.5,0.1327) (1,0.1370) (1.5,0.1362) (2,0.1308) (2.5,0.1216) (3,0.1099) (4,0.0835) (5,0.0588) (6,0.0392) (7,0.0251) (8,0.0156) (9,0.0095) (10,0.0056)};
+% narrative stage arrows
+\draw[-{Latex[length=1.3mm]}] (0.55,0.232) to[out=-20,in=110] (0.95,0.160);
+\node[font=\scriptsize,anchor=west] at (0.95,0.205) {$\otimes$③};
+\draw[-{Latex[length=1.3mm]},gray] (2.1,0.128)--(3.4,0.104);
+\node[font=\scriptsize,anchor=east] at (2.1,0.140) {$+$①};
+% ---- line-style legend (upper-left) ----
+\draw[black!60] (-6.1,0.262)--(-5.5,0.262); \node[anchor=west,font=\scriptsize] at (-5.4,0.262) {② 내재 $w_j$ ($\sigma_\mathrm{int}$)};
+\draw[densely dashed] (-6.1,0.218)--(-5.5,0.218); \node[anchor=west,font=\scriptsize] at (-5.4,0.218) {②$\otimes$③ 유효 $1.6w_j$};
+\draw[thick] (-6.1,0.174)--(-5.5,0.174); \node[anchor=west,font=\scriptsize] at (-5.4,0.174) {$+$① 지수 꼬리 $L_{V,j}$};
+% ---- scale-bar inset: three length scales (upper-right) ----
+\node[anchor=east,font=\scriptsize] at (4.3,0.219) {세 척도:};
+\draw[semithick] (4.5,0.262)--(4.5+1.814,0.262); \node[anchor=west,font=\scriptsize] at (4.5+1.9,0.262) {$\sigma_\mathrm{int}{=}\tfrac{\pi}{\sqrt3}w$};
+\draw[semithick] (4.5,0.218)--(4.5+2.267,0.218); \node[anchor=west,font=\scriptsize] at (4.5+2.35,0.218) {$\sigma_\eta{=}1.25\sigma_\mathrm{int}$};
+\draw[semithick] (4.5,0.174)--(4.5+1.500,0.174); \node[anchor=west,font=\scriptsize] at (4.5+1.6,0.174) {$L_V{=}1.5w$};
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산을 4단계로 서사화(식~\eqref{eq:widthbudget}; 좌표는 식 그대로의 수치
+평가$\cdot$합성곱). (0) 평형 델타(수직 화살)에 (②) 내재 logistic 미분 종(폭 $w_j$, 가는 실선)이 얹히고, (③)
+앙상블 $\eta$ 산포와의 합성곱이 분산 가법으로 종을 넓히며($\sigma_\eta{=}1.25\,\sigma_\mathrm{int}\Rightarrow
+\sigma_\mathrm{sym}\approx1.6\,\sigma_\mathrm{int}$, 유효 scale $1.6w_j$, 파선), (①) 유한율속이 한쪽 지수
+꼬리($L_V{=}1.5w_j$ 와의 단측 합성곱 --- 수치 적분)를 늘여 종을 $+$ 방향으로 민다(굵은 실선). 오른쪽 위 막대는
+세 척도 $\sigma_\mathrm{int}\!=\!\pi w/\sqrt3$, $\sigma_\eta$, $L_V$ 의 상대 크기. 대칭 두 몫은 $w_j$ 하나에
+흡수되고 비대칭 꼬리만 $L_{V,j}$ 로 분리된다.}
+\label{fig:widthbudget}

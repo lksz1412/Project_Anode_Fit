@@ -1,0 +1,30 @@
+\begin{tikzpicture}[x=0.052cm,y=1.05cm,lab/.style={font=\tiny,align=center},ar/.style={-{Latex[length=1.4mm]},thick}]
+\begin{scope}
+\draw[-{Latex[length=1.5mm]}] (-95,0)--(98,0) node[below,font=\scriptsize] {$\Delta V=\sigma_d(V-U_j^d)$ [mV]};
+\draw[-{Latex[length=1.5mm]}] (-95,0)--(-95,3.12) node[above,font=\scriptsize] {$\xi_\eq$};
+\foreach \x in {-80,-40,0,40,80}{\draw (\x,0.04)--(\x,-0.04) node[below,font=\tiny] {\x};}
+\foreach \y/\txt in {1.4/0.5,2.8/1}{\draw (-93,\y)--(-97,\y) node[left,font=\tiny] {\txt};}
+\draw[black!55,thick,densely dotted] plot[smooth] coordinates {(-90.0000,0.0557) (-75.0000,0.1048) (-60.0000,0.1939) (-45.0000,0.3492) (-30.0000,0.6001) (-15.0000,0.9607) (0.0000,1.4000) (15.0000,1.8393) (30.0000,2.1999) (45.0000,2.4508) (60.0000,2.6061) (75.0000,2.6952) (90.0000,2.7443)};
+\draw[black!72,thick,densely dashed] plot[smooth] coordinates {(-90.0000,0.0817) (-75.0000,0.1432) (-60.0000,0.2468) (-45.0000,0.4137) (-30.0000,0.6641) (-15.0000,1.0024) (0.0000,1.4000) (15.0000,1.7976) (30.0000,2.1359) (45.0000,2.3863) (60.0000,2.5532) (75.0000,2.6568) (90.0000,2.7183)};
+\draw[black,very thick] plot[smooth] coordinates {(-90.0000,0.1113) (-75.0000,0.1842) (-60.0000,0.2993) (-45.0000,0.4735) (-30.0000,0.7197) (-15.0000,1.0370) (0.0000,1.4000) (15.0000,1.7630) (30.0000,2.0803) (45.0000,2.3265) (60.0000,2.5007) (75.0000,2.6158) (90.0000,2.6887)};
+\draw[densely dotted] (0,0)--(0,2.8);
+\draw[black!55] (-16,1.05)--(16,1.75) node[right,font=\tiny] {center slope $1/4w$};
+\node[lab] at (55,0.72) {268 K: narrow};
+\node[lab] at (57,1.38) {298 K};
+\node[lab] at (54,2.03) {328 K: broad};
+\node[font=\scriptsize] at (0,3.34) {logistic species};
+\end{scope}
+\begin{scope}[xshift=5.9cm]
+\draw[-{Latex[length=1.5mm]}] (-95,0)--(98,0) node[below,font=\scriptsize] {$\Delta V$ [mV]};
+\draw[-{Latex[length=1.5mm]}] (-95,0)--(-95,3.12) node[above,font=\scriptsize] {$4w|\dd\xi/\dd V|$};
+\foreach \x in {-80,-40,0,40,80}{\draw (\x,0.04)--(\x,-0.04) node[below,font=\tiny] {\x};}
+\draw[black!55,thick,densely dotted] plot[smooth] coordinates {(-90.0000,0.2184) (-75.0000,0.4034) (-60.0000,0.7220) (-45.0000,1.2226) (-30.0000,1.8860) (-15.0000,2.5243) (0.0000,2.8000) (15.0000,2.5243) (30.0000,1.8860) (45.0000,1.2226) (60.0000,0.7220) (75.0000,0.4034) (90.0000,0.2184)};
+\draw[black!72,thick,densely dashed] plot[smooth] coordinates {(-90.0000,0.3173) (-75.0000,0.5435) (-60.0000,0.9002) (-45.0000,1.4103) (-30.0000,2.0263) (-15.0000,2.5741) (0.0000,2.8000) (15.0000,2.5741) (30.0000,2.0263) (45.0000,1.4103) (60.0000,0.9002) (75.0000,0.5435) (90.0000,0.3173)};
+\draw[black,very thick] plot[smooth] coordinates {(-90.0000,0.4277) (-75.0000,0.6882) (-60.0000,1.0693) (-45.0000,1.5736) (-30.0000,2.1389) (-15.0000,2.6118) (0.0000,2.8000) (15.0000,2.6118) (30.0000,2.1389) (45.0000,1.5736) (60.0000,1.0693) (75.0000,0.6882) (90.0000,0.4277)};
+\draw[densely dotted] (0,0)--(0,2.8);
+\node[font=\scriptsize] at (0,3.34) {derivative peak};
+\node[lab] at (54,2.60) {$w=RT/F$:\\23.1, 25.7, 28.3 mV};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률 $\xi_\eq$ logistic 과 그 미분 종 개선안. 좌표는 식~\eqref{eq:xieq} 및 식~\eqref{eq:belliden} 을 $w=nRT/F$($n=1$ 예시)로 그대로 수치 평가했으며, 268/298/328 K 에서 각각 $w=23.1/25.7/28.3$ mV 이다. 왼쪽은 중심 $U_j^d$ 주변의 logistic, 오른쪽은 같은 온도에서의 $4w|\dd\xi_\eq/\dd V|$ peak 이며, 중심 기울기 $1/(4w)$ 가 온도 상승과 함께 완만해지는 점을 강조했다.}
+\label{fig:logistic}

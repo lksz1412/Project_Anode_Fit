@@ -1,0 +1,25 @@
+\begin{tikzpicture}[x=0.78cm,y=1.02cm,lab/.style={font=\scriptsize,align=center},tiny/.style={font=\tiny,align=center},ar/.style={-{Latex[length=1.5mm]},thick}]
+\begin{scope}
+\draw[-{Latex[length=1.5mm]}] (-3.7,0)--(3.85,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.5mm]}] (-3.7,0)--(-3.7,2.65) node[above,font=\scriptsize] {peak};
+\draw[black!55,densely dotted,thick] plot[smooth] coordinates {(-3.5000,0.2561) (-3.0000,0.4066) (-2.5000,0.6309) (-2.0000,0.9449) (-1.5000,1.3423) (-1.0000,1.7695) (-0.5000,2.1150) (0.0000,2.2500) (0.5000,2.1150) (1.0000,1.7695) (1.5000,1.3423) (2.0000,0.9449) (2.5000,0.6309) (3.0000,0.4066) (3.5000,0.2561)};
+\draw[black,very thick] plot[smooth] coordinates {(-3.5000,0.1199) (-3.0000,0.1894) (-2.5000,0.3143) (-2.0000,0.4780) (-1.5000,0.7028) (-1.0000,1.0399) (-0.5000,1.3598) (0.0000,1.6418) (0.5000,1.8140) (1.0000,1.8888) (1.5000,1.7486) (2.0000,1.5102) (2.5000,1.2529) (3.0000,0.9754) (3.5000,0.7338)};
+\draw[ar] (-2.9,-0.22)--(2.9,-0.22) node[midway,below,font=\tiny] {time / progress};
+\draw[ar,gray] (1.15,1.65)--(2.65,0.90);
+\node[lab] at (1.60,2.25) {tail to\\higher $V$};
+\node[lab] at (0,-0.62) {(a) discharge $\sigma_d=+1$};
+\end{scope}
+\begin{scope}[xshift=8.15cm]
+\draw[-{Latex[length=1.5mm]}] (-3.7,0)--(3.85,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.5mm]}] (-3.7,0)--(-3.7,2.65) node[above,font=\scriptsize] {peak};
+\draw[black!55,densely dotted,thick] plot[smooth] coordinates {(-3.5000,0.2561) (-3.0000,0.4066) (-2.5000,0.6309) (-2.0000,0.9449) (-1.5000,1.3423) (-1.0000,1.7695) (-0.5000,2.1150) (0.0000,2.2500) (0.5000,2.1150) (1.0000,1.7695) (1.5000,1.3423) (2.0000,0.9449) (2.5000,0.6309) (3.0000,0.4066) (3.5000,0.2561)};
+\draw[black,very thick,densely dashed] plot[smooth] coordinates {(-3.5000,0.7338) (-3.0000,0.9754) (-2.5000,1.2529) (-2.0000,1.5102) (-1.5000,1.7486) (-1.0000,1.8888) (-0.5000,1.8140) (0.0000,1.6418) (0.5000,1.3598) (1.0000,1.0399) (1.5000,0.7028) (2.0000,0.4780) (2.5000,0.3143) (3.0000,0.1894) (3.5000,0.1199)};
+\draw[ar] (2.9,-0.22)--(-2.9,-0.22) node[midway,below,font=\tiny] {time / progress};
+\draw[ar,gray] (-1.15,1.65)--(-2.65,0.90);
+\node[lab] at (-1.60,2.25) {tail to\\lower $V$};
+\node[lab] at (0,-0.62) {(b) charge $\sigma_d=-1$};
+\end{scope}
+\node[tiny,align=left] at (3.95,2.77) {dotted: equilibrium bell\\solid/dashed: one-sided low-pass};
+\end{tikzpicture}
+\caption{인과 꼬리 방향 개선안. 점선은 방향 불변의 평형 종 $\xi_\eq(1-\xi_\eq)/w$ 이고, 굵은 곡선은 같은 종을 전압 진행방향으로 단측 지수 저역통과한 peak shape 이다. 방전은 시간 진행이 $V\!\uparrow$ 이므로 꼬리가 높은 $V$ 쪽에 남고, 충전은 격자를 뒤집어 필터한 뒤 되돌리는 구조라 낮은 $V$ 쪽 꼬리로 거울 반전된다. 좌표는 logistic 미분 종과 $L_V=1.10w$ 단측 지수 커널의 수치 적분이다.}
+\label{fig:reversal}

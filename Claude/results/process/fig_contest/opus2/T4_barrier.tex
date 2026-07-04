@@ -1,0 +1,53 @@
+% T4 fig:barrier  (opus2 — quantitative-density)
+% Eyring activation landscape (eq:bv), reaction coordinate x, wells at x=1,5, TS at x=3.
+% G_base(x)=0.1+0.9 sin^2[pi(x-1)/4] on [1,5]; driven G(x)=G_base-A*phi(x), phi=(x-1)/4 (T4_calc.py).
+% A=0.5, chi=1/2 -> forward barrier dG_a-chi A=0.65, reverse dG_a+(1-chi)A=1.15, peak down chi A=0.25.
+\begin{tikzpicture}[x=0.70cm,y=2.4cm,>=Latex]
+% =============== (a) equilibrium ===============
+\begin{scope}
+\draw[->] (-0.3,-0.5) -- (6.5,-0.5) node[right,font=\scriptsize] {rxn coord};
+\draw[->] (-0.3,-0.5) -- (-0.3,1.18) node[above,font=\scriptsize] {free energy $G$};
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (5.5,0.1) (6,0.1)};
+\node[below,font=\scriptsize] at (1,0.06) {filled site};
+\node[below,font=\scriptsize] at (5,0.06) {empty site $+$ ion};
+\node[above,font=\scriptsize] at (3,1.0) {transition state};
+% dG_a arrow at x=2
+\draw[densely dotted,black!55] (1,0.1) -- (2.05,0.1);
+\draw[densely dotted,black!55] (3,1.0) -- (2.05,1.0);
+\draw[<->] (2.05,0.1) -- (2.05,1.0) node[pos=0.5,left,font=\scriptsize] {$\Delta G_a{=}0.90$};
+\node[font=\scriptsize,below] at (3,-0.68) {(a) equilibrium: $\mathcal A{=}0$ (two wells equal)};
+\end{scope}
+% =============== (b) driven ===============
+\begin{scope}[xshift=6.3cm]
+\draw[->] (-0.3,-0.5) -- (6.7,-0.5) node[right,font=\scriptsize] {rxn coord};
+% reference (a) dotted
+\draw[densely dotted,thin,black!50] plot[smooth] coordinates {(0,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (6,0.1)};
+% driven curve
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.1693) (2,0.425) (2.5,0.6807) (3,0.75) (3.5,0.5557) (4,0.175) (4.5,-0.2057) (5,-0.4) (5.5,-0.4) (6,-0.4)};
+% peak down by chi A
+\draw[->,thick] (3,0.99) -- (3,0.77);
+\node[above,font=\scriptsize] at (3,1.0) {peak $\downarrow\,\chi\mathcal A{=}0.25$};
+% forward barrier at x=1.7
+\draw[densely dotted,black!55] (1,0.1) -- (1.7,0.1);
+\draw[densely dotted,black!55] (3,0.75) -- (1.7,0.75);
+\draw[<->] (1.7,0.1) -- (1.7,0.75) node[pos=0.5,left,font=\scriptsize,align=right] {$\Delta G_a{-}\chi\mathcal A$\\$=0.65$};
+% reverse barrier at x=4.3
+\draw[densely dotted,black!55] (5,-0.4) -- (4.3,-0.4);
+\draw[densely dotted,black!55] (3,0.75) -- (4.3,0.75);
+\draw[<->] (4.3,-0.4) -- (4.3,0.75) node[pos=0.5,right,font=\scriptsize,align=left] {$\Delta G_a{+}(1{-}\chi)\mathcal A$\\$=1.15$};
+% affinity A drop at x=5.8
+\draw[densely dotted,black!55] (5,0.1) -- (5.85,0.1);
+\draw[densely dotted,black!55] (5,-0.4) -- (5.85,-0.4);
+\draw[<->] (5.85,0.1) -- (5.85,-0.4) node[pos=0.5,right,font=\scriptsize] {$\mathcal A{=}0.50$};
+\node[font=\scriptsize,below] at (3,-0.68) {(b) driven $\mathcal A{>}0$ ($\chi{=}\tfrac12$)};
+\node[font=\scriptsize,anchor=south west] at (-0.2,-0.48) {$\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$};
+\end{scope}
+\end{tikzpicture}
+\caption{활성화 장벽 그림 --- Eyring 속도식(식~\eqref{eq:bv})의 반응 좌표 개형(좌표는 이중 포물선
+$G_\mathrm{base}{=}0.1{+}0.9\sin^2[\pi(x{-}1)/4]$ 의 수치 평가, 구동은 진행률 $\phi$ 를 따라 $\mathcal A$ 만큼 기울임).
+(a) 평형($\mathcal A{=}0$) --- 두 골 같은 높이, 장벽 $\Delta G_a{=}0.90$. (b) 구동력 $\mathcal A_j{=}sF(V_n{-}U_j){>}0$
+($\chi{=}\tfrac12$)가 도착 골을 $\mathcal A{=}0.50$ 내려 정점을 $\chi\mathcal A{=}0.25$ 낮추면, 정방향 장벽
+$\Delta G_a{-}\chi\mathcal A{=}0.65$ 로 하강$\cdot$역방향 $\Delta G_a{+}(1{-}\chi)\mathcal A{=}1.15$ 로 상승(점선 $=$(a)).
+$\chi\!\cdot\!(1{-}\chi)$ 분할이 detailed balance(식~\eqref{eq:db})를 강제하고, 유효 장벽은 $\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$
+다. 이 그림이 logistic(식~\eqref{eq:xieq})과 $L_q$ 의 공통 출발점이다.}
+\label{fig:barrier}

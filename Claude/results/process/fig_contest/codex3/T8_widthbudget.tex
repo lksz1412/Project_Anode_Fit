@@ -1,0 +1,21 @@
+\begin{tikzpicture}[x=0.72cm,y=22.0cm,
+  ax/.style={-{Latex[length=1.5mm]}},
+  badge/.style={draw,rounded corners=2pt,fill=black!5,font=\scriptsize,align=center,inner sep=2.5pt}]
+\draw[ax] (-6.30,0) -- (10.80,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[ax] (-6.30,0) -- (-6.30,0.285) node[above,font=\scriptsize] {$\dd Q/\dd V$ [arb.]};
+\foreach \xx in {-4,0,4,8}{\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.262);
+\node[badge] at (-3.95,0.255) {0 delta\\Maxwell};
+\draw[black!62] plot[smooth] coordinates {(-6.0,0.0025) (-5.0,0.0066) (-4.0,0.0177) (-3.0,0.0452) (-2.0,0.1050) (-1.0,0.1966) (-0.5,0.2350) (0.0,0.2500) (0.5,0.2350) (1.0,0.1966) (1.5,0.1491) (2.0,0.1050) (2.5,0.0701) (3.0,0.0452) (4.0,0.0177) (5.0,0.0066) (6.0,0.0025) (7.0,0.0009) (8.0,0.0003) (9.0,0.0001) (10.0,0.0000)};
+\node[badge] at (2.95,0.230) {2 intrinsic\\$\sigma_\mathrm{int}$};
+\draw[densely dashed] plot[smooth] coordinates {(-6.0,0.0140) (-5.0,0.0252) (-4.0,0.0438) (-3.0,0.0721) (-2.0,0.1082) (-1.0,0.1419) (-0.5,0.1525) (0.0,0.1562) (0.5,0.1525) (1.0,0.1419) (1.5,0.1264) (2.0,0.1082) (2.5,0.0895) (3.0,0.0721) (4.0,0.0438) (5.0,0.0252) (6.0,0.0140) (7.0,0.0077) (8.0,0.0042) (9.0,0.0022) (10.0,0.0012)};
+\node[badge] at (-4.00,0.128) {2 x 3 spread\\$\sqrt{1+1.25^2}\,\sigma_\mathrm{int}$};
+\draw[thick] plot[smooth] coordinates {(-6.0,0.0074) (-5.0,0.0135) (-4.0,0.0241) (-3.0,0.0412) (-2.0,0.0663) (-1.0,0.0968) (-0.5,0.1117) (0.0,0.1243) (0.5,0.1332) (1.0,0.1375) (1.5,0.1367) (2.0,0.1312) (2.5,0.1219) (3.0,0.1102) (4.0,0.0836) (5.0,0.0589) (6.0,0.0392) (7.0,0.0251) (8.0,0.0156) (9.0,0.0095) (10.0,0.0056)};
+\draw[-{Latex[length=1.3mm]},semithick] (4.4,0.094) -- (7.5,0.041);
+\node[badge] at (7.25,0.105) {+1 causal tail\\$L_{V,j}=1.5w_j$};
+\draw[-{Latex[length=1.2mm]},thin] (-2.95,0.236) -- (-0.10,0.252);
+\draw[-{Latex[length=1.2mm]},thin] (1.95,0.214) -- (0.75,0.154);
+\draw[-{Latex[length=1.2mm]},thin] (-2.75,0.115) -- (-0.90,0.099);
+\end{tikzpicture}
+\caption{두-상 broadening의 폭 예산(식~\eqref{eq:widthbudget}; 좌표는 식 그대로의 수치 평가). 평형 델타에 ② 내재 logistic 미분 종(폭 $w_j$)이 얹히고, ③ 앙상블 $\eta$ 산포와의 합성곱이 분산 가법으로 대칭 종을 넓힌다. 예시는 $\sigma_\eta=1.25\,\sigma_\mathrm{int}$라 $\sigma_\mathrm{sym}=\sqrt{1+1.25^2}\,\sigma_\mathrm{int}\approx1.6\,\sigma_\mathrm{int}$이고, 같은 함수족 근사에서는 유효 scale $1.6w_j$로 표시된다. 마지막으로 ① 유한율속 단측 지수 꼬리($L_V=1.5w_j$)가 종을 소인 방향으로 민다. 기존 overlay 구도는 유지하되 네 단계를 배지와 화살표로 분리했다. 좌표는 \code{T8\_calc.py}의 logistic 미분 및 단측 합성곱 수치 적분값이다.}
+\label{fig:widthbudget}

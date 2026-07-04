@@ -1,0 +1,45 @@
+% T5 fig:flux  (opus2 — quantitative-density)
+% Forward flux r+(1-xi) vs reverse r- xi; stationary point = intersection = xi_eq (eq:logisticsolve).
+% r- = 1 fixed => reverse line y=xi common to all cases; three affinities overlaid (T5_calc.py):
+%   A/RT=0     r+/r-=1  xi_eq=1/2   ; A/RT=ln2  r+/r-=2  xi_eq=2/3 ; A/RT=2RT ln2  r+/r-=4  xi_eq=4/5.
+\begin{tikzpicture}[x=6.0cm,y=1.42cm,>=Latex]
+% ---- readout above the plot (clear of all curves) ----
+\node[anchor=south west,align=left,font=\scriptsize] at (-0.02,4.62)
+  {reverse $r^-\xi$ ($r^-{=}1$)\ $\cdot$\ forward $r^+(1-\xi)$, $r^+{=}e^{\mathcal A/RT}{=}1,2,4$\\[1pt]
+   $\xi_\eq=\dfrac{r^+}{r^++r^-}=\dfrac{1}{1+e^{-\mathcal A/RT}}=\tfrac12,\ \tfrac23,\ \tfrac45$ (교점, on line $y{=}\xi$)};
+% ---- axes ----
+\draw[->] (0,0) -- (0,4.5) node[left,font=\scriptsize] {flux [arb.]};
+\draw[->] (-0.01,0) -- (1.14,0) node[below,font=\scriptsize] {$\xi$};
+% ---- common reverse line  y = r- xi ----
+\draw[line width=1.3pt] (0,0) -- (1,1);
+\node[anchor=south east,font=\scriptsize] at (0.99,0.99) {$r^-\xi$};
+% ---- forward lines r+(1-xi) ----
+\draw[thick]               (0,4) -- (1,0);
+\draw[dashed]              (0,2) -- (1,0);
+\draw[gray,densely dashed] (0,1) -- (1,0);
+% intercept labels + y ticks
+\node[anchor=west,font=\scriptsize]      at (0.02,4.13) {$r^+{=}4$};
+\node[anchor=west,font=\scriptsize]      at (0.02,2.13) {$r^+{=}2$};
+\node[gray,anchor=west,font=\scriptsize] at (0.02,1.13) {$r^+{=}1$};
+\foreach \yv in {1,2,4} {\draw (0.008,\yv) -- (-0.008,\yv) node[left,font=\scriptsize] {\yv};}
+% ---- intersections + droplines + x ticks (xi_eq) ----
+\foreach \xe in {0.5,0.6667,0.8} {
+  \draw[densely dotted,black!55] (\xe,\xe) -- (\xe,0);
+  \fill (\xe,\xe) circle (1.1pt);
+}
+\draw (0.5,0.03) -- (0.5,-0.03) node[below,font=\scriptsize] {$\tfrac12$};
+\draw (0.6667,0.03) -- (0.6667,-0.03);
+\node[below,font=\scriptsize] at (0.6667,-0.19) {$\tfrac23$};
+\draw (0.8,0.03) -- (0.8,-0.03) node[below,font=\scriptsize] {$\tfrac45$};
+\draw (1,0.03) -- (1,-0.03) node[below,font=\scriptsize] {1};
+% ---- forward family label (clear top-left triangle) ----
+\node[anchor=west,font=\scriptsize] at (0.30,3.15) {forward $r^+(1-\xi)$};
+% ---- moves-right note (below ticks) ----
+\node[anchor=north,font=\scriptsize] at (0.66,-0.42) {$\xi_\eq$ moves right as $\mathcal A\!\uparrow$};
+\end{tikzpicture}
+\caption{정지점 유도 --- 정$\cdot$역 플럭스의 교점(식~\eqref{eq:logisticsolve}; 좌표는 식 그대로의 수치 평가).
+정방향 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(공통 증가 직선, $r^-{=}1$)의 교점이 정지점 $\xi_\eq$. affinity 를
+$\mathcal A/RT=0,\ln2,2\ln2$ 로 올리면 $r^+/r^-=e^{\mathcal A/RT}=1,2,4$ 라 교점이 $\xi_\eq=\tfrac12\to\tfrac23\to\tfrac45$
+로 이동한다(모두 $y{=}\xi$ 선 위) --- 곧 $\xi_\eq=r^+/(r^++r^-)=1/(1+e^{-\mathcal A/RT})$ 로, detailed balance
+(식~\eqref{eq:db})가 $\chi$ 와 무관하게 평형을 정한다.}
+\label{fig:flux}

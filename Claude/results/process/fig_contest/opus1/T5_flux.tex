@@ -1,0 +1,38 @@
+% T5 fig:flux (opus1) — stationary point as flux crossing; detailed balance moves the crossing.
+% Forward flux r+(1-xi) (decreasing) vs reverse r- xi (increasing); crossing xi_eq=r+/(r++r-).  [eq:logisticsolve]
+% Detailed balance r+/r- = exp(A/RT).  Three affinities: r+=1,2,3 (r-=1) -> xi_eq=1/2,2/3,3/4.  (T5_calc.py)
+\centering
+\begin{tikzpicture}[x=4.3cm,y=0.92cm,font=\scriptsize]
+\draw[-{Latex[length=1.4mm]}] (0,0) -- (0,3.4) node[above,font=\scriptsize] {flux [arb.]};
+\draw[-{Latex[length=1.4mm]}] (-0.01,0) -- (1.12,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,0.6667,0.75,1} {\draw (\xx,0.05) -- (\xx,-0.05);}
+\node[below,font=\scriptsize] at (1,-0.06) {1};
+% reverse flux r- xi (r-=1)
+\draw[densely dashed,thick] (0,0) -- (1,1);
+\node[right,font=\scriptsize] at (0.80,0.94) {reverse $r^-\xi$};
+% three forward fluxes r+(1-xi): r+ = 1,2,3
+\draw[black!35,thick] (0,1) -- (1,0);
+\draw[black!65,thick] (0,2) -- (1,0);
+\draw[black!100,thick] (0,3) -- (1,0);
+\node[left,font=\scriptsize,black!35] at (0.02,1.02) {$r^+{=}1$};
+\node[left,font=\scriptsize,black!65] at (0.02,2.02) {$r^+{=}2$};
+\node[left,font=\scriptsize,black!100] at (0.02,3.02) {$r^+{=}3$};
+\node[right,font=\scriptsize] at (0.27,0.60) {forward $r^+(1-\xi)$};
+% crossings + staggered fraction labels below
+\foreach \xx/\yy in {0.5/0.5,0.6667/0.6667,0.75/0.75}{
+  \draw[densely dotted] (\xx,0) -- (\xx,\yy);
+  \fill (\xx,\yy) circle (1.0pt);}
+\node[font=\scriptsize,anchor=east] at (0.44,-0.34) {$\xi_\eq{=}$};
+\node[font=\scriptsize] at (0.50,-0.34) {$\tfrac12$};
+\node[font=\scriptsize] at (0.645,-0.66) {$\tfrac23$};
+\node[font=\scriptsize] at (0.79,-0.34) {$\tfrac34$};
+% affinity-increase annotation (upper-right empty region)
+\draw[-{Latex[length=1.6mm]},gray] (0.53,0.53) to[out=42,in=205] (0.735,0.735);
+\node[font=\scriptsize,gray,align=center] at (0.86,1.85)
+   {$\mathcal A\!\uparrow\Rightarrow r^+/r^-{=}e^{\mathcal A/RT}\!\uparrow$\\$\Rightarrow\xi_\eq$ shifts right};
+\end{tikzpicture}
+\caption{정지점 유도 --- 플럭스 교점과 그 이동. 정방향 플럭스 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(증가
+직선)의 교점이 정지점 $\xi_\eq=r^+/(r^++r^-)$(식~\eqref{eq:logisticsolve}; 좌표는 식 그대로의 수치 평가).
+$r^-{=}1$ 고정, 구동력이 detailed balance $r^+/r^-=e^{\mathcal A/RT}$(식~\eqref{eq:db})로 $r^+{=}1,2,3$ 이면
+교점이 $\xi_\eq=\tfrac12,\tfrac23,\tfrac34$ 로 오른쪽으로 옮겨간다 --- 열역학이 $r^+/r^-$ 한 곳으로만 들어와 평형을 정한다.}
+\label{fig:flux}

@@ -1,0 +1,47 @@
+% T6 candidate (sonnet3) for fig:logistic — two panels (visual hierarchy split, not one
+% overloaded shared-axis plot) plotted against REAL (V-U) in mV, so 268/298/328 K actually
+% show up as three distinguishable widths (w=n R T/F) — plotting vs the dimensionless z of
+% the existing figure cannot show T-dependence at all, since z already absorbs it.
+% All coordinates from T6_calc.py (eq:xieq / eq:belliden evaluated at each w(T)).
+\begin{tikzpicture}[x=0.035cm,y=3cm]
+% ================= left panel: xi_eq(V-U) =================
+\draw[-{Latex[length=1.4mm]}] (-96,0) -- (96,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-92,-0.05) -- (-92,1.12) node[above,font=\scriptsize] {$\xi_\eq$};
+\draw (-94,0.5) -- (-90,0.5) node[left=1pt,font=\scriptsize] {0.5};
+\draw (-94,1.0) -- (-90,1.0) node[left=1pt,font=\scriptsize] {1};
+\draw[densely dotted] (0,0) -- (0,1.0) node[above,font=\tiny] {center $U_j^{\,d}$};
+\draw[densely dashed] plot[smooth] coordinates {(-90,0.0199) (-84,0.0256) (-78,0.0330) (-72,0.0424) (-66,0.0543) (-60,0.0693) (-54,0.0880) (-48,0.1112) (-42,0.1396) (-36,0.1738) (-30,0.2143) (-24,0.2613) (-18,0.3144) (-12,0.3729) (-6,0.4354) (0,0.5000) (6,0.5646) (12,0.6271) (18,0.6856) (24,0.7387) (30,0.7857) (36,0.8262) (42,0.8604) (48,0.8888) (54,0.9120) (60,0.9307) (66,0.9457) (72,0.9576) (78,0.9670) (84,0.9744) (90,0.9801)};
+\draw[thick] plot[smooth] coordinates {(-90,0.0292) (-84,0.0366) (-78,0.0458) (-72,0.0572) (-66,0.0712) (-60,0.0882) (-54,0.1089) (-48,0.1337) (-42,0.1632) (-36,0.1976) (-30,0.2373) (-24,0.2821) (-18,0.3317) (-12,0.3853) (-6,0.4419) (0,0.5000) (6,0.5581) (12,0.6147) (18,0.6683) (24,0.7179) (30,0.7627) (36,0.8024) (42,0.8368) (48,0.8663) (54,0.8911) (60,0.9118) (66,0.9288) (72,0.9428) (78,0.9542) (84,0.9634) (90,0.9708)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-90,0.0398) (-84,0.0487) (-78,0.0595) (-72,0.0726) (-66,0.0883) (-60,0.1069) (-54,0.1289) (-48,0.1547) (-42,0.1845) (-36,0.2186) (-30,0.2570) (-24,0.2996) (-18,0.3460) (-12,0.3954) (-6,0.4471) (0,0.5000) (6,0.5529) (12,0.6046) (18,0.6540) (24,0.7004) (30,0.7430) (36,0.7814) (42,0.8155) (48,0.8453) (54,0.8711) (60,0.8931) (66,0.9117) (72,0.9274) (78,0.9405) (84,0.9513) (90,0.9602)};
+% center-slope tangent (298.15 K): slope = 1/(4w), the geometric meaning of w
+\draw[gray] (-25,0.2567) -- (25,0.7433);
+\node[gray,font=\tiny,align=left] at (46,0.30) {tangent slope\\$=1/(4w)$\\$=9.73\,\mathrm{V^{-1}}$ (298 K)};
+% direct curve labels at x=-42 where the three are best separated
+\node[font=\tiny,align=right] at (-58,0.20) {268 K};
+\node[font=\tiny,align=right] at (-58,0.135) {298 K};
+\node[font=\tiny,align=right] at (-58,0.075) {328 K};
+\node[font=\scriptsize,below] at (0,-0.28) {(a) $\xi_\eq(V)$ logistic — width $w{=}nRT/F$ widens with $T$};
+% ================= right panel: dxi/dV bell =================
+\begin{scope}[xshift=7.55cm,y=0.28cm]
+\draw[-{Latex[length=1.4mm]}] (-96,0) -- (96,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-92,-0.4) -- (-92,11.6) node[above,font=\scriptsize] {$\dd\xi_\eq/\dd V$ [V$^{-1}$]};
+\foreach \yy in {2,4,6,8,10} {\draw (-94,\yy) -- (-90,\yy) node[left=1pt,font=\tiny] {\yy};}
+\draw[densely dotted] (0,0) -- (0,11.2) node[above,font=\tiny] {center};
+\draw[densely dashed] plot[smooth] coordinates {(-90,0.8444) (-84,1.0822) (-78,1.3821) (-72,1.7575) (-66,2.2227) (-60,2.7915) (-54,3.4753) (-48,4.2800) (-42,5.2009) (-36,6.2181) (-30,7.2915) (-24,8.3580) (-18,9.3343) (-12,10.1261) (-6,10.6445) (0,10.8251) (6,10.6445) (12,10.1261) (18,9.3343) (24,8.3580) (30,7.2915) (36,6.2181) (42,5.2009) (48,4.2800) (54,3.4753) (60,2.7915) (66,2.2227) (72,1.7575) (78,1.3821) (84,1.0822) (90,0.8444)};
+\draw[thick] plot[smooth] coordinates {(-90,1.1044) (-84,1.3737) (-78,1.7020) (-72,2.0989) (-66,2.5730) (-60,3.1314) (-54,3.7777) (-48,4.5094) (-42,5.3150) (-36,6.1719) (-30,7.0440) (-24,7.8822) (-18,8.6277) (-12,9.2185) (-6,9.5990) (0,9.7304) (6,9.5990) (12,9.2185) (18,8.6277) (24,7.8822) (30,7.0440) (36,6.1719) (42,5.3150) (48,4.5094) (54,3.7777) (60,3.1314) (66,2.5730) (72,2.0989) (78,1.7020) (84,1.3737) (90,1.1044)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-90,1.3510) (-84,1.6395) (-78,1.9813) (-72,2.3823) (-66,2.8470) (-60,3.3778) (-54,3.9732) (-48,4.6265) (-42,5.3239) (-36,6.0439) (-30,6.7565) (-24,7.4243) (-18,8.0054) (-12,8.4580) (-6,8.7460) (0,8.8449) (6,8.7460) (12,8.4580) (18,8.0054) (24,7.4243) (30,6.7565) (36,6.0439) (42,5.3239) (48,4.6265) (54,3.9732) (60,3.3778) (66,2.8470) (72,2.3823) (78,1.9813) (84,1.6395) (90,1.3510)};
+\node[font=\tiny] at (10,11.3) {268 K};
+\node[font=\tiny] at (10,10.15) {298 K};
+\node[font=\tiny] at (10,9.2) {328 K};
+\node[font=\scriptsize,below] at (0,-2.0) {(b) $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$ — peak $1/(4w)$ falls as $T$ rises};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률과 그 미분, 온도 셋(268/298/328 K)을 실제 전위 축(mV, $z$ 가 아니라 $V{-}U_j^{\,d}$)에서
+분리해 보임 — $z=\sigma_d(V-U)/w$ 로 그리면 $w$ 의 $T$ 의존이 축에 흡수돼 세 온도가 겹쳐 보이므로, 이 대안은
+물리 전위 축을 써 실제로 다른 폭을 눈으로 보인다. (a) $\xi_\eq$ logistic(식~\eqref{eq:xieq}) — 온도가 오를수록
+$w=nRT/F$ 가 커져 전이가 넓어진다(268/298/328 K에서 $w{=}23.09/25.69/28.27$ mV, $n{=}1$). 회색 접선이 중심
+기울기의 기하적 의미 $1/(4w)$(298 K 값 $9.73\,\mathrm{V^{-1}}$)를 보인다. (b) 미분 종
+$\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$(식~\eqref{eq:belliden}) — 중심 높이가 정확히 $1/(4w)$ 라 온도가
+오르면 낮아지고 넓어진다(peak 면적은 온도 무관 $1$, 폭이 늘어난 만큼 높이가 준다). 방향 불변(양수)인 것도
+같다. 좌표 전부 T6\_calc.py 의 식 수치 평가.}
+\label{fig:logistic}

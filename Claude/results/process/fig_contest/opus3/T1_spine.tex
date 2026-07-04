@@ -1,0 +1,54 @@
+% T1 fig:spine (opus3) — structure reinvention: setup trunk (N0,N1) + a boxed per-transition
+% loop body (N2..N8) with an explicit "next j" return arrow, and the equilibrium-vs-tail BRANCH
+% at xi_eq (eq:branch) drawn as two paths merging into the sum. Every node carries its equation
+% tag and output quantity. Flow diagram (no plotted curve); node/equation map verified by T1_calc.py.
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  node distance=3.4mm,
+  setup/.style={draw,rounded corners=2pt,minimum height=6.6mm,inner xsep=4pt,inner ysep=2pt,align=center,fill=black!4},
+  loopn/.style={setup,fill=black!8},
+  core/.style={setup,fill=black!16},
+  io/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.5mm]},semithick},
+  eqt/.style={black!55}]
+% ---- setup trunk ----
+\node[io] (in) {input: $V_\app$,\ direction$\,{\to}\,\sigma_d$,\ c-rate$\,{\to}\,|I|$,\ $T$,\ $Q_\cell$};
+\node[setup,below=3.2mm of in] (n0) {\textbf{N0} map inputs\ \ {\tiny\eqref{eq:n0map}}};
+\node[setup,below=of n0] (n1) {\textbf{N1} $V_n{=}V_\app{-}\sigma_d|I|R_n$\ \ {\tiny\eqref{eq:n0map}}};
+% ---- loop body ----
+\node[loopn,below=6.4mm of n1] (n2) {\textbf{N2} center $U_j(T)$\ \ {\tiny\eqref{eq:center}}};
+\node[loopn,below=of n2] (n3) {\textbf{N3} branch $U_j^{\,d}$\ \ {\tiny\eqref{eq:Ubranch}}};
+\node[loopn,below=of n3] (n4) {\textbf{N4} width $w_j{=}n_jRT/F$\ \ {\tiny\eqref{eq:wbase}}};
+\node[loopn,below=of n4] (n5) {\textbf{N5} $\xi_\eq$ logistic\ \ {\tiny\eqref{eq:xieq}}};
+% branch children (explicit coords)
+\node[loopn] (n6) at ($(n5)+(-2.05,-1.35)$) {\textbf{N6} eq.\ peak\\$\xi_\eq(1{-}\xi_\eq)/w$\ {\tiny\eqref{eq:eqpeak}}};
+\node[loopn] (n7) at ($(n5)+(2.05,-1.35)$) {\textbf{N7} lag $L_V$\ {\tiny\eqref{eq:LV}}};
+\node[loopn,below=5mm of n7] (n8) {\textbf{N8} tail $\tfrac{\xi_\eq-\xi_\mathrm{lag}}{L_V}$\ {\tiny\eqref{eq:peakshape}}};
+\node[core] (merge) at ($(n5)+(0,-3.25)$) {peak shape$_j$ = branch$(L_V)$\ \ {\tiny\eqref{eq:branch}}};
+% ---- finalize trunk ----
+\node[core,below=4.6mm of merge] (n9) {\textbf{N9} sum $+$ interp\ \ $C_\bg{+}\sum_jQ_j[\cdot]$};
+\node[io,below=3.2mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
+% arrows
+\draw[ar] (in) -- (n0);   \draw[ar] (n0) -- (n1);   \draw[ar] (n1) -- (n2);
+\draw[ar] (n2) -- (n3);   \draw[ar] (n3) -- (n4);   \draw[ar] (n4) -- (n5);
+\draw[ar] (n5.south) to[out=-135,in=90] node[left,font=\tiny,pos=0.6]{$L_V{<}\nu\Delta$} (n6.north);
+\draw[ar] (n5.south) to[out=-45,in=90] node[right,font=\tiny,pos=0.6]{else} (n7.north);
+\draw[ar] (n7) -- (n8);
+\draw[ar] (n6.south) to[out=-90,in=160] (merge.west);
+\draw[ar] (n8.south) to[out=-90,in=20] (merge.east);
+\draw[ar] (merge) -- (n9);   \draw[ar] (n9) -- (out);
+% loop box + "next j" return arrow
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n4)(n5)(n6)(n7)(n8)(merge),inner sep=3.2mm,
+  label={[font=\scriptsize\itshape,anchor=south west]north west:per-transition loop $j=1..N_p$}] (loop) {};
+\end{scope}
+\draw[ar,densely dashed] (merge.east) to[out=0,in=0,looseness=2.0] node[right,font=\tiny,pos=0.5]{next $j$} (n2.east);
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine)을 세 층으로 재편했다. 위 트렁크(N0$\cdot$N1)가 실험조건을 내부
+전위 $V_n$ 으로 환산하고, 파선 상자가 전이별 반복 계산 단위($j{=}1..N_p$, ``next $j$'' 귀환 화살표로 반복을
+명시)다. 상자 안에서 평형 중심$\cdot$히스 분기$\cdot$폭$\cdot$평형 진행률을 지난 뒤 $\xi_\eq$(N5)에서
+\emph{분기}한다 --- $L_V$ 가 격자 문턱보다 작으면 평형 peak(N6), 그 외는 인과 꼬리(N7$\to$N8)로 가
+식~\eqref{eq:branch} 로 합쳐지고, 아래 트렁크 N9 가 전이 기여를 합산$\cdot$역보간한다. 각 노드에 산출량과
+대응 식 번호를 병기했다(정보 다이어그램 --- 곡선 좌표 없음).}
+\label{fig:spine}

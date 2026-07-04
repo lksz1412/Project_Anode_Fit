@@ -1,0 +1,31 @@
+% T7 candidate (sonnet3) for fig:reversal — peak shapes are the ACTUAL output of the
+% discrete low-pass recursion (eq:lowpass) run on a fine V-grid, with the charge-direction
+% grid reversal of eq:reversal applied to the filter itself (T7_calc.py) — not a freehand
+% "shifted bell" guess. Mirror symmetry charge(V) = discharge(-V) verified there to 1e-14.
+\begin{tikzpicture}[x=0.035cm,y=0.28cm]
+% ================= (a) discharge: progress = V increasing =================
+\draw[-{Latex[length=1.4mm]},thick] (-108,0) -- (108,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-104,0) -- (-104,10.6) node[above,font=\scriptsize] {peak shape [V$^{-1}$]};
+\node[font=\scriptsize] at (0,-1.6) {(a) discharge $\sigma_d{=}{+}1$: progress $V\!\uparrow$};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-100,0.7626) (-90,1.1044) (-80,1.5854) (-70,2.2479) (-60,3.1314) (-50,4.2565) (-40,5.5964) (-30,7.0440) (-20,8.3934) (-10,9.3710) (0,9.7304) (10,9.3710) (20,8.3934) (30,7.0440) (40,5.5964) (50,4.2565) (60,3.1314) (70,2.2479) (80,1.5854) (90,1.1044) (100,0.7626)};
+\draw[thick] plot[smooth] coordinates {(-100,0.4636) (-90,0.6813) (-80,0.9888) (-70,1.4186) (-60,2.0074) (-50,2.7884) (-40,3.7772) (-30,4.9496) (-20,6.2169) (-10,7.4165) (0,8.3385) (10,8.7933) (20,8.6888) (30,8.0671) (40,7.0776) (50,5.9104) (60,4.7344) (70,3.6644) (80,2.7584) (90,2.0305) (100,1.4683)};
+\draw[-{Latex[length=1.3mm]},gray] (55,6.4) -- (85,3.4);
+\node[font=\scriptsize] at (60,7.4) {tail $\to$ higher $V$};
+% ================= (b) charge: progress = V decreasing (grid-reversed filter) =================
+\begin{scope}[xshift=7.65cm]
+\draw[-{Latex[length=1.4mm]},thick] (-108,0) -- (108,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\node[font=\scriptsize] at (0,-1.6) {(b) charge $\sigma_d{=}{-}1$: progress $V\!\downarrow$ (grid reversed)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-100,0.7626) (-90,1.1044) (-80,1.5854) (-70,2.2479) (-60,3.1314) (-50,4.2565) (-40,5.5964) (-30,7.0440) (-20,8.3934) (-10,9.3710) (0,9.7304) (10,9.3710) (20,8.3934) (30,7.0440) (40,5.5964) (50,4.2565) (60,3.1314) (70,2.2479) (80,1.5854) (90,1.1044) (100,0.7626)};
+\draw[thick] plot[smooth] coordinates {(-100,1.4683) (-90,2.0305) (-80,2.7584) (-70,3.6644) (-60,4.7344) (-50,5.9104) (-40,7.0776) (-30,8.0671) (-20,8.6888) (-10,8.7933) (0,8.3385) (10,7.4165) (20,6.2169) (30,4.9496) (40,3.7772) (50,2.7884) (60,2.0074) (70,1.4186) (80,0.9888) (90,0.6813) (100,0.4636)};
+\draw[-{Latex[length=1.3mm]},gray] (-55,6.4) -- (-85,3.4);
+\node[font=\scriptsize] at (-60,7.4) {tail $\to$ lower $V$};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향, 점화식~\eqref{eq:lowpass} 을 실제로 미세 격자($\Delta_\mathrm{grid}=1$ mV,
+$L_V=15$ mV, $w{=}25.69$ mV @298 K)에서 돌려 얻은 좌표(T7\_calc.py, freehand 아님). 점선 $=$
+평형 종 $\xi_\eq(1-\xi_\eq)/w$(방향 불변, 두 패널 동일). 실선 $=$ peak shape with tail(식~\eqref{eq:peakshape}).
+(a) 방전은 시간 순서가 격자 오름차순과 같아 꼬리가 높은 $V$ 쪽으로 늘어진다. (b) 충전은 격자를 뒤집어
+저역통과한 뒤 되돌려(식~\eqref{eq:reversal}) 꼬리가 낮은 $V$ 쪽으로 — (a)의 정확한 거울상이다
+($|\text{peak}_\chg(V)-\text{peak}_\dis(-V)|<10^{-13}$, T7\_calc.py 검산). 두 경우 모두 peak 는 양수 —
+인과 기억이 진행상 \emph{나중에} 지나는 전위 쪽으로만 늘어짐을 보인다.}
+\label{fig:reversal}

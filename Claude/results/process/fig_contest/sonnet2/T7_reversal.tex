@@ -1,0 +1,30 @@
+\begin{tikzpicture}[x=1.05cm,y=9.0cm]
+% discharge panel (left) — sigma_d=+1, grid ascending = time order (no reversal)
+\begin{scope}
+\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (4.3,0) node[below,font=\scriptsize] {$z=(V-U_j^{\,d})/w_j$};
+\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (-4.3,0.27) node[above,font=\scriptsize] {peak shape};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-3.95,0.0185) (-3.55,0.0271) (-3.15,0.0394) (-2.75,0.0565) (-2.35,0.0795) (-1.95,0.109) (-1.55,0.1444) (-1.15,0.1827) (-0.75,0.2179) (-0.35,0.2425) (0.05,0.2498) (0.45,0.2378) (0.85,0.2098) (1.25,0.1731) (1.65,0.1352) (2.05,0.101) (2.45,0.0731) (2.85,0.0517) (3.25,0.0359) (3.65,0.0247)};
+\draw[thick] plot[smooth] coordinates {(-3.95,0.0084) (-3.55,0.0123) (-3.15,0.0181) (-2.75,0.0263) (-2.35,0.0377) (-1.95,0.0533) (-1.55,0.0735) (-1.15,0.0983) (-0.75,0.1265) (-0.35,0.1551) (0.05,0.1799) (0.45,0.197) (0.85,0.2033) (1.25,0.1987) (1.65,0.1848) (2.05,0.1648) (2.45,0.1419) (2.85,0.1187) (3.25,0.097) (3.65,0.0777)};
+\draw[-{Latex[length=1.4mm]},gray] (2.0,0.19) -- (3.1,0.13);
+\node[font=\scriptsize] at (2.1,0.235) {tail $\to$ higher $V$};
+\node[font=\scriptsize,below] at (0,-0.045) {(a) discharge $\sigma_d{=}{+}1$: progress $z\uparrow$ (grid as-is)};
+\end{scope}
+% charge panel (right) — sigma_d=-1, grid reversed = time order (eq:reversal)
+\begin{scope}[xshift=7.3cm]
+\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (4.3,0) node[below,font=\scriptsize] {$z=(V-U_j^{\,d})/w_j$};
+\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (-4.3,0.27) node[above,font=\scriptsize] {peak shape};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-3.95,0.0185) (-3.55,0.0271) (-3.15,0.0394) (-2.75,0.0565) (-2.35,0.0795) (-1.95,0.109) (-1.55,0.1444) (-1.15,0.1827) (-0.75,0.2179) (-0.35,0.2425) (0.05,0.2498) (0.45,0.2378) (0.85,0.2098) (1.25,0.1731) (1.65,0.1352) (2.05,0.101) (2.45,0.0731) (2.85,0.0517) (3.25,0.0359) (3.65,0.0247)};
+\draw[thick] plot[smooth] coordinates {(-3.95,0.0652) (-3.55,0.0823) (-3.15,0.1022) (-2.75,0.1244) (-2.35,0.1478) (-1.95,0.1702) (-1.55,0.189) (-1.15,0.2008) (-0.75,0.2028) (-0.35,0.1936) (0.05,0.1743) (0.45,0.1481) (0.85,0.1193) (1.25,0.0918) (1.65,0.068) (2.05,0.0489) (2.45,0.0345) (2.85,0.0239) (3.25,0.0164) (3.65,0.0112)};
+\draw[-{Latex[length=1.4mm]},gray] (-2.0,0.19) -- (-3.1,0.13);
+\node[font=\scriptsize] at (-2.1,0.235) {tail $\to$ lower $V$};
+\node[font=\scriptsize,below] at (0,-0.045) {(b) charge $\sigma_d{=}{-}1$: progress $z\downarrow$ (grid reversed)};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향(좌표는 식~\eqref{eq:lowpass}$\cdot$\eqref{eq:reversal} 의 실제 저역통과 재귀
+수치 평가, $L_V{=}1.2w_j$, $\Delta_\mathrm{grid}{=}0.05w_j$, 검산 = T7\_calc.py — 손그림이 아니라 재귀식을
+그대로 돌린 결과). 점선 $=$ 평형 종 $\xi_\eq(1-\xi_\eq)$(방향 불변, 두 패널 공통). 굵은 실선 $=$ 실제 peak
+shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$. (a) 방전은 격자 그대로 저역통과해(eq:lowpass) 무게중심이 양의 $z$
+쪽(높은 $V$)으로 밀리고(centroid $=+1.16$), (b) 충전은 격자를 뒤집어 필터한 뒤 되돌려(eq:reversal) 무게중심이
+음의 $z$ 쪽(낮은 $V$)으로 밀린다(centroid $=-1.16$, 부호만 반대인 거울상 — T7\_calc.py 로 확인). 두 경우
+모두 peak 는 어디서나 양수.}
+\label{fig:reversal}

@@ -1,0 +1,34 @@
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  stage/.style={draw,rounded corners=2pt,minimum width=4.0cm,minimum height=7.0mm,inner xsep=4pt,inner ysep=2.5pt,font=\scriptsize,align=center,fill=black!4},
+  core/.style={stage,fill=black!12,very thick},
+  side/.style={draw,rounded corners=2pt,minimum width=2.2cm,minimum height=7.0mm,inner sep=3pt,font=\scriptsize,align=center,fill=black!2},
+  io/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.6mm]},thick},
+  loopar/.style={-{Latex[length=1.4mm]},semithick,densely dashed}]
+\node[io] (in) at (0.00,0.00) {input: $V_\app,\sigma_d,|I|,T,Q_\cell$};
+\node[stage] (n0) at (0.00,-0.85) {N0 input map\\$V_\app,\sigma_d,|I|,T,Q_\cell$};
+\node[stage] (n1) at (0.00,-1.85) {N1 polarization\\$V_n=V_\app-\sigma_d|I|R_n$};
+\node[stage] (n2) at (0.00,-2.85) {N2 center\\$U_j(T)=(-\Delta H_j+T\Delta S_j)/F$};
+\node[stage] (n3) at (0.00,-3.85) {N3 branch split\\$U_j^{\,d}=U_j+\tfrac12\sigma_d h_\eta\gamma_j\Delta U_j^\hys$};
+\node[stage] (n4) at (0.00,-4.85) {N4/N5 width and state\\$w_j=n_jRT/F,\quad \xi_\eq=\mathrm{logistic}[\sigma_d(V-U_j^{\,d})/w_j]$};
+\node[stage] (n6) at (0.00,-5.85) {N6 equilibrium peak\\$Q_j\,\xi_\eq(1-\xi_\eq)/w_j$};
+\node[stage] (n7) at (0.00,-6.85) {N7 lag length\\$A_j,\chi_d,\Delta H_a^\eff,L_q,L_V$};
+\node[stage] (n8) at (0.00,-7.85) {N8 causal memory\\$(\xi_\eq-\xi_\mathrm{lag})/L_V$ and charge reversal};
+\node[core] (n9) at (0.00,-8.90) {N9 sum and interp\\$C_\bg+\sum_j Q_j[\cdot]$};
+\node[io] (out) at (0.00,-9.78) {output: $\dd Q/\dd V$ at $V_n$};
+\node[side] (eq) at (-3.55,-4.85) {equilibrium spine\\N2--N6};
+\node[side] (tail) at (3.55,-6.85) {rate tail\\N7--N8};
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n4,n4/n6,n6/n7,n7/n8,n8/n9,n9/out}
+  \draw[ar] (\a) -- (\b);
+\draw[loopar] (eq.east) -- (n4.west);
+\draw[loopar] (n7.east) -- (tail.west);
+\draw[loopar] (tail.south) |- (n8.east);
+\draw[loopar] (n8.west) -| (eq.south);
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n4)(n6)(n7)(n8)(eq)(tail),inner sep=3.0mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1,\ldots,N_p$}] {};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 기존 세로 spine 구도는 유지하되 N2--N8 반복 블록 안에서 평형 종 계산(N2--N6)과 율속 꼬리 계산(N7--N8)을 좌우 보조 노드로 분리했다. 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$은 N0에서 모델 입력으로 환산되고, N1의 분극 보정 뒤 전이별 중심, 히스테리시스 분기, 폭, $\xi_\eq$, 평형 peak, 지연 길이, 인과 꼬리를 계산해 N9에서 합산 및 역보간한다. 좌표 배치는 \code{T1\_calc.py}의 노드 좌표표를 사용했다.}
+\label{fig:spine}

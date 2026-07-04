@@ -1,0 +1,36 @@
+% T3 fig:hysloop (opus1) — non-monotone equilibrium potential and the overshoot story.
+% y = (sF/RT)(V_eq - U_j) = ln[xi/(1-xi)] + 4(1-2 xi), Omega=4RT, s=+1  [eq:Veq]  (coords: T3_calc.py)
+% spinodal xi_s^- = 0.1464 (y=+1.0657), xi_s^+ = 0.8536 (y=-1.0657); gap = 2.1314 units.
+\centering
+\begin{tikzpicture}[x=9.2cm,y=1.7cm,font=\scriptsize]
+\draw[-{Latex[length=1.6mm]}] (0,-1.5) -- (0,1.6) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.07,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% Maxwell plateau (gamma->0 reversible limit): y=0 line
+\draw[densely dashed,black!55] (0,0) -- (1.0,0);
+\node[font=\scriptsize,black!55,align=center] at (0.62,-0.42) {Maxwell plateau ($\gamma\!\to\!0$, $y{=}0$)};
+% full V_eq(xi) curve (thin)
+\draw[black!45] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.10,1.0028) (0.1464,1.0657) (0.20,1.0137) (0.30,0.7527) (0.40,0.3945) (0.50,0.0000) (0.60,-0.3945) (0.70,-0.7527) (0.80,-1.0137) (0.8536,-1.0657) (0.90,-1.0028) (0.92,-0.9177) (0.95,-0.6556) (0.98,0.0518)};
+% discharge overshoot (rising branch, metastable up to xi_s^-)
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.02,-0.0518) (0.05,0.6556) (0.08,0.9177) (0.10,1.0028) (0.1464,1.0657)};
+\draw[-{Latex[length=1.4mm]},densely dashed] (0.1464,1.02) -- (0.1464,0.06);
+\node[font=\scriptsize,align=center] at (0.34,1.32) {discharge overshoot\\(metastable, $\xi\!\uparrow$)};
+% charge overshoot (descending branch, metastable down to xi_s^+)
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.98,0.0518) (0.95,-0.6556) (0.92,-0.9177) (0.90,-1.0028) (0.8536,-1.0657)};
+\draw[-{Latex[length=1.4mm]},densely dashed] (0.8536,-1.02) -- (0.8536,-0.06);
+\node[font=\scriptsize,align=center] at (0.66,-1.34) {charge overshoot\\(metastable, $\xi\!\downarrow$)};
+% spinodal points
+\fill (0.1464,1.0657) circle (0.5pt) node[above left,font=\scriptsize] {$\xi_s^-$};
+\fill (0.8536,-1.0657) circle (0.5pt) node[below right,font=\scriptsize] {$\xi_s^+$};
+% gap bracket (spinodal upper bound)
+\draw[densely dotted,black!55] (0.1464,1.0657) -- (1.0,1.0657);
+\draw[densely dotted,black!55] (0.8536,-1.0657) -- (1.0,-1.0657);
+\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.0657) -- (1.0,1.0657)
+   node[pos=0.5,right,font=\scriptsize,align=left] {$\Delta U_j^\hys$\\(spinodal\\upper bound)};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ --- 좌표는 식 그대로의 수치 평가)와
+과주행의 인과. 얇은 곡선이 전 구간 $V_\eq(\xi)$, 굵은 화살표가 각 방향의 실제 진행 경로다 --- 방전은 상승 가지를
+극대 $\xi_s^-$ 까지, 충전은 하강 가지를 극소 $\xi_s^+$ 까지 \emph{준안정}으로 과주행한 뒤 안쪽으로 되돌아온다. 두 극값
+(spinodal, $\dd V_\eq/\dd\xi{=}0$)의 전위 차가 분기 gap 의 상한 $\Delta U_j^\hys$(식~\eqref{eq:dUhys}), 실측 분기는
+$\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}). $\gamma\!\to\!0$ 가역 한계에서 두 경로가 $y{=}0$ Maxwell plateau 로 합쳐진다.}
+\label{fig:hysloop}

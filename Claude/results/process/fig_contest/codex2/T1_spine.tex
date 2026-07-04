@@ -1,0 +1,42 @@
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  nodebox/.style={draw,rounded corners=1pt,minimum width=2.15cm,minimum height=0.72cm,
+    inner xsep=3pt,inner ysep=2pt,font=\scriptsize,align=center,fill=black!3},
+  core/.style={nodebox,fill=black!10,very thick},
+  io/.style={draw,minimum width=2.3cm,minimum height=0.58cm,inner xsep=3pt,font=\scriptsize\itshape,align=center},
+  arr/.style={-{Latex[length=1.5mm]},semithick},
+  dim/.style={{Latex[length=1.1mm]}-{Latex[length=1.1mm]},thin},
+  note/.style={font=\scriptsize,align=center}
+]
+\draw[step=0.8cm,black!8] (-2.55,-1.05) grid (12.25,3.70);
+\node[io] (in) at (-1.1,3.1) {input\\$\sigma_d, |I|, T, Q_\cell, V_\app$};
+\node[nodebox] (n0) at (-1.1,1.95) {N0 map\\$|I|=C\text{-rate}\,Q_\cell$};
+\node[nodebox] (n1) at (-1.1,0.80) {N1 polarize\\$V_n=V_\app-\sigma_d|I|R_n$};
+\node[nodebox] (n2) at (2.6,1.95) {N2 center\\$U_j(T)$};
+\node[nodebox] (n3) at (5.2,1.95) {N3 branch\\$U_j^{\,d}$, $\Delta U^\hys$};
+\node[nodebox] (n4) at (7.8,1.95) {N4/N5 width\\$w_j$, $\xi_\eq$};
+\node[nodebox] (n6) at (2.6,0.35) {N6 eq peak\\$\xi_\eq(1-\xi_\eq)/w_j$};
+\node[nodebox] (n7) at (5.2,0.35) {N7 lag length\\$L_q\to L_V$};
+\node[nodebox] (n8) at (7.8,0.35) {N8 causal tail\\$(\xi_\eq-\xi_\mathrm{lag})/L_V$};
+\node[core] (n9) at (10.6,1.15) {N9 sum/interp\\$C_\bg+\sum_j Q_j[\cdot]$};
+\node[io] (out) at (10.6,-0.25) {output\\$\dd Q/\dd V$ at $V_n$};
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n4,n4/n6,n6/n7,n7/n8,n8/n9,n9/out}
+  \draw[arr] (\a) -- (\b);
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners=2pt,fit=(n2)(n3)(n4)(n6)(n7)(n8),inner sep=4.3mm,
+  label={[font=\scriptsize,anchor=south west]north west:per-transition loop $j=1,\ldots,N_p$}] {};
+\end{scope}
+\draw[dim] (2.6,-0.58) -- (7.8,-0.58) node[midway,below,font=\scriptsize] {repeatable calculation span};
+\begin{scope}[xshift=10.0cm,yshift=2.25cm,x=0.32cm,y=0.27cm]
+  \draw[-{Latex[length=1.1mm]}] (-3.2,0) -- (4.35,0) node[below,font=\tiny] {$z$};
+  \draw[-{Latex[length=1.1mm]}] (-3.2,0) -- (-3.2,2.45) node[above,font=\tiny] {shape};
+  \draw[black!55,densely dashed] plot[smooth] coordinates {(-3.0000,0.3976) (-2.0000,0.9239) (-1.5000,1.3125) (-1.0000,1.7302) (-0.5000,2.0680) (0.0000,2.2000) (0.5000,2.0680) (1.0000,1.7302) (1.5000,1.3125) (2.0000,0.9239) (2.5000,0.6169) (3.0000,0.3976) (4.0000,0.1554)};
+  \draw[thick] plot[smooth] coordinates {(-3.0000,0.2000) (-2.0000,0.4800) (-1.0000,1.2000) (0.0000,2.0300) (0.8000,2.1800) (1.6000,1.8000) (2.4000,1.1400) (3.2000,0.6400) (4.0000,0.3400)};
+  \node[font=\tiny,anchor=west] at (-2.8,2.25) {eq vs tail};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine) 개선안. 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell,V_\app)$ 이 N0 에서 모델 입력으로 환산되고,
+분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1), 전이 $j$ 마다 평형 중심$\cdot$히스 분기$\cdot$폭$\cdot$평형 진행률$\cdot$평형 peak$\cdot$
+지연 길이$\cdot$인과 꼬리를 계산해(N2--N8) 합산$\cdot$역보간한다(N9). 파선 상자는 전이별 반복 계산 단위이며,
+오른쪽 inset 좌표는 logistic 종과 단측 꼬리의 수치 평가(T1\_calc.py)다.}
+\label{fig:spine}

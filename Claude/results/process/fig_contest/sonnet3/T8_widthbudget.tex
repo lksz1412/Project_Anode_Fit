@@ -1,0 +1,46 @@
+% T8 candidate (sonnet3) for fig:widthbudget — same 4-stage story as the existing figure,
+% now narrated as a waterfall (stacked baselines + stage arrows, brief's "panel separation or
+% stage arrows" option) on a SHARED x-axis so the three width scales are directly comparable
+% by eye. Stage (2)(x)(3) is a TRUE numerical convolution (not the chapter's "same family"
+% shortcut) — T8_calc.py finds the true peak is ~10% lower than the shortcut's logistic-bell
+% estimate, reported honestly in the caption alongside the exact (chapter's own) variance sum.
+\begin{tikzpicture}[x=0.75cm,y=2.6cm]
+\draw[-{Latex[length=1.6mm]}] (-7.3,-0.15) -- (11.3,-0.15) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.4mm]}] (-7.1,-0.15) -- (-7.1,1.62) node[above,font=\scriptsize] {$\dd Q/\dd V$ stages (stacked baselines)};
+% ---- stage 1: equilibrium delta at baseline 0 ----
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.30);
+\node[font=\tiny] at (0,0.36) {eq.\ delta (Maxwell $U_j$)};
+\draw[densely dotted] (-7.1,0) -- (11.1,0);
+% ---- stage 2: intrinsic bell, baseline 0.45 ----
+\draw[densely dotted] (-7.1,0.45) -- (11.1,0.45);
+\draw[black!55] plot[smooth] coordinates {(-6.32,0.4518) (-5.60,0.4537) (-4.88,0.4575) (-4.16,0.4651) (-3.44,0.4801) (-2.72,0.5080) (-2.00,0.5550) (-1.28,0.6202) (-0.56,0.6814) (0.16,0.6984) (0.88,0.6572) (1.60,0.5898) (2.32,0.5315) (3.04,0.4936) (3.76,0.4722) (4.48,0.4611) (5.20,0.4555) (5.92,0.4527) (6.64,0.4513) (7.36,0.4506) (8.08,0.4503) (8.80,0.4502) (9.52,0.4501) (10.24,0.4500)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-1.81,0.37) -- (1.81,0.37) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{int}{=}1.81w_j$};
+\node[black!55,font=\tiny] at (2.6,0.62) {(2) intrinsic $n_jRT/F$};
+% ---- stage 3: (2)(x)(3) TRUE Gaussian convolution, baseline 0.90 ----
+\draw[densely dotted] (-7.1,0.90) -- (11.1,0.90);
+\draw[densely dashed,thick] plot[smooth] coordinates {(-6.32,0.9125) (-5.60,0.9206) (-4.88,0.9322) (-4.16,0.9477) (-3.44,0.9667) (-2.72,0.9879) (-2.00,1.0087) (-1.28,1.0262) (-0.56,1.0372) (0.16,1.0398) (0.88,1.0333) (1.60,1.0190) (2.32,0.9997) (3.04,0.9783) (3.76,0.9579) (4.48,0.9403) (5.20,0.9266) (5.92,0.9166) (6.64,0.9099) (7.36,0.9056) (8.08,0.9031) (8.80,0.9016) (9.52,0.9008) (10.24,0.9004)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-2.90,0.81) -- (2.90,0.81) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{sym}{=}2.90w_j$};
+\node[font=\tiny,align=left] at (5.6,1.13) {(2)$\otimes$(3) ensemble $\eta$\\$\sigma_\eta{=}1.25\sigma_\mathrm{int}$};
+% ---- stage 4: +(1) causal exponential tail, baseline 1.35 ----
+\draw[densely dotted] (-7.1,1.35) -- (11.1,1.35);
+\draw[thick] plot[smooth] coordinates {(-6.32,1.3559) (-5.60,1.3601) (-4.88,1.3665) (-4.16,1.3757) (-3.44,1.3881) (-2.72,1.4035) (-2.00,1.4212) (-1.28,1.4394) (-0.56,1.4561) (0.16,1.4688) (0.88,1.4756) (1.60,1.4757) (2.32,1.4691) (3.04,1.4571) (3.76,1.4416) (4.48,1.4249) (5.20,1.4086) (5.92,1.3941) (6.64,1.3821) (7.36,1.3726) (8.08,1.3656) (8.80,1.3605) (9.52,1.3569) (10.24,1.3545)};
+\draw[-{Latex[length=1.3mm]},gray] (2.0,1.51) -- (4.6,1.44);
+\node[font=\tiny] at (2.7,1.58) {$+$(1) causal tail, $L_V{=}1.5w_j$};
+\draw[{Bar[width=1.1mm]}-{Bar[width=1.1mm]}] (1.24,1.27) -- (2.74,1.27) node[pos=0.5,below,font=\tiny] {$L_V$};
+% ---- stage-transition connector arrows in the clear right margin ----
+\draw[-{Latex[length=1.4mm]}] (9.9,0.02) -- (9.9,0.43);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.47) -- (9.9,0.88);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.92) -- (9.9,1.33);
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}), 네 단계를 공유 $x$ 축 위 계단(waterfall)으로
+서사화 — 아래에서 위로 쌓아 폭이 실제로 넓어지는 것을 한눈에 비교한다(점선 = 각 단계의 기준선, 오른쪽 여백의
+수직 화살표가 단계 전이). 맨 아래 굵은 화살 = 평형 델타(Maxwell 전위). 회색 = ② 내재 logistic 미분 종(폭
+$\sigma_\mathrm{int}=1.81w_j$). 파선 = ②$\otimes$③ — \emph{실제 수치 합성곱}(Gaussian $\sigma_\eta=1.25\sigma_\mathrm{int}$,
+T8\_calc.py)으로 얻은 결과이며 분산은 정확히 가법이다($\sigma_\mathrm{sym}=\sqrt{\sigma_\mathrm{int}^2+\sigma_\eta^2}=2.90w_j$,
+피타고라스 형태 — 본문 식~\eqref{eq:widthbudget} 과 일치). 다만 본문이 쓰는 ``같은 함수족이면 유효 scale
+$1.6w_j$'' 지름길로 재현한 logistic 종은 이 실제 합성곱보다 peak 가 약 $10\%$ 높다(T8\_calc.py — 분산은
+정확해도 \emph{모양}까지 같은 logistic 족은 아님, 정직한 근사 한계). 굵은 실선 = $+$① 인과 지수 꼬리
+($L_V=1.5w_j$, eq:lowpass 와 동일한 1차 저역통과 재귀로 계산 — T7 과 같은 수학)가 종을 오른쪽으로 밀며,
+peak 위치가 중심에서 이동한다. 세 척도 $\sigma_\mathrm{int}\!<\!\sigma_\mathrm{sym}\!<\!L_V$ 순으로 커짐이
+치수선 길이로 직접 대비된다.}
+\label{fig:widthbudget}

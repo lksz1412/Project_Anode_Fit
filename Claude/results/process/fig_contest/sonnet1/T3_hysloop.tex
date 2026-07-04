@@ -1,0 +1,29 @@
+\begin{tikzpicture}[x=9.2cm,y=1.7cm]
+\draw[-{Latex[length=1.6mm]}] (0,-1.45) -- (0,1.55) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% Maxwell equal-area line: V_eq=U_j (y=0), the gamma->0 reversible plateau potential
+\draw[densely dotted,black!50] (-0.02,0) -- (1.06,0);
+\node[font=\tiny,black!50,align=left] at (0.60,0.12) {Maxwell $V_\eq{=}U_j$\\($\gamma{\to}0$ plateau)};
+% full non-monotone V_eq(xi) — exact eq:Veq, Omega_j=4RT: y=ln[xi/(1-xi)]+4(1-2xi)
+\draw[thick] plot[smooth] coordinates {(0.02,-0.0518) (0.04,0.5019) (0.06,0.7685) (0.08,0.9177) (0.1,1.0028) (0.12,1.0476) (0.1464,1.0657) (0.16,1.0618) (0.2,1.0137) (0.25,0.9014) (0.3,0.7527) (0.35,0.581) (0.4,0.3945) (0.45,0.1993) (0.5,0.0) (0.55,-0.1993) (0.6,-0.3945) (0.65,-0.581) (0.7,-0.7527) (0.75,-0.9014) (0.8,-1.0137) (0.84,-1.0618) (0.8536,-1.0657) (0.88,-1.0476) (0.9,-1.0028) (0.92,-0.9177) (0.94,-0.7685) (0.96,-0.5019) (0.98,0.0518)};
+\fill (0.1464,1.0657) circle (0.5pt) node[above left,font=\scriptsize] {$\xi_s^-$};
+\fill (0.8536,-1.0657) circle (0.5pt) node[below right,font=\scriptsize] {$\xi_s^+$};
+\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.0657) -- (1.0,1.0657);
+\node[right,font=\scriptsize,align=left] at (1.03,-0.17) {$\Delta U_j^\hys$\\{\tiny$\approx54.8$ mV}};
+% discharge overshoot path (rising branch, xi: 0.02 -> xi_s^-) — direction arrow
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.02,-0.0518) (0.04,0.5019) (0.06,0.7685) (0.08,0.9177) (0.1,1.0028) (0.12,1.0476) (0.1464,1.0657)};
+\draw[-{Latex[length=1.4mm]},densely dashed] (0.1464,1.0) -- (0.1464,0.08);
+\node[font=\scriptsize] at (0.40,1.38) {discharge overshoot};
+% charge overshoot path (falling branch, xi: 0.98 -> xi_s^+) — direction arrow
+\draw[-{Latex[length=1.8mm]},very thick] plot[smooth] coordinates {(0.98,0.0518) (0.96,-0.5019) (0.94,-0.7685) (0.92,-0.9177) (0.9,-1.0028) (0.88,-1.0476) (0.8536,-1.0657)};
+\draw[-{Latex[length=1.4mm]},densely dashed] (0.8536,-1.0) -- (0.8536,-0.08);
+\node[font=\scriptsize] at (0.55,-1.38) {charge overshoot};
+\node[font=\scriptsize,align=left] at (0.24,-0.62) {$\gamma\!\to\!0$: both\\collapse to $y{=}0$};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ — 좌표는 식 그대로의 수치 평가)와 과주행.
+화살표가 진행 방향이다 — 방전(굵은 경로, 좌상)은 $\xi\!\uparrow$ 로 극대 $\xi_s^-$ 까지, 충전(우하)은 $\xi\!\downarrow$
+로 극소 $\xi_s^+$ 까지 과주행해 중심이 갈라진다. 점선 수평선이 Maxwell 등면적 전위($V_\eq{=}U_j$, $y{=}0$,
+$\gamma\!\to\!0$ 가역 극한의 plateau); 두 극값 차가 분기 gap 의 spinodal 상한 $\Delta U_j^\hys$(식~\eqref{eq:dUhys},
+$\Omega_j=4RT$ 대입 시 $\approx54.8$ mV, $T{=}298.15$ K), 실측 분기는 $\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}).}
+\label{fig:hysloop}

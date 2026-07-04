@@ -1,0 +1,53 @@
+\begin{tikzpicture}[
+  node distance=4.0mm and 7mm,
+  font=\scriptsize,
+  stage/.style={draw,rounded corners=1.5pt,minimum height=7.6mm,inner xsep=4pt,inner ysep=2.4pt,align=center},
+  loopstage/.style={stage,fill=black!8},
+  branchstage/.style={stage,fill=black!18,minimum width=32mm},
+  sel/.style={draw,thick,rounded corners=1.5pt,minimum height=6.2mm,inner xsep=4pt,inner ysep=2pt,align=center,fill=white},
+  core/.style={stage,fill=black!55,text=white},
+  io/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.5mm]},thick},
+  arthin/.style={-{Latex[length=1.2mm]},semithick}]
+% ---- pre-loop: input mapping and polarization (run once) ----
+\node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
+\node[stage,below=5mm of in] (n0) {N0: map inputs\quad eq.~\eqref{eq:n0map}};
+\node[stage,below=of n0] (n1) {N1: polarization\quad eq.~\eqref{eq:vn}\\$V_n=V_\app-\sigma_d|I|R_n$};
+% ---- per-transition loop body ----
+\node[loopstage,below=of n1] (n2) {N2: center $U_j(T)$\quad eq.~\eqref{eq:Uj}\\$U_j=(-\Delta H_\rxn+T\Delta S_\rxn)/F$};
+\node[loopstage,below=of n2] (n3) {N3: hysteresis branch\quad eq.~\eqref{eq:Ubranch}\\center $\to U_j+\tfrac12\sigma_d h_\eta\gamma_j\Delta U_j^\hys$};
+\node[loopstage,below=of n3] (n45) {N4/N5: width, $\xi_\eq$\quad eq.~\eqref{eq:wbase}\eqref{eq:xieq}\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U_j^{\,d})/w_j]$};
+% branch: equilibrium species (N6) vs causal tail (N7-N8) — eq:branch selects
+\node[branchstage,below left=8mm and 3mm of n45] (n6) {N6: equilibrium peak\quad eq.~\eqref{eq:eqpeak}\\$Q_j\,\xi_\eq(1-\xi_\eq)/w_j$};
+\node[branchstage,below right=8mm and 3mm of n45] (n78) {N7/N8: lag $L_V$ + causal tail\quad eq.~\eqref{eq:LV}\eqref{eq:peakshape}\\$Q_j(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$};
+\coordinate (mid) at ($(n6)!0.5!(n78)$);
+\node[sel,below=8mm of mid] (bsel) {branch select\ \ eq.~\eqref{eq:branch}\\$L_{V,j}\!<\!\nu\Delta_\mathrm{grid}$: N6\quad else: N7/N8};
+% ---- post-loop: sum over transitions j, once ----
+\node[core,below=6mm of bsel] (n9) {N9: sum $+$ interp\quad eq.~\eqref{eq:sum}\\$C_\bg+\sum_jQ_j[\cdot]_j$};
+\node[io,below=4.5mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
+% ---- arrows ----
+\draw[ar] (in) -- (n0);
+\draw[ar] (n0) -- (n1);
+\draw[ar] (n1) -- (n2);
+\draw[ar] (n2) -- (n3);
+\draw[ar] (n3) -- (n45);
+\draw[arthin] (n45.south) -| ($(n45.south)+(-1.05,-4mm)$) -- (n6.north);
+\draw[arthin] (n45.south) -| ($(n45.south)+(1.05,-4mm)$) -- (n78.north);
+\draw[arthin] (n6.south) |- (bsel.north west);
+\draw[arthin] (n78.south) |- (bsel.north east);
+\draw[ar] (bsel) -- (n9);
+\draw[ar] (n9) -- (out);
+% ---- per-transition loop bracket ----
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n45)(n6)(n78)(bsel),inner sep=3.2mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$}] (loop) {};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$
+이 N0 에서 모델 입력으로 환산되고(eq.~\eqref{eq:n0map}), 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1,
+eq.~\eqref{eq:vn}), 파선 상자 안(전이별 반복 계산 단위, $j=1..N_p$)에서 전이 $j$ 마다 평형 중심(N2)$\cdot$히스
+분기(N3)$\cdot$폭$\cdot$평형 진행률(N4/N5)을 잇달아 계산한다. 옅은 회색 상자 둘(N6 vs N7/N8)은 그 뒤
+갈리는 두 경로다 — eq.~\eqref{eq:branch} 의 문턱 $L_{V,j}<\nu\Delta_\mathrm{grid}$ 이 평형 종(N6, eq.~\eqref{eq:eqpeak})과
+지연 꼬리(N7/N8, eq.~\eqref{eq:LV}$\cdot$\eqref{eq:peakshape}) 중 하나를 고르는 분기 선택(굵은 테두리 상자)으로 합류한다.
+모든 전이가 이 loop 를 마치면 N9(진한 상자, eq.~\eqref{eq:sum})가 배경과 합산$\cdot$역보간한다.}
+\label{fig:spine}

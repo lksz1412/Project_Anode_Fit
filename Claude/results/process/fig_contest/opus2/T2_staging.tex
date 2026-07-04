@@ -1,0 +1,56 @@
+% T2 fig:staging  (opus2 — quantitative-density)
+% Graphite staging gallery fill (4->3->2L->2->1) tied by droplines to the four transition
+% potentials of Table tab:staging, each carrying a logistic-derivative bell glyph whose
+% displayed width is proportional to the transition width w (relative), peak equalized for
+% legibility.  Anchors (Dahn / Ohzuku): U=0.210/0.140/0.120/0.085 V, w=0.020/0.016/0.014/0.012 V,
+% Q=0.10/0.12/0.25/0.50.  Normalized bell g(z)=sigma(z)(1-sigma(z))/0.25 (T2_calc.py); xscale=9.17 w.
+\def\bellpts{(-3,0.0904) (-2.5,0.1402) (-2,0.2100) (-1.5,0.2983) (-1.317,0.3334) (-1,0.3932) (-0.5,0.4700) (0,0.5000) (0.5,0.4700) (1,0.3932) (1.317,0.3334) (1.5,0.2983) (2,0.2100) (2.5,0.1402) (3,0.0904)}
+\begin{tikzpicture}[x=1.0cm,y=0.95cm,>=Latex]
+% ---- direction bar (top) ----
+\draw[<->,thick] (-0.5,3.5) -- (6.5,3.5);
+\node[font=\scriptsize,align=center] at (3.0,3.75) {$\leftarrow$ delithiation (discharge, $V\!\uparrow$)\quad$\mid$\quad lithiation (charge, $V\!\downarrow$) $\rightarrow$};
+% ---- five stage columns: layers + filled galleries ----
+\foreach \cx in {0,1.5,3.0,4.5,6.0} {
+  \foreach \k in {0,1,2,3,4,5} {\draw[semithick] (\cx-0.42,0.6*\k) -- (\cx+0.42,0.6*\k);}
+}
+% gallery fills (band k centered at y=0.6k-0.3): dark=black!70, light(2L)=black!25
+% stage 4 (cx=0): k=1,5
+\foreach \k in {1,5} {\fill[black!70] (0-0.42,0.6*\k-0.42) rectangle (0+0.42,0.6*\k-0.18);}
+% stage 3 (cx=1.5): k=1,4
+\foreach \k in {1,4} {\fill[black!70] (1.5-0.42,0.6*\k-0.42) rectangle (1.5+0.42,0.6*\k-0.18);}
+% stage 2L (cx=3.0): k=1,3,5 light
+\foreach \k in {1,3,5} {\fill[black!25] (3.0-0.42,0.6*\k-0.42) rectangle (3.0+0.42,0.6*\k-0.18);}
+% stage 2 (cx=4.5): k=1,3,5 dark
+\foreach \k in {1,3,5} {\fill[black!70] (4.5-0.42,0.6*\k-0.42) rectangle (4.5+0.42,0.6*\k-0.18);}
+% stage 1 (cx=6.0): all
+\foreach \k in {1,2,3,4,5} {\fill[black!70] (6.0-0.42,0.6*\k-0.42) rectangle (6.0+0.42,0.6*\k-0.18);}
+% stage labels
+\foreach \cx/\nm in {0/{stage 4}, 1.5/{stage 3}, 3.0/{stage 2L}, 4.5/{stage 2}, 6.0/{stage 1}} {
+  \node[font=\scriptsize] at (\cx,-0.42) {\nm};}
+\node[font=\scriptsize,black!60] at (4.5,-0.72) {$\mathrm{LiC_{12}}$};
+\node[font=\scriptsize,black!60] at (6.0,-0.72) {$\mathrm{LiC_6}$};
+% ---- transition potential axis (bottom) ----
+\draw[->] (-0.5,-1.5) -- (6.7,-1.5) node[right,font=\scriptsize] {$U_j$ [V], $V$ decreasing $\to$};
+% four transitions at column boundaries 0.75/2.25/3.75/5.25
+% each: connector, bell glyph (xscale=9.17 w), U/w/Q label
+\foreach \cxb/\sx/\U/\w/\Q/\nm in {%
+  0.75/0.1834/0.210/0.020/0.10/{$4{\to}3$},
+  2.25/0.1467/0.140/0.016/0.12/{$3{\to}2\mathrm L$},
+  3.75/0.1284/0.120/0.014/0.25/{$2\mathrm L{\to}2$},
+  5.25/0.1100/0.085/0.012/0.50/{$2{\to}1$}} {
+  \draw[densely dotted,black!55] (\cxb,-0.15) -- (\cxb,-1.05);
+  \draw (\cxb,-1.46) -- (\cxb,-1.54);
+  \begin{scope}[shift={(\cxb,-1.5)},xscale=\sx]
+    \draw[thick] plot[smooth] coordinates \bellpts;
+  \end{scope}
+  \node[font=\scriptsize,align=center,anchor=north] at (\cxb,-1.58)
+    {\nm\\$U{=}\U$\\$w{=}\w$\\$Q{=}\Q$};
+}
+\end{tikzpicture}
+\caption{흑연 staging 의 갤러리 채움과 전이 전위 --- 수평선이 그래핀 층, 음영 띠가 리튬이 든 층간 갤러리다
+(주기: stage 4 는 4층당 1, stage 3 은 3층당 1, stage $2\mathrm L\!\cdot\!2$ 는 2층당 1, stage 1 은 전부).
+채울수록 stage 번호가 줄어 stage 1($\mathrm{LiC_6}$)에 닿고, stage $2\mathrm L$ 은 면내 질서가 풀린 단계라 옅게 칠했다.
+아래 축은 네 전이(표~\ref{tab:staging})의 전위 $U{=}0.210/0.140/0.120/0.085$ V 로, 각 column 경계에서 dropline 으로
+연결된다. 각 전이의 종 glyph 은 logistic 미분 종($\xi_\eq(1{-}\xi_\eq)/w$)을 폭 $w{=}0.020/0.016/0.014/0.012$ V 에 비례해
+그린 것(정점은 가독을 위해 균일화; 위치$\cdot$상대폭은 정확). 본 문건 방향은 방전(탈리튬화)이다.}
+\label{fig:staging}

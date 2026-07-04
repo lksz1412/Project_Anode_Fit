@@ -1,0 +1,22 @@
+\begin{tikzpicture}[x=9.0cm,y=1.35cm,ar/.style={-{Latex[length=1.5mm]},thick},lab/.style={font=\scriptsize,align=center}]
+\draw[-{Latex[length=1.6mm]}] (0,-1.42)--(0,1.50) node[left,font=\scriptsize] {$y=(sF/RT)(V_\eq-U_j)$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0)--(1.07,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75}{\draw (\xx,0.035)--(\xx,-0.035) node[below,font=\scriptsize] {\xx};}
+\draw[black!35,thin] plot[smooth] coordinates {(0.0200,-0.0518) (0.0400,0.5019) (0.0600,0.7685) (0.0800,0.9177) (0.1000,1.0028) (0.1200,1.0476) (0.1464,1.0657) (0.1800,1.0437) (0.2200,0.9743) (0.3000,0.7527) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.7000,-0.7527) (0.7800,-0.9743) (0.8200,-1.0437) (0.8536,-1.0657) (0.8800,-1.0476) (0.9000,-1.0028) (0.9200,-0.9177) (0.9400,-0.7685) (0.9600,-0.5019) (0.9800,0.0518)};
+\draw[thick] plot[smooth] coordinates {(0.0200,-0.0518) (0.0400,0.5019) (0.0600,0.7685) (0.0800,0.9177) (0.1000,1.0028) (0.1200,1.0476) (0.1464,1.0657) (0.1800,1.0437) (0.2200,0.9743) (0.3000,0.7527) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.7000,-0.7527) (0.7800,-0.9743) (0.8200,-1.0437) (0.8536,-1.0657) (0.8800,-1.0476) (0.9000,-1.0028) (0.9200,-0.9177) (0.9400,-0.7685) (0.9600,-0.5019) (0.9800,0.0518)};
+\draw[ar,very thick] plot[smooth] coordinates {(0.0200,-0.0518) (0.0400,0.5019) (0.0600,0.7685) (0.0800,0.9177) (0.1000,1.0028) (0.1200,1.0476) (0.1464,1.0657)};
+\draw[ar,very thick,densely dashed] plot[smooth] coordinates {(0.9800,0.0518) (0.9600,-0.5019) (0.9400,-0.7685) (0.9200,-0.9177) (0.9000,-1.0028) (0.8800,-1.0476) (0.8536,-1.0657)};
+\draw[densely dotted] (0.1464,1.0657)--(0.1464,0);
+\draw[densely dotted] (0.8536,-1.0657)--(0.8536,0);
+\fill (0.1464,1.0657) circle (0.75pt) node[above left,font=\scriptsize] {$\xi_s^-=0.1464$};
+\fill (0.8536,-1.0657) circle (0.75pt) node[below right,font=\scriptsize] {$\xi_s^+=0.8536$};
+\draw[densely dashed] (0.04,0)--(0.96,0) node[pos=0.50,below,font=\scriptsize] {Maxwell line $y=0$};
+\draw[{Latex[length=1.5mm]}-{Latex[length=1.5mm]}] (1.02,-1.0657)--(1.02,1.0657) node[pos=0.50,right,font=\scriptsize,align=left] {spinodal\\upper gap\\$2.1314RT/F$};
+\draw[ar] (0.10,1.24)--(0.138,1.08);
+\node[lab] at (0.32,1.30) {discharge\\overshoot};
+\draw[ar,densely dashed] (0.91,-1.24)--(0.862,-1.08);
+\node[lab] at (0.68,-1.30) {charge\\overshoot};
+\node[lab] at (0.25,-0.78) {$\gamma\to0$: both branches collapse to $U_j$};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ — 좌표는 식 그대로의 수치 평가)와 과주행 개선안. 실선 경로는 방전이 극대 $\xi_s^-=0.1464$ 까지, 파선 경로는 충전이 극소 $\xi_s^+=0.8536$ 까지 과주행하는 방향을 보인다. 극값은 $y=\pm1.0657$ 이므로 spinodal 상한 gap 은 $2.1314RT/F$ 이고, 실제 분기는 식~\eqref{eq:Ubranch} 의 $\gamma_j$ 만큼 내부로 줄어든다.}
+\label{fig:hysloop}

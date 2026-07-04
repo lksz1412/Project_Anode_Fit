@@ -1,0 +1,54 @@
+% T1 fig:spine  (opus2 — quantitative-density flow)
+% One-curve calculation progress N0..N9 (T1_calc.py fixes the node ladder). Each node carries
+% its produced quantity + governing equation label; per-transition loop = N2..N8; the peak stage
+% branches (equilibrium species N6 vs causal tail N8) through the discrete mode switch eq:branch.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
+  box/.style={draw,rounded corners=2pt,align=center,font=\scriptsize,text width=4.6cm,inner sep=3pt,fill=black!3},
+  core/.style={box,fill=black!10},
+  child/.style={draw,rounded corners=2pt,align=center,font=\scriptsize,text width=3.0cm,inner sep=3pt,fill=black!6},
+  io/.style={align=center,font=\scriptsize\itshape},
+  dec/.style={draw,rounded corners=1pt,align=center,font=\scriptsize,inner sep=3pt,fill=black!14,text width=3.6cm},
+  ar/.style={->,thick},
+  q/.style={font=\scriptsize,anchor=east,inner sep=1.5pt}]
+% ---- spine nodes ----
+\node[io] (in) at (0,0) {input: $V_\app$, dir$\to\sigma_d$, c-rate$\to|I|$, $T$, $Q_\cell$};
+\node[box]  (n0) at (0,-1.15) {\textbf{N0} map inputs\\ $\sigma_d,\ |I|=$c-rate$\cdot Q_\cell$ \hfill[\,eq:n0map\,]};
+\node[box]  (n1) at (0,-2.35) {\textbf{N1} polarization\\ $V_n=V_\app-\sigma_d|I|R_n$ \hfill[\,eq:vn\,]};
+\node[box]  (n2) at (0,-3.55) {\textbf{N2} center\\ $U_j(T)=(-\Delta H_\rxn+T\Delta S_\rxn)/F$ \hfill[\,eq:center\,]};
+\node[box]  (n3) at (0,-4.75) {\textbf{N3} hysteresis branch\\ $U_j^{d}=U_j+\tfrac12\sigma_d h_\eta\gamma\,\Delta U_j^\hys$ \hfill[\,eq:Ubranch\,]};
+\node[box]  (n4) at (0,-5.95) {\textbf{N4} width\\ $w_j=n_jRT/F$ \hfill[\,eq:wbase\,]};
+\node[box]  (n5) at (0,-7.15) {\textbf{N5} equilibrium fill\\ $\xi_\eq=\mathrm{logistic}[\sigma_d(V-U_j^{d})/w_j]$ \hfill[\,eq:xieq\,]};
+\node[box]  (n7) at (0,-8.35) {\textbf{N7} lag length\\ $L_{V,j}=|\dd V/\dd q|_{q_a}L_{q,j}$ \hfill[\,eq:LV\,]};
+\node[dec]  (br) at (0,-9.75) {mode switch\\ $L_V<\nu\Delta_\mathrm{grid}$\,? \\ {\scriptsize[\,eq:branch\,]}};
+\node[child] (n6) at (-3.75,-11.35) {\textbf{N6} equilibrium peak\\ $\xi_\eq(1-\xi_\eq)/w_j$\\{\tiny[\,eq:eqpeak\,]}};
+\node[child] (n8) at (3.75,-11.35) {\textbf{N8} causal tail $+$reversal\\ $(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$\\{\tiny[\,eq:peakshape,\\ eq:reversal\,]}};
+\node[core] (n9) at (0,-12.9) {\textbf{N9} sum $+$ interp\\ $C_\bg+\sum_j Q_j[\cdot]$ \hfill[\,eq:sum\,]};
+\node[io]   (out) at (0,-14.0) {output: $\dd Q/\dd V$ at $V_n$};
+% ---- spine arrows with produced-quantity labels ----
+\draw[ar] (in) -- (n0);
+\draw[ar] (n0) -- (n1) node[q,midway] {$\sigma_d,|I|$};
+\draw[ar] (n1) -- (n2) node[q,midway] {$V_n$};
+\draw[ar] (n2) -- (n3) node[q,midway] {$U_j$};
+\draw[ar] (n3) -- (n4) node[q,midway] {$U_j^{d}$};
+\draw[ar] (n4) -- (n5) node[q,midway] {$w_j$};
+\draw[ar] (n5) -- (n7) node[q,midway] {$\xi_\eq$};
+\draw[ar] (n7) -- (br) node[q,midway] {$L_{V,j}$};
+% ---- branch ----
+\draw[ar] (br) -- (n6) node[pos=0.45,above left,font=\scriptsize] {yes};
+\draw[ar] (br) -- (n8) node[pos=0.45,above right,font=\scriptsize] {no};
+\draw[ar] (n6) -- (n9);
+\draw[ar] (n8) -- (n9);
+\draw[ar] (n9) -- (out) node[q,midway] {$\dd Q/\dd V$};
+% ---- per-transition loop bracket ----
+\begin{scope}[on background layer]
+\node[draw,densely dashed,rounded corners,fit=(n2)(n3)(n4)(n5)(n7)(br)(n6)(n8),inner sep=3.6mm,
+  label={[font=\scriptsize\itshape,anchor=north east]north east:per-transition loop $j=1..N_p$}] (loop) {};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$ 이 N0 에서 모델 입력으로
+환산되고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1), 전이 $j$ 마다 평형 중심$\cdot$히스 분기$\cdot$폭$\cdot$평형
+진행률$\cdot$지연 길이를 계산한다(N2--N5, N7). 각 화살표에 그 노드가 산출하는 양을 표기했고, 각 상자 오른쪽에 지배
+식 번호를 달았다. peak 단계에서 이산 mode switch(식~\eqref{eq:branch}: $L_V<\nu\Delta_\mathrm{grid}$)가 평형 종
+peak(N6, 식~\eqref{eq:eqpeak})과 인과 꼬리(N8, 식~\eqref{eq:peakshape}$\cdot$격자 역전 식~\eqref{eq:reversal})으로
+분기해 N9 에서 합산$\cdot$역보간된다. 파선 상자는 전이별 반복 계산 단위(N2--N8)다.}
+\label{fig:spine}

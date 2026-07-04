@@ -1,0 +1,32 @@
+\begin{tikzpicture}[x=4.6cm,y=1.0cm]
+\draw[-{Latex[length=1.4mm]}] (0,0) -- (0,4.5) node[above,font=\scriptsize] {flux [arb.]};
+\draw[-{Latex[length=1.4mm]}] (-0.01,0) -- (1.12,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,1} {\draw (\xx,0.04) -- (\xx,-0.04) node[below,font=\scriptsize] {\xx};}
+% reverse flux r- xi, r-=1 fixed (common to all three cases): increasing (0,0)-(1,1)
+\draw[thick,densely dashed] (0,0) -- (1,1);
+\node[right,font=\scriptsize] at (1.005,1.0) {reverse $r^-\xi$ ($r^-{=}1$)};
+% forward flux r+(1-xi) for three affinities: A/RT = 0, ln2, ln4 -> r+ = 1,2,4
+\draw[black!45] (0,1) -- (1,0);
+\node[black!45,font=\scriptsize] at (0.06,1.15) {$A{=}0$: $r^+{=}1$};
+\draw[thick] (0,2) -- (1,0);
+\node[font=\scriptsize] at (0.06,2.15) {$A{=}RT\ln2$: $r^+{=}2$};
+\draw[very thick] (0,4) -- (1,0);
+\node[font=\scriptsize] at (0.10,4.15) {$A{=}RT\ln4$: $r^+{=}4$};
+% three stopping points xi_eq = r+/(r++r-)
+\draw[densely dotted,black!45] (0.5,0) -- (0.5,0.5);
+\fill[black!45] (0.5,0.5) circle (0.8pt);
+\node[below,black!45,font=\scriptsize] at (0.5,-0.33) {$\tfrac12$};
+\draw[densely dotted] (0.6667,0) -- (0.6667,0.6667);
+\fill (0.6667,0.6667) circle (0.9pt);
+\node[below,font=\scriptsize] at (0.6667,-0.33) {$\tfrac23$};
+\draw[densely dotted,very thick] (0.8,0) -- (0.8,0.8);
+\fill (0.8,0.8) circle (1.0pt);
+\node[below,font=\scriptsize] at (0.82,-0.33) {$\tfrac45$};
+\node[align=center,font=\scriptsize] at (0.83,3.15) {$\xi_\eq=\dfrac{r^+}{r^++r^-}$\\(detailed balance, eq:db)};
+\end{tikzpicture}
+\caption{정지점 유도, affinity $A$ 변화에 따른 교점 이동. 파선(불변) $=$ 역방향 플럭스 $r^-\xi$($r^-{=}1$ 고정),
+세 실선(가늘$\to$굵게) $=$ 정방향 플럭스 $r^+(1-\xi)$ — 세 경우 모두 detailed balance(식~\eqref{eq:db})
+$r^+/r^-=e^{A/RT}$ 로 정해지며, $A/RT=0,\ln2,\ln4\Rightarrow r^+=1,2,4$. 교점이 곧 정지점
+$\xi_\eq=r^+/(r^++r^-)$(식~\eqref{eq:logisticsolve}) — $A$ 가 커질수록 교점이 오른쪽(더 큰 $\xi_\eq=\tfrac12\to\tfrac23\to\tfrac45$)으로
+이동한다. $A{=}0$(회색, $\xi_\eq{=}\tfrac12$)이 무구동 기준선이다.}
+\label{fig:flux}

@@ -1,0 +1,41 @@
+% T3 fig:hysloop (opus3) — structure reinvention: the non-monotone V_eq(xi) curve is kept, but
+% three reference levels are added — Maxwell/common potential (y=0) and the two spinodal levels
+% (y = +-1.0657) — so the branch gap reads directly as the vertical span between them, and the
+% two overshoot paths get explicit direction arrows. Coordinates are the direct numerical
+% evaluation of eq:Veq (Omega=4RT): y = ln[xi/(1-xi)] + 4(1-2 xi).  From T3_calc.py.
+\centering
+\begin{tikzpicture}[x=8.4cm,y=1.5cm]
+% axes
+\draw[-{Latex[length=1.6mm]}] (0,-1.45) -- (0,1.62) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.07,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+% reference levels
+\draw[densely dashed,black!55] (-0.02,1.0657) -- (0.95,1.0657);
+\draw[densely dashed,black!55] (-0.02,-1.0657) -- (0.95,-1.0657);
+\draw[densely dashed,black!70] (-0.02,0) -- (0.95,0);
+\node[font=\scriptsize,fill=white,inner sep=1pt] at (0.5,0.11) {Maxwell / common potential $U_j$ ($y{=}0$)};
+% full curve (thin)
+\draw[thin,black!70] plot[smooth] coordinates {(0.0200,-0.0518) (0.0400,0.5019) (0.0600,0.7685) (0.0800,0.9177) (0.1000,1.0028) (0.1464,1.0657) (0.2000,1.0137) (0.3000,0.7527) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.7000,-0.7527) (0.8000,-1.0137) (0.8536,-1.0657) (0.9000,-1.0028) (0.9200,-0.9177) (0.9400,-0.7685) (0.9600,-0.5019) (0.9800,0.0518)};
+% discharge overshoot (rising to xi_s^-), thick with arrow
+\draw[-{Latex[length=1.7mm]},very thick] plot[smooth] coordinates {(0.0200,-0.0518) (0.0400,0.5019) (0.0600,0.7685) (0.0800,0.9177) (0.1000,1.0028) (0.1200,1.0476) (0.1464,1.0657)};
+% charge overshoot (descending to xi_s^+), thick with arrow
+\draw[-{Latex[length=1.7mm]},very thick] plot[smooth] coordinates {(0.9800,0.0518) (0.9600,-0.5019) (0.9400,-0.7685) (0.9200,-0.9177) (0.9000,-1.0028) (0.8800,-1.0476) (0.8536,-1.0657)};
+% spinodal points
+\fill (0.1464,1.0657) circle (0.5pt) node[above,font=\scriptsize] {$\xi_s^-$};
+\fill (0.8536,-1.0657) circle (0.5pt) node[below,font=\scriptsize] {$\xi_s^+$};
+% gap span (right edge)
+\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.0657) -- (1.0,1.0657);
+\node[font=\scriptsize,align=left,anchor=west] at (1.005,0.36) {$\Delta U_j^\hys$\\{\tiny$=V_\eq(\xi_s^-){-}V_\eq(\xi_s^+)$}};
+% labels for overshoot direction
+\node[font=\scriptsize] at (0.42,1.32) {discharge overshoot ($\xi{\uparrow}$)};
+\node[font=\scriptsize] at (0.58,-1.32) {charge overshoot ($\xi{\downarrow}$)};
+\node[font=\scriptsize,anchor=west] at (0.055,-0.42) {$\gamma\!\to\!0$: both paths collapse to $y{=}0$ plateau};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ --- 좌표는 식 그대로의 수치
+평가)와 과주행. 세 수평 기준선을 새로 넣었다 --- 가운데 파선이 Maxwell(공통) 전위 $U_j$($y{=}0$),
+위$\cdot$아래 파선이 두 spinodal 전위 $V_\eq(\xi_s^\pm)={\pm}1.0657$ 이다. 굵은 경로는 방전(좌상, 극대
+$\xi_s^-$ 까지 $\xi$ 증가)과 충전(우하, 극소 $\xi_s^+$ 까지 $\xi$ 감소)의 과주행 방향을 화살표로 명시한다.
+오른쪽 양방향 화살표가 두 spinodal 전위 차 $=$ spinodal 상한 gap $\Delta U_j^\hys$(식~\eqref{eq:dUhys})이고,
+실측 분기는 $\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}), $\gamma\!\to\!0$ 가역 한계에서 두 경로가 $y{=}0$
+plateau 로 합쳐진다.}
+\label{fig:hysloop}

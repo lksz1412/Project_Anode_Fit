@@ -1,0 +1,55 @@
+% T6 fig:logistic  (opus2 — quantitative-density)
+% Dual axis: left = xi_eq logistic (eq:xieq), right = derivative bell w|dxi/dV|->dxi/dV in 1/V
+% (eq:belliden).  T-dependence of width w=n RT/F, n=1, at T=268/298/328 K (T6_calc.py):
+%   w = 23.094 / 25.680 / 28.265 mV ; peak dxi/dV = 1/(4w) = 10.825 / 9.735 / 8.845 /V ;
+%   FWHM = 3.5255 w = 81.4 / 90.5 / 99.7 mV.  Center tangent slope of xi_eq = 1/(4w).
+% x-coord = (V-U) in mV (global x=0.042cm). Left axis scale 3.0 (xi 0..1 -> tikz 0..3.0);
+% right axis scale 0.27273 (dxi/dV 0..11/V -> tikz 0..3.0).
+\begin{tikzpicture}[x=0.042cm,y=1cm,>=Latex]
+% ---- frame + axes ----
+\draw[->] (-85,0) -- (92,0);
+\node[font=\scriptsize] at (8,-0.60) {$(V-U_j^{\,d})$ [mV]};
+\draw[->] (-85,0) -- (-85,3.25) node[above,font=\scriptsize] {$\xi_\eq$};
+\draw[->] (85,0) -- (85,3.25) node[above,font=\scriptsize] {$\dd\xi/\dd V$ [1/V]};
+% left ticks (xi): 0,0.5,1 -> 0,1.5,3.0
+\foreach \yv/\lab in {0/0, 1.5/0.5, 3.0/1} {\draw (-85,\yv) -- (-89,\yv) node[left,font=\scriptsize] {\lab};}
+% right ticks (dxi/dV): 0,3,6,9 -> 0,0.818,1.636,2.455
+\foreach \yv/\lab in {0.818/3, 1.636/6, 2.455/9} {\draw (85,\yv) -- (89,\yv) node[right,font=\scriptsize] {\lab};}
+% x ticks
+\foreach \xx in {-80,-40,0,40,80} {\draw (\xx,0.04) -- (\xx,-0.04) node[below,font=\scriptsize] {\xx};}
+% ---- derivative bells (right axis, scale 0.27273) ----
+\begin{scope}[yscale=0.27273]
+% 268K solid
+\draw[thick] plot[smooth] coordinates {(-85,1.0386) (-75,1.5595) (-65,2.3099) (-55,3.3530) (-45,4.7267) (-35,6.3945) (-25,8.1841) (-15,9.7592) (-5,10.6992) (0,10.8251) (5,10.6992) (15,9.7592) (25,8.1841) (35,6.3945) (45,4.7267) (55,3.3530) (65,2.3099) (75,1.5595) (85,1.0386)};
+% 298K dashed
+\draw[thick,dashed] plot[smooth] coordinates {(-85,1.3235) (-75,1.8898) (-65,2.6585) (-55,3.6627) (-45,4.9035) (-35,6.3180) (-25,7.7495) (-15,8.9500) (-5,9.6436) (0,9.7353) (5,9.6436) (15,8.9500) (25,7.7495) (35,6.3180) (45,4.9035) (55,3.6627) (65,2.6585) (75,1.8898) (85,1.3235)};
+% 328K dotted
+\draw[thick,dotted] plot[smooth] coordinates {(-85,1.5878) (-75,2.1740) (-65,2.9309) (-55,3.8697) (-45,4.9708) (-35,6.1642) (-25,7.3179) (-15,8.2503) (-5,8.7761) (0,8.8449) (5,8.7761) (15,8.2503) (25,7.3179) (35,6.1642) (45,4.9708) (55,3.8697) (65,2.9309) (75,2.1740) (85,1.5878)};
+% peak dots
+\fill (0,10.8251) circle (2.2pt); \fill (0,9.7353) circle (2.2pt); \fill (0,8.8449) circle (2.2pt);
+% FWHM of 298K bell: half-max 4.8677 /V at (V-U)=+-45.27 mV
+\draw[<->,black!55] (-45.27,4.8677) -- (45.27,4.8677);
+\node[fill=white,inner sep=1pt,font=\scriptsize,black!55] at (0,4.8677) {FWHM $3.53w{=}90.5$ mV (298 K)};
+\end{scope}
+% ---- representative logistic xi_eq (298K, left axis, scale 3.0), gray ----
+\begin{scope}[yscale=3.0]
+\draw[gray] plot[smooth] coordinates {(-85,0.0352) (-70,0.0615) (-55,0.1051) (-40,0.1740) (-25,0.2742) (-10,0.4039) (0,0.5000) (10,0.5961) (25,0.7258) (40,0.8260) (55,0.8949) (70,0.9385) (85,0.9648)};
+% center tangent, slope 1/(4w): (-40,0.1106)->(40,0.8894)
+\draw[densely dotted] (-40,0.1106) -- (40,0.8894);
+\fill[gray] (0,0.5) circle (2.2pt);
+\node[gray,font=\scriptsize,anchor=west] at (52,0.78) {$\xi_\eq$ (298 K)};
+\node[font=\scriptsize,anchor=north west,align=left] at (10,0.47) {tangent slope\\$=1/(4w)$};
+\end{scope}
+% ---- legend (quantitative), above the plot to clear the bells ----
+\node[anchor=south west,font=\scriptsize,align=left] at (-72,3.35)
+  {268 K (solid): $w{=}23.1$ mV, peak $10.83$/V\\
+   298 K (dashed): $w{=}25.7$ mV, peak $9.74$/V\\
+   328 K (dotted): $w{=}28.3$ mV, peak $8.85$/V};
+\end{tikzpicture}
+\caption{평형 진행률 $\xi_\eq$ 와 그 미분 --- 폭 $w_j{=}n_jRT/F$ ($n_j{=}1$)의 온도 의존(좌표는 식 그대로의
+수치 평가). 오른축 종(bell)이 $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$(식~\eqref{eq:belliden})로 세 온도
+$T{=}268/298/328$ K 에서 폭 $w{=}23.1/25.7/28.3$ mV, 정점 $1/(4w){=}10.83/9.74/8.85$ /V (검은 점)를 갖는다
+--- 온도가 오르면 종이 낮고 넓어진다(면적 보존). 왼축 회색 $S$-곡선이 대응 logistic(식~\eqref{eq:xieq}, 298 K)이고,
+중심 접선의 기울기가 정확히 $1/(4w)$ 라 $w$ 의 기하적 의미를 준다. FWHM $=2\ln(3{+}2\sqrt2)\,w=3.53\,w=90.5$ mV
+(298 K). 종은 방향 불변(양수)이다.}
+\label{fig:logistic}

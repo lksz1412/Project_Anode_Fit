@@ -1,0 +1,39 @@
+% T6 fig:logistic (opus1) — equilibrium fraction and its derivative bell, temperature-resolved.
+% (a) xi_eq(V)=1/(1+e^{-(V-U)/w}), w=nRT/F (n=1).  (b) dxi/dV = xi(1-xi)/w, peak 1/(4w).  [eq:xieq,eq:wbase]
+% Three temps 268/298/328 K -> w = 23.09/25.68/28.27 mV, peak = 10.83/9.74/8.84 /V.  (coords: T6_calc.py)
+% x-axis = (V-U) in mV.  Line style: 268 K dashed, 298 K solid, 328 K dotted (grayscale-safe).
+\centering
+\begin{tikzpicture}[x=0.0145cm,y=1cm,font=\scriptsize]
+% ================= (a) logistic =================
+\begin{scope}[yscale=2.6]
+\draw[-{Latex[length=1.4mm]}] (-108,0) -- (116,0) node[right,font=\scriptsize] {$(V{-}U_j^{\,d})$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-100,0) -- (-100,1.10) node[above,font=\scriptsize] {$\xi_\eq$};
+\foreach \yy in {0.5,1}{\draw (-103,\yy)--(-97,\yy) node[left,font=\scriptsize] {\yy};}
+\foreach \xx in {-50,0,50,100}{\draw (\xx,0.012)--(\xx,-0.012) node[below,font=\scriptsize]{\xx};}
+\draw[densely dashed] plot[smooth] coordinates {(-100,0.0130) (-90,0.0199) (-80,0.0304) (-70,0.0460) (-60,0.0693) (-50,0.1029) (-40,0.1503) (-30,0.2143) (-20,0.2961) (-10,0.3934) (0,0.5000) (10,0.6066) (20,0.7039) (30,0.7857) (40,0.8497) (50,0.8971) (60,0.9307) (70,0.9540) (80,0.9696) (90,0.9801) (100,0.9870)};
+\draw[thick] plot[smooth] coordinates {(-100,0.0200) (-90,0.0292) (-80,0.0425) (-70,0.0615) (-60,0.0881) (-50,0.1249) (-40,0.1740) (-30,0.2372) (-20,0.3146) (-10,0.4039) (0,0.5000) (10,0.5961) (20,0.6854) (30,0.7628) (40,0.8260) (50,0.8751) (60,0.9119) (70,0.9385) (80,0.9575) (90,0.9708) (100,0.9800)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-100,0.0283) (-90,0.0398) (-80,0.0557) (-70,0.0775) (-60,0.1069) (-50,0.1457) (-40,0.1954) (-30,0.2570) (-20,0.3301) (-10,0.4125) (0,0.5000) (10,0.5875) (20,0.6699) (30,0.7430) (40,0.8046) (50,0.8543) (60,0.8931) (70,0.9225) (80,0.9443) (90,0.9602) (100,0.9717)};
+\draw[densely dotted] (0,0)--(0,0.5);
+\node[font=\scriptsize,anchor=west] at (44,0.24) {268/298/328 K};
+\node[font=\scriptsize] at (8,-0.30) {(a) $\xi_\eq$ logistic (center slope $1/4w$)};
+\end{scope}
+% ================= (b) derivative bell =================
+\begin{scope}[xshift=6.2cm,yscale=0.222]
+\draw[-{Latex[length=1.4mm]}] (-108,0) -- (116,0) node[right,font=\scriptsize] {$(V{-}U_j^{\,d})$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-100,0) -- (-100,11.7) node[above,font=\scriptsize] {$[\mathrm V^{-1}]$};
+\foreach \yy in {5,10}{\draw (-103,\yy)--(-97,\yy) node[left,font=\scriptsize] {\yy};}
+\foreach \xx in {-50,0,50,100}{\draw (\xx,0.13)--(\xx,-0.13) node[below,font=\scriptsize]{\xx};}
+\draw[densely dashed] plot[smooth] coordinates {(-100,0.5554) (-90,0.8444) (-80,1.2744) (-70,1.9019) (-60,2.7915) (-50,3.9984) (-40,5.5308) (-30,7.2915) (-20,9.0246) (-10,10.3331) (0,10.8251) (10,10.3331) (20,9.0246) (30,7.2915) (40,5.5308) (50,3.9984) (60,2.7915) (70,1.9019) (80,1.2744) (90,0.8444) (100,0.5554)};
+\draw[thick] plot[smooth] coordinates {(-100,0.7616) (-90,1.1031) (-80,1.5840) (-70,2.2463) (-60,3.1300) (-50,4.2555) (-40,5.5964) (-30,7.0453) (-20,8.3964) (-10,9.3754) (0,9.7353) (10,9.3754) (20,8.3964) (30,7.0453) (40,5.5964) (50,4.2555) (60,3.1300) (70,2.2463) (80,1.5840) (90,1.1031) (100,0.7616)};
+\draw[densely dotted,thick] plot[smooth] coordinates {(-100,0.9713) (-90,1.3510) (-80,1.8610) (-70,2.5299) (-60,3.3778) (-50,4.4030) (-40,5.5627) (-30,6.7565) (-20,7.8240) (-10,8.5738) (0,8.8449) (10,8.5738) (20,7.8240) (30,6.7565) (40,5.5627) (50,4.4030) (60,3.3778) (70,2.5299) (80,1.8610) (90,1.3510) (100,0.9713)};
+\draw[-{Latex[length=1.3mm]},gray] (40,10.4) -- (5,10.9);
+\node[font=\scriptsize,anchor=west,align=left] at (30,10.2) {peak $1/4w$:\\lower $T$ taller \& narrower};
+\node[font=\scriptsize] at (8,-2.9) {(b) $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률과 그 미분, 온도 분해. (a) $\xi_\eq$ logistic(식~\eqref{eq:xieq}) --- 중심 $U_j^{\,d}$ 에서
+기울기 $1/4w$. (b) 미분 종 $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$ --- 중심에서 최대 $1/4w$ 인 평형 peak.
+폭 $w=nRT/F$($n{=}1$)의 온도 의존으로 268/298/328 K 에서 $w{=}23.1/25.7/28.3$ mV, peak 높이
+$10.83/9.74/8.84\ \mathrm{V^{-1}}$ --- 저온일수록 좁고 높다(면적 보존). 방향에 불변(양수). 선종: 268 K 파선,
+298 K 실선, 328 K 점선. 좌표는 식 그대로의 수치 평가(회색조 인쇄 적합).}
+\label{fig:logistic}

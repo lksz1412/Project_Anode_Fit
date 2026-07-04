@@ -1,0 +1,42 @@
+\begin{tikzpicture}[
+  node distance=4.8mm and 6mm,
+  stage/.style={draw,rounded corners=2pt,inner xsep=4pt,inner ysep=2.6pt,font=\scriptsize,align=center,fill=black!4},
+  core/.style={stage,fill=black!14},
+  branch/.style={draw,rounded corners=2pt,inner xsep=3pt,inner ysep=2pt,font=\scriptsize,align=center,fill=black!4,dashed},
+  io/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.6mm]},thick},
+  arthin/.style={-{Latex[length=1.3mm]},thin,black!60}]
+% ---- input / spine ----
+\node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
+\node[stage,below=5mm of in] (n0) {N0: map inputs\\{\tiny\ttfamily\color{black!55}[eq:n0map]}};
+\node[stage,below=of n0] (n1) {N1: polarization\\$V_n=V_\app-\sigma_d|I|R_n$\\{\tiny\ttfamily\color{black!55}[eq:vn]}};
+\node[stage,below=of n1] (n2) {N2: center\\$U_j(T)=(-\Delta H+T\Delta S)/F$\\{\tiny\ttfamily\color{black!55}[eq:Uj]}};
+\node[stage,below=of n2] (n3) {N3: hysteresis branch\\center $\to U_j+\tfrac12\sigma_d h_\eta\gamma\,\Delta U_\hys$\\{\tiny\ttfamily\color{black!55}[eq:Ubranch]}};
+\node[stage,below=of n3] (n4) {N4/N5: width $w$, $\xi_\eq$\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U)/w]$\\{\tiny\ttfamily\color{black!55}[eq:wbase,\,eq:xieq]}};
+\node[core,below=of n4] (n6) {N6: equilibrium peak\\$Q_j\,\xi_\eq(1-\xi_\eq)/w$\\{\tiny\ttfamily\color{black!55}[eq:eqpeak]}};
+\node[stage,below=7mm of n6] (n7) {N7: lag length $L_V$\\$A,\chi_d,\Delta H_a^\eff,L_q,L_V$\\{\tiny\ttfamily\color{black!55}[eq:Acut,eq:chid,eq:dHeff,eq:LV]}};
+\node[stage,below=13mm of n7] (n8) {N8: causal memory tail\\$(\xi_\eq-\xi_\mathrm{lag})/L_V$, charge reversal\\{\tiny\ttfamily\color{black!55}[eq:peakshape,eq:reversal]}};
+% ---- branch: skip-tail bypass (real eq:branch fork) ----
+\node[branch,right=13mm of n7,yshift=-2mm,align=center,text width=22mm] (skip) {skip tail:\\$\xi_\eq(1-\xi_\eq)/w$\\{\tiny\ttfamily\color{black!55}[eq:eqpeak]}};
+\node[core,below=7mm of n8] (n9) {N9: sum + interp\\$C_\bg+\sum_j Q_j[\cdot]$\\{\tiny\ttfamily\color{black!55}[eq:sum]}};
+\node[io,below=4.5mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
+% ---- spine arrows ----
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n4,n4/n6,n6/n7,n8/n9,n9/out}
+  \draw[ar] (\a) -- (\b);
+\draw[ar] (n7) -- (n8) node[pos=0.5,left,font=\tiny] {else};
+\draw[ar] (n7.east) -- ++(4mm,0) |- (skip.west) node[pos=0.28,above,font=\tiny] {$L_{V}<\nu\Delta_\mathrm{grid}$};
+\draw[ar] (skip.south) |- ($(n9.east)+(6mm,0)$) -- (n9.east);
+% ---- per-transition loop bracket + repeat cue ----
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n4)(n6)(n7)(n8)(skip),inner sep=3.6mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$ (accumulates into eq:sum)}] (loop) {};
+\end{scope}
+\draw[arthin,{Latex[length=1.3mm]}-{Latex[length=1.3mm]}] ([xshift=-4mm]loop.south west) to[out=180,in=180,looseness=1.4] node[pos=0.5,left,font=\tiny,align=center,rotate=90] {repeat $\times N_p$} ([xshift=-4mm]loop.north west);
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$
+이 N0 에서 모델 입력으로 환산되고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1), 전이 $j$ 마다 평형 중심$\cdot$히스
+분기$\cdot$폭$\cdot$평형 진행률$\cdot$평형 peak$\cdot$지연 길이$\cdot$인과 꼬리를 계산해(N2--N8) 합산$\cdot$역보간한다(N9).
+각 노드 아래 작은 태그가 그 단계의 식 번호다. 파선 상자는 전이별 반복 계산 단위($j=1..N_p$, 좌측 순환 화살표)이고,
+N7 이후의 분기(식~\eqref{eq:branch})를 그대로 그렸다 — $L_V<\nu\Delta_\mathrm{grid}$ 면 N8 의 꼬리 계산을 건너뛰고
+평형 peak(eq:eqpeak)을 바로 N9 에 합산하며, 그 외에는 N8 의 인과 꼬리를 거친다.}
+\label{fig:spine}

@@ -1,0 +1,37 @@
+\begin{tikzpicture}[x=1.0cm,y=0.50cm,
+  lab/.style={font=\scriptsize,align=center},
+  guide/.style={densely dotted,black!55},
+  ar/.style={-{Latex[length=1.6mm]},semithick}]
+\def\colw{0.95}
+\foreach \x in {0.00,1.55,3.10,4.65,6.20}{
+  \draw[semithick] (\x,0) -- (\x+\colw,0);
+  \foreach \k in {1,2,3,4,5,6}{\draw[semithick] (\x,0.6*\k) -- (\x+\colw,0.6*\k);}
+}
+\foreach \k in {1,5}{\fill[black!74] (0.00,0.6*\k-0.42) rectangle (0.95,0.6*\k-0.18);}
+\foreach \k in {1,4}{\fill[black!74] (1.55,0.6*\k-0.42) rectangle (2.50,0.6*\k-0.18);}
+\foreach \k in {1,3,5}{\fill[black!28] (3.10,0.6*\k-0.42) rectangle (4.05,0.6*\k-0.18);}
+\foreach \k in {1,3,5}{\fill[black!74] (4.65,0.6*\k-0.42) rectangle (5.60,0.6*\k-0.18);}
+\foreach \k in {1,2,3,4,5,6}{\fill[black!74] (6.20,0.6*\k-0.42) rectangle (7.15,0.6*\k-0.18);}
+\node[lab,below] at (0.475,-0.25) {stage 4};
+\node[lab,below] at (2.025,-0.25) {stage 3};
+\node[lab,below] at (3.575,-0.25) {stage 2L};
+\node[lab,below] at (5.125,-0.25) {stage 2};
+\node[lab,below] at (6.675,-0.25) {stage 1};
+\draw[ar,thick] (0,4.05) -- (7.15,4.05) node[pos=0.5,above,font=\scriptsize] {lithiation: $4\to3\to2\mathrm L\to2\to1$};
+\draw[{Latex[length=1.6mm]}-,thick] (0,-1.05) -- (7.15,-1.05) node[pos=0.5,below,font=\scriptsize] {delithiation: $\theta_j:1\to0$};
+\draw[ar] (0.95,3.15) -- (1.55,3.15);
+\draw[ar] (2.50,3.15) -- (3.10,3.15);
+\draw[ar] (4.05,3.15) -- (4.65,3.15);
+\draw[ar] (5.60,3.15) -- (6.20,3.15);
+\draw[guide] (1.25,3.05) -- (1.25,-2.35);
+\draw[guide] (2.80,3.05) -- (2.80,-2.35);
+\draw[guide] (4.35,3.05) -- (4.35,-2.35);
+\draw[guide] (5.90,3.05) -- (5.90,-2.35);
+\draw[-{Latex[length=1.4mm]}] (0.65,-2.35) -- (6.55,-2.35) node[right,font=\scriptsize] {$U_j$ init [V]};
+\foreach \x/\u in {1.25/0.210,2.80/0.140,4.35/0.120,5.90/0.085}{
+  \draw (\x,-2.25) -- (\x,-2.45) node[below,font=\scriptsize] {\u};
+}
+\node[lab] at (3.58,-3.15) {$\dd Q/\dd V$ peak centers follow the four transition potentials};
+\end{tikzpicture}
+\caption{흑연 staging의 갤러리 채움 도식. 수평선은 그래핀 층, 음영 띠는 리튬이 든 층간 갤러리이며, stage $2\mathrm L$은 면내 질서가 풀린 단계라 옅게 표시했다. 기존 stage 열 구도는 유지하고, 네 전이 화살표를 하단 $U_j$ 초기값 $0.210/0.140/0.120/0.085$ V 축으로 직접 내려 $\dd Q/\dd V$ peak 위치와 대응시켰다. 층과 전위 좌표는 \code{T2\_calc.py}의 열 중심 및 전이 전위 표를 사용했다.}
+\label{fig:staging}

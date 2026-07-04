@@ -1,0 +1,47 @@
+% T2 fig:staging (opus3) — structure reinvention: the classic gallery-filling columns are kept,
+% but anchored to a SHARED true-linear potential axis so each stage transition is tied to its
+% U_j (tab:staging) and a dQ/dV peak glyph whose height tracks capacity Q_j. Slanted leaders
+% encode the real (non-uniform) potential spacing. Geometry from T2_calc.py.
+\centering
+\begin{tikzpicture}[x=1.32cm,y=0.6cm,
+  lab/.style={font=\scriptsize,align=center},
+  ax/.style={semithick},
+  lead/.style={densely dashed,black!55}]
+\def\colw{0.9}
+% ---- five stage columns (graphene layers + Li galleries) ----
+\foreach \x/\name in {0/{stage 4},1.6/{stage 3},3.2/{stage 2L},4.8/{stage 2},6.4/{stage 1}}{
+  \draw[semithick] (\x,0)--(\x+\colw,0);
+  \foreach \k in {1,2,3,4,5,6}{\draw[semithick] (\x,0.6*\k)--(\x+\colw,0.6*\k);}
+  \node[lab,above] at (\x+\colw/2,3.72) {\name};
+}
+% galleries (preserved fill pattern: dark=ordered Li, light=stage 2L liquid-like)
+\foreach \k in {1,5}{\fill[black!72] (0,0.6*\k-0.42) rectangle (0+\colw,0.6*\k-0.18);}
+\foreach \k in {1,4}{\fill[black!72] (1.6,0.6*\k-0.42) rectangle (1.6+\colw,0.6*\k-0.18);}
+\foreach \k in {1,3,5}{\fill[black!24] (3.2,0.6*\k-0.42) rectangle (3.2+\colw,0.6*\k-0.18);}
+\foreach \k in {1,3,5}{\fill[black!72] (4.8,0.6*\k-0.42) rectangle (4.8+\colw,0.6*\k-0.18);}
+\foreach \k in {1,2,3,4,5,6}{\fill[black!72] (6.4,0.6*\k-0.42) rectangle (6.4+\colw,0.6*\k-0.18);}
+% single bidirectional process arrow (above the columns)
+\draw[{Latex[length=1.8mm]}-{Latex[length=1.8mm]},thick] (0.1,4.65)--(7.2,4.65);
+\node[above,font=\scriptsize,align=center] at (3.65,4.72) {$\leftarrow$ discharge (delithiation), $\theta_j{:}1{\to}0$ (main)\quad$\cdot$\quad lithiation (charge), $\theta_j{:}0{\to}1$ $\rightarrow$};
+% ---- shared potential axis (true linear V vs Li/Li+) ----
+\def\ay{-2.25}
+\draw[ax,-{Latex[length=1.8mm]}] (-0.1,\ay) -- (7.55,\ay) node[right,font=\scriptsize] {$V$ [V]};
+% transitions: leader from top midpoint -> glyph apex; glyph (height ~ Q); name+U label below
+% (mid_top, tick_x, U, peak_height, name)
+\foreach \m/\t/\U/\ph/\nm in {1.25/0.859/0.210/0.58/{$4{\to}3$}, 2.85/3.865/0.140/0.62/{$3{\to}2\mathrm L$}, 4.45/4.724/0.120/0.85/{$2\mathrm L{\to}2$}, 6.05/6.226/0.085/1.30/{$2{\to}1$}}{
+  \draw[lead] (\m,-0.12) -- (\t,{\ay+\ph});
+  % dQ/dV peak glyph on the axis (height proportional to capacity Q_j)
+  \draw[thick,black!80] (\t-0.28,\ay) -- (\t,{\ay+\ph}) -- (\t+0.28,\ay);
+  \draw[ax] (\t,{\ay+0.1})--(\t,{\ay-0.1});
+  \fill (\t,\ay) circle (0.8pt);
+  \node[below,align=center,font=\scriptsize] at (\t,{\ay-0.02}) {\nm\\\U};
+}
+\node[font=\scriptsize,anchor=west] at (5.0,{\ay+1.75}) {peak height $\propto Q_j$};
+\end{tikzpicture}
+\caption{흑연 staging 의 갤러리 채움을 공유 전위 축에 정박시킨 도식. 수평선이 그래핀 층, 진한 띠가 질서
+있는 리튬 갤러리, 옅은 띠(stage 2L)가 면내 질서가 풀린 액체상 단계다. 채울수록 stage 번호가 줄어 stage
+1($\mathrm{LiC_6}$)에 닿는다. 하단은 \emph{실제 선형} 전위 축(vs Li/Li$^+$)이고, 파선 leader 가 각 stage 전이를
+그 평형 전위 $U_j$(표~\ref{tab:staging}: $0.210/0.140/0.120/0.085$ V)에 잇는다 --- leader 의 기울기가 전위 간격의
+실제 비균일성을 드러낸다. 각 전이의 삼각 glyph 는 그 전이가 $\dd Q/\dd V$ 에 남기는 peak 이며, 높이를 용량
+가중 $Q_j$($0.10/0.12/0.25/0.50$)에 비례시켰다. 방향은 방전(탈리튬화)이 본 문건 기준이다.}
+\label{fig:staging}

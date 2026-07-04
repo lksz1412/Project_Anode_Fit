@@ -1,0 +1,64 @@
+\begin{tikzpicture}[x=0.62cm,y=11cm]
+% Three narrated stages of eq:widthbudget (coordinates = literal evaluation, see T8_calc.py):
+%  b1(z)=xi(1-xi), w=1            -- (2) intrinsic logistic-derivative bell
+%  b2(z)=xi_s(1-xi_s)/1.6, same family, eff. scale 1.6 = sqrt(1+1.25^2)  -- (2)(x)(3) variance-additive
+%  b3(z)= b2 convolved one-sided with exp kernel, L=1.5                  -- + (1) asymmetric tail
+% ---------- stage 1: delta + intrinsic bell (2) ----------
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (10.8,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (-6.3,0.275) node[above,font=\scriptsize] {$\dd Q/\dd V$};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.255);
+\node[font=\scriptsize] at (-4.0,0.24) {(0) equilibrium $\delta$};
+\draw[thick] plot[smooth] coordinates {(-6.0,0.0025) (-5.5,0.0041) (-5.0,0.0066) (-4.5,0.0109) (-4.0,0.0177) (-3.5,0.0285) (-3.0,0.0452) (-2.5,0.0701) (-2.0,0.105) (-1.5,0.1491) (-1.0,0.1966) (-0.5,0.235) (0.0,0.25) (0.5,0.235) (1.0,0.1966) (1.5,0.1491) (2.0,0.105) (2.5,0.0701) (3.0,0.0452) (3.5,0.0285) (4.0,0.0177) (4.5,0.0109) (5.0,0.0066) (5.5,0.0041) (6.0,0.0025) (6.5,0.0015) (7.0,0.0009) (7.5,0.0006) (8.0,0.0003) (8.5,0.0002) (9.0,0.0001) (9.5,0.0001) (10.0,0.0)};
+\node[font=\scriptsize,align=left] at (3.4,0.21) {(1)$\to$stage: $+$② intrinsic\\$\pi n_jRT/(\sqrt3F)$, peak $\tfrac14$};
+% ---------- stage-transition arrow: + ensemble broadening (3) ----------
+% NOTE: still inside the outer y=11cm frame, so these local deltas are intentionally
+% tiny (real gap = local*11cm, e.g. 0.02*11cm=0.22cm) -- NOT the same scale as the curves.
+\draw[-{Latex[length=1.5mm]}] (0,-0.02) -- (0,-0.06);
+\node[font=\tiny,align=center] at (2.6,-0.08) {$+$③ ensemble $\eta$ (convolve, variance-additive) $\Rightarrow$ eff.\ scale $1.6\,w_j$};
+% ---------- stage 2: broadened bell (2 x 3), shown lower in the same axes ----------
+\begin{scope}[yshift=-3.4cm]
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (10.8,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (-6.3,0.275) node[above,font=\scriptsize] {$\dd Q/\dd V$};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+\draw[black!45] plot[smooth] coordinates {(-6.0,0.0025) (-5.5,0.0041) (-5.0,0.0066) (-4.5,0.0109) (-4.0,0.0177) (-3.5,0.0285) (-3.0,0.0452) (-2.5,0.0701) (-2.0,0.105) (-1.5,0.1491) (-1.0,0.1966) (-0.5,0.235) (0.0,0.25) (0.5,0.235) (1.0,0.1966) (1.5,0.1491) (2.0,0.105) (2.5,0.0701) (3.0,0.0452) (3.5,0.0285) (4.0,0.0177) (4.5,0.0109) (5.0,0.0066) (5.5,0.0041) (6.0,0.0025)};
+\draw[densely dashed,thick] plot[smooth] coordinates {(-6.0,0.014) (-5.5,0.0189) (-5.0,0.0252) (-4.5,0.0334) (-4.0,0.0438) (-3.5,0.0567) (-3.0,0.0721) (-2.5,0.0895) (-2.0,0.1082) (-1.5,0.1263) (-1.0,0.1419) (-0.5,0.1524) (0.0,0.1562) (0.5,0.1524) (1.0,0.1419) (1.5,0.1263) (2.0,0.1082) (2.5,0.0895) (3.0,0.0721) (3.5,0.0567) (4.0,0.0438) (4.5,0.0334) (5.0,0.0252) (5.5,0.0189) (6.0,0.014) (6.5,0.0104) (7.0,0.0077) (7.5,0.0057) (8.0,0.0042) (8.5,0.0031) (9.0,0.0022) (9.5,0.0016) (10.0,0.0012)};
+\node[font=\scriptsize,align=left] at (3.3,0.19) {(2)$\to$stage: peak $0.25\to0.156$\\($\sigma_\mathrm{sym}=1.6\,\sigma_\mathrm{int}$, gray$=$stage 1)};
+% same tiny-local-delta convention as the first transition arrow (real gap = local*11cm)
+\draw[-{Latex[length=1.5mm]}] (0,-0.02) -- (0,-0.06);
+\node[font=\tiny,align=center] at (4.4,-0.08) {$+$① one-sided exp.\ tail ($L_V{=}1.5\,w_j$, causal convolution, numerical)};
+\end{scope}
+% ---------- stage 3: + asymmetric tail (1) ----------
+\begin{scope}[yshift=-6.8cm]
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (10.8,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.5mm]}] (-6.3,0) -- (-6.3,0.275) node[above,font=\scriptsize] {$\dd Q/\dd V$};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
+\draw[densely dashed,black!45] plot[smooth] coordinates {(-6.0,0.014) (-5.5,0.0189) (-5.0,0.0252) (-4.5,0.0334) (-4.0,0.0438) (-3.5,0.0567) (-3.0,0.0721) (-2.5,0.0895) (-2.0,0.1082) (-1.5,0.1263) (-1.0,0.1419) (-0.5,0.1524) (0.0,0.1562) (0.5,0.1524) (1.0,0.1419) (1.5,0.1263) (2.0,0.1082) (2.5,0.0895) (3.0,0.0721) (3.5,0.0567) (4.0,0.0438) (4.5,0.0334) (5.0,0.0252) (5.5,0.0189) (6.0,0.014)};
+\draw[very thick] plot[smooth] coordinates {(-6.0,0.0074) (-5.5,0.01) (-5.0,0.0134) (-4.5,0.0179) (-4.0,0.0238) (-3.5,0.0314) (-3.0,0.0408) (-2.5,0.0522) (-2.0,0.0656) (-1.5,0.0804) (-1.0,0.0959) (-0.5,0.1106) (0.0,0.1232) (0.5,0.1322) (1.0,0.1365) (1.5,0.1358) (2.0,0.1304) (2.5,0.1213) (3.0,0.1097) (3.5,0.0966) (4.0,0.0833) (4.5,0.0705) (5.0,0.0587) (5.5,0.0482) (6.0,0.0392) (6.5,0.0315) (7.0,0.0251) (7.5,0.0198) (8.0,0.0156) (8.5,0.0122) (9.0,0.0095) (9.5,0.0073) (10.0,0.0056)};
+\draw[-{Latex[length=1.4mm]},gray] (4.0,0.10)--(7.2,0.045);
+\node[font=\scriptsize,align=left] at (3.3,0.165) {(3)$\to$final: peak $\to0.137$ at $z{\approx}1$\\(pushed downstream; gray$=$stage 2)};
+\end{scope}
+% ---------- inset: three length scales, direct bar comparison (units of w_j) ----------
+% explicit y=1cm here -- decoupled from the curve panels' y=11cm (that scale would blow
+% up the small bar-chart offsets below by 11x and send the inset off the page).
+\begin{scope}[xshift=8.9cm,yshift=-3.0cm,y=1cm]
+\draw[-{Latex[length=1.2mm]}] (0,0) -- (0,-1.85) node[below,font=\tiny] {};
+\node[font=\tiny,align=left] at (0.0,0.10) {length scales $[w_j]$};
+\fill[black!70] (0,-0.25) rectangle (1.814*0.55,-0.42);
+\node[font=\tiny,right] at (1.814*0.55+0.02,-0.335) {$\sigma_\mathrm{int}{=}1.81$};
+\fill[black!40] (0,-0.62) rectangle (2.267*0.55,-0.79);
+\node[font=\tiny,right] at (2.267*0.55+0.02,-0.705) {$\sigma_\eta{=}2.27$};
+\fill[black!10,draw=black] (0,-0.99) rectangle (1.5*0.55,-1.16);
+\node[font=\tiny,right] at (1.5*0.55+0.02,-1.075) {$L_V{=}1.50$};
+\end{scope}
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}; 좌표는 식 그대로의 수치 평가)을 세 단계로
+서사화. (0)$\to$(1) 평형 델타(Maxwell 전위)에 ② 내재 logistic 미분 종(폭 $w_j$, 분산
+$\sigma_\mathrm{int}^2=(\pi n_jRT/(\sqrt3F))^2$)이 얹힌다. (1)$\to$(2) ③ 앙상블 $\eta$ 산포와의 합성곱이
+분산 가법으로 종을 넓힌다(예시 $\sigma_\eta=1.25\,\sigma_\mathrm{int}$, 같은 함수족이면 유효 scale
+$\sigma_\mathrm{sym}/\sigma_\mathrm{int}\approx1.6$, 회색 $=$ 이전 단계). (2)$\to$(3) ① 유한율속의 한쪽
+지수 꼬리($L_V=1.5w_j$, 단측 합성곱, 수치 적분)가 종을 소인(더 진행된) 방향으로 밀어 비대칭을 만든다(굵은
+실선, 회색 $=$ 이전 단계). 우측 인세트가 세 척도 $\sigma_\mathrm{int}\!:\!\sigma_\eta\!:\!L_V\approx1.81\!:\!2.27\!:\!1.50$
+($w_j$ 단위)를 나란히 비교한다 — 대칭 두 몫($\sigma_\mathrm{int},\sigma_\eta$)은 $w_j$ 하나에 흡수되고
+비대칭 꼬리($L_V$)만 별도 축으로 분리된다.}
+\label{fig:widthbudget}

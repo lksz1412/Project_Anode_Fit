@@ -1,0 +1,51 @@
+% T3 fig:hysloop  (opus2 — quantitative-density)
+% Coordinates = exact numeric evaluation of eq:Veq, Omega_j = 4RT, s=+1 (see T3_calc.py):
+%   y(xi) = (sF/RT)(V_eq - U_j) = ln[xi/(1-xi)] + 4(1-2 xi)
+% spinodal xi_s^-=0.1464 (y=+1.0657), xi_s^+=0.8536 (y=-1.0657); gap = 2.1314 RT/F.
+\begin{tikzpicture}[x=8.8cm,y=1.62cm,>=Latex]
+% ---- spinodal (g''<0) unstable band ----
+\begin{scope}[on background layer]
+  \fill[black!8] (0.146447,-1.5) rectangle (0.853553,1.62);
+\end{scope}
+% ---- axes ----
+\draw[->] (0,-1.5) -- (0,1.62) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[->] (-0.02,0) -- (1.07,0) node[below,font=\scriptsize] {$\xi$};
+% x ticks
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.035) -- (\xx,-0.035) node[below,font=\scriptsize] {\xx};}
+% y ticks with exact values
+\foreach \yy in {1.0657,-1.0657} {\draw (0.008,\yy) -- (-0.008,\yy);}
+\node[left,font=\scriptsize] at (-0.01,1.0657) {$+1.066$};
+\node[left,font=\scriptsize] at (-0.01,-1.0657) {$-1.066$};
+% ---- Maxwell plateau line y=0 ----
+\draw[densely dashed,black!55] (0,0) -- (1.06,0);
+\node[font=\scriptsize,black!55,fill=white,inner sep=1pt,anchor=west] at (0.04,-0.62) {Maxwell $V_\eq{=}U_j$ ($y{=}0$)};
+% ---- full non-monotone V_eq(xi) ----
+\draw[thick] plot[smooth,tension=0.7] coordinates {(0.0150,-0.3046) (0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657) (0.1800,1.0437) (0.2200,0.9743) (0.2700,0.8454) (0.3300,0.6518) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.6700,-0.6518) (0.7300,-0.8454) (0.7800,-0.9743) (0.8200,-1.0437) (0.8536,-1.0657) (0.9100,-0.9664) (0.9300,-0.8533) (0.9500,-0.6556) (0.9700,-0.2839) (0.9850,0.3046)};
+% ---- discharge overshoot: rising branch up to xi_s^- ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657)};
+% ---- charge overshoot: falling branch down to xi_s^+ ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.9700,-0.2839) (0.9500,-0.6556) (0.9300,-0.8533) (0.9100,-0.9664) (0.8536,-1.0657)};
+% ---- spinodal markers + exact coordinate readouts + droplines ----
+\draw[densely dotted,black!60] (0.146447,1.0657) -- (0.146447,0);
+\draw[densely dotted,black!60] (0.853553,-1.0657) -- (0.853553,0);
+\draw (0.146447,0.035) -- (0.146447,-0.035) node[below,font=\scriptsize] {0.146};
+\draw (0.853553,0.035) -- (0.853553,-0.035) node[below,font=\scriptsize] {0.854};
+\fill (0.146447,1.0657) circle (0.9pt);
+\fill (0.853553,-1.0657) circle (0.9pt);
+\node[anchor=south west,font=\scriptsize] at (0.165,1.075) {$\xi_s^-\!=\!(0.146,{+}1.066)$};
+\node[anchor=north east,font=\scriptsize] at (0.835,-1.075) {$\xi_s^+\!=\!(0.854,{-}1.066)$};
+% ---- gap annotation ----
+\draw[<->,line width=0.9pt] (1.02,-1.0657) -- (1.02,1.0657);
+\node[right,font=\scriptsize,align=left] at (1.02,0.14) {$\Delta U_j^\hys$\\$=2.131\,RT/F$};
+% ---- overshoot direction labels (corners) ----
+\node[anchor=west,font=\scriptsize] at (0.03,1.47) {discharge overshoot $\xi\!\uparrow$};
+\node[anchor=east,font=\scriptsize] at (0.98,-1.47) {charge overshoot $\xi\!\downarrow$};
+\node[font=\scriptsize,black!60] at (0.63,1.40) {$g''<0$ (unstable band)};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ --- 좌표는 식 그대로의 수치 평가:
+$y=\ln[\xi/(1-\xi)]+4(1-2\xi)$). 굵은 화살표 경로가 과주행 --- 방전은 상승 가지를 극대 $\xi_s^-{=}(0.146,{+}1.066)$
+까지, 충전은 하강 가지를 극소 $\xi_s^+{=}(0.854,{-}1.066)$ 까지(식~\eqref{eq:spinodal}, $u_j{=}\sqrt{1/2}$). 두 극값의
+전위 차가 spinodal 상한 gap $\Delta U_j^\hys=2.131\,RT/F$(식~\eqref{eq:dUhys}; $298$ K 에서 $54.8$ mV), 실측 분기는
+$\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}). 회색 띠는 $g''<0$ 불안정 구간, 파선은 $\gamma\!\to\!0$ 가역 한계의 Maxwell
+plateau($y{=}0$)다.}
+\label{fig:hysloop}

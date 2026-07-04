@@ -1,0 +1,29 @@
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,
+  ax/.style={-{Latex[length=1.4mm]}},
+  l298/.style={thick},
+  l268/.style={semithick,densely dashed},
+  l328/.style={semithick,densely dotted}]
+\begin{scope}[yshift=2.45cm]
+\draw[ax] (-5.15,0) -- (5.15,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[ax] (-5.15,0) -- (-5.15,2.15) node[above,font=\scriptsize] {$\xi_\eq$};
+\foreach \x/\lab in {-4.8/-120,-2.4/-60,0/0,2.4/60,4.8/120}{\draw (\x,0.04) -- (\x,-0.04) node[below,font=\scriptsize] {\lab};}
+\draw (-5.08,1.8) -- (-5.22,1.8) node[left,font=\scriptsize] {1};
+\draw (-5.08,0.9) -- (-5.22,0.9) node[left,font=\scriptsize] {0.5};
+\draw[l268] plot[smooth] coordinates {(-4.80,0.0099) (-3.60,0.0358) (-2.40,0.1247) (-1.20,0.3858) (0.00,0.9000) (1.20,1.4142) (2.40,1.6753) (3.60,1.7642) (4.80,1.7901)};
+\draw[l298] plot[smooth] coordinates {(-4.80,0.0167) (-3.60,0.0525) (-2.40,0.1587) (-1.20,0.4269) (0.00,0.9000) (1.20,1.3731) (2.40,1.6413) (3.60,1.7475) (4.80,1.7833)};
+\draw[l328] plot[smooth] coordinates {(-4.80,0.0254) (-3.60,0.0716) (-2.40,0.1924) (-1.20,0.4627) (0.00,0.9000) (1.20,1.3373) (2.40,1.6076) (3.60,1.7284) (4.80,1.7746)};
+\node[font=\scriptsize,align=left] at (3.55,0.65) {268 K dashed\\298 K solid\\328 K dotted};
+\end{scope}
+\begin{scope}
+\draw[ax] (-5.15,0) -- (5.15,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[ax] (-5.15,0) -- (-5.15,1.65) node[above,font=\scriptsize] {scaled $\dd\xi/\dd V$};
+\foreach \x/\lab in {-4.8/-120,-2.4/-60,0/0,2.4/60,4.8/120}{\draw (\x,0.04) -- (\x,-0.04) node[below,font=\scriptsize] {\lab};}
+\draw[l268] plot[smooth] coordinates {(-4.80,0.0308) (-3.60,0.1098) (-2.40,0.3629) (-1.20,0.9479) (0.00,1.4073) (1.20,0.9479) (2.40,0.3629) (3.60,0.1098) (4.80,0.0308)};
+\draw[l298] plot[smooth] coordinates {(-4.80,0.0464) (-3.60,0.1434) (-2.40,0.4069) (-1.20,0.9159) (0.00,1.2656) (1.20,0.9159) (2.40,0.4069) (3.60,0.1434) (4.80,0.0464)};
+\draw[l328] plot[smooth] coordinates {(-4.80,0.0640) (-3.60,0.1756) (-2.40,0.4391) (-1.20,0.8783) (0.00,1.1498) (1.20,0.8783) (2.40,0.4391) (3.60,0.1756) (4.80,0.0640)};
+\draw[densely dotted] (0,0) -- (0,1.43);
+\node[font=\scriptsize,align=center] at (1.75,1.40) {center slope\\$1/(4w_j)$};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률과 그 미분. 위 패널은 $\xi_\eq$ logistic(식~\eqref{eq:xieq}), 아래 패널은 같은 전압 좌표에서의 미분 종(식~\eqref{eq:belliden}, 공통 표시 배율 적용)이다. 기존 S-curve와 종을 보존하되 온도 $268/298/328$ K를 선종으로 분리했다. $w_j=n_jRT/F$라 온도가 높을수록 logistic은 넓어지고 중심 기울기 $1/(4w_j)$는 낮아진다. 좌표는 \code{T6\_calc.py}가 각 온도에서 $w_j$와 $\xi_\eq(1-\xi_\eq)/w_j$를 직접 평가했다.}
+\label{fig:logistic}

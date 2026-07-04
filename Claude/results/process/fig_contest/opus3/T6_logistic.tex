@@ -1,0 +1,46 @@
+% T6 fig:logistic (opus3) — structure reinvention: replace the single normalized-z curve with a
+% PHYSICAL (V-U_j) axis in mV and a stacked dual panel at three temperatures (268/298/328 K),
+% making w = nRT/F's temperature dependence and geometric meaning visible. Top: xi_eq logistic
+% S-curves (eq:xieq); bottom: derivative bells dxi/dV = xi(1-xi)/w (eq:belliden). Coordinates
+% are the direct numerical evaluation at n=1 (T6_calc.py); low T -> narrower & taller.
+\centering
+\begin{tikzpicture}
+% ===== TOP: xi_eq logistic S-curves =====
+\begin{scope}[yshift=3.5cm,x=0.028cm,y=2.05cm]
+\draw[-{Latex[length=1.4mm]}] (-85,0) -- (90,0);
+\draw[-{Latex[length=1.4mm]}] (-85,0) -- (-85,1.12) node[above,font=\scriptsize] {$\xi_\eq$};
+\foreach \yy in {0.5,1}{\draw (-88,\yy)--(-82,\yy) node[left,font=\scriptsize] {\yy};}
+\draw[very thick] plot[smooth] coordinates {(-80,0.0304)(-70,0.0460)(-60,0.0693)(-50,0.1029)(-40,0.1503)(-30,0.2143)(-20,0.2961)(-10,0.3934)(0,0.5)(10,0.6066)(20,0.7039)(30,0.7857)(40,0.8497)(50,0.8971)(60,0.9307)(70,0.9540)(80,0.9696)};
+\draw[densely dashed,semithick] plot[smooth] coordinates {(-80,0.0425)(-70,0.0615)(-60,0.0881)(-50,0.1249)(-40,0.1740)(-30,0.2372)(-20,0.3146)(-10,0.4039)(0,0.5)(10,0.5961)(20,0.6854)(30,0.7628)(40,0.8260)(50,0.8751)(60,0.9119)(70,0.9385)(80,0.9575)};
+\draw[densely dotted,semithick] plot[smooth] coordinates {(-80,0.0557)(-70,0.0775)(-60,0.1069)(-50,0.1457)(-40,0.1954)(-30,0.2570)(-20,0.3301)(-10,0.4125)(0,0.5)(10,0.5875)(20,0.6699)(30,0.7430)(40,0.8046)(50,0.8543)(60,0.8931)(70,0.9225)(80,0.9443)};
+% center slope tangent (298 K): slope = 1/(4w) = 9.735 /V = 0.009735 /mV
+\draw[gray,thick] (-18,0.3248) -- (18,0.6752);
+\node[font=\tiny,gray,anchor=west] at (20,0.70) {center slope $=1/(4w_j)$};
+\draw[densely dotted] (0,0)--(0,0.5);
+\node[font=\scriptsize,anchor=west] at (-83,1.02) {(a) $\xi_\eq$ logistic (식~\eqref{eq:xieq})};
+\end{scope}
+% ===== BOTTOM: derivative bells =====
+\begin{scope}[x=0.028cm,y=0.205cm]
+\draw[-{Latex[length=1.4mm]}] (-85,0) -- (90,0) node[right,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[-{Latex[length=1.4mm]}] (-85,0) -- (-85,11.6) node[above,font=\scriptsize] {$\dd\xi/\dd V$ [1/V]};
+\foreach \xx in {-80,-40,0,40,80}{\draw (\xx,0.3)--(\xx,-0.3) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {5,10}{\draw (-88,\yy)--(-82,\yy) node[left,font=\scriptsize] {\yy};}
+\draw[very thick] plot[smooth] coordinates {(-80,1.2744)(-70,1.9019)(-60,2.7915)(-50,3.9984)(-40,5.5308)(-30,7.2915)(-20,9.0246)(-10,10.3331)(0,10.8251)(10,10.3331)(20,9.0246)(30,7.2915)(40,5.5308)(50,3.9984)(60,2.7915)(70,1.9019)(80,1.2744)};
+\draw[densely dashed,semithick] plot[smooth] coordinates {(-80,1.5840)(-70,2.2463)(-60,3.1300)(-50,4.2555)(-40,5.5964)(-30,7.0453)(-20,8.3964)(-10,9.3754)(0,9.7353)(10,9.3754)(20,8.3964)(30,7.0453)(40,5.5964)(50,4.2555)(60,3.1300)(70,2.2463)(80,1.5840)};
+\draw[densely dotted,semithick] plot[smooth] coordinates {(-80,1.8610)(-70,2.5299)(-60,3.3778)(-50,4.4030)(-40,5.5627)(-30,6.7565)(-20,7.8240)(-10,8.5738)(0,8.8449)(10,8.5738)(20,7.8240)(30,6.7565)(40,5.5627)(50,4.4030)(60,3.3778)(70,2.5299)(80,1.8610)};
+% FWHM marker on 298 K bell (half-max 4.868, FWHM 90.5 mV)
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]},gray] (-45.3,4.868) -- (45.3,4.868);
+\node[font=\tiny,gray,fill=white,inner sep=0.5pt] at (0,4.868) {FWHM $=3.53\,w_j$};
+\node[font=\scriptsize,anchor=west] at (-83,11.0) {(b) $\dd\xi/\dd V=\xi(1-\xi)/w$ (식~\eqref{eq:belliden})};
+% temperature legend
+\node[font=\tiny,anchor=west] at (44,10.4) {\textbf{---} 268 K ($w{=}23.1$ mV)};
+\node[font=\tiny,anchor=west] at (44,9.2) {\textbf{-\,-} 298 K ($w{=}25.7$)};
+\node[font=\tiny,anchor=west] at (44,8.0) {$\cdots$ 328 K ($w{=}28.3$)};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률과 그 미분을, 정규화 $z$ 대신 \emph{물리 전위축}$(V-U_j^{\,d})$[mV] 위에서 세 온도
+(268/298/328 K)로 보인다. (a) 실선/파선/점선 $=\xi_\eq$ logistic(식~\eqref{eq:xieq}); 중심 접선의 기울기가
+$1/(4w_j)$ 라는 $w$ 의 기하적 의미를 표시했다. (b) 그 미분 종 $\dd\xi/\dd V=\xi(1-\xi)/w$(식~\eqref{eq:belliden})
+--- 폭 $w_j=n_jRT/F$ 의 온도 의존이 그대로 드러나 저온일수록 좁고 높다(FWHM$=3.53\,w_j$). 좌표는 $n_j{=}1$
+에서 식 그대로의 수치 평가이고, 종은 방향에 불변(양수)이다.}
+\label{fig:logistic}

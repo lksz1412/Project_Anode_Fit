@@ -1,0 +1,51 @@
+% T8 fig:widthbudget (opus3) — structure reinvention: the crowded single-axis overlay becomes a
+% 4-ROW accumulation stack (read top->bottom) that narrates the budget: equilibrium delta ->
+% (+) intrinsic bell (sigma_int) -> (x) ensemble eta (sigma_sym) -> (+) one-sided tail (L_V).
+% Each lower row shows the previous result faded so widening/skewing is explicit. Coordinates are
+% the direct numerical evaluation / convolution from T8_calc.py (eq:widthbudget); w=1.
+\centering
+\begin{tikzpicture}
+\def\XL{-6} \def\XR{10.5}
+% ---- Row 0 (top): equilibrium delta ----
+\begin{scope}[yshift=3.45cm,x=0.28cm,y=3.4cm]
+\draw[semithick] (\XL,0)--(\XR,0);
+\draw[-{Latex[length=1.8mm]},very thick] (0,0)--(0,0.25);
+\node[font=\scriptsize,anchor=east] at (-6.6,0.12) {(0) 평형 델타};
+\node[font=\tiny,anchor=west] at (0.3,0.235) {Maxwell 전위};
+\end{scope}
+% ---- Row 1: (+) intrinsic logistic-derivative bell ----
+\begin{scope}[yshift=2.30cm,x=0.28cm,y=3.4cm]
+\draw[semithick] (\XL,0)--(\XR,0);
+\draw[thick] plot[smooth] coordinates {(-6,0.0025)(-5,0.0066)(-4,0.0177)(-3,0.0452)(-2,0.1050)(-1,0.1966)(-0.5,0.2350)(0,0.2500)(0.5,0.2350)(1,0.1966)(2,0.1050)(3,0.0452)(4,0.0177)(5,0.0066)(6,0.0025)(7,0.0009)(8,0.0003)(9,0.0001)(10,0.0000)};
+\draw[{Latex[length=1.1mm]}-{Latex[length=1.1mm]},gray] (-1.814,0.045)--(1.814,0.045);
+\node[font=\tiny,gray,fill=white,inner sep=0.4pt] at (0,0.045) {$\sigma_\mathrm{int}$};
+\node[font=\scriptsize,anchor=east,align=right] at (-6.6,0.13) {$(+)$ 내재 종\\{\tiny$\sigma_\mathrm{int}{=}\pi w/\sqrt3$}};
+\end{scope}
+% ---- Row 2: (x) ensemble eta spread ----
+\begin{scope}[yshift=1.15cm,x=0.28cm,y=3.4cm]
+\draw[semithick] (\XL,0)--(\XR,0);
+\draw[thin,black!25] plot[smooth] coordinates {(-6,0.0025)(-4,0.0177)(-2,0.1050)(-1,0.1966)(0,0.2500)(1,0.1966)(2,0.1050)(4,0.0177)(6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(-6,0.0156)(-5,0.0298)(-4,0.0514)(-3,0.0792)(-2,0.1085)(-1,0.1312)(-0.5,0.1377)(0,0.1400)(0.5,0.1379)(1,0.1315)(2,0.1090)(3,0.0798)(4,0.0519)(5,0.0302)(6,0.0158)(7,0.0076)(8,0.0033)(9,0.0014)(10,0.0005)};
+\draw[{Latex[length=1.1mm]}-{Latex[length=1.1mm]},gray] (-2.90,0.045)--(2.90,0.045);
+\node[font=\tiny,gray,fill=white,inner sep=0.4pt] at (0,0.045) {$\sigma_\mathrm{sym}$};
+\node[font=\scriptsize,anchor=east,align=right] at (-6.6,0.13) {$(\otimes)$ 앙상블 $\eta$\\{\tiny$\sigma_\mathrm{sym}{=}\sqrt{\sigma_\mathrm{int}^2{+}\sigma_\eta^2}$}};
+\end{scope}
+% ---- Row 3 (bottom): (+) one-sided exponential tail ----
+\begin{scope}[yshift=0cm,x=0.28cm,y=3.4cm]
+\draw[semithick,-{Latex[length=1.5mm]}] (\XL,0)--(\XR,0) node[right,font=\scriptsize] {$(V{-}U_j)/w$};
+\foreach \xx in {-4,0,4,8}{\draw (\xx,0.008)--(\xx,-0.008) node[below,font=\scriptsize] {\xx};}
+\draw[thin,black!25] plot[smooth] coordinates {(-6,0.0156)(-4,0.0514)(-2,0.1085)(0,0.1400)(2,0.1090)(4,0.0519)(6,0.0158)(8,0.0033)(10,0.0005)};
+\draw[very thick] plot[smooth] coordinates {(-6,0.0074)(-5,0.0150)(-4,0.0279)(-3,0.0468)(-2,0.0707)(-1,0.0958)(0,0.1161)(0.5,0.1227)(1,0.1261)(1.5,0.1262)(2,0.1230)(3,0.1082)(4,0.0865)(5,0.0634)(6,0.0430)(7,0.0273)(8,0.0164)(9,0.0095)(10,0.0053)};
+\draw[-{Latex[length=1.3mm]},gray] (1.4,0.128)--(4.5,0.075);
+\node[font=\tiny,gray] at (3.6,0.122) {$\ell=L_{V}$};
+\node[font=\scriptsize,anchor=east,align=right] at (-6.6,0.13) {$(+)$ 유한율속 꼬리\\{\tiny$\ell{=}L_V\propto|I|$}};
+\end{scope}
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget})을 위에서 아래로 읽는 4단 누적으로 재구성했다.
+(0) plateau 의 평형 델타에서 출발해, $(+)$ 내재 logistic 미분 종(폭 $\sigma_\mathrm{int}{=}\pi w/\sqrt3$)이 얹히고,
+$(\otimes)$ 앙상블 $\eta$ 산포와의 합성곱이 분산 가법으로 종을 넓히며($\sigma_\mathrm{sym}{=}\sqrt{\sigma_\mathrm{int}^2{+}\sigma_\eta^2}$,
+예시 $\sigma_\eta{=}1.25\,\sigma_\mathrm{int}\Rightarrow\sigma_\mathrm{sym}{\approx}1.60\,\sigma_\mathrm{int}$), 끝으로 $(+)$
+유한율속의 단측 지수 꼬리($\ell{=}L_V{=}1.5\,w$)가 종을 소인 방향으로 민다. 아래 두 단에 이전 단을 옅게 겹쳐
+넓어짐$\cdot$기울어짐을 직접 대비했다. 세 척도 $\sigma_\mathrm{int}\cdot\sigma_\eta\cdot L_V$ 가 가로 scale bar 로 보이며,
+대칭 두 몫은 $w_j$ 하나에 흡수되고 비대칭 꼬리만 $L_{V,j}$ 로 분리된다(좌표는 식 그대로의 수치 평가$\cdot$수치 합성곱).}
+\label{fig:widthbudget}

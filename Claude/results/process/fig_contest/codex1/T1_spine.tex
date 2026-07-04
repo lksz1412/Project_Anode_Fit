@@ -1,0 +1,40 @@
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  box/.style={draw,rounded corners=1.5pt,minimum width=2.85cm,minimum height=0.72cm,inner xsep=4pt,inner ysep=2pt,font=\scriptsize,align=center,fill=black!5},
+  key/.style={box,fill=black!13,very thick},
+  mini/.style={font=\tiny,align=center},
+  ar/.style={-{Latex[length=1.8mm]},thick},
+  ghost/.style={draw=black!45,densely dashed,rounded corners=2pt}
+]
+\node[box] (in) at (0,0) {experiment\\$V_\app,\sigma_d,|I|,T,Q_\cell$};
+\node[box,right=0.72cm of in] (n0) {N0 map inputs\\transition table};
+\node[key,right=0.72cm of n0] (n1) {N1 internal axis\\$V_n=V_\app-\sigma_d|I|R_n$};
+\node[box,below=0.72cm of n0] (n2) {N2 center\\$U_j=(-\Delta H+T\Delta S)/F$};
+\node[box,right=0.72cm of n2] (n3) {N3 branch\\$U_j^d=U_j+\frac12\sigma_d h_\eta\gamma\Delta U_\hys$};
+\node[key,right=0.72cm of n3] (n4) {N4--N5 progress\\$\xi_\eq=[1+e^{-\sigma_d(V-U)/w}]^{-1}$};
+\node[box,below=0.72cm of n4] (n6) {N6 peak\\$Q_j\xi_\eq(1-\xi_\eq)/w$};
+\node[box,left=0.72cm of n6] (n7) {N7 lag length\\$A,\chi_d,\Delta H_a^\eff,L_q,L_V$};
+\node[key,left=0.72cm of n7] (n8) {N8 causal tail\\$\xi_\eq\to\xi_\mathrm{lag}$};
+\node[box,below=0.72cm of n7] (n9) {N9 sum/interp\\$C_\bg+\sum_j Q_j[\cdot]$};
+\node[box,left=0.72cm of n9] (out) {output\\$\dd Q/\dd V$ at $V_n$};
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n4,n4/n6,n6/n7,n7/n8,n8/n9,n9/out}{\draw[ar] (\a)--(\b);}
+\draw[ar,densely dashed] (n8.north) to[out=105,in=255] node[left,font=\tiny,align=center] {repeat\\$j=1..N_p$} (n2.south);
+\begin{scope}[on background layer]
+\node[ghost,fit=(n2)(n3)(n4)(n6)(n7)(n8),inner sep=5pt,label={[font=\scriptsize,anchor=south east]south east:transition loop}] {};
+\end{scope}
+\begin{scope}[xshift=8.35cm,yshift=-0.40cm]
+\draw[->] (-1.0,0)--(1.15,0) node[right,font=\tiny]{$V-U$};
+\draw[->] (-1.0,0)--(-1.0,0.86) node[above,font=\tiny]{$\xi$};
+\draw[very thick] plot[smooth] coordinates {(-1.00,0.038) (-0.50,0.146) (0.00,0.400) (0.50,0.654) (1.00,0.762)};
+\node[mini] at (0.25,0.92) {equilibrium\\species};
+\end{scope}
+\begin{scope}[xshift=-1.05cm,yshift=-2.95cm]
+\draw[->] (-0.15,0)--(1.85,0) node[right,font=\tiny]{sweep};
+\draw[->] (-0.15,0)--(-0.15,0.78) node[above,font=\tiny]{tail};
+\draw[very thick] plot[smooth] coordinates {(0.00,0.08) (0.35,0.22) (0.70,0.56) (1.05,0.62) (1.40,0.43) (1.75,0.26)};
+\draw[ar,gray] (1.12,0.50)--(1.60,0.31);
+\node[mini] at (0.85,0.92) {causal\\memory};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine) 개선안. 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$ 이 N0 에서 모델 입력으로 환산되고, N1 의 내부 전위축 $V_n$ 뒤에 전이별 반복 블록(N2--N8)이 돈다. N2--N5 는 식~\eqref{eq:xieq} 계열의 평형 진행률을 만들고, N6--N8 은 peak 와 저역통과 꼬리를 계산한 뒤 N9 에서 합산$\cdot$역보간한다. 두 미니 곡선 좌표는 logistic 및 단측 저역통과 예시를 Python 수치 평가한 것이다.}
+\label{fig:spine}

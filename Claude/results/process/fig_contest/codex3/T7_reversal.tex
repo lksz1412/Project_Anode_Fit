@@ -1,0 +1,26 @@
+\begin{tikzpicture}[x=0.78cm,y=0.95cm,
+  eq/.style={densely dotted,thick},
+  tail/.style={thick},
+  ax/.style={-{Latex[length=1.5mm]}}]
+\begin{scope}
+\draw[ax] (-4.25,0) -- (4.25,0) node[below,font=\scriptsize] {$V$};
+\draw[ax] (-4.25,0) -- (-4.25,2.70) node[above,font=\scriptsize] {peak};
+\draw[eq] plot[smooth] coordinates {(-4.0,0.1554) (-3.5,0.2504) (-3.0,0.3976) (-2.5,0.6169) (-2.0,0.9239) (-1.5,1.3125) (-1.0,1.7302) (-0.5,2.0680) (0.0,2.2000) (0.5,2.0680) (1.0,1.7302) (1.5,1.3125) (2.0,0.9239) (2.5,0.6169) (3.0,0.3976) (3.5,0.2504) (4.0,0.1554)};
+\draw[tail] plot[smooth] coordinates {(-4.0,0.0757) (-3.5,0.1228) (-3.0,0.1975) (-2.5,0.3129) (-2.0,0.4839) (-1.5,0.7223) (-1.0,1.0245) (-0.5,1.3575) (0.0,1.6548) (0.5,1.8388) (1.0,1.8625) (1.5,1.7335) (2.0,1.5018) (2.5,1.2278) (3.0,0.9591) (3.5,0.7232) (4.0,0.5305)};
+\draw[-{Latex[length=1.4mm]},semithick] (0.75,2.25) -- (2.45,1.25);
+\node[font=\scriptsize,align=center] at (1.95,2.32) {memory tail\\to higher $V$};
+\node[font=\scriptsize,below] at (0,-0.42) {(a) discharge $\sigma_d=+1$: progress $V\uparrow$};
+\end{scope}
+\begin{scope}[xshift=9.0cm]
+\draw[ax] (-4.25,0) -- (4.25,0) node[below,font=\scriptsize] {$V$};
+\draw[ax] (-4.25,0) -- (-4.25,2.70) node[above,font=\scriptsize] {peak};
+\draw[eq] plot[smooth] coordinates {(-4.0,0.1554) (-3.5,0.2504) (-3.0,0.3976) (-2.5,0.6169) (-2.0,0.9239) (-1.5,1.3125) (-1.0,1.7302) (-0.5,2.0680) (0.0,2.2000) (0.5,2.0680) (1.0,1.7302) (1.5,1.3125) (2.0,0.9239) (2.5,0.6169) (3.0,0.3976) (3.5,0.2504) (4.0,0.1554)};
+\draw[tail] plot[smooth] coordinates {(-4.0,0.5305) (-3.5,0.7232) (-3.0,0.9591) (-2.5,1.2278) (-2.0,1.5018) (-1.5,1.7335) (-1.0,1.8625) (-0.5,1.8388) (0.0,1.6548) (0.5,1.3575) (1.0,1.0245) (1.5,0.7223) (2.0,0.4839) (2.5,0.3129) (3.0,0.1975) (3.5,0.1228) (4.0,0.0757)};
+\draw[-{Latex[length=1.4mm]},semithick] (-0.75,2.25) -- (-2.45,1.25);
+\node[font=\scriptsize,align=center] at (-1.85,2.32) {memory tail\\to lower $V$};
+\node[font=\scriptsize,below] at (0,-0.42) {(b) charge $\sigma_d=-1$: progress $V\downarrow$};
+\end{scope}
+\node[font=\scriptsize,align=center] at (4.50,2.95) {dotted: equilibrium bell\\solid: causal low-pass};
+\end{tikzpicture}
+\caption{인과 꼬리의 방향. 점선은 평형 종($\xi_\eq(1-\xi_\eq)/w$, 방향 불변), 실선은 같은 종을 $L_V=1.1w$의 단측 지수핵으로 저역통과한 peak shape이다. 기존 좌우 거울 구도를 유지하고 진행 방향 화살표와 꼬리 방향을 분리했다. 방전은 $V$가 증가하는 순서로 필터되어 높은 $V$ 쪽 꼬리가 생기고, 충전은 격자를 뒤집어 필터한 뒤 되돌리므로 낮은 $V$ 쪽 꼬리가 생긴다. 좌표는 \code{T7\_calc.py}의 실제 저역통과 수치 적분값이다.}
+\label{fig:reversal}

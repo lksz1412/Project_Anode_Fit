@@ -1,0 +1,56 @@
+% T1 fig:spine (opus1) — calculation spine as a physical narrative.
+% Flow diagram (no curve): node = one derivation step with its result formula and produced quantity;
+% the per-transition loop (dashed) forks into the direction-invariant equilibrium species (N6) and the
+% direction-dependent causal tail (N7,N8), the two rejoining at the peak-shape case (eq:branch).
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  box/.style={draw,rounded corners=2pt,align=center,inner xsep=3pt,inner ysep=2.6pt,
+              fill=black!4,minimum height=8mm,text width=40mm},
+  core/.style={box,fill=black!14,text width=54mm},
+  io/.style={align=center,font=\scriptsize\itshape},
+  tag/.style={font=\tiny\itshape,text=black!55,align=center},
+  ar/.style={-{Latex[length=1.7mm]},semithick},
+  node distance=3.6mm]
+% ---- vertical spine ----
+\node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
+\node[box,below=4mm of in] (n0) {\textbf{N0} map inputs\\$\sigma_d=\pm1,\ \ |I|=\text{c\_rate}\cdot Q_\cell$};
+\node[box,below=of n0] (n1) {\textbf{N1} polarization\\$V_n=V_\app-\sigma_d|I|R_n$};
+\node[box,below=8mm of n1] (n2) {\textbf{N2} equilibrium center\\$U_j=(-\Delta H_\rxn+T\Delta S_\rxn)/F$};
+\node[box,below=of n2] (n3) {\textbf{N3} hysteresis branch\\$U_j^{\,d}=U_j+\tfrac12\sigma_d\gamma_j\Delta U_j^\hys$};
+\node[box,below=of n3] (n45) {\textbf{N4$\cdot$N5} width \& fraction\\$w_j=n_jRT/F,\ \ \xi_\eq=\mathrm{logistic}\big[\tfrac{\sigma_d(V-U_j^{\,d})}{w_j}\big]$};
+% ---- fork lanes (explicit coordinates) ----
+\node[box,text width=38mm,anchor=north] (n6) at ($(n45.south)+(-3.35,-1.35)$)
+     {\textbf{N6} equilibrium peak\\$Q_j\,\xi_\eq(1-\xi_\eq)/w_j$};
+\node[box,text width=40mm,anchor=north] (n7) at ($(n45.south)+(3.35,-1.35)$)
+     {\textbf{N7} lag length $L_{V,j}$\\$\leftarrow(\mathcal A,\chi_d,\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega)$};
+\node[box,text width=40mm,anchor=north,below=of n7] (n8)
+     {\textbf{N8} causal memory tail\\$(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$, charge reversal};
+\node[tag,anchor=south] at (n6.north){equilibrium species\\(direction-invariant)};
+\node[tag,anchor=south] at (n7.north){kinetic tail\\(direction-dependent $\sigma_d$)};
+% ---- rejoin ----
+\node[core,anchor=north] (br) at ($(n45.south)+(0,-4.25)$)
+     {\textbf{peak shape}$_j$ --- case (eq:branch)\\equilibrium bell $\ \ominus\ $ lag tail};
+\node[core,below=3.5mm of br] (n9) {\textbf{N9} sum $+$ interpolate\\$\dd Q/\dd V=C_\bg+\sum_j Q_j[\text{peak shape}_j]$};
+\node[io,below=4mm of n9] (out) {output: $\dd Q/\dd V$ curve at $V_n$};
+% ---- arrows ----
+\foreach \a/\b in {in/n0,n0/n1,n1/n2,n2/n3,n3/n45}{\draw[ar](\a)--(\b);}
+\draw[ar] (n45.south) to[out=-135,in=90] (n6.north);
+\draw[ar] (n45.south) to[out=-45,in=90] (n7.north);
+\draw[ar] (n7)--(n8);
+\draw[ar] (n6.south) to[out=-90,in=160] (br.north west);
+\draw[ar] (n8.south) to[out=-90,in=20]  (br.north east);
+\draw[ar] (br)--(n9);
+\draw[ar] (n9)--(out);
+% ---- per-transition loop bracket ----
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n45)(n6)(n8)(br),inner sep=3.0mm] (loop) {};
+\end{scope}
+\node[tag,anchor=north west] at (loop.north west) {per-transition loop $j=1..N_p$ (repeat)};
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine) --- 유도의 줄거리. 외부 실험조건 $(\sigma_d,|I|,T,Q_\cell)$
+이 N0 에서 모델 입력으로, 분극이 내부 전위 $V_n$ 을 준다(N1). 파선 상자가 전이별 반복 단위($j{=}1..N_p$)이며,
+그 안에서 평형 중심(N2)$\cdot$히스 분기(N3)$\cdot$폭$\cdot$평형 진행률(N4$\cdot$N5)을 지난 뒤 \emph{두 갈래}로 갈린다 ---
+방향 불변의 평형 종(N6, 왼쪽)과 방향 의존의 인과 꼬리(N7$\cdot$N8, 오른쪽) --- 이 둘이 peak shape 의 분기
+(식~\eqref{eq:branch})에서 다시 만나 합산$\cdot$역보간된다(N9). 각 상자는 그 단계의 결과식과 산출량을 함께 적는다.}
+\label{fig:spine}

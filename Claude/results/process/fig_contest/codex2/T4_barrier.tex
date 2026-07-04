@@ -1,0 +1,38 @@
+\begin{tikzpicture}[x=0.69cm,y=2.20cm,
+  axis/.style={-{Latex[length=1.4mm]},semithick},
+  meas/.style={{Latex[length=1.1mm]}-{Latex[length=1.1mm]},thin},
+  guide/.style={thin,black!45,densely dotted},
+  lab/.style={font=\scriptsize,align=center}]
+\begin{scope}
+\draw[axis] (-0.25,-0.30) -- (6.35,-0.30) node[below,font=\scriptsize] {reaction coordinate};
+\draw[axis] (-0.25,-0.30) -- (-0.25,1.28) node[above,font=\scriptsize] {free energy};
+\draw[thick] plot[smooth] coordinates {(0.0000,1.5063) (0.2500,0.8139) (0.5000,0.3848) (0.7500,0.1635) (1.0000,0.1000) (1.2500,0.1494) (1.5000,0.2723) (1.7500,0.4342) (2.0000,0.6062) (2.2500,0.7647) (2.5000,0.8910) (2.7500,0.9721) (3.0000,1.0000) (3.2500,0.9721) (3.5000,0.8910) (3.7500,0.7647) (4.0000,0.6062) (4.2500,0.4342) (4.5000,0.2723) (4.7500,0.1494) (5.0000,0.1000) (5.2500,0.1635) (5.5000,0.3848) (5.7500,0.8139) (6.0000,1.5063)};
+\draw[guide] (1,0.10) -- (2.0,0.10);
+\draw[guide] (3,1.00) -- (2.0,1.00);
+\draw[meas] (2.0,0.10) -- (2.0,1.00) node[midway,left,font=\scriptsize] {$\Delta G_a$};
+\node[lab] at (1,-0.48) {filled site};
+\node[lab] at (5,-0.48) {empty site\\+ ion};
+\node[lab] at (3,1.16) {transition\\state};
+\node[lab] at (3,-0.78) {(a) equilibrium $A=0$};
+\end{scope}
+\begin{scope}[xshift=8.35cm]
+\draw[axis] (-0.25,-0.30) -- (6.35,-0.30) node[below,font=\scriptsize] {reaction coordinate};
+\draw[guide] plot[smooth] coordinates {(0.0000,1.5063) (0.2500,0.8139) (0.5000,0.3848) (0.7500,0.1635) (1.0000,0.1000) (1.2500,0.1494) (1.5000,0.2723) (1.7500,0.4342) (2.0000,0.6062) (2.2500,0.7647) (2.5000,0.8910) (2.7500,0.9721) (3.0000,1.0000) (3.2500,0.9721) (3.5000,0.8910) (3.7500,0.7647) (4.0000,0.6062) (4.2500,0.4342) (4.5000,0.2723) (4.7500,0.1494) (5.0000,0.1000) (5.2500,0.1635) (5.5000,0.3848) (5.7500,0.8139) (6.0000,1.5063)};
+\draw[thick] plot[smooth] coordinates {(0.0000,1.5938) (0.2500,0.8795) (0.5000,0.4285) (0.7500,0.1854) (1.0000,0.1000) (1.2500,0.1276) (1.5000,0.2285) (1.7500,0.3686) (2.0000,0.5187) (2.2500,0.6553) (2.5000,0.7598) (2.7500,0.8190) (3.0000,0.8250) (3.2500,0.7752) (3.5000,0.6723) (3.7500,0.5240) (4.0000,0.3438) (4.2500,0.1498) (4.5000,-0.0340) (4.7500,-0.1787) (5.0000,-0.2500) (5.2500,-0.2084) (5.5000,-0.0090) (5.7500,0.3983) (6.0000,1.0688)};
+\draw[guide] (1,0.10) -- (1.75,0.10);
+\draw[guide] (3,0.825) -- (1.75,0.825);
+\draw[meas] (1.75,0.10) -- (1.75,0.825) node[midway,left,font=\scriptsize] {$\Delta G_a-\chi\mathcal A$};
+\draw[guide] (5,-0.25) -- (6.03,-0.25);
+\draw[guide] (3,0.825) -- (6.03,0.825);
+\draw[meas] (6.03,-0.25) -- (6.03,0.825) node[midway,right,font=\scriptsize] {$\Delta G_a+(1-\chi)\mathcal A$};
+\draw[-{Latex[length=1.2mm]},semithick] (3,1.00) -- (3,0.825) node[midway,right,font=\scriptsize] {$\chi\mathcal A$};
+\draw[-{Latex[length=1.2mm]},semithick] (5,0.10) -- (5,-0.25) node[midway,right,font=\scriptsize] {$\mathcal A$};
+\node[lab] at (3,-0.78) {(b) driven $A>0$, $\chi=1/2$};
+\node[lab,align=left] at (3.0,1.18) {$\Delta H_a^\eff=\Delta H_a-\chi_d\Omega$};
+\end{scope}
+\end{tikzpicture}
+\caption{활성화 장벽 개선안. 좌표는 quartic double-well $G_0(x)=0.10+0.90(x-1)^2(x-5)^2/16$ 과
+구동력 tilt $G(x)=G_0(x)-\mathcal A(x-1)/4$ 를 T4\_calc.py 로 수치 평가했다. (a) 평형에서는 두 골짜기 높이가 같고,
+(b) 구동력 $\mathcal A_j$ 가 도착 골짜기를 내리면 정방향 장벽은 $\Delta G_a-\chi\mathcal A$, 역방향 장벽은
+$\Delta G_a+(1-\chi)\mathcal A$ 로 비대칭 이동한다(식~\eqref{eq:bv}, detailed balance 식~\eqref{eq:db}).}
+\label{fig:barrier}

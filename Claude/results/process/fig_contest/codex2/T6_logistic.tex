@@ -1,0 +1,35 @@
+\begin{tikzpicture}[x=0.040cm,y=2.25cm,
+  axis/.style={-{Latex[length=1.4mm]},semithick},
+  guide/.style={thin,black!45,densely dotted},
+  lab/.style={font=\scriptsize,align=center}]
+\begin{scope}
+\draw[axis] (-130,0) -- (132,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[axis] (-130,0) -- (-130,1.15) node[above,font=\scriptsize] {$\xi_\eq$};
+\foreach \x in {-120,-60,0,60,120}{\draw (\x,0.025) -- (\x,-0.025) node[below,font=\tiny] {\x};}
+\foreach \y/\txt in {0/0,0.5/0.5,1.0/1}{\draw (-128,\y) -- (-132,\y) node[left,font=\tiny] {\txt};}
+\draw[black!35,thin] plot[smooth] coordinates {(-120.0000,0.0055) (-90.0000,0.0199) (-60.0000,0.0693) (-30.0000,0.2143) (0.0000,0.5000) (30.0000,0.7857) (60.0000,0.9307) (90.0000,0.9801) (120.0000,0.9945)};
+\draw[black!65,densely dashed,semithick] plot[smooth] coordinates {(-120.0000,0.0093) (-90.0000,0.0292) (-60.0000,0.0881) (-30.0000,0.2372) (0.0000,0.5000) (30.0000,0.7628) (60.0000,0.9119) (90.0000,0.9708) (120.0000,0.9907)};
+\draw[thick] plot[smooth] coordinates {(-120.0000,0.0141) (-90.0000,0.0398) (-60.0000,0.1069) (-30.0000,0.2570) (0.0000,0.5000) (30.0000,0.7430) (60.0000,0.8931) (90.0000,0.9602) (120.0000,0.9859)};
+\draw[guide] (0,0) -- (0,1.04) node[above,font=\scriptsize] {center};
+\node[lab,anchor=west] at (62,0.46) {268 K};
+\node[lab,anchor=west] at (62,0.33) {298 K};
+\node[lab,anchor=west] at (62,0.20) {328 K};
+\end{scope}
+\begin{scope}[yshift=-1.55cm,y=0.19cm]
+\draw[axis] (-130,0) -- (132,0) node[below,font=\scriptsize] {$V-U_j^{\,d}$ [mV]};
+\draw[axis] (-130,0) -- (-130,11.5) node[above,font=\scriptsize] {$|d\xi_\eq/dV|$ [1/V]};
+\foreach \x in {-120,-60,0,60,120}{\draw (\x,0.25) -- (\x,-0.25) node[below,font=\tiny] {\x};}
+\foreach \y in {0,5,10}{\draw (-128,\y) -- (-132,\y) node[left,font=\tiny] {\y};}
+\draw[black!35,thin] plot[smooth] coordinates {(-120.0000,0.2372) (-90.0000,0.8444) (-60.0000,2.7915) (-30.0000,7.2915) (0.0000,10.8251) (30.0000,7.2915) (60.0000,2.7915) (90.0000,0.8444) (120.0000,0.2372)};
+\draw[black!65,densely dashed,semithick] plot[smooth] coordinates {(-120.0000,0.3572) (-90.0000,1.1031) (-60.0000,3.1300) (-30.0000,7.0453) (0.0000,9.7353) (30.0000,7.0453) (60.0000,3.1300) (90.0000,1.1031) (120.0000,0.3572)};
+\draw[thick] plot[smooth] coordinates {(-120.0000,0.4927) (-90.0000,1.3510) (-60.0000,3.3778) (-30.0000,6.7565) (0.0000,8.8449) (30.0000,6.7565) (60.0000,3.3778) (90.0000,1.3510) (120.0000,0.4927)};
+\draw[guide] (0,0) -- (0,10.9);
+\draw[{Latex[length=1.1mm]}-{Latex[length=1.1mm]},thin] (-25,5.4) -- (25,5.4) node[midway,above,font=\scriptsize] {$w=nRT/F$};
+\node[lab,anchor=west] at (36,9.8) {center slope $1/(4w)$};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 진행률과 그 미분의 온도 의존 개선안. 위 패널은 $\xi_\eq=1/[1+\exp(-(V-U_j^{\,d})/w_j)]$,
+아래 패널은 $|d\xi_\eq/dV|=\xi_\eq(1-\xi_\eq)/w_j$ 이다. 좌표는 $w=nRT/F$ 에서 $n=1$ 로 두고
+$T=268/298/328$ K 를 T6\_calc.py 로 수치 평가했다. 온도가 높아질수록 $w$ 가 커져 logistic 전환은 넓어지고,
+중심 기울기와 평형 peak 높이 $1/(4w)$ 는 낮아진다.}
+\label{fig:logistic}

@@ -1,0 +1,49 @@
+% T7 fig:reversal  (opus2 — quantitative-density; GENUINE low-pass numeric, not schematic)
+% peak shape = (xi_eq - xi_lag)/L_V, xi_lag from first-order low-pass recurrence eq:lowpass
+% (T7_calc.py): w=1, U=0, dgrid=0.05w, L_V=1.5w, rho=0.96722.
+%   discharge sigma_d=+1: peak-shape max 0.1923 at V=+1.00 w (tail -> higher V).
+%   charge   sigma_d=-1: Reverse[LowPass[Reverse[xi_eq]]] (eq:reversal) = exact mirror,
+%                        max 0.1923 at V=-1.00 w (tail -> lower V).
+%   equilibrium species (dotted) = xi_eq(1-xi_eq)/w, peak 0.25 at 0, direction-invariant.
+% Panels stacked vertically for full text width.
+\begin{tikzpicture}[x=0.72cm,y=8cm,>=Latex]
+% ================= (a) DISCHARGE (top) =================
+\begin{scope}
+\draw[->] (-6.3,0) -- (9.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-6.3,0) -- (-6.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(-6,0.0000) (-4.8,0.0028) (-3.6,0.0102) (-3,0.0183) (-2.4,0.0319) (-1.8,0.0536) (-1.2,0.0850) (-0.6,0.1239) (0,0.1620) (0.6,0.1871) (1.0,0.1923) (1.2,0.1912) (1.8,0.1760) (2.4,0.1492) (3,0.1190) (3.6,0.0908) (4.2,0.0671) (4.8,0.0485) (5.4,0.0345) (6,0.0242) (6.9,0.0140) (7.8,0.0079) (8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (1.0,0.1923) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[right,font=\scriptsize] at (1.2,0.205) {$({+}1.00w,\,0.192)$ tail};
+\draw[->,line width=0.9pt] (-5.6,0.275) -- (-2.4,0.275);
+\node[right,font=\scriptsize] at (-5.6,0.292) {progress $V\!\uparrow$ (time $\to$)};
+\draw[->,gray] (4.0,0.15) -- (6.6,0.075);
+\node[right,font=\scriptsize] at (4.4,0.175) {tail $\to$ higher $V$};
+\node[right,font=\scriptsize] at (2.6,0.265) {(a) discharge $\sigma_d{=}{+}1$};
+\end{scope}
+% ================= (b) CHARGE (bottom, mirror) =================
+\begin{scope}[yshift=-2.9cm]
+\draw[->] (-9.3,0) -- (6.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-9.3,0) -- (-9.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-8,-4,0,4} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(6,0.0000) (4.8,0.0028) (3.6,0.0102) (3,0.0183) (2.4,0.0319) (1.8,0.0536) (1.2,0.0850) (0.6,0.1239) (0,0.1620) (-0.6,0.1871) (-1.0,0.1923) (-1.2,0.1912) (-1.8,0.1760) (-2.4,0.1492) (-3,0.1190) (-3.6,0.0908) (-4.2,0.0671) (-4.8,0.0485) (-5.4,0.0345) (-6,0.0242) (-6.9,0.0140) (-7.8,0.0079) (-8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (-1.0,0.1923) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[left,font=\scriptsize] at (-1.2,0.205) {tail $({-}1.00w,\,0.192)$};
+\draw[<-,line width=0.9pt] (2.4,0.275) -- (5.6,0.275);
+\node[left,font=\scriptsize] at (6.1,0.292) {progress $V\!\downarrow$ (grid rev.)};
+\draw[->,gray] (-4.0,0.15) -- (-6.6,0.075);
+\node[left,font=\scriptsize] at (-4.4,0.175) {tail $\to$ lower $V$};
+\node[left,font=\scriptsize] at (-2.6,0.265) {(b) charge $\sigma_d{=}{-}1$ (mirror of a)};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향 --- 좌표는 저역통과 점화식(식~\eqref{eq:lowpass})의 수치 평가($w{=}1$, $L_V{=}1.5w$,
+$\rho{=}e^{-\Delta_\mathrm{grid}/L_V}{=}0.967$). 점선 $=$ 평형 종 $\xi_\eq(1-\xi_\eq)/w$(정점 $0.25$@중심, 방향 불변),
+실선 $=$ peak shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape}). (a) 방전은 진행이 $V\!\uparrow$ 라
+꼬리가 높은 $V$ 쪽으로, 정점 $({+}1.00w,\,0.192)$(격자 그대로). (b) 충전은 진행이 $V\!\downarrow$ 라 격자를 뒤집어
+필터한 뒤 되돌려(식~\eqref{eq:reversal}) 꼬리가 낮은 $V$ 쪽으로, 정점 $({-}1.00w,\,0.192)$ --- 방전의 정확한 거울.
+두 경우 모두 peak 는 양수.}
+\label{fig:reversal}

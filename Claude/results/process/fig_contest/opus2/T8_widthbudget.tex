@@ -1,0 +1,44 @@
+% T8 fig:widthbudget  (opus2 — quantitative-density; GENUINE discrete convolution)
+% Four-stage narrative of eq:widthbudget (T8_calc.py, scale w=1):
+%  (0) equilibrium delta at Maxwell potential (arrow, height 0.25 = intrinsic peak).
+%  (ii) intrinsic logistic-derivative bell xi(1-xi)/w: peak 0.25, sigma_int=pi w/sqrt3=1.814w, FWHM 3.53w.
+%  (ii)x(iii) bell (*) Gaussian(sigma_eta=1.25 sigma_int): peak 0.140, sigma_sym=1.601 sigma_int=2.904w, FWHM 6.68w.
+%  (i) +tail: (*) one-sided exp kernel L_V=1.5w: peak 0.127 at x=+1.26w (skew + mean shift), FWHM 7.32w.
+\begin{tikzpicture}[x=0.58cm,y=8.5cm,>=Latex]
+\draw[->] (-7.3,0) -- (10.6,0) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[->] (-7.3,0) -- (-7.3,0.275) node[above,font=\scriptsize] {$\dd Q/\dd V$ [arb.]};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.005) -- (\xx,-0.005) node[below,font=\scriptsize] {\xx};}
+% ---- (0) equilibrium delta ----
+\draw[->,line width=1.9pt] (0,0) -- (0,0.25);
+\node[font=\scriptsize,align=center,anchor=south east] at (-0.25,0.235) {(0) equilibrium\\delta (Maxwell $V$)};
+% ---- (ii) intrinsic bell (thin) ----
+\draw[black!55] plot[smooth] coordinates {(-7,0.0009) (-6,0.0025) (-5,0.0066) (-4,0.0177) (-3,0.0452) (-2.5,0.0701) (-2,0.1050) (-1.5,0.1491) (-1,0.1966) (-0.5,0.2350) (0,0.2500) (0.5,0.2350) (1,0.1966) (1.5,0.1491) (2,0.1050) (2.5,0.0701) (3,0.0452) (4,0.0177) (5,0.0066) (6,0.0025) (7,0.0009)};
+\fill[black!55] (0,0.25) circle (1.5pt);
+\node[font=\scriptsize,black!55,anchor=west] at (1.5,0.238) {(ii) intrinsic $n_jRT/F$};
+% ---- (ii)x(iii) broadened (dashed) ----
+\draw[densely dashed] plot[smooth] coordinates {(-7,0.0075) (-6,0.0157) (-5,0.0300) (-4,0.0516) (-3.5,0.0650) (-3,0.0795) (-2.5,0.0944) (-2,0.1087) (-1.5,0.1214) (-1,0.1314) (-0.5,0.1378) (0,0.1400) (0.5,0.1378) (1,0.1314) (1.5,0.1214) (2,0.1087) (2.5,0.0944) (3,0.0795) (3.5,0.0650) (4,0.0516) (5,0.0300) (6,0.0157) (7,0.0075) (8,0.0033)};
+\fill (0,0.1400) circle (1.5pt);
+\node[font=\scriptsize,align=left,anchor=east] at (-3.2,0.150) {(ii)$\otimes$(iii) variance\\add: $\sigma_\eta{=}1.25\,\sigma_\mathrm{int}$};
+% ---- (i) tailed (thick) ----
+\draw[thick] plot[smooth] coordinates {(-7,0.0034) (-6,0.0075) (-5,0.0152) (-4,0.0282) (-3,0.0473) (-2.5,0.0589) (-2,0.0714) (-1.5,0.0842) (-1,0.0966) (-0.5,0.1078) (0,0.1170) (0.5,0.1235) (1,0.1269) (1.26,0.1274) (1.5,0.1270) (2,0.1237) (2.5,0.1174) (3,0.1087) (3.5,0.0983) (4,0.0869) (5,0.0636) (6,0.0431) (7,0.0274) (8,0.0164) (9,0.0095) (10,0.0053)};
+\fill (1.26,0.1274) circle (1.5pt);
+\draw[black!55] (1.26,0.127) -- (1.95,0.152);
+\node[font=\scriptsize,anchor=west] at (1.95,0.155) {peak $+1.26w$};
+\draw[->,gray] (5.0,0.055) -- (8.2,0.020);
+\node[font=\scriptsize,anchor=west] at (5.6,0.045) {$+$(i) exp tail $\ell{=}L_{V,j}{=}1.5w$};
+% ---- three-scale budget (compact rule-bar node, top-right; sigma_sym relation in caption) ----
+\node[anchor=north east,align=left,font=\scriptsize,inner sep=1.5pt] at (10.6,0.278)
+  {scale budget [$w$]:\\
+   \rule[0.35ex]{1.81em}{1.2pt}\,$\sigma_\mathrm{int}{=}1.81$\\
+   \rule[0.35ex]{2.27em}{1.2pt}\,$\sigma_\eta{=}2.27$\\
+   \rule[0.35ex]{2.90em}{1.2pt}\,$\sigma_\mathrm{sym}{=}2.90$\\
+   \rule[0.35ex]{1.50em}{1.2pt}\,$L_V{=}1.50$};
+\end{tikzpicture}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}; 좌표는 이산 합성곱의 수치 평가, $w{=}1$).
+평형 델타(수직 화살, 높이 $0.25$)에 ② 내재 logistic 미분 종(가는 실선, 정점 $0.25$, $\sigma_\mathrm{int}{=}\pi w/\sqrt3{=}1.81w$)이
+얹히고, ③ 앙상블 $\eta$ 산포와의 합성곱(Gaussian $\sigma_\eta{=}1.25\,\sigma_\mathrm{int}$)이 분산 가법으로
+$\sigma_\mathrm{sym}{=}\sqrt{1{+}1.25^2}\,\sigma_\mathrm{int}{=}1.60\,\sigma_\mathrm{int}{=}2.90w$ 로 종을 넓혀 정점 $0.140$
+(파선), ① 유한율속의 단측 지수 꼬리($L_V{=}1.5w$ 와의 인과 합성곱)가 왜도$\cdot$평균 이동을 더해 정점
+$(+1.26w,\,0.127)$ 로 소인 방향으로 민다(굵은 실선). 오른쪽 막대가 세 척도 $\sigma_\mathrm{int}\cdot\sigma_\eta\cdot L_V$ 의
+정량 대비다 --- 대칭 두 몫($\sigma_\mathrm{int},\sigma_\eta$)은 $w_j$ 하나에 흡수되고 비대칭 꼬리만 $L_{V,j}$ 로 분리된다.}
+\label{fig:widthbudget}
