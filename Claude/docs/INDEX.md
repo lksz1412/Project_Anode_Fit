@@ -5,13 +5,13 @@
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
 ## ★현행 릴리스 — v1.0.14 (어투·물리 엄밀성·Appendix 재배치·레퍼런스·이미지 경연, 2026-07-04 완주)
-> `v1.0.14/` = 사용자 피드백 8건(F-A~F-H) 반영 증판(**P1~P6.1 완주** — 검수 R1~R7 누적 정정 ~98건·물리 실결함 0 수렴·그림 경연 72안 중 8승자 편입): eq 1.8 Hill 면밀 유도(Ξ₁·q(T)·ε̃)·PSD 유도-기반 배제·§1.7 폭 예산·부록 A(부호 검산표)/B(구현 대응표)·본문 코드-언급 0·어투 정련·레퍼런스 DOI 병기. 마스터플랜 = `../plans/2026-07-04-v1014-tone-rigor-appendix-figures-plan.md` · 결과 = `../results/V1014_RESULT.md` · ledger = `../results/process/V1014_EXECUTION_LEDGER.md` · 인계 = `v1.0.14/HANDOVER_v1.0.14.md`. ★사용자 검토 대기 2건: spinodal 부록 편입 여부·경연 그림 8종 미감 확인.
+> `v1.0.14/` = 사용자 피드백 8건(F-A~F-H) 반영 증판(**P1~P6.1 완주** — 검수 R1~R7 누적 정정 ~98건·물리 실결함 0 수렴·그림 경연 72안 중 8승자 편입): eq 1.8 Hill 면밀 유도(Ξ₁·q(T)·ε̃)·PSD 유도-기반 배제·§1.7 폭 예산·부록 A(부호 검산표)/B(구현 대응표)·본문 코드-언급 0·어투 정련·레퍼런스 DOI 병기. 마스터플랜 = `../plans/2026-07-04-v1014-tone-rigor-appendix-figures-plan.md` · 결과 = `../results/V1014_RESULT.md` · ledger = `../results/process/V1014_EXECUTION_LEDGER.md` · 인계 = `v1.0.14/HANDOVER_v1.0.14.md`. ★검토 완료(07-04): spinodal 부록 = 별도 문건 유지 확정·경연 그림 승인(fig15 간격 정정)·후속 = v1.0.15 코드 계획서 GO 대기.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
 |---|---|---|---|
 | v1.0.14/graphite_ica_ch1_v1.0.14.tex | Ch1 v1.0.14(57p, 0-err/ref 0/of 0) — Part 0 Hill 유도·PSD 수치 배제·폭 예산·부록 A/B·경연 승자 그림 8종·cite 병기 | 1.0.14, Hill, Ξ₁, q(T), widthbudget, psdconv, 부록 A, 부록 B, 경연 | 2026-07-04 |
 | v1.0.14/graphite_ica_ch2_v1.0.14.tex | Ch2 v1.0.14(14p) — Ξ₁ 통일·q(T) 각주·+29 귀속 한정·Bernardi 전제 명시·keybox 등온선 귀속 | 1.0.14, Ch2, Ξ₁, vib, Bernardi | 2026-07-04 |
-| v1.0.14/appendix_phase_separation.tex | ★독립 초안(8p) — binodal·spinodal·Maxwell·핵생성/CH 자족 유도+그림 2·ξ=θ 배향 주의 — **편입/폐기 사용자 검토 대기** | spinodal, binodal, Maxwell, 핵생성, 부록 초안 | 2026-07-04 |
+| v1.0.14/appendix_phase_separation.tex | ★독립 문건(8p, **별도 유지 확정** — 편입 안 함) — binodal·spinodal·Maxwell·핵생성/CH 자족 유도+그림 2·ξ=θ 배향 주의 | spinodal, binodal, Maxwell, 핵생성, 별도 부록 | 2026-07-04 |
 | v1.0.14/Anode_Fit_v1.0.14.py | 코드 v1.0.14 — docstring eq 참조 16곳(원형 보존 구역 불변)·회귀 13/13 | 1.0.14, 코드, eq 참조 | 2026-07-04 |
 | v1.0.14/FITTING_GUIDE.md | 가이드 v1.0.14 — Ω 하한 ≥0·χ tier-3·dS_rxn/dVdq_qa 식별 트랩·문턱 70–74 kJ/mol·r_a 정의 | 피팅, 가이드, Ω 하한, χ tier, silent 트랩, 문턱 | 2026-07-04 |
 | v1.0.14/HANDOVER_v1.0.14.md | v1.0.14 완주 세션 인계 — Chain(v1.0.12→v1.0.13→본)·검토 대기 2건·이월 목록 | 핸드오버, 인계, chain | 2026-07-04 |
