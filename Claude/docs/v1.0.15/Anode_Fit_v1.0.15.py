@@ -32,9 +32,8 @@
 #         (내부는 기존 dqdv 재사용; C-rate→|I|·방향 문자열→σ_d 환산만).
 #     (D) D1(ΔH_a^eff) 응집 : 분산됐던 χ_d·ΔH_a^eff 산출을 단일 헬퍼로 모음.
 #
-#   [보존·불가침] 사용자 원형 그대로(1바이트도 변조 X — 보완·노출만):
-#     func_w · func_U_j · func_U_j_hys · func_ksi_eq · func_L_q · _causal_lowpass
-#     · GRAPHITE_STAGING_LIT.
+#   [보존] 사용자 원형 함수 그대로(보완·노출만):
+#     func_w · func_U_j · func_ksi_eq · func_L_q · GRAPHITE_STAGING_LIT.
 #
 #   [근거 문건] graphite_ica_ch1_v1.0.15.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
 #     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
@@ -68,6 +67,13 @@ F  = 96485.0
 kB = 1.380649e-23
 h  = 6.62607015e-34
 
+# 수치 해상 가드(D6): 지수 기억 커널이 한 격자 간격 안에서 e^{−a} 로 완전히 소진되는
+#   (a=char_h/L_V > 이 상한) 미해상 영역에서만 (ξ_eq−ξ_lag)/L_V 가 0/0 로 불안정하다 →
+#   그 영역은 평형 종(L_V→0 해석적 극한, Ch1 eq:tail-limit)을 직접 쓴다. 이 상한에서
+#   기억식(유한차분 Δξ/h)과 평형 종이 이미 일치하므로 불연속이 없다. 물리 분기가 아니라
+#   부동소수 안전장치 — 해상 가능한 꼬리는 격자 밀도와 무관하게 항상 기억식으로 계산한다.
+_LAG_RESOLVE_DECAY_CAP = 40.0
+
 ScalarOrArray = Union[float, np.ndarray]
 
 
@@ -78,20 +84,6 @@ def func_w(T: ScalarOrArray, n: float = 1.0) -> ScalarOrArray:
 
 def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float) -> ScalarOrArray:
     return (-dH_rxn + T * dS_rxn) / F
-
-
-def func_U_j_hys(T: float, U_j: float, Omega: float, gamma: float,
-                 s: int = 1, last_eta: float = 1.0, last_rest: int = 600) -> float:
-    # [지위] 사용자 원형 보존 함수 — 현 활성 경로(equilibrium/dqdv)는 분리형
-    #   func_dU_hys + func_U_branch 를 호출하며 본 함수는 미호출(동등 물리, CODE_MAP orphan(b)).
-    two_RT = 2.0 * R * T
-    if Omega <= two_RT:
-        dU_j_hys = 0.0
-    else:
-        u = np.sqrt(1.0 - two_RT / Omega)
-        dU_j_hys = (2.0 / F) * (Omega * u - two_RT * np.arctanh(u))
-    partial_hys = 1.0
-    return U_j + 0.5 * s * partial_hys * gamma * dU_j_hys
 
 
 def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray,
@@ -110,31 +102,41 @@ def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float,
     return np.exp(ln_Lq)
 
 
-def _causal_lowpass(source_signal: np.ndarray,
-                    grid_step: float,
-                    lag_length: float) -> np.ndarray:
-    if lag_length <= 0 or not np.isfinite(lag_length):
-        return source_signal.copy()
-    decay_per_step = float(np.exp(-grid_step / lag_length))
-    try:
-        from scipy.signal import lfilter
-        initial_state = np.array([decay_per_step * source_signal[0]])
-        lagged, _ = lfilter([1.0 - decay_per_step],
-                            [1.0, -decay_per_step],
-                            source_signal, zi=initial_state)
-        return lagged
-    except Exception:
-        lagged = np.empty_like(source_signal)
-        lagged[0] = source_signal[0]
-        for i in range(1, source_signal.size):
-            lagged[i] = decay_per_step * lagged[i - 1] + (1.0 - decay_per_step) * source_signal[i]
-        return lagged
+def _causal_memory_pointwise(V_prog: np.ndarray,
+                             ksi_eq: np.ndarray,
+                             lag_length: float) -> np.ndarray:
+    """인과 기억 적분 ξ_lag(V)=(1/L_V)∫ ξ_eq(u) e^{−(V−u)/L_V} du 의 점별 평가(Ch1 eq:lag).
+
+    V_prog : 진행 방향으로 정렬된 내부 전위(방전 오름차순·충전 내림차순, eq:reversal).
+    ksi_eq : 같은 순서의 평형 진행률.
+    반환   : 같은 순서의 지연 진행률 ξ_lag.
+
+    지수 커널을 구간 [i−1,i] 마다 정확 적분(ξ_eq 구간 선형 가정)한다 — 균일 작업 격자·
+    리샘플 없이 임의 간격의 입력점에서 직접 성립. 간격 h=|ΔV|, a=h/L_V, e=e^{−a} 에서
+        seg = ξ_i(1−e) − (Δξ/a)(1−(1+a)e),   ξ_lag[i] = e·ξ_lag[i−1] + seg
+    (a→0 = 사다리꼴 평균 = 연속 완화 dξ_lag/dV=(ξ_eq−ξ_lag)/L_V; a→∞ = Δξ/h 유한차분
+    도함수 = 평형 종으로 매끈히 수렴.)
+    """
+    n = ksi_eq.size
+    out = np.empty(n, dtype=float)
+    out[0] = float(ksi_eq[0])  # 진행 시작 이전 ξ_eq 상수 근사(하한 자연경계 −∞)
+    for i in range(1, n):
+        h = abs(float(V_prog[i] - V_prog[i - 1]))
+        a = h / lag_length
+        if a < 1e-4:  # 조밀 구간: 사다리꼴 극한(seg 둘째항 파괴적 상쇄·언더플로 회피)
+            out[i] = (1.0 - a) * out[i - 1] + a * 0.5 * (float(ksi_eq[i]) + float(ksi_eq[i - 1]))
+        else:
+            e = float(np.exp(-a))
+            dksi = float(ksi_eq[i]) - float(ksi_eq[i - 1])
+            seg = float(ksi_eq[i]) * (1.0 - e) - (dksi / a) * (1.0 - (1.0 + a) * e)
+            out[i] = e * out[i - 1] + seg
+    return out
 # ===========================================================================
 
 
 # ===== 보완: 분기 중심·유효폭·유효장벽·전달계수 — 인자 전부 노출 ===============
 def func_dU_hys(T: float, Omega: float) -> float:
-    """spinodal 상한 분기 gap ΔU_hys [V] (eq:dUhys). func_U_j_hys 내부와 동일식.
+    """spinodal 상한 분기 gap ΔU_hys [V] (eq:dUhys).
     Ω≤2RT 면 0(제곱근 NaN 영역 명시 분기). Ω 만 인자(하드코딩 없음)."""
     two_RT = 2.0 * R * T
     if Omega <= two_RT:
@@ -146,8 +148,7 @@ def func_dU_hys(T: float, Omega: float) -> float:
 def func_U_branch(T: float, U_j: float, Omega: float, gamma: float,
                   sigma_d: int, h_eta: float = 1.0) -> float:
     """분기 중심 U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch).
-    partial_hys 를 h_eta(부분 cycle 인자, 기본 1.0)로 노출 — 하드코딩 제거.
-    원형 func_U_j_hys 와 같은 물리(그 함수의 partial_hys=1.0 하드코딩만 인자화)."""
+    partial_hys 를 h_eta(부분 cycle 인자, 기본 1.0)로 노출 — 하드코딩 제거."""
     return float(U_j + 0.5 * sigma_d * h_eta * gamma * func_dU_hys(T, Omega))
 
 
@@ -254,9 +255,6 @@ class GraphiteAnodeDischargeDQDV:
                  chi_split: Callable[[float, int], float] = func_chi_d,
                  use_dH_eff: bool = True,
                  z_cut: float = 4.357, A_cap_RT: float = 4.0,
-                 grid_pad_lo: float = 0.15, grid_pad_hi: float = 0.15,
-                 n_work_min: int = 2048, min_lag_grid_steps: float = 2.0,
-                 v_span_floor: float = 1e-6,
                  seed_T: float = 298.15, seed_I: float = 0.1,
                  seed_Q_cell: float = 1.0):
         self.transitions = transitions
@@ -271,11 +269,6 @@ class GraphiteAnodeDischargeDQDV:
         self.use_dH_eff = bool(use_dH_eff)
         self.z_cut = _finite_pos("z_cut", z_cut)
         self.A_cap_RT = _finite_pos("A_cap_RT", A_cap_RT)
-        self.grid_pad_lo = _finite_nonneg("grid_pad_lo", grid_pad_lo)
-        self.grid_pad_hi = _finite_nonneg("grid_pad_hi", grid_pad_hi)
-        self.n_work_min = int(_finite_pos("n_work_min", n_work_min))
-        self.min_lag_grid_steps = _finite_pos("min_lag_grid_steps", min_lag_grid_steps)
-        self.v_span_floor = _finite_pos("v_span_floor", v_span_floor)
 
         # [보완(1)] transition 에 없는 파생 초기값(L_V seed)을 물리로 계산해 채움.
         #   ★원본 line 81 `self.transitions["L_V"] = self._init_L_V` 는 List 에
@@ -403,17 +396,19 @@ class GraphiteAnodeDischargeDQDV:
              I_abs: float,
              Q_cell: float,
              s: int = +1) -> ScalarOrArray:
-        """관측 dQ/dV (eq:vn 분극 → eq:sum 합산).
+        """관측 dQ/dV (eq:vn 분극 → eq:sum 점별 합산).
 
-        V_app  : 인가 전위 격자 [V] (스칼라 또는 배열; 스칼라·단일점은 스윕 이력이
-                 없어 꼬리 미적용 — 평형 분기 강제. 동역학 꼬리는 배열 스윕에서만)
+        V_app  : 인가(측정) 전위 배열 [V] (스칼라 또는 배열). 모든 평가는 이 전위에서
+                 점별(pointwise) — 균일 작업 격자·리샘플·역보간 없음. 스칼라·단일점은
+                 스윕 이력이 없어 꼬리 미정의 → 평형 종.
         T      : 온도 [K] (스칼라 등온, 또는 V_app 길이 배열 = 비등온 T(V))
         I_abs  : 전류 크기 |I| (>= 0)
         Q_cell : 셀 용량(전하) — q=Q/Q_cell 환산 (> 0)
         s      : 방향 부호 σ_d (방전 +1 / 충전 −1)
 
-        반영: 분극 V_n=V_app−σ_d|I|R_n · 분기중심 U^d(σ_d) · 평형 peak(방향 불변)
-              · 동역학 꼬리(σ_d 방향 인과기억) · χ_d/ΔH_eff 방향 의존.
+        반영: 분극 V_n=V_app−σ_d|I|R_n · 분기중심 U^d(σ_d) · peak 모양 (ξ_eq−ξ_lag)/L_V
+              (Ch1 eq:peakshape; ξ_lag=인과 기억 적분 eq:lag, 방향 반전 eq:reversal).
+              L_V→0 극한은 평형 종 ξ_eq(1−ξ_eq)/w (eq:tail-limit) — 분기 없음, 수치 가드만.
         (B) I_abs·Q_cell·T 유한·범위 가드.
         """
         sigma_d = +1 if s >= 0 else -1
@@ -434,87 +429,83 @@ class GraphiteAnodeDischargeDQDV:
         T_is_array = (T_input.ndim >= 1 and T_input.size > 1)
         if not np.all(np.isfinite(T_input)) or np.any(T_input <= 0.0):
             raise ValueError("T must be finite and > 0 (K).")
+        if T_is_array and T_input.size != V_in.size:
+            raise ValueError("T array length must match V_app (per-point T(V)).")
 
-        # 분극: V_n = V_app − σ_d|I|R_n (eq:vn)
+        # 분극: V_n = V_app − σ_d|I|R_n (eq:vn) — 이후 모든 평가는 V_n 위에서 점별.
         V_n = V_in - sigma_d * I_abs * self.Rn
+        n_pts = V_n.size
 
-        v_lo, v_hi = float(np.min(V_n)), float(np.max(V_n))
-        # 퇴화 스팬 가드: 스칼라·단일점 입력은 스윕 이력이 없어 인과 꼬리를 정의할 수 없다.
-        #   floor 스팬(1e-6 V) 위 작업 격자는 grid_step 이 인위적으로 작아져 꼬리 분기
-        #   (L_V < ν·Δ_grid)가 그리드-의존으로 뒤집히므로, 이 경우 평형 분기를 강제한다
-        #   (배열 스윕 경로는 불변 — 흑연 회귀 bit-exact 유지).
-        degenerate_span = (v_hi - v_lo) < self.v_span_floor
-        v_span = max(v_hi - v_lo, self.v_span_floor)
-        n_work = max(self.n_work_min, V_n.size * 2)
+        # 진행 방향 정렬(eq:reversal): 인과 기억은 "진행 방향의 과거"를 훑는다.
+        #   방전(σ_d=+1) 진행=V 증가 → 오름차순 / 충전(σ_d=−1) 진행=V 감소 → 내림차순.
+        order = np.argsort(V_n, kind="stable")
+        if sigma_d < 0:
+            order = order[::-1]
+        inv_order = np.empty(n_pts, dtype=int)
+        inv_order[order] = np.arange(n_pts)
+        V_prog = V_n[order]
+        T_prog = (T_input[order] if T_is_array
+                  else np.full(n_pts, float(T_input), dtype=float))
+        T_rep = float(np.mean(T_prog))
 
-        # 작업 격자(eq:vwork; 꼬리 여유 — 기본 패딩 대칭 0.15/0.15: 꼬리가 양방향 모두 들어오도록)
-        V_work = np.linspace(v_lo - self.grid_pad_lo * v_span, v_hi + self.grid_pad_hi * v_span, n_work)
-        grid_step = V_work[1] - V_work[0]
-
-        if T_is_array:
-            sort_idx = np.argsort(V_n)
-            V_n_sorted = V_n[sort_idx]
-            T_sorted = T_input[sort_idx]
-            T_work = np.interp(V_work, V_n_sorted, T_sorted)
+        # 배경 미분용량(입력 전위에서 직접).
+        if callable(self.Cbg):
+            bg = np.asarray(self.Cbg(V_n), dtype=float) * np.ones_like(V_n)
         else:
-            T_work = float(T_input) * np.ones(n_work, dtype=float)
+            bg = np.full_like(V_n, float(self.Cbg))
 
-        T_rep = float(np.mean(T_work))
-        dqdv_work = (np.asarray(self.Cbg(V_work), dtype=float) * np.ones_like(V_work)
-                     if callable(self.Cbg)
-                     else np.full_like(V_work, float(self.Cbg)))
+        # 수치 해상 가드용 대표 간격(진행 격자의 양수 중앙값).
+        if n_pts >= 2:
+            dV_pos = np.abs(np.diff(V_prog))
+            dV_pos = dV_pos[dV_pos > 0.0]
+            char_h = float(np.median(dV_pos)) if dV_pos.size else 0.0
+        else:
+            char_h = 0.0
 
+        acc_prog = np.zeros(n_pts, dtype=float)  # 진행 순서 전이 합
         for tr in self.transitions:
             # 평형 중심 U_j(T) — 배열 T 대응
             if 'dH_rxn' in tr and 'dS_rxn' in tr:
-                U_j = func_U_j(T_work, tr['dH_rxn'], self._effective_dS_rxn(tr, T_work))     # array
+                U_j = func_U_j(T_prog, tr['dH_rxn'], self._effective_dS_rxn(tr, T_prog))
             else:
                 U_j = float(tr['U'])
 
-            # ★히스테리시스 분기 중심 U^d = U + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch)
-            #   — σ_d 로 방·충 반대 이동. 평형 종 자체는 방향 불변(아래 ksi 에는
-            #     중심만 σ_d 로 갈린 형태로 들어감 = 곡선상 분기 반영). γ=0 → 0.
+            # ★히스테리시스 분기 중심 U^d = U + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch). γ=0 → 0.
             Omega = float(tr.get('Omega', 0.0))
             gamma = float(tr.get('gamma', 0.0))
             h_eta = float(tr.get('h_eta', 1.0))
             if gamma != 0.0 and Omega > 0.0:
-                # 분기 shift = func_U_branch(U_j=0) (전이당 상수, σ_d 방향·eq:Ubranch)
-                #   → 배열 중심 U_j 에 가산. (公開 헬퍼 활성화 = 인라인 식 중복 제거.)
-                hys_shift = func_U_branch(T_rep, 0.0, Omega, gamma, sigma_d, h_eta)
-                center = U_j + hys_shift
+                center = U_j + func_U_branch(T_rep, 0.0, Omega, gamma, sigma_d, h_eta)
             else:
                 center = U_j
 
-            n_j = self._n_factor(tr, T_work)
-            w = self._width(tr, T_work)
-            # 평형 진행률 ξ_eq — 방향 s 는 logistic 부호. 분기중심 center 사용.
-            ksi_eq = func_ksi_eq(T_work, V_work, center, n_j, sigma_d)
+            n_j = self._n_factor(tr, T_prog)
+            w = self._width(tr, T_prog)
+            # 평형 진행률 ξ_eq(진행 순서) — 방향 s 는 logistic 부호. 분기중심 center.
+            ksi_eq = np.asarray(func_ksi_eq(T_prog, V_prog, center, n_j, sigma_d), dtype=float)
 
             # 지연 길이 — 전이당 상수(대표 T_rep·대표 n)로 1회. χ_d·ΔH_eff 방향별.
             n_rep = float(np.asarray(self._n_factor(tr, T_rep)).reshape(-1)[0])
             lag_len_V = self._resolve_lag_length(
                 tr, T_rep, I_abs, Q_cell, n_rep, sigma_d)
 
-            # 분기 스위치(eq:branch): L_V < ν·Δ_grid(ν=min_lag_grid_steps) 면 평형 종, 그 외 꼬리.
-            if degenerate_span or (not np.isfinite(lag_len_V)) or lag_len_V < self.min_lag_grid_steps * grid_step:
-                # 저율·|I|→0·동역학 키 부재·퇴화 스팬(스칼라 입력) → 평형 종 직접(eq:eqpeak)
+            # 수치 가드(D6): 스칼라·단일점·비유한·미해상(커널이 한 격자점 안에서 소진,
+            #   a=char_h/L_V > _LAG_RESOLVE_DECAY_CAP) 또는 char_h≤0(전 V 동일) → 평형 종 직접.
+            #   ξ_lag→ξ_eq 인 (ξ_eq−ξ_lag)/L_V 0/0 을 피하는 수치 안전장치. 평형 종은
+            #   (ξ_eq−ξ_lag)/L_V 의 L_V→0 해석적 극한(eq:tail-limit)이지 물리 분기가 아니다.
+            unresolved = (char_h <= 0.0) or (lag_len_V * _LAG_RESOLVE_DECAY_CAP < char_h)
+            if (is_scalar or n_pts < 2 or (not np.isfinite(lag_len_V))
+                    or lag_len_V <= 0.0 or unresolved):
                 peak_shape = ksi_eq * (1.0 - ksi_eq) / w
             else:
-                ksi_arr = np.asarray(ksi_eq, dtype=float)
-                # ★꼬리 방향(eq:memory 인과 합성곱은 "진행 방향의 과거"를 기억):
-                #   방전(σ_d=+1): 진행=V 증가 → 격자 오름차순 그대로.
-                #   충전(σ_d=−1): 진행=V 감소 → 격자 뒤집어 필터 후 되돌림(방향 반전, eq:reversal).
-                if sigma_d >= 0:
-                    occ_lagged = _causal_lowpass(ksi_arr, grid_step, lag_len_V)
-                else:
-                    occ_lagged = _causal_lowpass(ksi_arr[::-1], grid_step, lag_len_V)[::-1]
-                # dQ/dV = Q·(ξ_eq − r̄)/L_V 의 이산형(eq:peakshape: 평형−지연의 미분)
-                peak_shape = (ksi_eq - occ_lagged) / lag_len_V
+                # 인과 기억 적분 ξ_lag(진행 방향, eq:lag·eq:reversal) → peak(eq:peakshape).
+                ksi_lag = _causal_memory_pointwise(V_prog, ksi_eq, lag_len_V)
+                peak_shape = (ksi_eq - ksi_lag) / lag_len_V
 
-            dqdv_work = dqdv_work + tr['Q'] * peak_shape
+            acc_prog = acc_prog + tr['Q'] * peak_shape
 
-        # 역보간: 작업 격자 → 관측 전위 격자로 되돌림(eq:sum 의 "합산·역보간" 중 후자).
-        dqdv_out = np.interp(V_n, V_work, dqdv_work)
+        # 진행 순서 누적을 입력 순서로 되돌려 배경 위에 점별 합산(역보간 없음).
+        dqdv_out = bg + acc_prog[inv_order]
         return float(dqdv_out[0]) if is_scalar else dqdv_out
 
     # ---- (C) 편의 facade : 실험조건으로 바로 호출 ------------------------
