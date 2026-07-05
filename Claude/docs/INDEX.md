@@ -14,7 +14,8 @@
 | v1.0.15/Anode_Fit_v1.0.15.py | 코드 v1.0.15 — dqdv 점별 재아키텍처(격자·역보간·_causal_lowpass 제거)·신설 _causal_memory_pointwise·dead 삭제·회귀 13/13·골든 재캡처 | 1.0.15, 코드, 점별, dqdv, _causal_memory_pointwise, 골든 재캡처 | 2026-07-06 |
 | v1.0.15/golden_graphite_ref.npz | 점별 코드 재캡처 골든(13 arrays) — equilibrium bit-exact 앵커·dqdv interp 아티팩트 제거 | 골든, 회귀, 점별 재캡처, 6종 게이트 | 2026-07-06 |
 | v1.0.15/appendix_phase_separation.tex | 독립 부록(8p) — v1.0.14 승계(격자 무관·무변경) | spinodal, binodal, 부록, 승계 | 2026-07-06 |
-| v1.0.15/HANDOVER_v1.0.15.md | v1.0.15 완주 인계 — Chain(KICKOFF←v1.0.14←…)·P1~P7 요약·주의(staging 중복키·골든 재캡처·v1.0.14 폴백) | 핸드오버, 인계, chain, 격자 퇴출 | 2026-07-06 |
+| v1.0.15/HANDOVER_v1.0.15.md | v1.0.15 완주 인계 — Chain(KICKOFF←v1.0.14←…)·P1~P7 요약·주의(staging 'w'/'n' 의도설계·골든 재캡처·v1.0.14 폴백) | 핸드오버, 인계, chain, 격자 퇴출 | 2026-07-06 |
+| v1.0.15/CLOSING_v1.0.15.md | ★버전 클로징(**다음 버전 착수 전 필독**) — 최상위 헌법 3종(교과서·논문·수식주도)·프로세스 규율(제안 전 과거이력 확인)·재발방지 전수·w/T 피팅 확정 방향(fit n·실측 T·4단 사다리·n(T)→발열 config) | 클로징, 헌법 3종, 수식주도, 재발방지, 과거이력 확인, w 피팅, fit n, n(T), 필독 | 2026-07-06 |
 
 ## 직전 안정판 — v1.0.14 (어투·물리 엄밀성·Appendix 재배치·레퍼런스·이미지 경연, 2026-07-04 완주, superseded by 1.0.15)
 > `v1.0.14/` = 사용자 피드백 8건(F-A~F-H) 반영 증판(**P1~P6.1 완주** — 검수 R1~R7 누적 정정 ~98건·물리 실결함 0 수렴·그림 경연 72안 중 8승자 편입): eq 1.8 Hill 면밀 유도(Ξ₁·q(T)·ε̃)·PSD 유도-기반 배제·§1.7 폭 예산·부록 A(부호 검산표)/B(구현 대응표)·본문 코드-언급 0·어투 정련·레퍼런스 DOI 병기. 마스터플랜 = `../plans/2026-07-04-v1014-tone-rigor-appendix-figures-plan.md` · 결과 = `../results/V1014_RESULT.md` · ledger = `../results/process/V1014_EXECUTION_LEDGER.md` · 인계 = `v1.0.14/HANDOVER_v1.0.14.md`. ★검토 완료(07-04): spinodal 부록 = 별도 문건 유지 확정·경연 그림 승인(fig15 간격 정정)·후속 = v1.0.15 코드 계획서 GO 대기.
