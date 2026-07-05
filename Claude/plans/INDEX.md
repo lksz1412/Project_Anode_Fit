@@ -2,10 +2,16 @@
 
 > 컴팩션 복구·항해용. **현재 활성 마스터부터 읽는다.** 과거 계획은 시대별 그룹으로 묶음(날짜순 파일명 = 1차 정렬). result/ledger 는 `../results/process/`.
 
-## ★ 현재 활성 (v1.0.10 교재 증판본 — 코드↔문건 동기화)
+## ★ 현재 활성 (v1.0.15 교재 증판본 — 이산 격자 퇴출 점별 아키텍처 + Ch2 발열 상세화)
 | 파일 | 역할 | 상태 |
 |---|---|---|
-| **2026-07-01-v1010-code-doc-sync-bdd-fitting-plan.md** | ★**MASTER** — 순차 6-페이즈(1 코드 → 2+3 Ch1 → 4 Ch2 → 5 코드개정 → 6 최종점검). LCO·발열 코드구현=P4. | GO 대기 |
+| **2026-07-05-v1015-code-doc-sync-master-plan.md** | ★**MASTER** — 순차 7-페이즈(P1 앵커·증판 → P2 Ch1 이론교정[격자 퇴출·eq:memory 승격·R5 재유도] → P3 Ch2 발열 상세화 → P4 코드 점별 재아키텍처+dead 삭제+골든 검증 → P5 그림 경연[상한X] → P6 N회 검수 → P7 마감). theory-first·문건↔코드 양방향 동기·dead 삭제. | 사용자 검토·GO 대기 |
+| 2026-07-04-v1015-code-update-plan.md | (superseded ← 위 마스터) Fable rev.3 "코드 재아키텍처+문건 사후 동기" 프레이밍. 이력 보존(삭제 X) | superseded |
+
+## 과거 활성 (v1.0.10~v1.0.14 완주 — 코드↔문건 동기화 6-페이즈 = v1.0.15 검증 모델)
+| 파일 | 역할 | 상태 |
+|---|---|---|
+| **2026-07-01-v1010-code-doc-sync-bdd-fitting-plan.md** | ★**MASTER**(검증 모델) — 순차 6-페이즈(1 코드 → 2+3 Ch1 → 4 Ch2 → 5 코드개정 → 6 최종점검). LCO·발열 코드구현=P4. v1.0.10~1.0.14 이 궤도로 완주. | done |
 | 2026-07-01-graph-verify-code-doc-unify-v1010-plan.md | (완료) 코드 정상 종개형 검증 + 1.0.10 버전 통일 | done |
 | 2026-06-30-rework-broadening-restore-weff-fix-reorg-plan.md | (완료) broadening 복원·w_eff 제거·구조 재정리 | done |
 - 실행 ledger·result: `../results/process/V1010_EXECUTION_LEDGER.md`, `V1010_P{n}_*_RESULT.md`, `GRAPH_VERIFY_RESULT.md`, `PHASE_REWORK_RESULT.md`.
