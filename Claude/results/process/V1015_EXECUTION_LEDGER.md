@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|
 | P1 | 앵커·증판 | 1–4 | docs/v1.0.15·격자 맵·인벤토리 | 회귀 13/13·tex 0-err·demo/sample/suite | ✅ |
 | P2 | Fable 물리 논리 6종 검토·보고 | 5–8 | V1015_P2_PHYSICS_REVIEW | union·단독 재검·보고(Decision Gate) | 🔄 보고완료·박사님 결정 대기 |
-| P3 | Ch1 격자 퇴출 修正(theory-first) | 9–14 | ch1 연속형·R5 재유도 | 재검산·격자 grep 0·빌드 | ⬜ |
+| P3 | Ch1 격자 퇴출 修正(theory-first) | 9–14 | ch1 연속형·R5 재유도 | 재검산·격자 grep 0·빌드 | ✅ 완주·수렴 |
 | P4 | Ch2 발열 상세화(additive) | 15–19 | worked example·vib/elec·그림 위치 | 발열 완결·정합·빌드 | ⬜ |
 | P5 | 코드 개정(점별·dead 삭제·골든) | 20–27 | dqdv 점별·신규 골든 | 등가 3종·연속 천이·회귀 재정초 | ⬜ |
 | P6 | 그림 경연(9종·master=Opus) | 28–32 | 편입 그림 | 좌표 재검산·정합 | ⬜ |
