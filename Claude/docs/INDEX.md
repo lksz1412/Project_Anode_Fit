@@ -4,7 +4,19 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## ★현행 릴리스 — v1.0.14 (어투·물리 엄밀성·Appendix 재배치·레퍼런스·이미지 경연, 2026-07-04 완주)
+## ★현행 릴리스 — v1.0.15 (이산 전압 격자 완전 퇴출 → 점별 연속 아키텍처 + Ch2 발열 상세화 + Fable 물리 6종 검토, 2026-07-06 완주)
+> `v1.0.15/` = 균일 작업 전압 격자(리샘플→저역통과 점화식→역보간)를 **아키텍처에서 완전 퇴출**하고 점별 연속 메모리 적분으로 전환한 증판(**P1~P7 완주**·전건 커밋 8de5157→…→P7). Ch1 §1.9 인과 기억 적분(신설 eq:memory/lag/tail-limit/reversal)·코드 dqdv 점별 재작성·그림 점별 재산출 3축 동기. 골든 6종 게이트 검증 후 재캡처. Ch2 worked example(코드-정합)·P2 물리 6종 검토(Codex3+Opus3, 확정 CRIT/HIGH 0)·dead 삭제·격자 param 제거. 마스터플랜 = `../plans/2026-07-05-v1015-code-doc-sync-master-plan.md` · 결과 = `../results/process/V1015_P{1..7}_RESULT.md` · ledger = `../results/process/V1015_EXECUTION_LEDGER.md` · 인계 = `v1.0.15/HANDOVER_v1.0.15.md`. ★주의: staging `'w'`+`'n'` 중복 키(코드 `'n'` 우선 = w=RT/F) 정리는 사용자 판단 대기.
+
+| 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
+|---|---|---|---|
+| v1.0.15/graphite_ica_ch1_v1.0.15.tex | Ch1 v1.0.15(58p, 0-err/ref 0/of>10 0) — §1.9 점별 인과 기억 적분(신설 eq:memory/lag/tail-limit/reversal, 제거 eq:branch/vwork/lowpass)·격자 퇴출·P2-1/3/4·fig 점별 재산출 | 1.0.15, 점별, 격자 퇴출, 메모리 적분, eq:lag, tail-limit, reversal, 9종 체리픽 | 2026-07-06 |
+| v1.0.15/graphite_ica_ch2_v1.0.15.tex | Ch2 v1.0.15(16p) — 발열 worked example 신설(코드-정합 U_oc 74.4·∂U/∂T −0.204·q_rev +60.8)·tab:qrev SOC 부호 교대·P2-2/P2-4 caveat | 1.0.15, Ch2, worked example, 가역 발열, entropy_coefficient, config, tab:qrev | 2026-07-06 |
+| v1.0.15/Anode_Fit_v1.0.15.py | 코드 v1.0.15 — dqdv 점별 재아키텍처(격자·역보간·_causal_lowpass 제거)·신설 _causal_memory_pointwise·dead 삭제·회귀 13/13·골든 재캡처 | 1.0.15, 코드, 점별, dqdv, _causal_memory_pointwise, 골든 재캡처 | 2026-07-06 |
+| v1.0.15/golden_graphite_ref.npz | 점별 코드 재캡처 골든(13 arrays) — equilibrium bit-exact 앵커·dqdv interp 아티팩트 제거 | 골든, 회귀, 점별 재캡처, 6종 게이트 | 2026-07-06 |
+| v1.0.15/appendix_phase_separation.tex | 독립 부록(8p) — v1.0.14 승계(격자 무관·무변경) | spinodal, binodal, 부록, 승계 | 2026-07-06 |
+| v1.0.15/HANDOVER_v1.0.15.md | v1.0.15 완주 인계 — Chain(KICKOFF←v1.0.14←…)·P1~P7 요약·주의(staging 중복키·골든 재캡처·v1.0.14 폴백) | 핸드오버, 인계, chain, 격자 퇴출 | 2026-07-06 |
+
+## 직전 안정판 — v1.0.14 (어투·물리 엄밀성·Appendix 재배치·레퍼런스·이미지 경연, 2026-07-04 완주, superseded by 1.0.15)
 > `v1.0.14/` = 사용자 피드백 8건(F-A~F-H) 반영 증판(**P1~P6.1 완주** — 검수 R1~R7 누적 정정 ~98건·물리 실결함 0 수렴·그림 경연 72안 중 8승자 편입): eq 1.8 Hill 면밀 유도(Ξ₁·q(T)·ε̃)·PSD 유도-기반 배제·§1.7 폭 예산·부록 A(부호 검산표)/B(구현 대응표)·본문 코드-언급 0·어투 정련·레퍼런스 DOI 병기. 마스터플랜 = `../plans/2026-07-04-v1014-tone-rigor-appendix-figures-plan.md` · 결과 = `../results/V1014_RESULT.md` · ledger = `../results/process/V1014_EXECUTION_LEDGER.md` · 인계 = `v1.0.14/HANDOVER_v1.0.14.md`. ★검토 완료(07-04): spinodal 부록 = 별도 문건 유지 확정·경연 그림 승인(fig15 간격 정정)·후속 = v1.0.15 코드 계획서 GO 대기.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |

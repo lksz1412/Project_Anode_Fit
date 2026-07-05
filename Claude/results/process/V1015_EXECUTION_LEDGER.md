@@ -10,7 +10,9 @@
 | P4 | Ch2 발열 상세화(additive) | 15–19 | worked example·vib/elec·그림 위치 | 발열 완결·정합·빌드 | ✅ 완주 |
 | P5 | 코드 개정(점별·dead 삭제·골든) | 20–27 | dqdv 점별·신규 골든 | 등가 3종·연속 천이·회귀 재정초 | ✅ 완주 |
 | P6 | 그림 좌표 재검산·점별 재산출 | 28–32 | reversal·relaxode 점별 재산출 | 좌표 재검산·정합·빌드 | ✅ 완주 |
-| P7 | 검수(변경분)+최종 마감 | 33–37 | RESULT·HANDOVER·INDEX | 3대 무결·최종 게이트 | ⬜ |
+| P7 | 검수(변경분)+최종 마감 | 33–37 | RESULT·HANDOVER·INDEX | 3대 무결·최종 게이트 | ✅ 완주 |
+
+**v1.0.15 완결 (2026-07-06)**: P1~P7 전건 완주·커밋. 커밋 = 8de5157(P1)·3e6a3ce(P2)·2325321(P3)·da83d03(P4)·03dab92(P5)·56a1116(P6)·P7(본). 3대 무결: Ch1 58p·Ch2 16p·appendix 8p 전부 exit0/undefined0/of>10pt0, 코드 회귀 13/13 PASS. ★P7 문건↔코드 sync 정정: worked example(P4)이 staging 폴백 폭 사용 → 코드 실제값(w=RT/F·완전식·U_oc 74.4·∂U/∂T −0.204·q_rev +60.8)으로 정정. 이월(실데이터): staging 중복키 정리·다온도 T² 실측·config round-trip.
 
 ## 진행 로그 (append-only)
 - **2026-07-05 P2 검토·보고(Steps 5–8)**: 6종 독립 검토(Opus 3 R-O1/O2/O3 + Codex 3 R-C2/R-C3b/R-C1b, Agent 무통신·전문 정독 missing 0). Codex 3 중 2건 async→foreground 재기동으로 회수. **세 Opus 전원 확정 CRIT/HIGH 물리 결함 0**(재유도 전건 통과 — 박사님 "근접 정답" 확증). 교차합의 triage → **확정 물리 오류 1건**(P2-1 LOW: eq:Se Sommerfeld 보정 "g′(k_BT)² Mott" 오귀속 = 짝핵 패리티로 g′ 상쇄·첫 보정 g″(k_BT)³ — Codex 단독 발견·master 재유도 확정·Opus 3 미검) + **문서 완결성 갭 3건**(P2-2 MED two-phase config caveat 미전파[3종 공통]·P2-3 verifybox +80 라벨 모순[2종]·P2-4 vib T-무관 전제 미명시[2종]) + 공개 불확실 1(P2-5)·단독 강등/기각 3(R-C3b-1 major→LOW·R-C1b-2 P4 advisory·R-O2-2 기각). 산출 `V1015_P2_PHYSICS_REVIEW.md`(4-tier). **Decision Gate: P2-1~P2-4 수정 여부 박사님 결정 대기(기본 무수정).**
