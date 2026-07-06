@@ -10,7 +10,7 @@
 | P1 | 증판(v1.0.15→v1.0.16) | docs/v1.0.16 | 빌드·회귀 bit-exact | ✅ |
 | P2 | 코드 n(T) 선형 지원 + config 전파 | _n_factor·_dwdT·entropy_coefficient | round-trip·bit-exact·golden | ✅ |
 | P3 | FITTING_GUIDE(fit-n·실측 T·4단·n(T)) | guide | 명문화·정합 | ✅ |
-| P4 | Ch1/Ch2(fit-n·T-진단·n(T) config 수식주도) | ch1/ch2 | 빌드·헌법 3종·D1-6 | ⬜ |
+| P4 | Ch1/Ch2(fit-n·T-진단·n(T) config 수식주도) | ch1/ch2 | 빌드·헌법 3종·D1-6 | ✅ |
 | P5 | 적대검수 + 3대 무결 + HANDOVER·INDEX | 마감 | 3대 무결·최종 | ⬜ |
 
 ## 진행 로그 (append-only)
