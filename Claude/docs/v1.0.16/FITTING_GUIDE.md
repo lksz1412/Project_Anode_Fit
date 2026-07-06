@@ -1,6 +1,6 @@
-# Anode_Fit v1.0.14 — 피팅 추천 가이드 (모델 ↔ 데이터)
+# Anode_Fit v1.0.16 — 피팅 추천 가이드 (모델 ↔ 데이터)
 
-> `Anode_Fit_v1.0.14.py`(흑연 음극 + LCO 양극 MSMR + 가역 발열)를 실측 dQ/dV·엔트로피 계수에 피팅하는 워크플로. 파라미터 tier·round-trip 절차·초기값/경계·수렴 판정 + **역방향 식별 사슬(S0–S5)·가정 울타리·잔차 진단표**. 이론 근거 = Ch1(dQ/dV·LCO)·Ch2(발열). ★흑연 회귀 0-diff 는 피팅 전 과정 불변(LCO 편입이 흑연 경로 무섭동).
+> `Anode_Fit_v1.0.16.py`(흑연 음극 + LCO 양극 MSMR + 가역 발열)를 실측 dQ/dV·엔트로피 계수에 피팅하는 워크플로. 파라미터 tier·round-trip 절차·초기값/경계·수렴 판정 + **역방향 식별 사슬(S0–S5)·가정 울타리·잔차 진단표**. 이론 근거 = Ch1(dQ/dV·LCO)·Ch2(발열). ★흑연 회귀 0-diff 는 피팅 전 과정 불변(LCO 편입이 흑연 경로 무섭동). **v1.0.15 = 이산 전압 격자 완전 퇴출→점별 연속 메모리 적분(아래 §1 점별 주). v1.0.16 = 폭을 n 으로 fit·폭 T-의존 4단 사다리·선택적 n(T)(§1.5).**
 
 ## 0. 방향 규약 (★LCO 데이터 걸기 전 필독 — Ch1 sec:lco-direction, eq:lco-sigmaslot)
 
@@ -15,7 +15,7 @@
 | tier | parameter | scope | 초기값 | 하한 | 상한 | 제약 | 필요 데이터 | release |
 |---|---|---|---|---|---|---|---|---|
 | 1 (peak 골격) | U_j **또는** (ΔH_rxn, ΔS_rxn) | 전극 공통 | 표 초기값 | — | — | U_j 순서보존 | 저율 등온 dQ/dV | 확정 |
-| 1 | n_j (폭 = nRT/F) | 공통 | 1.0 | >0 | ~4 | n>0 | 봉우리 폭 | 확정 |
+| 1 | n_j (폭 w=n·RT/F; **폭은 n 으로 fit**) | 공통 | 1.0 | >0 | ~4 | n>0; 폭 T-의존은 §1.5(상수 n→상수 w→n(T)) | 봉우리 폭(각 실측 T) | 확정 |
 | 1 | Q_j | 공통 | 표 | >0 | — | ΣQ_j ≈ Q_total(면적보존 게이트 ±5% — §6) | 용량 | 확정 |
 | 1 | Cbg | 공통 | 0 | — | — | — | baseline | 확정 |
 | 2 (히스·비대칭) | Ω | 공통 | 표(흑연)·**LCO 미배정** | ≥0 | — | ★하한 금지 — 히스 분기는 Ω>2RT(≈4958@298K) 전이에서만 발효(gap=0 연속), 단상 전이는 Ω<2RT 피팅 기대(Ch1 §width·Ch2 파생 C); Ω 는 dH_a_eff(=dH_a−χ_d·Ω)로 문턱 무관 발효하므로 lb 를 걸면 꼬리 물리가 오염 | 충·방전 pair | 피팅 |
@@ -29,13 +29,29 @@
 
 - ★**LCO Ω_j 지위**: `LCO_MSMR_LIT` 세 dict 전부 `'Omega'` 키 미배정 → 코드는 `Ω=0` 폴백으로 **히스 분기 비활성**. Ch1 §lco-hys 의 spinodal·gap 식은 Ω_j^cat 이 round-trip 으로 배정될 때를 위한 구조식이고, 두-상 거동은 **Ω_j^cat>2RT 로 피팅되는 전이에 한해** 발효된다. LCO 충·방전 pair 를 확보하기 전에는 tier-2 를 LCO 에 열지 말 것.
 - 가드: 코드 `_finite_pos`/`_finite_nonneg` 가 T·I·Q_cell·dict 값의 유한·부호를 fail-fast. bound(n>0·χ∈[0,1]·dVdq_qa>0·dx_MIT>0)는 fitting wrapper 스키마에서 별도 강제.
-- ★**ν(`min_lag_grid_steps`) 권고**: 기본값 2.0(보수)은 유지하되, **실측 rate-series 피팅 시 ν≳10 권장**(닫힌꼴 점프 $1-(1/ν)/(e^{1/ν}-1)$: ν=2→~23%, ν=8→6.1%(5% 초과), ν=10→4.9%) — 꼬리 활성 문턱(`L_V < ν·ΔV_grid` 시 꼬리 off)의 이산 점프를 완화한다. ν 는 이산화 가드 파라미터일 뿐 모델식(Eyring L_q·L_V)은 불변이며, 상향 시 흑연 회귀 해시가 의도적으로 변하므로 ledger 에 기록 후 재베이스라인.
+- ★**점별 아키텍처(v1.0.15~)**: 균일 작업 전압 격자·1차 저역통과 점화식·역보간·ν(min_lag_grid_steps) 분기 스위치가 **아키텍처에서 제거**됐다. 꼬리는 연속 메모리 적분 $\xi_\mathrm{lag}(V)=\frac1{L_V}\int_{-\infty}^{V}\xi_\eq(u)e^{-(V-u)/L_V}du$ 의 **점별 평가**이고(Ch1 §1.9), 평형 종은 그 $L_V\to0$ 해석적 극한이다(eq:tail-limit) — 구판의 격자 문턱(`L_V<ν·Δ_grid` 시 꼬리 off)이 만들던 ~23% 이산 점프가 원천 사라졌다. 제거된 생성자 파라미터: `min_lag_grid_steps`·`grid_pad_lo/hi`·`n_work_min`·`v_span_floor`(잔존 입력 = 무시). 회귀 골든은 점별 코드로 재정초(v1.0.15).
+
+## 1.5 폭 피팅 규약 — fit n·실측 T·폭 T-의존 4단 사다리 (v1.0.16, 근거 CLOSING_v1.0.15 Part 4)
+
+봉우리 폭은 **w 맨값이 아니라 다중도 n 으로 fit** 한다(w=n·RT/F, RT/F 는 물리 앵커). n 은 무차원 비이상·분산 인자(n=1 이상 단전자 Nernstian / n<1 협폭 / n>1 광폭)라 해석 가능하고, **같은 n 이 봉우리 폭과 가역열 config 항을 동시에 정해 자기정합**(완전식)이다. 고정 T 에서 n·w fit 은 전단사 동치라(n=wF/RT), 둘의 실질 차이는 **다온도 거동**에서만 난다.
+
+**실측 T 투입**: `dqdv(V_app, T, …)`·`entropy_coefficient(V_n, T)` 는 각 측정점의 실제 온도를 받는다 — 등온 = 스칼라, 비등온 = V_app 길이 배열 T(V). 폭 w=n·RT/F 가 그 점의 실측 T 를 반영한다(가정 아닌 실측 조건).
+
+**폭 T-의존 4단 사다리 (선험 가정 아닌 데이터 확정)**:
+1. **기본 = 상수 n**(열적 w∝T). 단상 전이는 물리 정당(lattice-gas 등온선 기울기 RT/F).
+2. **다온도 per-T 진단**: 여러 실측 T 에서 전이별 n 을 각각 fit(n(T_k)) → T-독립이면 열적 스케일 확증(상수 n 확정).
+3. **n 이 T 로 드리프트** → 그 전이를 **상수 w(T-동결)** 로 전환(전이 dict 에서 `'n'` 제거·`'w'` 지정; 대개 두-상 broadening). config 항 자동 소거(단순식, `_dwdT`=0).
+4. **그래도 안 맞으면 최소 n(T)**: 전이 dict 에 `'n_T1'`([1/K])·`'n_T_ref'`([K], 기본 298.15) → n(T)=n+n_T1·(T−n_T_ref) 선형 잔여만. 전 자유 n(T)·불충분 다온도 데이터는 과적합(identifiability 붕괴).
+
+**★n(T) → 가역열 config 동반(자동)**: n(T) 채택 시 $\partial w/\partial T=(R/F)(n(T)+T\,n_{T1})$ 이라 `entropy_coefficient` 의 config 항이 자동 정합 전파된다(코드 `_dwdT`). 폭 fit 과 발열이 **한 n(T) 로 묶여** 산출되므로, 두-상 폭의 실제 T-의존이 비열적이면 폭 다온도 fit 과 발열 예측 양쪽에서 함께 드러난다(진단 하나로 검출). **상수 n(n_T1 부재)은 v1.0.15 와 bit-exact**(additive).
+
+**참고 — w 이중지위**(Ch1 §width·Ch2 파생 C): 단상(Ω≤2RT)=평형 예측 폭 / 두-상(Ω>2RT; LiC₁₂[2L→2]·LiC₆[2→1] 둘만)=현상학적 자유 피팅 폭 — 어느 지위인지는 **Ω 가 가르지 폭 키가 아니다.** 두-상에 열적 서식 config 적용은 '물리 유도 아닌 **모델 선택**'(Ch2 srcbox 헤지: 실측 T-동결이면 단순/완전식 우열 ~0.3 mV/K 뒤집힘). ★staging 표의 좁은 폭(`'w'` 폴백 0.012–0.020 V)은 **거친 초기값**이고 `'n':1` 이 눌러 실폭=RT/F=25.7 mV(FWHM 90.5 mV) — 좁은 폭을 실제로 쓰려면 `'n'` 제거는 **피팅 선택**(골든 영향)이지 버그 정정 아님(Ch1 §width 명시).
 
 ## 2. Round-trip 절차 (5-Phase, 과식별 회피 = tier 단계 개방)
 
 - **Phase A — peak 골격**(저율 등온): tier-1(U_j 또는 ΔH/ΔS·n·Q·Cbg)만 개방. `equilibrium()` 또는 저율 `dqdv()`로 봉우리 위치·폭·면적 맞춤. 게이트: ΣQ_j∈[0.95,1.05]Q_total·U_j 순서. (= 식별 사슬 S1)
 - **Phase B — 히스·비대칭**(충·방전 pair — S5 는 다율·각 T 의 gap, S2 는 전류 차단 도약 데이터 요구): tier-2(Ω·γ·Rn) 개방, tier-1 고정. 충전/방전 곡선 gap·분극 이동. (= S2+S5; χ 는 이 데이터로 식별 불가 — Phase C 로 이월. LCO 는 §1 의 Ω 지위 주의 — pair 데이터 확보 전 개방 금지)
-- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3; ν≳10 권고 적용 지점) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 격자 문턱을 넘는 dH_a ≈ **70–74 kJ/mol**(전이별 70.3/71.3/72.3/73.8 — χ=0.5·유효 장벽 보강 기본·dVdq_qa=0.30(표 초기값 — 문턱은 이 값에 로그 민감)·298 K·C/10·표준 스윕 νΔ_grid≈3.9×10⁻⁴ V 기준, Ω_j 가 클수록 상승; peak 폭에 견줄 가시적 꼬리는 ≈80 kJ/mol 급) — 표 초기값(40–48)에서 출발하면 문턱까지 gradient 0 의 사구간을 지나고 문턱에서 전이 기여 ~23% 점프를 만나므로, dH_a 를 문턱 위에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것.
+- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3; ν≳10 권고 적용 지점) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 peak 폭 w 에 견줄 만큼(가시적) 자라는 dH_a ≈ **80 kJ/mol 급**(298 K·C/10·χ=0.5·dVdq_qa=0.30 표 초기값 기준, Ω_j 클수록 상승) — 표 초기값(40–48)은 꼬리가 무시할 만큼 작은 영역(대표 L_V~10⁻⁸ V)이라 그 사이 dH_a gradient 가 낮다. **점별 아키텍처(v1.0.15~)라 구판의 격자 문턱 점프(~23%)는 없고 꼬리가 매끈하다(L_V→0=평형 종, eq:tail-limit)** — 다만 초기값에서 꼬리 감도가 낮으니 dH_a 를 80 급에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것.
 - **Phase D — 다온도·LCO 전자항**: tier-4(dS_rxn·dS_a) + LCO 전자항(g_max·x_MIT·dx) 개방. `entropy_coefficient()`·`reversible_heat()`를 다온도 엔트로피 계수에 맞춤(S4 의 다온도 Arrhenius 로 ΔH_a^eff 확정도 이 단계 데이터 소관). 전자항 dict 는 T1=MIT(x_MIT=0.85 물리 anchor)로 **재정렬 완료(v1.0.14 루프 B)** — Ch1 tab:lco-staging. ★다온도 시 `func_dSe_molar` 의 T 인자 전달로 Sommerfeld T-스케일 복원(현 T_ref 동결 근사 해제)·eq:U1T2 center-T_ref 별도적분(½=a_e/2F) 구현. (= S4; 고정점 1회 갱신은 초기 근사 — 수렴은 이 단계서 수치 확인, Ch1 §lco-code)
 - **Phase E — 검증**(holdout): 미사용 T·C-rate 에서 예측 vs 실측. **흑연 0-diff 회귀 assert**(LCO 편입 후에도 흑연 불변).
 
@@ -87,7 +103,7 @@
 
 ## 7. 그래프 suite (검증·복원)
 
-기존: `plot_dqdv.py`(흑연 4패널)·`demo_lco_heat.py`(흑연/LCO dQdV+q_rev)·`sample_test_v1014.py`(2×2 종합 데모) = PASS. validation suite `graph_suite_v1014.py`(본 폴더 소재·`Anode_Fit_v1.0.14` import — v1.0.13 에서 이식 완료, 산출 png 는 `figs/`):
+기존: `plot_dqdv.py`(흑연 4패널)·`demo_lco_heat.py`(흑연/LCO dQdV+q_rev)·`sample_test_v1016.py`(2×2 종합 데모) = PASS. validation suite `graph_suite_v1016.py`(본 폴더 소재·`Anode_Fit_v1.0.16` import, 산출 png 는 `figs/`):
 - **V1** 흑연+LCO dQ/dV 나란히 — MSMR 동형, 두 전극 한 프레임.
 - **V2** round-trip 복원 parity(입력 ΔS → forward U_j(T) → 회귀 ΔŜ, y=x) — ★FD round-trip 수치 무결 가드(ΔS↔∂U/∂T 정의 정합; 잡음 데이터 통계적 식별성 증명 아님 — 통계적 식별성은 §3 round-trip 잡음 주입이 담당).
 - **V3** q_rev(V) 흡·발열 교대(ΔS 부호전환 음영) — eq:qrev 부호규약.
