@@ -51,7 +51,7 @@
 
 - **Phase A — peak 골격**(저율 등온): tier-1(U_j 또는 ΔH/ΔS·n·Q·Cbg)만 개방. `equilibrium()` 또는 저율 `dqdv()`로 봉우리 위치·폭·면적 맞춤. 게이트: ΣQ_j∈[0.95,1.05]Q_total·U_j 순서. (= 식별 사슬 S1)
 - **Phase B — 히스·비대칭**(충·방전 pair — S5 는 다율·각 T 의 gap, S2 는 전류 차단 도약 데이터 요구): tier-2(Ω·γ·Rn) 개방, tier-1 고정. 충전/방전 곡선 gap·분극 이동. (= S2+S5; χ 는 이 데이터로 식별 불가 — Phase C 로 이월. LCO 는 §1 의 Ω 지위 주의 — pair 데이터 확보 전 개방 금지)
-- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3; ν≳10 권고 적용 지점) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 peak 폭 w 에 견줄 만큼(가시적) 자라는 dH_a ≈ **80 kJ/mol 급**(298 K·C/10·χ=0.5·dVdq_qa=0.30 표 초기값 기준, Ω_j 클수록 상승) — 표 초기값(40–48)은 꼬리가 무시할 만큼 작은 영역(대표 L_V~10⁻⁸ V)이라 그 사이 dH_a gradient 가 낮다. **점별 아키텍처(v1.0.15~)라 구판의 격자 문턱 점프(~23%)는 없고 꼬리가 매끈하다(L_V→0=평형 종, eq:tail-limit)** — 다만 초기값에서 꼬리 감도가 낮으니 dH_a 를 80 급에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것.
+- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 peak 폭 w 에 견줄 만큼(가시적) 자라는 dH_a ≈ **80 kJ/mol 급**(298 K·C/10·χ=0.5·dVdq_qa=0.30 표 초기값 기준, Ω_j 클수록 상승) — 표 초기값(40–48)은 꼬리가 무시할 만큼 작은 영역(대표 L_V~10⁻⁸ V)이라 그 사이 dH_a gradient 가 낮다. **점별 아키텍처(v1.0.15~)라 구판의 격자 문턱 점프(~23%)는 없고 꼬리가 매끈하다(L_V→0=평형 종, eq:tail-limit)** — 다만 초기값에서 꼬리 감도가 낮으니 dH_a 를 80 급에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것.
 - **Phase D — 다온도·LCO 전자항**: tier-4(dS_rxn·dS_a) + LCO 전자항(g_max·x_MIT·dx) 개방. `entropy_coefficient()`·`reversible_heat()`를 다온도 엔트로피 계수에 맞춤(S4 의 다온도 Arrhenius 로 ΔH_a^eff 확정도 이 단계 데이터 소관). 전자항 dict 는 T1=MIT(x_MIT=0.85 물리 anchor)로 **재정렬 완료(v1.0.14 루프 B)** — Ch1 tab:lco-staging. ★다온도 시 `func_dSe_molar` 의 T 인자 전달로 Sommerfeld T-스케일 복원(현 T_ref 동결 근사 해제)·eq:U1T2 center-T_ref 별도적분(½=a_e/2F) 구현. (= S4; 고정점 1회 갱신은 초기 근사 — 수렴은 이 단계서 수치 확인, Ch1 §lco-code)
 - **Phase E — 검증**(holdout): 미사용 T·C-rate 에서 예측 vs 실측. **흑연 0-diff 회귀 assert**(LCO 편입 후에도 흑연 불변).
 
@@ -99,7 +99,7 @@
 - 잔차 ΣΔ²/N < 1e-4 (정규화 dQ/dV).
 - ΣQ_j ∈ [0.95, 1.05]·Q_total (면적보존).
 - U_j 순서 보존 · 다온도 ΔS 부호 문헌 일치.
-- **흑연 회귀 0-diff**: `test_regression_graphite.py verify` = 13/13 np.array_equal PASS (피팅·LCO 편입이 흑연 경로 불변). ※ν 상향(§1 권고) 등 의도적 수치 변경 시에는 ledger 기록 후 재베이스라인.
+- **흑연 회귀 0-diff**: `test_regression_graphite.py verify` = 13/13 np.array_equal PASS (피팅·LCO 편입이 흑연 경로 불변). ※코드 알고리즘의 의도적 수치 변경 시에는 ledger 기록 후 골든 재베이스라인(v1.0.15 점별 재아키텍처가 그 예 — 검증 후 재캡처).
 
 ## 7. 그래프 suite (검증·복원)
 

@@ -299,13 +299,16 @@ class GraphiteAnodeDischargeDQDV:
         'n_T1'(계수 [1/K], 기본 부재=0=상수 n)·'n_T_ref'(기준온도 [K], 기본 298.15)가 있으면
         n(T) = n + n_T1·(T − n_T_ref). 폭 w=n(T)·RT/F 가 되어 열적 스케일 위에 잔여 T-의존을
         얹는다(가역열 config 항은 _dwdT 가 ∂w/∂T 를 정합 전파). 'w'-단독은 T-동결 폭이라 n(T) 미적용."""
+        if tr.get('n_T1') is not None and tr.get('n') is None:
+            raise ValueError("transition 'n_T1' requires 'n' (n(T)=n+n_T1·(T−n_T_ref)).")
         if tr.get('n') is not None:
-            n0 = tr['n']
+            n0 = _finite("n", tr['n'])
             n_T1 = tr.get('n_T1')
             if n_T1 is None:
                 return n0
-            T_ref = float(tr.get('n_T_ref', 298.15))
-            return n0 + float(n_T1) * (np.asarray(T, dtype=float) - T_ref)
+            n_T1 = _finite("n_T1", n_T1)
+            T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
+            return n0 + n_T1 * (np.asarray(T, dtype=float) - T_ref)
         if tr.get('w') is not None:
             return tr['w'] * F / (R * T)
         return 1.0
@@ -313,8 +316,12 @@ class GraphiteAnodeDischargeDQDV:
     # ---- 폭 w (자유 피팅 파라미터: w|n 직접 지정, 없으면 n=1) ----------------
     def _width(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
         """전이 폭 w [V] = nRT/F(=func_w, eq:wbase). w|n 직접 지정 우선, 없으면 n=1.
-        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)"""
-        return func_w(T, self._n_factor(tr, T))
+        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)
+        ★1.0.16 — n(T) 도입으로 폭이 음/영이 될 수 있어(n(T)≤0) w>0 fail-fast 가드."""
+        w = func_w(T, self._n_factor(tr, T))
+        if not np.all(np.asarray(w, dtype=float) > 0.0):
+            raise ValueError("width w=n(T)·RT/F must be > 0 (n(T)≤0 at some T — check n/n_T1/n_T_ref).")
+        return w
 
     # ---- ∂w/∂T (가역열 config 항 계수; n(T) 정합 전파) -------------------
     def _dwdT(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
@@ -324,9 +331,9 @@ class GraphiteAnodeDischargeDQDV:
         상수 n(n_T1=0): (R/F)·n = n·R/F (1.0.15 형과 bit-exact). 'w'-단독·기본 = T-동결 → 0."""
         if tr.get('n') is None:
             return 0.0  # 'w'-단독 또는 기본 = T-동결 폭 취급(단순식 경로)
-        n0 = tr['n']
-        n_T1 = float(tr.get('n_T1', 0.0))
-        T_ref = float(tr.get('n_T_ref', 298.15))
+        n0 = _finite("n", tr['n'])
+        n_T1 = _finite("n_T1", tr.get('n_T1', 0.0))
+        T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
         Tv = np.asarray(T, dtype=float)
         nT = n0 + n_T1 * (Tv - T_ref)
         return (R / F) * (nT + Tv * n_T1)
@@ -579,7 +586,7 @@ class GraphiteAnodeDischargeDQDV:
         return tr['dS_rxn']
 
     def entropy_coefficient(self, V_n: ScalarOrArray,
-                            T: float = 298.15) -> ScalarOrArray:
+                            T: Union[float, np.ndarray] = 298.15) -> ScalarOrArray:
         """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.6 keybox 종합식).
 
         관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
@@ -595,8 +602,13 @@ class GraphiteAnodeDischargeDQDV:
         (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
         전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
         """
-        T = _finite_pos("T", T)
+        # T: 스칼라(등온) 또는 V_n 길이 배열 T(V)(비등온 — dqdv 와 동일). 각 점 실측 온도.
+        T = np.asarray(T, dtype=float)
+        if not np.all(np.isfinite(T)) or np.any(T <= 0.0):
+            raise ValueError("T must be finite and > 0 (K).")
         V = np.atleast_1d(np.asarray(V_n, dtype=float))
+        if T.ndim >= 1 and T.size > 1 and T.size != V.size:
+            raise ValueError("T array length must match V_n (per-point T(V)).")
         num = np.zeros_like(V)
         den = np.zeros_like(V)
         eps = 1e-12
@@ -622,7 +634,7 @@ class GraphiteAnodeDischargeDQDV:
         dUdT = np.where(den > 0.0, num / np.maximum(den, eps), 0.0)
         return dUdT
 
-    def reversible_heat(self, V_n: ScalarOrArray, T: float = 298.15,
+    def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray] = 298.15,
                         I: float = 1.0) -> ScalarOrArray:
         """가역 발열 q_rev = −I·T·∂U_oc/∂T [W] (Ch2 eq:qrev, ★T 한 번).
 
@@ -632,7 +644,7 @@ class GraphiteAnodeDischargeDQDV:
           curve() 의 direction='discharge'(σ_d=+1, 탈리튬화)와 반대 화학 방향이다 —
           부호는 라벨이 아니라 전류 부호 I 로 읽는다(Ch2 eq:qrev 라벨 층위 주의).
         """
-        T = _finite_pos("T", T)
+        T = np.asarray(T, dtype=float)  # 스칼라/배열 — 유한·양수·길이 검증은 entropy_coefficient 가 수행
         return -float(I) * T * self.entropy_coefficient(V_n, T)
 
     def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray,

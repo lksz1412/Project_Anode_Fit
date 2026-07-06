@@ -4,7 +4,18 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## ★현행 릴리스 — v1.0.15 (이산 전압 격자 완전 퇴출 → 점별 연속 아키텍처 + Ch2 발열 상세화 + Fable 물리 6종 검토, 2026-07-06 완주)
+## ★현행 릴리스 — v1.0.16 (폭 다중도 n 의 온도 함수 n(T) 피팅 지원 — fit-n·실측 T·config 전파, 2026-07-06 완주)
+> `v1.0.16/` = CLOSING_v1.0.15 Part 4 확정 방향(폭은 n 으로 fit·실측 T·폭 T-의존 4단 사다리·n(T)면 가역열 config 동반) 반영(**P1~P5 완주**·전건 커밋). 코드 = n(T) 선형 지원(additive; 상수 n·n_T1 부재 = v1.0.15 bit-exact)·`_dwdT` ∂w/∂T 전파·배열 T(V) 지원·n(T)≤0 fail-fast. 문건 = FITTING_GUIDE §1.5(fit-n 규약·4단 사다리) + v1.0.15 격자 debt 정정 + Ch1/Ch2 n(T) 수식-주도(신설 eq:dwdT-nT). 골든 불변(상수 n bit-exact). 근거 = `v1.0.15/CLOSING_v1.0.15.md` · 레저 = `../results/process/V1016_EXECUTION_LEDGER.md` · 인계 = `v1.0.16/HANDOVER_v1.0.16.md`.
+
+| 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
+|---|---|---|---|
+| v1.0.16/Anode_Fit_v1.0.16.py | 코드 v1.0.16 — 폭 n(T)=n+n_T1(T−n_T_ref) 선형 지원·신설 _dwdT(∂w/∂T config 전파)·entropy_coefficient/reversible_heat 배열 T·회귀 13/13 bit-exact(상수 n) | 1.0.16, 코드, n(T), _dwdT, fit n, 배열 T, 폭 온도함수 | 2026-07-06 |
+| v1.0.16/graphite_ica_ch1_v1.0.16.tex | Ch1 v1.0.16(58p) — eq:wbase 뒤 n(T) 교차참조(∂w/∂T config 전파). v1.0.15 격자퇴출 승계 | 1.0.16, Ch1, n(T), 폭, eq:wbase | 2026-07-06 |
+| v1.0.16/graphite_ica_ch2_v1.0.16.tex | Ch2 v1.0.16(16p) — eq:dxidT 뒤 신설 eq:dwdT-nT(폭 n(T) 온도미분 일반화)·use-this box n(T) note | 1.0.16, Ch2, eq:dwdT-nT, config, n(T) | 2026-07-06 |
+| v1.0.16/FITTING_GUIDE.md | 가이드 v1.0.16 — 신설 §1.5(fit-n·실측 T·폭 T-의존 4단 사다리·n(T)→config)·격자 debt 정정(ν/min_lag_grid→점별) | 1.0.16, 피팅, fit n, 4단 사다리, n(T), 실측 T, 격자 debt | 2026-07-06 |
+| v1.0.16/HANDOVER_v1.0.16.md | v1.0.16 완주 인계 — Chain(CLOSING_v1.0.15 Part4←…)·P1~P5·주의(n(T) additive·배열 T·4단 사다리 실행 대기) | 핸드오버, 인계, chain, n(T) | 2026-07-06 |
+
+## 직전 안정판 — v1.0.15 (이산 전압 격자 완전 퇴출 → 점별 연속 아키텍처 + Ch2 발열 상세화 + Fable 물리 6종 검토, 2026-07-06 완주, superseded by 1.0.16)
 > `v1.0.15/` = 균일 작업 전압 격자(리샘플→저역통과 점화식→역보간)를 **아키텍처에서 완전 퇴출**하고 점별 연속 메모리 적분으로 전환한 증판(**P1~P7 완주**·전건 커밋 8de5157→…→P7). Ch1 §1.9 인과 기억 적분(신설 eq:memory/lag/tail-limit/reversal)·코드 dqdv 점별 재작성·그림 점별 재산출 3축 동기. 골든 6종 게이트 검증 후 재캡처. Ch2 worked example(코드-정합)·P2 물리 6종 검토(Codex3+Opus3, 확정 CRIT/HIGH 0)·dead 삭제·격자 param 제거. 마스터플랜 = `../plans/2026-07-05-v1015-code-doc-sync-master-plan.md` · 결과 = `../results/process/V1015_P{1..7}_RESULT.md` · ledger = `../results/process/V1015_EXECUTION_LEDGER.md` · 인계 = `v1.0.15/HANDOVER_v1.0.15.md`. ★주의: staging `'w'`+`'n'` 중복 키(코드 `'n'` 우선 = w=RT/F) 정리는 사용자 판단 대기.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
