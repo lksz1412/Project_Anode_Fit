@@ -1,5 +1,5 @@
 % ====================================================================
-% appendix_phase_separation.tex — Appendix (초안, v1.0.14 Step 7)
+% appendix_phase_separation.tex — Appendix (초안; 최초 작성 v1.0.14 계획 Step 7 — 이력 스탬프, 버전업 시 보존)
 %   상분리의 열역학: 혼합 자유에너지·공통접선(binodal)·spinodal·Maxwell
 %   construction·핵생성 vs spinodal 분해 — 사전지식 없는 독자를 위한 자족적 유도.
 %   지위: ★독립 초안 — 본문(Ch1) 편입 여부는 사용자 검토 후 결정(계획 Step 7).
@@ -34,7 +34,7 @@
 \renewcommand{\thesection}{A.\arabic{section}}
 \title{\textbf{\LARGE Appendix (초안)}\\[0.35em]\Large 상분리의 열역학 --- 혼합 자유에너지, binodal 과 spinodal,\\ Maxwell construction, 핵생성과 spinodal 분해}
 \author{}
-\date{\normalsize 버전 1.0.15 초안 \quad(본문 편입 여부는 검토 후 결정)}
+\date{\normalsize 버전 1.0.17 초안 \quad(본문 편입 여부는 검토 후 결정)}
 
 \begin{document}
 \maketitle
@@ -434,7 +434,7 @@ F[\xi]=\int\Bigl[f\bigl(\xi(\mathbf{r})\bigr)+\kappa\,\bigl|\nabla\xi\bigr|^2\Bi
 로 확장된다(Cahn--Hilliard [A1]; spinodal 분해의 선형 이론은 [A2], 교과서 전개는 [A5]).
 확산 흐름은 화학퍼텐셜 $\mu=\delta F/\delta\xi=f'(\xi)-2\kappa\nabla^2\xi$
 의 구배를 따르고, 보존장의 연속 방정식과 결합하면 $\partial\xi/\partial t=M\nabla^2\mu$ 이다($M>0$ =
-이동도).
+이동도). 여기서 $f$ 는 식~\eqref{eq:app-fxi} 의 몰당 양을 몰부피 $v_m$ 으로 나눈 부피 밀도 $[\mathrm{J\,m^{-3}}]$ 로 읽어 $F$ 가 총자유에너지 $[\mathrm J]$ 가 되게 하며, 그러면 차원 정합이 $[\kappa]=\mathrm{J\,m^{-1}}$, $[M]=\mathrm{m^{5}\,J^{-1}\,s^{-1}}$ 을 준다.
 
 \textbf{(b) 연산 --- 모드별 성장률.} 균일 상태 $\bar\xi$ 위의 미소 요동을 Fourier 모드
 $\delta\xi\propto e^{i\mathbf{k}\cdot\mathbf{r}+R(k)t}$ 로 넣고 선형화하면
@@ -470,7 +470,7 @@ $\Omega=2RT$ 는 Part 0(\S1.2)의 자유에너지 및 문턱식과 동일하며,
 상한을 닫을 때 쓰는 근과 같은 식이다. 셋째, Maxwell construction(\S\ref{app:maxwell})은 두-상
 plateau 가 단일 평형 전위로 나타나는 근거이자, 실측 plateau \emph{전위가 그 Maxwell 전위에서
 벗어나는} 이유(준안정 가지 과주행 --- 히스테리시스 분기)를 진술할 기준선이다; 봉우리의 유한
-\emph{폭}의 기원은 별개의 질문으로, 본문 broadening 절의 소관이다. 넷째, 핵생성 대 spinodal 분해의 구분(\S\ref{app:kinetics})은 본문
+\emph{폭}의 기원은 별개의 질문으로, 본문 \S1.7(broadening 절)의 소관이다. 넷째, 핵생성 대 spinodal 분해의 구분(\S\ref{app:kinetics})은 본문
 범위 밖의 동역학이지만, ``spinodal 까지 과주행한다'' 는 \S1.5 의 서술이 어떤 동역학적 그림을
 전제하는지 --- 준안정 가지에서 핵생성이 지수 억제로 지연되는 동안 소인이 전위를 계속 옮긴다는 것 ---
 를 물리적으로 뒷받침한다.
