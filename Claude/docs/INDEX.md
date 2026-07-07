@@ -4,7 +4,19 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## ★현행 릴리스 — v1.0.16 (폭 다중도 n 의 온도 함수 n(T) 피팅 지원 — fit-n·실측 T·config 전파, 2026-07-06 완주)
+## ★현행 릴리스 — v1.0.17 (교재 register·정합·완결성 정련 + Ch2 서지 보강 — 이규섭 리뷰 완전 반영, 2026-07-07 완주)
+> `v1.0.17/` = 이규섭 라인별 검토(★원 추출이 Ch2/Appendix 통째 누락·"미포착" 거짓 → 원본 사진 4장 재추출로 완전 복원, `../results/process/V1017_REVIEW_COMPLETE.md`)를 **9종 체리피킹**(sonnet 리뷰어 9 + CrossRef 저자조회 1 → master 체리픽·적대검증·정밀 적용)으로 반영(**P1~P6 완주**·전 phase 커밋 423f7d5·f227ffc·d398dbf·P6). **물리·수식·코드 무변경**(matched bit-exact·회귀 PASS·3-tex 빌드 GREEN) — register/정합/완결/서지만. 레저 = `../results/process/V1017_EXECUTION_LEDGER.md` · fix-list = `../results/process/V1017_FIXLIST_CONSOLIDATED.md` · 인계 = `v1.0.17/HANDOVER_v1.0.17.md`.
+
+| 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
+|---|---|---|---|
+| v1.0.17/graphite_ica_ch1_v1.0.17.tex | Ch1 v1.0.17(58p) — register 정련(★제목/헤더/pdftitle "코드 진행→계산 진행"·본문 코드/구현/dict/진입점→물리·모델·내부라벨 삭제)·eq:lco-mit underbrace 명료화·(d)박스 라벨·기호(T_{c,j}·q(T) 각주·ŝ(ζ)·사전→대응표)·마스터표 caption/label(tab:notation)·메모리→기억·gap G1/G3 | 1.0.17, Ch1, register, 계산 진행, 교과서, 코드 참조 제거, tab:notation, 정련 | 2026-07-07 |
+| v1.0.17/graphite_ica_ch2_v1.0.17.tex | Ch2 v1.0.17(16p) — ★참고문헌 7 저자 보충(CrossRef raw JSON)+DOI 2 정정(occupation 134774·hysteresis 05.052)·C4 맺음 payoff·eq:complete label·용어 가역열→가역 발열·keybox→warnbox·derbox 삭제·헤더 v1.0.17 | 1.0.17, Ch2, 참고문헌, 저자 보충, DOI 정정, 서지, eq:complete, 가역 발열 | 2026-07-07 |
+| v1.0.17/appendix_phase_separation.tex | Appendix v1.0.17(8p) — date 1.0.17·A2 소스주석 이력 보존·§1.7 broadening 리터럴 참조·κ[J/m]·M[m⁵/(J·s)] 단위+f 부피밀도 기준(Cahn-Hilliard 차원정합) | 1.0.17, 부록, 단위, κ, M, Cahn-Hilliard, broadening | 2026-07-07 |
+| v1.0.17/Anode_Fit_v1.0.17.py | 코드 v1.0.17 — matched version bump만(v1.0.16 bit-identical·회귀 13/13 PASS·골든 불변) | 1.0.17, 코드, matched, bit-exact, 무변경 | 2026-07-07 |
+| v1.0.17/FITTING_GUIDE.md | 가이드 v1.0.17 — v1.0.16 §1.5(fit-n·4단 사다리) 승계·무변경(matched) | 1.0.17, 피팅, 승계, fit n | 2026-07-07 |
+| v1.0.17/HANDOVER_v1.0.17.md | v1.0.17 완주 인계 — Chain(V1017_REVIEW_COMPLETE←v1.0.16←…)·★추출 오류 정정·P1~P6·★제목 문구 변경·DOI 정정·이월 [선택] | 핸드오버, 인계, chain, 추출 오류, 9종 체리피킹 | 2026-07-07 |
+
+## 직전 안정판 — v1.0.16 (폭 다중도 n 의 온도 함수 n(T) 피팅 지원 — fit-n·실측 T·config 전파, 2026-07-06 완주, superseded by 1.0.17)
 > `v1.0.16/` = CLOSING_v1.0.15 Part 4 확정 방향(폭은 n 으로 fit·실측 T·폭 T-의존 4단 사다리·n(T)면 가역열 config 동반) 반영(**P1~P5 완주**·전건 커밋). 코드 = n(T) 선형 지원(additive; 상수 n·n_T1 부재 = v1.0.15 bit-exact)·`_dwdT` ∂w/∂T 전파·배열 T(V) 지원·n(T)≤0 fail-fast. 문건 = FITTING_GUIDE §1.5(fit-n 규약·4단 사다리) + v1.0.15 격자 debt 정정 + Ch1/Ch2 n(T) 수식-주도(신설 eq:dwdT-nT). 골든 불변(상수 n bit-exact). 근거 = `v1.0.15/CLOSING_v1.0.15.md` · 레저 = `../results/process/V1016_EXECUTION_LEDGER.md` · 인계 = `v1.0.16/HANDOVER_v1.0.16.md`.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
