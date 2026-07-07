@@ -14,7 +14,7 @@
 | P3 | 18.1 | 적대검수+3대 무결+HANDOVER·INDEX·commit | 3대 무결·수렴 | ✅ |
 | P4 | 18.2 | 증판(v1.0.18.1→v1.0.18.2)·코드 matched | 3-tex 빌드·회귀 bit-exact | ✅ |
 | P5 | 18.2 | 제안1 코드(S_vib(T;θ_E) additive+∂S_vib/∂T) | θ_E부재 bit-exact·고온극한·round-trip·골든 | ✅ |
-| P6 | 18.2 | 제안1 문건(Ch2 vib Einstein[9종]+Ch1 decomp+GUIDE) | 수식-주도·doc↔code·빌드 | ⬜ |
+| P6 | 18.2 | 제안1 문건(Ch2 vib Einstein[9종]+Ch1 decomp+GUIDE) | 수식-주도·doc↔code·빌드 | ✅ |
 | P7 | 18.2 | 연구 로드맵(제안2~5+물리-데이터 이월) | 5제안·이월 완전 캡처·외부위임 형식 | ⬜ |
 | P8 | 18.2 | 적대검수+3대 무결+HANDOVER·INDEX·commit | 3대 무결·수렴 | ⬜ |
 
@@ -22,6 +22,7 @@
 - 모든 작업 완료·commit+push **후**, Agent(model:fable) 1회로 **최종 Ch1(v1.0.18.2) + 작업이력(레저·HANDOVER) 검토**. 2% 미완 가능성 높음 → 실패해도 무방(보너스). 9종 체리피킹은 비-Fable(Sonnet/Opus). 사용자 지침 7-08.
 
 ## 진행 로그 (append-only)
+- **2026-07-08 P6 18.2 제안1 문건 ✅**: **9종 체리피킹(비-Fable, Sonnet 9 독립 유도 → master 체리픽·삼각검증·통합)**. framings: theory·limit·code-sync·BE-bridge·identifiability·magnitude·minimal·θ_E출처·thermo-consistency. 전 9 드래프트 물리 수렴(S_vib 닫힌형·고온극한 R[1+ln(T/θ_E)]·ΔU_vib 자유에너지 편차·round-trip·additive·bit-exact 만장일치). 체리픽 결정: **`u≡θ_E/T`(드3, 문서 x=리튬함량 충돌 회피)** + 전이별 θ_E,j(드2/7) + 크기값 −3.7~+9.1µV/K(드6) + **θ_E 3경로·"50-80meV는 예시일뿐 실측 교체"(드8 정직성)** + **분리엔 T점 3개↑·2온도 축퇴(드5 식별성 정직 caveat)** + **ΔC_p 상쇄 rigor(드9)** + Faraday F vs 자유에너지 구분. Ch2 §sec:vibel 에 (a-d) 수식주도 삽입(eq:Svib-einstein·eq:dSvib·eq:dUvib), register-clean(본문 코드함수명 X). Ch1 eq:lco-slots vib 슬롯 Einstein 노트. FITTING_GUIDE §1.6 vib-θ_E 규약. **빌드 GREEN**(Ch1 59p·Ch2 17p·undef0·회귀 bit-exact). **doc↔code 동기**: 문서 S_vib=코드 _S_vib·ΔU_vib=_vib_dU(P5 round-trip 0.000000µV/K 검증).
 - **2026-07-08 P4 18.2 증판 ✅**: docs/v1.0.18.1 → v1.0.18.2 복제·버전 bump 1.0.18.2(계보 1.0.18.1). 빌드 GREEN(Ch1 59p·Ch2 16p·appendix 8p·undef0/multiply0/err0)·회귀 bit-exact PASS.
 - **2026-07-08 P5 18.2 제안1 코드 ✅**: `Anode_Fit_v1.0.18.2.py` — 헬퍼 4(_vib_theta·_S_vib=R[−ln(1−e^{−x})+x/(e^x−1)]·_vib_dU 중심 Helmholtz 편차 보정·_vib_dS 발열 표준엔트로피 편차) + 호출부 3(equilibrium·dqdv·entropy_coefficient U_j에 +_vib_dU, entropy_coefficient dS_eff에 +_vib_dS). additive(키 'theta_E'/'theta_E_Tref'[298.15], 부재=0). **검증 전건 통과**: 회귀 GRAPHITE 0-DIFF PASS(θ_E 부재=골든 불변) · round-trip ∂vib_dU/∂T=vib_dS/F **diff 0.000000 µV/K**(278/298/318K) · 풀-경로 EC=∂U_j/∂T **diff 0.0000 µV/K**(64.042) · 고온극한 S_vib→고전 R[1+ln(T/θ)] diff 0.0004 · θ_E부재/T_ref→0 · demo/sample OK. 물리: ∂U/∂T=ΔS(T)/F round-trip 보존(중심 자유에너지 편차 + 발열 엔트로피 편차 동기). 목적=다온도 vib T-signature(−3.7~+9.1 µV/K@θ=700)를 전자항 ∝T와 분리 식별. **기본 데이터셋엔 θ_E 미부여(bit-exact 유지, v1.0.16 n(T) 방식)** — capability + 검증만.
 - **2026-07-08 P1 18.1 증판 ✅**: docs/v1.0.17 → v1.0.18.1 복제(tex 3·py 6·guide·golden·figs). py 버전태그 sed 1.0.18.1·v1018_1(path 정합). tex 현행 버전 bump 1.0.18.1(계보 1.0.17). **빌드 GREEN**(Ch1 58p·Ch2 16p·appendix 8p·전 undef0/of0/err0) · **회귀 GRAPHITE 0-DIFF PASS**(코드 bit-identical). 잔여 "1.0.17" 1건 = Ch2 계보 참조(정상).
