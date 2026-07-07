@@ -4,7 +4,16 @@
 > 본문이 진실 — INDEX 와 충돌 시 INDEX 를 고친다. 문서 추가·수정 시 같은 턴에 해당 행 갱신.
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
-## ★현행 릴리스 — v1.0.17 (교재 register·정합·완결성 정련 + Ch2 서지 보강 — 이규섭 리뷰 완전 반영, 2026-07-07 완주)
+## ★현행 릴리스 계열 — v1.0.18 (2-버전: 18.1 이월 완결 / 18.2 +제안1 vib Einstein +로드맵, 2026-07-08)
+> 신규 발전 제안서(5 물리 확장 = 외부 위임 연구 과제, 원본 프레임·표준식 검증) + v1.0.17 이월 + 누적 이력 → 사용자 결정 **2-버전**. **v1.0.18.1**(완결) = v1.0.17 register/정합 [선택] 이월 완결(verifybox 활성·longtable·signcheck ✓·표서식·z/ω 각주다리·N-n 통일·tab:notation endfirsthead·Appendix 단위/각주), 물리 무변경·matched bit-exact. **v1.0.18.2**(진행) = 18.1 base + 제안1(동결 ΔS_vib → S_vib(T;θ_E) Einstein additive) 구현 + 제안2~5 연구 로드맵. 계획 = `../plans/2026-07-08-v1018-physics-extension-master-plan.md` · 레저 = `../results/process/V1018_EXECUTION_LEDGER.md`.
+
+| 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
+|---|---|---|---|
+| v1.0.18.1/graphite_ica_ch1_v1.0.18.1.tex | Ch1 v1.0.18.1(59p) — register/정합 이월 완결: verifybox 활성(극한검산 5)·tab:inputs/nodecode longtable·signcheck-R ✓열·tab:staging 서식·z 각주·ω 다리 2·§sm-lattice N/n 통일·tab:notation endfirsthead. 물리 무변경 | 1.0.18.1, Ch1, 이월 완결, verifybox, longtable, endfirsthead, 안전 폴백판 | 2026-07-08 |
+| v1.0.18.1/appendix_phase_separation.tex | Appendix v1.0.18.1(8p) — N_A(아보가드로) vs N_A(A종수) 각주·γ 옆 v_m/Δg_v 단위·(c) 분류표 라벨·§app:kinetics (a-d) 축약 note | 1.0.18.1, 부록, 단위, N_A 각주, kinetics | 2026-07-08 |
+| v1.0.18.1/HANDOVER_v1.0.18.1.md | 18.1 인계 — 2-버전 결정·이월 Ch1 8+Appendix 4·tab:notation 수정·N3 재배열 의도 보류·물리 무변경·matched bit-exact | 핸드오버, 18.1, 이월 완결, 2-버전 | 2026-07-08 |
+
+## 직전 안정판 — v1.0.17 (교재 register·정합·완결성 정련 + Ch2 서지 보강 — 이규섭 리뷰 완전 반영, 2026-07-07 완주, superseded by 1.0.18)
 > `v1.0.17/` = 이규섭 라인별 검토(★원 추출이 Ch2/Appendix 통째 누락·"미포착" 거짓 → 원본 사진 4장 재추출로 완전 복원, `../results/process/V1017_REVIEW_COMPLETE.md`)를 **9종 체리피킹**(sonnet 리뷰어 9 + CrossRef 저자조회 1 → master 체리픽·적대검증·정밀 적용)으로 반영(**P1~P6 완주**·전 phase 커밋 423f7d5·f227ffc·d398dbf·P6). **물리·수식·코드 무변경**(matched bit-exact·회귀 PASS·3-tex 빌드 GREEN) — register/정합/완결/서지만. 레저 = `../results/process/V1017_EXECUTION_LEDGER.md` · fix-list = `../results/process/V1017_FIXLIST_CONSOLIDATED.md` · 인계 = `v1.0.17/HANDOVER_v1.0.17.md`.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
