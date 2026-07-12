@@ -1,0 +1,58 @@
+% ====================================================================
+% §10 합산과 흑연 초기값 (N9)
+% ====================================================================
+\section{합산과 흑연 staging 초기값 (N9)}\label{sec:sum}
+전이별 peak 모양이 식~\eqref{eq:peakshape}(그 $L_V\to0$ 극한은 평형 종~\eqref{eq:tail-limit}\eqref{eq:eqpeak})로 정해지면, 용량 가중을 곱해 내부 전위 $V_n$ 위에 점별로 누적한다. 보존식 $Q_\cell q=Q_\bg+\sum_jQ_j\xi_j$ 를
+$V$ 로 미분하면 서로소 자리 분해(전이 $j$ 의 진행이 서로 독립)에서 $\dd Q/\dd V=C_\bg+\sum_jQ_j\,\dd\xi_j/\dd V$ 이고,
+각 $\dd\xi_j/\dd V$ 가 곧 peak 모양이라(식~\eqref{eq:peakshape}) 관측 ICA 는 배경과 전이별 기여의 선형 합으로 닫힌다:
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V}(V_n)\;=\;C_\bg\;+\;\sum_{j=1}^{N_p}Q_j\,
+\big[\text{peak shape}_j\big]
+\;=\;C_\bg+\sum_jQ_j\big[\text{평형 peak}-\text{지연 꼬리}\big]\;.}
+\label{eq:sum}
+\end{equation}
+각 전이의 기여는 배경 위에 누적된다(배경은 합산 전에 먼저 깔림) --- 모든 평가가 입력 전위 $V_n$ 위에서 점별로 닫혀 출력 좌표가 곧 입력 좌표다. 스칼라 전위 입력은 한 점의 값으로 축약된다.
+
+\subsection{staging 전이 초기값 --- 피팅 출발점}\label{sec:sum-staging}
+표~\ref{tab:staging} 가 네 전이 각 인자의 의미와 출발값이다(신뢰값이 아닌 \emph{초기값} --- 사용자 피팅이
+override 하는 것이 전제) --- 이 표가 있어 ``이 문건만으로 곡선 재현 코드를 짤 수 있다''.
+
+\begin{table}[t]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{전이 초기값(흑연 staging 4건) --- 출발점, 피팅으로 override. $U$ 는 $(\Delta H_\rxn,\Delta S_\rxn)$
+정합 목표. 전위 anchor: $2\!\to\!1$($0.085$ V, Dahn\cite{dahn1991})$\cdot$$2\mathrm
+L\!\to\!2$($0.120$ V, Ohzuku 등\cite{ohzuku1993})는 보고값과 정확 일치(2차 출처 경유 확인이라 tier B 로
+보수 분류), $4\!\to\!3$($0.210$ V, Dahn\cite{dahn1991})은 근사 확인(tier B),
+$3\!\to\!2\mathrm L$($0.140$ V)는 Ohzuku 보고 $\approx0.125$ V 와 $15$ mV 시료 의존
+편차 안의 배치값(tier C --- 문헌 간 $5$--$15$ mV 편차가 통상적). $\Delta S_\rxn$ 의 부호$\cdot$수십
+J/(mol\,K) 스케일은 흑연 삽입 엔트로피 실측\cite{reynier2003} 과 정합(전이별 정밀값 아님 --- tier B).}
+\label{tab:staging}
+\begin{tabular}{l c c c c c c c}
+\toprule
+stage & $U$ [V] & $\Delta H_\rxn$ & $\Delta S_\rxn$ & $Q$ & $\Omega$ & $\Delta H_a$ & $|\dd V/\dd q|_{q_a}$ \\
+ &  & [J/mol] & [J/(mol\,K)] & [$Q_\cell$] & [J/mol] & [J/mol] & [V] \\
+\midrule
+$4\!\to\!3$   & 0.210 & $-11700$ & $+29.0$ & 0.10 & 6000  & 48000 & 0.30 \\
+$3\!\to\!2\mathrm L$ & 0.140 & $-13500$ & $0.0$   & 0.12 & 8000  & 46000 & 0.30 \\
+$2\mathrm L\!\to\!2$ & 0.120 & $-13100$ & $-5.0$  & 0.25 & 10000 & 44000 & 0.30 \\
+$2\!\to\!1$   & 0.085 & $-13000$ & $-16.0$ & 0.50 & 13000 & 40000 & 0.30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+각 전이는 폭 $w$ 폴백(0.020/0.016/0.014/0.012 V)과 $n=1$, $\Delta S_a=0$ 을 함께 갖는다. $\Delta H_\rxn/\Delta S_\rxn$
+은 $U(298)$ 정합으로 정해졌고($U=(-\Delta H_\rxn+298.15\Delta S_\rxn)/F$ 가 표의 $U$ 와 $\pm1$ mV 안에서 정합 --- $4\!\to\!3$ 행만 $0.2109$ 로 표시 자리수 경계), $\Delta H_a$ 는 저SOC(state of charge)$\to$
+만충에서 감소하는 DFT(density functional theory) 활성화 경향\cite{persson2010,persson2010b} 에 맞춘
+스케일이고(전이별 수치의 전용 문헌 anchor 는 근거 미발견 --- 실측 계면 활성화 에너지의 문헌 범위
+$25$--$59$ kJ/mol 와 겹치는 출발점), $|\dd V/\dd q|_{q_a}$ 는 컷 OCV 기울기(피팅), $\Omega$ 는 정규용액
+추정(전이별 문헌 anchor 없음 --- 피팅 출발점)이다.
+초기 상태의 실현 크기를 수치로 확인하면 --- 표의 $\Delta H_a$ 초기값에서 대표 조건(298 K$\cdot$C/10)의
+$L_{V,j}$ 는 $10^{-10}$--$10^{-8}$ V 규모로 폭 $w_j$(수십 mV)에 비해 무시할 만큼 작아 식~\eqref{eq:tail-limit} 의 $L_V\to0$ 극한이 사실상 이미 실현되므로, $\gamma$ 미배정($=0$)$\cdot$$R_n=0$ 과 함께 \emph{초기 상태의 곡선은 꼬리$\cdot$분기 없는 평형
+종 전용}이다(가시적 꼬리는 피팅 개방 후 활성). $k_0=k_BT/h$$\cdot$$\Delta S_a{=}0$ 전제에서 꼬리가
+폭 $w_j$ 에 견줄 만큼(가시적 꼬리) 자라는 데는 $\Delta H_a\approx80$ kJ/mol 급 또는 음의 $\Delta S_a$ 배정이 필요하므로
+(전이별 --- 위 대표 조건과 $\chi=0.5$ 기본 기준), 인용 문헌
+범위($25$--$59$ kJ/mol)는 절대값 anchor 가 아니라 경향 anchor 로 읽는다.
+여기까지가 흑연(Part I)의 결과 사슬이다 --- 다음 절부터 이 골격을 두 번째 전극 LCO 양극에 건다(Part II).
+
+% 자산: [B2-030] [B2-031] [B2-032] [B2-033] [B2-034]

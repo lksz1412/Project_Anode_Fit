@@ -1,0 +1,43 @@
+% ====================================================================
+% §6 평형 peak — |I|→0 기준선 (N6)
+% ====================================================================
+\section{평형 peak --- $|I|\to0$ 기준선 (N6)}\label{sec:eqpeak}
+평형 진행률에서 곧바로 얻어지는 것이 평형 peak 모양 $\xi_\eq(1-\xi_\eq)/w$ 이다. 이것이 전류가 없을 때($|I|\to0$)의
+기준선이며, 동역학 꼬리가 무시될 만큼 작을 때 곡선이 이 종으로 직접 환원되는 항이다.
+
+\textbf{(a) 출발 --- 전하 보존식.} 관측 $\dd Q/\dd V$ 는 전하 보존식 $Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 를 궤적
+$q$ 로 미분해 닫힌다 --- 양변을 $q$ 로 미분하면 $Q_\cell=C_\bg\,\dd V_n/\dd q+\sum_jQ_j\,\dd\xi_j/\dd q$ 이고,
+$\dd V_n/\dd q$ 로 나누면 $\dd Q/\dd V_n=C_\bg+\sum_jQ_j\,\dd\xi_j/\dd V_n$ 이다. \textbf{(b) 연산 --- logistic
+미분의 종 항등식.} 평형 추종이면 $\dd\xi_j/\dd V_n$ 에 평형 기울기가 들어가고, $z\equiv\sigma_d(V-U_j^{\,d})/w_j$ 로
+$\xi_\eq=(1+e^{-z})^{-1}$ 를 미분하면
+\begin{equation}
+\frac{\dd\xi_\eq}{\dd z}=\frac{e^{-z}}{(1+e^{-z})^2}
+=\underbrace{\frac{1}{1+e^{-z}}}_{\xi_\eq}\cdot\underbrace{\frac{e^{-z}}{1+e^{-z}}}_{1-\xi_\eq}
+=\xi_\eq(1-\xi_\eq)
+\label{eq:belliden}
+\end{equation}
+--- $\xi(1-\xi)$ 는 $\xi=\tfrac12$ 에서 최대 $\tfrac14$ 인 종이다. \textbf{(c) 중간식 --- 연쇄율.} 연쇄율
+$\dd z/\dd V=\sigma_d/w_j$ 를 곱하면 $\dd\xi_{\eq,j}/\dd V=\sigma_d\,\xi_\eq(1-\xi_\eq)/w_j$. \textbf{(d) 박스.}
+이를 보존식 미분에 넣으면 전이 $j$ 의 평형 peak 이 닫힌다:
+\begin{equation}
+\frac{\dd\xi_{\eq,j}}{\dd V}=\frac{\sigma_d\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\;\Longrightarrow\;
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j
+=Q_j\,\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+=Q_j\,\Big|\frac{\dd\xi_{\eq,j}}{\dd V}\Big|\;.}
+\label{eq:eqpeak}
+\end{equation}
+이 값이 전이별로 합산되어 배경과 함께 $|I|\to0$ 극한을 이룬다 --- 단 $\gamma_j\ne0$ 이면 이 극한은 분기
+중심 $U_j^{\,d}$ 에 남는 히스테리시스 잔존 극한이고, 분기 없는 가역 기준선($U_j$ 중심)과는
+$\gamma_j\to0$ 에서만 일치한다(히스테리시스는 열역학적 --- \S\ref{sec:hys}). 부호 --- $\sigma_d$ 가 미분에서 한 번 들어오지만 peak 모양은
+절댓값 $|\dd\xi/\dd V|=\xi_\eq(1-\xi_\eq)/w$ 로 양수이고 방향 불변이다($\xi(1-\xi)\ge0$). 세 양 --- 위치 $=$ 중심
+$U_j^{\,d}$, 순높이 $=Q_j/(4w_j)$($\xi=\tfrac12$ 에서 $\xi(1-\xi)=\tfrac14$), 배경 차감 면적 $=Q_j$
+($\int_0^1\dd\xi=1$, 식~\eqref{eq:belliden} 의 종이 $\dd\xi_\eq$ 의 치환적분이라 면적 $1$) --- 가 이 한 식에서 읽힌다.
+
+이 식이 쓰이는 조건은 지연 길이가 peak 폭에 비해 작을 때다 --- \S\ref{sec:lag}(N7)이 그 지연 길이 $L_V$ 를
+세우고, $L_V$ 가 폭 $w_j$
+보다 작으면(또는 동역학 입력이 없으면) 식~\eqref{eq:eqpeak} 의 평형 종으로 매끈히 환원된다(식~\eqref{eq:tail-limit} 의 $L_V\to0$ 극한). 이것이 $|I|\to0$ 환원이다.
+그 전에, 다음 절(\S\ref{sec:broadening})이 이 평형 종이 \emph{두-상 전이}에서 어떻게 실측 종으로 펴지는지 ---
+곧 폭 $w_j$ 의 두-상 지위 --- 를 모델 안의 양들로 닫는다.
+
+% 자산: [A-123] [A-124] [A-125] [A-126] [A-127] [A-128] [A-129]

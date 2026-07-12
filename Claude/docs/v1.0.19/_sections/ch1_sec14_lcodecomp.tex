@@ -1,0 +1,101 @@
+% ====================================================================
+% §14 반응 엔트로피 삼분해와 슬롯 규칙 (N9') — §15 전자항 앞에 배치
+% ====================================================================
+\section{반응 엔트로피 삼분해와 슬롯 규칙 (N9$'$)}\label{sec:lco-decomp}
+흑연에서 합산식~\eqref{eq:sum} 의 $\Delta S_{\rxn,j}$ 는 평형 중심 $U_j(T)$ 를 통해 한 덩이로 작용했으나, LCO 양극에서는 이 한 덩이가 세 물리 성분(config=배치$\cdot$vib=격자진동$\cdot$electronic=전자)의 합임을 명시한다 --- 식$\cdot$모델 경로는 그대로이고 $\Delta S$ 의 \emph{내부 분해}만 더한다. 이 절은 그 분해 골격과 슬롯 기입 규칙$\cdot$이중계산 금지 경계를 먼저 세우고, 셋째 성분(전자항)의 닫힌식은 다음 절 \S\ref{sec:lco-electronic} 로 넘긴다 --- 곧 이 절이 담는 것은 \emph{어느 슬롯에 무엇이 들어가는가}이고, \emph{전자항이 무엇인가}는 \S\ref{sec:lco-electronic} 의 몫이다.
+
+\subsection{분배함수 인수분해에서 부분몰 가법성으로}\label{sec:lco-decomp-add}
+\textbf{(a) 출발 --- 분배함수의 인수분해.} 전이 $j$ 창의 한 미시상태는 (리튬 자리 배열)$\times$
+(포논 들뜸)$\times$(전자 준위 점유) 세 자유도의 곱집합이고, 세 자유도가 독립인 극한에서 분배함수가
+인수분해된다:
+\begin{equation}
+Z_j\;=\;Z_j^\mathrm{config}\,Z_j^\mathrm{vib}\,Z_j^\mathrm{elec}\;\times\;e^{-F_j^{\times}/RT},
+\qquad F_j^{\times}\approx0\ \ (\text{선도 차수 --- MIT 부근 결합 잔차는 무시}),
+\label{eq:lco-Zfact}
+\end{equation}
+($F_j^{\times}$ 는 자유도 간 결합의 잔차 자유에너지 --- 근거는 아래 ★가법성 정당화(가)). \textbf{(b) 연산 --- 로그
+가법성에서 부분몰 가법성으로.} $F_j=-RT\ln Z_j$ 에 식~\eqref{eq:lco-Zfact} 를 넣으면 로그가 합으로
+갈라지고, $S=-\partial F/\partial T$ 가 선형이라 엔트로피도 갈라진다. 삽입 조성 $x$ 로 미분한 부분몰도
+같은 세 갈래다:
+\begin{equation}
+S_j=S_j^\mathrm{config}+S_j^\mathrm{vib}+S_j^{e}\ (+\,S_j^{\times}\!\approx\!0)
+\;\Longrightarrow\;
+\Delta S_{\rxn,j}^\mathrm{cat}(x,T)=\frac{\partial S_j^\mathrm{config}}{\partial x}
++\frac{\partial S_j^\mathrm{vib}}{\partial x}
++\frac{\partial S_j^{e}}{\partial x}.
+\label{eq:lco-Sadd}
+\end{equation}
+
+\subsection{config 분리와 슬롯 규칙}\label{sec:lco-decomp-slots}
+\textbf{(c) 중간식 --- 슬롯 정의(이중계산 금지의 식화).} 셋째 항(전자)의 몰당 게이트 골 닫힌식은 다음 절
+\S\ref{sec:lco-electronic}(식~\eqref{eq:dSemolar}$\cdot$\eqref{eq:dSegate})이 닫으므로 여기서는 그 슬롯 자리만
+표시하고, 첫째 항(config)을 두 몫으로 가른다 --- 질서화(charge-order 초격자) 등 peak \emph{중심의 표준}
+config 몫과, 격자기체 혼합의 \emph{내부 분포} 몫이다:
+\begin{equation}
+\frac{\partial S_j^\mathrm{config}}{\partial x}
+=\underbrace{\Delta S_j^{0,\mathrm{config}}}_{\text{중심 표준값(질서화 등)}}
++\underbrace{R\ln\frac{\xi_j}{1-\xi_j}}_{\substack{\text{혼합 분포항(삽입 기준; 자리당 }n_j{=}1\text{)}\\ \text{--- }w_j{=}n_jRT/F\text{ 서식의 일반형은 }n_jR\ln[\cdot]}},
+\qquad
+\Big[R\ln\frac{\xi_j}{1-\xi_j}\Big]_{\xi_j=\frac12}=0.
+\label{eq:lco-configsplit}
+\end{equation}
+이로부터 세 슬롯의 기입 규칙이 식으로 고정된다:
+\begin{equation}
+\begin{aligned}
+\Delta S_j^\mathrm{config}\ &\leftarrow\ \Delta S_j^{0,\mathrm{config}}\ \text{만}
+\ (\text{혼합 분포항은 }w_j\text{ 가 담음 --- 재기입 금지}),\\
+\Delta S_j^\mathrm{vib}\ &\leftarrow\ \text{창 내 완만 몫의 중심 흡수치}\ (\theta_{E,j}\text{ 부여 시 }T\text{-의존 Einstein 보정 --- Ch2 vibrational 절}),\\
+\Delta S_{e,j}^{\,\mathrm{mol}}\ &\leftarrow\ N_A\,\frac{\partial S_e}{\partial x}\ \big(\text{게이트 골, 창 밖}\approx0\ \text{--- 닫힌식은 \S\ref{sec:lco-electronic}}\big).
+\end{aligned}
+\label{eq:lco-slots}
+\end{equation}
+★슬롯 규칙의 핵심은 세 자리에 서로 다른 것이 들어간다는 점이다 --- config 는 \emph{중심 표준값만}(혼합항은
+$w_j$ 가 이미 담았으므로 재기입 금지), vib 는 창 내 완만 몫의 중심 흡수치(Einstein 온도 $\theta_{E,j}$ 가
+부여되면 $T$-의존 양자 보정이 붙으며, 그 유도는 Ch2 vibrational 절), elec 는 $N_A\partial S_e/\partial x$
+(게이트 골)로 한 슬롯에만 넣는다. 이것이 이중계산을 식 자체로 막는 규칙이다.
+
+\subsection{분해 박스와 가산성 vs 무이중계산}\label{sec:lco-decomp-box}
+\textbf{(d) 박스 --- 슬롯 분해식.} 이 규칙 아래 식~\eqref{eq:lco-Sadd} 의 세 항을 슬롯값으로 적으면 분해 박스가 닫힌다:
+\begin{equation}
+\boxed{\;\Delta S_{\rxn,j}^\mathrm{cat}(x,T)=\underbrace{\Delta S_j^\mathrm{config}}_{\text{중심 표준값(내부 분포는 }w\text{ 가 담음)}}
++\underbrace{\Delta S_j^\mathrm{vib}}_{\text{음의 baseline}}
++\underbrace{\Delta S_{e,j}^{\,\mathrm{mol}}(x,T)}_{\text{MIT 게이트, 삽입 기준 }<0,\ \propto T\ (\text{몰당 식~\eqref{eq:dSemolar}, \S\ref{sec:lco-electronic}})}\;.}
+\label{eq:lco-decomp}
+\end{equation}
+세 몫의 역할과 \emph{이중계산 방지}는 다음과 같다.
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \textbf{config.} O3 영역에서 LCO $\Delta S$ 를 지배($>\tfrac12$\cite{reynier2004}, tier A)하며, 기존 Ch1 logistic 이 식~\eqref{eq:lco-configsplit} 의 peak 내부 항을 \emph{자동 생성}한다(격자기체 점유 분포, \S\ref{sec:dist}). \textbf{★이중계산 금지} --- 식~\eqref{eq:lco-decomp} 의 $\Delta S_j^\mathrm{config}$ 자리에는 \emph{중심 표준값} $\Delta S_j^0$ 만 넣는다(표~\ref{tab:lco-staging} 의 config 값 = 중심 표준값으로 읽음).
+\textbf{★가법성 정당화(T1 MIT, 직교 자유도).} \emph{(가) 가산성}은 config$\cdot$elec 두 자유도(리튬 자리
+\emph{점유 배열} vs 전도 전자 \emph{밴드 점유})의 \emph{근사적 직교}에서 온다 --- 독립 극한에서
+$Z=Z_\mathrm{config}\!\cdot\!Z_\mathrm{elec}$ 이므로 $S=S_\mathrm{config}+S_\mathrm{elec}$(교차항 $0$;
+MIT 부근 리튬 정렬$\cdot$밴드채움 결합은 선도 차수에서 무시)이 식~\eqref{eq:lco-decomp} 의 config$+$elec
+단순합을 정당화한다. \emph{(나) 무이중계산}은 직교성이 아니라 위 ★이중계산 금지(config엔 중심값만, elec엔
+게이트 골만)가 보장한다 --- \emph{전자는 ``더해도 되는가'', 후자는 ``과대 계상 없는가''를 답하는 별개 질문이다}.
+\item \textbf{vib.} 고-$x$ 의 phonon 음의 baseline 으로 Ch1 흑연과 동형이며(흑연 표~\ref{tab:staging} 하위 두 전이의 음의
+$\Delta S_\rxn$ 에 대응), 별도 식 변화가 없다.
+\item \textbf{electronic.} \S\ref{sec:lco-electronic} 의 신규 항 $\Delta S_{e,j}(x,T)<0$(닫힌식~\eqref{eq:dSegate},
+몰당 환산 식~\eqref{eq:dSemolar} 로 $\Delta S_{e,j}^{\,\mathrm{mol}}=N_A\Delta S_{e,j}$ 가 이 자리에 들어감; \emph{삽입
+기준} --- $\Delta S_{\rxn,j}$ 슬롯과 일관, 부호 뒤집기 없음; MIT 창 통과 시 게이트 적분 방출 $\approx1.1\,k_B$/atom ---
+Reynier 의 $0.18\,k_B$/atom 은 \emph{총 부분몰} 실측으로 별개 양이다),
+흑연엔 $0$ 이고 LCO 는 T1 의 MIT 게이트에서만 켜지며, 셋 중 유일하게 $\propto T$ 라 다온도 피팅에서 다른 둘과 분리 식별된다.
+\end{itemize}
+이 세 몫의 합이 식~\eqref{eq:lco-dUdT} 의 $\partial U_j/\partial T=\Delta S_{\rxn,j}^\mathrm{cat}/F$ 를 통해 LCO
+$U_j(T)$ 의 온도 이동을 정하고, 그 $U_j(T)$ 가 흑연과 \emph{같은} 합산식~\eqref{eq:sum} 으로 dQ/dV 에 들어간다.
+
+\subsection{세 갭과 두 설계 항목}\label{sec:lco-decomp-gaps}
+본 문건이 추적하는 1차 문헌 공백은 셋이다(G$n$ 은 그 일련번호): G1 $=$ 연속 $\Delta S(x)$, G2 $=$ 연속 $g(E_F,x)$
+(\S\ref{sec:lco-Se}), G3 $=$ 도핑 shift(\S\ref{sec:lco-hys-dope}). 세 갭 모두 정밀값이 문헌에 없으므로
+표~\ref{tab:lco-staging}$\cdot$식~\eqref{eq:ggate} 의 초기값을 우리 코인 하프셀 데이터로 round-trip 피팅해 식별한다
+(허위 정밀 금지 --- tier 병기).
+
+\textbf{★다음 두 설계 항목.} 이 분해를 적용하는 데 필요한 두 가지를 명시해 둔다.
+\emph{(i) 좌표 매핑.} 전자항 $\Delta S_{e,j}(x,T)$ 는 조성 $x$ 의 함수인데 곡선 계산은 전위점 $V$ 에서 직접 진행되므로,
+$x\!\leftrightarrow\!\xi_{\eq,1}(V)$ 매핑으로 좌표를 잇는다(닫힌식은 \S\ref{sec:lco-code} 식~\eqref{eq:lco-xmap}).
+\emph{(ii) round-trip 가드.} 식~\eqref{eq:lco-decomp} 의 config 중심 표준값(갭 G1 --- 연속 $\Delta S(x)$ 부재)
+$\Delta S_j^0$(Motohashi\cite{motohashi2009} $\approx0.47/1.49$ J/(mol\,K), T2/T3 --- 배정 양쪽 tier C,
+\S\ref{sec:lco-hys})은 아직 round-trip 으로 실증되지 않은
+\emph{초기값}(신뢰값 아님)이므로, 흑연 $\Delta S_\rxn{=}-16$ J/(mol\,K) 의 round-trip 절차와 동격으로 T1 위치
+$U_1(298)\approx3.90$ V 와 $\partial U_1/\partial T$ 의 부호$\cdot$기울기(다온도 이동률)를 self-test 로 맞추어
+검증한 뒤 신뢰값으로 승격한다.
+
+% 자산: [B2-102] [B2-103] [B2-104] [B2-105] [B2-106] [B2-107] [B2-108] [B2-109] [B2-110] [B2-111]

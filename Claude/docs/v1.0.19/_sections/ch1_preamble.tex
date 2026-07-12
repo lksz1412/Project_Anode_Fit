@@ -1,0 +1,72 @@
+% ====================================================================
+% ch1_preamble.tex — Chapter 1 (v1.0.19) 공통 preamble·매크로
+%   graphite_ica_ch1_v1.0.19.tex 가 \input 한다. 절별 파일은 _sections/ 에.
+%   빌드: xelatex -interaction=nonstopmode (kotex — 한글 전제), 3-pass.
+%   렌더 목표 = v1.0.18.2 동등(문서클래스·패키지·박스 체계·매크로 계승),
+%   조립만 절별 \input 으로 전환.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\setmonofont{D2Coding}[Scale=MatchLowercase]
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (전면 재작성) — Chapter 1 (v1.0.19)}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.19, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem*{keybox}{핵심}
+\newtheorem*{codebox}{코드 대응}
+\newtheorem*{signbox}{부호 검산}
+\newtheorem*{verifybox}{검산}
+\newtheorem*{derivbox}{유도}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\work}{\mathrm{work}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\cat}{\mathrm{cat}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\renewcommand{\theequation}{1.\arabic{equation}}
+\renewcommand{\thesection}{1.\arabic{section}}
+
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{2.3em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil
+      \nobreak\hb@xt@\@pnumwidth{\hss #2\kern-\p@\kern\p@}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
+\makeatother
