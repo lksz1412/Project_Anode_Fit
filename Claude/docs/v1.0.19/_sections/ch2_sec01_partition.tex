@@ -1,0 +1,137 @@
+% ====================================================================
+% §2.1 격자기체 분배함수에서 점유 분포로
+% ====================================================================
+\section{격자기체 분배함수에서 점유 분포로}\label{sec:partition}
+
+통계역학에서 한 계의 모든 평형 열역학량은 분배함수에서 나온다. 흑연 격자에 Li 이온이 삽입되는 문제는
+\emph{격자기체}(lattice gas)로 모형화된다 \cite{newman,huggins2009}: 결정 안에 동등한 삽입 자리들이 있고,
+각 자리는 비어 있거나(에너지 $0$) Li 하나가 점유한다(에너지 $\varepsilon_0$). 자리들은 전해질을 통해 Li
+저장조(상대극 Li 금속)와 평형을 이루므로, 전기화학 퍼텐셜 $\mu$ 가 고정된 \emph{대정준}(grand-canonical)
+문제다. 이 절은 그 분배함수를 세우고, 거기서 점유 분포 $\avg{n}$ 을 끌어낸 뒤, 그것이 Chapter 1 이 \emph{이미
+쓰고 있던} logistic 평형 점유의 기원임을 보이고, 자리 사이 상호작용을 켠 다자리 평균장(Bragg--Williams,
+\S\ref{ssec:BW})으로 절을 닫는다. 이 유도의 통계역학 배경(ensemble$\cdot$Gibbs 인자$\cdot$화학퍼텐셜 $\mu$ 의
+의미)은 Chapter 1 §2(Part 0, 통계역학 기초)가 처음부터 자세히 세웠다 --- 여기서는 발열 논의에 필요한 최소
+사슬만 자기완결로 다시 놓는다.
+
+\subsection{단일 자리 대정준 분배함수}\label{ssec:site}
+자리 하나를 분리하여 살펴본다. 두 미시상태 --- 빈 자리($n=0$, 에너지 $0$)와 점유($n=1$, 에너지
+$\varepsilon_0$) --- 의 대정준 분배함수는, 각 상태에 Gibbs 인자 $e^{-\beta(\varepsilon_0-\mu)n}$ 을 곱해 더한
+것이다($\beta=1/\kB T$):
+\begin{equation}
+\Xi_1 \;=\; \sum_{n=0,1} e^{-\beta(\varepsilon_0-\mu)\,n}
+\;=\; 1 \;+\; e^{-\beta(\varepsilon_0-\mu)}.
+\label{eq:Z1}
+\end{equation}
+자리의 평균 점유는 정의상 두 상태의 확률 가중 평균, 곧 분배함수에 대한 로그 미분이다. 분자에 점유 상태의
+Gibbs 인자를, 분모에 $\Xi_1$ 을 놓아 정리하면
+\begin{equation}
+\avg{n} \;=\; \frac{0\cdot 1 + 1\cdot e^{-\beta(\varepsilon_0-\mu)}}{\Xi_1}
+\;=\; \frac{e^{-\beta(\varepsilon_0-\mu)}}{1+e^{-\beta(\varepsilon_0-\mu)}}
+\;=\; \frac{1}{1+e^{\beta(\varepsilon_0-\mu)}},
+\label{eq:occ}
+\end{equation}
+가 되는데, 마지막 등식은 분자$\cdot$분모를 $e^{-\beta(\varepsilon_0-\mu)}$ 로 나눈 것이다. 이 $\avg{n}$ 은 자리가
+채워질 확률 $p_1$ 그 자체이고, 빌 확률은 $p_0=1-\avg{n}$ 이다. 식~\eqref{eq:occ} 는 구조상 \emph{Fermi--Dirac
+함수}와 동형이다 --- 자리당 2-상태(채움/빔)가 전자 준위의 점유/공위와 같은 대수 구조를 낳으며, 다른 점은
+``입자''가 페르미온 전자가 아니라 Li 이온이고 단일 준위 에너지가 $\varepsilon_0-\mu$ 라는 것뿐이다. 이 동형이
+뒤에서 electronic 엔트로피(\S\ref{sec:vibel})를 같은 분포 언어로 받는 근거가 된다.
+
+기호와 엄밀성에 관한 두 가지를 밝혀 둔다. 첫째, $\Xi_1$ 은 자리 1개의 \emph{대정준} 분배함수이며 Chapter 1 §2
+Part 0 의 같은 기호(그 문건 식 eq:partfn)와 통일한 표기다 --- canonical 분배함수와는 기호부터 구분한다.
+둘째, 점유된 이온이 자리 우물 안에서 갖는 진동 등 내부 자유도의 분배함수 $q(T)$ 까지 포함한 엄밀 유도는
+Chapter 1 §2 Part 0(식 eq:sm-epstilde)이 닫았다 --- 그 결과는 $\varepsilon_0$ 을 유효 자리 자유에너지
+$\tilde\varepsilon=\varepsilon_0-\kB T\ln q(T)$ 로 대체하는 것뿐이고 logistic 함수형은 불변이므로, 본 장 이하의
+$\varepsilon_0$ 은 그 흡수를 마친 유효값으로 읽는다. 그 내부 자유도의 온도 미분 $-\kB\ln q(T)$ 의 $T$-의존이,
+곧 \S\ref{sec:vibel}$\cdot$\S\ref{sec:einstein} 의 vibrational 엔트로피 몫의 단일 자리 원형이다.
+
+\subsection{전기화학 퍼텐셜과 Chapter 1 logistic 의 기원}\label{ssec:logistic}
+이제 화학을 넣는다. Li 가 자리에 들어가는 전기화학 반응의 전기화학 퍼텐셜은 셀 전위에 선형으로 묶인다:
+\begin{equation}
+\mu \;=\; \mu^0 \;-\; s\,F\,(V-U_j),
+\label{eq:muV}
+\end{equation}
+여기서 $V$ 는 (평형) 전극 전위, $U_j$ 는 그 전이의 표준(중심) 전위, $F$ 는 Faraday 상수, $s(=+1)$ 는
+Chapter 1 의 \emph{유도 전용 고정 부호}다.\footnote{★부호 각주(오독방지). 이 $s{=}+1$ 은 방향 부호
+$\sigma_d$(Chapter 1 §1 --- 분극$\cdot$분기$\cdot$꼬리 세 작용처 전용, $\pm1$)와는 \emph{별개}다. 평형 관계에는
+항상 $s{=}+1$ 이 들어가며, $\sigma_d{=}-1$ 을 이 식에 기계적으로 대입하면 점유와 진행률이 뒤바뀌는
+\emph{여집합 오류}가 생긴다(종은 좌우 대칭이라 봉우리 자체는 멀쩡해 보여 오류가 잠복한다).} 전위가 오르면
+($V>U_j$) Li 의 전기화학 퍼텐셜이 낮아져 자리에서 빠져나가므로, \emph{점유} $\avg{n}=\theta$ 는 $V$ 에 따라
+\emph{감소}한다. 식~\eqref{eq:muV} 를 \eqref{eq:occ} 에 대입하고 $N_A\varepsilon_0\equiv\mu^0$(자리당 값의 몰
+환산이 기준 화학퍼텐셜과 일치하는 전이 중심 기준)을 잡으면, 지수의 분자가 $-N_A s F(V-U_j)/N_A=-sF(V-U_j)$
+꼴로 정리되어 평형 점유와 그 여집합(탈리튬화 진행률 $\xi\equiv1-\theta$)은
+\begin{equation}
+\boxed{\;\theta_\eq(V,T)=\avg{n}=\frac{1}{1+\exp\!\bigl[+(V-U_j)/w\bigr]},\qquad
+\xi_\eq(V,T)=1-\theta_\eq=\frac{1}{1+\exp\!\bigl[-(V-U_j)/w\bigr]}\;,}
+\label{eq:logistic}
+\end{equation}
+이고 여기서 $w\equiv RT/F$ 다. 몰 단위 환산은 $R=N_A\kB$, $F=N_Ae$ 로 닫힌다 --- $\beta(\varepsilon_0-\mu)$ 의
+분자를 몰 에너지로 쓰면 지수는 $(V-U_j)/(RT/F)=(V-U_j)/w$, 곧 몰 척도에서 $F/RT=1/w$ 이고, 자리당
+$\beta=1/\kB T$ 그대로는 $\beta F=N_A/w$ 다. 곧 \emph{점유} $\theta$ 는 $V$ 에 감소하는 logistic, \emph{탈리튬화
+진행률} $\xi=1-\theta$ 는 $V$ 에 증가하는 logistic이며, 후자가 정확히 Chapter 1 §5 의 전이별 \emph{logistic
+평형 종}(그 문건 식 eq:xieq)이다($\xi\to1$ 고전위$\cdot$Li 희박, $\xi\to0$ 저전위$\cdot$만충).
+
+\begin{keybox}
+Chapter 1 의 평형 종 $\xi_\eq$ 는 \emph{현상학적 곡선맞춤}이 아니라 \emph{격자기체 점유 분포의 여집합}(탈리튬화
+진행률 $=1-\theta$)이다. logistic 폭 $w=RT/F$($n_j{=}1$ 서식; 일반형 $w_j=n_jRT/F$)는 \emph{단상
+전이($\Omega_j\le2RT$)에 한해} 평형 등온선이 정하는 검증 가능한 평형 예측이고(이상 극한은 단일 자리
+분배함수~\eqref{eq:Z1} 의 $RT/F$, 상호작용이 있으면 $\Omega$ 가 폭을 바꾸되 그 값 역시 평형 등온선이
+결정한다 --- \S\ref{ssec:BW}), \emph{두-상 전이}($\Omega_j>2RT$ --- 흑연 staging 의 $2\mathrm L\!\to\!2\cdot
+2\!\to\!1$)에는 이 유도가 닿지 않아 폭은 현상학적 자유 피팅 파라미터가 된다. 곧 $w_j$ 는 \emph{값}과 \emph{$T$-의존
+함수형}의 두 층위에서 이중지위를 가지며, 그 상세는 폭의 이중지위(\S\ref{ssec:weff})와 파생 A 전제 명시
+(\S\ref{ssec:overlap})가 다룬다. ★표기: $\theta=$ Li 점유율(만충에서 $1$), $\xi=1-\theta=$ 탈리튬화 진행률
+(희박에서 $1$); 둘은 같은 점유 분포의 두 이름이다. 본 장은 이 분포를 결론이 아니라 출발점으로 삼아 엔트로피를
+쌓는다.
+\end{keybox}
+
+$\xi=1-\theta$ 와 전위의 관계를 뒤집으면, 곧 점유 $\theta$ 의 Nernst 관계
+$V=U_j+(RT/F)\ln[(1-\theta)/\theta]$ 에 $\theta=1-\xi$ 를 대입하면
+\begin{equation}
+V(\xi) \;=\; U_j \;+\; \frac{RT}{F}\,\ln\!\frac{\xi}{1-\xi},
+\label{eq:Vxi}
+\end{equation}
+이 되는데, 이 \emph{Nernst 형 로그항}이 뒤에서 configurational 엔트로피의 부분몰 형태로 다시 나타난다
+(\S\ref{sec:config}). 식~\eqref{eq:Vxi} 의 $\ln[\xi/(1-\xi)]$ 가 단순한 곡선맞춤이 아니라 점유 분포의
+엔트로피에서 온다는 것이 이 장의 첫 매듭이며, 그 매듭을 다음 절이 명시적으로 푼다.
+
+\subsection{다자리 평균장 --- Bragg--Williams 와 상호작용}\label{ssec:BW}
+실제 격자에서는 자리들이 독립이 아니다. 점유된 이웃 자리는 다음 Li 의 삽입 에너지를 바꾼다(정전 반발,
+탄성 변형, 전자 구조 변화). 이 상호작용을 평균장으로 다루는 것이 Bragg--Williams 근사다 \cite{huggins2009,
+bazant2013}. 점유율 $\theta\in[0,1]$(자리당 평균 점유, 거시적으로 $\avg{n}$ 과 같음)의 자유에너지를, 이상
+격자기체의 섞임 항에 상호작용 항을 더해 적으면
+\begin{equation}
+g(\theta) \;=\; g_0 \;+\; RT\bigl[\theta\ln\theta + (1-\theta)\ln(1-\theta)\bigr]
+\;+\; \Omega\,\theta(1-\theta),
+\label{eq:BW}
+\end{equation}
+이고, 우변 둘째 항이 \emph{혼합(섞임) 엔트로피}(곧 \S\ref{sec:config}; Chapter 1 §2 Part 0 의 ``섞임''과 같은
+양, 그 문건 식 eq:sm-Smix), 셋째 항이 regular-solution 형 \emph{혼합 엔탈피}다 --- 상호작용 모수 $\Omega>0$ 은
+같은 종끼리 뭉치려는 인력(상분리 경향), $\Omega<0$ 은 교대 정렬(규칙화) 경향을 뜻한다. 평형 전위는 $\theta$
+1몰 삽입당 자유에너지 변화 $\partial g/\partial\theta$ 를 전위로 환산한 것이므로, 식~\eqref{eq:BW} 를 미분하면
+\begin{equation}
+V_\eq(\theta) \;=\; U_j \;-\; \frac{RT}{F}\ln\!\frac{\theta}{1-\theta} \;-\; \frac{\Omega}{F}\,(1-2\theta),
+\label{eq:Veq_BW}
+\end{equation}
+가 되어, 식~\eqref{eq:Vxi} 의 이상 격자기체에 상호작용 항 $-\Omega(1-2\theta)/F$ 가 더해진다. 이 상호작용의
+\emph{열역학적} 결과는 상분리 임계다. $\Omega$ 가 임계값을 넘으면 평형 등온선이 비단조가 되어 분포가 쌍봉
+(bimodal)으로 갈리며 \emph{상분리}(plateau)가 일어난다. 임계 조건은 등온선 기울기가 처음 $0$ 이 되는 곳, 곧
+식~\eqref{eq:Veq_BW} 를 $\theta$ 로 미분한
+\begin{equation}
+\frac{\dd V_\eq}{\dd\theta} \;=\; -\frac{RT}{F}\frac{1}{\theta(1-\theta)} \;+\; \frac{2\Omega}{F},
+\qquad
+\theta=\tfrac12\text{ 에서 }\;\frac{\dd V_\eq}{\dd\theta}\Big|_{1/2}=\frac{2\Omega-4RT}{F},
+\label{eq:slope_BW}
+\end{equation}
+이 중앙 $\theta=\tfrac12$ 에서 $0$ 이 되는 $\Omega=2RT$ 다. $\Omega\le2RT$ 면 등온선이 단조(균질 고용체 ---
+등호에선 중심 기울기 $0$), $\Omega>2RT$ 면 중앙에서 기울기가 양으로 뒤집혀(불안정) 상분리한다. 이 임계
+$\Omega=2RT$ 는 Chapter 1 §4(히스테리시스, 식 eq:spinodal)의 spinodal 조건과 같은 열역학이며,
+\S\ref{sec:limits} 에서 핵심 코너로 다시 나온다. 상호작용이 평형을 정하는 이 결과를 손에 쥐고, 다음 절은
+같은 분포에서 엔트로피 자체를 끌어낸다.
+
+% 자산: [C-9] 격자기체 대정준(newman·huggins2009) · [C-10] Ξ_1=1+e^{-β(ε0-μ)} (eq:Z1) ·
+%   [C-11] ⟨n⟩=p_1 (eq:occ) · [C-12] eq:occ = FD 동형(electronic 병행성 근거) ·
+%   [C-13] Ξ_1 대정준·Ch1 Part0 표기 통일 · [C-14] q(T) 내부자유도→ε̃, 온도미분이 vib 원형 ·
+%   [C-15] μ=μ⁰−sF(V−U_j), s=+1 (eq:muV) · [C-16] ★s=+1(평형)≠σ_d(방향) 여집합 오류 각주 ·
+%   [C-17] logistic θ_eq/ξ_eq (eq:logistic) · [C-18] 단위환산 R=N_Ak_B·F=N_Ae ·
+%   [C-19] θ 감소·ξ 증가 = Ch1 평형종 · [C-20] ★keybox ξ_eq 여집합 + w 단상/두-상 이중지위 ·
+%   [C-21] 표기 θ/ξ · [C-22] Nernst V(ξ) (eq:Vxi) · [C-23] BW g(θ) (eq:BW, huggins2009·bazant2013) ·
+%   [C-24] V_eq(θ) (eq:Veq_BW) · [C-25] 상분리 임계 Ω=2RT (eq:slope_BW)

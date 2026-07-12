@@ -1,0 +1,57 @@
+% ====================================================================
+% §2.7 가역 발열 — 분포를 재배열하는 열 (Bernardi 출구)
+% ====================================================================
+\section{가역 발열 --- 분포를 재배열하는 열}\label{sec:revheat}
+
+이제 분포에서 세운 $\partial U_\oc/\partial T(x)$ 를 가역 발열로 닫는다. 이 절은 셀 에너지 수지에서 가역 성분을
+분리하고(\S\ref{ssec:balance}), 그 부호와 ``방전'' 라벨의 층위를 못박은 뒤(\S\ref{ssec:signlabel}), 가역 발열을
+분포 재배열의 열로 해석한다(\S\ref{ssec:revinterp}).
+
+\subsection{에너지 수지와 두 전제}\label{ssec:balance}
+전지 셀의 발열은 Bernardi--Pawlikowski--Newman 의 일반 에너지 수지 \cite{bernardi1985} 에서 가역(엔트로피)과
+비가역(소산) 두 성분으로 갈린다. 단일 활물질 한계에서 총 발열률은 과전압 소산 항과 엔트로피 항의 합이며,
+평형 전위와 반응 엔트로피가 $\partial U_\oc/\partial T=\Delta S(x)/F$ 로 묶이므로
+\begin{equation}
+\dot Q \;=\; \underbrace{I\,(U_\oc-V)}_{\dot Q_\irr\ge0}\;-\;\underbrace{I\,T\,\frac{\partial U_\oc}{\partial T}}_{\dot Q_\rev},
+\qquad
+\boxed{\;\dot Q_\rev \;=\; -\,I\,T\,\frac{\partial U_\oc}{\partial T}\;=\;-\,\frac{I\,T}{F}\,\Delta S(x)\;,}
+\label{eq:qrev}
+\end{equation}
+이다($I>0$ 방전, $V$ 단자 전압, $U_\oc$ 평형 전위). 첫 항은 과전압 소산(2법칙상 항상 발열, Chapter 1 의
+동역학 꼬리$\cdot$분극이 만드는 소산)이고, 둘째 항이 가역 발열로 부호 양방향이다. 이 축약에는 두 전제가 더
+들어 있다 --- Bernardi 원식의 혼합 엔탈피(농도 구배 완화열) 항은 준평형 저율(농도 균일)을, 상변화 항은
+staging 열이 평형 $U_\oc(x)$ 에 이미 흡수되어 있음을 전제로 소거한 것이며, 전제가 깨지는 고율 조건에서는 두
+성분 분해에 잔여 항이 남는다.
+
+\subsection{부호와 라벨 층위 --- ``방전($I>0$)'' 의 충돌}\label{ssec:signlabel}
+★라벨 층위 주의 --- 여기서 ``방전($I>0$)''은 Bernardi 셀-수지 관례의 \emph{전기화학적 셀 방전}(자발 방향
+$V<U_\oc$, $\dot Q_\irr\ge0$ 이 강제), 곧 흑연 하프셀에선 작동전극의 \emph{리튬화}다. Chapter 1 의 방향
+라벨(흑연 하프셀 방전 $=$ 탈리튬화, $\sigma_d{=}+1$)과 \emph{같은 단어}가 \emph{반대 화학 방향}을 가리키므로,
+본 절의 부호는 라벨이 아니라 전류 부호 $I$ 로 읽는다(충전은 $I<0$ 으로 자동 처리 --- 식은 방향에 선형이라 부호
+하나로 닫힌다). 이 라벨 충돌이 본 장에서 부호가 가장 크게 어긋날 수 있는 자리이며, 부록 A 의 함정표가 이
+층위를 다시 정리한다.
+\begin{srcbox}
+부호 규약: 평형 전위와 반응 깁스 에너지가 $\Delta G=-FU_\oc$ 로 묶이고 $\Delta S=-\partial(\Delta
+G)/\partial T=+F\,\partial U_\oc/\partial T$ 이므로, 이를 식~\eqref{eq:qrev} 에 대입하면 부호가 정확히 일치한다
+\cite{newman,msmr_partI}. 본 장은 평형 전위 $U_\oc$ 기준 $\Delta S=+F\,\partial U_\oc/\partial T$ 규약으로
+통일한다(전셀 조립 시 음극 몫은 부호 반전 $+IT\,\partial U_\mathrm{an}/\partial T$ 로 들어가나 본 장 범위 밖 ---
+상단 범위 박스 참조).
+\end{srcbox}
+
+\subsection{분포 재배열 열로서의 해석}\label{ssec:revinterp}
+식~\eqref{eq:qrev} 의 $\Delta S(x)$ 는 본 장이 세운 세 분포의 합이므로(\S\ref{ssec:threedist} 핵심 박스),
+가역 발열은 한 충전상태에서 다른 충전상태로 넘어갈 때 \emph{Li 배열 분포$\cdot$포논 분포$\cdot$전자 분포를
+재배열하며 주고받는 열}이다. 부호는 식~\eqref{eq:qrev} 가 곧장 정한다 --- 방전($I>0$)에서 $\Delta S>0$ 이면
+$\dot Q_\rev<0$ 으로 \emph{흡열}(endothermic, 셀이 열을 흡수), $\Delta S<0$ 이면 $\dot Q_\rev>0$ 으로
+\emph{발열}(exothermic)이다($\Delta S$ 는 Li 1몰(전자 1몰) 삽입 기준 J\,mol$^{-1}$K$^{-1}$). SOC 에 따라
+$\Delta S(x)$ 의 부호가 바뀌므로 흡$\cdot$발열이 교대한다: 저-$x$ 에서 config 양의 발산이 지배해 $\Delta S>0$
+이므로 방전 시 $\dot Q_\rev<0$(흡열), 고-$x$ 에서 vibrational 음 baseline 이 드러나 $\Delta S<0$ 이 되어 방전이
+발열로 돈다. stage $2\to1$($x\approx0.5$)의 큰 음의 $\Delta S$ 는 방전 시 $\dot Q_\rev>0$, 곧 가역 발열의
+두드러진 신호를 남기며, 이는 calorimetry 의 가역 발열 직접 관측과 정합한다 \cite{standardised2024}. 부호와
+해석을 손에 쥐었으니, 다음 절은 이 발열을 실전 계산으로 옮기는 종합식과 한 수치 예제를 닫는다.
+
+% 자산: [C-97] ★Bernardi(bernardi1985) 단일활물질 Q̇=Q̇_irr−IT∂U/∂T (eq:qrev, I>0 방전) ·
+%   [C-98] 두 전제(혼합엔탈피 준평형저율·상변화 U_oc 흡수 소거·고율 잔여) ·
+%   [C-99] ★라벨층위 "방전(I>0)"=Bernardi 리튬화 vs Ch1 탈리튬화 같은단어 반대방향·부호는 I로(CRITICAL) ·
+%   [C-100] srcbox 부호유도 ΔG=−FU_oc·ΔS=+F∂U_oc/∂T(newman·msmr_partI)·전셀 음극몫 반전 범위밖 ·
+%   [C-101] 해석 가역발열=분포 재배열·SOC 흡발열 교대·2→1 발열(calorimetry standardised2024)

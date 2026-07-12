@@ -1,0 +1,52 @@
+% ====================================================================
+% §2.6 극한과 코너 — 분포 검산과 "상수+분포" 근사 판정
+% ====================================================================
+\section{극한과 코너(corner case) --- 분포 검산과 ``$\Delta S_{\rxn,j}$ 상수'' 근사의 타당성}\label{sec:limits}
+
+닫힌식의 신뢰는 극한에서 옳은 물리로 환원되는지로 검산된다. 표~\ref{tab:limits} 는 여섯 코너를 정리한다 ---
+각각 분포 식이 물리적으로 맞는 값으로 가는지 확인한다.
+
+\begin{table}[t]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\caption{$\partial U_\oc/\partial T(x)$ 의 극한$\cdot$코너 검산. 규약: $\xi=$ 탈리튬화 진행률($\xi\to1$ 희박,
+$\xi\to0$ 만충).}
+\label{tab:limits}
+\begin{tabular}{l l p{0.46\textwidth}}
+\toprule
+극한 & $\partial U_\oc/\partial T$ 거동 & 물리$\cdot$검증 \\
+\midrule
+$\xi\to1$ (희박, Li-poor) & config $\to+\infty$ & 삽입 자리 선택지 폭증; 저-$x$ 큰 양 $\Delta S$($+29$)에 분담
+기여(귀속 한정 \S\ref{sec:config}) \\
+$\xi\to0$ (만충, Li-rich) & config $\to-\infty$ & 배열 선택지 소멸; 만충 정렬의 음 부분몰 엔트로피 \\
+$\xi=\tfrac12$ (봉우리 중심) & $=\Delta S_{\rxn,j}/F$ & config$=0$; 중심 표준값 정확 회수(파생 B 일관) \\
+$\Omega\to2RT$ (임계) & 상분리 임계(plateau) & $\Omega>2RT$ 측에서 평형 등온선 비단조화$\to$plateau;
+\emph{실측} 두-상 폭은 현상학적 피팅(\S\ref{ssec:weff}) \\
+단일 봉우리 (겹침 0) & $=\Delta S_{\rxn,j}/F+$ config & 가중식~\eqref{eq:weighted} 이 단일 전이로 환원 \\
+고온 ($\kB T\!\sim\!E_F$ 근접) & electronic $\propto T$ 우세화 & Fermi--Dirac--Sommerfeld~\eqref{eq:Se} 는
+축퇴 극한 $\kB T\!\ll\!E_F$ 전용 --- \emph{정성적} 방향(전자 기여 증대)만 유효, $\kB T\!\sim\!E_F$ 에선 정량
+부적용 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+다섯 코너에서 분포 식이 옳은 극한으로 환원되고, 여섯째(고온) 코너는 닫힌식의 적용 한계를 명시한다. 특히
+세 가지가 본 장의 골격을 닫는다: (i) 중심 $\xi=\tfrac12$ 에서 config$=0$ 이라 파생 B 의 분리가 자기일관적이다;
+(ii) 단일 봉우리 한계에서 가중식이 단일 전이 $+$ config 로 환원되므로 \eqref{eq:weighted} 가
+\eqref{eq:single_config} 를 포함한다; (iii) $\Omega\to2RT$ 에서 평형 등온선이 비단조로 뒤집혀 상분리 plateau 가
+발생하므로, 상호작용 모형이 상전이 임계를 스스로 짚는다.
+
+\begin{keybox}
+★\textbf{``$\Delta S_{\rxn,j}$ 전이당 상수'' 근사의 판정.} 측정 $\partial U_\oc/\partial T(x)$ 의 비선형은 두
+출처에서 \emph{자동 생성}된다 --- (i) 겹침 가중(\S\ref{ssec:overlap})과 (ii) 봉우리 내부 config 분포
+(\S\ref{sec:config}). 따라서 $\Delta S_{\rxn,j}(x)$ 를 임의 함수로 둘 필요가 \emph{없다}: 전이당 \emph{상수}
+표준값 $+$ 분포만으로 측정급 곡선이 나온다. 이 근사는 \emph{중심 표준값(vib$+$electronic 중심)이 전이 폭 안에서
+천천히 변할 때} 타당하다. 예외는 그 항이 전이 폭 \emph{안에서} 급변하는 경우 --- 대표적으로 LCO 의 MIT 가 한
+전이 안에서 $g(E_F)$ 를 급변시키면 $\Delta S_e(x)$ 만은 $x$-의존으로 유지해야 한다(\S\ref{ssec:elec}). 흑연
+하프셀에서는 electronic 이 소수라 이 예외가 거의 없고, config$+$중심 상수로 충분하다.
+\end{keybox}
+
+극한이 분포 식을 검산했으니, 이제 이 $\partial U_\oc/\partial T(x)$ 를 가역 발열로 환산할 차례다.
+
+% 자산: [C-94] ★표 tab:limits 6 코너 검산 · [C-95] 셋이 골격 닫음(중심 config=0·단일봉우리 환원·Ω→2RT 상분리) ·
+%   [C-96] ★keybox "ΔS_rxn,j 전이당 상수" 근사 판정(중심+분포로 측정급·예외=LCO MIT·흑연 충분)

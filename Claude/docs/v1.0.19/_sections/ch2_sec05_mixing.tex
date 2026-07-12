@@ -1,0 +1,230 @@
+% ====================================================================
+% §2.5 섞임과 겹침 — 분포가 만드는 ∂U_oc/∂T(x) 의 모양
+% ====================================================================
+\section{섞임과 겹침 --- 분포가 만드는 $\partial U_\oc/\partial T(x)$ 의 모양}\label{sec:mixing}
+
+실제 흑연 곡선은 단일 전이가 아니라 여러 전이가 \emph{겹쳐} 있다. 한 SOC 에서 여러 전이의 점유 분포가
+동시에 변하고 있고, 측정 $\partial U_\oc/\partial T(x)$ 는 그 분포들의 가중 합으로 나타난다. 이 절은 네 파생을
+차례로 닫는다: (A) 겹침 가중식을 음함수 미분으로 유도해 수치로 검증하고, (B) 봉우리 내부 config 의 이중계산을
+분리하며, (C) 폭 $w_j$ 의 이중지위 --- 단상 평형 예측 vs 두-상 현상학적 자유 피팅 폭 --- 를 규정하고, (D)
+히스테리시스 분기별 $\partial U/\partial T$ 를 가역/비가역으로 가른다.
+
+\subsection{파생 A --- 음함수 사슬과 겹침 가중}\label{ssec:overlap}
+관측 평형 전위 $U_\oc(x,T)$ 는 모든 전이의 점유가 합쳐 전하 보존을 만족하는 음함수로 정의된다. ★좌표 주의
+--- 이 식과 그림~\ref{fig:blend} 의 가로축은 \emph{탈리튬화$\cdot$추출 전하 분율} $\bar x\equiv1-x$ 로, 본 장
+다른 곳의 Li 함량 $x$ 와 배향이 반대다(부호 오류가 여기서 가장 자주 난다):
+\begin{equation}
+\sum_j Q_j\,\xi_{\eq,j}(U_\oc,T) \;=\; Q\,\bar x,
+\label{eq:implicit}
+\end{equation}
+여기서 $Q_j$ 는 전이 $j$ 의 용량, $Q=\sum_j Q_j$ 다. 양변을 고정 $\bar x$ 에서 $T$ 로 음함수 미분하면
+(고정 $\bar x$ 는 고정 $x$ 와 같아 좌표 선택에 무관), 좌변의 $T$-전미분이 $0$ 이 되어야 하므로
+\begin{equation}
+\frac{\partial U_\oc}{\partial T}\Big|_x
+\;=\; -\,\frac{\sum_j Q_j\,\partial\xi_j/\partial T|_U}{\sum_j Q_j\,\partial\xi_j/\partial U|_T},
+\label{eq:implicit_diff}
+\end{equation}
+가 나온다. logistic 점유~\eqref{eq:logistic} 에서 두 편미분이 닫힌형으로 나온다. 전위 미분은 곧 \emph{국소
+$dQ/dV$ 봉우리(Chapter 1 의 peak) 모양}이다:
+\begin{equation}
+\frac{\partial\xi_j}{\partial U}\Big|_T \;=\; \frac{\xi_j(1-\xi_j)}{w_j} \;\equiv\; g_j(x).
+\label{eq:gj}
+\end{equation}
+★기호 주의 --- 이 $g_j(x)$ 는 봉우리 가중[1/V]으로, Chapter 1 §2 의 조성 자유에너지 $g_j(\xi)$(그 문건 식
+eq:gxi)$\cdot$본 장의 BW 자유에너지 $g(\theta)$(식~\eqref{eq:BW})$\cdot$상태밀도 $g(E_F)$(식~\eqref{eq:Se})와
+무관한 별개 기호다(g 4종 충돌). 온도 미분은 \emph{두 조각}을 갖는다 --- 봉우리 중심 $U_j(T)$ 의 온도 이동과,
+폭 $w_j(T)=n_jRT/F$ 의 명시적 온도 의존이다. $\xi_j$ 가 logistic 인자 $a_j=(U-U_j(T))/w_j(T)$ 의 함수이고
+$\partial\xi_j/\partial a_j=g_j w_j$, $\partial w_j/\partial T=n_jR/F$ 임을 쓰면($z_j\equiv(U-U_j)/w_j=\ln[\xi_j/
+(1-\xi_j)]$), 연쇄율로
+\begin{equation}
+\frac{\partial\xi_j}{\partial T}\Big|_U
+\;=\; -\,g_j(x)\,\frac{\partial U_j}{\partial T}
+\;\underbrace{-\,g_j(x)\,\frac{n_jR}{F}\,z_j}_{w_j(T)\text{ 조각}},
+\qquad z_j=\ln\frac{\xi_j}{1-\xi_j},
+\label{eq:dxidT}
+\end{equation}
+가 된다(첫 조각은 중심 이동, 둘째 조각은 폭의 $T$-의존).
+
+\textbf{★폭 다중도의 온도 함수화(선택 확장).} 위 둘째 조각은 폭 다중도 $n_j$ 를 온도 상수로 본 $\partial
+w_j/\partial T=n_jR/F$ 다. 잔여 폭 $T$-의존을 담고자 다중도를 온도의 함수 $n_j(T)$ 로 두면 폭이
+$w_j=n_j(T)\,RT/F$ 라 곱의 미분으로
+\begin{equation}
+\frac{\partial w_j}{\partial T}=\frac{R}{F}\,\frac{\mathrm{d}[n_j(T)\,T]}{\mathrm{d}T}
+=\frac{R}{F}\Big(n_j(T)+T\,\frac{\mathrm{d}n_j}{\mathrm{d}T}\Big)
+\label{eq:dwdT-nT}
+\end{equation}
+가 되어, 식~\eqref{eq:dxidT} 둘째 조각의 계수 $n_jR/F$ 가 그대로 $\partial w_j/\partial T$ 로 일반화된다 ---
+완전식의 config 항과 가역 발열 계수(\S\ref{sec:revheat})가 같은 $n_j(T)$ 로 자기정합하게 전파된다($n_j$ 상수면
+$\mathrm{d}n_j/\mathrm{d}T{=}0$ 으로 $n_jR/F$ 로 환원). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅하는 스코프는
+데이터가 정한다(본 문건은 스코프를 정하지 않는다).
+
+\subsection{단순식과 완전식 --- 계단이 아닌 연속 블렌드}\label{ssec:blend}
+먼저 첫 조각만(중심 이동)을 \eqref{eq:gj}$\cdot$\eqref{eq:dxidT} 와 함께 \eqref{eq:implicit_diff} 에 넣는다.
+분모의 $\partial\xi_j/\partial U=g_j$ 와 분자의 $-g_j\partial U_j/\partial T$ 가 만나 $g_j$ 가 살아남고, 겹침 가중의
+\emph{중심값 식(단순식)}이 닫힌다:
+\begin{equation}
+\boxed{\;\frac{\partial U_\oc}{\partial T}(x)\Big|_{\text{단순식}}
+\;=\; \frac{\sum_j Q_j\,g_j(x)\,(\partial U_j/\partial T)}{\sum_j Q_j\,g_j(x)}
+\;=\; \frac1F\,\frac{\sum_j Q_j\,g_j(x)\,\Delta S_{\rxn,j}}{\sum_j Q_j\,g_j(x)}\;.}
+\label{eq:weighted}
+\end{equation}
+곧 단순식의 관측 엔트로피 계수는 각 전이의 $\Delta S_{\rxn,j}/F$ 를 \emph{국소 $dQ/dV$ 비중}
+$Q_jg_j/\sum_k Q_kg_k$ 로 가중한 평균이다. 겹침 영역에서 인접한 $g_j,g_{j+1}$ 둘 다 $0$ 이 아니므로, $x$ 가 한
+전이에서 다음으로 넘어갈 때 $\Delta S_{\rxn,j}/F$ 에서 $\Delta S_{\rxn,j+1}/F$ 로 \emph{연속}으로 이동한다 ---
+\textbf{계단이 아니라 연속 블렌드}다(그림~\ref{fig:blend}). 가중 분모 $\sum Q_jg_j$ 가 정확히 측정
+$dQ/dV$($=Q\,\partial\bar x/\partial U$; $\bar x$ 무차원이라 $Q$ 배)이므로, 비중은 ``그 SOC 에서 어느 봉우리가
+활성인가''를 그대로 읽는다. \eqref{eq:dxidT} 의 둘째 조각($w_j(T)$ 의존, $-g_jn_jRz_j/F$)을 마저 넣으면
+봉우리 내부 config 항 $+n_jR z_j/F=+n_jR\ln[\xi_j/(1-\xi_j)]/F$ 가 더해진 \emph{완전식}이 되며
+(\S\ref{sec:config} 의 부분몰 config 와 동일), 이것이 아래 ★수치 검증 박스의 대상이자 파생 B(\S\ref{ssec:derivB})의
+표기 기준이다.
+
+\begin{srcbox}
+★\textbf{수치 검증(파생 A).} Chapter 1 의 4-전이 흑연 staging 파라미터로, 유한차분(finite difference)
+$\partial U_\oc/\partial T|_x^\mathrm{num}=[U_\oc(x,T_2)-U_\oc(x,T_1)]/\Delta T$ ($T_1{=}292.15$, $T_2{=}298.15$ K)를
+식~\eqref{eq:weighted} 의 \emph{단순식}(중심값 $\Delta S^0_j/F$ 만)과, 그리고 봉우리 내부 config 항 $z_j n_jR/F$
+($z_j=(U_\oc-U_j)/w_j$; 검증 데이터셋은 $n_j{=}1$)를 포함한 \emph{완전식}과 비교했다 \cite{numverif2026}.
+결과: 완전식은 175 점 전 범위에서 유한차분값과 표시 정밀도($\lesssim10^{-2}$ mV/K)로 일치(절대오차 $\approx0$
+mV/K --- 겹침 구간의 유한차분 대 점미분 잔차 수 $\mu$V/K 급은 이 표시 정밀도 아래), 단순식은 봉우리 내부
+config 항만큼 체계적으로 빗나간다(단순식 절대오차 최대 $0.18$ mV/K). 그 config 항 자체의 부호 있는 크기는
+구간에 따라 $[-0.21,+0.14]$ mV/K 범위다. 그리드 실측 최대값 $0.18$ 은 극값을 정확히 샘플하지 않은 결과로,
+해석 상한은 $0.21$ 이다. config 항은 $z_j$ 의 로그 구조 탓에 그리드 양끝에서 계속 커지는 스팬-의존 양이므로,
+이 수치들은 검증 그리드의 $\bar x$ 스팬 기준이다 \cite{numverif2026}. 내부 전이 경계 3 곳 모두 \emph{계단 없이}
+연속 블렌드(인접 $\Delta S^0/F$ 사이 값을 취함)임도 확인됐다. 곧 \eqref{eq:weighted} 의 중심값 가중에
+\S\ref{sec:config} 의 분포 config 를 더하면, 임시 계단 함수나 외부 입력 없이 \emph{측정급 비선형}
+$\partial U_\oc/\partial T(x)$ 가 모델 안에서 자동 생성된다.
+
+★\textbf{전제 명시(검증의 조건부).} 이 검증의 $w_j(T)$ 는 열적 서식 $w_j=n_jRT/F$($\partial
+w_j/\partial T=n_jR/F$) 하에서 평가된 것이다. 이 서식은 다중도 $n$ 을 갖는 전이에 적용되며 검증 데이터셋은 전
+전이가 해당하고, 폭 $w$ 를 직접 지정한 전이는 $T$-동결 폭이다 --- 자유 피팅되는 것은 진폭 $n_j$(또는 기준온도의
+$w$)뿐이고 $T$-의존의 함수형은 고정이다. 따라서 완전식의 표시-정밀도 일치는 그 서식이 낳는 $w(T)$ 조각
+(식~\eqref{eq:dxidT} 둘째 항)까지 포함한 \emph{해석 미분 사슬의 자기일관성} 검증이지, 두-상 전이의 물리적 폭이
+실제로 $n_jRT/F$ 로 스케일한다는 \emph{실측 검증이 아니다}. 만일 실측 $w_j$ 가 $T$-동결에 가깝다면 단순식/완전식의
+우열이 뒤집히는 $\sim$0.3 mV/K 급 차이가 남는다(검증 그리드의 config 항 스케일 --- 최대 $0.21$, 양끝 폭 $0.35$
+mV/K --- 의 대표 규모). 두-상 $w_j$ 의 지위(현상학적 자유 폭)는 파생 C(\S\ref{ssec:weff})가, 그 $T$-의존
+함수형까지 자유화할지는 다온도 실데이터 round-trip(\S\ref{sec:method} 한계)이 확정한다.
+\end{srcbox}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm]
+  % axes
+  \draw[->,>=Stealth] (-0.2,0) -- (9.4,0) node[right]{\small $\bar x$ (delithiation)};
+  \draw[->,>=Stealth] (0,-2.0) -- (0,2.3) node[above]{\small $\partial U_\oc/\partial T$};
+  \draw[dashed,gray] (0,0) -- (9.2,0);
+  % two transition levels dS_j/F (arbitrary units): j has +1.5, j+1 has -1.5
+  \draw[densely dotted] (0.4,1.5) -- (3.0,1.5) node[right,black,yshift=4pt]{\scriptsize $\Delta S^0_{j}/F$};
+  \draw[densely dotted] (6.0,-1.5) -- (8.8,-1.5) node[right,black,yshift=-4pt]{\scriptsize $\Delta S^0_{j+1}/F$};
+  % continuous blend curve: smooth sigmoid from +1.5 to -1.5 centered at x=4.6
+  \draw[very thick,blue] plot[smooth,domain=0.4:8.8,samples=80]
+    (\x, {1.5 - 3.0/(1+exp(-1.6*(\x-4.6)))});
+  % the overlap region shading
+  \draw[decorate,decoration={brace,amplitude=4pt},gray] (3.2,-1.9) -- (5.9,-1.9);
+  \node[gray,below] at (4.55,-2.05) {\scriptsize overlap region: continuous blend};
+  % weight ratio annotation
+  \node[blue] at (6.7,1.0) {\scriptsize $\dfrac{\sum_j Q_jg_j\,\Delta S^0_j/F}{\sum_j Q_jg_j}$};
+  % NOT a step: contrast dashed step
+  \draw[red,dashed,thick] (0.4,1.5) -- (4.6,1.5) -- (4.6,-1.5) -- (8.8,-1.5);
+  \node[red] at (3.7,-0.55) {\scriptsize step (wrong)};
+\end{tikzpicture}
+\caption{겹침 가중식~\eqref{eq:weighted} 이 만드는 \emph{연속 블렌드}(파란 실선): $\bar x$ 가 전이 $j$ 에서
+$j{+}1$ 로 넘어갈 때 $\partial U_\oc/\partial T$ 가 $\Delta S^0_j/F$ 에서 $\Delta S^0_{j+1}/F$ 로 국소 $dQ/dV$
+비중 $Q_jg_j/\sum Q_kg_k$ 에 따라 \emph{연속}으로 이동한다. 계단(빨간 점선)이 아니다 --- 수치 검증에서 내부
+전이 경계 3 곳 모두 연속임이 확인됐다 \cite{numverif2026}. (모식 --- 부호$\cdot$하강 순서는 임의다; 흑연 실제
+프로파일은 탈리튬화 진행에서 $-16\to-5\to0\to+29$ 로 \emph{상승} 방향, 표~\ref{tab:ds}.)}
+\label{fig:blend}
+\end{figure}
+
+\subsection{파생 B --- 봉우리 내부 config 와 이중계산 분리}\label{ssec:derivB}
+완전식이 유한차분값과 정확히 일치하는 이유는, \S\ref{sec:config} 에서 유도한 부분몰 config 항이 정확히 빠진
+``단순식의 잔차''이기 때문이다. 단일 전이가 지배하는 영역에서 식~\eqref{eq:dVdT_config} 가 그대로 살아난다:
+\begin{equation}
+\frac{\partial U_\oc}{\partial T}(x)\;\approx\;\frac{\Delta S_{\rxn,j}}{F}\;+\;\frac{n_jR}{F}\ln\!\frac{\xi_j}{1-\xi_j}
+\qquad(\text{단일 전이 지배}).
+\label{eq:single_config}
+\end{equation}
+여기서 두 항이 별개 출처임을 다시 확인한다(파생 B): $\Delta S^0_j/F$ 는 봉우리 \emph{중심}($\xi_j=\tfrac12$,
+config$=0$)의 표준값, $n_jR\ln[\xi_j/(1-\xi_j)]/F$ 는 봉우리 \emph{내부}의 분포 항이다. 수치 검증에서 ``완전식
+$-$ 단순식'' 차이가 바로 이 config 항이었고(부호 있는 크기 $[-0.21,+0.14]$ mV/K), 이는 \S\ref{ssec:decomp} 의
+$+(1/F)\partial S_\config/\partial\theta|_{\theta=1-\xi}$ 와 같은 식이다. \textbf{config 를 $\Delta S^0_j$ 에 또
+더하면 이중계산}이며, 올바른 분해는 ``중심 표준값 $+$ 분포 config''로 정확히 한 번씩 센다. 봉우리 중심에서
+config$=0$ 이므로 두 정의가 모순 없이 맞물린다 --- \S\ref{ssec:decomp} 가 세운 원리를 수치가 재확인한 것이다.
+
+\subsection{파생 C --- 폭 $w$ 의 이중지위: 단상 평형 예측 vs 두-상 현상학적 피팅 폭}\label{ssec:weff}
+앞 두 파생(A$\cdot$B)은 봉우리 폭 $w_j$ 를 \emph{주어진 입력}으로 받아 모양을 닫았다. 그 $w_j$ 자체를 정하는
+것은 전이 종류이며, 이 \emph{이중지위}가 본 절의 전부다.
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \textbf{단상($\Omega\le2RT$, 균질 고용체)}: 평형 등온선~\eqref{eq:Veq_BW} 이 단조이고, 봉우리 폭은 평형이
+\emph{예측}하는 \emph{검증 가능한} 양이다 --- 이상 극한에서 $w=RT/F$(상호작용이 있으면 $\Omega$ 가 중심
+기울기를 비틀어 폭을 바꾸지만, 그 값 역시 평형 등온선이 결정한다).
+\item \textbf{두-상($\Omega>2RT$, 상분리; 흑연 staging 의 두-상 전이 $2\mathrm L\!\to\!2\cdot2\!\to\!1$ 가 여기
+속함)}: 평형 \emph{단일 입자}의 등온선은 plateau \emph{안에서} 거의 \emph{델타}(한 전위에 집중)다 --- 평형은
+폭을 거의 $0$ 으로 예측한다. 그런데 \emph{실측} $dQ/dV$ 봉우리는 유한 폭의 \emph{종}이며, 이 폭은 평형이 정하는
+양이 \emph{아니라} 다음 세 broadening 출처가 정하는 \emph{현상학적 자유 피팅 파라미터}다: (i) 유한 율속의
+비대칭 꼬리(단일 입자라도 유한 전류면 표면 SOC 가 평형을 뒤따라 과전압 $\eta$ 가 봉우리를 한쪽으로 민다),
+(ii) 평탄역 가장자리의 내재 단상 폭($\sim RT/F$, 전류 무관), (iii) 집합 다입자 통계역학 --- 전극은 입자
+\emph{앙상블}이고, 입자마다 겉보기 전위 apparent-$U=U_j+\eta$ 가 분포($\rho(U_\app)$, 결정성$\cdot$국소환경
+차에서 오는 \emph{비-크기} heterogeneity)하여 평형 델타를 종으로 편다. \textbf{이 broadening 의 상세 물리(세
+출처의 분해$\cdot$앙상블 forward 통계평균$\cdot$역산 금지$\cdot$입자 크기 효과 배제)는 Chapter 1 §7 의
+broadening 절에서 전개하며, 본 장은 그 결과만 받아 $w_j$ 의 \emph{지위}를 규정한다.}
+\end{itemize}
+따라서 Chapter 2 종합식(\S\ref{sec:synthesis})에 들어가는 $w_j$ 는, 흑연 두-상 전이에 대해 평형 예측
+$nRT/F$ 를 그대로 믿을 값이 아니라 \emph{다온도 $dQ/dV$ 피팅으로 얻는 현상학적 자유 폭}이다. 임계
+$\Omega=2RT$ 의 \emph{열역학}(상분리 plateau 의 발생)은 \S\ref{ssec:BW}$\cdot$\S\ref{sec:limits} 가 다루고, 그
+plateau 가 실측에서 \emph{유한 종}이 되는 까닭(=폭의 기원)은 위 broadening 이 다룬다 --- 둘은 다른 질문이다.
+\begin{warnbox}
+\textbf{$w$ 는 종의 폭이지 ``상호작용이 좁힌 델타''가 아니다} --- 두-상 실측 봉우리는 평형 델타에서 broadening
+으로 \emph{넓어진} 종이므로(좁아진 것이 아니다), ``상호작용 $\Omega$ 가 봉우리를 좁혀 델타로 만든다''는 서술은
+\emph{실측 방향과 반대}이며 본 장은 그런 유효-폭 축소식($w_\eff(\Omega)=w(1-\Omega/2RT)$ 류)을 쓰지 않는다
+(재도입 금지). $\Omega$ 의 역할은 plateau(상분리)를 \emph{만드는} 임계 조건이며(\S\ref{ssec:BW}), 그 plateau
+위의 \emph{유한 폭}은 평형이 아니라 현상학적 피팅이 정한다. (상호작용 엔트로피 $\propto\partial\Omega/\partial T$
+같은 2차 항이 있을 수 있으나, 흑연에서 소수이고 본 장 범위 밖이다.)
+\end{warnbox}
+
+\subsection{파생 D --- 히스테리시스: 충/방전 분기와 가역/비가역 분리}\label{ssec:hys}
+흑연 OCV(open circuit voltage)는 충방전 사이 경로의존이다(준안정 stacking, stage II 무질서)
+\cite{hysteresis2018}. 분기별 전이 중심을 $U_j^{(d)}=U_j+\tfrac12\sigma_d\,\Delta U_j^\hys$ 로 두면 --- $\sigma_d$
+는 탈리튬화 부호(Chapter 1 §4, 식 eq:Ubranch 의 $\gamma_jh_{\eta,j}{=}1$ 특수형)라 흑연 라벨에서 \emph{dis 가
+$+\tfrac12$(위 가지), ch 가 $-\tfrac12$(아래 가지)}다 --- 각 분기의 엔트로피 계수는 \emph{그 분기의} 봉우리
+모양 $g_j^{(d)}$ 로 가중된 \eqref{eq:weighted} 다:
+\begin{equation}
+\frac{\partial U_\oc^{(d)}}{\partial T}
+\;=\;\frac1F\,\frac{\sum_j Q_j\,g_j^{(d)}(x)\,\Delta S_{\rxn,j}}{\sum_j Q_j\,g_j^{(d)}(x)}.
+\label{eq:hys_branch}
+\end{equation}
+가역 발열에 들어가는 것은 두 분기의 \emph{평균}이다 --- 충방전을 한 사이클 돌면 히스 중심이 상쇄되고 열역학적
+$\Delta S$ 만 남기 때문이다:
+\begin{equation}
+\boxed{\;\frac{\partial U_\oc^\rev}{\partial T}
+\;=\;\tfrac12\Bigl(\frac{\partial U_\oc^\mathrm{ch}}{\partial T}+\frac{\partial U_\oc^\mathrm{dis}}{\partial T}\Bigr)\;.}
+\label{eq:hys_rev}
+\end{equation}
+이 상쇄는 두 분기의 봉우리 형태 $g_j^{(d)}$ 가 같다고 본 \emph{선형화 근사}($\Delta U_j^\hys\!\ll\!w_j$)에서
+정확하다. 분기 중심이 서로 달라 같은 $x$ 에서 $g_j^{(\mathrm{ch})}\!\ne\!g_j^{(\mathrm{dis})}$ 이면, 겹침
+가중식~\eqref{eq:hys_branch} 의 config 곡률 때문에 평균이 $\Delta S_{\rxn,j}/F$ 로 떨어지는 것은 $\Delta U^\hys$
+의 1차까지이고 유한 $\Delta U^\hys$ 에선 고차 보정이 남는다.
+\begin{warnbox}
+\textbf{혼동 금지.} 가역 발열은 분기 평균~\eqref{eq:hys_rev} 로, 히스 gap 은 비가역 발열로 \emph{분리} 계산한다.
+히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, $\propto I\,\Delta U^\hys$ 의 소산율(한 사이클당
+$\propto Q_\mathrm{cycle}\,\Delta U^\hys$ 의 소산(entropy production) 열)을 만든다 --- 이는 온도 미분
+$\partial/\partial T$ 와 \emph{별개}이며 가역 발열에 섞이지 않는다. $\partial U^\rev/\partial T$ 는 분포 재배열의
+가역 엔트로피이고, $\Delta U^\hys$ 는 경로 비가역성의 소산이다. 하나의 $\partial U/\partial T$ 로 둘을
+뭉뚱그리면 가역/비가역 발열을 섞게 된다(경로의존 측정 불확실도의 정량은 본 장 범위 밖, 공백으로 명시
+\cite{hysteresis2018}).
+\end{warnbox}
+네 파생이 봉우리 사이 연속 블렌드$\cdot$봉우리 내부 config$\cdot$폭의 지위$\cdot$히스 분기 평균을 각각 닫았으니,
+다음 절은 이 닫힌식들이 극한에서 옳은 물리로 환원되는지 검산한다.
+
+% 자산: [C-2] ★v5 정정 구 w_eff(Ω) narrowing 식 완전 제거(재도입 금지) · [C-3] 대체=두-상 w 현상학적 자유피팅·기원은 Ch1 broadening ·
+%   [C-72] ★U_oc 음함수·x̄=1−x 좌표주의 (eq:implicit) · [C-73] 음함수미분 (eq:implicit_diff) ·
+%   [C-74] ∂ξ_j/∂U=ξ(1−ξ)/w≡g_j (eq:gj) · [C-75] ★g_j(x) 4종 기호충돌 주의 · [C-76] ∂ξ_j/∂T (eq:dxidT) ·
+%   [C-77] ★n_j→n_j(T) 자기정합 전파 (eq:dwdT-nT) · [C-78] 겹침가중 단순식 (eq:weighted) ·
+%   [C-79] 인접 g_j 둘다 0아님→연속블렌드·분모=측정 dQ/dV (fig:blend) · [C-80] 완전식=단순식+봉우리 config ·
+%   [C-81] ★파생A srcbox 수치검증(numverif2026·175점·0.18/0.21·[−0.21,+0.14]·연속블렌드3경계) ·
+%   [C-82] ★검증 전제한정(w_j(T)=n_jRT/F 전제·자기일관성이지 실측검증 아님·~0.3 mV/K 우열뒤집힘) ·
+%   [C-83] 파생B 완전=유한차분 이유·단일전이 환원 (eq:single_config) · [C-84] 파생B 재확인 이중계산 금지 ·
+%   [C-85] ★파생C 폭 이중지위 상세(단상 평형예측/두-상 현상학·broadening 세출처=Ch1 §7) ·
+%   [C-86] 종합식 w_j 흑연 두-상=자유폭·Ω=2RT는 §1.3·broadening 다른 질문 ·
+%   [C-87] ★파생C warnbox narrowing 서술 실측반대·Ω=plateau 임계·유한폭=현상학(C-2 직결) ·
+%   [C-88] 파생D 히스 U_j^(d)(Ch1 eq:Ubranch 특수형) · [C-89] 분기별 ∂U_oc^(d)/∂T (eq:hys_branch) ·
+%   [C-90] ★가역발열=두 분기 평균 (eq:hys_rev, CRITICAL) · [C-91] 상쇄=선형화 1차·고차보정 남음 ·
+%   [C-92] ★히스 gap 자체=비가역·∂/∂T와 별개(CRITICAL 경계) · [C-93] 파생D warnbox 가역/비가역 분리(hysteresis2018)

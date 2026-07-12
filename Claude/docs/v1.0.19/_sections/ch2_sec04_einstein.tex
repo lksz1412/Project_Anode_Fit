@@ -1,0 +1,97 @@
+% ====================================================================
+% §2.4 전이 중심의 온도 확장 — Einstein 진동 보정 (신설 절)
+% ====================================================================
+\section{전이 중심의 온도 확장 --- Einstein 진동 보정}\label{sec:einstein}
+
+앞 절은 vibrational 엔트로피의 부분몰($x$-의존) 몫을 중심 표준값 $\Delta S^0_j$ 에 흡수시키되, 준양자 모드가
+남기는 \emph{온도 편차}는 미결로 남겼다. 이 절은 그 편차를 파라미터 하나 --- 전이 $j$ 의 Einstein 온도
+$\theta_{E,j}$ --- 로 명시적으로 회복해, 전이 중심 $U_j(T)$ 와 중심 엔트로피 $\Delta S^0_j$ 를 온도로
+\emph{자기완결하게} 확장한다. 여기서 다루는 양은 $\theta_{E,j}$ 와 $x$ 를 고정하고 $T$ 만 바꾼 편차이지, 앞
+절의 $\partial S_\vib/\partial x$ 가 아니다 --- 두 양의 혼동을 절 전체에서 피한다. 이렇게 얻은 온도 확장은 이후
+겹침 합성(\S\ref{sec:mixing})과 종합식(\S\ref{sec:synthesis})이 입력 $\{U_j(T),\Delta S^0_j\}$ 를 받을 때 그
+자리에 그대로 들어간다.
+
+\subsection{닫힌형 $S_\vib(T;\theta_{E,j})$ 와 두 극한}\label{ssec:einstein-closed}
+준양자 모드 스펙트럼을 대표 진동수 하나로 접는다. 전이 $j$ 의 Einstein 온도를 $\theta_{E,j}\equiv\hbar
+\omega_{E,j}/\kB$ 로 정의하면($\kB\theta_{E,j}\equiv\hbar\omega_{E,j}$), 무차원 비 $u_j\equiv\theta_{E,j}/T$ 로
+점유가 $n=1/(e^{u_j}-1)$ 이다(비 $u_j$ 로 적어 본 장의 리튬 함량 $x$ 와 구분한다). 대표값의 선택 --- 예컨대
+LiCoO$_2$ 광학 포논 $50$--$80$~meV $\to\theta_{E,j}\approx580$--$930$~K --- 은 \emph{단위 환산 예시일 뿐}이며,
+실제로는 대상 호스트의 실측 포논$\cdot$제일원리 포논 DOS \cite{jpcc2021} 로 교체하거나 다온도 곡률에서 직접
+회귀한다[데이터-주도 1순위].
+
+\textbf{(a) 출발 --- Einstein 단일 모드.} 식~\eqref{eq:Svib_mode} 유도의 모드 자유에너지
+$f_k=\kB T\ln(1-e^{-\beta\hbar\omega_k})$ 에서 전 모드 합을 대표 진동수 하나로 접고, $S_\vib=-\partial
+f_\vib/\partial T$ 를 1몰당으로 적용한다. \textbf{(b) 연산.} 점유 $n=1/(e^{u_j}-1)$ 을 모드 엔트로피
+식~\eqref{eq:Svib_mode} 에 대입하면 $(1+n)\ln(1+n)-n\ln n$ 이 정리된다. \textbf{(c) 중간식.} 대수적으로
+$(1+n)\ln(1+n)-n\ln n=-\ln(1-e^{-u_j})+u_j/(e^{u_j}-1)$ 이므로(단일모드 특수화이지 새 근사가 아니다),
+\textbf{(d) 박스.}
+\begin{equation}
+\boxed{\;S_\vib(T;\theta_{E,j}) \;=\; R\Bigl[-\ln\bigl(1-e^{-u_j}\bigr)+\frac{u_j}{e^{u_j}-1}\Bigr],
+\qquad u_j\equiv\frac{\theta_{E,j}}{T}\;.}
+\label{eq:Svib-einstein}
+\end{equation}
+두 극한이 이 닫힌형을 검산한다. 고전극한 $\kB T\gg\hbar\omega_{E,j}$($u_j\to0$)에서
+$-\ln(1-e^{-u_j})\to-\ln u_j+u_j/2$, $u_j/(e^{u_j}-1)\to1-u_j/2$ 가 상쇄해
+\[
+S_\vib\;\to\;R\bigl[1+\ln(T/\theta_{E,j})\bigr],
+\]
+곧 앞 절이 흡수한 ``$T$-무관 상수''는 이 보편식을 $T_\mathrm{ref}$ 에서 한 번 평가해 동결한 고온 코너다.
+저온 $u_j\to\infty$ 에서는 $S_\vib\to0$(모든 모드가 바닥상태로 얼어붙어 흩어짐이 사라진다).
+
+\subsection{기준온도 편차와 중심 이동 --- round-trip 정합}\label{ssec:einstein-roundtrip}
+$\Delta S^0_j$ 는 $T_\mathrm{ref}$(기본 $298.15$~K)에서의 vib 기여를 이미 흡수했으므로, 새로 노출할 것은 그
+기준 대비 편차뿐이다:
+\begin{equation}
+\Delta S_\vib(T) \;\equiv\; S_\vib(T;\theta_{E,j})-S_\vib(T_\mathrm{ref};\theta_{E,j}),
+\qquad \Delta S_\vib(T_\mathrm{ref})=0.
+\label{eq:dSvib}
+\end{equation}
+(이 $T$-편차 $\Delta S_\vib(T)$ 는 \S\ref{ssec:vib} 의 부분몰 $\partial S_\vib/\partial x$ 와 다른 양이다 ---
+$\theta_{E,j}$ 와 $x$ 를 고정하고 $T$ 만 바꾼 것이다.) 이 편차를 전이 중심 표준값 자리에 가산해 유효 반응
+엔트로피 $\Delta S_{\eff,j}(T)=\Delta S^0_j+\Delta S_\vib(T)$ 로 쓴다 --- 이 유효값이 이후 겹침 합성과
+종합식의 $\Delta S^0_j$ 자리를 대신한다.
+
+가산을 엔트로피 항 하나로만 하면 전위 중심과의 정합이 깨진다. 단순 곱 $T\Delta S_\vib/F$ 는 미분 시 여분
+항을 남기기 때문이다. 대신 모드 자유에너지 편차에서 출발해 중심 이동을 닫는다. 모드 Helmholtz 자유에너지
+편차를
+\[
+\Delta F_\vib(T)\;\equiv\; RT\ln\bigl(1-e^{-\theta_{E,j}/T}\bigr)
+\]
+로 두면(★ $F_\vib$ 는 몰당 Helmholtz 자유에너지 --- Faraday 상수 $F$ 와 구별), 엔트로피가 $S_\vib=-\partial
+\Delta F_\vib/\partial T$ 로 자유에너지의 온도 미분으로 회복되므로, 이를 $T_\mathrm{ref}$ 를 기준으로 적분해
+평형 중심 이동 $\Delta U_\vib(T)$ 를 얻는다. 적분 상수를 $\Delta U_\vib(T_\mathrm{ref})=0$ 으로 고정하면
+\begin{equation}
+\boxed{\;
+\Delta U_\vib(T)=-\frac1F\Bigl[\Delta F_\vib(T)-\Delta F_\vib(T_\mathrm{ref})+S_\vib(T_\mathrm{ref})\,(T-T_\mathrm{ref})\Bigr],
+\qquad
+\frac{\partial\,\Delta U_\vib}{\partial T}=\frac{\Delta S_\vib(T)}{F}\;}
+\label{eq:dUvib}
+\end{equation}
+이다. 가산은 $U_j(T)\to U_j(T)+\Delta U_\vib(T)$ 와 $\Delta S^0_j\to\Delta S^0_j+\Delta S_\vib(T)$ 둘 다이며,
+$\Delta U_\vib(T_\mathrm{ref})=0$ 이 자동이라 $T_\mathrm{ref}$ 에서 중심$\cdot$엔트로피가 보존된다. 미분 관계
+$\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$ 가 곧 $\partial U_j/\partial T=\Delta S_{\eff,j}(T)/F$ 를 전위
+항과 엔트로피 항에서 \emph{동시에} 만족하는 round-trip 정합이다 --- Bernardi 관계 $\partial U/\partial
+T=\Delta S(T)/F$ 는 Kirchhoff $\Delta C_p$ 가 $U_\oc={-}\Delta G/F$ 미분에서 상쇄되어 $T$-의존 $\Delta S$ 에도
+근사 없이 성립하므로, 중심과 발열을 \emph{같은} 자유에너지에서 짝지어 보정해야 하기 때문이다. 한편,
+$\theta_{E,j}$ 를 지정하지 않은 전이는 두 가산이 모든 $T$ 에서 항등적으로 $0$ 이라 이 보정 이전과 완전히
+동일한 값을 낸다(하위호환 --- 이 조건은 코드 개정의 회귀 기준으로 부록 B가 명세한다).
+
+\subsection{수치 크기와 식별 --- 3온도점}\label{ssec:einstein-numid}
+크기는 준양자 영역에서만 뜻이 있다. 대표값 $\theta_{E,j}=700$~K($\approx60$~meV)$\cdot$$T_\mathrm{ref}=298.15$~K
+로 식~\eqref{eq:dUvib} 의 미분을 셈하면 $T=278.15,\,298.15,\,318.15,\,348.15$~K 에서 각각 $\partial\Delta
+U_\vib/\partial T\approx-3.74,\,0,\,+3.70,\,+9.14~\mu$V/K 다 --- $T_\mathrm{ref}$ 를 지나며 부호가 바뀌고 온도
+차가 커질수록 자란다. 이 강제된 $T_\mathrm{ref}$ 영점과 고온 로그 곡률이 곧 식별의 근거다: electronic 항
+(식~\eqref{eq:Se}, $\propto T$)은 $T$ 에 선형이고 강제 영점이 없어, 다온도 $dQ/dV$ 곡률 피팅이 두 함수형을
+갈라 앞 절이 우려한 혼입을 해소한다. 단 분리에는 준양자 창 $\kB T\!\sim\!\hbar\omega$ 를 걸치는 $T$ 점
+\textbf{셋 이상}이 필요하다 --- 2-온도 유한차분(국소 기울기만 봄)은 곡률과 선형을 합으로만 보아 축퇴하므로,
+``섞일 수 있다''는 것은 저-온도점 진단이지 물리적 비식별성이 아니다. 진동 항의 온도 편차를 이렇게 닫았으니,
+이제 세 분포를 겹침으로 조립할 준비가 되었다.
+
+% 자산: [C-49] θ_E,j≡ℏω_E,j/k_B·LCO 50-80meV→580-930K 환산 예시일 뿐(데이터 1순위) ·
+%   [C-50] f_k 대표진동수 접기·u_j≡θ_E,j/T(x와 구분) · [C-51] ★S_vib(T;θ_E,j) (eq:Svib-einstein) ·
+%   [C-52] 고온극한 R[1+ln(T/θ_E)]=동결 상수 · [C-53] 저온극한 S_vib→0 ·
+%   [C-54] ΔS_vib(T)≡S_vib(T)−S_vib(T_ref), T_ref서 0 (eq:dSvib) · [C-55] ΔS_vib(T)≠∂S_vib/∂x 구분 ·
+%   [C-56] ΔS_eff,j(T)=ΔS⁰_j+ΔS_vib(T) 가산(입력 자리) · [C-57] 단순곱 여분항→F_vib(Helmholtz≠Faraday F) ·
+%   [C-58] ★ΔU_vib(T)·∂ΔU_vib/∂T=ΔS_vib/F (eq:dUvib) · [C-59] 가산 U_j·ΔS⁰_j 둘 다·T_ref서 0 자동 ·
+%   [C-60] round-trip 근거(Kirchhoff ΔC_p 상쇄) · [C-61] 하위호환 θ_E 미지정 두 가산 0(회귀 기준→부록B) ·
+%   [C-62] 수치 −3.74/0/+3.70/+9.14 µV/K(θ_E=700K·T_ref=298.15·4온도점) · [C-63] ★식별 elec(∝T)vs vib(영점+로그)·3온도점 필요
