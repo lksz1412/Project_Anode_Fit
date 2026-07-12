@@ -1,0 +1,151 @@
+==============================================================================
+Anode_Fit v1.0.19 -- sample images + continuity scan
+==============================================================================
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_graphite.png  dpi=150
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_temperature.png  dpi=150
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_Uoc_x.png  dpi=150
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dUdT_x.png  dpi=150
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_qrev_x.png  dpi=150
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_vib_einstein.png  dpi=150
+  [note] vib markers placed at T_ref-/+20K = 278.15/318.15K -> -3.738/+3.700 uV/K (matches task hint -3.74/+3.70; plot edges 250/400K instead give -9.01/+18.13 uV/K).
+[saved] D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_lco.png  dpi=150
+
+==============================================================================
+CONTINUITY SCANS (dense grid, spike_factor=20x local median)
+==============================================================================
+
+--- [1] dQ/dV(V) -- graphite, discharge & charge x C-rate ---
+  [dQ/dV discharge 0.02C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399255e-03 @ x=0.058295
+    max|d2|=2.899306e-01 @ x=0.092601
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV discharge 0.2C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399251e-03 @ x=0.060129
+    max|d2|=2.899311e-01 @ x=0.094435
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV discharge 1C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399250e-03 @ x=0.068133
+    max|d2|=2.899311e-01 @ x=0.102439
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV charge 0.02C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399253e-03 @ x=0.057878
+    max|d2|=2.899309e-01 @ x=0.092268
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV charge 0.2C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399251e-03 @ x=0.056128
+    max|d2|=2.899311e-01 @ x=0.090434
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV charge 1C] n=2400 range=(0.05, 0.25)
+    max|d1|=8.378690e-03 @ x=0.050042
+    max|d2|=2.899311e-01 @ x=0.082430
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [1b] dQ/dV(V) -- graphite, temperature sweep (discharge 0.2C) ---
+  [dQ/dV T=258.15K] n=2400 range=(0.05, 0.25)
+    max|d1|=1.117821e-02 @ x=0.070383
+    max|d2|=4.437927e-01 @ x=0.099937
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV T=298.15K] n=2400 range=(0.05, 0.25)
+    max|d1|=8.399251e-03 @ x=0.060129
+    max|d2|=2.899311e-01 @ x=0.094435
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [dQ/dV T=328.15K] n=2400 range=(0.05, 0.25)
+    max|d1|=6.943253e-03 @ x=0.052376
+    max|d2|=2.183071e-01 @ x=0.090350
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [1c] dQ/dV(V) -- LCO cathode (bonus) ---
+  [LCO dQ/dV discharge] n=2400 range=(3.75, 4.15)
+    max|d1|=1.506180e-02 @ x=3.958170
+    max|d2|=5.558018e-01 @ x=3.927907
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+  [LCO dQ/dV charge] n=2400 range=(3.75, 4.15)
+    max|d1|=1.506180e-02 @ x=3.958170
+    max|d2|=5.558018e-01 @ x=3.927907
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [3] U_oc(x_bar) -- bisection-solver quantization check ---
+  [U_oc(x_bar)] n=3000 range=(0.02, 0.98)
+    max|d1|=4.702207e-04 @ x=0.979840
+    max|d2|=1.990377e-02 @ x=0.020320
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+    d1 stats: min=4.253e-05 max=4.702e-04 std=6.759e-05 mean=8.498e-05
+    (monotonic increasing check: all d1>0 -> True)
+
+--- [4] dU_oc/dT(x_bar) -- COMPLETE (key curve) ---
+  [dU/dT complete [mV/K]] n=3000 range=(0.02, 0.98)
+    max|d1|=1.626120e-03 @ x=0.979840
+    max|d2|=6.675941e-02 @ x=0.020320
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [4b] dU_oc/dT(x_bar) -- SIMPLE (no config term, isolates solve_U_oc smoothness) ---
+  [dU/dT simple [mV/K]] n=3000 range=(0.02, 0.98)
+    max|d1|=6.300234e-04 @ x=0.911017
+    max|d2|=5.832188e-03 @ x=0.957913
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [4c] dU_oc/dT(x_bar) -- CONFIG term alone (ln[xi/(1-xi)] weighted by g_j) ---
+  [dU/dT config [mV/K]] n=3000 range=(0.02, 0.98)
+    max|d1|=1.396651e-03 @ x=0.020160
+    max|d2|=7.029813e-02 @ x=0.979680
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [5] Qrev/I(x_bar) ---
+  [Qrev/I [mV]] n=3000 range=(0.02, 0.98)
+    max|d1|=4.848277e-01 @ x=0.979840
+    max|d2|=1.990432e+01 @ x=0.020320
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+--- [6] d(dU_vib)/dT(T) -- Einstein vib correction ---
+  [d(dUvib)/dT [uV/K]] n=3000 range=(250.0, 400.0)
+    max|d1|=9.379746e-03 @ x=271.782261
+    max|d2|=1.079062e-05 @ x=399.949983
+    spike candidates (>=20x local median): 0
+    verdict: continuous
+
+==============================================================================
+SIGN-ALTERNATION CHECK (complete dU/dT and Qrev/I)
+==============================================================================
+  dU/dT complete sign changes at x_bar ~= [0.680380126708903]
+  Qrev/I sign changes at x_bar ~= [0.680380126708903]
+
+==============================================================================
+DOC WORKED-EXAMPLE CROSS-CHECK (Ch2 appendix B.2, x=0.25 @298.15K)
+==============================================================================
+  U_oc=74.351 mV (doc 74.4)
+  complete=-0.2039 simple=-0.1340 config=-0.0700 mV/K (doc -0.204/-0.134/-0.070)
+  Qrev/I=+60.81 mV (doc +60.8)
+
+Saved PNGs:
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_graphite.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_temperature.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_Uoc_x.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dUdT_x.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_qrev_x.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_vib_einstein.png
+  D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.19\samples\fig_dqdv_lco.png
