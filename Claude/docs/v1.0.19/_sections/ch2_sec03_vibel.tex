@@ -52,11 +52,11 @@ C_e=\frac{\partial U_e}{\partial T}=\frac{\pi^2}{3}\,\kB^2\,T\,g(E_F)
 $T'$-무관 상수이므로 곧바로 닫혀)
 \begin{equation}
 \boxed{\;S_e \;=\; \frac{\pi^2}{3}\,\kB^2\,T\,g(E_F)\;,}
-\label{eq:Se}
+\label{eq:Se-ch2}
 \end{equation}
 가 되어 온도에 \emph{선형}이고 Fermi 준위 상태밀도 $g(E_F)$ 에 비례한다. 이 Fermi--Dirac$\to$Sommerfeld
-유도의 전 단계 --- 정보 엔트로피 합에서 비열을 거쳐 $S_e$ 까지 --- 는 Chapter 1 §15(LCO 전자 엔트로피, 식
-eq:Se)가 상술했고, 본 장은 그 결과를 분포 언어로 확장해 받는다. 식~\eqref{eq:Se} 의 $S_e$ 는 자리당
+유도의 전 단계 --- 정보 엔트로피 합에서 비열을 거쳐 $S_e$ 까지 --- 는 Chapter 1 §15(LCO 전자 엔트로피)의 전자
+엔트로피 유도가 상술했고, 본 장은 그 결과를 분포 언어로 확장해 받는다. 식~\eqref{eq:Se-ch2} 의 $S_e$ 는 자리당
 엔트로피다 --- $g$ 가 1/에너지 차원이라 $\kB^2 T\,g(E_F)$ 의 알짜 차원은 $\kB$ 이고, 몰당 $\Delta S(x)$ 분해에는
 $N_A\kB=R$ 로 환산해 넣는다(Chapter 1 의 단위 환산). 부분몰 전자 엔트로피 $\Delta S_e=\partial S_e/\partial x$
 는 삽입이 $g(E_F)$ 와 $E_F$ 를 바꾸는 방식에 달려 있다. Chapter 1 의 규약대로, 삽입(리튬화)은 일반적으로
@@ -83,13 +83,13 @@ Chapter 1 §13$\cdot$§15 가 상술한다.
 $\Delta S(x)$ 뿐이다. 이는 Chapter 1 §8$\cdot$§9 동역학 꼬리의 \emph{활성화 엔트로피} $\Delta S_{a,j}$(Eyring
 속도 $k_j\propto\exp[-(\Delta H_a-T\Delta S_a)/RT]$ 의 prefactor 온도의존)와 \emph{차원은 같으나 물리가 다른
 양}이다. 활성화 엔트로피는 \emph{비가역} 동역학을 지배하고 가역 발열에는 들어가지 않으므로 \cite{msmr_partI},
-둘을 혼동하면 가역 발열을 동역학 lag 와 섞게 된다. 세 분포를 손에 쥐었으니, 다음 절은 그중 진동 항의 온도
-편차를 먼저 정밀하게 닫고, 이어서 전체를 겹침 합성으로 조립한다.
+둘을 혼동하면 가역 발열을 동역학 lag 와 섞게 된다. 세 분포를 손에 쥐었으니, 진동 항의 온도 편차를 먼저
+정밀하게 닫고(\S\ref{sec:einstein}), 이어서 세 분포 전체를 겹침 합성으로 조립한다(\S\ref{sec:mixing}).
 
 % 자산: [C-43] vib=BE·electron=FD 각자 분포 · [C-44] 단일모드 S_vib,k (eq:Svib_mode) ·
 %   [C-45] 전모드 S_vib·부호 갈림·고-x 음 baseline(reynier2003) · [C-46] 제일원리 vib·config 분해(jpcc2021) ·
 %   [C-47] 전이폭 내 ΔS_vib 완만→중심흡수·고전극한 · [C-48] 준양자 잔여 T-의존→elec 섞임=§2.4 동기 ·
 %   [C-64] S_e=−k_B∫g[f ln f+(1−f)ln(1−f)]dE (eq:Se_start, config 같은 꼴) ·
-%   [C-65] Sommerfeld→C_e→S_e (eq:Se) · [C-66] 차원(자리당·몰당 R) · [C-67] ΔS_e=∂S_e/∂x, 리튬화 <0 ·
+%   [C-65] Sommerfeld→C_e→S_e (eq:Se-ch2, Ch1 eq:Se와 라벨 충돌 회피 개명) · [C-66] 차원(자리당·몰당 R) · [C-67] ΔS_e=∂S_e/∂x, 리튬화 <0 ·
 %   [C-68] 흑연 준금속 ΔS_e≈0(보정항) · [C-69] LCO MIT g(E_F) 급변→x-의존(중심흡수 예외) ·
 %   [C-70] ★핵심박스 세 분포 총괄(분해식 그대로) · [C-71] ★반응 vs 활성화 엔트로피 구분(msmr_partI, 경계)

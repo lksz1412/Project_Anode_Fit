@@ -9,10 +9,11 @@
 
 \subsection{에너지 수지와 두 전제}\label{ssec:balance}
 전지 셀의 발열은 Bernardi--Pawlikowski--Newman 의 일반 에너지 수지 \cite{bernardi1985} 에서 가역(엔트로피)과
-비가역(소산) 두 성분으로 갈린다. 단일 활물질 한계에서 총 발열률은 과전압 소산 항과 엔트로피 항의 합이며,
+비가역(소산) 두 성분으로 갈린다. 단일 활물질 한계에서 총 발열률은 과전압 소산 항 $\dot Q_\irr$ 과 가역
+엔트로피 항 $\dot Q_\rev$ 을 더한 것이며(각 항의 부호는 아래 underbrace 가 부호까지 포함해 정의한다),
 평형 전위와 반응 엔트로피가 $\partial U_\oc/\partial T=\Delta S(x)/F$ 로 묶이므로
 \begin{equation}
-\dot Q \;=\; \underbrace{I\,(U_\oc-V)}_{\dot Q_\irr\ge0}\;-\;\underbrace{I\,T\,\frac{\partial U_\oc}{\partial T}}_{\dot Q_\rev},
+\dot Q \;=\; \underbrace{I\,(U_\oc-V)}_{\dot Q_\irr\ge0}\;+\;\underbrace{\Bigl(-I\,T\,\frac{\partial U_\oc}{\partial T}\Bigr)}_{\dot Q_\rev},
 \qquad
 \boxed{\;\dot Q_\rev \;=\; -\,I\,T\,\frac{\partial U_\oc}{\partial T}\;=\;-\,\frac{I\,T}{F}\,\Delta S(x)\;,}
 \label{eq:qrev}
