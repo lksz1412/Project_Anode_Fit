@@ -12,7 +12,8 @@
 평형 기준선은 메서드 \code{equilibrium}(식~\eqref{eq:eqpeak} 만 $U_j$ 중심으로 합산 --- 분기
 미반영이라 $\gamma_j$ 무관 가역 기준선, \S\ref{sec:eqpeak} 의 구분 참조)이다. 본문 표~\ref{tab:staging} 의
 흑연 전이 초기값 리스트는 코드 변수 \code{GRAPHITE\_STAGING\_LIT} 에, 표~\ref{tab:lco-staging} 의 LCO
-초기값 리스트는 \code{LCO\_MSMR\_LIT} 에 대응한다.
+초기값 리스트는 \code{LCO\_MSMR\_LIT} 에 대응한다(파라미터 \emph{구조}의 대응이며, \code{LCO\_MSMR\_LIT}
+시연 리스트는 전이 구성$\cdot$순서가 표의 물리 anchor 와 다른 tier-C 데모라 전이별 1:1 값 대응은 아니다).
 
 \begin{longtable}{p{0.20\textwidth} p{0.34\textwidth} p{0.38\textwidth}}
 \caption{물리 기호 $\leftrightarrow$ 구현 식별자 대응(본문 기호표의 구현 열).}\label{tab:symcode}\\
@@ -48,7 +49,7 @@ $L_{V,j}$ & \code{lag\_len\_V} & 전압축 지연 길이 \\
 $|\dd V/\dd q|_{q_a}$ & \code{dVdq\_qa} & 컷점 OCV 기울기 \\
 $z_\mathrm{cut}$ & \code{z\_cut} & 컷 배수 \\
 $A_\mathrm{cap}$ & \code{A\_cap\_RT} & 컷 상한 배수 \\
-$\xi_{\mathrm{lag},j}$ & \code{occ\_lagged} & 인과 기억 적분 진행률(식~\eqref{eq:lag}) \\
+$\xi_{\mathrm{lag},j}$ & \code{ksi\_lag} & 인과 기억 적분 진행률(식~\eqref{eq:lag}) \\
 \bottomrule
 \end{longtable}
 
@@ -115,10 +116,11 @@ N4 & \code{func\_w},\,\code{\_width} \\
 N5 & \code{func\_ksi\_eq}(오버플로 방지 \code{np.where} 이분 평가) \\
 N6 & 평형 극한($L_V\!\to\!0$) 수치 가드: 인라인 \code{peak\_shape = ksi\_eq*(1-ksi\_eq)/w} \\
 N7 & \code{\_resolve\_lag\_length},\,\code{func\_L\_q} \\
-N8 & 기억 적분 $\xi_\mathrm{lag}$(\eqref{eq:lag}) 의 점별 수치 적분(\code{occ\_lagged}); 충전 분기는 상한 반전(\eqref{eq:reversal}) \\
+N8 & 기억 적분 $\xi_\mathrm{lag}$(\eqref{eq:lag}) 의 점별 수치 적분(\code{ksi\_lag}); 충전 분기는 상한 반전(\eqref{eq:reversal}) \\
 N9 & peak 모양 용량 가중 합산 $\to$ $V_n$ 위 점별 \code{dqdv\_out} \\
 N0$'$ & \code{LCOCathodeDQDV}$\cdot$\code{LCO\_MSMR\_LIT} \\
 N2$'$ & \code{func\_U\_j}(동일) \\
+N3$'$ & \code{func\_dU\_hys},\,\code{func\_U\_branch}(LCO 값, 동일 함수) \\
 N5$+$ & \code{func\_dSe\_molar} \\
 N9$'$ & \code{\_effective\_dS\_rxn} \\
 \bottomrule
