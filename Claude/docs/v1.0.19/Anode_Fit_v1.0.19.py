@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
-# ★ Anode_Fit  release 버전 = 1.0.16  — 문건 Ch1/Ch2 1.0.16 와 동일 버전·matched
-#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15 → 1.0.16. 코드·문건 버전 통일.
-#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처. 1.0.16 = 폭 다중도 n 의 온도 함수 n(T) 피팅 지원·가역열 config 항 ∂w/∂T 전파[증판 시점 v1.0.15 승계].)
+# ★ Anode_Fit  release 버전 = 1.0.19  — 문건 Ch1/Ch2 1.0.19 와 동일 버전·matched
+#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15 → 1.0.16 → 1.0.17 → 1.0.18.1 → 1.0.18.2 → 1.0.19. 코드·문건 버전 통일.
+#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처. 1.0.16 = 폭 다중도 n 의 온도 함수 n(T) 피팅 지원·가역열 config 항 ∂w/∂T 전파[증판 시점 v1.0.15 승계].
+#    1.0.17 = 문건 register 정련 동반판(코드 물리 무변경 이월). 1.0.18.1 = 이월(코드 무변경). 1.0.18.2 = 제안1 vib Einstein 양자 보정(θ_E additive·미지정 bit-exact). 1.0.19 = Ch1+Ch2 전면 재작성 정합 — x̄→U_oc 전하보존 솔버(eq:implicit)·x̄ 진입점(entropy_coefficient_x·reversible_heat_x)·완전식/단순식 분리 출력(return_terms) 추가[전부 additive, 기존 V_n 경로·물리 로직 무변경].)
 # ----------------------------------------------------------------------------
-# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.16 (v11_final 기반 계보, 2026-07-06)
+# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.19 (v11_final 기반 계보, 2026-07-08)
 #   [1.0.10 변경] use_w_eff 경로 제거: ξ_eq 폭·분모 w 불일치로 면적보존 깨짐(버그) — w=자유 피팅 파라미터만.
 #   [폭 정합 주의] 전이 폭 w=nRT/F (_n_factor: 'n' 우선 → 없으면 'w' 역산 → 없으면 n=1).
 #     GRAPHITE_STAGING_LIT 는 'n':1.0 보유 → 기본 폭=RT/F≈25.7mV(298K); 'w' 폴백(0.012 등)은
@@ -35,7 +36,7 @@
 #   [보존] 사용자 원형 함수 그대로(보완·노출만):
 #     func_w · func_U_j · func_ksi_eq · func_L_q · GRAPHITE_STAGING_LIT.
 #
-#   [근거 문건] graphite_ica_ch1_v1.0.16.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
+#   [근거 문건] graphite_ica_ch1_v1.0.19.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
 #     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
 #     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (eq:Uj/func_U_j)
 #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
@@ -630,8 +631,10 @@ class GraphiteAnodeDischargeDQDV:
         return tr['dS_rxn']
 
     def entropy_coefficient(self, V_n: ScalarOrArray,
-                            T: Union[float, np.ndarray] = 298.15) -> ScalarOrArray:
-        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.6 keybox 종합식).
+                            T: Union[float, np.ndarray] = 298.15,
+                            return_terms: bool = False
+                            ) -> Union[ScalarOrArray, Dict[str, ScalarOrArray]]:
+        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.8 keybox 종합식 eq:complete).
 
         관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
         ★config 항 계수 = ∂w_j/∂T = n_j·R/F (v1.0.14 R2 정정 — 구판은 R/F 로 n_j=1 특수형;
@@ -645,6 +648,12 @@ class GraphiteAnodeDischargeDQDV:
         다른 산출(직교; 이중계산 아님). 평형 진행률 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
         (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
         전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
+        ★v1.0.19 — return_terms=True 면 {'complete','simple','config'} dict 반환:
+          complete = 기본 반환과 동일(완전식 eq:complete), simple = 중심값만의 단순식
+          (eq:weighted, config 항 제외), config = complete − simple(봉우리 내부 분포 몫).
+          기본 return_terms=False 의 반환·수치는 불변(순수 additive). Ch2 §2.8(c)·부록 B.2
+          분해 −0.204 = −0.134 + (−0.070) mV/K 의 코드 대응 — 지배 두-상 config 몫이
+          다온도 round-trip 으로 확정되기 전까지 단순식이 보수적 기준(B.4)이라 분리 제공.
         """
         # T: 스칼라(등온) 또는 V_n 길이 배열 T(V)(비등온 — dqdv 와 동일). 각 점 실측 온도.
         T = np.asarray(T, dtype=float)
@@ -654,6 +663,7 @@ class GraphiteAnodeDischargeDQDV:
         if T.ndim >= 1 and T.size > 1 and T.size != V.size:
             raise ValueError("T array length must match V_n (per-point T(V)).")
         num = np.zeros_like(V)
+        num_s = np.zeros_like(V)  # 단순식(중심값만) 분자 — return_terms 분리용(기본 경로 무영향)
         den = np.zeros_like(V)
         eps = 1e-12
         for tr in self.transitions:
@@ -675,9 +685,13 @@ class GraphiteAnodeDischargeDQDV:
             config = self._dwdT(tr, T) * np.log(xi_c / (1.0 - xi_c))
             Qg = tr['Q'] * g
             num = num + Qg * (dS_eff / F + config)
+            num_s = num_s + Qg * (dS_eff / F)
             den = den + Qg
         dUdT = np.where(den > 0.0, num / np.maximum(den, eps), 0.0)
-        return dUdT
+        if not return_terms:
+            return dUdT
+        dUdT_s = np.where(den > 0.0, num_s / np.maximum(den, eps), 0.0)
+        return {'complete': dUdT, 'simple': dUdT_s, 'config': dUdT - dUdT_s}
 
     def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray] = 298.15,
                         I: float = 1.0) -> ScalarOrArray:
@@ -691,6 +705,129 @@ class GraphiteAnodeDischargeDQDV:
         """
         T = np.asarray(T, dtype=float)  # 스칼라/배열 — 유한·양수·길이 검증은 entropy_coefficient 가 수행
         return -float(I) * T * self.entropy_coefficient(V_n, T)
+
+    # ---- v1.0.19: x̄ 진입점 — 전하보존 음함수(eq:implicit) → U_oc → 가역열 ----
+    def solve_U_oc(self, x_bar: ScalarOrArray, T: float = 298.15,
+                   U_lo: Optional[float] = None, U_hi: Optional[float] = None,
+                   tol: float = 1e-13, max_iter: int = 200) -> ScalarOrArray:
+        """전하 보존 음함수(Ch2 eq:implicit) Σ_j Q_j·ξ_eq,j(U_oc,T) = Q·x̄ 의 해 U_oc [V].
+
+        탈리튬화 분율 x̄(0<x̄<1, Q=Σ_j Q_j 기준)에서 개방회로 전위 U_oc(x̄,T)를 푼다 —
+        Ch2 §2.8 계산 순서(C-106)의 첫 단계·부록 B.1 구현 타깃. 좌변이 U_oc 에 단조증가라
+        유일근이며 순수 이분법으로 충분(외부 의존성 없음). ξ_eq 평가 규약은 equilibrium·
+        entropy_coefficient 와 동일: s=+1·평형 중심 U_j(분기 shift 無, 부록 B.4)·seam
+        _effective_dS_rxn(LCO 전자항 일관)·vib 보정 _vib_dU 포함 — 신규 물리 없음(기존
+        헬퍼 func_U_j·func_ksi_eq 재사용).
+
+        x_bar   : 분율 스칼라 또는 배열(점별 독립 해; dqdv 와 동일 스칼라/배열 규약)
+        T       : 온도 [K] (스칼라 등온 — 음함수는 T 하나에서 푼다)
+        U_lo/U_hi : 이분법 초기 괄호 [V]. 기본 None = 전이 중심 min/max 에
+                    ±max(1 V, 40·w_max) 자동 마진(흑연·LCO 등 전위대 무관 공통) —
+                    z=±40 에서 ξ_eq 가 극한값에 ~e⁻⁴⁰ 로 붙어 괄호가 항상 성립.
+        tol     : U_oc 수렴 괄호 폭 [V] / max_iter : 이분법 최대 반복
+        반환    : U_oc [V] (x_bar 스칼라 → float, 배열 → ndarray)
+        """
+        T = _finite_pos("T", T)
+        x_in = np.asarray(x_bar, dtype=float)
+        is_scalar = (x_in.ndim == 0)
+        x_arr = np.atleast_1d(x_in)
+        if not np.all(np.isfinite(x_arr)) or np.any(x_arr <= 0.0) or np.any(x_arr >= 1.0):
+            raise ValueError("x_bar must be finite and in (0, 1) (delithiation fraction).")
+
+        # 전이별 (Q_j, U_j(T), n_j(T)) 1회 산출 — equilibrium 과 동일 중심/폭 규약.
+        params: List[Tuple[float, float, float]] = []
+        Q_tot = 0.0
+        for tr in self.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)) + self._vib_dU(tr, T))
+            else:
+                U_j = float(tr['U'])
+            n_j = float(np.asarray(self._n_factor(tr, T)).reshape(-1)[0])
+            Q_j = _finite("Q", tr['Q'])
+            params.append((Q_j, U_j, n_j))
+            Q_tot += Q_j
+        if Q_tot <= 0.0:
+            raise ValueError("sum of transition 'Q' must be > 0 for eq:implicit.")
+
+        # 초기 괄호 — 미지정 시 전이 중심·폭에서 자동(전위대 무관: 흑연 ~0.1 V·LCO ~3.9 V 공통).
+        w_max = max(abs(float(func_w(T, n_j))) for (_, _, n_j) in params)
+        margin = max(1.0, 40.0 * w_max)
+        U_lo = (min(U_j for (_, U_j, _) in params) - margin
+                if U_lo is None else _finite("U_lo", U_lo))
+        U_hi = (max(U_j for (_, U_j, _) in params) + margin
+                if U_hi is None else _finite("U_hi", U_hi))
+        if U_lo >= U_hi:
+            raise ValueError(f"U_lo must be < U_hi (got {U_lo!r} >= {U_hi!r}).")
+
+        def _charge(U_oc: float) -> float:
+            """좌변 Σ_j Q_j·ξ_eq,j(U_oc,T) — s=+1·평형 중심(부록 B.4 입력 규약)."""
+            total = 0.0
+            for Q_j, U_j, n_j in params:
+                total += Q_j * float(func_ksi_eq(T, U_oc, U_j, n_j))
+            return total
+
+        out = np.empty(x_arr.size, dtype=float)
+        for k, xb in enumerate(x_arr):
+            target = Q_tot * float(xb)
+            lo, hi = U_lo, U_hi
+            f_lo = _charge(lo) - target
+            f_hi = _charge(hi) - target
+            if not (f_lo < 0.0 < f_hi):
+                raise ValueError(
+                    f"eq:implicit bracket fail at x_bar={float(xb)!r}: "
+                    f"f(U_lo)={f_lo:.3e}, f(U_hi)={f_hi:.3e} — widen U_lo/U_hi.")
+            for _ in range(int(max_iter)):
+                if (hi - lo) < tol:
+                    break
+                mid = 0.5 * (lo + hi)
+                if _charge(mid) - target < 0.0:
+                    lo = mid
+                else:
+                    hi = mid
+            out[k] = 0.5 * (lo + hi)
+        return float(out[0]) if is_scalar else out
+
+    def entropy_coefficient_x(self, x_bar: ScalarOrArray, T: float = 298.15,
+                              return_terms: bool = False
+                              ) -> Union[ScalarOrArray, Dict[str, ScalarOrArray]]:
+        """x̄ 진입점 가역 엔트로피 계수 ∂U_oc/∂T(x̄) [V/K] — Ch2 §2.8 계산 순서(C-106) 실현.
+
+        eq:implicit 솔버(solve_U_oc)로 U_oc(x̄,T)를 얻고 그 U_oc 를 entropy_coefficient
+        (완전식 eq:complete)에 되먹인다 — 부록 B.1 "x̄ → U_oc → ∂U_oc/∂T → Q̇_rev"
+        파이프라인의 직접 진입점. 기존 V_n 진입점 entropy_coefficient 는 그대로 병행
+        (additive; 내부 재사용, 새 물리 X).
+        return_terms=True 면 {'U_oc','complete','simple','config'} dict — 회귀 기준
+        (부록 B.2): x̄=0.25·298.15 K 에서 U_oc=74.4 mV·완전식 −0.204·단순식 −0.134·
+        config −0.070 mV/K.
+
+        x_bar : 분율 스칼라/배열 · T : 온도 [K] 스칼라(등온).
+        반환  : ∂U_oc/∂T [V/K] (x_bar 스칼라 → float, 배열 → ndarray;
+                return_terms=True 는 dict — 각 값 동일 스칼라/배열 규약).
+        """
+        U_oc = self.solve_U_oc(x_bar, T)
+        res = self.entropy_coefficient(U_oc, T, return_terms=return_terms)
+        x_is_scalar = (np.asarray(x_bar, dtype=float).ndim == 0)
+        if not return_terms:
+            arr = np.atleast_1d(np.asarray(res, dtype=float))
+            return float(arr[0]) if x_is_scalar else arr
+        out: Dict[str, ScalarOrArray] = {'U_oc': U_oc}
+        for key in ('complete', 'simple', 'config'):
+            arr = np.atleast_1d(np.asarray(res[key], dtype=float))
+            out[key] = float(arr[0]) if x_is_scalar else arr
+        return out
+
+    def reversible_heat_x(self, x_bar: ScalarOrArray, T: float = 298.15,
+                          I: float = 1.0) -> ScalarOrArray:
+        """x̄ 진입점 가역 발열 q_rev(x̄) = −I·T·∂U_oc/∂T(x̄) [W] (Ch2 eq:qrev·§2.8(e)).
+
+        eq:implicit 로 U_oc(x̄,T)를 풀어 완전식 ∂U_oc/∂T 에 되먹인 뒤 Bernardi 출구로
+        닫는다(내부는 solve_U_oc·entropy_coefficient 재사용 — 새 물리 X). 부호 규약·라벨
+        층위는 reversible_heat 와 동일(I>0 = Bernardi 셀-수지 방전 라벨, T 는 한 번만).
+        회귀 기준(부록 B.2): x̄=0.25·298.15 K·I=1 → q_rev/I=+60.8 mV(방전 발열),
+        tab:qrev 5점(x̄=0.10~0.90) 발열→흡열 부호 교대.
+        """
+        dUdT = self.entropy_coefficient_x(x_bar, T)
+        return -float(I) * float(T) * dUdT
 
     def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray,
                           I: float) -> ScalarOrArray:
@@ -936,6 +1073,45 @@ if __name__ == "__main__":
     a = m0.dqdv(V, T=298.15, I_abs=1e-6, Q_cell=1.0, s=+1)
     b = m0.dqdv(V, T=298.15, I_abs=1e-6, Q_cell=1.0, s=-1)
     print(f"  gamma=0,|I|->0: dis/chg max diff={np.max(np.abs(a-b)):.3e} (expect ~0)")
+
+    # ---- v1.0.19: x_bar 진입점 — eq:implicit -> U_oc -> dU/dT -> Qrev (Ch2 부록 B.2) ----
+    print("=== v1.0.19 x_bar entry: eq:implicit -> U_oc -> dU/dT -> Qrev (doc B.2) ===")
+    terms = model.entropy_coefficient_x(0.25, 298.15, return_terms=True)
+    Uoc_mV = terms['U_oc'] * 1e3
+    comp_mVK = terms['complete'] * 1e3
+    simp_mVK = terms['simple'] * 1e3
+    conf_mVK = terms['config'] * 1e3
+    qrev_mV = model.reversible_heat_x(0.25, 298.15, I=1.0) * 1e3
+    print(f"  x=0.25: U_oc={Uoc_mV:.2f} mV (doc 74.4)")
+    print(f"          dU/dT complete={comp_mVK:+.4f} simple={simp_mVK:+.4f} "
+          f"config={conf_mVK:+.4f} mV/K (doc -0.204/-0.134/-0.070)")
+    print(f"          Qrev/I={qrev_mV:+.2f} mV (doc +60.8, discharge exothermic)")
+    ok_x25 = (abs(Uoc_mV - 74.4) < 0.1 and abs(comp_mVK + 0.204) < 1e-3
+              and abs(simp_mVK + 0.134) < 1e-3 and abs(conf_mVK + 0.070) < 1e-3
+              and abs(qrev_mV - 60.8) < 0.1)
+    all_ok &= ok_x25
+    print(f"  worked-example match (B.2): {ok_x25}")
+
+    # tab:qrev 5점 부호 교대(완전식·298.15 K) — 저-x 발열 -> 고-x 흡열
+    doc_qrev = {0.10: (-0.307, +91.5), 0.25: (-0.204, +60.8), 0.50: (-0.089, +26.6),
+                0.75: (+0.044, -13.2), 0.90: (+0.218, -64.9)}
+    ok_tab = True
+    for xb, (d_doc, q_doc) in doc_qrev.items():
+        d = model.entropy_coefficient_x(xb, 298.15) * 1e3          # mV/K
+        q = model.reversible_heat_x(xb, 298.15, I=1.0) * 1e3       # mV
+        ok_tab &= (abs(d - d_doc) < 1e-3) and (abs(q - q_doc) < 0.1)
+        print(f"  x={xb:.2f}: dU/dT={d:+.4f} mV/K (doc {d_doc:+.3f})  "
+              f"Qrev/I={q:+.2f} mV (doc {q_doc:+.1f})")
+    all_ok &= ok_tab
+    print(f"  tab:qrev 5-point sign alternation match: {ok_tab}")
+
+    # round-trip: 유한차분 [U_oc(T+3)-U_oc(T-3)]/6K vs 해석 완전식 (doc <0.001 uV/K)
+    fd = (model.solve_U_oc(0.25, 298.15 + 3.0) - model.solve_U_oc(0.25, 298.15 - 3.0)) / 6.0
+    an = model.entropy_coefficient_x(0.25, 298.15)
+    rt_uVK = abs(fd - an) * 1e6
+    ok_rt = rt_uVK < 1e-3
+    all_ok &= ok_rt
+    print(f"  round-trip |FD - analytic| = {rt_uVK:.6f} uV/K (doc < 0.001): {ok_rt}")
 
     # ---- (B) finite/range guards ----
     print("=== (B) input guards (expect ValueError each) ===")
