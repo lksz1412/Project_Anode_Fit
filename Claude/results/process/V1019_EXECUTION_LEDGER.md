@@ -11,6 +11,15 @@
 | P4 | ③Fable 최종수정(같은 세션) | union 반영·빌드 GREEN·유실 0 | ✅ |
 | P5 | 검증·마감(빌드·doc↔code·HANDOVER·INDEX·commit) | 3-pass·물리=코드·최종 | ✅ |
 
+## Ch2 트랙 (v1.0.19, Fable→10종→Fable, doc-leads)
+| Phase | 이름 | Gate | 상태 |
+|---|---|---|---|
+| C-P1 | 준비(Ch2 자산·브리핑) | 자산 체크리스트·브리핑 | ✅ |
+| C-P2 | Fable Ch2 재작성(골격→절별→합치기) | 골격 게이트·빌드·자산 대조 | 🔄 |
+| C-P3 | 10종 검수(이전본 Ch2 vs 신본 union) | 커버리지·유실0·union | ⬜ |
+| C-P4 | Fable 최종수정(같은 세션) | union 반영·빌드·유실0 | ⬜ |
+| C-P5 | 마감(빌드·Ch1↔Ch2 정합·HANDOVER·INDEX·commit) | 3-pass·정합·최종 | ⬜ |
+
 ## 진행 로그 (append-only)
 - **2026-07-08 P1 착수**: docs/v1.0.19 골격 생성(Ch2 v1.0.19·appendix·code=18.2 frozen·golden·figs·`_sections/`). 계획서 1.0.10~1.0.18 = plans/ 19개 식별. 이력 1.0.18 = V1018_EXECUTION_LEDGER·HANDOVER_v1.0.18.1·HANDOVER_v1.0.18.2. 작업물 = docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex(이전본). 자산 체크리스트 = Sonnet 2(전·후반부) 추출 → master 병합·증강(진행). 브리핑 패키지 = V1019_FABLE_BRIEF.md.
 - **2026-07-08 P1 완료 ✅**: 골격 승계 빌드 GREEN(Ch2 17p·appendix 8p·undef0·err0). **자산 체크리스트 확정** = `V1019_ASSET_CHECKLIST.md` **336 항목**(A-001~159 전반부 L1-1875 + B2-001~177 후반부 L1850-3544, head→tail 갭0 경계 겹침확인) + CRITICAL 오독방지 앵커 12종 최상단 표기. Fable 브리핑 `V1019_FABLE_BRIEF.md` 완결(§0 한정·§1 골격→절별→합치기·§2 헌법3종·§3 버전진화·§4 자료경로·§5 자산앵커 포인터). → P2 Fable 재작성 착수.
