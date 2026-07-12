@@ -27,7 +27,7 @@
 | K-P0 | 코드 수치 재현 검증(Sonnet delta) | 1~7 재현/갭 목록 | ✅ |
 | K-P1 | Fable 코드 개정(v1.0.19 정합, 원형 보존) | self-test·회귀 bit-exact·수치 재현·버전/참조 | ✅ |
 | K-P3 | 코드로 샘플 이미지 생성 + 연속성 분석(불연속시 로직 재검토 판단) | 이미지·연속/불연속 판정·재검토 요부 | ⬜ |
-| K-P2 | doc appB 코드 파일명·참조 정합 + 문서 재빌드 | Ch1/Ch2 appB v1.0.19.py·빌드 GREEN | ⬜ |
+| K-P2 | doc appB 코드 파일명·참조 정합 + 문서 재빌드 | Ch1/Ch2 appB v1.0.19.py·빌드 GREEN | ✅ |
 | R-P1 | 3종 정합성(Ch1↔Ch2↔code)+완결성 검수(G-follow·논문깊이·G-usable) | 정합·완결·union | ⬜ |
 | R-P2 | 마감(HANDOVER·INDEX·commit+push) | 최종 | ⬜ |
 
