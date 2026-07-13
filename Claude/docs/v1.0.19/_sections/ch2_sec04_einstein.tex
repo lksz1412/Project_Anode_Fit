@@ -7,14 +7,19 @@
 남기는 \emph{온도 편차}는 미결로 남겼다. 이 절은 그 편차를 파라미터 하나 --- 전이 $j$ 의 Einstein 온도
 $\theta_{E,j}$ --- 로 명시적으로 회복해, 전이 중심 $U_j(T)$ 와 중심 엔트로피 $\Delta S^0_j$ 를 온도로
 \emph{자기완결하게} 확장한다. 여기서 다루는 양은 $\theta_{E,j}$ 와 $x$ 를 고정하고 $T$ 만 바꾼 편차이지, 앞
-절의 $\partial S_\vib/\partial x$ 가 아니다 --- 두 양의 혼동을 절 전체에서 피한다. 이렇게 얻은 온도 확장은 이후
+절의 $\partial S_\vib/\partial x$ 가 아니다 --- 두 양의 혼동을 절 전체에서 피한다. 기호에 관해 먼저 못박아
+둔다: Einstein 온도 $\theta_{E,j}$ 는 단위가 K 인 온도로, 앞 절들의 점유율 $\theta$(무차원)와 글자만 같은
+전혀 다른 양이다 --- 아래첨자 $E$ 가 구분자이며, 본 절 이하에서 $\theta_E$ 표기는 항상 온도를 가리킨다.
+이렇게 얻은 온도 확장은 이후
 겹침 합성(\S\ref{sec:mixing})과 종합식(\S\ref{sec:synthesis})이 입력 $\{U_j(T),\Delta S^0_j\}$ 를 받을 때 그
 자리에 그대로 들어간다.
 
 \subsection{닫힌형 $S_\vib(T;\theta_{E,j})$ 와 두 극한}\label{ssec:einstein-closed}
 준양자 모드 스펙트럼을 대표 진동수 하나로 접는다. 전이 $j$ 의 Einstein 온도를 $\theta_{E,j}\equiv\hbar
 \omega_{E,j}/\kB$ 로 정의하면($\kB\theta_{E,j}\equiv\hbar\omega_{E,j}$), 무차원 비 $u_j\equiv\theta_{E,j}/T$ 로
-점유가 $n=1/(e^{u_j}-1)$ 이다(비 $u_j$ 로 적어 본 장의 리튬 함량 $x$ 와 구분한다). 대표값의 선택 --- 예컨대
+점유가 $n=1/(e^{u_j}-1)$ 이다(비 $u_j$ 로 적어 본 장의 리튬 함량 $x$ 와 구분한다).\footnote{이 $u_j$ 는
+Chapter 1 \S4 spinodal 근의 $u_j=\sqrt{1-2RT/\Omega_j}$ 와도 동명 별개의 절-국소 기호다 --- 본 장
+안에서 $u_j$ 는 오직 $\theta_{E,j}/T$ 를 뜻한다(부록 A 함정표 참조).} 대표값의 선택 --- 예컨대
 LiCoO$_2$ 광학 포논 $50$--$80$~meV $\to\theta_{E,j}\approx580$--$930$~K --- 은 \emph{단위 환산 예시일 뿐}이며,
 실제로는 대상 호스트의 실측 포논$\cdot$제일원리 포논 DOS \cite{jpcc2021} 로 교체하거나 다온도 곡률에서 직접
 회귀한다[데이터-주도 1순위].
@@ -52,14 +57,27 @@ $\theta_{E,j}$ 와 $x$ 를 고정하고 $T$ 만 바꾼 것이다.) 이 편차를
 종합식의 $\Delta S^0_j$ 자리를 대신한다.
 
 가산을 엔트로피 항 하나로만 하면 전위 중심과의 정합이 깨진다. 단순 곱 $T\Delta S_\vib/F$ 는 미분 시 여분
-항을 남기기 때문이다. 대신 모드 자유에너지 편차에서 출발해 중심 이동을 닫는다. 모드 Helmholtz 자유에너지
-편차를
+항을 남기기 때문이다. 대신 모드 자유에너지 편차에서 출발해 중심 이동을 닫는다.
+\textbf{(a) 출발 --- 모드 자유에너지 편차.} 모드 Helmholtz 자유에너지 편차를
 \[
 \Delta F_\vib(T)\;\equiv\; RT\ln\bigl(1-e^{-\theta_{E,j}/T}\bigr)
 \]
 로 두면(★ $F_\vib$ 는 몰당 Helmholtz 자유에너지 --- Faraday 상수 $F$ 와 구별), 엔트로피가 $S_\vib=-\partial
-\Delta F_\vib/\partial T$ 로 자유에너지의 온도 미분으로 회복되므로, 이를 $T_\mathrm{ref}$ 를 기준으로 적분해
-평형 중심 이동 $\Delta U_\vib(T)$ 를 얻는다. 적분 상수를 $\Delta U_\vib(T_\mathrm{ref})=0$ 으로 고정하면
+\Delta F_\vib/\partial T$ 로 자유에너지의 온도 미분으로 회복된다. \textbf{(b) 연산 --- round-trip 요구를
+적분으로.} 구하려는 중심 이동은 $\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$ 를 만족해야 하므로,
+편차 정의~\eqref{eq:dSvib} 를 $T_\mathrm{ref}$ 에서부터 적분한다:
+\[
+F\,\Delta U_\vib(T)=\int_{T_\mathrm{ref}}^{T}\Delta S_\vib(T')\,\dd T'
+=\int_{T_\mathrm{ref}}^{T}S_\vib(T')\,\dd T'\;-\;S_\vib(T_\mathrm{ref})\,(T-T_\mathrm{ref}).
+\]
+\textbf{(c) 중간식 --- 적분을 자유에너지로 닫기.} 첫 적분은 $S_\vib=-\partial\Delta F_\vib/\partial T$
+그대로 닫힌다:
+\[
+\int_{T_\mathrm{ref}}^{T}S_\vib(T')\,\dd T'
+=-\bigl[\Delta F_\vib(T)-\Delta F_\vib(T_\mathrm{ref})\bigr].
+\]
+\textbf{(d) 박스.} 두 조각을 합치면 --- 정적분 하한이 $T_\mathrm{ref}$ 라 적분 상수
+$\Delta U_\vib(T_\mathrm{ref})=0$ 은 자동으로 고정되고 ---
 \begin{equation}
 \boxed{\;
 \Delta U_\vib(T)=-\frac1F\Bigl[\Delta F_\vib(T)-\Delta F_\vib(T_\mathrm{ref})+S_\vib(T_\mathrm{ref})\,(T-T_\mathrm{ref})\Bigr],

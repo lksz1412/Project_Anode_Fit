@@ -14,6 +14,12 @@ $\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Chapter 1 의 $\xi_j(V,T)$~\eqref{eq:lo
 음함수~\eqref{eq:implicit} 로 $U_\oc(\bar x,T)$ 를 풀고, $\partial U_\oc/\partial T$ 와 $\dot Q_\rev=-IT\,\partial
 U_\oc/\partial T$~\eqref{eq:qrev} 를 낸다. 진동 온도 편차가 지정되면 입력을 $\Delta S^0_j\to\Delta
 S^0_j+\Delta S_\vib(T)$, $U_j\to U_j+\Delta U_\vib(T)$ 로 온도 확장한다(\S\ref{sec:einstein}).
+이 타깃의 구현 진입점 명명(요구명세): 조성 $\bar x$ 를 직접 받는 세 진입점 ---
+\code{solve\_U\_oc}$(\bar x,T)$ $=$ 음함수~\eqref{eq:implicit} 의 유일근 솔버,
+\code{entropy\_coefficient\_x}$(\bar x,T)$ $=$ 그 근에서의 $\partial U_\oc/\partial T$(완전식~\eqref{eq:complete}),
+\code{reversible\_heat\_x}$(\bar x,T,I)$ $=$ 출구~\eqref{eq:qrev} --- 를 두고, 기존 내부 전위 입력
+\code{entropy\_coefficient}$(V_n,T)$ 경로는 그대로 유지한다(하위호환 --- 두 진입점의 입력 좌표가
+$\bar x$ vs $V_n$ 으로 다르다는 것이 아래 B.2 첫 행의 함수명 구분 근거다).
 
 \textbf{B.2 회귀 기준값.} 아래 값을 구현이 재현해야 한다(298.15 K, Chapter 1 4-전이 staging, $w_j{=}RT/F$).
 \begin{longtable}{p{0.30\textwidth} p{0.42\textwidth} c}
@@ -25,8 +31,9 @@ S^0_j+\Delta S_\vib(T)$, $U_j\to U_j+\Delta U_\vib(T)$ 로 온도 확장한다(\
 요구 항목 & 재현해야 할 기준값 & 근거 \\
 \midrule
 \endhead
-\code{entropy\_coefficient}$(\bar x{=}0.25)$ &
-$\partial U_\oc/\partial T=-0.204$ mV/K(완전식); 단순식 하한 $-0.134$; config 몫 $-0.070$ &
+\code{entropy\_coefficient\_x}$(\bar x{=}0.25)$ &
+$\partial U_\oc/\partial T=-0.204$ mV/K(완전식); 단순식 하한 $-0.134$; config 몫 $-0.070$
+(\code{entropy\_coefficient} 는 $V_n$ 입력 경로 --- $\bar x$ 입력은 \code{\_x} 접미 진입점) &
 \S\ref{ssec:worked}(c) \\
 $U_\oc(\bar x{=}0.25)$ &
 $74.4$ mV(음함수~\eqref{eq:implicit} 유일근) &

@@ -56,11 +56,13 @@ S_e=+k_B\int g(E)\,\hat s(\zeta)\,\dd E
 가 되어 비열 경로의 식~\eqref{eq:Se} 와 한 항등식 $\int \hat s(\zeta)\,\dd\zeta=\pi^2/3$ 으로 일치한다 --- 두 경로의
 합치가 함수형의 교차검증이다(부호 --- $\hat s(\zeta)\ge0$, $g\ge0$ 이라 $S_e\ge0$; 극한 $T\to0$ 또는 $g(E_F)\to0$ 에서
 $S_e\to0$).
-\textbf{★Sommerfeld 동결의 유효 경계.} 위 동결 $g\approx g(E_F)$ 의 정확형은 상태밀도의 에너지 의존을 담은 보정항을
-포함한다 --- 고정 $E_F$(grand-canonical)에서는 엔트로피 핵 $\hat s(\zeta)$ 가 짝함수라 $g'(E_F)$ 항이 $\int_{-\infty}^{\infty}\!\zeta\,\hat s(\zeta)\,\dd\zeta=0$(홀$\times$짝)으로
-상쇄되고, 첫 보정은 $\tfrac12 k_B\,g''(E_F)(k_BT)^3\!\int\zeta^2 \hat s(\zeta)\,\dd\zeta$ 곧 $\mathcal O(T^3)$ 이다(고정 조성 $x$ 에서는
-$\mu(T)$ 이동이 같은 차수의 $g'^2/g$ 항을 더하나 역시 $\mathcal O(T^3)$; $g'(E_F)(k_BT)^2$ 형 $\mathcal O(T^2)$ Mott 항은
-thermopower$\cdot$전도도 소관이지 엔트로피의 선도 보정이 아니다). 상대 크기는 여전히 $\mathcal O[(k_BT/E_F)^2]$ 급이라,
+\textbf{★Sommerfeld 동결의 유효 경계.} 위 동결 $g\approx g(E_F)$ 의 첫 보정은 대칭성 상쇄 때문에
+$\mathcal O(T^3)$ 에서야 시작한다\footnote{보정의 세부: 고정 $E_F$(grand-canonical)에서는 엔트로피 핵
+$\hat s(\zeta)$ 가 짝함수라 $g'(E_F)$ 항이 $\int_{-\infty}^{\infty}\!\zeta\,\hat s(\zeta)\,\dd\zeta=0$
+(홀$\times$짝)으로 상쇄되고, 첫 보정은 $\tfrac12 k_B\,g''(E_F)(k_BT)^3\!\int\zeta^2 \hat s(\zeta)\,\dd\zeta$
+곧 $\mathcal O(T^3)$ 이다. 고정 조성 $x$ 에서는 $\mu(T)$ 이동이 같은 차수의 $g'^2/g$ 항을 더하나 역시
+$\mathcal O(T^3)$ 이며, $g'(E_F)(k_BT)^2$ 형 $\mathcal O(T^2)$ Mott 항은 thermopower$\cdot$전도도
+소관이지 엔트로피의 선도 보정이 아니다.}. 상대 크기는 여전히 $\mathcal O[(k_BT/E_F)^2]$ 급이라,
 LCO 금속상은 $E_F\sim$ eV, $k_BT@300\,\mathrm K\approx0.026$ eV 로 $k_BT/E_F\sim0.03$ 이니 보정이 무시할 수준이다. 다만 MIT 전이 \emph{중심}에서는 $g(E_F)$
 가 0 에서 켜지며 $E_F$ 근방 상태밀도가 급변하므로, 동결 가정은 완전 metal 끝점에서 가장 견고하고 전이 중심에서
 가장 약하다 --- forward 모델이 전이를 게이트 폭 $\Delta x_\mathrm{MIT}$ 로 매끄럽게 보간하므로 이 약화는 피팅 폭에
@@ -135,8 +137,11 @@ $\partial U_1/\partial T=\Delta S_{\rxn,1}^\mathrm{cat}(T)/F$ 를 기준온도 $
 \end{equation}
 전자항의 $T^2$ 계수는 $a_e/(2F)$ 이며, $\tfrac12$ 인자는 $\int_{T_\mathrm{ref}}^{T}a_e T'\,\dd T'=\tfrac{a_e}{2}
 (T^2-T_\mathrm{ref}^2)$ 에서 나온다($T\cdot\Delta S$ 의 단순 곱으로 섞으면 이 $\tfrac12$ 을 잃는다) --- config$\cdot$vib 는
-$T$-선형 항 $\tfrac{\Delta S_0}{F}(T-T_\mathrm{ref})$ 만 남기고, 곡률($a_e/(2F)<0$)은 전자항이 단독으로 만들며, 고온
-외삽이 선형 외삽보다 낮아지는 것이 식별 신호다.
+본 절의 전제(config 는 $T$-무관 상수 몫, vib 는 고전근사의 $T_\mathrm{ref}$ 동결 상수) 하에서
+$T$-선형 항 $\tfrac{\Delta S_0}{F}(T-T_\mathrm{ref})$ 만 남기고, 곡률($a_e/(2F)<0$)은 그 전제 하에서
+전자항이 만들며, 준양자 모드가 남기는 잔여 vib 양자곡률은 Einstein 온도 $\theta_E$ 로 별도
+모델링한다(Ch2 Einstein 절 --- 강제 $T_\mathrm{ref}$ 영점$\cdot$로그 곡률이라 $T^2$ 전자곡률과 함수형으로
+갈린다). 고온 외삽이 선형 외삽보다 낮아지는 것이 전자항의 식별 신호다.
 
 \subsection{$g(E_F,x)$ 의 MIT-logistic 게이트 --- 모델 가정과 그 정당화}\label{sec:lco-gate}
 식~\eqref{eq:dSe} 를 쓰려면 $g(E_F,x)$ 의 \emph{연속 곡선}이 필요하나 1차 문헌엔 없어(Motohashi

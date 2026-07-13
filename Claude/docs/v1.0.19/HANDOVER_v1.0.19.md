@@ -24,7 +24,7 @@
 - **C-P5 마감**: Ch1 61p·Ch2 24p·appendix 8p 최종 GREEN.
 
 ## ② 다음 세션 주의
-1. **★문건 권위(doc-leads)·코드 후속 개정**: v1.0.19 = **Ch1(+Ch2 재작성) 문건이 authoritative**. **코드(현 `Anode_Fit_v1.0.18.2.py`, 미변경)는 이후 이 v1.0.19 문건에 맞춰 개정된다** — 문건이 모델을 정의하고 코드가 구현을 맞춘다. **문서(1.0.19) vs 코드(1.0.18.2) 버전 차 = 의도된 정상 상태**(코드가 문건을 따라옴). ★역방향 금지: 문건을 코드에 맞추거나(물리를 현 코드로 축소) 코드를 matched-bump해 억지 통일하지 말 것 — 코드는 손대지 않고, 개정 시 문건 기준. **차기 = 코드를 v1.0.19 문건에 맞춰 개정.**
+1. **★문건 권위(doc-leads)·코드 개정 완료**: v1.0.19 = **Ch1+Ch2 문건이 authoritative**, **코드는 이 문건에 맞춰 개정 완료**(K-P1) = `Anode_Fit_v1.0.19.py`. 개정 = 순수 additive(x̄→U_oc eq:implicit 솔버 `solve_U_oc`·x̄ 진입점 `entropy_coefficient_x`·`reversible_heat_x`·`return_terms` 완전/단순식 분리 + 버전 1.0.16→1.0.19·근거문건 v1.0.19). **기존 함수·식별자·데이터 무변경·회귀 골든 13/13 bit-exact.** doc-leads 원칙(문건→코드): 향후 개정도 문건 기준(역방향 축소·억지 matched-bump 금지). 미구현 잔여 = 다온도 LCO 전자항 T-복원(현 T_ref 동결)·total heat q_irr 3분해 = 차기.
 2. **구조 재설계 5건(신본 골격)**: ①Part II 단일 §→§11-17 7분할 ②삼분해(§14)를 전자항(§15) 앞으로(forward-ref 축소·G1-G3 일원화) ③broadening N6하위→§7 독립절 승격(제목 "N6 확장", 새 N-노드 아님) ④§5 유도선행(logistic→폭 모수화) ⑤N0+N1→§1 통합. 코드-정합 N0-N9 스파인·부록 이원·라벨 키(eq:/fig:/tab:) 전부 보존 → cross-ref 100% 해소.
 3. **자산 앵커**: `V1019_ASSET_CHECKLIST.md` 336항목이 완결성 기준(각 절 말미 `% 자산:` 주석으로 대조). CRITICAL 오독방지 12종(A-035 Fermi-Dirac 가드·A-094 Taylor 함정·A-105 폭 이중지위·A-132 Maxwell/Dreyer·A-137~139 iii-a/iii-b·B2-054 Kirchhoff·B2-069 Ω≠config·B2-084/85/121 단위·B2-105 슬롯·B2-107 가산성·B2-116 동형≠동일·B2-094 세 척도)은 명시 문장 유지.
 4. **doc↔code 정정분(P4)**: appB `occ_lagged`→`ksi_lag`(코드 실제 L578)·§10 L_V 단위규약 명시(코드 raw 정규화 Q_cell=1)·§12 부호공존 조건부(부호=round-trip 판정)·T_rep "전 구간 단일평균"·appB "구조 대응". 전부 코드(18.2) 기준으로 문서 교정(코드 무변경).
@@ -32,7 +32,7 @@
 6. **Ch2 재작성 요점**: 자산 `V1019_CH2_ASSET_CHECKLIST.md`(133·CRITICAL 15). 구조 재설계 = ①**vib Einstein §2.4 전용 절 승격**(구본은 §3 vib 안에 섞여 forward-ref·ΔS_vib(T)≠∂S_vib/∂x 혼동 유발) ②구 §6→§2.7 물리/§2.8 종합식/§2.9 방법론 3분할 ③파생 B 본체/재확인 2단 ④부호·기호 함정 부록 A 마스터표 집약(신설) ⑤부록 B = **doc-leads 코드 개정 요구명세**(현 코드 기술 아님, entropy_coefficient=−0.204·tab:qrev·bit-exact 회귀기준). **eq:Se 라벨 = Ch2 로컬은 eq:Se-ch2**(Ch1 §15 eq:Se와 이름 분리). Ch2→Ch1 참조는 서술형(라벨명 평문 인쇄 X)·Ch1 v1.0.19 절번호(Part0=§2·U_j=§3·히스=§4·폭=§5·broadening=§7·전자엔트로피=§15·MSMR=§17).
 
 ## ③ 미완료/이월
-- **코드 개정(doc-leads·차기)**: v1.0.19 문건(Ch1+Ch2)이 확정되면 **코드를 이 문건에 맞춰 개정**(문건→코드 방향). 코드는 이번 미변경(18.2). appendix 는 승계(추후 문건 정합 시 동반 검토).
+- **코드 개정 완료(K-P1)**: `Anode_Fit_v1.0.19.py`(additive·회귀 bit-exact). 샘플 이미지 7종+연속성 판정(`samples/`, 전 구간 연속·재검토 불필요) + 3종 정합성·완결성 검수(R-P1) 완료. **차기 이월**: 다온도 LCO 전자항 T-복원(Sommerfeld T-스케일·eq:U1T2 center-T_ref 적분, 현 T_ref 동결)·total heat q_irr 3분해·LCO tier-2/3 실측 초기값. appendix 는 승계(독립 초안, 편입은 사용자 결정 대기).
 - **U-24 broadening §승격**: "N6 확장 절"로 표기 처리(새 N-노드 아님) — fig:spine/nodemap 정합 유지. 향후 N6a/N6b 서브라벨 검토 여지.
 - **W2-2 신규 라벨**(sec:center-eqcond/Uj) 향후 §hys 역참조 배선 여지(현재 무해 orphan). W1-2 tab:notation s 행은 자산 A-014 보존차 원형 유지(판단).
 - **제안 2~5**(`../v1.0.18.2/ROADMAP_future_physics.md`)·v1.0.16 물리-데이터 = 여전히 외부 위임/실측 대기.
