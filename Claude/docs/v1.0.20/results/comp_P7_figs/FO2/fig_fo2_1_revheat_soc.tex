@@ -1,0 +1,74 @@
+% fig_fo2_1_revheat_soc.tex  (창 FO2 구현 1 — 신규, 공백 G1)
+% 대응 절: ch2_sec07_revheat §2.7 · ch2_sec08_synthesis §2.8 (tab:qrev 옆)
+% 좌표 = 모델 entropy_coefficient_x·reversible_heat_x 의 식 그대로 수치 평가
+%   (5점은 tab:qrev 문건값과 bit 일치 확인: -0.307/-0.204/-0.089/+0.044/+0.218 mV/K,
+%    +91.5/+60.8/+26.6/-13.2/-64.9 mV). 잇는 곡선은 같은 식의 dense 평가.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11cm,>=Latex,font=\scriptsize]
+% ================= (a) 상단: dU_oc/dT(x̄) 완전식 vs 단순식 =================
+\begin{scope}[y=6.5cm]
+  % zero line (물리적 영선)
+  \draw[densely dashed,black!55] (0.05,0) -- (0.95,0);
+  % axes
+  \draw[->] (0.05,-0.36) -- (0.05,0.30) node[above,anchor=south east] {$\partial U_\oc/\partial T$ [mV/K]};
+  \draw[->] (0.05,-0.36) -- (0.96,-0.36) node[right] {$\bar x$};
+  \foreach \yy in {-0.3,-0.2,-0.1,0.1,0.2} {\draw (0.045,\yy)--(0.05,\yy) node[left,xshift=1pt] {\yy};}
+  \node[left] at (0.045,0) {$0$};
+  \foreach \xx in {0.1,0.3,0.5,0.7,0.9} {\draw (\xx,-0.355)--(\xx,-0.365) node[below] {\xx};}
+  % complete (실선) — config 포함 완전식
+  \draw[very thick] plot[smooth] coordinates {(0.08,-0.329)(0.10,-0.307)(0.13,-0.280)(0.16,-0.257)(0.20,-0.232)(0.25,-0.204)(0.30,-0.179)(0.35,-0.156)(0.40,-0.133)(0.45,-0.111)(0.50,-0.089)(0.55,-0.066)(0.60,-0.043)(0.65,-0.017)(0.70,0.011)(0.75,0.044)(0.80,0.085)(0.85,0.140)(0.90,0.218)(0.92,0.257)};
+  % simple (파선) — 중심 표준값만
+  \draw[thick,densely dashed] plot[smooth] coordinates {(0.08,-0.145)(0.10,-0.144)(0.13,-0.142)(0.16,-0.140)(0.20,-0.138)(0.25,-0.134)(0.30,-0.130)(0.35,-0.124)(0.40,-0.119)(0.45,-0.112)(0.50,-0.105)(0.55,-0.097)(0.60,-0.089)(0.65,-0.079)(0.70,-0.067)(0.75,-0.051)(0.80,-0.027)(0.85,0.016)(0.90,0.096)(0.92,0.136)};
+  % 완전식 영점
+  \draw[densely dotted,black!60] (0.680,-0.36) -- (0.680,0.011);
+  \fill (0.680,0) circle (0.6pt);
+  \node[below,font=\tiny] at (0.680,0.002) {};
+  \node[anchor=south,font=\tiny] at (0.700,0.012) {영점 $\bar x\!\approx\!0.68$};
+  % 5 표 마커
+  \foreach \x/\y in {0.10/-0.307,0.25/-0.204,0.50/-0.089,0.75/0.044,0.90/0.218}
+    {\fill (\x,\y) circle (1.2pt);}
+  % legend (좌상단 — 곡선이 음수라 비어 있음)
+  \draw[very thick] (0.11,0.24)--(0.155,0.24); \node[right,font=\tiny] at (0.16,0.24) {완전식 (중심$+$config, eq:complete)};
+  \draw[thick,densely dashed] (0.11,0.185)--(0.155,0.185); \node[right,font=\tiny] at (0.16,0.185) {단순식 (중심 표준값만)};
+  \node[anchor=west,font=\tiny] at (0.11,0.125) {$\bullet$ tab:qrev 5점 (식 그대로 평가)};
+  \node[anchor=north west,font=\tiny,align=left] at (0.44,-0.20) {config 항이 양끝에서\\곡선을 가파르게 함};
+  \node[anchor=south,font=\scriptsize] at (0.5,0.30) {(a) 가역 엔트로피 계수 $\partial U_\oc/\partial T(\bar x)$ --- 완전식이 $\bar x\!\approx\!0.68$ 에서 부호 전환};
+\end{scope}
+% ================= (b) 하단: Q̇_rev/I(x̄) 발열/흡열 =================
+\begin{scope}[yshift=-5.7cm,y=0.0235cm]
+  % 발열/흡열 반평면 음영
+  \fill[black!5] (0.05,0) rectangle (0.95,104);
+  \fill[black!13] (0.05,-86) rectangle (0.95,0);
+  % zero line
+  \draw[densely dashed,black!55] (0.05,0) -- (0.95,0);
+  % axes
+  \draw[->] (0.05,-88) -- (0.05,104) node[above,anchor=south east] {$\dot Q_\rev/I$ [mV]};
+  \draw[->] (0.05,-88) -- (0.96,-88) node[right] {$\bar x$ (탈리튬화)};
+  \foreach \yy in {-80,-40,40,80} {\draw (0.045,\yy)--(0.05,\yy) node[left,xshift=1pt] {\yy};}
+  \node[left] at (0.045,0) {$0$};
+  \foreach \xx in {0.1,0.3,0.5,0.7,0.9} {\draw (\xx,-84)--(\xx,-92) node[below] {\xx};}
+  % Q̇_rev 곡선
+  \draw[very thick] plot[smooth] coordinates {(0.08,98.11)(0.10,91.52)(0.13,83.46)(0.16,76.76)(0.20,69.10)(0.25,60.81)(0.30,53.36)(0.35,46.42)(0.40,39.74)(0.45,33.17)(0.50,26.57)(0.55,19.80)(0.60,12.70)(0.65,5.06)(0.70,-3.41)(0.75,-13.24)(0.80,-25.38)(0.85,-41.65)(0.90,-64.93)(0.92,-76.71)};
+  % 영점
+  \draw[densely dotted,black!60] (0.680,-88) -- (0.680,0);
+  \fill (0.680,0) circle (2.4pt);
+  % 5 표 마커
+  \foreach \x/\y in {0.10/91.5,0.25/60.8,0.50/26.6,0.75/-13.2,0.90/-64.9}
+    {\fill (\x,\y) circle (2.6pt);}
+  % 영역 라벨
+  \node[font=\scriptsize] at (0.30,88) {방전 \textbf{발열} (exothermic, $\dot Q_\rev>0$)};
+  \node[font=\scriptsize] at (0.78,-72) {방전 \textbf{흡열} (endothermic)};
+  \node[anchor=south,font=\scriptsize] at (0.5,104) {(b) 가역 발열 $\dot Q_\rev/I=-T\,\partial U_\oc/\partial T$ --- 저-$\bar x$ 발열 $\to$ 고-$\bar x$ 흡열};
+\end{scope}
+\end{tikzpicture}
+\caption{한 종합식(eq:complete)이 SOC 축을 따라 가역 발열의 부호를 스스로 뒤집는 거동(좌표는 식 그대로의
+수치 평가, $298.15$ K; 큰 점 5개는 표~\ref{tab:qrev} 값과 일치, 잇는 곡선은 같은 식의 조밀 평가).
+(a) 가역 엔트로피 계수 $\partial U_\oc/\partial T(\bar x)$: 실선 완전식(중심 표준값 $+$ 봉우리 내부 config)은
+$\bar x\!\approx\!0.68$ 에서 음$\to$양으로 부호가 바뀌고, 파선 단순식(중심값만)은 config 항이 빠져 완만하며
+더 늦게($\bar x\!\approx\!0.86$) 부호를 바꾼다 --- 두 곡선의 간격이 봉우리 내부 config 분포 몫이다. (b) 가역
+발열 $\dot Q_\rev/I=-T\,\partial U_\oc/\partial T$: 부호가 (a)와 반대라, 저-$\bar x$(Li-rich, $\Delta S<0$)에서
+방전 발열, 고-$\bar x$(Li-poor, config 양의 발산으로 $\Delta S>0$)에서 방전 흡열이며 $\bar x\!\approx\!0.68$
+에서 교대한다. 부호 규약: $I>0$ 방전, $\Delta S=F\,\partial U_\oc/\partial T$.}
+\label{fig:cand-fo2-1}
+\end{figure}

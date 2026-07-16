@@ -1,0 +1,43 @@
+% ====================================================================
+% CAND-FO3-3 : 단일 평형 peak 의 해부 — eq:eqpeak 한 식에서 읽는 세 양 + FWHM
+%   배치 제안: §6 (sec:eqpeak) 식~(eq:eqpeak) 박스 직후.
+%   좌표 = 식 그대로의 수치 평가: 종 y=xi(1-xi), xi=logistic[(V-U^d)/w]; 가로축은 w_j 단위.
+%     정점 1/4 @중심, 반높이(1/8) 반폭 = ln(1+sqrt2)*2 = 1.7627 w -> FWHM=3.5255 w. python 평가.
+%   사용 라이브러리: arrows.meta (ch1 preamble).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.95cm,y=13cm,>=Latex]
+% ---- shaded area under the bell = Q_j ----
+\fill[black!8] plot[smooth] coordinates {(-5.000,0.0066) (-4.494,0.0109) (-3.987,0.0179) (-3.481,0.0290) (-2.975,0.0462) (-2.468,0.0720) (-1.962,0.1081) (-1.456,0.1534) (-0.949,0.2012) (-0.443,0.2381) (-0.063,0.2497) (0.063,0.2497) (0.443,0.2381) (0.949,0.2012) (1.456,0.1534) (1.962,0.1081) (2.468,0.0720) (2.975,0.0462) (3.481,0.0290) (3.987,0.0179) (4.494,0.0109) (5.000,0.0066)} -- (5.0,0) -- (-5.0,0) -- cycle;
+% ---- axes ----
+\draw[-{Latex[length=1.6mm]}] (-5.4,0) -- (5.6,0) node[below,font=\scriptsize] {$(V-U_j^{\,d})/w_j$};
+\draw[-{Latex[length=1.4mm]}] (-5.4,0) -- (-5.4,0.295) node[above,font=\scriptsize] {$\dd Q/\dd V$};
+\foreach \xx in {-4,-2,0,2,4} {\draw (\xx,0.006)--(\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+% ---- peak-height guide (net height = Q_j/4w_j) ----
+\draw[densely dashed] (-5.4,0.25) -- (0,0.25);
+\node[font=\scriptsize,anchor=west] at (0.15,0.263) {순높이 $=Q_j/(4w_j)$};
+\fill (0,0.25) circle (1.4pt);
+% ---- half-maximum + FWHM ----
+\draw[densely dotted,black!55] (-5.4,0.125) -- (4.2,0.125);
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]}] (-1.7627,0.125) -- (1.7627,0.125);
+\node[font=\scriptsize,fill=black!8,inner sep=1pt] at (0,0.125) {FWHM $=2\ln(3{+}2\sqrt2)\,w_j\approx3.53\,w_j$};
+% ---- the bell (thick) ----
+\draw[very thick] plot[smooth] coordinates {(-5.000,0.0066) (-4.620,0.0097) (-4.241,0.0140) (-3.861,0.0202) (-3.481,0.0290) (-3.101,0.0412) (-2.722,0.0579) (-2.342,0.0800) (-1.962,0.1081) (-1.582,0.1414) (-1.203,0.1777) (-0.823,0.2120) (-0.443,0.2381) (-0.190,0.2478) (0.063,0.2497) (0.316,0.2438) (0.570,0.2308) (0.823,0.2120) (1.203,0.1777) (1.582,0.1414) (1.962,0.1081) (2.342,0.0800) (2.722,0.0579) (3.101,0.0412) (3.481,0.0290) (3.861,0.0202) (4.241,0.0140) (4.620,0.0097) (5.000,0.0066)};
+% ---- center (position) marker ----
+\draw[densely dotted] (0,0) -- (0,0.25);
+\node[font=\scriptsize,anchor=north] at (0,-0.018) {위치 $=U_j^{\,d}$};
+% ---- area label ----
+\node[font=\scriptsize,align=center] at (-2.5,0.055) {면적 $=Q_j$\\{\footnotesize $\displaystyle\int\!\dd\xi{=}1$}};
+% ---- species label ----
+\node[font=\scriptsize,anchor=west,align=left] at (1.9,0.20) {평형 종\\$Q_j\dfrac{\xi_\eq(1{-}\xi_\eq)}{w_j}$};
+\end{tikzpicture}
+\caption{평형 peak(식~\eqref{eq:eqpeak}) 한 식에서 읽히는 세 양의 해부(좌표는 식 그대로의 수치 평가: 종
+$\xi_\eq(1-\xi_\eq)$, $\xi_\eq{=}\mathrm{logistic}[(V-U_j^{\,d})/w_j]$, 가로축은 폭 $w_j$ 단위). \emph{위치}는 분기
+중심 $U_j^{\,d}$(정점, $\xi_\eq{=}\tfrac12$), \emph{순높이}는 $Q_j/(4w_j)$($\xi(1-\xi)$ 가 중심에서 $\tfrac14$),
+\emph{배경 차감 면적}은 $Q_j$($\int_0^1\dd\xi{=}1$ 이라 종의 적분이 $1$, 음영)이다 --- 세 양이 한 식에서 곧바로
+나온다. 반높이 전폭은 $\mathrm{FWHM}=2\ln(3+2\sqrt2)\,w_j\approx3.53\,w_j$ 로 폭 $w_j$ 에 비례한다($n_j{=}1$,
+$298$ K 에서 $\approx91$ mV). 종은 $\xi(1-\xi)\ge0$ 이라 양수이고 방향 불변이며, 이 그림은 동역학 꼬리가 폭에
+비해 작을 때($L_V\!\to\!0$)의 저전류 기준선이다.}
+\label{fig:cand-fo3-3}
+\end{figure}

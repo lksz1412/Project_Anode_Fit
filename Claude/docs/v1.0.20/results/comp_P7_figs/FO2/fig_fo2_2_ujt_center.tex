@@ -1,0 +1,48 @@
+% fig_fo2_2_ujt_center.tex  (창 FO2 구현 2 — 신규, 공백 G2)
+% 대응 절: ch1_sec03_center §3 (N2, eq:Uj) 부근
+% 좌표 = eq:Uj  U_j(T)=(-ΔH_rxn+T·ΔS_rxn)/F 를 tab:staging 4전이 초기값으로 식 그대로 평가
+%   (기울기 ∂U_j/∂T=ΔS_rxn/F; 검산: 4→3 U(298.15)=0.2109 V, 2→1 U(298.15)=0.0853 V).
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.10cm,y=40cm,>=Latex,font=\scriptsize]
+% axes
+\draw[->] (256,0.075) -- (256,0.232) node[above,anchor=south east] {$U_j$ [V]};
+\draw[->] (256,0.075) -- (346,0.075) node[right] {$T$ [K]};
+\foreach \yy in {0.08,0.10,0.12,0.14,0.16,0.18,0.20,0.22} {\draw (254.5,\yy)--(256,\yy) node[left,xshift=2pt] {\yy};}
+\foreach \xx in {260,280,300,320,340} {\draw (\xx,0.0735)--(\xx,0.075) node[below] {\xx};}
+% T_ref = 298.15 안내선
+\draw[densely dotted,black!55] (298.15,0.075) -- (298.15,0.225);
+\node[below,font=\tiny,black!55] at (298.15,0.075) {$298.15$};
+% ---- 4 전이 직선 (기울기 = ΔS_rxn/F) ----
+% 4→3 : ΔS=+29 J/mol/K  → +0.301 mV/K (상승)
+\draw[very thick] (260,0.19941) -- (340,0.22345);
+% 3→2L : ΔS=0 → 수평
+\draw[thick,densely dashed] (260,0.13992) -- (340,0.13992);
+% 2L→2 : ΔS=-5 → -0.052 mV/K (완만 하강)
+\draw[thick,dash dot] (260,0.12230) -- (340,0.11815);
+% 2→1 : ΔS=-16 → -0.166 mV/K (하강)
+\draw[very thick,densely dotted] (260,0.09162) -- (340,0.07835);
+% 298.15 앵커점
+\foreach \x/\y in {298.15/0.21088,298.15/0.13992,298.15/0.12032,298.15/0.08529}
+  {\fill (\x,\y) circle (0.9pt);}
+% 우측 라벨 (전이명 + 기울기 부호)
+\node[right,font=\tiny,align=left] at (341,0.22345) {$4\!\to\!3$\\$\Delta S{=}{+}29$: $\partial U/\partial T{=}{+}0.30$ mV/K};
+\node[right,font=\tiny,align=left] at (341,0.13992) {$3\!\to\!2\mathrm L$\\$\Delta S{=}0$: 수평};
+\node[right,font=\tiny,align=left] at (341,0.11815) {$2\mathrm L\!\to\!2$\\$\Delta S{=}{-}5$: ${-}0.05$ mV/K};
+\node[right,font=\tiny,align=left] at (341,0.07835) {$2\!\to\!1$\\$\Delta S{=}{-}16$: ${-}0.17$ mV/K};
+% 앵커 라벨
+\node[anchor=south east,font=\tiny] at (297.6,0.21088) {$0.2109$};
+\node[anchor=north east,font=\tiny] at (297.6,0.08529) {$0.0853$};
+% 부호 화살표 주석
+\draw[->,black!55] (270,0.205) -- (270,0.214);  \node[left,font=\tiny,black!55] at (270,0.210) {$\Delta S{>}0$};
+\draw[->,black!55] (270,0.093) -- (270,0.085);  \node[left,font=\tiny,black!55] at (270,0.089) {$\Delta S{<}0$};
+\end{tikzpicture}
+\caption{평형 중심 전위의 온도 의존 $U_j(T)=(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F$(식~\eqref{eq:Uj};
+좌표는 표~\ref{tab:staging} 4전이 초기값의 식 그대로의 수치 평가). 각 직선의 기울기가
+$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 라, 반응 엔트로피의 \emph{부호}가 곧 중심의 온도 이동 방향이다:
+$4\!\to\!3$($\Delta S{=}{+}29$)은 온도와 함께 오르고, $3\!\to\!2\mathrm L$($\Delta S{=}0$)은 수평,
+$2\mathrm L\!\to\!2\cdot2\!\to\!1$($\Delta S{<}0$)은 내린다. 점은 $T_\mathrm{ref}{=}298.15$ K 앵커값
+($0.2109$/$0.1399$/$0.1203$/$0.0853$ V). $|\Delta S_\rxn|\!\sim\!$ 수$\sim$수십 J\,mol$^{-1}$K$^{-1}$ 라
+$30$ K 창에서 중심이 수 mV 규모로 움직여, 다온도 피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 까닭을 준다.}
+\label{fig:cand-fo2-2}
+\end{figure}

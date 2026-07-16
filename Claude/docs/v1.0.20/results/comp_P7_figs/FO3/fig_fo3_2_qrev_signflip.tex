@@ -1,0 +1,50 @@
+% ====================================================================
+% CAND-FO3-2 : 가역 발열의 SOC 부호 교대  q_rev/I(x_bar) = -T dU_oc/dT  (eq:qrev)
+%   배치 제안: §2.8 (sec:synthesis) 표~(tab:qrev) 직후/직전.
+%   좌표 = 식 그대로의 수치 평가: 음함수 sum_j Q_j xi_eq,j(U_oc,T)=Q x_bar (eq:implicit)
+%     를 x_bar 마다 풀어 U_oc, 중앙차분 dU_oc/dT, q_rev/I=-T dU_oc/dT. n_j=1(w=RT/F), 298.15 K.
+%     Chapter 1 4-전이 staging 파라미터. python 평가. 5개 점 표는 tab:qrev 와 정확 일치 검증.
+%   ch2 preamble 라이브러리(arrows.meta)만 사용 — 음영은 그리기 순서(fill 먼저)로 backgrounds 불요.
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=8.6cm,y=0.023cm,>=Latex]
+% ---- region shading (drawn first so it sits behind) ----
+\fill[black!5]  (0.02,-102) rectangle (0.680,116);
+\fill[black!12] (0.680,-102) rectangle (0.98,116);
+% ---- zero line (q_rev = 0) ----
+\draw[densely dashed,black!55] (0.02,0) -- (0.98,0);
+% ---- axes ----
+\draw[-{Latex[length=1.6mm]}] (0.02,-102) -- (0.02,118) node[above,font=\scriptsize,align=center] {$\dot Q_\rev/I$ [mV]\\{\tiny($+$ 발열)}};
+\draw[-{Latex[length=1.6mm]}] (0.02,0) -- (0.98,0) node[below=6pt,font=\scriptsize] {$\bar x$ (탈리튬화 분율)};
+\foreach \yy in {-100,-50,50,100} {\draw (0.012,\yy)--(0.028,\yy) node[left,font=\scriptsize] {\yy};}
+\foreach \xx in {0.2,0.4,0.6,0.8,1.0} {\draw (\xx,4)--(\xx,-4) node[below,font=\scriptsize] {\xx};}
+% ---- smooth q_rev/I curve ----
+\draw[very thick] plot[smooth] coordinates {(0.050,111.420) (0.070,101.772) (0.091,94.363) (0.111,88.266) (0.132,83.027) (0.152,78.389) (0.173,74.191) (0.193,70.329) (0.214,66.728) (0.234,63.332) (0.255,60.102) (0.275,57.005) (0.295,54.014) (0.316,51.110) (0.336,48.275) (0.357,45.494) (0.377,42.753) (0.398,40.041) (0.418,37.348) (0.439,34.664) (0.459,31.979) (0.480,29.284) (0.500,26.571) (0.520,23.829) (0.541,21.048) (0.561,18.218) (0.582,15.328) (0.602,12.362) (0.623,9.307) (0.643,6.144) (0.664,2.850) (0.684,-0.601) (0.705,-4.242) (0.725,-8.115) (0.745,-12.275) (0.766,-16.791) (0.786,-21.757) (0.807,-27.296) (0.827,-33.569) (0.848,-40.779) (0.868,-49.153) (0.889,-58.890) (0.909,-70.103) (0.930,-82.883) (0.950,-97.717)};
+% ---- exact tab:qrev markers ----
+\foreach \xb/\qq in {0.10/91.5, 0.25/60.8, 0.50/26.6, 0.75/-13.2, 0.90/-64.9} {
+  \fill (\xb,\qq) circle (1.6pt);}
+\node[font=\tiny,anchor=south west] at (0.11,91.5) {$(0.10,{+}91.5)$};
+\node[font=\tiny,anchor=south west] at (0.26,60.8) {$(0.25,{+}60.8)$};
+\node[font=\tiny,anchor=south west] at (0.51,26.6) {$(0.50,{+}26.6)$};
+\node[font=\tiny,anchor=north west] at (0.76,-13.2) {$(0.75,{-}13.2)$};
+\node[font=\tiny,anchor=north east] at (0.885,-64.9) {$(0.90,{-}64.9)$};
+% ---- zero-crossing marker ----
+\draw[densely dotted] (0.680,0) -- (0.680,-30);
+\fill (0.680,0) circle (1.3pt);
+\node[font=\tiny,anchor=north] at (0.680,-32) {부호 반전 $\bar x{\approx}0.68$};
+% ---- region labels ----
+\node[font=\scriptsize,align=center] at (0.34,102) {방전 \textbf{발열}\\($\dot Q_\rev{>}0$, $\Delta S{<}0$)};
+\node[font=\scriptsize,align=center] at (0.85,102) {방전 \textbf{흡열}\\($\dot Q_\rev{<}0$, $\Delta S{>}0$)};
+\end{tikzpicture}
+\caption{한 종합식이 SOC 축을 따라 스스로 뒤집는 가역 발열의 부호(식~\eqref{eq:qrev}
+$\dot Q_\rev/I=-T\,\partial U_\oc/\partial T$; 좌표는 식 그대로의 수치 평가). 각 탈리튬화 분율 $\bar x$ 에서 전하
+보존 음함수~\eqref{eq:implicit} 를 풀어 $U_\oc$ 를 얻고, $T{=}298.15$ K 중앙차분으로 $\partial U_\oc/\partial T$ 를
+계산한 완전식 결과다(Chapter 1 4-전이 staging, $w_j{=}RT/F$). 점은 표~\ref{tab:qrev} 의 다섯 값과 정확히 일치한다.
+저-$\bar x$(Li-rich, stage $2\!\to\!1$ 의 큰 음의 $\Delta S$)에서는 방전이 \emph{발열}($\dot Q_\rev{>}0$)이고,
+고-$\bar x$(Li-poor, config 분포 항의 양의 발산)에서는 방전이 \emph{흡열}로 돌아, 부호가 $\bar x{\approx}0.68$
+에서 반전한다. 외부 스위치나 임의 함수 없이 세 분포의 가중 합만으로 흡$\cdot$발열 교대가 나온다는 것이 이 곡선의
+요지다. 행별 흡$\cdot$발열 판정은 폭의 열적 서식 $w_j{=}n_jRT/F$ 를 전제한 값이며, 지배 두-상 전이의 실측 폭이
+$T$-동결에 가까우면 경계 $\bar x$ 가 이동할 수 있다(표~\ref{tab:qrev} 한정과 동일).}
+\label{fig:cand-fo3-2}
+\end{figure}

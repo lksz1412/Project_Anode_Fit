@@ -1,0 +1,41 @@
+% fig_fo2_3_svib_einstein.tex  (창 FO2 구현 3 — 신규, 공백 G3)
+% 대응 절: ch2_sec04_einstein §2.4 (eq:Svib-einstein)
+% 좌표 = eq:Svib-einstein  S_vib=R[-ln(1-e^{-u})+u/(e^u-1)], u=θ_E/T 식 그대로 평가
+%   고온 점근선 = R[1+ln(T/θ_E)] (본문 고전극한). 검산: S_vib(298.15;700K)=2.898 J/mol/K.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.014cm,y=0.5cm,>=Latex,font=\scriptsize]
+% axes
+\draw[->] (40,0) -- (40,14.2) node[above,anchor=south east] {$S_\vib$ [J\,mol$^{-1}$K$^{-1}$]};
+\draw[->] (40,0) -- (770,0) node[right] {$T$ [K]};
+\foreach \yy in {2,4,6,8,10,12} {\draw (34,\yy)--(40,\yy) node[left,xshift=2pt] {\yy};}
+\foreach \xx in {100,300,500,700} {\draw (\xx,-0.15)--(\xx,0) node[below] {\xx};}
+% θ_E = 700 K  (주 곡선, 실선)
+\draw[very thick] plot[smooth] coordinates {(60,0.001)(100,0.061)(140,0.338)(180,0.848)(220,1.498)(260,2.209)(300,2.931)(340,3.639)(380,4.319)(420,4.967)(460,5.582)(500,6.164)(540,6.715)(580,7.237)(620,7.733)(660,8.204)(700,8.652)(740,9.079)};
+% θ_E = 400 K  (파선)
+\draw[thick,densely dashed] plot[smooth] coordinates {(60,0.081)(100,0.774)(140,1.939)(180,3.199)(220,4.402)(260,5.507)(300,6.512)(340,7.426)(380,8.261)(420,9.027)(460,9.733)(500,10.387)(540,10.997)(580,11.566)(620,12.100)(660,12.604)(700,13.079)(740,13.529)};
+% 고온 점근선 θ_E=700 : R[1+ln(T/700)]  (점선)
+\draw[densely dotted,black!65] plot coordinates {(280,0.696)(320,1.806)(360,2.785)(400,3.661)(440,4.454)(480,5.177)(520,5.843)(560,6.459)(600,7.032)(640,7.569)(680,8.073)(720,8.548)(740,8.776)};
+% T_ref = 298.15 K 마커 (θ_E=700 곡선 위)
+\draw[densely dotted,black!55] (298.15,0) -- (298.15,2.898);
+\fill (298.15,2.898) circle (2.6pt);
+\node[anchor=south west,font=\tiny] at (300,2.85) {$T_\mathrm{ref}$: $S_\vib{=}2.90$};
+% 라벨
+\node[right,font=\tiny] at (620,8.2) {$\theta_E{=}700$ K};
+\node[right,font=\tiny] at (560,12.2) {$\theta_E{=}400$ K};
+\node[anchor=west,font=\tiny,black!65] at (600,6.0) {점근 $R[1{+}\ln(T/\theta_E)]$};
+% 저온·고온 극한 주석
+\node[anchor=west,font=\tiny,align=left] at (150,0.9) {저온 $u\!\to\!\infty$:\\$S_\vib\!\to\!0$ (동결)};
+\draw[->,black!55] (150,0.55) -- (95,0.25);
+\node[anchor=south,font=\tiny,align=center] at (430,13.6) {고온 $u\!\to\!0$: 닫힌형이 점근선(동결 상수의 출처)에 붙음};
+\end{tikzpicture}
+\caption{Einstein 단일 모드의 진동 엔트로피 $S_\vib(T;\theta_{E})=R[-\ln(1-e^{-u})+u/(e^{u}-1)]$,
+$u{=}\theta_E/T$(식~\eqref{eq:Svib-einstein}; 좌표는 식 그대로의 수치 평가). 실선 $\theta_E{=}700$ K,
+파선 $\theta_E{=}400$ K --- Einstein 온도가 낮을수록 같은 $T$ 에서 더 많이 들뜬다. 점선은 고온 점근선
+$R[1{+}\ln(T/\theta_E)]$(식~\eqref{eq:Svib-einstein} 아래 고전극한)로, 닫힌형이 $\kB T\!\gg\!\hbar\omega_E$
+에서 이 선에 붙는다 --- 앞 절이 중심 표준값에 흡수한 ``$T$-무관 상수''가 곧 이 점근선을 $T_\mathrm{ref}$
+에서 한 번 평가해 동결한 값이다. 저온 $\kB T\!\ll\!\hbar\omega_E$ 에서는 모든 모드가 바닥상태로 얼어붙어
+$S_\vib\!\to\!0$ 이다. 점은 $T_\mathrm{ref}{=}298.15$ K, $\theta_E{=}700$ K 에서 $S_\vib{=}2.90$
+J\,mol$^{-1}$K$^{-1}$.}
+\label{fig:cand-fo2-3}
+\end{figure}
