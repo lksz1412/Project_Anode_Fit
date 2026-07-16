@@ -44,6 +44,7 @@
 ### ch2_sec09_method.tex (전문 정독 완료, 44행) — 무변경. §1(V_n)·§17(MSMR) 참조 정합, MSMR 풀네임 rubric C4 일치.
 ### ch2_sec10_closing.tex (전문 정독 완료, 26행) — 무변경. §7(broadening 기원) 참조 정합, 수미상관.
 ### ch2_appA_traps.tex (전문 정독 완료, 75행) — 무변경. u_j·eq:Se-ch2·방전 라벨 CRITICAL 가드 재수록, 신규 자산 없음.
+### ch2_appB_codemap.tex (전문 정독 완료, 70행) — 무변경(doc-leads 요구명세). B.2 회귀 기준값 6항목(entropy_coefficient_x −0.204/−0.134/−0.070·U_oc 74.4 mV·round-trip −0.204·ΔS −19.7/Q̇/I +60.8·5점표 −0.307/−0.204/−0.089/+0.044/+0.218·175점 파생A)이 sec08·tab:qrev와 **문자 완전 일치**. B.3 θ_E 미지정 bit-exact 하위호환·B.4 입력 규약 정합.
 ### ch2_bib.tex (전문 정독 완료, 28행) — C-017/018/005/006/007 반영, 3자 정합.
 ### appendix_phase_separation.tex (전문 정독 완료, 497행) — C-019·P6 8건·버전 스탬프 갱신 외 무개정. 물리·교차참조 정합.
 
