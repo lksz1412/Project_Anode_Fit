@@ -1,0 +1,65 @@
+% ==== P4 draft o2 — §15.1 대체 블록 ====
+\subsection{왜 흑연에는 없고 LCO 에는 있는가 --- MIT 의 물리}\label{sec:lco-why}
+삽입 반응의 전체 엔트로피 변화는 ``리튬 자리 배열''(config)$\cdot$``격자 진동''(vib)$\cdot$``전자 준위 점유''
+(electronic) 세 자유도의 합이며, 흑연에서는 셋째 몫이 작다 --- 흑연$\cdot$$\mathrm{LiC_6}$ 모두 전도성이 좋아
+충방전 동안 $g(E_F)$ 가 크게 바뀌지 않아 전자 분포의 엔트로피 \emph{변화}가 거의 없다. LCO 는 다르다:
+$x{=}1$($\mathrm{LiCoO_2}$)의 Co 는 Co$^{3+}$ 로 $t_{2g}^6$ low-spin 닫힌 껍질이라, 가득 찬 $t_{2g}$ 띠가 그 위 빈
+$e_g$ 상태와 갭으로 갈려 Fermi 준위에 상태가 없는 \emph{밴드 절연체}(band insulator, $g(E_F)\!\approx\!0$)다.
+탈리튬화로 $x$ 가 $\sim$0.94 아래로 내려가면 Co$^{4+}$ 정공이 $t_{2g}$ 띠에 생겨 전도 전자가 열려 \emph{금속}이
+된다($g(E_F)\!\to\!$유한)\cite{menetrier1999,motohashi2009}. 다만 정공이 하나라도 생기면 단일입자 밴드 채움
+논리는 곧바로 금속을 예상시키는 데 반해, 실측 전이는 $x\approx0.94$--$0.75$ 2상역에서 절연$\cdot$금속 두 상이
+공존하는 1차 전이라, 밴드 채움만으로는 닫히지 않고 전자간 상관(electron correlation)이 개입한다\cite{reimers1992}.
+이 MIT 는 그 2상역에서만 일어나(\S\ref{sec:lco-hys} 의 T1) 그 구간에서만 전자 분포가 켜지므로, 전자 엔트로피
+\emph{변화}도 그 구간에 국소한다.
+
+\begin{bgbox}
+\textbf{금속--절연체 전이와 Mott 물리 ---} 절연체는 미시 기원으로 두 부류로 갈린다. \emph{밴드 절연체}(band
+insulator)는 단일입자 띠 그림만으로 닫힌다 --- 가장 위 점유 띠가 가득 차고 그 위 빈 띠와 갭으로 갈려 Fermi
+준위가 갭 안에 놓이니 전도할 상태가 없다. \emph{Mott 절연체}(Mott insulator)는 띠 그림으로는 부분적으로 찬
+띠라 금속이어야 하나, 자리 위 전자간 Coulomb 반발 $U$\footnote{여기의 $U$ 는 한 자리에 놓인 두 전자의 Coulomb
+반발(Hubbard 상관 에너지)이며, 본 문건이 전극 전위에 쓰는 $U$ 와는 다른 양이다.} 가 자리 간 이동적분(hopping
+integral) $t$ 를 압도해 전자가 저마다 자리에 국재하면서 갭이 열린다 --- 띠 채움이 아니라 전자 상관(electron
+correlation)이 절연성을 만드는 부류다\cite{mott1968,imada1998}. 금속--절연체 전이(metal-insulator transition,
+MIT)는 띠 채움(도핑)$\cdot$띠폭(압력이 $t$ 를 바꿔 조절)$\cdot$상관 세기 $U/t$ 의 경쟁으로
+일어난다\cite{imada1998}. $\mathrm{LiCoO_2}$($x{=}1$)는 Co$^{3+}$ 의 $t_{2g}^6$ 가 가득 찬 \emph{밴드 절연체}이며,
+상관이 host 띠를 국재시키는 Mott 절연체가 아니다\cite{menetrier1999}. 탈리튬화가 심은 Co$^{4+}$ 정공은 밴드
+그림이면 곧바로 금속화를 예상시키나, 실측 MIT 는 $x\approx0.94$--$0.75$ 의 2상역에서 절연$\cdot$금속 두 상이
+공존하는 \emph{1차 전이}다\cite{menetrier1999,reimers1992,motohashi2009}. Marianetti--Kotliar--Ceder 는 이 1차
+전이를 host $t_{2g}$ 띠가 아니라 Li 빈자리에 속박된 정공이 만드는 \emph{불순물 준위}에서 상관이 작동하는 기작으로
+설명했다 --- 그 불순물 준위가 임계 정공 농도에서 비국재화하는 \emph{불순물 Mott 전이}가 2상 공존을 동반한 1차
+MIT 를 준다는 것이다\cite{marianetti2004}. 곧 상관 물리는 밴드 절연체인 host 띠가 아니라 도핑이 심은 불순물 준위
+위에서 일한다. forward 모델은 이 미시 기작 전체를 조성축 게이트 $g(E_F,x)$ 하나로 현상학화한다 --- 게이트 중심
+$x_\mathrm{MIT}$ 는 실측 2상역의 중앙에 놓인 전이 조성이고, 게이트 폭 $\Delta x_\mathrm{MIT}$ 는 산소 결손$\cdot$
+양이온 무질서가 발현 조성을 흩뜨리는 결함 분산을 담는다(게이트 형태의 정당화는 \S\ref{sec:lco-gate} 가 상술한다).
+미시 기작은 절연성이 \emph{왜} 켜지고 꺼지는지를 불순물 준위의 상관으로 답하고, 현상학 게이트는 그 전이가
+조성축에서 \emph{어떻게} 매끄럽게 퍼지는지를 폭 하나로 담는다.
+\end{bgbox}
+
+요컨대 전자항을 켜는 게이트는 MIT 의 직접 결과이며(흑연엔 없고 LCO 에만 있는 셋째 몫이 여기서 온다), 다음 소절
+\S\ref{sec:lco-Se} 가 그 게이트의 켜짐을 전도 전자의 Fermi--Dirac 분포에서 정량화한다.
+% ==== 블록 끝 ====
+%
+% NOTE (draft o2)
+% [Read Coverage]
+%  - ch1_sec15_lcoelec.tex 전문(§15.1 원문 L12–20·§15.4 게이트 정당화 sec:lco-gate). 역할분담: bgbox=기작(왜),
+%    §15.4=게이트 형태·세 초기값의 정당화 — bgbox 는 형태 정당화를 \S\ref{sec:lco-gate} 로 위임해 중복 회피.
+%  - ch1_sec13_lcohys.tex L120–160(T1 슬롯 분리 sec:lco-hys-mit): 구조 2상역 ΔU_1^hys⇐Ω_1 ‖ 전자 ΔS_{e,1}⇐∂U_1/∂T
+%    는 서로 다른 슬롯. 본 블록은 전자 자유도를 히스 gap 에 새 항으로 섞지 않으므로 이중계산 경계와 모순 없음.
+%    또 sec13 L136–137 이 "미시 기작(불순물 준위 Mott 전이)·전자 배경은 §15.1(sec:lco-why)가 다룬다"고 위임 — 본 블록이 그 지정 위치.
+%  - V1020_STYLE_RUBRIC.md 전문(A1 완결문장·A2 D1 무이력/D2 오독가드 예외·C1 병기·C3 페르미온/보손·C4 MIT 병기·
+%    D2' 자족 bgbox·D3' 배경 다리 [무엇→계보 인용→역할]·E1 등재키 인용).
+%  - 확인: MIT 풀네임은 ch1_sec11 L42 에서 이미 병기(insulator-to-metal transition, MIT) → 본문은 MIT 관용 사용;
+%    bgbox 는 자족(부록 이동 가능) 위해 일반 개념명 metal--insulator transition 으로 국소 재병기(동일 두문자 MIT).
+%  - 확인: bgbox 환경 = ch1_preamble \newtheorem*{bgbox}{배경}(P2 B-003), 제목 인자 없이 \textbf{…---} 인라인 선두(P2 draft 관용).
+% [보존 확인 — 기존 문장·인용 유지]
+%  - config·vib·electronic 삼분해 및 "흑연 셋째 몫 작다(g(E_F) 미변)" 문장 유지.
+%  - x=1 절연체·Co³⁺ t2g⁶ low-spin 닫힌 껍질·탈리튬화 Co⁴⁺ 정공→금속·g(E_F)→유한 문장 유지(+ "밴드 절연체"로 물리 부류 명시).
+%  - \cite{menetrier1999,motohashi2009}(금속화 문장) 유지, \S\ref{sec:lco-hys} 의 T1·2상역 x≈0.94–0.75 유지.
+%  - "전자항 게이트는 MIT 의 직접 결과다" 취지 → 마무리 다리로 보존하며 §15.2(sec:lco-Se) 유도로 전달.
+%  - 신규 인용은 브리프 6키 내: reimers1992(2상역 1차 전이)·mott1968·imada1998·marianetti2004.
+% [자체검수 — 물리 하드 가드 3항]
+%  - (1) LiCoO2(x=1)=밴드 절연체로 서술, "Mott 절연체 아님" 대조 가드(A2 오독방지 예외 관용). Marianetti 의 Mott 물리는
+%        불순물 준위 소관으로 한정("상관은 host 띠가 아니라 불순물 준위 위에서 일한다"). ✓
+%  - (2) Marianetti 결과는 "설명했다/제시했다" 수준(확정된 유일 기작으로 서술 안 함), 불순물 준위 Mott 전이가 1차 MIT·2상 공존을 설명. ✓
+%  - (3) 기존 물리 문장·인용(menetrier1999·motohashi2009) 유실 0. 수식·라벨 신설 0(산문+bgbox; footnote 는 B5 기호충돌 U 가드로 수식 아님). ✓
+%  - bgbox 자족: 본문 지시대명사 참조 0(본문은 bgbox 없이도 읽히고 마무리 다리로 직결), bgbox 내 U/t·MIT·LiCoO2 자체 정의로 부록 이동 성립.
