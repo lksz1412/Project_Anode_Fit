@@ -140,3 +140,50 @@
 - 기호 배향 각주(ξ_appendix=θ_body, 여집합) 명시 — 본문과 정합.
 - 본문 절참조 §2(Part0)·§4.1(spinodal)·§4.2(히스 gap)·§7(broadening) — Ch1 대조 예정.
 - refute: 결함 없음. 최약점 = Cahn-Hilliard 절에서 f 를 몰당→부피밀도로 재해석(442행 disclosed)하는 단위-맥락 전환(G-follow 속도방지턱, 명시되어 결함 아님).
+
+---
+
+## Ch1 교차 정합 축 (Ch1 신본 대조 — 전건 통과)
+
+절 번호 매핑 확인(ch1 신본 \section 순서): §1 n0n1 · §2 part0(2a/2b) · §3 center · §4 hys(4.1 spinodal=sec:hys-spinodal · 4.2 gap=sec:hys-gap · 4.3 branch) · §5 width · §6 eqpeak · §7 broadening(7.2 세 출처) · §8 lag · §9 tail · §10 sum · §11~§17 LCO · §18 inputs. → Ch2 리터럴 참조(§1·§2·§3·§4·§5·§7·§8·§9·§13·§14·§15·§17) 전건 절번호·내용 대응.
+
+| 대조 항목 | Ch2 측 | Ch1 신본 측 | 판정 |
+|---|---|---|---|
+| bgbox 분업(sec03 서두) | sec03:8-9 "Chapter 1 §2 배경박스(페르미온·보손과 양자 통계)가 정리" | ch1_sec02a:171-188 `\begin{bgbox}` 제목 "페르미온·보손과 양자 통계", 교환대칭·스핀-통계·FD/BE 수록, 186행에 포논 BE/전자 FD forward 다리 | ✅분업 성립(제목 문자 일치·내용이 미룬 배경 실제 포함·양방향 다리) |
+| Ξ₁ 표기 | sec01 eq:Z1 Ξ₁=1+e^{−β(ε₀−μ)}, sec01:39 "Ch1 §2와 통일 표기" | ch1_sec02a:130/152 Ξ₁⁰=1+e^{−β(ε₀−μ)}·199/216-217 "(eq:Z1)도 같은 기호 Ξ₁로 통일" | ✅통일(내부자유도 흡수 시 ε₀→ε̃로 Ch1 Ξ₁=Ch2 Ξ₁) |
+| q(T)→ε̃ 정의 | sec01:42-43 ε̃=ε₀−k_BT ln q(T) | ch1_sec02a:232 ε̃(T)≡ε₀−k_BT ln q(T) | ✅문자 일치(자리당 S=k_B ∂(T ln q)/∂T 도 sec01:45 ↔ ch1:277-280 일치) |
+| eq:Se vs eq:Se-ch2 별개 | sec03:60 `\label{eq:Se-ch2}` S_e=(π²/3)k_B²T g(E_F) | ch1_sec15:82 `\label{eq:Se}` S_e=(π²/3)k_B²T g(E_F,x) | ✅동명 별개 라벨(공식 동일·별도 컴파일)·appA:67 각주 정확·Ch1 §15 sec:lco-Se 유도(Sommerfeld 적분·C_e 적분)가 sec03 상술처와 일치 |
+| u_j 동명 별개(spinodal 근) | sec04:21·appA:51 "Ch1 §4 spinodal 근 u_j=√(1−2RT/Ω_j)" | ch1_sec04:35/104 u_j≡√(1−2RT/Ω_j) (§4.1 sec:hys-spinodal) | ✅문자 일치·appendix §4.1 참조도 정합 |
+| dahn1991 3자 정합 | ch2_bib:9 | ch1_bib:5 (동일: PRB 44, 9170, 1991·DOI 10.1103/PhysRevB.44.9170) | ✅ch1_bib·ch2_bib·원장 문자 완전 일치(C-017) |
+| ohzuku1993 3자 정합 | ch2_bib:10 | ch1_bib:6 (동일: JES 140, 2490, 1993·DOI 10.1149/1.2220849·제목 전문) | ✅ch1_bib·ch2_bib·원장 문자 완전 일치(C-018) |
+| 삼분해·슬롯(§14) | sec02:128 "Ch1 §14 반응 엔트로피 삼분해·슬롯 규칙" | ch1_sec14 §14 "반응 엔트로피 삼분해와 슬롯 규칙" | ✅제목·내용 대응 |
+| broadening 세 출처(§7) | sec05:177 "Ch1 §7 broadening 세 출처" | ch1_sec07 §7·§7.2 sec:broadening-sources "broadening 의 세 출처" | ✅대응 |
+| appendix 본문 절참조 | §2·§4.1·§4.2·§7 | §2 part0·§4.1 spinodal·§4.2 gap·§7 broadening | ✅전건 대응 |
+
+## 담당 소관 항목 판정 요약 (C-017·C-018·B-005·C-019·U9·U10)
+- **B-005**(sec03 중간식 인라인): 손 재유도 전 5단계 정합 — **정확**(발견 없음). 표시식·라벨·최종식 불변 확인.
+- **C-017/C-018**(ch2_bib dahn1991·ohzuku1993): ch1_bib·원장 3자 문자 일치 — **정확**. sec05 U9 실인용.
+- **C-019**(appendix [A5] Ch.18-19): 정정 반영·본문 [A5] 2곳 무변경 — **정확**.
+- **U9**(sec05:168-169 dahn1991·ohzuku1993): 주장-문헌 정합(상도표·staging) — **정확**.
+- **U10**(sec02:9 §ref:litverif): 전방참조 타겟(ssec:litverif 실재) — **정확**.
+
+---
+
+## REVIEW COMPLETE — 발견 총 5건 (H 0 / M 0 / L 5)
+
+- 전문 정독 완료: 담당 청크 15개 파일(ch2_preamble·sec00~sec10·appA·appB·bib) + appendix_phase_separation.tex(497행). 커버리지 헤더로 파일별 증빙.
+- 축① 신본 자체 결함: 물리·수식 오류 **0건**. B-005 중간식 손 재유도, sec08 가중평균(−0.204/−0.134/−0.070), sec04 Einstein 4온도점(−3.74/0/+3.70/+9.14), appendix binodal/spinodal/CNT/Cahn-Hilliard, ΔH⁰=−FU+FT∂U/∂T(2→1 −13.0 kJ/mol) 전건 재검산 정합. 발견 5건은 모두 표기·가독·표시정밀도 L급.
+- 축② regression: **0건**. 구본(v1.0.19) 대비 의미 약화·자산 유실·수치 변화 없음. 변경은 CHANGE_LOG 의도 항목(U10 §2:9·B-005/배경참조 §3·U9 §5·bib C-005/006/007/017/018·preamble bgbox·appendix P6/C-019)에 정확히 1:1 대응.
+- 축③ 신설 다리: **전건 정확**. bgbox 분업·U9 인용 정합·U10 전방참조·B-005 재유도·C-019 정정·dahn1991/ohzuku1993 3자 문자 일치·eq:Se-ch2 vs eq:Se 별개·u_j 동명 별개 각주 — 모두 검증 통과.
+- 확정 판정 맥락 존중: 두-상/2상역 분업(P6)·Gn 선언·MCMB [미검증] 각주·appendix 관용·% 자산 주석 — 지적 대상에서 제외(반박 근거 없음).
+
+발견 5건(전부 L, pre-existing·비-regression):
+1. C2O1-01 ch2_preamble:35 — bgbox 정의 Ch2 미사용(B-003 정합상 무해).
+2. C2O1-02 sec00:41 — "v5 계보" 자기버전 서술(D1 후보).
+3. C2O1-03 sec04:61-63 — ΔF_vib "편차" 명명 loose(물리 중립).
+4. C2O1-04 sec01:85·sec05:165-167 — 두-상 압축표기 "2L→2·2→1" 가독.
+5. C2O1-05 sec08 tab:qrev x̄=0.75 — 중간열 표시반올림(재계산 시 ~0.1 mV 어긋남, appB 회귀표에 전파).
+
+## 가장 약한 1곳
+
+**sec08/appB 회귀 기준값의 헤드라인 "완전식 −0.204 mV/K"(지배 2→1 두-상 전이의 config 몫)가, 문건 스스로 [미검증]으로 선언한 열적 폭 서식 $w_j=n_jRT/F$ 에 조건부라는 점.** 파생 C(§2.5 ssec:weff)·파생 A srcbox·종합식 박스(§2.8)가 반복해 밝히듯, 두-상 전이 폭은 평형이 예측하는 양이 아니라 현상학적 자유 피팅이며, 실측 $w_j$ 가 $T$-동결에 가까우면 완전식↔단순식 우열이 ~0.3 mV/K 급으로 뒤집혀 config 몫(−0.070)의 부호적 지위가 흔들린다. 곧 doc-leads 코드 계약의 1급 회귀값 −0.204 는 "완전식"으로 제시되면서도 그 성립 근거가 자기-선언 미검증 가정 위에 있고, 보수적 바닥은 단순식 −0.134 다. 문건이 이 조건부를 warnbox 로 투명하게 노출하므로 **은닉 결함이 아니라 disclosed 조건부**이나, 검수 3축 중 가장 반박 가능성이 큰 지점이며 다온도 실데이터 round-trip 전까지 −0.204 를 확정 회귀값으로 굳히지 말 것을 지목한다. (개별 발견 중 가장 실무 영향이 큰 것은 C2O1-05 표시반올림 — 회귀표 재현 계약에 직접 닿음.)
