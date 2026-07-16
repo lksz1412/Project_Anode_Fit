@@ -7,12 +7,12 @@
 \begin{tikzpicture}[x=0.10cm,y=40cm,>=Latex,font=\scriptsize]
 % axes
 \draw[->] (256,0.075) -- (256,0.232) node[above,anchor=south east] {$U_j$ [V]};
-\draw[->] (256,0.075) -- (346,0.075) node[right] {$T$ [K]};
+\draw[->] (256,0.075) -- (345,0.075) node[right] {$T$ [K]};
 \foreach \yy in {0.08,0.10,0.12,0.14,0.16,0.18,0.20,0.22} {\draw (254.5,\yy)--(256,\yy) node[left,xshift=2pt] {\yy};}
 \foreach \xx in {260,280,300,320,340} {\draw (\xx,0.0735)--(\xx,0.075) node[below] {\xx};}
 % T_ref = 298.15 안내선
-\draw[densely dotted,black!55] (298.15,0.075) -- (298.15,0.225);
-\node[below,font=\tiny,black!55] at (298.15,0.075) {$298.15$};
+\draw[densely dotted,black!55] (298.15,0.075) -- (298.15,0.223);
+\node[above,font=\tiny,black!55] at (298.15,0.223) {$T_\mathrm{ref}$};
 % ---- 4 전이 직선 (기울기 = ΔS_rxn/F) ----
 % 4→3 : ΔS=+29 J/mol/K  → +0.301 mV/K (상승)
 \draw[very thick] (260,0.19941) -- (340,0.22345);
@@ -29,7 +29,8 @@
 \node[right,font=\tiny,align=left] at (341,0.22345) {$4\!\to\!3$\\$\Delta S{=}{+}29$: $\partial U/\partial T{=}{+}0.30$ mV/K};
 \node[right,font=\tiny,align=left] at (341,0.13992) {$3\!\to\!2\mathrm L$\\$\Delta S{=}0$: 수평};
 \node[right,font=\tiny,align=left] at (341,0.11815) {$2\mathrm L\!\to\!2$\\$\Delta S{=}{-}5$: ${-}0.05$ mV/K};
-\node[right,font=\tiny,align=left] at (341,0.07835) {$2\!\to\!1$\\$\Delta S{=}{-}16$: ${-}0.17$ mV/K};
+\node[right,font=\tiny,align=left] at (341,0.0895) {$2\!\to\!1$\\$\Delta S{=}{-}16$: ${-}0.17$ mV/K};
+\draw[black!45,line width=0.3pt] (340,0.07835) -- (340.8,0.0895);
 % 앵커 라벨
 \node[anchor=south east,font=\tiny] at (297.6,0.21088) {$0.2109$};
 \node[anchor=north east,font=\tiny] at (297.6,0.08529) {$0.0853$};

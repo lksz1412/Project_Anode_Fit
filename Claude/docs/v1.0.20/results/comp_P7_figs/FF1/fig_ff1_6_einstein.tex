@@ -1,0 +1,87 @@
+% ====================================================================
+% fig_ff1_6_einstein.tex — [FF1 후보 6] Einstein 진동 엔트로피의 온도 거동과
+%   electronic(∝T) 대비 식별 신호
+%   대상 문서: Ch2 (ch2_preamble 라이브러리: calc·arrows.meta 만 사용; backgrounds 불사용)
+%   제안 배치: §2.4.3 (수치 크기와 식별 --- 3온도점) 옆
+%   좌표 생성: eval_ff1_coords.py §P6 — (a) 식 eq:Svib-einstein 그대로,
+%   (b) ∂ΔU_vib/∂T=ΔS_vib(T)/F (식 eq:dSvib·eq:dUvib), θ_E=700 K·T_ref=298.15 K.
+%   본문 검증 수치(−3.74/0/+3.70/+9.14 μV/K)가 (b) 의 anchor 점이다.
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex]
+% =============== (a) S_vib(T; theta_E)/R ===============
+\begin{scope}[x=0.0155cm,y=2.05cm,shift={(-100,0)}]
+\draw[->] (100,0) -- (525,0) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (100,0) -- (100,1.42) node[above,font=\scriptsize] {$S_\vib/R$};
+\foreach \xx in {200,300,400,500} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {0.5,1.0} {\draw (102,\yy) -- (98,\yy) node[left,font=\scriptsize] {\yy};}
+% theta_E = 400 K
+\draw[thick,black!55] plot[smooth] coordinates {(100,0.0931) (140,0.2332) (180,0.3848)
+  (220,0.5294) (260,0.6623) (300,0.7832) (340,0.8932) (380,0.9936) (400,1.0407)
+  (430,1.1076) (460,1.1707) (500,1.2494)};
+% theta_E = 700 K
+\draw[very thick] plot[smooth] coordinates {(100,0.0073) (140,0.0407) (180,0.1019)
+  (220,0.1802) (260,0.2657) (300,0.3526) (340,0.4377) (380,0.5195) (400,0.559)
+  (430,0.6163) (460,0.6714) (500,0.7414)};
+% theta_E = 1000 K
+\draw[thick,densely dashed] plot[smooth] coordinates {(100,0.0005) (140,0.0064) (180,0.0254)
+  (220,0.0594) (260,0.1055) (300,0.1596) (340,0.2182) (380,0.2788) (400,0.3092)
+  (430,0.3547) (460,0.3997) (500,0.4584)};
+% classical limit for 700 K
+\draw[densely dotted,thick] plot[smooth] coordinates {(300,0.1527) (340,0.2779) (380,0.3891)
+  (430,0.5127) (460,0.5801) (500,0.6635)};
+\node[font=\tiny,anchor=west] at (503,1.25) {$\theta_E{=}400$ K};
+\node[font=\tiny,anchor=west] at (503,0.74) {$700$ K};
+\node[font=\tiny,anchor=west] at (503,0.46) {$1000$ K};
+\node[font=\scriptsize,anchor=north west,align=left] at (317,0.132)
+  {고전 극한 $R[1{+}\ln(T/\theta_E)]$\\($\theta_E{=}700$: 위에서 수렴)};
+\draw[->,thin,black!60] (368,0.20) -- (392,0.385);
+\node[font=\scriptsize,anchor=south west] at (105,0.02) {저온: $S_\vib\to0$ (동결)};
+\node[font=\scriptsize] at (310,-0.24) {(a) 닫힌형 $S_\vib(T;\theta_{E,j})$ 와 두 극한};
+\end{scope}
+% =============== (b) identification signal ===============
+\begin{scope}[xshift=8.55cm,x=0.0615cm,y=0.203cm,shift={(-255,8.6)}]
+\draw[->] (255,-8.5) -- (364,-8.5) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (255,-8.5) -- (255,12.6) node[above,font=\scriptsize] {$\partial\Delta U_\vib/\partial T$ [$\mu$V/K]};
+\foreach \xx in {260,280,300,320,340,360} {\draw (\xx,-8.34) -- (\xx,-8.66) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-5,5,10} {\draw (255.8,\yy) -- (254.2,\yy) node[left,font=\scriptsize] {\yy};}
+\draw (255.8,0) -- (254.2,0) node[left,font=\scriptsize] {0};
+% zero line + T_ref guide
+\draw[dashed,black!40] (255,0) -- (362,0);
+\draw[densely dotted,black!60] (298.15,-8.5) -- (298.15,12.2);
+\node[font=\tiny,black!60,anchor=south] at (298.15,12.25) {$T_\mathrm{ref}$};
+% vib curve (theta_E = 700 K)
+\draw[very thick] plot[smooth] coordinates {(258,-7.515) (266,-6.017) (274,-4.517)
+  (278.15,-3.738) (282,-3.017) (290,-1.52) (298.15,0) (306,1.458) (314,2.937)
+  (318.15,3.7) (322,4.406) (330,5.866) (338,7.316) (348.15,9.138) (356,10.535)};
+% anchors (main-text verification values)
+\fill (278.15,-3.738) circle (1.2pt) node[below right,font=\tiny] {$-3.74$};
+\fill (298.15,0) circle (1.2pt) node[below right,font=\tiny] {$0$};
+\fill (318.15,3.7) circle (1.2pt) node[below right,font=\tiny] {$+3.70$};
+\fill (348.15,9.138) circle (1.2pt) node[below right,font=\tiny] {$+9.14$};
+% electronic shape-contrast line (normalized): y = a T, a = 0.02625 uV/K^2
+\draw[dashed,blue,thick] (256,6.72) -- (360,9.45);
+\node[blue,font=\tiny,anchor=south west,align=left] at (256.5,9.7)
+  {electronic $\propto T$ (강제 영점 없음;\\ 함수형 대조용 정규화 --- 크기 비교 아님)};
+\draw[blue,->,thin] (274,9.55) -- (277,7.45);
+% vib annotation
+\node[font=\scriptsize,align=left,anchor=north west] at (300.5,-3.1)
+  {vib: $T_\mathrm{ref}$ \emph{강제 영점}\\ $+$ 로그 곡률};
+\draw[->,thin,black!60] (306,-2.6) -- (300.3,-0.35);
+\node[font=\scriptsize] at (309,-11.0) {(b) 식별 신호 ($\theta_E{=}700$ K$\cdot$$T_\mathrm{ref}{=}298.15$ K)};
+\end{scope}
+\end{tikzpicture}
+\caption{Einstein 진동 보정의 온도 거동과 electronic 항과의 식별 --- 좌표는 식 그대로의 수치 평가.
+(a) 닫힌형 $S_\vib(T;\theta_{E,j})$(식~\eqref{eq:Svib-einstein}): 저온에서 모드가 얼어 $S_\vib\to0$,
+고온에서 고전 극한 $R[1+\ln(T/\theta_E)]$(점선)에 위에서 수렴하며, $\theta_E$ 가 클수록(단단한 모드)
+같은 $T$ 의 엔트로피가 작다 --- 중심 표준값에 흡수되던 ``상수''는 이 곡선을 $T_\mathrm{ref}$ 에서 한 번
+평가해 동결한 값이다. (b) 중심 이동 기울기 $\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$
+(식~\eqref{eq:dSvib}$\cdot$\eqref{eq:dUvib}, $\theta_E{=}700$ K): $T_\mathrm{ref}$ 에서 \emph{강제
+영점}을 지나 로그 곡률로 자라며, 네 점은 본문 \S\ref{ssec:einstein-numid} 의 검증 수치
+$-3.74/0/+3.70/+9.14\ \mu$V/K 그대로다. 파란 파선은 electronic 항(식~\eqref{eq:Se-ch2},
+$\propto T$)의 함수형을 같은 창에 겹친 대조선(세로 스케일 정규화 --- 크기 비교가 아니라 모양 대조):
+좁은 온도 창에서 선형($\propto T$)은 영점 없는 완만한 직선으로, 진동 편차는 영점$+$곡률로 나타나
+두 함수형이 갈린다 --- 분리에 준양자 창을 걸치는 온도점 셋 이상이 필요한 까닭이 이 기하다.}
+\label{fig:cand-ff1-6}
+\end{figure}

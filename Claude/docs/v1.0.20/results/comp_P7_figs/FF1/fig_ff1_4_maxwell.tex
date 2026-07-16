@@ -1,0 +1,72 @@
+% ====================================================================
+% fig_ff1_4_maxwell.tex — [FF1 후보 4] Maxwell 등면적 작도 (van der Waals loop)
+%   대상 문서: appendix_phase_separation (라이브러리: arrows.meta·calc·backgrounds)
+%   제안 배치: §A.5 (c) 등면적 규칙 문단 뒤
+%   좌표 생성: eval_ff1_coords.py §P4 — μ(ξ)/RT = f'(ξ)/RT = ln[ξ/(1−ξ)]+3(1−2ξ)
+%   (식 eq:app-fxi 의 1계 미분, Ω=3RT); 면적 수치 적분 = 0.115 RT (위·아래 동일).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11.0cm,y=2.05cm,>=Latex]
+% ---- region shading (same convention as fig:app-tangent) ----
+\begin{scope}[on background layer]
+\fill[black!6] (0.0707,-1.72) rectangle (0.2113,1.72);
+\fill[black!6] (0.7887,-1.72) rectangle (0.9293,1.72);
+\fill[black!13] (0.2113,-1.72) rectangle (0.7887,1.72);
+\end{scope}
+% ---- equal areas between loop and mu* ----
+\fill[black!30] plot coordinates {(0.0707,0) (0.1,0.2028) (0.13,0.319) (0.16,0.3818)
+  (0.19,0.41) (0.2113,0.4151) (0.24,0.4073) (0.28,0.3755) (0.32,0.3262) (0.36,0.2646)
+  (0.4,0.1945) (0.45,0.0993) (0.5,0)} -- cycle;
+\fill[black!30] plot coordinates {(0.5,0) (0.55,-0.0993) (0.6,-0.1945) (0.64,-0.2646)
+  (0.68,-0.3262) (0.72,-0.3755) (0.7887,-0.4151) (0.84,-0.3818) (0.87,-0.319)
+  (0.9,-0.2028) (0.9293,0)} -- cycle;
+% ---- axes ----
+\draw[->] (-0.02,-1.72) -- (-0.02,1.78) node[above,font=\scriptsize] {$\mu(\xi)/RT$ (섞임 몫)};
+\draw[->] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75,1.0} {\draw (\xx,0.03) -- (\xx,-0.03) node[below,font=\scriptsize] {\xx};}
+\foreach \yy/\lab in {1/{$+1$},0.4151/{$+0.415$},-0.4151/{$-0.415$},-1/{$-1$}}
+  {\draw (-0.014,\yy) -- (-0.026,\yy) node[left,font=\scriptsize] {\lab};}
+% ---- mu* horizontal (Maxwell line) ----
+\draw[dashed] (0.01,0) -- (0.99,0);
+\node[font=\scriptsize,anchor=north west] at (0.005,-0.72)
+  {$\mu^\ast=\mu(\tfrac12)=0$ (Maxwell 전위 --- 대칭이라 자동)};
+\draw[->,thin,black!60] (0.13,-0.78) -- (0.245,-0.05);
+% ---- the loop itself ----
+\draw[very thick] plot[smooth] coordinates {(0.02,-1.0118) (0.035,-0.5268) (0.0707,-0.0002)
+  (0.1,0.2028) (0.13,0.319) (0.16,0.3818) (0.19,0.41) (0.2113,0.4151) (0.24,0.4073)
+  (0.28,0.3755) (0.32,0.3262) (0.36,0.2646) (0.4,0.1945) (0.45,0.0993) (0.5,0)
+  (0.55,-0.0993) (0.6,-0.1945) (0.64,-0.2646) (0.68,-0.3262) (0.72,-0.3755)
+  (0.7887,-0.4151) (0.84,-0.3818) (0.87,-0.319) (0.9,-0.2028) (0.9293,0.0002)
+  (0.965,0.5268) (0.98,1.0118)};
+% ---- binodal & spinodal markers ----
+\fill (0.0707,0) circle (0.6pt) node[below left,font=\scriptsize] {$\xi_b^-$};
+\fill (0.9293,0) circle (0.6pt) node[above right,font=\scriptsize] {$\xi_b^+$};
+\fill (0.2113,0.4151) circle (0.6pt) node[above,font=\scriptsize] {$\xi_s^-$};
+\fill (0.7887,-0.4151) circle (0.6pt) node[below,font=\scriptsize] {$\xi_s^+$};
+\draw[densely dotted,black!60] (0.2113,0.4151) -- (0.2113,0);
+\draw[densely dotted,black!60] (0.7887,-0.4151) -- (0.7887,0);
+% ---- area labels ----
+\node[font=\scriptsize] at (0.285,0.185) {$A_+{=}0.115\,RT$};
+\node[font=\scriptsize] at (0.715,-0.185) {$A_-{=}0.115\,RT$};
+\node[font=\scriptsize,align=left,anchor=west] at (0.52,0.62)
+  {등면적 $A_+{=}A_-$:\\ $\int_{\xi_b^-}^{\xi_b^+}[\mu-\mu^\ast]\,\dd\xi=0$};
+% ---- region labels ----
+\node[font=\scriptsize] at (0.141,1.52) {준안정};
+\node[font=\scriptsize] at (0.5,1.52) {불안정 ($\mu$ 감소 $=f''<0$)};
+\node[font=\scriptsize] at (0.859,1.52) {준안정};
+% ---- formula tag ----
+\node[font=\scriptsize,anchor=north east,align=right] at (1.05,-1.0)
+  {$\mu/RT=\ln\dfrac{\xi}{1-\xi}+3(1-2\xi)$\\[1pt] ($\Omega=3RT$)};
+\end{tikzpicture}
+\caption{Maxwell 등면적 작도 --- $\Omega=3RT$ 의 교환 화학퍼텐셜 $\mu(\xi)=f'(\xi)$(식~\eqref{eq:app-fxi}
+의 미분; 좌표는 식 그대로의 수치 평가). 오목 구간에서 $\mu$ 가 감소해 한 $\mu$ 값에 세 조성이 대응하는
+van der Waals loop 이 되고, 평형 공존 전위 $\mu^\ast$ 는 loop 와 수평선이 이루는 위$\cdot$아래 면적이
+같도록(음영 $A_+=A_-=0.115\,RT$, 식~\eqref{eq:app-maxwell}) 정해진다 --- 대칭 정규용액에서는
+$\mu^\ast=\mu(\tfrac12)=0$ 으로 자동 성립하며, 수평선과 곡선의 바깥 두 교점이 binodal
+$\xi_b^\pm=0.0707/0.9293$(식~\eqref{eq:app-binodal}), 극값이 spinodal
+$\xi_s^\pm=0.2113/0.7887$(식~\eqref{eq:app-spinodal}, $\mu/RT=\pm0.415$)이다. 배경 음영(준안정$\cdot$
+불안정)은 그림~\ref{fig:app-tangent} 의 영역 구분과 같고, 삽입 전극에서는 이 $\mu^\ast$ 한 값이 두-상
+plateau 의 단일 평형 전위로 번역된다.}
+\label{fig:cand-ff1-4}
+\end{figure}

@@ -1,0 +1,65 @@
+% ====================================================================
+% FF3-2  지연 길이 지도 log10 L_V(ΔH_a; T) (Ch1 문맥, §8 제안)
+%   좌표 = eq:Lqfull·eq:LV 그대로의 수치 평가 (반대수 축에서 직선;
+%   gen_coords_ff3.py — §10 의 "가시 꼬리 ≈80 kJ/mol 급"·L_V(40 kJ)≈6.5e-9 V 게이트 통과).
+%   기본값: χ=0.5, ΔS_a=0, 𝒜=A_cap RT=4RT (n=1), |dV/dq|_{q_a}=0.30 V,
+%           c-rate=C/10 (Q_cell=1 정규화 — c-rate 숫자 규약), ΔH_a^eff=ΔH_a(장벽 보강 미적용).
+%   사용 라이브러리: arrows.meta, calc 만 (Ch1 preamble 내).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.138cm,y=0.40cm]
+% ---- axes ----
+\draw[-{Latex[length=1.6mm]}] (18,-13.3) -- (18,2.3)
+  node[above,font=\scriptsize] {$\log_{10}(L_{V}/\mathrm V)$};
+\draw[-{Latex[length=1.6mm]}] (18,-13.3) -- (105,-13.3)
+  node[below,font=\scriptsize] {$\Delta H_{a}$ [kJ/mol]};
+\foreach \xx in {20,40,60,80,100}
+  {\draw (\xx,-13.15) -- (\xx,-13.45) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-12,-10,-8,-6,-4,-2,0}
+  {\draw (17.6,\yy) -- (18.4,\yy) node[left,font=\scriptsize] {$\yy$};}
+% ---- three Arrhenius lines (exact: intercept + dH/(RT ln10)) ----
+\draw[thick]               (20,-11.25) -- (82.9,1.0);   % 268.15 K
+\draw[thick,densely dashed](20,-11.69) -- (92.4,1.0);   % 298.15 K
+\draw[thick,densely dotted](20,-12.05) -- (100,0.6834); % 328.15 K
+\node[font=\tiny,fill=white,inner sep=1pt,rotate=35] at (72.0,-0.85) {268 K};
+\node[font=\tiny,fill=white,inner sep=1pt,rotate=32] at (80.5,-0.85) {298 K};
+\node[font=\tiny,fill=white,inner sep=1pt,rotate=29] at (89.2,-0.85) {328 K};
+% ---- visibility threshold L_V = w (298 K reference) ----
+\draw[black!55,thick] (18,-1.590) -- (103,-1.590);
+\node[font=\tiny,anchor=west] at (19,-1.05)
+  {가시 문턱 $L_V=w=RT/F\,(298\,\mathrm K)\approx25.7$ mV};
+\foreach \cx in {69.6,77.6,85.7} {\fill (\cx,-1.590) circle (1.1pt);
+  \draw[densely dotted,black!55] (\cx,-1.590) -- (\cx,-13.3);}
+\node[font=\tiny,anchor=north] at (69.6,-13.55) {$69.6$};
+\node[font=\tiny,anchor=north] at (77.6,-13.55) {$77.6$};
+\node[font=\tiny,anchor=north] at (85.7,-13.55) {$85.7$};
+% ---- staging initial-value window on the 298 K line ----
+\foreach \px/\py in {40/-8.185, 44/-7.484, 46/-7.134, 48/-6.783}
+  {\fill (\px,\py) circle (1.1pt);}
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (40,-9.6) -- (48,-9.6);
+\node[font=\tiny,anchor=north,align=center] at (44,-9.8)
+  {표~\ref{tab:staging} 초기값 창\\$\Delta H_a=40$--$48$};
+% ---- C-rate arrow: L_V ∝ |I| ----
+\draw[-{Latex[length=1.5mm]},thick] (60,-4.681) -- (60,-3.380);
+\node[font=\tiny,anchor=west,align=left] at (61,-4.05)
+  {C/10$\to$2C ($\times20$):\\$+1.30$ decade ($L_V\propto|I|$)};
+% ---- region readouts ----
+\node[font=\tiny,align=center] at (33,-4.6) {$L_V\ll w$: 꼬리 불가시\\(평형 종 전용 --- \S\ref{sec:sum})};
+\node[font=\tiny,anchor=west] at (44,1.5) {$L_V\gtrsim w$: 가시적 꼬리 영역};
+\end{tikzpicture}
+\caption{동역학 지연 길이의 지도 --- 좌표는 식~\eqref{eq:Lqfull}$\cdot$\eqref{eq:LV} 그대로의 수치
+평가다(반대수 축에서 $\log_{10}L_V$ 는 기울기 $1/(RT\ln10)$ 의 직선; 기본값 $\chi{=}0.5$,
+$\Delta S_a{=}0$, $\mathcal A{=}A_\mathrm{cap}RT{=}4RT$($n_j{=}1$),
+$|\dd V/\dd q|_{q_a}{=}0.30$ V, C/10, $Q_\cell{=}1$ 정규화의 c-rate 숫자 규약,
+$\Delta H_a^\eff{=}\Delta H_a$ --- 장벽 보강 미적용). 온도가 낮을수록 직선이 가팔라 같은
+$\Delta H_a$ 에서 꼬리가 지수적으로 길어지고($T{=}268/298/328$ K 세 선), C-rate 는 $L_V\propto|I|$
+라 선 전체의 수직 평행이동이다(화살표: C/10$\to$2C $=+1.30$ decade) --- 서론의 관측
+``저온$\cdot$고율일수록 꼬리가 길어진다''가 이 두 자유도다. 회색 수평선은 가시 문턱
+$L_V{=}w(298\,\mathrm K){\approx}25.7$ mV 이며($w$ 는 $268$--$328$ K 에서 $23.1$--$28.3$ mV 로 약하게
+변하는 대표선), 세 직선과의 교차 $\approx69.6/77.6/85.7$ kJ/mol 이 \S\ref{sec:sum} 의 ``가시적 꼬리에는
+$\Delta H_a\approx80$ kJ/mol 급 필요''의 온도별 정량형이다. 표~\ref{tab:staging} 초기값
+창($40$--$48$ kJ/mol, 298 K 선 위 네 점, $L_V\sim10^{-8}$ V)은 문턱보다 $5$--$7$ 자릿수 아래라 초기
+상태의 곡선이 꼬리 없는 평형 종 전용임이 그림에서 바로 읽힌다.}
+\label{fig:cand-ff3-2}
+\end{figure}
