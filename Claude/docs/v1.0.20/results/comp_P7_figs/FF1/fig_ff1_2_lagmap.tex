@@ -21,7 +21,7 @@
 \node[font=\tiny,black!60,anchor=south] at (298.15,-0.32) {$298$ K};
 % ---- visible-tail scale: w = RT/F line ----
 \draw[dash dot,thick] (260,-1.650) -- (300,-1.588) -- (340,-1.533);
-\node[font=\scriptsize,anchor=west] at (301.5,-1.19) {$w{=}RT/F$ ($23$--$29$ mV) --- 가시 꼬리의 비교 척도};
+\node[font=\scriptsize,anchor=west] at (303,-1.16) {$w{=}RT/F$ ($23$--$29$ mV) --- 가시 꼬리 척도};
 % ---- staging initial-value bundle (table dHa & Omega per transition) ----
 % 4->3: dHa=48000, Omega=6000 -> dHeff=45000
 \draw[thick] plot[smooth] coordinates {(260,-6.093) (270,-6.444) (280,-6.771) (290,-7.075)
@@ -39,11 +39,11 @@
 \node[font=\tiny,anchor=west,black!55] at (340.6,-8.85) {$3\!\to\!2\mathrm L$};
 \node[font=\tiny,anchor=west] at (340.6,-9.32) {$2\mathrm L\!\to\!2$};
 \node[font=\tiny,anchor=west] at (340.6,-10.10) {$2\!\to\!1$};
-% bundle bracket
-\draw[{Bar[width=1.4mm]}-{Bar[width=1.4mm]},semithick] (264,-8.62) -- (264,-6.35);
-\node[font=\scriptsize,align=left,anchor=west] at (265.5,-9.55)
+% bundle annotation (empty band between 80k curve and staging bundle)
+\node[font=\scriptsize,align=left,anchor=north west] at (301,-4.9)
   {표~초기값 4전이 (C/10, $298$ K):\\ $L_V\!=\!5{\times}10^{-10}$--$5{\times}10^{-8}$ V $\ll w$\\
    $\Rightarrow$ 평형 종 전용(꼬리 비가시)};
+\draw[->,thin,black!60] (300,-5.6) -- (294.5,-7.55);
 % ---- visible-tail reference: dHa=80 kJ/mol ----
 \draw[very thick] plot[smooth] coordinates {(260,-0.367) (265,-0.654) (270,-0.93) (275,-1.197)
   (280,-1.454) (285,-1.702) (290,-1.942) (295,-2.174) (300,-2.398) (310,-2.825)
@@ -56,11 +56,11 @@
 \draw[<->,semithick] (333,-3.49) -- (333,-2.72);
 \node[font=\tiny,anchor=west] at (333.8,-3.14) {$|I|{\times}10\Rightarrow L_V{\times}10$};
 % temperature handle annotation
-\draw[->,semithick] (296,-4.9) -- (279,-3.35);
-\node[font=\scriptsize,align=center] at (296.5,-5.55) {저온일수록 꼬리$\uparrow$\\(기울기 $\propto\Delta H_{a}^\eff$)};
+\node[font=\scriptsize,align=center] at (272,-4.55) {저온일수록 꼬리$\uparrow$\\(기울기 $\propto\Delta H_{a}^\eff$)};
+\draw[->,semithick] (272,-3.9) -- (276.5,-2.55);
 % crossing of w threshold
-\fill (283,-1.60) circle (1.2pt);
-\node[font=\tiny,anchor=north west] at (283.4,-1.72) {$L_V\!\approx\!w$};
+\fill (282.6,-1.615) circle (1.2pt);
+\node[font=\tiny,anchor=north west] at (283.0,-1.75) {$L_V\!\approx\!w$};
 \end{tikzpicture}
 \caption{동역학 지연 길이의 온도$\cdot$전류$\cdot$장벽 지도 --- 좌표는 사슬
 식~\eqref{eq:Acut}$\cdot$\eqref{eq:chid}$\cdot$\eqref{eq:dHeff}$\cdot$\eqref{eq:Lqfull}$\cdot$\eqref{eq:LV}
