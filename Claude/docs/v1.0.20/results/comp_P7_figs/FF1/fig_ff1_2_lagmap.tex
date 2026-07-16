@@ -1,0 +1,77 @@
+% ====================================================================
+% fig_ff1_2_lagmap.tex — [FF1 후보 2] 지연 길이 L_V 의 온도·전류·장벽 지도
+%   대상 문서: Ch1 (ch1_preamble 라이브러리: arrows.meta·calc·backgrounds 만 사용)
+%   제안 배치: §8.4 식 (eq:LV) 뒤 또는 §10 초기 상태 수치 문단 옆
+%   좌표 생성: eval_ff1_coords.py §P2 — 사슬 eq:Acut→eq:chid→eq:dHeff→eq:Lqfull→eq:LV
+%   전 곡선 공통: chi=0.5, Delta S_a=0, A=4RT(상한), |dV/dq|_{q_a}=0.30, n_j=1,
+%   |I|/Q_cell = c-rate 숫자 그대로(§10 규약). 세로축은 log10(L_V[V]).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.148cm,y=0.44cm,>=Latex,shift={(-260,10.9)}]
+% ---- frame ----
+\draw[->] (260,-10.8) -- (348,-10.8) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (260,-10.8) -- (260,-0.05) node[above,font=\scriptsize] {$L_{V,j}$ [V] (log 축)};
+\foreach \xx in {260,280,300,320,340} {\draw (\xx,-10.72) -- (\xx,-10.88) node[below,font=\scriptsize] {\xx};}
+\foreach \yy/\lab in {-10/{$10^{-10}$},-9/{$10^{-9}$},-8/{$10^{-8}$},-7/{$10^{-7}$},-6/{$10^{-6}$},
+  -5/{$10^{-5}$},-4/{$10^{-4}$},-3/{$10^{-3}$},-2/{$10^{-2}$},-1/{$10^{-1}$}}
+  {\draw (260.6,\yy) -- (259.4,\yy) node[left,font=\tiny] {\lab};}
+% ---- 298.15 K guide ----
+\draw[densely dotted,black!60] (298.15,-10.8) -- (298.15,-0.3);
+\node[font=\tiny,black!60,anchor=south] at (298.15,-0.32) {$298$ K};
+% ---- visible-tail scale: w = RT/F line ----
+\draw[dash dot,thick] (260,-1.650) -- (300,-1.588) -- (340,-1.533);
+\node[font=\scriptsize,anchor=west] at (301.5,-1.19) {$w{=}RT/F$ ($23$--$29$ mV) --- 가시 꼬리의 비교 척도};
+% ---- staging initial-value bundle (table dHa & Omega per transition) ----
+% 4->3: dHa=48000, Omega=6000 -> dHeff=45000
+\draw[thick] plot[smooth] coordinates {(260,-6.093) (270,-6.444) (280,-6.771) (290,-7.075)
+  (300,-7.36) (310,-7.627) (320,-7.878) (330,-8.114) (340,-8.336)};
+% 3->2L: dHa=46000, Omega=8000 -> 42000
+\draw[thick,black!55] plot[smooth] coordinates {(260,-6.695) (270,-7.024) (280,-7.33) (290,-7.616)
+  (300,-7.883) (310,-8.133) (320,-8.368) (330,-8.589) (340,-8.797)};
+% 2L->2: dHa=44000, Omega=10000 -> 39000
+\draw[thick,densely dashed] plot[smooth] coordinates {(260,-7.298) (270,-7.605) (280,-7.89) (290,-8.156)
+  (300,-8.405) (310,-8.638) (320,-8.857) (330,-9.064) (340,-9.258)};
+% 2->1: dHa=40000, Omega=13000 -> 33500
+\draw[thick,densely dotted] plot[smooth] coordinates {(260,-8.403) (270,-8.669) (280,-8.916) (290,-9.147)
+  (300,-9.363) (310,-9.565) (320,-9.755) (330,-9.934) (340,-10.103)};
+\node[font=\tiny,anchor=west] at (340.6,-8.34) {$4\!\to\!3$};
+\node[font=\tiny,anchor=west,black!55] at (340.6,-8.85) {$3\!\to\!2\mathrm L$};
+\node[font=\tiny,anchor=west] at (340.6,-9.32) {$2\mathrm L\!\to\!2$};
+\node[font=\tiny,anchor=west] at (340.6,-10.10) {$2\!\to\!1$};
+% bundle bracket
+\draw[{Bar[width=1.4mm]}-{Bar[width=1.4mm]},semithick] (264,-8.62) -- (264,-6.35);
+\node[font=\scriptsize,align=left,anchor=west] at (265.5,-9.55)
+  {표~초기값 4전이 (C/10, $298$ K):\\ $L_V\!=\!5{\times}10^{-10}$--$5{\times}10^{-8}$ V $\ll w$\\
+   $\Rightarrow$ 평형 종 전용(꼬리 비가시)};
+% ---- visible-tail reference: dHa=80 kJ/mol ----
+\draw[very thick] plot[smooth] coordinates {(260,-0.367) (265,-0.654) (270,-0.93) (275,-1.197)
+  (280,-1.454) (285,-1.702) (290,-1.942) (295,-2.174) (300,-2.398) (310,-2.825)
+  (320,-3.226) (330,-3.603) (340,-3.958)};
+\draw[very thick,dashed] plot[smooth] coordinates {(275,-0.197) (280,-0.454) (285,-0.702)
+  (290,-0.942) (295,-1.174) (300,-1.398) (310,-1.825) (320,-2.226) (330,-2.603) (340,-2.958)};
+\node[font=\tiny,anchor=west] at (340.6,-3.96) {$80$ kJ/mol, C/10};
+\node[font=\tiny,anchor=west] at (340.6,-2.96) {$80$ kJ/mol, C/1};
+% current handle annotation
+\draw[<->,semithick] (333,-3.49) -- (333,-2.72);
+\node[font=\tiny,anchor=west] at (333.8,-3.14) {$|I|{\times}10\Rightarrow L_V{\times}10$};
+% temperature handle annotation
+\draw[->,semithick] (296,-4.9) -- (279,-3.35);
+\node[font=\scriptsize,align=center] at (296.5,-5.55) {저온일수록 꼬리$\uparrow$\\(기울기 $\propto\Delta H_{a}^\eff$)};
+% crossing of w threshold
+\fill (283,-1.60) circle (1.2pt);
+\node[font=\tiny,anchor=north west] at (283.4,-1.72) {$L_V\!\approx\!w$};
+\end{tikzpicture}
+\caption{동역학 지연 길이의 온도$\cdot$전류$\cdot$장벽 지도 --- 좌표는 사슬
+식~\eqref{eq:Acut}$\cdot$\eqref{eq:chid}$\cdot$\eqref{eq:dHeff}$\cdot$\eqref{eq:Lqfull}$\cdot$\eqref{eq:LV}
+그대로의 수치 평가($\chi{=}0.5$, $\Delta S_a{=}0$, $\mathcal A{=}4RT$ 상한, $|\dd V/\dd q|_{q_a}{=}0.30$ V,
+$n_j{=}1$; $|I|/Q_\cell$ 은 c-rate 숫자를 그대로 쓰는 \S\ref{sec:sum-staging} 규약). 아래 묶음 $=$
+표~\ref{tab:staging} 초기값 네 전이(전이별 $\Delta H_a$$\cdot$$\Omega$, C/10): $298$ K 에서
+$L_V\sim10^{-10}$--$10^{-8}$ V 로 폭 $w$(일점쇄선)보다 자릿수로 작아 초기 상태 곡선이 평형
+종(식~\eqref{eq:tail-limit} 의 $L_V\!\to\!0$ 극한) 전용임을 보인다. 굵은 선 $=$ 가시 꼬리 기준 예시
+$\Delta H_a{=}80$ kJ/mol($\Omega{=}13000$ J/mol): 저온으로 갈수록 지수적으로 자라 $283$ K 부근에서
+$w$ 와 교차하고(점), 전류를 열 배 올리면($L_V\propto|I|$, C/10$\to$C/1 파선) 곡선 전체가 정확히 한
+decade 위로 평행이동한다 --- 서론의 관측(저온$\cdot$고율일수록 꼬리가 길어짐)이 이 한 식의 지수
+구조다. log 눈금에서 각 직선의 기울기가 유효 장벽 $\Delta H_a^\eff=\Delta H_a-\chi_d\Omega_j$ 를 직독한다.}
+\label{fig:cand-ff1-2}
+\end{figure}

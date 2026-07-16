@@ -1,0 +1,55 @@
+% fig_fo1_4_vib_einstein — Einstein 진동 엔트로피와 electronic 식별성 (Ch2 §2.4)
+% 좌표 = 닫힌형 S_vib(T;θ_E)=R[-ln(1-e^{-u})+u/(e^u-1)], u=θ_E/T (eq:Svib-einstein) 와
+%   ∂ΔU_vib/∂T=[S_vib(T)-S_vib(T_ref)]/F (eq:dSvib·eq:dUvib) 의 식 그대로 수치 평가 (θ_E=700 K, T_ref=298.15 K).
+%   electronic 대조선(∝T, 원점 통과)은 함수형 대비용 개형. 대상 라이브러리(ch2).
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex,font=\scriptsize]
+% ================= (a) S_vib(T)/R =================
+\begin{scope}[x=0.019cm,y=5.4cm]
+\draw[->] (196,0) -- (408,0) node[right,font=\tiny] {$T$ [K]};
+\draw[->] (196,0) -- (196,0.62) node[above,font=\tiny] {$S_\vib/R$};
+\foreach \tx in {200,250,300,350,400} {\draw (\tx,0.006)--(\tx,-0.006) node[below,font=\tiny] {\tx};}
+\foreach \yy in {0.2,0.4,0.6} {\draw (196,\yy)--(190,\yy) node[left,font=\tiny] {\yy};}
+\draw[densely dashed,black!45] (298.15,0)--(298.15,0.55);
+\node[black!55,anchor=south,font=\tiny,rotate=90] at (293,0.20) {$T_\mathrm{ref}$};
+\draw[very thick] plot[smooth] coordinates {(200,0.1396) (220,0.1802) (240,0.2225) (260,0.2657) (280,0.3092) (300,0.3526) (320,0.3955) (340,0.4377) (360,0.4790) (380,0.5195) (400,0.5590)};
+\fill (298.15,0.3486) circle (1.4pt);
+\node[anchor=north west,align=left,font=\tiny] at (250,0.30)
+  {$\theta_E{=}700$ K\\저온 $\to0$\\고온 $\to R[1{+}\ln(T/\theta_E)]$};
+\node[font=\tiny] at (300,-0.15) {(a) 진동 엔트로피 $S_\vib(T)$};
+\end{scope}
+% ================= (b) ∂ΔU_vib/∂T vs electronic =================
+\begin{scope}[xshift=5.6cm,x=0.019cm,y=0.072cm]
+\draw[densely dashed,black!55] (196,0) -- (408,0);
+\draw[->] (196,-20) -- (408,-20) node[right,font=\tiny] {$T$ [K]};
+\draw[->] (196,-20) -- (196,21) node[above,align=center,font=\tiny] {$\partial\Delta U_\vib/\partial T$\\{[$\mu$V/K]}};
+\foreach \tx in {200,250,300,350,400} {\draw (\tx,-19.3)--(\tx,-20.7) node[below,font=\tiny] {\tx};}
+\foreach \yy in {-10,10,20} {\draw (196,\yy)--(190,\yy) node[left,font=\tiny] {\yy};}
+% electronic 대조선 ∝T (원점 통과, 개형)
+\draw[densely dashdotted,black!55] (200,3.5) -- (400,7.0);
+\node[anchor=north,font=\tiny,black!55,align=left] at (372,3.0) {electronic\\$\propto T$ (개형)};
+% vib ∂ΔU_vib/∂T (굵은 실선, T_ref 강제 영점 + 곡률)
+\draw[very thick] plot[smooth] coordinates {(200,-18.00) (220,-14.51) (240,-10.86) (260,-7.14) (280,-3.39) (300,0.34) (320,4.04) (340,7.68) (360,11.24) (380,14.73) (400,18.13)};
+% 강제 영점 + 4 앵커점
+\draw[densely dashed,black!45] (298.15,0)--(298.15,-20);
+\node[black!55,anchor=north west,font=\tiny] at (300,-1.0) {$T_\mathrm{ref}$: 영점};
+\foreach \tx/\yy in {278.15/-3.74, 298.15/0, 318.15/3.70, 348.15/9.14} {\fill (\tx,\yy) circle (1.5pt);}
+\node[anchor=north east,font=\tiny] at (277,-3.74) {$-3.74$};
+\node[anchor=south east,font=\tiny] at (317,4.2) {$+3.70$};
+\node[anchor=south,font=\tiny] at (349,9.9) {$+9.14$};
+\node[font=\tiny,align=left] at (238,17) {vib: 곡률$+$\\$T_\mathrm{ref}$ 강제 영점};
+\node[font=\tiny] at (300,-27) {(b) 중심 이동 $\partial\Delta U_\vib/\partial T$ --- 식별};
+\end{scope}
+\end{tikzpicture}
+\caption{Einstein 진동 보정과 electronic 항의 식별 --- (a) 닫힌형 $S_\vib(T;\theta_{E})=R[-\ln(1-e^{-u})
++u/(e^{u}-1)]$($u{=}\theta_E/T$, 식~\eqref{eq:Svib-einstein}, $\theta_E{=}700$ K)의 식 그대로의 수치
+평가로, 저온에서 $0$(모든 모드가 얼어붙음), 고온에서 고전 로그 $R[1{+}\ln(T/\theta_E)]$ 로 가는 사이의
+준양자 구간이다($T_\mathrm{ref}$ 값이 중심 표준값에 흡수된 상수). (b) 중심 이동
+$\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$(식~\eqref{eq:dUvib}, 좌표는 식 그대로의 수치 평가; 점은
+$T{=}278.15/298.15/318.15/348.15$ K 의 $-3.74/0/{+}3.70/{+}9.14~\mu$V/K)는 $T_\mathrm{ref}$ 에서 \emph{강제로}
+$0$ 을 지나며 로그 곡률을 갖는다. 반면 electronic 기여(점쇄선, $\propto T$ 라 원점 통과 --- 함수형 대비용
+\emph{개형})는 강제 영점이 없어, 준양자 창 $\kB T\!\sim\!\hbar\omega$ 를 걸치는 $T$ 점 \emph{셋 이상}이면 두
+함수형이 갈린다(2-온도 유한차분은 곡률과 선형을 합으로만 보아 축퇴).}
+\label{fig:cand-fo1-4}
+\end{figure}

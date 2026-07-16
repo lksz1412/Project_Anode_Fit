@@ -1,0 +1,47 @@
+% fig_fo2_4_vibel_id.tex  (창 FO2 구현 4 — 신규, 공백 G4)
+% 대응 절: ch2_sec04_einstein §2.4 (식별 논거) · ch2_sec03_vibel §2.3
+% 좌표: vib = ∂ΔU_vib/∂T = [S_vib(T)-S_vib(T_ref)]/F 를 eq:Svib-einstein 로 식 그대로 평가
+%   (θ_E=700K·T_ref=298.15K; 검산: -3.74/0/+3.70/+9.14 μV/K @ 278/298/318/348 = 문건 일치).
+%   electronic 선 = ∂U_e/∂T ∝ T (본문 eq:Se-ch2 함수형)의 개형 참조선(강제영점 없음; 크기는 예시).
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.115cm,y=0.375cm,>=Latex,font=\scriptsize]
+% zero line (물리적 영선)
+\draw[densely dashed,black!55] (268,0) -- (350,0);
+% axes
+\draw[->] (268,-6.2) -- (268,10.2) node[above,anchor=south east] {$\partial U/\partial T$ [$\mu$V/K]};
+\draw[->] (268,-6.2) -- (352,-6.2) node[right] {$T$ [K]};
+\foreach \yy in {-4,-2,2,4,6,8} {\draw (266,\yy)--(268,\yy) node[left,xshift=2pt] {\yy};}
+\node[left] at (266,0) {$0$};
+\foreach \xx/\lab in {278.15/278,298.15/298,318.15/318,348.15/348} {\draw (\xx,-6.0)--(\xx,-6.4) node[below] {\lab};}
+% T_ref 안내선
+\draw[densely dotted,black!55] (298.15,-6.2) -- (298.15,9.5);
+\node[anchor=south,font=\tiny,black!55] at (298.15,9.4) {$T_\mathrm{ref}$};
+% ---- vib 편차 ∂ΔU_vib/∂T (실선, 강제영점 + 곡률) ----
+\draw[very thick] plot[smooth] coordinates {(270,-5.266)(278.15,-3.738)(285,-2.455)(298.15,0.000)(310,2.198)(318.15,3.700)(330,5.866)(340,7.676)(348.15,9.138)};
+% 4 온도점 마커
+\foreach \x/\y in {278.15/-3.738,298.15/0.000,318.15/3.700,348.15/9.138}
+  {\fill (\x,\y) circle (2.4pt);}
+% ---- electronic 개형 참조선 (∝T, 무영점) ----
+\draw[thick,densely dashed] (270,5.43) -- (348.15,7.01);
+\node[right,font=\tiny,align=left] at (330,6.9) {electronic $\propto T$\\(개형: 직선$\cdot$영점 없음)};
+% vib 라벨·주석
+\node[anchor=north west,font=\tiny,align=left] at (302,-1.2) {vib 편차 $\partial\Delta U_\vib/\partial T$\\(강제영점 @ $T_\mathrm{ref}$ $+$ 곡률)};
+\node[anchor=south east,font=\tiny] at (296,9.0) {$\theta_E{=}700$ K};
+% 온도점 값 주석
+\node[anchor=north east,font=\tiny] at (278.0,-3.9) {$-3.74$};
+\node[anchor=south east,font=\tiny] at (318.0,3.9) {$+3.70$};
+\node[anchor=south east,font=\tiny] at (347.5,9.3) {$+9.14$};
+% 2점 축퇴 주석
+\node[anchor=north,font=\tiny,align=center,black!70] at (300,-4.3) {국소 기울기(2-온도)만으로는 곡률$+$선형이 축퇴 --- 3온도점 이상이 둘을 가른다};
+\end{tikzpicture}
+\caption{진동(vib) 항과 전자(electronic) 항의 서로 다른 온도 서명 --- 다온도 곡률 피팅이 둘을 가르는 근거
+(vib 실선 좌표는 식~\eqref{eq:Svib-einstein} 에서 $\partial\Delta U_\vib/\partial T=[S_\vib(T){-}S_\vib(T_\mathrm{ref})]/F$
+를 식 그대로 수치 평가, $\theta_E{=}700$ K). 실선 vib 편차는 $T_\mathrm{ref}{=}298.15$ K 에서 \emph{강제 영점}을
+지나며 위$\cdot$아래로 \emph{곡률}을 갖고($-3.74/0/{+}3.70/{+}9.14~\mu$V/K @ $278/298/318/348$ K, 점),
+파선 electronic 항은 $\partial U_e/\partial T\!\propto\!T$(식~\eqref{eq:Se-ch2})라 \emph{직선}이고 강제 영점이
+없다(참조선의 크기는 함수형 예시 --- 개형). 두 함수형이 다르므로 측정 $\partial U_\oc/\partial T$ 의 온도 곡률을
+읽으면 분리되지만, 국소 기울기만 보는 2-온도 유한차분은 곡률과 선형을 합으로만 보아 축퇴하므로 준양자 창을
+걸치는 $T$ 점 셋 이상이 필요하다.}
+\label{fig:cand-fo2-4}
+\end{figure}

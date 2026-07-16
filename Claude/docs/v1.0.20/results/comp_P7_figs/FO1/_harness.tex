@@ -1,0 +1,32 @@
+% _harness.tex — FO1 그림 조각 컴파일 검증용 최소 하네스
+% 빌드: xelatex -interaction=nonstopmode _harness.tex  (kotex 전제; 오류 0 확인)
+% 확인한 라이브러리만 로드 = ch1(positioning,arrows.meta,calc,fit,backgrounds)
+%   ∪ ch2(decorations.pathreplacing). pgfplots 미사용.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=18mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds,decorations.pathreplacing}
+% ---- 절별 preamble 매크로(캡션·수식이 쓰는 것만) ----
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\code}[1]{\texttt{#1}}
+% 하네스에서 미정의 라벨(\eqref/\ref)은 경고일 뿐 — 캡션 참조는 실제 문서에서 해석됨.
+\begin{document}
+\input{fig_fo1_1_Uj_of_T.tex}
+\input{fig_fo1_2_crate_tail_family.tex}
+\input{fig_fo1_3_revheat_soc.tex}
+\input{fig_fo1_4_vib_einstein.tex}
+\end{document}

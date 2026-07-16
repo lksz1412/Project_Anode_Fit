@@ -1,0 +1,33 @@
+% _harness.tex — FO2 그림 조각 최소 컴파일 검증용 하네스
+% 빌드: xelatex -interaction=nonstopmode _harness.tex  (kotex 한글 전제)
+% preamble 은 대상 문서(ch1/ch2)의 tikz 라이브러리·매크로만 재현(pgfplots 없음).
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=18mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{tikz}
+% ch1: positioning,arrows.meta,calc,fit,backgrounds  /  ch2: calc,arrows.meta,decorations.pathreplacing,positioning
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds,decorations.pathreplacing}
+% ---- 대상 문서 매크로 재현(preamble 계승분 중 그림이 쓰는 것) ----
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\code}[1]{\texttt{#1}}
+\begin{document}
+\input{fig_fo2_1_revheat_soc.tex}\clearpage
+\input{fig_fo2_2_ujt_center.tex}\clearpage
+\input{fig_fo2_3_svib_einstein.tex}\clearpage
+\input{fig_fo2_4_vibel_id.tex}
+\end{document}

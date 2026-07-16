@@ -1,0 +1,69 @@
+% ====================================================================
+% FF3-1  실 파라미터 ∂U_oc/∂T(x̄) 전 구간 프로파일 (Ch2 문맥)
+%   좌표 = eq:implicit 음함수 풀이 + eq:weighted(단순식)·eq:complete(완전식)
+%   수치 평가 (gen_coords_ff3.py; tab:qrev 5행·§2.8 예제 −0.204 게이트 통과).
+%   제안 배치: Ch2 §2.8 tab:qrev 직후(또는 §2.5 fig:blend 대체).
+%   사용 라이브러리: arrows.meta, calc 만 (Ch2 preamble 내).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11.6cm,y=6.6cm]
+% ---- axes ----
+\draw[-{Latex[length=1.6mm]}] (-0.015,-0.52) -- (-0.015,0.52)
+  node[above,font=\scriptsize] {$\partial U_\oc/\partial T$ [mV/K]};
+\draw[-{Latex[length=1.6mm]}] (-0.015,0) -- (1.13,0)
+  node[below,font=\scriptsize] {$\bar x$ (탈리튬화 분율)};
+\foreach \xx in {0.25,0.5,0.75,1.0}
+  {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-0.4,-0.2,0.2,0.4}
+  {\draw (-0.010,\yy) -- (-0.020,\yy) node[left,font=\scriptsize] {\yy};}
+% ---- transition-center levels dS0_j/F (dotted, labels in right margin) ----
+\draw[densely dotted,black!60] (0,0.301) -- (1.0,0.301);
+\draw[densely dotted,black!60] (0,-0.052) -- (1.0,-0.052);
+\draw[densely dotted,black!60] (0,-0.166) -- (1.0,-0.166);
+\node[right,font=\tiny] at (1.005,0.301) {$\Delta S^0_{4\to3}/F{=}{+}0.301$};
+\node[right,font=\tiny] at (1.005,0.055) {$\Delta S^0_{3\to2\mathrm L}/F{=}0$};
+\node[right,font=\tiny] at (1.005,-0.052) {$\Delta S^0_{2\mathrm L\to2}/F{=}{-}0.052$};
+\node[right,font=\tiny] at (1.005,-0.166) {$\Delta S^0_{2\to1}/F{=}{-}0.166$};
+% ---- step (wrong) : dominant-transition switching ----
+\draw[dashed,thick,black!45] (0.02,-0.166) -- (0.663,-0.166) -- (0.663,-0.052)
+  -- (0.873,-0.052) -- (0.873,0.301) -- (0.98,0.301);
+\node[black!45,font=\scriptsize,anchor=west] at (0.40,-0.205) {계단(오답)};
+% ---- simple formula (center values only, eq:weighted) ----
+\draw[thick,black!55] plot[smooth] coordinates {(0.02,-0.1477) (0.04,-0.1469) (0.06,-0.1459) (0.08,-0.145) (0.1,-0.1439) (0.12,-0.1429) (0.14,-0.1417) (0.16,-0.1405) (0.18,-0.1392) (0.2,-0.1378) (0.22,-0.1363) (0.24,-0.1348) (0.26,-0.1331) (0.28,-0.1314) (0.3,-0.1296) (0.32,-0.1276) (0.34,-0.1256) (0.36,-0.1234) (0.38,-0.1212) (0.4,-0.1188) (0.42,-0.1163) (0.44,-0.1138) (0.46,-0.111) (0.48,-0.1082) (0.5,-0.1053) (0.52,-0.1022) (0.54,-0.09903) (0.56,-0.0957) (0.58,-0.09223) (0.6,-0.08861) (0.62,-0.0848) (0.64,-0.08077) (0.66,-0.07648) (0.68,-0.07187) (0.7,-0.06682) (0.72,-0.06121) (0.74,-0.05482) (0.76,-0.04737) (0.78,-0.03841) (0.8,-0.02732) (0.82,-0.01317) (0.84,0.005235) (0.86,0.02928) (0.88,0.05989) (0.9,0.0964) (0.92,0.1355) (0.94,0.1724) (0.96,0.2034) (0.98,0.2272)};
+% ---- full formula (center + in-peak config, eq:complete) ----
+\draw[very thick] plot[smooth] coordinates {(0.02,-0.4567) (0.04,-0.3943) (0.06,-0.3566) (0.08,-0.3291) (0.1,-0.307) (0.12,-0.2883) (0.14,-0.272) (0.16,-0.2574) (0.18,-0.2441) (0.2,-0.2318) (0.22,-0.2202) (0.24,-0.2092) (0.26,-0.1988) (0.28,-0.1887) (0.3,-0.179) (0.32,-0.1695) (0.34,-0.1602) (0.36,-0.1511) (0.38,-0.1422) (0.4,-0.1333) (0.42,-0.1245) (0.44,-0.1157) (0.46,-0.1069) (0.48,-0.09802) (0.5,-0.08912) (0.52,-0.08013) (0.54,-0.07101) (0.56,-0.06174) (0.58,-0.05228) (0.6,-0.04258) (0.62,-0.0326) (0.64,-0.02228) (0.66,-0.01156) (0.68,-0.0003461) (0.7,0.01145) (0.72,0.02396) (0.74,0.03734) (0.76,0.0518) (0.78,0.06761) (0.8,0.08511) (0.82,0.1048) (0.84,0.1272) (0.86,0.1531) (0.88,0.1831) (0.9,0.2178) (0.92,0.2573) (0.94,0.3023) (0.96,0.3563) (0.98,0.4331)};
+% ---- tab:qrev five rows as dots ----
+\foreach \px/\py in {0.10/-0.307, 0.25/-0.204, 0.50/-0.089, 0.75/0.044, 0.90/0.218}
+  {\fill (\px,\py) circle (1.2pt);}
+\node[font=\tiny,anchor=west] at (0.265,-0.235) {$(0.25,\,-0.204)$ --- \S\ref{ssec:worked} 예제점};
+% ---- sign-flip tick of the full formula ----
+\draw[densely dotted] (0.681,0) -- (0.681,-0.06);
+\node[font=\tiny,anchor=north] at (0.681,-0.065) {부호 교대 $\bar x\!\approx\!0.68$};
+% ---- exo/endo readouts ----
+\node[font=\tiny,anchor=west] at (0.015,-0.315) {$\partial U_\oc/\partial T<0$: 방전($I{>}0$) \emph{발열}};
+\node[font=\tiny,anchor=west] at (0.60,0.38) {$>0$: 방전 \emph{흡열}};
+% ---- legend (top-left clear zone) ----
+\draw[very thick] (0.03,0.245) -- (0.09,0.245);
+\node[font=\tiny,anchor=west] at (0.10,0.245) {완전식 --- 중심값$+$config, 식~\eqref{eq:complete}};
+\draw[thick,black!55] (0.03,0.185) -- (0.09,0.185);
+\node[font=\tiny,anchor=west] at (0.10,0.185) {단순식 --- 중심값만, 식~\eqref{eq:weighted}};
+\draw[dashed,thick,black!45] (0.03,0.125) -- (0.09,0.125);
+\node[font=\tiny,anchor=west] at (0.10,0.125) {지배 전이 중심값 스위칭 계단(오답)};
+\fill (0.06,0.065) circle (1.2pt);
+\node[font=\tiny,anchor=west] at (0.10,0.065) {표~\ref{tab:qrev} 의 5점};
+\end{tikzpicture}
+\caption{흑연 staging 실 파라미터가 만드는 $\partial U_\oc/\partial T(\bar x)$ 의 전 구간 프로파일 ---
+좌표는 식 그대로의 수치 평가다: 전하 보존 음함수~\eqref{eq:implicit} 를 각 $\bar x$ 에서 $U_\oc$ 에 대해
+풀고, 겹침 가중 단순식~\eqref{eq:weighted}(회색)과 봉우리 내부 config 항까지 더한
+완전식~\eqref{eq:complete}(굵은 실선)을 그 점에서 평가했다(Chapter 1 의 4-전이 초기값,
+$U_j(T)=(-\Delta H_{\rxn,j}+T\Delta S_{\rxn,j})/F$, $w_j{=}RT/F$($n_j{=}1$), $T{=}298.15$ K).
+점선 수평선 넷이 전이 중심 표준값 $\Delta S^0_j/F$ 이고, 관측 계수는 그 사이를 국소 $dQ/dV$ 비중으로
+\emph{연속 블렌드}한다 --- 지배 전이의 중심값으로 건너뛰는 계단(파선)이 아니다. 완전식은 config 로그
+항 때문에 양 끝에서 단순식보다 크게 벌어지고($\bar x\to0$ 만충 $-\infty$$\cdot$$\bar x\to1$ 희박
+$+\infty$ 방향), 부호는 $\bar x\!\approx\!0.68$ 에서 뒤집혀 방전 가역열이 발열에서 흡열로 교대한다
+(단순식의 교대는 $\bar x\!\approx\!0.83$). 검은 점 다섯이 표~\ref{tab:qrev} 의 다섯 행이며, 계산
+예제(\S\ref{ssec:worked})의 $(\bar x,\partial U_\oc/\partial T)=(0.25,-0.204$ mV/K$)$ 도 곡선 위의 한
+점이다.}
+\label{fig:cand-ff3-1}
+\end{figure}

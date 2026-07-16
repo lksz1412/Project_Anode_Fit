@@ -1,0 +1,79 @@
+% ====================================================================
+% fig_ff1_3_blend.tex — [FF1 후보 3] fig:blend 재설계 — 모식→실제 staging 수치 승격
+%   대상 문서: Ch2 (ch2_preamble 라이브러리: calc·arrows.meta·decorations.pathreplacing 만 사용;
+%   backgrounds 미로드 문서라 background layer 불사용)
+%   제안 배치: §2.5 그림 fig:blend 교체(원 그림의 정보 요소 — 수준선·연속 블렌드·겹침 표시·
+%   가중식·계단 대조 — 전부 보존, 좌표만 모식→수치)
+%   좌표 생성: eval_ff1_coords.py §P3 — eq:implicit 을 x̄ 점마다 풀어 U_oc 를 얻고
+%   단순식 eq:weighted·완전식 eq:complete 을 평가(4-전이 staging 초기값, 298.15 K, n_j=1).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11.0cm,y=4.6cm,>=Latex]
+% ---- axes ----
+\draw[->,>=Stealth] (-0.015,0) -- (1.10,0) node[right,font=\scriptsize] {$\bar x$ (delithiation)};
+\draw[->,>=Stealth] (0,-0.55) -- (0,0.58) node[above,font=\scriptsize] {$\partial U_\oc/\partial T$ [mV/K]};
+\foreach \xx in {0.25,0.5,0.75,1.0} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-0.4,-0.2,0.2,0.4} {\draw (0.006,\yy) -- (-0.006,\yy) node[left,font=\scriptsize] {\yy};}
+\node[left,font=\scriptsize] at (-0.006,0) {0};
+% ---- transition-level dotted lines (kept from original) ----
+\foreach \yy in {0.301,-0.052,-0.166} {\draw[densely dotted,black!45] (0,\yy) -- (1.045,\yy);}
+\node[right,font=\tiny,black!60,align=left] at (1.048,0.301) {$\Delta S^0_{4\to3}/F$\\$=+0.301$};
+\node[right,font=\tiny,black!60,align=left] at (1.048,0.02) {$\Delta S^0_{3\to2\mathrm L}/F=0$};
+\node[right,font=\tiny,black!60,align=left] at (1.048,-0.075) {$\Delta S^0_{2\mathrm L\to2}/F$\\$=-0.052$};
+\node[right,font=\tiny,black!60,align=left] at (1.048,-0.20) {$\Delta S^0_{2\to1}/F$\\$=-0.166$};
+% ---- step contrast (wrong; boundaries = cumulative Q_j/Q) ----
+\draw[red,dashed,thick] (0.02,-0.166) -- (0.5155,-0.166) -- (0.5155,-0.052)
+  -- (0.7732,-0.052) -- (0.7732,0.0) -- (0.8969,0.0) -- (0.8969,0.301) -- (0.98,0.301);
+\node[red,font=\scriptsize,anchor=west] at (0.545,-0.245) {step (wrong): 경계 $=\sum_kQ_k/Q$};
+% ---- simple (center-value) weighted blend, eq:weighted ----
+\draw[thick,black!50] plot[smooth] coordinates {(0.02,-0.1477) (0.06,-0.1459) (0.1,-0.1439)
+  (0.16,-0.1405) (0.22,-0.1363) (0.28,-0.1314) (0.34,-0.1256) (0.4,-0.1188) (0.46,-0.111)
+  (0.52,-0.1022) (0.58,-0.0922) (0.64,-0.0808) (0.7,-0.0668) (0.73,-0.0581) (0.76,-0.0474)
+  (0.79,-0.0332) (0.82,-0.0132) (0.85,0.0165) (0.88,0.0599) (0.9,0.0964) (0.92,0.1355)
+  (0.94,0.1724) (0.96,0.2034) (0.98,0.2272)};
+% ---- full formula (center + in-peak config), eq:complete ----
+\draw[very thick,blue] plot[smooth] coordinates {(0.02,-0.4567) (0.04,-0.3943) (0.06,-0.3566)
+  (0.08,-0.3291) (0.1,-0.307) (0.13,-0.2799) (0.16,-0.2574) (0.19,-0.2378) (0.22,-0.2202)
+  (0.25,-0.2039) (0.28,-0.1887) (0.31,-0.1742) (0.34,-0.1602) (0.37,-0.1466) (0.4,-0.1333)
+  (0.43,-0.1201) (0.46,-0.1069) (0.49,-0.0936) (0.52,-0.0801) (0.55,-0.0664) (0.58,-0.0523)
+  (0.61,-0.0376) (0.64,-0.0223) (0.67,-0.006) (0.7,0.0115) (0.73,0.0305) (0.76,0.0518)
+  (0.79,0.0761) (0.82,0.1048) (0.85,0.1397) (0.88,0.1831) (0.9,0.2178) (0.92,0.2573)
+  (0.94,0.3023) (0.96,0.3563) (0.98,0.4331)};
+% curve tags
+\node[blue,font=\scriptsize,anchor=east,align=right] at (0.345,-0.285)
+  {완전식~\eqref{eq:complete}\\(중심값 $+$ config)};
+\draw[blue,->,thin] (0.30,-0.255) -- (0.255,-0.212);
+\node[black!50,font=\scriptsize,anchor=west] at (0.40,-0.185) {단순식~\eqref{eq:weighted} (중심값만)};
+\draw[black!50,->,thin] (0.435,-0.163) -- (0.43,-0.125);
+% ---- tab:qrev five checkpoints on full curve ----
+\fill (0.10,-0.307) circle (1.2pt) node[below,font=\tiny,yshift=-1pt] {$-0.307$};
+\fill (0.25,-0.204) circle (1.2pt) node[below,font=\tiny,yshift=-1pt] {$-0.204$};
+\fill (0.50,-0.089) circle (1.2pt) node[below left,font=\tiny] {$-0.089$};
+\fill (0.75,0.044) circle (1.2pt) node[above left,font=\tiny] {$+0.044$};
+\fill (0.90,0.218) circle (1.2pt) node[above left,font=\tiny] {$+0.218$};
+% ---- config-term gap marker ----
+\draw[{Bar[width=1.1mm]}-{Bar[width=1.1mm]},semithick] (0.955,0.1994) -- (0.955,0.3435);
+\node[font=\tiny,align=left,anchor=west] at (0.968,0.40) {완전$-$단순\\$=$ config 항};
+% ---- overlap brace (kept from original) ----
+\draw[decorate,decoration={brace,mirror,amplitude=4pt},black!60] (0.40,-0.50) -- (0.64,-0.50);
+\node[black!60,font=\scriptsize,below] at (0.52,-0.515) {겹침 구간: 계단 없이 연속 블렌드};
+% ---- weighted-mean formula (kept from original, full form) ----
+\node[blue,font=\scriptsize,anchor=west] at (0.03,0.47)
+  {$\dfrac{\partial U_\oc}{\partial T}=\dfrac{\sum_jQ_jg_j\,[\Delta S^0_j/F+n_jRz_j/F]}{\sum_jQ_jg_j}$};
+\node[font=\tiny,black!60,anchor=west] at (0.03,0.335) {(단순식 $=$ 대괄호에서 config 항 $n_jRz_j/F$ 를 뺀 것)};
+% zero axis reference
+\draw[dashed,black!35] (0,0) -- (1.045,0);
+\end{tikzpicture}
+\caption{겹침 가중이 만드는 $\partial U_\oc/\partial T(\bar x)$ 의 연속 블렌드 --- 실제 흑연 4-전이
+staging 초기값(표~\ref{tab:ds} 의 $\Delta S^0_j$, $298.15$ K, $w_j{=}RT/F$)에 대한 수치 평가로, 좌표는
+각 $\bar x$ 에서 전하 보존 음함수~\eqref{eq:implicit} 를 풀어 $U_\oc$ 를 얻은 뒤 단순식~\eqref{eq:weighted}
+(회색)과 완전식~\eqref{eq:complete}(파란 굵은 실선)을 식 그대로 평가한 값이다. 검은 점 다섯 개는
+표~\ref{tab:qrev} 의 다섯 SOC 값과 일치한다(예: $\bar x{=}0.25$ 에서 완전식 $-0.204$, 단순식 $-0.134$
+mV/K --- \S\ref{ssec:worked} 계산 예제와 동일). 전이 경계(빨간 계단의 꺾임, 누적 용량 분율
+$0.516/0.773/0.897$)에서 실제 곡선은 인접 $\Delta S^0_j/F$ 수준(점선) 사이를 국소 $dQ/dV$ 비중으로
+\emph{연속} 이동하며 --- 계단(빨간 파선)이 아니다 --- 완전식과 단순식의 차(오른쪽 치수선)가 봉우리 내부
+config 항으로, 파생 A 수치 검증의 $[-0.21,+0.14]$ mV/K 구간과 같은 양이다. 프로파일은 탈리튬화
+진행에서 $-0.166\to+0.301$ mV/K 로 상승한다.}
+\label{fig:cand-ff1-3}
+\end{figure}
