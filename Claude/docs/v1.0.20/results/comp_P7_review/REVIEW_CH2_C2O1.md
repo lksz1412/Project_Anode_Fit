@@ -130,3 +130,13 @@
 - 카운트 실측: 외부 15 + numverif2026 내부 1 = 16 정확. 신규 dahn1991·ohzuku1993 모두 sec05:169 U9 에서 실인용(orphan 없음). 전 15 외부키 본문 인용처 존재 확인.
 - dahn1991(PRB 44, 9170, 1991·DOI 10.1103/PhysRevB.44.9170)·ohzuku1993(JES 140, 2490, 1993·DOI 10.1149/1.2220849·제목 전문) 원장 문자 일치. ch1_bib 3자 정합은 Ch1 대조에서 확인 예정.
 - refute: 서지 오류 없음. 최약점 = ch1_bib 문자일치 미확인(다음 단계).
+
+### appendix_phase_separation.tex (전문 정독 완료, 497행)
+- 구본 대비: (1) 3·39행 버전 스탬프 v1.0.19→v1.0.20 각주 갱신 · (2) P6 표기 정규 용액→정규용액·격자 기체→격자기체 8건(44·69·104·163·210·245·352·380행) · (3) 494행 [A5] Ch.~17--18→**Ch.~18--19**(C-019). 내용 미개정.
+- **P6 표기 주변 문장 훼손 점검**: 8건 전부 단어 내부 공백 제거만이며 주술·수식·인접어 훼손 없음(문장 완결성 유지).
+- **C-019 확인**: [A5](494행) "Ch.~18--19 (Cahn--Hilliard 선형화·핵생성 이론)" — CHANGE_LOG C-019(Ch.18 spinodal/CH·Ch.19 nucleation)·원장 [A5] 정합. 본문 인용 [A5] 2곳(403·439행)은 장번호 무표기 → 무변경 정합. [A1]-[A4] 원장 문자 정합([A1] sentence-case 서지재량 허용 명시).
+- **물리 전건 손검산**: app-Smix(Stirling)·app-Umix(Δw 상쇄)·app-fxi·app-chord·app-lever·공통접선 app-ct·화학퍼텐셜 절편 μ_A=t(0)/μ_B=t(1)·binodal(Ω=3RT: ξ_b=0.0707 검산·f/RT=−0.0583)·spinodal ξ_s=½(1±u), u=√(1−2RT/Ω)(§4.1 정합·0.2113/0.7887·f/RT=−0.0157)·요동 ½f''δ²·Maxwell app-maxwell·CNT r*·ΔG*=16πγ³/3Δg_v²·Cahn-Hilliard R(k)=−Mk²[f''+2κk²]·k_m=k_c/√2·차원([κ]=J/m,[M]=m⁵J⁻¹s⁻¹) 전건 정합.
+- 그림 2종(fig:app-tangent·fig:app-phasediag) 좌표값이 식 평가와 일치(binodal/spinodal 곡선·네 교점).
+- 기호 배향 각주(ξ_appendix=θ_body, 여집합) 명시 — 본문과 정합.
+- 본문 절참조 §2(Part0)·§4.1(spinodal)·§4.2(히스 gap)·§7(broadening) — Ch1 대조 예정.
+- refute: 결함 없음. 최약점 = Cahn-Hilliard 절에서 f 를 몰당→부피밀도로 재해석(442행 disclosed)하는 단위-맥락 전환(G-follow 속도방지턱, 명시되어 결함 아님).

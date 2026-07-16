@@ -194,3 +194,66 @@ cross-ref 표시: Ch1 §1 V_n(line 16)·§17 MSMR(line 20) — 특별축.
 cross-ref 표시: 본문 절참조 §2(Part0)·§4.1(spinodal 근)·§4.2(히스 gap)·§7(broadening) — Ch1 §4.1/§4.2 실재는 특별축에서 확인.
 가장 약한 곳: ★기호 배향 — 부록 ξ = 본문 θ(점유율), 본문 ξ(=1−θ)와 여집합. 같은 글자 ξ가 부록·본문에서 반대 양. line 8-9·57-63이 "f 우함수라 binodal·spinodal·Maxwell 결과는 두 좌표 동일, 1계 미분만 부호 반전(§4.2가 처리)"로 명시 한정 → 물리 정확·정직 처리이나, 절 넘나들 때 최대 G-follow 혼동 위험. 결함 아님(강한 가드).
 
+---
+
+## 특별축 — Ch2→Ch1 리터럴 참조 11종 교차 정합 (Ch1 신본 대조)
+
+Ch1 절번호↔파일 매핑은 master `\input` 순서로 확정(파일번호=절번호; sec02a/b만 공통 §2, sec00=\section* 무번호). 각 참조를 Ch1 신본에서 절번호·내용·기호 문자 대조:
+
+| Ch1 참조 | Ch2 인용처 | Ch1 실재(파일:행) | 판정 |
+|---|---|---|---|
+| §1 σ_d 방향부호(±1) | sec01:58-59·appA | ch1_sec01:14 `σ_d={+1방전/−1충전}`·48 s vs σ_d 별개 | ✅ 문자 일치 |
+| §1 `V_n=V_app−σ_d\|I\|R_n` | sec09:16 | ch1_sec01:55·174·179(boxed) 문자 완전 일치 | ✅ 문자 일치 |
+| §2 Part0 통계역학 | sec00·sec01·sec03:9·sec05:39 | ch1_sec02a `sec:sm-found`·bgbox(171-188)·ε̃(232)·Ξ₁(217)·sec02b μ(θ)·g(ξ) | ✅(ε̃·Ξ₁ 문자 일치) |
+| §3 평형중심 U_j(T) | sec00:8 | ch1_sec03 `평형 중심 U_j(T)…(N2)`·sec:center-Uj | ✅ |
+| §4 spinodal 조건 | sec01:133 | ch1_sec04 sec:hys-spinodal | ✅ |
+| §4.1 spinodal 근 u_j | sec04:21·appA·appendix:252 | ch1_sec04:34-35 `u_j≡√(1−2RT/Ω_j)` 문자 일치 | ✅ 문자 일치 |
+| §4.2 히스 gap | appendix:45·388·474 | ch1_sec04:103-104 gap 닫힌꼴·sec:hys-gap | ✅ |
+| §4 분기중심 γ_j h_{η,j}=1 특수형 | sec05:196 | ch1_sec04:130 `U_j^d=U_j+½σ_d h_{η,j}γ_j ΔU_j^hys`·136 γ=1 spinodal상한 | ✅ 특수형 정확 |
+| §5 ξ_eq logistic 평형종 | sec01:77·sec08:23 | ch1_sec05 `평형 진행률 ξ_eq…(N5,N4)`·sec:width-logistic | ✅ |
+| §7 broadening 세출처 | sec05:177·sec10:13 | ch1_sec07 `두-상 broadening…세 출처`·sec:broadening-sources | ✅ |
+| §8·§9 동역학꼬리 활성화엔트로피 ΔS_a,j | sec03:89 | ch1_sec08:91-99 `ΔH_a−TΔS_a`·Eyring prefactor(§9엔 무·꼬리 적분) | ✅(ΔS_a는 §8 소재) |
+| §13 LCO MIT | sec03:76 | ch1_sec13 `LCO order-disorder 와 MIT 2상역`·sec:lco-hys-mit | ✅ |
+| §14 반응엔트로피 삼분해·슬롯 | sec02:128 | ch1_sec14 `반응 엔트로피 삼분해와 슬롯 규칙(N9′)` 제목 일치 | ✅ |
+| §15 LCO 전자엔트로피 eq:Se | sec00:61·sec03:64,76 | ch1_sec15 `LCO 전자 엔트로피 항`·sec:lco-Se·`\label{eq:Se}`(82) | ✅(eq:Se-ch2와 별개) |
+| §17 MSMR | sec09:20 | ch1_sec17 `MSMR 동형과 전자항 plug-in` | ✅ |
+
+특별축 기호 4종 정합: (i) Ξ₁ — ch1·ch2 동일 기호(ch1_sec02a:217 "통일" 명시) ✅ (ii) ε̃=ε_0−k_BT ln q(T) — ch1_sec02a:232 = ch2_sec01:43 문자 일치 ✅ (iii) eq:Se-ch2(ch2) vs eq:Se(ch1_sec15:82) — 별개 컴파일 객체·라벨 충돌 회피 ✅ (iv) u_j 동명 — ch1 §4 √(1−2RT/Ω_j) vs ch2 θ_E/T, 양측 각주로 별개 명시 ✅.
+appendix 본문 절참조 §2/§4.1/§4.2/§7 전부 Ch1 실재·subsection 순서(§4.1=spinodal·§4.2=gap) 정합.
+미세 관찰(L 미만): §8·§9 참조에서 ΔS_a,j는 엄밀히 §8 소재(§9=꼬리 적분)이나 "동역학 꼬리"가 §8-9 걸치므로 집합 참조로 방어가능. Ch1 length L_q `exp[+(ΔH_a−TΔS_a)/RT]`(속도의 역수)와 ch2 rate `exp[−(...)]`는 역수관계로 부호 정합(모순 아님).
+
+---
+
+## REVIEW COMPLETE — 발견 총 3건 (H 0 / M 0 / L 3)
+
+**커버리지**: 담당 16개 파일 전문 정독 완료 — ch2_preamble·sec00~sec10·appA·appB·bib(각 "### 파일명" 헤더로 증빙) + appendix_phase_separation. 교차대조로 ch1_bib·ch1_sec02a·ch1_sec15·ch1_sec01·ch1_sec04·ch1_sec08 열람.
+
+**발견 요약(전부 L급·선재/명명/일관성, v1.0.20 도입 오류 아님)**:
+- C2O2-01 (L, sec01:82,85): keybox 일반형 $w_j=n_jRT/F$ 도입하나 두-상 임계 $\Omega_j>2RT$가 $n_j$ 스케일 미봉합 — 선재·평균장 자리당 임계로 방어가능.
+- C2O2-02 (L, ch2_preamble:35): bgbox 정의되나 Ch2 미사용 — B-003 의도(대칭)·페르미온/보손 실체는 Ch1 §2, 결함 아님.
+- C2O2-03 (L, sec04:61-63): $\Delta F_\vib\equiv RT\ln(1-e^{-\theta_E/T})$를 "편차"로 명명하나 절대량(편차규약은 ΔS_vib·ΔU_vib만) — 선재·결과 무영향.
+
+**의도된 변경 전건 정확 실행 확인(③축·②축)**:
+- **B-005**(sec03 중간식 인라인): 손 재유도 전 단계 통과 — 중간식·BE 항등식 2개·대입경로·eq:Svib_mode 회수 전부 정확. 표시블록·라벨·최종식 불변.
+- **U9**(sec05:168-169 dahn1991·ohzuku1993): 인용-주장(staging 상평형) 정합·과대인용 없음.
+- **U10**(sec02:9 ssec:litverif 후방참조): 타겟 실재·실인용 존재.
+- **C-005/006/007/017/018**(ch2_bib): 전건 CHANGE_LOG 대응·dahn1991·ohzuku1993 ch1_bib·원장 3자 문자 일치.
+- **C-019**(appendix [A5] Ch.17-18→18-19): 정정 정확·본문 [A5] 2곳 무변경.
+- **P6 표기 8건**(appendix 정규용액·격자기체): 주변 문장 훼손 0.
+
+**수치 검산 전건 통과(직접 재계산)**:
+- sec08 tab:worked 가중평균 = −0.204 mV/K(단순식 −0.134·config −0.070)·U_oc=74.4mV·ΔS=−19.7·Q_rev/I=+60.8mV·g_j·config_j·tab:qrev 5행.
+- appB 회귀 기준값 ↔ sec08 문자 완전 일치.
+- sec04 Einstein 4온도점 −3.74/0/+3.70/+9.14 µV/K.
+- appendix Ω=3RT: ξ_b=0.0707·f_b/RT=−0.0583·ξ_s=0.2113·f/RT=−0.0157·차원.
+
+**regression(②축)**: 담당 파일 중 sec07·08·09·10·appA·appB는 v1.0.19와 byte 동일; preamble(bgbox 1행)·sec00·sec01·sec04·sec06·sec10 무변경 또는 의도변경만. 자산 유실·의미 약화·문장 훼손·무단 수치변화 **0건**.
+
+## 가장 약한 1곳
+
+**ch2_sec05 srcbox 수치검증 + 그에 연동된 전 Ch2 정량 골격의 내부자료(numverif2026) 단일 의존** (sec05:87-111, appB B.2, sec08 (c)-(e)).
+
+본 장의 중심 주장 — "전이당 상수 표준값 + 분포만으로 임시 계단·외부 입력 없이 \emph{측정급 비선형} $\partial U_\oc/\partial T(x)$가 모델 안에서 자동 생성된다"(sec05:99·sec08·sec10) — 을 뒷받침하는 유일한 정량 증거가 내부·비피어리뷰 자료 `\cite{numverif2026}`이며, appB의 코드 회귀 기준값(−0.204 등) 전부가 여기로 소급한다. 문서 내에서 독립 검증 가능한 것은 **해석식↔같은 모델의 유한차분 자기일관성**뿐이고, 실측 흑연과의 정합은 원리적으로 부재하다.
+
+단, 이 최약점은 **정직하게 노출**되어 있다: sec05:102-110 "★전제 명시"가 "해석 미분 사슬의 자기일관성 검증이지 두-상 폭이 실제로 $n_jRT/F$로 스케일한다는 실측 검증이 아니다"라고, sec09 정직한 한계 (1)이 "시뮬레이션 자기일관성 검증 ≠ 실데이터 round-trip"이라고 명시 선언한다. 따라서 이는 **은폐된 결함이 아니라 공개된 공백**이며, 헌법 ②(정직 노출) 준수. 지적의 취지는 오류 주장이 아니라 — v1.0.20의 물리·수식·서지·교차정합이 전건 정확한 상태에서 — 이 장의 "측정급" 수사가 기대는 유일한 미검증 링크가 어디인지 명확히 표시하는 것이다. 실측 round-trip(sec:method 한계)이 이 링크를 닫기 전까지 단순식(−0.134)이 보수적 기준이라는 본문 자체의 처방이 적정하다.
+
