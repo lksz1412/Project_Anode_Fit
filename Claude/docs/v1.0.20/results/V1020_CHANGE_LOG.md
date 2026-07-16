@@ -20,6 +20,7 @@
 | B-003 | 보강 | ch1_preamble·ch2_preamble | bgbox 환경 없음 | `\newtheorem*{bgbox}{배경}` 신설(자족 블록 — 부록 이동 가능 설계, 사용자 D-2 유보 대응) | 렌더 체계 기존 박스 5종과 정합 | 무 | P2 |
 | C-009 | 서지추가 | ch1_bib:ashcroftmermin1976 | 미등재(Ch2 소관도 아님 — 원장 V1 만) | ch1_bib 등재(Solid State Physics, 1976 — Ch.2·Appendix C 장 수준) — §2.2 bgbox 인용 + P4 §15 Sommerfeld 예정 | 원장 V1(P1 검증) | 무 | P2 |
 | (B-001 확정 기록) | — | ch1_sec02a | — | 신규 라벨 3종 = eq:sm-baresum·eq:sm-baremid·eq:sm-bare. 스냅샷 diff: +3/−0/~0·자산 336 보존 — 기존 수식 해시 전부 불변 실증 | tools_check_structure diff(P2) | 무 | P2 |
+| C-010 | 서지추가 | ch1_bib:dreyer2011 | 미등재 | 등재(CMT 23, 211–231, 2011 — many-particle 준안정성 동반 논문) — §4 계보 다리·§7(iii-a) 병기 | 원장 V1(P1 검증) | 무 | P3 |
 
 ## ERRATA 요약 (P8 코드 영향 판정 원장)
 - (없음 — P0 시점)
