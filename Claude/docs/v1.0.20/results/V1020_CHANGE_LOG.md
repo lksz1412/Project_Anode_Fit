@@ -18,6 +18,8 @@
 | B-001 | 보강 | ch1_sec02a:§2.2(eq:partfn 주변) | 첫 유도부터 q(T) 포함(Ξ₁=1+q e^{-βΔ}) | **D7 2단 재배열**: [원형 — 내부 자유도 없는 2-상태 Ξ₁⁰=1+e^{-β(ε₀-μ)}·⟨n⟩ 박스(신규 라벨)] → [확장 — q(T) 도입·기존 eq:partfn~eq:fermifn 사슬] → [q≡1 원형 회수 검산]. **최종식·기존 라벨·수치 전부 불변**(재배열+중간식 노출) | 교수 감수 F-2·Ch2 §2.1 기존 순서와 정합·hill1960/mckinnon1983 | 무(물리 불변) | P2 |
 | B-002 | 보강 | ch1_sec02a:§2.2(원형 박스 직후) | 페르미온/보손 배경 부재 | 배경 bgbox 신설: 동일입자·교환대칭 → 페르미온(Pauli 배타·FD)/보손(BE) 최소 배경 → 본 문건 0/1 은 기하적 배타(양자 아님) 명시 → Ch2 실사용처(포논 BE·전자 FD) forward 다리 | F-1·mcquarrie1976 | 무 | P2 |
 | B-003 | 보강 | ch1_preamble·ch2_preamble | bgbox 환경 없음 | `\newtheorem*{bgbox}{배경}` 신설(자족 블록 — 부록 이동 가능 설계, 사용자 D-2 유보 대응) | 렌더 체계 기존 박스 5종과 정합 | 무 | P2 |
+| C-009 | 서지추가 | ch1_bib:ashcroftmermin1976 | 미등재(Ch2 소관도 아님 — 원장 V1 만) | ch1_bib 등재(Solid State Physics, 1976 — Ch.2·Appendix C 장 수준) — §2.2 bgbox 인용 + P4 §15 Sommerfeld 예정 | 원장 V1(P1 검증) | 무 | P2 |
+| (B-001 확정 기록) | — | ch1_sec02a | — | 신규 라벨 3종 = eq:sm-baresum·eq:sm-baremid·eq:sm-bare. 스냅샷 diff: +3/−0/~0·자산 336 보존 — 기존 수식 해시 전부 불변 실증 | tools_check_structure diff(P2) | 무 | P2 |
 
 ## ERRATA 요약 (P8 코드 영향 판정 원장)
 - (없음 — P0 시점)
