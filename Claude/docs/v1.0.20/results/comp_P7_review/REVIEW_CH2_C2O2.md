@@ -147,3 +147,50 @@ cross-ref 표시: Ch1 §1 V_n(line 16)·§17 MSMR(line 20) — 특별축.
 검토: 맺음이 4파생·6코너·계산예제(−0.204·<0.001µV/K)·tab:qrev 부호교대·방법론출구를 정확 요약, 서두 C-6(가역발열 목적함수)와 수미상관. 자기이력 서술 없음(D1 준수). cross-ref §7 broadening(line 13).
 가장 약한 곳: 없음(요약 절, 신규 주장 0).
 
+### ch2_appA_traps.tex (전문 정독 완료, 75행)
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| — | — | — | ② | v1.0.19와 완전 동일(diff 0). regression 없음. | bash diff. | 조치 불요. |
+
+검토: 함정표 12항(s/σ_d·θ/ξ·θ/θ_E·x̄/x·g 4종·F_vib/F·u_j/x·u_j vs Ch1 u_j·방전 라벨·ΔS/ΔS_a·ΔS_vib(T)/∂S_vib/∂x·S_e 라벨) 전부 본문과 정합. line 65-68 "S_e 라벨: eq:Se-ch2 vs Ch1 §15 eq:Se(별개 컴파일 객체)" = sec03 cross-ref 재확인. line 49-51 "u_j vs Ch1 §4 spinodal 근" = sec04 각주 정합.
+참고: line 42 "$\Delta F_\vib=RT\ln(1-e^{-\theta_E/T})$" 표기가 C2O2-03(sec04)의 절대량-편차 명명 이슈를 그대로 계승(내부 일관·결과 무영향).
+
+### ch2_appB_codemap.tex (전문 정독 완료, 70행)
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| — | — | — | ② | v1.0.19와 완전 동일(diff 0). regression 없음. | bash diff. | 조치 불요. |
+| — | — | — | ①/특별축 | **appB 회귀 기준값 ↔ sec08 수치 문자 일치 확인.** B.2 표: entropy_coefficient_x(0.25)=−0.204·단순식 −0.134·config −0.070 · U_oc=74.4mV · round-trip −0.204·<0.001µV/K · ΔS=−19.7·Q_rev/I=+60.8mV · 5점(−0.307/−0.204/−0.089/+0.044/+0.218; +91.5/+60.8/+26.6/−13.2/−64.9) · 175점 파생A — sec08/tab:qrev와 전부 일치. | appB B.2 vs sec08(a-e)·tab:qrev 대조. | 조치 불요. |
+
+검토: doc-leads 프레이밍(코드가 문건 구현)·함수명 부록B 국한(A5 준수)·B.3 θ_E 미지정 bit-exact 하위호환(sec04 C-61 정합)·B.4 입력규약(s=+1·두-상 w 자유폭) 정합.
+
+### ch2_bib.tex (전문 정독 완료, 28행)
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| — | — | — | ②/③ | 변경 6건 전부 CHANGE_LOG 대응: 헤더 14→16 카운트·dahn1991 신설(C-017)·ohzuku1993 신설(C-018)·msmr_partI 023502(C-005)·msmr_partII 제목전문+103505(C-006)·hysteresis2018 179-184(C-007). 무단 변경 0. | bash diff; CHANGE_LOG. | 조치 불요. |
+| — | — | — | ③ | **dahn1991·ohzuku1993 3자 정합 확인.** ch2_bib(line 9-10) = ch1_bib(line 5-6) 저자·제목·권·쪽·DOI 문자 완전 동일; 원장 V1 등재 서지와 일치. | ch1_bib/ch2_bib/원장 대조. C-017 "3자 정합" 명세 충족. | 조치 불요. |
+
+검토: bibitem 16개 실카운트 확인(15외부+numverif2026). msmr_partI 식별함정 각주(Ch1 Part1[ECS Adv ad7d1c]과 별개) 보존. numverif2026 [내부자료] 표기 유지.
+가장 약한 곳: dahn1991 쪽번호 "9170"은 article/시작쪽만(PRB staging 논문 관례) — ch1_bib·원장 모두 동일 표기라 정합, 문제 아님.
+
+### ch1_bib.tex (교차 대조 목적 정독, 46행 — 담당 청크 아님·읽기만)
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| — | — | — | ③ | dahn1991(line 5)·ohzuku1993(line 6)이 ch2_bib 신규 2종과 문자 완전 동일 = 3자 정합 성립. 헤더 "36종" 실카운트 36 일치(P1 28 + P2/P4 C-009~C-016 8건 = 36). | 실카운트; CHANGE_LOG C-008~C-016. | 조치 불요(Ch1 소관, 대조만). |
+
+### appendix_phase_separation.tex (전문 정독 완료, 497행)
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| — | — | — | ②/③ | 변경 전부 의도됨: line 3·39 버전스탬프(P6 유지판정)·정규용액×7(44/104/163/210/245/352/380)·격자기체×1(69) 띄어쓰기 정규화·C-019 [A5] Ch.17-18→18-19. 무단 물리변경 0. | bash diff; CHANGE_LOG C-019; rubric C2. | 조치 불요. |
+| — | — | — | ③(P6) | **표기 8건 주변 문장 훼손 없음.** 각 "정규용액(regular solution)"/"격자기체(lattice gas)" 병기·문맥 온전, 순수 띄어쓰기 제거. | 8곳 문맥 정독. | 조치 불요. |
+| — | — | — | ③(P7) | **C-019 [A5] 정정 정확.** line 494 "Ch.~18--19 (Cahn--Hilliard 선형화·핵생성 이론)" = 원장 [A5](Ch.18 Spinodal→CH선형화·Ch.19 Nucleation). 본문 [A5] 2곳(line 403 핵생성·line 439 spinodal분해) 장번호 무표기·무변경 — C-019 "2곳 무변경" 명세 충족. 사용처-장귀속 정합. | line 403·439·494 대조; 원장 [A5]. | 조치 불요. |
+
+수식·수치 전수 재검산(전부 정합): eq:app-Smix(Stirling) OK · eq:app-Umix(쌍에너지 잉여) OK · eq:app-fxi 정규용액 OK · eq:app-chord/convex/gain OK · eq:app-statA/ct 공통접선 OK · eq:app-mus $\mu_B=g+(1-\xi)g'$·$\mu_A=g-\xi g'$ OK · eq:app-binodal($T_c=\Omega/2R$·Ω=3RT서 ξ_b=0.0707·f_b/RT=−0.0583) 재계산 OK · eq:app-spinodal $u=\sqrt{1-2RT/\Omega}$·ξ_s=0.2113·f/RT=−0.0157 OK · eq:app-maxwell 등면적 OK · eq:app-rstar $r^*=2\gamma/|\Delta g_v|$·$\Delta G^*=16\pi\gamma^3/3\Delta g_v^2$ OK · Cahn-Hilliard μ=f'−2κ∇²ξ·R(k)·k_m=k_c/√2 OK · 차원 [κ]=J/m·[M]=m⁵J⁻¹s⁻¹ OK.
+[A1]-[A5] 원장 대조: 전건 일치([A1] sentence-case=서지재량 허용·[A5] "Wiley"=브랜드 통용 허용). μ(θ)=μ⁰+RTln[θ/(1-θ)]+Ω(1-2θ)(line 206)는 ch2 eq:Veq_BW와 부호 정합.
+cross-ref 표시: 본문 절참조 §2(Part0)·§4.1(spinodal 근)·§4.2(히스 gap)·§7(broadening) — Ch1 §4.1/§4.2 실재는 특별축에서 확인.
+가장 약한 곳: ★기호 배향 — 부록 ξ = 본문 θ(점유율), 본문 ξ(=1−θ)와 여집합. 같은 글자 ξ가 부록·본문에서 반대 양. line 8-9·57-63이 "f 우함수라 binodal·spinodal·Maxwell 결과는 두 좌표 동일, 1계 미분만 부호 반전(§4.2가 처리)"로 명시 한정 → 물리 정확·정직 처리이나, 절 넘나들 때 최대 G-follow 혼동 위험. 결함 아님(강한 가드).
+

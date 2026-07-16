@@ -103,3 +103,16 @@
 - refute 시도: L54 "가중 분모 ΣQ_jg_j=6.18 Q_cell/V 가 곧 그 점의 측정 dQ/dV" — d(Qx̄)/dU=ΣQ_jg_j 항등으로 옳음(반박 실패). tab:qrev 캡션의 경계행(x̄≈0.75) 부호 반전 가능 한정 — 단순식 값 재계산 시 +0.044→단순식으로는 상승( +0.070 급) 방향성 확인, 한정 서술 타당.
 - 발견: 없음.
 
+### ch2_sec09_method.tex (전문 정독 완료, 43행)
+
+- ② 구본 대비: diff 완전 동일 — regression 없음.
+- ③ 교차 정합: L16 "Chapter 1 §1 의 V_n=V_app−σ_d|I|R_n" — ch1_sec01:179 eq:vn `\boxed{V_n=V_\app-\sigma_d|I|R_n}` 과 문자 일치. L19–20 "MSMR(Multi-Species, Multi-Reaction) 절차(Chapter 1 §17)" — §17=ch1_sec17_msmr(MSMR 동형) 일치, 풀네임은 rubric C4·원장 확정 명칭("Multi-Species, Multi-Reaction", bakerverbrugge2018 명명 원전)과 일치.
+- ① 절차 5단계 논리 검토: 저율 준평형→분극 분리→다온도 동시 피팅→ΔS⁰_j=F dU_j/dT→분포 항 자동 — 앞 절 결과와 전건 정합, 3온도점 요건(§2.4 연계)도 일관. 정직한 한계 5건은 Gn 관용(결함 아님) — 그 중 (1) "시뮬 자기일관성≠실측 검증" 구분은 sec05 srcbox 전제 명시와 동일 논조로 일관.
+- 발견: 없음.
+
+### ch2_sec10_closing.tex (전문 정독 완료, 25행)
+
+- ② 구본 대비: diff 완전 동일 — regression 없음.
+- ① 맺음 요약의 사실 정합: "수치 검증 완료(파생 A)"·"<0.001 μV/K 일치"·"다섯 SOC 표"·"저-x̄ 발열·고-x̄ 흡열" — 본문 실적과 전건 일치(sec08 재계산으로 이미 독립 확인). "broadening 기원은 Chapter 1 §7" 재확인 — 일치.
+- 발견: 없음.
+

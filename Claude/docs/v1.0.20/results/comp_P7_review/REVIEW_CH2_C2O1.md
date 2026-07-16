@@ -98,3 +98,35 @@
 - tab:worked 전 셀 손검산: w=RT/F=25.69 mV·g_j=ξ(1−ξ)/w(9.30/4.77/2.61/0.19)·ΔS⁰/F(−0.166/−0.052/0/+0.301=ΔS⁰/96485)·config=(R/F)ln[ξ/(1−ξ)](R/F=0.08617 mV/K) 전건 정합. 비중 합=1.000.
 - (e): ΔS=F·(−0.204e−3)=−19.68≈−19.7·Q̇/I=−298.15·(−0.204e−3)=+60.82≈+60.8 mV 정합. tab:qrev 5행 ΔS=F∂U/∂T·Q̇=−T∂U/∂T 내부정합(U_oc 43.5→195.2 mV 탈리튬화 상승 정합).
 - refute: tab:qrev 중간열 표시반올림(C2O1-05)이 유일. 최약점 = 그 표시-정밀도.
+
+### ch2_sec09_method.tex (전문 정독 완료, 43행)
+- 구본 대비 무변경(diff 공백).
+- procedurebox 5단계 정합: 저율 다온도 dQ/dV·분극분리(Ch1 §1 V_n=V_app−σ_d|I|R_n, 16행)·동시피팅=MSMR(Multi-Species, Multi-Reaction, Ch1 §17, 20행)·ΔS⁰_j=F dU_j/dT+Allart 대조·봉우리내부 자동. ΔS⁰_j=F dU_j/dT 는 ∂U_j/∂T=ΔS_rxn,j/F 와 정합.
+- 정직한 한계 5항(시뮬 자기일관성≠실측·히스 경로의존 범위밖·Ω(T) 미확보·elec 흑연소수·전셀 범위밖) 헌법 ② 정직 노출.
+- 교차참조: Ch1 §1(V_n)·§17(MSMR). MSMR 풀네임 원장 C4 일치.
+- refute: 결함 없음. 최약점 = MSMR 대응 주장(msmr_partI/II 인용, 적정).
+
+### ch2_sec10_closing.tex (전문 정독 완료, 25행)
+- 구본 대비 무변경(diff 공백).
+- 4파생 역할 요약·6코너·"상수+분포" 자기일관·계산예제(<0.001 µV/K)·5점 부호교대·가역발열 수미상관 — 본문과 전건 정합(신규 내용 없음).
+- 교차참조: Ch1 logistic(8행)·§7(broadening, 13행).
+- refute: 요약절, 본문과 불일치 없음. 최약점 = 없음(순 요약).
+
+### ch2_appA_traps.tex (전문 정독 완료, 74행)
+- 구본 대비 무변경(diff 공백).
+- 함정표 12항 전부 본문 근거절과 정합: s vs σ_d(ssec:logistic)·θ/ξ·θ/θ_E·x̄/x·g 4종·F_vib/F·u_j/x·u_j vs Ch1 §4 spinodal 근(별개)·방전(I>0) 라벨·ΔS/ΔS_a·ΔS_vib(T)/∂S_vib/∂x·S_e 라벨(eq:Se-ch2 vs Ch1 §15 eq:Se).
+- 42행 "F_vib=몰당 Helmholtz(ΔF_vib=RT ln(1−e^{−θ_E/T}))" — C2O1-03 과 연동(ΔF_vib=F_vib 로 취급, sec04 "편차" 명명이 loose 임을 재확인).
+- 교차참조: Ch1 §4 spinodal u_j·§15 eq:Se(동명 별개 명시) — Ch1 대조 예정.
+- refute: 결함 없음. 최약점 = F_vib/ΔF_vib 명명 loose(C2O1-03 로 로그됨).
+
+### ch2_appB_codemap.tex (전문 정독 완료, 69행)
+- 구본 대비 무변경(diff 공백).
+- **회귀 기준값 sec08 문자 일치 확인(과제)**: entropy_coefficient_x(0.25)=−0.204(단순식 −0.134·config −0.070)·U_oc=74.4 mV·round-trip −0.204(<0.001 µV/K)·ΔS=−19.7·Q̇/I=+60.8 mV·5점(−0.307/−0.204/−0.089/+0.044/+0.218, +91.5/+60.8/+26.6/−13.2/−64.9)·175점 — 전건 sec08/tab:qrev 와 문자 일치.
+- doc-leads 프레이밍(문건 권위·코드 이후 개정)·하위호환 bit-exact(θ_E 미지정)·입력규약(s=+1·두-상 자유폭) 정합. 함수명 부록 B 전용(rubric A5 준수).
+- refute: 결함 없음. 최약점 = tab:qrev 값 승계라 C2O1-05 표시반올림이 appB:48-49 에도 전파(동일 원천, 별건 아님).
+
+### ch2_bib.tex (전문 정독 완료, 27행)
+- 구본 대비: 헤더 14→16 bibitem 정정 · dahn1991·ohzuku1993 신규(C-017/018) · msmr_partI 023502(C-005) · msmr_partII 제목전문+103505(C-006) · hysteresis2018 179–184(C-007). 전부 CHANGE_LOG·REFERENCE_LEDGER 정합.
+- 카운트 실측: 외부 15 + numverif2026 내부 1 = 16 정확. 신규 dahn1991·ohzuku1993 모두 sec05:169 U9 에서 실인용(orphan 없음). 전 15 외부키 본문 인용처 존재 확인.
+- dahn1991(PRB 44, 9170, 1991·DOI 10.1103/PhysRevB.44.9170)·ohzuku1993(JES 140, 2490, 1993·DOI 10.1149/1.2220849·제목 전문) 원장 문자 일치. ch1_bib 3자 정합은 Ch1 대조에서 확인 예정.
+- refute: 서지 오류 없음. 최약점 = ch1_bib 문자일치 미확인(다음 단계).
