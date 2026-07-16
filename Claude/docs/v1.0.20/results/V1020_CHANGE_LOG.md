@@ -21,6 +21,13 @@
 | C-009 | 서지추가 | ch1_bib:ashcroftmermin1976 | 미등재(Ch2 소관도 아님 — 원장 V1 만) | ch1_bib 등재(Solid State Physics, 1976 — Ch.2·Appendix C 장 수준) — §2.2 bgbox 인용 + P4 §15 Sommerfeld 예정 | 원장 V1(P1 검증) | 무 | P2 |
 | (B-001 확정 기록) | — | ch1_sec02a | — | 신규 라벨 3종 = eq:sm-baresum·eq:sm-baremid·eq:sm-bare. 스냅샷 diff: +3/−0/~0·자산 336 보존 — 기존 수식 해시 전부 불변 실증 | tools_check_structure diff(P2) | 무 | P2 |
 | C-010 | 서지추가 | ch1_bib:dreyer2011 | 미등재 | 등재(CMT 23, 211–231, 2011 — many-particle 준안정성 동반 논문) — §4 계보 다리·§7(iii-a) 병기 | 원장 V1(P1 검증) | 무 | P3 |
+| B-004 | 보강 | ch1_sec15:§15.1 | MIT 배경(밴드/Mott 절연체 구분·1차 전이 기작) 부재 — 개념이 전제로 사용됨 | MIT 배경 bgbox 신설(경쟁 저작): 밴드 절연체 vs Mott 절연체 → LiCoO₂(x=1)=밴드 절연체 → 탈리튬화 정공의 1차 MIT = 불순물 준위 Mott 전이(Marianetti) → 게이트 현상학화 다리. **기존 식·라벨 불변** | F-4·mott1968/imada1998/marianetti2004/menetrier1999 | 무 | P4 |
+| C-011 | 서지추가 | ch1_bib:mott1968 | 미등재 | RMP 40, 677–683 (1968) — Mott 원전 | 원장 V1 | 무 | P4 |
+| C-012 | 서지추가 | ch1_bib:imada1998 | 미등재 | RMP 70, 1039–1263 (1998) — MIT 리뷰 앵커 | 원장 V1 | 무 | P4 |
+| C-013 | 서지추가 | ch1_bib:marianetti2004 | 미등재 | Nat. Mater. 3, 627–631 (2004) — LCO 불순물 Mott 전이 기작 | 원장 V1 | 무 | P4 |
+| C-014 | 서지추가 | ch1_bib:vanderven1998 | 미등재 | PRB 58, 2975–2987 (1998) — LCO 제일원리 상도표·order–disorder | 원장 V1 | 무 | P4 |
+| C-015 | 서지추가 | ch1_bib:msmr_origin2017 | 미등재 | JES 164(11), E3243–E3253 (2017) — MSMR 열역학 원전(Verbrugge 외 5인·byline 이니셜 없음) | 원장 V1 | 무 | P4 |
+| C-016 | 서지추가 | ch1_bib:bakerverbrugge2018 | 미등재 | JES 165(16), A3952–A3964 (2018) — "Multi-Species, Multi-Reaction" 명명 원전 | 원장 V1 | 무 | P4 |
 
 ## ERRATA 요약 (P8 코드 영향 판정 원장)
 - (없음 — P0 시점)
