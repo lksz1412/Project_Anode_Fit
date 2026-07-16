@@ -1,0 +1,188 @@
+% ====================================================================
+% §2.2 configurational 엔트로피 — 점유 분포의 흩어짐
+% ====================================================================
+\section{점유 분포에서 configurational 엔트로피로}\label{sec:config}
+
+앞 절은 점유 분포 $\avg{n}=\theta$ 를 세우고 그 여집합 $\xi=1-\theta$ 가 Chapter 1 의 평형 종임을 보였다. 이제
+그 분포에서 엔트로피를 끌어낸다. 한 자리가 점유될 확률 $\theta$, 빌 확률 $1-\theta$ 인 베르누이 분포의
+흩어짐이 곧 configurational 엔트로피이고, 그 부분몰 형태가 봉우리 내부 $\partial U_\oc/\partial T$ 의 $x$-의존을
+낳는다는 것을 이 절이 유도한다. 문헌 흑연 측정과의 정합으로 절을 닫는다.
+
+\subsection{$S_\config$ 와 부분몰 형태}\label{ssec:sconfig}
+한 자리가 점유될 확률 $\theta$, 빌 확률 $1-\theta$ 인 베르누이 분포의 정보 엔트로피(Boltzmann--Shannon
+엔트로피)는, 두 확률에 각각 $-\ln p$ 를 곱해 더한 것을 자리 1몰당으로 환산한 값이다:
+\begin{equation}
+\boxed{\;S_\config \;=\; -R\sum_i p_i\ln p_i
+\;=\; -R\bigl[\theta\ln\theta + (1-\theta)\ln(1-\theta)\bigr]\;.}
+\label{eq:Sconfig}
+\end{equation}
+이것은 Bragg--Williams 자유에너지~\eqref{eq:BW} 의 둘째 항을 $-T$ 로 나눈 것과 정확히 일치한다($g$ 의 엔트로피
+부분이 $-T\,S_\config$ 다). 곧 \S\ref{ssec:BW} 에서 자유에너지로 도입한 혼합 항이, 점유 분포의 엔트로피로서
+독립적으로 유도된다 --- 자유에너지 모형과 분포 통계가 같은 식으로 만나는 지점이다.
+
+가역 발열에 들어가는 것은 $S_\config$ 자체가 아니라 \emph{Li 1몰 삽입당} 엔트로피 변화, 곧 부분몰량이다.
+식~\eqref{eq:Sconfig} 를 $\theta$ 로 미분하면, $\theta\ln\theta$ 항이 $\ln\theta+1$ 을, $(1-\theta)\ln(1-\theta)$
+항이 $-\ln(1-\theta)-1$ 을 주어 상수 $\pm1$ 이 상쇄되고
+\begin{equation}
+\frac{\partial S_\config}{\partial\theta}
+\;=\; -R\bigl[\ln\theta + 1 - \ln(1-\theta) - 1\bigr]
+\;=\; -R\,\ln\!\frac{\theta}{1-\theta},
+\label{eq:dSconfig}
+\end{equation}
+가 남는다. 이 부분몰 형태가 이 장의 중심 결과 중 하나이며, 다음 소절이 이것을 전위의 온도 미분과 잇는다.
+
+\subsection{온도 미분 $\partial V/\partial T|_\xi$ --- $w$ 가 이미 담고 있던 config}\label{ssec:dvdt}
+식~\eqref{eq:dSconfig} 를 식~\eqref{eq:Vxi} 의 logistic 역함수와 나란히 두면 두 식이 같은 로그 구조를 공유함이
+드러난다. 식~\eqref{eq:Vxi} 를 $T$ 로 미분하면(우변 첫 항 $U_j$ 가 $\partial U_j/\partial T$ 를, 둘째 항의
+계수 $RT/F=w$ 가 명시적 $T$-의존을 준다)
+\begin{equation}
+V(\xi)=U_j+\frac{RT}{F}\ln\!\frac{\xi}{1-\xi}
+\;\Longrightarrow\;
+\frac{\partial V}{\partial T}\Big|_\xi
+= \frac{\Delta S_{\rxn,j}}{F}\;+\;\frac{R}{F}\ln\!\frac{\xi}{1-\xi}
+= \frac{\Delta S_{\rxn,j}}{F}\;+\;\frac{1}{F}\frac{\partial S_\config}{\partial\theta}\Big|_{\theta=1-\xi},
+\label{eq:dVdT_config}
+\end{equation}
+임을 얻는다. 첫 항은 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 이고, 둘째 항은 $w=RT/F$ 의 명시적 $T$
+의존이 낳는다 --- 점유 $\theta=1-\xi$ 에서
+$\partial S_\config/\partial\theta|_{\theta=1-\xi}=-R\ln[(1-\xi)/\xi]=+R\ln[\xi/(1-\xi)]$ 이고, Li 삽입이 점유를
+늘리는 방향이라 부호가 $+$ 로 맞물린다. 계수 $R/F$ 는 자리당 $n_j{=}1$ 서식이며 전이별 일반형은 $n_jR/F$ 다
+(후술 \S\ref{ssec:overlap} 식~\eqref{eq:dxidT}). 곧 \textbf{Chapter 1 의 logistic 폭 $w=RT/F$ 가 이미 부분몰
+configurational 엔트로피를 담고 있었다}. 봉우리 내부 $\partial U_\oc/\partial T(x)$ 의 $x$-의존(비선형 모양)은
+새 물리가 아니라, 점유 분포의 엔트로피가 $w$ 의 온도 의존을 통해 자동으로 들어온 것이다.
+
+부호는 명확하다(그림~\ref{fig:occ_config}; 규약: $\xi$ = 탈리튬화 진행률, $\xi\to1$ = Li 희박, $\xi\to0$ = 만충):
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item $\xi\to1$ (희박, Li-poor): $\ln[\xi/(1-\xi)]\to+\infty$ --- config 부분몰 엔트로피 $\to+\infty$. 희박
+한계에서 한 Li 를 더 넣을 자리의 \emph{선택지}가 폭증하므로 엔트로피가 발산한다. 저-$x$ 에서 관측되는 큰 양의
+$\Delta S$($+29$ J\,mol$^{-1}$K$^{-1}$ 급)는, 모델 분해에서 이 분포(config) 발산 몫과 전이 중심 표준값 몫이
+나눠 담당한다(귀속의 정량 한정은 표~\ref{tab:ds} 도입 문단) --- dilute 격자기체 모형이 같은 발산을 예측한다
+\cite{occupation2019}(방법 수준$\cdot$dilute 격자기체 한정 참조).
+\item $\xi\to0$ (만충, Li-rich): $\ln[\xi/(1-\xi)]\to-\infty$ --- config 부분몰 엔트로피 $\to-\infty$. 거의 다 찬
+격자에 마지막 Li 를 끼우면 배열 선택지가 사라져 엔트로피가 음으로 발산한다.
+\item $\xi=\tfrac12$ (중심): $\ln 1=0$ --- config 기여 $=0$. 봉우리 중심에서 부분몰 config 엔트로피가 정확히
+사라지고, $\partial V/\partial T$ 는 표준값 $\Delta S_{\rxn,j}/F$ 로 환원된다.
+\end{itemize}
+이 세 분기의 부호는 \S\ref{ssec:logistic} 의 규약 $\xi=1-\theta$ 에 매여 있다 --- 만약 점유율 $\theta$ 와
+진행률 $\xi$ 를 뒤섞으면 $\ln[\xi/(1-\xi)]$ 의 인자가 뒤집혀 희박$\cdot$만충 극한의 발산 부호($\pm\infty$)가
+반대로 읽히므로, 두 이름을 끝까지 구분해야 한다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.05cm,y=1.0cm]
+% ---- left panel: occupation distribution <n>(eta) ----
+\begin{scope}
+  \draw[->,>=Stealth] (-2.6,0) -- (2.8,0) node[right]{\small $(\mu-\varepsilon_0)/\kB T$};
+  \draw[->,>=Stealth] (0,-0.15) -- (0,3.0) node[above]{\small $\langle n\rangle$};
+  \draw[dashed] (-2.6,2.5) -- (2.6,2.5) node[right,yshift=-2pt]{\scriptsize $1$};
+  \draw[dashed] (0,1.25) -- (0.12,1.25); \node[left] at (-0.05,1.25){\scriptsize $\tfrac12$};
+  % logistic curve n = 1/(1+e^{-eta}), scaled to height 2.5
+  \draw[very thick,blue] plot[smooth,domain=-2.6:2.6,samples=60]
+    (\x, {2.5/(1+exp(-\x))});
+  \node[blue] at (1.55,0.95) {\scriptsize $\langle n\rangle=\dfrac{1}{1+e^{-(\mu-\varepsilon_0)/\kB T}}$};
+  \node[below] at (0,-0.55) {\small (a) occupation distribution = Ch1 logistic};
+\end{scope}
+% ---- right panel: S_config(theta) ----
+\begin{scope}[xshift=7.3cm]
+  \draw[->,>=Stealth] (-0.15,0) -- (3.0,0) node[right]{\small $\theta$};
+  \draw[->,>=Stealth] (0,-0.15) -- (0,3.0) node[above]{\small $S_\mathrm{config}/R$};
+  \draw[dashed] (2.5,0) -- (2.5,0.1) node[below,yshift=-3pt]{\scriptsize $1$};
+  % S = -[theta ln theta + (1-theta) ln(1-theta)], max ln2~0.693 at 0.5; x:theta*2.5, y: S/0.693*2.5
+  \draw[very thick,red] plot[smooth,domain=0.02:0.98,samples=60]
+    (\x*2.5, {(-(\x*ln(\x)+(1-\x)*ln(1-\x)))/0.6931*2.5});
+  \draw[dashed] (1.25,0) -- (1.25,2.5);
+  \node[red,above right] at (1.25,2.5) {\scriptsize max $\ln 2$ @ $\theta=\tfrac12$};
+  % partial molar arrows (diverging)
+  \node[below] at (0.15,-0.02) {\scriptsize $\partial S/\partial\theta\!\to\!+\infty$};
+  \node[below] at (1.95,-0.02) {\scriptsize $\to\!-\infty$};
+  \node[below] at (1.25,-0.55) {\small (b) configurational entropy};
+\end{scope}
+\end{tikzpicture}
+\caption{(a) 단일 자리 점유 분포 $\langle n\rangle$~\eqref{eq:occ} --- Fermi--Dirac 와 동형이며 Chapter 1
+logistic 평형 점유의 기원. (b) configurational 엔트로피 $S_\config(\theta)$~\eqref{eq:Sconfig}; 중심
+$\theta=\tfrac12$ 에서 최대 $\ln 2$, 부분몰 $\partial S_\config/\partial\theta=-R\ln[\theta/(1-\theta)]$ 가 양
+끝에서 $\pm\infty$ 로 발산(봉우리 내부 $\partial U_\oc/\partial T$ 의 분포 항).}
+\label{fig:occ_config}
+\end{figure}
+
+\subsection{분해 원리 --- 이중계산 금지 (파생 B 본체)}\label{ssec:decomp}
+봉우리 내부의 이 분포 항이 전이 중심 표준값과 어떻게 나뉘어 세어지는지를 여기서 못박는다. 이것이 본 장에서
+가장 흔한 실수(같은 물리를 두 번 세기)를 막는 원리이며, 겹침 합성에서 파생 B(\S\ref{ssec:derivB})가 이 원리를
+수치로 재확인한다.
+\begin{warnbox}
+\textbf{이중계산 금지 (파생 B).} 먼저 표기를 고정한다: \textbf{전이 중심 표준 반응 엔트로피}를
+$\Delta S^0_j\equiv\Delta S_{\rxn,j}\equiv[\Delta S(x)]_{\xi=1/2}$ 로 한 기호로 정의한다(봉우리 중심 $\xi=\tfrac12$
+에서 측정되는 값, 그 자리에서 config$=0$). 식~\eqref{eq:dVdT_config} 의 두 항은 \emph{서로 다른 출처}이며 한
+번씩만 센다. 첫 항 $\Delta S^0_j$ 는 중심 표준값으로 vibrational$\cdot$electronic 의 중심 기여를 이미 흡수한
+상수다. 둘째 항 $+(1/F)\partial S_\config/\partial\theta|_{\theta=1-\xi}=+(R/F)\ln[\xi/(1-\xi)]$ 은 봉우리
+\emph{내부}의 $x$-의존을 logistic 폭 $w$ 가 주는 \emph{분포 항}이다. configurational 엔트로피를 $\Delta S^0_j$ 에
+\emph{또} 더하면 같은 물리를 두 번 세는 것이다. 측정 $\Delta S(x)$ 의 올바른 분해는
+\[
+\Delta S(x) \;=\; \underbrace{\Delta S^0_j}_{\text{중심 표준값}}
+\;+\;\underbrace{R\ln\frac{\xi}{1-\xi}}_{\text{분포 config (}w\text{ 가 줌)}}
+\;+\;\underbrace{\delta S_{\vib/e}(x)}_{\text{전이 폭 내 급변 시만 분리}},
+\]
+이며 $\Delta S^0_j$ 와 config 항은 결코 겹치지 않는다(중심에서 config$=0$ 이므로 정의가 모순 없이 맞물린다).
+여기서 $\delta S_{\vib/e}(x)$ 는 vib$\cdot$electronic 의 \emph{중심값을 뺀} 전이 폭 내 잔차로, 보통 $0$(중심값에
+흡수)이고 MIT(insulator-to-metal transition) 같은 급변이 있을 때만 살린다(\S\ref{ssec:elec}). 이 분해는
+Chapter 1 §14 의 반응 엔트로피 삼분해$\cdot$슬롯 규칙과, \emph{중심 표준값과 봉우리 내부 config 분포를 별개
+출처로 가르는} 골격을 공유한다(세 성분의 슬롯 배정 전부가 아니라 config 중심/분포 분리에 한정한 대응이다).
+\end{warnbox}
+
+\subsection{문헌 검증 --- Chapter 1 staging 엔트로피와의 정합}\label{ssec:litverif}
+이 분포 기반 분해가 실제 흑연 측정과 맞는지 확인한다. 문헌은 흑연 전극의 부분몰 엔트로피 $\Delta S(x)$ 가
+저 Li 분율($x<0.2$--$0.25$)에서 양(configurational 우세), 고 분율에서 음(vibrational 우세)이며, stage
+$2\to1$($x\approx0.5$)에서 급변을 보인다고 보고한다 \cite{reynier2003,allart2018}. 정량으로는 전극
+$\Delta S\approx+29$ J\,mol$^{-1}$K$^{-1}$ @\,$x=0.08$, $-5\sim-16$ J\,mol$^{-1}$K$^{-1}$ @\,$x>0.5$ 이고
+\cite{allart2018}, MCMB(mesocarbon microbead) 흑연 엔트로피 계수가 저-$x$ 에서 $+3\sim4$ mV/K,
+$\sim0.2$ SOC 부근에서 부호 반전한다고 보고된다 \cite{msmr_partII}.\footnote{★단위 주의: 이 $+3\sim4$ mV/K 는
+본 문서 스케일($\Delta S\approx+29$ J\,mol$^{-1}$K$^{-1}$ $\Rightarrow$ $+0.30$ mV/K)과 자릿수가 다르다. 보고
+조건$\cdot$단위가 다를 가능성이 있어 원문 재확인 대상[미검증]이며, 본 문서 입력값과 무관한 참고 인용이다.}
+표~\ref{tab:ds} 는 Chapter 1 의 전이별 중심 표준값 $\Delta S^0_j=+29\to0\to-5\to-16$ J\,mol$^{-1}$K$^{-1}$ 가
+이 문헌 프로파일과 부호$\cdot$규모에서 정합함을 보인다 --- 곧 분포 spine 의 입력 표준값이 임의값이 아니라
+측정에 닿아 있다. 단 $4\!\to\!3$ 행의 $+29$ 측정점($x{=}0.08$)은 창의 끝이라 분포(config) 항이 겹치는
+자리이므로, 중심 표준값과의 등치는 구간 대표값 수준의 대조다($-16$@$x>0.5$ 쪽은 평탄역 내부 대조라 이 한정이
+필요 없다).
+
+\begin{table}[t]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\caption{전이별 중심 표준값 $\Delta S^0_j$ $\leftrightarrow$ 문헌 흑연 $\Delta S(x)$(Allart 등
+\cite{allart2018}, 전극 분리). 이 표의 $\Delta S^0_j$ 는 봉우리 중심 표준값(파생 B); 봉우리 내부 $x$-의존은
+식~\eqref{eq:dSconfig} 의 분포 항이 추가로 준다.}
+\label{tab:ds}
+\begin{tabular}{l c c c}
+\toprule
+전이 & $x$ 범위 & $\Delta S^0_j$ [J\,mol$^{-1}$K$^{-1}$] & 문헌 $\Delta S(x)^\dagger$ \\
+\midrule
+$4\!\to\!3$ & 0.08–0.16 & $+29.0$ & $+29$ @\,$x{=}0.08$ (양 끝, 경계 정합 --- 값 등치는 도입 문단의 한정) \\
+$3\!\to\!2\mathrm L$ & 0.16–0.25 & $0.0$ & 중간 하강 구간 $0\!\to\!-16$ (범위) \\
+$2\mathrm L\!\to\!2$ & 0.25–0.50 & $-5.0$ & 중간 하강 구간 (범위) \\
+$2\!\to\!1$ & 0.50–1.00 & $-16.0$ & $-16$ @\,$x{>}0.5$ (양 끝, 정확) \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize $\dagger$ Chapter 1 의 4 주요 plateau 전이와 Allart 등 \cite{allart2018} 의 세분 region(dilute
+LiC$_{24}$ 포함, 양 끝 reg IV/reg I)은 $x$-경계가 $1{:}1$ 이 아니다. \emph{양 끝}($+29$ @저-$x$, $-16$ @$x{>}0.5$)
+은 경계 위치에서 정합하고(단 $+29$ 끝점은 config 항이 겹치는 자리라 값 등치는 구간 대표 수준 --- 도입
+문단의 한정), 중간 두 전이는 $\Delta S$ 가 $0\to-16$ 으로 하강하는 \emph{구간 안}에 놓인다(점-대-점이 아닌
+범위 정합). 해상도 차이일 뿐 추세$\cdot$부호는 일관.}
+\end{table}
+
+엔탈피 쪽 표준값 $\Delta H^0_j$ 는 \emph{기준 차이}에 주의해야 한다: Chapter 1 의 $\Delta H_{\rxn,j}$ 는
+\emph{전이별}(differential) 반응 엔탈피이고, calorimetry 의 형성 엔탈피(LiC$_6$ $-13.9$, LiC$_{12}$ $-24.8$
+kJ/mol\,Li \cite{chemmater2015})는 \emph{누적}(formation, graphite$+$Li 금속 기준)이라 직접 등치할 수 없다 ---
+비교하려면 형성 엔탈피의 $x$-미분으로 환산해야 한다. 전이 중심에서는 $\Delta H^0_j=-FU_j+FT\,(\partial
+U_j/\partial T)$ 가 표준값들끼리 일관된다(예: stage $2\to1$ 에서 $-13.0$ kJ/mol, 표값 일치). 이로써 config
+분포가 흑연 측정에 닿음을 확인했으니, 다음 절은 나머지 두 분포(vibrational$\cdot$electronic)를 같은 언어로
+더한다.
+
+% 자산: [C-26] S_config=−R∑p ln p (eq:Sconfig) · [C-27] S_config=BW 둘째항/(−T) 검산 ·
+%   [C-28] 부분몰 ∂S_config/∂θ (eq:dSconfig) · [C-29] ∂V/∂T|_ξ, w가 config 담음 (eq:dVdT_config) ·
+%   [C-30] 계수 R/F→n_jR/F 일반화 · [C-31] 부호 3분기(fig:occ_config) · [C-32] dilute 격자기체 발산(occupation2019) ·
+%   [C-33] fig:occ_config (FD동형·S_config 중심 ln2·양끝 ±∞) · [C-34] ★파생B warnbox 이중계산 금지 삼분해 ·
+%   [C-35] δS_vib/e 잔차(보통 0·MIT만) · [C-36] 문헌검증 부호(reynier2003·allart2018) ·
+%   [C-37] 정량 +29/−5~−16·MCMB(allart2018·msmr_partII) · [C-38] ★단위주의 [미검증] 각주 ·
+%   [C-39] 표 tab:ds 중심표준값(allart2018 대조) · [C-40] 표 각주 한정(구간 대표·1:1 아님) ·
+%   [C-41] 엔탈피 기준 차(differential vs formation, chemmater2015) · [C-42] 검산 ΔH⁰_j=−FU_j+FT∂U_j/∂T

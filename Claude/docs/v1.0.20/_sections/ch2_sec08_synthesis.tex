@@ -1,0 +1,144 @@
+% ====================================================================
+% §2.8 계산용 종합식과 계산 예제
+% ====================================================================
+\section{계산용 종합식과 계산 예제}\label{sec:synthesis}
+
+앞 절들이 세운 조각들 --- 겹침 가중$\cdot$봉우리 내부 config$\cdot$폭의 지위$\cdot$가역 발열 출구 --- 을 하나의
+계산용 식으로 모은다. 이 절은 실전 사용식과 그 입력 사양을 못박고(\S\ref{ssec:synth}), 한 SOC 에서 끝까지
+따라간 계산 예제로(\S\ref{ssec:worked}) 종합식이 구체 수치를 내는 과정을 보인 뒤, 다섯 SOC 로 확장해 부호
+교대를 확인한다(\S\ref{ssec:qrevtab}).
+
+\subsection{종합식과 입력 사양}\label{ssec:synth}
+\begin{keybox}
+\textbf{계산용 종합식(실전 사용식).} 하프셀 가역 발열을 실제로 산출할 때는 겹침 가중(단순식~\eqref{eq:weighted})에
+봉우리 내부 분포 config 를 더한 \emph{완전식}을 쓴다. 국소 봉우리 가중 $g_j=\xi_j(1-\xi_j)/w_j$~\eqref{eq:gj}
+로 각 전이의 [중심 표준값 $+$ 분포 config]을 가중하면
+\begin{equation}
+\boxed{\;\frac{\partial U_\oc}{\partial T}(x)
+=\frac{\sum_j Q_j\,g_j(x)\,\bigl[\Delta S^0_j/F+(n_jR/F)\ln(\xi_j/(1-\xi_j))\bigr]}{\sum_j Q_j\,g_j(x)},\quad
+g_j=\frac{\xi_j(1-\xi_j)}{w_j}\;}
+\label{eq:complete}
+\end{equation}
+이며 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$~\eqref{eq:qrev} 로 발열을 얻는다. \emph{입력}은
+$\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Chapter 1 의 $\xi_j(V,T)$(본 장 식~\eqref{eq:logistic} --- Chapter 1 §5
+의 평형 진행률에서 $\sigma_d\to s{=}+1$$\cdot$평형 중심 $U_j$(분기 shift 無)로 둔 형)다. 여기서
+$\Delta S^0_j\equiv\Delta S_{\rxn,j}$ 는 봉우리 중심 표준값(파생 B 의 정의, \S\ref{ssec:decomp})이고, $w_j$ 는
+전이별 폭이다(단상 $=$ 평형 예측, 이상 극한 $w_j{=}RT/F$; 흑연 두-상 $=$ 다온도 $dQ/dV$ 피팅의 현상학적 자유
+폭 --- 파생 C \S\ref{ssec:weff}). 진동 온도 편차가 있으면 $\Delta S^0_j\to\Delta S^0_j+\Delta S_\vib(T)$,
+$U_j\to U_j+\Delta U_\vib(T)$ 로 입력 자체가 온도 확장된다(\S\ref{sec:einstein}).
+\end{keybox}
+
+지배 두-상 전이($2\mathrm L\!\to\!2\cdot2\!\to\!1$)에서는 완전식의 config 항이 폭의 열적 서식 $w_j=n_jRT/F$ 를
+전제하므로, 실측 $w_j$ 가 $T$-동결에 가까우면 완전식 대 단순식의 우열이 $\sim$0.3 mV/K 급으로 뒤집힌다(파생 A
+srcbox \S\ref{ssec:blend}) --- 지배 두-상 전이의 config 기여는 다온도 round-trip 으로 확정할 대상이며, 그
+전까지 단순식(중심값)이 보수적 기준이다. 폭 다중도를 온도 함수 $n_j(T)$ 로 두면 이 config 계수 $n_jR/F$ 는
+식~\eqref{eq:dwdT-nT} 의 $\partial w_j/\partial T=(R/F)(n_j(T)+T\,\mathrm{d}n_j/\mathrm{d}T)$ 로 일반화된다.
+계산 순서는 이렇다: 주어진 탈리튬화 분율 $\bar x$(식~\eqref{eq:implicit} 좌표)에서 $\xi_j$ 를 평가하려면 먼저
+전하 보존 음함수~\eqref{eq:implicit} $\sum_j Q_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$ 를 풀어 $U_\oc$ 를 얻고, 그
+$U_\oc$ 를 $\xi_j(V,T)$ 에 되먹인다. $\Delta S^0_j$ 는 다온도 $dQ/dV$ 동시 피팅으로 얻고 나머지는 Chapter 1
+모수이며, 단일 전이 지배 영역에서 이 식은 식~\eqref{eq:single_config} 로 환원된다.
+
+\subsection{계산 예제 --- stage $2\!\to\!1$ 부근 한 점의 가역 발열}\label{ssec:worked}
+종합식이 실제로 한 수를 내는 과정을 Chapter 1 의 4-전이 staging 파라미터(중심 $U_j$$\cdot$용량 $Q_j$$\cdot$중심
+표준 엔트로피 $\Delta S^0_j$[표~\ref{tab:ds}], 폭은 다중도 $n_j{=}1$ 의 열적 폭 $w_j{=}RT/F\!\approx\!25.7$ mV)로
+한 SOC 에서 끝까지 따라간다. 대표점은 탈리튬화 분율 $\bar x=0.25$($T=298.15$ K) --- stage
+$2\!\to\!1$($\mathrm{LiC_6}$, 큰 음의 $\Delta S^0=-16$ J\,mol$^{-1}$K$^{-1}$)이 지배하는 저-$\bar x$ 영역이다.
+
+\textbf{(a) 전하 보존으로 $U_\oc$ 결정.} 음함수~\eqref{eq:implicit} $\sum_jQ_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$
+($Q=\sum_jQ_j=0.97\,Q_\cell$)를 $U_\oc$ 에 대해 풀면(좌변이 $U_\oc$ 에 단조라 유일근)
+\begin{equation*}
+U_\oc(\bar x{=}0.25,\,298.15\,\mathrm K)=74.4\ \mathrm{mV}.
+\end{equation*}
+\textbf{(b) 전이별 진행률과 봉우리 가중.} 이 $U_\oc$ 에서 식~\eqref{eq:logistic} 의
+$\xi_{\eq,j}=\{1{+}\exp[-(U_\oc-U_j)/w_j]\}^{-1}$ 과 $g_j=\xi_j(1-\xi_j)/w_j$ 를 전이마다 읽어 표~\ref{tab:worked}
+에 모은다. 가중 분모 $\sum_jQ_jg_j=6.18\,Q_\cell$/V 가 곧 그 점의 측정 $dQ/dV$ 이며, 비중이 ``$2\!\to\!1$
+봉우리가 $75\%$ 활성''임을 그대로 읽는다(\S\ref{ssec:overlap}).
+
+\begin{table}[htbp]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\caption{계산 예제($\bar x{=}0.25$, $298.15$ K; $w_j{=}RT/F$)의 전이별 중간값 --- 진행률 $\xi_j$, 봉우리 가중
+$g_j=\xi_j(1-\xi_j)/w_j$, 국소 $dQ/dV$ 비중, 중심 표준 계수 $\Delta S^0_j/F$, 봉우리 내부 config 항
+$(n_jR/F)\ln[\xi_j/(1-\xi_j)]$.}
+\label{tab:worked}
+\begin{tabular}{lccccc}
+\toprule
+전이 & $\xi_j$ & $g_j$ [V$^{-1}$] & 비중 $Q_jg_j/\!\sum$ & $\Delta S^0_j/F$ [mV/K] & config [mV/K] \\
+\midrule
+$4\!\to\!3$   & $0.005$ & $0.19$ & $0.003$ & $+0.301$ & $-0.458$ \\
+$3\!\to\!2\mathrm L$ & $0.072$ & $2.61$ & $0.051$ & $0.000$ & $-0.220$ \\
+$2\mathrm L\!\to\!2$ & $0.143$ & $4.77$ & $0.193$ & $-0.052$ & $-0.154$ \\
+$2\!\to\!1$   & $0.395$ & $9.30$ & $0.753$ & $-0.166$ & $-0.037$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{(c) 겹침 가중 엔트로피 계수(완전식).} 열적 폭 $w_j{=}n_jRT/F$ 라 봉우리 내부 config 항이 살아,
+식~\eqref{eq:complete} 의 완전식(중심값 $+$ config)을 비중으로 가중하면
+\begin{equation*}
+\begin{aligned}
+\frac{\partial U_\oc}{\partial T}
+&=\sum_j\frac{Q_jg_j}{\sum_kQ_kg_k}\Big[\frac{\Delta S^0_j}{F}+\frac{n_jR}{F}\ln\frac{\xi_j}{1-\xi_j}\Big]\\
+&=0.753(-0.203)+0.193(-0.206)+0.051(-0.220)+0.003(-0.157)
+=-0.204\ \mathrm{mV/K}.
+\end{aligned}
+\end{equation*}
+(중심값만 쓴 단순식은 $-0.134$ mV/K 이고, config 항이 $-0.070$ mV/K 를 더한다.)
+
+\textbf{(d) round-trip 실증.} 열적 폭 $w_j{=}n_jRT/F$ 아래 중심 $U_j(T)$ 와 폭 $w_j(T)$ 를 함께 움직여
+$U_\oc(\bar x,T)$ 를 $T\pm3$ K 에서 두 번 푼 유한차분 $[U_\oc(T{+}3)-U_\oc(T{-}3)]/6\,\mathrm K$ 는 $-0.204$
+mV/K 로, 해석 완전식~\eqref{eq:complete} 과 $<\!0.001\ \mu$V/K 로 일치한다 --- 음함수 미분 사슬(config 항
+포함)이 수치와 왕복 정합함을 이 한 점에서 확인한다(전 범위 검증은 파생 A). 종합식을 그대로 수치로 산출해도
+같은 $-0.204$ 를 낸다(코드 구현이 만족해야 할 회귀 기준값으로서의 대응은 부록 B).
+
+\textbf{(e) 유효 반응 엔트로피와 가역 발열.} 정의 $\Delta S(\bar x)=F\,\partial U_\oc/\partial T$ 와 Bernardi
+출구~\eqref{eq:qrev} $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$ 로 닫으면
+\begin{equation*}
+\Delta S(\bar x{=}0.25)=-19.7\ \mathrm{J\,mol^{-1}K^{-1}}<0,
+\qquad
+\frac{\dot Q_\rev}{I}=-T\frac{\partial U_\oc}{\partial T}=+60.8\ \mathrm{mV}\;(=+60.8\ \mathrm{mW/A}).
+\end{equation*}
+곧 이 SOC 에서 셀 방전($I>0$, 흑연 리튬화)은 $\dot Q_\rev>0$ 의 \emph{발열}이며, stage $2\!\to\!1$ 의 큰 음의
+$\Delta S$ 가 남기는 가역 발열 신호(calorimetry 관측 \cite{standardised2024})와 부호$\cdot$규모가 정합한다.
+config 항은 폭의 열적 서식 $w_j{=}n_jRT/F$ 를 전제하므로($n_j$ 키 기준), 지배 $2\!\to\!1$ 이 두-상이라 실측
+폭이 $T$-동결에 가까우면 config 몫은 다온도 round-trip 으로 확정할 대상이고(종합식 박스$\cdot$\S\ref{ssec:weff}),
+그 하한은 단순식 $-0.134$ mV/K 다.
+
+\subsection{SOC 부호 교대 --- 다섯 점으로 확장}\label{ssec:qrevtab}
+\begin{table}[t]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\caption{탈리튬화 진행에 따른 가역 발열의 부호 교대(완전식, 298.15 K; Chapter 1 4-전이 staging, $w_j{=}RT/F$).
+$\dot Q_\rev/I$ 는 방전($I>0$) 기준 단위 전류당 열이며 $+$ 가 발열이다. 저-$\bar x$(Li-rich, stage
+$2\!\to\!1$/$2\mathrm L\!\to\!2$ 음의 $\Delta S$)는 방전 발열, 고-$\bar x$(Li-poor, config 양의 발산)는 방전
+흡열로, 부호가 SOC 를 따라 뒤집힌다. 행별 흡/발열 판정은 완전식 --- 곧 폭의 열적 서식
+$w_j{=}n_jRT/F$ --- 을 전제한 값이며, 지배 두-상 전이의 실측 폭이 $T$-동결에 가까우면 판정 기준이
+단순식(중심값) 쪽으로 이동해 경계 행($\bar x{\approx}0.75$)의 부호가 반전될 수 있다(파생 C
+\S\ref{ssec:weff}$\cdot$종합식 박스 아래 한정과 동일).}
+\label{tab:qrev}
+\begin{tabular}{cccccc}
+\toprule
+$\bar x$ & $U_\oc$ [mV] & $\partial U_\oc/\partial T$ [mV/K] & $\Delta S$ [J\,mol$^{-1}$K$^{-1}$] & $\dot Q_\rev/I$ [mV] & 방전 열 \\
+\midrule
+$0.10$ & $43.5$  & $-0.307$ & $-29.6$ & $+91.5$ & 발열 \\
+$0.25$ & $74.4$  & $-0.204$ & $-19.7$ & $+60.8$ & 발열 \\
+$0.50$ & $109.0$ & $-0.089$ & $-8.6$  & $+26.6$ & 발열 \\
+$0.75$ & $148.8$ & $+0.044$ & $+4.3$  & $-13.2$ & 흡열 \\
+$0.90$ & $195.2$ & $+0.218$ & $+21.0$ & $-64.9$ & 흡열 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+표~\ref{tab:qrev} 가 이 계산을 다섯 SOC 로 확장해 \emph{같은 종합식 하나}가 흡$\cdot$발열의 SOC 교대(저-$\bar x$
+발열 $\to$ 고-$\bar x$ 흡열)를 자동으로 냄을 보인다 --- 임의 함수나 외부 스위치 없이 분포만으로. 한 종합식이
+SOC 축을 따라 가역 발열의 부호를 스스로 뒤집는 이 거동이, 본 장이 세운 세 분포가 발열에서 맺는 매듭이다.
+이 결과가 실전 계산의 도착점이며, 남은 것은 그 입력을 실측에서 얻는 방법과 정직한 한계다.
+
+% 자산: [C-102] ★keybox 종합식 완전식 (eq:complete, 최종 CRITICAL) · [C-103] 입력사양 {ΔS⁰_j,Q_j,U_j,w_j}+Ch1 ξ_j·코드 시그니처 ·
+%   [C-104] ★두-상 config w_j=n_jRT/F 전제·T-동결 시 ~0.3 mV/K 뒤집힘·단순식 보수적기준 ·
+%   [C-105] n_j(T) 시 config계수→eq:dwdT-nT · [C-106] 계산순서(음함수→U_oc→ξ 되먹임·ΔS⁰ 다온도피팅) ·
+%   [C-107] 설정 4전이·n_j=1·w=RT/F 25.7mV·x̄=0.25·2→1 지배 · [C-108] (a) U_oc=74.4 mV ·
+%   [C-109] ★(b) tab:worked 전이별(∑Q_jg_j=6.18/V·2→1 75%) · [C-110] ★(c) 완전식 −0.204·단순식 −0.134·config −0.070 ·
+%   [C-111] ★(d) round-trip 유한차분 −0.204·<0.001 µV/K·종합식 수치도 −0.204(코드 대응=부록B) ·
+%   [C-112] (e) ΔS=−19.7·Q̇_rev/I=+60.8 mV(방전 발열·standardised2024) · [C-113] config 열적서식 전제·하한 단순식 −0.134 ·
+%   [C-114] ★표 tab:qrev 부호교대 5점(0.10~0.90·발열→흡열, 회귀기준)

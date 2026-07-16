@@ -1,0 +1,157 @@
+% ====================================================================
+% 부록 B — 구현 대응표 (단방향 연계: 구현→식번호)
+% ====================================================================
+\section{구현 대응표}\label{sec:appendix-code}
+문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.19.py})의 주석$\cdot$docstring 이 본 문건의
+식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
+대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과
+구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade --- 방향 문자열$\cdot$c-rate 를
+식~\eqref{eq:n0map} 으로 환산)와 \code{dqdv}(물리 부호 $s$ 직접 입력)이며, LCO 서브클래스
+\code{LCOCathodeDQDV} 는 전극 인지 플래그 \code{\_delith\_is\_discharge}$=$\code{False} 로 셀 라벨을
+탈리튬화 부호로 환산한다(\code{'charge'}$\mapsto\sigma_d{=}+1$, 식~\eqref{eq:lco-sigmaslot}). $|I|\to0$
+평형 기준선은 메서드 \code{equilibrium}(식~\eqref{eq:eqpeak} 만 $U_j$ 중심으로 합산 --- 분기
+미반영이라 $\gamma_j$ 무관 가역 기준선, \S\ref{sec:eqpeak} 의 구분 참조)이다. 본문 표~\ref{tab:staging} 의
+흑연 전이 초기값 리스트는 코드 변수 \code{GRAPHITE\_STAGING\_LIT} 에, 표~\ref{tab:lco-staging} 의 LCO
+초기값 리스트는 \code{LCO\_MSMR\_LIT} 에 대응한다(파라미터 \emph{구조}의 대응이며, \code{LCO\_MSMR\_LIT}
+시연 리스트는 전이 구성$\cdot$순서가 표의 물리 anchor 와 다른 tier-C 데모라 전이별 1:1 값 대응은 아니다).
+
+\begin{longtable}{p{0.20\textwidth} p{0.34\textwidth} p{0.38\textwidth}}
+\caption{물리 기호 $\leftrightarrow$ 구현 식별자 대응(본문 기호표의 구현 열).}\label{tab:symcode}\\
+\toprule 기호 & 구현 식별자 & 비고 \\ \midrule \endfirsthead
+\toprule 기호 & 구현 식별자 & 비고 \\ \midrule \endhead
+$\sigma_d$ & \code{s},\,\code{sigma\_d} & 방향 부호 \\
+$s$ & (유도 전용 --- 직접 대응 없음) & 유도 전용 고정 부호(항상 $+1$ 대입 소멸). 코드의 \code{s}
+파라미터(\code{dqdv} 인자)는 방향 부호 $\sigma_d$ 를 받는 자리라(윗행) 이 유도-전용 $s$ 와 별개다 \\
+$|I|$ & \code{I\_abs} & 전류 크기 \\
+$Q_\cell$ & \code{Q\_cell} & 셀 용량 \\
+$T$ & \code{T} & 온도(스칼라/배열) \\
+$R_n$ & \code{Rn} & 분극 저항 \\
+$V_\app$ & \code{V\_app} & 인가(측정) 전위 배열 \\
+$U_j(T)$ & \code{U},\,\code{func\_U\_j} & 평형 중심 \\
+$\Delta H_{\rxn,j},\Delta S_{\rxn,j}$ & \code{dH\_rxn},\,\code{dS\_rxn} & 반응 열역학 입력 \\
+$n_j$ & \code{n} & 폭 다중도 \\
+$w_j$ & \code{func\_w},\,\code{\_width} & 폭(직접 입력 키 \code{w} 는 $n$ 역산 \code{\_n\_factor});
+MSMR 문헌의 무차원 $\omega_j$ 는 $w=\omega\cdot RT/F$ 로 환산해 넣는다(\S\ref{sec:lco-code} 의
+재모수화 --- 문헌 $\omega$ 값을 \code{w}[V] 에 직접 대입 금지) \\
+$\xi_{\eq,j}$ & \code{func\_ksi\_eq} & 평형 진행률 \\
+$Q_j$ & \code{Q} & 용량 가중 \\
+$C_\bg$ & \code{Cbg} & 배경 미분용량 \\
+$\Omega_j$ & \code{Omega} & 상호작용 에너지 \\
+$\gamma_j$ & \code{gamma} & 분기 축소 인자 \\
+$\Delta U_j^\hys$ & \code{func\_dU\_hys} & 분기 gap \\
+$h_{\eta,j}$ & \code{h\_eta} & 부분 cycle 인자 \\
+$U_j^{\,d}$ & \code{func\_U\_branch} & 방향별 분기 중심 \\
+$\chi$ & \code{chi}(생성자 인자 \code{x}) & 전달 계수(분할 규칙 주입 \code{chi\_split}) --- 인자명
+\code{x} 는 조성 $x$(Li 함량)와 무관한 역사적 명칭 \\
+$\chi_d$ & \code{func\_chi\_d} & 방향별 전달 계수 \\
+$\mathcal A$ & \code{A} & 컷 affinity \\
+$\Delta H_{a,j},\Delta S_{a,j}$ & \code{dH\_a},\,\code{dS\_a} & 활성화 열역학 입력 \\
+$\Delta H_{a,j}^\eff$ & \code{func\_dH\_a\_eff},\,\code{\_chi\_and\_dH\_eff} & 유효 장벽(토글 \code{use\_dH\_eff}) \\
+$L_{q,j}$ & \code{func\_L\_q},\,\code{\_resolve\_lag\_length} & 용량축 지연 길이 \\
+$L_{V,j}$ & \code{lag\_len\_V} & 전압축 지연 길이 \\
+$|\dd V/\dd q|_{q_a}$ & \code{dVdq\_qa} & 컷점 OCV 기울기 \\
+$z_\mathrm{cut}$ & \code{z\_cut} & 컷 배수 \\
+$A_\mathrm{cap}$ & \code{A\_cap\_RT} & 컷 상한 배수 \\
+$\xi_{\mathrm{lag},j}$ & \code{ksi\_lag} & 인과 기억 적분 진행률(식~\eqref{eq:lag}) \\
+\bottomrule
+\end{longtable}
+
+\begingroup
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{l l l l}
+\caption{전체 입력 인자(코드 식별자)와 기본값. 전이 dict 키는 전이별, 생성자 인자는 모델 공통이며 일부는 전이 dict 로
+per-transition override 된다($z_\mathrm{cut}$,$A_\mathrm{cap}$,\code{use\_dH\_eff}). 사용자 실무에서 이 인자들은
+Optuna 등 최적화 도구의 탐색 변수로 노출된다.}\label{tab:inputs}\\
+\toprule
+인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\
+\midrule
+\endfirsthead
+\toprule
+인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\
+\midrule
+\endhead
+\multicolumn{4}{l}{\emph{— 전이 dict 키(전이별) —}}\\
+\code{U} 또는 (\code{dH\_rxn},\code{dS\_rxn}) & 전이 & --- & 평형 중심 $U_j(T)$ (\eqref{eq:Uj}) \\
+\code{w} 또는 \code{n} & 전이 & --- / $1$ & 폭 $w_j=n_jRT/F$ (\eqref{eq:wbase}) \\
+\code{n\_T1},\code{n\_T\_ref} & 전이 & 부재$=0$ / $298.15$ & 폭 다중도의 $T$-선형 잔여
+$n_j(T)=n_j+n_{T1}(T-T_\mathrm{ref})$ --- 부재 시 상수 $n$ 과 동일(bit-exact), 발효 시 폭$\cdot$가역열
+config 계수에 동반 전파(Ch2 \S2.5 폭 $T$-의존 일반화) \\
+\code{Q} & 전이 & --- & 용량 가중(면적) \\
+\code{Omega},\code{gamma} & 전이 & $0$,\,$0$ & 상호작용$\cdot$분기(히스, \eqref{eq:dUhys}\eqref{eq:Ubranch}) \\
+\code{h\_eta} & 전이 & $1.0$ & 부분 cycle 분기 인자 \\
+\code{dH\_a},\code{dS\_a} & 전이 & --- / $0$ & 활성화(꼬리, \eqref{eq:Lqfull}) \\
+\code{dVdq\_qa} & 전이 & $0$ & 컷 OCV 기울기 $L_q\!\to\!L_V$ (\eqref{eq:LV}) \\
+\code{L\_V} & 전이 & --- & 직접 지연 길이(동역학 우회) \\
+\code{z\_cut},\code{A\_cap\_RT} & 전이/공통 & $4.357$,\,$4.0$ & 컷 affinity (\eqref{eq:Acut}) \\
+\code{use\_dH\_eff} & 전이/공통 & True & 유효 장벽 토글(\eqref{eq:dHeff}) \\
+\multicolumn{4}{l}{\emph{— 생성자 인자(모델 공통) —}}\\
+\code{x}/\code{chi},\,\code{chi\_split} & 공통 & $0.5$,\,\code{func\_chi\_d} & 전달 계수 $\chi_d$ (\eqref{eq:chid}) \\
+\code{Rn} & 공통 & $0.0$ & 분극 저항 (\eqref{eq:vn}) \\
+\code{Cbg} & 공통 & $0.0$ & 배경 $C_\bg$ (상수 또는 $V$ 함수) \\
+\code{seed\_T/I/Q\_cell} & 공통 & $298.15$,\,$0.1$,\,$1.0$ & 진단용 seed $L_V$ 대표 조건 \\
+\multicolumn{4}{l}{\emph{— 호출 인자(\code{curve}/\code{dqdv}) —}}\\
+\code{V\_app},\code{T},\code{c\_rate}/\code{I\_abs},\code{Q\_cell},\code{direction} & 호출 & --- & 실험조건 (\eqref{eq:n0map}) \\
+\multicolumn{4}{l}{\emph{— LCO 추가 인자(전이 dict 키$\cdot$서브클래스, \S\ref{sec:lco-code}; 게이트 3키$+$\code{x\_center} 는 \code{electronic} 켤 때 필수) —}}\\
+\code{electronic},\code{x\_center} & 전이 dict & \code{False}, — & 전자항 plug-in 스위치$\cdot$동결 조성 \\
+\code{g\_max\_eV},\code{x\_MIT},\code{dx\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ & MIT 게이트 초기값 (\eqref{eq:ggate}) \\
+\code{\_delith\_is\_discharge} & 클래스 & 흑연 \code{True}/LCO \code{False} & 셀 라벨$\to$탈리튬화 부호 환산 (\eqref{eq:lco-sigmaslot}) \\
+\multicolumn{4}{l}{\emph{— vib Einstein 양자보정(전이 dict, v1.0.18.2; 부재 $=$ 동결 bit-exact) —}}\\
+\code{theta\_E},\code{theta\_E\_Tref} & 전이 dict & --- $/\,298.15$ & Einstein 온도 $\theta_{E,j}$[K]$\cdot$기준온도 (Ch2 vibrational 절) \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begingroup
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{l p{0.78\textwidth}}
+\caption{노드 $\leftrightarrow$ 구현 식별자 대응(본문 표~\ref{tab:nodemap} 의 구현 열).}\label{tab:nodecode}\\
+\toprule
+노드 & 구현 식별자 \\
+\midrule
+\endfirsthead
+\toprule
+노드 & 구현 식별자 \\
+\midrule
+\endhead
+N0 & \code{curve},\,\code{\_direction\_to\_sigma} \\
+N1 & \code{dqdv}(분극 환산부: \code{V\_n = V\_in - sigma\_d * I\_abs * self.Rn}) \\
+N2 & \code{func\_U\_j}(seam \code{\_effective\_dS\_rxn} 경유) \\
+N3 & \code{func\_dU\_hys},\,\code{func\_U\_branch} \\
+N4 & \code{func\_w},\,\code{\_width} \\
+N5 & \code{func\_ksi\_eq}(오버플로 방지 \code{np.where} 이분 평가) \\
+N6 & 평형 극한($L_V\!\to\!0$) 수치 가드: 인라인 \code{peak\_shape = ksi\_eq*(1-ksi\_eq)/w} \\
+N7 & \code{\_resolve\_lag\_length},\,\code{func\_L\_q} \\
+N8 & 기억 적분 $\xi_\mathrm{lag}$(\eqref{eq:lag}) 의 점별 수치 적분(\code{ksi\_lag}); 충전 분기는 상한 반전(\eqref{eq:reversal}) \\
+N9 & peak 모양 용량 가중 합산 $\to$ $V_n$ 위 점별 \code{dqdv\_out} \\
+N0$'$ & \code{LCOCathodeDQDV}$\cdot$\code{LCO\_MSMR\_LIT} \\
+N2$'$ & \code{func\_U\_j}(동일) \\
+N3$'$ & \code{func\_dU\_hys},\,\code{func\_U\_branch}(LCO 값, 동일 함수) \\
+N5$+$ & \code{func\_dSe\_molar} \\
+N9$'$ & \code{\_effective\_dS\_rxn} \\
+$\bar x$ 진입점 & \code{solve\_U\_oc}(Chapter 2 전하 보존 음함수의 유일근 솔버)$\cdot$
+\code{entropy\_coefficient\_x}$\cdot$\code{reversible\_heat\_x} --- 조성 $\bar x$ 에서
+$U_\mathrm{oc}\cdot\partial U_\mathrm{oc}/\partial T\cdot\dot Q_\mathrm{rev}$ 를 직접 산출(v1.0.19
+additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 Chapter 2 부록 B) \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+구현 스니펫 두 곳(본문 N2$\cdot$N7 에서 이관)을 원문 그대로 둔다.
+\begin{codebox}
+\textbf{N2.} \code{if 'dH\_rxn' in tr and 'dS\_rxn' in tr: U\_j = func\_U\_j(T\_work, dH\_rxn, dS\_rxn)}
+--- 배열 $T$ 대응. 없으면 \code{U\_j = float(tr['U'])} 직접. 실 호출의 $\Delta S$ 인자는 seam
+\code{\_effective\_dS\_rxn(tr, T\_work)} 를 경유한다(흑연 base 는 항등으로 \code{tr['dS\_rxn']} 그대로 ---
+LCO 전자항 plug-in 자리: \S\ref{sec:lco-code}). 여기에 vib 양자 보정 \code{\_vib\_dU(tr, T\_work)} 가
+가산된다($\theta_E$ 부재 시 항등 $0$ --- 보정 도입 전과 bit-exact). \code{GRAPHITE\_STAGING\_LIT} 의 stage 2$\to$1 은
+$\Delta H_\rxn=-13000$ J/mol, $\Delta S_\rxn=-16$ J/(mol\,K) $\Rightarrow$ $U(298)=(13000-298.15\times16)/96485
+\approx0.0853$ V(목표 $0.085$ V 정합).
+\end{codebox}
+\begin{codebox}
+\textbf{N7 진행.} \code{n\_safe=|n\_j|} $\to$ $\mathcal A$(식~\eqref{eq:Acut}) $\to$
+\code{(chi\_d, dH\_a\_use)=\_chi\_and\_dH\_eff(...)} (식~\eqref{eq:chid}$\cdot$\eqref{eq:dHeff}) $\to$
+\code{L\_q=func\_L\_q(...,x=chi\_d,A=A)} (식~\eqref{eq:Lqfull}) $\to$ \code{L\_V=|dVdq\_qa|*L\_q} (식~\eqref{eq:LV}).
+전이당 \emph{상수}(대표 $T_\rep\cdot$대표 $n$)로 한 번 평가한다.
+\end{codebox}
+
+% 자산: [B2-145] [B2-146] [B2-147] [B2-148] [B2-149] [B2-150] [B2-151] [B2-152] [B2-153]

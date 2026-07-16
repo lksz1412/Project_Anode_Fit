@@ -1,0 +1,68 @@
+% ====================================================================
+% §0 서 — 왜 엔트로피에는 통계가 필요한가
+% ====================================================================
+\section*{서 --- 왜 엔트로피에는 통계가 필요한가}
+\addcontentsline{toc}{section}{서 --- 왜 엔트로피에는 통계가 필요한가}
+
+Chapter 1 은 흑연 음극의 한 $\dd Q/\dd V$ 곡선을, 전이별 평형 중심 전위
+$U_j(T)=(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F$(Chapter 1 §3 의 평형 중심 전위) 위에 세운 평형 종과 그 위에
+얹힌 동역학 꼬리로 설명했다. 그 곡선의 평형 골격에는 이미 한 가지 ``열''이 잠겨 있다. 평형 중심의
+\emph{온도 의존} $\partial U_j/\partial T$ 인데, 열역학 1$\cdot$2법칙은 이 기울기를 곧장 반응 엔트로피로 환산한다.
+그리고 반응 엔트로피야말로 전지가 충방전하며 흡수$\cdot$방출하는 \emph{가역(엔트로피) 발열}의 원천이다.
+본 장의 일은 이 잠긴 열을 끄집어내어 정량화하는 것이다. 그 작업을 본 장은 통계열역학 챕터로 수행한다 ---
+분배함수 $Z$ 에서 점유 분포 $\avg{n}$ 을 세우고, 그 분포에서 configurational$\cdot$vibrational$\cdot$electronic
+엔트로피를 차례로 끌어내며, 세 분포가 합쳐 만드는 닫힌식으로 섞임$\cdot$겹침$\cdot$히스테리시스를 닫은 뒤,
+극한 검산을 거쳐 가역 발열로 매듭짓는다.
+
+문제는, 엔트로피를 ``$\partial U/\partial T$ 를 측정하면 나오는 수''로만 다루면 그 \emph{모양}을 이해할 수
+없다는 데 있다. 흑연 하프셀의 측정 엔트로피 계수 $\partial U_\oc/\partial T(x)$ 는 SOC(state of charge)에 따라
+부호를 바꾸고($x$ 작을 때 양, 클 때 음), 전이 경계마다 봉우리와 골을 만들며, 어떤 자리에서는 발산에 가깝게
+치솟는다. 이 비선형 모양은 ``전이마다 상수 $\Delta S_{\rxn,j}$ 를 가정''하는 평형 정전 식만으로는 재현되지
+않는다 --- 상수 엔트로피는 SOC 축 위에서 봉우리$\cdot$골$\cdot$부호 반전을 만들 자유도 자체가 없기 때문이다.
+모양은 \emph{분포}에서 온다: Li 이온이 격자 자리들에 \emph{어떻게 흩어져 앉아 있는가}, 격자 진동이 포논
+모드에 \emph{어떻게 분배되는가}, 전도 전자가 Fermi 준위 부근에 \emph{어떻게 채워지는가}. 엔트로피는 본질적으로
+이 미시상태 분포의 흩어짐 척도이고, 가역 발열
+\[
+\dot Q_\rev=-I\,T\,\frac{\partial U_\oc}{\partial T}=-\frac{I\,T}{F}\,\Delta S(x)
+\]
+은 한 충전상태에서 다른 충전상태로 넘어갈 때 \emph{이 분포를 재배열하면서 주고받는 열}이다. 곧
+$\partial U_\oc/\partial T(x)$ 의 모양을 이해하려면, 그 밑에 깔린 점유 분포를 명시적으로 세워야 한다.
+
+이 때문에 본 장은 분포를 결론으로 인용하는 대신 \emph{본체}로 전개한다. 출발점은 단일 격자 자리의
+분배함수 $Z$ 이고(\S\ref{sec:partition}), 거기서 점유 분포 $\avg{n}$ 을 얻는데 이것이 바로 Chapter 1
+의 logistic 평형 점유의 통계역학적 기원임을 보인다. 점유 분포에서 Boltzmann--Shannon 엔트로피
+$S_\config=-R\sum p\ln p$ 가 나오고(\S\ref{sec:config}), 같은 분포 언어로 격자 진동(포논 Bose--Einstein)과
+전도 전자(Fermi--Dirac)의 엔트로피를 더한다(\S\ref{sec:vibel}). 진동 항이 남기는 온도 편차는 전이 중심을
+온도로 확장하는 Einstein 모드 보정으로 따로 닫고(\S\ref{sec:einstein}), 세 분포가 합쳐져 측정
+$\partial U_\oc/\partial T(x)$ 의 모든 모양 --- 봉우리 겹침, 봉우리 내부 발산, 히스테리시스 분기 --- 을
+만든다(\S\ref{sec:mixing}). 극한과 코너에서 분포 식을 검산하고(\S\ref{sec:limits}), 가역 발열의 에너지
+수지를 세운 뒤(\S\ref{sec:revheat}), 계산용 종합식과 한 계산 예제로 실전 수치를 닫는다
+(\S\ref{sec:synthesis}). 마지막으로 다온도 측정에서 입력을 얻는 방법론과 남은 한계를 밝힌다
+(\S\ref{sec:method}). 이 통계열역학 사슬은 v5 계보가 규정한 골격이며, 본체(분배함수$\to$점유 분포$\to$
+configurational$\cdot$vibrational$\cdot$electronic 엔트로피$\to$닫힌식$\to$극한$\to$가역 발열)를 그대로 잇는다.
+사슬을 한눈에 적으면
+\begin{equation*}
+\boxed{\;
+\underbrace{Z}_{\S\ref{sec:partition}} \;\to\;
+\underbrace{\avg{n}=\text{점유 분포}}_{\S\ref{sec:partition}} \;\to\;
+\underbrace{S=-R\textstyle\sum p\ln p}_{\S\ref{sec:config}\text{--}\ref{sec:einstein}} \;\to\;
+\underbrace{\dfrac{\partial U_\oc}{\partial T}(x)=\dfrac{\Delta S(x)}{F}}_{\S\ref{sec:mixing}\text{--}\ref{sec:limits}} \;\to\;
+\underbrace{\dot Q_\rev=-I\,T\,\dfrac{\partial U_\oc}{\partial T}}_{\S\ref{sec:revheat}\text{--}\ref{sec:synthesis}}
+\;}
+\end{equation*}
+이고, 각 화살표는 점프 없이 분포에서 유도된다. 이 사슬이 본 장 전체의 목차 설계 앵커다 --- 이후 모든 절은
+이 다섯 마디 중 하나를 여는 일이며, 봉우리 중심에서 발열까지 가는 부호는 한 자리도 라벨이 아니라 식이 정한다.
+
+\begin{warnbox}
+\textbf{범위 --- 코인 하프셀 단독.} 본 장은 단일 전극(흑연 vs.\ Li 금속)의 하프셀 $\partial U_\oc/\partial T$ 와
+그 가역 발열만 다룬다. 전셀 합성 $\partial U_\cell/\partial T=\partial U_\mathrm{cat}/\partial T-\partial
+U_\mathrm{an}/\partial T$ (양극$-$음극 차감)는 \emph{범위 밖}이다 --- 본 장의 분포는 한 전극의 점유 분포이며,
+전셀은 두 전극의 이 양을 부호까지 맞추어 합성해야 하기 때문이다. 주 사례는 흑연 음극 하프셀이고, LCO
+($\mathrm{LiCoO_2}$)의 전자 엔트로피 항은 분포 언어의 한 사례로만 포함한다(그 상세 전개는 Chapter 1 §15).
+\end{warnbox}
+
+\tableofcontents
+
+% 자산: [C-1] v5 계보(통계열역학 챕터 골격) · [C-4] 통계열역학 본체(A·B·D) 보존 ·
+%   [C-5] 범위 코인 하프셀 단독·전셀 범위 밖 · [C-6] 가역발열 정의(목적함수 서두 노출) ·
+%   [C-7] 엔트로피 모양은 상수로 재현불가·분포에서 옴 · [C-8] ★사슬 박스(목차 설계 앵커, 절번호 매핑)

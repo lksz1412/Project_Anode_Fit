@@ -1,0 +1,133 @@
+% ====================================================================
+% §17 MSMR 동형과 전자항 plug-in — LCO 로의 일반화
+% ====================================================================
+\section{MSMR 동형과 전자항 plug-in --- LCO 로의 일반화 (파라미터 교체 $+$ 전자항 추가)}\label{sec:lco-code}
+이 통합의 실용적 결론 --- ``같은 골격이 LCO 곡선을 낸다'' --- 의 근거는 \emph{MSMR 동형}이다:
+MSMR 모델\cite{msmr2024}이 양극 \emph{조성}을 전위의 전이별 logistic
+합으로 적기 때문이다.
+
+\subsection{MSMR 대응 --- 같은 logistic, 같은 부호 규약}\label{sec:lco-code-msmr}
+\textbf{(a) 출발 --- MSMR 종별 점유식.}
+\begin{equation}
+x_j=\frac{X_j}{1+\exp[\,f(U-U_j^0)/\omega_j\,]},
+\label{eq:msmr}
+\end{equation}
+여기서 $X_j$ 는 종(전이) $j$ 의 용량 분율, $U_j^0$ 는 종 중심 전위다. 원계열 MSMR 의 지수 인자
+$f=F/RT$(항상 양)$\cdot$무차원 폭 $\omega_j$ 를 본 문건은 $F/RT$ 를 폭에 흡수($\omega_j\mapsto\omega_jRT/F$,
+전압 차원)해 방향 부호 $f=\pm1$ 만 지수에 남기도록 재모수화하며, 이는 폭 슬롯 대응이 흑연
+식~\eqref{eq:wbase} 의 $w_j=n_jRT/F$($n_j\leftrightarrow$무차원 $\omega_j$)와 동형임을 드러낸다(정식
+대응은 아래 식~\eqref{eq:lco-msmrmap}).
+\textbf{(b) 연산 --- 정규화.} 식~\eqref{eq:msmr} 을 종 용량으로 나누면
+종별 \emph{점유율}(리튬화 분율)과 그 여집합(탈리튬화 진행률)이 나온다:
+\begin{equation}
+\theta_j^{\mathrm{MSMR}}\equiv\frac{x_j}{X_j}=\frac{1}{1+e^{+f(U-U_j^0)/\omega_j}},\qquad
+\xi_j^{\mathrm{MSMR}}\equiv1-\frac{x_j}{X_j}=\frac{1}{1+e^{-f(U-U_j^0)/\omega_j}},
+\label{eq:lco-msmrnorm}
+\end{equation}
+이고 총 조성은 $\sum_jX_j\theta_j^{\mathrm{MSMR}}$(리튬 함량), 추출 전하는 그 여집합의 가중합
+$\sum_jQ_j\xi_j$ --- 용량 가중 $X_j\!\leftrightarrow\!Q_j$ 로 읽으면 \S\ref{sec:lco-peak} 의 전하
+보존식~\eqref{eq:lco-charge} 과 같은 구조(용량-가중 logistic 합)다.
+\textbf{(c) 중간식 --- 여집합 항등식과 방향 인자 대응.} Ch1 logistic 서식은 여집합에 대해 닫혀 있다 ---
+같은 중심$\cdot$폭에서
+\begin{equation}
+1-\xi_{\eq,j}^{(\sigma_d)}(V)
+=\frac{1}{1+e^{+\sigma_d(V-U_j^{\,d})/w_j}}
+=\xi_{\eq,j}^{(-\sigma_d)}(V),
+\label{eq:lco-comp}
+\end{equation}
+곧 점유와 진행률은 방향 인자 부호 하나로 오가며 종 $\xi(1-\xi)$ 는 이 교환에 불변이다(\S\ref{sec:lco-peak}(b) 의 종 항등식 도출부). 이제 \emph{같은 물리량끼리} 맞댄다 --- MSMR 점유율
+$\theta_j^{\mathrm{MSMR}}=x_j/X_j$(리튬화 분율)는 Ch1 의 점유 $\theta_{\eq,j}=1-\xi_{\eq,j}$ 와, 그 여집합
+$\xi_j^{\mathrm{MSMR}}$(탈리튬화 진행률)는 Ch1 의 진행률 $\xi_{\eq,j}$(식~\eqref{eq:xieq})와 같은 종류의
+양이다. 진행률끼리 지수를 맞대면($-f\leftrightarrow-\sigma_d$), 점유끼리 맞대도
+($+f\leftrightarrow+\sigma_d$) 동일하게, 슬롯별로
+\begin{equation}
+U\leftrightarrow V,\qquad U_j^0\leftrightarrow U_j^{\,d},\qquad
+\omega_j\leftrightarrow w_j,\qquad X_j\leftrightarrow Q_j,\qquad
+f=+\sigma_d
+\label{eq:lco-msmrmap}
+\end{equation}
+가 1:1 로 읽힌다 --- 방향 인자 대응 $f=+\sigma_d$ 는 두 지수가 \emph{모든} $U$ 에서 일치할 것을 요구하는
+항등식의, 이 pairing 하에서의 유일해다(계수비교 한 줄: 두 지수 $-f(U-U_j^0)/\omega_j$ 와
+$-\sigma_d(V-U_j^{\,d})/w_j$ 가 모든 $U$ 에서 같으려면 $U$ 의 1차 계수가 같아야 하므로
+$f/\omega_j=\sigma_d/w_j$ 이고, 폭 슬롯 대응 $\omega_j\leftrightarrow w_j$ 아래에서 $f=+\sigma_d$ 만 남는다). 원계열의 $f=F/RT>0$ 는 이 규약에서 탈리튬화 진행($\sigma_d=+1$ 슬롯)에 대응하며,
+MSMR 평형 등온선 자체는 방향이 없는 양이라 $\sigma_d$ 는 훑는 방향의 해석만 정한다. \textbf{★같은 logistic 이라는 것은 \emph{함수형 동형이지 물리량 동일이
+아니다}} --- $x_j/X_j$ 는 리튬 함량 몫(점유)이고 $\xi$ 는 탈리튬화 진행률이라, 둘을 직접 등치하면 부호가
+뒤집힌 $f=-\sigma_d$ 가 나온다(식~\eqref{eq:lco-comp} 의 여집합 뒤바꿈 --- 종 $\xi(1-\xi)$ 는 이 교환에 불변이라 관측 peak 은 어느
+쪽으로도 같으나, 방향 서술은 그렇지 않다). 이로써 탈리튬화/리튬화 진행 방향이 두 모델에서 일관되게
+맞춰진다($U_j^0\leftrightarrow U_j^{\,d}$ 대응은 방향분해 파라미터화로 읽으며, 순정 MSMR 평형 등온선은
+$\gamma_j{=}0$ 의 $U_j$ 대응이 기본형이다). \textbf{(d) 박스 --- MSMR$\to$평형 peak 변환 폐쇄.}
+대응표~\eqref{eq:lco-msmrmap} 아래에서 MSMR 종별 미분용량과 Ch1 평형 peak 은 같은 식이다:
+\begin{equation}
+\boxed{\;Q_j\Big|\frac{\dd(x_j/X_j)}{\dd U}\Big|
+=Q_j\,\frac{\theta_j^{\mathrm{MSMR}}(1-\theta_j^{\mathrm{MSMR}})}{\omega_j}
+\;\equiv\;Q_j\,\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\quad(\text{식~\eqref{eq:lco-eqpeak} 의 피가수})\;,}
+\label{eq:lco-msmrpeak}
+\end{equation}
+($|f|=1$; $\theta(1-\theta)=\xi(1-\xi)$ --- 여집합 불변).
+
+\subsection{두 변경과 전자항 plug-in 사슬}\label{sec:lco-code-plugin}
+따라서 Ch1 의 곡선 골격(평형 진행률 logistic$\cdot$평형 중심$\cdot$합산식~\eqref{eq:sum})은 구조 변경 없이
+LCO 에 적용되며, 바뀌는 것은 단 둘이다:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=1pt]
+\item \textbf{전이 파라미터 교체} --- 흑연 초기값(표~\ref{tab:staging}) $\to$ LCO 초기값(표~\ref{tab:lco-staging}):
+$(\Delta H_\rxn,\Delta S_\rxn,Q,\Omega,\Delta H_a,\dots)$ 값을 양극 영역으로.
+\item \textbf{전자 엔트로피 항 plug-in} --- T1 전이의 $\Delta S_{\rxn}$ 평가에 몰당 전자항을 더하는 한 줄이며,
+그 forward 사슬은 조성 좌표에서 dQ/dV 까지 아래와 같이 닫힌다.
+\textbf{(a) 출발 --- 좌표 매핑의 닫힌 꼴.} 게이트(식~\eqref{eq:ggate})는 조성 $x$ 의 함수인데 곡선 계산은
+전위점 $V$ 에서 직접 진행되므로, T1 창의 $x$ 범위(표~\ref{tab:lco-staging}: $x_{\mathrm{hi},1}{\approx}0.94$,
+$x_{\mathrm{lo},1}{\approx}0.75$)를 T1 진행률로 선형 보간해 잇는다:
+\begin{equation}
+x\big(\xi_{\eq,1}(V)\big)=x_{\mathrm{hi},1}-\big(x_{\mathrm{hi},1}-x_{\mathrm{lo},1}\big)\,\xi_{\eq,1}(V)
+\label{eq:lco-xmap}
+\end{equation}
+($\xi_{\eq,1}$ 은 탈리튬화-형 진행률(방향 규약은 \S\ref{sec:lco-direction}) --- $\xi{=}0\leftrightarrow x_{\mathrm{hi},1}$, $\xi{=}1\leftrightarrow x_{\mathrm{lo},1}$, $x_\mathrm{MIT}{\approx}0.85$ 가 창 내부; 표 두 끝점만 쓰는 단순 선형보간(tier C)이며 함수형 확정은 round-trip 피팅 몫).
+\textbf{(b) 연산 --- 게이트 대입.} 식~\eqref{eq:lco-xmap} 를 게이트 인자에 넣고 몰당 나눗셈 형
+(식~\eqref{eq:dSegate}$\cdot$\eqref{eq:gunit}$\cdot$\eqref{eq:dSemolar})으로 적으면 전위점 $V$ 의
+전자항이 닫힌다:
+\begin{equation}
+\Delta S_{e,1}^{\,\mathrm{mol}}(V,T)
+=-\frac{\pi^2}{3}\,R\,\frac{k_BT}{e_V}\,\frac{g_{\max}}{\Delta x_\mathrm{MIT}}\,
+\sigma\!\big(z_e(V)\big)\big[1-\sigma\!\big(z_e(V)\big)\big],
+\qquad z_e(V)=\frac{x(\xi_{\eq,1}(V))-x_\mathrm{MIT}}{\Delta x_\mathrm{MIT}}.
+\label{eq:lco-SeV}
+\end{equation}
+\textbf{(c) 중간식 --- 슬롯 합과 온도 적분.} 이를 분해식~\eqref{eq:lco-decomp} 의 셋째 슬롯에 넣고
+(★단위 주의 --- forward 슬롯 $\Delta S_{\rxn,j}$ 는 J/(mol\,K) 라, 자리당 식~\eqref{eq:dSe} 가 아니라
+$N_A$ 를 곱한 몰당 식~\eqref{eq:dSemolar} 를 넣어야 한다; $N_A$ 배 누락 시 전자항이 $\sim10^{23}$ 배
+과소), 온도 계수 관계~\eqref{eq:lco-dUdT} 를 기준온도에서 적분하면 T1 중심의 온도 이동이 닫힌다:
+\begin{equation}
+\begin{aligned}
+\Delta S_{\rxn,1}^\mathrm{cat}(V,T)&=\Delta S_1^\mathrm{config}+\Delta S_1^\mathrm{vib}
++\Delta S_{e,1}^{\,\mathrm{mol}}(V,T),\\
+U_1(V,T)&=U_1(T_\mathrm{ref})+\frac1F\int_{T_\mathrm{ref}}^{T}\Delta S_{\rxn,1}^\mathrm{cat}(V,T')\,\dd T'.
+\end{aligned}
+\label{eq:lco-U1V}
+\end{equation}
+전자항이 $\propto T'$ 라 이 적분의 닫힌형이 식~\eqref{eq:U1T2} 의 $T^2$ 곡률이고, \emph{현행 모델}은
+$\Delta S_e$ 를 $T_\mathrm{ref}$ 에서 동결한 상수 오프셋(단일-기준 근사 --- 조성도 $x{=}x_\mathrm{center}$ 로
+동결해 $V$-무관 상수)
+으로 넣으므로 $U_1(T)\approx U_1(T_\mathrm{ref})+[\Delta S_{\rxn,1}^\mathrm{cat}(x_\mathrm{center},T_\mathrm{ref})/F]
+(T-T_\mathrm{ref})$ 의 \emph{선형} $U(T)$ 가 된다(동결 근사의 결과 --- 다온도 $T^2$ 곡률은 round-trip 피팅 단계 과제). 평가 순서 주의 --- 식~\eqref{eq:lco-xmap} 이
+$\xi_{\eq,1}$ 을, $\xi_{\eq,1}$ 이 $U_1$ 을 참조하는 고정점 구조이나, 동결 근사는 순환이 없고, 정밀형도
+전자항 제외 중심으로 $\xi_{\eq,1}^{(0)}$ 을 먼저 평가해 1회 갱신하는 것을 초기 근사로 채택한다(되먹임
+이동 $|\Delta S_e^{\,\mathrm{mol}}|/F\times|T-T_\mathrm{ref}|\approx0.47\,\mathrm{mV/K}\times30\,\mathrm K
+\approx14$ mV $\lesssim w_1$ --- 폭 이하 스케일이라 보정이 작다는 상한이며, 수렴 여부 자체는 round-trip
+피팅 단계에서 수치 확인한다). \textbf{(d) 박스 --- plug-in forward 사슬.}
+\begin{equation}
+\boxed{\;\begin{aligned}
+x\big(\xi_{\eq,1}(V)\big)\ &\xrightarrow{\eqref{eq:lco-SeV}}\ \Delta S_{e,1}^{\,\mathrm{mol}}(V,T)
+\ \xrightarrow{\eqref{eq:lco-U1V}}\ U_1(T)\ \xrightarrow{\eqref{eq:lco-Ubranch}}\ U_1^{\,d,\mathrm{cat}}\\[2pt]
+&\xrightarrow{\eqref{eq:xieq}}\ \xi_{\eq,1}\ \xrightarrow{\eqref{eq:lco-eqpeak}}\
+\Big(\frac{\dd Q}{\dd V}\Big)_{\!1}=Q_1\frac{\xi_{\eq,1}(1-\xi_{\eq,1})}{w_1}
+\end{aligned}\;}
+\label{eq:lco-plugin}
+\end{equation}
+$g(E_F,x)$ 는 식~\eqref{eq:ggate} 의 게이트로, 초기값 3개$(g_{\max},x_\mathrm{MIT},\Delta x_\mathrm{MIT})$
+를 피팅 인자로 노출.
+\end{enumerate}
+$\partial U_j/\partial T\leftarrow\Delta S_{\rxn,j}^\mathrm{cat}/F$ 의 경로(식~\eqref{eq:lco-dUdT})는 흑연과 동일 ---
+곧 ``파라미터 +1 항'' 외에 구조 변경이 없다는 것이 ``흑연 forward 골격이 LCO 양극까지 한 틀로 닫힌다''는
+주장의 실증적 근거이자, 본 챕터가 두 전극을 한 프레임으로 통합한 까닭이다.
+
+% 자산: [B2-112] [B2-113] [B2-114] [B2-115] [B2-116] [B2-117] [B2-118] [B2-119] [B2-120] [B2-121] [B2-122] [B2-123] [B2-124] [B2-125] [B2-126]

@@ -1,0 +1,172 @@
+% ====================================================================
+% §11 Part II 도입 — 전극-중립 골격과 방향 규약 (N0')
+% ====================================================================
+\section{Part II 도입 --- 전극-중립 골격과 방향 규약 (N0$'$)}\label{sec:lco-intro}
+Part I(흑연)이 세운 forward 골격은 처음부터 전극을 가리지 않도록 설계되었다. 이 절은 그 골격을 두 번째 전극
+$\mathrm{LiCoO_2}$(LCO) 양극에 걸기 전에, Part II 전체가 전제할 세 가지 --- 무엇이 전극 무관인가
+(\S\ref{sec:lco-map}), 방향 부호를 어떻게 먹이는가(\S\ref{sec:lco-direction}), 종반의 MSMR 동형은 어떤
+모양으로 닫히는가(\S\ref{sec:lco-preview}) --- 를 한 곳에 고정한다. 이하 Part II 의 절들은 이 규약을
+전제하고 각자의 자리에서 적용만 한다.
+
+\subsection{전극-중립 골격 --- 무엇이 전극 무관인가}\label{sec:lco-map}
+Part I 까지의 기호와 매핑은 \emph{전극을 가리지 않는다} --- 본론 사슬에서 host 물질이 들어가지 않는 식이
+다섯이다:
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=1pt]
+\item 실험조건 매핑 식~\eqref{eq:n0map} --- 방향 부호 $\sigma_d$·전류 환산 $|I|=\text{c\_rate}\cdot Q_\cell$;
+\item 삽입 평형 조건 식~\eqref{eq:eqcond} --- 반쪽반응
+$\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\mathrm{host})}$ 의 전기화학 평형은 host 의 화학
+정체를 상수 $\mu^0$ 와 입력값으로만 담는다(Part 0 \S\ref{sec:sm-electro} 의 유도에 host 항이 없다);
+\item 정규용액 조성 자유에너지 식~\eqref{eq:gxi} --- ``동등한 자리에 리튬이 차고 빈다''는 가정 하나만 쓰며,
+이는 LCO 의 팔면체 리튬 자리에도 문자 그대로 성립한다;
+\item 평형 진행률 logistic 식~\eqref{eq:xieq} 와 폭 서식 $w_j=n_jRT/F$(식~\eqref{eq:wbase});
+\item 전이 문법과 평형 peak --- 전이별 종 식~\eqref{eq:eqpeak} 와 그 전하 보존 합산(배경 $C_\bg$ 포함,
+\S\ref{sec:eqpeak}$\cdot$\S\ref{sec:sum}).
+\end{enumerate}
+흑연 서술은 한 줄도 바뀌지 않으며(모든 흑연
+식$\cdot$표$\cdot$부호는 불변), LCO 는 전이별 입력 파라미터를 교체하고 전자 엔트로피 항 하나를 추가한
+두 번째 전극으로 들어온다. 본 문건이 다루는 범위는 \emph{코인 하프셀}(LCO vs Li metal) 단독이다 --- 전셀 합성
+($\partial U_\cell=\partial U_\mathrm{cat}-\partial U_\mathrm{an}$)은 범위 밖이며(후속), 단전극(하프셀) 부호와 전셀
+부호를 섞지 않는다.
+
+\textbf{양극 부호 규약(흑연과 1:1 대칭).} LCO 하프셀 전위는 vs Li/Li$^+$ 로 $\sim$3.9--4.2 V 영역에 있다 --- 흑연 음극의
+$\sim$0.1 V 와 달리 \emph{높은} 전위다. 그러나 부호 골격은 같다: 셀 방전은 LCO 입장에서 \emph{리튬화}
+(Li$^+$ 가 LCO 로 들어와 Co$^{4+}\!\to$Co$^{3+}$ 환원, $x$ 증가, 전위 하강)이고, 셀 충전은 \emph{탈리튬화}
+($x$ 감소, 전위 상승)이다 --- 단 이 문장은 \emph{화학 라벨}이고, 방향 의존 작용처(분극$\cdot$분기$\cdot$꼬리)에 들어가는
+$\sigma_d$ \emph{슬롯 배정}은 \S\ref{sec:lco-direction} 의 탈리튬화 규약(LCO \emph{충전}$\mapsto\sigma_d{=}+1$)을
+따른다. 평형 중심의 온도 의존은 관계식$\cdot$부호가 흑연과 동일하고 값만 전이별로 바뀐다(\S\ref{sec:lco-center}).
+흑연에서 $\xi_j$ 가 탈리튬화 진행이었듯, LCO 양극에서 충전(탈리튬화)이 $\xi:0\!\to\!1$ 의 주 진행 방향이다 --- 본 문건의
+LCO 전이표는 그 충전 진행을 전위 오름차순으로 적는다.
+
+흑연의 네 staging 전이 초기값(표~\ref{tab:staging})에 대응하는 LCO 초기값 리스트를 표~\ref{tab:lco-staging}
+에 둔다(상세 \S\ref{sec:lco-preview}$\cdot$\S\ref{sec:lco-code}). 흑연이 4 staging 전이를 남기듯, LCO
+하프셀(코인, $\le$4.2--4.5 V)은 세 전이를 남긴다\cite{xia2007}: $\sim$3.90 V 의 절연체$\to$금속 전이(insulator-to-metal transition, MIT), $\sim$4.05 V 와
+$\sim$4.17 V 의 한 쌍 order--disorder 전이다(고전압 $\sim$4.55 V 의 O3$\to$H1-3 는 하프셀 상한이 $\le$4.2--4.5 V 면
+범위 밖이라 옵션으로 둔다). 이 값들은 흑연과 마찬가지로 \emph{신뢰값이 아니라 초기값}이며\footnote{신뢰
+등급 표기(본 문건 전역): tier A $=$ 1차 문헌의 정량 확정값, tier B $=$ 대표/부분 스케일 anchor 또는
+2차 출처 경유 확인값(1차 원문 직접 확정 아님), tier C $=$ 추정$\cdot$placeholder(round-trip 피팅으로
+갱신 예정).}(tier --- 1차 문헌
+Xia\cite{xia2007}$\cdot$Reynier\cite{reynier2004}$\cdot$Motohashi\cite{motohashi2009} 에서 읽은 출발점), 우리 시료 데이터로
+피팅해 override 하는 전제다.
+
+\begin{table}[t]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{LCO 하프셀 전이 초기값(3건, vs Li metal) --- 출발점, 피팅으로 override. $x$ 는
+$\mathrm{Li}_x\mathrm{CoO_2}$ 의 리튬 함량. ``성격''은 상전이 유형, ``전자항''은 \S\ref{sec:lco-electronic} 의 MIT
+게이트 발현 여부. 흑연 표~\ref{tab:staging} 와 같은 자리(전위$\cdot$성격$\cdot\Delta S$), 양극 부호.
+★시연값($U{=}3.930/3.880/4.050$ V; 전자항은 T1(MIT 전이)에
+$x_\mathrm{MIT}{=}0.85$ 물리 anchor 로 배정)은
+\emph{tier-C 시연 초기값}으로, $U$·$\Delta S_\rxn$ 시연값은 본 표의 물리 anchor(T1 MIT $\sim$3.90 V$\cdot$T3 $\sim$4.17 V·config 값)와
+별개라 round-trip 피팅으로 정합한다(시연 리스트는 전이 구성$\cdot$순서가 표의 물리 anchor 와 다른 데모라 파라미터 \emph{구조}의 대응이지 전이별 1:1 값 대응은 아니다). 또한 현행 모델은 $\Delta S_e$ 를 기준온도 $T_\mathrm{ref}$ 에서
+동결한 상수 오프셋으로 넣어(단일-기준 근사) peak 를 목표 전위에 둔다(조성 매핑$\cdot$다온도 $T^2$ 곡률
+과제는 \S\ref{sec:lco-code}).}
+\label{tab:lco-staging}
+\begin{tabular}{@{}p{0.155\textwidth} c p{0.085\textwidth} p{0.165\textwidth} p{0.255\textwidth} p{0.115\textwidth}@{}}
+\toprule
+전이 & $U_j$ [V] & $x$ 범위 & 성격 & $\Delta S_{\rxn,j}^\mathrm{cat}$ 초기값 & 전자항 \\
+\midrule
+T1 (MIT)              & $\sim$3.90        & 0.94--0.75 & insulator$\to$metal       & config $+\,\Delta S_e$ 게이트 ON & \textbf{발현(핵심)} \\
+T2 (order--disorder a)& $\sim$4.05        & $\approx$0.55 & hex$\to$monoclinic 정렬 & config 주도($\approx$0.47 J/(mol\,K); 배정 tier C) & 미발현 \\
+T3 (order--disorder b)& $\sim$4.17--4.20  & $\approx$0.48 & monoclinic$\to$hex      & config($\approx$1.49 J/(mol\,K); 배정 tier C) & 미발현 \\
+\midrule
+(T4)                  & $\sim$4.55        & $\approx$0.2 & O3$\to$H1-3              & --- & (고전압, 범위 밖) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+흑연이 네 전이마다 $(\Delta H_\rxn,\Delta S_\rxn,Q,\Omega,\Delta H_a,\dots)$ 파라미터 묶음을 갖듯,
+LCO 전이도 같은 파라미터 구조를 갖되 값만 표~\ref{tab:lco-staging} 의 양극 영역으로 바뀐다. 단 하나의 구조적 차이는 T1 에
+흑연엔 없는 \emph{전자 엔트로피 항} $\Delta S_e(x,T)$ 가 더해지는 것이며(MIT 고유), 이것이 \S\ref{sec:lco-electronic}
+의 새 절이다. N1--N5 구간에서 흑연과 LCO 는 \emph{같은 식}을 공유하므로 --- Part I 은 흑연으로 식을 세웠고,
+Part II 의 절들은 LCO 파라미터를 끼워 넣는 순서로 간다.
+
+\subsection{방향 규약 --- $\sigma_d$ 입력 슬롯의 물리 내용은 탈리튬화 여부다}\label{sec:lco-direction}
+평형 중심$\cdot$폭$\cdot$평형 종은 방향과 무관하고, $\sigma_d$ 가 모델에 들어가는 작용처는 셋뿐이다 ---
+분극(\S\ref{sec:pol})$\cdot$분기(\S\ref{sec:hys})$\cdot$꼬리(\S\ref{sec:tail}). 세 작용처 모두에서 이 슬롯이
+실어 나르는 물리 내용은 셀 방향 라벨이 아니라 다음 한 줄이다:
+\begin{equation}
+\boxed{\;\begin{aligned}
+&\sigma_d=+1\ \Leftrightarrow\ \text{탈리튬화(산화, $\xi:0\!\to\!1$, 전위 상승 진행)}:\\
+&\quad\text{흑연 하프셀 --- 방전}\mapsto+1,\qquad \text{LCO 하프셀 --- 충전}\mapsto+1\;.
+\end{aligned}}
+\label{eq:lco-sigmaslot}
+\end{equation}
+흑연도 LCO 도 탈리튬화에서 하프셀 전위가 \emph{오른다}(흑연 $\sim$0.08$\to$0.21 V, LCO
+$\sim$3.9$\to$4.2 V)는 사실이 이 규약을 전극-중립으로 만들고, 그림~\ref{fig:lco-dirmap} 이 이 대응이다.
+이렇게 읽으면 세 작용처의 부호가 흑연과 1:1 로 유지된다:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=1pt]
+\item \emph{분극}(식~\eqref{eq:vn}) --- $\sigma_d=+1$(산화 전류)에서 $V_\app>V_n$: 흑연 방전과 LCO 충전이
+같은 부호로 성립;
+\item \emph{분기}(식~\eqref{eq:Ubranch}; LCO 대입형은 \S\ref{sec:lco-hys}) --- 탈리튬화 가지가 위
+($+\tfrac12$), 리튬화 가지가 아래($-\tfrac12$): 과주행 기하(그림~\ref{fig:hysloop} --- 탈리튬화는 상승
+가지 극대 $\xi_s^-$ 까지, 리튬화는 극소 $\xi_s^+$ 까지)가 전극 무관한 이중웰 성질이라, ``탈리튬화 peak 가
+높은 전위 쪽''(흑연 $U^{\dis}>U^{\chg}$ 와 동일한 물리)이 LCO 에서도 유지된다;
+\item \emph{꼬리}(식~\eqref{eq:reversal}) --- 꼬리는 진행의 시간상 뒤쪽으로 늘어지므로, $\sigma_d=+1$
+(진행 $=$ 전위 오름)은 인과 적분이 하한 $-\infty$ 를 향해 그대로이고 $\sigma_d=-1$ 은 적분이 상한 $+\infty$ 쪽으로
+반전된다(식~\eqref{eq:reversal}): LCO 충전이 흑연 방전과, LCO 방전이 흑연 충전과 같은 처리를 받는다.
+\end{enumerate}
+LCO 의 $\Omega_j^\mathrm{cat}$·동역학 키가 배정되기 전에는 세 작용처 중 실질 활성이 분극뿐이며, 이는
+\S\ref{sec:lco-hys} 의 two-phase calibration 지위 그대로다.
+
+\textbf{층위 구분(모순 아님).} \S\ref{sec:lco-map} 의 ``셀 방전 $=$ LCO 리튬화'' 서술은 셀 방향
+\emph{라벨}의 의미론(어느 셀 동작이 어느 화학 방향인가)이고, 본 절의 규약~\eqref{eq:lco-sigmaslot} 은 모델
+\emph{입력 슬롯}에 그 라벨이 아니라 탈리튬화 여부를 대입한다는 적용 규칙이다 --- 두 서술은 층위가 달라 모순이
+아니다.
+
+\textbf{평형 종의 불변(방향이 가르는 것과 가르지 않는 것).} 평형 종 자체는 이 선택에 불변이다 --- 같은
+중심$\cdot$폭에서 $1-\xi_\eq^{(\sigma_d)}=\xi_\eq^{(-\sigma_d)}$(여집합 교환; 식~\eqref{eq:xieq} 의 지수
+부호 반전 그 자체이며, \S\ref{sec:lco-code} 의 변환 대응표가 식으로 닫는다)이고 종 $\xi(1-\xi)$ 는 이 교환에
+불변이라, 평형 peak 는 어느 읽기로도 같다. 방향 읽기가 갈라놓는 것은 오직 세 작용처 ---
+분극$\cdot$분기$\cdot$꼬리 --- 다. 이 구분이 Part II 전체의 부호 실수를 막는 가드다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=3.2mm and 4.5mm,
+  lab/.style={draw,rounded corners=2pt,minimum height=6.6mm,minimum width=21mm,inner xsep=4pt,font=\scriptsize,align=center,fill=black!4},
+  slotP/.style={lab,fill=black!14,thick},
+  slotM/.style={lab,fill=black!4},
+  hdr/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.6mm]},thick}]
+% ---- graphite anode half-cell ----
+\node[hdr] (gh) {graphite anode half-cell ($\sim$0.08--0.21 V vs Li)};
+\node[lab,below=4.5mm of gh,xshift=-24mm] (gd) {label: discharge};
+\node[lab,below=of gd] (gc) {label: charge};
+\node[lab,right=of gd] (gdd) {delithiation\\$\xi:0\to1$, $V\uparrow$};
+\node[lab,right=of gc] (gcc) {lithiation\\$\xi:1\to0$, $V\downarrow$};
+\node[slotP,right=of gdd] (gp) {$\sigma_d=+1$};
+\node[slotM,right=of gcc] (gm) {$\sigma_d=-1$};
+\draw[ar] (gd)--(gdd); \draw[ar] (gdd)--(gp);
+\draw[ar] (gc)--(gcc); \draw[ar] (gcc)--(gm);
+% ---- LCO cathode half-cell ----
+\node[hdr,below=17mm of gc,xshift=24mm] (lh) {LCO cathode half-cell ($\sim$3.9--4.2 V vs Li)};
+\node[lab,below=4.5mm of lh,xshift=-24mm] (lc) {label: charge};
+\node[lab,below=of lc] (ld) {label: discharge};
+\node[lab,right=of lc] (lcc) {delithiation\\$x\downarrow$, $\xi:0\to1$, $V\uparrow$};
+\node[lab,right=of ld] (ldd) {lithiation\\$x\uparrow$, $\xi:1\to0$, $V\downarrow$};
+\node[slotP,right=of lcc] (lp) {$\sigma_d=+1$};
+\node[slotM,right=of ldd] (lm) {$\sigma_d=-1$};
+\draw[ar] (lc)--(lcc); \draw[ar] (lcc)--(lp);
+\draw[ar] (ld)--(ldd); \draw[ar] (ldd)--(lm);
+% ---- action sites ----
+\node[hdr,below=16mm of ld,xshift=24mm] (ah) {direction acts only at three sites (equilibrium peak shape is invariant)};
+\node[lab,below=4mm of ah,minimum width=96mm,align=center] (act)
+ {$\sigma_d=+1$: polarization $V_\app>V_n$ (oxidation) $\cdot$ branch $+\tfrac12$ (upper) $\cdot$ tail: no reversal (integral to $-\infty$)\\
+  $\sigma_d=-1$: mirror of all three};
+\end{tikzpicture}
+\caption{충$\cdot$방전 라벨과 탈리튬화 방향의 대응. $\sigma_d$ 슬롯의 물리 내용은 셀 라벨이
+아니라 ``작동 전극의 탈리튬화 $=+1$''(식~\eqref{eq:lco-sigmaslot})이다 --- 흑연 하프셀은 방전이, LCO
+하프셀은 충전이 $\sigma_d=+1$ 슬롯(음영 상자)에 간다. 방향은 분극$\cdot$분기$\cdot$꼬리 세 작용처에만
+작용하고 평형 종은 $\xi\leftrightarrow1-\xi$ 교환에 불변이다.}
+\label{fig:lco-dirmap}
+\end{figure}
+
+\subsection{MSMR 대응 개관 --- 같은 logistic, 같은 부호 규약}\label{sec:lco-preview}
+MSMR 모델은 양극 조성을 전위의 전이별 logistic 합으로 적는 표준
+파라미터화라, Part II 종반에서 Ch1 곡선 클래스와 1:1 대응표 --- $U\leftrightarrow V$,
+$U_j^0\leftrightarrow U_j^{\,d}$, $\omega_j\leftrightarrow w_j$, $X_j\leftrightarrow Q_j$, $f=+\sigma_d$ ---
+으로 맞물린다($f$ 는 원계열의 $F/RT>0$ 를 폭에 흡수하고 지수에 남는 방향 부호 인자). 이 가운데
+$f=+\sigma_d$ 는 같은 물리량끼리 짝짓는 대응(pairing) 하의 유일해이며, 그 유도와 가드(``함수형 동형 $\ne$ 물리량
+동일'')$\cdot$박스는 \S\ref{sec:lco-code} 가 닫는다.
+
+% 자산: [B2-035] [B2-036] [B2-037] [B2-038] [B2-039] [B2-040] [B2-041] [B2-042] [B2-043] [B2-044] [B2-045] [B2-046] [B2-047] [B2-048] [B2-049]

@@ -1,0 +1,196 @@
+% ====================================================================
+% §4 히스테리시스 분기 중심 (N3)
+% ====================================================================
+\section{히스테리시스 분기 중심 (N3)}\label{sec:hys}
+평형 중심 $U_j$ 는 상호작용 $\Omega_j$ 와 분기 인자 $\gamma_j$ 가 있으면 방향별 분기 중심 $U_j^{\,d}$ 로 이동한다
+(그렇지 않으면 $U_j$ 그대로). 본 문건의 주 전개는 방전이며, 히스테리시스는 그 위의 \emph{구조적 분기}로 선언된다 --- 방전과 충전이
+같은 전이를 서로 다른 준안정 가지로 과주행해 중심이 갈라진다(삽입형 전극 히스테리시스의 열역학적 기원\cite{dreyer2010}).
+이 절은 그 gap 의 닫힌 식과 부호를, 격자기체 자유에너지의
+이중웰에서 spinodal 을 거쳐 단계적으로 유도한다.
+
+\subsection{상호작용이 평형을 비트는 곳 --- $\mu(\theta)$ 의 상호작용 몫}\label{sec:hys-spinodal}
+\textbf{(a) 출발 --- Part 0 의 결과 받기.} 한 전이를 ``동등한 자리에 리튬이 차고 비는'' 격자기체로 보면,
+점유율 $\theta$ 의 화학퍼텐셜과 진행률 좌표의 정규용액 자유에너지는 Part 0 이 세운
+식~\eqref{eq:mu}$\cdot$\eqref{eq:gxi} 그대로다($\Omega_j>0$ 이면 동종 이웃 인력 --- 가운데를 위로 밀어
+이중웰의 씨앗, 식~\eqref{eq:sm-thresh}). \textbf{(b) 연산 --- 두 번 미분.}
+식~\eqref{eq:gxi} 를 두 번 $\xi$ 로 미분하면(로그 몫의 1계 미분 $RT\ln[\xi/(1-\xi)]$, 2계 미분
+$RT/[\xi(1-\xi)]$; 상호작용 몫의 2계 미분 $-2\Omega$)
+\begin{equation}
+g_j''(\xi)=\frac{RT}{\xi(1-\xi)}-2\Omega_j.
+\label{eq:gpp}
+\end{equation}
+\textbf{(c) spinodal --- $g_j''=0$ 의 근.} $g_j''=0$ 은 $\xi(1-\xi)=RT/(2\Omega_j)$, 곧 $\xi^2-\xi+RT/(2\Omega_j)=0$
+의 근의 공식으로
+\begin{equation}
+\xi_{s,j}^\pm=\tfrac12(1\pm u_j),\qquad
+u_j\equiv\sqrt{1-\frac{2RT}{\Omega_j}}\quad(\Omega_j>2RT).
+\label{eq:spinodal}
+\end{equation}
+$u_j$ 가 실수가 되는 조건 $\Omega_j>2RT$ 가 상분리(따라서 히스테리시스)의 문턱이며($g''<0$ 구간이 생겨 한 전위에 여러
+$\xi$ --- 그림~\ref{fig:doublewell}), $\Omega_j\le2RT$ 면 갈라짐이 없다. 이 문턱을 넘지 못하면($\Omega_j\le2RT$) 분기 gap 은 정확히 0 이다(식~\eqref{eq:dUhys} 참조).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=9.6cm,y=44cm]
+% double-well free energy g(xi) for Omega=3RT (qualitative shape, normalized)
+\draw[->] (-0.02,-0.069) -- (-0.02,0.082) node[above,font=\scriptsize] {$g_j(\xi)/RT$ (shifted)};
+\draw[->] (-0.02,0) -- (1.05,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.0015) -- (\xx,-0.0015) node[below,font=\scriptsize] {\xx};}
+% spinodal band (g''<0) shading
+\fill[black!12] (0.2113,-0.069) rectangle (0.7887,0.072);
+\node[font=\scriptsize] at (0.5,0.066) {$g''<0$ (unstable)};
+% the double well curve
+\draw[thick] plot[smooth] coordinates {(0.03,-0.041) (0.07,-0.058) (0.12,-0.052) (0.18,-0.030) (0.24,-0.004) (0.3,0.020) (0.36,0.040) (0.42,0.053) (0.5,0.057) (0.58,0.053) (0.64,0.040) (0.7,0.020) (0.76,-0.004) (0.82,-0.030) (0.88,-0.052) (0.93,-0.058) (0.97,-0.041)};
+% spinodal points
+\fill (0.2113,-0.0155) circle (0.35pt) node[above left,font=\scriptsize] {$\xi_s^-$};
+\fill (0.7887,-0.0155) circle (0.35pt) node[above right,font=\scriptsize] {$\xi_s^+$};
+\draw[densely dashed] (0.2113,-0.069) -- (0.2113,-0.0155);
+\draw[densely dashed] (0.7887,-0.069) -- (0.7887,-0.0155);
+\node[font=\scriptsize,align=center] at (0.12,0.030) {two\\wells};
+\end{tikzpicture}
+\caption{격자기체 자유에너지 $g_j(\xi)$ (식~\eqref{eq:gxi} 의 \emph{개형}, $\Omega_j=3RT$ --- 정성 곡선;
+수치 정확 좌표는 그림~\ref{fig:sm-gxi} 의 같은 곡선). $\Omega>2RT$ 면 가운데가
+언덕이 되어 양쪽에 골짜기 둘 --- 음영 띠($g''<0$, 식~\eqref{eq:gpp})가 변곡점 $\xi_s^\pm$ (spinodal, 식~\eqref{eq:spinodal})
+사이의 불안정 구간이다. 이 곡률 부호 전환이 \S\ref{sec:hys} 의 비단조 전위 곡선과 분기 gap 을 낳는다.}
+\label{fig:doublewell}
+\end{figure}
+
+\subsection{gap 의 닫힌 꼴 --- 두 spinodal 의 전위 차}\label{sec:hys-gap}
+\textbf{(a) 출발 --- 비단조 평형 전위 곡선.} 평형 조건~\eqref{eq:eqcond}($\mu=\mu^0-sF(V-U)$, 배치 몫 자유에너지 기울기 $=$ 전기화학 구동력)에 의해 자유에너지~\eqref{eq:gxi} 의 1계 미분이 곧 평형 전위에 묶인다
+($g_j'(\xi)=RT\ln[\xi/(1-\xi)]+\Omega_j(1-2\xi)=sF(V_\eq-U_j)$). 1차(직선) 몫을 뗀 식~\eqref{eq:gxi} 가 \emph{1계} 미분에서도
+옳은 근거는 Part 0 이 세운 조성 몫의 우함수 대칭(\S\ref{sec:sm-mf}: $f(1-\xi)=f(\xi)$, 따라서 $f'(1-\xi)=-f'(\xi)$)이다
+--- 식~\eqref{eq:mu} 의 $\mu_\mathrm{Li}(\theta)-\mu^0=f'(\theta)$
+에 $\theta=1-\xi$ 를 넣으면 $\mu_\mathrm{Li}-\mu^0=f'(1-\xi)=-f'(\xi)=-g_j'(\xi)$ 가 되고, 뗀 선형 몫이 남긴 상수 $\mu^0$ 가
+식~\eqref{eq:eqcond} 양변에서 상쇄돼 선형항 없이도 위 등식이 성립한다. 이를 $V_\eq$ 로 풀면
+\begin{equation}
+V_{\eq,j}(\xi)\;=\;U_j+\frac{RT}{sF}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j}{sF}\,(1-2\xi),
+\label{eq:Veq}
+\end{equation}
+이고 $\Omega_j>2RT$ 면 비단조다 --- 방전은 $\xi\!\approx\!0$ 에서 상승 가지를 극대 $\xi_{s,j}^-$ 까지, 충전은 $\xi\!\approx\!1$
+에서 극소 $\xi_{s,j}^+$ 까지 과주행하므로(전위 곡선의 극값이 $\dd V_\eq/\dd\xi=g_j''/sF=0$, 곧 spinodal 과 같은 점 ---
+그림~\ref{fig:hysloop}), 두 극값의 전위 차가 분기 gap 의 spinodal 상한이다. \textbf{(b) 연산 --- spinodal 값 대입.}
+식~\eqref{eq:spinodal} 의 $\xi_{s,j}^\pm=\tfrac12(1\pm u_j)$ 를 식~\eqref{eq:Veq} 의 두 비상수 항에 넣으면, logit 인자와
+$(1-2\xi)$ 인자가 두 끝점에서 각각
+\begin{equation}
+\frac{\xi}{1-\xi}\bigg|_{\xi_{s,j}^\pm}=\frac{1\pm u_j}{1\mp u_j},
+\qquad
+(1-2\xi)\big|_{\xi_{s,j}^\pm}=\mp u_j
+\label{eq:hyssub}
+\end{equation}
+--- 곧 두 끝점에서 logit 인자가 서로 역수다. \textbf{(c) 중간식 --- 극대에서 극소 빼기.} 극값 차를 적으면 상수항 $U_j$ 가
+상쇄되고
+\begin{align}
+\Delta U_j^\hys
+&=V_{\eq,j}(\xi_{s,j}^-)-V_{\eq,j}(\xi_{s,j}^+)\notag\\
+&=\frac{RT}{sF}\Big[\ln\frac{1-u_j}{1+u_j}-\ln\frac{1+u_j}{1-u_j}\Big]
++\frac{\Omega_j}{sF}\big[u_j-(-u_j)\big]\notag\\
+&=-\frac{4RT}{sF}\,\mathrm{artanh}\,u_j+\frac{2\Omega_j}{sF}\,u_j
+\label{eq:hysdiff}
+\end{align}
+(둘째 줄의 두 로그가 부호 반대 같은 크기라 $\ln[(1-u)/(1+u)]-\ln[(1+u)/(1-u)]=-2\ln[(1+u)/(1-u)]=-4\,\mathrm{artanh}\,u$,
+$\mathrm{artanh}\,u=\tfrac12\ln\tfrac{1+u}{1-u}$ 사용). \textbf{(d) 박스 --- $s=+1$ 정리.}
+\begin{equation}
+\boxed{\;\Delta U_j^\hys
+=\frac{2}{F}\Big[\Omega_j\,u_j-2RT\,\mathrm{artanh}\,u_j\Big],
+\qquad u_j=\sqrt{1-\frac{2RT}{\Omega_j}}\;.}
+\label{eq:dUhys}
+\end{equation}
+$\Omega_j\le2RT$ 면 gap 은
+정확히 $0$ 이다(제곱근이 허수가 되는 영역의 명시 분기). 부호 --- 극대 $>$ 극소라 $\Delta U_j^\hys\ge0$ 이고, $\Omega_j\to2RT^+$ 에서
+$u_j\to0$ 이라 Taylor 전개로 $\Delta U_j^\hys\to\frac{8RT}{3F}u_j^3\to0$ 으로
+연속이다($u_j^3\propto(T_{c,j}-T)^{3/2}$, $T_{c,j}=\Omega_j/2R$ --- 임계온도에서 매끄럽게 소멸). \textbf{★Taylor 전개의 함정
+--- 두 급수를 함께 전개해야 한다.} 위 $\frac{8RT}{3F}u^3$ 극한은 식~\eqref{eq:dUhys} 의 두 항 $\Omega_ju_j$ 와
+$2RT\,\mathrm{artanh}\,u_j$ 를 \emph{함께} $u\to0$ 으로 전개해야 얻어진다. $u_j$ 정의를 뒤집으면
+$\Omega_j=2RT/(1-u_j^2)$ 이라 $\Omega_ju_j=2RT(u_j+u_j^3+\cdots)$ 이고, 다른 항은 $\mathrm{artanh}\,u=u+u^3/3+\cdots$ 이므로
+$\frac{2}{F}[\Omega_ju-2RT\,\mathrm{artanh}\,u]=\frac{2}{F}[2RT(u+u^3)-2RT(u+u^3/3)]=\frac{8RT}{3F}u^3$ 로 \emph{양수}로 소멸한다.
+반면 $\Omega_j\approx2RT$ 를 첫째 항에 \emph{상수 대입}만 하고 $\mathrm{artanh}$ 만 전개하면
+$\frac{2}{F}[2RT\cdot u-2RT(u+u^3/3)]=-\frac{4RT}{3F}u^3$ 로 \emph{부호가 뒤집힌} 오답에 이른다 --- $\Omega_j$ 가
+$u_j$ 를 통해 $u^3$ 차수에 기여하는 몫을 빠뜨렸기 때문이다. 곧 임계온도 근방의 gap 은 반드시 양수로 소멸하며,
+상수 대입은 물리적으로 무의미한 음의 gap 을 준다.
+
+\subsection{방향별 분기 중심 $U_j^{\,d}$}\label{sec:hys-branch}
+\textbf{(a) 출발 --- 두 spinodal 끝점의 평균.} 식~\eqref{eq:hyssub} 의 두 대입값으로 두 끝점의 \emph{평균}을 적으면
+로그 몫 합 $\ln\frac{1-u}{1+u}+\ln\frac{1+u}{1-u}=0$ 과 $(1-2\xi)$ 몫 합 $u+(-u)=0$ 이 둘 다 $0$ 이라
+\begin{equation}
+\tfrac12\big[V_{\eq,j}(\xi_{s,j}^-)+V_{\eq,j}(\xi_{s,j}^+)\big]=U_j
+\label{eq:hyssym}
+\end{equation}
+--- 분기는 $U_j$ 대칭이다. \textbf{(b)(c) 한 자유도로.} 이 대칭 위에서 실측 분기 중심을 방향별 한 자유도로 적으면(축소
+인자 $\gamma_j$ 와 부분 cycle 인자 $h_{\eta,j}$ 를 곱해)
+\begin{equation}
+\boxed{\;U_j^{\,d}\;=\;U_j\;+\;\tfrac12\,\sigma_d\,h_{\eta,j}\,\gamma_j\,\Delta U_j^\hys\;.}
+\label{eq:Ubranch}
+\end{equation}
+\textbf{(d) 부호.} 방전($\sigma_d=+1$)은 중심을
+$+$ 쪽, 충전($\sigma_d=-1$)은 $-$ 쪽으로 옮겨 $U_j^{\dis}>U_j^{\chg}$(방전 전위가 충전보다 높다는 관측 일치).
+$\gamma_j=1$ 이 spinodal 상한, $\gamma_j\to0$ 이 히스 소멸, $h_{\eta,j}$ 가 부분 cycle 보정(기본 $1$)이다.
+
+전이당 필요한 것은 상수인 분기 shift 뿐이므로, 식~\eqref{eq:Ubranch} 의 $U_j$ 자리에 $0$ 을 대입해 shift
+분만 얻고, 배열 중심 $U_j$ 에 더한다:
+\begin{equation}
+\mathrm{center}=
+\begin{cases}
+U_j+\tfrac12\sigma_d h_{\eta,j}\gamma_j\Delta U_j^\hys(T_\rep) & \gamma_j\ne0 \text{ 이고 } \Omega_j>0\\[2pt]
+U_j & \text{그 외(분기 없음)}.
+\end{cases}
+\label{eq:center}
+\end{equation}
+이 분기 중심(식~\eqref{eq:center})이 다음 절 평형 진행률 $\xi_\eq$ 의 중심으로 들어간다. 평형 종의 \emph{모양} 자체는 방향 불변이고,
+방향이 바꾸는 것은 이 중심의 위치(와 \S\ref{sec:tail} 의 꼬리 방향)뿐이다.
+
+\begin{figure}[t]
+\centering
+% T3 fig:hysloop  (quantitative-density)
+% Coordinates = exact numeric evaluation of eq:Veq, Omega_j = 4RT, s=+1:
+%   y(xi) = (sF/RT)(V_eq - U_j) = ln[xi/(1-xi)] + 4(1-2 xi)
+% spinodal xi_s^-=0.1464 (y=+1.0657), xi_s^+=0.8536 (y=-1.0657); gap = 2.1314 RT/F.
+\begin{tikzpicture}[x=8.8cm,y=1.62cm,>=Latex]
+% ---- spinodal (g''<0) unstable band ----
+\begin{scope}[on background layer]
+  \fill[black!8] (0.146447,-1.5) rectangle (0.853553,1.62);
+\end{scope}
+% ---- axes ----
+\draw[->] (0,-1.5) -- (0,1.62) node[left,font=\scriptsize] {$(sF/RT)(V_\eq-U_j)$};
+\draw[->] (-0.02,0) -- (1.07,0) node[below,font=\scriptsize] {$\xi$};
+% x ticks
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.035) -- (\xx,-0.035) node[below,font=\scriptsize] {\xx};}
+% y ticks with exact values
+\foreach \yy in {1.0657,-1.0657} {\draw (0.008,\yy) -- (-0.008,\yy);}
+\node[left,font=\scriptsize] at (-0.01,1.0657) {$+1.066$};
+\node[left,font=\scriptsize] at (-0.01,-1.0657) {$-1.066$};
+% ---- Maxwell plateau line y=0 ----
+\draw[densely dashed,black!55] (0,0) -- (1.06,0);
+\node[font=\scriptsize,black!55,fill=white,inner sep=1pt,anchor=west] at (0.04,-0.62) {Maxwell $V_\eq{=}U_j$ ($y{=}0$)};
+% ---- full non-monotone V_eq(xi) ----
+\draw[thick] plot[smooth,tension=0.7] coordinates {(0.0150,-0.3046) (0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657) (0.1800,1.0437) (0.2200,0.9743) (0.2700,0.8454) (0.3300,0.6518) (0.4000,0.3945) (0.5000,0.0000) (0.6000,-0.3945) (0.6700,-0.6518) (0.7300,-0.8454) (0.7800,-0.9743) (0.8200,-1.0437) (0.8536,-1.0657) (0.9100,-0.9664) (0.9300,-0.8533) (0.9500,-0.6556) (0.9700,-0.2839) (0.9850,0.3046)};
+% ---- discharge overshoot: rising branch up to xi_s^- ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.0300,0.2839) (0.0500,0.6556) (0.0700,0.8533) (0.0900,0.9664) (0.1100,1.0293) (0.1464,1.0657)};
+% ---- charge overshoot: falling branch down to xi_s^+ ----
+\draw[line width=1.5pt,->] plot[smooth,tension=0.7] coordinates {(0.9700,-0.2839) (0.9500,-0.6556) (0.9300,-0.8533) (0.9100,-0.9664) (0.8536,-1.0657)};
+% ---- spinodal markers + exact coordinate readouts + droplines ----
+\draw[densely dotted,black!60] (0.146447,1.0657) -- (0.146447,0);
+\draw[densely dotted,black!60] (0.853553,-1.0657) -- (0.853553,0);
+\draw (0.146447,0.035) -- (0.146447,-0.035) node[below,font=\scriptsize] {0.146};
+\draw (0.853553,0.035) -- (0.853553,-0.035) node[below,font=\scriptsize] {0.854};
+\fill (0.146447,1.0657) circle (0.9pt);
+\fill (0.853553,-1.0657) circle (0.9pt);
+\node[anchor=south west,font=\scriptsize] at (0.165,1.075) {$\xi_s^-\!=\!(0.146,{+}1.066)$};
+\node[anchor=north east,font=\scriptsize] at (0.835,-1.075) {$\xi_s^+\!=\!(0.854,{-}1.066)$};
+% ---- gap annotation ----
+\draw[<->,line width=0.9pt] (1.02,-1.0657) -- (1.02,1.0657);
+\node[right,font=\scriptsize,align=left] at (1.02,0.14) {$\Delta U_j^\hys$\\$=2.131\,RT/F$};
+% ---- overshoot direction labels (corners) ----
+\node[anchor=west,font=\scriptsize] at (0.03,1.47) {discharge overshoot $\xi\!\uparrow$};
+\node[anchor=east,font=\scriptsize] at (0.98,-1.47) {charge overshoot $\xi\!\downarrow$};
+\node[font=\scriptsize,black!60] at (0.63,1.40) {$g''<0$ (unstable band)};
+\end{tikzpicture}
+\caption{비단조 평형 전위 $V_\eq(\xi)$(식~\eqref{eq:Veq}, $\Omega_j=4RT$ --- 좌표는 식 그대로의 수치 평가:
+$y=\ln[\xi/(1-\xi)]+4(1-2\xi)$). 굵은 화살표 경로가 과주행 --- 방전은 상승 가지를 극대 $\xi_s^-{=}(0.146,{+}1.066)$
+까지, 충전은 하강 가지를 극소 $\xi_s^+{=}(0.854,{-}1.066)$ 까지(식~\eqref{eq:spinodal}, $u_j{=}\sqrt{1/2}$). 두 극값의
+전위 차가 spinodal 상한 gap $\Delta U_j^\hys=2.131\,RT/F$(식~\eqref{eq:dUhys}; $298$ K 에서 $54.8$ mV), 실측 분기는
+$\gamma_j$ 만큼 안쪽(식~\eqref{eq:Ubranch}). 회색 띠는 $g''<0$ 불안정 구간, 파선은 $\gamma\!\to\!0$ 가역 한계의 Maxwell
+plateau($y{=}0$)다.}
+\label{fig:hysloop}
+\end{figure}
+
+% 자산: [A-086] [A-087] [A-088] [A-089] [A-090] [A-091] [A-092] [A-093] [A-094] [A-095] [A-096] [A-097] [A-098] [A-099] [A-100]

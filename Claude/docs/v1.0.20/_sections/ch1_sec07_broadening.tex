@@ -1,0 +1,305 @@
+% ====================================================================
+% §7 두-상 broadening 과 폭 w_j 의 지위 (N6 보강 — 독립 절로 승격)
+% ====================================================================
+\section{두-상 broadening --- 평형 델타가 실측 종이 되는 까닭과 폭 $w_j$ 의 지위 (N6 확장)}\label{sec:broadening}
+평형 peak 식~\eqref{eq:eqpeak} 의 폭 $w_j=n_jRT/F$ 가 \emph{무엇을 예측하는지}는 전이마다 다르다(\S\ref{sec:width}
+의 이중지위). 이 절은
+전이를 둘로 갈라 출발점을 점검하고, 두-상 전이에서 평형의 \emph{날카로운 선}이 실측의 \emph{유한 종}이 되는
+까닭을 모델 안의 양들로 닫는다 --- 결론은 \emph{두-상 폭 $w_j$ 는 평형 예측이 아니라 broadening 이 정하는
+현상학적 자유 피팅 폭}이라는 것, 그리고 그 종에서 평형 전위$\cdot$입자 반경 분포를 역산하지 않는다는
+것(\S\ref{sec:broadening-scope})이다.
+
+\subsection{전이별 출발 --- 애초에 종인 전이와 평형 델타인 전이}\label{sec:broadening-class}
+흑연 staging 전이는 평형 단일 입자 dQ/dV 의 모양부터
+둘로 갈린다. 첫째 부류는 \emph{연속 고용체(solid-solution)} 전이다 --- dilute$\to$stage4 영역과
+4L$\to$3L$\cdot$3L$\to$2L 두 전이(각각 표~\ref{tab:staging} 의 $4\!\to\!3\cdot3\!\to\!2\mathrm L$ 행)다. 문헌의 L 접미 명명은 면내 질서가 풀린
+액체상 stage 를 가리키며(그림~\ref{fig:staging} 의 stage 2L 과 같은 용법), 표의 정수 행 라벨과 같은 전이를
+가리킨다. 이들은 plateau 가 없는 연속 등온선이라\cite{rsc2021}, 단일 입자 평형 dQ/dV 가 \S\ref{sec:width} 의 logistic 미분
+종(식~\eqref{eq:belliden})으로 \emph{이미} 폭 $\sim n_jRT/F$ 의 종이다(정규용액 격자기체의 등온선 기울기
+$\dd\xi/\dd V$, \S\ref{sec:dist}; Levi--Aurbach\cite{leviaurbach1999}) --- 폭이 식~\eqref{eq:wbase} 의 평형
+예측 그 자체라 ``왜 종이냐''는 물음이 생기지 않는다. 둘째 부류는 \emph{두-상 평탄역(plateau)} 전이다 ---
+$2\mathrm L\!\to\!2$($\mathrm{LiC_{12}}$)와 $2\!\to\!1$($\mathrm{LiC_6}$)은 $\Omega_j>2RT$ 의 상분리(\S\ref{sec:hys}
+의 spinodal 문턱)라 평형 단일 입자가 \emph{델타에 가깝다}(Maxwell 공통접선이 plateau 를 한 전위로 모으면
+$\dd q/\dd V\!\to\!\infty$). 다만 이 두-부류 분류를 $\Omega>2RT$ 문턱 자체가 가르는 것은 아니다 ---
+표~\ref{tab:staging} 의 \emph{초기값} $\Omega_j$ 로는 네 전이가 모두 문턱을 넘으므로, 두 전이만 두-상
+plateau 로 지목하는 실제 근거는 실측 plateau$\cdot$staging 문헌의 상평형이다(\S\ref{sec:width-w} 의
+지위 구분$\cdot$Chapter 2 파생 C 각주와 같은 한정).
+
+\textbf{★Maxwell 공통접선의 ``값''과 Dreyer 순차전환의 ``경로''는 양립한다.} Maxwell 공통접선이 정의하는 것은
+그 공통 전위의 \emph{값}까지이고, 실재 $N$-입자계가 그 값을 실현하는 \emph{경로}(순차 전환)는 아래 (iii-a) 의
+Dreyer 통계역학이 답한다 --- 둘은 서로 모순되는 두 그림이 아니라 같은 평탄역의 \emph{값}과 \emph{경로}로
+양립한다. 곧 ``평형은 델타여야 하는데 실측은 종''이라는 물음은 \emph{이 두-상 두 전이에만} 해당하고,
+나머지는 원래 종이다 --- 폭의 지위를 따질 자리도 이 둘뿐이다.
+
+\subsection{둘째 부류의 델타가 종이 되는 까닭 --- broadening 의 세 출처}\label{sec:broadening-sources}
+두-상 전이에서 폭을 만드는 것은 (Maxwell
+공통접선이 그리는) plateau \emph{내부}의 단일 입자 평형이 아니라, \emph{측정 조건}과 plateau \emph{양끝}, 그리고
+\emph{전극이 단일 입자가 아니라 입자 앙상블이라는 사실}이다. 성격이 다른 세 출처를 구분해 합성하며, 그 결과(평형 델타가
+실측 종으로 펼쳐지는 그림)를 그림~\ref{fig:broadening} 에 둔다.
+
+\emph{① 유한율속 비대칭 꼬리(동역학 몫).} 첫째는 이 문건이 이미 모델로 담은 출처로, \emph{전류가 켜야} 생긴다 --- 유한
+전류면 단일 입자라 하더라도 표면 진행률이 평형 목표를 뒤따르며 과전압 $\eta$ 가 진행 중에 변하고, peak 을 한쪽으로
+밀며 꼬리를 늘인다. 이것이 바로 \S\ref{sec:lag}--\S\ref{sec:tail} 의 동역학 지연 길이 $L_{V,j}$ 와 인과 꼬리
+$(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$ 이며, C-rate 가 오를수록 심해지고 $|I|\!\to\!0$ 에서
+\emph{소멸}한다($L_V\propto|I|$ --- \S\ref{sec:lag}; Fly 등\cite{fly2020}).
+
+\emph{② 내재 $RT/F$ 폭(평형 잔여 몫).} 둘째는 plateau 양끝의 단상(solid-solution) 꼬리가 까는 내재 폭으로, plateau
+양끝이 첫째 부류와 같은 연속 등온선이라 그 경계가 무한히 날카롭지 않고 폭 $\sim RT/F$ 규모(수십 mV order)로 번진 데서
+온다(Levi--Aurbach\cite{leviaurbach1999}) --- 이 몫은 전류와 무관한 \emph{평형 자체의 잔여 폭}이라 $|I|\!\to\!0$ 에서도
+남는다. $RT/F\!\approx\!26$ mV 는 $n_j{=}1$ 의 척도일 뿐 하한이 아니다 --- plateau 끝 유효 다중도 $n_j$ 가
+$1$ 미만이면 잔여 폭은 그보다 작아질 수 있고, \S\ref{sec:width} 폭 폴백 중 두-상 두 전이의 출발값
+0.014 V($2\mathrm L\!\to\!2$)$\cdot$0.012 V($2\!\to\!1$)와 모순되지 않는다. 단 \emph{현재 모델의 staging
+출발값은 $n_j{=}1$ 고정}이라 실제 평가 폭은 $RT/F\!\approx\!25.7$ mV 이고 폭 값을 직접 지정하는 경로는 다중도
+$n$ 입력을 배제해야 활성화된다 --- $n_j\!<\!1$ 은 피팅이 내려갈 수 있는 여지이지 현재 출발 상태가 아니다.
+
+\emph{③ 집합 다입자 통계역학(앙상블 몫) --- 구조 무질서 근거는 흑연 두-상($\mathrm{LiC_{12}}\cdot\mathrm{LiC_6}$)에 한함.} 셋째는 앞 두 출처가
+한 입자 안에서 일어나는 일이었던 것과 달리, \emph{전극이 $N$ 개 입자의 앙상블}이라는 데서 온다. 이 앙상블 몫은 성격이
+다른 두 층으로 갈리므로, 평형 층(iii-a)을 먼저 세운 뒤 broadening 층(iii-b)을 그 위에 얹는다 --- 둘을 섞으면 ``중심이
+분포한다''는 잘못된 그림에 이르게 된다. 이 기작은 흑연 \emph{두-상}(turbostratic 무질서가 있는 흑연의 staging
+plateau, $\mathrm{LiC_{12}}\cdot\mathrm{LiC_6}$)에 \emph{국한}하며, LCO 양극의 세 전이에는 흑연-특정 구조 무질서
+근거를 옮기지 않고 일반 $\eta$ 분포(iii-b)로만 다룬다. LCO 의 평형 $U_j$ 입자 무관성은 흑연
+GITT(galvanostatic intermittent titration technique)\cite{park2021} 의 직접 증거가 아니라 동형
+\emph{가정}이다 --- tier C 추정이며(신뢰 등급 범례는 \S\ref{sec:lco-map} 각주), LCO 단독 GITT 가 입자
+무관 OCP(open circuit potential --- 본 문건의 OCV 와 같은 반쪽전지 준평형 전위, 문헌 표기 따름)를
+확정하면 갱신한다.
+
+\textbf{★(iii-a) 평형 층 --- Dreyer 다입자 통계역학이 \emph{plateau 구조}를 만든다.} 단일 입자의 비단조(non-monotonic) 자유
+에너지(정규용액 $\Omega>2RT$) 아래에서, $N$ 개 입자의 앙상블은 동시에 두-상으로 들어가지 않고 \emph{공통 전위}에서
+\emph{순차로} 한 입자씩 전환한다 --- \emph{전위는 공통이고 전환 시점만 순차다}(입자별로 전위가 다른 것이 아니다). 이미
+전환을 마친 입자와 아직 시작 안 한 입자가 공존하며 셀 전위를 한 값에 묶어 두는
+것이 거시적 \emph{평탄역}이다(삽입 전지 다입자 평형의 표준 그림; Dreyer 등\cite{dreyer2010}).
+단일 입자 등온선이 비단조라 한 입자만 보면 불안정한 점프이지만, 앙상블이 순차 전환으로 그 점프를
+평탄역으로 펴 \emph{평형 dQ/dV 가 한 전위의 델타에 모인다} --- 이 층은 broadening 이 아니라 \emph{평탄역(델타) 자체의 기원}이다.
+
+\textbf{★(iii-b) broadening 층 --- 그 평형 델타를 종으로 펴는 것은 \emph{apparent-U $=U_j+\eta$} 의 앙상블 분포다.} 관측되는 peak
+전위는 평형 중심이 아니라 겉보기 전위 $U_\app=U_j+\eta$(평형 중심 $U_j$ 에 과전압$\cdot$국소 환경 항 $\eta$ 가 얹힌
+값)이다. 핵심 정정 --- \emph{평형 중심 $U_j$ 는 입자 무관 상수}로 \emph{가정}하고(흑연 하프셀 GITT 준평형 OCP 가 staging 전위를
+입자 크기$\cdot$전극 형상과 무관한 상수로 주므로\cite{park2021} 마이크론 흑연에서 입자별 평형 $U_j$ 의 산포 $\approx0$ 으로 둔다 ---
+전극 수준 OCP 는 이를 시사할 뿐 단일입자 산포를 직접 분해하진 못한다), \emph{분포하는 것은 $\eta$}다 ---
+과전압$\cdot$국소 접촉 저항$\cdot$국소 환경(결정성$\cdot$흑연화도$\cdot$turbostratic 무질서가 \emph{유효 장벽$\cdot$국소
+$\eta$} 를 입자별로 흩뜨림)에서 오는 \emph{비-크기$\cdot$비-사이즈} heterogeneity 다. 따라서 앙상블 통계 평균의 적분
+변수는 평형 $U_j$ 가 아니라 \emph{apparent-U} $U_\app$ 이고, 그 밀도 $\rho(U_\app)$ 는 $\eta$ 분포가 정한다:
+\begin{equation}
+\Big\langle\frac{\dd Q}{\dd V}\Big\rangle_\mathrm{ens}
+=\int \rho(U_\app)\;\Big(\frac{\dd Q}{\dd V}\Big)^\mathrm{single}_{U_\app}\,\dd U_\app,
+\qquad U_\app=U_j+\eta,\ \ U_j=\text{const},
+\label{eq:ensavg}
+\end{equation}
+곧 단일 입자 응답 $(\dd Q/\dd V)^\mathrm{single}_{U_\app}$(평형 델타에 ② 내재 폭이 얹힌 좁은 peak)을 \emph{겉보기 중심}
+$U_\app$ 이 $\eta$ 만큼 분포한 앙상블 위로 \emph{forward} 합성한 것이다 --- (iii-a) 평형 층 위에 얹힌
+broadening 층이며, $\eta$ 의 \emph{입자간 산포}를 평균한다. 식~\eqref{eq:ensavg} 가 담는 것은
+②(커널 내 내재 폭)$\otimes$③(앙상블 $\eta$ 산포)뿐이다 --- ①(유한율속의 \emph{비대칭} skew)은 대칭 합성곱으로
+표현되지 않으므로 별도 동역학 파라미터 $L_V$(N7$\cdot$N8, $|I|\!\to\!0$ 소멸)가 담당하고, 두-상 \emph{총}
+broadening 은 $w_j(\text{②}\otimes\text{③})+L_V(\text{①})$ 로 묶인다(①의 전류 몫을 $w_j$ 가 다시 흡수하면
+이중계산). $\eta$ 산포가 좁아져 $\rho\!\to\!\delta(U_\app-U_j)$ 면 식~\eqref{eq:ensavg} 는 평형 중심 $U_j$
+의 단일 델타로 환원된다(③ 소멸).
+엄밀히는 $\eta$ 중 순수 \emph{동역학} 몫은 ①처럼 $|I|\!\to\!0$ 에서 소멸하고, 결정성$\cdot$turbostratic 무질서 같은
+\emph{구조성} 몫이 평형까지 남으면 그것은 조작적으로 작은 $U_j$ 산포와 구별되지 않는다 --- 그 잔여 몫까지
+$\approx0$($\eta$ 지배)에 묻는 것이 위 가정의 보수적 읽기이며, forward-only 처방에서 안전하다. \emph{단, 본 문건은 식~\eqref{eq:ensavg} 의 forward 통계 평균만
+쓴다} --- 측정된 종에서 $\rho(U_\app)$ 를 \emph{역산}하지 않는다(그 까닭은 \S\ref{sec:broadening-scope}).
+
+세 출처의 몫은 한 식으로 정량화된다. ② 와 ③ 은 대칭 합성곱으로 겹치므로 분산(2차 모멘트)이 정확히
+가법이다 --- 합성곱의 분산 가법은 분포의 모양과 무관한 항등식이며, ① 의 단측 지수 꼬리도 총분산에는
+$L_{V,j}^2$ 로 가법된다. 그럼에도 ① 을 별도 축으로 세우는 까닭은 그 몫이 왜도와 평균 이동을 동반하고
+전류에 비례해 소멸하여($L_V\propto|I|$) 대칭 폭 $w_j$ 와 분리 식별되기 때문이다:
+\begin{equation}
+\underbrace{\sigma_\mathrm{sym}^{\,2}}_{\text{대칭 폭(분산)}}
+\;=\;\underbrace{\frac{\pi^2}{3}\Big(\frac{n_jRT}{F}\Big)^{\!2}}_{\text{② 내재(logistic 분산)}}
+\;+\;\underbrace{\sigma_\eta^{\,2}}_{\text{③ 앙상블 }\rho(U_\app)\text{ 산포}},
+\qquad
+\underbrace{\ell_\mathrm{tail}}_{\text{비대칭 꼬리 길이}}\;=\;L_{V,j}\;\propto\;|I|
+\label{eq:widthbudget}
+\end{equation}
+(logistic 미분 종~\eqref{eq:belliden} 은 규격화하면 scale $w_j$ 의 logistic 분포 그 자체라 분산이
+$\pi^2w_j^2/3$, 반높이 전폭(full width at half maximum, FWHM)은
+$2\ln(3+2\sqrt2)\,w_j\approx3.53\,w_j$ 다 --- $n_j{=}1$,
+298 K 에서 $\approx91$ mV). 기호 규약을 명시하면 --- 식~\eqref{eq:widthbudget} 의 $\sigma$ 는 모두
+\emph{표준편차}(분산의 제곱근)이고, ② 항의 제곱근이 내재 몫의 표준편차
+$\sigma_\mathrm{int}\equiv\pi n_jRT/(\sqrt3\,F)$ 이며, logistic scale(여기서는 $w_j$)과는
+$\sigma=\pi w_j/\sqrt3$ 으로 환산된다. 성분비로 적으면
+$\sigma_\mathrm{sym}/\sigma_\mathrm{int}=\sqrt{1+(\sigma_\eta/\sigma_\mathrm{int})^2}$ 이라 같은
+비율이 scale 에도 그대로 적용된다. 실측 종에서 조작적으로 분리되는 것도 이 두 축이다: 대칭 폭은 피팅 폭 $w_j$ 가
+②$\otimes$③ 을 한꺼번에 흡수하고(두 몫의 분리는 $\sigma_\eta$ 의 독립 측정 없이는 비유일 --- \S\ref{sec:broadening-scope} 의 (ii)
+ill-posed 성질과 같은 뿌리), 비대칭 꼬리는 $L_{V,j}$ 가 담당하며 $|I|\!\to\!0$ 에서 소멸해 두 축이 전류
+의존성으로도 갈린다. 그림~\ref{fig:widthbudget} 이 이 예산의 세 단계를 같은 축 위에 둔다 --- 두-상 $w_j$ 가
+②$\otimes$③ 을 흡수하는 현상학적 자유 피팅 폭이라는 \S\ref{sec:width} 이중지위의 \emph{두-상} 측을
+떠받치는 물리가 바로 이것이다.
+
+\begin{figure}[t]
+\centering
+% T8 fig:widthbudget — waterfall (stacked baselines + stage arrows) on a SHARED x-axis.
+% Stage (2)(x)(3) is a TRUE numerical convolution — the true peak is ~10% lower than the
+% "same family" logistic-bell shortcut, reported honestly in the caption alongside the exact
+% (chapter's own) variance sum.
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[x=0.75cm,y=2.6cm]
+\draw[-{Latex[length=1.6mm]}] (-7.3,-0.15) -- (11.3,-0.15) node[below,font=\scriptsize] {$(V-U_j)/w_j$};
+\draw[-{Latex[length=1.4mm]}] (-7.1,-0.15) -- (-7.1,1.62) node[above,font=\scriptsize] {$\dd Q/\dd V$ stages (stacked baselines)};
+% ---- stage 1: equilibrium delta at baseline 0 ----
+\draw[-{Latex[length=1.8mm]},very thick] (0,0) -- (0,0.30);
+\node[font=\tiny] at (0,0.36) {eq.\ delta (Maxwell $U_j$)};
+\draw[densely dotted] (-7.1,0) -- (11.1,0);
+% ---- stage 2: intrinsic bell, baseline 0.45 ----
+\draw[densely dotted] (-7.1,0.45) -- (11.1,0.45);
+\draw[black!55] plot[smooth] coordinates {(-6.32,0.4518) (-5.60,0.4537) (-4.88,0.4575) (-4.16,0.4651) (-3.44,0.4801) (-2.72,0.5080) (-2.00,0.5550) (-1.28,0.6202) (-0.56,0.6814) (0.16,0.6984) (0.88,0.6572) (1.60,0.5898) (2.32,0.5315) (3.04,0.4936) (3.76,0.4722) (4.48,0.4611) (5.20,0.4555) (5.92,0.4527) (6.64,0.4513) (7.36,0.4506) (8.08,0.4503) (8.80,0.4502) (9.52,0.4501) (10.24,0.4500)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-1.81,0.37) -- (1.81,0.37) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{int}{=}1.81w_j$};
+\node[black!55,font=\tiny] at (2.6,0.62) {(2) intrinsic $n_jRT/F$};
+% ---- stage 3: (2)(x)(3) TRUE Gaussian convolution, baseline 0.90 ----
+\draw[densely dotted] (-7.1,0.90) -- (11.1,0.90);
+\draw[densely dashed,thick] plot[smooth] coordinates {(-6.32,0.9125) (-5.60,0.9206) (-4.88,0.9322) (-4.16,0.9477) (-3.44,0.9667) (-2.72,0.9879) (-2.00,1.0087) (-1.28,1.0262) (-0.56,1.0372) (0.16,1.0398) (0.88,1.0333) (1.60,1.0190) (2.32,0.9997) (3.04,0.9783) (3.76,0.9579) (4.48,0.9403) (5.20,0.9266) (5.92,0.9166) (6.64,0.9099) (7.36,0.9056) (8.08,0.9031) (8.80,0.9016) (9.52,0.9008) (10.24,0.9004)};
+\draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (-2.90,0.81) -- (2.90,0.81) node[pos=0.5,below,font=\tiny] {$\sigma_\mathrm{sym}{=}2.90w_j$};
+\node[font=\tiny,align=left] at (5.6,1.13) {(2)$\otimes$(3) ensemble $\eta$\\$\sigma_\eta{=}1.25\sigma_\mathrm{int}$};
+% ---- stage 4: +(1) causal exponential tail, baseline 1.35 ----
+\draw[densely dotted] (-7.1,1.35) -- (11.1,1.35);
+\draw[thick] plot[smooth] coordinates {(-6.32,1.3559) (-5.60,1.3601) (-4.88,1.3665) (-4.16,1.3757) (-3.44,1.3881) (-2.72,1.4035) (-2.00,1.4212) (-1.28,1.4394) (-0.56,1.4561) (0.16,1.4688) (0.88,1.4756) (1.60,1.4757) (2.32,1.4691) (3.04,1.4571) (3.76,1.4416) (4.48,1.4249) (5.20,1.4086) (5.92,1.3941) (6.64,1.3821) (7.36,1.3726) (8.08,1.3656) (8.80,1.3605) (9.52,1.3569) (10.24,1.3545)};
+\draw[-{Latex[length=1.3mm]},gray] (2.0,1.51) -- (4.6,1.44);
+\node[font=\tiny] at (2.7,1.58) {$+$(1) causal tail, $L_V{=}1.5w_j$};
+\draw[{Bar[width=1.1mm]}-{Bar[width=1.1mm]}] (1.24,1.27) -- (2.74,1.27) node[pos=0.5,below,font=\tiny] {$L_V$};
+% ---- stage-transition connector arrows in the clear right margin ----
+\draw[-{Latex[length=1.4mm]}] (9.9,0.02) -- (9.9,0.43);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.47) -- (9.9,0.88);
+\draw[-{Latex[length=1.4mm]}] (9.9,0.92) -- (9.9,1.33);
+\end{tikzpicture}%
+}
+\caption{두-상 broadening 의 폭 예산(식~\eqref{eq:widthbudget}), 네 단계를 공유 $x$ 축 위 계단(waterfall)으로
+서사화 --- 아래에서 위로 쌓아 폭이 실제로 넓어지는 것을 한눈에 비교한다(점선 = 각 단계의 기준선, 오른쪽 여백의
+수직 화살표가 단계 전이). 맨 아래 굵은 화살 = 평형 델타(Maxwell 전위). 회색 = ② 내재 logistic 미분 종(폭
+$\sigma_\mathrm{int}=1.81w_j$). 파선 = ②$\otimes$③ --- \emph{실제 수치 합성곱}(Gaussian 예시
+$\sigma_\eta=1.25\,\sigma_\mathrm{int}$)으로
+얻은 결과이며 분산은 정확히 가법이다 --- $\sigma_\mathrm{sym}=\sqrt{\sigma_\mathrm{int}^2+\sigma_\eta^2}$
+$=2.90w_j$ 의 피타고라스 형태로, 본문 식~\eqref{eq:widthbudget} 과 일치한다. 다만 본문이 쓰는 ``같은 함수족이면 유효 scale
+$1.6w_j$'' 지름길로 재현한 logistic 종은 이 실제 합성곱보다 peak 가 약 $10\%$ 높다(분산은
+정확해도 \emph{모양}까지 같은 logistic 족은 아님 --- 근사의 한계를 명시해 둔다). 굵은 실선 = $+$① 인과
+지수 꼬리($L_V=1.5w_j$, 식~\eqref{eq:lag} 의 인과 기억 적분으로 계산)가 종을 오른쪽으로 밀며,
+peak 위치가 중심에서 이동한다. 세 척도($\sigma_\mathrm{int}$·$\sigma_\mathrm{sym}$·꼬리 길이 $L_V$)는
+치수선 길이로 직접 대비된다.}
+\label{fig:widthbudget}
+\end{figure}
+
+\subsection{이 절의 범위 --- 유도로 닫는 경계}\label{sec:broadening-scope}
+앞 소절은 broadening 의 \emph{설명}(forward 통계
+평균)까지이며, 아래 세 가지는 본 절의 범위에 포함하지 않는다 --- 각각 배제의 근거를 함께 둔다.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2.5pt]
+\item \textbf{입자 \emph{사이즈}(반경) 효과 --- 보편형을 먼저 두고, 실조건 수치로 배제한다.} 크기가 곡선에
+들어오는 일반형부터 적는다. 반경 분포(particle size distribution, PSD) $p(r)$ 를 갖는 앙상블의 응답은
+단일 입자 응답을 PSD 위로 합성한
+\begin{equation}
+\Big\langle\frac{\dd Q}{\dd V}\Big\rangle_\mathrm{PSD}
+=\int p(r)\,\Big(\frac{\dd Q}{\dd V}\Big)^{\mathrm{single}}_{\,U_j+\Delta U(r),\ \tau(r)}\,\dd r
+\label{eq:psdconv}
+\end{equation}
+이고, 반경은 두 채널로만 커널에 들어온다. 첫째는 열역학 채널 --- 표면$\cdot$상경계 에너지가 평형 전위를
+옮기는 Gibbs--Thomson 이동
+\begin{equation}
+\Delta U(r)\;=\;\frac{2\gamma V_m}{F\,r}
+\label{eq:gibbsthomson}
+\end{equation}
+($\gamma$ = 계면 에너지[J/m$^2$] --- 분기 축소 인자 $\gamma_j$(그림$\cdot$검산표에서는 $\gamma$ 로
+약기)와 무관한 별개 기호, $V_m$ = 삽입상
+몰부피)이고, 둘째는 동역학 채널 --- 고체 확산 평형화 시간
+$\tau(r)=r^2/D$ 의 분산이다. 이제 실조건 수치를 대입한다. \emph{열역학 채널}: 흑연 호스트 몰부피
+$6M_\mathrm{C}/\rho_\mathrm{graphite}=6\times12.011/2.26\approx31.9$ cm$^3$/mol
+($\rho_\mathrm{graphite}=2.26$ g/cm$^3$ 는 표준 물성값)에 삽입 팽창($\sim$10--13\%)을 얹으면
+$V_m(\mathrm{LiC_6})\approx36$ cm$^3$/mol $=3.6\times10^{-5}$ m$^3$/mol 이고(상한 논증이라 큰 쪽을 쓴다),
+계면 에너지는 $\gamma\sim0.1$--$1$ J/m$^2$ 스케일로 상정한다(수치의 전용 문헌 anchor 는 근거 미발견 ---
+tier C; 상분리 입자 전극의 계면 에너지 논의는 Cogswell--Bazant\cite{cogswell2012} 참조. 아래는 상한
+$\gamma=1$ 을 쓰는 상한 논증이라 결과가 $\gamma$ 의 정확값에 둔감하다). 이를 취하면
+전형 마이크론 흑연 $r=1$--$15\,\mu$m 에서
+\[
+\Delta U(1\,\mu\mathrm m)\;\le\;\frac{2\times1\times3.6\times10^{-5}}{96485\times10^{-6}}
+\;\approx\;0.75\ \mathrm{mV},
+\qquad
+\delta U_\mathrm{PSD}\;=\;\frac{2\gamma V_m}{F}\Big(\frac{1}{r_{\min}}-\frac{1}{r_{\max}}\Big)
+\;\approx\;0.20\ \mathrm{mV}
+\]
+($r_{\min}/r_{\max}=3/15\,\mu$m 예시). 폭에 기여하는 것은 이동의 절대값이 아니라 PSD 위 이동의
+\emph{산포} $\delta U_\mathrm{PSD}$ 인데, 이는 실측 폭 $w\sim RT/F\approx25.7$ mV 의 $1\%$ 미만이고,
+이동 절대값 기준으로도 상한 $\gamma$$\cdot$최소 $r$ 에서 $3\%$ 를 넘지 못한다. tier C 상정의 견고성을
+명시하면 --- $\Delta U\propto\gamma$ 라 상한을 다시 $5$ 배 과대 상정해도($\gamma=5$ J/m$^2$)
+$\delta U_\mathrm{PSD}\approx1.0$ mV 로 결론(실측 폭 대비 수 \% 미만)은 불변이다. \emph{동역학 채널}:
+흑연의 GITT 실측 확산계수 $D\approx10^{-11}$--$4\times10^{-10}$ cm$^2$/s\cite{park2021} 로 평형화
+시간은 $\tau(5\,\mu\mathrm m)=r^2/D\approx6\times10^{2}$--$2.5\times10^{4}$ s 규모이나, 이
+$\tau\propto r^2$ 분산은 $|I|\to0$ 평형 기준선에서 항등적으로 소멸하며(지연은 유한 전류의 산물,
+\S\ref{sec:lag}), 유한 전류에서는 전이당 단일 유효 $L_V$(N7)의 입자별 산포로 들어오는 이차
+보정 --- 이미 부차적인 꼬리 폭의 산포 --- 에 그친다. 따라서 마이크론 흑연에서 반경$\to$곡선 사상은 두 채널
+모두 정량적으로 작고, 일반형~\eqref{eq:psdconv} 의 반경 의존이 커널에서 소거되어 PSD 적분은 항등이
+되며, 앙상블에 남는 heterogeneity 는 비-크기 $\eta$ 산포 --- 곧 식~\eqref{eq:ensavg} --- 뿐이다.
+(iii-b) 의 $\rho(U_\app)$ 를 \emph{비-크기} heterogeneity 전용으로
+두는 것은 선언이 아니라 이 수치 유도의 따름 결과다. 크기 채널이 유의해지는 것은 $1/r$ 이 큰 나노
+영역(상한 $\gamma$ 기준 $r\approx30$ nm 에서 $\Delta U\approx25$ mV; $\gamma\sim0.1$ 이면 그
+십분의 일)뿐이며, 그 영역(과 양자가둠 밴드 shift 류)은 본 장의
+범위에 포함하지 않는다. Dahn 등의 $x_{\max}=1-P$ 무질서
+모델\cite{dahn1995}은 비-크기 구조 무질서가 실재함을 보이는 \emph{용량-한계 예시}일 뿐, inter-particle
+$\eta$ 분포 형상을 정량하는 1차 근거는 아니다(분포 형상 tier C 근거미발견 --- intra-particle site-blocking
+식을 과대인용하지 않는다).
+\item \textbf{dQ/dV$\to\rho(U_\app)$ 역산은 ill-posed 이므로 하지 않는다(forward-only).} (iii-b) 의 ``peak $=$
+단일 입자 커널 $\circledast$ 앙상블 분포 $\rho(U_\app)$''(식~\eqref{eq:ensavg})는 1종 Fredholm 적분방정식(distribution
+of relaxation times 와 동형)이라, 정방향(분포$\to$peak)만 잘 정의되고 역방향은 정규화$\cdot$형태가정 없이는
+비유일$\cdot$불안정하다 --- 서로 다른 분포가 거의 같은 곡선을 주고, ``불안정''의 뜻은 합성곱이 분포의
+고주파 성분을 지수적으로 눌러 놓아 역산이 그 눌린 성분을 되살리는 과정에서 데이터의 작은 잡음을 크게
+증폭한다는 것이다. 따라서 $\eta$ heterogeneity 는
+\emph{현상학적 폭 $w_j$ 에 흡수되는 것으로만} 두고 식~\eqref{eq:ensavg} 를 forward 로만 쓴다(분포는 폭을
+\emph{넓힐} 뿐 평형 중심 $U_j$ 를 옮기지 않는다 --- (iii-b) 의 GITT 한정과 동일\cite{park2021}).
+\item \textbf{입자 \emph{크기 분포}(PSD) 위로 합성곱하는 다입자 \emph{기계장치}는 모델에 넣지 않는다.} 모델은
+\emph{단일 유효 입자 $+$ 동역학 지연 $L_V$}(N7$\cdot$N8) 구조를 유지하고, 앙상블 무질서는
+현상학적 $w_j$ 한 파라미터로 흡수된다 --- 모델 차원은 늘지 않고, 늘어난 것은 (iii-b) 의 \emph{비-크기} 통계
+평균 \emph{설명}뿐이다(크기$\to$폭 맵은 후속).
+\end{enumerate}
+
+\begin{keybox}
+\textbf{broadening 한 줄.} 연속 전이(dilute$\cdot$4L$\to$3L$\to$2L)는 평형 단일 입자가 \emph{이미} 폭 $n_jRT/F$ 의 종이고,
+두-상 전이($\mathrm{LiC_{12}}\cdot\mathrm{LiC_6}$)만 평형(plateau 내부) 델타가 유한 종이 된다 --- 그 폭은 \emph{세}
+출처가 정한다: ① \emph{전류가 켜는} 유한율속 비대칭 꼬리($L_V$, $|I|\!\to\!0$ 소멸) ② plateau 양끝의 \emph{평형 잔여}
+내재 폭($\sim RT/F$, 전류 무관) ③ \emph{입자 앙상블}의 집합 통계역학 --- 평형 층(Dreyer 순차 전환이 \emph{plateau 구조}를
+만듦)과 broadening 층(그 평형 델타를 펴는 \emph{apparent-U $=U_j+\eta$} 의 입자간 $\eta$ 산포 $\rho(U_\app)$)으로 갈리며,
+forward 평균 $\int\rho(U_\app)\,(\dd Q/\dd V)^\mathrm{single}\,\dd U_\app$(식~\eqref{eq:ensavg}; $\rho\!\to\!\delta$ 면
+평형 중심 $U_j$ 의 단일 델타로 환원; 흑연-특정 구조 무질서 \emph{근거}는 흑연 두-상 한정 --- LCO 는 일반
+$\eta$ 산포로만, 본문 ③). 셋을 한꺼번에 흡수하는 것이 \emph{현상학적 자유 피팅 폭}이며 ---
+\emph{분포하는 것은 $\eta$(겉보기 중심 $U_\app$), 평형 중심 $U_j$ 는 입자 무관 상수로 움직이지 않는다}. 입자
+사이즈(반경) 채널은 마이크론 흑연에서 정량적으로 무시 가능하여($\delta U_\mathrm{PSD}\ll w$,
+식~\eqref{eq:gibbsthomson} 수치 유도 --- 본문 \S\ref{sec:broadening-scope}(i)) 모델은 $\rho(U_\app)$ 역산$\cdot$PSD 크기 convolution
+으로 확장하지 않는다(역문제 ill-posed$\cdot$forward-only).
+\end{keybox}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=0.95cm]
+% left: solid-solution transition (already a bell at equilibrium)
+\begin{scope}
+\draw[-{Latex[length=1.6mm]}] (-2.7,0) -- (2.7,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.6mm]}] (-2.7,0) -- (-2.7,2.6) node[above,font=\scriptsize] {$dQ/dV$};
+% equilibrium bell (already broad) — solid
+\draw[thick] plot[smooth] coordinates {(-2.3,0.18) (-1.6,0.5) (-1.1,0.95) (-0.6,1.6) (-0.2,2.1) (0,2.2) (0.2,2.1) (0.6,1.6) (1.1,0.95) (1.6,0.5) (2.3,0.18)};
+\node[font=\scriptsize,align=center] at (0,-0.7) {(a) solid-solution\\(dilute, 4L$\to$3L$\to$2L):\\equilibrium is already a bell};
+\node[font=\scriptsize] at (1.35,1.7) {$w\!=\!nRT/F$};
+\end{scope}
+% right: two-phase transition (equilibrium delta -> measured bell via broadening)
+\begin{scope}[xshift=6.4cm]
+\draw[-{Latex[length=1.6mm]}] (-2.7,0) -- (2.7,0) node[below,font=\scriptsize] {$V$};
+\draw[-{Latex[length=1.6mm]}] (-2.7,0) -- (-2.7,2.6) node[above,font=\scriptsize] {$dQ/dV$};
+% equilibrium plateau-interior near-delta: tall NARROW (but finite edge width) — dashed
+\draw[densely dashed,thick] plot[smooth] coordinates {(-0.32,0.0) (-0.18,0.7) (-0.08,1.9) (0,2.42) (0.08,1.9) (0.18,0.7) (0.32,0.0)};
+\node[font=\scriptsize,align=center] at (-1.0,2.2) {eq.\ (plateau\\interior)};
+% measured bell, skewed to higher V (finite-rate tail)
+\draw[thick] plot[smooth] coordinates {(-2.3,0.12) (-1.6,0.34) (-1.1,0.66) (-0.6,1.1) (-0.2,1.5) (0.2,1.62) (0.5,1.5) (0.9,1.18) (1.3,0.82) (1.8,0.46) (2.3,0.24)};
+\draw[-{Latex[length=1.3mm]},gray] (0.7,1.3)--(1.6,0.6);
+\node[font=\scriptsize] at (1.45,1.15) {$\eta(t)$ tail (①)};
+\node[font=\scriptsize,align=center] at (0,-0.7) {(b) two-phase ($\mathrm{LiC_{12}},\mathrm{LiC_6}$):\\near-delta $\to$ bell by broadening\\($w_j$ phenomenological)};
+\end{scope}
+\end{tikzpicture}
+\caption{평형 모양과 broadening. (a) 연속 고용체 전이 --- 평형 단일 입자 dQ/dV 가 이미 폭 $n_jRT/F$ 의
+종(식~\eqref{eq:eqpeak}), broadening 불요. (b) 두-상 전이 --- 평형은 plateau \emph{내부}에서 거의 날카로운
+선(파선; 양끝 단상 꼬리 탓에 폭이 정확히 $0$ 은 아님)이고, 실측은 세 출처가 펼친 치우친 종(실선)이다:
+① 유한율속 비대칭 꼬리(\S\ref{sec:lag}--\S\ref{sec:tail} 의 $L_V$, $|I|\!\to\!0$ 소멸),
+② 전류 무관한 가장자리 내재 폭($\sim RT/F$),
+③ 겉보기 중심 $U_\app=U_j+\eta$ 의 입자간 $\eta$ 산포를 forward 평균한 앙상블 몫(식~\eqref{eq:ensavg}).
+①의 $\eta(t)$(한 입자의 시간 변화)와 ③의 입자간 $\eta$ 산포는 같은 과전압의 다른 평균이며, 평형 중심 $U_j$ 는
+입자 무관 상수다 --- 분포하는 것은 $\eta$. 세 출처의 지위와 한정(폭 $w_j$ 의 현상학적 지위$\cdot$흑연 두-상
+국한$\cdot$$\rho(U_\app)$ 역산 금지$\cdot$사이즈 배제)은 본문 \S\ref{sec:broadening-sources}$\cdot$\S\ref{sec:broadening-scope}.}
+\label{fig:broadening}
+\end{figure}
+
+이로써 두-상 폭의 지위가 닫혔다 --- 다음 절(\S\ref{sec:lag})은 세 출처 중 ①(유한율속 비대칭 꼬리)의 답,
+곧 동역학 지연 길이 $L_V$ 를 세운다.
+
+% 자산: [A-130] [A-131] [A-132] [A-133] [A-134] [A-135] [A-136] [A-137] [A-138] [A-139] [A-140] [A-141] [A-142] [A-143] [A-144] [A-145] [A-146] [A-147] [A-148] [A-149] [A-150] [A-151] [A-152] [A-153] [A-154] [A-155] [A-156] [A-157] [A-158] [A-159]
