@@ -11,8 +11,8 @@
 \begin{scope}[x=0.0056cm,y=2.6cm]
 \draw[-{Latex[length=1.5mm]}] (0,0) -- (0,1.55)
   node[above,font=\scriptsize] {$S_\vib/R$};
-\draw[-{Latex[length=1.5mm]}] (0,0) -- (1080,0)
-  node[below,font=\scriptsize] {$T$ [K]};
+\draw[-{Latex[length=1.5mm]}] (0,0) -- (1085,0)
+  node[right,font=\scriptsize] {$T$ [K]};
 \foreach \xx in {200,400,600,800,1000}
   {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {0.5,1.0,1.5}
@@ -31,7 +31,7 @@
 \draw[-{Latex[length=1.2mm]},black!55] (505,0.375) -- (540,0.70);
 \node[font=\tiny,anchor=west,align=left] at (55,0.62) {저온 동결\\$S_\vib\to0$};
 \draw[-{Latex[length=1.2mm]},black!55] (110,0.55) -- (140,0.06);
-\node[font=\scriptsize] at (210,1.42) {(a) 닫힌형, $\theta_E{=}700$ K};
+\node[font=\scriptsize,anchor=west] at (240,1.42) {(a) 닫힌형, $\theta_E{=}700$ K};
 \end{scope}
 % =============== (b) T_ref-zeroed deviation in uV/K ===============
 \begin{scope}[xshift=-10.10cm,x=0.066cm,y=0.215cm]
@@ -49,12 +49,12 @@
 \foreach \px/\py in {278.15/-3.738, 298.15/0, 318.15/3.70, 348.15/9.138}
   {\fill (\px,\py) circle (1.2pt);}
 \node[font=\tiny,anchor=west] at (279.2,-4.1) {$-3.74$};
-\node[font=\tiny,anchor=north west] at (299.0,-0.35) {$0$ ($T_\mathrm{ref}$ 강제 영점)};
+\node[font=\tiny,anchor=north west] at (300.5,-1.5) {$0$ ($T_\mathrm{ref}$ 강제 영점)};
 \node[font=\tiny,anchor=south east] at (317.4,4.0) {$+3.70$};
 \node[font=\tiny,anchor=south east] at (347.4,9.4) {$+9.14$};
 \draw[densely dotted] (298.15,-7) -- (298.15,10.4);
-\node[font=\scriptsize,anchor=west] at (266,10.3) {(b) 기준온도 편차};
-\node[font=\tiny,anchor=west,align=left] at (266,7.6)
+\node[font=\scriptsize,anchor=west] at (322,-5.3) {(b) 기준온도 편차};
+\node[font=\tiny,anchor=west,align=left] at (266,8.6)
   {전자항($\propto T$, 영점 강제 없음)과의\\함수형 구분은 \S\ref{ssec:einstein-numid} 의 식별 논거};
 \end{scope}
 \end{tikzpicture}

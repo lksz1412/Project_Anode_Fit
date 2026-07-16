@@ -10,7 +10,7 @@
 \centering
 \begin{tikzpicture}[x=0.148cm,y=0.44cm,>=Latex,shift={(-260,10.9)}]
 % ---- frame ----
-\draw[->] (260,-10.8) -- (348,-10.8) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (260,-10.8) -- (348,-10.8) node[right,font=\scriptsize] {$T$ [K]};
 \draw[->] (260,-10.8) -- (260,-0.05) node[above,font=\scriptsize] {$L_{V,j}$ [V] (log 축)};
 \foreach \xx in {260,280,300,320,340} {\draw (\xx,-10.72) -- (\xx,-10.88) node[below,font=\scriptsize] {\xx};}
 \foreach \yy/\lab in {-10/{$10^{-10}$},-9/{$10^{-9}$},-8/{$10^{-8}$},-7/{$10^{-7}$},-6/{$10^{-6}$},
@@ -53,14 +53,15 @@
 \node[font=\tiny,anchor=west] at (340.6,-3.96) {$80$ kJ/mol, C/10};
 \node[font=\tiny,anchor=west] at (340.6,-2.96) {$80$ kJ/mol, C/1};
 % current handle annotation
-\draw[<->,semithick] (333,-3.49) -- (333,-2.72);
-\node[font=\tiny,anchor=west] at (333.8,-3.14) {$|I|{\times}10\Rightarrow L_V{\times}10$};
+\draw[<->,semithick] (326,-3.44) -- (326,-2.50);
+\node[font=\tiny,anchor=east] at (325.2,-2.97) {$|I|{\times}10\Rightarrow L_V{\times}10$};
 % temperature handle annotation
-\node[font=\scriptsize,align=center] at (272,-4.55) {저온일수록 꼬리$\uparrow$\\(기울기 $\propto\Delta H_{a}^\eff$)};
-\draw[->,semithick] (272,-3.9) -- (276.5,-2.55);
+\node[font=\scriptsize,align=center] at (293,-3.85) {저온일수록 꼬리$\uparrow$\\(기울기 $\propto\Delta H_{a}^\eff$)};
+\draw[->,semithick] (288.5,-3.25) -- (280.0,-2.05);
 % crossing of w threshold
 \fill (282.6,-1.615) circle (1.2pt);
-\node[font=\tiny,anchor=north west] at (283.0,-1.75) {$L_V\!\approx\!w$};
+\node[font=\tiny,anchor=east] at (281.6,-1.28) {$L_V\!\approx\!w$};
+\draw[thin,black!60] (281.8,-1.36) -- (282.5,-1.56);
 \end{tikzpicture}
 \caption{동역학 지연 길이의 온도$\cdot$전류$\cdot$장벽 지도 --- 좌표는 사슬
 식~\eqref{eq:Acut}$\cdot$\eqref{eq:chid}$\cdot$\eqref{eq:dHeff}$\cdot$\eqref{eq:Lqfull}$\cdot$\eqref{eq:LV}

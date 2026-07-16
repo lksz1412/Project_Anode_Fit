@@ -11,8 +11,8 @@
 % ---- axes ----
 \draw[-{Latex[length=1.6mm]}] (-0.015,-0.52) -- (-0.015,0.52)
   node[above,font=\scriptsize] {$\partial U_\oc/\partial T$ [mV/K]};
-\draw[-{Latex[length=1.6mm]}] (-0.015,0) -- (1.13,0)
-  node[below,font=\scriptsize] {$\bar x$ (탈리튬화 분율)};
+\draw[-{Latex[length=1.6mm]}] (-0.015,0) -- (1.07,0);
+\node[font=\scriptsize] at (0.55,-0.475) {$\bar x$ (탈리튬화 분율)};
 \foreach \xx in {0.25,0.5,0.75,1.0}
   {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-0.4,-0.2,0.2,0.4}
@@ -21,14 +21,14 @@
 \draw[densely dotted,black!60] (0,0.301) -- (1.0,0.301);
 \draw[densely dotted,black!60] (0,-0.052) -- (1.0,-0.052);
 \draw[densely dotted,black!60] (0,-0.166) -- (1.0,-0.166);
-\node[right,font=\tiny] at (1.005,0.301) {$\Delta S^0_{4\to3}/F{=}{+}0.301$};
-\node[right,font=\tiny] at (1.005,0.055) {$\Delta S^0_{3\to2\mathrm L}/F{=}0$};
-\node[right,font=\tiny] at (1.005,-0.052) {$\Delta S^0_{2\mathrm L\to2}/F{=}{-}0.052$};
-\node[right,font=\tiny] at (1.005,-0.166) {$\Delta S^0_{2\to1}/F{=}{-}0.166$};
+\node[right,font=\tiny] at (1.075,0.301) {$\Delta S^0_{4\to3}/F{=}{+}0.301$};
+\node[right,font=\tiny] at (1.075,0.030) {$\Delta S^0_{3\to2\mathrm L}/F{=}0$};
+\node[right,font=\tiny] at (1.075,-0.075) {$\Delta S^0_{2\mathrm L\to2}/F{=}{-}0.052$};
+\node[right,font=\tiny] at (1.075,-0.180) {$\Delta S^0_{2\to1}/F{=}{-}0.166$};
 % ---- step (wrong) : dominant-transition switching ----
 \draw[dashed,thick,black!45] (0.02,-0.166) -- (0.663,-0.166) -- (0.663,-0.052)
   -- (0.873,-0.052) -- (0.873,0.301) -- (0.98,0.301);
-\node[black!45,font=\scriptsize,anchor=west] at (0.40,-0.205) {계단(오답)};
+\node[black!45,font=\scriptsize,anchor=west] at (0.50,-0.205) {계단(오답)};
 % ---- simple formula (center values only, eq:weighted) ----
 \draw[thick,black!55] plot[smooth] coordinates {(0.02,-0.1477) (0.04,-0.1469) (0.06,-0.1459) (0.08,-0.145) (0.1,-0.1439) (0.12,-0.1429) (0.14,-0.1417) (0.16,-0.1405) (0.18,-0.1392) (0.2,-0.1378) (0.22,-0.1363) (0.24,-0.1348) (0.26,-0.1331) (0.28,-0.1314) (0.3,-0.1296) (0.32,-0.1276) (0.34,-0.1256) (0.36,-0.1234) (0.38,-0.1212) (0.4,-0.1188) (0.42,-0.1163) (0.44,-0.1138) (0.46,-0.111) (0.48,-0.1082) (0.5,-0.1053) (0.52,-0.1022) (0.54,-0.09903) (0.56,-0.0957) (0.58,-0.09223) (0.6,-0.08861) (0.62,-0.0848) (0.64,-0.08077) (0.66,-0.07648) (0.68,-0.07187) (0.7,-0.06682) (0.72,-0.06121) (0.74,-0.05482) (0.76,-0.04737) (0.78,-0.03841) (0.8,-0.02732) (0.82,-0.01317) (0.84,0.005235) (0.86,0.02928) (0.88,0.05989) (0.9,0.0964) (0.92,0.1355) (0.94,0.1724) (0.96,0.2034) (0.98,0.2272)};
 % ---- full formula (center + in-peak config, eq:complete) ----
@@ -36,10 +36,11 @@
 % ---- tab:qrev five rows as dots ----
 \foreach \px/\py in {0.10/-0.307, 0.25/-0.204, 0.50/-0.089, 0.75/0.044, 0.90/0.218}
   {\fill (\px,\py) circle (1.2pt);}
-\node[font=\tiny,anchor=west] at (0.265,-0.235) {$(0.25,\,-0.204)$ --- \S\ref{ssec:worked} 예제점};
+\node[font=\tiny,anchor=west] at (0.185,-0.275) {$(0.25,\,-0.204)$ --- \S\ref{ssec:worked} 예제점};
+\draw[black!55] (0.25,-0.212) -- (0.262,-0.258);
 % ---- sign-flip tick of the full formula ----
-\draw[densely dotted] (0.681,0) -- (0.681,-0.06);
-\node[font=\tiny,anchor=north] at (0.681,-0.065) {부호 교대 $\bar x\!\approx\!0.68$};
+\draw[densely dotted] (0.681,0) -- (0.681,-0.10);
+\node[font=\tiny,anchor=west] at (0.695,-0.115) {부호 교대 $\bar x\!\approx\!0.68$};
 % ---- exo/endo readouts ----
 \node[font=\tiny,anchor=west] at (0.015,-0.315) {$\partial U_\oc/\partial T<0$: 방전($I{>}0$) \emph{발열}};
 \node[font=\tiny,anchor=west] at (0.60,0.38) {$>0$: 방전 \emph{흡열}};

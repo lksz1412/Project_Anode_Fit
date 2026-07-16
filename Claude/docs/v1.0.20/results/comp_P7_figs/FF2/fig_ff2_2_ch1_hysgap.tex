@@ -10,12 +10,12 @@
 \centering
 \begin{tikzpicture}[x=1.5cm,y=0.030cm]
 % single-phase region (gap identically 0)
-\fill[black!7] (0,-14) rectangle (2,120);
+\fill[black!7] (0,-19) rectangle (2,120);
 \node[font=\scriptsize,align=center] at (1.0,63) {단상 쪽\\$\Omega_j\le2RT$:\\gap $\equiv0$};
-\draw[densely dotted] (2,-14) -- (2,120);
+\draw[densely dotted] (2,-19) -- (2,120);
 \node[font=\scriptsize,anchor=south,rotate=90] at (2.0,72) {$\Omega=2RT$ ($T{=}T_{c,j}$)};
 % axes
-\draw[-{Latex[length=1.6mm]}] (0,-14) -- (0,126) node[above,font=\scriptsize] {$\Delta U_j^\hys$ [mV]};
+\draw[-{Latex[length=1.6mm]}] (0,-19) -- (0,126) node[above,font=\scriptsize] {$\Delta U_j^\hys$ [mV]};
 \draw[-{Latex[length=1.6mm]}] (0,0) -- (5.95,0) node[below,font=\scriptsize] {$\Omega_j/RT$};
 \foreach \xx in {1,2,3,4,5} {\draw (\xx,1.7) -- (\xx,-1.7) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {25,50,75,100} {\draw (0.013,\yy) -- (-0.013,\yy) node[left,font=\scriptsize] {\yy};}
@@ -32,7 +32,8 @@
 \node[font=\scriptsize,anchor=west] at (3.24,14.5) {문턱 점근 $\tfrac{8RT}{3F}u_j^3>0$};
 % Taylor trap: constant substitution gives wrong negative gap
 \draw[densely dotted,thick] plot[smooth] coordinates {(2.00,0.00) (2.12,-0.46) (2.24,-1.20) (2.36,-2.04) (2.48,-2.92) (2.60,-3.80) (2.72,-4.67) (2.84,-5.51) (2.96,-6.33) (3.08,-7.11) (3.20,-7.87)};
-\node[font=\scriptsize,anchor=west] at (3.24,-8.5) {★함정: 상수 대입 오답 $-\tfrac{4RT}{3F}u_j^3<0$ (비물리)};
+\node[font=\scriptsize,anchor=west] at (2.55,-16) {★함정: 상수 대입 오답 $-\tfrac{4RT}{3F}u_j^3<0$ (비물리)};
+\draw[-{Latex[length=1.2mm]},black!60] (2.9,-13) -- (3.02,-7.6);
 % staging initial values on the exact curve
 \fill (2.420,5.80) circle (1.3pt);
 \node[font=\tiny,anchor=south east,inner sep=1.2pt] at (2.42,7.6) {$4{\to}3$ (6.2)};
@@ -45,9 +46,9 @@
 % cross-check with fig:hysloop at Omega=4RT
 \draw[densely dotted,black!60] (4.0,0) -- (4.0,54.76) -- (0,54.76);
 \node[font=\tiny,anchor=north west,align=left] at (4.05,44) {$(4RT,\,54.8$ mV$)$\\$=2.131\,RT/F$};
-% doping arrow toward threshold
-\draw[-{Latex[length=1.6mm]},black!60] (3.05,39) to[bend right=14] (2.10,3.5);
-\node[font=\scriptsize,anchor=west,black!60,align=left] at (2.42,44) {도핑: $\Omega^\mathrm{cat,dop}\!\to\!2RT^{+}$\\$\Rightarrow$ gap $\to0$};
+% doping arrow toward threshold (just above the x-axis, pointing left)
+\draw[-{Latex[length=1.6mm]},black!60] (3.35,3.5) -- (2.30,3.5);
+\node[font=\scriptsize,anchor=west,black!60] at (2.98,7.2) {도핑 $\Omega^\mathrm{cat,dop}\!\to\!2RT^{+}$: gap$\,\to0$};
 \end{tikzpicture}
 \caption{히스테리시스 분기 gap 의 문턱 곡선 $\Delta U_j^\hys(\Omega_j)$ --- 좌표는
 식~\eqref{eq:dUhys} 그대로의 수치 평가다($T{=}298.15$ K). $\Omega_j\le2RT$(음영)에서 gap 은 정확히

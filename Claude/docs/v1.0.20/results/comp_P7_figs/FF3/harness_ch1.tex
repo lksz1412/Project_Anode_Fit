@@ -1,0 +1,28 @@
+% 최소 하네스 (Ch1 문맥): article + kotex + tikz + ch1 확인 라이브러리 + ch1 매크로
+% 빌드: xelatex -interaction=nonstopmode harness_ch1.tex (본문 라벨 참조는 ?? 경고 — 오류 아님)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+% --- ch1_preamble.tex 의 매크로(조각이 쓰는 것 포함 전체 세트) ---
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\begin{document}
+\input{fig_ff3_2_LV_map.tex}
+\clearpage
+\input{fig_ff3_3_sum_curve.tex}
+\clearpage
+\input{fig_ff3_4_relaxode.tex}
+\clearpage
+\input{fig_ff3_5_hysgap.tex}
+\end{document}

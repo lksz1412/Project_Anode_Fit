@@ -14,7 +14,7 @@
 \begin{scope}[on background layer]
   \fill[black!6] (0,-0.62) rectangle (2,5.62);
 \end{scope}
-\draw[->] (0,0) -- (6.55,0) node[below,font=\scriptsize] {$\Omega_j/RT$};
+\draw[->] (0,0) -- (6.55,0) node[right,font=\scriptsize] {$\Omega_j/RT$};
 \draw[->] (0,-0.62) -- (0,5.62) node[above,font=\scriptsize] {$F\,\Delta U_j^\hys/RT$};
 \foreach \xx in {1,2,3,4,5,6} {\draw (\xx,0.05) -- (\xx,-0.05) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {1,2,3,4,5} {\draw (0.05,\yy) -- (-0.05,\yy) node[left,font=\scriptsize] {\yy};}
@@ -36,12 +36,13 @@
 \draw[dashed,black!50] plot[smooth] coordinates {(2,0) (2.02,-0.0013) (2.05,-0.0051)
   (2.1,-0.0139) (2.2,-0.0365) (2.35,-0.0766) (2.5,-0.1193) (2.75,-0.1899) (3,-0.2566)
   (3.25,-0.318) (3.5,-0.3741)};
-\node[font=\scriptsize,black!50,anchor=west] at (2.62,-0.47) {상수 대입 오답 $-\tfrac43u_j^3<0$};
+\node[font=\scriptsize,black!50,anchor=west] at (2.42,-0.95) {상수 대입 오답 $-\tfrac43u_j^3<0$};
+\draw[->,thin,black!50] (3.05,-0.78) -- (3.28,-0.40);
 % cross-check markers
 \fill (3,0.8302) circle (1.1pt); \fill (4,2.1314) circle (1.1pt);
 \node[font=\scriptsize,anchor=south east] at (3.06,0.90) {$(3,\,0.830)$};
 \node[font=\scriptsize,anchor=south east] at (4.06,2.20) {$(4,\,2.131)$};
-\node[font=\scriptsize] at (3.3,-0.98) {(a) 문턱$\cdot$연성 개시$\cdot$부호 함정};
+\node[font=\scriptsize] at (3.3,-1.55) {(a) 문턱$\cdot$연성 개시$\cdot$부호 함정};
 \end{scope}
 % =============== (b) gap(T) [mV], four staging Omega ===============
 \begin{scope}[xshift=8.15cm,x=0.01235cm,y=0.0323cm,shift={(-240,0)}]
@@ -49,11 +50,11 @@
 \begin{scope}[on background layer]
   \fill[black!6] (260,0) rectangle (340,130);
 \end{scope}
-\draw[->] (240,0) -- (815,0) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (240,0) -- (815,0) node[right,font=\scriptsize] {$T$ [K]};
 \draw[->] (240,0) -- (240,130) node[above,font=\scriptsize] {$\Delta U_j^\hys(T)$ [mV]};
 \foreach \xx in {300,400,500,600,700,800} {\draw (\xx,1.5) -- (\xx,-1.5) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {25,50,75,100,125} {\draw (244,\yy) -- (236,\yy) node[left,font=\scriptsize] {\yy};}
-\node[font=\scriptsize,black!55,anchor=south] at (300,130) {측정 창};
+\node[font=\tiny,black!55,anchor=north] at (321,127) {측정 창};
 % 298.15 K guide
 \draw[densely dotted] (298.15,0) -- (298.15,127);
 % Omega = 13000 (2->1)

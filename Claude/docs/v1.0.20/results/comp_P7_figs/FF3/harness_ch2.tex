@@ -1,0 +1,28 @@
+% 최소 하네스 (Ch2 문맥): article + kotex + tikz + ch2 확인 라이브러리 + ch2 매크로
+% 빌드: xelatex -interaction=nonstopmode harness_ch2.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,positioning}
+% --- ch2_preamble.tex 의 매크로 ---
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\avg}[1]{\langle #1\rangle}
+\begin{document}
+\input{fig_ff3_1_dUdT_profile.tex}
+\clearpage
+\input{fig_ff3_6_einstein.tex}
+\end{document}

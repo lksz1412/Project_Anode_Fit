@@ -10,7 +10,7 @@
 \centering
 \begin{tikzpicture}
 % =================== (a) single transition, L family ===================
-\begin{scope}[x=0.38cm,y=13.5cm]
+\begin{scope}[x=0.36cm,y=13.5cm]
 \draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (-6.3,0.285) node[anchor=south west,xshift=-3mm,font=\scriptsize] {peak [$1/w$]};
 \draw[-{Latex[length=1.6mm]}] (-6.3,0) -- (10.6,0) node[below,font=\scriptsize] {$(V-U_j)/w$};
 \foreach \xx in {-4,0,4,8} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
@@ -28,17 +28,16 @@
 \fill (0,0.2500) circle (1.2pt); \fill (0.62,0.2272) circle (1.2pt);
 \fill (1.01,0.1955) circle (1.2pt); \fill (1.50,0.1494) circle (1.2pt);
 \draw[-{Latex[length=1.4mm]},black!60] plot[smooth] coordinates {(0.05,0.2495) (0.62,0.2272) (1.01,0.1955) (1.45,0.1520)};
-\node[font=\scriptsize,anchor=west,align=left] at (2.30,0.238) {$L_V\!\uparrow$ (저온$\cdot$고율):\\정점$\downarrow\cdot$중심 이동$\cdot$꼬리 연장};
-% legend
-\node[font=\tiny,anchor=west,align=left] at (-6.0,0.265)
-  {점선 $L_V{=}0$(평형 종, 정점 $0.250$@$0$)\ \ 회색 $0.75w$($0.227$@$+0.62w$)\\
-   실선 $1.5w$($0.196$@$+1.01w$)\ \ 파선 $3w$($0.149$@$+1.50w$)};
+\node[font=\scriptsize,anchor=west,align=left] at (3.3,0.215) {$L_V\!\uparrow$ (저온$\cdot$고율):\\정점$\downarrow\cdot$중심 이동$\cdot$꼬리 연장};
+% legend (short: numeric details in caption)
+\node[font=\tiny,anchor=west] at (-6.0,0.272)
+  {점선 $L_V{=}0$(평형 종) $\cdot$ 회색 $0.75w$ $\cdot$ 실선 $1.5w$ $\cdot$ 파선 $3w$};
 \node[font=\scriptsize] at (2.0,-0.038) {(a)};
 \end{scope}
 % =================== (b) two transitions, overlap ===================
-\begin{scope}[xshift=7.75cm,x=0.32cm,y=13.5cm]
+\begin{scope}[xshift=7.35cm,x=0.30cm,y=13.5cm]
 \draw[-{Latex[length=1.6mm]}] (-5.3,0) -- (-5.3,0.285) node[anchor=south west,xshift=-3mm,font=\scriptsize] {$\sum$ peak [$1/w$]};
-\draw[-{Latex[length=1.6mm]}] (-5.3,0) -- (14.4,0) node[below,font=\scriptsize] {$(V-U_A)/w$};
+\draw[-{Latex[length=1.6mm]}] (-5.3,0) -- (14.4,0) node[anchor=north west,xshift=-2mm,font=\scriptsize] {$(V-U_A)/w$};
 \foreach \xx in {-4,0,4,8,12} {\draw (\xx,0.004) -- (\xx,-0.004) node[below,font=\scriptsize] {\xx};}
 \foreach \yy/\lab in {0.1/0.1,0.2/0.2} {\draw (-5.15,\yy) -- (-5.45,\yy) node[left,font=\scriptsize] {\lab};}
 % centers

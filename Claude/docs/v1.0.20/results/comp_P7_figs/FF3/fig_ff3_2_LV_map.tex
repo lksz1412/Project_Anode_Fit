@@ -13,7 +13,7 @@
 \draw[-{Latex[length=1.6mm]}] (18,-13.3) -- (18,2.3)
   node[above,font=\scriptsize] {$\log_{10}(L_{V}/\mathrm V)$};
 \draw[-{Latex[length=1.6mm]}] (18,-13.3) -- (105,-13.3)
-  node[below,font=\scriptsize] {$\Delta H_{a}$ [kJ/mol]};
+  node[right,font=\scriptsize] {$\Delta H_{a}$ [kJ/mol]};
 \foreach \xx in {20,40,60,80,100}
   {\draw (\xx,-13.15) -- (\xx,-13.45) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-12,-10,-8,-6,-4,-2,0}
@@ -29,20 +29,19 @@
 \draw[black!55,thick] (18,-1.590) -- (103,-1.590);
 \node[font=\tiny,anchor=west] at (19,-1.05)
   {가시 문턱 $L_V=w=RT/F\,(298\,\mathrm K)\approx25.7$ mV};
-\foreach \cx in {69.6,77.6,85.7} {\fill (\cx,-1.590) circle (1.1pt);
-  \draw[densely dotted,black!55] (\cx,-1.590) -- (\cx,-13.3);}
-\node[font=\tiny,anchor=north] at (69.6,-13.55) {$69.6$};
-\node[font=\tiny,anchor=north] at (77.6,-13.55) {$77.6$};
-\node[font=\tiny,anchor=north] at (85.7,-13.55) {$85.7$};
+\foreach \cx in {69.6,77.6,85.7} {\fill (\cx,-1.590) circle (1.1pt);}
+\node[font=\tiny,anchor=north] at (69.6,-1.80) {$69.6$};
+\node[font=\tiny,anchor=north] at (77.6,-1.80) {$77.6$};
+\node[font=\tiny,anchor=north] at (85.7,-1.80) {$85.7$};
 % ---- staging initial-value window on the 298 K line ----
 \foreach \px/\py in {40/-8.185, 44/-7.484, 46/-7.134, 48/-6.783}
   {\fill (\px,\py) circle (1.1pt);}
 \draw[{Bar[width=1.2mm]}-{Bar[width=1.2mm]}] (40,-9.6) -- (48,-9.6);
-\node[font=\tiny,anchor=north,align=center] at (44,-9.8)
-  {표~\ref{tab:staging} 초기값 창\\$\Delta H_a=40$--$48$};
+\node[font=\tiny,anchor=north] at (44,-10.1)
+  {표~\ref{tab:staging} 초기값 창 $40$--$48$};
 % ---- C-rate arrow: L_V ∝ |I| ----
-\draw[-{Latex[length=1.5mm]},thick] (60,-4.681) -- (60,-3.380);
-\node[font=\tiny,anchor=west,align=left] at (61,-4.05)
+\draw[-{Latex[length=1.5mm]},thick] (74,-6.8) -- (74,-5.5);
+\node[font=\tiny,anchor=west,align=left] at (75.5,-6.35)
   {C/10$\to$2C ($\times20$):\\$+1.30$ decade ($L_V\propto|I|$)};
 % ---- region readouts ----
 \node[font=\tiny,align=center] at (33,-4.6) {$L_V\ll w$: 꼬리 불가시\\(평형 종 전용 --- \S\ref{sec:sum})};

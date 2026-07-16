@@ -171,20 +171,37 @@ $\langle n\rangle^{0}$ 이 $1$ 에 붙는 방향이다.
 \begin{bgbox}
 \textbf{페르미온·보손과 양자 통계 ---} 양자역학에서 같은 종류의 입자 둘은
 \emph{동일입자}(identical particles)다 --- 전자 둘을 맞바꿔도 어떤 측정값도 달라지지 않는다. 이
-구별불가능성은 다입자 파동함수에 교환 대칭 제약을 건다: 두 입자를 맞바꿀 때 파동함수가 그대로인
-\emph{대칭} 부류와 부호가 뒤집히는 \emph{반대칭} 부류, 자연에는 이 둘만 존재한다. 대칭 쪽이
-\emph{보손}(boson)이다 --- 정수 스핀을 가지며 한 양자 상태를 몇 개라도 함께 점유할 수 있어, 준위 $E$ 의
-평형 평균 점유수가 Bose--Einstein 분포 $\bar n(E)=1/(e^{\beta(E-\mu)}-1)$ 를 따른다. 반대칭 쪽이
-\emph{페르미온}(fermion)이다 --- 반정수 스핀을 가지며 같은 상태에 둘을 넣으면 파동함수가 자기 자신과
-상쇄되어 사라지므로 준위당 점유가 $0$ 또는 $1$ 로 제한되고(\emph{Pauli 배타 원리}, Pauli exclusion
-principle), 평균 점유가 Fermi--Dirac 분포 $f(E)=1/(e^{\beta(E-\mu)}+1)$ 를 따른다 \cite{mcquarrie1976} (정수 스핀 $\leftrightarrow$ 대칭, 반정수 스핀 $\leftrightarrow$ 반대칭의 대응이 \emph{스핀--통계 정리}이고 --- 광자$\cdot$포논이 보손, 전자가 페르미온의 예다).
-실제로 페르미온 준위 하나를 대정준으로 풀면 상태 합은 $1+e^{-\beta(E-\mu)}$ 의 두 항이 전부다 ---
-``한 상태에 $0$ 또는 $1$''이라는 셈법이 같으면 유도의 대수도, 분포의 꼴도 같아진다. 격자 삽입 자리의
-점유 $0/1$ 은 페르미온과 이 셈법 구조만 공유한다 --- 배타의 근거가 파동함수의 반대칭성이 아니라
-정전$\cdot$입체 반발이라는 \emph{기하}이고 입자도 전자가 아니라 Li 이온인데, 셈법이 같으므로 같은
-logistic(Fermi--Dirac 형) 대수가 나온다. 진짜 양자 통계가 일하는 곳은 Chapter 2 다 --- 격자 진동의
-양자(포논)는 보손이라 진동 엔트로피가 Bose--Einstein 들뜸수로 적히고, 전도 전자는 페르미온이라
-electronic 엔트로피가 Fermi--Dirac 분포로 적힌다 \cite{mcquarrie1976,ashcroftmermin1976}.
+구별불가능성은 다입자 파동함수에 교환 대칭 제약을 건다: 두 입자의 자리를 맞바꿀 때
+\begin{equation}
+\psi(2,1)\;=\;\pm\,\psi(1,2)\qquad(+:\ \text{대칭 = \emph{보손}},\quad -:\ \text{반대칭 = \emph{페르미온}}),
+\label{eq:sm-exch}
+\end{equation}
+의 두 부류만 자연에 존재한다(정수 스핀 $\leftrightarrow$ 대칭, 반정수 스핀 $\leftrightarrow$ 반대칭의
+대응이 \emph{스핀--통계 정리}이고 --- 광자$\cdot$포논이 보손(boson), 전자가 페르미온(fermion)의 예다).
+반대칭 부류에서 같은 상태에 둘을 넣으면 식~\eqref{eq:sm-exch} 이 $\psi(1,1)=-\psi(1,1)$, 곧 $\psi\equiv0$
+을 강제하므로 준위당 점유가 $0$ 또는 $1$ 로 제한된다(\emph{Pauli 배타 원리}, Pauli exclusion principle);
+대칭 부류에는 이 제약이 없어 한 상태를 몇 개라도 함께 점유한다. 두 부류의 평형 점유 분포는 본문과 같은
+대정준 도구(식~\eqref{eq:sm-gc})로 준위 하나에서 곧장 닫힌다 --- 준위 $E$ 의 점유수 합이 페르미온은
+$n\in\{0,1\}$ 두 항, 보손은 $n=0,1,2,\dots$ 의 기하급수라($E>\mu$ 에서 수렴)
+\begin{equation}
+\begin{aligned}
+\text{페르미온: }&\ \Xi_\mathrm F=\!\!\sum_{n=0,1}\!e^{-n\beta(E-\mu)}=1+e^{-\beta(E-\mu)}
+&&\Rightarrow\ \
+f(E)=\frac{1}{e^{\beta(E-\mu)}+1},\\
+\text{보손: }&\ \Xi_\mathrm B=\sum_{n=0}^{\infty}e^{-n\beta(E-\mu)}=\frac{1}{1-e^{-\beta(E-\mu)}}
+&&\Rightarrow\ \
+\bar n(E)=\frac{1}{e^{\beta(E-\mu)}-1}
+\end{aligned}
+\label{eq:sm-fdbe}
+\end{equation}
+이고, 두 화살표는 같은 한 줄 $\langle n\rangle=k_BT\,\partial\ln\Xi/\partial\mu$(식~\eqref{eq:sm-gc} 셋째
+식)로 나온다. 앞이 Fermi--Dirac 분포, 뒤가 Bose--Einstein 분포다 \cite{mcquarrie1976}. 격자 삽입 자리의
+점유 $0/1$ 은 페르미온과 이 셈법 구조만 공유한다 --- $\Xi_\mathrm F$ 와 원형~\eqref{eq:sm-baresum} 의 두-항
+합이 같은 대수라 같은 logistic(Fermi--Dirac 형) 분포가 나오지만, 배타의 근거가 파동함수의 반대칭성이 아니라
+정전$\cdot$입체 반발이라는 \emph{기하}이고 입자도 전자가 아니라 Li 이온이다. 진짜 양자 통계가 일하는 곳은
+Chapter 2 다 --- 격자 진동의 양자(포논)는 보손이라 진동 엔트로피가 식~\eqref{eq:sm-fdbe} 의 $\bar n$
+(Bose--Einstein 들뜸수)으로 적히고, 전도 전자는 페르미온이라 electronic 엔트로피가 $f(E)$(Fermi--Dirac
+분포)로 적힌다 \cite{mcquarrie1976,ashcroftmermin1976}.
 \end{bgbox}
 
 \textbf{(a$'$) 출발 --- 미시상태의 온전한 기술.} 원형의 점입자 이상화는 실제 자리에서 성립하지 않는다 ---

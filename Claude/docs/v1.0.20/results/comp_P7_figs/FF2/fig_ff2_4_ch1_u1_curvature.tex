@@ -12,39 +12,43 @@
 % ============ (a) U_1(T) - U_1(T_ref) ============
 \begin{scope}[x=0.055cm,y=0.05cm,shift={(-268.15,0)}]
 \draw[-{Latex[length=1.6mm]}] (266,-33) -- (266,50)
-  node[above,font=\scriptsize] {$U_1(T)-U_1(T_\mathrm{ref})$ [mV]};
-\draw[-{Latex[length=1.6mm]}] (266,0) -- (354,0) node[below,font=\scriptsize] {$T$ [K]};
-\foreach \xx in {270,290,310,330,350} {\draw (\xx,1.4) -- (\xx,-1.4) node[below,font=\scriptsize] {\xx};}
+  node[anchor=south west,xshift=-4mm,font=\scriptsize] {$U_1(T)-U_1(T_\mathrm{ref})$ [mV]};
+\draw[-{Latex[length=1.6mm]}] (266,-33) -- (356,-33)
+  node[anchor=north west,xshift=-3mm,font=\scriptsize] {$T$ [K]};
+\foreach \xx in {270,290,310,330,350} {\draw (\xx,-31.6) -- (\xx,-34.4) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-30,-15,15,30,45} {\draw (266.6,\yy) -- (265.4,\yy) node[left,font=\scriptsize] {\yy};}
+\draw[densely dashed,black!45] (266,0) -- (352,0);
 \draw[densely dotted,black!55] (298.15,-33) -- (298.15,46);
 \node[font=\tiny,black!55,anchor=south] at (298.15,46) {$T_\mathrm{ref}$};
 % baseline linear (no electronic term) — straight line
 \draw[thick,densely dotted] (268.15,-24.87) -- (348.15,41.46);
 % full T^2 curvature (eq:U1T2)
 \draw[very thick] plot[smooth] coordinates {(268.15,-11.39) (272.15,-9.78) (276.15,-8.21) (280.15,-6.66) (284.15,-5.14) (288.15,-3.64) (292.15,-2.16) (296.15,-0.71) (300.15,0.71) (304.15,2.11) (308.15,3.48) (312.15,4.82) (316.15,6.15) (320.15,7.44) (324.15,8.71) (328.15,9.96) (332.15,11.18) (336.15,12.37) (340.15,13.54) (344.15,14.68) (348.15,15.80)};
-% identification gap at the high-T end
-\draw[{Latex[length=1.3mm]}-{Latex[length=1.3mm]}] (350.5,41.46) -- (350.5,15.80);
-\node[font=\tiny,anchor=west,align=left] at (351.3,28.6) {$-25.7$ mV};
-\node[font=\tiny,anchor=east,align=right] at (347,37.5) {기저 선형\\($a_e{=}0$, $0.83$ mV/K)};
-\node[font=\tiny,anchor=north west,align=left] at (322,5.6) {적분형 $T^2$ 곡률\\(식~\eqref{eq:U1T2}, $a_e{<}0$)};
-\node[font=\scriptsize,anchor=north,align=center] at (310,-14) {고온 외삽이 선형보다\\\emph{낮아짐} $=$ 전자항 식별 신호};
-\node[font=\scriptsize] at (310,-27.5) {(a)};
+% right-end stacked labels + identification gap arrow
+\draw[{Latex[length=1.3mm]}-{Latex[length=1.3mm]}] (349.4,41.46) -- (349.4,15.80);
+\node[font=\tiny,anchor=west] at (350.4,41.46) {기저 선형 $0.83$ mV/K};
+\node[font=\tiny,anchor=west] at (350.4,28.6) {$-25.7$ mV};
+\node[font=\tiny,anchor=west,align=left] at (350.4,15.80) {적분형 $T^2$\\(식~\eqref{eq:U1T2})};
+\node[font=\scriptsize,anchor=north,align=center] at (306,-13) {고온 외삽이 선형보다\\\emph{낮아짐} $=$ 전자항 식별 신호};
+\node[font=\scriptsize] at (310,-42) {(a)};
 \end{scope}
 % ============ (b) slope space: dU_1/dT(T) ============
-\begin{scope}[xshift=7.9cm,x=0.055cm,y=4.6cm,shift={(-268.15,-0.16)}]
+\begin{scope}[xshift=8.3cm,x=0.055cm,y=4.6cm,shift={(-268.15,-0.16)}]
 \draw[-{Latex[length=1.6mm]}] (266,0.16) -- (266,0.98)
-  node[above,font=\scriptsize] {$\partial U_1/\partial T$ [mV/K]};
-\draw[-{Latex[length=1.6mm]}] (266,0.16) -- (354,0.16) node[below,font=\scriptsize] {$T$ [K]};
+  node[anchor=south west,xshift=-4mm,font=\scriptsize] {$\partial U_1/\partial T$ [mV/K]};
+\draw[-{Latex[length=1.6mm]}] (266,0.16) -- (356,0.16)
+  node[anchor=north west,xshift=-3mm,font=\scriptsize] {$T$ [K]};
 \foreach \xx in {270,290,310,330,350} {\draw (\xx,0.168) -- (\xx,0.152) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {0.2,0.4,0.6,0.8} {\draw (266.6,\yy) -- (265.4,\yy) node[left,font=\scriptsize] {\yy};}
-\draw[densely dotted,black!55] (298.15,0.16) -- (298.15,0.93);
-\node[font=\tiny,black!55,anchor=south] at (298.15,0.93) {$T_\mathrm{ref}$};
+\draw[densely dotted,black!55] (298.15,0.16) -- (298.15,0.90);
+\node[font=\tiny,black!55,anchor=south] at (298.15,0.90) {$T_\mathrm{ref}$};
 % baseline (no electronic): constant
 \draw[thick,densely dotted] (268.15,0.829) -- (348.15,0.829);
 \node[font=\tiny,anchor=south] at (308,0.836) {기저(전자항 0): $\Delta S_0/F=0.829$ (상수)};
 % frozen approximation: constant at T_ref value
-\draw[thick,densely dashed] (268.15,0.3557) -- (348.15,0.3557);
-\node[font=\tiny,anchor=north west] at (269,0.345) {동결 근사: $(\Delta S_0{+}a_eT_\mathrm{ref})/F=0.356$ (상수)};
+\draw[thick,densely dashed] (268.15,0.3557) -- (352,0.3557);
+\node[font=\tiny,anchor=west] at (330,0.322) {동결 근사 $0.356$ (상수)};
+\draw[-{Latex[length=1.1mm]},black!60] (335,0.335) -- (337,0.353);
 % full: linear in T
 \draw[very thick] (268.15,0.4033) -- (348.15,0.2763);
 \fill (298.15,0.3557) circle (1.2pt);
@@ -52,9 +56,9 @@
   {적분형: $(\Delta S_0{+}a_eT)/F$\\--- $T$ 에 \emph{선형}(기울기 $a_e/F$)};
 \draw[-{Latex[length=1.2mm]},black!60] (313,0.52) -- (321.5,0.324);
 \node[font=\tiny,anchor=west] at (269,0.452) {$0.403$};
-\node[font=\tiny,anchor=east] at (347.5,0.252) {$0.276$};
-\node[font=\tiny,black!60,anchor=north] at (298.15,0.30) {$T_\mathrm{ref}$ 에서 동결 근사와 접함};
-\node[font=\scriptsize] at (310,0.095) {(b)};
+\node[font=\tiny,anchor=north] at (344,0.262) {$0.276$};
+\node[font=\tiny,black!60,anchor=north east] at (297,0.30) {$T_\mathrm{ref}$ 에서 동결 근사와 접함};
+\node[font=\scriptsize] at (310,0.085) {(b)};
 \end{scope}
 \end{tikzpicture}
 \caption{T1 전이 중심의 온도 함수형이 갖는 전자항 식별 신호 --- 좌표는 식~\eqref{eq:U1T2} 그대로의

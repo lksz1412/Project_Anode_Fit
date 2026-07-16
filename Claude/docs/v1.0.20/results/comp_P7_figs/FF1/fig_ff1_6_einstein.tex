@@ -12,7 +12,7 @@
 \begin{tikzpicture}[>=Latex]
 % =============== (a) S_vib(T; theta_E)/R ===============
 \begin{scope}[x=0.0155cm,y=2.05cm,shift={(-100,0)}]
-\draw[->] (100,0) -- (525,0) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (100,0) -- (543,0) node[right,font=\scriptsize] {$T$ [K]};
 \draw[->] (100,0) -- (100,1.42) node[above,font=\scriptsize] {$S_\vib/R$};
 \foreach \xx in {200,300,400,500} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {0.5,1.0} {\draw (102,\yy) -- (98,\yy) node[left,font=\scriptsize] {\yy};}
@@ -28,21 +28,22 @@
 \draw[thick,densely dashed] plot[smooth] coordinates {(100,0.0005) (140,0.0064) (180,0.0254)
   (220,0.0594) (260,0.1055) (300,0.1596) (340,0.2182) (380,0.2788) (400,0.3092)
   (430,0.3547) (460,0.3997) (500,0.4584)};
-% classical limit for 700 K
-\draw[densely dotted,thick] plot[smooth] coordinates {(300,0.1527) (340,0.2779) (380,0.3891)
+% classical limit for 700 K (start at 340 K to stay clear of the 1000 K curve)
+\draw[densely dotted,thick] plot[smooth] coordinates {(340,0.2779) (380,0.3891)
   (430,0.5127) (460,0.5801) (500,0.6635)};
 \node[font=\tiny,anchor=west] at (503,1.25) {$\theta_E{=}400$ K};
 \node[font=\tiny,anchor=west] at (503,0.74) {$700$ K};
 \node[font=\tiny,anchor=west] at (503,0.46) {$1000$ K};
-\node[font=\scriptsize,anchor=north west,align=left] at (317,0.132)
-  {고전 극한 $R[1{+}\ln(T/\theta_E)]$\\($\theta_E{=}700$: 위에서 수렴)};
-\draw[->,thin,black!60] (368,0.20) -- (392,0.385);
-\node[font=\scriptsize,anchor=south west] at (105,0.02) {저온: $S_\vib\to0$ (동결)};
+\node[font=\scriptsize,anchor=west] at (112,1.30) {저온: 모드 동결 $S_\vib\to0$};
+\draw[->,thin,black!60] (150,1.24) -- (131,0.06);
+\node[font=\scriptsize,anchor=west,align=left] at (112,1.06)
+  {점선: 고전 극한 $R[1{+}\ln(T/\theta_E)]$\\($\theta_E{=}700$ 곡선이 위에서 수렴)};
+\draw[->,thin,black!60] (287,0.97) -- (420,0.51);
 \node[font=\scriptsize] at (310,-0.24) {(a) 닫힌형 $S_\vib(T;\theta_{E,j})$ 와 두 극한};
 \end{scope}
 % =============== (b) identification signal ===============
 \begin{scope}[xshift=8.55cm,x=0.0615cm,y=0.203cm,shift={(-255,8.6)}]
-\draw[->] (255,-8.5) -- (364,-8.5) node[below,font=\scriptsize] {$T$ [K]};
+\draw[->] (255,-8.5) -- (366,-8.5) node[right,font=\scriptsize] {$T$ [K]};
 \draw[->] (255,-8.5) -- (255,12.6) node[above,font=\scriptsize] {$\partial\Delta U_\vib/\partial T$ [$\mu$V/K]};
 \foreach \xx in {260,280,300,320,340,360} {\draw (\xx,-8.34) -- (\xx,-8.66) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-5,5,10} {\draw (255.8,\yy) -- (254.2,\yy) node[left,font=\scriptsize] {\yy};}
@@ -62,9 +63,10 @@
 \fill (348.15,9.138) circle (1.2pt) node[below right,font=\tiny] {$+9.14$};
 % electronic shape-contrast line (normalized): y = a T, a = 0.02625 uV/K^2
 \draw[dashed,blue,thick] (256,6.72) -- (360,9.45);
-\node[blue,font=\tiny,anchor=south west,align=left] at (256.5,9.7)
-  {electronic $\propto T$ (강제 영점 없음;\\ 함수형 대조용 정규화 --- 크기 비교 아님)};
-\draw[blue,->,thin] (274,9.55) -- (277,7.45);
+\node[blue,font=\tiny,anchor=north west,align=left] at (256.5,12.45)
+  {electronic $\propto T$\\(강제 영점 없음; 함수형\\ 대조용 정규화 --- 크기 비교 아님)};
+\draw[blue,->,thin] (283.5,10.3) -- (287,7.65)
+;
 % vib annotation
 \node[font=\scriptsize,align=left,anchor=north west] at (300.5,-3.1)
   {vib: $T_\mathrm{ref}$ \emph{강제 영점}\\ $+$ 로그 곡률};
