@@ -1,0 +1,185 @@
+% ==== P2 draft O2 — §2.2 대체 블록 (L106–L219 대체) ====
+\subsection{단일 삽입 자리 --- 점유 통계와 그 요동}\label{sec:sm-site}
+\textbf{(a) 출발 --- 두 가정과 원형 미시상태.} 격자의 삽입 자리 \emph{하나}를 떼어 살펴본다. 자리는
+전해질 너머의 Li 저장조와 입자를 교환하므로 식~\eqref{eq:sm-gc} 의 대정준 설정 그대로다. 유도에 앞서 두
+가정을 명시한다.
+\begin{itemize}[leftmargin=2.2em,itemsep=0.1em]
+\item \textbf{가정 1 (hard-core 배타).} 한 자리에는 Li 이온이 $0$ 개 또는 $1$ 개만 들어간다. 근거는 양자
+통계가 아니라 강한 단거리 반발이다 --- 자리의 부피와 이온 사이 정전$\cdot$입체 반발이 이중 점유의 에너지를
+사실상 무한대로 올린다. 이 가정이 점유수 합을 $n\in\{0,1\}$ 로 자른다.
+\item \textbf{가정 2 (자리 독립).} 이 소절에서는 자리의 에너지가 이웃 자리의 점유와 무관하다고 둔다. 이
+가정은 \S\ref{sec:sm-mf} 에서 상호작용 파라미터 $\Omega$ 로 완화된다.
+\end{itemize}
+표준 이론의 골격을 먼저 드러내기 위해, 점유 이온을 우물 바닥에 놓인 구조 없는 한 점으로 두는 원형 2-상태
+모형을 놓는다 --- 미시상태는 ``빈 자리''($n=0$, 에너지 $0$ 기준) 하나와 ``점유 자리''($n=1$, 에너지
+$\varepsilon_0$) 하나, 둘뿐이다. 점유 이온이 실제로 지니는 내부 자유도는 이어지는 확장에서 미시상태에 더한다.
+
+\textbf{(b) 연산 --- 두 상태의 대정준 합.} 식~\eqref{eq:sm-gc} 의 대정준 합을 이 두 미시상태에 적용하면,
+각 상태에 Gibbs 인자 $e^{-\beta(\varepsilon_0-\mu)n}$ 을 곱해 더한 것이다:
+\begin{equation}
+\Xi_1^{0}\;=\;\sum_{n=0,1}e^{-\beta(\varepsilon_0-\mu)\,n}\;=\;1+e^{-\beta(\varepsilon_0-\mu)}
+\label{eq:sm-barexi}
+\end{equation}
+--- 윗첨자 $0$ 은 내부 자유도를 끈 원형임을, 첨자 $1$ 은 자리 하나임을 가리킨다.
+
+\textbf{(c) 중간식 --- 원형 평균 점유.} 평균 점유는 두 상태의 확률 가중 평균, 곧 분배함수에 대한 로그
+미분이다. 분자에 점유 상태의 Gibbs 인자를, 분모에 $\Xi_1^{0}$ 을 놓으면
+\begin{equation}
+\langle n\rangle^{0}=\frac{0\cdot1+1\cdot e^{-\beta(\varepsilon_0-\mu)}}{\Xi_1^{0}}
+=\frac{e^{-\beta(\varepsilon_0-\mu)}}{1+e^{-\beta(\varepsilon_0-\mu)}},
+\label{eq:sm-baremid}
+\end{equation}
+이고, 식~\eqref{eq:sm-gc} 의 셋째 식 $\langle n\rangle^{0}=k_BT\,\partial\ln\Xi_1^{0}/\partial\mu$ 로
+교차검증해도 같은 결과가 나온다.
+
+\textbf{(d) 박스 --- 두-상태 점유율의 표준형.} 분자$\cdot$분모를 $e^{-\beta(\varepsilon_0-\mu)}$ 로 나누면
+\begin{equation}
+\boxed{\;\theta^{0}\;\equiv\;\langle n\rangle^{0}\;=\;\frac{1}{1+e^{+\beta(\varepsilon_0-\mu)}}\;.}
+\label{eq:sm-bare}
+\end{equation}
+식~\eqref{eq:sm-bare} 는 국소화 흡착(localized adsorption)의 Langmuir 등온선과 같은 표준 결과이고
+\cite{hill1960,fowler1939}, 삽입 전극에의 적용 원형은 McKinnon--Haering \cite{mckinnon1983} 이다. 이
+두-상태 점유율은 이미 Fermi--Dirac 함수와 같은 대수형을 보인다 --- $\varepsilon_0-\mu$ 를 단일 준위 에너지로
+읽으면 준위 하나의 Fermi--Dirac 점유와 형태가 정확히 같다. 그 동형이 공유하는 것은 점유의 대수 구조뿐이라는
+점(입자는 Li 이온, 배타의 근거는 기하)은 확장 뒤 검산 박스가 밝힌다.
+
+\begin{bgbox}
+\textbf{페르미온·보손과 양자 통계 ---} 같은 종의 두 입자는 원리적으로 이름표를 붙여 구별할 수 없다(동일입자의
+구별불가능성). 두 입자를 맞바꾸는 교환 연산에 대해 다체 파동함수는 두 부류로만 갈린다 --- 부호가 그대로면
+\emph{대칭}, 부호가 뒤집히면 \emph{반대칭}이다. 대칭 파동함수를 갖는 입자가 \emph{보손}(boson)이며, 정수
+스핀을 지니고 한 양자 상태를 몇 개든 채울 수 있어 그 점유수 분포가 Bose--Einstein 분포다. 반대칭 파동함수를
+갖는 입자가 \emph{페르미온}(fermion)이며, 반정수 스핀을 지니고 두 입자가 같은 상태를 함께 차지하지 못하는
+Pauli 배타 때문에 한 준위의 점유수가 $0$ 또는 $1$ 로 묶여, 그 분포가 Fermi--Dirac 분포
+$f(E)=1/(e^{\beta(E-\mu)}+1)$ 다 \cite{mcquarrie1976}. 본 절 격자 자리의 $0/1$ 은 이 양자 배타에서 오지
+않는다 --- 근거는 자리 하나에 이온 하나라는 기하(정전$\cdot$입체 반발)이며, 파동함수의 교환 대칭과는 무관하다.
+그럼에도 ``한 상태에 $0$ 또는 $1$''이라는 셈법 구조가 페르미온 준위의 그것과 같으므로, 같은 대수형(logistic,
+곧 Fermi--Dirac 형)이 나온다. 진짜 양자 통계는 Chapter 2 에서 격자 진동의 양자(포논 --- 보손,
+Bose--Einstein)와 전도 전자(페르미온, Fermi--Dirac)의 엔트로피를 셀 때 실제로 쓰인다
+\cite{ashcroftmermin1976}.
+\end{bgbox}
+
+\textbf{(a$'$) 확장 출발 --- 우물 안에서 진동하는 이온.} 점유수 $n$ 만으로는 미시상태가 다 지정되지 않는다.
+$n=1$ 인 자리에서 이온은 한 점에 얼어붙어 있는 것이 아니라 자리 우물 안에서 진동하는 연속 자유도
+(위치$\cdot$운동량)를 가진다. 따라서 미시상태의 온전한 목록은 ``빈 자리''($n=0$, 에너지 $0$ 기준) 하나와,
+``점유 자리''($n=1$, 우물 바닥 에너지 $\varepsilon_0$)에 내부 배치 $\Gamma$ 가 붙은 연속족이다. 가정 1$\cdot$2
+는 그대로 두고, 원형의 점유 상태 하나를 이 연속족으로 넓힌다.
+
+\textbf{(b$'$) 확장 연산 --- 내부 배치 적분과 유효 자리 에너지.} 식~\eqref{eq:sm-gc} 의 대정준 합을 이
+목록에 쓰면, 점유수에 대한 합(가정 1 로 두 항)과 각 점유 상태의 내부 배치에 대한 적분으로 갈라진다:
+\begin{equation}
+\Xi_1\;=\;\sum_{n=0,1}e^{\beta\mu n}\,z_n
+\;=\;1+q(T)\,e^{-\beta(\varepsilon_0-\mu)},
+\qquad
+q(T)\equiv\int e^{-\beta H_\mathrm{int}(\Gamma)}\,\frac{\dd\Gamma}{h^3}
+\label{eq:partfn}
+\end{equation}
+--- $z_n$ 은 점유수 $n$ 인 상태들의 canonical 분배함수로, $z_0=1$(빈 자리는 상태 하나),
+$z_1=e^{-\beta\varepsilon_0}q(T)$(우물 바닥 인자에 내부 자유도의 적분 $q(T)$ 가 곱해진다)이다. $q(T)$ 는
+점유된 이온의 진동 등 국소 자유도의 단일 자리 분배함수다\footnote{이 $q(T)$(단일 자리 내부 분배함수)는 N6--N9 의 정규화 용량 좌표 $q{=}Q/Q_\cell$ 와 다른 양이다 --- 전자는 Part 0 의 국소 열역학량, 후자는 곡선 좌표.}. 일반적인 정의는
+상태 합 $q(T)=\mathrm{Tr}\,e^{-\beta H_\mathrm{int}}$ 이고 식~\eqref{eq:partfn} 의 위상공간 적분은 그 고전
+극한이다 --- 자리 우물을 3차원 조화 퍼텐셜(진동수 $\omega_0$)로 근사하면 고전 극한에서
+$q=(k_BT/\hbar\omega_0)^3$ 이고, 등방 가정(세 방향이 같은 $\omega_0$)을 풀어 데카르트 축마다 다른 진동수를
+허용하는 일반형으로 넓히면 양자 상태 합으로는 $q=\prod_{i=1}^{3}[2\sinh(\beta\hbar\omega_i/2)]^{-1}$(축 지표
+$i=1,2,3$ 마다 진동수 $\omega_i$)로 닫힌다 \cite{mcquarrie1976}. 기호에 관하여 --- $\Xi_1$ 은 자리 1개의
+\emph{대정준} 분배함수로, \S\ref{sec:sm-ensemble} 의 canonical $Z$ 와는 앙상블이 다르므로 기호부터 구분해
+적는다(첨자 $1$ = 자리 1개이고, 원형 $\Xi_1^{0}$ 은 $q\equiv1$ 인 특수형이다). Chapter 2 의 단일 자리
+분배함수(그 문건 식 (eq:Z1))도 같은 기호 $\Xi_1$ 로 통일하며, 그 문건의 $\varepsilon_0$ 은 아래
+$\tilde\varepsilon$ 흡수를 마친 유효값으로 읽는다.
+
+\textbf{(c$'$) 확장 중간식 --- 평균 점유와 $q(T)$ 흡수.} 점유 상태들의 확률 합이 곧 평균 점유다:
+\begin{equation}
+\langle n\rangle=0\cdot P_0+1\cdot P_1
+=\frac{q(T)\,e^{-\beta(\varepsilon_0-\mu)}}{1+q(T)\,e^{-\beta(\varepsilon_0-\mu)}},
+\label{eq:sm-occmid}
+\end{equation}
+그리고 식~\eqref{eq:sm-gc} 의 셋째 식으로 교차검증하면 $k_BT\,\partial\ln\Xi_1/\partial\mu$ 가 같은 결과를
+준다. 적분이 남긴 계수 $q(T)$ 는 \emph{분자와 분모의 점유-상태 항 양쪽에 같은 인수로} 붙어 있으므로, 결과는
+$q$ 와 $\varepsilon_0$ 을 따로 아는 데 의존하지 않고 한 조합에만 의존하며, 그 조합은 지수 안으로 흡수된다:
+\begin{equation}
+q(T)\,e^{-\beta\varepsilon_0}\;=\;e^{-\beta\tilde\varepsilon(T)},
+\qquad
+\tilde\varepsilon(T)\;\equiv\;\varepsilon_0-k_BT\ln q(T)
+\label{eq:sm-epstilde}
+\end{equation}
+--- $\tilde\varepsilon$ 는 점유 자리의 \emph{자유에너지}(우물 바닥 에너지 $+$ 내부 자유도의 자유에너지
+$-k_BT\ln q$)다. 자리 점유의 자유에너지 비용을 $\Delta\mu\equiv\tilde\varepsilon-\mu_\mathrm{Li}$ 로 줄여
+쓰면 식~\eqref{eq:sm-occmid} 는 $e^{-\beta\Delta\mu}/(1+e^{-\beta\Delta\mu})$ 가 되어, 내부 자유도가 있어도
+함수형은 두-상태 점유의 logistic 그대로 보존된다.
+
+\textbf{(d$'$) 확장 박스 --- 점유율 $\theta$.} 분모$\cdot$분자를 $e^{-\beta\Delta\mu}$ 로 나누면
+\begin{equation}
+\boxed{\;\theta\;\equiv\;\langle n\rangle\;=\;\frac{1}{1+e^{+\beta\,\Delta\mu}}\;,
+\qquad \Delta\mu\equiv\tilde\varepsilon(T)-\mu_\mathrm{Li}\;.}
+\label{eq:fermifn}
+\end{equation}
+\begin{verifybox}
+극한 검산 --- $\beta\to\infty$($T\to0$)에서 $\Delta\mu\gtrless0$ 에 따라 $\theta\to0/1$ 의 계단
+($T\to0$ 에서 $\tilde\varepsilon$ 는 점유 상태의 바닥 에너지로 수렴한다 --- 고전 $q$ 면 $k_BT\ln q\to0$
+이라 $\varepsilon_0$, 양자 조화 $q$ 면 영점 에너지를 더한 $\varepsilon_0+\tfrac32\hbar\omega_0$ --- 어느
+쪽이든 상수라 계단 구조는 동일), $\beta\to0$($T\to\infty$)에서는 $\beta\Delta\mu\to-\ln q$ 이므로 내부
+자유도가 없는 기준($q\equiv1$)에서 $\theta\to\tfrac12$(두 상태 등확률)이고, $q(T)$ 가 온도와 함께 증가하는
+실제 조화 우물에서는 점유 상태의 위상공간 증가가 이겨 $\theta\to1$ 로 향한다; $\mu_\mathrm{Li}\to\pm\infty$
+에서 $\theta\to1/0$. 원형 회수 --- 내부 자유도를 끈 극한 $q\equiv1$ 에서 $\tilde\varepsilon\to\varepsilon_0$,
+$\Delta\mu\to\varepsilon_0-\mu$ 가 되어 식~\eqref{eq:fermifn} 이 원형 박스~\eqref{eq:sm-bare}
+$\theta^{0}=1/(1+e^{+\beta(\varepsilon_0-\mu)})$ 를 그대로 회수한다. ★함수형 가드 --- 식~\eqref{eq:fermifn}
+은 Fermi--Dirac 함수와 \emph{동형}이지만 물리량은 다르다: 공유하는 것은 ``한 자리에 입자 $0$ 또는 $1$''이라는
+배타 점유의 대수 구조뿐이고(가정 1), 여기의 입자는 전자가 아니라 Li 이온이며 배타성의 근거도 양자 통계가
+아니라 자리 하나에 이온 하나라는 기하다.
+\end{verifybox}
+
+한 걸음 더 --- $n\in\{0,1\}$ 라 $n^2=n$ 이므로 점유의 요동(분산)이 닫힌 꼴로 나온다:
+\begin{equation}
+\mathrm{var}(n)=\langle n^2\rangle-\langle n\rangle^2=\theta(1-\theta),
+\qquad
+\frac{\partial\theta}{\partial(\beta\mu)}=\theta(1-\theta)
+\label{eq:sm-flucres}
+\end{equation}
+(둘째 식은 식~\eqref{eq:fermifn} 의 $\beta\mu$ 미분). \emph{점유의 $\mu$-감도 $=$ 점유 요동} --- 요동--응답
+(fluctuation--response) 관계의 최소 사례이고, 본론 평형 peak 의 종 $\xi_\eq(1-\xi_\eq)$(\S\ref{sec:eqpeak})의
+통계적 정체가 바로 이 분산이다.
+
+유효 자리 자유에너지 $\tilde\varepsilon(T)$ 가 하류에서 가는 곳은 두 갈래다. 첫째, 온도를 고정하고 보면
+$\tilde\varepsilon$ 는 상수 하나이고, \S\ref{sec:sm-electro} 의 전기화학 결선에서 전이 중심 $U_j$ 로
+흡수된다 --- 그 소절과 본론이 쓰는 몰당 기준 에너지 $\mu^0$ 는 정확히 $\tilde\varepsilon$ 의 몰 환산
+$N_A\tilde\varepsilon$ 이다. 둘째, 온도를 미분하면 내부 자유도의 자유에너지 몫
+$f_\mathrm{int}=-k_BT\ln q$ 가 자리당 엔트로피
+\begin{equation}
+s_\mathrm{int}\;=\;-\frac{\partial f_\mathrm{int}}{\partial T}
+\;=\;k_B\,\frac{\partial\,(T\ln q)}{\partial T}
+\label{eq:sm-sint}
+\end{equation}
+를 주는데, 이것이 Chapter 2 의 vibrational 엔트로피 사슬의 단일 자리 원형이다 --- 여기 자리 하나의
+세 축 진동수 $\omega_i$($i=1,2,3$)를 격자 전체의 모든 진동 모드를 헤아리는 지표 $k$ 로 넓혀, 조화 모드의
+$q_k=[1-e^{-\beta\hbar\omega_k}]^{-1}$ 를 식~\eqref{eq:sm-sint} 에 넣으면 그 문건의 모드당 엔트로피
+$s_k=k_B[(1+\bar n_k)\ln(1+\bar n_k)-\bar n_k\ln\bar n_k]$(Bose--Einstein 들뜸수 $\bar n_k$)가 그대로
+나온다. 기준점에 관한 사소한 주의로, 위 (b$'$) 의 $[2\sinh(\beta\hbar\omega/2)]^{-1}$ 은 우물 바닥 기준
+(영점 에너지를 $q$ 에 포함)이고 여기의 $[1-e^{-\beta\hbar\omega}]^{-1}$ 은 영점 에너지를
+$\varepsilon_0$ 쪽에 포함시킨 기준이다 --- 두 규약의 $q$ 는 인자 $e^{-\beta\hbar\omega/2}$(영점 에너지
+$\hbar\omega/2$ 의 Boltzmann 인자)만큼 다른데, 이 인자가 $T\ln q$ 에 남기는 기여는 온도 무관 상수
+$-\hbar\omega/(2k_B)$ 이므로 온도 미분, 곧 엔트로피는 동일하다. 따라서 전이 중심의 온도 기울기
+$\dd U_j/\dd T=\Delta S_{\rxn,j}/F$(\S\ref{sec:center})에서 진동
+엔트로피가 차지하는 몫의 미시적 기원이 바로 $\tilde\varepsilon(T)$ 의 온도 의존, 곧 $q(T)$ 다.
+% ==== 블록 끝 ====
+% NOTE:
+% Read Coverage: ch1_sec02a_part0.tex 전문(L1–269, 특히 대상 L106–219) · V1020_STYLE_RUBRIC.md 전문(L1–51)
+%   · ch1_sec02b_part0.tex L1–60(§2.4 접합) · ch2_sec01_partition.tex L16–50(Ch2 원형-선행 정합)
+%   · ch1_preamble.tex L36(\newtheorem*{bgbox}{배경} 확인) · V1020_CHANGE_LOG.md L19–20(B-002/B-003 사전등재 확인).
+% 보존 체크:
+%   P-1  가정 1(hard-core)·가정 2(자리 독립) = (a) itemize.
+%   P-2  미시상태 온전 기술(점유 상태의 연속 내부 배치 Γ) = (a$'$) 확장 출발.
+%   P-3  라벨 전부 존재·최종 수식 불변: eq:partfn=(b$'$) · eq:sm-occmid=(c$'$) · eq:sm-epstilde=(c$'$)
+%        · eq:fermifn=(d$'$) · eq:sm-flucres=요동 단락 · eq:sm-sint=하류 둘째 갈래.
+%   P-4  q(T)↔정규화 용량 좌표 q 구분 각주 = (b$'$) eq:partfn 직후 footnote.
+%   P-5  조화 우물 q 고전 (k_BT/ħω₀)³ · 양자 ∏[2sinh(βħω_i/2)]^{-1} = (b$'$).
+%   P-6  ★FD 동형 가드 = verifybox 말미(입자=Li 이온·배타 근거=기하) + bgbox 와 주제 접속.
+%   P-7  요동-응답 var(n)=θ(1-θ)=∂θ/∂(βμ) = eq:sm-flucres + 직후 문장.
+%   P-8  ε̃ 하류 두 갈래(U_j 흡수·s_int=k_B∂(T ln q)/∂T · Ch2 vib 원형 · 영점에너지 규약 주의) = 마지막 두 단락.
+%   P-9  grand canonical 교차검증(eq:sm-gc 셋째 식) = (c) 원형 + (c$'$) 확장, 양쪽.
+%   P-10 Ch2 Ξ₁ 기호 통일(그 문건 eq:Z1·ε₀→ε̃ 유효값) = (b$'$) 기호 단락.
+% 신규 라벨: eq:sm-barexi(원형 Ξ₁⁰) · eq:sm-baremid(원형 ⟨n⟩⁰) · eq:sm-bare(원형 박스 θ⁰). 전부 eq:sm-* 계열.
+% 자체검수:
+%   극한 — β→∞: Δμ 부호에 따라 θ→0/1 계단; β→0: q≡1 이면 θ→½, 실제 q(T)↑ 면 θ→1; μ→±∞: θ→1/0;
+%     q≡1 회수: ε̃→ε₀ ⇒ eq:fermifn → eq:sm-bare(θ⁰) 명시(두 박스 접속).
+%   부호 — 분모 지수 +βΔμ(점유 비쌀수록 θ↓), ε̃=ε₀−k_BT ln q(고전 q 증가 ⇒ ε̃↓), s_int 선도항 +k_B ln q>0.
+%   rubric — D7 원형/확장 박스 분리(B4)·(a)–(d)/(a$'$)–(d$'$) 두 사슬(B1)·중간식 노출(B2)·확장off⇒원형회수 검산(B3)
+%     · 자기개정/버전 서술 0(A2 D1)·페르미온(fermion)·보손(boson) 병기(C3)·bgbox 자족(본문 무의존, 제목 인자 없음).
