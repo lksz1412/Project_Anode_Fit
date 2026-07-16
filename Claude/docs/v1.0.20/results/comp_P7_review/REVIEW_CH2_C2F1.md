@@ -11,3 +11,10 @@
 | # | 위치(파일:행) | 심각도(H/M/L) | 축(①/②/③) | 발견 | 근거 | 제안 |
 
 ---
+### ch2_sec00_intro.tex (전문 정독 완료, 68행)
+
+- ② 구본 대비: `diff` 결과 **완전 동일** — regression 없음.
+- ③ 교차 정합: L8 "Chapter 1 §3 의 평형 중심 전위" — Ch1 신본 절 번호 매핑(§3=ch1_sec03_center, TOC 1.3) 일치, 식 자체도 ch1_sec03:53 `\boxed{U_j(T)=(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F}` 와 문자 일치. L61 "Chapter 1 §15" — §15=ch1_sec15_lcoelec(LCO 전자 엔트로피 항) 제목·내용 일치.
+- ① refute 시도: L18–19 "SOC 에 따라 부호를 바꾸고($x$ 작을 때 양, 클 때 음)" — 이상 격자기체 $S_\config=-R\ln[\theta/(1-\theta)]$ 유래 $\partial U/\partial T$ 는 $\theta\to0$ 에서 $+$, $\theta\to1$ 에서 $-$ 로 정합(반박 실패 — 서술 옳음). L26 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$ 부호 규약은 §7 정독 시 재대조 예정.
+- 발견: 없음 (컴파일 로그 미해결 참조 0 확인).
+
