@@ -114,6 +114,27 @@ def compare_sets(a, b):
     return all_bit, worst, bad
 
 
+def golden_outputs(m):
+    """v1.0.19 회귀 하네스(test_regression_v1019.py graphite_outputs)와 동일 13 케이스."""
+    V = np.linspace(0.03, 0.34, 1000)
+    model = m.GraphiteAnodeDischargeDQDV(
+        m.GRAPHITE_STAGING_LIT, x=0.5, Rn=0.01, Cbg=0.05, use_dH_eff=True)
+    out = {"V": V}
+    out["equilibrium_298"] = np.asarray(model.equilibrium(V, T=298.15), dtype=float)
+    for s, name in [(+1, "dis"), (-1, "chg")]:
+        for I in (0.02, 0.2, 1.0):
+            out[f"dqdv_{name}_I{I}"] = np.asarray(
+                model.dqdv(V, T=298.15, I_abs=I, Q_cell=1.0, s=s), dtype=float)
+    for Tk in (258.15, 298.15, 318.15):
+        out[f"dqdv_T{int(Tk)}"] = np.asarray(
+            model.dqdv(V, T=Tk, I_abs=0.2, Q_cell=1.0, s=+1), dtype=float)
+    Tprof = np.linspace(288.15, 308.15, V.size)
+    out["dqdv_TV"] = np.asarray(model.dqdv(V, T=Tprof, I_abs=0.2, Q_cell=1.0, s=+1), dtype=float)
+    out["curve_dis_02C"] = np.asarray(
+        model.curve(V, direction="discharge", c_rate=0.2, Q_cell=1.0, T=298.15), dtype=float)
+    return out
+
+
 # ---------------------------------------------------------------- G1
 def gate_G1(m19, m20):
     print("=" * 74)
@@ -126,14 +147,15 @@ def gate_G1(m19, m20):
     for k, d in bad:
         print(f"    MISMATCH {k}: max|diff|={d:.3e}")
     ok_main = (worst <= G1_TOL)
-    # 보조: v1.0.19 골든 npz(원 캡처 머신) 대비 — 환경 잡음 확인
+    # 보조: v1.0.19 골든 npz(원 캡처 머신) 대비 — 환경 잡음 확인(회귀 하네스 동일 13 케이스)
     gold = np.load(GOLD)
+    gout = golden_outputs(m20)
     worst_g = 0.0
     n_exact = 0
     for k in gold.files:
-        d = float(np.max(np.abs(out20[k] - gold[k])))
+        d = float(np.max(np.abs(gout[k] - gold[k])))
         worst_g = max(worst_g, d)
-        n_exact += int(np.array_equal(out20[k], gold[k]))
+        n_exact += int(np.array_equal(gout[k], gold[k]))
     print(f"  [aux] golden npz ({len(gold.files)} arrays, other-machine capture): "
           f"max|diff|={worst_g:.3e}  bit-exact {n_exact}/{len(gold.files)} "
           f"(P0 env-noise ref 4.33e-15)")
@@ -185,7 +207,7 @@ def gate_G2(m):
           f"|FD-analytic| = {rt_uVK:.3e} uV/K (< {G2_FD_ANALYTIC_UVK}) {'OK' if hit else 'FAIL'}")
 
     # --- tab:worked 중간값(전이별) -----------------------------------------
-    print("  --- tab:worked per-transition intermediates (295.15K-conv doc @298.15 K) ---")
+    print("  --- tab:worked per-transition intermediates (x=0.25, 298.15 K) ---")
     T0 = 298.15
     xi_doc = ["0.005", "0.072", "0.143", "0.395"]
     g_doc = ["0.19", "2.61", "4.77", "9.30"]

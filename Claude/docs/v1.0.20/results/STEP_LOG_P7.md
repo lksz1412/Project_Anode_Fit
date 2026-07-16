@@ -39,3 +39,12 @@
 - Ch2 완주 3본 확보: C2O3(H0/M0/L2)·C2O2(H0/M0/L3)·C2F2(H0/M0/L3, Fable) — 사용자 생존 규칙(≥3·Fable≥1) 충족. C2O1·C2F1·C2F3 은 SendMessage 재개로 진행 중(완주 시 triage 에 합류).
 - Ch1 3창 완결 확보: O1(15건 — 가장 약한 1곳 = O1-05 μ_Li 표기, 삼중 교차확증)·O2(13건)·O3.
 - **4-스트림 병렬 개시(사용자 지시)**: [1] triage = master 직접, 잔여 창 완주 후 착수 / [2] 코드 실구현(Fable) — Anode_Fit_v1.0.20.py, 게이트 G1(하위호환 bit-exact)·G2(appB B.2 회귀 전건)·G3(θ_E 미지정 bit-exact), 보고 CODE_IMPL_REPORT.md / [3] Ch1↔Ch2 연계 심층(Opus) — INTERCHAPTER_REPORT.md(기호 인계 대응표·개념 인계 지도·참조 완전성) / [4] 신규 절 방향성(Opus+웹 검증) — DIRECTION_STATMECH_REPORT.md(통계역학 관통 확장 후보 5건 평가 + 완결성 비평·교과서 대조; 실수정 금지 — 사용자 GO 대기 보고서).
+
+## Steps 85–87 — union 취합·교차합의 triage·master 수정 집행
+- 소스 11본 전량 정독(1538행): Ch1 O1(15)·O2(13)·O3(12) / Ch2 6창(H0·M1·L다수) / 구 F1 부분(3) / 스트림3(7 제안). 전건 처분 = comp_P7_review/TRIAGE_P7.md (채택 T-01~T-18 → 20개 지점 편집, 기각 전건 근거 기록).
+- CHANGE_LOG 사전 등재: **E-001(첫 ERRATA — ch2_sec00 과일반화, 2창 공통 F1-01+C2F3-01, 코드 영향 무)**·B-006(U_j 평가 규약 — 3창 관찰+코드 대조)·B-007(eq:lco-slots \text 지칭 정정 — 해시 변경 등재)·C-019 비고 3곳 정정.
+- 4-스트림 완주: [2] 코드 G1/G2/G3 전건 PASS — **v1.0.19 가 appB 요구 기충족, v1.0.20=헤더 갱신 matched 이월**(변경 함수 0·175점 2.9e-07 mV/K) / [3] INTERCHAPTER 7 제안(M-1·L-5 채택, 나머지 ★후보) / [4] DIRECTION_STATMECH — 통계역학 확장 후보 5+4건 우선순위 확정(사용자 GO 대기).
+- 검증: 빌드 65/25/8p err0·구조 PASS·diff 실수식 1건=B-007 1:1(Ch2 ±4 는 행 키 이동, 해시 4/4 동일 실증).
+
+## Step 88 — 최종 Fable 검수 패스 (진행 중)
+- 수정 지점 20곳 1급 회귀 + git diff 전수 hunk 대조 + rubric 신규 위반 검사 → REVIEW_FINAL_FABLE.md.
