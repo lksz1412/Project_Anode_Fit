@@ -34,6 +34,8 @@
 | dreyer2011 | W. Dreyer, C. Guhlke, M. Herrmann, "Hysteresis and phase transition in many-particle storage systems," Contin. Mech. Thermodyn. 23(3), 211–231 (2011) | 10.1007/s00161-010-0178-1 | V1 | P3 §4 many-particle 히스테리시스(dreyer2010 동반) |
 | safran1980 | S. A. Safran, "Phase Diagrams for Staged Intercalation Compounds," Phys. Rev. Lett. 44(14), 937–940 (1980) | 10.1103/PhysRevLett.44.937 | V1 | P3 §4·§7 staging 상도표 이론(선택) |
 | safran1987 | S. A. Safran, "Stage Ordering in Intercalation Compounds," Solid State Physics 40, 183–246 (1987) | 10.1016/S0081-1947(08)60692-X | V2 | 예비(Crossref 권 오기탁 41 — 인쇄본 기준 40; 사용 시 40 표기·재확인) |
+| glasstone1941 | S. Glasstone, K. J. Laidler, H. Eyring, *The Theory of Rate Processes: The Kinetics of Chemical Reactions, Viscosity, Diffusion and Electrochemical Phenomena*, McGraw-Hill (1941) | (서적) ISBN 9780070233607 | V1 | v1.0.21 Q3 TST 단행본 원전(P7 스트림 4 WebSearch 검증 — 부제 확인) |
+| laidlerking1983 | K. J. Laidler, M. C. King, "The development of transition-state theory," J. Phys. Chem. 87(15), 2657–2664 (1983) | 10.1021/j100238a002 | V1 | v1.0.21 Q3 TST 사적 리뷰(P7 스트림 4 ACS 확인) |
 
 ## C. 운용 메모
 - V2 키는 본문 인용 보류(재확인 후 승격) — 현재 V2 = safran1987 뿐.

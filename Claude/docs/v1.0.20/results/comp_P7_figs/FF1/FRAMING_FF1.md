@@ -113,3 +113,59 @@
 - U_j(T)=(−ΔH+TΔS)/F 4직선(260–340 K), 기울기 ΔS/F 부호 대조(+0.30/0/−0.05/−0.17 mV/K), 30 K 창 이동폭 주석. §3·§10 수치와 정합. — 정보 밀도가 직선 4개라 후순위(구현 여력 시).
 
 **구현 대상 확정**: P1–P6 6건 구현(최소 요구 4건 초과), P7·P8 은 여력 시. 전 곡선 좌표는 python 평가 후 하드코딩, 캡션에 "좌표는 식 그대로의 수치 평가"(수치 곡선) 또는 정규화·모식 성격 명시.
+
+---
+
+## 3단계 — 구현·검증 기록
+
+### 3.1 구현 목록 (7건 — 신규 5 + 재설계 2; 최소 요구 4건 초과)
+
+| 파일 | 라벨 | 프레이밍 | 유형 | 대상 문서 | 본문 제안 배치 위치 |
+|------|------|---------|------|-----------|---------------------|
+| `fig_ff1_1_hysgap.tex` | fig:cand-ff1-1 | P1 | 신규 | Ch1 | §4.2 식 (eq:dUhys) 문단 뒤(그림 fig:hysloop 다음); §13.5(eq:lco-dope) 에서 재참조 |
+| `fig_ff1_2_lagmap.tex` | fig:cand-ff1-2 | P2 | 신규 | Ch1 | §8.4 식 (eq:LV) 뒤 또는 §10 "초기 상태의 실현 크기" 수치 문단 옆 |
+| `fig_ff1_3_blend.tex` | fig:cand-ff1-3 | P3 | **재설계**(F19 fig:blend 교체) | Ch2 | §2.5 fig:blend 자리(원 정보 요소 — 수준선·블렌드·겹침 브레이스·가중식·계단 대조 — 전부 보존+수치 승격) |
+| `fig_ff1_4_maxwell.tex` | fig:cand-ff1-4 | P4 | 신규 | appendix | §A.5 (c) 등면적 규칙 문단 뒤 |
+| `fig_ff1_5_kinetics.tex` | fig:cand-ff1-5 | P5 | 신규 | appendix | §A.6 두 소절 뒤(두 경로 대조표 앞) |
+| `fig_ff1_6_einstein.tex` | fig:cand-ff1-6 | P6 | 신규 | Ch2 | §2.4.3(수치 크기와 식별) 옆 |
+| `fig_ff1_7_relaxode.tex` | fig:cand-ff1-7 | P7 | **재설계**(F14 fig:relaxode 교체) | Ch1 | §9.1 fig:relaxode 자리(원 정보 요소 보존 + ξ≤1 물리 범위 + peak shape 하단 패널) |
+
+- 전 곡선 좌표 = `eval_ff1_coords.py` 가 본문 식을 그대로 평가해 출력(`coords_ff1.txt`)한 값의 하드코딩. pgfplots 불사용, `plot coordinates` 방식(기존 관행 동일).
+- 라이브러리 준수: Ch1 조각은 {arrows.meta, calc, backgrounds}, Ch2 조각은 {calc, arrows.meta, decorations.pathreplacing}(backgrounds 불사용 확인), appendix 조각은 {arrows.meta, calc, backgrounds} 만 사용 — 각 문서 preamble 로드 집합의 부분집합.
+- 캡션 규범: 수치 곡선 전건 "좌표는 식 그대로의 수치 평가"(또는 무차원화·수치 적분임을 명시), fig6 의 electronic 대조선만 "세로 스케일 정규화 — 크기 비교 아님" 명시. 한국어 완결 문장, 버전 이력 언급 없음.
+
+### 3.2 물리 검산 (본문 값과의 교차 대조 — 전건 일치)
+
+| 검산 항목 | 본문 근거 | FF1 평가값 | 판정 |
+|-----------|-----------|-----------|------|
+| 무차원 gap, Ω=4RT | fig:hysloop "2.131 RT/F" | 2.1314 | 일치 |
+| gap(298.15 K), Ω=10000≈4.03RT | fig:hysloop "298 K 에서 54.8 mV"(4RT) | 56.0 mV(10000 J/mol) — 4RT=9916 J/mol 대비 정합 | 일치 |
+| 문턱 극한 | eq:dUhys 아래 "(8RT/3F)u³ 양수 소멸 / 상수대입 −(4/3)u³ 오답" | 두 곡선 그대로 재현 | 일치 |
+| L_V 초기값 범위(298 K, C/10) | §10 "10⁻¹⁰–10⁻⁸ V 규모" | 4.75×10⁻¹⁰(2→1)–4.9×10⁻⁸(4→3) V | 일치 |
+| 가시 꼬리 문턱 | §10 "ΔH_a≈80 kJ/mol 급 필요" | 80 kJ/mol 곡선이 283 K 부근에서 w 교차 | 정합 |
+| U_oc·∂U/∂T 5점 | tab:qrev (43.5/74.4/109.0/148.8/195.2 mV; −0.307/−0.204/−0.089/+0.044/+0.218 mV/K) | 전 5점 표시 정밀도 일치(74.35→74.4 반올림 포함) | 일치 |
+| 완전식/단순식 @x̄=0.25 | §2.8 워크드 예제 −0.204/−0.134 mV/K | −0.204/−0.134 | 일치 |
+| binodal/spinodal (Ω=3RT) | eq:app-binodal·eq:app-spinodal (0.0707/0.9293·0.2113/0.7887) | 근 재확인(0.070720/0.929280), loop 극값 ±0.4151 | 일치 |
+| Maxwell 등면적 | eq:app-maxwell | 위/아래 면적 0.11519 RT 수치 적분(대칭 동일) | 일치 |
+| ΔG*/r*, R_max/k_m | eq:app-rstar·eq:app-ch-R | 무차원 峰 (1,1)·(1/√2,1/4) | 일치 |
+| Einstein 기울기 4점 | §2.4.3 "−3.74/0/+3.70/+9.14 μV/K" | −3.738/0/+3.700/+9.138 | 일치 |
+| ξ_lag 기억 적분 | eq:lag 커널 규격화 | 수치 적분(단계 8000·span 14L) — peak 0.767@q=1.46 | 자체 검산 |
+
+물리 가드 준수: 새 물리 주장 0건(전 곡선이 본문 식·본문 초기값·본문 기본값의 평가), 부호·극한 = 본문 서술 그대로(예: gap≥0·Ω≤2RT 에서 0, L_V∝|I|, ΔS_e 대조선은 정규화 명시), 재설계 2건은 원 그림 정보 요소 유실 없음(추가만).
+
+### 3.3 컴파일 검증 (오류 0)
+
+- 하네스 3종: `harness_ch1.tex`(조각 1·2·7) / `harness_ch2.tex`(조각 3·6) / `harness_app.tex`(조각 4·5).
+  각 하네스 = `\documentclass{article}` + kotex + amsmath 계열 + tikz + **대상 문서 preamble 와 동일한 tikz 라이브러리 집합만** 로드 + 조각이 참조하는 본문 라벨의 더미 앵커(참조 미해결까지 0으로).
+- 검증 명령(각 2-pass):
+  `xelatex -interaction=nonstopmode harness_ch1.tex` ×2 → exit 0, `grep -c '^!' harness_ch1.log` = 0, undefined references 0
+  `xelatex -interaction=nonstopmode harness_ch2.tex` ×2 → exit 0, 오류 0, undefined references 0
+  `xelatex -interaction=nonstopmode harness_app.tex` ×2 → exit 0, 오류 0, undefined references 0
+- 산출 pdf: `harness_ch1.pdf`(4p)·`harness_ch2.pdf`(3p)·`harness_app.pdf`(3p) — 본 폴더 보관.
+- 시각 검수: pypdfium2 렌더(`v_*.png`)로 전 그림 육안 확인, 라벨 충돌 3라운드 수정 후 최종 통과(수정 이력은 조각 파일 git/파일 내 주석이 아니라 본 기록으로 갈음).
+
+### 3.4 잔여 후보 (구현하지 않음 — 보고만)
+
+- P8 (U_j(T) 4-전이 온도 지도): 우선순위 하(직선 4개, 정보 밀도 낮음) — 추가 후보로 남김.
+- G8 (LCO 3-peak dQ/dV): Q_j^cat·w_j·Ω_j^cat 초기값이 본문 표에 미배정이라 정량 그림은 값 발명 위험 → 모식으로만 가능하므로 보류(물리 가드 우선).
+- F7(fig:doublewell)·F13(fig:broadening) 재설계: 각각 F04 중복·F12 보완 관계로 후순위 판단.
