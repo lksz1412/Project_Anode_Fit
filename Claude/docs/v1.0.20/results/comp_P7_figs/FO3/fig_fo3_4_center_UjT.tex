@@ -1,0 +1,52 @@
+% ====================================================================
+% CAND-FO3-4 : 평형 중심의 온도 의존 U_j(T)=(-dH_rxn+T dS_rxn)/F  (eq:Uj), 기울기 dS_rxn/F
+%   배치 제안: §3 (sec:center) 식~(eq:Uj) 박스 직후(현재 §3 에 그림 0).
+%   좌표 = 식 그대로의 수치 평가: tab:staging 의 (dH_rxn,dS_rxn) 4전이, T=268..328 K. python 평가.
+%     기울기 dS/F = +0.301/0.000/-0.052/-0.166 mV/K (전이별 부호 상이).
+%   사용 라이브러리: arrows.meta (ch1 preamble).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.125cm,y=0.0285cm,>=Latex]
+% ---- reference isotherm T=298.15 ----
+\draw[densely dotted,black!55] (298.15,75) -- (298.15,225);
+\node[font=\tiny,black!55,anchor=south] at (298.15,225) {$298.15$ K};
+% ---- axes (y starts at 75 mV; note the offset) ----
+\draw[-{Latex[length=1.6mm]}] (268,75) -- (332,75) node[right,font=\scriptsize] {$T$ [K]};
+\draw[-{Latex[length=1.4mm]}] (268,75) -- (268,228) node[above,font=\scriptsize] {$U_j$ [mV]};
+\foreach \tt in {270,290,310,330} {\draw (\tt,77)--(\tt,73) node[below,font=\scriptsize] {\tt};}
+\foreach \uu in {100,150,200} {\draw (269.5,\uu)--(266.5,\uu) node[left,font=\scriptsize] {\uu};}
+% ---- four center lines U_j(T) (straight; slope = dS_rxn/F) ----
+% 4->3  dS=+29.0  (rises)
+\draw[very thick] (268,201.81) -- (328,219.85);
+\node[font=\scriptsize,anchor=west] at (328.5,220.5) {$4\!\to\!3$};
+\node[font=\tiny,anchor=west] at (328.5,215.0) {$\Delta S{=}{+}29$};
+% 3->2L dS=0  (flat)
+\draw[thick,densely dashed] (268,139.92) -- (328,139.92);
+\node[font=\scriptsize,anchor=west] at (328.5,141.5) {$3\!\to\!2\mathrm L$};
+\node[font=\tiny,anchor=west] at (328.5,136.0) {$\Delta S{=}0$};
+% 2L->2 dS=-5 (slight fall)
+\draw[thick,black!55] (268,121.88) -- (328,118.77);
+\node[font=\scriptsize,anchor=west,black!55] at (328.5,120.0) {$2\mathrm L\!\to\!2$};
+\node[font=\tiny,anchor=west,black!55] at (328.5,114.5) {$\Delta S{=}{-}5$};
+% 2->1 dS=-16 (falls)
+\draw[very thick,densely dotted] (268,90.29) -- (328,80.34);
+\node[font=\scriptsize,anchor=west] at (328.5,81.5) {$2\!\to\!1$};
+\node[font=\tiny,anchor=west] at (328.5,76.5) {$\Delta S{=}{-}16$};
+% ---- slope annotation ----
+\node[font=\scriptsize,anchor=south west,align=left] at (270,192)
+  {$\dfrac{\partial U_j}{\partial T}=\dfrac{\Delta S_{\rxn,j}}{F}$};
+% slope-direction arrows
+\draw[->,gray] (283,210.0) -- (289,211.8);   \node[font=\tiny,gray] at (280.5,208.5) {$\uparrow$};
+\draw[->,gray] (283,86.9) -- (289,85.9);      \node[font=\tiny,gray] at (280.5,88.4) {$\downarrow$};
+\end{tikzpicture}
+\caption{평형 중심의 온도 의존 $U_j(T)$(식~\eqref{eq:Uj}; 좌표는 식 그대로의 수치 평가: 표~\ref{tab:staging}
+의 네 전이 $(\Delta H_{\rxn,j},\Delta S_{\rxn,j})$, $T{=}268$--$328$ K). 각 직선의 기울기가 정확히
+$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 라, 반응 엔트로피의 \emph{부호}가 중심의 이동 방향을 정한다 ---
+$\Delta S{>}0$ 인 $4\!\to\!3$($+29$)은 온도가 오르면 중심이 \emph{올라가고}, $\Delta S{=}0$ 인 $3\!\to\!2\mathrm L$
+은 평평하며, $\Delta S{<}0$ 인 $2\!\to\!1$($-16$)$\cdot$$2\mathrm L\!\to\!2$($-5$)은 \emph{내려간다}. 기울기 규모는
+$|\Delta S|/F\sim$ 수십 $\mu$V/K$\sim$수십분의 mV/K 이라 $60$ K 창에서 중심이 수$\sim$수십 mV 이동한다 ---
+다온도 피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 까닭이 이 서로 다른 기울기다. 세로축은 $75$ mV 에서
+끊어 그렸다.}
+\label{fig:cand-fo3-4}
+\end{figure}
