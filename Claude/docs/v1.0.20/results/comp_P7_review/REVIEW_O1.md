@@ -68,3 +68,33 @@
 | O1-09 | ch1_sec04_hys:11 vs 14-17 | L? | ③① | 신설 계보 문단 서두 "이 분기의 물리적 계보와 **두 용어**를 놓는다"(line 11)라 예고하나, 이어 괄호 정의가 셋 등장: 준안정 가지(metastable branch, line 14)·과주행(overshoot, line 15)·spinodal(line 16-17 "자유에너지 곡률이 0 이 되는 안정성 한계"). 용어 수를 세는 독자에 순간 불일치. | line 11 "두 용어" vs line 14-17 세 괄호 정의. | 방어 가능: spinodal 은 Part 0(§2 fig:sm-gxi·용어표)에서 이미 정의된 **회수**이고 신규 두 용어는 준안정 가지·과주행이라 "두 용어"가 맞음. '?' 병기. 원하면 line 16 spinodal 을 "(앞서 §2 의 spinodal)"로 회수 표시해 마찰 제거 — 후보. |
 | O1-10 | ch1_sec04_hys:134-135 | L | ③ | (검증·확인) (d) 부호 재인용이 dreyer2010(LiFePO$_4$=양극 연구)으로 흑연 "탈리튬화 가지 높은 전위" 부호를 뒷받침 — 인용된 사실(탈리튬화 가지 상위·영전류 지속)은 spinodal/준안정 그림의 **일반** 열역학 귀결이고 본문이 eq:Veq 비단조로 자체 유도하므로 인용은 보강용·정당. 재질(LiFePO$_4$≠흑연) 차이는 원리 인용이라 문제 아님. | dreyer2010 대상=LiFePO$_4$. 본문 유도(§4.2 eq:Veq 극대=탈리튬화 가지)로 부호 독립 확립·인용은 corroboration. | 결함 아님 — 확인분 기록(③ 서지 정확). 유지. |
 
+### ch1_sec05_width.tex (전문 정독 완료, 299행)
+
+② regression: `diff` v1.0.19 = **바이트 단위 완전 동일**(출력 0) — regression 없음. ③ 신설 다리 소관: CHANGE_LOG 에 sec05 무등재(P2~P6 편집 대상 아님) + diff 무변경 = **정상**(무변경이어야 옳고 실제 무변경) → 이 파일 발견은 전부 축① pre-existing 자체 결함/일관성. ① 자족 재유도(전 수식·전 그림 수치 손검산, **H 0·자체 M 0**): eq:bv 비대칭 장벽 → eq:db $r^+/r^-=e^{\mathcal A/RT}$($k_0e^{-\Delta G_a/RT}$ 약분·$\chi{+}(1{-}\chi){=}1$) → 운동식 $\dot\xi=r^+(1{-}\xi)-r^-\xi=k_j(\xi_\eq-\xi)$·정지점 $\xi_\eq=r^+/(r^++r^-)$ → eq:logisticsolve $\xi_\eq/(1{-}\xi_\eq)=e^{sF(V_n-U_j)/RT}\Rightarrow\xi_\eq=1/(1+e^{-sF(V_n-U_j)/RT})$ → 중심기울기 $sF/(4RT)$(logistic 중심 $\xi(1{-}\xi){=}\tfrac14$ × $sF/RT$) → 폭척도 $RT/F$ → **eq:wbase $w_j=n_jRT/F$**(차원 [J/mol]/[C/mol]=[V] ✓·역산 $n_j=w_jF/RT$ ✓) → $s\to\sigma_d$·$U_j\to U_j^{\,d}$·$RT/F\to w_j$ 일반화 → eq:xieq. $\partial w_j/\partial T=(R/F)(n_j+T\dd n_j/\dd T)$ 곱미분 ✓. 그림 전수 일치: **fig:barrier**($G_\mathrm{base}=0.1+0.9\sin^2[\pi(x{-}1)/4]$·$\Delta G_a{=}0.9$·구동 도착골 $-0.5$·정점 $-0.25$·정방향 $0.65$/역방향 $1.15$ 재현), **fig:flux**($r^+/r^-=e^{\mathcal A/RT}=1,2,4\Rightarrow\xi_\eq=\tfrac12,\tfrac23,\tfrac45$), **fig:logistic**($w=nRT/F$ @268/298/328 K$=23.09/25.68/28.26$ mV·정점 $1/(4w)=10.83/9.74/8.85$ /V·FWHM $2\ln(3{+}2\sqrt2)w=3.5255w=90.5$ mV·half-max $\pm45.27$ mV) — 전건 "식 그대로" 수치 정확. §5.3 몰환산 사슬($\Delta\mu^{몰}=\mu^0-\mu_\mathrm{Li}=sF(V-U)$·$\langle n\rangle=\theta_\eq$·여집합 $\xi_\eq=1-\langle n\rangle$·부호 $-\Omega(1{-}2\xi)=+\Omega(1{-}2\theta)$ [eq:mu]) 부호까지 정합. 단상 유효폭 $(1-\Omega_j/2RT)$ 배 검산: $g''$ 를 $\theta{=}\tfrac12$ 에서 $=4RT-2\Omega=4RT(1-\Omega/2RT)\Rightarrow w_\mathrm{eff}=w_0(1-\Omega/2RT)$(좁아짐, $\Omega\to2RT$ 에서 $\to0$) 정합. 실질 신규 지적은 표기·정합 L 급뿐.
+
+| # | 위치(파일:행) | 심각도 | 축 | 발견 | 근거 | 제안 |
+|---|---|---|---|---|---|---|
+| O1-11 | ch1_sec05_width:88,96-97 (fig:barrier) | L(→M) | ① | fig:barrier 주석·캡션이 §5 밖 기호를 **정의·전방 포인터 없이** 심음: (a) $\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$ 의 $\chi_d$ 는 §5 미정의이고, 같은 캡션이 쓰는 장벽위치 $\chi{=}\tfrac12$(line 87·94)와 시각 충돌; (b) 본문 유도는 전부 Gibbs $\Delta G_a$ 인데 이 주석만 엔탈피 $\Delta H_a$ 로 갈아탐; (c) $L_q$(line 97)도 §5 미정의 전방 기호. | line 88 node `$\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$` + line 96 캡션 동문 + line 97 "logistic·$L_q$ 의 공통 출발점". 본문 $\chi$=Butler–Volmer 위치분율(line 16·18-19)·$\Delta G_a$(line 13-19,78,82) 일관. $z$ 충돌은 각주(line 174-175)로 가드하나 $\chi$/$\chi_d$ 는 무가드. | 방어: fig 를 logistic 경로와 $L_q$(운동학) 경로의 "공통 출발점"으로 공유하려는 의도적 전방 심기(plant). 단 무포인터라 G-follow 마찰. 후보: 캡션에 "($\chi_d$·$L_q$ 는 §운동학에서 정의)" 반괄호 포인터 1조각. 실제 수정 말 것. |
+| O1-12 | ch1_sec05_width:196-197 | L | ① | "$2RT(\approx 4958$ J/mol $@298$ K$)$" 의 수치–온도 라벨 불일치: 4958 J/mol 은 **298.15 K**(=25°C) 값이고, 명시 라벨 "@298 K" 정확대입은 $2{\times}8.314{\times}298=4955$ J/mol. ~3 J/mol(0.06%) 어긋남. | $2RT{=}4955.1$ J/mol(298 K)·$4957.6\approx4958$(298.15 K). 같은 파일이 기준온도를 line 182 "$25^\circ$C"·fig "298 K" 혼용. | 방어: "298 K"를 25°C 관용 통칭으로 쓴 것(≈ 표기 有). 후보: "@298.15 K" 또는 값 4955 로. 극경미. |
+| O1-13 | ch1_sec05_width:106 (fig:flux 주석) | L | ① | TikZ 주석 "A/RT=2RT ln2" 에 잉여 "RT" — $\mathcal A/RT{=}2\ln2$($=\ln4\Rightarrow r^+/r^-{=}4$)여야 함. 앞 두 항 "A/RT=0"·"A/RT=ln2" 와 열($=\mathcal A/RT$) 불일치($\mathcal A{=}2RT\ln2$ 를 $\mathcal A/RT$ 칸에 오기). | line 106 vs 렌더 캡션 line 144 "$\mathcal A/RT=0,\ln2,2\ln2$"(정확). | **비렌더 주석**(독자 무영향) — 최저 우선. 후보: 주석을 "A/RT=2 ln2" 로. |
+| O1-14 | ch1_sec05_width:271-277 (↔ sec02a:253-255) | 확인분→**O1-05 교차확증**(M연동) | ③① | sec05 line 273 이 eq:fermifn 을 $\langle n\rangle=1/(1+e^{+\beta\Delta\mu})$·$\Delta\mu\equiv\tilde\varepsilon-\mu_\mathrm{Li}$ 로 **받아** $\beta{=}1/k_BT$ 와 짝지음 → 여기 $\mu_\mathrm{Li}$ 는 **자리당(per-particle)**. 몰버전은 line 274-277 이 $N_A\tilde\varepsilon{=}\mu^0$·"$k_BT{\to}RT,e{\to}F$ 한꺼번에 환산"으로 별도 유도. 즉 sec05 도 eq:fermifn 의 $\mu_\mathrm{Li}$=자리당임을 실증 — sec02a:253-255 신설 "$\mu_\mathrm{Li}$ … 몰 표기"(O1-05)와 충돌하는 **세 번째 증인**(O1-07 sec02b:194-196 에 이음). | line 271-273 $e^{\pm\beta\Delta\mu}$ 자리당 vs line 275 $\mu_\mathrm{Li}=\mu^0-sF(V-U)$ 몰당 — sec05 는 line 277 명시 환산으로 내부 정합(결함 아님, 증인). | sec05 무결(무변경·자체 정합). O1-05 처리(sec02a "몰 표기" 라벨 삭제/자리당 정정)로 세 파일 동시 정합. |
+| O1-15 | ch1_sec05_width:169 vs 34,175 (P3 검수①) | L? | ① | 결과 박스 eq:xieq 는 인자를 맨 $V$ 로 쓰나($\xi_{\eq,j}(V,T)$), 직전 유도 eq:logisticsolve(line 34)는 $V_n$ 명시. 본 프로젝트 P3 검수 1항목($V_n$/$V_{n,app}$/$V_{n,drive}$/$V_{n,OCV}$ 일관)의 엄격 적용 시, Chapter 2+ 가 import 하는 boxed 식이 맨 $V$ 를 실으면 하류 오용 여지. | line 169 $V$ vs line 34 $V_n$·line 175 "여기서 평가 전위는 §pol 의 내부 전위 $V_n$". | 방어: line 175 가 즉시 "$V{=}V_n$" 핀 고정 → 정합. 평형 등온선을 일반 전위 $V$ 로 쓰는 관용. 후보: eq:xieq 인자를 $V_n$ 로. 결함 경계 — '?'. |
+
+---
+
+## REVIEW COMPLETE — 발견 총 15건 (O1 본대 6파일 + 보충 1파일)
+
+- 본대(O1-01~O1-10, 6파일): sec00_intro·sec01_n0n1·sec02a_part0·sec02b_part0·sec03_center·sec04_hys.
+- 보충(O1-11~O1-15, sec05_width): L(→M) 1건(O1-11)·L 3건(O1-12·O1-13·O1-15)·확인분/교차확증 1건(O1-14). 그중 O1-13 은 비렌더 주석, O1-15 는 '?' 방어우세.
+- **심각도 분포**: H 0 · M 1(O1-05, 유일 실오류) · L·L?·확인분 14. sec05 는 축② regression 0(바이트 동일)·축③ 무변경 정상·축① H·자체 M 0(전 수식·전 그림 수치 재유도 무결) — 실질 신규 지적은 L 급 표기·정합뿐.
+
+## 가장 약한 1곳
+
+**선정: O1-05 = ch1_sec02a:253-255 신설 반괄호 "$\mu_\mathrm{Li}$ 는 원형의 $\mu$ 와 같은 저장조 화학퍼텐셜의 **몰 표기**"** (sec05 발견 O1-14 로 보강).
+
+근거:
+1. **유일한 실제 자기모순.** 같은 $\mu_\mathrm{Li}$ 를 eq:fermifn 의 $\beta\Delta\mu$(=$1/k_BT$·자리당)이면서 동시에 "몰 표기(per-mole)"라 명명 — 한 양을 입자당이자 몰당이라 함. 나머지 발견(O1-01~04·06·08~15)은 표기·마찰·비렌더·방어우세로 '결함 아닐 수 있음'이나, 이 한 곳만 정의 충돌.
+2. **v1.0.20 편집이 들여온 결함(축③ 성격).** 구본 v1.0.19 회수절엔 이 반괄호가 없음(sec02a diff). 무변경이어야 할 자리가 아니라 신설 (iv)절에 삽입되며 생김.
+3. **삼중 독립 증인.** O1-05(sec02a 직접)·O1-07(sec02b:194-196 이 "eq:fermifn 지수를 자리당→몰로 올린다"고 명시)·O1-14(sec05:273 이 eq:fermifn 을 $\beta\Delta\mu$ 자리당으로 받아 씀) — 세 파일이 독립적으로 "eq:fermifn 의 $\mu_\mathrm{Li}$=자리당"을 확증. 즉 sec02a "몰 표기" 라벨만 세 곳과 어긋남.
+4. **저비용·고효과 수렴.** "의 몰 표기" 4자 삭제(또는 "입자당 표기"로 정정) 한 번이면 sec02a·sec02b·sec05 세 파일이 동시 정합. 박스식 자체는 정확(H 아님)이라 물리 위험 없이 국소 정정 가능 — 문건 전체에서 고칠 가치가 가장 분명한 단일 지점.
+
