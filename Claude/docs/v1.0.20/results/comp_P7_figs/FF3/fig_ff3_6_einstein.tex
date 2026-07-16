@@ -1,0 +1,71 @@
+% ====================================================================
+% FF3-6  Einstein 진동 보정 — S_vib(T;θ_E) 닫힌형과 T_ref 편차 (Ch2 문맥, §2.4 제안)
+%   좌표 = eq:Svib-einstein·eq:dUvib 미분의 수치 평가 (gen_coords_ff3.py;
+%   게이트: 본문 §2.4.3 의 −3.74/0/+3.70/+9.14 μV/K 재현).
+%   사용 라이브러리: arrows.meta, calc 만 (Ch2 preamble 내).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+% =============== (a) closed form S_vib(T)/R with two limits ===============
+\begin{scope}[x=0.0056cm,y=2.6cm]
+\draw[-{Latex[length=1.5mm]}] (0,0) -- (0,1.55)
+  node[above,font=\scriptsize] {$S_\vib/R$};
+\draw[-{Latex[length=1.5mm]}] (0,0) -- (1080,0)
+  node[below,font=\scriptsize] {$T$ [K]};
+\foreach \xx in {200,400,600,800,1000}
+  {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {0.5,1.0,1.5}
+  {\draw (-9,\yy) -- (9,\yy) node[left,font=\scriptsize] {\yy};}
+% closed form (thick)
+\draw[very thick] plot[smooth] coordinates {(60,0.0001086) (80,0.001545) (100,0.007301) (130,0.02941) (160,0.06844) (200,0.1396) (240,0.2225) (280,0.3092) (320,0.3955) (360,0.479) (400,0.559) (460,0.6714) (520,0.775) (600,0.9007) (700,1.041) (800,1.165) (900,1.276) (1000,1.377)};
+% classical limit (dashed)
+\draw[thick,densely dashed] plot[smooth] coordinates {(280,0.08371) (320,0.2172) (360,0.335) (400,0.4404) (460,0.5801) (520,0.7027) (600,0.8458) (700,1) (800,1.134) (900,1.251) (1000,1.357)};
+% marks
+\draw[densely dotted] (700,0) -- (700,1.041);
+\node[font=\tiny,anchor=north] at (700,-0.06) {$\theta_E$};
+\draw[densely dotted] (298.15,0) -- (298.15,0.348);
+\node[font=\tiny,anchor=north] at (295,-0.06) {$T_\mathrm{ref}$};
+\node[font=\tiny,anchor=west,align=left] at (430,0.30)
+  {고전 극한(파선)\\$R[1+\ln(T/\theta_E)]$};
+\draw[-{Latex[length=1.2mm]},black!55] (505,0.375) -- (540,0.70);
+\node[font=\tiny,anchor=west,align=left] at (55,0.62) {저온 동결\\$S_\vib\to0$};
+\draw[-{Latex[length=1.2mm]},black!55] (110,0.55) -- (140,0.06);
+\node[font=\scriptsize] at (210,1.42) {(a) 닫힌형, $\theta_E{=}700$ K};
+\end{scope}
+% =============== (b) T_ref-zeroed deviation in uV/K ===============
+\begin{scope}[xshift=-10.10cm,x=0.066cm,y=0.215cm]
+\draw[-{Latex[length=1.5mm]}] (264,0) -- (355,0)
+  node[below,font=\scriptsize] {$T$ [K]};
+\draw[-{Latex[length=1.5mm]}] (264,-7) -- (264,11.2)
+  node[above,font=\scriptsize] {$\dfrac{\partial\,\Delta U_\vib}{\partial T}=\dfrac{\Delta S_\vib(T)}{F}$ [$\mu$V/K]};
+\foreach \xx in {280,300,320,340}
+  {\draw (\xx,0.22) -- (\xx,-0.22) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-4,4,8}
+  {\draw (263.3,\yy) -- (264.7,\yy) node[left,font=\scriptsize] {$\yy$};}
+% deviation curve
+\draw[very thick] plot[smooth] coordinates {(268.15,-5.614) (273.15,-4.676) (278.15,-3.738) (283.15,-2.802) (288.15,-1.866) (293.15,-0.9319) (298.15,0) (303.15,0.9295) (308.15,1.856) (313.15,2.78) (318.15,3.7) (323.15,4.617) (328.15,5.53) (333.15,6.438) (338.15,7.343) (343.15,8.243) (348.15,9.138)};
+% documented four anchors
+\foreach \px/\py in {278.15/-3.738, 298.15/0, 318.15/3.70, 348.15/9.138}
+  {\fill (\px,\py) circle (1.2pt);}
+\node[font=\tiny,anchor=west] at (279.2,-4.1) {$-3.74$};
+\node[font=\tiny,anchor=north west] at (299.0,-0.35) {$0$ ($T_\mathrm{ref}$ 강제 영점)};
+\node[font=\tiny,anchor=south east] at (317.4,4.0) {$+3.70$};
+\node[font=\tiny,anchor=south east] at (347.4,9.4) {$+9.14$};
+\draw[densely dotted] (298.15,-7) -- (298.15,10.4);
+\node[font=\scriptsize,anchor=west] at (266,10.3) {(b) 기준온도 편차};
+\node[font=\tiny,anchor=west,align=left] at (266,7.6)
+  {전자항($\propto T$, 영점 강제 없음)과의\\함수형 구분은 \S\ref{ssec:einstein-numid} 의 식별 논거};
+\end{scope}
+\end{tikzpicture}
+\caption{Einstein 진동 보정 --- 좌표는 식~\eqref{eq:Svib-einstein} 과 식~\eqref{eq:dUvib} 의 미분
+$\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$ 그대로의 수치 평가다($\theta_{E,j}{=}700$ K,
+$T_\mathrm{ref}{=}298.15$ K). (a) 닫힌형 $S_\vib(T;\theta_E)$ 는 저온에서 모든 모드가 얼어붙어 $0$
+으로 죽고, 고온에서 고전 극한 $R[1+\ln(T/\theta_E)]$(파선)에 붙는다 --- 중심 표준값이 흡수한
+``$T$-무관 상수''는 이 곡선을 $T_\mathrm{ref}$ 에서 한 번 읽어 동결한 값이다. (b) 새로 노출되는 것은
+기준 대비 편차뿐이며, $T_\mathrm{ref}$ 에서 강제 영점을 지나 로그 곡률로 자란다 --- 표시한 네 점
+$-3.74/0/+3.70/+9.14\ \mu$V/K 가 본문 \S\ref{ssec:einstein-numid} 의 수치이고, 이 강제 영점$+$곡률이
+전자항($\propto T$, 영점 강제 없음)과 함수형을 가르는 식별 신호다(분리에는 준양자 창을 걸치는 온도점
+셋 이상 필요).}
+\label{fig:cand-ff3-6}
+\end{figure}

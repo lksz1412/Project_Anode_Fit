@@ -88,3 +88,39 @@
 ### 확정: **구현 대상 = P1·P2·P3·P4 (4건)**. 라벨 = `fig:cand-fo2-1..4`(기존 라벨 비충돌 확인: 기존은 fig:spine/staging/... 로 `cand-fo2-` prefix 없음).
 
 ---
+
+## 3단계 — 구현 · 컴파일 검증 · 배치 제안
+
+### 3-A. 구현 목록 (4건, 모두 신규·공백 충전)
+
+| 조각 파일 | 라벨 | 대상 절(배치 제안) | 좌표 출처 | 물리 가드 검산 |
+|-----------|------|--------------------|-----------|----------------|
+| `fig_fo2_1_revheat_soc.tex` | `fig:cand-fo2-1` | ch2_sec08_synthesis §2.8, 표 tab:qrev **직후** | 모델 `entropy_coefficient_x`(complete/simple)·`reversible_heat_x`, 298.15 K, x̄∈[0.08,0.92] | 5점=tab:qrev **bit 일치**(-0.307/-0.204/-0.089/+0.044/+0.218 mV/K·+91.5/+60.8/+26.6/-13.2/-64.9 mV); 부호규약 I>0 방전·ΔS=F∂U/∂T; 영점 x̄≈0.68 |
+| `fig_fo2_2_ujt_center.tex` | `fig:cand-fo2-2` | ch1_sec03_center §3, eq:Uj 박스 **직후** | eq:Uj·tab:staging 4전이 직접 평가 | 기울기=ΔS_rxn/F(+0.30/0/−0.05/−0.17 mV/K); 앵커 U(298.15)=0.2109/0.1399/0.1203/0.0853 V(문건 tab:staging·§3 예시 일치) |
+| `fig_fo2_3_svib_einstein.tex` | `fig:cand-fo2-3` | ch2_sec04_einstein §2.4, eq:Svib-einstein 박스 **직후** | eq:Svib-einstein 직접 평가(θ_E=700·400 K)+고온 점근선 | S_vib(298.15;700)=2.90 J/mol/K; 저온→0·고온→R[1+ln(T/θ_E)] 극한 일치 |
+| `fig_fo2_4_vibel_id.tex` | `fig:cand-fo2-4` | ch2_sec04_einstein §2.4 ssec:einstein-numid(3온도점 문단) **직후** | vib=∂ΔU_vib/∂T=[S_vib(T)−S_vib(T_ref)]/F 직접 평가; electronic=∝T 개형 참조선 | 4점 −3.74/0/+3.70/+9.14 μV/K(문건 §2.4 일치); vib 강제영점@T_ref·electronic 무영점(eq:Se-ch2 함수형); electronic 크기는 개형 명시 |
+
+**물리 가드 준수**: 4건 모두 본문 식의 수치 평가(부호·극한·단위 일치), 새 물리 주장 없음. 개형/모식 요소(fig-3 점근선 라벨, fig-4 electronic 참조선)는 캡션에 "개형" 명시(rubric B7). 캡션은 한국어 완결 문장, 자기 버전 이력 언급 없음. 기존 그림 재설계가 아니라 전부 신규 공백 충전이라 원 정보요소 유실 문제 없음.
+
+### 3-B. 컴파일 검증 (의무)
+
+- 하네스: `_harness.tex` = `\documentclass[11pt,a4paper]{article}` + `kotex` + `amsmath/amssymb/mathtools/bm` + `tikz` + 확인한 라이브러리(`positioning,arrows.meta,calc,fit,backgrounds,decorations.pathreplacing`) + 대상 preamble 매크로(`\oc,\rev,\rxn,\vib,\kB,\dd,\eq,...`) 재현. **pgfplots 미로드**(그림도 미사용).
+- 명령: `xelatex -interaction=nonstopmode -halt-on-error _harness.tex`
+- 결과: **EXIT=0 · 오류(`^!`) 0건 · Missing character(한글 글리프 누락) 0건 · Dimension too large 0건 · Overfull hbox 0건**. 4페이지 PDF(`_harness.pdf`) 생성. (남은 경고는 격리 하네스의 미정의 참조 `eq:*`/`tab:*` = 대상 문서 삽입 시 자동 해소, 및 폰트 shape 기본 대체 — 오류 아님.) 전문 로그 = `_compile_verify.log`.
+- 렌더 육안 점검(pymupdf 115 dpi 래스터): 4개 그림 전부 축·곡선·주석 정상, 라벨 겹침 1차 발견분(fig-1 발열/흡열 라벨·fig-2 T[K]↔2→1 라벨 및 298.15↔300 눈금·fig-3 θ_E=400 라벨·fig-4 electronic 라벨) **수정 후 재컴파일(EXIT=0) 재확인 완료**.
+
+### 3-C. 본문 제안 배치 위치 (요약)
+
+- `fig:cand-fo2-1` → **ch2_sec08_synthesis.tex**, tab:qrev 표 바로 아래(§2.8 부호 교대 서술 문단 옆). Chapter 2 최종 결과의 시각 마감.
+- `fig:cand-fo2-2` → **ch1_sec03_center.tex**, eq:Uj 박스와 온도 미분 서술 사이(N2 온도 의존 시각화).
+- `fig:cand-fo2-3` → **ch2_sec04_einstein.tex**, eq:Svib-einstein 박스와 두 극한 서술 직후(§2.4 ssec:einstein-closed).
+- `fig:cand-fo2-4` → **ch2_sec04_einstein.tex**, ssec:einstein-numid "3온도점 필요" 문단 직후(식별 논거 시각화).
+
+### 3-D. 추가 후보(구현 안 함 — 보고만, rubric "실제 수정 말고 후보로 보고")
+
+- **P5 `fig:blend` 재설계**: 현 임의 sigmoid 모식 → 겹침 가중식(eq:weighted) 국소 ∂U_oc/∂T 블렌드 실좌표로 교체(연속 vs 계단 대비 정보요소 보존 + 실좌표 추가). 모델 `entropy_coefficient_x` 국소값으로 산출 가능.
+- **P6 `fig:relaxode` 정량화**: 도식 좌표 → eq:lag 기억적분 실좌표. 단 fig:reversal 이 이미 정량판 제공이라 중복도 높음.
+- **P7 ΔS(x) 세 분포 분해 독립 그림**: config 발산 + vib 음 baseline + 중심 = 측정 ΔS(x). 단 fig:cand-fo2-1 상단 패널의 complete/simple 분리가 이 내용을 부분 커버.
+
+---
+*FO2 종료: 프레이밍 7건(구현 4 + 추가후보 3) · 구현 4건 · 컴파일 전건 통과(EXIT=0, 오류 0).*
