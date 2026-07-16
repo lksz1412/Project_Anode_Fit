@@ -1,0 +1,33 @@
+% ====================================================================
+% FF2 컴파일 하네스 (ch2 조각용) — 최소 구성:
+%   documentclass article + kotex + amsmath + tikz(ch2 preamble 과 동일 라이브러리)
+%   + ch2 조각이 쓰는 매크로만 복제. 라벨 미해결(??)은 본문 편입 시 해소되는 경고.
+% 빌드: xelatex -interaction=nonstopmode harness_ff2_ch2.tex
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,positioning}
+% --- ch2_preamble.tex 매크로(조각 사용분 포함 전체 세트 복제) ---
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\avg}[1]{\langle #1\rangle}
+\begin{document}
+\noindent FF2 harness (ch2): fig\_ff2\_1 $\cdot$ fig\_ff2\_5
+\input{fig_ff2_1_ch2_dudt_blend.tex}
+\input{fig_ff2_5_ch2_einstein.tex}
+\end{document}

@@ -1,0 +1,33 @@
+% ====================================================================
+% FF2 컴파일 하네스 (ch1 조각용) — 최소 구성:
+%   documentclass article + kotex + amsmath + tikz(ch1 preamble 과 동일 라이브러리)
+%   + ch1 조각이 쓰는 매크로만 복제. 라벨 미해결(??)은 본문 편입 시 해소되는 경고.
+% 빌드: xelatex -interaction=nonstopmode harness_ff2_ch1.tex
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+% --- ch1_preamble.tex 매크로(조각 사용분 포함 전체 세트 복제) ---
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\work}{\mathrm{work}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\cat}{\mathrm{cat}}
+\newcommand{\code}[1]{\texttt{#1}}
+\begin{document}
+\noindent FF2 harness (ch1): fig\_ff2\_2 $\cdot$ fig\_ff2\_3 $\cdot$ fig\_ff2\_4
+\input{fig_ff2_2_ch1_hysgap.tex}
+\input{fig_ff2_3_ch1_tail_overlap.tex}
+\input{fig_ff2_4_ch1_u1_curvature.tex}
+\end{document}
