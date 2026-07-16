@@ -1,0 +1,26 @@
+% harness_app.tex — FF1 컴파일 검증 하네스 (appendix_phase_separation 대상 조각 전용)
+% 부록 preamble 과 동일한 tikz 라이브러리 집합만 로드.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,backgrounds}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+\begin{document}
+% ---- 더미 앵커(부록 라벨 대역) ----
+\begin{equation}\label{eq:app-fxi}0\end{equation}
+\begin{equation}\label{eq:app-maxwell}0\end{equation}
+\begin{equation}\label{eq:app-binodal}0\end{equation}
+\begin{equation}\label{eq:app-spinodal}0\end{equation}
+\begin{equation}\label{eq:app-cnt}0\end{equation}
+\begin{equation}\label{eq:app-rstar}0\end{equation}
+\begin{equation}\label{eq:app-ch-R}0\end{equation}
+\begin{figure}[h]\caption{dummy}\label{fig:app-tangent}\centering d\end{figure}
+\clearpage
+% ---- 검증 대상 조각 ----
+\input{fig_ff1_4_maxwell}
+\clearpage
+\input{fig_ff1_5_kinetics}
+\end{document}

@@ -1,0 +1,40 @@
+% harness_ch1.tex — FF1 컴파일 검증 하네스 (Ch1 대상 조각 전용)
+% ch1_preamble.tex 와 동일한 tikz 라이브러리 집합만 로드해, 조각이 그 밖의
+% 라이브러리를 요구하지 않음을 증명한다. 본문 참조 라벨은 더미 앵커로 제공.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\begin{document}
+% ---- 더미 앵커(본문 라벨 대역) ----
+\section{dummy}\label{sec:hys-gap}
+\subsection{dummy}\label{sec:sum-staging}
+\begin{equation}\label{eq:dUhys}0\end{equation}
+\begin{equation}\label{eq:lco-dope}0\end{equation}
+\begin{equation}\label{eq:Ubranch}0\end{equation}
+\begin{equation}\label{eq:Acut}0\end{equation}
+\begin{equation}\label{eq:chid}0\end{equation}
+\begin{equation}\label{eq:dHeff}0\end{equation}
+\begin{equation}\label{eq:Lqfull}0\end{equation}
+\begin{equation}\label{eq:LV}0\end{equation}
+\begin{equation}\label{eq:tail-limit}0\end{equation}
+\begin{table}[h]\caption{dummy}\label{tab:staging}\centering d\end{table}
+\begin{figure}[h]\caption{dummy}\label{fig:hysloop}\centering d\end{figure}
+\clearpage
+% ---- 검증 대상 조각 ----
+\input{fig_ff1_1_hysgap}
+\clearpage
+\input{fig_ff1_2_lagmap}
+\end{document}

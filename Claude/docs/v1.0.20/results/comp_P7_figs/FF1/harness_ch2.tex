@@ -1,0 +1,34 @@
+% harness_ch2.tex — FF1 컴파일 검증 하네스 (Ch2 대상 조각 전용)
+% ch2_preamble.tex 와 동일한 tikz 라이브러리 집합만 로드(★backgrounds 없음).
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,positioning}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\begin{document}
+% ---- 더미 앵커(본문 라벨 대역) ----
+\subsection{dummy}\label{ssec:worked}
+\subsection{dummy}\label{ssec:einstein-numid}
+\begin{equation}\label{eq:implicit}0\end{equation}
+\begin{equation}\label{eq:weighted}0\end{equation}
+\begin{equation}\label{eq:complete}0\end{equation}
+\begin{equation}\label{eq:Svib-einstein}0\end{equation}
+\begin{equation}\label{eq:dSvib}0\end{equation}
+\begin{equation}\label{eq:dUvib}0\end{equation}
+\begin{equation}\label{eq:Se-ch2}0\end{equation}
+\begin{table}[h]\caption{dummy}\label{tab:ds}\centering d\end{table}
+\begin{table}[h]\caption{dummy}\label{tab:qrev}\centering d\end{table}
+\clearpage
+% ---- 검증 대상 조각 ----
+\input{fig_ff1_3_blend}
+\clearpage
+\input{fig_ff1_6_einstein}
+\end{document}
