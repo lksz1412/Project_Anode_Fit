@@ -105,3 +105,46 @@
 **구현 선정(최소 4 이상)**: FF2-1 · FF2-2 · FF2-3 · FF2-4 · FF2-5 의 5건을 실제 TikZ 로 구현한다(FF2-6·7 은 프레이밍만 — 기존 그림 교체는 본문 수정을 동반하므로 경쟁 창 산출물로는 신규 조각 우선).
 
 ---
+
+## 3단계 — 구현·검증 기록
+
+### 3.1 구현 목록 (5건, 전건 완결 `\begin{figure}…\end{figure}` 조각)
+
+| 파일 | 라벨 | 대상 장 | 내용 | 본문 제안 배치 위치 |
+|---|---|---|---|---|
+| `fig_ff2_1_ch2_dudt_blend.tex` | `fig:cand-ff2-1` | ch2 | (a) ∂U_oc/∂T(x̄) 완전식 vs 단순식 + 수준선 + tab:qrev 5점 (b) Q̇_rev/I(x̄) 부호 교대 | ch2 §2.8 `\subsection{SOC 부호 교대}`(tab:qrev 옆) — §2.5 fig:blend 은 모식으로 존치, 본 그림이 실계산을 담당 |
+| `fig_ff2_2_ch1_hysgap.tex` | `fig:cand-ff2-2` | ch1 | ΔU^hys(Ω/RT) 문턱 곡선 + u³ 점근 + 상수-대입 오답(Taylor 함정) + staging 4점 + 도핑 극한 + RT/F 보조축 | ch1 §4.2 식 eq:dUhys 바로 아래(§13.5 도핑 절에서 재참조) |
+| `fig_ff2_3_ch1_tail_overlap.tex` | `fig:cand-ff2-3` | ch1 | (a) peak shape 의 L_V/w=0·0.75·1.5·3 가족(정점·이동·꼬리) (b) 두 전이 합성의 겹침(골/정점 0.38→0.83) | ch1 §9 fig:reversal 다음(또는 §8 말미) — 서론 '관측' 셋째 축의 시각화 |
+| `fig_ff2_4_ch1_u1_curvature.tex` | `fig:cand-ff2-4` | ch1 | (a) U_1(T) 기저 선형 vs 적분형 T² 곡률(−25.7 mV 식별 gap) (b) ∂U_1/∂T 기울기 공간(상수 vs 선형, 동결 근사 접점) | ch1 §15 식 eq:U1T2 아래 |
+| `fig_ff2_5_ch2_einstein.tex` | `fig:cand-ff2-5` | ch2 | (a) S_vib(T;θ_E)/R 닫힌형 + 고전 극한 + 저온 동결 + 700 K 작동점 (b) ∂ΔU_vib/∂T 의 T_ref 강제 영점(θ_E=500/700/900 K) + 본문 4수치 anchor | ch2 §2.4.3(수치·식별 소절) |
+
+### 3.2 좌표 산출과 물리 검산 (python — `ff2_compute_coords.py`, 전 좌표 하드코딩 근거)
+
+상수: R=8.314462618, F=96485.33212, T=298.15 K (본문 수치 관행과 동일 자릿수 재현 확인).
+
+| 그림 | 평가한 식 | 본문 anchor 재현 (검산 결과) |
+|---|---|---|
+| FF2-1 | eq:implicit(이분법 풀이)→eq:complete·eq:weighted·eq:qrev; U_j 는 표 tab:staging 의 (ΔH,ΔS) 로 eq:Uj 평가 | tab:qrev 5행 **전부 일치**: ∂U/∂T=−0.307/−0.204/−0.089/+0.044/+0.218 mV/K, Q̇/I=+91.5/+60.8/+26.6/−13.2/−64.9 mV, U_oc=43.5/74.3~74.4/109.0/148.8/195.2 mV; 계산 예제 완전식 −0.204·단순식 −0.134 mV/K 일치. 부호 반전 x̄≈0.681 |
+| FF2-2 | eq:dUhys(+u³ 점근·오답 −(4RT/3F)u³) | gap(4RT)=54.76 mV = fig:hysloop 의 2.131 RT/F(54.8 mV) 일치; staging Ω 초기값 4점 gap=6.23/28.31/56.00/102.78 mV |
+| FF2-3 | eq:lag·eq:peakshape 점별 적분(t∈[0,40], n=4000 사다리꼴) | L_V=1.5w 정점 (+1.01w, 0.1955) = fig:reversal 과 일치; 신규 값 0.227@+0.62w(0.75w)·0.149@+1.50w(3w); 합성 골/정점 0.377→0.832 |
+| FF2-4 | eq:U1T2; a_e=−(π²/3)R(k_B/e_V)(g_max/Δx)·¼=−0.15321 J/(mol K²) | a_e·T_ref=−45.7≈−46 J/(mol K)(본문 §15 게이트 골 깊이 재현); 348 K 곡률 gap −25.66 mV; 동결 근사 대비 −1.99 mV=(a_e/2F)(50 K)² |
+| FF2-5 | eq:Svib-einstein·eq:dUvib | θ_E=700 K 에서 ∂ΔU_vib/∂T = **−3.74/0/+3.70/+9.14 μV/K** — 본문 §2.4.3 의 네 수치 그대로 재현 |
+
+물리 가드 확인: 전 곡선이 본문 식·부호·극한과 일치(gap≥0·문턱 아래 0, peak shape≥0·면적 보존, S_vib≥0·저온 0, ΔS_e<0 삽입 기준). 새 물리 주장 없음 — FF2-3(b) 의 두-전이 파라미터(간격 6w·같은 Q)와 FF2-4 의 ΔS_0=+80(대표 스케일)은 캡션에 입력값으로 명시. 기존 그림 정보 유실 없음(전건 신규 조각).
+
+### 3.3 컴파일 검증 (오류 0 확인)
+
+- 하네스: `harness_ff2_ch1.tex`(article+kotex+amsmath+tikz[positioning,arrows.meta,calc,fit,backgrounds]+ch1 매크로), `harness_ff2_ch2.tex`(동일 구성, tikz[calc,arrows.meta,decorations.pathreplacing,positioning]+ch2 매크로) — 각 장 preamble 라이브러리 그대로, pgfplots 불사용(plot coordinates 방식).
+- 명령: `xelatex -interaction=nonstopmode harness_ff2_ch1.tex` / `…ch2.tex`
+- 결과: **양쪽 exit 0 · 오류(`^!`) 0건 · overfull hbox 0건** (`harness_ff2_ch1.log`·`harness_ff2_ch2.log` 보존). 렌더 PDF(`harness_ff2_ch1.pdf`·`harness_ff2_ch2.pdf`)를 페이지 단위로 검수해 라벨 충돌 7건(범례 겹침·축 제목 겹침·주석-곡선 교차)을 수정 후 재컴파일 확인.
+- 잔여 경고: 조각이 본문 라벨(eq:complete 등)을 참조하므로 하네스 단독 컴파일에서는 `??`(undefined reference 경고 — 오류 아님) — 본문 `\input` 편입 시 자동 해소. kotex 기본 폰트의 이탤릭 대체 경고 1건은 본문 빌드와 동일한 무해 경고.
+
+### 3.4 산출물 일람
+
+- `FRAMING_FF2.md` (본 문서) · `ff2_compute_coords.py` (좌표 산출·검산 스크립트)
+- 조각 5건: `fig_ff2_1_ch2_dudt_blend.tex` ~ `fig_ff2_5_ch2_einstein.tex` (라벨 `fig:cand-ff2-1`~`-5`, 기존 라벨과 충돌 없음 — 기존 문서에 `fig:cand-*` 계열 부재 확인)
+- 하네스·검증 산출: `harness_ff2_ch1.tex/.pdf/.log/.aux` · `harness_ff2_ch2.tex/.pdf/.log/.aux`
+- 문서 원본 수정: **없음** (쓰기는 본 폴더 한정)
+
+**최종 집계: 프레이밍 7건(FF2-1~7) · 구현 5건(FF2-1~5) · 컴파일 전건 통과(오류 0).**
+
