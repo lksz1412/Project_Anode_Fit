@@ -40,3 +40,13 @@
 - 챕터 간 중복 정의(bazant2013·reynier2003)는 분리 컴파일 하 유지(병합 시 통합 — 범위 밖).
 - MSMR 풀네임 = **Multi-Species, Multi-Reaction** (rubric C4 확정).
 - 무인용 해소 배정표 = `V1020_P1_CITATION_BASELINE.md`(U1–U12).
+
+## D. Appendix(상분리 열역학) 참고문헌 (5 — P7 Step 84 온라인 검증·등재; [A#] 수동 번호 체계)
+
+| ref | 확정 서지 | DOI/ISBN | 판정 | 비고 |
+|---|---|---|---|---|
+| [A1] | J. W. Cahn, J. E. Hilliard, "Free Energy of a Nonuniform System. I. Interfacial Free Energy," J. Chem. Phys. 28(2), 258–267 (1958) | 10.1063/1.1744102 | V1 | Crossref 필드 전건 일치(본문 sentence-case 표기는 서지 스타일 재량 — 유지) |
+| [A2] | J. W. Cahn, "On spinodal decomposition," Acta Metall. 9, 795–801 (1961) | 10.1016/0001-6160(61)90182-1 | V1 | Crossref 필드 전건 일치 |
+| [A3] | D. A. Porter, K. E. Easterling, *Phase Transformations in Metals and Alloys*, 2nd ed., Chapman & Hall (1992) | ISBN 9780412450303 | V1 | 판·출판사·연도 일치(서지 레코드) — 장 수준 인용(Ch.1 공통접선·binodal / Ch.5 핵생성·spinodal 분해) |
+| [A4] | M. Hillert, *Phase Equilibria, Phase Diagrams and Phase Transformations: Their Thermodynamic Basis*, 2nd ed., Cambridge Univ. Press (2008) | ISBN 9780521853514 | V1 | CUP 공식 페이지 일치 |
+| [A5] | R. W. Balluffi, S. M. Allen, W. C. Carter, *Kinetics of Materials*, Wiley-Interscience (2005) | ISBN 9780471246893 | V1(정정 후) | ★C-019 장 귀속 정정: Cahn–Hilliard 선형화=Ch.18·핵생성=Ch.19(구판 "Ch.17–18" 오기). 본문 "Wiley" 표기는 브랜드 통용 허용 |

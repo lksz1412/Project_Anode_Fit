@@ -30,6 +30,7 @@
 | C-016 | 서지추가 | ch1_bib:bakerverbrugge2018 | 미등재 | JES 165(16), A3952–A3964 (2018) — "Multi-Species, Multi-Reaction" 명명 원전 | 원장 V1 | 무 | P4 |
 | C-017 | 서지추가 | ch2_bib:dahn1991 | 미등재(ch1_bib 에만 존재) | ch2_bib 등재(PRB 44, 9170, 1991 — Li_xC6 상도표) — §2.5 파생 C 각주 U9 인용용. ch1_bib 표기와 동일(3자 정합) | 원장 V1(P1 검증) | 무 | P5 |
 | C-018 | 서지추가 | ch2_bib:ohzuku1993 | 미등재(ch1_bib 에만 존재) | ch2_bib 등재(JES 140, 2490, 1993 — 흑연 삽입 화합물 형성·C-003 정정 제목 전문) — §2.5 파생 C 각주 U9 인용용 | 원장 V1(P1 검증) | 무 | P5 |
+| C-019 | 서지정정 | appendix_phase_separation:[A5] | 장 귀속 "Ch.~17--18 (Cahn--Hilliard 선형화·핵생성 이론)" | "Ch.~18--19" — 실제 목차: Ch.18 Spinodal and Order-Disorder Transformations(p.433)·Ch.19 Nucleation(p.459). 본문 인용 자리([A5] 2곳)는 장 번호 무표기라 무변경 | Wiley TOC·서지 레코드(P7 Step 84 온라인 검증) | 무 | P7 |
 | B-005 | 보강 | ch2_sec03:eq:Svib_mode 도입부 | "어느 경로든 보손 통계의 닫힌형" — S=−∂f/∂T 에서 닫힌형까지 중간식 생략(점프) | **D3 중간식 인라인 노출**: −∂f_k/∂T 평가 결과(S=−k_B ln(1−e^{−βℏω})+k_B βℏω n_k)와 BE 항등식 2개(1−e^{−βℏω}=1/(1+n_k)·βℏω=ln[(1+n_k)/n_k]) 대입 경로를 본문 인라인으로 명시. **표시 수식 블록·라벨·최종식 불변**(FD 측 eq:Se_start→eq:Se-ch2 사슬과 노출 수준 평행화) | 교수 감수 F-2/D3·master 재유도 검산 | 무(물리 불변) | P5 |
 
 ## ERRATA 요약 (P8 코드 영향 판정 원장)
