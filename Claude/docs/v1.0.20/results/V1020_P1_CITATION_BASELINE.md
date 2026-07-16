@@ -8,13 +8,13 @@
 | U2 | ch1_sec04:125 | "방전 전위>충전 관측 일치" | dreyer2010 재인용(±3행 내) + 실측 계보 문헌(원장 후보) | P3 | ✅(d) 부호 문장에 dreyer2010 재인용 + §4 서두 계보 다리 문단(dreyer2010·2011) 신설 — P3 Step 37 |
 | U3 | ch1_sec07:25 | "실측 plateau·staging 문헌의 상평형" | dahn1991(상도표) 인용 | P3 | ✅dahn1991·ohzuku1993 인용 부여 — P3 Step 38 |
 | U4 | ch1_sec10:28 | "(tier C — 문헌 간 5–15 mV 편차 통상)" | 편차 주장 근거 문헌 확보 or 완화("초기값 간 편차" 서술로) | P3 | ✅완화 — 무근거 일반화("통상적") 제거, 두 anchor 출처 간 실제 편차 인스턴스로 재서술 — P3 Step 40 |
-| U5 | ch1_sec13:32 | "문헌 물리에서 T1·T2·T3 전부 같은 문턱 초과" | reimers1992·vanderven(신규 후보)·motohashi2009 인용 | P4 | |
-| U6 | ch1_sec13:153 | "pure-LCO 문헌 물리 Ω^cat,pure" | 상동(도핑 문헌 포함 여부는 원장 검증 결과에 따름) | P4 | |
-| U7 | ch1_sec16:56,63 | 세 peak "문헌 물리"·∂U_1/∂T 선형 "관측 신호" (파일 인용 0) | xia2007·reynier2004·motohashi2009 재인용 | P4 | |
-| U8 | ch1_sec12:94 | "같은 문헌의 전셀 엔트로피 계수" | swiderska2019 명시 재인용 | P4 | |
+| U5 | ch1_sec13:32 | "문헌 물리에서 T1·T2·T3 전부 같은 문턱 초과" | reimers1992·vanderven(신규 후보)·motohashi2009 인용 | P4 | ✅인용 부여(reimers1992·vanderven1998·motohashi2009) + '문헌 물리'→'상도표 물리' 표현 정밀화 — P4 Step 56 |
+| U6 | ch1_sec13:153 | "pure-LCO 문헌 물리 Ω^cat,pure" | 상동(도핑 문헌 포함 여부는 원장 검증 결과에 따름) | P4 | ✅인용 부여(reimers1992·vanderven1998) — P4 Step 56 |
+| U7 | ch1_sec16:56,63 | 세 peak "문헌 물리"·∂U_1/∂T 선형 "관측 신호" (파일 인용 0) | xia2007·reynier2004·motohashi2009 재인용 | P4 | ✅sec16 에 anchor 문헌 3종 인용 문장 신설. L63 '관측 신호'는 모델의 식별 예측(eq:U1T2 참조 有)으로 판정 — 문헌 주장 아님(기각, 4-tier 확정) — P4 Step 56 |
+| U8 | ch1_sec12:94 | "같은 문헌의 전셀 엔트로피 계수" | swiderska2019 명시 재인용 | P4 | ✅재인용 부여 — P4 Step 56 |
 | U9 | ch2_sec05:168–169 | "실측 plateau·staging 문헌 상평형" | dahn1991·ohzuku1993 인용 | P5 | |
 | U10 | ch2_sec02:9 | 서두 "문헌 흑연 측정과의 정합으로 닫는다" 예고 | 후방(§2.2 말미) 인용 위치 명시 참조 — 선택 | P5(low) | |
-| U11 | ch1_appB:97 | MIT 게이트 초기값 "문헌 13/0.85/0.05" | \S\ref{sec:lco-Se} 참조 병기(값 출처 절) | P4 | |
+| U11 | ch1_appB:97 | MIT 게이트 초기값 "문헌 13/0.85/0.05" | \S\ref{sec:lco-Se} 참조 병기(값 출처 절) | P4 | ✅'(출처·tier 는 §sec:lco-gate)' 병기 — P4 Step 56 |
 | U12 | ch1_sec01:170 | 분극 방향 "높게 관측된다" | **기각 후보** — 모델 부호 정의 서술(문헌 주장 아님). P2 에서 문맥 재확인 후 확정 | P2 | ✅기각 확정(4-tier: 확정) — sec01 전문 정독 결과 해당 문장은 식 eq:vapppol 의 부호 읽기(모델 정의)이며 문헌 결과 주장 아님. 무변경 — P2 Step 29 |
 
 ## 유지(결함 아님 — 정직 공백 선언)
