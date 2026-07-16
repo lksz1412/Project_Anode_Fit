@@ -12,7 +12,7 @@
 \begin{tikzpicture}[x=11.0cm,y=4.6cm,>=Latex]
 % ---- axes ----
 \draw[->,>=Stealth] (-0.015,0) -- (1.045,0);
-\node[font=\scriptsize,anchor=north] at (0.995,-0.03) {$\bar x$ (delithiation)};
+\node[font=\scriptsize,anchor=north] at (0.93,-0.10) {$\bar x$ (delithiation)};
 \draw[->,>=Stealth] (0,-0.55) -- (0,0.58) node[above,font=\scriptsize] {$\partial U_\oc/\partial T$ [mV/K]};
 \foreach \xx in {0.25,0.5,0.75,1.0} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-0.4,-0.2,0.2,0.4} {\draw (0.006,\yy) -- (-0.006,\yy) node[left,font=\scriptsize] {\yy};}
@@ -26,8 +26,7 @@
 % ---- step contrast (wrong; boundaries = cumulative Q_j/Q) ----
 \draw[red,dashed,thick] (0.02,-0.166) -- (0.5155,-0.166) -- (0.5155,-0.052)
   -- (0.7732,-0.052) -- (0.7732,0.0) -- (0.8969,0.0) -- (0.8969,0.301) -- (0.98,0.301);
-\node[red,font=\scriptsize,anchor=west] at (0.555,-0.30) {step (wrong): 경계 $=\sum_kQ_k/Q$};
-\draw[red,->,thin] (0.62,-0.272) -- (0.60,-0.185);
+\node[red,font=\scriptsize,anchor=west] at (0.575,-0.315) {step (wrong): 경계 $=\sum_kQ_k/Q$};
 % ---- simple (center-value) weighted blend, eq:weighted ----
 \draw[thick,black!50] plot[smooth] coordinates {(0.02,-0.1477) (0.06,-0.1459) (0.1,-0.1439)
   (0.16,-0.1405) (0.22,-0.1363) (0.28,-0.1314) (0.34,-0.1256) (0.4,-0.1188) (0.46,-0.111)
@@ -46,12 +45,12 @@
 \node[blue,font=\scriptsize,anchor=east,align=right] at (0.33,-0.385)
   {완전식~\eqref{eq:complete}\\(중심값 $+$ config)};
 \draw[blue,->,thin] (0.245,-0.335) -- (0.175,-0.252);
-\node[black!50,font=\scriptsize,anchor=west] at (0.245,-0.048) {단순식~\eqref{eq:weighted} (중심값만)};
-\draw[black!50,->,thin] (0.36,-0.068) -- (0.40,-0.114);
+\node[black!50,font=\scriptsize,anchor=west] at (0.56,-0.225) {단순식~\eqref{eq:weighted} (중심값만)};
+\draw[black!50,->,thin] (0.60,-0.198) -- (0.625,-0.093);
 % ---- tab:qrev five checkpoints on full curve ----
 \fill (0.10,-0.307) circle (1.2pt) node[below,font=\tiny,yshift=-1pt] {$-0.307$};
 \fill (0.25,-0.204) circle (1.2pt) node[below,font=\tiny,yshift=-1pt] {$-0.204$};
-\fill (0.50,-0.089) circle (1.2pt) node[below left,font=\tiny] {$-0.089$};
+\fill (0.50,-0.089) circle (1.2pt) node[above left,font=\tiny] {$-0.089$};
 \fill (0.75,0.044) circle (1.2pt) node[above left,font=\tiny] {$+0.044$};
 \fill (0.90,0.218) circle (1.2pt) node[above left,font=\tiny] {$+0.218$};
 % ---- config-term gap marker ----

@@ -1,0 +1,80 @@
+% ====================================================================
+% fig_ff1_7_relaxode.tex — [FF1 후보 7] fig:relaxode 재설계 — 도식 평가를
+%   실제 기억 적분 수치로 승격 (ξ≤1 물리 범위 + peak shape 하단 패널 연결)
+%   대상 문서: Ch1 (ch1_preamble 라이브러리: arrows.meta·calc 만 사용)
+%   제안 배치: §9.1 그림 fig:relaxode 교체(원 정보 요소 — 목표/지연 곡선·차 r·
+%   peak shape 식 주석 — 전부 보존)
+%   좌표 생성: eval_ff1_coords.py §P7 — ξ_eq(q)=logistic((q−1.2)/0.25) 를
+%   식 eq:lag 의 인과 기억 적분(커널 e^{−Δq/L_q}/L_q, L_q=0.4)으로 점별 수치 적분.
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex]
+% =============== (top) xi_eq vs xi_lag, gap r shaded ===============
+\begin{scope}[x=3.2cm,y=2.6cm]
+% shaded lag deficit r(q) between the two curves
+\fill[black!12] plot coordinates {(0,0.0082) (0.2,0.018) (0.4,0.0392) (0.6,0.0832)
+  (0.8,0.168) (1,0.31) (1.1,0.4013) (1.2,0.5) (1.3,0.5987) (1.4,0.69) (1.5,0.7685)
+  (1.6,0.832) (1.8,0.9168) (2,0.9608) (2.2,0.982) (2.4,0.9918) (2.6,0.9963)
+  (2.8,0.9983) (3,0.9993) (3.2,0.9997)}
+  -- plot coordinates {(3.2,0.9862) (3,0.9776) (2.8,0.9638) (2.6,0.942) (2.4,0.9079)
+  (2.2,0.8559) (2,0.7796) (1.8,0.6734) (1.6,0.538) (1.5,0.4628) (1.4,0.3863)
+  (1.3,0.3122) (1.2,0.2442) (1.1,0.1851) (1,0.1364) (0.8,0.0692) (0.6,0.0331)
+  (0.4,0.0153) (0.2,0.007) (0,0.0031)} -- cycle;
+% axes
+\draw[->] (-0.03,0) -- (3.42,0) node[right,font=\scriptsize] {$q$ (용량 좌표)};
+\draw[->] (-0.03,0) -- (-0.03,1.13) node[above,font=\scriptsize] {$\xi$};
+\foreach \xx in {1,2,3} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\draw (-0.018,0.5) -- (-0.042,0.5) node[left,font=\scriptsize] {0.5};
+\draw (-0.018,1.0) -- (-0.042,1.0) node[left,font=\scriptsize] {1};
+% physical ceiling xi = 1
+\draw[densely dotted,black!45] (-0.03,1.0) -- (3.35,1.0);
+\node[font=\tiny,black!55,anchor=south east] at (3.35,1.003) {$\xi\le1$ (물리 상한)};
+% target xi_eq (dashed)
+\draw[densely dashed,thick] plot[smooth] coordinates {(0,0.0082) (0.2,0.018) (0.4,0.0392)
+  (0.6,0.0832) (0.8,0.168) (1,0.31) (1.1,0.4013) (1.2,0.5) (1.3,0.5987) (1.4,0.69)
+  (1.5,0.7685) (1.6,0.832) (1.8,0.9168) (2,0.9608) (2.2,0.982) (2.4,0.9918)
+  (2.6,0.9963) (2.8,0.9983) (3,0.9993) (3.2,0.9997)};
+% lagged xi_lag (solid) = pointwise memory integral, eq:lag
+\draw[very thick] plot[smooth] coordinates {(0,0.0031) (0.2,0.007) (0.4,0.0153)
+  (0.6,0.0331) (0.8,0.0692) (1,0.1364) (1.1,0.1851) (1.2,0.2442) (1.3,0.3122)
+  (1.4,0.3863) (1.5,0.4628) (1.6,0.538) (1.8,0.6734) (2,0.7796) (2.2,0.8559)
+  (2.4,0.9079) (2.6,0.942) (2.8,0.9638) (3,0.9776) (3.2,0.9862)};
+% labels
+\node[font=\scriptsize,anchor=south east] at (1.42,0.72) {목표 $\xi_\eq(q)$};
+\node[font=\scriptsize,anchor=north west] at (2.02,0.74) {지연 $\xi_\mathrm{lag}(q)$};
+% r arrow at q = 1.5
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]},semithick] (1.5,0.4628) -- (1.5,0.7685);
+\node[font=\scriptsize,anchor=west] at (1.54,0.595) {$r=\xi_\eq-\xi_\mathrm{lag}$};
+\draw[densely dotted,black!55] (1.5,0) -- (1.5,0.4628);
+% memory length annotation
+\node[font=\scriptsize,anchor=west,align=left] at (0.06,0.93)
+  {기억 커널 $e^{-\Delta q/L_q}/L_q$,\\ $L_q{=}0.4$ ($q$-단위)};
+\end{scope}
+% =============== (bottom) peak shape r/L_q ===============
+\begin{scope}[yshift=-3.35cm,x=3.2cm,y=2.2cm]
+\draw[->] (-0.03,0) -- (3.42,0) node[right,font=\scriptsize] {$q$};
+\draw[->] (-0.03,0) -- (-0.03,0.92) node[above,font=\scriptsize] {$r/L_q$};
+\foreach \xx in {1,2,3} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {0.25,0.5,0.75} {\draw (-0.018,\yy) -- (-0.042,\yy) node[left,font=\scriptsize] {\yy};}
+\draw[very thick] plot[smooth] coordinates {(0,0.0125) (0.2,0.0276) (0.4,0.0597)
+  (0.6,0.1253) (0.8,0.247) (1,0.4342) (1.1,0.5405) (1.2,0.6395) (1.3,0.7161)
+  (1.4,0.7592) (1.46,0.7667) (1.5,0.7643) (1.6,0.735) (1.8,0.6085) (2,0.4531)
+  (2.2,0.3152) (2.4,0.2099) (2.6,0.1358) (2.8,0.0862) (3,0.054) (3.2,0.0336)};
+\fill (1.46,0.7667) circle (1.2pt);
+\draw[densely dotted,black!55] (1.46,0) -- (1.46,0.7667);
+\node[font=\tiny,anchor=south west] at (1.50,0.775) {정점 $(1.46,\ 0.77)$ --- 중심 $1.2$ 보다 늦음};
+\node[font=\scriptsize,anchor=west,align=left] at (2.18,0.62)
+  {peak shape $=r/L_q$\\(전압축에선 $r/L_V$)};
+\end{scope}
+\end{tikzpicture}
+\caption{지연의 완화와 peak 모양 --- 좌표는 식~\eqref{eq:lag} 의 인과 기억 적분을 점별로 수치 적분한
+값이다(목표 $\xi_\eq(q)$ 는 중심 $1.2$$\cdot$폭 $0.25$ $q$-단위의 logistic 예시, $L_q{=}0.4$;
+식~\eqref{eq:Lq} 의 용량축 지연 방정식과 같은 설정). 위: 파선 $=$ 평형 목표 $\xi_\eq$, 굵은 실선 $=$
+과거를 지수 커널로 가중평균한 지연 진행률 $\xi_\mathrm{lag}$ --- 목표를 길이 $L_q$ 규모로 뒤따르며,
+둘 다 물리 범위 $\xi\le1$(점선) 안에 머문다. 음영이 지연 결핍 $r(q)=\xi_\eq-\xi_\mathrm{lag}$ 다.
+아래: 같은 $r$ 를 길이로 나눈 peak 모양 $r/L_q$(전압축 좌표에서는 $(\xi_\eq-\xi_\mathrm{lag})/L_{V}$,
+식~\eqref{eq:peakshape}) --- 정점이 목표 중심($q{=}1.2$)보다 늦은 $q{=}1.46$ 에 오고 진행 방향으로
+꼬리가 늘어지는 비대칭 종으로, $L_q\!\to\!0$ 이면 이 종이 평형 종으로 수렴한다(식~\eqref{eq:tail-limit}).}
+\label{fig:cand-ff1-7}
+\end{figure}

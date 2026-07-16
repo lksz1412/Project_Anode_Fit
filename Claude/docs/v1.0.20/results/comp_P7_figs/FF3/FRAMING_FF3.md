@@ -61,7 +61,7 @@
 **F1. (신규·최우선, Ch2) 실 파라미터 ∂U_oc/∂T(x̄) 프로파일 — `fig:cand-ff3-1`**
 - 무엇: Ch1 4-전이 staging 초기값(U_j(T)=(−ΔH+TΔS)/F 정합값·Q_j·ΔS⁰_j·w=RT/F, n=1)으로 전하 보존 음함수 eq:implicit 를 풀어 완전식 eq:complete 의 ∂U_oc/∂T(x̄) 를 전 구간(x̄=0.02–0.98) 수치 평가. 단순식(중심값 가중 eq:weighted) 곡선을 함께 겹침. 4개 ΔS⁰_j/F 레벨 점선 + "계단(오답)" 대비선 유지(fig:blend 정보요소 계승) + tab:qrev 5점 마킹 + 부호 교대(발열↔흡열) 영역 표기.
 - 왜: Ch2 의 중심 주장 — "전이당 상수 ΔS⁰ + 분포만으로 측정급 비선형이 자동 생성된다"(§2.5 파생 A·수치검증 srcbox·§2.8 tab:qrev) — 를 받치는 실곡선 그림이 전무. fig:blend 는 모식이고 방향까지 실제와 반대라고 캡션이 자인. 이 한 장이 eq:weighted·eq:complete·eq:single_config·tab:qrev 를 한 축 위에 통합.
-- 스케치: 가로 x̄(0→1, 탈리튬화), 세로 ∂U_oc/∂T [mV/K] (−0.45…+0.45). 굵은 실선=완전식, 회색 실선=단순식, 점선 수평 4개=ΔS⁰_j/F(+0.301/0/−0.052/−0.166), 빨간 파선=계단(비중 지배 전이 스위칭), 검은 점 5개=tab:qrev 행, y=0 기준선과 발열/흡열 라벨. Ch2 라이브러리만 사용(backgrounds 금지 → 음영 대신 기준선·라벨).
+- 스케치: 가로 x̄(0→1, 탈리튬화), 세로 ∂U_oc/∂T [mV/K] (−0.45…+0.45). 굵은 실선=완전식, 회색 실선=단순식, 점선 수평 4개=ΔS⁰_j/F(+0.301/0/−0.052/−0.166), 회색 파선=계단(비중 지배 전이 스위칭), 검은 점 5개=tab:qrev 행, y=0 기준선과 발열/흡열 라벨. Ch2 라이브러리만 사용(backgrounds 금지 → 음영 대신 기준선·라벨).
 
 **F2. (신규, Ch1 §8) 지연 길이 지도 log₁₀L_V(ΔH_a; T) — `fig:cand-ff3-2`**
 - 무엇: eq:Lqfull·eq:LV 를 기본값(χ=0.5, ΔS_a=0, 𝒜=A_cap RT=4RT, n=1, \|dV/dq\|=0.30 V, C/10, Q_cell=1 정규화 — §10 c-rate 숫자 규약)으로 평가한 log₁₀ L_V vs ΔH_a 직선 3개(T=268/298/328 K) + 가시성 문턱 L_V=w=RT/F 수평선 + 교차점(≈70/78/86 kJ/mol) + 표~tab:staging 초기값 ΔH_a(40–48 kJ/mol) 창 표시 + "×20 (C/10→2C): +1.3 decade" 수직 화살표(L_V∝\|I\|).
@@ -71,7 +71,7 @@
 **F3. (신규, Ch1 §10) 합산 곡선 — 배경+4峰 전체 dQ/dV, 두 온도 — `fig:cand-ff3-3`**
 - 무엇: eq:sum 을 초기 상태 그대로(평형 종 전용: L_V→0·γ=0·R_n=0, w_j=RT/F 균일, C_bg=0.05 Q_cell/V 상수 예시) 268.15 K 와 328.15 K 에서 전 구간 평가해 겹침. 개별 전이 기여(298 K 가늘게)와 총합(굵게)을 함께. 각 峰 중심의 온도 이동 화살표(4→3: +0.301 mV/K → 오른쪽 / 2→1: −0.166 mV/K → 왼쪽)와 U_j(T) 산식 주석.
 - 왜: 문서의 도착점("이 문건만 보고 같은 곡선을 재현")인 eq:sum 의 산출물 전체 곡선이 없다. 동시에 N2(중심 온도 이동·ΔS 부호별 반대 방향)·N4(폭 ∝T)·N9(배경 위 선형 누적)를 한 장에 통합 — G-A 공백도 흡수.
-- 스케치: 가로 V 0.03–0.28 V, 세로 dQ/dV [Q_cell/V] 0–5.5. 실선=268 K 총합, 파선=328 K 총합, 얇은 회색=298 K 전이별 기여+배경 수평선. 중심 이동 화살표 2개(부호 반대 강조). Ch1 라이브러리만.
+- 스케치: 가로 V 0.03–0.28 V, 세로 dQ/dV [Q_cell/V] 0–8.2(268 K 총합 최대 8.15). 실선=268 K 총합, 파선=328 K 총합, 얇은 회색=298 K 전이별 기여+배경 수평선. 중심 이동 화살표 2개(부호 반대 강조). Ch1 라이브러리만.
 
 **F4. (재설계, Ch1 §9 `fig:relaxode`) 기억 적분의 실수치 완화 — `fig:cand-ff3-4`**
 - 무엇: 기존 도식을 실제 수치로 재설계 — 목표 ξ_eq(q)=logistic(폭 w_q=0.35, 중심 q=1.2), ξ_lag(q)=eq:lag 의 인과 기억 적분(L_q=0.4)을 python 정적분으로 평가해 하드코딩. 원 그림의 정보 요소 전부 보존(목표 파선·지연 실선·차 r 화살표·수직 점선·"peak shape=(ξ_eq−ξ_lag)/L_V" 주석) + 추가: ξ∈[0,1] 실축 눈금, 지수 커널 e^{−(q−u)/L_q} 스케치(평가점 1.8 아래 음영)로 "길이 L_q 만큼의 최근 과거만 기억"을 시각화, r 최대점 좌표.
@@ -79,7 +79,7 @@
 - 스케치: 가로 q 0–3.4, 세로 ξ 0–1(눈금 0/0.5/1). 커널 음영은 backgrounds 레이어. Ch1 라이브러리만.
 
 **F5. (신규, Ch1 §4↔§13 공용) 히스 gap 닫힌꼴의 거동 — `fig:cand-ff3-5`**
-- 무엇: eq:dUhys 2패널. (a) T=298.15 K 고정, ΔU^hys vs Ω(0–14 kJ/mol): 문턱 2RT≈4.958 kJ/mol 에서 0 으로 연속 발아((Ω−2RT)^{3/2} — Taylor 박스의 양수 소멸), 표~tab:staging 초기값 Ω=6/8/10/13 kJ/mol 4점 마킹(6.2/23.6/50.4/102.7 mV). (b) Ω 고정 3곡선(6/8/13 kJ/mol), ΔU^hys vs T(250–800 K): 각자 T_c=Ω/2R 에서 (T_c−T)^{3/2} 로 소멸 — 도핑 억제(eq:lco-dope: Ω↓ ⇒ 같은 T 에서 gap↓)와 온도 상승에 의한 히스 축소가 한 그림.
+- 무엇: eq:dUhys 2패널. (a) T=298.15 K 고정, ΔU^hys vs Ω(0–14 kJ/mol): 문턱 2RT≈4.958 kJ/mol 에서 0 으로 연속 발아((Ω−2RT)^{3/2} — Taylor 박스의 양수 소멸), 표~tab:staging 초기값 Ω=6/8/10/13 kJ/mol 4점 마킹(6.2/28.3/56.0/102.8 mV — 산출 스크립트 값). (b) Ω 고정 3곡선(6/8/13 kJ/mol), ΔU^hys vs T(250–800 K): 각자 T_c=Ω/2R 에서 (T_c−T)^{3/2} 로 소멸 — 도핑 억제(eq:lco-dope: Ω↓ ⇒ 같은 T 에서 gap↓)와 온도 상승에 의한 히스 축소가 한 그림.
 - 왜: gap 의 닫힌꼴은 Ch1 §4 의 핵심 박스이자 LCO §13(eq:lco-dUhys·eq:lco-dope)이 재사용하는 구조식인데 함수 거동 곡선이 없다. "Ω≤2RT 면 정확히 0" 분기·임계 연속성·γ_j 가 깎는 상한이라는 지위가 한눈에 들어옴.
 - 스케치: (a) 가로 Ω [kJ/mol], 세로 ΔU^hys [mV](0–110), 문턱 수직 점선+음영 없음. (b) 가로 T [K], 세로 [mV], T_c 3점 마킹. Ch1 라이브러리만.
 
@@ -105,3 +105,68 @@
 | fig_ff3_7_nucleation.tex | fig:cand-ff3-7 | Appendix §A.6.1 |
 
 (3단계 기록은 구현·컴파일 후 append)
+
+---
+
+## 3단계 — 구현·검증 기록
+
+### 3-A. 구현 목록 (프레이밍 7건 전건 구현)
+
+| 조각 파일 | 라벨 | 문맥 | 내용 | 근거 식 |
+|---|---|---|---|---|
+| fig_ff3_1_dUdT_profile.tex | fig:cand-ff3-1 | Ch2 | 실 파라미터 ∂U_oc/∂T(x̄) 전 구간 — 완전식 vs 단순식 vs 계단, ΔS⁰/F 4레벨, tab:qrev 5점, 부호 교대 | eq:implicit·eq:weighted·eq:complete |
+| fig_ff3_2_LV_map.tex | fig:cand-ff3-2 | Ch1 | log₁₀L_V(ΔH_a;T) 지도 — 3온도 직선·가시 문턱 L_V=w·초기값 창·C-rate +1.30 decade | eq:Lqfull·eq:LV |
+| fig_ff3_3_sum_curve.tex | fig:cand-ff3-3 | Ch1 | 합산 곡선 C_bg+4峰 총합(268/328 K)+298 K 전이별 기여, 중심 이동 ±(ΔS 부호별) | eq:sum·eq:eqpeak·eq:Uj |
+| fig_ff3_4_relaxode.tex | fig:cand-ff3-4 | Ch1 | fig:relaxode 재설계 — 기억 적분 실수치(ξ_eq·ξ_lag·r(q)·커널 음영·L_q), 원 요소 전량 보존 | eq:lag·eq:peakshape |
+| fig_ff3_5_hysgap.tex | fig:cand-ff3-5 | Ch1 | ΔU^hys 닫힌꼴 — (a) vs Ω@298 K(문턱·staging 4점) (b) vs T(3곡선, T_c 소멸) | eq:dUhys(·eq:lco-dope 극한) |
+| fig_ff3_6_einstein.tex | fig:cand-ff3-6 | Ch2 | S_vib(T;θ_E) 닫힌형+고전/동결 극한, ΔS_vib(T)/F 편차(본문 4수치 재현) | eq:Svib-einstein·eq:dUvib |
+| fig_ff3_7_nucleation.tex | fig:cand-ff3-7 | Appx | (a) 핵생성 장벽 3x²−2x³ (b) spinodal 분해 성장률 4u²(1−u²) | eq:app-cnt·eq:app-rstar·eq:app-ch-R |
+
+### 3-B. 좌표 생성·물리 게이트 (gen_coords_ff3.py → coords_ff3.txt, ALL GATES PASS)
+
+- F1: tab:qrev 5행 (x̄, U_oc, ∂U/∂T) 전건 재현 — U_oc 오차 <0.25 mV·완전식 오차 <0.004 mV/K;
+  §2.8 예제 (0.25 → U_oc 74.4 mV, 완전식 −0.204, 단순식 −0.134 mV/K) 정확 재현.
+- F2: L_V(40 kJ, 298 K)=6.5×10⁻⁹ V (§10 의 10⁻¹⁰–10⁻⁸ V 창 내), 가시 문턱 교차 77.6 kJ/mol
+  (§10 "≈80 kJ/mol 급" 재현; 268/328 K 는 69.6/85.7).
+- F3: U_j(T) 재평가 값 268 K {0.2019,0.1399,0.1219,0.0903} / 328 K {0.2199,0.1399,0.1188,0.0803} V
+  → 중심 이동 +18.0/0/−3.1/−9.9 mV — ΔS 부호와 정합.
+- F4: 전 구간 0 ≤ ξ_lag ≤ ξ_eq ≤ 1, r ≥ 0 (인과 기억 적분의 유계성) 통과; r_max=0.240@q=1.5.
+- F5: ΔU^hys(Ω=4RT, 298.15 K)=54.8 mV — 본문 fig:hysloop 캡션값과 일치.
+- F6: ∂ΔU_vib/∂T = −3.74/0/+3.70/+9.14 μV/K (278/298/318/348 K) — §2.4.3 수치 전건 재현.
+- F7: 해석적 무차원식(극값 (1,1)·k_m=1/√2) 그대로.
+
+### 3-C. 컴파일 검증 (오류 0 의무)
+
+- 하네스 = 최소 문서(article+geometry 22mm+kotex+amsmath+tikz+해당 문맥 라이브러리+해당 preamble 매크로).
+  문맥별 3종: harness_ch1.tex(F2·F3·F4·F5), harness_ch2.tex(F1·F6), harness_appendix.tex(F7).
+- 명령: `xelatex -interaction=nonstopmode harness_*.tex`
+- 최종 결과(각 1-pass):
+  - harness_ch1: exit=0, `!` 오류 0, Overfull 0, Underfull 0 → harness_ch1.pdf (4쪽)
+  - harness_ch2: exit=0, `!` 오류 0, Overfull 0, Underfull 0 → harness_ch2.pdf (2쪽)
+  - harness_appendix: exit=0, `!` 오류 0, Overfull 0, Underfull 0 → harness_appendix.pdf (1쪽)
+- 잔여 경고 = 본문 라벨(\eqref·\ref) 미정의 `??` 경고뿐 — 조각이 본문 식·표를 참조하도록 설계된
+  의도적 결과(본문에 \input 되면 해소), LaTeX 오류 아님.
+- 시각 검수: pymupdf 렌더(v_*.png)로 7건 전부 육안 확인 — 라벨·곡선 충돌 6건 발견·수정 후 재컴파일
+  (F1 우측 레벨 라벨/계단 라벨, F2 하단 눈금 겹침/C-rate 화살표, F5 (a)주석 블록·(b)눈금-T_c 충돌,
+  F6 패널 제목·영점 주석, F7 제목-표면 라벨·감쇠 라벨, F3 C_bg 라벨).
+
+### 3-D. 본문 제안 배치(요약)
+
+1. fig:cand-ff3-1 → Ch2 §2.8 tab:qrev 직후(1안) 또는 §2.5 fig:blend 대체(2안 — 원 그림의
+   블렌드 vs 계단 대비 요소를 계단 파선으로 계승했으므로 대체 가능).
+2. fig:cand-ff3-2 → Ch1 §8.4 식~eq:LV 박스 직후.
+3. fig:cand-ff3-3 → Ch1 §10 표~tab:staging 직후.
+4. fig:cand-ff3-4 → Ch1 §9.1 기존 fig:relaxode 대체(원 정보 요소 전량 보존+실수치 승격).
+5. fig:cand-ff3-5 → Ch1 §4.2 식~eq:dUhys 직후(Part II §13 에서 재참조).
+6. fig:cand-ff3-6 → Ch2 §2.4.3 수치 문단 옆.
+7. fig:cand-ff3-7 → Appendix §A.6 두 경로 대조표 앞.
+
+### 3-E. 물리 가드 자기점검
+
+- 부호: F1 발열/흡열 = Bernardi 규약(∂U/∂T<0 ⇒ 방전 발열) 그대로; F3 중심 이동 방향 = ∂U_j/∂T=ΔS/F
+  부호 그대로; F5 gap ≥ 0·문턱 이하 정확 0(본문 명시 분기) 유지.
+- 극한: F5 (T_c−T)^{3/2}·(Ω−2RT)^{3/2} 연속 소멸(본문 Taylor 박스와 동일 부호); F4 r→0 양끝;
+  F6 저온 S_vib→0·고전 극한 수렴.
+- 단위: F1 mV/K·F2 log₁₀(V)·F3 Q_cell/V·F5 mV·F6 μV/K — 본문 표기 그대로.
+- 새 물리 주장 없음 — 전부 본문 식·표 초기값·본문 수치의 재평가이며, 가정(예: F2 의 장벽 보강
+  미적용·c-rate 숫자 규약, F3 의 C_bg=0.05 상수 예시)은 캡션에 명시.

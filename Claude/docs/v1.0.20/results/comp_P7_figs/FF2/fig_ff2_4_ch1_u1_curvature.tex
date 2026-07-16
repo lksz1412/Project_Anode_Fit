@@ -14,7 +14,7 @@
 \draw[-{Latex[length=1.6mm]}] (266,-33) -- (266,50)
   node[anchor=south west,xshift=-4mm,font=\scriptsize] {$U_1(T)-U_1(T_\mathrm{ref})$ [mV]};
 \draw[-{Latex[length=1.6mm]}] (266,-33) -- (356,-33)
-  node[anchor=north west,xshift=-3mm,font=\scriptsize] {$T$ [K]};
+  node[anchor=north west,xshift=1mm,font=\scriptsize] {$T$ [K]};
 \foreach \xx in {270,290,310,330,350} {\draw (\xx,-31.6) -- (\xx,-34.4) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {-30,-15,15,30,45} {\draw (266.6,\yy) -- (265.4,\yy) node[left,font=\scriptsize] {\yy};}
 \draw[densely dashed,black!45] (266,0) -- (352,0);
@@ -29,7 +29,7 @@
 \node[font=\tiny,anchor=west] at (350.4,41.46) {기저 선형 $0.83$ mV/K};
 \node[font=\tiny,anchor=west] at (350.4,28.6) {$-25.7$ mV};
 \node[font=\tiny,anchor=west,align=left] at (350.4,15.80) {적분형 $T^2$\\(식~\eqref{eq:U1T2})};
-\node[font=\scriptsize,anchor=north,align=center] at (306,-13) {고온 외삽이 선형보다\\\emph{낮아짐} $=$ 전자항 식별 신호};
+\node[font=\scriptsize,anchor=north,align=center,fill=white,inner sep=1.5pt] at (310,-20) {고온 외삽이 선형보다\\\emph{낮아짐} $=$ 전자항 식별 신호};
 \node[font=\scriptsize] at (310,-42) {(a)};
 \end{scope}
 % ============ (b) slope space: dU_1/dT(T) ============
@@ -37,7 +37,7 @@
 \draw[-{Latex[length=1.6mm]}] (266,0.16) -- (266,0.98)
   node[anchor=south west,xshift=-4mm,font=\scriptsize] {$\partial U_1/\partial T$ [mV/K]};
 \draw[-{Latex[length=1.6mm]}] (266,0.16) -- (356,0.16)
-  node[anchor=north west,xshift=-3mm,font=\scriptsize] {$T$ [K]};
+  node[anchor=north west,xshift=1mm,font=\scriptsize] {$T$ [K]};
 \foreach \xx in {270,290,310,330,350} {\draw (\xx,0.168) -- (\xx,0.152) node[below,font=\scriptsize] {\xx};}
 \foreach \yy in {0.2,0.4,0.6,0.8} {\draw (266.6,\yy) -- (265.4,\yy) node[left,font=\scriptsize] {\yy};}
 \draw[densely dotted,black!55] (298.15,0.16) -- (298.15,0.90);
@@ -56,8 +56,8 @@
   {적분형: $(\Delta S_0{+}a_eT)/F$\\--- $T$ 에 \emph{선형}(기울기 $a_e/F$)};
 \draw[-{Latex[length=1.2mm]},black!60] (313,0.52) -- (321.5,0.324);
 \node[font=\tiny,anchor=west] at (269,0.452) {$0.403$};
-\node[font=\tiny,anchor=north] at (344,0.262) {$0.276$};
-\node[font=\tiny,black!60,anchor=north east] at (297,0.30) {$T_\mathrm{ref}$ 에서 동결 근사와 접함};
+\node[font=\tiny,anchor=west] at (349.5,0.2763) {$0.276$};
+\node[font=\tiny,black!60,anchor=north west] at (299.5,0.262) {$T_\mathrm{ref}$ 에서 동결 근사와 접함};
 \node[font=\scriptsize] at (310,0.085) {(b)};
 \end{scope}
 \end{tikzpicture}
