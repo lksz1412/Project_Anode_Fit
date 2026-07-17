@@ -1,0 +1,99 @@
+% ====================================================================
+% CLT_DRAFT.tex  —  v1.0.22 R2 phase / 창 O-C (통계역학 증축) / 후보 (iii)
+%   초안 전용 — 마스터 소스 미수정. 삽입처 = _sections/ch1_sec07_broadening.tex
+%   §7.2 (iii-b), 식 eq:ensavg 직후(현행 89행 뒤, 90행 "곧 단일 입자 응답..." 앞).
+%   목적 = eq:ensavg 의 밀도 rho(U_app) 가 왜 종형(Gaussian)인지에 CLT 형상 근거를
+%          주고, eq:widthbudget ③항 sigma_eta^2 의 분산 가법을 CLT 로 재유도.
+%   ★절대 제약: 새 피팅 파라미터 0(모델 차원 불변) · 기존 수식/라벨/기호 무변경 ·
+%          제거 용이한 독립 블록(사용자가 나중에 "빼라" 하면 통째 삭제 가능).
+%   설계 원전 = v1.0.20 DIRECTION_STATMECH_REPORT.md 후보 (iii) 절.
+%   사용 서지 = dreyer2010 · dreyer2011 (ch1v22_bib.tex 기존 등재 키; §7 이미 사용).
+%          CLT 자체는 표준 수학 정리 — 무인용 관용(rubric).
+%   두 판형 제시(아래). ★권고 = 판형 (b) bgbox — 근거는 파일 말미 주석.
+% ====================================================================
+
+
+% ─────────────────────────────────────────────────────────────────────
+% 판형 (a) — 본문 단락형  (eq:ensavg 직후 삽입, 8~12행)
+%   신규 라벨 2개: eq:clt-bell · eq:clt-var (제안 표기; 삭제 시 함께 제거).
+% ─────────────────────────────────────────────────────────────────────
+
+식~\eqref{eq:ensavg} 의 밀도 $\rho(U_\app)$ 가 왜 \emph{종 모양}인지는 $\eta$ 의 미시 기원이 답한다.
+$\eta$ 가 \emph{단일 지배} 원천에서만 오면 $\rho(\eta)$ 는 그 원천의 분포를 그대로 물려받아 종형일
+까닭이 없다(비-Gaussian 가능). 그러나 (iii-b) 가 나열한 $\eta$ 의 실제 기원 --- 국소 접촉
+저항$\cdot$결정성$\cdot$흑연화도$\cdot$turbostratic 무질서$\cdot$국소 과전압 --- 은 성격이 다른
+\emph{다수의 독립} 기여의 합이라,
+\begin{equation}
+\eta=\sum_{k=1}^{m}\eta_k,\qquad
+\rho(\eta)\ \xrightarrow[\;m\ \text{large}\;]{\text{CLT}}\ \mathcal N\!\big(\bar\eta,\ \sigma_\eta^{\,2}\big),
+\label{eq:clt-bell}
+\end{equation}
+어느 한 원천도 총분산을 지배하지 않는다는 Lindeberg 조건 아래 중심극한정리(central limit
+theorem, CLT)가 합의 분포를 Gaussian 종으로 몰고, 그 분산은
+\begin{equation}
+\sigma_\eta^{\,2}=\sum_{k=1}^{m}\sigma_{\eta_k}^{\,2}
+\label{eq:clt-var}
+\end{equation}
+로 가법이다 --- 이것이 식~\eqref{eq:widthbudget} ③ 항 $\sigma_\eta^{\,2}$ 의 \emph{형상} 근거이자, 그
+분산 가법(현행은 ``모양과 무관한 합성곱 항등식''으로만 정당화)의 CLT 재유도다($\eta$ 는 한 소인(sweep)
+시간척도에서 입자별로 \emph{정적}(quenched)이라 식~\eqref{eq:ensavg} 의 forward 평균이 곧 그 quenched
+앙상블 평균 --- 열평형 재배열 annealed 이 아니다; 다입자 앙상블 평형의 표준
+그림\cite{dreyer2010,dreyer2011}에서 (iii-b) 입자간 $\eta$ 산포가 이 종으로 닫힌다). \emph{한정} ---
+(1) CLT 는 형상을 \emph{forward} 로 근거지을 뿐 $\dd Q/\dd V\!\to\!\rho$ 역산을 열지
+않고(\S\ref{sec:broadening-scope}(ii) ill-posed 유지); (2) 이 구조 무질서 근거는 흑연
+두-상($\mathrm{LiC_{12}}\cdot\mathrm{LiC_6}$)에 한하며 LCO 는 일반 $\eta$ 분포로만; (3) 원천 목록은
+\emph{비-크기} $\eta$ 산포 전용이라 입자 반경(\S\ref{sec:broadening-scope}(i) 에서 정량 배제)은 넣지
+않으며; (4) 내재 폭 ②(logistic 미분 종)는 Gaussian 이 아니어서 CLT 는 ③($\rho(\eta)$)에만 적용된다
+--- ②$\otimes$③ 은 logistic$\otimes$Gaussian 이다. 회수 검산 --- $m=1$ 이거나 한 원천이
+지배하면(Lindeberg 붕괴) 종형이 무너져 $\rho$ 가 그 원천 분포로 돌아가고, $\rho\!\to\!\delta$ 면
+③ 이 소멸해 식~\eqref{eq:ensavg} 가 평형 중심 $U_j$ 의 단일 델타로 환원된다(§7 기존 서술).
+
+
+% ─────────────────────────────────────────────────────────────────────
+% 판형 (b) — bgbox형  [겉보기 이동의 CLT 종형]   ★권고 판형
+%   식은 무라벨(unnumbered) — 기존 식번호 재배열 0, 삭제 시 본문 무영향.
+% ─────────────────────────────────────────────────────────────────────
+
+\begin{bgbox}
+\textbf{겉보기 이동의 CLT 종형.} 식~\eqref{eq:ensavg} 의 $\rho(U_\app)$ 가 \emph{종}인 까닭 ---
+$\eta$ 가 \emph{단일 지배} 원천에서만 오면 $\rho(\eta)$ 는 그 원천 분포 그대로라 종형일 까닭이
+없다(비-Gaussian 가능). 그러나 (iii-b) 의 실제 기원(국소 접촉 저항$\cdot$결정성$\cdot$흑연화도$\cdot$%
+turbostratic 무질서$\cdot$국소 과전압)은 성격이 다른 \emph{다수 독립} 기여의 합 $\eta=\sum_{k=1}^{m}\eta_k$
+이고, 어느 하나도 총분산을 지배하지 않는다는 Lindeberg 조건 아래 중심극한정리(CLT)가
+\[
+\rho(\eta)\ \xrightarrow{\ \text{CLT}\ }\ \mathcal N\!\big(\bar\eta,\ \sigma_\eta^{\,2}\big),
+\qquad
+\sigma_\eta^{\,2}=\sum_{k=1}^{m}\sigma_{\eta_k}^{\,2}
+\]
+로 몰아 --- 식~\eqref{eq:widthbudget} ③ 항 $\sigma_\eta^{\,2}$ 의 \emph{형상} 근거이자 그 분산
+가법(현행은 ``모양과 무관한 합성곱 항등식'')의 CLT 재유도를 준다. $\eta$ 는 소인 시간척도에서 입자별로
+\emph{정적}(quenched)이라 식~\eqref{eq:ensavg} 는 quenched 앙상블 평균이며(열평형 재배열 annealed 이
+아님), 다입자 앙상블 평형의 표준 그림\cite{dreyer2010,dreyer2011}에서 (iii-b) 입자간 $\eta$ 산포가 이
+종으로 닫힌다. \emph{한정} --- CLT 는 형상을 \emph{forward} 로만 근거지어 $\dd Q/\dd V\!\to\!\rho$
+역산을 열지 않고(\S\ref{sec:broadening-scope}(ii)), 이 구조 무질서 근거는 흑연 두-상 한정(LCO 는 일반
+$\eta$)이며, 원천은 \emph{비-크기} $\eta$ 전용(반경 배제 --- \S\ref{sec:broadening-scope}(i))이고,
+내재 폭 ②(logistic)는 Gaussian 이 아니어서 CLT 는 ③ 에만 적용된다(②$\otimes$③ 은
+logistic$\otimes$Gaussian). 회수 --- $m=1$$\cdot$한 원천 지배면(Lindeberg 붕괴) 종형 이탈,
+$\rho\!\to\!\delta$ 면 ③ 소멸로 식~\eqref{eq:ensavg} 가 $U_j$ 단일 델타로 환원.
+\end{bgbox}
+
+
+% ─────────────────────────────────────────────────────────────────────
+% fig:widthbudget 캡션 승격 문구  ★제안만 (캡션 수정은 사용자 판단 영역 — 본 초안 미집행)
+%   현행(ch1_sec07 169~170행): "파선 = ②⊗③ --- 실제 수치 합성곱(Gaussian 예시
+%     sigma_eta=1.25 sigma_int)으로 얻은 결과이며 ..."
+%   제안: "Gaussian 예시" → "CLT 로 근거지어진 Gaussian 종(본문 (iii-b) CLT 단락/배경 박스)"
+%   효과: 캡션의 "예시" 라는 임의성 표기를 본문 CLT 근거로 승격 참조. 식·좌표 무변경.
+% ─────────────────────────────────────────────────────────────────────
+
+
+% ─────────────────────────────────────────────────────────────────────
+% 권고 판형 = (b) bgbox.  근거:
+%   1. 제거 용이성 — 무라벨 식이라 §7 기존 식번호(eq:widthbudget 등) 재배열 0;
+%      블록 통째 삭제 시 본문 무영향(D22 "빼라" 유보에 최적).
+%   2. 의미 정합 — 내용이 "왜 종형인가"의 배경 정당화(모델 차원 불변)라 bgbox=배경 의미에 부합.
+%   3. forward-only·4가드 격리 — 자족 박스 안에 한정 가드를 담아 (iii-b) 본문 논지 흐름을
+%      끊지 않는다.
+%   판형 (a) 는 §7 의 번호식 밀도와 톤을 맞추고 싶을 때 대안(단, 신규 번호식 2개가
+%      eq:widthbudget 이하 식번호를 한 칸씩 밀며 — 라벨 참조는 자동 보정되어 깨지지 않음).
+% ─────────────────────────────────────────────────────────────────────
