@@ -103,8 +103,83 @@ U_\vib/\partial T\approx-3.74,\,0,\,+3.70,\,+9.14~\mu$V/K 다 --- $T_\mathrm{ref
 (식~\eqref{eq:Se-ch2}, $\propto T$)은 $T$ 에 선형이고 강제 영점이 없어, 다온도 $dQ/dV$ 곡률 피팅이 두 함수형을
 갈라 앞 절이 우려한 혼입을 해소한다. 단 분리에는 준양자 창 $\kB T\!\sim\!\hbar\omega$ 를 걸치는 $T$ 점
 \textbf{셋 이상}이 필요하다 --- 2-온도 유한차분(국소 기울기만 봄)은 곡률과 선형을 합으로만 보아 축퇴하므로,
-``섞일 수 있다''는 것은 저-온도점 진단이지 물리적 비식별성이 아니다. 진동 항의 온도 편차를 이렇게 닫았으니,
+``섞일 수 있다''는 것은 저-온도점 진단이지 물리적 비식별성이 아니다. 닫힌형의 두 극한과 이 강제 영점·로그
+곡률은 그림~\ref{fig:svibid} 가 수치 곡선으로 보인다. 진동 항의 온도 편차를 이렇게 닫았으니,
 이제 세 분포를 겹침으로 조립할 준비가 되었다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+% ============ (a) closed form S_vib/R vs T/theta_E ============
+\begin{scope}[x=3.8cm,y=2.6cm]
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (-0.02,1.62) node[above,font=\scriptsize] {$S_\vib/R$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.72,0) node[below,font=\scriptsize] {$T/\theta_{E,j}$};
+\foreach \xx in {0.5,1.0,1.5} {\draw (\xx,0.012) -- (\xx,-0.012) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {0.5,1.0,1.5} {\draw (-0.008,\yy) -- (-0.032,\yy) node[left,font=\scriptsize] {\yy};}
+% closed form (eq:Svib-einstein)
+\draw[very thick,blue] plot[smooth] coordinates {(0.040,0.0000) (0.080,0.0001) (0.120,0.0022) (0.160,0.0140) (0.200,0.0407) (0.240,0.0812) (0.280,0.1318) (0.320,0.1885) (0.360,0.2484) (0.400,0.3092) (0.440,0.3698) (0.480,0.4293) (0.520,0.4872) (0.560,0.5433) (0.600,0.5974) (0.640,0.6496) (0.680,0.6998) (0.720,0.7482) (0.760,0.7947) (0.800,0.8395) (0.840,0.8827) (0.880,0.9243) (0.920,0.9644) (0.960,1.0032) (1.000,1.0407) (1.080,1.1119) (1.160,1.1788) (1.240,1.2418) (1.320,1.3012) (1.400,1.3575) (1.480,1.4108) (1.560,1.4616) (1.600,1.4861)};
+% classical limit (dashed)
+\draw[densely dashed] plot[smooth] coordinates {(0.380,0.0324) (0.420,0.1325) (0.460,0.2235) (0.500,0.3069) (0.540,0.3838) (0.580,0.4553) (0.620,0.5220) (0.660,0.5845) (0.700,0.6433) (0.740,0.6989) (0.780,0.7515) (0.820,0.8015) (0.860,0.8492) (0.900,0.8946) (0.940,0.9381) (0.980,0.9798) (1.060,1.0583) (1.140,1.1310) (1.220,1.1989) (1.300,1.2624) (1.380,1.3221) (1.460,1.3784) (1.540,1.4318) (1.600,1.4574)};
+% labels (top-left is clear; dashed labeled near its low-T start)
+\node[font=\tiny,anchor=west] at (0.06,1.50) {닫힌형 $S_\vib(T;\theta_{E,j})/R$ (식~\eqref{eq:Svib-einstein}, 실선)};
+\node[font=\tiny,anchor=west] at (0.43,0.045) {고전 극한 $1+\ln(T/\theta_E)$ (파선)};
+% freeze-out annotation
+\node[font=\tiny,anchor=west,align=left] at (0.05,0.30) {저온 동결\\$S_\vib\to0$};
+\draw[-{Latex[length=1.2mm]},black!60] (0.10,0.24) -- (0.115,0.02);
+% operating point theta_E=700K, T=298K
+\fill (0.426,0.3486) circle (1.3pt);
+\node[font=\tiny,anchor=west,align=left] at (0.52,0.30) {$\theta_E{=}700$ K, $T{=}298$ K\\(준양자 작동점, $S_\vib/R{=}0.35$)};
+\draw[-{Latex[length=1.2mm]},black!60] (0.51,0.33) -- (0.443,0.345);
+\node[font=\scriptsize] at (0.82,-0.22) {(a)};
+\end{scope}
+% ============ (b) forced zero of the center-shift slope ============
+\begin{scope}[xshift=8.1cm,x=0.060cm,y=0.165cm,shift={(-258.15,0)}]
+\draw[-{Latex[length=1.6mm]}] (256,-10.5) -- (256,14.6)
+  node[above,font=\scriptsize] {$\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$ [$\mu$V/K]};
+\draw[-{Latex[length=1.6mm]}] (256,-10.5) -- (362,-10.5) node[anchor=north west,xshift=-2mm,font=\scriptsize] {$T$ [K]};
+\foreach \xx in {260,280,300,320,340} {\draw (\xx,-10.2) -- (\xx,-10.8) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-8,-4,0,4,8,12} {\draw (256.4,\yy) -- (255.6,\yy) node[left,font=\scriptsize] {\yy};}
+\draw[densely dashed,black!45] (256,0) -- (360,0);
+\draw[densely dotted,black!55] (298.15,-10.5) -- (298.15,12.2);
+\node[font=\tiny,black!55,anchor=west] at (300.5,-6.0) {$T_\mathrm{ref}$ 강제 영점};
+\draw[-{Latex[length=1.1mm]},black!55] (302,-4.9) -- (298.6,-0.5);
+% theta_E = 500 K (dashed)
+\draw[thick,densely dashed] plot[smooth] coordinates {(258.15,-9.530) (263.15,-8.303) (268.15,-7.086) (273.15,-5.879) (278.15,-4.682) (283.15,-3.496) (288.15,-2.320) (293.15,-1.155) (298.15,0.000) (303.15,1.144) (308.15,2.277) (313.15,3.400) (318.15,4.512) (323.15,5.614) (328.15,6.705) (333.15,7.786) (338.15,8.856) (343.15,9.916) (348.15,10.967) (353.15,12.007) (358.15,13.037)};
+% theta_E = 700 K (solid blue)
+\draw[very thick,blue] plot[smooth] coordinates {(258.15,-7.487) (263.15,-6.551) (268.15,-5.614) (273.15,-4.676) (278.15,-3.738) (283.15,-2.802) (288.15,-1.866) (293.15,-0.932) (298.15,0.000) (303.15,0.930) (308.15,1.856) (313.15,2.780) (318.15,3.700) (323.15,4.617) (328.15,5.530) (333.15,6.438) (338.15,7.343) (343.15,8.243) (348.15,9.138) (353.15,10.029) (358.15,10.915)};
+% theta_E = 900 K (dotted)
+\draw[thick,densely dotted] plot[smooth] coordinates {(258.15,-5.516) (263.15,-4.851) (268.15,-4.177) (273.15,-3.496) (278.15,-2.808) (283.15,-2.114) (288.15,-1.414) (293.15,-0.709) (298.15,0.000) (303.15,0.713) (308.15,1.430) (313.15,2.149) (318.15,2.872) (323.15,3.596) (328.15,4.322) (333.15,5.049) (338.15,5.777) (343.15,6.506) (348.15,7.235) (353.15,7.965) (358.15,8.694)};
+% text anchors on the 700 K curve (values from §2.4.3) — white-backed tags
+\fill (278.15,-3.738) circle (1.2pt);
+\node[font=\tiny,fill=white,inner sep=0.8pt] at (281.5,-4.9) {$-3.74$};
+\fill (298.15,0.000) circle (1.2pt);
+\fill (318.15,3.700) circle (1.2pt);
+\node[font=\tiny,fill=white,inner sep=0.8pt] at (321.5,2.55) {$+3.70$};
+\fill (348.15,9.138) circle (1.2pt);
+\node[font=\tiny,fill=white,inner sep=0.8pt] at (351.3,8.0) {$+9.14$};
+% legend (top-left clear)
+\draw[thick,densely dashed] (259,13.4) -- (266,13.4);
+\node[font=\tiny,anchor=west] at (267,13.4) {$\theta_E{=}500$ K};
+\draw[very thick,blue] (259,11.8) -- (266,11.8);
+\node[font=\tiny,anchor=west] at (267,11.8) {$700$ K};
+\draw[thick,densely dotted] (259,10.2) -- (266,10.2);
+\node[font=\tiny,anchor=west] at (267,10.2) {$900$ K};
+\node[font=\scriptsize] at (308,-13.6) {(b)};
+\end{scope}
+\end{tikzpicture}
+\caption{Einstein 진동 보정의 두 얼굴 --- 좌표는 식~\eqref{eq:Svib-einstein}$\cdot$\eqref{eq:dUvib}
+그대로의 수치 평가다. (a) 닫힌형 $S_\vib(T;\theta_{E,j})/R$: 저온($u_j\to\infty$)에서 $0$ 으로
+동결되고 고전 극한(파선) $1+\ln(T/\theta_E)$ 에 $T/\theta_E\gtrsim1$ 에서 붙는다 --- 앞 절이 중심
+표준값에 흡수한 ``$T$-무관 상수''는 이 곡선을 $T_\mathrm{ref}$ 에서 한 번 평가해 동결한 값이다.
+● 는 $\theta_E{=}700$ K$\cdot$$298$ K 의 준양자 작동점. (b) 중심 이동의 온도 기울기
+$\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$: $\theta_{E}{=}500/700/900$ K 모두
+$T_\mathrm{ref}$ 의 \emph{강제 영점}을 지나 로그형 곡률로 자라며, ● 는 본문 \S\ref{ssec:einstein-numid}
+의 수치($\theta_E{=}700$ K 에서 $-3.74/0/+3.70/+9.14\ \mu$V/K)다. electronic 항($\propto T$)은 이
+강제 영점이 없어 두 함수형이 다온도 곡률 피팅에서 갈리고, 분리에는 준양자 창을 걸치는 온도점 셋
+이상이 필요하다.}
+\label{fig:svibid}
+\end{figure}
+% 자산(v1.0.21 신규): [V21-R-05 Einstein 닫힌형·강제 영점 2패널 fig:svibid — FIGS_PICK N-4(베이스 FF2-5)]
 
 % 자산: [C-49] θ_E,j≡ℏω_E,j/k_B·LCO 50-80meV→580-930K 환산 예시일 뿐(데이터 1순위) ·
 %   [C-50] f_k 대표진동수 접기·u_j≡θ_E,j/T(x와 구분) · [C-51] ★S_vib(T;θ_E,j) (eq:Svib-einstein) ·

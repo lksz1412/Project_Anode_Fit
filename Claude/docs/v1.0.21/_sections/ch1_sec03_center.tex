@@ -58,7 +58,52 @@ $\Delta H_\rxn<0$ 이면 분자 $-\Delta H_\rxn>0$ 이 중심을 \emph{올린다
 $T$ 로 미분한 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 이며, 이는 Gibbs 항등식 $\partial\Delta G/\partial T=-\Delta S$ 와
 식~\eqref{eq:eqcond} 의 $\Delta G=-FU$ 를 잇는 것과 같은 결과다. $|\Delta S_\rxn|\sim$ 수$\sim$수십 J/(mol\,K) 라 $30$ K
 창에서 수 mV 규모로 중심이 이동한다 --- 다온도 피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 이유다. 온도가 배열
-$T(V)$(비등온)이면 $U_j$ 도 $V_n$ 점별 배열로 나온다.
+$T(V)$(비등온)이면 $U_j$ 도 $V_n$ 점별 배열로 나온다. 네 전이의 $U_j(T)$ 직선과 기울기 부호의 갈림은
+그림~\ref{fig:UjT} 가 한 장에 보인다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.135cm,y=0.030cm,>=Latex]
+% ---- reference isotherm T=298.15 ----
+\draw[densely dotted,black!55] (298.15,74) -- (298.15,226);
+\node[font=\tiny,black!55,anchor=south] at (298.15,226) {$298.15$ K};
+% ---- axes (y starts at 75 mV; note the offset) ----
+\draw[-{Latex[length=1.6mm]}] (268,75) -- (334,75) node[below right,font=\scriptsize] {$T$ [K]};
+\draw[-{Latex[length=1.4mm]}] (268,75) -- (268,229) node[above,font=\scriptsize] {$U_j$ [mV]};
+\foreach \tt in {270,290,310,330} {\draw (\tt,77)--(\tt,73) node[below,font=\scriptsize] {\tt};}
+\foreach \uu in {100,150,200} {\draw (269.5,\uu)--(266.5,\uu) node[left,font=\scriptsize] {\uu};}
+% ---- four center lines U_j(T) (straight; slope = dS_rxn/F) ----
+\draw[very thick]                 (268,201.81) -- (328,219.85);  % 4->3  dS=+29 (rises)
+\draw[thick,densely dashed]       (268,139.92) -- (328,139.92);  % 3->2L dS=0   (flat)
+\draw[thick,black!55]             (268,121.88) -- (328,118.77);  % 2L->2 dS=-5  (slight fall)
+\draw[very thick,densely dotted]  (268,90.29)  -- (328,80.34);   % 2->1  dS=-16 (falls)
+% ---- right-end transition names (single line each) ----
+\node[font=\scriptsize,anchor=west]        at (329,220.0) {$4\!\to\!3$};
+\node[font=\scriptsize,anchor=west]        at (329,140.5) {$3\!\to\!2\mathrm L$};
+\node[font=\scriptsize,anchor=west,black!55]at (329,118.0) {$2\mathrm L\!\to\!2$};
+\node[font=\scriptsize,anchor=west]        at (329,83.0)  {$2\!\to\!1$};
+% ---- slope-direction arrows on the two signed lines ----
+\draw[->,gray] (282,209.6) -- (290,212.0); % rising (4->3)
+\draw[->,gray] (282,88.2)  -- (290,86.9);  % falling (2->1)
+% ---- legend box (slopes = dS_rxn/F) in the empty mid-left band ----
+\node[draw,rounded corners,font=\tiny,align=left,inner sep=3pt] at (293,172)
+  {$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ [mV/K]:\\
+   $4\!\to\!3$: $\Delta S{=}{+}29\Rightarrow{+}0.301$\\
+   $3\!\to\!2\mathrm L$: $\Delta S{=}0\Rightarrow 0$\\
+   $2\mathrm L\!\to\!2$: $\Delta S{=}{-}5\Rightarrow{-}0.052$\\
+   $2\!\to\!1$: $\Delta S{=}{-}16\Rightarrow{-}0.166$};
+\end{tikzpicture}
+\caption{평형 중심의 온도 의존 $U_j(T)$(식~\eqref{eq:Uj}; 좌표는 식 그대로의 수치 평가: 표~\ref{tab:staging}
+의 네 전이 $(\Delta H_{\rxn,j},\Delta S_{\rxn,j})$, $T{=}268$--$328$ K). 각 직선의 기울기가 정확히
+$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 라, 반응 엔트로피의 \emph{부호}가 중심의 이동 방향을 정한다 ---
+$\Delta S{>}0$ 인 $4\!\to\!3$($+29$)은 온도가 오르면 중심이 \emph{올라가고}, $\Delta S{=}0$ 인 $3\!\to\!2\mathrm L$
+은 평평하며, $\Delta S{<}0$ 인 $2\!\to\!1$($-16$)$\cdot$$2\mathrm L\!\to\!2$($-5$)은 \emph{내려간다}. 기울기 규모는
+$|\Delta S|/F\sim$ 수십 $\mu$V/K$\sim0.3$ mV/K 이라 $60$ K 창에서 중심이 수$\sim$수십 mV 이동한다 --- 다온도
+피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 까닭이 이 서로 다른 기울기다. 세로축은 $75$ mV 에서 끊어
+그렸다.}
+\label{fig:UjT}
+\end{figure}
+% 자산(v1.0.21 신규): [V21-R-01 U_j(T) 온도 지도 fig:UjT — FIGS_PICK N-3(베이스 FO3-4)]
 
 전이 중심의 실제 산출 경로를 정리하면 --- $U_j(T)$ 는 열역학 입력 $(\Delta H_\rxn,\Delta S_\rxn)$ 이 주어지면
 식~\eqref{eq:Uj} 로 계산되고(비등온이면 배열 $T$ 그대로), 주어지지 않으면 $U$ 값을 직접 취한다. 이때

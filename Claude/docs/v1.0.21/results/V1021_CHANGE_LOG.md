@@ -14,3 +14,9 @@
 | A-005 | Q3 | ch1_sec08_lag.tex | eq:Lqmid2(ΔH−TΔS 갈라 적기) 직후 후방 연결 1문장 — §8은 갈래를 쓰고 §5 박스가 기원 | 없음(산문 1문장) |
 | C-020 | Q3 | ch1_bib.tex | glasstone1941 등재(TST 단행본 원전 — 원장 V1, v1.0.20 P7 웹 검증 승계) | bib +1 |
 | C-021 | Q3 | ch1_bib.tex | laidlerking1983 등재(TST 사적 리뷰 — 원장 V1) + 헤더 카운트 36→38종 | bib +1 |
+| R-001 | Q4 | ch1_sec03_center.tex | fig:UjT 신규(U_j(T) 4직선 온도 지도 — FIGS_PICK N-3 베이스 FO3-4 그대로) + 본문 참조 1문장 | 라벨 +1(fig) |
+| R-002 | Q4 | ch1_sec04_hys.tex | fig:hysgap 신규(무차원 gap·Taylor 함정 대조·T_c 소멸 2패널 — N-2 베이스 FF1-1) + 본문 참조 1문장. 캡션 sec:hys-gap 자기참조는 "본문 ★Taylor 전개의 함정"으로 재구 | 라벨 +1(fig) |
+| R-003 | Q4 | ch1_sec10_sum.tex | fig:sumcurve 신규(합산 전체 곡선 268/328 K+기여 — N-5 베이스 FF3-3) + 본문 참조 문장(fig:UjT 연결) | 라벨 +1(fig) |
+| R-004 | Q4 | ch2_sec08_synthesis.tex | fig:qrevsoc 신규(∂U_oc/∂T 완전vs단순+수준선+5점 / Q̇_rev/I 부호 교대 2패널 — N-1 베이스 FF2-1) + 본문 참조 문장 | 라벨 +1(fig) |
+| R-005 | Q4 | ch2_sec04_einstein.tex | fig:svibid 신규(S_vib 닫힌형·두 극한 / 강제 영점·3θ_E 가족 2패널 — N-4 베이스 FF2-5) + 본문 참조 문장 | 라벨 +1(fig) |
+| (Q4 비고) | Q4 | — | 그래프트 요소(FF2-2 staging 4점 등)와 B급 6건(N-6~N-10·R-1·C-1)은 좌표 재평가·과밀 검토가 필요해 Q4b 이월(FIGS_PICK §D 참조). 베이스 조각은 각 창의 컴파일·물리 검산 통과본 그대로(좌표 무수정 — 물리 가드) | — |
