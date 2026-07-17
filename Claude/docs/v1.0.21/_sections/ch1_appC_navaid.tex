@@ -107,5 +107,35 @@ $\theta_{E,j}$ & Einstein 온도 $\hbar\omega_E/k_B$ & Ch2 \S2.4(\S\ref{sec:lco-
 \label{tab:navsymbols}
 \end{table}
 
+\subsection{Chapter 1 $\leftrightarrow$ Chapter 2 로드맵 대응표}\label{ssec:nav-roadmap}
+두 장은 별도로 컴파일되는 문건이라 상호 참조가 서술형으로만 가능하다 --- 아래 표가 그 교차 지점을
+양방향으로 모은다(Ch2 절 번호$\cdot$식 이름은 그 문건 기준의 서술형 표기).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth} p{0.34\textwidth} p{0.24\textwidth}}
+\toprule
+Chapter 1 쪽 & Chapter 2 쪽 & 관계 \\
+\midrule
+전하 보존 반전~\eqref{eq:sm-mc-balance} (\S\ref{sec:sm-mc}) & 전하 보존 음함수 (eq:implicit, \S2.5) & \textbf{같은 식} --- Ch1 이 통계역학 기원$\cdot$유일근 증명, Ch2 가 온도 미분$\cdot$계산 \\
+자리 분배함수 $q(T)$~\eqref{eq:partfn}·$s_\mathrm{int}$~\eqref{eq:sm-sint} & 격자기체 분배함수 (\S2.1) & 같은 대상 --- Ch2 는 엔트로피 분해 관점 \\
+섞임 엔트로피~\eqref{eq:sm-Smix}·점유~\eqref{eq:fermifn} & 배치 엔트로피 $S_\mathrm{config}$ (\S2.2) & 같은 유도 --- Ch2 가 부분몰 발산까지 \\
+중심 기울기 $\partial U_j/\partial T=\Delta S_\rxn/F$ (\S\ref{sec:center}) & $\Delta S^0_j$ 3분해: config$+$vib$+$elec (\S2.2--2.4) & Ch1 은 값 하나, Ch2 는 그 성분 \\
+전자 엔트로피 항~\eqref{eq:Se} (\S\ref{sec:lco-electronic}) & 전자 항 (eq:Se-ch2, \S2.3) & 동일 물리 --- \textbf{라벨이 장마다 다름} \\
+Einstein 온도 $\theta_{E}$ 각주 (\S\ref{sec:lco-electronic}·\S\ref{sec:lco-code}) & 진동 보정 $S_{\mathrm{vib}}(T;\theta_E)$ 전용 절 (\S2.4) & Ch2 가 본체, Ch1 은 동결 근사 사용처 \\
+평형 종~\eqref{eq:eqpeak}·폭 이중지위 (\S\ref{sec:width}·\S\ref{sec:broadening}) & 겹침 가중 $g_j$·파생 C 폭 규정 (\S2.5) & 같은 폭 $w_j$ --- 열적 서식 전제 공유 \\
+히스테리시스 분기 $U_j^{\,d}$ (\S\ref{sec:hys}) & 파생 D --- 분기별 $\partial U/\partial T$ 가역/비가역 (\S2.5) & Ch1 분기 구조를 Ch2 가 발열로 \\
+합산식~\eqref{eq:sum} (\S\ref{sec:sum}) & 종합식 (eq:complete)$\to$가역 발열 (eq:qrev) (\S2.7--2.8) & 출구 분업: 곡선 vs 발열 \\
+계산 예제 (\S\ref{sec:sum-worked}) & 계산 예제 (\S2.8) & 같은 정신 --- $dQ/dV$ 한 점 vs 발열 한 점 \\
+구현 대응 부록~\ref{sec:appendix-code} & 코드 요구명세 부록 B & doc-leads 분업: 대응표 vs 회귀 기준 \\
+\bottomrule
+\end{tabular}
+\caption{Chapter 1 $\leftrightarrow$ Chapter 2 로드맵 대응표(항법판 전용) --- 별도 컴파일 두 문건의
+교차 지점 일람. 각 행의 내용 기준은 두 문건의 해당 본문이며 본 표는 색인일 뿐이다.}
+\label{tab:navroadmap}
+\end{table}
+
 % 자산(v1.0.21 신규·항법판 한정): [V21-N-01 식 의존성 지도 fig:navmap(implicit 순환 표기 포함)]
 %   [V21-N-02 통합 기호 대응표 tab:navsymbols(동명이의 3건 명시)]
+%   [V21-N-03 Ch1↔Ch2 로드맵 대응표 tab:navroadmap — D21-2 top3 ②(항법판 배치)]
