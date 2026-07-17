@@ -3,7 +3,7 @@
 > 대상: `/home/user/Project_Anode_Fit/Claude/docs/v1.0.22/_sections/ch1_sec06_eqpeak.tex` (전문 정독 — bgbox [V22-SM2-A] 포함)
 > 참조 원문 확인(read-only): `ch1_sec02a_part0.tex`(eq:fermifn·eq:sm-flucres·eq:sm-sint), `ch1_sec02b_part0.tex`(eq:sm-eqcond·eq:sm-logistic·eq:sm-mc-occ·eq:sm-mc-fluc·eq:sm-mc-balance), `ch1_sec03_center.tex`(eq:eqcond·eq:Uj), `ch1_sec04_hys.tex`(eq:dUhys·eq:Ubranch·eq:center), `ch1_sec05_width.tex`(eq:logisticsolve·eq:wbase·eq:xieq·이중지위·fig:logistic), `ch1_sec07_broadening.tex`(부류 분류·②잔여 폭·n_j<1), `ch1_sec08_lag.tex`(eq:Lq·eq:LV), `ch1_sec09_tail.tex`(eq:peakshape·eq:tail-limit·eq:reversal), `ch1_sec10_sum.tex`(eq:sum·tab:staging·L_V 수치), `ch1_sec01_n0n1.tex`(tab:notation·eq:vn), `ch1_sec00_intro.tex`(fig:spine), `ch1_appA_signcheck.tex`(S3·R3·R5), `results/comp_SM2/SM2_DRAFTS/SM2A_susceptibility.tex`(bgbox 독립성 계약 원본), `results/V1022_REFERENCE_LEDGER.md`(V1 원장 규칙).
 > 규율: **보고 전용** — 소스 무수정·git 무조작·`Codex/` 미접근. bgbox [V22-SM2-A] 증축분은 제거 용이 독립 블록(무번호 전시식·신규 라벨 0·통삭제 시 §6 원상 복귀 — SM2A 초안 헤더 계약 확인) — 본 보고의 모든 bgbox 내 제안은 그 계약(무번호·라벨 신설 금지·외부가 박스에 의존 금지)을 유지한다. GS-1/GS-2(Ch3 Si 정직 공백)는 본 절 무관 — 메움 제안 없음.
-> 상태: **작성 중 조기 저장본** — §서치(하이쿠 서브 doi 검증) 대기 중. (완료 시 이 줄 갱신)
+> 상태: **최종본**(2026-07-17) — 4관점 전수 완료·재계산 V1–V18 완료·§서치(하이쿠 서브 doi 검증 4건) 통합 완료. 발견 = H 1 · M 5 · L 4.
 
 ---
 
@@ -284,10 +284,28 @@ $e^2\,\partial\langle N\rangle/\partial\mu$ 와 몰 상수 표기 $F^2\,\mathrm{
 
 **즉시 가능 옵션(원장 무접촉·신규 등재 0)**: 대정준 일반 항등 `∂⟨N⟩/∂μ=β[⟨N²⟩−⟨N⟩²]` 는 Part 0 이 이미 `\cite{mcquarrie1976}` 로 앵커(eq:sm-mc-fluc 문장). bgbox 의 결선·요동 층 문장에 같은 키를 병기하는 것은 ch1 bib 기존 키(확인: `ch1v22_bib.tex:14`) 재사용이라 [검증→등재→인용] 파이프라인 비용이 0 이다. bgbox 독립성(제거 용이)도 불변 — `\cite` 는 참조일 뿐.
 
-**신규 후보(하이쿠 서브 doi 검증)**: *(서브에이전트 결과 대기 중 — 완료 시 본 절에 통합)*
+**신규 후보(하이쿠 서브 doi 검증 — 서지 필드는 전부 세션 내 Crossref/doi.org 실검증분)**:
+
+| 후보 키(제안) | 확정 서지(검증 필드) | DOI | 판정 | §6 bgbox 관련성(1줄) |
+|---|---|---|---|---|
+| thompson1979 | A. H. Thompson, "Electrochemical Potential Spectroscopy: A New Electrochemical Measurement", *J. Electrochem. Soc.* **126**(4), 608–616 (1979) | 10.1149/1.2129095 | 서지 **V**(Crossref→doi 해석) | 준평형 미분 측정(-dx/dV 스펙트럼)을 열역학/전자 구조 스펙트럼으로 읽은 초기 사례 — "평형 dQ/dV = 스펙트럼" 읽기의 인접 선행 |
+| mckinnon1983 | W. R. McKinnon, R. R. Haering, "Physical Mechanisms of Intercalation", *Modern Aspects of Electrochemistry* **15**, 235–304, Springer (1983) | 10.1007/978-1-4615-7461-3_4 | 서지 **V**(Crossref→doi 해석) | 삽입 열역학의 lattice-gas 표준 리뷰 — 이상 격자기체 dQ/dV 종의 고전 앵커 후보 |
+| luryi1988 | S. Luryi, "Quantum capacitance devices", *Appl. Phys. Lett.* **52**(6), 501–503 (1988) | 10.1063/1.99649 | 서지 **V**(Crossref→doi 해석) | `C_Q=e²×(상태밀도)` 개념 원전 — bgbox 의 `e²∂⟨N⟩/∂μ` 와 동형(전자↔이온 자리) 대응 후보 |
+| west1983 | K. West, T. Jacobsen, B. Zachau-Christiansen, S. Atlung, "Determination of the differential capacity of intercalation electrode materials by slow potential scans", *Electrochim. Acta* **28**(1), 97–107 (1983) | 10.1016/0013-4686(83)85091-9 | 서지 **V**(Crossref→doi 해석) | 저율 dQ/dV 측정 표준화 — 단 감수율 항등 명시 없음(관련성 하위) |
+
+**서브 보고의 핵심 부정 결과**: `dQ/dV=e²∂⟨N⟩/∂μ` 꼴 항등을 **명시적으로** 세운 원전은 이번 검색에서 미발견 — bgbox 의 자리매김("요동--소산 관계의 전기화학판")이 표절/오귀속 위험 없이 성립할 여지를 지지하되, 부재 증명은 아니다. 주의: 애초 브리핑에 준 후보 1 의 "PRL" 추정은 검증 결과 **오기억으로 판명**(실제 *J. Electrochem. Soc.*) — 기억 서지 금지 규칙이 실제로 작동한 사례.
+
+**처리 제안(마스터 결정 사항 — 본 보고는 등재하지 않음)**: (i) 즉시 옵션 = `\cite{mcquarrie1976}` 병기(위 — 원장 무접촉). (ii) 신규 4건은 서지만 V — **내용 적합성(전문 수준)은 미검증**이므로, 채택 시 원장 규칙 [검증→등재→인용] 의 검증 단계에서 전문/초록 확인 후 tier 부여 요망. 채택 순위 제안: mckinnon1983 ≥ luryi1988 > thompson1979 > west1983.
 
 ---
 
 ## 4-tier 최종 분류
 
-*(서치 통합 후 확정)*
+- **① 확정(재계산·원문 축자 대조로 검증 완료)**: A07-H1 의 수식 층위(배율 `1/n_j`=높이·`n_j`=폭·면적 불변 재유도, 기본 상태 `n_j=1`∧`Ω_j>2RT` 반례, §5 "이상 극한(Ω_j=0) 기준" 원문 근거) · A07-M1 반례(`ΔU^hys≡0`@`Ω≤2RT`, eq:dUhys 원문) · A07-M2 의 `C_bg` 정의식 부재(grep 전수) · A07-M4 의 §6↔§10 어법 불일치 · §V 표의 재계산 전건(V1–V18) · 현행 열 축자 인용 9개 앵커의 원문 일치(grep -F 전수 1건씩 매칭 확인).
+- **② 추정(물리·논리는 확정이나 채택 가치·표현 선택은 판단 사항)**: A07-M3(혼독 위험의 실재 정도) · A07-M5(형상 검정 상수의 실무 효용 — 수치 자체는 ① 확정) · A07-L1~L4(문체·독자 배려) · 서치 후보의 채택 순위.
+- **③ 미검증(본 검토 범위 밖 또는 접근 불가)**: 서치 신규 4건의 **내용 적합성**(서지 필드만 V — 전문 미접근) · "감수율 항등의 명시적 선행 부재"는 1회 검색의 부정 결과일 뿐 부재 증명 아님 · 실측 데이터 대비 형상 상수 0.881 검정의 실전 분해능(배경 차감 품질 의존).
+- **④ 무발견 축**: 위 "무발견 축" 절에 명시(수식 대수 전층·부호 사슬·교차 참조·P3 준수·bgbox 독립성 — 검토했고 문제 없음).
+
+---
+
+**제안 적용 시 주의(마스터용)**: A07-H1(iii 대체)과 A07-M3(boxed 좌변)은 같은 bgbox 안이라 함께 적용해야 표기가 일관된다(H1 제안문은 M3 적용을 전제로 "위 박스의 결선·요동 층"으로 지시). A07-M2 의 전시식은 무번호 `\[...\]` 라 기존 식 번호 무이동(P5). 76행 자산 앵커 주석 `[V22-SM2-A ...]` 은 주석이라 어느 제안에도 무영향. 모든 bgbox 내 제안은 제거 용이 독립성 계약(무번호·라벨 신설 0·외부 의존 0)을 유지한다.
