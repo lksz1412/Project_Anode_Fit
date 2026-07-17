@@ -1,0 +1,104 @@
+% ====================================================================
+% s31_map.tex — §3.1 생존 지도 본문화 (W1 이론 우선 초안, comp_R5)
+%   원천 = ch1_appD_si(sec:appendix-si·tab:simap·ssec:si-facts/anchor/gap/partial) 승격.
+%   부록체 → 본문체. Part 0/I 결과 xr live 인용(라벨 실확인분). 신규 라벨 = sec:si-* / tab:si-*.
+%   조기 저장 절: §3.1 완성분.
+% ====================================================================
+\section{골격 생존 지도 --- 무엇이 이월되고 무엇이 재해석되고 무엇이 새 물리인가}\label{sec:si-map}
+Chapter 1 은 흑연$\cdot$LCO 를 통과하며 하나의 결과 사슬(N0--N9)을 세웠고, 그 뿌리는 Part 0 의
+통계역학 사다리 --- 등확률에서 시작해 전하 보존 대정준 반전~\eqref{eq:sm-mc-balance} 로 닫히는 사다리
+(\S\ref{sec:sm-mc}) --- 였다. 본 절은 그 골격을 실리콘 합금 음극에 걸어, \emph{식이 그대로 사는 곳}
+$\cdot$\emph{형식은 유지되나 변수 의미가 바뀌는 곳}$\cdot$\emph{골격에 없는 항이 새로 필요한 곳}을 노드
+단위로 가른다. 이 지도가 Chapter 3 전체의 좌표다: §3.2 의 케이스별 곡선은 여기서 ``재해석'' 으로
+분류된 노드를 실물질에 맞춰 채우고, §3.3 의 혼합 음극 대정준은 여기서 ``이월'' 로 분류된 최강 자산(전하
+보존)을 두 host 로 넓히며, §3.4 의 기계 히스테리시스는 여기서 ``새 물리'' 로 분류된 유일한 노드(N3)의
+유도를 시도한다.
+
+본 절의 전 서술은 문헌 기반이다(자체 실측 대조 없음) --- 판정의 근거가 되는 Si 확립 사실은
+\S\ref{ssec:si-facts-body} 가 먼저 모으고, 노드 판정은 \S\ref{ssec:si-survival-body} 의 표가 담으며,
+살아남는 앵커와 새 물리 선언은 \S\ref{ssec:si-anchor-body}--\S\ref{ssec:si-newphys-body} 가 위치만
+고정한다(완결 유도는 §3.3$\cdot$§3.4 소관).
+
+\subsection{Si 가 흑연과 다른 곳 --- 확립 사실 여덟}\label{ssec:si-facts-body}
+골격 판정에 앞서, 흑연과 갈라지는 실리콘의 확립 사실을 문헌에서 여덟 가지로 모은다.
+(i) Si 는 삽입이 아니라 \emph{합금화}로 리튬을 저장한다 --- 고온 평형은 네 중간상(Li$_{12}$Si$_7$ 등)의
+계단 plateau 를 보이나\cite{wen_huggins1981}, 삽입과 달리 host 격자 자체가 재구성된다. (ii) 상온 첫
+리튬화는 결정질 Si 가 비정질 Li$_x$Si 로 바뀌는 \emph{전기화학적 고상 비정질화}이고, 입자 안에서 결정
+코어/비정질 껍질의 날카로운 이동 경계로 진행한다(입자 내 두-상)\cite{limthongkul2003,li_dahn2007}.
+(iii) 깊은 리튬화 끝(약 $50$ mV)에서 준안정 결정상 Li$_{15}$Si$_4$ 가 갑자기
+결정화한다\cite{obrovac_christensen2004}. (iv) 첫 사이클 이후의 비정질 경로는 plateau 없는 \emph{완만한
+경사 전위} $U(x)$ 이고 제일원리 계산이 이 곡선을 재현한다\cite{chevrier_dahn2009}. (v) 만충 부피
+변화는 약 $300\%$ 로\cite{beaulieu2001} 흑연($\sim10\%$)과 자릿수가 다르다. (vi) 충$\cdot$방전 전위
+갈림(히스테리시스)은 수백 mV 급이고, in~situ 응력 측정은 소성 유동(압축 $\sim-1.75$ GPa)과
+\emph{응력--전위 결합} $\sim100$--$120$ mV/GPa 를 직접 보인다\cite{sethuraman_stressevo2010,%
+sethuraman_stresspot2010} --- 갈림의 지배 몫이 \emph{기계적}임을 시사한다. (vii) 임계 입자경
+$\sim150$ nm 아래에서만 첫 리튬화 균열이 없다 --- 입자 크기가 1차 인자다\cite{liu_sizefracture2012}.
+(viii) 이 전부의 총람은 합금 음극 리뷰\cite{obrovac_chevrier2014} 가 준다.
+
+\subsection{노드 생존 판정표}\label{ssec:si-survival-body}
+판정은 네 갈래다: \textbf{이월}(식$\cdot$부호 그대로) / \textbf{재해석}(형식 유지, 변수 의미 변경) /
+\textbf{새 물리}(골격에 없는 항 필요) / \textbf{부분}(일부 조건에서만). 표~\ref{tab:si-survival} 가
+Chapter 1 골격의 아홉 노드를 이 네 갈래로 가른 결과다.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{0.13\textwidth} p{0.10\textwidth} p{0.66\textwidth}}
+\toprule
+노드 & 판정 & 무엇이 살고 무엇이 깨지나 \\
+\midrule
+N0 조건 & \textbf{이월} & $\sigma_d$$\cdot$$|I|$ 환산은 전극 무관 --- 저전위 음극 규약 그대로. \\
+N1 분극 & 재해석 & 옴 분극 벗기기는 성립하나, $|I|\to0$ 에서도 안 사라지는 \emph{기계(응력) 과전위 몫}이 $V_n$ 에 남는다(사실 vi). \\
+N2 중심 & 재해석 & 이산 staging 중심 $U_j$ 부재(사실 iv) --- 유효 logistic 성분의 파라미터화(MSMR-Si\cite{verbrugge_lisi2016}) 또는 연속 $U(x)$\cite{chevrier_dahn2009} 로 대체. $\partial U/\partial T=\Delta S/F$ 관계 자체는 생존. \\
+N3 히스 & \textbf{새 물리} & ★§3.4(\S\ref{sec:si-mech}). 정규용액 spinodal gap 상한($\Omega{=}4RT$ 에서 $\approx55$ mV, 식~\eqref{eq:dUhys})으로 수백 mV 를 못 담는다. \\
+N4 폭 & 재해석 & 경사 성분의 ``폭''은 합금 조성폭(수십 \%)이지 열적 $RT/F$($\sim26$ mV)가 아님 --- $n_j\gg1$ 의 현상학 폭. \\
+N5 $\xi_\eq$ & 구조 이월 & logistic 합 \emph{형식}은 생존(detailed balance 는 전극 무관; MSMR-Si 실증\cite{verbrugge_lisi2016}) --- 단 ``동등 격자 자리'' 미시 해석은 비정질에서 소멸, 유효 파라미터화로 재해석. \\
+N6 peak & 부분 & 날카로운 peak 문법은 Li$_{15}$Si$_4$ 탈리튬화$\cdot$1차 리튬화 두-상(사실 ii$\cdot$iii)에만 --- 나머지는 넓은 hump. \\
+N7 broadening & 부분 & 두-상 broadening 틀은 부분 적용되나 기작이 다르다(입자 간 순차 전환이 아니라 \emph{입자 내} 코어--쉘). 마이크론 흑연에서 정량 \emph{배제}된 입자-크기 채널이 Si 에선 1차 인자로 \emph{역전}된다(사실 vii). \\
+N8 지연 & 구조 이월 & Eyring 유한율속 꼬리 구조는 전극 무관. 단 $|I|\to0$ 에서 꼬리는 소멸해도 기계 히스는 남으므로, 흑연에서처럼 ``잔여 갈림 $=$ 평형 분기'' 로 읽는 분리 논법이 약해진다. \\
+N9 합산 & \textbf{이월}★ & §3.3(\S\ref{sec:si-blend}) --- 아래 \S\ref{ssec:si-anchor-body}. \\
+\bottomrule
+\end{tabular}
+\caption{Chapter 1 골격 노드의 Si 생존 판정 --- 이월 2(N0$\cdot$N9)$\cdot$구조 이월 2(N5$\cdot$N8)$\cdot$재해석
+3(N1$\cdot$N2$\cdot$N4)$\cdot$부분 2(N6$\cdot$N7)$\cdot$새 물리 1(N3). 근거 문헌은 \S\ref{ssec:si-facts-body}.
+(본 표는 Chapter 1 부록 예비 지도 tab:simap 을 Chapter 3 본문으로 승격한 것이며, 판정 내용은 그대로 잇는다.)}
+\label{tab:si-survival}
+\end{table}
+
+한 문장으로 요약하면 --- \emph{내부 전위를 결정하는 중심 구조는 흑연$\cdot$LCO$\cdot$Si 에 공통이며,
+Si 접목에서 바뀌는 것은 그 구조에 들어가는 성분(전이 집합$\cdot$폭$\cdot$히스 항)이지 구조 자체가
+아니다}. 이 명제가 다음 두 소절로 갈린다: 살아남는 구조(\S\ref{ssec:si-anchor-body})와, 그 구조로도
+담기지 않는 단 하나의 새 물리(\S\ref{ssec:si-newphys-body}).
+
+\subsection{살아남는 최강 자산 --- 전하 보존의 전극 중립성}\label{ssec:si-anchor-body}
+N9 가 ``이월'' 인 까닭은 골격 중심식이 격자 통계가 아니라 \emph{전하 회계}에서 왔기 때문이다. Part 0 이
+세운 전하 보존 음함수~\eqref{eq:sm-mc-balance} 는 대정준 분배함수의 클래스곱(\S\ref{sec:sm-mc}
+식~\eqref{eq:sm-mc-factor})에서 ``반응 몫의 용량가중 합 $=$ 통과 전하'' 라는 한 줄로 유도되었고, 이
+유도의 어느 단계에도 host 물질의 정체가 들어가지 않는다 --- staging 이 무너져도, 자리가 격자가 아니라
+비정질 합금이어도, 이 회계는 성립한다. 합금 전극의 다중 전기화학 반응$\cdot$화학종 분화(speciation)를
+정확히 이 구조 --- 반응별 logistic 점유의 용량가중 합을 고정 전하에서 뒤집기 --- 로 세운 정식화가
+Li--Si 에서 실증되어 있고\cite{verbrugge_lisi2016}, 이는 Chapter 1 의 MSMR 대응(\S\ref{sec:lco-code})과
+같은 저자 계보의 Si 판이다. 곧 이 전하 보존 반전이 Chapter 3 접목의 \emph{앵커}이며, §3.3 이 그것을 두
+host 의 자리 클래스 합집합으로 한 줄 넓힌다(\S\ref{sec:si-blend}).
+
+\subsection{정직 공백 GS-1 예고 --- 기계 히스테리시스는 골격 밖 새 물리}\label{ssec:si-newphys-body}
+N3 가 ``새 물리'' 인 까닭은 두 가지다. 크기부터 다르다: 골격의 spinodal 상한 gap 은
+$\Omega_j{=}4RT$ 에서 $\approx55$ mV(식~\eqref{eq:dUhys})인데 Si 실측 갈림은 수백 mV 다\cite{obrovac_chevrier2014}.
+기원도 다르다: in~situ 측정이 보이는 것은 자유에너지 이중웰이 아니라 소성 유동과 응력--전위
+결합이며\cite{sethuraman_stressevo2010,sethuraman_stresspot2010}, 최근 모델은 경로 의존 소산(입자$\cdot$SEI
+의 점탄소성)으로 이 갈림을 재현한다\cite{koebbing2024} --- 선행 현상학 모델은 다단 상전이$\cdot$(비)결정화
+경로 분기로 같은 관측을 담는다\cite{jiang_sihys2020}. 골격에 없는 것은 \emph{응력이 화학퍼텐셜에 들어가는
+항}이다. 이 항의 유도 시도와 그 닫힘 한계는 §3.4(\S\ref{sec:si-mech})가 정면으로 다룬다 --- 본 절은
+공백의 위치만 지도에 찍는다.
+
+\begin{keybox}
+\textbf{생존 지도 요지.} 흑연 골격 아홉 노드 중 여덟(이월$\cdot$구조 이월$\cdot$재해석$\cdot$부분)은
+형식 또는 회계가 살아남고, 오직 N3(히스테리시스)만 골격 밖 새 물리(기계 항)를 부른다. 살아남는 최강
+자산 = 전하 보존 반전~\eqref{eq:sm-mc-balance}(§3.3 이 두 host 로 일반화), 유일한 새 물리 = 기계
+히스테리시스(§3.4 가 유도 시도$\cdot$공백 선언). 재해석 노드(N2$\cdot$N4$\cdot$N5)의 실물질 채움은
+§3.2.
+\end{keybox}
+
+% 자산: [V22-R5-01 생존 지도 본문 승격 sec:si-map(부록 sec:appendix-si → Ch3 본문)]
+%   [V22-R5-02 Si 확립 사실 8건 본문판 ssec:si-facts-body] [V22-R5-03 노드 생존 판정표 tab:si-survival(tab:simap 승격)]
+%   [V22-R5-04 전하 보존 앵커 §3.3 예고 ssec:si-anchor-body] [V22-R5-05 GS-1 §3.4 예고 ssec:si-newphys-body]

@@ -1,0 +1,77 @@
+% ====================================================================
+% s35_code.tex — §3.5 코드 확장 요구명세(R6 예고) (W1 이론 우선 초안, comp_R5)
+%   원천 = 마스터플랜 §7 R6 코드 설계 + Ch1 부록 B/D(코드맵·codebox) 관행.
+%   BlendedAnodeDQDV(f_Si, si_case): f_Si=0 bit-exact 게이트·용량 배분·공통 V_n 합성·케이스 셋.
+%   신규 라벨 = sec:si-code. 조기 저장 절: §3.5 완성분.
+% ====================================================================
+\section{코드 확장 요구명세 --- 블렌드 합성(R6 예고)}\label{sec:si-code}
+본 절은 후속 코드 phase(R6)가 구현할 블렌드 합성의 요구명세 초안이다(doc-leads --- 문서가 요구를
+명세하고 코드가 뒤따르는 Chapter 1 부록 B/D 관행). 구현 규칙은 §3.3 의 공통-$\mu$ 대정준
+반전~\eqref{eq:blend-balance} 과 §3.2 의 케이스 파라미터 셋(표~\ref{tab:si-cases})에서 이미 정해졌으므로,
+본 절은 그 두 자산을 함수 인터페이스$\cdot$게이트$\cdot$범위로 번역만 한다.
+
+\subsection{요구 R6-1 --- 함수 시그니처와 용량 배분}\label{ssec:si-code-sig}
+블렌드 합성 함수 \code{BlendedAnodeDQDV(f\_Si, si\_case)} 는 두 인자를 받는다: 용량 몫
+$f_\mathrm{Si}=Q_\mathrm{Si}/Q\in[0,0.3]$(§3.3 정의)와 Si 케이스 표지 \code{si\_case}$\in\{$원소
+Si, SiO$_x$, Si--C$\}$(§3.2). 총용량 $Q$ 를 $Q_\mathrm{gr}=(1-f_\mathrm{Si})Q$ 와
+$Q_\mathrm{Si}=f_\mathrm{Si}Q$ 로 배분하고, 각 host 의 전이별 용량 $Q_j^\mathrm{host}$ 를 그 host 의
+전이 배분으로 나눈다 --- 흑연은 기존 표~\ref{tab:staging} 의 4 전이, Si 는 \code{si\_case} 가 고른
+케이스 셋의 전이($U_j^\mathrm{Si}\cdot w_j^\mathrm{Si}$)다.
+
+\subsection{요구 R6-2 --- 공통 $V_n$ 합성}\label{ssec:si-code-synth}
+관측 dQ/dV 는 두 host 의 전이 기여를 \emph{같은} 내부 전위 $V_n$ 위에 합산한다 --- Chapter 1
+합산식~\eqref{eq:sum} 의 host 판이다:
+\begin{equation}
+\frac{\dd Q}{\dd V}(V_n)=C_\bg+\sum_{\mathrm{host}\in\{\mathrm{gr},\mathrm{Si}\}}\ \sum_{j}
+Q_j^\mathrm{host}\,\frac{\dd\xi_{\eq,j}^\mathrm{host}}{\dd V}\bigg|_{V_n}
+\label{eq:si-code-sum}
+\end{equation}
+--- 두 host 전이가 같은 $V_n$ 인자를 공유하는 것이 §3.3 의 공통-$\mu$(하나의 전위 손잡이)의 코드
+표현이다. 평형 종 전용 극한에서 $\dd\xi_{\eq,j}^\mathrm{host}/\dd V=\xi_{\eq,j}^\mathrm{host}
+(1-\xi_{\eq,j}^\mathrm{host})/w_j^\mathrm{host}$ 이고(식~\eqref{eq:eqpeak} host 판), 배경 $C_\bg$ 는 흑연
+경로 그대로다. 곧 블렌드 곡선은 흑연 4 봉우리 위에 Si 케이스 봉우리(원소 Si$\cdot$SiO$_x$ 는 넓은
+hump, Li$_{15}$Si$_4$ 탈리튬화만 날카로운 peak --- §3.1 N6)를 $f_\mathrm{Si}$-가중으로 얹은 형태다.
+
+\begin{codebox}
+인터페이스 골격(의사코드 --- R6 확정 전 요구 명세):\\
+\code{def BlendedAnodeDQDV(f\_Si, si\_case, V\_grid, T):}\\
+\code{\quad Q\_gr, Q\_Si = (1-f\_Si)*Q, f\_Si*Q\qquad\# 용량 배분 (R6-1)}\\
+\code{\quad gr = GraphiteTransitions()\qquad\qquad\# 기존 tab:staging 경로 (불변)}\\
+\code{\quad si = SiCaseSet(si\_case)\qquad\qquad\quad\# tab:si-cases 케이스 셋 (R6-3)}\\
+\code{\quad dQdV = C\_bg + sum(Qj*dxi\_dV(V\_grid,Uj,wj,T)}\\
+\code{\qquad\qquad\qquad for (Qj,Uj,wj) in gr.scaled(Q\_gr)+si.scaled(Q\_Si))\quad\# 공통 V\_n 합성 (R6-2)}\\
+\code{\quad return dQdV}
+\end{codebox}
+
+\subsection{요구 R6-3 --- 케이스 셋 구조}\label{ssec:si-code-caseset}
+\code{SiCaseSet(si\_case)} 는 표~\ref{tab:si-cases} 의 초기값을 tier-C 시연값으로 반환한다(이론용량$\cdot$평균
+전위$\cdot$ICE$\cdot$전이 구성). SiO$_x$ 의 평균 전위$\cdot$히스 절대값은 \emph{확인 필요}(§3.2 미확보)이므로
+해당 필드는 placeholder 로 두고 코드 주석에 ``확인 필요'' 를 명시한다 --- 지어낸 수치를 넣지 않는다.
+Si--C 는 배합 의존 용량이라 조성($60{:}15{:}10{:}15$)과 1차 용량으로 표현한다. 이 케이스 셋은 Chapter 1
+MSMR plug-in(\S\ref{sec:lco-code})이 LCO 파라미터를 끼워 넣던 것과 같은 자리에, Si 파라미터를 끼워
+넣는 구조다.
+
+\subsection{요구 R6-4 --- 게이트}\label{ssec:si-code-gate}
+세 게이트를 건다(마스터플랜 §8 블렌드 코드 게이트).
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=1pt]
+\item \textbf{$f_\mathrm{Si}=0$ bit-exact.} \code{BlendedAnodeDQDV(0, *)} 는 기존 흑연 단독 경로와
+\emph{비트 단위로} 같아야 한다 --- 이 게이트의 이론적 근거가 §3.3 의 회수 검산(식~\eqref{eq:blend-limit}:
+$f_\mathrm{Si}\to0$ 에서 반전식이 흑연 단독 다클래스 반전으로 글자까지 되돌아감)이다. 곧 게이트는 새
+요구가 아니라 이미 증명된 극한의 수치 확인이다.
+\item \textbf{$f_\mathrm{Si}$ 스윕 연속성.} $f_\mathrm{Si}\in\{0,0.1,0.2,0.3\}$ 에서 곡선이 연속적으로
+변형되어야 한다(불연속 점프 없음) --- 용량 배분이 선형이고 합성이 선형 합(식~\eqref{eq:si-code-sum})이라
+자연 만족이 기대되나 수치로 확인한다.
+\item \textbf{용량 보존.} $\int(\dd Q/\dd V)\,\dd V=Q$ (배경 제외 시 $Q_\mathrm{gr}+Q_\mathrm{Si}$) ---
+전하 보존~\eqref{eq:blend-balance} 의 적분 형태다.
+\end{enumerate}
+
+\begin{warnbox}
+\textbf{구현 범위(GS-2 반영).} 본 함수는 \emph{평형 합성}(공통 $U_\mathrm{oc}$ 의 $f_\mathrm{Si}$-가중
+합)까지만 구현한다. §3.3 의 GS-2 --- 유한 율속의 SoC 구간별 host 전환$\cdot$비가산 --- 는 구현하지
+않는다(범위 밖). 따라서 출력 곡선은 평형(OCV) 예측이며, 실측 유한 율속 dQ/dV 와의 정성 편차는 GS-2
+공백으로 남는다. 이 범위 표식을 코드 docstring 에 명시해 출력의 지위(평형 vs 실측)를 오인하지 않게 한다.
+\end{warnbox}
+
+% 자산: [V22-R5-21 R6 블렌드 합성 요구명세 sec:si-code(doc-leads)]
+%   [V22-R5-22 함수 시그니처·용량 배분 ssec:si-code-sig] [V22-R5-23 공통 V_n 합성식 eq:si-code-sum(eq:sum host 판)]
+%   [V22-R5-24 케이스 셋 구조·확인필요 placeholder ssec:si-code-caseset] [V22-R5-25 3게이트(f_Si=0 bit-exact 이론짝·스윕 연속·용량 보존) ssec:si-code-gate]
