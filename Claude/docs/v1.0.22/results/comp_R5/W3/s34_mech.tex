@@ -1,0 +1,81 @@
+% ====================================================================
+% s34_mech.tex — §3.4 기계 히스테리시스: Larché–Cahn 시도 + GS-1 (comp_R5 W3 초안)
+%   유도 시도 = 닫히는 데까지만. 커플링 항 import(1스텝, 닫힘) → 자릿수 검산(부분) → 폐합 공백 선언.
+%   유사 유도 날조 금지: Larché–Cahn 전 텐서 선형이론 재유도 아님(스칼라 결합형만 import·cite).
+% ====================================================================
+\section{기계 히스테리시스 --- 골격 밖 새 물리(N3)와 Larch\'e--Cahn 접속 시도}\label{sec:si-mech}
+생존 지도가 유일하게 ``새 물리''로 표시한 노드는 N3(히스테리시스)다. 골격의 히스는 정규용액 이중웰
+--- $\Omega_j>2RT$ 의 spinodal gap~\eqref{eq:dUhys} --- 에서 오고, 상한이 $\Omega_j{=}4RT$ 에서
+$\approx55$ mV(그림~\ref{fig:hysgap})다. Si 실측 갈림은 수백 mV 로\cite{obrovac_chevrier2014} 크기가
+자릿수로 어긋나고, 기원도 다르다: in~situ 측정이 보이는 것은 자유에너지 이중웰이 아니라 소성 유동과
+응력--전위 결합이다\cite{sethuraman_stressevo2010,sethuraman_stresspot2010}. 골격에 없는 것은
+\emph{응력이 화학퍼텐셜에 들어가는 항}이다. 본 절은 그 항을 Larch\'e--Cahn\cite{larchecahn1973} 에서
+끌어오는 \emph{시도}를, 닫히는 데까지만 적고 못 닫는 곳을 정직하게 선언한다.
+
+\subsection{스텝 1(닫힘) --- 응력 결합 항의 import}\label{ssec:mech-attempt}
+개방계 고체의 응력--조성 결합 열역학(Larch\'e--Cahn 선형이론\cite{larchecahn1973})은 응력을 받는 고체에서
+삽입종의 확산 화학퍼텐셜이 응력 결합 항을 얻음을 세운다. 그 스칼라 결합형(정수압 성분만)을 본 골격의
+언어로 쓰면, 삽입 Li 의 화학퍼텐셜은
+\begin{equation}
+\mu_\mathrm{Li}=\mu_\mathrm{Li}^{(0)}(x,T)-\bar V_\mathrm{Li}\,\sigma_h
+\label{eq:si-lc-mu}
+\end{equation}
+이다 --- $\bar V_\mathrm{Li}$ 는 삽입 Li 의 부분몰 부피(조성--팽창 결합), $\sigma_h=\tfrac13\mathrm{tr}\,\bm\sigma$
+는 정수압(평균) 응력이다(\eqref{eq:si-lc-mu} 는 원 텐서 선형이론의 스칼라 축약을 import 한 것이지
+재유도가 아니다). 전위 손잡이 $\mu\leftrightarrow-sFV$(\S\ref{sec:sm-electro})로 결선하면, 평형 전위가
+응력 항만큼 이동한다:
+\begin{equation}
+\boxed{\;U_\oc=U_\oc^{(0)}(x,T)+\frac{\bar V_\mathrm{Li}}{F}\,\sigma_h,
+\qquad
+k_\sigma\equiv\frac{\bar V_\mathrm{Li}}{F}\;.}
+\label{eq:si-lc-U}
+\end{equation}
+이 한 줄이 골격에 없던 항을 채운다 --- 생존 지도 N1 이 ``$|I|\!\to\!0$ 에서도 안 사라지는 기계 과전위
+몫이 $V_n$ 에 남는다''고 예고한 그 항이다. 여기까지는 닫힌다: 결합 계수 $k_\sigma$ 는 응력--전위 결합
+실측 $\sim100$--$120$ mV/GPa\cite{sethuraman_stresspot2010} 로 직접 읽히는 물리량이다.
+
+\subsection{스텝 2(부분) --- 히스테리시스 자릿수}\label{ssec:mech-scale}
+히스테리시스는 응력 상태 $\sigma_h$ 가 경로 의존(소성)이라 생긴다: 리튬화 시 Si 는 압축($\sigma_h<0$,
+소성 유동 $\sim-1.75$ GPa\cite{sethuraman_stressevo2010}), 탈리튬화 시 인장($\sigma_h>0$)이다. 두 가지의
+전위 차가 기계 히스 갈림이다:
+\begin{equation}
+\Delta U_\mathrm{mech}=U_\oc^{\dis}-U_\oc^{\chg}
+\approx k_\sigma\,\bigl(\sigma_h^{\dis}-\sigma_h^{\chg}\bigr)
+\label{eq:si-lc-hys}
+\end{equation}
+--- 부호가 뒤집히는 응력 상태가 갈림을 연다.
+
+\begin{verifybox}
+\textbf{자릿수 검산(order-of-magnitude).} 두 tier-A 입력 --- 결합 $k_\sigma\approx100$--$120$
+mV/GPa\cite{sethuraman_stresspot2010}, 소성 응력 크기 $|\sigma_h|\sim1.75$ GPa\cite{sethuraman_stressevo2010}
+--- 으로 부호 반전($\sigma_h^{\dis}-\sigma_h^{\chg}\sim2|\sigma_h|$)을 넣으면 $\Delta U_\mathrm{mech}\sim2\times(100$--$120)\times1.75$
+$\approx350$--$420$ mV 규모다(이 곱은 두 확인 입력의 \emph{자릿수 검산}이지 피팅값이 아니다). 관측 수백
+mV\cite{obrovac_chevrier2014} 와 자릿수가 일치한다 --- 골격 이중웰 상한 $55$ mV 가 못 담던 크기를 응력
+결합 항이 자릿수에서 회복한다.
+\end{verifybox}
+
+\subsection{공백 GS-1 --- 폐합은 1--2 스텝 안에 닫히지 않는다}\label{ssec:mech-gap}
+스텝 1(결합 항)은 닫혔고 스텝 2(자릿수)는 관측과 맞았지만, 이를 자기완결 \emph{예측}으로 닫으려면
+$\sigma_h(x,\text{경로})$ 를 골격 안에서 풀어야 한다 --- 그런데 소성 유동은 경로/이력 의존이라 소성
+구성식(항복)$+$입자 기하(코어--쉘)가 있어야 하고, 둘 다 평형 열역학 골격에 없다. 이 폐합은 1--2 스텝
+안에 닫히지 않으므로 유도를 중단하고 공백으로 선언한다(무리한 유사 유도 금지).
+
+\begin{warnbox}
+\textbf{GS-1 공백 분류(4분류: 물리 가정 충돌 $+$ 유도 미착수).} 두 겹이다 --- (i) \textbf{물리 가정 충돌}:
+골격 히스의 정규용액 이중웰 가정~\eqref{eq:dUhys} 이 Si 의 \emph{지배 기작이 아니다}(지배 몫은 소성
+응력 결합). (ii) \textbf{유도 미착수}(범위 선언, \emph{논리 공백 아님}): 응력 항의 폐합 --- $\sigma_h(x,\text{경로})$
+의 1차원리 접속(소성 구성식$+$코어--쉘 기하) --- 은 본 장 범위 밖이다. 식~\eqref{eq:si-lc-U} 의 결합 항
+자체는 닫혀 있으므로 논리 공백이 아니라, 폐합에 필요한 기계 모델이 골격 밖이라는 \emph{범위} 선언이다.
+\end{warnbox}
+
+폐합을 외부에서 수행하는 현상학 모델은 이미 있다: 입자$\cdot$SEI 점탄소성 소산으로 갈림을 재현하는
+chemo-mechanical 모델\cite{koebbing2024} 과, 다단 상전이$\cdot$(비)결정화 경로 분기로 같은 관측을 담는
+전압 히스 모델\cite{jiang_sihys2020} 이다 --- 본 장은 이들을 폐합 후보로 \emph{등재}하되, 골격 결과-사슬
+((a)$\to$(d) 유도$\cdot$검산$\cdot$코드 대응)으로 끌어와 닫는 일은 Si 전용 완결 유도(후속)의 선결
+과제로 남긴다. 곧 N3 은 이 장에서 \emph{결합 항의 자리와 자릿수까지} 확정되고, \emph{경로 의존 폐합}은
+공백으로 정직히 남는다.
+
+% 자산(comp_R5 W3): [V22-R5-18 Larché–Cahn 스칼라 결합형 import eq:si-lc-mu(재유도 아님·범위 명시)]
+%   [V22-R5-19 응력 결합→평형 전위 이동·k_σ 정의 eq:si-lc-U(N1 기계 과전위 항 채움)]
+%   [V22-R5-20 히스 자릿수 검산 eq:si-lc-hys(두 tier-A 입력 order-of-magnitude·관측 일치)]
+%   [V22-R5-21 GS-1 공백 4분류(물리 가정 충돌+유도 미착수·논리 공백 아님)·폐합 후보 등재 ssec:mech-gap]

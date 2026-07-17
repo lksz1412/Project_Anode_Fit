@@ -1,0 +1,122 @@
+% ====================================================================
+% s33_blend.tex — §3.3 혼합 음극: 공통-μ 대정준 + GS-2 비가산 공백 (comp_R5 W3 초안)
+%   중심식 = eq:sm-mc-balance(sec:sm-mc)의 클래스곱→host 곱 "한 줄 일반화"(재유도 아님·xr 인용).
+%   요동 유일근 논증 이월. GS-2 = 공통-μ 완전 동시반응 = 1차 근사(Ai2022·Chatzogiannakis2025 실측 편차).
+% ====================================================================
+\section{혼합 음극 --- 공통-$\mu$ 대정준 반전과 그 정직한 한계}\label{sec:si-blend}
+혼합(블렌드) 음극은 흑연 다수에 Si 를 소수 섞은 한 전극이다. 생존 지도의 앵커(\S\ref{ssec:si-carry})가
+여기서 값을 한다: 두 활물질이 같은 집전체$\cdot$같은 전해질을 통해 \emph{같은 전위 손잡이}($\mu$ 하나)를
+공유하므로, 혼합 음극의 평형 전위는 전하 보존 반전~\eqref{eq:sm-mc-balance} 을 두 host 로 넓힌 \emph{한
+겹 더 큰 곱}의 유일근으로 닫힌다. 새 식이 아니라 Chapter 1 이 이미 증명한 반전의 host 확장이다.
+
+\subsection{한 줄 일반화 --- 클래스곱에서 host 곱으로}\label{ssec:blend-balance}
+\S\ref{sec:sm-mc} 는 한 host 안에서 대정준 합을 자리 클래스별 곱으로 갈랐다
+--- $\Xi=\prod_j\Xi_{1,j}^{\,M_j}$~\eqref{eq:sm-mc-factor}, $\langle N\rangle=\sum_jM_j\theta_j$~\eqref{eq:sm-mc-occ}.
+블렌드에서 달라지는 것은 자리 집합이 두 host 의 클래스 \emph{합집합}이라는 것뿐이다: 흑연 클래스
+$\{M_j^\mathrm{gr}\}$ 와 Si 클래스 $\{M_j^\mathrm{Si}\}$ 가 같은 저장조와 입자를 교환하므로 화학퍼텐셜은
+여전히 $\mu$ 하나다. 독립 자리 곱은 host 한 겹을 더 갖고
+\begin{equation}
+\Xi=\prod_{\mathrm{host}\in\{\mathrm{gr},\mathrm{Si}\}}\ \prod_{j}\bigl(\Xi_{1,j}^{\mathrm{host}}\bigr)^{M_j^{\mathrm{host}}},
+\qquad
+\langle N\rangle=\sum_{\mathrm{host}}\sum_{j}M_j^{\mathrm{host}}\,\theta_j^{\mathrm{host}}(\mu)
+\label{eq:blend-occ}
+\end{equation}
+로 갈라진다 --- \eqref{eq:sm-mc-factor}$\cdot$\eqref{eq:sm-mc-occ} 의 대수를 host 한 겹 넓힌 것이고,
+재유도가 아니라 곱 하나를 더 쓴 것이다. 자리당 전하 $F/N_A$ 로 클래스 용량 $Q_j^{\mathrm{host}}\equiv(F/N_A)M_j^{\mathrm{host}}$
+과 host 용량$\cdot$총용량을 두고, 진행률 $\xi_{\eq,j}^{\mathrm{host}}=1-\theta_j^{\mathrm{host}}$ 을
+전위 손잡이(\S\ref{sec:sm-electro})로 결선하면 중심식이 그대로 host 곱으로 선다:
+\begin{equation}
+\boxed{\;\sum_{\mathrm{host}\in\{\mathrm{gr},\mathrm{Si}\}}\ \sum_{j}
+Q_j^{\mathrm{host}}\,\xi_{\eq,j}^{\mathrm{host}}\bigl(U_\oc,T\bigr)\;=\;Q\,\bar x,
+\qquad
+Q=Q_\mathrm{gr}+Q_\mathrm{Si},\quad Q_\mathrm{host}=\sum_j Q_j^{\mathrm{host}}\;.}
+\label{eq:blend-balance}
+\end{equation}
+용량 몫은 Si 분율 $f_\mathrm{Si}$ 하나로 배분된다:
+\begin{equation}
+f_\mathrm{Si}\equiv\frac{Q_\mathrm{Si}}{Q}\in[0,0.3],
+\qquad
+Q_\mathrm{Si}=f_\mathrm{Si}\,Q,\quad Q_\mathrm{gr}=(1-f_\mathrm{Si})\,Q
+\label{eq:blend-fsi}
+\end{equation}
+--- host 내부의 전이별 배분 $\{Q_j^{\mathrm{host}}\}$ 은 각 host 의 케이스 파라미터(흑연 표~\ref{tab:staging}$\cdot$Si
+표~\ref{tab:si-cases})가 정한다. 곧 블렌드의 자유도는 ``$f_\mathrm{Si}$ 하나 $+$ 두 host 의 성분 셋''이고,
+합성 규칙은 식~\eqref{eq:blend-balance} 하나다.
+
+\begin{keybox}
+\textbf{같은 반전, 한 겹 더.} 블렌드 중심식~\eqref{eq:blend-balance} 은 흑연 반전~\eqref{eq:sm-mc-balance}
+에 host 합 $\sum_\mathrm{host}$ 하나를 씌운 것이다. Chapter 1 이 ``전이 $j$ $=$ 자리 클래스''로 한 줄
+넓혔던 그 자리에(\S\ref{sec:sm-mc}), 이번엔 ``host $=$ 클래스 묶음''을 한 줄 더 넓혔을 뿐 ---
+$U_\oc$ 가 음함수로 앉는 것도, 그 반전이 정의상 implicit 인 것도 흑연과 같다. 이 식이 Ch3 의 통계역학
+앵커이자 $\S\ref{sec:si-code}$ 코드 합성의 규칙이다.
+\end{keybox}
+
+\begin{verifybox}
+검산 세 건 --- (i) \emph{유일근 이월.} $\langle N\rangle$ 을 $\mu$ 로 미분하면 host$\cdot$클래스마다
+요동--응답이 반복되어 $\partial\langle N\rangle/\partial\mu=\beta\sum_{\mathrm{host}}\sum_j M_j^{\mathrm{host}}\theta_j^{\mathrm{host}}(1-\theta_j^{\mathrm{host}})=\beta\,\mathrm{var}(N)>0$
+--- 분산은 독립 자리에 대해 host 를 넘어서도 가법이므로(두 host 의 자리는 서로 독립, $\mu$ 만 공유),
+\eqref{eq:sm-mc-fluc} 의 양성이 그대로 산다. 좌변이 $U_\oc$ 에 연속 순증이라 $\bar x\in(0,1)$ 마다
+유일근 --- 흑연의 증명을 한 줄도 다시 쓰지 않는다. (ii) \emph{$f_\mathrm{Si}{=}0$ 회수(하위호환).}
+$Q_\mathrm{Si}{=}0$ 이면 Si 합이 통째로 사라져 \eqref{eq:blend-balance} 는 흑연 단독
+반전~\eqref{eq:sm-mc-balance} 로 \emph{정확히} 되돌아간다 --- $\S\ref{sec:si-code}$ 의 bit-exact 게이트가
+이 극한이다. (iii) \emph{$f_\mathrm{Si}{=}1$ 회수.} 흑연 합이 사라지면 순수 Si 반전이 남아, 케이스 절
+(\S\ref{sec:si-cases})의 단일 host Si 곡선으로 닫힌다.
+\end{verifybox}
+
+\subsection{공통 $V_n$ 합성 --- dQ/dV 는 두 host 종의 합}\label{ssec:blend-dqdv}
+반전~\eqref{eq:blend-balance} 을 전위로 미분하면 관측 dQ/dV 가 두 host 평형 종의 합으로 선다 ---
+흑연 합산식~\eqref{eq:sum} 의 host 판이다:
+\begin{equation}
+\frac{\dd Q}{\dd V}\bigg|_{U_\oc}=C_\bg+\sum_{\mathrm{host}\in\{\mathrm{gr},\mathrm{Si}\}}\ \sum_{j}
+\frac{Q_j^{\mathrm{host}}\,\xi_{\eq,j}^{\mathrm{host}}\bigl(1-\xi_{\eq,j}^{\mathrm{host}}\bigr)}{w_j^{\mathrm{host}}}
+\label{eq:blend-dqdv}
+\end{equation}
+--- 두 host 의 종이 \emph{같은 전위 축} $U_\oc$ 위에 겹쳐 놓이고, 겹치는 전위 창에서 두 봉우리가
+포갠다. 이 겹침이 저-Si 블렌드 dQ/dV 에서 Si$\cdot$흑연 피크가 부분 분리로 보이는(\S\ref{ssec:si-sic},
+Si $10$ wt\% 실측\cite{naboka_sic2021}) 관측과 대응한다.
+
+\begin{srcbox}
+\textbf{이론 다리와 물리 근거.} 공통-$\mu$ 확장의 이론 계보는 직접적이다 --- SiO/흑연 블렌드를
+multi-site multi-reaction(MSMR) 골격으로 명시 정식화한 축소모형(perturbation ROM)이 있고, 그 저자
+계보(Verbrugge)가 원소 Si 전하 보존 앵커\cite{verbrugge_lisi2016} 와 동일하다\cite{tu_blend2024}.
+공통-$\mu$ 의 물리 전제 --- 두 host 가 공유하는 전위 창의 실재 --- 는 SiO$_x$/흑연 딜라토메트리가
+``겹치는 리튬화 전위(overlapping lithiation potentials)''로 직접 실측한다\cite{zhan_siox2026}.
+\end{srcbox}
+
+\subsection{정직 공백 GS-2 --- 완전 동시반응은 1차 근사다}\label{ssec:blend-gs2}
+반전~\eqref{eq:blend-balance} 은 두 host 가 매 SoC 에서 \emph{동시에} 공통 $\mu$ 로 반응한다고 전제한다.
+평형(휴지, $|I|\!\to\!0$)에서는 이 전제가 옳다 --- 한 저장조에 두 host 가 함께 평형화한다. 그러나 실측은
+유한율속 운전에서 이 완전 동시반응이 성립하지 않음을 두 방향으로 보인다.
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=1.5pt]
+\item \textbf{SoC 구간별 host 전환.} Si/흑연 복합 연속체 모델은 높은 SoC 에서 흑연이 반응전류의 대부분을
+담당하다가 깊은 방전으로 갈수록 급격히 Si 로 전환됨을 보인다 --- 서로 다른 OCV 곡선$\cdot$질량분율$\cdot$교환전류밀도의
+결과다\cite{ai_composite2022}. 곧 우세 반응 host 가 SoC 에 따라 교대한다.
+\item \textbf{비가산 거동.} Si $30$ wt\% 고함량 블렌드를 decoupled blend cell 로 분리 측정하면 혼합 전극
+거동이 두 성분의 \emph{단순합이 아님}(비가산적)이 확인되고, 탈리튬화 시 Si$\cdot$흑연 간 유효 C-rate
+격차가 특히 크다\cite{chatzogiannakis_blend2025}.
+\end{enumerate}
+두 실측은 공통-$\mu$ 완전 동시반응이 \emph{1차 근사}임을 뜻한다 --- 평형 OCV 앵커로는 유효하나, 구간별
+우세 host 교대와 비가산성은 이 앵커가 담지 못한다.
+
+\begin{warnbox}
+\textbf{GS-2 공백 분류(4분류: 물리 가정 충돌).} 식~\eqref{eq:blend-balance} 의 ``두 host 완전 동시반응''
+가정은 실측된 SoC 구간별 host 전환\cite{ai_composite2022}$\cdot$비가산 거동\cite{chatzogiannakis_blend2025}
+과 충돌한다. 이는 \emph{수치해법 필요}(반전은 흑연과 똑같이 수치 유일근으로 풀린다)도, \emph{논리 공백}
+(식은 닫혀 있다)도 아니고, \textbf{물리 가정 충돌}이다 --- 평형 반전이 옳게 답하는 것은 휴지 OCV 이고,
+운전 중 구간별 전환은 동역학(교환전류$\cdot$OCV 차)이 지배한다. \textbf{범위 밖 선언}: 구간별 host 전환의
+모델링(우세 host 전환 규칙$\cdot$비가산 보정항)은 본 장 범위 밖이며, 후속 버전 소관이다 --- 본 장은
+공통-$\mu$ 반전을 \emph{평형 앵커$+$1차 근사}로 명시하는 데까지다.
+\end{warnbox}
+
+\textbf{$f_\mathrm{Si}$ 스윕 초기값.} $f_\mathrm{Si}$ 검토 범위 $0$--$30\%$ 는 실측으로 커버된다 ---
+Si $5$--$20$ wt\% 상용 흑연 블렌드(최적점 $f_\mathrm{Si}{\approx}15\%$, Si15Gr75 $\mathrm{ICE}\approx82.9\%$)\cite{gautam_blend2024},
+Si $0$--$20$ wt\% 딜라토메트리(용량손실의 $f_\mathrm{Si}$ 의존)\cite{moyassari_blend2022}, Si $30$ wt\%
+고함량\cite{chatzogiannakis_blend2025} 을 합치면 전 구간이다. 이 곡선들이 $\S\ref{sec:si-code}$ 의
+$f_\mathrm{Si}$ 스윕 연속성 게이트의 대조 데이터다(tier-A 초기값).
+
+% 자산(comp_R5 W3): [V22-R5-11 클래스곱→host 곱 한 줄 일반화 eq:blend-occ·eq:blend-balance]
+%   [V22-R5-12 f_Si 용량 배분 eq:blend-fsi] [V22-R5-13 유일근 이월·f_Si=0/1 회수 verifybox]
+%   [V22-R5-14 공통 V_n dQ/dV 합성 eq:blend-dqdv(eq:sum host 판)]
+%   [V22-R5-15 이론 다리 tu_blend2024·물리 근거 zhan_siox2026 srcbox]
+%   [V22-R5-16 GS-2 물리 가정 충돌 공백(host 전환·비가산)·범위 밖 선언 ssec:blend-gs2]
+%   [V22-R5-17 f_Si 0~30% 스윕 실측 커버(gautam/moyassari/chatzogiannakis)]
