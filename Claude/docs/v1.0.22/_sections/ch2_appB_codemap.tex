@@ -1,5 +1,5 @@
 % ====================================================================
-% 부록 B — 문건→코드 요구명세 (doc-leads: 코드가 이 문건을 구현할 때 만족할 기준)
+% 부록 D — 열특성 코드 요구명세 (doc-leads: 코드가 이 문건을 구현할 때 만족할 기준)
 % ====================================================================
 \section*{부록 D --- 열특성 코드 구현 요구명세(회귀 기준$\cdot$하위호환)}
 \addcontentsline{toc}{section}{부록 D --- 열특성 코드 구현 요구명세(회귀 기준·하위호환)}
@@ -11,7 +11,7 @@
 이 부록에만 등장한다(본문은 교과서 register 로 물리$\cdot$모델 언어만 쓴다).
 
 \textbf{D.1 최종 구현 타깃.} 실전 계산의 유일 타깃은 종합식~\eqref{eq:complete} 이다: 입력
-$\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Part I 의 $\xi_j(V,T)$~\eqref{eq:logistic} 를 받아, 전하 보존
+$\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Part I 기원의 $\xi_j(V,T)$(본 파트 식~\eqref{eq:logistic})를 받아, 전하 보존
 음함수~\eqref{eq:implicit} 로 $U_\oc(\bar x,T)$ 를 풀고, $\partial U_\oc/\partial T$ 와 $\dot Q_\rev=-IT\,\partial
 U_\oc/\partial T$~\eqref{eq:qrev} 를 낸다. 진동 온도 편차가 지정되면 입력을 $\Delta S^0_j\to\Delta
 S^0_j+\Delta S_\vib(T)$, $U_j\to U_j+\Delta U_\vib(T)$ 로 온도 확장한다(\S\ref{sec:einstein}).

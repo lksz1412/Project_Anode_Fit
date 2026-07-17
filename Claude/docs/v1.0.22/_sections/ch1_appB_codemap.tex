@@ -76,7 +76,7 @@ Optuna 등 최적화 도구의 탐색 변수로 노출된다.}\label{tab:inputs}
 \code{w} 또는 \code{n} & 전이 & --- / $1$ & 폭 $w_j=n_jRT/F$ (\eqref{eq:wbase}) \\
 \code{n\_T1},\code{n\_T\_ref} & 전이 & 부재$=0$ / $298.15$ & 폭 다중도의 $T$-선형 잔여
 $n_j(T)=n_j+n_{T1}(T-T_\mathrm{ref})$ --- 부재 시 상수 $n$ 과 동일(bit-exact), 발효 시 폭$\cdot$가역 발열
-config 계수에 동반 전파(Ch2 \S2.5 폭 $T$-의존 일반화) \\
+config 계수에 동반 전파(Part T 폭 $T$-의존 일반화, \S\ref{sec:mixing}) \\
 \code{Q} & 전이 & --- & 용량 가중(면적) \\
 \code{Omega},\code{gamma} & 전이 & $0$,\,$0$ & 상호작용$\cdot$분기(히스, \eqref{eq:dUhys}\eqref{eq:Ubranch}) \\
 \code{h\_eta} & 전이 & $1.0$ & 부분 cycle 분기 인자 \\
@@ -97,7 +97,7 @@ config 계수에 동반 전파(Ch2 \S2.5 폭 $T$-의존 일반화) \\
 \code{g\_max\_eV},\code{x\_MIT},\code{dx\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ (출처$\cdot$tier 는 \S\ref{sec:lco-gate}) & MIT 게이트 초기값 (\eqref{eq:ggate}) \\
 \code{\_delith\_is\_discharge} & 클래스 & 흑연 \code{True}/LCO \code{False} & 셀 라벨$\to$탈리튬화 부호 환산 (\eqref{eq:lco-sigmaslot}) \\
 \multicolumn{4}{l}{\emph{— vib Einstein 양자보정(전이 dict, v1.0.18.2; 부재 $=$ 동결 bit-exact) —}}\\
-\code{theta\_E},\code{theta\_E\_Tref} & 전이 dict & --- $/\,298.15$ & Einstein 온도 $\theta_{E,j}$[K]$\cdot$기준온도 (Ch2 \S2.4 Einstein 절) \\
+\code{theta\_E},\code{theta\_E\_Tref} & 전이 dict & --- $/\,298.15$ & Einstein 온도 $\theta_{E,j}$[K]$\cdot$기준온도 (Part T Einstein 절, \S\ref{sec:einstein}) \\
 \bottomrule
 \end{longtable}
 \endgroup
