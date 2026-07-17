@@ -71,6 +71,30 @@ $\Delta S(x)$ 의 부호가 바뀌므로 흡$\cdot$발열이 교대한다: 저-$
 두드러진 신호를 남기며, 이는 calorimetry 의 가역 발열 직접 관측과 정합한다 \cite{standardised2024}. 부호와
 해석을 손에 쥐었으니, 다음 절은 이 발열을 실전 계산으로 옮기는 종합식과 한 수치 예제를 닫는다.
 
+\begin{bgbox}
+\textbf{한 자유에너지의 두 응답 --- $\dd Q/\dd V$($\partial_V$)와 가역 발열($\partial_T$).} 가역 발열
+$\dot Q_\rev=-IT\,\partial U_\oc/\partial T$(식~\eqref{eq:qrev})와 Part I 의 관측 $\dd Q/\dd V$ 는 \emph{같은}
+평형 전위 $U_\oc(x,T)$ --- 곧 같은 격자기체 자유에너지 --- 의 두 1계 응답이다: 전위 미분 $\partial/\partial V$
+가 전하 감수율(peak, \S\ref{sec:eqpeak})을, 온도 미분 $\partial/\partial T$ 가 엔트로피(가역 발열)를 준다. 배치
+몫에서 이 쌍이 한 항에서 갈라진다 --- 평형 전위의 Nernst 배치 항 $(RT/F)\ln[\xi/(1-\xi)]$
+(식~\eqref{eq:Vxi}; \S\ref{sec:sm-macro} 식~\eqref{eq:sm-nernst})을 두 축으로 미분하면
+\[
+\frac{\partial}{\partial V}:\ \ \frac{\dd\xi}{\dd V}=\frac{\xi(1-\xi)}{w}\quad(\text{peak},\ \propto\mathrm{var});
+\qquad
+\frac{\partial}{\partial T}:\ \ \frac{R}{F}\ln\frac{\xi}{1-\xi}\quad(\text{부분몰 배치 엔트로피}/F),
+\]
+뒤 조각이 정확히 겹침 가중 완전식의 봉우리 내부 config 항 $+n_jR\ln[\xi/(1-\xi)]/F$
+(식~\eqref{eq:single_config})이자 가역 발열 $\dot Q_\rev$ 의 배치 몫이다. 곧 $\dd Q/\dd V$ 봉우리(요동)와 가역
+발열(엔트로피)은 한 분배함수의 \emph{전하 감수율}과 \emph{열 감수율}이라는 켤레 쌍이다. Part 0 이 자리 내부
+자유도에서 세운 $s_\mathrm{int}=\kB\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})가 vibrational 축의
+같은 $\partial_T$ 응답이고, 세 분포(배치$\cdot$포논$\cdot$전자)의 $\partial_T$ 합이 $\Delta S(x)$
+(\S\ref{ssec:revinterp})다 --- $\partial_V$ 는 곡선을, $\partial_T$ 는 그 곡선의 열을 같은 자유에너지에서
+뽑는다. \emph{가드} --- 이 켤레 쌍은 \emph{가역}(평형) 응답에 한한다; 히스 gap 의 비가역
+소산($\propto I\,\Delta U^\hys$)은 $\partial_T$ 응답이 아니라 별개다(\S\ref{ssec:hys} warnbox).
+\end{bgbox}
+% 자산(v1.0.22 SM2): [V22-SM2-C 한 자유에너지의 두 응답(∂_V 전하 감수율↔∂_T 열 감수율 켤레·가역 한정 가드)]
+
+
 % 자산: [C-97] ★Bernardi(bernardi1985) 단일활물질 Q̇=Q̇_irr−IT∂U/∂T (eq:qrev, I>0 방전) ·
 %   [C-98] 두 전제(혼합엔탈피 준평형저율·상변화 U_oc 흡수 소거·고율 잔여) ·
 %   [C-99] ★라벨층위 "방전(I>0)"=Bernardi 리튬화 vs Ch1 탈리튬화 같은단어 반대방향·부호는 I로(CRITICAL) ·

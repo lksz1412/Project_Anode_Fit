@@ -54,7 +54,7 @@
 
 | ID | 파일:행 (양측) | 등급 | 분류 | 문제 | 제안 |
 |---|---|---|---|---|---|
-| **RV3-B1** | 선언 `ch1_sec00_intro:23-25` ↔ 사용 `ch1_sec01_n0n1:156`, `ch1_sec02b_part0:29` ↔ Ch2 절제목 `ch1_sec11_lcointro:4` | **H** | 역사명 vs 신 구조(P3.7/P5) | Ch1 서론은 자기 구조를 **"Part 0→Part I→Part T"** 세 층으로 선언(§1_sec00:25), **Part II 부재**. 그런데 (a) Ch1 이 Ch2 를 "**Part II**"로 지칭(sec01:156 "Part II(\S\ref{sec:lco-intro})가 연다"), (b) Ch2 의 첫 절 제목이 "**Part II 도입**"(§2.1). 즉 신 구조에서 Chapter 2 인데 본문 정체성은 "Part II". 파트 순번이 0·I·T(Ch1)·II(Ch2)로 **비선형**(II 가 T 뒤) | 장 간 지칭을 "Chapter 2"로 통일. "Part II 도입" 절제목은 역사 보존 대상일 수 있으나(P5), 최소한 Ch1→Ch2 **본문 지칭**에서 "Part II" 제거. 병합 대비 필수 항목 |
+| **RV3-B1** | `ch1_sec00_intro:26-27`("**Chapter 2**") ↔ `ch1_sec01_n0n1:156`·`ch1_sec02b_part0:29`("**Part II**") ↔ Ch2 절제목 `ch1_sec11_lcointro:4`("Part II 도입") | **H** | 역사명 vs 신 구조(P3.7/P5) — **Ch1 내부 자가 불일치** | Ch1 서론은 구조를 **"Part 0→Part I→Part T"** 세 층으로 선언(sec00:25, Part II 부재)하고 LCO 를 **"Chapter 2 가 다룬다"**로 **정확히 명명**(sec00:27). 그런데 같은 Ch1 의 인접 절 `sec01:156` 은 동일 대상을 "**Part II**(\S\ref{sec:lco-intro})가 연다"로, `sec02b:29` 도 "Part II"로 **구명칭 잔재** 사용 → sec00(신) vs sec01/02b(구)가 **한 장 안에서 상충**. 게다가 Ch2 자체 절제목이 "Part II 도입"(§2.1)이라 파트 순번 0·I·T(Ch1)·II(Ch2) **비선형**(II 가 T 뒤) | sec00 의 "Chapter 2" 로 sec01:156·sec02b:29 통일. "Part II 도입" 절제목은 역사 보존 대상일 수 있으나(P5) 최소한 **Ch1→Ch2 본문 지칭**에서 "Part II" 제거. 병합 필수 |
 | **RV3-B2** | `ch2_sec01_partition:43,58,89`·`ch2_sec02_config:109,131`·`ch2_sec03_vibel:78,81,85`·`ch2_sec04_einstein:20,21`·`ch2_sec06_limits:34,49`·`ch2_sec07_revheat:52,57,58`·`ch2_sec09_method:7,53,57,60,61` (모두 Ch1 Part T) | **M** | 스코프어 오용 | Part T 는 **파트**인데 내부 절들이 "**본 장**"(=this chapter)으로 자기 파트-스코프 진술("본 장의 닫힌식", "본 장이 세운 분포 식"). 서두 `ch2_sec00_intro`·맺음 `ch2_sec10_closing`·`ch2_sec05_mixing`(일부)만 "**본 파트**"로 전환됨 → 같은 파트가 "장/파트" 혼성. `ch2_sec05_mixing` 은 42행 "본 파트" vs 190·193·224행 "본 장"로 **동일 파일 내 혼용**. (구 Ch2 시절 "본 장" 잔재) | Part T 전 절의 파트-스코프 "본 장"→"본 파트" 일괄 전환. Ch1 전체를 뜻하는 "본 장"과 구분 |
 | **RV3-B3** | `ch2_sec04_einstein:20-22` (guard 자체), `ch2_appA_traps:51` ↔ 충돌 대상 `ch1_sec04_hys`(§1.4, `sec:hys`) | **M** | 기호충돌 guard 의 스코프 오류 | u_j 동명 guard: "…앞 파트 \S\ref{sec:hys} spinodal 근 $u_j=\sqrt{1-2RT/\Omega_j}$ 와 동명 별개…**본 장 안에서 $u_j$ 는 오직 $\theta_{E,j}/T$**". 그러나 spinodal u_j 도 einstein u_j 도 **둘 다 Ch1**(Part I §1.4 + Part T §1.14). 따라서 "본 장 안에서 오직"은 **거짓**(장 스코프에선 u_j 2의). guard 자신이 "절-국소 기호"라 하면서 스코프어만 "본 장" → 병합유발 자가모순 | "본 장 안에서"→"**본 절/이 절 안에서**"(절-국소). guard 무결성 직결이라 우선 |
 | **RV3-B4** | 부록 헤딩 `ch2_appA_traps:4`(부록 C)·`ch2_appB_codemap:4`(부록 D) ↔ 라벨 `sec:traps-thermal`/`sec:codemap-thermal`(둘 다 카운터 "B") ↔ 주석 `:2`(부록 A/부록 B) | **M** | 부록 C/D 재번호 잔재 | 곡선 부록 A·B(`\section` 자동번호) 뒤 열특성 부록은 **`\section*` 수동 "부록 C"/"부록 D"**(병합 후 letter 는 정확). 그러나 ① 라벨 `sec:traps-thermal`·`sec:codemap-thermal` 이 stale 카운터 **"B"** 포착(현재 `\ref` 무사용이라 **잠재적**), ② 소스 주석은 여전히 "부록 A"/"부록 B"(구 Ch2 잔재), ③ 본문 참조는 **하드코딩 "부록 C"/"부록 D"**(`ch2_sec04_einstein:22`, `ch2_sec07_revheat:52`, `ch2_sec08_synthesis:95` 등) — letter 변경 시 동반수정 필요한 취약점 | (a) 라벨 stale 해소 또는 명시적 수동 letter 참조 체계로 통일, (b) 주석 A/B→C/D 정정, (c) 하드코딩 "부록 C/D"를 `\ref` 로 전환(단 라벨 정상화 선행) |
@@ -70,7 +70,7 @@
 
 통합 srcbox "다리" 박스 **13본**(task 의 "11" = R2/R3 **초안 파일** 11개; 일부는 한 박스에 다refs 묶임, 일부 Part T 박스는 ref-bridge 아님).
 
-**흑연/Ch1 측(7 ref 대응):** `sec01`(측정원리: weppner_huggins1977+reynier2003+baek_pilon2022 묶음) · `sec02a`(mckinnon1983) · `sec05`(bazant2013, `eq:br-bazant2013-1`) · `sec07-broadening`(dreyer2010/11) · `sec07-revheat`(bernardi1985) [+ allart2018 은 `sec02_config`·`sec09_method` 인용].
+**흑연/Ch1 측(R2 7 ref, 전량 통합 확인):** `sec01` 박스 "두 원전" = weppner_huggins1977(GITT)+baek_pilon2022(엔트로피 판독틀), 말미에 reynier2003·allart2018 확정인용 · `sec02a`(mckinnon1983) · `sec05`(bazant2013, `eq:br-bazant2013-1`) · `sec07-revheat`(bernardi1985, `eq:qrev`) · allart2018 정량값은 `ch2_sec02_config:168` litverif(tab:ds). [`sec07-broadening` dreyer2010/11 박스는 R2 초안 목록 밖 추가 다리.]
 **LCO/Ch2 측(4 ref, 모두 `eq:br-*` 통합):** `sec13`(vanderven1998 §2.12) · `sec14`(reynier2004 §2.20) · `sec15`(marianetti2004 §2.22) · `sec17`(msmr §2.37).
 
 | ID | 항목 | 등급 | 분류 | 문제/확인 | 제안 |
@@ -85,7 +85,7 @@
 
 | ID | 파일:행 (양측) | 등급 | 분류 | 문제 | 제안 |
 |---|---|---|---|---|---|
-| **RV3-D1** | 정의 `ch1_sec11_lcointro:45-47`(**Ch2** §2.1.1 각주) ↔ 사용 `ch1_sec07_broadening:64`(**Ch1** Part I), `ch1_sec01_n0n1:247`(**Ch1**) | **H** | tier 등급 장 간 의존 | tier A/B/C **유일 범례**가 Ch2 §2.1.1 각주에만 존재("등급 표기(**본서 전역**)"). 그러나 Ch1 이 tier 를 사용(sec07:64 "tier C…신뢰 등급 범례는 \S\ref{sec:lco-map} 각주" → **Ch2 로 넘김**; sec01:247 "tier B"). **Ch1 은 독립 PDF** 라 그 각주가 Ch1 문건에 부재 → 표준독자 tier 미해소. "본서 전역" 선언과 물리적 위치(Ch2) 불일치 | tier 범례를 **양 장 공통 위치**(Ch1 기호절/공통 preamble, 또는 각 장 서두)에 배치. 최소한 Ch1 에도 범례 복제 |
+| **RV3-D1** | 정의 `ch1_sec11_lcointro:45-47`(**Ch2** §2.1.1 각주) ↔ 사용 `ch1_sec07_broadening:64`(**Ch1** Part I), `ch1_sec01_n0n1:247`(**Ch1**) ↔ 자기선언 `ch1_sec00_intro:19`·`sec10:18` | **H** | tier 등급 장 간 역의존(자기선언 위반) | tier A/B/C **유일 범례**가 Ch2 §2.1.1 각주에만 존재("등급 표기(**본서 전역**)"). 그러나 Ch1 이 tier 사용(sec07:64 "tier C…신뢰 등급 범례는 \S\ref{sec:lco-map} 각주" → **Ch2 로 넘김**; sec01:247 "tier B"). **Ch1 은 독립 PDF** 라 그 각주가 Ch1 에 부재. ★특히 Ch1 은 "**본 장만으로 곡선 재현**"(sec00:19·sec10:18) 자기완결을 선언 → tier 를 Ch2 로 넘기는 이 역의존이 **그 자기선언을 위반**(Ch2 는 반대로 Ch1 에 정당히 의존). "본서 전역" 선언과 물리적 위치(Ch2) 불일치 | tier 범례를 **양 장 공통 위치**(Ch1 기호절/공통 preamble, 또는 각 장 서두)에 배치. 최소 Ch1 에 범례 복제. Ch2→Ch1 계승 방향(정상)과 tier Ch1→Ch2(역행) 방향 정합 |
 | **RV3-D2** | `ch1_sec11_lcointro:45`("본서 전역"), `ch2_appB_codemap:8`("본서가 권위") | **L** | "본서" 스코프 | 단일 장 내부에서 "본서(=책 전체)" 권위·전역 선언. 별개 컴파일 문건에서 "본서" 지칭 대상이 모호(현재 각 장 = 별개 PDF) | 병합 전엔 "본 장/본 문건", 병합 후 "본서" 로 정리하는 규칙 명문화 |
 
 *통과 확인:* `ch2v22_notation:6`·`ch2v22_sec00_intro:4` 의 "본 장"(=Ch2) — 정확. Ch2 가 Ch1 을 "Chapter 1 Part T/Part I" 로 명시 역참조(`ch1_sec14_lcodecomp:47,54`, `ch1_sec15_lcoelec:217,233`) — 명확. ✓
@@ -130,6 +130,7 @@
 - g 4종 guard 내용정확 / η 2종 guard 내용정확 / ξ 배향 전극중립 대칭 일관.
 - 다리 13본 상호·본문 모순 0(RV3-C3) / bib 장별 분리 정확(reynier·msmr 계열).
 - Ch2→Ch1 "Chapter 1 Part T/Part I" 역참조 명시성 / `ch2v22_notation` 계승기호 6참조 의미일치 / `msmr_partI` 식별함정 선제가드.
+- **재현 선언 정합**: Ch1 = "본 장만으로 곡선 재현" 자기완결(흑연 한정), Ch2 = "새 유도 반복 없이 Chapter 1 식 인용·계승기호 재정의 없음" 명시적 Ch1 의존 — 두 선언이 올바르게 **비대칭·무모순**(단 tier 역의존만 예외 → RV3-D1).
 
 ---
 
