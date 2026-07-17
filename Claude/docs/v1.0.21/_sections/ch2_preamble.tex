@@ -1,0 +1,52 @@
+% ====================================================================
+% ch2_preamble.tex — Chapter 2 (v1.0.21) 공통 preamble·매크로
+%   graphite_ica_ch2_v1.0.21.tex 가 \input 한다. 절별 파일은 _sections/ 에.
+%   빌드: xelatex -interaction=nonstopmode (kotex — 한글 전제), 3-pass.
+%   렌더 목표 = v1.0.18.2 Ch2 동등(문서클래스·패키지·박스 체계·매크로 계승),
+%   조립만 절별 \input 으로 전환. 재사용 불가로 Ch1 preamble 과 분리:
+%     번호 prefix 2.N·박스 세트(srcbox/procedurebox)·tikz decorations·전용 매크로.
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\setmonofont{D2Coding}[Scale=MatchLowercase]
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,positioning}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.21): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.21, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\newtheorem*{keybox}{핵심}
+\newtheorem*{srcbox}{문헌 근거}
+\newtheorem*{warnbox}{주의}
+\newtheorem*{procedurebox}{계산 절차}
+\newtheorem*{bgbox}{배경}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\avg}[1]{\langle #1\rangle}
+\renewcommand{\theequation}{2.\arabic{equation}}
+\renewcommand{\thesection}{2.\arabic{section}}

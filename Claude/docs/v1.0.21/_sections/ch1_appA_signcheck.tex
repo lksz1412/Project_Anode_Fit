@@ -1,0 +1,89 @@
+% ====================================================================
+% 부록 A — 부호 사슬 검산표 (S1–S8 정성 · R1–R6 수치·극한)
+% ====================================================================
+\appendix
+\section{부호 사슬 검산표}\label{sec:signcheck}
+본 문건 부호 사슬의 전건 검산을 표로 정리한다. 기준 명제는 \emph{방전 시 $V\!\uparrow\Rightarrow$
+탈리튬화$\uparrow$, 충전 $\dd Q/\dd V$ 는 방전의 거울(양수)}이며, 표의 각 행은 반증 가능한 조건이다 ---
+한 행이라도 어긋나면 부호 사슬의 결함이다. 범위는 흑연 사슬(S1--S8$\cdot$R1--R5)과 LCO 중심 수치
+검산(R6)이고, 나머지 LCO 부호는 \S\ref{sec:lco-direction} 이 검산한다.
+
+표~\ref{tab:signcheck-S} 는 정성 부호 사슬 여덟 항이다. 전건이 기준 명제와 정합한다 --- 부호 결함 $0$.
+
+\begin{longtable}{@{}l p{8.6cm} p{3.3cm} c@{}}
+\caption{부호 사슬 정성 검산(S1--S8).}\label{tab:signcheck-S}\\
+\toprule
+\# & 명제와 확인 내용 & 근거 식 & 판정 \\
+\midrule
+\endfirsthead
+\toprule
+\# & 명제와 확인 내용 & 근거 식 & 판정 \\
+\midrule
+\endhead
+S1 & $U_j(T)=(-\Delta H_\rxn+T\Delta S_\rxn)/F$, $\Delta G_j=-sFU_j$ --- $\Delta H_\rxn<0$(발열)이면
+$-\Delta H_\rxn>0$ 이 중심을 올린다(흡열 아님). & 식~\eqref{eq:Uj}$\cdot$\eqref{eq:eqcond} & $\checkmark$ \\
+S2 & $\xi_\eq=\mathrm{logistic}[\sigma_d(V-U)/w]$ --- 방전 $\sigma_d=+1$ 에서
+$V\!\uparrow\Rightarrow\xi_\eq\!\uparrow$. & 식~\eqref{eq:xieq} & $\checkmark$ \\
+S3 & $\dd\xi/\dd V=\sigma_d\,\xi(1-\xi)/w$ --- peak 모양 $=|\dd\xi/\dd V|=\xi(1-\xi)/w\ge0$, 방향 불변.
+& 식~\eqref{eq:eqpeak} & $\checkmark$ \\
+S4 & $\Delta U_\hys\ge0$(극대 $>$ 극소), $\Omega\le2RT$ 에서 $0$($u_j\to0$); 분기 중심 $\pm\tfrac12\sigma_d$
+라 $U^{\dis}>U^{\chg}$. & 식~\eqref{eq:dUhys}$\cdot$ \eqref{eq:Ubranch} & $\checkmark$ \\
+S5 & $\chi_d$: 방전 $\chi$/충전 $1-\chi$(합-1 거울 대칭); $\Delta H_a^\eff=\Delta H_a-\chi_d\Omega$.
+& 식~\eqref{eq:chid}$\cdot$\eqref{eq:dHeff} & $\checkmark$ \\
+S6 & $\partial\ln L_q/\partial V<0$ 은 컷 규칙의 \emph{동기}로만 성립 --- $\mathcal A$ 가 컷 상수라 실현
+미분은 $0$(전이당 한 스칼라)이고, 국소 구동력으로 두면 $V\!\uparrow\Rightarrow\mathcal
+A\!\uparrow\Rightarrow$ 유효 장벽 $\downarrow\Rightarrow L_q\downarrow$ --- 동결과 부등식이 같은
+단조성에서 일관(자기모순 없음). & 식~\eqref{eq:Lqfull}$\cdot$\eqref{eq:LV} & $\checkmark$ \\
+S7 & 꼬리의 충전 방향 반전(적분 상한 $+\infty$, 식~\eqref{eq:reversal}) --- 인과 방향 보존,
+peak 모양 $=(\xi_\eq-\xi_\mathrm{lag})/L_V>0$ 으로 충전 $\dd Q/\dd V$ 는 방전의 거울(양수).
+& 식~\eqref{eq:reversal} & $\checkmark$ \\
+S8 & 분극 $V_n=V_\app-\sigma_d|I|R_n$ --- 방전 시 측정 전위 $>$ 내부 전위. & 식~\eqref{eq:vn} & $\checkmark$ \\
+\bottomrule
+\end{longtable}
+
+표~\ref{tab:signcheck-R} 는 재현 가능한 수치$\cdot$극한으로 고정한 회귀 검산이다($T=298.15$ K).
+R1--R3 은 독립 수기 재산출로 동일 양을 재확인한 것, R4 는 컷 규칙 정의 검사, R5 는 극한 논증,
+R6 은 LCO 중심 부호의 문헌 역대입이다(본문 \S\ref{sec:lco-center} verifybox 와 동일 수치 ---
+그 박스의 층위 구분 가드와 함께 읽는다). 여섯 행이 모두 통과한다 --- 부호 사슬 회귀 검산 PASS.
+
+\begin{longtable}{@{}l p{6.2cm} p{5.0cm} p{2.2cm} c@{}}
+\caption{부호 사슬 수치$\cdot$극한 회귀 검산(R1--R6).}\label{tab:signcheck-R}\\
+\toprule
+\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 & 판정 \\
+\midrule
+\endfirsthead
+\toprule
+\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 & 판정 \\
+\midrule
+\endhead
+R1 & 히스 분기 방향: $\Omega=12000$ J/mol, $\gamma=1$ ---
+$u=\sqrt{1-2RT/\Omega}=0.766$, $\Delta U^\hys=\frac{2}{F}[\Omega u-2RT\,\mathrm{artanh}\,u]=86.7$ mV.
+& 분기 중심이 방전 $+\tfrac12\Delta U^\hys$/충전 $-\tfrac12\Delta U^\hys$ 라 peak 갈림
+$V_\dis-V_\chg=+86.7$ mV $>0$ --- 방전 peak 가 높은 전위(기준 명제 일치).
+& 식~\eqref{eq:dUhys}$\cdot$ \eqref{eq:Ubranch} & $\checkmark$ \\
+R2 & 히스 문턱: $\Omega=2RT=4958$ J/mol --- $u=0$.
+& $\Delta U^\hys=0.0$ mV --- $\Omega\le2RT$ 분기가 정확히 $0$ 으로 연속(상분리 미만 $=$ 갈림 없음).
+& 식~\eqref{eq:dUhys} & $\checkmark$ \\
+R3 & $|I|\!\to\!0$ 환원: $\gamma=0$, $|I|=10^{-6}$ --- $L_V\propto|I|\to0$.
+& $L_V\to0$ 극한(식~\eqref{eq:tail-limit})에서 꼬리식이 평형 종 $\xi_\eq(1-\xi_\eq)/w$ 로 매끈히 수렴하고 $\sigma_d$ 불변 ---
+방전$\cdot$충전 곡선 차 $\to0$(S3 의 수치 확인).
+& 식~\eqref{eq:LV}$\cdot$ \eqref{eq:tail-limit}$\cdot$\eqref{eq:eqpeak} & $\checkmark$ \\
+R4 & $L_q$ 동결 vs 부등식: $\mathcal A=\min(z_\mathrm{cut}n_jRT,\,A_\mathrm{cap}RT)$ 가 전이당 상수.
+& 실현 미분 $\partial\ln L_q/\partial V=0$, 부등식 $<0$ 은 컷 규칙 동기로만 성립(S6 과 일관) ---
+자기모순 $0$. & 식~\eqref{eq:Acut} & $\checkmark$ \\
+R5 & 꼬리식의 평형 극한 회귀 가드: 식~\eqref{eq:tail-limit} 의 치환 $t=(V-u)/L_{V,j}$ 로
+peak 모양 $=\int_0^\infty e^{-t}\,(\dd\xi_\eq/\dd V)|_{V-L_{V,j}t}\,\dd t$.
+& $L_V\to0$: 적분점마다 평가 위치 $V-L_{V,j}t\to V$ 이고 피적분함수가 적분가능 지배함수 $e^{-t}/(4w_j)$ 에
+눌려($|\dd\xi_\eq/\dd V|\le1/(4w_j)$) 지배수렴정리로 극한과 적분이 교환되어 peak 모양
+$\to|\dd\xi_\eq/\dd V|=\xi_\eq(1-\xi_\eq)/w$(평형 종, $\sigma_d$ 불변). 부호 양$\cdot$차원 양변 $1/$V$\cdot$극한 정합
+--- 방전$\cdot$충전(식~\eqref{eq:reversal})이 같은 양의 종을 주어 R3 와 일관(``$L_V$ 작으면 종으로 환원''이
+극한식으로 확인됨; 커널 규격화를 깨면 극한이 어긋나는 반증 가능 검산).
+& 식~\eqref{eq:tail-limit}$\cdot$ \eqref{eq:peakshape}$\cdot$ \eqref{eq:eqpeak} & $\checkmark$ \\
+R6 & LCO 중심 부호: 대표 단전극 $\dd\phi/\dd T\approx+0.83$ mV/K(tier B)\cite{swiderska2019} 역대입.
+& $\Delta S_{\rxn}^\mathrm{cat}=F\,\dd U/\dd T\approx+80$ J/(mol\,K)$>0$ --- 평형 중심이 온도에 오르고
+$30$ K 창에서 $\Delta U\approx+25$ mV 규모(층위$\cdot$혼동 가드는 본문 \S\ref{sec:lco-center}).
+& 식~\eqref{eq:lco-dUdT} & $\checkmark$ \\
+\bottomrule
+\end{longtable}
+
+% 자산: [B2-130] [B2-131] [B2-132] [B2-133] [B2-134] [B2-135] [B2-136] [B2-137] [B2-138] [B2-139] [B2-140] [B2-141] [B2-142] [B2-143] [B2-144]

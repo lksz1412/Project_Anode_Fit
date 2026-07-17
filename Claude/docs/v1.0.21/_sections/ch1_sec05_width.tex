@@ -1,0 +1,299 @@
+% ====================================================================
+% §5 평형 진행률 ξ_eq 와 폭 w_j (N5·N4) — 재설계: logistic 유도 선행 → 폭 모수화
+% ====================================================================
+\section{평형 진행률 $\xi_\eq$ 와 폭 $w_j$ (N5, N4)}\label{sec:width}
+중심이 정해지면 다음으로 평형 진행률 $\xi_{\eq,j}$ 와 그 폭 $w_j$ 를 정한다. 이 둘이 평형 종(다음 절의 peak)의
+모양을 결정한다. 절 순서는 유도가 모수화에 선행하도록 짠다 --- 먼저 평형 등온선을 정$\cdot$역 속도의 균형에서
+logistic 으로 닫아 자연 폭 척도 $RT/F$ 를 드러내고(\S\ref{sec:width-logistic}), 그 위에서 폭 다중도 $n_j$ 로
+일반화한 뒤 폭의 이중지위를 세운다(\S\ref{sec:width-w}). 이 운동학 경로는 Part 0(\S\ref{sec:sm-electro})의 평형
+통계 경로와 독립이며, 두 경로가 같은 logistic 에 닿는 것이 \S\ref{sec:dist} 의 통합이다.
+
+\subsection{평형 진행률 $\xi_\eq$ --- logistic 의 유도}\label{sec:width-logistic}
+평형 등온선은 \S\ref{sec:center} 의 평형 조건을 정$\cdot$역 속도의 균형으로 회수하면 logistic 으로 닫힌다.
+\textbf{(a) 출발 --- Eyring 속도식과 비대칭 장벽.} 활성화 장벽 $\Delta G_a$ 이상을 갖출 확률은 Boltzmann 분포
+$\propto e^{-\Delta G_a/RT}$ 이고, 전이상태 이론의 시도 빈도 $k_0=k_BT/h$ 를 곱하면 Eyring 속도식
+$k\simeq k_0e^{-\Delta G_a/RT}$ 다(그림~\ref{fig:barrier})\cite{eyring1935}. 구동력 $\mathcal A_j=sF(V_n-U_j)$ 가 정$\cdot$역 장벽을
+비대칭 이동시켜(분율 위치 $\chi$ --- 비평형 열역학 기반 전하전달 동역학의 표준 분해\cite{bazant2013}), 자리당 정$\cdot$역 속도가
+\begin{equation}
+r_j^+=k_0\,e^{-(\Delta G_{a,j}-\chi\mathcal A_j)/RT},\qquad
+r_j^-=k_0\,e^{-(\Delta G_{a,j}+(1-\chi)\mathcal A_j)/RT}.
+\label{eq:bv}
+\end{equation}
+\textbf{(b) 연산 --- 비를 취해 detailed balance.} 두 속도의 비를 취하면 $k_0,e^{-\Delta G_a/RT}$ 가 약분되고 지수의
+$\chi$ 가 상쇄되어($\chi\mathcal A+(1-\chi)\mathcal A=\mathcal A$)
+\begin{equation}
+\frac{r_j^+}{r_j^-}=\exp\!\Big[\frac{\chi\mathcal A_j+(1-\chi)\mathcal A_j}{RT}\Big]=\exp\!\Big[\frac{\mathcal A_j}{RT}\Big]
+\label{eq:db}
+\end{equation}
+--- 평형비가 $\chi$ 와 무관한 Boltzmann 비라는 detailed balance 다($\chi+(1-\chi)=1$ 합-1 제약이 강제한 결과). 운동
+방정식은 정방향이 찬 자리($1-\xi$)에서, 역방향이 빈 자리($\xi$)에서 출발하므로
+$\dd\xi/\dd t=r^+(1-\xi)-r^-\xi=k_j(\xi_\eq-\xi)$($k_j\equiv r^++r^-$). \textbf{(c) 중간식 --- 정지점에서 logit.}
+정지점 $\dd\xi/\dd t=0$ 에서 $r^+(1-\xi_\eq)=r^-\xi_\eq$(정$\cdot$역 플럭스의 교점 --- 그림~\ref{fig:flux}), 곧
+비 식~\eqref{eq:db} 로
+\begin{equation}
+\frac{\xi_\eq}{1-\xi_\eq}=e^{\mathcal A_j/RT}=e^{sF(V_n-U_j)/RT}
+\quad\Longrightarrow\quad
+\xi_\eq=\frac{1}{1+e^{-sF(V_n-U_j)/RT}}
+\label{eq:logisticsolve}
+\end{equation}
+(둘째 식은 분모$\cdot$분자를 $e^{\mathcal A/RT}$ 로 나눈 것). 이 bare logistic 의 중심 기울기는
+$\dd\xi_\eq/\dd V|_{1/2}=sF/(4RT)$ 로, 폭 척도 $RT/F$ 를 정의한다 --- 열역학은 detailed balance~\eqref{eq:db}
+한 곳으로만 들어왔고, logistic 은 속도식의 정지점에서 \emph{유도된} 평형이다. 다음 소절이 이 폭 척도를 다중도
+$n_j$ 로 일반화해 결과 박스를 닫는다.
+
+\begin{figure}[t]
+\centering
+% T4 fig:barrier  (quantitative-density)
+% Eyring activation landscape (eq:bv), reaction coordinate x, wells at x=1,5, TS at x=3.
+% G_base(x)=0.1+0.9 sin^2[pi(x-1)/4] on [1,5]; driven G(x)=G_base-A*phi(x), phi=(x-1)/4.
+% A=0.5, chi=1/2 -> forward barrier dG_a-chi A=0.65, reverse dG_a+(1-chi)A=1.15, peak down chi A=0.25.
+\begin{tikzpicture}[x=0.70cm,y=2.4cm,>=Latex]
+% =============== (a) equilibrium ===============
+\begin{scope}
+\draw[->] (-0.3,-0.5) -- (6.5,-0.5) node[right,font=\scriptsize] {rxn coord};
+\draw[->] (-0.3,-0.5) -- (-0.3,1.18) node[above,font=\scriptsize] {free energy $G$};
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (5.5,0.1) (6,0.1)};
+\node[below,font=\scriptsize] at (1,0.06) {filled site};
+\node[below,font=\scriptsize] at (5,0.06) {empty site $+$ ion};
+\node[above,font=\scriptsize] at (3,1.0) {transition state};
+% dG_a arrow at x=2
+\draw[densely dotted,black!55] (1,0.1) -- (2.05,0.1);
+\draw[densely dotted,black!55] (3,1.0) -- (2.05,1.0);
+\draw[<->] (2.05,0.1) -- (2.05,1.0) node[pos=0.5,left,font=\scriptsize] {$\Delta G_a{=}0.90$};
+\node[font=\scriptsize,below] at (3,-0.68) {(a) equilibrium: $\mathcal A{=}0$ (two wells equal)};
+\end{scope}
+% =============== (b) driven ===============
+\begin{scope}[xshift=6.3cm]
+\draw[->] (-0.3,-0.5) -- (6.7,-0.5) node[right,font=\scriptsize] {rxn coord};
+% reference (a) dotted
+\draw[densely dotted,thin,black!50] plot[smooth] coordinates {(0,0.1) (1,0.1) (1.5,0.2318) (2,0.55) (2.5,0.8682) (3,1.0) (3.5,0.8682) (4,0.55) (4.5,0.2318) (5,0.1) (6,0.1)};
+% driven curve
+\draw[thick] plot[smooth] coordinates {(0,0.1) (0.5,0.1) (1,0.1) (1.5,0.1693) (2,0.425) (2.5,0.6807) (3,0.75) (3.5,0.5557) (4,0.175) (4.5,-0.2057) (5,-0.4) (5.5,-0.4) (6,-0.4)};
+% peak down by chi A
+\draw[->,thick] (3,0.99) -- (3,0.77);
+\node[above,font=\scriptsize] at (3,1.0) {peak $\downarrow\,\chi\mathcal A{=}0.25$};
+% forward barrier at x=1.7
+\draw[densely dotted,black!55] (1,0.1) -- (1.7,0.1);
+\draw[densely dotted,black!55] (3,0.75) -- (1.7,0.75);
+\draw[<->] (1.7,0.1) -- (1.7,0.75) node[pos=0.5,left,font=\scriptsize,align=right] {$\Delta G_a{-}\chi\mathcal A$\\$=0.65$};
+% reverse barrier at x=4.3
+\draw[densely dotted,black!55] (5,-0.4) -- (4.3,-0.4);
+\draw[densely dotted,black!55] (3,0.75) -- (4.3,0.75);
+\draw[<->] (4.3,-0.4) -- (4.3,0.75) node[pos=0.5,right,font=\scriptsize,align=left] {$\Delta G_a{+}(1{-}\chi)\mathcal A$\\$=1.15$};
+% affinity A drop at x=5.8
+\draw[densely dotted,black!55] (5,0.1) -- (5.85,0.1);
+\draw[densely dotted,black!55] (5,-0.4) -- (5.85,-0.4);
+\draw[<->] (5.85,0.1) -- (5.85,-0.4) node[pos=0.5,right,font=\scriptsize] {$\mathcal A{=}0.50$};
+\node[font=\scriptsize,below] at (3,-0.68) {(b) driven $\mathcal A{>}0$ ($\chi{=}\tfrac12$)};
+\node[font=\scriptsize,anchor=south west] at (-0.2,-0.48) {$\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$};
+\end{scope}
+\end{tikzpicture}
+\caption{활성화 장벽 그림 --- Eyring 속도식(식~\eqref{eq:bv})의 반응 좌표 개형(좌표는 모형 이중웰 퍼텐셜
+$G_\mathrm{base}{=}0.1{+}0.9\sin^2[\pi(x{-}1)/4]$ 의 수치 평가, 구동은 진행률 $\phi$ 를 따라 $\mathcal A$ 만큼 기울임).
+(a) 평형($\mathcal A{=}0$) --- 두 골 같은 높이, 장벽 $\Delta G_a{=}0.90$. (b) 구동력 $\mathcal A_j{=}sF(V_n{-}U_j){>}0$
+($\chi{=}\tfrac12$)가 도착 골을 $\mathcal A{=}0.50$ 내려 정점을 $\chi\mathcal A{=}0.25$ 낮추면, 정방향 장벽
+$\Delta G_a{-}\chi\mathcal A{=}0.65$ 로 하강$\cdot$역방향 $\Delta G_a{+}(1{-}\chi)\mathcal A{=}1.15$ 로 상승(점선 $=$(a)).
+$\chi\!\cdot\!(1{-}\chi)$ 분할이 detailed balance(식~\eqref{eq:db})를 강제하고, 유효 장벽은 $\Delta H_a^\eff{=}\Delta H_a{-}\chi_d\Omega$
+다. 이 그림이 logistic(식~\eqref{eq:xieq})과 $L_q$ 의 공통 출발점이다.}
+\label{fig:barrier}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+% T5 fig:flux  (quantitative-density)
+% Forward flux r+(1-xi) vs reverse r- xi; stationary point = intersection = xi_eq (eq:logisticsolve).
+% r- = 1 fixed => reverse line y=xi common to all cases; three affinities overlaid:
+%   A/RT=0     r+/r-=1  xi_eq=1/2   ; A/RT=ln2  r+/r-=2  xi_eq=2/3 ; A/RT=2 ln2  r+/r-=4  xi_eq=4/5.
+\begin{tikzpicture}[x=6.0cm,y=1.42cm,>=Latex]
+% ---- readout above the plot (clear of all curves) ----
+\node[anchor=south west,align=left,font=\scriptsize] at (-0.02,4.62)
+  {reverse $r^-\xi$ ($r^-{=}1$)\ $\cdot$\ forward $r^+(1-\xi)$, $r^+{=}e^{\mathcal A/RT}{=}1,2,4$\\[1pt]
+   $\xi_\eq=\dfrac{r^+}{r^++r^-}=\dfrac{1}{1+e^{-\mathcal A/RT}}=\tfrac12,\ \tfrac23,\ \tfrac45$ (교점, on line $y{=}\xi$)};
+% ---- axes ----
+\draw[->] (0,0) -- (0,4.5) node[left,font=\scriptsize] {flux [arb.]};
+\draw[->] (-0.01,0) -- (1.14,0) node[below,font=\scriptsize] {$\xi$};
+% ---- common reverse line  y = r- xi ----
+\draw[line width=1.3pt] (0,0) -- (1,1);
+\node[anchor=south east,font=\scriptsize] at (0.99,0.99) {$r^-\xi$};
+% ---- forward lines r+(1-xi) ----
+\draw[thick]               (0,4) -- (1,0);
+\draw[dashed]              (0,2) -- (1,0);
+\draw[gray,densely dashed] (0,1) -- (1,0);
+% intercept labels + y ticks
+\node[anchor=west,font=\scriptsize]      at (0.02,4.13) {$r^+{=}4$};
+\node[anchor=west,font=\scriptsize]      at (0.02,2.13) {$r^+{=}2$};
+\node[gray,anchor=west,font=\scriptsize] at (0.02,1.13) {$r^+{=}1$};
+\foreach \yv in {1,2,4} {\draw (0.008,\yv) -- (-0.008,\yv) node[left,font=\scriptsize] {\yv};}
+% ---- intersections + droplines + x ticks (xi_eq) ----
+\foreach \xe in {0.5,0.6667,0.8} {
+  \draw[densely dotted,black!55] (\xe,\xe) -- (\xe,0);
+  \fill (\xe,\xe) circle (1.1pt);
+}
+\draw (0.5,0.03) -- (0.5,-0.03) node[below,font=\scriptsize] {$\tfrac12$};
+\draw (0.6667,0.03) -- (0.6667,-0.03);
+\node[below,font=\scriptsize] at (0.6667,-0.19) {$\tfrac23$};
+\draw (0.8,0.03) -- (0.8,-0.03) node[below,font=\scriptsize] {$\tfrac45$};
+\draw (1,0.03) -- (1,-0.03) node[below,font=\scriptsize] {1};
+% ---- forward family label (clear top-left triangle) ----
+\node[anchor=west,font=\scriptsize] at (0.30,3.15) {forward $r^+(1-\xi)$};
+% ---- moves-right note (below ticks) ----
+\node[anchor=north,font=\scriptsize] at (0.66,-0.42) {$\xi_\eq$ moves right as $\mathcal A\!\uparrow$};
+\end{tikzpicture}
+\caption{정지점 유도 --- 정$\cdot$역 플럭스의 교점(식~\eqref{eq:logisticsolve}; 좌표는 식 그대로의 수치 평가).
+정방향 $r^+(1-\xi)$(감소 직선)와 역방향 $r^-\xi$(공통 증가 직선, $r^-{=}1$)의 교점이 정지점 $\xi_\eq$. affinity 를
+$\mathcal A/RT=0,\ln2,2\ln2$ 로 올리면 $r^+/r^-=e^{\mathcal A/RT}=1,2,4$ 라 교점이 $\xi_\eq=\tfrac12\to\tfrac23\to\tfrac45$
+로 이동한다(모두 $y{=}\xi$ 선 위) --- 곧 $\xi_\eq=r^+/(r^++r^-)=1/(1+e^{-\mathcal A/RT})$ 로, detailed balance
+(식~\eqref{eq:db})가 $\chi$ 와 무관하게 평형을 정한다.}
+\label{fig:flux}
+\end{figure}
+
+\subsection{폭 $w_j$ --- 이상 극한$\cdot$일반화$\cdot$그 이중지위}\label{sec:width-w}
+\textbf{폭 척도의 정의와 다중도 일반화.} 앞 소절 bare logistic(식~\eqref{eq:logisticsolve})의 중심 기울기
+$\dd\xi_\eq/\dd V|_{1/2}=sF/(4RT)$ 가 폭 척도 $RT/F$ 를 정의한다. 폭 다중도 $n_j$ 로 일반화하면
+\begin{equation}
+w_j=\frac{n_jRT}{F}\qquad(\text{기본 폭}),
+\label{eq:wbase}
+\end{equation}
+폭이 직접 주어지면(대신 $w$ 값 자체가 입력되면) $n_j=w_jF/(RT)$ 로 역산해 같은 식에 넣는다.
+다중도를 온도 상수가 아니라 온도 함수 $n_j(T)$ 로 두면 폭 $w_j=n_j(T)RT/F$ 가 열적 스케일 위에 잔여 $T$-의존을
+얹으며, 그 $\partial w_j/\partial T=(R/F)(n_j(T)+T\,\dd n_j/\dd T)$ 가 가역 발열 config 항에 자기정합 전파된다(Chapter 2
+겹침 가중 파생 A 에서 유도, 발열 종합식이 받음; 상수 $n_j$ 는 $\dd n_j/\dd T{=}0$ 특수형). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅할지는 데이터가 정한다.
+폭은 항상 이 한 식을 쓴다(상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지 않는다 --- 그 까닭은 바로 아래
+이중지위와 \S\ref{sec:broadening} 가 설명한다).
+
+\textbf{박스 --- 폭 다중도$\cdot$방향 부호 일반화.} 폭 척도 $w_j=n_jRT/F$ 로 묶고 방향 부호 $\sigma_d$ 와 분기
+중심 $U_j^{\,d}$(\S\ref{sec:hys})로 식~\eqref{eq:logisticsolve} 를 일반화하면 --- 충전의 진행률은 같은 분포의
+여집합 좌표 $\theta=1-\xi$ 라 $s\to\sigma_d$ 치환은 여집합 교환과 동치다(\S\ref{sec:dist}; 전극-중립
+일반화는 \S\ref{sec:lco-direction}) ---
+\begin{equation}
+\boxed{\;\xi_{\eq,j}(V,T)=\frac{1}{1+\exp\!\big[-\sigma_d(V-U_j^{\,d})/w_j\big]}\;.}
+\label{eq:xieq}
+\end{equation}
+방향 부호가 logistic 인자의 부호로 들어가는 것이 식~\eqref{eq:xieq} 의 $z=\sigma_d(V-U_j^{\,d})/w_j$ 이며,
+오버플로를 피하기 위해 $z\ge0/z<0$ 두 등가 형태로 나눠 평가한다(수학적으로
+동일)\footnote{여기 무차원 logistic 인자 $z$ 는 이 절 국소 표기이며, \S\ref{sec:sm-mf} 의 배위수(coordination
+number) $z$ 나 화학종의 전하수(charge number) $z$ 와는 무관하다.}. 여기서 평가 전위는 \S\ref{sec:pol} 의 내부 전위 $V_n$ 이다. 중심 $U_j^{\,d}$
+는 식~\eqref{eq:center} 의 분기 중심(분기 있으면 분기 중심, 없으면 $U_j$)이다.
+
+\begin{signbox}
+\textbf{부호.} 방전 $\sigma_d=+1$: $V\!\uparrow\Rightarrow z\!\uparrow\Rightarrow\xi_\eq\!\uparrow$ --- 전위를 올리면
+탈리튬화 진행이 는다(규약 일치). 충전 $\sigma_d=-1$: $V\!\uparrow\Rightarrow z\!\downarrow\Rightarrow\xi_\eq\!\downarrow$.
+극한 --- $V\gg U_j^{\,d}\Rightarrow\xi_\eq\to1$(방전), $V\ll U_j^{\,d}\Rightarrow0$, $V=U_j^{\,d}\Rightarrow\tfrac12$
+(전이 중심). $w_j=RT/F=25.7$ mV($25^\circ$C).
+\end{signbox}
+
+\textbf{★폭 $w_j$ 의 이중지위 --- 같은 식, 다른 지위.} 식~\eqref{eq:wbase} 의 \emph{값}은 한 줄이지만, 그것이
+\emph{무엇을 뜻하는지}는 전이의 상분리 여부로 갈린다. \emph{단상($\Omega_j\le2RT$, 연속 고용체)}에서는 $w_j=n_jRT/F$
+가 등온선 폭에 대한 \emph{검증 가능한 평형 예측}이다 --- 평형 단일 입자 dQ/dV 가 logistic
+미분 종(\S\ref{sec:eqpeak} 에서 유도)이고, 그 폭이 곧 $n_jRT/F$ 라($n_j\!\approx\!1$ 이면 $RT/F\!\approx\!25.7$ mV), 측정 폭으로 직접 검증된다. 엄밀히 이 닫힌 폭은 이상 극한($\Omega_j=0$) 기준이고,
+$0<\Omega_j<2RT$ 에서는 평형 등온선의 중심 기울기가 $(1-\Omega_j/2RT)$ 배 좁아진 유효 폭을 주되 그
+값 역시 평형이 결정하므로 첫째 지위(평형 예측)라는 성격은 변하지 않는다(Chapter 2 파생 C 와 동일 취지).
+\emph{두-상($\Omega_j>2RT$, 상분리 plateau)}에서는 평형이 예측하는 것이 폭이 아니라 \emph{날카로운 선}(델타)이므로,
+같은 $w_j$ 가 더는 평형 예측이 아니라 \emph{broadening 이 정하는 현상학적 자유 피팅 폭}이다(\S\ref{sec:broadening}).
+어느 지위인지는 인위적 구분이 아니라 그 전이의 \emph{$\Omega_j$ 값}이 가르며, 같은 식~\eqref{eq:wbase} 가 두 경우 모두에
+쓰인다.
+
+이 지위 구분의 흑연 staging 적용은 이렇다. 표~\ref{tab:staging} 의 네 전이는 \emph{초기값} $\Omega_j$ 가 모두 $2RT(\!\approx\!4958$ J/mol
+$@298.15$ K$)$ 보다 커 출발점에선 전부 둘째(두-상) 쪽에 놓이지만, 이 $\Omega_j$ 는 거친 초기 추정이라 피팅으로
+override 되며, 피팅 후 어느 전이가 어느 지위인지는 그 전이의 \emph{$\Omega_j$ 값}이 가른다 --- 어느 전이가
+연속 고용체이고 어느 둘만 두-상 plateau 인가라는 \emph{전이별 분류의 물리 근거}는 \S\ref{sec:broadening-class} 가
+세우므로, 이 소절에서 전이 실명을 되풀이하지 않는다. 폭 쪽으로는, 네 전이의 폭 출발값(0.020/0.016/0.014/0.012 V)이
+같은 지위의 초기값이고($w$ 폴백 --- $n_j$ 입력을
+배제해야 활성화되며 현재 출발은 $n_j{=}1$: \S\ref{sec:broadening} ②), 단상의 $w$ 는 평형이
+정하고 두-상의 $w$ 는 피팅이 정한다. 두-상 델타가 실측 종으로 펴지는 세 출처도 \S\ref{sec:broadening} 이 닫는다 --- 이 소절은 폭의 \emph{지위}만 세운다.
+
+그림~\ref{fig:logistic} 가 $\xi_\eq$ 와 그 미분(평형 종)을 함께 보이며, \S\ref{sec:eqpeak}(N6)이 이 종이 평형 peak 임을 닫는다.
+
+\begin{figure}[t]
+\centering
+% T6 fig:logistic  (quantitative-density)
+% Dual axis: left = xi_eq logistic (eq:xieq), right = derivative bell w|dxi/dV|->dxi/dV in 1/V
+% (eq:belliden).  T-dependence of width w=n RT/F, n=1, at T=268/298/328 K:
+%   w = 23.094 / 25.680 / 28.265 mV ; peak dxi/dV = 1/(4w) = 10.825 / 9.735 / 8.845 /V ;
+%   FWHM = 3.5255 w = 81.4 / 90.5 / 99.7 mV.  Center tangent slope of xi_eq = 1/(4w).
+\begin{tikzpicture}[x=0.042cm,y=1cm,>=Latex]
+% ---- frame + axes ----
+\draw[->] (-85,0) -- (92,0);
+\node[font=\scriptsize] at (8,-0.60) {$(V-U_j^{\,d})$ [mV]};
+\draw[->] (-85,0) -- (-85,3.25) node[above,font=\scriptsize] {$\xi_\eq$};
+\draw[->] (85,0) -- (85,3.25) node[above,font=\scriptsize] {$\dd\xi/\dd V$ [1/V]};
+% left ticks (xi): 0,0.5,1 -> 0,1.5,3.0
+\foreach \yv/\lab in {0/0, 1.5/0.5, 3.0/1} {\draw (-85,\yv) -- (-89,\yv) node[left,font=\scriptsize] {\lab};}
+% right ticks (dxi/dV): 0,3,6,9 -> 0,0.818,1.636,2.455
+\foreach \yv/\lab in {0.818/3, 1.636/6, 2.455/9} {\draw (85,\yv) -- (89,\yv) node[right,font=\scriptsize] {\lab};}
+% x ticks
+\foreach \xx in {-80,-40,0,40,80} {\draw (\xx,0.04) -- (\xx,-0.04) node[below,font=\scriptsize] {\xx};}
+% ---- derivative bells (right axis, scale 0.27273) ----
+\begin{scope}[yscale=0.27273]
+% 268K solid
+\draw[thick] plot[smooth] coordinates {(-85,1.0386) (-75,1.5595) (-65,2.3099) (-55,3.3530) (-45,4.7267) (-35,6.3945) (-25,8.1841) (-15,9.7592) (-5,10.6992) (0,10.8251) (5,10.6992) (15,9.7592) (25,8.1841) (35,6.3945) (45,4.7267) (55,3.3530) (65,2.3099) (75,1.5595) (85,1.0386)};
+% 298K dashed
+\draw[thick,dashed] plot[smooth] coordinates {(-85,1.3235) (-75,1.8898) (-65,2.6585) (-55,3.6627) (-45,4.9035) (-35,6.3180) (-25,7.7495) (-15,8.9500) (-5,9.6436) (0,9.7353) (5,9.6436) (15,8.9500) (25,7.7495) (35,6.3180) (45,4.9035) (55,3.6627) (65,2.6585) (75,1.8898) (85,1.3235)};
+% 328K dotted
+\draw[thick,dotted] plot[smooth] coordinates {(-85,1.5878) (-75,2.1740) (-65,2.9309) (-55,3.8697) (-45,4.9708) (-35,6.1642) (-25,7.3179) (-15,8.2503) (-5,8.7761) (0,8.8449) (5,8.7761) (15,8.2503) (25,7.3179) (35,6.1642) (45,4.9708) (55,3.8697) (65,2.9309) (75,2.1740) (85,1.5878)};
+% peak dots
+\fill (0,10.8251) circle (2.2pt); \fill (0,9.7353) circle (2.2pt); \fill (0,8.8449) circle (2.2pt);
+% FWHM of 298K bell: half-max 4.8677 /V at (V-U)=+-45.27 mV
+\draw[<->,black!55] (-45.27,4.8677) -- (45.27,4.8677);
+\node[fill=white,inner sep=1pt,font=\scriptsize,black!55] at (0,4.8677) {FWHM $3.53w{=}90.5$ mV (298 K)};
+\end{scope}
+% ---- representative logistic xi_eq (298K, left axis, scale 3.0), gray ----
+\begin{scope}[yscale=3.0]
+\draw[gray] plot[smooth] coordinates {(-85,0.0352) (-70,0.0615) (-55,0.1051) (-40,0.1740) (-25,0.2742) (-10,0.4039) (0,0.5000) (10,0.5961) (25,0.7258) (40,0.8260) (55,0.8949) (70,0.9385) (85,0.9648)};
+% center tangent, slope 1/(4w): (-40,0.1106)->(40,0.8894)
+\draw[densely dotted] (-40,0.1106) -- (40,0.8894);
+\fill[gray] (0,0.5) circle (2.2pt);
+\node[gray,font=\scriptsize,anchor=west] at (52,0.78) {$\xi_\eq$ (298 K)};
+\node[font=\scriptsize,anchor=north west,align=left] at (10,0.47) {tangent slope\\$=1/(4w)$};
+\end{scope}
+% ---- legend (quantitative), above the plot to clear the bells ----
+\node[anchor=south west,font=\scriptsize,align=left] at (-72,3.35)
+  {268 K (solid): $w{=}23.1$ mV, peak $10.83$/V\\
+   298 K (dashed): $w{=}25.7$ mV, peak $9.74$/V\\
+   328 K (dotted): $w{=}28.3$ mV, peak $8.85$/V};
+\end{tikzpicture}
+\caption{평형 진행률 $\xi_\eq$ 와 그 미분 --- 폭 $w_j{=}n_jRT/F$ ($n_j{=}1$)의 온도 의존(좌표는 식 그대로의
+수치 평가). 오른축 종(bell)이 $\dd\xi_\eq/\dd V=\xi_\eq(1-\xi_\eq)/w$(식~\eqref{eq:belliden})로 세 온도
+$T{=}268/298/328$ K 에서 폭 $w{=}23.1/25.7/28.3$ mV, 정점 $1/(4w){=}10.83/9.74/8.85$ /V (검은 점)를 갖는다
+--- 온도가 오르면 종이 낮고 넓어진다(면적 보존). 왼축 회색 $S$-곡선이 대응 logistic(식~\eqref{eq:xieq}, 298 K)이고,
+중심 접선의 기울기가 정확히 $1/(4w)$ 라 $w$ 의 기하적 의미를 준다. FWHM $=2\ln(3{+}2\sqrt2)\,w=3.53\,w=90.5$ mV
+(298 K). 종은 방향 불변(양수)이다.}
+\label{fig:logistic}
+\end{figure}
+
+\subsection{같은 결과의 분포 관점 --- $\xi_\eq$ 는 평형 점유 분포의 여집합}\label{sec:dist}
+앞에서 $\xi_\eq$ 는 두 경로로 나왔다 --- (i) kinetic: 속도식 정지점에서 detailed balance~\eqref{eq:db}(식~\eqref{eq:logisticsolve}),
+(ii) thermo: 자유에너지 최소화 $g_j'(\xi)=sF(V_\eq-U)$(식~\eqref{eq:Veq}). 이 둘은 사실 \emph{하나의 분포}의 두 얼굴이다.
+이 소절은 결과식$\cdot$부호$\cdot$모델은 그대로 두고 $\xi_\eq$ 의 통계역학적 정체만 밝혀,
+\S\ref{sec:lco-electronic} 의 LCO 전자 엔트로피와 같은 언어로 두 곳을 묶는다.
+
+\textbf{(a)(b) --- Part 0 회수.} 단일 자리 분포는 Part 0 이 이미 닫았다 --- grand-canonical
+분배함수 $\Xi_1=1+e^{-\beta\Delta\mu}$(식~\eqref{eq:partfn}, 내부 자유도 $q(T)$ 흡수형)와 평균 점유
+$\langle n\rangle=1/(1+e^{+\beta\Delta\mu})$(식~\eqref{eq:fermifn},
+$\Delta\mu\equiv\tilde\varepsilon-\mu_\mathrm{Li}$)를 받는다. \textbf{(c) 같은 식 --- logistic 과의 일치.}
+전기화학 구동력이 자리 점유 비용을 정한다 --- 전이 중심 기준(자리 자유에너지의 몰 환산 $N_A\tilde\varepsilon=\mu^0$)과
+식~\eqref{eq:eqcond} 의 $\mu_\mathrm{Li}=\mu^0-sF(V-U)$ 를 정의에 넣으면 1몰 기준으로
+$\Delta\mu=+sF(V-U_j)$, 곧 지수는 몰당 형태로
+$\Delta\mu/(RT)=+s(V-U_j)/w_j$($w_j\equiv RT/F$, 이상 극한)다($\beta$ 의 자리당 $k_BT$ 가 몰당 $RT$ 로,
+자리당 전하 $e$ 가 몰당 $F$ 로 한꺼번에 환산 --- 비는 불변). 따라서 식~\eqref{eq:fermifn} 은
+$\langle n\rangle=1/(1+e^{+s(V-U_j)/w_j})=\theta_\eq$ --- $V$ 를 올리면 점유가 내려가는(탈리튬화) 자리 점유
+그 자체이고, 본론의 진행률은 그 여집합 $\xi_\eq=1-\langle n\rangle=1/(1+e^{-s(V-U_j)/w_j})$ 로
+식~\eqref{eq:logisticsolve}$\cdot$\eqref{eq:xieq} 와 일치한다(Chapter 2 의 식 (eq:logistic)과 부호까지 동일).
+곧 \emph{$\xi_\eq$ 는 격자기체 평형 점유 확률 분포의 여집합}이며, 점유 $\theta_\eq$ 와 진행률 $\xi_\eq$ 를
+가르는 한 번의 부호 차이는 방향 부호가 아니라 \emph{같은 분포를 읽는 두 좌표}(여집합 교환
+$\xi=1-\theta$)의 차이다.
+
+\textbf{(d) 두 경로의 통합.} kinetic(정$\cdot$역 플럭스 균형 점유, 식~\eqref{eq:db})$\cdot$thermo 두 경로
+모두 \emph{같은 grand-canonical 평형 점유 분포}(식~\eqref{eq:fermifn})에 도달한다. $\Omega=0$(이상 격자기체)이면 분포가 정확히 Fermi-함수형이고, $\Omega>0$
+이면 평균장 자리 비용 $\Delta\mu$ 에 $-\Omega(1-2\xi)$ 가 더해져(식~\eqref{eq:mu}) 자기무모순 분포가 된다 --- 그
+비단조성이 \S\ref{sec:hys} 의 히스이고, 그 분포가 접히는 점(자유에너지 $g$ 의 변곡, spinodal)이 식~\eqref{eq:spinodal} 이다. 곧 ``점유 분포''
+한 언어가 평형 중심$\cdot$폭$\cdot$히스$\cdot$logistic 을 한 줄에 꿴다.
+
+\begin{keybox}
+\textbf{분포 다리.} $\xi_\eq$ 가 평형 점유 확률 분포(식~\eqref{eq:fermifn})라는 것이 \S\ref{sec:lco-electronic}
+의 LCO \emph{전자} 엔트로피(전도 전자 Fermi--Dirac 분포 $f(E)=1/(1+e^{\beta(E-E_F)})$)와 \emph{동형}이다 ---
+흑연의 \emph{리튬 자리} 점유와 LCO 의 \emph{전자 준위} 점유가 같은 통계로 닫혀, 이 다리가 LCO 전자 엔트로피
+절을 흑연 forward 틀 안으로 끌어들인다.
+\end{keybox}
+
+% 자산: [A-101] [A-102] [A-103] [A-104] [A-105] [A-106] [A-107] [A-108] [A-109] [A-110] [A-111] [A-112] [A-113] [A-114] [A-115] [A-116] [A-117] [A-118] [A-119] [A-120] [A-121] [A-122]
