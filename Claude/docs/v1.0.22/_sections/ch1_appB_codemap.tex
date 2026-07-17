@@ -1,10 +1,10 @@
 % ====================================================================
 % 부록 B — 구현 대응표 (단방향 연계: 구현→식번호)
 % ====================================================================
-\section{구현 대응표}\label{sec:appendix-code}
-문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.19.py})의 주석$\cdot$docstring 이 본 문건의
+\section{곡선 계산 구현 대응표}\label{sec:appendix-code}
+문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.19.py})의 주석$\cdot$docstring 이 본 장의
 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
-대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과
+대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(본 장과
 구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade --- 방향 문자열$\cdot$c-rate 를
 식~\eqref{eq:n0map} 으로 환산)와 \code{dqdv}(물리 부호 $s$ 직접 입력)이며, LCO 서브클래스
 \code{LCOCathodeDQDV} 는 전극 인지 플래그 \code{\_delith\_is\_discharge}$=$\code{False} 로 셀 라벨을
@@ -129,10 +129,10 @@ N2$'$ & \code{func\_U\_j}(동일) \\
 N3$'$ & \code{func\_dU\_hys},\,\code{func\_U\_branch}(LCO 값, 동일 함수) \\
 N5$+$ & \code{func\_dSe\_molar} \\
 N9$'$ & \code{\_effective\_dS\_rxn} \\
-$\bar x$ 진입점 & \code{solve\_U\_oc}(Chapter 2 전하 보존 음함수의 유일근 솔버)$\cdot$
+$\bar x$ 진입점 & \code{solve\_U\_oc}(Part T 전하 보존 음함수~\eqref{eq:implicit} 의 유일근 솔버)$\cdot$
 \code{entropy\_coefficient\_x}$\cdot$\code{reversible\_heat\_x} --- 조성 $\bar x$ 에서
 $U_\mathrm{oc}\cdot\partial U_\mathrm{oc}/\partial T\cdot\dot Q_\mathrm{rev}$ 를 직접 산출(v1.0.19
-additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 Chapter 2 부록 B) \\
+additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 열특성 부록 D) \\
 \bottomrule
 \end{longtable}
 \endgroup

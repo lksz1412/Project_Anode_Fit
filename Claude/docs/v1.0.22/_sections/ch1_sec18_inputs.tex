@@ -5,7 +5,7 @@
 사용자 목표는 이 모든 인자를 입력으로 노출해 측정 데이터에 피팅하는 것이다. 곡선식의 모든 물리량이 사용자
 조정 가능한 입력이며, 내부에 고정된 상수는 없다(전부 기본값$+$override). 전 조정 인자와 기본값의 상세
 목록은 부록~\ref{sec:appendix-code}(표~\ref{tab:inputs})에 정리한다 --- 어느 것을 고정하고 어느 것을
-피팅할지는 사용자가 데이터로 정한다(본 문건은 스코프를 정하지 않는다).
+피팅할지는 사용자가 데이터로 정한다(본 장은 스코프를 정하지 않는다).
 
 ``고정$\cdot$피팅 스코프''는 자유롭게 잡을 수 있다 --- 예컨대
 $\Delta H_\rxn$$\cdot$$\Delta S_\rxn$$\cdot$$Q$$\cdot$$w$ 를 풀고 $\Omega$$\cdot$$\Delta H_a$$\cdot$$|\dd V/\dd q|_{q_a}$
@@ -13,7 +13,7 @@ $\Delta H_\rxn$$\cdot$$\Delta S_\rxn$$\cdot$$Q$$\cdot$$w$ 를 풀고 $\Omega$$\c
 \emph{출발점}이므로 소폭 자유도를 권한다.
 
 \begin{keybox}
-\textbf{이 문건만으로 한 곡선 재현(6단계).}
+\textbf{본 장만으로 한 곡선 재현(6단계).}
 (1) 표~\ref{tab:staging} 의 4 전이 파라미터 집합을 구성.
 (2) 실험조건 $\sigma_d$, $|I|=$ c-rate$\,\cdot Q_\cell$, $T$, $R_n$ 설정 → 분극 $V_n$(\eqref{eq:n0map}\eqref{eq:vn}); 이후 평가는 $V_n$ 에서 점별.
 (3) 전이마다 $U_j(T)$(\eqref{eq:Uj}) → 분기 중심 $U_j^{\,d}$(\eqref{eq:center}) → 폭 $w_j$(\eqref{eq:wbase}) → 평형 진행률 $\xi_\eq$(\eqref{eq:xieq}).
@@ -32,12 +32,12 @@ LCO 전극은 셀 라벨을 탈리튬화 부호로 자동 환산하며(식~\eqre
 \begin{table}[t]
 \centering
 \renewcommand{\arraystretch}{1.3}
-\caption{노드 $\leftrightarrow$ 식 매핑(전체 진행). 본 문건 절 순서 $=$ 이 노드 순서.
+\caption{노드 $\leftrightarrow$ 식 매핑(전체 진행). 본 장 절 순서 $=$ 이 노드 순서.
 구현 식별자 대응은 부록~\ref{sec:appendix-code}(표~\ref{tab:nodecode}).}
 \label{tab:nodemap}
 \begin{tabular}{l l l}
 \toprule
-노드 & 물리식 & 본 문건 식 \\
+노드 & 물리식 & 본 장 식 \\
 \midrule
 N0 & $\sigma_d$, $|I|=$ c-rate$\,\cdot Q_\cell$ & \eqref{eq:n0map} \\
 N1 & $V_n=V_\app-\sigma_d|I|R_n$ & \eqref{eq:vn} \\
