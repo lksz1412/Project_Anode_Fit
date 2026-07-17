@@ -1,0 +1,78 @@
+% ── [초안 q3o2] v1.0.21 Q3 — Eyring TST 분배함수 유도 (경쟁 초안). 문서 원본 무수정.
+%    형식·검산·provenance 상세: NOTE_q3o2.md. 신규 라벨 eq:tst-nu·-rate·-arr.
+% A. §5.1 삽입 배경 박스 — 삽입점: ch1_sec05_width.tex line15 \cite{eyring1935} 문장 직후
+%    (다음 "구동력 $\mathcal A_j=sF(V_n-U_j)$..." 문장 앞).
+\begin{bgbox}
+\textbf{TST 분배함수와 활성화 엔트로피 ---} 방금 곱한 시도 빈도 $k_0=k_BT/h$ 는 임의로 고른 상수가 아니라
+장벽 통과의 보편 빈도이고, 그것과 활성화 엔트로피 $\Delta S_a$ 의 미시 기원은 전이상태 이론(transition state
+theory, TST)의 분배함수로 자족적으로 닫힌다\cite{eyring1935,glasstone1941,laidlerking1983}. 이 배경은 본문의
+정지점$\to$logistic 흐름(\S\ref{sec:width-logistic})과 독립이며, 결과식~\eqref{eq:bv} 를 바꾸지 않는다.
+
+\textbf{(a) 출발 --- 두 전제.} TST 는 두 가정 위에 선다: (i) 반응물과 안장점의 활성복합체(activated complex)가
+준평형을 이루고, (ii) 안장점을 한 번 넘은 궤적은 되돌아오지 않는다(재교차 무시, 투과계수 $1$).
+
+\textbf{(b) 연산 --- 반응좌표 1차원 모드의 분리.} 안장점에서 반응좌표 방향의 한 모드를 떼면, 그 모드는 길이
+$\delta$ 구간을 지나는 1차원 병진이라 병진 분배함수 $q_\parallel=(2\pi m^\ast k_BT)^{1/2}\delta/h$ 를 갖는다($m^\ast$
+는 반응좌표 유효 질량). 이 구간을 넘는 빈도는 평균 통과 속도 $\langle v\rangle=(k_BT/2\pi m^\ast)^{1/2}$ 를 구간
+길이로 나눈 $\langle v\rangle/\delta$ 이고, 통과 빈도와 병진 분배함수를 곱하면
+\begin{equation}
+\frac{\langle v\rangle}{\delta}\,q_\parallel
+=\frac{(k_BT/2\pi m^\ast)^{1/2}}{\delta}\cdot\frac{(2\pi m^\ast k_BT)^{1/2}\,\delta}{h}
+=\frac{k_BT}{h}
+\label{eq:tst-nu}
+\end{equation}
+--- 구간 길이 $\delta$ 와 유효 질량 $m^\ast$ 가 한꺼번에 상쇄되어, 통과 빈도가 온도만의 보편 인자 $k_BT/h$ 로
+남는다. 곧 $k_0$ 는 특정 진동수가 아니라 장벽 통과의 보편 빈도다.
+
+\textbf{(c) 중간식 --- 나머지 자유도의 분배함수 비.} 반응좌표를 뗀 활성복합체의 (reduced) 분배함수 $q^\ddagger$
+와 반응물 분배함수 $q_R$, 두 바닥의 에너지차 $\Delta E_0$ 로, 활성복합체 준평형 농도에 식~\eqref{eq:tst-nu} 의
+통과 빈도를 곱하면 자리당 속도가\cite{mcquarrie1976}
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^\ddagger}{q_R}\,e^{-\Delta E_0/RT}
+=\frac{k_BT}{h}\,e^{-\Delta G_a/RT},
+\qquad
+\Delta G_a\equiv\Delta E_0-RT\ln\!\frac{q^\ddagger}{q_R}
+\label{eq:tst-rate}
+\end{equation}
+가 된다(둘째 등호는 $q^\ddagger/q_R=e^{+\ln(q^\ddagger/q_R)}$ 를 지수로 합친 것; 몰당 기준이라 $k_B\!\to\!R$·
+$\Delta E_0$ 는 몰당 에너지). 여기 $\Delta G_a$ 가 본문 (a) 의 활성화 자유에너지 $\Delta G_a$(관례 표기
+$\Delta G^\ddagger$) 그 자체다.
+
+\textbf{(d) 박스 --- Eyring 형과 활성화 엔트로피.} $\Delta G_a=\Delta H_a-T\Delta S_a$ 로 갈라 적으면
+식~\eqref{eq:tst-rate} 는
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},
+\qquad
+\Delta S_a=R\ln\!\frac{q^\ddagger}{q_R}\ \ (\text{반응좌표 제외 reduced 비})\;.}
+\label{eq:tst-arr}
+\end{equation}
+곧 활성화 엔트로피는 활성복합체와 반응물의 (reduced) 분배함수 비의 로그다 --- 활성복합체가 반응물보다
+자유도가 조이면 $q^\ddagger<q_R$ 라 $\Delta S_a<0$($e^{\Delta S_a/R}<1$, 속도 억제), 풀리면 $q^\ddagger>q_R$ 라
+$\Delta S_a>0$(속도 증가)의 부호 읽기가 곧바로 나온다.
+\begin{verifybox}
+검산 --- (i) 차원: $[k_BT/h]=\mathrm J/(\mathrm{J\,s})=\mathrm s^{-1}$(빈도)이고 $q^\ddagger/q_R$·$\Delta S_a/R$·
+$\Delta H_a/RT$ 가 모두 무차원이라 $k$ 는 속도 차원이다(\S\ref{sec:lag} 완화율 $k_j$, 식~\eqref{eq:kuniv} 와
+정합). (ii) 원형 회수: $q^\ddagger=q_R$(활성복합체가 반응물과 같은 내부 자유도)면 $\Delta S_a=0$·$\Delta G_a=\Delta H_a$
+라 $k=(k_BT/h)e^{-\Delta H_a/RT}$ 로, 본문 (a) 의 Eyring 형 $k\simeq k_0e^{-\Delta G_a/RT}$($k_0{=}k_BT/h$)을
+그대로 회수한다 --- \S\ref{sec:sum} 의 기본값 $\Delta S_a{=}0$ 이 바로 이 경우다. (iii) 부호: 위 (d) 대로
+$q^\ddagger\lessgtr q_R\Rightarrow\Delta S_a\lessgtr0$. \emph{구분 가드} --- 이 $\Delta S_a$ 와 \S\ref{sec:center}
+의 반응 엔트로피 $\Delta S_\rxn$ 이 공유하는 것은 ``엔트로피 $=$ 분배함수 로그''라는 언어뿐이고, 여기 $\Delta S_a$
+는 안장점(활성복합체) 기준의 \emph{활성화}량(속도), $\Delta S_\rxn$ 은 생성물 기준의 \emph{반응}량(평형)이다
+(표~\ref{tab:notation} 이 둘을 분리 등재).
+\end{verifybox}
+
+\textbf{Part 0 언어와의 접속.} 식~\eqref{eq:tst-arr} 의 $\Delta S_a$ 는 Part 0 자리 내부 자유도
+$q(T)$(식~\eqref{eq:partfn})의 자리당 엔트로피 $s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})
+와 \emph{같은 언어}다 --- 엄밀한 열역학 엔트로피 $\Delta S_a=-\partial\Delta G_a/\partial T
+=R\,\partial[T\ln(q^\ddagger/q_R)]/\partial T$ 가 식~\eqref{eq:sm-sint} 의 연산자 $\partial(T\ln q)/\partial T$ 를 활성화
+비 $q^\ddagger/q_R$ 에 그대로 적용한 꼴이고($k_B\!\to\!R$), 식~\eqref{eq:tst-arr} 의 $R\ln(q^\ddagger/q_R)$ 는 그
+선행 항(비의 잔여 $T$-의존을 $\Delta H_a$ 로 넘긴 표준 읽기)이다. \S\ref{sec:lag} 이 이 $\Delta S_a$ 를 지연 길이
+$L_q$ 로 \emph{쓰는} 자리라면(식~\eqref{eq:Lqfull}), 이 박스는 그 \emph{기원}이다. 한 가지 한정 --- 위 $k_BT/h$
+도출은 반응좌표 모드를 자유 1차원 병진으로 본 표준 TST 이고, 변분 TST·터널링 보정은 범위 밖이다.
+\end{bgbox}
+
+% B. §8 후방 연결 1문장 — 삽입점: ch1_sec08_lag.tex §8.4 (sec:lag-LV) 식~\eqref{eq:Lqfull}
+%    (line103) 직후, $\Delta S_a$ 가 $L_q$ 에 처음 실리는 갈라 적기 자리.
+이렇게 갈라 적은 활성화 엔트로피 $\Delta S_{a,j}$ 의 미시 정체는 활성복합체와 반응물의 (반응좌표 제외)
+분배함수 비의 로그 $R\ln(q^\ddagger/q_R)$ 이며(\S\ref{sec:width-logistic} 배경 박스, 식~\eqref{eq:tst-arr}),
+기본값 $\Delta S_{a,j}{=}0$ 은 그 비가 $1$ --- 활성복합체가 반응물과 같은 내부 자유도를 갖는 --- 경우다.

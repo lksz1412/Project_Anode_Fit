@@ -1,0 +1,111 @@
+% ====================================================================
+% draft_q3f1 — v1.0.21 Q3: Eyring TST 분배함수 유도 배경 (경쟁 초안, 창 q3f1)
+% --------------------------------------------------------------------
+% 반영 대상: v1.0.21 (본 파일은 초안 — 문서 원본 무수정)
+% 삽입 지점 3곳 + 서지 2건:
+%   [A-1] ch1_sec05_width.tex §5.1 (c) 문단 말미(현행 42행 "...결과 박스를 닫는다." 뒤)
+%         — 본문 다리 1문장(orphan 방지, rubric A3)
+%   [A-2] 같은 파일, [A-1] 직후·fig:barrier float 코드(현행 44행) 앞 — bgbox 1개(자족 블록)
+%   [B]   ch1_sec08_lag.tex §8.4 eq:Lqmid2(현행 93~96행) 직후 — 후방 연결 1문장
+%   [C]   ch1_bib.tex — eyring1935(현행 8행) 직후 \bibitem 2건, 헤더 카운트 36종→38종
+% 기존 라벨·식번호·수치 불변. 신규 라벨: eq:tst-flux / eq:tst-rate / eq:tst-entropy (전 문건 유일 확인).
+% 인용 4키 전건 원장 V1 등재: eyring1935·glasstone1941·laidlerking1983·mcquarrie1976.
+% ====================================================================
+
+% ---------- [A-1] §5.1 (c) 문단 말미에 잇는 다리 1문장 ----------
+남은 것은 출발점 (a) 가 빌려 쓴 Eyring 인자의 신원이다 --- $k_0=k_BT/h$ 가 왜 조정 가능한 상수가 아니라
+보편 빈도인지, 그리고 \S\ref{sec:lag} 가 $\Delta H_a-T\Delta S_a$ 로 가를 $\Delta G_a$ 에서 활성화 엔트로피
+$\Delta S_a$ 가 미시적으로 무엇인지는, 아래 배경 박스가 전이상태 이론의 분배함수로 자족적으로 정리한다.
+
+% ---------- [A-2] 배경 박스 (자족 블록 — 위치 이동 시에도 성립) ----------
+\begin{bgbox}
+\textbf{전이상태 이론의 분배함수와 활성화 엔트로피 ---} 본문의 Eyring 속도식이 빌려 쓰는 두 양 --- 시도
+빈도 $k_0=k_BT/h$ 와, \S\ref{sec:lag} 가 $\Delta H_a-T\Delta S_a$ 로 가르는 활성화 자유에너지 $\Delta G_a$
+--- 는 \emph{전이상태 이론}(transition-state theory)의 분배함수 유도에서 함께 나온다
+\cite{eyring1935,glasstone1941}(이론 성립사는 \cite{laidlerking1983}, 통계역학 교과서 전개는
+\cite{mcquarrie1976}). 이 박스는 그 유도를 자족적으로 정리해, 두 양을 Part 0 의 자리 내부 분배함수
+$q(T)$(식~\eqref{eq:partfn}) 와 같은 언어에 놓는다.
+
+\textbf{(a) 출발 --- 두 전제.} 반응 좌표 위의 두 골과 그 사이 장벽 꼭대기(그림~\ref{fig:barrier} 의
+transition state --- 다차원 지형에서는 안장점(saddle point)이다)를 놓고, 이론은 두 전제로 선다.
+\emph{전제 1(안장점 준평형)}: 장벽 통과가 골 안의 열화(thermalization)보다 훨씬 느려, 골의 반응물과
+꼭대기 능선 위의 \emph{활성복합체}(activated complex)가 Boltzmann 인구비를 유지한다. \emph{전제
+2(재교차 무시)}: 능선을 정방향으로 지난 궤적은 골로 되돌아오지 않는다 --- 통과 계수를 $1$ 로 두는
+이상화이고, 재교차 보정$\cdot$터널링$\cdot$변분 확장은 본 문건 범위 밖이다.
+
+\textbf{(b) 연산 --- 반응 좌표 모드의 분리.} 안장점에서 반응 좌표 방향은 복원력이 없는(그 방향 곡률 $0$)
+자유 병진이므로, 능선 위 길이 $\delta$ 의 얇은 구간을 활성복합체의 거처로 잡아 그 방향 자유도를 나머지에서
+분리한다. 구간의 1 차원 병진 분배함수와 정방향 평균 통과 속도는 Maxwell 분포의 두 표준 적분이다:
+\begin{equation}
+q_\delta=\frac{(2\pi m^{*}k_BT)^{1/2}\,\delta}{h},\qquad
+\langle v^{+}\rangle=\Big(\frac{k_BT}{2\pi m^{*}}\Big)^{1/2}
+\label{eq:tst-flux}
+\end{equation}
+--- $m^{*}$ 는 반응 좌표 방향의 유효 질량, $\delta$ 는 구간 길이로, 둘 다 이 박스의 국소 보조량이며 바로
+아래에서 상쇄되어 결과에 남지 않는다.
+
+\textbf{(c) 중간식 --- 통과 빈도의 조립과 $\delta\cdot m^{*}$ 의 상쇄.} 전제 1 에 의해 활성복합체의 인구는
+분배함수 비가 정한다 --- 반응물 골의 내부 분배함수 $q_R$, 안장점에서 반응 좌표 모드를 \emph{뗀} 나머지
+자유도의 분배함수 $q^\ddagger$, 골 바닥과 안장점 바닥의 몰당 에너지 차 $\Delta E_0$ 로 구간에 있을 확률이
+$q_\delta\,(q^\ddagger/q_R)\,e^{-\Delta E_0/RT}$ 이고, 구간을 정방향으로 비우는 빈도가
+$\langle v^{+}\rangle/\delta$ 이므로, 자리당 통과 빈도는 둘의 곱이다:
+\begin{equation}
+k=\frac{\langle v^{+}\rangle}{\delta}\;q_\delta\;\frac{q^\ddagger}{q_R}\,e^{-\Delta E_0/RT}
+=\frac{k_BT}{h}\,\frac{q^\ddagger}{q_R}\,e^{-\Delta E_0/RT}
+\label{eq:tst-rate}
+\end{equation}
+--- 둘째 등호는 $\big[(k_BT/2\pi m^{*})\,(2\pi m^{*}k_BT)\big]^{1/2}=k_BT$ 의 상쇄로, $\delta$ 와 $m^{*}$
+가 결과에서 완전히 사라진다. 곧 $k_0=k_BT/h$ 는 임의의 시도 상수가 아니라 어느 장벽에서나 같은 \emph{보편
+통과 빈도}($298$ K 에서 $6.21\times10^{12}$~s$^{-1}$)이고, 반응계의 개성은 전부 분배함수 비와 $\Delta E_0$
+쪽으로 넘어간다. 본문의 꼴은 $\Delta G_a\equiv\Delta E_0-RT\ln(q^\ddagger/q_R)$ 로 묶으면 회수된다:
+$k=(k_BT/h)\,e^{-\Delta G_a/RT}$.
+
+\textbf{(d) 박스 --- 갈라 적기와 $\Delta S_a$ 의 정체.} 위 $\Delta G_a$ 를 \S\ref{sec:lag-LV} 와 같이
+$\Delta H_a-T\Delta S_a$ 로 가르면
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},\qquad
+\Delta S_a=R\ln\frac{q^\ddagger}{q_R}\;}
+\label{eq:tst-entropy}
+\end{equation}
+--- \emph{활성화 엔트로피는 활성복합체와 반응물 골의 (반응 좌표를 뗀) 분배함수 비의 로그}다. 엄밀히는
+$\Delta S_a=-\partial\Delta G_a/\partial T=R\,\partial[T\ln(q^\ddagger/q_R)]/\partial T$ 라 비의 온도
+의존이 남으면 그 몫이 $\Delta H_a=\Delta E_0+RT^2\,\partial\ln(q^\ddagger/q_R)/\partial T$ 로
+재배분되는데, 고전 극한에서는 조화 모드의 $q=k_BT/(\hbar\omega)$ 로 비가 진동수 비
+$\prod_i\omega_{R,i}/\omega^\ddagger_i$ 가 되어 온도에서 풀리므로 식~\eqref{eq:tst-entropy} 의 둘째 식이
+그대로 닫히고 $\Delta H_a=\Delta E_0$ 다.
+
+\textbf{검산과 Part 0 접속 ---} (i) 차원: $k_BT/h$ 가 [J]/[J\,s] $=$ [1/s] 의 빈도라 $k$ 는
+식~\eqref{eq:bv} 의 자리당 속도와 같은 차원이고, $q^\ddagger/q_R$ 와 두 지수는 무차원이다(자리당
+$k_B\ln$ 이 몰당 $R\ln$ 으로 가는 환산은 \S\ref{sec:dist} 와 같다 --- 비는 불변). (ii) 원형 회수:
+$q^\ddagger=q_R$ 이면 $\Delta S_a=0$$\cdot$$k=(k_BT/h)e^{-\Delta H_a/RT}$ 의 Arrhenius 꼴로 되돌아온다
+--- 본 문건 출발값 $\Delta S_a=0$(\S\ref{sec:sum})은 곧 ``능선의 내부 자유도가 골과 같다''는 미시
+진술이다. (iii) 부호 읽기: 활성복합체가 골보다 \emph{조이면}(진동수 상승$\cdot$자유도 동결)
+$q^\ddagger<q_R$ 라 $\Delta S_a<0$ --- prefactor 가 $k_BT/h$ 아래로 준다; \emph{풀리면} $q^\ddagger>q_R$
+라 $\Delta S_a>0$ 으로 는다. (iv) Part 0 접속: 여기의 $q_R$ 는 점유 자리 우물의 내부 상태합
+$q(T)$(식~\eqref{eq:partfn}) 바로 그 양이고 $q^\ddagger$ 는 같은 상태합을 능선 배치에서 취한 것이라,
+$\Delta S_a=R\,\partial[T\ln(q^\ddagger/q_R)]/\partial T$ 는 자리당 엔트로피 식~\eqref{eq:sm-sint}
+$s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$ 를 골과 능선 두 배치의 \emph{차}로 읽은 것이다 ---
+평형 사슬(\S\ref{sec:sm-site})의 $q(T)$ 가 중심의 온도 기울기를 주듯, 같은 $q(T)$ 언어가 여기서는
+동역학 prefactor 를 주며, 영점 에너지의 귀속 규약 차가 온도 무관 상수라 엔트로피에 닿지 않는 것도 그
+소절의 규약 주의 그대로다. 가드 둘 --- 이 $q_R\cdot q^\ddagger$ 는 N6--N9 의 용량 좌표 $q=Q/Q_\cell$
+와 무관한 상태합이고(식~\eqref{eq:partfn} 의 각주 구분과 동일), $\Delta S_a$(활성화$\cdot$속도)는
+$\dd U_j/\dd T$ 를 정하는 반응 엔트로피 $\Delta S_{\rxn,j}$(평형)와 다른 양이다(표~\ref{tab:notation}
+의 구분). 이 박스는 구동력이 없는($\mathcal A_j=0$) 장벽 인자 $k_0e^{-\Delta G_a/RT}$ 의 기원만 세우고,
+$\mathcal A_j$ 가 장벽을 $\chi\cdot(1-\chi)$ 로 가르는 본문 식~\eqref{eq:bv} 이후의 전개는 그대로다.
+\end{bgbox}
+
+% ---------- [B] §8.4 후방 연결 1문장 (eq:Lqmid2 직후 삽입) ----------
+여기 가른 $\Delta S_{a,j}$ 의 미시 정체 --- 활성복합체와 반응물 골의 (반응 좌표를 뗀) 분배함수 비의 로그
+$R\ln(q^\ddagger/q_R)$ --- 는 \S\ref{sec:width-logistic} 의 배경 박스(식~\eqref{eq:tst-entropy})가
+세웠고, 이 절은 그 값을 유효 장벽$\cdot$구동력과 함께 forward 지수에 싣는 사용처다.
+
+% ---------- [C] ch1_bib.tex 추가 서지 2건 (eyring1935 직후; 헤더 "36종"→"38종" 동시 갱신) ----------
+% \bibitem{glasstone1941} S. Glasstone, K. J. Laidler, and H. Eyring, \emph{The Theory of Rate Processes:
+%   The Kinetics of Chemical Reactions, Viscosity, Diffusion and Electrochemical Phenomena}, McGraw--Hill,
+%   New York (1941) --- TST 분배함수 형식($k_BT/h$$\cdot$$q^\ddagger/q$)의 고전 단행본.
+% \bibitem{laidlerking1983} K. J. Laidler and M. C. King, ``The Development of Transition-State Theory,''
+%   \emph{J. Phys. Chem.} \textbf{87}(15), 2657--2664 (1983). DOI: 10.1021/j100238a002. [TST 성립사 리뷰
+%   --- tier B.]
+
+% 자산(v1.0.21 반영 시 채번): [V21-*** TST 분배함수 배경 bgbox: k_BT/h 보편 빈도 유도(eq:tst-flux·eq:tst-rate)]
+% [V21-*** ΔS_a=R ln(q‡/q_R) 미시 식별과 eq:sm-sint 차분 접속(eq:tst-entropy)] [V21-*** §8.4 후방 연결 다리]

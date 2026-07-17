@@ -1,0 +1,110 @@
+% ====================================================================
+% [경쟁 초안 q2o2 — v1.0.21 Q2] 다클래스 lattice gas 와 전하 보존 반전
+% 배치: ch1_sec02b_part0.tex 안, sec:sm-electro(§2.5) 뒤 · sec:sm-macro(§2.6) 앞.
+% 신규 라벨(기존 라벨·식·수치 불변): sec:sm-multiclass · eq:sm-mc-{factor,navg,charge,fluc}.
+% 인용: hill1960 · mcquarrie1976 (원장 V1). 규약: Ξ · β · θ/ξ · s=+1. (B)·(C) 문안은 말미 주석.
+% ====================================================================
+\subsection{다클래스 lattice gas --- 전하 보존식의 대정준 반전}\label{sec:sm-multiclass}
+앞 소절이 단일 전이의 평형 점유 logistic~\eqref{eq:sm-logistic} 를 $\mu\leftrightarrow V$ 결선으로 닫았다. 실제
+전극은 전이 하나가 아니라 staging 이 나누는 여러 전이를 동시에 갖는다 --- 이 소절은 \S\ref{sec:sm-lattice} 의
+단일 클래스 인수분해를 그 여러 전이로 한 줄 넓혀, 본론과 Chapter 2 가 중심식으로 쓰는 전하 보존 음함수가 이
+대정준 구조의 \emph{제약 반전}(constrained inversion)임을 보인다. 도착점 $\mu(\theta)$ 는 \S\ref{sec:sm-macro}
+의 거시 열역학이 받는다.
+
+\textbf{(a) 출발 --- 단일 클래스 회수와 ``전이 $=$ 자리 클래스'' 프레이밍.} \S\ref{sec:sm-lattice} 는 동등$\cdot$독립한
+$M$ 자리에 대해 대정준 분배함수의 인수분해 $\Xi_M=\Xi_1^{\,M}$(식~\eqref{eq:sm-factor})과 평균 입자수
+$\langle N\rangle=M\theta$ 를 닫았다. 실 전극의 전이 $j$ 는 저마다 중심 $U_j$$\cdot$유효 자리 자유에너지
+$\tilde\varepsilon_j$ 를 갖는 \emph{자리 클래스}(site class)이고, 클래스 $j$ 는 동등한 자리 $M_j$ 개를 가진다.
+곧 ``전이 $j$ $=$ 자리 클래스 $M_j$''로 읽으면, 단일 클래스 결과를 전이 지표 $j=1,\dots,N_p$($N_p$ $=$ 전이
+수)의 클래스 합으로 넓히는 문제가 된다.
+
+\textbf{(b) 연산 --- 클래스 곱으로의 인수분해.} 자리가 클래스 사이에서도 독립(\S\ref{sec:sm-site} 가정 2 의
+클래스 간 확장)이면, 대정준 합이 클래스별 곱으로 갈라지고 각 인수는 단일 자리 결과~\eqref{eq:partfn} 그대로다:
+\begin{equation}
+\Xi=\prod_{j=1}^{N_p}\Xi_{1,j}^{\,M_j},
+\qquad
+\ln\Xi=\sum_{j=1}^{N_p}M_j\ln\Xi_{1,j},
+\qquad
+\Xi_{1,j}=1+e^{-\beta(\tilde\varepsilon_j-\mu)}
+\label{eq:sm-mc-factor}
+\end{equation}
+--- 이상 극한의 $\Xi_{1,j}$ 를 적었다. 클래스 내부 상호작용 $\Omega_j$(\S\ref{sec:sm-mf})가 있으면 $\Xi_{1,j}$
+는 그 $\Omega_j$ 를 \emph{자기무모순 평균장}(self-consistent mean field)으로만 실은 단일 자리 분배함수이며,
+평균장 근사가 클래스 내 이웃 점유를 평균 $\theta_j$ 로 대체하므로 곱 꼴은 보존된다. 식~\eqref{eq:sm-mc-factor}
+은 \S\ref{sec:sm-lattice} 의 $\Xi_M=\Xi_1^{\,M}$ 을 다클래스로 넓힌 표준 대정준
+인수분해다~\cite{hill1960,mcquarrie1976}. 이 곱은 클래스 간 자리 독립을 전제하므로, 한 클래스의 채움이 이웃
+전이의 문턱을 옮기는 클래스 간 상관은 이 근사에서 빠진다.
+
+\textbf{(c) 중간식 --- 용량 가중 점유 합.} 식~\eqref{eq:sm-gc} 의 셋째 식
+$\langle N\rangle=k_BT\,\partial\ln\Xi/\partial\mu$ 를 식~\eqref{eq:sm-mc-factor} 에 적용하면, 평균 입자수가
+클래스별 점유의 자리수 가중 합으로 닫힌다:
+\begin{equation}
+\langle N\rangle=k_BT\,\frac{\partial\ln\Xi}{\partial\mu}
+=\sum_{j=1}^{N_p}M_j\,\theta_j(\mu),
+\qquad
+\theta_j=\frac{1}{1+e^{+\beta(\tilde\varepsilon_j-\mu)}}
+\label{eq:sm-mc-navg}
+\end{equation}
+--- 각 $\theta_j$ 는 클래스 $j$ 의 평형 점유로, 단일 자리 박스~\eqref{eq:fermifn} 를 클래스마다 복제한 것이다.
+
+\textbf{(d) 박스 --- 전하 보존 음함수의 식별.} 진행률 $\xi_j=1-\theta_j$(탈리튬화 $=$ 자리 공위)와 용량
+$Q_j\propto M_j$ 로 읽으면, 채운 자리에서 빠져나온 Li 의 총 전하가 $\sum_jQ_j(1-\theta_j)=\sum_jQ_j\xi_j$ 이고,
+이를 총 용량 $Q=\sum_jQ_j$ 로 나눈 것이 추출 전하 분율 $\bar x$ 다. $\mu$ 를 측정 전위 $V$ 로 옮기는
+결선(식~\eqref{eq:sm-eqcond}, $s=+1$)으로 $\theta_j$ 를 전위의 함수로 읽고, 제약을 만족하는 전위를 $U_\oc$ 로
+두면
+\begin{equation}
+\boxed{\;\sum_{j=1}^{N_p}Q_j\,\xi_{\eq,j}(U_\oc,T)=Q\,\bar x,
+\qquad \xi_{\eq,j}=1-\theta_j,\qquad Q_j\propto M_j\;.}
+\label{eq:sm-mc-charge}
+\end{equation}
+이 식별이 두 곳의 중심식에 통계역학적 기원을 준다 --- Chapter 2 의 전하 보존 음함수(그 문건 식
+(eq:implicit) $\sum_jQ_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$, 글자까지 같다)와 \S\ref{sec:eqpeak}(N6)이 관측
+$\dd Q/\dd V$ 의 출발로 세우는 전하 보존식이 모두 다클래스 대정준 평균 입자수~\eqref{eq:sm-mc-navg} 의 제약
+반전이다. 중심식은 곡선맞춤이 아니라 앙상블 평균 $\langle N\rangle(\mu)$ 를 고정 $\bar x$ 에서 뒤집은
+것이다(대정준 $\mu$ 독립 $\to$ 정준 $\langle N\rangle$ 고정의 Legendre-켤레 반전).
+\begin{verifybox}
+① \emph{유일근의 통계역학 증명.} 식~\eqref{eq:sm-mc-navg} 를 $\mu$ 로 미분하면 각 $\theta_j$ 가 요동
+항등식 $\partial\theta_j/\partial(\beta\mu)=\theta_j(1-\theta_j)$(식~\eqref{eq:sm-flucres})를 따르므로
+\begin{equation}
+\frac{\partial\langle N\rangle}{\partial\mu}
+=\beta\sum_{j=1}^{N_p}M_j\,\theta_j(1-\theta_j)=\beta\,\mathrm{var}(N)>0
+\label{eq:sm-mc-fluc}
+\end{equation}
+--- 입자수 요동의 양성이 $\langle N\rangle(\mu)$ 의 단조 증가를 보증하고, 단조 함수의 역함수는 유일하다.
+따라서 고정 $\bar x$($=$ 고정 $\langle N\rangle$)에 대응하는 $\mu$, 곧 $U_\oc$ 가 유일하다 --- 이것이 Chapter 2
+부록 B 의 유일근 솔버가 푸는 반전이며, 식~\eqref{eq:sm-mc-fluc} 은 단일 자리 요동--응답~\eqref{eq:sm-flucres}
+의 거시판(모든 클래스 자리의 요동 합)이다.
+② \emph{확장 off 회수.} $N_p=1$ 에서 식~\eqref{eq:sm-mc-navg} 는 $\langle N\rangle=M\theta$ 로,
+식~\eqref{eq:sm-mc-factor} 는 $\Xi=\Xi_1^{\,M}$(식~\eqref{eq:sm-factor})으로 정확히 회수된다 --- 확장이
+\S\ref{sec:sm-lattice} 를 덮어쓰지 않는다.
+③ \emph{전위 읽기.} $\mu\leftrightarrow V$ 결선(식~\eqref{eq:sm-eqcond}, $s=+1$)이 $\mu$ 를 $V$ 의
+아핀(단조) 함수로 놓으므로, $\mu$ 축의 유일근이 곧 $U_\oc$ 축의 유일근이다 --- 반전을 전위 좌표에서 그대로
+읽는다.
+\end{verifybox}
+
+다클래스 반전이 준 유일 $U_\oc$ 를 손에 쥐었으므로, 다음 소절은 같은 $\mu$ 를 거시 $G\equiv H-TS$ 언어로
+옮겨 부분몰 섞임 엔트로피와 Nernst 식으로 마감한다.
+
+% 자산(v1.0.21 신규): [V21-Q2-001 다클래스 대정준 인수분해 eq:sm-mc-factor]
+%   [V21-Q2-002 용량가중 평균입자수 eq:sm-mc-navg] [V21-Q2-003 전하보존 반전 식별 eq:sm-mc-charge]
+%   [V21-Q2-004 요동→유일근 payoff eq:sm-mc-fluc]
+% ====================================================================
+% (B) Part 0 사다리 keybox 추가 1항 — ch1_sec02b_part0.tex keybox{Part 0 사다리}
+%     현행 말미 "... logistic~\eqref{eq:sm-logistic}·Nernst~\eqref{eq:sm-nernst}." 뒤에 이어 붙임:
+%
+%   $\to$ 다클래스 전하 보존 반전~\eqref{eq:sm-mc-charge}($\langle N\rangle{=}\sum_jM_j\theta_j$ 의
+%   유일근 $U_\oc$). 중심식이 이 사다리의 대정준 평균 입자수 반전에서 온다.
+% ====================================================================
+
+% ====================================================================
+% (C) 연결 참조 1문장씩 (재유도 금지 · 참조만) — 각 대상 파일에 삽입:
+%
+% (C-1) ch2_sec05_mixing.tex — \eqref{eq:implicit} 도입 직후:
+%   이 음함수는 곡선맞춤이 아니라 Chapter 1 Part 0 의 다클래스 대정준 평균 입자수
+%   $\langle N\rangle=\sum_jM_j\theta_j$ 의 제약 반전이다 --- 그 통계역학적 기원과 유일근 보증은 그
+%   소절(다클래스 lattice gas)이 닫는다.
+%
+% (C-2) ch2_appB_codemap.tex — \code{solve\_U\_oc} 유일근 솔버 서술 직후:
+%   이 유일근은 Chapter 1 Part 0 의 다클래스 대정준 단조성
+%   $\partial\langle N\rangle/\partial\mu=\beta\,\mathrm{var}(N)>0$ 이 보증한다(통계역학 증명은 그 소절).
+% ====================================================================

@@ -1,0 +1,108 @@
+% ============================================================================
+% draft_q3f4.tex — v1.0.21 Q3 경쟁 초안 (창 q3f4, 독립·무통신)
+% 목적: §5.1 이 결과로만 받는 k≃k_0 e^{-ΔG_a/RT}·k_0=k_BT/h 의 분배함수 유도와
+%       활성화 엔트로피 ΔS_a 의 미시 의미(상태합 비의 로그)를 배경 박스로 자족 정리,
+%       Part 0 의 q(T)(eq:partfn)·s_int(eq:sm-sint) 언어와 접속.
+% 반영 대상(v1.0.21에서): _sections/ch1_sec05_width.tex + _sections/ch1_sec08_lag.tex
+% 본 파일은 초안 전용 — 문서 원본 무수정. 삽입 앵커는 각 블록 머리 주석에 명시.
+% 신규 라벨: eq:tst-freq / eq:tst-k / eq:tst-eyring (eq:tst-* 계열, 기존 라벨 불변)
+% 신규 기호(박스 국소): q_R·q^‡·ΔE_0·ΔG^‡·m*·δ·q_rc — 전건 기존 문서 미사용 확인
+% 인용: eyring1935·glasstone1941·laidlerking1983·mcquarrie1976 (전건 원장 V1 등재)
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% [삽입 A-0] §5.1 본문 훅 1문장 (순수 삽입 — 기존 문장 무수정)
+% 앵커: ch1_sec05_width.tex 15행 부근, "(a) 출발" 문단 안
+%   "... $k\simeq k_0e^{-\Delta G_a/RT}$ 다(그림~\ref{fig:barrier})\cite{eyring1935}."
+%   직후, "구동력 $\mathcal A_j=sF(V_n-U_j)$ 가 ..." 앞에 삽입.
+% ----------------------------------------------------------------------------
+여기서는 이 결과식을 받아 쓰되, $k_0$ 가 임의 상수가 아니라 보편 빈도인 까닭과 $\Delta G_a$ 의
+엔트로피 몫의 미시 정체는 이 소절 말미의 배경 박스가 분배함수로 자족적으로 닫는다.
+
+% ----------------------------------------------------------------------------
+% [삽입 A-1] §5.1 말미 배경 박스 (bgbox — rubric D2' 자족 블록)
+% 앵커: ch1_sec05_width.tex 42행 문단 끝
+%   "... 다음 소절이 이 폭 척도를 다중도 $n_j$ 로 일반화해 결과 박스를 닫는다."
+%   직후(figure 플로트 블록들 앞, \subsection{...}\label{sec:width-w} 앞)에 삽입.
+% ----------------------------------------------------------------------------
+\begin{bgbox}
+\textbf{전이상태 이론 --- $k_BT/h$ 와 활성화 엔트로피의 분배함수 기원 ---}
+본문이 결과로 받은 Eyring 속도식 $k\simeq k_0e^{-\Delta G_a/RT}$($k_0=k_BT/h$)는 전이상태 이론
+(transition-state theory)의 표준 분배함수 전개에서 유도된다\cite{eyring1935,glasstone1941} --- 이
+박스는 그 유도를 자족적으로 닫아, $k_0$ 의 보편성과 $\Delta S_a$ 의 미시 정체를 Part 0
+(\S\ref{sec:sm-site})의 상태합 언어로 되돌린다.
+\textbf{(a) 출발 --- 두 전제.} 유도는 두 전제 위에 선다\cite{laidlerking1983}. 첫째,
+\emph{안장점 준평형}(quasi-equilibrium) --- 우물의 반응물과 \emph{안장점}(saddle point --- 장벽 정점)의
+\emph{활성복합체}(activated complex)가 통과 유량에도 불구하고 Boltzmann 평형 분포를 유지한다.
+둘째, \emph{재교차 무시}(no recrossing) --- 정점의 분할면(dividing surface)을 생성물 쪽으로 넘은
+궤적은 되돌아오지 않는다(투과계수를 $1$ 로 둔다; 재교차$\cdot$터널링$\cdot$변분 보정은 범위 밖이다).
+\textbf{(b) 연산 --- 반응 좌표의 1D 분리와 보편 통과 빈도.} 안장점 근방에서 반응 좌표 모드를 나머지
+자유도에서 분리해 길이 $\delta$ 구간의 자유 병진(유효 질량 $m^*$)으로 근사하면 --- 이 근사가 위
+두 전제에 더해지는 유일한 연산 가정이다 --- 그 1D 병진 상태합과 생성물 쪽 한방향 평균 속도는
+\begin{equation}
+q_\mathrm{rc}=\frac{(2\pi m^*k_BT)^{1/2}\,\delta}{h},\qquad
+\langle v\rangle_{+}=\Big(\frac{k_BT}{2\pi m^*}\Big)^{1/2}
+\quad\Longrightarrow\quad
+\frac{\langle v\rangle_{+}}{\delta}\,q_\mathrm{rc}=\frac{k_BT}{h}
+\label{eq:tst-freq}
+\end{equation}
+이고, 구간 통과 빈도 $\langle v\rangle_+/\delta$ 에 반응 좌표 상태합 $q_\mathrm{rc}$ 를 곱하는 순간
+임의로 넣었던 $\delta$ 와 $m^*$ 가 \emph{둘 다 상쇄}된다 --- $k_BT/h$ 는 맞춰 넣은 상수가 아니라
+장벽 통과의 \emph{보편 빈도}이며($298.15$ K 에서 $6.21\times10^{12}$ /s), 어떤 반응$\cdot$어떤
+질량에도 같은 값이다. \textbf{(c) 중간식 --- 상태합 비의 속도식.} 전제 1 로 활성복합체의 반응물 대비
+개수비는 $q_\mathrm{rc}\,(q^{\ddagger}/q_R)\,e^{-\Delta E_0/RT}$ --- $q_R$ 는 우물 반응물의 상태합,
+$q^{\ddagger}$ 는 반응 좌표 모드를 \emph{뗀}(reduced) 안장점 잔여 자유도의 상태합, $\Delta E_0$ 는
+우물 바닥과 안장점의 에너지 차다(영점 에너지를 $q$ 쪽에 두든 $\Delta E_0$ 쪽에 두든 곱은 불변이다
+--- \S\ref{sec:sm-site} 의 기준점 주의와 같은 논리이고, 지수는 \S\ref{sec:dist} 와 같은 환산 관례로
+몰당 $RT$·$R$ 로 적는다). 여기에 식~\eqref{eq:tst-freq} 의 통과 빈도를 곱하면
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^{\ddagger}}{q_R}\,e^{-\Delta E_0/RT}
+=\frac{k_BT}{h}\,e^{-\Delta G^{\ddagger}/RT},
+\qquad
+\Delta G^{\ddagger}\equiv\Delta E_0-RT\ln\frac{q^{\ddagger}}{q_R}
+\label{eq:tst-k}
+\end{equation}
+--- 본문 식~\eqref{eq:bv} 의 $\Delta G_a$ 가 바로 이 $\Delta G^{\ddagger}$ 이고(정$\cdot$역 속도는 이
+무구동 $k$ 의 장벽에 구동 이동 $-\chi\mathcal A_j$·$+(1-\chi)\mathcal A_j$ 를 실은 것이다),
+활성화 자유에너지는 현상학적 상수가 아니라 \emph{두 상태합의 비로 정의되는} 통계역학량이다.
+\textbf{(d) 박스 --- 활성화 엔트로피 $=$ 상태합 비의 로그.} $\Delta G^{\ddagger}$ 를
+$\Delta H_a-T\Delta S_a$ 로 갈라($\Delta S_a=-\partial\Delta G^{\ddagger}/\partial T$) 식~\eqref{eq:tst-k}
+에 넣으면
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},\qquad
+\Delta S_a=R\ln\frac{q^{\ddagger}}{q_R}\;}
+\label{eq:tst-eyring}
+\end{equation}
+--- 갈라 적기의 정확형은 $\Delta S_a=R\,\partial\big[T\ln(q^{\ddagger}/q_R)\big]/\partial T$ 이고, 비의
+온도 의존이 약한 표준 관례에서 박스의 로그형으로 줄며, 그때 $\Delta H_a=\Delta E_0$ 로 두 항이
+정확히 갈라진다. \emph{부호 읽기} --- 활성복합체가 반응물보다 \emph{조이면}(잔여 모드가 굳어
+$q^{\ddagger}<q_R$) $\Delta S_a<0$ 라 prefactor 가 $k_BT/h$ 보다 줄고(통과의 엔트로피 병목),
+\emph{풀리면}($q^{\ddagger}>q_R$) $\Delta S_a>0$ 라 는다.
+\emph{검산} --- (i) 차원: $k_BT/h$ 는 [J]/[J\,s] $=$ [1/s], 비와 지수는 무차원이라 $k$ 는
+식~\eqref{eq:bv} 의 $r_j^\pm$ 와 같은 자리당 빈도다. (ii) 고전 조화 극한: 우물 3 모드$\cdot$안장점
+잔여 2 모드에 \S\ref{sec:sm-site} 의 고전 극한 $q=\prod_i k_BT/(\hbar\omega_i)$ 를 넣으면 비의 $1/T$
+가 $k_BT/h$ 를 정확히 지워 $k=[\omega_1\omega_2\omega_3/(2\pi\,\omega_1^{\ddagger}\omega_2^{\ddagger})]
+\,e^{-\Delta E_0/RT}$ --- prefactor 가 우물 진동수 조합(시도 빈도, $10^{12}$--$10^{13}$ /s 규모)으로
+회수되어 본문의 ``시도 빈도'' 읽기가 정량 근거를 얻는다\cite{mcquarrie1976}. (iii) 원형 회수:
+$q^{\ddagger}=q_R$ 이면 $\Delta S_a=0$, $k=(k_BT/h)e^{-\Delta H_a/RT}$ 로 보편 prefactor 의 Arrhenius
+꼴이 남는다.
+\emph{연결과 가드} --- $q_R$·$q^{\ddagger}$ 는 Part 0 의 자리 내부 분배함수
+$q(T)$(식~\eqref{eq:partfn})와 같은 자리당 상태합이고(N6--N9 의 용량 좌표 $q$ 와는 무관하다 ---
+식~\eqref{eq:partfn} 의 각주와 같은 가드), $\Delta S_a$ 의 정확형은 자리 엔트로피
+$s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})와 \emph{같은 연산}을 단일
+$q$ 대신 안장점$\cdot$우물 상태합의 비에 적용한 것이다(자리당 $k_B$ 가 몰당 $R$ 로 환산될 뿐이다).
+곧 평형 쪽에서 $q(T)$ 가 전이 중심의 온도 기울기(진동 엔트로피 몫)를 정하듯, 같은 상태합이
+안장점과의 비로는 속도 prefactor 의 엔트로피 몫을 정한다 --- 이 $\Delta S_a$(활성화 --- 우물과
+안장점의 비)는 표~\ref{tab:notation} 이 분리해 둔 $\Delta S_{\rxn,j}$(반응 --- 평형 초기와 최종
+상태의 차)와 다른 양이다. \S\ref{sec:lag} 의 갈라 적기 $\Delta G_a^\eff=\Delta H_a^\eff-T\Delta S_a$
+가 이 박스의 사용처이고, 기원은 여기서 닫힌다.
+\end{bgbox}
+
+% ----------------------------------------------------------------------------
+% [삽입 B] §8.4 후방 연결 1문장
+% 앵커: ch1_sec08_lag.tex 96행, 식~\eqref{eq:Lqmid2} 직후
+%   ("\label{eq:Lqmid2} \end{equation}" 다음, "\textbf{(d) 박스 --- 특성 온도로 묶기.}" 앞)에 삽입.
+% ----------------------------------------------------------------------------
+여기서 갈라 적는 활성화 엔트로피 $\Delta S_{a,j}$ 의 미시 정체 --- 안장점과 우물의 상태합 비의 로그
+$R\ln(q^{\ddagger}/q_R)$ --- 는 \S\ref{sec:width-logistic} 말미의 배경 박스(식~\eqref{eq:tst-eyring})가
+닫아 두었고, 이 절은 그 값을 유효 장벽과 함께 지수에 싣는 사용처다.

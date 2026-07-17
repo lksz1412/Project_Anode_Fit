@@ -1,0 +1,113 @@
+% ====================================================================
+% draft_q3f2.tex — v1.0.21 Q3 경쟁 초안 (창 q3f2, 독립·무통신)
+%   대상: §5.1 이 제시만 하는 k≃k0 e^{-ΔG_a/RT}·k0=k_BT/h 의 TST 분배함수
+%   배경 유도 + ΔS_a 의 미시 의미(분배함수 비의 로그)를 Part 0 의
+%   q(T)(eq:partfn)·s_int(eq:sm-sint) 언어로 접속. 문서 원본 무수정 —
+%   본 파일은 삽입 A/B/C 제안 블록이며 반영은 v1.0.21 반영 창 소관.
+%   형식 판단 근거·전 식 재유도 검산 기록 = NOTE_q3f2.md
+%   신규 라벨: eq:tst-freq / eq:tst-rate / eq:tst-entropy (기존 라벨 무충돌 확인)
+%   기존 결과식 eq:bv·eq:db·eq:kuniv·eq:Lqfull·수치·기호 정의 일절 불변.
+% ====================================================================
+
+% ---------- [삽입 A] ch1_sec05_width.tex §5.1(sec:width-logistic) 말미 ----------
+% anchor: "...다음 소절이 이 폭 척도를 다중도 $n_j$ 로 일반화해 결과 박스를 닫는다."
+%         문단 직후, \begin{figure}[t](fig:barrier) 블록 직전에 아래 두 블록을 삽입.
+% (bgbox 는 D2' 자족 블록 — 본문 (a)(b)(c) 사슬은 무수정으로 그대로 읽힌다.)
+
+\begin{bgbox}
+\textbf{전이상태 이론의 분배함수 유도 ---} 식~\eqref{eq:bv} 가 상수로 받은 시도 빈도
+$k_0=k_BT/h$ 와, \S\ref{sec:lag} 가 갈라 적을 활성화 엔트로피 $\Delta S_a$ 는 \emph{전이상태
+이론}(transition-state theory, TST)의 두 전제에서 분배함수로 유도된다\cite{eyring1935,laidlerking1983}:
+(i) \emph{준평형} --- 우물 바닥의 반응물과 장벽 정점, 곧 \emph{안장점}(saddle point)의
+\emph{활성복합체}(activated complex)가 Boltzmann 분포의 준평형을 유지한다; (ii) \emph{재교차
+무시} --- 정점의 분할면(dividing surface)을 정방향으로 넘은 궤적은 전부 도착 골에 정착한
+것으로 셈한다(재교차$\cdot$터널링 보정과 분할면 최적화 --- 변분 TST --- 는 이 셈의 정밀화이며 본
+문건 범위 밖이다). 정점에서 불안정한 반응 좌표 모드 하나를 떼어 길이 $\delta$ 구간의 자유
+1차원 병진(유효 질량 $m^*$)으로 근사하면, 그 병진 분배함수 $q_\delta$ 와 정방향 평균 통과 속도
+$\langle v_+\rangle$(1차원 Maxwell 분포의 정방향 평균)가
+\begin{equation}
+q_\delta=\frac{(2\pi m^*k_BT)^{1/2}\,\delta}{h},\qquad
+\langle v_+\rangle=\Big(\frac{k_BT}{2\pi m^*}\Big)^{1/2}
+\quad\Longrightarrow\quad
+\frac{q_\delta}{\delta}\,\langle v_+\rangle=\frac{k_BT}{h}
+\label{eq:tst-freq}
+\end{equation}
+--- 통과 빈도(구간 안 상태 수 $\times$ 속도/구간 길이)에서 임의로 넣은 $\delta$ 와 $m^*$ 가
+완전히 상쇄된다($q_\delta$ 는 Part 0 식~\eqref{eq:partfn} 과 같은 $\dd\Gamma/h$ 눈금으로 센
+1차원 판이다). 곧 $k_BT/h$ 는 조정 가능한 모수가 아니라, 반응 좌표를 병진으로 셈한 모든 장벽
+통과에 공통인 \emph{보편 빈도}다($298.15$ K 에서 $6.21\times10^{12}$ s$^{-1}$). 전제 (i) 로
+정점 구간의 활성복합체 점유는 반응물 대비 $(q_\delta\,q^\ddagger/q_R)\,e^{-\Delta E_0/RT}$ 로
+닫히고 --- $q_R$ 는 반응물 자리의 내부 분배함수로 Part 0 식~\eqref{eq:partfn} 의 $q(T)$ 바로
+그 양이고, $q^\ddagger$ 는 반응 좌표를 뗀 활성복합체의 나머지(reduced) 분배함수, $\Delta E_0$
+는 두 바닥의 에너지차다 --- 전제 (ii) 로 통과 전부가 반응으로 셈해지므로, 자리당 속도와
+활성화 자유에너지의 미시 정의가 함께 나온다\cite{glasstone1941,mcquarrie1976}:
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^\ddagger}{q_R}\,e^{-\Delta E_0/RT},
+\qquad
+\Delta G_a=\Delta E_0-RT\ln\frac{q^\ddagger}{q_R}
+\label{eq:tst-rate}
+\end{equation}
+(둘째 식은 식~\eqref{eq:bv} 의 $k\simeq k_0e^{-\Delta G_a/RT}$ 와 겹쳐 읽은 것). 이 $\Delta G_a$
+를 온도로 갈라 적으면 $\Delta S_a\equiv-\partial\Delta G_a/\partial T
+=R\,\partial\big[T\ln(q^\ddagger/q_R)\big]/\partial T$ --- Part 0 의 자리 내부 엔트로피
+$s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})와 같은 연산을 비
+$q^\ddagger/q_R$ 에 적용한 것 --- 이고, 비의 온도 의존이 약한 극한에서
+($\Delta H_a=\Delta G_a+T\Delta S_a=\Delta E_0$)
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},
+\qquad \Delta S_a=R\ln\frac{q^\ddagger}{q_R}\;}
+\label{eq:tst-entropy}
+\end{equation}
+로 닫힌다. \emph{활성화 엔트로피는 활성복합체와 반응물의 분배함수 비의 로그}다 --- 정점 배치가
+우물보다 자유도를 조이면($q^\ddagger<q_R$) $\Delta S_a<0$ 으로 prefactor 가 $k_BT/h$ 아래로
+죽고, 풀리면($q^\ddagger>q_R$) $\Delta S_a>0$ 으로 산다. 이 $\Delta S_a$(\emph{활성화} --- 정점
+대 우물의 비교, 속도)는 표~\ref{tab:notation} 이 분리해 둔 $\Delta S_{\rxn,j}$(\emph{반응} ---
+도착 대 출발의 비교, 평형$\cdot$$\dd U_j/\dd T$ 로 가는 양)와 다른 양이고, 여기의 $q(T)$ 표기도
+Part 0 과 같은 가드를 따라 정규화 용량 좌표 $q=Q/Q_\cell$ 와 무관하다. \S\ref{sec:lag} 의 갈라
+적기 $\Delta G_a^\eff=\Delta H_a^\eff-T\Delta S_a$(식~\eqref{eq:Lqfull})가 이 미시 정의의
+사용처다.
+\end{bgbox}
+
+\begin{verifybox}
+극한 검산 --- (i) 차원$\cdot$크기: $q^\ddagger/q_R$ 가 무차원이라 식~\eqref{eq:tst-rate} 의
+차원은 $k_BT/h$ 가 전담한다 --- [J]/[J$\,$s] $=$ [s$^{-1}$], 자리당 일차 속도
+식~\eqref{eq:bv}$\cdot$\eqref{eq:kuniv} 와 정합. (ii) 확장 off $\Rightarrow$ 원형 회수:
+$q^\ddagger=q_R$ 이면 $\Delta S_a=0$$\cdot$$\Delta H_a=\Delta E_0$ 으로
+$k=(k_BT/h)e^{-\Delta H_a/RT}$ --- \S\ref{sec:sum} 이 기본 상태로 쓰는
+$k_0=k_BT/h$$\cdot$$\Delta S_a{=}0$ 전제가 정확히 이 극한이다. (iii) 고전 조화 극한: 우물 세
+모드$\cdot$정점 두 모드를 고전 조화 $q_i=k_BT/\hbar\omega_i$(식~\eqref{eq:partfn} 고전 극한의
+모드별 인수)로 채우면 $q^\ddagger/q_R=\hbar\,\omega_1\omega_2\omega_3/(k_BT\,
+\omega_1^\ddagger\omega_2^\ddagger)$ 이고, 식~\eqref{eq:tst-rate} 에서 $k_BT$ 가 상쇄되어
+$k=[\omega_1\omega_2\omega_3/(2\pi\,\omega_1^\ddagger\omega_2^\ddagger)]\,e^{-\Delta E_0/RT}$
+--- 보편 빈도 $k_BT/h$ 가 우물 진동수 스케일의 ``시도 빈도''로 넘겨진다(등방
+$\omega_i=\omega_i^\ddagger=\omega_0$ 이면 $k=(\omega_0/2\pi)e^{-\Delta E_0/RT}$). 부호 읽기 ---
+$\Delta S_a<0$(조임)이면 $k$ 가 줄고, 같은 부호가 \S\ref{sec:lag} 식~\eqref{eq:Lqfull} 분자의
+$e^{-T\Delta S_a/RT}=e^{-\Delta S_a/R}>1$ 로 들어가 지연 길이 $L_q$ 를 늘린다 --- 속도 감소
+$=$ 지연 증가로 두 절의 부호가 정합한다.
+\end{verifybox}
+
+% ---------- [삽입 B] ch1_sec08_lag.tex §8.4(sec:lag-LV) 후방 연결 1문장 ----------
+% anchor: "암묵 전제 명시 --- ... 꺼져 있으면 그대로 $\Delta H_a$ 다." 문장 직후,
+%         "전압축으로 옮기면, ..." 문장 직전(같은 문단 내)에 아래 1문장을 삽입.
+
+이 갈라 적기의 $\Delta S_a$ 는 \S\ref{sec:width-logistic} 말미의 배경 박스가 활성복합체와
+반응물의 분배함수 비의 로그(식~\eqref{eq:tst-entropy})로 유도한 그 양이다 --- 기원은 그 박스가
+놓고, 사용은 이 절이 맡는다.
+
+% ---------- [삽입 C] ch1_bib.tex — eyring1935(현행 8행) 직후 2건 추가 ----------
+% (원장 V1 등재 완료 키 — 서지 데이터는 V1020_REFERENCE_LEDGER.md B절 그대로.
+%  헤더 주석의 서지 카운트 "36종" → "38종" 갱신 필요 — 반영 창 소관.)
+
+\bibitem{glasstone1941} S. Glasstone, K. J. Laidler, and H. Eyring, \emph{The Theory of Rate
+Processes: The Kinetics of Chemical Reactions, Viscosity, Diffusion and Electrochemical
+Phenomena}, McGraw--Hill (1941) --- TST 속도식의 분배함수 형식($k_BT/h\cdot q^\ddagger/q$)을
+전개한 고전 단행본(부제가 전기화학 현상을 포함).
+\bibitem{laidlerking1983} K. J. Laidler and M. C. King, ``The development of transition-state
+theory,'' \emph{J. Phys. Chem.} \textbf{87}(15), 2657--2664 (1983). DOI: 10.1021/j100238a002.
+[TST 발전사 리뷰(tier B) --- 준평형$\cdot$재교차 전제의 사적 정리.]
+
+% ---------- 자산(반영 시 채번 — 번호는 반영 창 소관) ----------
+% [V21-nnn] §5.1 bgbox: TST 두 전제 명시 + k_BT/h 보편 빈도 유도(δ·m* 상쇄)
+% [V21-nnn] eq:tst-rate → ΔG_a=ΔE_0−RT ln(q‡/q_R) 미시 정의(eq:bv 와 겹쳐 읽기)
+% [V21-nnn] eq:tst-entropy: ΔS_a=R ln(q‡/q_R) — eq:sm-sint 와 동일 연산 접속 + ΔS_rxn 가드
+% [V21-nnn] §8.4 후방 연결 1문장(기원=§5.1 박스 / 사용=§8) + verifybox 부호 정합(k↓=L_q↑)

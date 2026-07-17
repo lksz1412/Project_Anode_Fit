@@ -1,0 +1,101 @@
+% ====================================================================
+% draft_q3o1.tex — v1.0.21 Q3(Eyring TST 분배함수 유도) 경쟁 초안 [창 q3o1]
+%   대상 절 : _sections/ch1_sec05_width.tex  §5.1 (라벨 sec:width-logistic)
+%   삽입점  : (a) 출발 문단의 "...Eyring 속도식 ...\cite{eyring1935}." 직후
+%             (현행 line 15 문장 끝 뒤 — k_0=k_BT/h 를 처음 제시하는 자리)
+%   형식판단: bgbox (근거 NOTE_q3o1.md §3). 하우스 스타일 = \textbf{제목 ---} 볼드 선두
+%             (part0 line 171 · sec15 line 30 와 동일).
+%   원본 무수정 — 본 파일은 삽입 후보 초안일 뿐 문서 원본을 건드리지 않는다.
+%   신규 라벨: eq:tst-qrc · eq:tst-freq · eq:tst-rate · eq:tst-dG · eq:tst-box
+%   인용     : glasstone1941(V1)·laidlerking1983(V1)·mcquarrie1976(V1)
+%             (eyring1935 는 삽입점 문장에 이미 있음 — 재인용 안 함)
+% ====================================================================
+
+
+% ======================= A. §5.1 삽입용 배경 박스 =======================
+\begin{bgbox}
+\textbf{전이상태 이론의 분배함수와 활성화 엔트로피 ---} 앞 문장의 시도 빈도 $k_0=k_BT/h$ 와,
+\S\ref{sec:lag} 이 쓰는 활성화 엔트로피 $\Delta S_a$ 는 전이상태 이론(transition-state theory, TST)의
+분배함수에서 유도된다 --- 이 박스는 그 미시 기원만 자족적으로 정리한다(본문 흐름은 이 박스 없이도 읽히고,
+\S\ref{sec:lag} 은 여기서 세운 갈래를 \emph{쓴다}).
+
+\textbf{(a) 출발 --- 두 전제.} TST 는 두 가정 위에 선다: (i) \emph{안장점 준평형} --- 안장점의
+활성복합체(activated complex)가 반응물과 Boltzmann 평형을 이룬다; (ii) \emph{재교차 무시} --- 안장점을
+정방향으로 넘는 궤적은 되돌지 않고 모두 생성물이 된다(투과계수 $\kappa=1$)\cite{laidlerking1983}. 반응좌표
+모드는 길이 $\delta$ 구간의 자유 1D 병진으로 다룬다 --- 변분 TST$\cdot$터널링 보정은 범위 밖이다.
+
+\textbf{(b) 연산 --- $k_BT/h$ 의 미시 기원.} 안장점에서 반응좌표 모드를 뗀 활성복합체 분배함수를
+$q^{\ddagger}$, 반응물의 것을 $q_R$ 로 둔다. 뗀 반응좌표 모드는 유효질량 $m^{*}$ 의 1D 병진 분배함수
+\begin{equation}
+q_\mathrm{rc}=\frac{(2\pi m^{*}k_BT)^{1/2}\,\delta}{h}
+\label{eq:tst-qrc}
+\end{equation}
+이고, 그 복합체가 안장점을 정방향으로 넘는 평균 속도는 반쪽 Maxwell 평균
+$\langle v\rangle=(k_BT/2\pi m^{*})^{1/2}$ 다. 길이 $\delta$ 에 갇힌 복합체의 통과 빈도 $\langle v\rangle/\delta$ 에
+식~\eqref{eq:tst-qrc} 를 곱하면 $\delta$ 와 $m^{*}$ 가 정확히 상쇄되어
+\begin{equation}
+\frac{\langle v\rangle}{\delta}\,q_\mathrm{rc}
+=\frac{1}{\delta}\Big(\frac{k_BT}{2\pi m^{*}}\Big)^{1/2}\frac{(2\pi m^{*}k_BT)^{1/2}\delta}{h}
+=\frac{1}{h}\big[(k_BT)^2\big]^{1/2}
+=\frac{k_BT}{h}
+\label{eq:tst-freq}
+\end{equation}
+만 남는다 --- $k_0=k_BT/h$ 는 임의로 고른 상수가 아니라 유효질량$\cdot$구간 길이에 무관한 \emph{장벽 통과의
+보편 빈도}다($298$ K 에서 $6.2\times10^{12}$ /s).
+
+\textbf{(c) 중간식 --- 준평형 인구와 자유에너지 묶기.} 전제 (i) 로 활성복합체 대 반응물의 인구비가
+분배함수 비에 장벽 바닥차 $\Delta E_0$ 의 Boltzmann 인자를 곱한 값이므로, 통과 빈도에 이 인구를 실은
+속도는
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^{\ddagger}}{q_R}\,e^{-\Delta E_0/RT}
+\label{eq:tst-rate}
+\end{equation}
+다\cite{glasstone1941,mcquarrie1976}. 본문 식~\eqref{eq:bv} 의 활성화 자유에너지 $\Delta G_a$ 를 분배함수로
+쓰면
+\begin{equation}
+\Delta G_a=-RT\ln\frac{q^{\ddagger}}{q_R}+\Delta E_0
+\label{eq:tst-dG}
+\end{equation}
+이고, 식~\eqref{eq:tst-rate} 는 $k=(k_BT/h)\,e^{-\Delta G_a/RT}$ 로 정리되어 식~\eqref{eq:bv} 가 쓰는 Eyring
+형과 같아진다.
+
+\textbf{(d) 박스 --- 활성화 엔트로피의 미시 의미.} $\Delta G_a=\Delta H_a-T\Delta S_a$ 로 가르면
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},
+\qquad \Delta S_a=R\ln\frac{q^{\ddagger}}{q_R}\;.}
+\label{eq:tst-box}
+\end{equation}
+활성화 엔트로피는 활성복합체와 반응물의 (반응좌표를 뺀) reduced 분배함수 비의 로그다 --- 활성복합체의
+자유도가 반응물보다 \emph{조이면}($q^{\ddagger}<q_R$) $\Delta S_a<0$ 라 prefactor 가 눌리고, \emph{풀리면}
+($q^{\ddagger}>q_R$) $\Delta S_a>0$ 라 커진다.
+
+\textbf{Part 0 접속.} 이 ``로그-분배함수 $=$ 엔트로피'' 대응은 Part 0 의 내부 자유도 언어와 같다 --- Part 0 은
+단일 자리 내부 분배함수 $q(T)$(식~\eqref{eq:partfn})에 연산 $s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$
+(식~\eqref{eq:sm-sint})를 걸어 자리 엔트로피를 읽었고, 여기서는 같은 연산을 활성화의 비 $q^{\ddagger}/q_R$ 에
+걸어 활성화 엔트로피를 읽는다. 온도까지 분해한 몰당 형
+$R\,\partial[T\ln(q^{\ddagger}/q_R)]/\partial T=R\ln(q^{\ddagger}/q_R)+RT\,\partial\ln(q^{\ddagger}/q_R)/\partial T$
+의 선행 상태-헤아림(counting) 항이 박스의 $\Delta S_a=R\ln(q^{\ddagger}/q_R)$ 다. \emph{가드} --- 여기
+$\Delta S_a$ 는 \emph{활성화}(비가역 동역학, 안장점 대 반응물의 비)이고, 전이 중심의 $\Delta S_\rxn$
+(반응$\cdot$평형, 생성물 대 반응물의 비)과 차원은 같으나 물리가 다르다.\footnote{여기 $q^{\ddagger},q_R$
+(TST 분배함수)와 Part 0 의 $q(T)$(자리 내부 분배함수)는 모두 통계역학 분배함수로, N6--N9 의 용량 좌표
+$q{=}Q/Q_\cell$ 와는 무관하다(식~\eqref{eq:partfn} 각주와 같은 가드).}
+
+\begin{verifybox}
+검산 --- (i) 차원: $k_BT/h$ 는 에너지/(에너지$\cdot$시간)$=$[1/s]이고 두 지수는 무차원이라 $k$ 는 빈도
+차원이다(식~\eqref{eq:tst-freq}). (ii) 고온 극한: 진동 모드의 $q\to k_BT/\hbar\omega$ 라 $q^{\ddagger}/q_R$ 가
+진동수(곡률) 비의 고전값으로 수렴, $\Delta S_a\to R\ln(\text{고전 비})$ 로 유한하다. (iii) 원형 회수:
+활성화로 자유도가 변치 않아 $q^{\ddagger}=q_R$ 이면 $\Delta S_a=0$ 이라 식~\eqref{eq:tst-box} 가
+$k=(k_BT/h)e^{-\Delta H_a/RT}$ 의 순수 Arrhenius 형으로 환원된다 --- \S\ref{sec:sum} 의 기본값
+$\Delta S_a{=}0$ 이 이 극한이다. (iv) 부호: $q^{\ddagger}\lessgtr q_R\Rightarrow\Delta S_a\lessgtr0
+\Rightarrow e^{\Delta S_a/R}\lessgtr1$.
+\end{verifybox}
+\end{bgbox}
+
+
+% ================= B. §8(sec:lag-LV) 후방 연결 1문장 =================
+% 삽입점: ch1_sec08_lag.tex §8.4, 식~\eqref{eq:Lqmid2}
+%         (ΔG_a^eff=ΔH_a^eff−TΔS_a 로 갈라 적기) 직후.
+% ---- 아래 1문장 ----
+% 여기 갈라 적기의 활성화 엔트로피 $\Delta S_a$ 의 미시 기원 --- 반응좌표를 뺀 분배함수 비의 로그
+% $R\ln(q^{\ddagger}/q_R)$ --- 은 \S\ref{sec:width} 의 배경 박스(식~\eqref{eq:tst-box})가 세우며, 이 절은
+% 그 갈래를 \emph{쓰고} \S\ref{sec:width} 은 그 \emph{기원}이다.

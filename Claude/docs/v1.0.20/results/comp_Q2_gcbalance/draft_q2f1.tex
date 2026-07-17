@@ -1,0 +1,114 @@
+% ====================================================================
+% [v1.0.21 Q2 경쟁 초안 — 창 q2f1] 신설 소절: 다클래스 lattice gas 와 전하 보존 반전
+%   초안 전문 — 문서 원본 무수정(반영은 v1.0.21 GO 후). 배치: ch1_sec02b_part0.tex 의
+%   fig:sm-occ \end{figure}(현재 278행) 직후, \subsection 거시 열역학(sec:sm-macro, 280행) 직전.
+%   신규 라벨 sec:sm-mc / eq:sm-mc-xi / eq:sm-mc-avg / eq:sm-mc-balance (전 문건 grep 충돌 0건),
+%   소절 번호는 LaTeX 자동(rubric F1). 인용은 원장 V1 키 hill1960·mcquarrie1976 만.
+%   ch1 preamble 에 \oc 매크로 없음 → U_\mathrm{oc} 직접 표기(Ch2 파일은 U_\oc).
+% ====================================================================
+\subsection{다클래스 lattice gas --- 전하 보존 음함수 $\sum_jQ_j\xi_{\eq,j}=Q\bar x$ 와 그 반전}\label{sec:sm-mc}
+\S\ref{sec:sm-lattice} 는 동등 자리 $M$ 개의 한 클래스에서 인수분해 $\Xi_M=\Xi_1^{\,M}$ 을 닫았고,
+\S\ref{sec:sm-electro} 는 $\mu$ 를 측정 전위 $V$ 에 결선해 전이 하나의 평형 점유를 logistic 으로 닫았다.
+이 소절은 두 결과를 전이 여러 개로 한꺼번에 넓힌다 --- 자리들을 전이별 클래스로 나눠 같은 인수분해를
+반복하면 평균 입자수가 용량 가중 점유합으로 적히고, 그 합을 고정 함량에서 뒤집는 일이 곧 본론과
+Chapter 2 가 중심식으로 쓰는 전하 보존 음함수임이 드러난다. 도착점은 음함수의 통계역학적 기원과 그
+반전의 유일근 요동 증명이며, 이를 받아 다음 소절(\S\ref{sec:sm-macro})이 사다리를 마감한다.
+
+\textbf{(a) 출발 --- ``전이 $j$ $=$ 자리 클래스 $M_j$'' 프레이밍.} \S\ref{sec:sm-lattice} 의
+인수분해~\eqref{eq:sm-factor} 는 자리가 전부 동등하다는 전제 위에 섰다. 실제 전극의 자리는 한 종류가
+아니다 --- staging 갤러리마다 삽입 환경이 달라, 자리 전체는 전이 $j=1,\dots,N_p$ 별
+\emph{자리 클래스}(site class)로 갈라진다: 클래스 $j$ 는 동등 자리 $M_j$ 개와 유효 자리 자유에너지
+$\tilde\varepsilon_j(T)$(식~\eqref{eq:sm-epstilde} 의 클래스판 --- 몰 환산 $\mu_j^0=N_A\tilde\varepsilon_j$
+가 \S\ref{sec:sm-electro} 의 재포장 $U_j=(\mu_\mathrm{Li}^\mathrm{metal}-\mu_j^0)/F$ 로 전이 중심을
+정한다)를 갖는다. 가정 1(hard-core 배타)은 자리마다 그대로 두고, 가정 2(자리 독립)는 클래스 언어로
+다시 적는다 --- 클래스 안에서든 클래스 사이에서든 자리들은 독립이다. 모든 클래스는 \emph{같은}
+저장조(그림~\ref{fig:sm-reservoir})와 입자를 교환하므로 화학퍼텐셜은 $\mu$ 하나뿐이다 --- 전이가 여러
+개라도 전극에 거는 전위 손잡이는 하나라는 실험 구도의 통계역학 쪽 표현이다.
+
+\textbf{(b) 연산 --- 클래스별 인수분해.} 대정준 합은 독립 자리별 곱으로 갈라지고(\S\ref{sec:sm-lattice}
+와 같은 대수), 같은 클래스에 속한 인수 $M_j$ 개는 서로 같으므로
+\begin{equation}
+\Xi=\prod_{j=1}^{N_p}\Xi_{1,j}^{\,M_j},\qquad
+\ln\Xi=\sum_{j=1}^{N_p}M_j\,\ln\Xi_{1,j},\qquad
+\Xi_{1,j}=1+e^{-\beta(\tilde\varepsilon_j-\mu)}
+\label{eq:sm-mc-xi}
+\end{equation}
+--- 독립 부분계 분배함수의 인수분해 그대로다 \cite{hill1960,mcquarrie1976}. 두 한정을 명시한다.
+(i) 클래스 안의 이웃 상호작용은 각 자리가 클래스 평균 점유만을 느끼는
+\emph{자기무모순장}(self-consistent field) --- \S\ref{sec:sm-mf} 의 평균장 $\Omega_j$ --- 로만 허용한다:
+그때 $\tilde\varepsilon_j$ 는 평균 점유 $\theta_j$ 로 옷입은 값이 되어 곱꼴~\eqref{eq:sm-mc-xi} 은
+자기무모순 근사로 유지되고, $\theta_j(\mu)$ 는 닫힌 logistic 대신 \S\ref{sec:sm-electro} (iii) 의 암시적
+등온선을 따른다. (ii) 클래스 \emph{사이}의 상관 --- staging 에서 한 갤러리의 채움이 이웃 stage 의 문턱을
+옮기는 결합 --- 은 이 곱에 들어 있지 않으며, 여기까지가 본 소절의 근사 경계다.
+
+\textbf{(c) 중간식 --- 평균 입자수 $=$ 클래스 가중 점유합.} 식~\eqref{eq:sm-gc} 의 셋째 식을
+\eqref{eq:sm-mc-xi} 의 로그에 적용하면 합의 항마다 \S\ref{sec:sm-site} 의 단일 자리 계산이 반복되어
+\begin{equation}
+\langle N\rangle
+=k_BT\,\frac{\partial\ln\Xi}{\partial\mu}
+=\sum_{j=1}^{N_p}M_j\,k_BT\,\frac{\partial\ln\Xi_{1,j}}{\partial\mu}
+=\sum_{j=1}^{N_p}M_j\,\theta_j(\mu),
+\qquad
+\theta_j=\frac{1}{1+e^{+\beta(\tilde\varepsilon_j-\mu)}}
+\label{eq:sm-mc-avg}
+\end{equation}
+--- $\theta_j$ 는 점유율~\eqref{eq:fermifn} 의 클래스판이다. 저장된 Li 총량은 클래스 크기로 가중한
+점유합이라는, 그 자체로는 자명해 보이는 이 식이 전하로 읽는 순간 중심식이 된다.
+
+\textbf{(d) 박스 --- 전하 보존 음함수의 식별.} 남은 일은 입자수를 전하로 읽는 것뿐이다. 자리당 전하가
+$F/N_A$ 이므로 클래스 용량과 그 합을 $Q_j\equiv(F/N_A)M_j$($Q_j\propto M_j$)$\cdot$$Q\equiv\sum_jQ_j$ 로,
+Li 함량 분율과 추출(탈리튬화) 전하 분율을 $x\equiv\langle N\rangle/\sum_jM_j$$\cdot$$\bar x\equiv1-x$ 로
+두면(★좌표 --- $\bar x$ 는 $x$ 와 배향이 반대이며, Chapter 2 §2.5 의 좌표 주의와 같은 규약이다),
+식~\eqref{eq:sm-mc-avg} 에서
+\[
+Q\,\bar x
+\;=\;Q-\frac{F}{N_A}\,\langle N\rangle
+\;=\;\sum_j Q_j\bigl(1-\theta_j\bigr)
+\;=\;\sum_j Q_j\,\xi_j
+\]
+이고, 진행률 $\xi_j=1-\theta_j$(클래스 $j$ 자리의 공위 분율 $=$ 탈리튬화 진행)는 $\mu\leftrightarrow V$
+결선(\S\ref{sec:sm-electro})을 거치면 평형 진행률 $\xi_{\eq,j}(V,T)$~\eqref{eq:sm-logistic} 그 자체다.
+고정된 $\bar x$ 에서 이 등식을 만족시키는 전위가 관측 평형 전위 $U_\mathrm{oc}(\bar x,T)$ 다:
+\begin{equation}
+\boxed{\;\sum_{j=1}^{N_p} Q_j\,\xi_{\eq,j}\bigl(U_\mathrm{oc},T\bigr)\;=\;Q\,\bar x,
+\qquad Q_j=\frac{F}{N_A}\,M_j,\quad Q=\sum_jQ_j\;.}
+\label{eq:sm-mc-balance}
+\end{equation}
+이 식은 Chapter 2 가 겹침 가중의 출발점으로 세우는 전하 보존 음함수(그 문건 식 (eq:implicit))와
+글자까지 같은 식이고, 본론 \S\ref{sec:eqpeak} 이 출발점으로 삼는 관측 보존식
+$Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 의 전이 몫 $\sum_jQ_j\xi_j$ 의 통계역학적 기원이다 --- 배경 몫
+$Q_\bg$ 는 클래스 구조 밖의 비전이 저장이 더하는 가법 항이다. 반전의 지위도 여기서 정확해진다:
+대정준에서는 $\mu$(결선하면 $V$)가 독립변수여서 $\langle N\rangle(\mu)$ 가 결정되는 반면, 측정은 거꾸로
+통과 전하($\bar x$)를 고정하고 그에 맞는 전위를 푼다 --- 식~\eqref{eq:sm-mc-balance} 가 ``음함수''인
+것은 논리 공백이 아니라 이 고정-함량 반전의 \emph{정의상 implicit formulation} 이다. 일반화 --- 폭
+다중도 $w_j=n_jRT/F$ 와 두-상 현상학 폭 --- 는 \S\ref{sec:width} 폭 이중지위 소관이며 서식은 불변이다.
+\begin{verifybox}
+검산 세 건 --- (i) \emph{유일근(요동 양성).} 식~\eqref{eq:sm-mc-avg} 를 $\mu$ 로 미분하면 클래스마다
+요동--응답 관계~\eqref{eq:sm-flucres} 가 반복되어
+$\partial\langle N\rangle/\partial\mu=\beta\sum_jM_j\theta_j(1-\theta_j)=\beta\,\mathrm{var}(N)>0$ ---
+둘째 등호는 독립 자리의 분산 가법이고, 대정준 일반 항등식
+$\partial\langle N\rangle/\partial\mu=\beta[\langle N^2\rangle-\langle N\rangle^2]$ 의 특수형이다
+\cite{mcquarrie1976}. $0<\theta_j<1$ 라 부등호가 강하고 $\mu\to\mp\infty$ 에서
+$\langle N\rangle\to0/\sum_jM_j$ 를 잇는 연속 강단조 곡선이므로, 고정 $\bar x\in(0,1)$ 의
+반전~\eqref{eq:sm-mc-balance} 는 근을 정확히 하나 갖는다 --- 단일 자리 요동~\eqref{eq:sm-flucres} 의
+거시판이 곧 Chapter 2 의 계산(그 문건 §2.8 과 부록 B 가 유일근으로 서술하는 성질)의 통계역학 증명이며,
+전위 좌표에서는 같은 양이 \S\ref{sec:eqpeak} 평형 peak 의 전이별 합 $\sum_jQ_j\xi_j(1-\xi_j)/w_j$ 로
+나타난다. 가드 --- 평균장 이중웰($\Omega_j>2RT$, 식~\eqref{eq:sm-thresh})의 비단조 등온선 가지는 이
+보증의 밖이고(\S\ref{sec:hys} 분기 소관), 반전에 실제로 들어가는 logistic 서식은 항마다 강단조라 보증
+안이다. (ii) \emph{확장 off --- $N_p=1$ 회수.} 클래스가 하나면 \eqref{eq:sm-mc-xi} 는
+$\Xi=\Xi_1^{\,M}$~\eqref{eq:sm-factor} 로, \eqref{eq:sm-mc-avg} 는 $\langle N\rangle=M\theta$
+(\S\ref{sec:sm-lattice})로 정확히 되돌아가고, 박스~\eqref{eq:sm-mc-balance} 는 $\xi_\eq=\bar x$ --- 전이
+하나의 진행률이 곧 추출 분율이라는 좌표 항등 --- 으로 줄어든다. (iii) \emph{부호$\cdot$결선 읽기.}
+\eqref{eq:sm-eqcond} 로 지수 $\beta(\tilde\varepsilon_j-\mu)$ 는 몰당 $+sF(V-U_j)/RT$($s{=}+1$)로
+환산되어 $V\!\uparrow\Rightarrow\theta_j\!\downarrow\Rightarrow\sum_jQ_j\xi_{\eq,j}\!\uparrow$ --- 전위를
+올리면 추출이 진행한다는 \S\ref{sec:sm-electro} signbox 와 같은 방향이고, $\bar x$ 고정에서 $\mu$ 를
+푸는 일은 곧 $V$ 를 푸는 일이라 그 근이 $U_\mathrm{oc}(\bar x,T)$ 다.
+\end{verifybox}
+
+이로써 사다리에는 logistic 과 Nernst 사이에 ``다클래스 반전'' 계단이 하나 더 놓인다 --- 본론
+\S\ref{sec:eqpeak} 과 Chapter 2 의 겹침 가중(그 문건 §2.5)$\cdot$계산용 종합식(§2.8)이 이 계단을 결과
+사슬에서 그대로 되밟고, 다음 소절은 같은 $\mu$ 를 거시 언어($G\equiv H-TS$)로 받아 Nernst 식으로
+사다리를 마감한다.
+
+% 자산(v1.0.21 신규 예정 — 번호는 반영 시 배정): [V21-nnn 다클래스 인수분해 eq:sm-mc-xi]
+% [V21-nnn 용량 가중 점유합 eq:sm-mc-avg] [V21-nnn 전하 보존 식별 eq:sm-mc-balance] [V21-nnn 요동 유일근 verifybox]

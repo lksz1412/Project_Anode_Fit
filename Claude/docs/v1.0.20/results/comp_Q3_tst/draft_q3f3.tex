@@ -1,0 +1,112 @@
+% ====================================================================
+% draft_q3f3.tex — v1.0.21 Q3 경쟁 초안 (창 q3f3, 독립·무통신)
+% 대상: §5.1(sec:width-logistic) 의 k≃k₀e^{−ΔG_a/RT}·k₀=k_BT/h 를 TST 분배함수로
+%   유도하는 배경 박스 + §8.4(sec:lag-LV) 후방 연결 1문장.
+% 성격: 삽입 "제안" 초안 — 문서 원본 무수정, 반영은 v1.0.21 별도 결정.
+% 규칙: 신규 라벨 eq:tst-qrc·eq:tst-freq·eq:tst-k·eq:tst-eyring 4건(기존 라벨 충돌 0,
+%   NOTE_q3f3.md §4). 기존 기호 ΔG_a·χ·𝒜·k_j 정의 불변(ΔG_a 는 ≡ 재정의가 아니라
+%   "식별" 서술). 인용 4키 전건 원장 V1: eyring1935·glasstone1941·laidlerking1983·
+%   mcquarrie1976. 새 물리 주장 0 — 표준 TST 그대로, 결과식(eq:bv·eq:kuniv·eq:Lqfull) 불변.
+% ====================================================================
+
+%% ------------------------------------------------------------------
+%% [A-0] 본문 포인터 1문장 — ch1_sec05_width.tex §5.1 (a) 문단 안,
+%%   앵커: "...$k\simeq k_0e^{-\Delta G_a/RT}$ 다(그림~\ref{fig:barrier})\cite{eyring1935}."
+%%   문장 직후, "구동력 $\mathcal A_j=sF(V_n-U_j)$ 가..." 문장 앞에 삽입.
+%% ------------------------------------------------------------------
+이 $k_0$ 가 왜 하필 $k_BT/h$ 라는 보편값인지, 그리고 \S\ref{sec:lag} 가 이 지수를 가를 때 쓰는
+활성화 엔트로피 $\Delta S_a$ 가 미시적으로 무엇인지는, 이 소절 말미의 배경 박스가 분배함수로
+자족적으로 정리한다.
+
+%% ------------------------------------------------------------------
+%% [A-1] 배경 박스 — ch1_sec05_width.tex §5.1 말미,
+%%   앵커: "...다음 소절이 이 폭 척도를 다중도 $n_j$ 로 일반화해 결과 박스를 닫는다."
+%%   문단 직후(\begin{figure} fig:barrier 환경 앞)에 삽입.
+%%   bgbox 관용 = ch1_preamble \newtheorem*{bgbox}{배경}, 제목은 \textbf{... ---} 인라인 선두.
+%% ------------------------------------------------------------------
+\begin{bgbox}
+\textbf{TST 분배함수와 활성화 엔트로피 ---} 본문이 시도 빈도로 받은 $k_0=k_BT/h$ 와
+\S\ref{sec:lag-LV} 가 갈라 적는 활성화 엔트로피 $\Delta S_a$ 는 \emph{전이상태 이론}(transition-state
+theory, TST)의 분배함수 유도에서 한꺼번에 나온다\cite{eyring1935,glasstone1941}. 유도는 두 전제 위에
+선다 --- (i) \emph{준평형}(quasi-equilibrium): 장벽 꼭대기(\emph{안장점}, saddle point)에 놓인
+\emph{활성복합체}(activated complex)의 수가 반응물 우물과 평형 Boltzmann 비로 채워져 있다;
+(ii) \emph{재교차 무시}(no recrossing): 안장점을 생성물 쪽으로 한 번 넘은 궤적은 되돌지 않는다.
+넘는 궤적을 전부 반응으로 세므로 TST 속도는 참값의 상한이고, 두 전제를 완화하는
+변분(variational) TST 와 터널링(tunneling) 보정은 본 문건 범위 밖이다\cite{laidlerking1983}.
+
+안장점에서는 \emph{반응 좌표}(reaction coordinate) 방향의 모드 하나가 불안정하므로, 이 모드를 나머지
+자유도에서 떼어 꼭대기 곁 길이 $\delta$ 구간의 자유 1차원 병진으로 다룬다 --- $\delta$ 와 그 모드의
+유효 질량 $m^{*}$ 는 아래에서 상쇄되는 국소 보조량이다. 이 모드의 고전 분배함수와 생성물 쪽 평균
+통과 속도는
+\begin{equation}
+q_\mathrm{rc}=\frac{(2\pi m^{*}k_BT)^{1/2}\,\delta}{h},\qquad
+\langle v\rangle_{+}=\Big(\frac{k_BT}{2\pi m^{*}}\Big)^{\!1/2}
+\label{eq:tst-qrc}
+\end{equation}
+이다 --- $q_\mathrm{rc}$ 는 식~\eqref{eq:partfn} 위상공간 적분의 1차원 판이고, $\langle v\rangle_{+}$ 는
+1차원 Maxwell 분포에서 생성물 쪽($v>0$) 속도의 평균(정규화는 양방향 전체 --- 되돌아가는 몫이 자동으로
+셈해진다)이다. 전제 (i) 로 반응물 하나당 구간 안 복합체의 평균 수는
+$(q_\mathrm{rc}\,q^{\ddagger}/q_R)\,e^{-\Delta E_0/RT}$ --- $q_R$ 는 반응물(점유 자리) 상태의 내부
+분배함수, $q^{\ddagger}$ 는 안장점에서 반응 좌표를 \emph{뗀} 나머지 모드의 분배함수, $\Delta E_0$ 는
+안장점과 반응물 바닥(영점 포함)의 몰당 에너지 차 --- 이고, 전제 (ii) 로 이 수에 구간 통과 빈도
+$\langle v\rangle_{+}/\delta$ 를 곱한 것이 그대로 속도 상수다:
+\begin{equation}
+k=\frac{\langle v\rangle_{+}}{\delta}\,q_\mathrm{rc}\,\frac{q^{\ddagger}}{q_R}\,e^{-\Delta E_0/RT},
+\qquad
+\frac{\langle v\rangle_{+}}{\delta}\,q_\mathrm{rc}
+=\frac{1}{\delta}\Big(\frac{k_BT}{2\pi m^{*}}\Big)^{\!1/2}
+\cdot\frac{(2\pi m^{*}k_BT)^{1/2}\,\delta}{h}
+=\frac{k_BT}{h}
+\label{eq:tst-freq}
+\end{equation}
+--- 둘째 식에서 $\delta$ 와 $m^{*}$ 가 함께 상쇄된다. 남는 $k_BT/h$($T=298.15$ K 에서
+$6.2\times10^{12}\ \mathrm{s^{-1}}$)는 어떤 재질 모수에도 걸리지 않는 장벽 통과의 \emph{보편 빈도}이지
+임의 상수가 아니다\cite{mcquarrie1976}. 지수 밖에 남은 분배함수 비를 지수 안 자유에너지로 묶어 읽으면
+본문의 활성화 자유에너지가
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^{\ddagger}}{q_R}\,e^{-\Delta E_0/RT}
+=\frac{k_BT}{h}\,e^{-\Delta G_a/RT},
+\qquad
+\Delta G_a=\Delta E_0-RT\ln\frac{q^{\ddagger}}{q_R}
+\label{eq:tst-k}
+\end{equation}
+로 식별되고(몰당 $RT$ 표기는 본문 관용 그대로 --- 자리당 $k_BT$ 와의 환산에서 비는 불변,
+\S\ref{sec:dist}), 서두의 Eyring 속도식이 그대로 회수된다 --- 구동력의 $\chi\!\cdot\!(1{-}\chi)$
+비대칭 분해는 이 평형 장벽 위에 얹히는 본문 식~\eqref{eq:bv} 소관 그대로다. 끝으로
+$\Delta G_a=\Delta H_a-T\Delta S_a$ 로 가르면
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},\qquad
+\Delta S_a=R\ln\frac{q^{\ddagger}}{q_R}\;}
+\label{eq:tst-eyring}
+\end{equation}
+--- \emph{활성화 엔트로피는 활성복합체와 반응물의(반응 좌표를 뗀) 분배함수 비의 로그}다. 일반형은
+$\Delta S_a=-\partial\Delta G_a/\partial T=R\,\partial\big(T\ln(q^{\ddagger}/q_R)\big)/\partial T$ 이고,
+비가 온도 상수인 극한에서 위 로그 꼴이 되며 같은 극한에서 $\Delta H_a=\Delta E_0$ 이다. 부호 읽기 ---
+활성복합체에서 자유도가 반응물보다 조이면($q^{\ddagger}<q_R$) $\Delta S_a<0$ 이라 prefactor
+$e^{\Delta S_a/R}$ 가 보편 빈도를 깎고, 풀리면($q^{\ddagger}>q_R$) $\Delta S_a>0$ 으로 키운다.
+
+검산과 연결은 넷이다. (i) 차원 --- $k_BT/h$ 는 [J]/[J\,s]$\,=\,$s$^{-1}$ 이고 분배함수 비와 지수는
+무차원이라, $k$ 는 식~\eqref{eq:bv} 의 $r_j^{\pm}$ 와 같은 s$^{-1}$ 다. (ii) 고전 극한과 원형 회수 ---
+$q_\mathrm{rc}=\delta/\Lambda$($\Lambda=h/(2\pi m^{*}k_BT)^{1/2}$, 열적 de Broglie 파장)라 고전 취급의
+조건은 $\delta\gg\Lambda$ 이고, $q^{\ddagger}=q_R$ 이면 $\Delta S_a=0$ 과
+$k=(k_BT/h)e^{-\Delta H_a/RT}$ 의 Arrhenius 꼴로 돌아간다(\S\ref{sec:sum} 의 기본 상태
+$\Delta S_a{=}0$ 이 정확히 이 극한이다). (iii) Part 0 접속 --- $q_R$ 와 $q^{\ddagger}$ 는
+식~\eqref{eq:partfn} 의 자리 내부 분배함수 $q(T)$ 와 같은 종류의 통계량이고(N6--N9 의 용량 좌표
+$q=Q/Q_\cell$ 과는 무관), $\Delta S_a$ 의 위 일반형은 자리당
+$s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})의 연산자를
+$q\to q^{\ddagger}/q_R$ 비에 얹은 몰당 판이다 --- 우물 \emph{하나}의 $q(T)$ 가 평형 중심의 온도
+기울기로 가듯(\S\ref{sec:sm-site}), 우물과 안장점 \emph{둘의 비}는 동역학 지수로 간다.
+(iv) 활성화 vs 반응 가드 --- 여기 $\Delta S_a$ 는 반응물$\leftrightarrow$안장점 사이의 동역학량이고
+\S\ref{sec:center} 의 $\Delta S_{\rxn,j}$ 는 반응물$\leftrightarrow$생성물 사이의 평형량이다: 둘이
+공유하는 것은 분배함수 언어뿐이고, 전자는 \S\ref{sec:lag-LV} 의 지연 길이 지수로(사용처는 그곳,
+기원은 여기), 후자는 전이 중심의 온도 기울기 $\dd U_j/\dd T$ 로 간다.
+\end{bgbox}
+
+%% ------------------------------------------------------------------
+%% [B] 후방 연결 1문장 — ch1_sec08_lag.tex §8.4(sec:lag-LV) "암묵 전제 명시" 블록,
+%%   앵커: "...꺼져 있으면 그대로 $\Delta H_a$ 다." 직후, "전압축으로 옮기면," 앞에 삽입.
+%% ------------------------------------------------------------------
+같은 지수의 다른 조각 $\Delta S_{a,j}$ 와 prefactor $k_BT/h$ 의 미시적 기원 --- 반응 좌표 모드의
+상쇄가 남기는 보편 통과 빈도, 그리고 활성복합체$\cdot$반응물 분배함수 비의 로그
+$\Delta S_a=R\ln(q^{\ddagger}/q_R)$(\S\ref{sec:width-logistic} 배경 박스, 식~\eqref{eq:tst-eyring}) ---
+은 그 박스가 유도했고, 이 절은 그 결과를 받아 쓴다.

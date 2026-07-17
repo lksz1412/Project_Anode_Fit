@@ -1,0 +1,107 @@
+% ====================================================================
+% [경쟁 초안 q2o1 — v1.0.21 Q2 대정준 전하 보존 유도]
+%   배치 전제: ch1_sec02b_part0.tex 의 sec:sm-electro(§2.5) 뒤,
+%              sec:sm-macro(§2.6) 앞 (Part 0 사다리의 단일 클래스→거시 다리).
+%   문서 원본 무수정 — 본 파일은 삽입 후보 소절의 독립 초안이다.
+%   매크로 유의: Ch1 preamble 에 \oc 미정의 → U_\mathrm{oc} 로 표기(렌더 동일).
+%   신규 라벨: sec:sm-mc, eq:sm-mc-* 계열(기존 라벨·식·수치 불변).
+% ====================================================================
+\subsection{다클래스 lattice gas --- 전하 보존식의 대정준 반전}\label{sec:sm-mc}
+\S\ref{sec:sm-lattice} 는 동등한 자리 $M$ 개를 묶어 $\Xi_M=\Xi_1^{\,M}$·$\langle N\rangle=M\theta$ 로 한 전이를
+닫았고, \S\ref{sec:sm-electro} 는 그 점유를 측정 전위에 결선했다. 실제 전극은 한 전이가 아니라 staging
+평탄역마다 하나씩, 여러 전이가 겹쳐 있다. 이 소절은 단일 클래스 결과를 전이 여럿으로 한 줄 넓히고, 그
+합에 걸린 전하 보존이 대정준 문제의 \emph{제약 반전}임을 보여, 본론과 Chapter 2 가 중심식으로 쓰는 전하
+보존 음함수를 Part 0 사다리 안에서 닫는다 --- 이렇게 얻은 $U_\mathrm{oc}(\bar x,T)$ 가 \S\ref{sec:sm-macro}
+의 거시 열역학 결선이 받는 마지막 입력이다.
+
+\textbf{(a) 출발 --- 단일 클래스 회수와 ``전이 $=$ 자리 클래스'' 프레이밍.} \S\ref{sec:sm-lattice} 의
+인수분해~\eqref{eq:sm-factor} 는 동등·독립 자리 $M$ 개에 대해 $\Xi_M=\Xi_1^{\,M}$ 이고, 식~\eqref{eq:sm-gc}
+셋째 식으로 $\langle N\rangle=k_BT\,\partial(M\ln\Xi_1)/\partial\mu=M\theta$ 였다. 이 원형을 전이 여럿으로
+넓힌다 --- 전이 인덱스 $j=1,\dots,N_p$(\S\ref{sec:notation})의 전이 $j$ 를 유효 자리 자유에너지
+$\tilde\varepsilon_j$(전이 중심 $U_j$)를 공유하는 동등 자리 $M_j$ 개의 \emph{자리 클래스}(site class)로 본다.
+전 격자의 자리는 이 클래스들로 갈라지고 그 총수는 $M_\mathrm{tot}\equiv\sum_j M_j$ 다 --- 곧 본론이 ``전이''라
+부르는 것이 lattice gas 에서는 ``자리 클래스''다.
+
+\textbf{(b) 연산 --- 클래스곱 인수분해.} 자리들이 독립(\S\ref{sec:sm-site} 가정 2)이라 대정준 합이 전 자리의
+곱으로 갈라지고(식~\eqref{eq:sm-factor} 와 같은 단계, 대정준 lattice gas 의 표준 인수분해 \cite{hill1960}),
+같은 클래스의 자리끼리 묶으면 지수 $M_j$ 의 클래스곱이 남는다:
+\begin{equation}
+\Xi\;=\;\prod_{j} \Xi_{1,j}^{\,M_j},
+\qquad
+\ln\Xi\;=\;\sum_j M_j\ln\Xi_{1,j},
+\qquad
+\Xi_{1,j}\;=\;1+e^{-\beta(\tilde\varepsilon_j-\mu)}
+\label{eq:sm-mc-factor}
+\end{equation}
+--- $\Xi_{1,j}$ 는 클래스 $j$ 의 단일 자리 대정준 분배함수로, 식~\eqref{eq:partfn} 에서 유효 자유에너지가
+$\tilde\varepsilon_j$ 인 것이다. 이 곱은 식~\eqref{eq:sm-factor} 의 단일 클래스 인수분해를 클래스마다 되풀이한
+것이며, 근사 경계는 두 겹이다 --- (i) 클래스 \emph{안}의 이웃 상호작용 $\Omega_j$(\S\ref{sec:sm-mf})는 각 자리가
+자기 클래스의 평균장을 보는 자기무모순 평균장(self-consistent mean field)으로만 들어가므로 $\Xi_{1,j}$ 는 그
+평균장 속의 단일 자리 분배함수이고, (ii) 클래스 \emph{사이}의 상관(한 갤러리의 채움이 이웃 stage 문턱을 옮기는
+staging 결합)은 이 곱에서 빠진다. 곧 식~\eqref{eq:sm-mc-factor} 는 평균장 수준에서 정확하다.
+
+\textbf{(c) 중간식 --- 용량가중 점유합.} 식~\eqref{eq:sm-gc} 셋째 식을 로그분배함수~\eqref{eq:sm-mc-factor} 에
+그대로 적용하면, 미분이 항별로 갈라져 클래스별 점유의 용량가중 합이 나온다:
+\begin{equation}
+\langle N\rangle\;=\;k_BT\,\frac{\partial\ln\Xi}{\partial\mu}
+\;=\;\sum_j M_j\,\theta_j(\mu),
+\qquad
+\theta_j\;=\;\frac{1}{1+e^{\beta(\tilde\varepsilon_j-\mu)}}
+\label{eq:sm-mc-occ}
+\end{equation}
+--- 각 $\theta_j$ 는 클래스 $j$ 자리 하나의 평균 점유(식~\eqref{eq:fermifn} 를 $\tilde\varepsilon_j$ 로 읽은
+것)이고, 식~\eqref{eq:sm-mc-occ} 는 \S\ref{sec:sm-lattice} 의 $\langle N\rangle=M\theta$ 를 클래스마다 더한
+것뿐이다.
+
+\textbf{(d) 박스 --- 전하 보존식의 식별.} 진행률을 자리 공위로 읽는 규약 $\xi_j=1-\theta_j$(\S\ref{sec:notation};
+\S\ref{sec:sm-electro} 의 $\xi_\eq=1-\theta_\eq$)를 식~\eqref{eq:sm-mc-occ} 에 넣으면 평균 점유가 공위 합으로
+뒤집힌다:
+\begin{equation}
+\langle N\rangle=\sum_j M_j(1-\xi_j)=M_\mathrm{tot}-\sum_j M_j\,\xi_j
+\;\Longrightarrow\;
+\sum_j M_j\,\xi_j=M_\mathrm{tot}-\langle N\rangle.
+\label{eq:sm-mc-vac}
+\end{equation}
+양변을 $M_\mathrm{tot}$ 로 나누고 탈리튬화(추출) 전하 분율 $\bar x\equiv1-\langle N\rangle/M_\mathrm{tot}$ 를
+정의한 뒤, 자리마다 실리는 단위 전하가 같아 용량 몫이 자리 몫과 같다는 것($Q_j/Q=M_j/M_\mathrm{tot}$,
+$Q\equiv\sum_j Q_j$)을 쓰면 전 식이 용량 단위로 올라간다:
+\begin{equation}
+\boxed{\;\sum_j Q_j\,\xi_{\eq,j}(U_\mathrm{oc},T)\;=\;Q\,\bar x\;,
+\qquad
+\bar x\equiv1-\frac{\langle N\rangle}{M_\mathrm{tot}}\;.}
+\label{eq:sm-mc-balance}
+\end{equation}
+여기서 점유는 평형($V=U_\mathrm{oc}$)에서 읽으므로 $\theta_j\to\theta_{\eq,j}$·$\xi_j\to\xi_{\eq,j}$ 이고,
+$\mu$ 를 전위로 옮기는 결선은 \S\ref{sec:sm-electro} 의 식~\eqref{eq:sm-eqcond} 다. 식~\eqref{eq:sm-mc-balance}
+은 Chapter 2 의 전하 보존 음함수(그 문건 식 (eq:implicit))와 글자까지 같고, \S\ref{sec:eqpeak}(N6)이 관측
+$\dd Q/\dd V$ 의 출발점으로 놓는 전하 보존식 $Q_\cell q=Q_\bg(V_n)+\sum_j Q_j\xi_j$ 의 faradaic 합
+$\sum_j Q_j\xi_j$ --- 배경 축전 몫 $Q_\bg$ 를 뺀 격자 삽입 몫 --- 의 통계역학적 기원이다. 곧 전하 보존식은
+평형 점유 $\langle N\rangle$ 을 고정한 대정준 제약이고, 그 제약을 만족하는 $\mu$(따라서 $U_\mathrm{oc}$)를 되푸는
+것이 대정준$\leftrightarrow$정준의 Legendre 반전이다.
+\begin{verifybox}
+검산 --- \textbf{(i) 요동 양성 $\Rightarrow$ 유일근.} 점유의 $\mu$-감도는 대정준 요동 정리
+\cite{mcquarrie1976} --- 식~\eqref{eq:sm-flucres} 의 단일 자리 관계를 클래스마다 더한 것 --- 이라
+\begin{equation}
+\frac{\partial\langle N\rangle}{\partial\mu}
+=\beta\sum_j M_j\,\theta_j(1-\theta_j)=\beta\,\mathrm{var}(N)>0
+\label{eq:sm-mc-fluc}
+\end{equation}
+--- 자리 독립(평균장)에서 분산이 클래스별 분산의 합 $\mathrm{var}(N)=\sum_j M_j\theta_j(1-\theta_j)$ 이므로
+$\langle N\rangle(\mu)$ 는 순증가한다. 이는 \S\ref{sec:sm-site} 의 요동--응답 관계~\eqref{eq:sm-flucres}
+($\mathrm{var}(n)=\theta(1-\theta)$)의 거시판이다. $\mu\leftrightarrow V$ 결선~\eqref{eq:sm-eqcond}($s{=}1$
+단조)과 합치면 식~\eqref{eq:sm-mc-balance} 좌변이 $U_\mathrm{oc}$ 에 순증가하므로, 고정 $\bar x$ 의 반전은
+유일근을 갖는다 --- Chapter 2$\cdot$N6 이 유일근으로 푸는 그 근에 존재$\cdot$유일성의 통계역학 근거를 준다.
+\textbf{(ii) 확장 off 회수.} 전이가 하나뿐이면($N_p{=}1$) 식~\eqref{eq:sm-mc-occ} 이
+$\langle N\rangle\to M\theta$ 로 줄어 \S\ref{sec:sm-lattice} 의 인수분해~\eqref{eq:sm-factor} 를 정확히 회수한다.
+\textbf{(iii) 부호 읽기.} $\bar x$ 가 커지면(탈리튬화 진행) $\langle N\rangle$ 이 줄고, 식~\eqref{eq:sm-mc-fluc}
+의 단조성으로 $\mu$ 가 내려가며, \eqref{eq:sm-eqcond}($\mu_\mathrm{Li}=\mu^0-sF(V-U)$, $s{=}1$)로 $V=U_\mathrm{oc}$
+가 오른다 --- ``추출을 늘리려면 전위를 올린다''로, \S\ref{sec:sm-electro} 부호 검산과 합치한다.
+\end{verifybox}
+
+전하 보존식을 대정준 반전으로 세워 $U_\mathrm{oc}(\bar x,T)$ 를 얻었으므로, 남은 것은 이 통계역학적 $\mu$ 가
+본론의 거시 정의($G\equiv H-TS$·$\mu=\partial G/\partial n$)와 같은 양임을 잇는 일이다 --- 그 다리와 Nernst
+마감이 다음 소절이다.
+
+% 자산(v1.0.20 신규): [V20-mc-01 다클래스 클래스곱 인수분해 eq:sm-mc-factor] [V20-mc-02 용량가중 점유합 eq:sm-mc-occ]
+%   [V20-mc-03 전하 보존식=대정준 제약 반전 식별 eq:sm-mc-balance(=Ch2 eq:implicit·N6 전하보존식 기원)]
+%   [V20-mc-04 요동 양성→유일근 통계 증명 eq:sm-mc-fluc(eq:sm-flucres 거시판)]
