@@ -7,3 +7,4 @@
 | Phase/Subphase | Planned Steps | Actual Steps | Block | Purpose | Status | Plan | Result | Machine Artifacts | Validation | Gate | Next Step |
 |---|---:|---:|---|---|---|---|---|---|---|---|---:|
 | Q0 | 1-6 | 1-6 | setup | 골격 복제(v1.0.20 final→v1.0.21)·버전 표기·원장/CHANGE_LOG/ledger 개설·초기 빌드·게이트·스냅샷 | PASS | 마스터플랜 §Q0 | (본 행) | snapshot_v1021_q0.json·PDF 3본·Anode_Fit_v1.0.21.py·test_gates_v1021.py | 빌드 66/25/8p err0·게이트 G1/G2/G3/n(T) exit 0·구조 v1.0.20 final 동일 | PASS_Q0_SETUP | 7 |
+| Q2 | 7-14 | 7-14 | statmech-A | 대정준 전하 보존 소절 단독 저작(초안 6본 체리픽: q2f1 베이스·q2f2 유일근·q2o1 경계) + 요동–응답(D21-5) 합류 + 사다리 keybox + Ch2 연결 2문장 | PASS | 마스터플랜 §7 Q2 | (CHANGE_LOG A-001~003) | snapshot_v1021_q2.json·PDF 2본 | 빌드 68/25p err0·undef0·구조 PASS·diff q0→q2 = +4 eqblock/+5 라벨/삭제 0(1:1) | PASS_Q2_GCBALANCE | 15 |
