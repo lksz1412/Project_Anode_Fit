@@ -16,4 +16,8 @@
 | 보류④ notation ξ_eq 라벨(eq:logisticsolve vs eq:xieq) | 현행 유지 | 둘 다 실존·정확 — 인용 정책 통일은 R8 후보 |
 | 보류⑤ N1 수식 내 \S\ref | 집행 후 검증 | 재빌드 3-pass 슬롯 정렬 확인 항목에 포함 |
 
-## O-E (인용 다리 LCO분 + L2/L5) — 대기
+## O-E (인용 다리 LCO분 + L2/L5) — 판정: **다리 4건 채택·L2 후보 수용(등재는 R4)·L5 tier-C 유지** (2026-07-17)
+- 다리 4건 전건 채택(3요소·srcbox·V1 키·수식 재현 0): marianetti(원 모델식 "확인 필요")·vanderven(ECI "확인 필요")·msmr 계보(검증완료)·reynier2004(load-bearing 추가 판정 수용, 0.18 k_B "확인 필요"). 삽입 앵커 4곳 텍스트 기반 — vanderven 앵커가 \textbf{ 인자 내부라 명령 절단 발생 → 즉시 검출(빌드 err)·srcbox 를 \textbf 밖으로 재배치 복구.
+- L2 검증 후보 3(reynier2004 tier-A 승급·menetrier1999·EES-entropymetry 2020[원장 미등재 신규]) — **원장 등재·tab:lco-staging tier 갱신 = R4 집행**([검증→등재→인용] 규약: 마스터 재검증 후 등재).
+- L5 = 확인 불가 → **본문 무변경(tier-C 유지)** + motohashi2009 귀속 부정합 의혹·x=⅔ 슬롯 조성 불일치 의혹 → R4 재소싱 과제 + 사용자 보고.
+- 집행 기록: SEAM_PLAN_R3 파서 열 오인(6열 N행) 4곳 일시 축약 → 같은 턴 검출·토큰→개정안 재치환 완전 복구(R3 비고 로그).
