@@ -40,8 +40,22 @@ $-\ln(1-e^{-u_j})\to-\ln u_j+u_j/2$, $u_j/(e^{u_j}-1)\to1-u_j/2$ 가 상쇄해
 \[
 S_\vib\;\to\;R\bigl[1+\ln(T/\theta_{E,j})\bigr],
 \]
-곧 앞 절이 흡수한 ``$T$-무관 상수''는 이 보편식을 $T_\mathrm{ref}$ 에서 한 번 평가해 동결한 고온 코너다.
-저온 $u_j\to\infty$ 에서는 $S_\vib\to0$(모든 모드가 바닥상태로 얼어붙어 흩어짐이 사라진다).
+곧 앞 절이 흡수한 ``$T$-무관 상수''는 닫힌형~\eqref{eq:Svib-einstein} 을 $T_\mathrm{ref}$ 에서 한 번 평가해
+동결한 값 $S_\vib(T_\mathrm{ref};\theta_{E,j})$ 이며(그림~\ref{fig:svibid}(a) 캡션과 같은 서술), 고전 극한이
+유효한 모드($\theta_{E,j}\ll T_\mathrm{ref}$)에서는 그 값이 위 보편식의 고온 코너
+$R[1+\ln(T_\mathrm{ref}/\theta_{E,j})]$ 로 줄어든다 --- 단 본 절의 대표 준양자 작동점($\theta_{E,j}{\approx}700$~K,
+$u_j{\approx}2.35$)에서는 닫힌형 $0.35R$ 대 고전 코너 $0.15R$ 로 갈리므로, 편차 정의~\eqref{eq:dSvib} 가 빼는
+기준값은 언제나 닫힌형 쪽이다. 저온 $u_j\to\infty$ 에서는 $S_\vib\to0$(모든 모드가 바닥상태로 얼어붙어
+흩어짐이 사라진다).
+
+\textbf{적용 범위 --- 모드 수 셈과 부호.} 위 닫힌형은 전이당 \emph{알짜 한 모드}(진폭 $R$ 고정)가 반응에서
+생성되는 셈법이다. 실제 반응 진동 엔트로피는 생성/반응 측 모드 집합의 \emph{차}이므로 모드 수가 균형이면
+고전 극한에서 $T$-편차가 정확히 $0$ 으로 상쇄되는데(\S\ref{ssec:vib} 의 ``고전 극한 $=$ 상수 흡수'' 전제의
+근거가 이 상쇄다), 단일모드 셈법의 편차~\eqref{eq:dSvib} 는 반대로 $u_j\to0$ 에서 $R\ln(T/T_\mathrm{ref})$ 로
+가장 크고 기울기 $\partial\Delta S_\vib/\partial T=C_E(u_j)/T$($C_E$ 는 Einstein 비열, $0<C_E\le R$)가 항상
+양이다. 곧 $\theta_{E,j}$ 지정은 알짜 연화형($\partial\Delta S_{\rxn,j}/\partial T>0$) 잔여를 갖는 준양자
+전이에 한해 물리적 뜻이 있고, 경화형($\Delta C_p<0$) 잔여는 현행 단일모드 서식이 담지 않는다(부호 있는
+진폭 또는 생성/반응 두-$\theta$ 차분형 일반화는 \emph{추가 후보}로 남긴다).
 
 \subsection{기준온도 편차와 중심 이동 --- round-trip 정합}\label{ssec:einstein-roundtrip}
 $\Delta S^0_j$ 는 $T_\mathrm{ref}$(기본 $298.15$~K)에서의 vib 기여를 이미 흡수했으므로, 새로 노출할 것은 그
@@ -99,9 +113,12 @@ $\theta_{E,j}$ 를 지정하지 않은 전이는 두 가산이 모든 $T$ 에서
 크기는 준양자 영역에서만 뜻이 있다. 대표값 $\theta_{E,j}=700$~K($\approx60$~meV)$\cdot$$T_\mathrm{ref}=298.15$~K
 로 식~\eqref{eq:dUvib} 의 미분을 셈하면 $T=278.15,\,298.15,\,318.15,\,348.15$~K 에서 각각 $\partial\Delta
 U_\vib/\partial T\approx-3.74,\,0,\,+3.70,\,+9.14~\mu$V/K 다 --- $T_\mathrm{ref}$ 를 지나며 부호가 바뀌고 온도
-차가 커질수록 자란다. 이 강제된 $T_\mathrm{ref}$ 영점과 고온 로그 곡률이 곧 식별의 근거다: electronic 항
-(식~\eqref{eq:Se-ch2}, $\propto T$)은 $T$ 에 선형이고 강제 영점이 없어, 다온도 $dQ/dV$ 곡률 피팅이 두 함수형을
-갈라 앞 절이 우려한 혼입을 해소한다. 단 분리에는 준양자 창 $\kB T\!\sim\!\hbar\omega$ 를 걸치는 $T$ 점
+차가 커질수록 자란다. 식별의 근거는 함수형의 \emph{곡률}이다: $\Delta S_\vib(T;\theta_{E,j})$ 는 기울기와
+곡률이 $\theta_{E,j}$ 하나에 묶인 비선형 1-모수족인 반면, electronic 잔여(식~\eqref{eq:Se-ch2}, $\propto T$)는
+$T$ 에 선형이라 곡률이 $0$ 이다 --- 다온도 $dQ/dV$ 곡률 피팅이 두 함수형을 갈라 앞 절이 우려한 혼입을
+해소한다. ($T_\mathrm{ref}$ 강제 영점 자체는 식별 근거가 아니다 --- \S\ref{ssec:decomp} 의 흡수 규약대로면
+electronic 잔여도 $T_\mathrm{ref}$ 기준화되어 같은 영점을 공유하고, 기준화 여부와 무관하게 선형 성분은 자유
+상수 $\Delta S^0_j$ 와 섞여 재정의될 뿐이다.) 단 분리에는 준양자 창 $\kB T\!\sim\!\hbar\omega$ 를 걸치는 $T$ 점
 \textbf{셋 이상}이 필요하다 --- 2-온도 유한차분(국소 기울기만 봄)은 곡률과 선형을 합으로만 보아 축퇴하므로,
 ``섞일 수 있다''는 것은 저-온도점 진단이지 물리적 비식별성이 아니다. 닫힌형의 두 극한과 이 강제 영점·로그
 곡률은 그림~\ref{fig:svibid} 가 수치 곡선으로 보인다. 진동 항의 온도 편차를 이렇게 닫았으니,
@@ -174,9 +191,8 @@ U_\vib/\partial T\approx-3.74,\,0,\,+3.70,\,+9.14~\mu$V/K 다 --- $T_\mathrm{ref
 ● 는 $\theta_E{=}700$ K$\cdot$$298$ K 의 준양자 작동점. (b) 중심 이동의 온도 기울기
 $\partial\Delta U_\vib/\partial T=\Delta S_\vib(T)/F$: $\theta_{E}{=}500/700/900$ K 모두
 $T_\mathrm{ref}$ 의 \emph{강제 영점}을 지나 로그형 곡률로 자라며, ● 는 본문 \S\ref{ssec:einstein-numid}
-의 수치($\theta_E{=}700$ K 에서 $-3.74/0/+3.70/+9.14\ \mu$V/K)다. electronic 항($\propto T$)은 이
-강제 영점이 없어 두 함수형이 다온도 곡률 피팅에서 갈리고, 분리에는 준양자 창을 걸치는 온도점 셋
-이상이 필요하다.}
+의 수치($\theta_E{=}700$ K 에서 $-3.74/0/+3.70/+9.14\ \mu$V/K)다. electronic 항($\propto T$)은 곡률이 $0$
+이라 두 함수형이 다온도 곡률 피팅에서 갈리고, 분리에는 준양자 영역에 놓인 온도점 셋 이상이 필요하다.}
 \label{fig:svibid}
 \end{figure}
 % 자산(v1.0.21 신규): [V21-R-05 Einstein 닫힌형·강제 영점 2패널 fig:svibid — FIGS_PICK N-4(베이스 FF2-5)]
