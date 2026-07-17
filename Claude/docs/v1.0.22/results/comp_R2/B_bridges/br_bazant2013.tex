@@ -1,0 +1,38 @@
+% ── 다리 초안: bazant2013 → 우리 eq:bv (§5 폭) ──────────────────────
+% 삽입 위치: ch1_sec05_width.tex, 식~\eqref{eq:bv} 블록(현행 17–21행) 직후,
+%   "\textbf{(b) 연산 --- 비를 취해 detailed balance.}"(현행 22행) 앞.
+% 앵커 문장: "...비평형 열역학 기반 전하전달 동역학의 표준 분해\cite{bazant2013}), 자리당 정·역 속도가 [eq:bv]"
+% 컨테이너: srcbox (인용 다리 = 출처 대응 노트). 우리 기호로 서술, 논문 기호는 표에서만.
+% 원문 검증: arXiv:1208.1587 (Acc. Chem. Res. 46, 1144) HTML 대조 — 식[7]·[26]·[27]·[29] 확인.
+
+\begin{srcbox}
+\textbf{다리 --- eq:bv 의 $\chi$ 분할이 어느 정식화인가.} 식~\eqref{eq:bv} 가 구동력
+$\mathcal A_j=sF(V_n-U_j)$ 를 정$\cdot$역 장벽에 $\chi:(1-\chi)$ 로 실어 비대칭 이동시키는 것은
+Bazant 의 비평형 열역학 전하전달 이론\cite{bazant2013} 이 세운 표준 분해다. 대응은 다음과 같다(왼쪽이
+본문 기호, 오른쪽이 원 논문 량):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:bv},~\eqref{eq:db}) & Bazant\cite{bazant2013} 대응량 \\
+\hline
+분율 위치 $\chi$ / $(1-\chi)$ & 전하전달 대칭인자 $\alpha_c{=}\alpha$ / $\alpha_a{=}1{-}\alpha$ (식[27]) \\
+구동력 $\mathcal A_j=sF(V_n-U_j)$ & 전기화학 과전위 $ne\,\eta=\Delta\mu$, $\eta{=}\Delta\phi{-}\Delta\phi^{\eq}$ (식[26]) \\
+공통 인자 $k_0e^{-\Delta G_a/RT}$ & 교환 전류 $I_0/ne$ --- 활동도$\cdot$전이상태 구조 포함 (식[29]) \\
+평형비 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$ (식~\eqref{eq:db}) & $\eta{=}0$ 에서 알짜 전류 $0$ (식[27]) \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 지수 인자다 --- $n{=}1$ 에서 $F{=}N_A e$, $R{=}N_A\kB$ 이므로
+\begin{equation}
+\frac{\mathcal A_j}{RT}=\frac{sF(V_n-U_j)}{RT}=\frac{e\,[\,s(V_n-U_j)\,]}{\kB T}
+\;\;\longleftrightarrow\;\;\frac{ne\,\eta}{\kB T},\qquad \eta \leftrightarrow s(V_n-U_j),
+\label{eq:br-bazant2013-1}
+\end{equation}
+곧 우리 부호 구동전압 $s(V_n-U_j)$ 가 원 논문 과전위 $\eta$ 에 대응한다. \emph{방법 요지} --- Bazant 는 알짜
+속도를 전이상태 excess 화학퍼텐셜 기준 반응물$\cdot$생성물 화학퍼텐셜의 지수차(식[7])로 적고, 구동력을
+$\eta=\Delta\mu/ne$(식[26])로 특수화한 뒤 장벽을 $\alpha$ 로 비대칭 분할해 일반화 Butler--Volmer(식[27])를
+얻는다. \emph{가정 차} --- 원 논문의 교환전류 $I_0$(식[29])는 농축용액 활동도계수와 전이상태 활동도계수
+$\gamma_\ddagger$ 를 실어 전치인자가 \emph{조성 의존}이나, 식~\eqref{eq:bv} 는 이를 조성무관 상수
+$k_0e^{-\Delta G_a/RT}$ 로 흡수하고(이상 교환속도) 조성 의존을 전부 구동력 $\mathcal A_j$ 와 logistic 로만
+받는다.
+\end{srcbox}
