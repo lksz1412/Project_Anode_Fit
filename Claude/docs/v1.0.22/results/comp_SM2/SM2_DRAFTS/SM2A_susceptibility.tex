@@ -1,0 +1,70 @@
+% ====================================================================
+% SM2A_susceptibility.tex  —  v1.0.22 창 SM2 / 신규 심화 후보 A (최우선)
+%   초안 전용 — 마스터 소스 미수정. 삽입처 = _sections/ch1_sec06_eqpeak.tex
+%   §6, eq:eqpeak 읽기 문단 직후(현행 35행 "…가 이 한 식에서 읽힌다." 뒤,
+%   36행 "이 식이 쓰이는 조건은…" 앞).
+%   목적 = 문서의 최종 산출물 dQ/dV(평형 peak)가 격자기체 저장 전하의
+%          등온 입자수 감수율(=요동 스펙트럼) 그 자체임을 항등식으로 못박아
+%          §2.2 var(n) → §2.5 var(N) → §6 eq:eqpeak 의 호를 닫는다.
+%          (DIRECTION 축 A 의 미집행 절반 = "dQ/dV↔요동 감수율" 읽기.)
+%   ★절대 제약: 새 피팅 파라미터 0(모델 차원 불변) · 기존 수식/라벨/기호 무변경 ·
+%          제거 용이 독립 블록(무라벨 식 → 식번호 재배열 0) · 표준 정리 무인용.
+%   참조 라벨(전부 기존·같은 ch1_graphite 빌드): eq:eqpeak · eq:sm-flucres ·
+%          eq:sm-mc-fluc · eq:sm-mc-occ · eq:sm-eqcond · eq:sum · sec:width · sec:broadening.
+%   자산 앵커(제안): [V22-SM2-A]
+% ====================================================================
+
+\begin{bgbox}
+\textbf{평형 peak 은 등온 감수율 --- 요동--소산 읽기.} 식~\eqref{eq:eqpeak} 의 평형 peak 은 곡선맞춤 종이
+아니라 전극에 저장된 전하의 \emph{등온 입자수 감수율}(isothermal particle-number susceptibility) 그
+자체다. Part 0 이 자리 하나에서 요동--응답 관계 $\mathrm{var}(n)=\theta(1-\theta)$(식~\eqref{eq:sm-flucres})를,
+다클래스에서 $\partial\langle N\rangle/\partial\mu=\beta\,\mathrm{var}(N)$(식~\eqref{eq:sm-mc-fluc})를 세웠고,
+$\langle N\rangle=\sum_jM_j\theta_j$(식~\eqref{eq:sm-mc-occ})였다. 이 요동을 관측 $\dd Q/\dd V$ 에 곧장
+잇는다. 이상 폭($w_j=RT/F$, 곧 $n_j=1$)에서 식~\eqref{eq:eqpeak} 의 전이 몫은 $Q_j=(F/N_A)M_j$ 와
+$\theta(1-\theta)=\xi(1-\xi)$ 로
+\[
+\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j
+=\frac{Q_j\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+=\frac{F^2}{N_A RT}\,M_j\,\theta_j(1-\theta_j)
+=\frac{F^2}{N_A RT}\,\mathrm{var}_j(N),
+\]
+전 전이를 더하고 $\mathrm{var}(N)=\kB T\,\partial\langle N\rangle/\partial\mu$(식~\eqref{eq:sm-mc-fluc})와
+$\kB/R=1/N_A$ 를 쓰면
+\[
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq
+=\frac{F^2}{N_A RT}\,\mathrm{var}(N)
+=e^2\,\frac{\partial\langle N\rangle}{\partial\mu}\;}
+\qquad(e\equiv F/N_A,\ \text{이상 폭}),
+\]
+곧 \emph{평형 $\dd Q/\dd V$ 는 저장 전하의 요동 스펙트럼}이다. $\mu\leftrightarrow V$
+결선(식~\eqref{eq:sm-eqcond})이 감수율 $\partial\langle N\rangle/\partial\mu$ 를 전위축 응답
+$\partial Q/\partial V$ 로 옮긴 것이 이 항등식 --- 요동--소산 관계의 전기화학판이며, 자리당 $e^2$ 과 몰당
+$F^2/N_ART$ 는 같은 환산의 두 표기다($e$ 는 자리당 전하, $F=N_Ae$). \emph{봉우리 하나가 요동 하나}이고,
+곡선 전체가 평형 요동의 지문이다 --- Part 0 이 요동 양성 $\partial\langle N\rangle/\partial\mu>0$ 으로
+유일근을 보증한 바로 그 $\mathrm{var}(N)$(식~\eqref{eq:sm-mc-fluc})이, 여기서는 peak 높이로 관측된다.
+\begin{verifybox}
+검산 --- (i) \emph{합규칙(면적 $=$ 용량).} $\int(\dd Q/\dd V)^\eq_j\,\dd V=Q_j\!\int_0^1\dd\xi=Q_j$ 라
+감수율의 전위 적분이 전이 총 전하다 --- 요동 스펙트럼의 합규칙이 곧 이동 가능한 전하량(식~\eqref{eq:eqpeak}
+면적 읽기와 동일). (ii) \emph{정점.} $\xi=\tfrac12$ 에서 $\mathrm{var}$ 가 최대라 순높이 $Q_j/(4w_j)$ --- 요동이
+가장 큰 반충전에서 감수율이 최대다. (iii) \emph{폭 이중지위 가드.} 이 감수율 항등은 통계 폭
+$n_j=1$($w_j=RT/F$)에서 정확하다; 두-상 전이의 현상학적 자유 폭($w_j$ 가 broadening 을 흡수 ---
+\S\ref{sec:width}$\cdot$\S\ref{sec:broadening})에서는 peak 이 그 감수율의 $1/n_j$ 배 넓혀진 상이라
+문자 그대로의 감수율 \emph{크기}가 재척도된다(형상 근거는 유지되나 두-상 폭은 평형 예측이 아니다). (iv)
+\emph{배경 제외.} 비전이 배경 $C_\bg$(식~\eqref{eq:sum})는 클래스 밖 저장이라 이 요동 항에 들지 않는다.
+\end{verifybox}
+\end{bgbox}
+
+
+% ─────────────────────────────────────────────────────────────────────
+% 설계 주석
+%   · 판형 = bgbox(배경 의미 = "관측 peak 이 왜 감수율인가"). 두 boxed/무라벨 식이라
+%     §6 기존 식번호(eq:eqpeak 등) 재배열 0 — 통삭제 시 §6 원상 복귀.
+%   · §2.2(eq:sm-flucres, 자리 하나 "peak 종=분산" 예고)의 거시·차원 완비판.
+%     §2.2 는 형상만, 본 블록은 물리단위 dQ/dV = e²∂⟨N⟩/∂μ 로 완성 → 중복 아님(payoff).
+%   · §7 broadening 의 σ_η²(η-원천 분산 → 폭)와 대상이 다름: 여기는 자리 점유 var(N)
+%     → 전하 감수율. REMOVAL 문서에서 CLT 블록과의 비중복 확인.
+%   · 겹침 가중(§2.5 mixing eq:weighted 분모 = 측정 dQ/dV = 총 감수율)이 이 항등의
+%     따름정리 — 본 블록 "곡선 전체가 요동 지문" 문장이 그 연결을 흡수(SM2-E 대체).
+%   · 수치 검산(예): 298 K, RT/F=25.693 mV, Q_j=0.5 Q_cell, ξ=½ →
+%     Q_j/(4w_j)=4.865 Q_cell/V = §10 worked example (c) 의 2→1 값과 일치.
+% ─────────────────────────────────────────────────────────────────────

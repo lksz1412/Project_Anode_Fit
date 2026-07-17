@@ -1,0 +1,52 @@
+% ====================================================================
+% SM2C_two_responses.tex  —  v1.0.22 창 SM2 / 신규 심화 후보 C (3순위·절간 다리)
+%   초안 전용 — 마스터 소스 미수정. 삽입처 = _sections/ch2_sec07_revheat.tex
+%   §2.7.3(ssec:revinterp) 맺음 직후(현행 72행 "…한 수치 예제를 닫는다." 뒤,
+%   73행 자산주석 앞). ※ ch2_sec07 은 ch1_graphite 빌드의 Part T — Part 0 라벨 직접 \eqref.
+%   목적 = 관측 dQ/dV(∂/∂V)와 가역 발열(∂/∂T)이 같은 평형 전위 U_oc(x,T)=같은
+%          격자기체 자유에너지의 두 1계 응답(전하 감수율↔열 감수율 켤레 쌍)임을
+%          명시해 Part 0/Part I ↔ Part T 를 한 분배함수로 잇는다.
+%          (DIRECTION 축 A 가 예고한 "전하 감수율·열 감수율의 쌍" 완성 = SM2-A 의 열역학 짝.)
+%   ★절대 제약: 새 피팅 파라미터 0 · 기존 수식/라벨/기호 무변경 ·
+%          제거 용이 독립 블록(무라벨 식) · 표준 열역학 1계 응답 무인용.
+%   참조 라벨(전부 기존·같은 ch1_graphite 빌드): eq:qrev · eq:Vxi · eq:sm-nernst ·
+%          eq:single_config · eq:sm-sint · eq:eqpeak · sec:eqpeak · sec:sm-macro ·
+%          ssec:revinterp · ssec:hys.
+%   자산 앵커(제안): [V22-SM2-C]
+% ====================================================================
+
+\begin{bgbox}
+\textbf{한 자유에너지의 두 응답 --- $\dd Q/\dd V$($\partial_V$)와 가역 발열($\partial_T$).} 가역 발열
+$\dot Q_\rev=-IT\,\partial U_\oc/\partial T$(식~\eqref{eq:qrev})와 Part I 의 관측 $\dd Q/\dd V$ 는 \emph{같은}
+평형 전위 $U_\oc(x,T)$ --- 곧 같은 격자기체 자유에너지 --- 의 두 1계 응답이다: 전위 미분 $\partial/\partial V$
+가 전하 감수율(peak, \S\ref{sec:eqpeak})을, 온도 미분 $\partial/\partial T$ 가 엔트로피(가역 발열)를 준다. 배치
+몫에서 이 쌍이 한 항에서 갈라진다 --- 평형 전위의 Nernst 배치 항 $(RT/F)\ln[\xi/(1-\xi)]$
+(식~\eqref{eq:Vxi}; \S\ref{sec:sm-macro} 식~\eqref{eq:sm-nernst})을 두 축으로 미분하면
+\[
+\frac{\partial}{\partial V}:\ \ \frac{\dd\xi}{\dd V}=\frac{\xi(1-\xi)}{w}\quad(\text{peak},\ \propto\mathrm{var});
+\qquad
+\frac{\partial}{\partial T}:\ \ \frac{R}{F}\ln\frac{\xi}{1-\xi}\quad(\text{부분몰 배치 엔트로피}/F),
+\]
+뒤 조각이 정확히 겹침 가중 완전식의 봉우리 내부 config 항 $+n_jR\ln[\xi/(1-\xi)]/F$
+(식~\eqref{eq:single_config})이자 가역 발열 $\dot Q_\rev$ 의 배치 몫이다. 곧 $\dd Q/\dd V$ 봉우리(요동)와 가역
+발열(엔트로피)은 한 분배함수의 \emph{전하 감수율}과 \emph{열 감수율}이라는 켤레 쌍이다. Part 0 이 자리 내부
+자유도에서 세운 $s_\mathrm{int}=\kB\,\partial(T\ln q)/\partial T$(식~\eqref{eq:sm-sint})가 vibrational 축의
+같은 $\partial_T$ 응답이고, 세 분포(배치$\cdot$포논$\cdot$전자)의 $\partial_T$ 합이 $\Delta S(x)$
+(\S\ref{ssec:revinterp})다 --- $\partial_V$ 는 곡선을, $\partial_T$ 는 그 곡선의 열을 같은 자유에너지에서
+뽑는다. \emph{가드} --- 이 켤레 쌍은 \emph{가역}(평형) 응답에 한한다; 히스 gap 의 비가역
+소산($\propto I\,\Delta U^\hys$)은 $\partial_T$ 응답이 아니라 별개다(\S\ref{ssec:hys} warnbox).
+\end{bgbox}
+
+
+% ─────────────────────────────────────────────────────────────────────
+% 설계 주석
+%   · 판형 = bgbox(배경 = "dQ/dV 와 가역열이 왜 한 자유에너지의 두 얼굴인가").
+%     무라벨 파생 쌍 1식군 → 식번호 재배열 0 · 통삭제 시 §2.7 원상 복귀.
+%   · 신규 기여 = "∂_V ↔ ∂_T 켤레 쌍" 통일뿐. §2.5 파생 B(config 이중계산 분리)·
+%     §2.7 revinterp(분포 재배열 해석)와 표면 인접 → 박스가 그 한 점(V-T 응답 쌍)에
+%     국한. REMOVAL 문서에서 비중복 경계 명시.
+%   · SM2-A(전하 감수율)의 열역학 짝: A = e²∂⟨N⟩/∂μ(∂_V), C = -IT∂U_oc/∂T(∂_T).
+%     두 초안이 DIRECTION 축 A "전하·열 감수율의 쌍"을 완성.
+%   · Part 0 라벨(eq:sm-sint·eq:sm-nernst)·§6(sec:eqpeak)·§2.5(eq:single_config)이
+%     모두 ch1_graphite 단일 빌드라 \eqref 직접 해소(xr 불요) — 드라이버 확인 완료.
+% ─────────────────────────────────────────────────────────────────────
