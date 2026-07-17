@@ -296,15 +296,28 @@ $\gamma_j\to0$ 이 히스 소멸, $h_{\eta,j}$ 가 부분 cycle 보정(기본 $1
 
 ---
 
-## 7. 서치 절 (하이쿠 서브에이전트 — doi 실검증분만)
+## 7. 서치 절 (하이쿠 서브에이전트 — doi 실검증분만, 2026-07-17)
 
-(서브에이전트 진행 중 — 완료 시 본 절 갱신. A05-06 의 \cite 부여는 이 표 후보가 **원장 등재 절차를 통과한 뒤에만** 가능.)
+서브에이전트(model: haiku)가 Crossref API(`api.crossref.org/works/<DOI>`) 실조회로 검증한 후보만 수록.
+**전건 후보 지위** — 본문 \cite 부여는 V1 원장 절차(검증→등재→인용) 통과 후에만 가능. 기억 서지 0건(전량 세션 내 Crossref 조회분).
+
+| 슬롯 | 제안 key | 확정 서지(Crossref 추출 그대로) | DOI | 검증 방법 | 서브가 직접 확인한 내용 | 본문 대응 자리 |
+|------|---------|--------------------------------|-----|-----------|--------------------------|----------------|
+| A(흑연 실측 히스) | mercer_hys2021 | M. P. Mercer, C. Peng, C. Soares, H. E. Hoster, D. Kramer, "Voltage hysteresis during lithiation/delithiation of graphite associated with meta-stable carbon stackings," *J. Mater. Chem. A* **9**(1) 492–504 (2021) | 10.1039/D0TA10403E | Crossref API 조회 | 흑연 음극 충방전 전위 히스테리시스 실험·계산 보고(메타스테이블 스택킹 경로; 고온에서도 잔존 성분 확인 — 서브 열람 기준) | A05-06 anchor 1순위 (fig:hysgap 캡션 보강; §4 의 '준안정 가지' 그림과 기작 서술까지 맞닿음) |
+| A(흑연 실측 히스) | jahn_hys2024 | L. Jahn, P. Mößle, F. Röder, M. A. Danzer, "A physically motivated voltage hysteresis model for lithium-ion batteries using a probability distributed equivalent circuit," *Commun. Eng.* **3** (2024) | 10.1038/s44172-024-00221-4 | Crossref API 조회 | 흑연 OCV 히스테리시스 약 **10 mV** 규모 언급 + 부분 사이클 path dependence(서브가 PMC 본문에서 확인) | A05-06 의 "수~수십 mV" 수치 스케일 근거 후보; h_{η,j} 부분 cycle 서술의 실측 근거 겸용 |
+| B(부분 cycle 모델) | plett_ekf2_2004 | G. L. Plett, "Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs," *J. Power Sources* **134**(2) 262–276 (2004) | 10.1016/j.jpowsour.2004.02.032 | Crossref API 조회 | one-state 히스테리시스 상태변수 h 모델 원전(권·호·쪽 = Part 2 범위) — ★등재 시 부제 "Part 2. Modeling and identification" 포함 여부 원문 재확인 요 | h_{η,j}(부분 cycle 인자) 문장의 모델링 계보 anchor 후보 |
+| B(부분 cycle 모델) | yu_asymhys2022 | P. Yu, S. Wang, C. Yu, W. Shi, B. Li, "Study of hysteresis voltage state dependence in lithium-ion battery and a novel asymmetric hysteresis modeling," *J. Energy Storage* **51** 104492 (2022) | 10.1016/j.est.2022.104492 | Crossref API 조회 | 비대칭 히스테리시스 연산자·minor loop 특성(서브 열람 기준) | §5 '추가 후보'(방향별 γ 비대칭 확장)의 문헌 존재 증거 후보 |
+| B(부분 cycle 모델) | he_hysmodel2020 | Y. He, R. He, B. Guo, Z. Zhang, S. Yang, X. Liu, X. Zhao, Y. Pan, X. Yan, S. Li, "Modeling of Dynamic Hysteresis Characters for the Lithium-Ion Battery," *J. Electrochem. Soc.* **167**(9) 090532 (2020) | 10.1149/1945-7111/ab8b96 | Crossref API 조회 + IOP 랜딩 | Prandtl–Ishlinskii play 연산자 중첩으로 major/minor loop 포착(서브가 IOP 랜딩에서 확인) | h_{η,j} 한 계수 보정의 '더 정밀한 대안 계열' 존재를 밝히는 각주 후보 |
+
+서브 보고의 실패/제외: 출판사 원문 페이지 다수 403/리다이렉트(RSC·ScienceDirect·ResearchGate·Nature 등) — Crossref API 로 대체 검증 완료. 원문 전문(full-text) 대조는 미수행(아래 4-tier '미검증' 참조).
+
+**통합 판단(FR-A05)**: A05-06 제안문("실측 수~수십 mV")은 jahn_hys2024 의 ~10 mV(흑연)와 정합 — 다만 이 수치는 서브의 랜딩/본문 열람 보고이므로, 등재 절차에서 원문 수치·조건(온도·전극 구성) 확인 후 tier 배정할 것. mercer_hys2021 은 §4 의 열역학 기원 서술(준안정 가지)과 같은 대상계라 anchor 적합도 최상. B 슬롯 3건은 h_{η,j} 문장(A05-05)의 계보 각주용 — 본문 골격(전이당 한 계수)을 바꾸지 않는 선에서만.
 
 ---
 
 ## 8. 말미 4-tier (확정/추정/미검증/무발견)
 
 - **확정** (재계산·원문 대조로 검증): §1 검증 로그 전 항목; 발견 A05-01·02·07 의 수치·논리 근거; 참조·코드·서지 정합 판정.
-- **추정** (합리 추론 — 검증 불완전): A05-05 의 h_{η,j}∈[0,1] 이 설계 의도라는 판단(기호표 '기본 1'과 상한 주장에서 역산한 추론 — 설계자 확인 필요); A05-06 의 "실측 수~수십 mV" 스케일(서치 검증 완료 전까지 추정 — §7 대기); 추가 후보(비대칭 γ 확장)의 필요성은 데이터 의존.
-- **미검증**: dreyer2010/2011 **논문 전문 내용** 자체(서지·원장 지위만 확인 — 본문 주장 대조는 '부호만 대조' 규정 범위 안이라 별도 전문 검증 불요 판단); tikz 렌더 픽셀 결과(좌표 수치만 재계산 — PDF 시각 확인은 본 창 범위 밖); 서브에이전트 서치 결과(도착 전).
+- **추정** (합리 추론 — 검증 불완전): A05-05 의 h_{η,j}∈[0,1] 이 설계 의도라는 판단(기호표 '기본 1'과 상한 주장에서 역산한 추론 — 설계자 확인 필요); A05-06 의 "실측 수~수십 mV" 스케일(§7 jahn_hys2024 의 ~10 mV 보고와 정합하나 서브의 랜딩/본문 열람 수준 — 원문 수치 확정은 등재 절차 몫); 추가 후보(비대칭 γ 확장)의 필요성은 데이터 의존.
+- **미검증**: dreyer2010/2011 **논문 전문 내용** 자체(서지·원장 지위만 확인 — 본문 주장 대조는 '부호만 대조' 규정 범위 안이라 별도 전문 검증 불요 판단); tikz 렌더 픽셀 결과(좌표 수치만 재계산 — PDF 시각 확인은 본 창 범위 밖); §7 후보 5건의 **전문(full-text) 내용**(Crossref 서지 필드 검증만 완료 — 출판사 원문 다수 403; plett_ekf2_2004 부제 포함 여부 재확인 필요 표기).
 - **무발견 축**: §6 명시 8개 축.
