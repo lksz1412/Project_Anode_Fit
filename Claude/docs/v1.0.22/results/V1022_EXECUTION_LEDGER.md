@@ -6,3 +6,5 @@
 |---|---:|---:|---|---|---|---|---|---|---|---|---:|
 | R0 | 1-4 | 1-4 | setup | v1.0.21 마감 흡수(HANDOVER·축약 검수)+재편 설계서+D22 확정(플랜 v2) | PASS | 마스터플랜 v2 | HANDOVER_v1.0.21·PLAN_R1_reorg | — | 설계 7절·매핑표 | PASS_R0 | 5 |
 | R1 | 5-14 | 5-14 | reorg | 3챕터 재편 집행(S-001~007) — 조립·preamble 통합·xr·장별 기호표/bib·항법 제거·도구 패치 | PASS | PLAN_R1_reorg | (CHANGE_LOG S-001~007) | snapshot_v1022_r1.json·PDF 4본(77/23/5/8p) | 4빌드 err0·undef0(수렴)·구조 PASS·라벨 전역 dup 0·**자산 357/357 무유실**·게이트 exit 0·multiply=화이트리스트 2건만 | PASS_R1_REORG | 15 |
+| RA | 15-20 | 15-20 | audit | 계보 무결 감사 v19→v22(사용자 지시 — 미로그 축소·생략·왜곡 색출): 자산 정체성·라벨·eqblock 해시·총량·표적 병독·처분 | PASS | PLAN_RA_lineage_audit | AUDIT_LINEAGE_v19_v22 | — | RA.1 태그 469종 유실 0(정체성 집합 비교)·RA.2 미귀속 제거 0(−7=항법 D22-1)·RA.3 미귀속 소멸/변경 0(해시 변경 유일 1=B-007 병독 무해)·RA.4 미설명 감소 0·**③미로그 = 0건** | PASS_RA_LINEAGE | 21 |
+| R1b | 21-25 | 21-25 | audit | 구획 전환 점검(사용자 지시): 장 지칭 전수 스윕·경계 예고문·지도류·PDF 육안·명백 오문 최소 정정 | PASS | PLAN_RA_lineage_audit | R1B_SWEEP_LIST·(CHANGE_LOG S-008) | 오문 정정 7곳(_sections 5파일) | 스윕 117→정정 후 118 전수 분류(T1 20·T2 53·T3 5·L1 1·W 29·OK 10 — 잔여 전건 R2/R3 인계)·재빌드 GREEN(77p·참조 미해소 0)·aux 불변·구조 PASS | PASS_R1B_SWEEP | 26 |

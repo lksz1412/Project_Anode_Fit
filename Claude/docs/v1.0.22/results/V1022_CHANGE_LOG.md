@@ -13,3 +13,4 @@
 | S-006 | R1 | ch{1,2,3}v22_bib.tex(신규)·구 bib 2본 미복사 | 장별 참고문헌 자동 분할(cite 스캔 — 39/14/14·누락 0)+구 bib 자산 주석 블록 복원(27 앵커) | bib 재편(자산 357/357) |
 | S-007 | R1 | results/tools_check_structure.py | unresolved 판정을 전 마스터 라벨 합집합 기준으로 패치(장 간 xr 참조 설계 반영 — 헤더 기록) | 도구 |
 | (R1 비고) | R1 | — | multiply 경고 화이트리스트 = LastPage·swiderska2019(xr 산물 — 장별 bib 중복 수록 의도). 병합 시 externaldocument 제거로 자연 해소(MERGE_READINESS 소관) | — |
+| S-008 | RA/R1b | ch1_sec00_intro·ch1_sec10_sum(×2)·ch1_sec14_lcodecomp·ch1_sec18_inputs·ch2_appA_traps(×2) | 구획 전환 명백 오문 7곳 정정(재편 산물 — R1b 스윕 검출): ①서론 세 층 서술 신 구조화(Part 0→I→T+Ch2/Ch3 안내) ②§10 말미 Part T 예고+LCO=Ch2 ③④appA "별도 컴파일 객체" 2곳→같은 문서/별개 장 사실 정정 ⑤§14 스코프 "Chapter 2 가"→"Chapter 1 Part T 가" ⑥§18 말미 흑연 장 결과 사슬+LCO 행 지위 ⑦§10 verifybox "Chapter 2 의 계산 예제"→"Part T 의 계산 예제(\S\ref{ssec:worked})". 잔여 분류 = results/R1B_SWEEP_LIST.md(T1 20·T2 53·T3 5·L1 1 → R2/R3 본안·W 29 어휘) | 산문 정정 7곳(수식·라벨 무변경) — 재빌드 GREEN·aux 불변·구조 PASS |
