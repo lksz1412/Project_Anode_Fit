@@ -17,3 +17,10 @@
 ## C. 운용 메모
 - Q2(대정준)·D21-5(요동–응답)는 기존 V1 키(hill1960·mcquarrie1976 등 통계역학 교과서 앵커)로 충당 가능 — 신규 검증 필요 시 본 표에 등재 후 인용.
 - Si Chapter 3(Q7)는 신규 문헌 다수 예상 — DIRECTION_SI_LCO_REPORT.md 의 후보를 phase 진입 시 일괄 검증·등재.
+
+## B′. Q5 등재분 (2026-07-17 — 검증 근거 = v1.0.20 DIRECTION_GENERAL_REPORT §(v-1) WebSearch+CrossRef 전건 대조)
+
+| key | 확정 서지 | DOI | 판정 | 사용 |
+|---|---|---|---|---|
+| weppner_huggins1977 | W. Weppner, R. A. Huggins, "Determination of the Kinetic Parameters of Mixed-Conducting Electrodes and Application to the System Li₃Sb," J. Electrochem. Soc. 124(10), 1569–1578 (1977) | 10.1149/1.2133112 | V1 | Q5 §1 측정 원리 bgbox(GITT 원전, tier A) |
+| baek_pilon2022 | S. W. Baek, M. Saber, A. Van der Ven, L. Pilon, "Thermodynamic Analysis and Interpretative Guide to Entropic Potential Measurements of Lithium-Ion Battery Electrodes," J. Phys. Chem. C 126(14), 6096–6110 (2022) | 10.1021/acs.jpcc.1c10414 | V1 | Q5 §1 측정 원리 bgbox(해석 지도, tier B — load-bearing 주장엔 1차 병기 규약) |

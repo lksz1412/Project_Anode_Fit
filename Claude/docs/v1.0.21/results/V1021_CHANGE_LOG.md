@@ -26,3 +26,6 @@
 | (Q5 비고) | Q5(항법) | 마스터 ch1 | 조건부 \input 은 3행 형태(행 선두 \input) — tools_check_structure 의 input-follow 정규식 호환. 체커는 appC 를 양 판 공통으로 스캔(라벨 완결성 검사 의도적) | — |
 | A-006 | Q5(top3①) | ch1_sec10_sum.tex | **끝-대-끝 계산 예제 신설**(sec:sum-worked, fig:sumcurve 뒤) — V_n=0.085 V 한 점을 표 tab:staging+식 4개(eq:Uj·logisticsolve·eqpeak·sum)만으로 6.95 Q_cell/V 까지 완주. 수치는 마스터 손검산 + FF3-3 독립 python 좌표와 4/4 교차 일치(4.865/1.568/0.4408/0.0286). B-006 환산값 규약 재강조(표시 반올림 입력 금지 문장). 무번호 display 수식 3(eqblock 체계 밖 — 의도) | 라벨 +1(sec)·eqblock ±0 |
 | N-004 | Q5(top3②·항법판) | _sections/ch1_appC_navaid.tex | **Ch1↔Ch2 로드맵 대응표 C.3**(tab:navroadmap — 교차 지점 11행·라벨 분리 주의 2건 명시). 배치 판단: 별도 컴파일 간 색인이라 항법판 소관(미적용판과의 차이 비교 자료) | 라벨 +2(ssec·tab) |
+| A-007 | Q5(top3③) | ch1_sec01_n0n1.tex | **측정 원리 배경 bgbox 신설**(§1 말미) — (i)준평형 OCV=GITT 원전 (ii)전위차 엔트로피법+상전이 유형 해석 지도 (iii)가역열 열량 검증(Ch2 서술형). 스코프 한정 가드 명문("원리 대응만·기법 상세 범위 밖·모델 식은 측정 방식과 무관") — GENERAL 보고서 (v-1) 위험 완화 그대로 | 없음(산문 bgbox)·cite +4(weppner_huggins1977·baek_pilon2022 신규, reynier2003·swiderska2019 기존) |
+| C-022 | Q5(top3③) | ch1_bib.tex | weppner_huggins1977 등재(GITT 원전, tier A — CrossRef 검증: DIRECTION_GENERAL_REPORT §(v-1)) | bib +1 |
+| C-023 | Q5(top3③) | ch1_bib.tex | baek_pilon2022 등재(해석 지도 리뷰, tier B — 1차 병기 규약 비고 포함) + 헤더 카운트 38→40종 | bib +1 |
