@@ -1,0 +1,131 @@
+% ====================================================================
+% §8 동역학 지연 길이 L_V (N7)
+% ====================================================================
+\section{동역학 지연 길이 $L_V$ (N7)}\label{sec:lag}
+이 절(N7--N9)은 \S\ref{sec:broadening} 세 출처 중 ①(유한율속 비대칭 꼬리)에 대한 답이다. 유한 전류에서는 평형
+목표 $\xi_\eq$ 를 점유가 즉시 따라가지 못하고 뒤처진다 --- 그 지연이 peak 의 꼬리다. 이 절은 그 지연을 전이당 하나의 길이 $L_{V,j}$ 로 닫는다 --- 사슬
+$\mathcal A\to\chi_d\to\Delta H_a^\eff\to L_q\to L_V$ 를, 운동방정식의 보편형에서 한 단계씩 닫는다.
+
+\subsection{지연의 보편 방정식과 용량축 길이 $L_q$}\label{sec:lag-Lq}
+\textbf{(a) 출발 --- 운동방정식을 용량축으로.} \S\ref{sec:width} 의 운동방정식 $\dd\xi_j/\dd t=k_j(\xi_{\eq,j}-\xi_j)$
+을, 정전류에서 성립하는 $\dd q/\dd t=|I|/Q_\cell$ 로 나누면 $\dd\xi_j/\dd q=(Q_\cell k_j/|I|)(\xi_{\eq,j}-\xi_j)$.
+\textbf{(b) 연산 --- 지연 변수.} 지연 $r_j\equiv\xi_{\eq,j}-\xi_j$ 의 변화율 $\dd r_j/\dd q=\dd\xi_{\eq,j}/\dd q-\dd\xi_j/\dd q$
+에 위 식을 넣으면 \textbf{(c) 중간식.}
+\begin{equation}
+\frac{\dd r_j}{\dd q}=\frac{\dd\xi_{\eq,j}}{\dd q}-\frac{Q_\cell k_j}{|I|}\,r_j,
+\label{eq:Lqmid}
+\end{equation}
+\textbf{(d) 박스 --- 용량축 길이 정의.} 계수의 역수가 용량축 지연 길이다:
+\begin{equation}
+\frac{\dd r_j}{\dd q}=\frac{\dd\xi_{\eq,j}}{\dd q}-\frac{r_j}{L_{q,j}},
+\qquad \boxed{\;L_{q,j}=\frac{|I|}{Q_\cell\,k_j}\;.}
+\label{eq:Lq}
+\end{equation}
+$L_{q,j}$ 는 요구($|I|/Q_\cell$)와 공급($k_j$)의 비 그 자체다 --- 근본식의 세 인자가 전부 이 한 양을 통해 꼬리로
+들어온다. 완화 속도 $k_j$ 는 평형 근방 선형 완화에서 정$\cdot$역 속도의 합이다 --- detailed balance~\eqref{eq:db} 로
+$r_j^-=r_j^+e^{-\mathcal A_j/RT}$ 이므로
+\begin{equation}
+k_j=r_j^++r_j^-=r_j^+\big(1+e^{-\mathcal A_j/RT}\big),
+\qquad r_j^+\simeq k_0\,e^{-(\Delta G_{a,j}^\eff-\chi_d\mathcal A_j)/RT}\ (k_0=k_BT/h),
+\label{eq:kuniv}
+\end{equation}
+이고, 괄호 인자 $(1+e^{-\mathcal A_j/RT})$ 가 역방향 몫의 전부다($\mathcal A\gtrsim3RT$ 면 $1$로 수렴한다). 이 두 인자가
+아래 $L_q$ 평가식의 분모와 forward 지수를 각각 채운다.
+
+\subsection{컷 affinity $\mathcal A$ --- 꼬리 시작점의 구동력}\label{sec:lag-cut}
+$L_q$ 는 전이당 한 점(꼬리 컷점 $q_a$)에서 \emph{상수로 동결}된다. \textbf{(a) 출발 --- 컷의 정의.} 컷점은 원천
+$\dd\xi_\eq/\dd q$ 가 정점의 일정 분율(약 $5\%$)로 떨어지는 좌표이고, \textbf{(b)(c) 연산$\cdot$중간식 --- 컷의 구동력.}
+컷은 점유 $\xi_\eq$ 자체가 아니라 그 \emph{미분} $\dd\xi_\eq/\dd q$ 의 $5\%$ 기준이며, logistic 미분 종의 $5\%$
+폭이 중심에서 $\pm z_\mathrm{cut}\,RT/F$ 규모라 그곳의 구동력은 $\mathcal A=z_\mathrm{cut}\,n_jRT$($z_\mathrm{cut}=4.357$
+--- 이 $5\%$ 컷에 대응하는 선택값)다. \textbf{(d) 박스 --- 상한과 함께.}
+\begin{equation}
+\mathcal A=\min\!\big(z_\mathrm{cut}\,n_j\,RT,\;A_\mathrm{cap}\,RT\big),
+\qquad z_\mathrm{cut}=4.357,\ A_\mathrm{cap}=4.0\ (\text{기본}).
+\label{eq:Acut}
+\end{equation}
+기본 상태($n_j{=}1$)에서는 $z_\mathrm{cut}n_jRT=4.357RT>A_\mathrm{cap}RT=4.0RT$ 라 상한이 걸려 실효
+컷은 $z=4.0$(정점의 약 $7\%$)이고, $5\%$ 컷 분기는 $n_j<A_\mathrm{cap}/z_\mathrm{cut}\approx0.92$ 로
+피팅될 때 활성화된다.
+\emph{부호의 핵심} --- 컷 affinity 의 \emph{크기}는
+충$\cdot$방전 동일($n_j>0$ 라 항상 양수)이고, 방향은 아래 $\chi_d\cdot\Delta H_a^\eff$ 가 받는다. 방향 부호 $\sigma_d$ 를
+$\min$ 안에 넣으면 충전에서 상한이 음수가 되어 물리적으로 무의미해지므로, 크기는 항상 양수로 두고 방향은 전달
+계수 $\chi_d$ 로만 반영한다.
+
+\subsection{방향별 전달 계수와 유효 장벽}\label{sec:lag-chid}
+\textbf{(a) 출발 --- 합-1 제약.} 전이상태가 정$\cdot$역 장벽을 비대칭으로 가르는 분율 $\chi\in[0,1]$ 의 합-1 제약
+($\chi+\chi'=1$, 식~\eqref{eq:db} detailed balance 가 강제)에서, \textbf{(b)(c) 방향별 선택.} 방향별 전달 계수는
+\begin{equation}
+\chi_d=\chi_\mathrm{split}(\chi,\sigma_d)=
+\begin{cases}\chi & \sigma_d\ge0\ (\text{방전})\\ 1-\chi & \sigma_d<0\ (\text{충전}).\end{cases}
+\label{eq:chid}
+\end{equation}
+\textbf{(d) 박스 --- 유효 장벽.}
+구동력에 평균장 $\mu$ 의 상호작용 몫(식~\eqref{eq:mu} 의 몫을 $\xi$ 좌표로 옮긴 $\Omega(1-2\xi)$ --- $\theta=1-\xi$ 에서 부호 반전)을 마저 실으면
+$\mathcal A_j=sF(V-U_j)-\Omega_j(1-2\xi_j)$ 다 --- 이 상수 몫은 아래처럼 \emph{장벽}으로만 흡수되고, 컷점
+판정(식~\eqref{eq:Acut})은 이상 몫 $sF(V-U_j)$ 로 남아 이중계산이 없다.
+깊은 꼬리에서 방전은 $\xi\to1$ --- 상호작용 몫
+$-\Omega(1-2\xi)\to+\Omega$ --- 이고, 충전은 $\xi\to0$ 거울이되 충전의 구동력은 리튬화 방향으로 부호가 뒤집힌
+$-sF(V-U_j)+\Omega_j(1-2\xi_j)$ 라 같은 극한에서 상호작용 몫 $+\Omega(1-2\xi)\to+\Omega$ --- 두 방향 모두
+구동력의 상수 몫이 \emph{같은} $+\Omega$ 이고, 이것이 정방향 유효 장벽의 활성화 엔탈피로 흡수되어 유효값이 된다:
+\begin{equation}
+\boxed{\;\Delta H_{a,j}^\eff=\Delta H_{a,j}-\chi_d\,\Omega_j\;.}
+\label{eq:dHeff}
+\end{equation}
+단, 이 보강을 적용하지 않으면 보강 없이 $\Delta H_a$ 를 그대로 쓴다.
+방향별로 풀어 적으면 다음과 같다(식~\eqref{eq:chid} 의 $\chi_d$ 대입 --- 기본 $\chi=0.5$ 면 두 방향이
+같은 $\Delta H_{a,j}-\Omega_j/2$ 로 합쳐진다):
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+방향 & $\chi_d$ & $\Delta H_{a,j}^\eff$ \\
+\midrule
+방전($\sigma_d=+1$) & $\chi$ & $\Delta H_{a,j}-\chi\,\Omega_j$ \\
+충전($\sigma_d=-1$) & $1-\chi$ & $\Delta H_{a,j}-(1-\chi)\,\Omega_j$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{$L_q$ 의 평가와 전압축 환산 $L_V$}\label{sec:lag-LV}
+\textbf{(a) 출발 --- 정$\cdot$역 합과 Eyring prefactor.} 식~\eqref{eq:kuniv} 의 $k_j=r_j^+(1+e^{-\mathcal A_j/RT})$ 와
+$r_j^+\simeq k_0e^{-(\Delta G_a^\eff-\chi_d\mathcal A)/RT}$($k_0=k_BT/h$)을 식~\eqref{eq:Lq} 의 $L_{q,j}=|I|/(Q_\cell k_j)$
+에 넣으면 \textbf{(b)(c) 연산$\cdot$중간식 --- $\Delta G_a^\eff=\Delta H_a^\eff-T\Delta S_a$ 로 갈라 적기.}
+\begin{equation}
+L_{q,j}=\frac{|I|}{Q_\cell}\cdot\frac{h}{k_BT}\cdot
+\frac{e^{(\Delta H_{a,j}^\eff-T\Delta S_{a,j}-\chi_d\mathcal A)/RT}}{1+e^{-\mathcal A/RT}},
+\label{eq:Lqmid2}
+\end{equation}
+이 갈라 적기의 활성화 엔트로피 $\Delta S_{a,j}$ 의 미시 기원 --- 반응좌표를 뺀 분배함수 비의 로그
+$R\ln(q^{\ddagger}/q_R)$ --- 은 \S\ref{sec:width} 의 배경 박스(식~\eqref{eq:tst-box})가 세웠다: 이 절은 그
+갈래를 \emph{쓰고}, 그 박스가 \emph{기원}이다.
+\textbf{(d) 박스 --- 특성 온도로 묶기.} 앞 인자를 $T_*\equiv|I|h/(Q_\cell k_B)$ 로 묶고 forward 지수를 분리하면
+\begin{equation}
+L_{q,j}=\frac{T_*}{T}\,\frac{\exp\!\big[(\Delta H_{a,j}^\eff-T\Delta S_{a,j})/RT\big]}{1+e^{-\mathcal A/RT}}
+\,e^{-\chi_d\mathcal A/RT},
+\qquad T_*\equiv\frac{|I|\,h}{Q_\cell\,k_B}.
+\label{eq:Lqfull}
+\end{equation}
+\emph{암묵 전제 명시} --- 식~\eqref{eq:Lqfull} 의
+$\Delta H_a^\eff$ 는, 유효 장벽 보강이 켜져 있을 때만 식~\eqref{eq:dHeff} 의 $\Delta H_a-\chi_d\Omega$ 이고,
+꺼져 있으면 그대로 $\Delta H_a$ 다. 전압축으로 옮기면, 컷점 OCV 기울기를 곱한다 --- 꼬리 진폭이
+용량축 $1/L_q$ 와 분모 $\dd V_n/\dd q$ 가 묶여 전압축 길이로 정리되는 것이다:
+\begin{equation}
+\boxed{\;L_{V,j}=\Big|\frac{\dd V}{\dd q}\Big|_{q_a}\,L_{q,j}\;.}
+\label{eq:LV}
+\end{equation}
+\emph{부호의 핵심} --- $\mathcal A$ 가 전이당 컷 상수로 동결되므로, \emph{실현되는} 미분은
+$\partial\ln L_q/\partial V=0$ 이다(전이당 한 스칼라). 부등식 $\partial\ln L_q/\partial V<0$ 은 \emph{물리적 동기}로 읽어야
+한다 --- 만일 $\mathcal A$ 를 컷에 동결하지 않고 국소 구동력 $\mathcal A=\sigma_dF(V_n-U)$ 로 두면, 방전
+기준($\sigma_d=+1$; 충전은 진행 방향 $V\!\downarrow$ 를 따라 같은 단조성) $V\!\uparrow\Rightarrow
+\mathcal A\!\uparrow\Rightarrow$ 유효 장벽$\downarrow\Rightarrow L_q\downarrow$(꼬리 짧아짐)이고, 이 단조성이 ``꼬리 컷점을
+원천 정점의 일정 분율로 잡는다''는 컷 규칙의 정당성이다. 한편 $|I|$ 의존은 동결 뒤에도 살아 있다 --- $L_q\propto|I|$($T_*\propto|I|$)라 $|I|\to0$
+에서 $L_V\to0$, 다음 절의 꼬리가 사라지고 평형 peak 으로 환원된다. 지연 길이를 직접 지정하면 동역학 계산을 우회해
+그 값을 쓰고, $I\le0$ 이거나 활성화 엔탈피 입력이 없거나 컷점 OCV 기울기 $|\dd V/\dd q|_{q_a}$ 가
+$0$(기본값$\cdot$미입력)이면 $L_V=0$ 이다.
+
+N7 의 진행을 정리하면 --- 다중도 $n_j$(입력 가드로 크기만 취함 --- 정상 입력은 항상 양수)에서 컷 affinity $\mathcal A$(식~\eqref{eq:Acut})로,
+방향별 전달 계수와 유효 장벽(식~\eqref{eq:chid}$\cdot$\eqref{eq:dHeff})으로, 용량축 지연 길이
+$L_q$(식~\eqref{eq:Lqfull})로, 마지막으로 전압축 지연 길이 $L_V$(식~\eqref{eq:LV})로 이어지며, 전이당
+\emph{상수} 하나(대표 $T_\rep\cdot$대표 $n$)로 한 번만 평가된다. 구현 대응은
+부록~\ref{sec:appendix-code} 에 둔다.
+
+% 자산: [B2-001] [B2-002] [B2-003] [B2-004] [B2-005] [B2-006] [B2-007] [B2-008] [B2-009] [B2-010] [B2-011] [B2-012] [B2-013] [B2-014]

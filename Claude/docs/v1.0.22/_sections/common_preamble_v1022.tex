@@ -1,0 +1,83 @@
+% ====================================================================
+% common_preamble_v1022.tex — v1.0.22 3챕터 공통 preamble·매크로 (R1 설계 3)
+%   = 구 ch1_preamble ∪ ch2_preamble (매크로 충돌 검사: 내용 매크로 상이 0 확인).
+%   장별 드라이버가 본 파일 \input 후 [pdftitle·헤더·\theequation/\thesection=N.x·
+%   (Ch2/Ch3) \externaldocument] 만 얹는다. 항법 토글(\ifnavaid)은 폐기(D22-1).
+%   빌드: xelatex 3-pass (kotex·D2Coding).
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\setmonofont{D2Coding}[Scale=MatchLowercase]
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{xr-hyper}% 장 간 외부 참조(hyperref 앞 로드 필수) — \externaldocument 는 장별 드라이버 소관
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds,decorations.pathreplacing}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+\pagestyle{fancy}\fancyhf{}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- box 환경 (구 ch1 ∪ 구 ch2) ----
+\newtheorem*{keybox}{핵심}
+\newtheorem*{codebox}{코드 대응}
+\newtheorem*{signbox}{부호 검산}
+\newtheorem*{verifybox}{검산}
+\newtheorem*{derivbox}{유도}
+\newtheorem*{bgbox}{배경}
+\newtheorem*{srcbox}{문헌 근거}
+\newtheorem*{warnbox}{주의}
+\newtheorem*{procedurebox}{계산 절차}
+
+% ---- 기호 매크로 (구 ch1 ∪ 구 ch2 — 동명 정의 동일 확인 완료) ----
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rxn}{\mathrm{rxn}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\chg}{\mathrm{chg}}
+\newcommand{\hys}{\mathrm{hys}}
+\newcommand{\work}{\mathrm{work}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\cat}{\mathrm{cat}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\oc}{\mathrm{oc}}
+\newcommand{\config}{\mathrm{config}}
+\newcommand{\vib}{\mathrm{vib}}
+\newcommand{\kB}{k_{\mathrm B}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\avg}[1]{\langle #1\rangle}
+
+% ---- 목차 서식 (구 ch1 승계) ----
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{2.3em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil
+      \nobreak\hb@xt@\@pnumwidth{\hss #2\kern-\p@\kern\p@}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
+\makeatother

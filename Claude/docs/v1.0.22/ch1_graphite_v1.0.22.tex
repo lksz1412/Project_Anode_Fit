@@ -1,0 +1,57 @@
+% ====================================================================
+% ch1_graphite_v1.0.22.tex — Chapter 1 마스터: 흑연 음극 — dQ/dV 이론 + 열특성
+%   (v1.0.22 활물질별 재편 — 원천 = v1.0.21 구 Ch1 §0~10 + 구 Ch2 전량[Part T].
+%    설계 = plans/PLAN_R1_reorg.md. 섹션 파일명 불변 — 조립만 재편.)
+%   빌드: xelatex -interaction=nonstopmode, 3-pass.
+% ====================================================================
+\input{_sections/common_preamble_v1022}
+\externaldocument{ch2_lco_v1.0.22}% 전방 참조(LCO 장 22곳 — 교과서 관행) — 첫 빌드에서는 ?? 후 ch2 빌드 뒤 재패스로 해소
+\hypersetup{pdftitle={흑연 음극 dQ/dV 이론과 열특성 — Chapter 1 (v1.0.22)}}
+\lhead{흑연 음극 $dQ/dV$ 이론과 열특성 — Ch.1 (v1.0.22)}
+\renewcommand{\theequation}{1.\arabic{equation}}
+\renewcommand{\thesection}{1.\arabic{section}}
+
+\title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 --- $dQ/dV$ 이론과 열특성: 한 곡선과 그 열을 그리는 수식-구동 전개}
+\author{}
+\date{\normalsize 버전 1.0.22}
+
+\begin{document}
+\maketitle
+
+% ---- 곡선 사슬 (구 Ch1 §0~10) ----
+\input{_sections/ch1_sec00_intro}
+\input{_sections/ch1_sec01_n0n1}
+\input{_sections/ch1_sec02a_part0}
+\input{_sections/ch1_sec02b_part0}
+\input{_sections/ch1_sec03_center}
+\input{_sections/ch1_sec04_hys}
+\input{_sections/ch1_sec05_width}
+\input{_sections/ch1_sec06_eqpeak}
+\input{_sections/ch1_sec07_broadening}
+\input{_sections/ch1_sec08_lag}
+\input{_sections/ch1_sec09_tail}
+\input{_sections/ch1_sec10_sum}
+% ---- Part T 열특성 (구 Ch2 전량) ----
+\input{_sections/ch1v22_partT_divider}
+\input{_sections/ch2_sec00_intro}
+\input{_sections/ch2_sec01_partition}
+\input{_sections/ch2_sec02_config}
+\input{_sections/ch2_sec03_vibel}
+\input{_sections/ch2_sec04_einstein}
+\input{_sections/ch2_sec05_mixing}
+\input{_sections/ch2_sec06_limits}
+\input{_sections/ch2_sec07_revheat}
+\input{_sections/ch2_sec08_synthesis}
+\input{_sections/ch2_sec09_method}
+\input{_sections/ch2_sec10_closing}
+% ---- 입력 사양·진행 요약 (구 §18 — R2 에서 LCO 행 분리 검토) ----
+\input{_sections/ch1_sec18_inputs}
+% ---- 부록 ----
+\input{_sections/ch1_appA_signcheck}
+\input{_sections/ch1_appB_codemap}
+\input{_sections/ch2_appA_traps}
+\input{_sections/ch2_appB_codemap}
+% ---- 장별 참고문헌 ----
+\input{_sections/ch1v22_bib}
+% <<END-OF-INPUTS>>
+\end{document}
