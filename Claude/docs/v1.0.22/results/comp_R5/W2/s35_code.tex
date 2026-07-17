@@ -1,0 +1,58 @@
+% ====================================================================
+% s35_code.tex — §3.5 코드 확장 요구명세(R6 예고) (W2 초안 — 실측·데이터 강조축)
+%   BlendedAnodeDQDV(f_Si, si_case) doc-leads 요구명세: f_Si=0 bit-exact 게이트·용량 배분·공통 V_n 합성·
+%   케이스 셋 구조(R4 tier-A 앵커를 tier-C 시연 초기값으로). Ch1 부록 B/D 관행(codebox).
+% ====================================================================
+\section{코드 확장 요구명세 --- \code{BlendedAnodeDQDV} 예고 (R6)}\label{sec:si-code}
+본 절은 다음 버전(R6) 코드 확장의 요구명세를 문서 주도(doc-leads)로 예고한다 --- 구현이 아니라 \emph{계약}
+이다. 블렌드 합성 규칙은 이미 \S\ref{sec:si-blend} 가 수식으로 닫았으므로(식~\eqref{eq:blend-balance}$\cdot$\eqref{eq:blend-dqdv}),
+코드는 그 식을 그대로 계산 대응시키고 하위호환$\cdot$보존 게이트를 얹으면 된다.
+
+\subsection{계약 --- 시그니처와 요구}\label{ssec:si-code-spec}
+\begin{codebox}
+\textbf{\code{BlendedAnodeDQDV(f\_Si, si\_case)}} --- 요구 5항.
+\begin{enumerate}[label=(\arabic*),leftmargin=2.0em,itemsep=1pt]
+\item \textbf{f\_Si$=0$ bit-exact 게이트(하위호환).} $f_\mathrm{Si}{=}0$ 이면 Si 항이 소멸해
+식~\eqref{eq:blend-balance} 가 흑연 단독 보존식~\eqref{eq:sm-mc-balance} 로 정확히 회수되므로, 출력이
+기존 흑연 dQ/dV 경로(식~\eqref{eq:sum})와 \emph{bit-exact} 일치해야 한다 --- 회귀 게이트.
+\item \textbf{용량 배분.} $Q_\mathrm{Si}=f_\mathrm{Si}Q$, $Q_\mathrm{gr}=(1-f_\mathrm{Si})Q$ 로 총용량 $Q$ 를
+두 host 에 배분(전이별 $Q_j^{\mathrm{host}}$ 는 host 내 상대 몫 $\times Q_\mathrm{host}$).
+\item \textbf{공통 $V_n$ 합성.} 두 host 전이 기여를 \emph{같은} $V_n$ 격자 위에서 평가해
+식~\eqref{eq:blend-dqdv} 로 합산(전위 손잡이 하나 --- $U_\oc$ 공유).
+\item \textbf{케이스 셋 구조.} \code{si\_case}$\in\{$\code{elemental}, \code{siox}, \code{sic}$\}$ 가
+표~\ref{tab:si-cases} 초기값(용량$\cdot$평균 전위$\cdot\eta_\mathrm{ICE}\cdot\partial U/\partial T$)을 실은
+파라미터 셋을 선택 --- 표 구동(tab:staging$\cdot$tab:lco-staging 관행).
+\item \textbf{GS-2 준수.} 코드는 \emph{평형 가산} 합성(1차 근사)만 내며, 유한율 비가산 결합(GS-2 ---
+\S\ref{ssec:blend-gs2})은 모델링하지 \emph{않음}을 doc-string 에 명시(범위 밖 선언 계승).
+\end{enumerate}
+\end{codebox}
+
+\subsection{케이스 셋 --- tier-A 앵커를 tier-C 시연 초기값으로}\label{ssec:si-code-caseset}
+케이스 셋의 초기값은 \S\ref{sec:si-cases} 의 실측(tier-A) 앵커에서 가져오되, 코드 안에서는 흑연$\cdot$LCO
+표(tab:staging$\cdot$tab:lco-staging)와 같은 \emph{tier-C 시연 초기값}으로 취급한다 --- round-trip 피팅이
+override 하는 출발점이다. 곧 문헌 수치는 물리 규모 앵커이고, 케이스 셋은 그 규모에서 출발하는 시연값이다:
+\code{elemental}$=$($\sim$1000 mAh/g$\cdot$0.2--0.5 V$\cdot\eta_\mathrm{ICE}\sim$70--75\%$\cdot\partial U/\partial T$ 음),
+\code{siox}$=$(1710 mAh/g$\cdot$평균전위 확인 필요$\cdot$58.5$\to$82.1\%$\cdot$히스 저감),
+\code{sic}$=$(3117 mAh/g$\cdot\sim$0.4 V$\cdot$82\%). 엔트로피 계수 Si 케이스는 $-40$--$-105$ $\mu$V/K
+(\S\ref{ssec:si-thermal})를 시연값으로 둘 수 있다.
+\begin{warnbox}
+Si 아래첨자 $j$ 는 진짜 staging 이 아니라 유효 곡선 기술 성분(\S\ref{sec:si-survival} N5)이므로, 케이스
+셋의 ``전이'' 항목은 물리 상전이 라벨이 아니라 파라미터 슬롯으로 문서화해야 한다 --- 흑연$\cdot$LCO 에서
+성분$=$상전이였던 대응이 Si 케이스에서 깨진다는 주석을 셋 정의에 붙인다.
+\end{warnbox}
+
+\subsection{게이트 --- 회귀$\cdot$연속$\cdot$보존}\label{ssec:si-code-gate}
+R6 블렌드 코드 게이트 3항(마스터플랜 검증 체계 신설 4의 ④): (i) \emph{f\_Si$=0$ bit-exact} --- 위 요구 (1)
+회귀; (ii) \emph{f\_Si 스윕 연속성} --- $f_\mathrm{Si}\in(0,0.3]$ 에서 dQ/dV 가 연속 변형(불연속 점프
+없음), 대조 데이터는 표~\ref{tab:blend-evidence} 의 f\_Si 스윕 실측(gautam\_blend2024$\cdot$moyassari\_blend2022$\cdot$chatzogiannakis\_blend2025
+--- $0$--$30$ wt\% 커버); (iii) \emph{용량 보존} --- $\sum_{\mathrm{host}}\sum_jQ_j^{\mathrm{host}}=Q$
+($=Q_\cell$ 정규화). 세 게이트가 각각 하위호환$\cdot$물리 연속성$\cdot$전하 회계를 지킨다.
+
+\begin{keybox}
+\textbf{코드 예고 한 줄.} \code{BlendedAnodeDQDV(f\_Si, si\_case)} $=$ 식~\eqref{eq:blend-balance} 의 계산
+대응이며, 새 물리 없이 \emph{용량 배분 $+$ 공통 $V_n$ 합산 $+$ 케이스 셋 선택}이다. bit-exact 회귀 게이트가
+$f_\mathrm{Si}{=}0$ 하위호환을 강제하고, GS-2 는 doc-string 범위 밖 선언으로 정직히 남긴다.
+\end{keybox}
+
+% 자산(v1.0.22 R5 신규): [V22-R5-18 BlendedAnodeDQDV 요구명세 5항 ssec:si-code-spec(f_Si=0 bit-exact·공통 V_n)]
+%   [V22-R5-19 케이스 셋 구조=tier-A 앵커→tier-C 시연 초기값 ssec:si-code-caseset] [V22-R5-20 R6 블렌드 게이트 3항 ssec:si-code-gate]
