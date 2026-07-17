@@ -1,0 +1,100 @@
+% ====================================================================
+% ch3v22_sec02_cases.tex — §3.2 케이스별 활물질 (R5 채택 = W2 기반)
+% ====================================================================
+\section{케이스별 활물질 --- 원소 Si$\cdot$SiO$_x$$\cdot$Si--C 복합}\label{sec:si-cases}
+생존 지도(\S\ref{sec:si-map})가 ``Si 는 골격을 버리지 않고 성분을 갈아 끼운다'' 로 닫혔으니, 남은 일은
+그 성분 --- 곡선 개형$\cdot$평균 전위$\cdot$1차 비가역$\cdot$히스테리시스$\cdot$용량 --- 을 활물질 계열별로
+읽는 것이다. 실리콘계는 상용 관행상 셋으로 갈린다: 원소 Si, 산화규소 SiO$_x$, 탄소 복합 Si--C. 본 절은 각
+계열의 \emph{실측 초기값}을 정리하되, 모든 수치는 검증 문헌의 원문 확인분만 싣고(tier 명기), 계열 간 값이
+어긋나는 곳은 채택 근거를 표 각주로 드러낸다 --- 은폐 없이. 표~\ref{tab:si-cases} 가 그 검토용 파라미터
+셋이며, 이하 세 소절이 개형과 1차 vs 순환 차이를 문헌별로 잇는다.
+
+\begin{table}[t]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{케이스별 검토 초기값(3계열) --- 출발점, 피팅으로 override. 모든 수치는 comp\_R4 검증 표의 원문
+확인분(tier A $=$ 1차 문헌 정량 확정$\cdot$B $=$ 리뷰/2차 경유 또는 초록 elided). 첨자 채택 근거:
+$^a$이론 용량 $\sim$4200 mAh/g(만충 조성\cite{wen_huggins1981}, A)는 1차 가역 $\sim$1000
+mAh/g\cite{limthongkul2003}(A)의 $\sim$4배 --- 초기 비가역$\cdot$조성 도달 한계 반영, 표는 1차 가역을
+대표값으로. $^b$원소 Si 평균 전위 $0.2$--$0.5$ V 는 리뷰 경유\cite{obrovac_chevrier2014}(B, 1차 정량
+아님) --- Si--C $\sim$0.4 V\cite{andersen_sic2019}(A)와 계열 정합. $^c$SiO 절대 평균전위(V)는 본 조사
+\emph{미확보}(``확인 필요'' --- 순수 SiO$_x$ 1차 문헌 mV 미특정). $^d$SiO 이론 용량 $1710$
+mAh/g\cite{zhang_sio2018}(A). $^e$$\eta_\mathrm{ICE}$ 는 \emph{시료 형태 의존이 지배}(계열 간 상충
+아님): 미처리 SiO $58.5\%\to$고상반응 처리 $82.1\%$\cite{yom_sio2016}(A)$\cdot$Si15Gr75 블렌드
+$82.9\%$\cite{gautam_blend2024}(A)$\cdot$Si 10\% 미개질 $49.6\%\to$개질 $82.9$--$83.3\%$\cite{naboka_sic2021}(A)
+--- 표의 대표값은 각 계열 개선/상용 조건값. $^f$히스 ``저감''은 정성(비정질 연속 형성\cite{kitada_sio2019},
+A) --- 절대 mV \emph{미확보}(확인 필요).}
+\label{tab:si-cases}
+\begin{tabular}{@{}p{0.155\textwidth} p{0.155\textwidth} p{0.115\textwidth} p{0.115\textwidth} p{0.135\textwidth} p{0.115\textwidth}@{}}
+\toprule
+케이스 & 가역 용량 [mAh/g] & 평균 전위 [V] & $\eta_\mathrm{ICE}$ [\%] & 히스 규모 & 대표 앵커 (tier) \\
+\midrule
+원소 Si       & $\sim$1000$^a$      & $0.2$--$0.5^{\,b}$ & $\sim$70--75$^e$ & 수백 mV(기계)     & limthongkul2003 (A) \\
+SiO$_x$ (SiO) & $1710^{\,d}$(이론)   & 확인 필요$^c$      & $58.5\to82.1^e$  & 결정질 대비 저감$^f$ & zhang\_sio2018 (A) \\
+Si--C 복합    & $3117$(1차 충전)     & $\sim$0.4          & $82^{\,e}$       & 기계 기원          & andersen\_sic2019 (A) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{원소 Si --- 두-상 경사와 결정화 peak}\label{ssec:si-elemental}
+\textbf{곡선 개형.} 첫 리튬화는 결정질 Si$\to$비정질 Li$_x$Si 의 두-상 경사이며, 결정 코어/비정질 껍질의
+이동 경계로 진행한다\cite{limthongkul2003,li_dahn2007,mcdowell_coreshell2013}. 깊은 리튬화 끝(약 $50$
+mV)에서 준안정 Li$_{15}$Si$_4$ 가 결정화해 날카로운 dQ/dV 특징을 남기고\cite{obrovac_christensen2004},
+operando $^7$Li NMR 이 이 상전이를 직접 추적한다\cite{ogata_nmr2014}. 첫 사이클 이후의 비정질 경로는
+plateau 없는 완만한 경사 $U(x)$ 로, 제일원리 계산이 재현한다\cite{chevrier_dahn2009}.
+\textbf{1차 vs 순환 안정.} 나노 a-Si 는 첫 사이클만 두-상(c-Si$/$a-Li$_{2.5}$Si)이고 이후 순환은
+solid-solution 경사로 옮겨간다\cite{wang_asi2013} --- 곧 \emph{개형 자체가 사이클 이력에 의존}하며, 이것이
+생존 지도 N5(성분$=$곡선 기술)의 실측 근거다. \textbf{용량$\cdot$비가역.} 1차 가역 $\sim$1000 mAh/g,
+초기 비가역 손실 $25$--$30\%$\cite{limthongkul2003} --- 만충 조성 이론 $\sim$4200 mAh/g\cite{wen_huggins1981}
+과 자릿수가 벌어지는 것은 조성 도달 한계와 첫 사이클 SEI$\cdot$비정질화 소모 때문이다(표 각주 $a$).
+\textbf{히스테리시스.} 수백 mV 급이고 지배 몫이 기계적임은 in~situ 응력 실측(소성 유동 $\sim-1.75$
+GPa$\cdot$결합 $\sim100$--$120$ mV/GPa)이 직접 보인다\cite{sethuraman_stressevo2010,sethuraman_stresspot2010}
+--- 그 취급은 \S\ref{sec:si-mech}(GS-1) 소관이다.
+
+\subsection{SiO$_x$ --- 비정질 연속 경로와 실리케이트 비가역}\label{ssec:si-siox}
+\textbf{곡선 개형.} SiO 는 리튬화 시 금속성 Li$_x$Si 상이 $x{=}3.4$--$3.5$ 조성에서 형성되며, 결정질 Li--Si
+특유의 이산 상전이 없이 \emph{연속적 비정질 Li$_x$Si 형성/분해}로 진행한다(in~situ $^7$Li/$^{29}$Si
+NMR)\cite{kitada_sio2019} --- 경사 전위 특성이 원소 Si 보다 강화된다. \textbf{1차 비가역(핵심).} 1차
+충전에서 Li 의 상당분이 리튬 실리케이트(Li$_4$SiO$_4$ 계)$\cdot$Li$_2$O 형성에 불가역 소모되며, 이
+실리케이트가 부피변화 완충재로 남는다(XPS 최초 규명\cite{miyachi_sio2005}). 그 크기는 $\eta_\mathrm{ICE}$
+로 정량된다: 미처리 SiO $58.5\%$, Li 분말 고상반응 처리 시 $82.1\%$\cite{yom_sio2016} --- 소비 Li 의
+$\sim$40\%가 1차 실리케이트/Li$_2$O 로 간다는 직접 수치다. \textbf{용량$\cdot$순환.} 이론 용량 $1710$
+mAh/g, 주 용량손실이 초기 수 사이클에 집중되고 이후 완만화하며 열처리로 안정화 가능\cite{zhang_sio2018}
+--- 순수 Si 대비 상대 안정성이 실리케이트 완충의 대가다. \textbf{히스테리시스.} 결정질 Si 대비 저감(비정질
+연속 경로가 이산 상전이의 경로 분기를 줄임)이 유일한 직접 증거\cite{kitada_sio2019}이나, \emph{절대 mV 는
+본 조사 미확보}(순수 SiO$_x$ 단독 1차 문헌 mV 미특정 --- 확인 필요, 표 각주 $c$$\cdot$$f$).
+
+\subsection{Si--C 복합 --- 상용급 개형과 피크 분리}\label{ssec:si-sic}
+\textbf{곡선 개형.} 상용(산업)급 Si--C 복합(원료 $=$ 산업 배터리급 Si, 조성 Si:흑연:CMC:카본블랙 $=$
+$60{:}15{:}10{:}15$ 질량비)은 밀링 정도로 개형이 갈린다: 저-밀링 시료는 $\sim$0.1 V 뚜렷한 평탄역, 고-밀링
+시료는 $0.3$--$0.1$ V 완만 경사(나노화 거동)\cite{andersen_sic2019}. \textbf{피크 분리(공통-μ 검증
+자산).} 저-Si(10 wt\%) 복합의 dQ/dV 는 흑연 리튬화 피크 $\sim$0.2$\cdot$0.1$\cdot$0.07 V 와 탈리튬화
+$\sim$0.11$\cdot$0.16$\cdot$0.23 V 에 Si 별도 피크가 \emph{분리 관측}된다\cite{naboka_sic2021} --- 두 host
+피크가 전위축에서 갈라져 읽힌다는 이 사실이 \S\ref{sec:si-blend} 공통-μ 합성의 실측 접점이다.
+\textbf{용량$\cdot$비가역$\cdot$순환.} 1차 방전/충전 $3801/3117$ mAh/g, $\eta_\mathrm{ICE}\approx82\%$,
+평균 탈리튬화 전위 $\sim$0.4 V, 용량제한 순환(1000 mAh/g$\cdot$FEC$\cdot$CMC/SBR 이중 바인더)에서 $1200$
+사이클 이상 안정\cite{andersen_sic2019}. 저-Si 복합의 $\eta_\mathrm{ICE}$ 는 개질로 $49.6\%\to82.9$--$83.3\%$
+개선된다\cite{naboka_sic2021}. \textbf{미확보 주의.} 산업 폐실리콘 기반 실사용 순환\cite{lee_sic2025} 은
+서지만 확정(tier B) --- 정량값은 확인 필요.
+
+\subsection{케이스 열특성 --- 엔트로피 계수 실측}\label{ssec:si-thermal}
+검토 파라미터에 열역학 서명을 하나 더 붙인다. Si--C 음극의 엔트로피 계수 $\partial U/\partial T$ 는 전 SoC
+구간에서 \emph{음(negative)} 부호를 유지하며 크기 $\sim$40--105 $\mu$V/K 이고($100\%$ SoH 에서
+$-40$--$-95$, 노화 후 $-45$--$-105$), \emph{흑연보다 SoC 의존 곡선이 평탄}하다(흑연 특유의 급격한
+peak$\cdot$변동이 없음)\cite{bohm_entropy2024}. 이는 생존 지도 N2$\cdot$N6(peak 문법 재해석)의 열역학
+쪽 실측 대응이다. 발열 분해에서 가역열(엔트로피 성분)은 옴열$\cdot$기생열 셋 중 가장 작고, 등온 열량측정이
+이를 직접 확인한다\cite{arnot_calorimetry2021}; 상온 이하에서는 Si 특유의 추가 탈리튬화 발열 피크가 새로
+관측된다\cite{bohm_thermal2025}(정성 신규 --- 정량 $\Delta S(T)$ 는 확인 필요). 완전지 엔트로피
+프로파일에서 흑연$\cdot$Si 기여가 성분 분리된다는 실측\cite{wojtala_entropy2022}은 블렌드 성분 분해
+가능성(\S\ref{sec:si-blend})의 열역학 증거이기도 하다.
+\begin{srcbox}
+데이터 등급 요약(본 절) --- 개형$\cdot$용량$\cdot\eta_\mathrm{ICE}\cdot\partial U/\partial T$ 의 대표값은
+전부 tier A 1차 문헌 정량(원소 Si $6$$\cdot$SiO$_x$ $4$$\cdot$Si--C $2$$\cdot$열특성 $4$건 계열). \emph{확인
+필요}(공백)로 남긴 것: SiO$_x$ 절대 평균전위$\cdot$SiO$_x$ 히스 절대 mV$\cdot$Si 저온 $\Delta S(T)$
+정량$\cdot$tier B 정량값(yamada\_sio2012$\cdot$lee\_sic2025 등) --- 이 넷은 표에 수치로 싣지 않고 명시적
+공백으로 표기했다.
+\end{srcbox}
+
+% 자산(v1.0.22 R5 신규): [V22-R5-06 케이스별 검토 파라미터 셋 표 tab:si-cases(tier·상충 각주 6건)]
+%   [V22-R5-07 원소 Si 개형·1차vs순환 실측 ssec:si-elemental] [V22-R5-08 SiOₓ 실리케이트 비가역 정량 ssec:si-siox(ICE 58.5→82.1)]
+%   [V22-R5-09 Si–C 상용급 개형·피크 분리 ssec:si-sic(60:15:10:15·0.4V·1200cyc)] [V22-R5-10 케이스 엔트로피 계수 실측 ssec:si-thermal(−40~−105 μV/K)]

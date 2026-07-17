@@ -1,0 +1,130 @@
+% ====================================================================
+% ch3v22_sec01_map.tex — §3.1 생존 지도 본문화 (R5 채택 = W3 기반 — CHERRYPICK_R5)
+% ====================================================================
+\section{생존 지도 --- 무엇이 이월되고, 무엇이 재해석되고, 무엇이 골격 밖 새 물리인가}\label{sec:si-map}
+
+\subsection{세 활물질의 교과서 사슬 --- 이 장이 놓이는 자리}\label{ssec:si-arc}
+앞 두 장은 같은 골격을 두 번 밟았다. Chapter 1 은 흑연 삽입에서 결과 사슬 $\mathrm{N0}$--$\mathrm{N9}$
+--- 조건 규약$\cdot$분극$\cdot$평형 중심$\cdot$히스테리시스$\cdot$폭$\cdot$평형 종$\cdot$peak$\cdot$broadening
+$\cdot$지연$\cdot$합산 --- 을 1차원리에서 세웠고(\S\ref{sec:pol}--\S\ref{sec:sum} 계열), Chapter 2 는 그
+골격이 \emph{양극}(LCO)으로 옮겨갈 때 무엇이 바뀌는지를 한 문장으로 요약했다: \emph{같은 식, 파라미터만
+교체, 전자 엔트로피 항 하나 추가}(\S\ref{sec:lco-code}). LCO 표~\ref{tab:lco-staging}의 캡션이
+그것을 못박는다 --- ``흑연 표와 같은 자리(전위$\cdot$성격$\cdot\Delta S$), 양극 부호''. 곧 $\mathrm{N1}$--$\mathrm{N5}$
+구간에서 흑연과 LCO 는 \emph{같은 식을 공유}했고, 장의 저작은 식을 다시 세우는 일이 아니라 파라미터를
+갈아끼우는 일이었다.
+
+본 장의 실리콘은 그 순한 이월을 허락하지 않는다. Si 는 삽입이 아니라 \emph{합금화}로 리튬을 저장하므로
+--- 호스트 격자 자체가 재구성된다 --- 골격의 미시 전제(동등한 자리, 이산 staging, 얕은 부피 변화)가
+여럿 깨진다. 그래서 이 장은 LCO 처럼 ``파라미터만 갈아끼우면 된다'' 로 시작할 수 없고, 먼저 \emph{지도}부터
+놓는다: 골격 노드 하나하나를 Si 에 대조해, \textbf{식$\cdot$부호가 그대로 사는 곳}$\cdot$\textbf{형식은
+살되 변수 의미가 바뀌는 곳}$\cdot$\textbf{골격에 없는 항이 필요한 곳}을 가른다. 이 절이 그 지도이고,
+$\S\ref{sec:si-cases}$부터의 본문은 지도가 ``산다'' 로 표시한 노드를 케이스별로 실증하고, ``새 물리'' 로
+표시한 단 하나의 노드를 $\S\ref{sec:si-mech}$에서 정직하게 마주한다. 곧 생존 지도는 이 장의 목차이자,
+독자가 흑연에서 배운 기계장치가 저장 기작이 바뀌어도 어디까지 옮겨가는지를 스스로 예측해 보는 전이
+학습(transfer) 연습이다.
+
+\begin{bgbox}
+\textbf{지도의 지위(범위 선언).} 본 절의 전 서술은 문헌 기반이다 --- 자체 실측 Si dQ/dV 대조는 없다.
+``새 물리'' 로 분류된 노드의 1차원리 완결 유도는 Si 실측 확보 후의 소관이며, 여기서는 무엇이
+이월되고(전하 보존) 무엇이 골격 밖인가(기계 히스테리시스)의 \emph{지도}만 놓는다. 근거 문헌은 아래
+$\S\ref{ssec:si-stress}$의 확립 사실 목록이 준다.
+\end{bgbox}
+
+\subsection{Si 가 흑연과 갈라지는 곳 --- 확립 사실 여덟, 노드별로 읽기}\label{ssec:si-stress}
+아래 여덟은 실리콘 음극에서 확립된 사실이고, 각 사실은 골격의 \emph{어느 노드}를 압박하는지로 읽는다
+--- 지도의 판정은 이 대응에서 나온다.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=1.5pt]
+\item \textbf{합금화(삽입 아님).} 고온 평형은 네 중간상(Li$_{12}$Si$_7$ 등)의 계단 plateau 를
+보이나\cite{wen_huggins1981}, 호스트 격자가 재구성된다 --- 이산 staging 전제(N2$\cdot$N5)를 압박.
+\item \textbf{전기화학적 고상 비정질화.} 상온 첫 리튬화는 결정질 Si 가 비정질 Li$_x$Si 로 바뀌며,
+입자 안 결정 코어/비정질 껍질의 날카로운 이동 경계로 진행한다\cite{limthongkul2003,li_dahn2007} ---
+두-상 문법(N6$\cdot$N7)의 기하가 입자 \emph{내부}로 옮겨감.
+\item \textbf{준안정 결정화 Li$_{15}$Si$_4$.} 깊은 리튬화 끝($\approx50$ mV)에서 갑작스런 결정화가
+일어난다\cite{obrovac_christensen2004}(operando NMR 로 직접 추적\cite{ogata_nmr2014}) --- 진짜 이산
+전이 하나(N6 부분 적용의 자리).
+\item \textbf{평탄역 부재의 경사 전위.} 첫 사이클 이후 비정질 경로는 plateau 없는 완만한 경사 $U(x)$ 이고,
+제일원리가 이 곡선을 재현한다\cite{chevrier_dahn2009} --- 이산 중심 $U_j$ 부재(N2 재해석).
+\item \textbf{거대 부피 변화 $\sim300\%$.}\cite{beaulieu2001} 흑연($\sim10\%$)과 자릿수가 달라 ---
+얕은-부피 전제가 깨지는 기원(N1$\cdot$N3 의 기계 항).
+\item \textbf{수백 mV 히스테리시스, 기계 기원.} 충$\cdot$방전 갈림이 수백 mV 급이고, in~situ 응력 측정이
+소성 유동(압축 $\sim-1.75$ GPa)과 응력--전위 결합($\sim100$--$120$ mV/GPa)을 직접
+보인다\cite{sethuraman_stressevo2010,sethuraman_stresspot2010} --- 히스테리시스의 지배 몫이
+\emph{기계적}(N3 새 물리).
+\item \textbf{입자 크기가 1차 인자.} 임계 입자경 $\sim150$ nm 아래에서만 첫 리튬화 균열이
+없다\cite{liu_sizefracture2012} --- 마이크론 흑연에서 정량 배제됐던 입자-크기 채널이 Si 에선 역전(N7 재작성).
+\item \textbf{합금 음극의 전하 보존$\cdot$speciation.} 다중 전기화학 반응$\cdot$화학종 분화를 반응별
+logistic 점유의 용량가중 합으로 세운 정식화가 Li--Si 에서 실증되어
+있다\cite{verbrugge_lisi2016} --- 골격 중심식(N9)이 전극 무관하게 산다는 직접 증거.
+\end{enumerate}
+총람은 합금 음극 리뷰\cite{obrovac_chevrier2014} 가, 기계 히스의 모델 계보는 소성$\cdot$SEI 점탄소성
+모델\cite{koebbing2024} 과 다단 상전이 경로분기 모델\cite{jiang_sihys2020} 이 준다.
+
+\subsection{네 판정과 생존 지도}\label{ssec:si-verdicts}
+판정은 네 갈래다 --- \textbf{이월}(식$\cdot$부호 그대로) $\cdot$ \textbf{재해석}(형식 유지, 변수 의미
+변경) $\cdot$ \textbf{새 물리}(골격에 없는 항 필요) $\cdot$ \textbf{부분}(일부 조건에서만). 이 네 갈래는
+흑연$\to$LCO 의 순한 이월(``전부 이월 $+$ 전자항 하나'')보다 결이 많고, 그 다양함 자체가 저장 기작이
+바뀔 때 무엇이 견디는지를 보여 준다. 표~\ref{tab:si-survival} 가 노드별 판정이다.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{0.12\textwidth} p{0.11\textwidth} p{0.66\textwidth}}
+\toprule
+노드 & 판정 & 무엇이 살고 무엇이 깨지나(흑연$\cdot$LCO 대조) \\
+\midrule
+N0 조건 & \textbf{이월} & $\sigma_d$$\cdot$$|I|$ 환산은 전극 무관 --- 저전위 음극 규약 그대로. \\
+N1 분극 & 재해석 & 옴 분극 벗기기(\S\ref{sec:pol})는 성립하나, $|I|\!\to\!0$ 에서도 안 사라지는 \emph{기계(응력) 과전위 몫}이 $V_n$ 에 남는다(사실 vi). \\
+N2 중심 & 재해석 & 이산 staging 중심 $U_j$ 부재(사실 iv) --- 유효 logistic 성분(MSMR-Si\cite{verbrugge_lisi2016}) 또는 연속 $U(x)$\cite{chevrier_dahn2009} 로 대체. $\partial U/\partial T{=}\Delta S_\rxn/F$(\S\ref{sec:center}) 관계 자체는 생존(엔트로피 계수 실측 \S\ref{sec:si-cases}). \\
+N3 히스 & \textbf{새 물리} & $\bigstar$\,\S\ref{sec:si-mech}. spinodal gap 상한(\eqref{eq:dUhys}: $\Omega_j{=}4RT$ 에서 $\approx55$ mV, 그림~\ref{fig:hysgap})으로 수백 mV 를 못 담는다. \\
+N4 폭 & 재해석 & 경사 성분의 ``폭''은 합금 조성폭(수십 \%)이지 열적 $RT/F$($\sim26$ mV, \S\ref{sec:width})가 아님 --- $n_j\!\gg\!1$ 의 현상학 폭. \\
+N5 $\xi_\eq$ & 구조 이월 & logistic 합 \emph{형식}(\eqref{eq:logisticsolve})은 생존(detailed balance 전극 무관; MSMR-Si 실증) --- 단 ``동등 격자 자리'' 미시 해석은 비정질에서 소멸, 유효 파라미터화로 재해석. \\
+N6 peak & 부분 & 날카로운 peak 문법(\S\ref{sec:eqpeak})은 Li$_{15}$Si$_4$ 탈리튬화$\cdot$1차 리튬화 두-상(사실 ii$\cdot$iii)에만 --- 나머지는 넓은 hump. \\
+N7 broadening & 부분 & 두-상 broadening 틀(\S\ref{sec:broadening})은 부분 적용되나 기작이 다르다 --- 입자 간 순차가 아니라 입자 \emph{내} 코어--쉘. 흑연에서 배제한 입자-크기 채널이 Si 에선 1차 인자로 역전(사실 vii). \\
+N8 지연 & 구조 이월 & Eyring 유한율속 꼬리 구조(\S\ref{sec:lag}$\cdot$\S\ref{sec:tail})는 전극 무관. 단 $|I|\!\to\!0$ 에서 꼬리는 소멸해도 기계 히스는 남아 ``잔여 갈림 $=$ 평형 분기'' 분리 논법이 약해진다. \\
+N9 합산 & \textbf{이월} & $\bigstar$\,\S\ref{ssec:si-carry}. 전하 보존 반전(\eqref{eq:sm-mc-balance})이 격자 통계가 아니라 전하 회계에서 와, staging 이 무너져도 산다. \\
+\bottomrule
+\end{tabular}
+\caption{골격 노드의 Si 생존 판정 --- 이월 2(N0$\cdot$N9)$\cdot$구조 이월 2(N5$\cdot$N8)$\cdot$재해석
+3(N1$\cdot$N2$\cdot$N4)$\cdot$부분 2(N6$\cdot$N7)$\cdot$새 물리 1(N3). 흑연$\to$LCO 가 ``전부 이월 $+$
+전자항 하나''(표~\ref{tab:lco-staging})였던 데 견주면, Si 는 판정이 다섯 결로 갈라진다 --- 저장 기작
+전환의 대가다. 근거 문헌은 $\S\ref{ssec:si-stress}$.}
+\label{tab:si-survival}
+\end{table}
+
+\subsection{살아남는 최강 자산 --- 전하 보존의 전극 중립성}\label{ssec:si-carry}
+지도에서 가장 중요한 칸은 N9 다. 본론 중심식 --- 전하 보존 음함수~\eqref{eq:sm-mc-balance} --- 는 격자
+통계가 아니라 \emph{전하 회계}에서 왔으므로(\S\ref{sec:sm-mc}: 반응 몫의 합 $=$ 통과 전하), 이산 staging
+이 무너져도 살아남는다. 합금 전극의 다중 전기화학 반응$\cdot$화학종 분화를 정확히 이 구조 --- 반응별
+logistic 점유의 용량가중 합을 고정 전하에서 뒤집기 --- 로 세운 정식화가 Li--Si 에서 실증되어
+있고\cite{verbrugge_lisi2016}, 이는 본문 MSMR 대응(\S\ref{sec:lco-code-msmr})과 같은 저자 계보의 Si 판이다.
+
+\begin{keybox}
+\textbf{접목의 앵커.} 내부 전위를 결정하는 \emph{중심 구조}는 흑연$\cdot$LCO$\cdot$Si 에 공통이다 ---
+고정 전하에서 반응별 평형 진행률의 용량가중 합을 뒤집어 $U_\oc$ 를 푸는
+반전~\eqref{eq:sm-mc-balance}. Si 접목에서 바뀌는 것은 이 구조에 \emph{들어가는 성분}(전이
+집합$\cdot$폭$\cdot$히스 항)이지 구조 자체가 아니다. 그래서 $\S\ref{sec:si-blend}$의 혼합 음극도, 두
+활물질이 같은 전위 손잡이($\mu$ 하나)를 공유한다는 이 앵커의 \emph{host 곱 한 줄 일반화}로 닫힌다 ---
+새 식이 아니라 같은 반전의 한 겹 확장이다.
+\end{keybox}
+
+성분 해석에는 한 가지 경고가 붙는다: 흑연$\cdot$LCO 에서 ``성분 $=$ 상전이''였던 대응이 Si 의 경사
+영역에서는 깨진다. 비정질 경로의 유효 다성분 logistic(MSMR-Si) 성분들은 물리 전이가 아니라 곡선 기술
+성분이며, 진짜 이산 전이는 둘뿐이다 --- 1차 리튬화 두-상(c-Si$\to$a-Li$_x$Si 이동 경계)과
+Li$_{15}$Si$_4$ 결정화$\cdot$탈리튬화. $\S\ref{sec:si-cases}$의 케이스 절이 이 구분을 성분 해석에 명시한다.
+
+\subsection{장의 읽는 순서 --- 지도가 목차다}\label{ssec:si-guide}
+지도의 판정이 곧 이 장의 동선이다. \textbf{재해석$\cdot$부분}으로 표시된 노드(N1$\cdot$N2$\cdot$N4$\cdot$N6$\cdot$N7)는
+$\S\ref{sec:si-cases}$의 케이스별 활물질(원소 Si$\cdot$SiO$_x$$\cdot$Si--C 복합)이 실증한다 --- 곡선 개형과
+평균 전위, 1차 비가역, 성분 $\ne$ 상전이의 자리. \textbf{이월}로 표시된 앵커(N9)는 $\S\ref{sec:si-blend}$의
+혼합 음극이 두 host 로 일반화한다 --- 공통-$\mu$ 대정준 반전과, 그 완전 동시반응 가정이 실측 앞에서 갖는
+정직한 한계(GS-2). \textbf{새 물리}로 표시된 단 하나(N3)는 $\S\ref{sec:si-mech}$가 마주한다 ---
+Larch\'e--Cahn 응력--화학퍼텐셜 결합을 골격 문법으로 끌어오는 \emph{시도}와, 닫히지 않는 부분의 공백
+선언(GS-1). 마지막으로 $\S\ref{sec:si-code}$가 이 전부를 코드 합성 규칙(f$_\mathrm{Si}$ 토글)으로
+예고한다. 곧 독자는 이 장을 ``흑연에서 배운 것 중 무엇이 Si 에서도 성립하는가''라는 한 물음으로 관통해
+읽을 수 있다.
+
+% 자산(comp_R5 W3): [V22-R5-01 세 활물질 교과서 arc·지도=목차 서사 ssec:si-arc]
+%   [V22-R5-02 확립 사실 8건 노드별 대응 ssec:si-stress] [V22-R5-03 생존 판정표 본문체 tab:si-survival]
+%   [V22-R5-04 전하 보존 전극 중립성 앵커 keybox ssec:si-carry(=eq:sm-mc-balance host 곱 예고)]
+%   [V22-R5-05 지도=동선 읽는 순서 ssec:si-guide]
