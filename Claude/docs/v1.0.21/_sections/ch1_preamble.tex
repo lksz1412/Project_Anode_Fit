@@ -71,3 +71,7 @@
   \fi}
 \renewcommand*\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
 \makeatother
+% ---- 전역 항법 토글 (D21-1): 적용판 드라이버(*_nav.tex)가 \NAVAID 를 정의하면 켜진다. 기본 = 미적용판 ----
+\newif\ifnavaid
+\ifdefined\NAVAID\navaidtrue\fi
+\ifnavaid\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 --- Ch.1 (v1.0.21 항법판)}\fi

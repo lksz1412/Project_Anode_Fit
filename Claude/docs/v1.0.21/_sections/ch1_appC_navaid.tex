@@ -1,0 +1,111 @@
+% ====================================================================
+% 부록 C (항법판 전용) — 식 의존성 지도·통합 기호 대응표 (D21-1 전역 항법 ①②)
+%   본 파일은 마스터에서 \ifnavaid 로만 \input 된다(미적용판 빌드에는 부재).
+%   내용 원칙: 물리·수식의 신규 주장 0 — 본문에 이미 있는 것의 "지도"만.
+% ====================================================================
+\section{전역 항법 --- 식 의존성 지도와 통합 기호 대응표}\label{sec:appendix-nav}
+본 부록은 항법판 전용이다: 새 물리는 없고, 문서 전체에 이미 있는 식과 기호를 \emph{찾아가게} 하는 두
+장치만 담는다. C.1 은 어느 식이 어느 식의 입력인지의 의존성 지도이고(그림~\ref{fig:navmap}), C.2 는
+장(chapter)을 가로질러 쓰이는 이론 기호의 정의 위치 일람이다.
+
+\subsection{식 의존성 지도}\label{ssec:nav-map}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=Latex,
+  eqn/.style={draw,rounded corners=1.2pt,font=\scriptsize,align=center,inner sep=2.6pt},
+  ext/.style={draw,dashed,rounded corners=1.2pt,font=\scriptsize,align=center,inner sep=2.6pt,black!60},
+  lab/.style={font=\tiny,black!55},
+  x=1cm,y=1cm]
+% ---------- Part 0 rail (좌열) ----------
+\node[lab] at (0,10.05) {Part 0 (\S\ref{sec:sm-ensemble}--\S\ref{sec:sm-macro})};
+\node[eqn] (gc)   at (0,9.4)  {대정준 $\Xi$·Gibbs 인자\\ \eqref{eq:sm-gc}};
+\node[eqn] (occ)  at (0,8.2)  {단일 자리 점유 $\theta$\\ \eqref{eq:fermifn}$\cdot$요동 \eqref{eq:sm-flucres}};
+\node[eqn] (fac)  at (0,7.0)  {인수분해 $\Xi_M{=}\Xi_1^M$\\ \eqref{eq:sm-factor}};
+\node[eqn] (mc)   at (0,5.8)  {다클래스 합 $\langle N\rangle{=}\sum M_j\theta_j$\\ \eqref{eq:sm-mc-occ}};
+\node[eqn,very thick] (bal)  at (0,4.45) {전하 보존 반전\\ $\sum Q_j\xi_{\eq,j}(U_\mathrm{oc}){=}Q\bar x$ \eqref{eq:sm-mc-balance}};
+\node[eqn] (nernst) at (0,3.1) {Nernst \eqref{eq:sm-nernst}};
+\node[eqn] (link) at (2.9,8.2) {$\mu{\leftrightarrow}V$ 결선\\ \eqref{eq:sm-eqcond}};
+% Part 0 arrows
+\draw[->] (gc) -- (occ);
+\draw[->] (occ) -- (fac);
+\draw[->] (fac) -- (mc);
+\draw[->] (mc) -- (bal);
+\draw[->] (bal) -- (nernst);
+\draw[->] (link.south) .. controls (2.9,6.3) .. (mc.east);
+% implicit loop marker on bal
+\draw[->,black!60] (bal.west) .. controls (-2.35,4.0) and (-2.35,4.9) .. (bal.north west);
+\node[lab,align=center] at (-2.6,5.5) {$U_\mathrm{oc}{\leftrightarrow}\xi_j$ 순환\\= 정의상 implicit\\(요동 양성 \eqref{eq:sm-mc-fluc}\\$\Rightarrow$ 수치 유일근)};
+% ---------- 본론 rail (중열) ----------
+\node[lab] at (6.1,10.05) {본론 결과 사슬 (N2--N9)};
+\node[eqn] (uj)   at (6.1,9.4)  {중심 $U_j(T)$ \eqref{eq:Uj}};
+\node[eqn] (bv)   at (6.1,8.2)  {Eyring 속도 \eqref{eq:bv}\\ (배경: TST \eqref{eq:tst-box})};
+\node[eqn] (db)   at (6.1,7.0)  {detailed balance \eqref{eq:db}\\ $\to\ \xi_\eq$ \eqref{eq:logisticsolve}};
+\node[eqn] (peak) at (6.1,5.8)  {평형 종 \eqref{eq:eqpeak}};
+\node[eqn] (hys)  at (9.0,9.4)  {히스 gap \eqref{eq:dUhys}\\ 분기 \eqref{eq:Ubranch}};
+\node[eqn] (bud)  at (9.0,7.0)  {폭 예산 \eqref{eq:widthbudget}};
+\node[eqn] (lv)   at (9.0,5.8)  {지연 길이 \eqref{eq:LV}\\ 꼬리 \eqref{eq:peakshape}};
+\node[eqn,very thick] (sum) at (7.55,4.45) {합산 $\dd Q/\dd V$ \eqref{eq:sum}};
+% main-rail arrows
+\draw[->] (uj) -- (bv);
+\draw[->] (bv) -- (db);
+\draw[->] (db) -- (peak);
+\draw[->] (uj.east) .. controls (7.7,9.4) .. (hys.west);
+\draw[->] (peak.south) .. controls (6.1,5.0) .. (sum.west);
+\draw[->] (bud) -- (lv);
+\draw[->] (lv.south) .. controls (9.0,5.0) .. (sum.east);
+\draw[->] (hys.south) .. controls (9.0,8.1) .. (bud.north);
+% Part 0 → 본론 bridges
+\draw[->,black!60,densely dashed] (nernst.east) .. controls (3.3,3.1) and (4.6,4.9) .. (peak.west);
+\node[lab] at (3.7,4.0) {같은 logistic (\S\ref{sec:dist})};
+\draw[->,black!60,densely dashed] (gc.east) .. controls (3.4,9.4) .. (uj.west);
+\node[lab] at (3.35,9.65) {$\Delta G_j{=}{-}sFU_j$};
+% ---------- Chapter 2 continuation (하단, 서술형) ----------
+\node[ext] (ch2) at (3.7,1.7) {Chapter 2 (별도 컴파일): 전하 보존 음함수 (eq:implicit) $\to$ 완전식 (eq:complete)
+$\to$ 가역 발열 (eq:qrev)\\ --- 좌열의 반전~\eqref{eq:sm-mc-balance} 과 같은 식이 그 문건의 출발점이다};
+\draw[->,black!60] (bal.south) .. controls (0,2.4) .. (ch2.west);
+\draw[->,black!60] (sum.south) .. controls (7.55,2.4) .. (ch2.east);
+\end{tikzpicture}
+\caption{식 의존성 지도(항법판 전용 도식) --- 화살표는 ``이 식이 저 식의 입력이다''를 뜻한다. 좌열이
+Part 0 사다리, 중$\cdot$우열이 본론 결과 사슬(N2--N9)이고, 굵은 상자 둘(전하 보존
+반전~\eqref{eq:sm-mc-balance}$\cdot$합산~\eqref{eq:sum})이 내부 전위 결정과 관측 곡선 산출의 두 중심이다.
+좌열 옆 고리는 $U_\mathrm{oc}$ 와 $\xi_j$ 의 순환 의존이 논리 공백이 아니라 \emph{정의상 implicit
+formulation} 이고(요동 양성~\eqref{eq:sm-mc-fluc} 이 유일근을 보증), 하단 파선 상자는 별도 컴파일인
+Chapter 2 로의 인계(서술형 참조)다.}
+\label{fig:navmap}
+\end{figure}
+
+\subsection{통합 기호 대응표}\label{ssec:nav-symbols}
+장을 가로질러 쓰이거나 동명이의(同名異義) 위험이 있는 이론 기호만 모았다(실험 조건 기호는 본문
+표~\ref{tab:notation} 소관). ``장'' 열의 Ch2 는 별도 컴파일 문건(그 문건 절 번호)이다.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{0.20\textwidth} p{0.36\textwidth} p{0.17\textwidth} p{0.19\textwidth}}
+\toprule
+기호 & 뜻 & 정의 위치 & 주의 \\
+\midrule
+$\theta$ / $\xi=1-\theta$ & 자리 점유율 / 진행률(공위) & \S\ref{sec:sm-site}·\S\ref{sec:notation} & 배향이 서로 반대 \\
+$x$ / $\bar x=1-x$ & Li 함량 / 추출(탈리튬화) 전하 분율 & \S\ref{sec:sm-mc}·Ch2 & ★부호 오류 최다 지점 \\
+$w_j=n_jRT/F$ & 폭 --- 단상 열적 서식 vs 두-상 자유 피팅 폭 & \S\ref{sec:width}·\S\ref{sec:broadening} & 폭의 이중지위 \\
+$\Omega_j$ & 평균장 이웃 상호작용 & \S\ref{sec:sm-mf}·\S\ref{sec:hys} & $\Omega_j\le2RT$ 면 gap $\equiv0$ \\
+$\Delta S_{\rxn,j}$ & 반응(평형) 엔트로피 --- 중심 기울기 & \S\ref{sec:center} & $\partial U_j/\partial T=\Delta S_\rxn/F$ \\
+$\Delta S_a$ & 활성화 엔트로피(비가역 동역학) & \S\ref{sec:width} 배경 박스~\eqref{eq:tst-box}·\S\ref{sec:lag} & $\Delta S_\rxn$ 과 물리가 다름 \\
+$\Delta S_{\mathrm{vib}}(T)$ & Einstein 진동 편차(기준온도 영점) & Ch2 \S2.4 & $T_\mathrm{ref}$ 강제 영점 \\
+$\Delta S_e$ & 전자(밴드) 엔트로피 항 & \S\ref{sec:lco-electronic} & LCO 전용·$\propto T$ \\
+$q(T)$ / $q^{\ddagger},q_R$ / $q$ & 자리 내부 분배함수 / TST 분배함수 / 용량 좌표 $Q/Q_\cell$ & \eqref{eq:partfn} / \eqref{eq:tst-box} / \S\ref{sec:eqpeak} & ★삼중 동명 --- 문맥 구분 \\
+$u_j$ & gap 매개변수 $\sqrt{1-2RT/\Omega_j}$ & \S\ref{sec:hys-gap} & Ch2 \S2.4 의 $u_j{=}\theta_{E,j}/T$ 와 동명(장 분리) \\
+$g_j(\xi)$ / $g(E_F)$ & 자리당 자유에너지 / 상태밀도 게이트 & \S\ref{sec:sm-mf} / \S\ref{sec:lco-electronic} & Ch2 의 겹침 가중 $g_j$ 도 동명 \\
+$\gamma_j$ & 분기 진폭 축소 인자(spinodal 상한 대비) & \S\ref{sec:hys-branch} & $0\le\gamma_j\le1$ \\
+$\chi$ & 장벽 비대칭(전달) 계수 & \eqref{eq:bv}·\S\ref{sec:lag} & 평형비에서는 상쇄 \\
+$L_{V,j}$ & 전위축 지연 길이(꼬리 척도) & \S\ref{sec:lag-LV} & $\propto|I|$·Arrhenius($T$) \\
+$\theta_{E,j}$ & Einstein 온도 $\hbar\omega_E/k_B$ & Ch2 \S2.4(\S\ref{sec:lco-electronic} 각주) & $500$--$900$ K 급 \\
+\bottomrule
+\end{tabular}
+\caption{통합 기호 대응표(항법판 전용) --- 동명이의$\cdot$교차 장 기호의 정의 위치 일람. 각 행의 정의
+자체는 해당 위치의 본문이 유일 기준이며 본 표는 색인일 뿐이다.}
+\label{tab:navsymbols}
+\end{table}
+
+% 자산(v1.0.21 신규·항법판 한정): [V21-N-01 식 의존성 지도 fig:navmap(implicit 순환 표기 포함)]
+%   [V21-N-02 통합 기호 대응표 tab:navsymbols(동명이의 3건 명시)]

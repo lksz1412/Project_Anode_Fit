@@ -50,3 +50,7 @@
 \newcommand{\avg}[1]{\langle #1\rangle}
 \renewcommand{\theequation}{2.\arabic{equation}}
 \renewcommand{\thesection}{2.\arabic{section}}
+% ---- 전역 항법 토글 (D21-1): 적용판 드라이버(*_nav.tex)가 \NAVAID 를 정의하면 켜진다. 기본 = 미적용판 ----
+\newif\ifnavaid
+\ifdefined\NAVAID\navaidtrue\fi
+\ifnavaid\lhead{흑연 음극 $dQ/dV$ --- Ch.2 (v1.0.21 항법판)}\fi

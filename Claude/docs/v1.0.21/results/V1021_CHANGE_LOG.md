@@ -20,3 +20,7 @@
 | R-004 | Q4 | ch2_sec08_synthesis.tex | fig:qrevsoc 신규(∂U_oc/∂T 완전vs단순+수준선+5점 / Q̇_rev/I 부호 교대 2패널 — N-1 베이스 FF2-1) + 본문 참조 문장 | 라벨 +1(fig) |
 | R-005 | Q4 | ch2_sec04_einstein.tex | fig:svibid 신규(S_vib 닫힌형·두 극한 / 강제 영점·3θ_E 가족 2패널 — N-4 베이스 FF2-5) + 본문 참조 문장 | 라벨 +1(fig) |
 | (Q4 비고) | Q4 | — | 그래프트 요소(FF2-2 staging 4점 등)와 B급 6건(N-6~N-10·R-1·C-1)은 좌표 재평가·과밀 검토가 필요해 Q4b 이월(FIGS_PICK §D 참조). 베이스 조각은 각 창의 컴파일·물리 검산 통과본 그대로(좌표 무수정 — 물리 가드) | — |
+| N-001 | Q5(항법) | ch1_preamble.tex·ch2_preamble.tex·마스터 2본 | **전역 항법 토글 인프라**(D21-1): \ifnavaid(기본 꺼짐)·\NAVAID 감지·항법판 헤더/표제 변형·드라이버 2본(graphite_ica_ch{1,2}_v1.0.21_nav.tex — 단일 소스, 토글만) | 없음(조건부 — 미적용판 빌드 불변 70/26p 확인) |
+| N-002 | Q5(항법) | _sections/ch1_appC_navaid.tex(신규) | **부록 C(항법판 전용)**: ①식 의존성 지도 fig:navmap(Part 0 사다리↔본론 N2–N9 2-레일·U_oc↔ξ_j 순환="정의상 implicit" 표기·Ch2 인계 파선 박스 — CLAUDE.md 검수 3·4항 직결) ②통합 기호 대응표 tab:navsymbols(동명이의 3건 ★: q 삼중·u_j·g 계열). 새 물리 주장 0(색인 전용 선언) | 라벨 +5(sec:appendix-nav·ssec 2·fig:navmap·tab:navsymbols)·eqblock ±0 |
+| N-003 | Q5(항법) | ch1_sec00_intro.tex·ch2_sec00_intro.tex | **독자 경로 안내 keybox**(항법판 전용, ③): 피팅 실무 경로 vs 이론 유도 경로 + 부록 C 안내(Ch2 는 서술형 안내) | 없음(조건부 산문) |
+| (Q5 비고) | Q5(항법) | 마스터 ch1 | 조건부 \input 은 3행 형태(행 선두 \input) — tools_check_structure 의 input-follow 정규식 호환. 체커는 appC 를 양 판 공통으로 스캔(라벨 완결성 검사 의도적) | — |
