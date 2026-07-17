@@ -24,3 +24,14 @@
 |---|---|---|---|---|
 | weppner_huggins1977 | W. Weppner, R. A. Huggins, "Determination of the Kinetic Parameters of Mixed-Conducting Electrodes and Application to the System Li₃Sb," J. Electrochem. Soc. 124(10), 1569–1578 (1977) | 10.1149/1.2133112 | V1 | Q5 §1 측정 원리 bgbox(GITT 원전, tier A) |
 | baek_pilon2022 | S. W. Baek, M. Saber, A. Van der Ven, L. Pilon, "Thermodynamic Analysis and Interpretative Guide to Entropic Potential Measurements of Lithium-Ion Battery Electrodes," J. Phys. Chem. C 126(14), 6096–6110 (2022) | 10.1021/acs.jpcc.1c10414 | V1 | Q5 §1 측정 원리 bgbox(해석 지도, tier B — load-bearing 주장엔 1차 병기 규약) |
+
+## B″. Q7 등재분 — Si 계열 14건 (검증: 12건 = v1.0.20 DIRECTION_SI_LCO_REPORT §6(WebSearch·DOI 전건) 승계 / 2건 = 본 세션 WebSearch 신규 검증 2026-07-17)
+
+| key | 판정 | 비고 |
+|---|---|---|
+| wen_huggins1981·limthongkul2003·li_dahn2007·obrovac_christensen2004·chevrier_dahn2009·beaulieu2001·sethuraman_stressevo2010·liu_sizefracture2012·verbrugge_lisi2016·jiang_sihys2020 | V1 | 보고서 §6 A 확정 서지 그대로 bib 반영 |
+| sethuraman_stresspot2010 | V1(필드 조건부) | 쪽 범위 ★확인필요 — bib 비고에 명시(사용 시 Crossref 최종 대조) |
+| obrovac_chevrier2014 | V1 | tier B 리뷰 — load-bearing 주장엔 1차 병기 |
+| larchecahn1973 | V1 | **본 세션 검증**: Acta Metall. 21(8), 1051–1063 (1973), DOI 10.1016/0001-6160(73)90021-7 (ScienceDirect 대조) — 응력-조성 화학퍼텐셜 이론 원전 |
+| koebbing2024 | V1(필드 조건부) | **본 세션 검증**: Adv. Funct. Mater. 2308818, DOI 10.1002/adfm.202308818 (Wiley 대조 — Köbbing·Latz·Horstmann, SEI 점탄소성 히스 모델). 인쇄 권·호 ★확인필요 |
+- 미확보 잔여: Si 부분몰 엔트로피 실측(Ch2 발열 연계용) — Si 전용 장(후속) 소관.

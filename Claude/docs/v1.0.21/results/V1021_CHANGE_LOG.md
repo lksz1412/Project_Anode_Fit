@@ -32,3 +32,6 @@
 | A-008 | Q6(L1) | ch1_sec15_lcoelec.tex | **LCO 한 점 시연 소절 신설**(sec:lco-worked, §15 말미) — (a)슬롯 산술(ΔS_e=−45.7 → ΔS_eff/F=−0.411 mV/K) (b)반전·완전식 표(x̄=0.50/0.85: U_oc 3.9243/4.0095 V·계수 −0.312/−0.128 mV/K) (c)게이트 껐다 켜기(+0.160→−0.128 mV/K 부호 반전·U_oc −91 mV). **전 수치 = Anode_Fit_v1.0.21.py 실행 재현**(doc-leads). tier-C 시연·T_ref 동결 근사 명시(Si/LCO 보고서 §5 단서 그대로) | 라벨 +1(sec)·무번호 display 2 |
 | A-009 | Q6(L6) | ch1_sec14_lcodecomp.tex | ★스코프 주의 문장 — Ch1 슬롯 분해(성분) vs Ch2 ΔS⁰_j(전이 전체 상수) 혼동 방지(INTERCHAPTER M-1) | 없음(산문 1문장) |
 | (Q6 비고) | Q6(L7) | — | θ_E 지칭 정정(L-5)은 v1.0.20 B-007 로 기해소 확인(grep "vibrational" 0건) — 재집행 불요. L2(tier 실측)·L3(T-복원)·L4(q_irr)·L5(원전 재확인)는 실측/코드 연동 대기 — 이월 | — |
+| A-010 | Q7 | _sections/ch1_appD_si.tex(신규)·마스터 | **Si 예비 지도 부록 신설**(sec:appendix-si, appB 뒤·항법 앞 — 양 판 공통 문자 안정) — 사실 8건(전건 검증 인용)·노드 생존 판정표 tab:simap(이월 2·구조 2·재해석 3·부분 2·새물리 1)·전하 보존 전극 중립성 Si 실증(eq:sm-mc-balance 앵커·verbrugge_lisi2016)·GS-1 기계 히스 공백 선언(충돌+미착수 분류·이론틀 후보 larchecahn1973/koebbing2024)·부분 적용 시연 자리(성분≠상전이 명시). 아키텍처 = 보고서 권고 (iii)→(ii) 단계화(D21-3 정련 — "Q1 후 재질문" 조항 이행) | 라벨 +6(sec+ssec 5·tab:simap) |
+| C-024~037 | Q7 | ch1_bib.tex | Si 계열 서지 14건 등재(핵심 우선 — D6(b))·헤더 40→54종. 전건 원장 B″ 검증 근거 | bib +14 |
+| N-005 | Q7 | ch1_appC_navaid.tex | 부록 문자 하드코드("C.1/C.2") 제거 — 중성 서술(부록 순서 변동 내성) | 없음 |
