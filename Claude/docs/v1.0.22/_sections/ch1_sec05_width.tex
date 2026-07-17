@@ -116,6 +116,38 @@ $\Delta S_a=0$ 이라 식~\eqref{eq:tst-box} 가 $k=(k_BT/h)e^{-\Delta H_a/RT}$ 
 $q^{\ddagger}\lessgtr q_R\Rightarrow\Delta S_a\lessgtr0\Rightarrow e^{\Delta S_a/R}\lessgtr1$.
 \end{verifybox}
 \end{bgbox}
+
+\begin{srcbox}
+\textbf{다리 --- eq:bv 의 $\chi$ 분할이 어느 정식화인가.} 식~\eqref{eq:bv} 가 구동력
+$\mathcal A_j=sF(V_n-U_j)$ 를 정$\cdot$역 장벽에 $\chi:(1-\chi)$ 로 실어 비대칭 이동시키는 것은
+Bazant 의 비평형 열역학 전하전달 이론\cite{bazant2013} 이 세운 표준 분해다. 대응은 다음과 같다(왼쪽이
+본문 기호, 오른쪽이 원 논문 량):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:bv},~\eqref{eq:db}) & Bazant\cite{bazant2013} 대응량 \\
+\hline
+분율 위치 $\chi$ / $(1-\chi)$ & 전하전달 대칭인자 $\alpha_c{=}\alpha$ / $\alpha_a{=}1{-}\alpha$ (식[27]) \\
+구동력 $\mathcal A_j=sF(V_n-U_j)$ & 전기화학 과전위 $ne\,\eta=\Delta\mu$, $\eta{=}\Delta\phi{-}\Delta\phi^{\eq}$ (식[26]) \\
+공통 인자 $k_0e^{-\Delta G_a/RT}$ & 교환 전류 $I_0/ne$ --- 활동도$\cdot$전이상태 구조 포함 (식[29]) \\
+평형비 $r_j^+/r_j^-=e^{\mathcal A_j/RT}$ (식~\eqref{eq:db}) & $\eta{=}0$ 에서 알짜 전류 $0$ (식[27]) \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 지수 인자다 --- $n{=}1$ 에서 $F{=}N_A e$, $R{=}N_A\kB$ 이므로
+\begin{equation}
+\frac{\mathcal A_j}{RT}=\frac{sF(V_n-U_j)}{RT}=\frac{e\,[\,s(V_n-U_j)\,]}{\kB T}
+\;\;\longleftrightarrow\;\;\frac{ne\,\eta}{\kB T},\qquad \eta \leftrightarrow s(V_n-U_j),
+\label{eq:br-bazant2013-1}
+\end{equation}
+곧 우리 부호 구동전압 $s(V_n-U_j)$ 가 원 논문 과전위 $\eta$ 에 대응한다(이 $\eta$ 는 원 논문 기호 --- \S\ref{sec:broadening} 의 겉보기-중심 국소 과전위 $\eta$ 와 별개다). \emph{방법 요지} --- Bazant 는 알짜
+속도를 전이상태 excess 화학퍼텐셜 기준 반응물$\cdot$생성물 화학퍼텐셜의 지수차(식[7])로 적고, 구동력을
+$\eta=\Delta\mu/ne$(식[26])로 특수화한 뒤 장벽을 $\alpha$ 로 비대칭 분할해 일반화 Butler--Volmer(식[27])를
+얻는다. \emph{가정 차} --- 원 논문의 교환전류 $I_0$(식[29])는 농축용액 활동도계수와 전이상태 활동도계수
+$\gamma_\ddagger$ 를 실어 전치인자가 \emph{조성 의존}이나, 식~\eqref{eq:bv} 는 이를 조성무관 상수
+$k_0e^{-\Delta G_a/RT}$ 로 흡수하고(이상 교환속도) 조성 의존을 전부 구동력 $\mathcal A_j$ 와 logistic 로만
+받는다.
+\end{srcbox}
 % 자산(v1.0.21 신규): [V21-Q3-01 반응좌표 1D 분배함수 eq:tst-qrc] [V21-Q3-02 보편 빈도 k_BT/h 유도 eq:tst-freq]
 %   [V21-Q3-03 TST 속도식 eq:tst-rate] [V21-Q3-04 ΔG_a 미시 식별 eq:tst-dG]
 %   [V21-Q3-05 ΔS_a=R ln(q‡/q_R) boxed eq:tst-box + ΔS_rxn 구분 가드·용량 q 가드]
