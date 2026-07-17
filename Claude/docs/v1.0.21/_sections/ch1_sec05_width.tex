@@ -39,7 +39,86 @@ $\dd\xi/\dd t=r^+(1-\xi)-r^-\xi=k_j(\xi_\eq-\xi)$($k_j\equiv r^++r^-$). \textbf{
 (둘째 식은 분모$\cdot$분자를 $e^{\mathcal A/RT}$ 로 나눈 것). 이 bare logistic 의 중심 기울기는
 $\dd\xi_\eq/\dd V|_{1/2}=sF/(4RT)$ 로, 폭 척도 $RT/F$ 를 정의한다 --- 열역학은 detailed balance~\eqref{eq:db}
 한 곳으로만 들어왔고, logistic 은 속도식의 정지점에서 \emph{유도된} 평형이다. 다음 소절이 이 폭 척도를 다중도
-$n_j$ 로 일반화해 결과 박스를 닫는다.
+$n_j$ 로 일반화해 결과 박스를 닫는다. 본문이 여기서 빌려 쓴 두 양 --- 시도 빈도 $k_0=k_BT/h$ 와
+\S\ref{sec:lag} 가 $\Delta H_a-T\Delta S_a$ 로 가를 활성화 자유에너지 --- 의 미시 기원은 아래 배경 박스가
+전이상태 이론의 분배함수로 닫는다.
+
+\begin{bgbox}
+\textbf{전이상태 이론의 분배함수와 활성화 엔트로피 ---} 위 (a) 의 시도 빈도 $k_0=k_BT/h$ 와,
+\S\ref{sec:lag} 이 쓰는 활성화 엔트로피 $\Delta S_a$ 는 전이상태 이론(transition-state theory, TST)의
+분배함수에서 유도된다 --- 이 박스는 그 미시 기원만 자족적으로 정리한다(본문 흐름은 이 박스 없이도 읽히고,
+\S\ref{sec:lag} 은 여기서 세운 갈래를 \emph{쓴다}).
+
+\textbf{(a) 출발 --- 두 전제.} TST 는 두 가정 위에 선다: (i) \emph{안장점 준평형} --- 안장점의
+활성복합체(activated complex)가 반응물과 Boltzmann 평형을 이룬다; (ii) \emph{재교차 무시} --- 안장점을
+정방향으로 넘는 궤적은 되돌지 않고 모두 생성물이 된다(투과계수 $\kappa=1$)\cite{laidlerking1983}. 반응좌표
+모드는 길이 $\delta$ 구간의 자유 1D 병진으로 다룬다 --- 변분 TST·터널링 보정은 범위 밖이다.
+
+\textbf{(b) 연산 --- $k_BT/h$ 의 미시 기원.} 안장점에서 반응좌표 모드를 뗀 활성복합체 분배함수를
+$q^{\ddagger}$, 반응물의 것을 $q_R$ 로 둔다. 뗀 반응좌표 모드는 유효질량 $m^{*}$ 의 1D 병진 분배함수
+\begin{equation}
+q_\mathrm{rc}=\frac{(2\pi m^{*}k_BT)^{1/2}\,\delta}{h}
+\label{eq:tst-qrc}
+\end{equation}
+--- Part 0 의 $q(T)$~\eqref{eq:partfn} 와 같은 위상공간/$h$ 눈금으로 센 상태 수 --- 이고, 그 복합체가
+안장점을 정방향으로 넘는 평균 속도는 반쪽 Maxwell 평균 $\langle v\rangle=(k_BT/2\pi m^{*})^{1/2}$ 다. 길이
+$\delta$ 에 갇힌 복합체의 통과 빈도 $\langle v\rangle/\delta$ 에 식~\eqref{eq:tst-qrc} 를 곱하면 $\delta$ 와
+$m^{*}$ 가 정확히 상쇄되어
+\begin{equation}
+\frac{\langle v\rangle}{\delta}\,q_\mathrm{rc}
+=\frac{1}{\delta}\Big(\frac{k_BT}{2\pi m^{*}}\Big)^{1/2}\frac{(2\pi m^{*}k_BT)^{1/2}\delta}{h}
+=\frac{k_BT}{h}
+\label{eq:tst-freq}
+\end{equation}
+만 남는다 --- $k_0=k_BT/h$ 는 임의로 고른 상수가 아니라 유효질량·구간 길이에 무관한 \emph{장벽 통과의 보편
+빈도}다($298$ K 에서 $6.2\times10^{12}$ /s).
+
+\textbf{(c) 중간식 --- 준평형 인구와 자유에너지 묶기.} 전제 (i) 로 활성복합체 대 반응물의 인구비가 분배함수
+비에 장벽 바닥차 $\Delta E_0$ 의 Boltzmann 인자를 곱한 값이므로, 통과 빈도에 이 인구를 실은 속도는
+\begin{equation}
+k=\frac{k_BT}{h}\,\frac{q^{\ddagger}}{q_R}\,e^{-\Delta E_0/RT}
+\label{eq:tst-rate}
+\end{equation}
+다\cite{glasstone1941,mcquarrie1976}. 본문 식~\eqref{eq:bv} 의 활성화 자유에너지 $\Delta G_a$ 를 분배함수로
+쓰면 --- 재정의가 아니라 같은 양의 미시 표기 \emph{식별}이다 ---
+\begin{equation}
+\Delta G_a=-RT\ln\frac{q^{\ddagger}}{q_R}+\Delta E_0
+\label{eq:tst-dG}
+\end{equation}
+이고, 식~\eqref{eq:tst-rate} 는 $k=(k_BT/h)\,e^{-\Delta G_a/RT}$ 로 정리되어 식~\eqref{eq:bv} 가 쓰는 Eyring
+형과 같아진다.
+
+\textbf{(d) 박스 --- 활성화 엔트로피의 미시 의미.} $\Delta G_a=\Delta H_a-T\Delta S_a$ 로 가르면
+\begin{equation}
+\boxed{\;k=\frac{k_BT}{h}\,e^{\Delta S_a/R}\,e^{-\Delta H_a/RT},
+\qquad \Delta S_a=R\ln\frac{q^{\ddagger}}{q_R}\;.}
+\label{eq:tst-box}
+\end{equation}
+활성화 엔트로피는 활성복합체와 반응물의 (반응좌표를 뺀) reduced 분배함수 비의 로그다 --- 활성복합체의
+자유도가 반응물보다 \emph{조이면}($q^{\ddagger}<q_R$) $\Delta S_a<0$ 라 prefactor 가 눌리고, \emph{풀리면}
+($q^{\ddagger}>q_R$) $\Delta S_a>0$ 라 커진다.
+
+\textbf{Part 0 접속.} 이 ``로그-분배함수 $=$ 엔트로피'' 대응은 Part 0 의 내부 자유도 언어와 같다 --- Part 0 은
+단일 자리 내부 분배함수 $q(T)$(식~\eqref{eq:partfn})에 연산 $s_\mathrm{int}=k_B\,\partial(T\ln q)/\partial T$
+(식~\eqref{eq:sm-sint})를 걸어 자리 엔트로피를 읽었고, 여기서는 같은 연산을 활성화의 비 $q^{\ddagger}/q_R$ 에
+걸어 활성화 엔트로피를 읽는다(비의 잔여 $T$-의존은 $\Delta H_a$ 쪽으로 넘기는 표준 읽기). \emph{가드} ---
+여기 $\Delta S_a$ 는 \emph{활성화}(비가역 동역학, 안장점 대 반응물의 비)이고, 전이 중심의
+$\Delta S_\rxn$(\S\ref{sec:center} --- 반응·평형, 생성물 대 반응물의 비)과 차원은 같으나 물리가
+다르다.\footnote{여기 $q^{\ddagger},q_R$(TST 분배함수)와 Part 0 의 $q(T)$(자리 내부 분배함수)는 모두 통계역학
+분배함수로, N6--N9 의 용량 좌표 $q{=}Q/Q_\cell$ 와는 무관하다(식~\eqref{eq:partfn} 각주와 같은 가드).}
+\begin{verifybox}
+검산 --- (i) 차원: $k_BT/h$ 는 에너지/(에너지·시간)$=$[1/s]이고 두 지수는 무차원이라 $k$ 는 빈도
+차원이다(식~\eqref{eq:tst-freq}) --- \S\ref{sec:lag} 완화율 $k_j$ 와 같은 눈금. (ii) 고온 극한: 진동 모드의
+$q\to k_BT/\hbar\omega$ 라 $q^{\ddagger}/q_R$ 가 진동수(곡률) 비의 고전값으로 수렴, $\Delta S_a\to
+R\ln(\text{고전 비})$ 로 유한하다. (iii) 원형 회수: 활성화로 자유도가 변치 않아 $q^{\ddagger}=q_R$ 이면
+$\Delta S_a=0$ 이라 식~\eqref{eq:tst-box} 가 $k=(k_BT/h)e^{-\Delta H_a/RT}$ 의 순수 Arrhenius 형으로 환원된다
+--- \S\ref{sec:sum} 의 기본값 $\Delta S_a{=}0$ 이 이 극한이다. (iv) 부호:
+$q^{\ddagger}\lessgtr q_R\Rightarrow\Delta S_a\lessgtr0\Rightarrow e^{\Delta S_a/R}\lessgtr1$.
+\end{verifybox}
+\end{bgbox}
+% 자산(v1.0.21 신규): [V21-Q3-01 반응좌표 1D 분배함수 eq:tst-qrc] [V21-Q3-02 보편 빈도 k_BT/h 유도 eq:tst-freq]
+%   [V21-Q3-03 TST 속도식 eq:tst-rate] [V21-Q3-04 ΔG_a 미시 식별 eq:tst-dG]
+%   [V21-Q3-05 ΔS_a=R ln(q‡/q_R) boxed eq:tst-box + ΔS_rxn 구분 가드·용량 q 가드]
 
 \begin{figure}[t]
 \centering
