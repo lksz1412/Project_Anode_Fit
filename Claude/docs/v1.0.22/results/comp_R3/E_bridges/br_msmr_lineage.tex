@@ -1,0 +1,52 @@
+% ── 다리 초안: msmr_origin2017 + bakerverbrugge2018 → 우리 eq:msmr / eq:lco-msmrmap (§17) ──
+% 삽입 위치: _sections/ch1_sec17_msmr.tex, §17.1 (a) MSMR 종별 점유식 eq:msmr 와 그 재모수화
+%   설명(현행 13–22행) 직후, "\textbf{(b) 연산 --- 정규화.}"(현행 23행) 앞.
+% 앵커 문장: "...치환 격자 열역학 모델을 Verbrugge 등이 ... 한 틀로 세웠고\cite{msmr_origin2017},
+%   Baker--Verbrugge 의 다공 전극 정식화가 이를 multi-species, multi-reaction(MSMR) 모델로
+%   명명했으며\cite{bakerverbrugge2018}, ..."(현행 6–10행) 및 eq:msmr(현행 14–17행).
+% 컨테이너: srcbox. 우리 기호로 서술, 논문 량은 표에서만.
+% ★원문 검증: eq:msmr 형태 $x_j=X_j/(1+\exp[f(U-U_j^0)/\omega_j])$·$f{=}F/RT$·$X_j$(종별 host 자리
+%   분율)$\cdot U_j^0$(농도무관 표준전위)$\cdot\omega_j$(무질서 파라미터) 정의 = PyBaMM MSMR 구현
+%   문서(Verbrugge 2017 식 재현·파라미터 정의 명기) 대조 확인 — 형태$\cdot$정의 일치.
+%   명명 ``multi-species, multi-reaction'' = bakerverbrugge2018 제목 확인. 원 논문 내부 식번호만
+%   직접 대조 미완(경미) → 형태$\cdot$정의는 확인분, 식번호는 ★확인 필요(불요 — 다리는 형태 대응이 핵).
+
+\begin{srcbox}
+\textbf{다리 --- eq:msmr 가 어느 정식화이고 계보의 어디서 명명됐는가.} 식~\eqref{eq:msmr} 의 종별
+logistic 점유식은 Verbrugge 등\cite{msmr_origin2017} 이 삽입 전극 OCV 를 치환 격자 열역학의 종별
+Nernst-형 점유 합으로 닫아 세운 표준 파라미터화이고, Baker--Verbrugge\cite{bakerverbrugge2018} 의 다공
+전극 정식화가 이를 ``multi-species, multi-reaction(MSMR)'' 로 명명한 것이다. 대응은 다음과 같다(왼쪽이
+본문 기호, 오른쪽이 원 논문 량):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:msmr},~\eqref{eq:lco-msmrmap}) & MSMR\cite{msmr_origin2017,bakerverbrugge2018} 대응량 \\
+\hline
+종별 점유 $x_j=X_j/(1+e^{f(U-U_j^0)/\omega_j})$ & 동일 종별 점유식(Verbrugge 2017) \\
+지수 인자 $f=F/RT$ ($>0$) & $f=F/RT$ (동일 정의) \\
+종 용량 분율 $X_j$ & $X_j$ = 종 $j$ 가 점유 가능한 host 자리 분율 \\
+종 중심 전위 $U_j^0$ & $U_j^0$ = 농도무관 표준 전극 전위 \\
+무차원 폭 $\omega_j$ & $\omega_j$ = 반응 $j$ 의 무질서 정도 파라미터 \\
+총 조성 $\sum_jX_j\theta_j^{\mathrm{MSMR}}$ & $x=\sum_j x_j$ (자리 보존 총합) \\
+명명 ``MSMR'' & Baker--Verbrugge 2018 ``multi-species, multi-reaction'' \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 폭 슬롯의 재모수화다 --- 원계열의 무차원 폭 $\omega_j$ 에서 $F/RT$ 를 폭으로 흡수하면
+본문의 전압-차원 폭 $w_j=n_jRT/F$ 가 되고, 지수엔 방향 부호만 남는다:
+\begin{equation}
+\frac{f\,(U-U_j^0)}{\omega_j}\ \xrightarrow[\ \omega_j\mapsto w_j=n_jRT/F\ ]{\ f=F/RT\ \text{흡수}\ }\
+\frac{\sigma_d\,(V-U_j^{\,d})}{w_j},
+\qquad (U,U_j^0,\omega_j,X_j,f)\ \leftrightarrow\ (V,U_j^{\,d},w_j,Q_j,\sigma_d),
+\label{eq:br-msmr-1}
+\end{equation}
+곧 식~\eqref{eq:lco-msmrmap} 의 1:1 대응이며, 계수비교 한 줄($f/\omega_j=\sigma_d/w_j$)이 방향 인자
+$f=+\sigma_d$ 를 유일하게 고정한다(본문 §17.1(c)). \emph{방법 요지} --- Verbrugge 등은 삽입 전극 OCV 를
+치환 격자 열역학의 종별 점유(자리 보존 $\sum_jX_j$)의 Nernst-형 합으로 닫아 식~\eqref{eq:msmr} 을
+세웠고, Baker--Verbrugge 가 이를 다공 전극 다반응 정식화로 확장하며 MSMR 로 명명했다. \emph{가정 차}
+--- 원계열 MSMR 은 방향 없는 \emph{평형 등온선}이고 폭이 무차원 $\omega_j$(지수의 $F/RT$ 항상 양)이나,
+본문은 $F/RT$ 를 폭에 흡수($\omega_j\!\mapsto\!w_j$, 전압 차원)하고 방향 부호 $f=+\sigma_d$ 를 남겨
+충$\cdot$방전을 재배선하며, 순정 MSMR 에 없는 히스테리시스 분기($\gamma_j$, \S\ref{sec:lco-hys})와 T1
+전자 엔트로피 항(\S\ref{sec:lco-electronic})을 추가로 얹는다 --- \emph{함수형 동형이지 물리량 동일이
+아니다}($x_j/X_j$ 는 리튬화 점유, $\xi$ 는 탈리튬화 진행률).
+\end{srcbox}

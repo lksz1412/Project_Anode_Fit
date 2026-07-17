@@ -1,0 +1,53 @@
+% ── 다리 초안: marianetti2004 → 우리 eq:ggate (MIT 게이트) + eq:lco-mottcrit (§15) ──
+% 삽입 위치: _sections/ch1_sec15_lcoelec.tex, MIT 배경 bgbox(현행 30–67행) 직후,
+%   "게이트가 MIT 의 직접 결과라는 이 자리매김 아래..."(현행 69행) 앞.
+% 앵커 문장: bgbox 내 "Marianetti--Kotliar--Ceder 는 대형 초격자 DFT 계산으로 그 까닭을
+%   제시했다: ... 불순물 준위의 Mott 전이가 1차 MIT 와 2상 공존을 설명한다\cite{marianetti2004}
+%   (계산은 $x\gtrsim0.95$ 절연$\cdot$$x\lesssim0.75$ 금속을 재현한다)."(현행 55–59행)
+% 컨테이너: srcbox (인용 다리 = 출처 대응 노트). 우리 기호로 서술, 논문 량은 표에서만.
+% ★원문 검증: 기작(Li 빈자리 속박 정공→불순물 준위→불순물 띠 Mott 비국소화)·조성 경계
+%   ($x\lesssim0.75$ metal, $x\gtrsim0.95$ insulator)·1차/2상 = WebSearch 초록(nmat1178) 대조 확인.
+%   원 모델 Hamiltonian·정확한 Mott 판별식·식번호 = 원문 PDF(구 Nature 포맷) 기계 판독 실패
+%   → ★확인 필요(논문 식 재현 안 함, 기작·결과 수준 대응). 우리 eq:lco-mottcrit($U\gtrsim2zt$)은
+%   교과서 판별식(\cite{mott1968,imada1998})이지 Marianetti 의 정량 모델식이 아님 — 오귀속 금지.
+
+\begin{srcbox}
+\textbf{다리 --- MIT 게이트 $g(E_F,x)$ 가 어느 미시 계산에 기대는가.} 게이트~\eqref{eq:ggate} 가 조성창
+$x_\mathrm{MIT}\!\approx\!0.85$ 중심$\cdot$유한 폭 $\Delta x_\mathrm{MIT}\!\approx\!0.05$ 로 \emph{매끄럽게}
+켜지도록 둔 것은, 단순 강체 띠 채움이 예측하는 ``임의로 작은 정공에서 즉시 금속''(0폭 step)이 아니라 실측
+MIT 가 유한 조성창의 1차 전이$\cdot$2상 공존이라는 사실(\S\ref{sec:lco-why})에 근거하며, 그 미시 까닭을
+Marianetti--Kotliar--Ceder\cite{marianetti2004} 가 대형 초격자 DFT 로 세웠다. 대응은 다음과 같다(왼쪽이
+본문 기호, 오른쪽이 원 논문 결과):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:ggate},~\eqref{eq:dSegate}) & Marianetti\cite{marianetti2004} 대응 결과 \\
+\hline
+게이트 중심 $x_\mathrm{MIT}\!\approx\!0.85$ & 절연($x\gtrsim0.95$)--금속($x\lesssim0.75$) 2상역의 중앙 \\
+게이트 폭 $\Delta x_\mathrm{MIT}\!\approx\!0.05$ & 유한 조성창(1차 전이 2상 공존)의 폭 \\
+$g(E_F,x)\!:\ 0\!\to\!g_{\max}$ 켜짐 & DFT 상태밀도: 절연 $g(E_F){\approx}0$ $\to$ 금속 $g(E_F){>}0$ \\
+``왜 한꺼번에''(유한창 1차 전이) & 불순물 띠의 임계농도 일괄 비국소화(불순물 Mott) \\
+정공이 국소화하는 무대 & host $t_{2g}$ 띠가 아니라 Li 빈자리 속박 불순물 준위 \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 조성 경계다 --- 게이트가 켜지는 구간~\eqref{eq:ggate} 의 두 끝
+($x_\mathrm{MIT}\!\pm\!2\Delta x_\mathrm{MIT}\!\approx\!0.75$--$0.95$)이 원 계산의 금속$\cdot$절연 경계와
+겹친다:
+\begin{equation}
+x_\mathrm{MIT}-2\Delta x_\mathrm{MIT}\ \approx\ 0.75\ (\text{금속측}),\qquad
+x_\mathrm{MIT}+2\Delta x_\mathrm{MIT}\ \approx\ 0.95\ (\text{절연측}),
+\label{eq:br-marianetti2004-1}
+\end{equation}
+곧 우리 게이트의 세 초기값 중 중심$\cdot$폭 두 개가 이 1차 문헌의 조성 경계를 직접 읽은 값이다(높이
+$g_{\max}\!=\!13$ 는 \S\ref{sec:lco-gate}(i) 의 별도 anchor\cite{motohashi2009}). \emph{방법 요지} ---
+Marianetti 등은 대형 초격자 DFT 로 탈리튬화가 심는 정공이 host $t_{2g}$ 띠로 곧장 퍼지는 대신 Li
+빈자리에 속박된 \emph{불순물 준위}를 이루고, 이 불순물 띠가 임계 농도에서 한꺼번에 비국소화하는
+\emph{불순물 준위의 Mott 전이}로 1차 MIT 와 2상 공존을 설명한다($x\gtrsim0.95$ 절연$\cdot$$x\lesssim0.75$
+금속을 재현). \emph{가정 차} --- 원 계산은 상관(Mott) 물리와 불순물 준위 구조를 \emph{미시적}으로 다루나,
+본문 forward 모델은 이 기작 전체를 조성축 logistic 게이트 $g(E_F,x)$ \emph{하나}로 현상학화해 발현
+조성의 분산을 폭 $\Delta x_\mathrm{MIT}$ 하나에 흡수하므로, 우리 판별식~\eqref{eq:lco-mottcrit}
+($U\!\gtrsim\!W\!\simeq\!2zt$)은 교과서 Mott 판별식(\cite{mott1968,imada1998})이지 Marianetti 의 정량
+모델식이 아니다 --- 게이트는 그 켜짐이 조성축에서 \emph{어떻게} 진행하는가만 적고, \emph{왜} 그
+조성에서 켜지는가의 미시 근거를 이 논문에서 빌린다.
+\end{srcbox}

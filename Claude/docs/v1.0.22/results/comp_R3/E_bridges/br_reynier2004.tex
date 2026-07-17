@@ -1,0 +1,50 @@
+% ── 다리 초안: reynier2004 → 우리 eq:lco-decomp / eq:lco-Sadd (§14 반응 엔트로피 삼분해) ──
+% 삽입 위치: _sections/ch1_sec14_lcodecomp.tex, §14.3 분해 박스(eq:lco-decomp)와 세 몫 역할
+%   itemize(현행 62–85행) 및 닫는 문단(현행 86–87행) 직후, "\subsection{세 갭과 두 설계 항목}"
+%   (현행 89행) 앞.
+% 앵커 문장: config 몫 "O3 영역에서 LCO $\Delta S$ 를 지배($>\tfrac12$\cite{reynier2004}, tier A)..."
+%   (현행 70행) 및 삼분해 박스 eq:lco-decomp(현행 62–66행).
+% 컨테이너: srcbox. 우리 기호로 서술, 논문 량은 표에서만.
+% ★원문 검증: 측정원리($\Delta S{=}F\,\mathrm dU/\mathrm dT$)·3기여 분해(config/phonon/electronic)·
+%   config 가 O3 조성추세 대부분 설명·phonon 이 음 baseline(x-변화 작음)·MIT 서 electronic$\approx$config·
+%   척도(O3 내 최대 4.2 $k_B$/atom, 총 최대 9.0 $k_B$/atom) = WebSearch 초록(ASU pure) 대조 확인.
+%   본문 §15 의 "O3 총 부분몰 $\approx0.18\,k_B$/atom" 수치 = 초록 미명기(초록은 4.2/9.0 $k_B$/atom 만)
+%   → ★확인 필요(원문 본문/표 직접 대조 요). 논문 식 재현 없음 — 방법·분해 구조·척도 수준 대응.
+
+\begin{srcbox}
+\textbf{다리 --- 삼분해~\eqref{eq:lco-decomp} 가 어느 실측 분해에 대응하는가.} 반응 엔트로피의 세 슬롯
+(config$\cdot$vib$\cdot$elec, 식~\eqref{eq:lco-Sadd}$\cdot$\eqref{eq:lco-decomp})은 Reynier
+등\cite{reynier2004} 이 $\mathrm{Li}_x\mathrm{CoO_2}$ 리튬화 엔트로피를 실측$\cdot$계산으로 가른 세 기여와
+같은 골격이다. 대응은 다음과 같다(왼쪽이 본문 기호, 오른쪽이 원 논문 량):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:lco-decomp}) & Reynier\cite{reynier2004} 대응량 \\
+\hline
+$\partial U_j/\partial T=\Delta S_{\rxn,j}^\mathrm{cat}/F$ (측정 경로) & $\Delta S=F\,\mathrm dU_\mathrm{oc}/\mathrm dT$ (평형전압 온도의존 실측) \\
+$\Delta S_j^\mathrm{config}$ 슬롯(지배, $>\tfrac12$) & Li$\cdot$빈자리 무질서 config --- O3 조성추세 대부분 설명 \\
+$\Delta S_j^\mathrm{vib}$ 음 baseline & phonon(INS 실측) --- 음의 리튬화 엔트로피 상당분($x$-변화 작음) \\
+$\Delta S_{e,j}^{\,\mathrm{mol}}$ (T1 MIT 게이트) & electronic --- O3 서 작으나 \emph{MIT 서 config 와 비등 중요} \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 측정 경로의 동일성이다 --- 본문의 온도 이동 관계와 Reynier 의 측정식은 같은 열역학
+항등이다:
+\begin{equation}
+\frac{\partial U_j}{\partial T}=\frac{\Delta S_{\rxn,j}^\mathrm{cat}}{F}
+\quad\Longleftrightarrow\quad
+\Delta S_{\rxn}=F\,\frac{\mathrm dU_\mathrm{oc}}{\mathrm dT},
+\label{eq:br-reynier2004-1}
+\end{equation}
+곧 본문이 $U_j(T)$ 온도 이동으로 슬롯에 싣는 $\Delta S_{\rxn,j}$ 가 Reynier 가 평형전압 온도의존으로
+\emph{읽어낸} 바로 그 양이다. 이 실측 분해가 본문 슬롯 규칙의 두 주장을 뒷받침한다 --- (i) O3 에서
+config 가 지배(조성추세 대부분)이고, (ii) 전자항이 없으면 config 단독으로 MIT 엔트로피 거동을 못 그린다
+(원 논문: MIT 서 electronic$\cdot$config 변화가 \emph{비등 중요}). 척도는 O3 상 내 변화 최대
+$\approx4.2\,k_B$/atom, 전 구간 최대 $\approx9.0\,k_B$/atom 이다. \emph{방법 요지} --- Reynier 등은 평형
+전압의 온도의존에서 리튬화 엔트로피를 실측하고, 이를 config(Li$\cdot$빈자리 무질서)$\cdot$phonon(INS
+실측)$\cdot$electronic(계산) 세 기여로 갈라 O3 상($0.5{<}x{\le}1.0$)의 엔트로피를 해석한다. \emph{가정
+차} --- Reynier 는 실제 시료의 리튬화 \emph{전체} 엔트로피를 세 기여로 분해한 실측$\cdot$계산 anchor 이나,
+본문 슬롯은 전이별 \emph{중심 표준값} $\Delta S_j^0$ 의 성분 나누기이고 혼합 분포항은 $w_j$ 가 따로
+담으므로(이중계산 금지), 두 분해를 점대점으로 등치하지 않고 부호$\cdot$척도$\cdot$지배 성분 수준에서만
+대조한다(본문 §15 의 O3 부분몰 $\approx0.18\,k_B$/atom 수치는 원 초록에 미명기 --- ★확인 필요).
+\end{srcbox}
