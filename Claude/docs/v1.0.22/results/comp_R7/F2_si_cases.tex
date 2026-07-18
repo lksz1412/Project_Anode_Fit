@@ -1,0 +1,73 @@
+% ====================================================================
+% R7-F2 그림 초안 — Si 케이스 3계열(elemental·SiOₓ·Si–C) dQ/dV 개형 비교  [V22-R7-F2]
+%   라벨 제안 = fig:si-cases-shape / 삽입 후보 = §3.2 말미(ssec:si-sic 뒤·tab:si-cases 대응, 1순위)
+%   ★초안 전용: _sections/ 미수정. 이 블록을 그대로 §3.2 끝(케이스 3소절 뒤)에 \input/붙여넣기.
+%   좌표 = Anode_Fit_v1.0.22.py 의 BlendedAnodeDQDV(f_Si=0.5, si_case=<case>).host_contributions()
+%     (Si-host 몫 = eq:blend-dqdv Si 이중합의 |I|→0 평형 종; Si host 는 C_bg=0 → 순수 전이 종만).
+%     세 케이스 동일 f_Si → 동일 총 Si 용량 Q_Si=0.97 Q_cell(면적 동일) → 순수 개형 비교.
+%   검증 로그 = results/comp_R7/F2_NOTE.md (피크 위치·높이·폭 수기 대조, f_Si→wt% 환산, siox 경고 로그).
+%   시연값 등급: 전이 중심·폭 = tier-C 시연(SI_CASE_SETS = §3.2 tab:si-cases 각주),
+%     q_Si=1000/1710/3117 mAh/g = tier-A(limthongkul2003·zhang_sio2018·andersen_sic2019; wt% 환산용).
+%   ★정직 규율(핵심): SiOₓ 절대 전위·히스는 §3.2 각주 c·f 의 '확인 필요' 공백 → 코드가 placeholder 경고.
+%     siox 곡선의 가로(전위) 위치는 임의 시연 placeholder 이고 개형(폭·대칭)만 유효 — 배너·범례·캡션 3중 표식.
+%     '확인 필요' 값을 수치로 창작하지 않음(방안 b: 상대 형상만 + 명시 표식 채택; 사유 F2_NOTE.md §택일).
+% ====================================================================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+% x = V_n [V] (0.10–0.65) , y = dQ/dV [Q_cell/V] , 실계산 host_contributions(f_Si=0.5, 298.15 K)
+\begin{scope}[x=15cm,y=1.0cm]
+% ---------------- 축 ----------------
+\draw[-{Latex[length=1.6mm]}] (0.10,0) -- (0.648,0) node[below,font=\scriptsize] {$V_n$ [V]};
+\draw[-{Latex[length=1.6mm]}] (0.10,0) -- (0.10,4.50)
+  node[above,font=\scriptsize,align=center] {$\dd Q/\dd V$\\{\tiny[$Q_\cell/$V]}};
+\foreach \xx/\lab in {0.10/0.1,0.20/0.2,0.30/0.3,0.40/0.4,0.50/0.5,0.60/0.6}
+  {\draw (\xx,0.06)--(\xx,-0.06) node[below,font=\scriptsize] {\lab};}
+\foreach \xx in {0.15,0.25,0.35,0.45,0.55} {\draw (\xx,0.04)--(\xx,-0.04);}
+\foreach \yy in {1,2,3,4} {\draw (0.1045,\yy)--(0.0955,\yy) node[left,font=\scriptsize] {\yy};}
+% ---------------- 곡선 (흑백; 선종+명도로 구분; 실계산 좌표) ----------------
+% SiOₓ (뒤·회색 점선 = 위치 placeholder 표식) — 폭 0.090 V 단일 연속 hump (이산 상전이 없음)
+\draw[thick,densely dotted,black!58] plot[smooth] coordinates {(0.120,1.132) (0.135,1.281) (0.150,1.440) (0.165,1.607) (0.180,1.779) (0.195,1.952) (0.210,2.119) (0.225,2.276) (0.240,2.416) (0.255,2.533) (0.270,2.621) (0.285,2.676) (0.300,2.694) (0.315,2.676) (0.330,2.621) (0.345,2.533) (0.360,2.416) (0.375,2.276) (0.390,2.119) (0.405,1.952) (0.420,1.779) (0.435,1.607) (0.450,1.440) (0.465,1.281) (0.480,1.132) (0.495,0.994) (0.510,0.869) (0.525,0.756) (0.540,0.655) (0.555,0.565) (0.570,0.487) (0.585,0.418)};
+% 원소 Si (파선) — 두-상 평탄역(0.30–0.42 V) + 깊은-탈리튬 어깨(둘째 전이 U=0.45 V)
+\draw[thick,densely dashed] plot[smooth] coordinates {(0.135,0.562) (0.150,0.699) (0.165,0.862) (0.180,1.053) (0.195,1.270) (0.210,1.510) (0.225,1.763) (0.240,2.020) (0.255,2.264) (0.270,2.480) (0.285,2.654) (0.300,2.776) (0.315,2.845) (0.330,2.871) (0.345,2.868) (0.360,2.852) (0.375,2.836) (0.390,2.827) (0.405,2.818) (0.420,2.794) (0.435,2.734) (0.450,2.620) (0.465,2.445) (0.480,2.214) (0.495,1.943) (0.510,1.656) (0.525,1.375) (0.540,1.116) (0.555,0.889) (0.570,0.697) (0.585,0.540) (0.600,0.415)};
+% Si–C (앞·굵은 실선) — 좁은 두 전이(U=0.30·0.42 V, w=0.050 V) 겹쳐 평정부(~0.4 V tier-A 감쌈)
+\draw[very thick] plot[smooth] coordinates {(0.150,0.482) (0.165,0.631) (0.180,0.818) (0.195,1.048) (0.210,1.322) (0.225,1.635) (0.240,1.977) (0.255,2.326) (0.270,2.657) (0.285,2.944) (0.300,3.165) (0.315,3.314) (0.330,3.400) (0.345,3.440) (0.360,3.451) (0.375,3.440) (0.390,3.400) (0.405,3.314) (0.420,3.165) (0.435,2.944) (0.450,2.657) (0.465,2.326) (0.480,1.977) (0.495,1.635) (0.510,1.322) (0.525,1.048) (0.540,0.818) (0.555,0.631) (0.570,0.482)};
+% ---------------- 정직 표식 배너: SiOₓ placeholder ----------------
+\node[anchor=west,font=\scriptsize] at (0.108,4.30)
+  {\textbf{SiO$_x$: 절대 위치 $=$ placeholder} (확인 필요 --- §3.2 각주 c$\cdot$f); 개형(폭$\cdot$대칭)만 유효};
+% ---------------- 범례 (좌상단) ----------------
+\draw[very thick] (0.118,4.02)--(0.152,4.02); \node[right,font=\scriptsize] at (0.156,4.02) {Si--C 복합 (sic)};
+\draw[thick,densely dashed] (0.118,3.77)--(0.152,3.77); \node[right,font=\scriptsize] at (0.156,3.77) {원소 Si (elemental)};
+\draw[thick,densely dotted,black!58] (0.118,3.52)--(0.152,3.52); \node[right,font=\scriptsize] at (0.156,3.52) {SiO$_x$ (위치 placeholder)};
+% ---------------- 개형 주석 (짧게·각 곡선 우세 영역) ----------------
+% SiOₓ: 넓은 단일 연속 hump (좌측 영역, 회색 우세)
+\node[font=\scriptsize,align=center] at (0.150,2.62) {넓은 단일\\연속 hump};
+\draw[-{Latex[length=1.2mm]},black!58] (0.168,2.40) -- (0.180,1.80);
+% Si–C: 좁은 두 전이 겹쳐 평정부 (peak 위)
+\node[font=\scriptsize,align=center] at (0.470,3.52) {좁은 두 전이\\겹친 평정부};
+\draw[-{Latex[length=1.2mm]}] (0.432,3.44) -- (0.378,3.44);
+% 원소 Si: 깊은-탈리튬 어깨 (우측 영역, 파선 우세)
+\node[font=\scriptsize,align=center] at (0.560,2.30) {깊은-탈리튬 어깨\\(둘째 전이 U$\approx$0.45 V)};
+\draw[-{Latex[length=1.2mm]}] (0.530,2.08) -- (0.492,1.98);
+\end{scope}
+\end{tikzpicture}
+\caption{\textbf{Si 케이스 3계열 dQ/dV 개형 비교} --- 좌표는 코드
+\texttt{BlendedAnodeDQDV.host\_contributions} 의 Si-host 기여(배경 제외 평형 종, 식~\eqref{eq:blend-dqdv}
+의 Si 이중합 몫)를 \emph{실계산}한 것이다. 공통 용량 분율 $f_\mathrm{Si}{=}0.5$(케이스별 $27.1/17.9/10.7$
+wt\% 에 대응)$\cdot$$T{=}298.15$~K 에서 세 케이스가 \emph{같은} 총 Si 용량($Q_\mathrm{Si}{=}0.97\,Q_\cell$,
+곡선 아래 면적 동일)을 서로 다르게 분포시킨 개형을 겹쳐 그렸다. \emph{원소 Si}(파선, 전이 $U{=}0.30\cdot0.45$
+V$\cdot$폭 $0.060/0.050$ V): 두-상 평탄역($\sim$$0.30$--$0.42$ V 평정)에 깊은-탈리튬 어깨(둘째 전이). \emph{SiO$_x$}(회색
+점선, $w{=}0.090$ V): 이산 상전이 없는 비정질 연속 경로의 단일 연속 hump(\S\ref{ssec:si-siox}). \emph{Si--C}(굵은
+실선, $U{=}0.30\cdot0.42$ V$\cdot$$w{=}0.050$ V): 좁은 두 전이가 겹쳐 평균 탈리튬 전위 $\sim$$0.4$~V(\cite{andersen_sic2019},
+tier-A)를 감싼 평정부. 케이스 셋은 표~\ref{tab:si-cases} 의 \textbf{tier-C 시연값}(신뢰값 아님, 피팅 override
+전제)이며 \S\ref{ssec:si-elemental}--\ref{ssec:si-sic} 서술과 대응한다. \textbf{정직 표식} --- (i) SiO$_x$ 의
+절대 전위$\cdot$히스는 §3.2 표 각주 $c\cdot f$ 의 \emph{확인 필요} 공백(순수 SiO$_x$ 1차 문헌 mV 미특정)이라 코드가
+placeholder 경고를 발생시킨다; 그 가로 위치는 임의 시연이고 \emph{개형(폭$\cdot$대칭)만} 유효하다. (ii) 원소 Si 의
+날카로운 Li$_{15}$Si$_4$ 결정화 특징($\sim$$50$ mV)은 \emph{리튬화} feature 라 본 탈리튬(방전) 시연 셋에는 없다(코드
+주석 명기). (iii) §3.2 표제의 ``피크 분리''는 블렌드에서 Si 대 \emph{흑연} 피크의 분리(식~\eqref{eq:blend-dqdv};
+Si $10$ wt\%\cite{naboka_sic2021})를 가리키며, 본 Si-host 단독 그림의 Si-내부 두 전이는 이 시연 폭에서 겹쳐 완전
+분리되지 않는다.}
+\label{fig:si-cases-shape}
+\end{figure}
+% 자산(v1.0.22 R7 신규): [V22-R7-F2 Si 케이스 3계열 dQ/dV 개형 비교 fig:si-cases-shape —
+%   host_contributions 실계산·f_Si=0.5 동일 Q_Si(면적동일)·tier-C 시연·SiOₓ placeholder 정직 3중 표식(방안 b)]
