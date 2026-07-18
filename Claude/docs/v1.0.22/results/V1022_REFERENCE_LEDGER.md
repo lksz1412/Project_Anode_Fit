@@ -27,5 +27,6 @@
 | chatzogiannakis_blend2025 | D. Chatzogiannakis 등, "Decoupling Silicon and Graphite Contribution in High‐Silicon…" *Batteries \& Supercaps* 8 e202500104 (2025) | 10.1002/batt.202500104 | **V1**(2026-07-17 — comp_R4 doi 검증+Crossref 전 필드 마스터 재생성[R5]) | Ch3 §3.1~3.5 |
 | zhan_siox2026 | M. Zhan 등, "Unraveling the vertical expansion and hysteresis in SiOx/gra…" *J. Energy Storage* 154 121227 (2026) | 10.1016/j.est.2026.121227 | **V1**(2026-07-17 — comp_R4 doi 검증+Crossref 전 필드 마스터 재생성[R5]) | Ch3 §3.1~3.5 |
 | tu_blend2024 | M. Tu 등, "Mathematical Model for a Lithium-Ion Battery with a SiO/Grap…" *J. Electrochem. Soc.* 171 050539 (2024) | 10.1149/1945-7111/ad4823 | **V1**(2026-07-17 — comp_R4 doi 검증+Crossref 전 필드 마스터 재생성[R5]) | Ch3 §3.1~3.5 |
+| moyassari_blend2022 | E. Moyassari 등, "The Role of Silicon in Silicon-Graphite Composite Electrodes…" *J. Electrochem. Soc.* **169**(1) 010504 (2022) | 10.1149/1945-7111/ac4545 | **V1**(2026-07-18 — comp_R4 검증+A23 하이쿠 재검증+**마스터 Crossref 재검증**[C-055]. 사용자 등재 결정 2026-07-18) | Ch3 §3.5 G2 대조(0--20 wt% 스윕 — 경로 B 전 구간 커버) |
 |---|---|---|---|---|
 | (없음) | | | | |
