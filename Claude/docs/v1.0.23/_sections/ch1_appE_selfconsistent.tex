@@ -196,9 +196,9 @@ $V$ 를 따라 완만히 이동하는 공간변조 저역통과다. $\varepsilon
 \toprule 부록 E 수식 & 구현 식별자 & 비고 \\ \midrule \endhead
 동결 0차 $\xi_{\mathrm{lag}}^{(0)}$ (\eqref{eq:sc-ref}) & \code{\_causal\_memory\_pointwise} & 구간별 지수 정확적분(현행 기본 경로) \\
 동결 길이 $L_V^{(0)}$ & \code{\_resolve\_lag\_length},\,\code{func\_L\_q} & 컷 동결 상수(식~\eqref{eq:LV}) \\
-감쇠율 $\kappa(\xi)$ (\eqref{eq:sc-true}) & (상태의존 옵션) & $L_V(\xi)=L_V^{(0)}e^{2\chi_d(\Omega/RT)(1-\xi)}$ \\
-1차 ratio 보정 $r_1$ (\eqref{eq:sc-ratio-local}) & (선택적 분석 경로) & 기준 궤적 $\xi_0$ 위 변계수 선형 --- 한 전진 패스 \\
-전달함수 $H(\omega)$ (\eqref{eq:sc-transfer}) & (FFT 경로) & 동결 기준해의 주파수형(기기응답) \\
+감쇠율 $\kappa(\xi)$ (\eqref{eq:sc-true}) & \code{\_causal\_memory\_ratio}($L_\mathrm{loc}$),\,\code{\_lag\_ratio\_geff} & $L_V(\xi)=L_V^{(0)}e^{2\chi_d(\Omega/RT)(1-\xi)}$; 세기 $g_\eff{=}2\chi_d\Omega/RT$(보강 off/$\Omega{=}0$ 면 $0$) \\
+1차 ratio 보정 $r_1$ (\eqref{eq:sc-ratio-local}) & \code{\_causal\_memory\_ratio}, 플래그 \code{lag\_ratio\_correction} & 기준 궤적 $\xi_0$ 위 변계수 선형 --- 한 전진 패스(기본 off $=$ 동결 bit-exact) \\
+전달함수 $H(\omega)$ (\eqref{eq:sc-transfer}) & \code{transfer\_apparent\_from\_equilibrium} & 동결 기준해의 주파수형(기기응답·균일격자 FFT) \\
 \bottomrule
 \end{longtable}
 현행 기본 경로는 동결 0차(\code{\_causal\_memory\_pointwise})이며, 상태의존$\cdot$1차 ratio$\cdot$전달함수 경로는

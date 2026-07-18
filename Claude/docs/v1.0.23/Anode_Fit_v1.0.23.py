@@ -59,6 +59,13 @@
 #         dqdv·_resolve_lag_length·_build_seed_L_V : T·I·Q_cell·dict 값 유한·음수 가드.
 #     (C) curve(...) facade : C-rate·방향문자열·sto→실험조건 → 내부 dqdv 재사용.
 #     (D) _chi_and_dH_eff(tr, σ_d) 단일 헬퍼로 χ_d·ΔH_a^eff 응집(_resolve_lag_length 정리).
+#   [v1.0.23 추가 — 부록 E 자기일관 해법(선택적·기본 off, 동결 경로 bit-exact 보존)]
+#     (E) _causal_memory_ratio : 참 자기일관 L_V=L_V(ξ) 의 1차 ratio 보정(부록 E.2 eq:sc-ratio).
+#         동결 0차 궤적 위 상태의존 국소 L_V(V)=L_V^(0)·e^{g_eff(1−ξ_lag0)}, g_eff=2χ_d·Ω/RT
+#         (_lag_ratio_geff; Ω=0/use_dH_eff off 면 0=동결 정확회수). 생성자 플래그
+#         lag_ratio_correction=True 로만 활성 — 기본 False 는 기존 dqdv 와 bit-exact.
+#     (F) transfer_apparent_from_equilibrium : 동결 0차의 주파수형 H(ω)=1/(1+iωL_V) 저역통과
+#         (부록 E.5 eq:sc-transfer) — 균일격자 FFT, 기기응답 해석·검증용.
 # ============================================================================
 from __future__ import annotations
 import numpy as np
@@ -133,6 +140,58 @@ def _causal_memory_pointwise(V_prog: np.ndarray,
             seg = float(ksi_eq[i]) * (1.0 - e) - (dksi / a) * (1.0 - (1.0 + a) * e)
             out[i] = e * out[i - 1] + seg
     return out
+
+
+def _causal_memory_ratio(V_prog: np.ndarray,
+                         ksi_eq: np.ndarray,
+                         ksi_lag0: np.ndarray,
+                         lag_length: float,
+                         g_eff: float):
+    """1차 ratio 보정 인과 기억(부록 E.2 sec:sc-ratio, eq:sc-ratio-local) — 선택적 고정밀 경로.
+
+    동결 0차 기준 궤적 ξ_lag0(= _causal_memory_pointwise 결과) 위에서 상태의존 국소 지연 길이
+        L_V(V) = lag_length · exp[ g_eff · (1 − ξ_lag0(V)) ],   g_eff = 2·χ_d·(Ω/RT)
+    를 쓴 변계수 인과 완화(부록 E.1 κ(ξ)=κ0·exp[−2χ_d(Ω/RT)(1−ξ)] 의 역수). 이는 참 비선형
+    자기일관(L_V=L_V(ξ))을 논문 Eq.34 철학(미지 궤적→가해 기준 궤적 치환)으로 닫은 1차 보정이다.
+    g_eff=0(Ω=0 또는 유효장벽 보강 off)이면 L_V(V)=lag_length 상수라 _causal_memory_pointwise
+    와 수학적으로 동일(동결 정확 회수). Volterra(인과 1측)라 한 번의 전진 패스 O(N).
+
+    반환 : (ξ_lag1, L_loc) — 1차 보정 지연 진행률과 점별 국소 지연 길이(peak = (ξ_eq−ξ_lag1)/L_loc).
+    """
+    n = ksi_eq.size
+    out = np.empty(n, dtype=float)
+    out[0] = float(ksi_eq[0])
+    L_loc = lag_length * np.exp(g_eff * (1.0 - np.asarray(ksi_lag0, dtype=float)))
+    for i in range(1, n):
+        h = abs(float(V_prog[i] - V_prog[i - 1]))
+        Li = float(L_loc[i])
+        a = h / Li
+        if a < 1e-4:  # 조밀 구간: 사다리꼴 극한(_causal_memory_pointwise 와 동일 가드)
+            out[i] = (1.0 - a) * out[i - 1] + a * 0.5 * (float(ksi_eq[i]) + float(ksi_eq[i - 1]))
+        else:
+            e = float(np.exp(-a))
+            dksi = float(ksi_eq[i]) - float(ksi_eq[i - 1])
+            seg = float(ksi_eq[i]) * (1.0 - e) - (dksi / a) * (1.0 - (1.0 + a) * e)
+            out[i] = e * out[i - 1] + seg
+    return out, L_loc
+
+
+def transfer_apparent_from_equilibrium(V_uniform: np.ndarray,
+                                       peak_eq: np.ndarray,
+                                       lag_length: float) -> np.ndarray:
+    """전달함수 저역통과(부록 E.5 sec:sc-transfer, eq:sc-transfer) — 동결 0차의 주파수영역 등가.
+
+    H(ω)=1/(1+iω L_V) 로 평형 봉우리 dξ_eq/dV(= peak_eq)를 필터해 apparent 봉우리를 산출한다:
+        peak_app(ω) = H(ω)·peak_eq(ω)   (∵ dξ_lag/dV = H · dξ_eq/dV, ξ_lag=H·ξ_eq).
+    동결 인과 합성곱(_causal_memory_pointwise 기반 peak)의 주파수영역 형태이며 '기기 저역통과
+    응답' 해석·검증용이다. **균일 V 격자 필수**(FFT). 임의 격자 dqdv 경로에는 쓰지 않는다."""
+    V_uniform = np.asarray(V_uniform, dtype=float)
+    peak_eq = np.asarray(peak_eq, dtype=float)
+    n = V_uniform.size
+    dV = float(V_uniform[1] - V_uniform[0])
+    omega = 2.0 * np.pi * np.fft.fftfreq(n, d=dV)
+    H = 1.0 / (1.0 + 1j * omega * float(lag_length))
+    return np.real(np.fft.ifft(np.fft.fft(peak_eq) * H))
 # ===========================================================================
 
 
@@ -258,7 +317,8 @@ class GraphiteAnodeDischargeDQDV:
                  use_dH_eff: bool = True,
                  z_cut: float = 4.357, A_cap_RT: float = 4.0,
                  seed_T: float = 298.15, seed_I: float = 0.1,
-                 seed_Q_cell: float = 1.0):
+                 seed_Q_cell: float = 1.0,
+                 lag_ratio_correction: bool = False):
         self.transitions = transitions
         # (B) 매직넘버·스칼라 인자 유한·범위 가드(생성 시 즉시 fail-fast).
         self.x = _finite("x", x)
@@ -271,6 +331,8 @@ class GraphiteAnodeDischargeDQDV:
         self.use_dH_eff = bool(use_dH_eff)
         self.z_cut = _finite_pos("z_cut", z_cut)
         self.A_cap_RT = _finite_pos("A_cap_RT", A_cap_RT)
+        # 선택적 고정밀 lag 경로(부록 E): False(기본)=동결 0차 bit-exact, True=1차 ratio 보정.
+        self.lag_ratio_correction = bool(lag_ratio_correction)
 
         # [보완(1)] transition 에 없는 파생 초기값(L_V seed)을 물리로 계산해 채움.
         #   ★원본 line 81 `self.transitions["L_V"] = self._init_L_V` 는 List 에
@@ -399,6 +461,20 @@ class GraphiteAnodeDischargeDQDV:
         ud = self.use_dH_eff if use_dH_eff is None else bool(use_dH_eff)
         dH_a_use = func_dH_a_eff(dH_a, Omega, chi_d) if ud else float(dH_a)
         return chi_d, dH_a_use
+
+    def _lag_ratio_geff(self, transition: Dict[str, Any], T: float,
+                        sigma_d: int) -> float:
+        """1차 ratio 보정의 상태의존 세기 g_eff = 2·χ_d·(Ω/RT) (부록 E.1 sec:sc-volterra).
+
+        Ω 되먹임은 유효 장벽 흡수(ΔH_a^eff=ΔH_a−χ_d·Ω, eq:dHeff)와 동일 게이트를 쓴다 —
+        use_dH_eff 가 off 이거나 Ω=0 이면 ξ-되먹임이 없어 g_eff=0(동결 0차와 정확 일치).
+        방향(σ_d)에 따라 χ_d 가 갈린다(eq:chid)."""
+        Omega = _finite_nonneg("Omega", transition.get('Omega', 0.0))
+        ud = self.use_dH_eff if transition.get('use_dH_eff') is None \
+            else bool(transition.get('use_dH_eff'))
+        if Omega <= 0.0 or not ud:
+            return 0.0
+        return 2.0 * self._chi_d(sigma_d) * Omega / (R * T)
 
     # ---- 보완(2): 지연 길이 resolver (이름 통일·완성) --------------------
     def _resolve_lag_length(self, transition: Dict[str, Any], T: float,
@@ -575,6 +651,14 @@ class GraphiteAnodeDischargeDQDV:
             if (is_scalar or n_pts < 2 or (not np.isfinite(lag_len_V))
                     or lag_len_V <= 0.0 or unresolved):
                 peak_shape = ksi_eq * (1.0 - ksi_eq) / w
+            elif self.lag_ratio_correction:
+                # 선택적 고정밀: 1차 ratio 보정(부록 E.2). 동결 0차 ξ_lag0 를 기준 궤적으로,
+                #   상태의존 국소 L_V(V) 를 쓴 변계수 완화. g_eff=0 이면 아래 동결 경로와 동일.
+                ksi_lag0 = _causal_memory_pointwise(V_prog, ksi_eq, lag_len_V)
+                g_eff = self._lag_ratio_geff(tr, T_rep, sigma_d)
+                ksi_lag, L_loc = _causal_memory_ratio(
+                    V_prog, ksi_eq, ksi_lag0, lag_len_V, g_eff)
+                peak_shape = (ksi_eq - ksi_lag) / L_loc
             else:
                 # 인과 기억 적분 ξ_lag(진행 방향, eq:lag·eq:reversal) → peak(eq:peakshape).
                 ksi_lag = _causal_memory_pointwise(V_prog, ksi_eq, lag_len_V)
