@@ -428,6 +428,176 @@ peak$\cdot$변동이 없음)\cite{bohm_entropy2024}. 이는 생존 지도 N2(재
 
 ## L 등급 (문체·경미)
 
+### L-1 — 도입부 인용 부호 문구가 §3.1 에 축자 부재 (요지 인용 표시)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-1 | ch3v22_sec02_cases.tex:5 | 설명 | L | ``Si 는 골격을 버리지 않고 성분을 갈아 끼운다'' 로 닫혔으니 | "는 요지로 닫혔으니" | 해당 문구는 §3.1 에 축자 부재(grep 0건) — keybox 요지의 재구성 |
+
+현행(축자):
+```latex
+생존 지도(\S\ref{sec:si-map})가 ``Si 는 골격을 버리지 않고 성분을 갈아 끼운다'' 로 닫혔으니, 남은 일은
+```
+제안(완성 LaTeX):
+```latex
+생존 지도(\S\ref{sec:si-map})가 ``Si 는 골격을 버리지 않고 성분을 갈아 끼운다'' 는 요지로 닫혔으니, 남은 일은
+```
+근거: §3.1 keybox 원문 = "Si 접목에서 바뀌는 것은 이 구조에 \emph{들어가는 성분}...이지 구조 자체가 아니다"(ch3v22_sec01_map.tex:105-108) — 내용 충실하나 축자 아님. 인용 부호 + "로 닫혔으니"는 축자 인용으로 읽힘 — "요지" 1어 삽입로 해소(대안: §3.1 문구로 교체).
+
+### L-2 — naboka 피크 문장의 조사 "에" 중의성 (같은 위치 겹침으로 오독)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-2 | ch3v22_sec02_cases.tex:70-73 | 설명 | L | "흑연 리튬화 피크 ~0.2·0.1·0.07 V 와 탈리튬화 ~0.11·0.16·0.23 V 에 Si 별도 피크가 분리 관측된다" | "피크(...)·피크(...)와 별도로 Si 피크가" | "에"가 "그 전위들에서 관측"으로 오독 — 다음 문장의 "갈라져 읽힌다"와 반대 독법 |
+
+현행(축자):
+```latex
+\textbf{피크 분리(공통-μ 검증
+자산).} 저-Si(10 wt\%) 복합의 dQ/dV 는 흑연 리튬화 피크 $\sim$0.2$\cdot$0.1$\cdot$0.07 V 와 탈리튬화
+$\sim$0.11$\cdot$0.16$\cdot$0.23 V 에 Si 별도 피크가 \emph{분리 관측}된다\cite{naboka_sic2021}
+```
+제안(완성 LaTeX):
+```latex
+\textbf{피크 분리(공통-μ 검증
+자산).} 저-Si(10 wt\%) 복합의 dQ/dV 는 흑연 리튬화 피크($\sim$0.2$\cdot$0.1$\cdot$0.07 V)$\cdot$탈리튬화
+피크($\sim$0.11$\cdot$0.16$\cdot$0.23 V)와 \emph{별도로} Si 피크가 \emph{분리 관측}된다\cite{naboka_sic2021}
+```
+근거: R4 원문 구조(`SIC_CASES.md:15`) = "리튬화 피크 ~0.2, 0.1, 0.07 V(흑연 기여), 탈리튬화 ~0.11, 0.16, 0.23 V(흑연) **+ Si 별도 피크**" — 흑연 피크 목록과 Si 피크의 병렬이 명확. 현행 "V 에 Si 별도 피크가"는 위치 격조사로 읽혀 "같은 전위에 Si 피크"라는 반대 의미 가능.
+
+### L-3 — srcbox "원소 Si 6"의 산정 기준 불명(문헌 수 기준이면 계수 불일치)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-3 | ch3v22_sec02_cases.tex:91-92 | 보완 | L | "(원소 Si $6$$\cdot$SiO$_x$ $4$$\cdot$Si--C $2$$\cdot$열특성 $4$건 계열)" | 계열별 키 나열 각주 + 원소 Si 산정 기준 명시 | SiOx 4·Si–C 2·열특성 4 는 tier-A 문헌 수와 정합 검증됨 — 원소 Si 소절의 tier-A 키는 8~10 개라 "6"의 단위(문헌/항목) 불명 |
+
+현행(축자):
+```latex
+데이터 등급 요약(본 절) --- 개형$\cdot$용량$\cdot\eta_\mathrm{ICE}\cdot\partial U/\partial T$ 의 대표값은
+전부 tier A 1차 문헌 정량(원소 Si $6$$\cdot$SiO$_x$ $4$$\cdot$Si--C $2$$\cdot$열특성 $4$건 계열). \emph{확인
+```
+제안(완성 LaTeX — 키 나열은 저자 확정 몫, 형식만 예시):
+```latex
+데이터 등급 요약(본 절) --- 개형$\cdot$용량$\cdot\eta_\mathrm{ICE}\cdot\partial U/\partial T$ 의 대표값은
+전부 tier A 1차 문헌 정량(원소 Si $6$건: [키 나열 명시]$\cdot$SiO$_x$ $4$: miyachi$\cdot$kitada$\cdot$zhang$\cdot$yom$\cdot$Si--C $2$: andersen$\cdot$naboka$\cdot$열특성 $4$: b\"ohm2024$\cdot$arnot$\cdot$wojtala$\cdot$b\"ohm2025 계열). \emph{확인
+```
+근거: 검증 — SiOx 4(miyachi·kitada·zhang·yom, yamada 는 B 로 제외 ✓)·Si–C 2(andersen·naboka, lee 는 B ✓)·열특성 4(bohm2024·arnot·wojtala·bohm2025 ✓)는 문헌 수 기준 정합. 원소 Si 소절의 tier-A 인용은 limthongkul·li_dahn·mcdowell·obrovac_christensen·ogata·chevrier·wang·wen_huggins(8) + sethuraman×2(히스, §3.4 소관으로 제외해도 8) — "6"이 문헌 수라면 미달, 대표값 항목 수(개형·결정화·NMR·U(x)·1차vs순환·용량/ICE = 6)라면 타 계열과 단위 불일치. 미검증(구성 특정 불가) — 키 나열로 폐합 권장.
+
+### L-4 — 표 원소 Si η_ICE 셀의 각주 연결 불완전 (값의 anchor 는 각주 a/본문)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-4 | ch3v22_sec02_cases.tex:32 | 보완 | L | "$\sim$70--75$^e$" | "$\sim$70--75$^{\,a,e}$" | 70–75 = 100−(25–30)\cite{limthongkul2003} — 각주 e 에는 이 값의 출처가 없음 |
+
+현행(축자):
+```latex
+원소 Si       & $\sim$1000$^a$      & $0.2$--$0.5^{\,b}$ & $\sim$70--75$^e$ & 수백 mV(기계)     & limthongkul2003 (A) \\
+```
+제안(완성 LaTeX):
+```latex
+원소 Si       & $\sim$1000$^a$      & $0.2$--$0.5^{\,b}$ & $\sim$70--75$^{\,a,e}$ & 수백 mV(기계)     & limthongkul2003 (A) \\
+```
+근거: 각주 e = 형태 의존 일반론 + SiO·블렌드·Si–C 예시(70–75 무언급); 값의 실제 근거 = 초기 비가역 25–30%(limthongkul2003 — 각주 a 문맥·본문 47-48행). 셀만 보고 각주를 따라가면 anchor 미도달.
+
+### L-5 — "각각 전이가 여럿이라 항상 ≥2" — 하한의 근거 과잉(정확 최소는 "하나 이상씩")
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-5 | ch3v22_sec03_blend.tex:80-81 | 설명 | L | "두 host 각각 전이가 여럿이라 항상 $N_p^\mathrm{gr}+N_p^\mathrm{Si}\ge2$" | "두 host 가 전이를 하나 이상씩 가져 항상 ..." | 여럿(≥2씩)이면 합 ≥4 — 주장 하한 ≥2 의 최소 근거는 각 ≥1 |
+
+현행(축자):
+```latex
+implicit formulation}(대정준$\to$정준 Legendre-켤레 반전)이며, 두 host 각각 전이가 여럿이라 항상
+$N_p^\mathrm{gr}+N_p^\mathrm{Si}\ge2$ 겹침이므로 닫힌 역이 없어 \emph{수치 유일근}으로 푼다. $f_\mathrm{Si}$
+```
+제안(완성 LaTeX):
+```latex
+implicit formulation}(대정준$\to$정준 Legendre-켤레 반전)이며, 두 host 가 전이를 하나 이상씩 가져 항상
+$N_p^\mathrm{gr}+N_p^\mathrm{Si}\ge2$ 겹침이므로 닫힌 역이 없어 \emph{수치 유일근}으로 푼다. $f_\mathrm{Si}$
+```
+근거(재유도): 닫힌 역 상실 문턱 = 합계 2(ch1: "$N_p\ge2$ 겹침에서는 닫힌 역이 없어" — ch1_sec02b:375) — 블렌드에서 합계 ≥2 는 host 당 ≥1 로 충분·필요. "각각 여럿"은 참인 충분조건이나 하한 ≥2 와 논리 결이 어긋나 독자가 "왜 4 가 아니라 2?"에 걸림. 논리 오류는 아님(충분조건) — L.
+
+### L-6 — "두 봉우리가 포갠다" 자동/타동 오용
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-6 | ch3v22_sec03_blend.tex:117 | 설명 | L | "겹치는 전위 창에서 두 봉우리가 포갠다" | "포개진다" | 포개다 = 타동사 — 주어 자동 표현은 피동형 |
+
+현행(축자):
+```latex
+--- 두 host 의 종이 \emph{같은 전위 축} 위에 겹쳐 놓이고, 겹치는 전위 창에서 두 봉우리가 포갠다. 저-Si
+```
+제안(완성 LaTeX):
+```latex
+--- 두 host 의 종이 \emph{같은 전위 축} 위에 겹쳐 놓이고, 겹치는 전위 창에서 두 봉우리가 포개진다. 저-Si
+```
+근거: 문법(타동사 "포개다"의 자동 용법) — 문체 L.
+
+### L-7 — 도입부 결선 참조에 eq:sm-muV 병기 (측정 전위 결선의 정확 소재)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-7 | ch3v22_sec03_blend.tex:6-8 | 수식화 | L | "(\S\ref{sec:sm-electro} 식~\eqref{eq:sm-workbal})이 ... 같은 측정 전위 $V$ 로 닫히고" | eq:sm-muV 병기 | workbal 은 계면 균형까지 — V 결선은 기준전극 차감식 eq:sm-muV |
+
+현행(축자):
+```latex
+한 집전체$\cdot$한 전해질에 담긴 두 host 는 같은 전자 상($\phi_M$)과 같은 이온 상($\phi_S$)에 접하므로,
+Part 0 의 전기화학 결선(\S\ref{sec:sm-electro} 식~\eqref{eq:sm-workbal})이 두 host 에 대해 같은 측정
+전위 $V$ 로 닫히고, 곧 두 host 안 Li 의 화학퍼텐셜은 평형에서 \emph{하나의} $\mu$ 로 같아진다.
+```
+제안(완성 LaTeX):
+```latex
+한 집전체$\cdot$한 전해질에 담긴 두 host 는 같은 전자 상($\phi_M$)과 같은 이온 상($\phi_S$)에 접하므로,
+Part 0 의 전기화학 결선(\S\ref{sec:sm-electro} 식~\eqref{eq:sm-workbal}, 측정 전위 결선은
+식~\eqref{eq:sm-muV})이 두 host 에 대해 같은 측정
+전위 $V$ 로 닫히고, 곧 두 host 안 Li 의 화학퍼텐셜은 평형에서 \emph{하나의} $\mu$ 로 같아진다.
+```
+근거: 논리 자체는 무결(같은 φ_M·φ_S ⟹ eq:sm-workbal 좌변 동일 ⟹ μ_Li 공통 — 재유도 확인, 로그-②a). 다만 "측정 전위 V 로 닫히는" 단계의 식은 기준전극 차감의 eq:sm-muV(ch1_sec02b:167-170) — 참조 정밀 병기.
+
+### L-8 — (d) 박스 진입 정의 4건의 산문 나열 → display 정의행 (④ 간결화)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-8 | ch3v22_sec03_blend.tex:61-65 | 수식화 | L | 정의 4건($Q_j^\mathrm{host}\cdot Q^\mathrm{host}\cdot Q\cdot\bar x$) 인라인 연쇄 | display 정의행(신규 라벨 제안 표기) | 한 문장 4정의 — 시선 이동 부담; 채택 여부는 문체 선택 |
+
+현행(축자):
+```latex
+\textbf{(d) 박스 --- 공통-$\mu$ 전하 보존 반전.} 입자수를 전하로 읽는다. 자리당 전하 $F/N_A$ 로 클래스
+용량 $Q_j^\mathrm{host}\equiv(F/N_A)M_j^\mathrm{host}$, host 용량
+$Q^\mathrm{host}\equiv\sum_jQ_j^\mathrm{host}$, 총용량 $Q\equiv\sum_\mathrm{host}Q^\mathrm{host}$ 를
+두고, 추출(탈리튬화) 전하 분율을 $\bar x\equiv1-\langle N\rangle/\sum_{\mathrm{host},j}M_j^\mathrm{host}$
+로 두면,
+```
+제안(완성 LaTeX — 신규 라벨 `eq:blend-defs` 는 제안 표기):
+```latex
+\textbf{(d) 박스 --- 공통-$\mu$ 전하 보존 반전.} 입자수를 전하로 읽는다. 자리당 전하 $F/N_A$ 로
+\begin{equation}
+Q_j^\mathrm{host}\equiv\frac{F}{N_A}M_j^\mathrm{host},\qquad
+Q^\mathrm{host}\equiv\sum_jQ_j^\mathrm{host},\qquad
+Q\equiv\sum_\mathrm{host}Q^\mathrm{host},\qquad
+\bar x\equiv1-\frac{\langle N\rangle}{\sum_{\mathrm{host},j}M_j^\mathrm{host}}
+\label{eq:blend-defs}
+\end{equation}
+를 두면,
+```
+근거: ch1 대응부(sm-mc (d))는 정의 후 중간 항등을 display 로 보임 — 블렌드판은 정의·항등 모두 인라인. 순수 ④ 제안(내용 무변경·삭제 없음) — 기존 문체(산문 정의) 유지도 무해.
+
+### L-9 — 각주 c "mV 미특정" 단위 혼선 (평균전위 열 단위 = V)
+
+| ID | 파일:행 | 유형 | 등급 | 현행(요약) | 제안(요약) | 근거 |
+|---|---|---|---|---|---|---|
+| L-9 | ch3v22_sec02_cases.tex:20-21 | 설명 | L | "순수 SiO$_x$ 1차 문헌 mV 미특정" | "수치 미특정" | 평균전위 단위는 V — mV 는 각주 f(히스) 전용이라 혼선 |
+
+현행(축자):
+```latex
+$^c$SiO 절대 평균전위(V)는 본 조사
+\emph{미확보}(``확인 필요'' --- 순수 SiO$_x$ 1차 문헌 mV 미특정).
+```
+제안(완성 LaTeX):
+```latex
+$^c$SiO 절대 평균전위(V)는 본 조사
+\emph{미확보}(``확인 필요'' --- 순수 SiO$_x$ 1차 문헌 수치 미특정).
+```
+근거: 같은 캡션의 각주 f 가 히스 "절대 mV"를 쓰므로 c 의 "mV"는 히스 공백과 혼동 유발 — 평균전위 공백은 V 값 자체의 미특정. 공백 유지(정직 표기 존중), 단위 표현만.
 <!-- L-END -->
 
 ---

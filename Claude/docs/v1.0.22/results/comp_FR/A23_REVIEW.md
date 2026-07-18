@@ -525,19 +525,64 @@ $-FV_\eq^{0}\equiv\mu_\mathrm{Li}^{0}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}
 ---
 
 ## 5. 검증 로그 (축별 — 완료 즉시 append)
-<!-- VLOG -->
+
+### 축1 — §3.4 수식·부호·크기 전건 재유도/재계산 (완료)
+1. **(a)→(d) 대수 사슬**: eq:si-lcmu($\mu=\mu^0-\bar v\sigma_\mathrm{h}$) → eq:si-lcbal(eq:sm-muV 자리 대입) → $-FV_\eq^0$ 정의 빼기 → eq:si-vshift($V=V_\eq^0+\bar v\sigma_\mathrm{h}/F$) → eq:si-coupling($\Lambda_\sigma=\bar v/F$) — 전 단계 재유도 일치(부호 포함).
+2. **부호 읽기 (a)**: 압축($\sigma_\mathrm{h}<0$)·팽창성 삽입($\bar v>0$) ⇒ $-\bar v\sigma_\mathrm{h}>0$ ⇒ $\mu$ 상승 = 삽입 불리 — 물리 방향 확인.
+3. **차원·크기**: $[\bar v/F]=\mathrm{m^3/C}=\mathrm{V/Pa}$. 외부 상수(Si 몰부피 12.06 cm³/mol·만충 $x{=}3.75$·팽창 300%)로 $\bar v\approx9.65\times10^{-6}\,\mathrm{m^3/mol}$ ⇒ $\Lambda_\sigma=1.00\times10^{-10}$ V/Pa $=100$ mV/GPa — 실측 100–120 mV/GPa(§4-A1)와 규모 일치. 본문의 "정성 정합까지만·정확값 확인 필요" 선언과 정합(수치 충전 제안 없음 — 로그 기록만).
+4. **ΔU@Ω=4RT**: eq:dUhys 닫힌꼴 $\frac{2}{F}[\Omega u-2RT\,\mathrm{artanh}\,u]$, $u=\sqrt{1-2RT/\Omega}$ — $\Omega{=}4RT$ 에서 $u=1/\sqrt2$, $\mathrm{artanh}(1/\sqrt2)=0.88137$, gap $=2.1314\,RT/F=54.8$ mV(298.15 K) — §3.4 의 "≈55 mV"·ch1:329 의 "2.131 RT/F·54.8 mV" 와 삼중 일치(독립 재계산: spinodal 두 극값 $\mu$ 차 직접 평가로도 2.1314RT 동일).
+5. **분기 방향 정합**: eq:si-coupling 의 $V^{\dis}>V^{\chg}$ ↔ eq:Ubranch(ch1:238–244) $U_j^{\,d}=U_j+\tfrac12\sigma_dh_{\eta,j}\gamma_j\Delta U_j^\hys$, 방전 $\sigma_d{=}+1$ ⇒ $U^{\dis}>U^{\chg}$ — 같은 방향 확인("기원은 다르나 부호 규약 일관" 서술 정확).
+6. **가역 극한 논증**: 탄성·준정적이면 $\sigma_\mathrm{h}$ 상태함수 ⇒ 닫힌 사이클 $\Delta V^\mathrm{mech}=0$ — 성립(조건 명시는 A23-M1). eq:si-plastic 의 함의 방향(경로 의존 ⇐ 구성식 필요)도 논리 무결.
+
+### 축2 — 참조 라벨·절 지시 전수 역추적 (완료)
+1. **xr(Ch1) 3건 원문 대조**: eq:sm-muV(ch1_sec02b:167–170) = "$\mu_\mathrm{Li}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}=-F\,V$" — §3.4 (a) 의 축자 인용과 일치·sec:sm-electro(Part 0) 소속 일치. eq:dUhys(ch1_sec04_hys:101–105)·eq:Ubranch(:238–241) — 존재·내용·부호 전건 일치(ch1 aux newlabel 대조 포함: 1.35/1.55/1.57).
+2. **Ch3 로컬 라벨**: §3.4·§3.5 가 참조하는 eq:blend-balance·eq:blend-dqdv·eq:blend-limit·tab:si-cases·ssec:si-carry·ssec:si-siox·ssec:si-blend-gs2·ssec:si-blend-derive·ssec:si-lc-derive·ssec:si-lc-gap·sec:si-map — 전건 실존·내용 부합(단 sec05:45 의 서지명 지시는 A23-H1).
+3. **절 지시 하드코딩 검증**: "§3.1 사실 vi" = ssec:si-stress (vi) "수백 mV 히스테리시스, 기계 기원..." — 내용 정확. "§3.2 가역열 최소" = ssec:si-thermal "가역열(엔트로피 성분)은 옴열·기생열 셋 중 가장 작고"(arnot) — 내용 정확(표기 개선만 A23-L4).
+4. **eq:si-code-bitexact ↔ §3.3 검산 (ii)**: eq:blend-limit("글자까지 되돌아간다"·"R6 게이트의 이론적 짝") — 대응 정확(끝점 수렴 게이트화는 A23-M8).
+5. **§3.4 결과-사슬 문법 (a)~(d)**: 골격(ch1 Part 0·§3.3)과 같은 (a)출발–(b)연산–(c)중간식–(d)박스 구조 — 정합.
+
+### 축3 — 코드 실명·구조 대조 (완료; 원본 = v1.0.21 py, R6 미착수 확인)
+1. **실명 전건 일치**: `GraphiteAnodeDischargeDQDV`(L221)·진입점 `curve`(L590)/`dqdv`(L471)/`equilibrium`(L451)·`Cbg`(생성자 L255·독스트링 L241)·`GRAPHITE_STAGING_LIT`(L942) — §3.5 의 코드 지칭 전부 실존·철자 일치. v1.0.22 py 도 동일(블렌드 클래스 부재 = R6 미착수 상태 확인).
+2. **Cbg 내부 가산 확인**: equilibrium L455–458(baseline 선가산)·dqdv L529–533(bg) — A23-H2·M6 의 근거.
+3. **분극 환산 위치**: dqdv L513–514 "$V_n = V_\mathrm{app} - \sigma_d|I|R_n$" 주석·구현 — A23-M7 의 근거(전극 공통 입력의 인스턴스 분산 위험).
+4. **byte 0-diff 선례**: L622–631 `_effective_dS_rxn` seam 독스트링 "흑연 곡선 byte 0-diff 보장(가산·부동소수점 연산 자체가 없음)" — A23-M6 제안의 in-repo 전례.
+5. **리스트 스키마**: GRAPHITE_STAGING_LIT = 전이별 dict(`U`·`w`·`Q`·`Omega`·`dH_rxn`·`dS_rxn`·`dH_a`·`dS_a`·`dVdq_qa`) — A23-M9 의 근거(표 tab:si-cases 집계와 스키마 불일치).
+
+### 축4 — 서지·정량 주장 (완료 — §4 하이쿠 통합)
+§4 표 참조. 요지: stresspot 100–120 mV/GPa **초록 확인**(본문 3개소 표기와 부합)·moyassari 0–20 wt% **확인**·bower2011 **DOI 확정**·stressevo −1.75 GPa 와 beaulieu 300%/선형성은 접근 한계로 초록 수준 미확인(모두 v1.0.21 원장 V1 승계 항목이라 본문 지위는 불변 — 본 창 제안은 미확인 명제에 얹지 않음).
 
 ---
 
 ## 6. 무발견 축 (검토했으나 문제 없음)
-<!-- NOFIND -->
+
+1. **§3.4 (a)→(d) 유도 대수·부호·차원**: 전 단계 재유도 일치(축1-1~3) — 보고할 결함 없음(R5 마스터 통과분 재확인).
+2. **ΔU@Ω=4RT ≈55 mV 와 "수백 mV 못 담는다" 논증**: 닫힌꼴 재평가 54.8 mV·obrovac 계열 수백 mV 와 자릿수 대비 — 논증 유효.
+3. **GS-1 공백 선언의 정직성**: 가역 결합까지 닫고 구성식 부재를 공백으로 남기는 구조 — 마스터플랜 Non-goals 와 정합, 유사 유도 날조 없음. 본 보고의 어떤 제안도 GS-1/GS-2 를 수치·모형으로 메우지 않음(M4 는 나열 갈래의 서지 앵커, M10 은 공백 보존 강화).
+4. **§3.4 warnbox(부록 예비 지도 대비 전진 서술)**: "충돌+유도 미착수" → "가역 결합 폐합+구성식 공백" 위치 좁힘 주장 — §3.1 N3 행·keybox 와 상호 정합.
+5. **§3.5 게이트 G1 의 계약 자체**: eq:si-code-bitexact 의 형식·eq:blend-balance 검산 (ii) 코드판 지위 — 정확(실현 조건 보강만 M6).
+6. **§3.5 캡슐화 설계(합성 wrapping)**: 기존 상속(LCOCathodeDQDV ⊂ Graphite...) 대비 합성 선택 — bit-exact 위임에 유리한 타당한 설계, 무발견.
+7. **§3.5 성분≠상전이 경고 계승(:36)·SiOx 공백 절 지시(:37)**: ssec:si-carry 의 경고·ssec:si-siox 각주 c·f 와 대응 정확.
+8. **기호표(tab:si-notation) ↔ §3.4 신규 기호 4종**: 도입 절·의미·"골격 밖 새 물리" 선언 상호 일치(첨자체 조판만 L6).
+9. **P3-7(명칭)**: 두 절에 ver.N/Chapter 혼동 서술 없음. "R5/R6" 라운드 명칭과 장 구조 명칭 분리 유지.
+10. **P3-2(전하 보존 중심식 지위)**: §3.5 합성이 eq:blend-balance 반전을 중심으로 유지(공통 축 합산·용량 배분) — OCV 읽기 회귀 없음.
 
 ---
 
 ## 7. 말미 4-tier 분류
-<!-- TIER -->
+
+- **확정**(재유도·원문·코드 대조로 닫힘): A23-H1(빌드·원장·전 절 grep — moyassari 부재·gautam 위치), A23-H2(적분 재계산 $Q+\int C_\bg dV$·코드 내부 가산 확인·eq:blend-balance 의 $Q$ 정의), A23-H3(tab:si-survival 캡션·ssec:si-guide 원문), A23-M2(§3.3 GS-2 불릿과의 비대칭 — 원문 대조), A23-M6(코드 가산 순서·L630 선례), A23-M7(코드 시그니처·ch1 V 위계 원문), A23-M9(표 열 구성 ↔ 리스트 스키마), A23-L1(식 (c) 의 $V_\eq^0(\theta)$), L2·L4·L6·L7 의 사실 관계, 축1~축3 전건.
+- **추정**(개선 이득 판단 — 채택은 마스터 몫): A23-M1(조건 명시의 필요 정도 — 수학적 지적 자체는 확정), A23-M3(약형 문구 선택), A23-M5(인용 부착 위치), A23-M8(판정식 형태·공차는 R6 확정 소관), A23-M10(기본값 정책 문구), A23-L3(수식화 선호), A23-L5(주해 필요성), H2 제안의 $k{=}20$·$10^{-6}$ 예시값(QA 파라미터 — 물리값 아님).
+- **미검증**(접근 한계 — 정직 표기): (i) sethuraman_stressevo2010 의 −1.75 GPa·탈리튬화 인장 값의 원문 수치(초록 미접근 — v1.0.21 원장 V1 승계로 본문 지위 불변), (ii) beaulieu2001 의 "Si ~300%"·부피-Li 선형성의 원문 확인(같은 승계 — A23-M3 은 이에 의존하지 않는 약형), (iii) sethuraman_stresspot2010 종료쪽(원장 잔여 "쪽 확인필요" — 시작쪽 A1253 만 하이쿠 확인), (iv) obrovac_chevrier2014 의 "수백 mV" 원문 구절(tier B 리뷰 승계 — 본 창 무접근·§3.1 소관이라 발견화하지 않음).
+- **무발견 축**: §6 의 1~10(각 항목에 검토 방법 명기).
 
 ---
 
 ## 8. 부수 관찰 (대상 밖 — 마스터 참고용, 제안 아님)
-<!-- MISC -->
+
+1. **A22 소관 연접**: A23-H1 의 계보상, 채택본 §3.3(W1 기반)이 W3 의 자산 [V22-R5-17 "f_Si 0~30% 스윕 실측 커버(gautam/moyassari/chatzogiannakis)"] 를 승계하지 않았다 — §3.3 GS-2 srcbox 에 스윕 커버 문장이 없는 것 자체는 §3.3 담당(A22) 시야이나, §3.5 G2 가 그 커버를 전제하므로 두 창 발견의 동시 처분이 자연스럽다(경로 B 채택 시 §3.3 srcbox 보강까지 한 세트).
+2. **원장 미세 갱신 후보**: sethuraman_stresspot2010 잔여 "쪽 확인필요" — 하이쿠가 시작쪽 A1253 을 Crossref 로 확인(§4-A1). 종료쪽만 남음 — 원장 비고 갱신은 마스터 몫.
+3. **beaulieu2001 강형 후보**: 본문 접근이 확보되면 A23-M3 의 약형(평균 몫) 대신 "팽창의 Li 함량 근사 선형 ⇒ 국소≈평균" 강형 문장이 가능 — 확인 전에는 제안하지 않음(추가 후보로만 기록).
+4. **notation 파일(:33) 의 $\sigma_h$ 첨자체**: A23-L6 ③ 이 걸치는 `ch3v22_notation.tex` 는 A21 대상 — 채택 시 창 간 중복 처분 주의.
+5. **하이쿠 부수 발견**: Mukhopadhyay–Sheldon 2014(PMS 63, 58–116; 10.1016/j.pmatsci.2014.02.001) — 탄소성 종합 리뷰로 M4 의 대안(리뷰라 tier B 상당). liu 2012 후보는 기존 `liu_sizefracture2012`(V1) 와 중복이라 신규 아님.
+
+— 이상. (FR-A23 · 4관점 전건 적용 · GS-1/GS-2 무침범 · 본문 무수정)
