@@ -139,10 +139,10 @@ additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 열특성 부록 D) 
 
 구현 스니펫 두 곳(본문 N2$\cdot$N7 에서 이관)을 원문 그대로 둔다.
 \begin{codebox}
-\textbf{N2.} \code{if 'dH\_rxn' in tr and 'dS\_rxn' in tr: U\_j = func\_U\_j(T\_work, dH\_rxn, dS\_rxn)}
+\textbf{N2.} \code{if 'dH\_rxn' in tr and 'dS\_rxn' in tr: U\_j = func\_U\_j(T\_prog, dH\_rxn, dS\_rxn)}
 --- 배열 $T$ 대응. 없으면 \code{U\_j = float(tr['U'])} 직접. 실 호출의 $\Delta S$ 인자는 seam
-\code{\_effective\_dS\_rxn(tr, T\_work)} 를 경유한다(흑연 base 는 항등으로 \code{tr['dS\_rxn']} 그대로 ---
-LCO 전자항 plug-in 자리: \S\ref{sec:lco-code}). 여기에 vib 양자 보정 \code{\_vib\_dU(tr, T\_work)} 가
+\code{\_effective\_dS\_rxn(tr, T\_prog)} 를 경유한다(흑연 base 는 항등으로 \code{tr['dS\_rxn']} 그대로 ---
+LCO 전자항 plug-in 자리: \S\ref{sec:lco-code}). 여기에 vib 양자 보정 \code{\_vib\_dU(tr, T\_prog)} 가
 가산된다($\theta_E$ 부재 시 항등 $0$ --- 보정 도입 전과 bit-exact). \code{GRAPHITE\_STAGING\_LIT} 의 stage 2$\to$1 은
 $\Delta H_\rxn=-13000$ J/mol, $\Delta S_\rxn=-16$ J/(mol\,K) $\Rightarrow$ $U(298)=(13000-298.15\times16)/96485
 \approx0.0853$ V(목표 $0.085$ V 정합).
