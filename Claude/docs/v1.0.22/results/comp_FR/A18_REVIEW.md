@@ -5,7 +5,7 @@
 - 검토 창: FR-A18 (BRIEF_FR_A.md 규율 준수 — 보고 전용·소스 수정 금지·git 조작 금지·`Codex/` 접근 금지)
 - 검토 4관점: ①내용 보완(빡세게) ②논리 오류(재계산·재유도 검증) ③더 쉬운 설명 ④산문→수식 간결화
 - 검증 방법: 참조 라벨 전수 역추적(흑연 xr 수신식·같은 빌드 내 LCO 절 원문 대조) · 전 수식 재유도/재계산(무발견 축에 명세) · 서지는 하이쿠 서브에이전트 DOI 실검증(§서치)
-- 상태: 진행 중 (조기 저장 — 발견 1건 검증 완료 시마다 즉시 append)
+- 상태: **본판 v1** (조기 저장 운용 후 전 축 마감 — 발견 17건: H 0 / M 8 / L 9. 상세 §1·검증 로그 §2·서치 §서치+§3·4-tier §4)
 
 ---
 
@@ -240,3 +240,217 @@ Na$_x$CoO$_2$ 질서 문헌 유래(오귀속) 가능성과 entropymetry 실측\c
 대조가 남은 추적 경로다.
 ```
 - 근거: 하이쿠 서브 S4 서치(§서치) 결과 — LixCoO2 의 x=1/2·2/3 질서 엔트로피 0.47/1.49 J/(mol K) 수치의 1차 원전은 Crossref·웹에서 **미발견**(정직 NOT FOUND; 검토 후보 Kawaji 2002 저온 열용량은 x=1 조성이라 부적합 판정). 이는 본문 tier C 판정·"원전 재확인 중" 스탠스를 **독립적으로 지지**하는 부정 결과이므로 캐비앗에 반영할 가치가 있음(선택 — 반영 없이 현상 유지도 정합). kim_entropymetry2020 은 V1 원장 기등재 키(정량 ΔS 는 "전문 미접근 — 수치 미확보"로 원장에 기록)라 인용 규율 위반 없음.
+
+### A18-L1 — eq:U1T2 소절 포인터 정밀화
+- 파일:행: `ch1_sec12_lcocenter.tex:78–79` | 유형: 설명(포인터) | 등급: **L**
+- 현행(축자):
+```latex
+로 \emph{적분형}으로 해석해야 한다 --- 전자항 $\propto T'$ 를 실제 적분한 닫힌 특수형이 \S\ref{sec:lco-Se} 의
+$T^2$ 곡률식($\tfrac12(T^2-T_\mathrm{ref}^2)$ 곡률, 식~\eqref{eq:U1T2})이다.
+```
+- 제안(완성 LaTeX — 대체):
+```latex
+로 \emph{적분형}으로 해석해야 한다 --- 전자항 $\propto T'$ 를 실제 적분한 닫힌 특수형이 \S\ref{sec:lco-Se-units} 의
+$T^2$ 곡률식($\tfrac12(T^2-T_\mathrm{ref}^2)$ 곡률, 식~\eqref{eq:U1T2})이다.
+```
+- 근거: `\label{eq:U1T2}` 는 `ch1_sec15_lcoelec.tex:226`, 소속 소절은 `sec:lco-Se-units`(181행 "단위 환산과 부호·온도 의존" — 인쇄 §2.5.3)이고 `sec:lco-Se`(113행)는 유도 소절(§2.5.2). 식 참조가 병기돼 있어 오독 위험은 낮으나 포인터는 실위치로.
+
+### A18-L2 — '세 양의 구분' 포인터 정밀화
+- 파일:행: `ch1_sec12_lcocenter.tex:102–103` | 유형: 설명(포인터) | 등급: **L**
+- 현행(축자):
+```latex
+$x$-\emph{국소 골}로, 창 중심에서 몰당 $\approx\!-46$ J/(mol\,K)(부분몰 골 \emph{깊이} --- $x$ 적분 게이트 총 방출 $\approx\!1.1\,k_B$/atom 과는 별개 척도,
+\S\ref{sec:lco-gate}), 창 밖에서 $\approx\!0$ 이다.
+```
+- 제안(완성 LaTeX — 대체):
+```latex
+$x$-\emph{국소 골}로, 창 중심에서 몰당 $\approx\!-46$ J/(mol\,K)(부분몰 골 \emph{깊이} --- $x$ 적분 게이트 총 방출 $\approx\!1.1\,k_B$/atom 과는 별개 척도,
+\S\ref{sec:lco-Se-scale} ``세 양의 구분''), 창 밖에서 $\approx\!0$ 이다.
+```
+- 근거: −46 골 깊이·1.1 k_B 적분 방출·척도 구분 논의의 실위치는 `sec:lco-Se-scale`(`ch1_sec15_lcoelec.tex:285–303` "크기 검산과 세 양의 구분") — `sec:lco-gate`(236행)는 게이트 정의 소절. 수치 자체는 재계산 일치(§2 검증 로그 5번).
+
+### A18-L3 — eq:lco-Veq 의 s=+1 대입 반 줄 명시
+- 파일:행: `ch1_sec13_lcohys.tex:58–63` | 유형: 수식화(반 줄) | 등급: **L**
+- 현행(축자):
+```latex
+LCO 전이 $j$ 의 평형 전위 곡선은 식~\eqref{eq:Veq} 에 $U_j^\mathrm{cat},\Omega_j^\mathrm{cat}$ 를 넣어
+\begin{equation}
+V_{\eq,j}^\mathrm{cat}(\xi)=U_j^\mathrm{cat}
++\frac{RT}{F}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j^\mathrm{cat}}{F}(1-2\xi),
+\label{eq:lco-Veq}
+\end{equation}
+```
+- 제안(완성 LaTeX — 대체; 도입부만):
+```latex
+LCO 전이 $j$ 의 평형 전위 곡선은 식~\eqref{eq:Veq} 에 $U_j^\mathrm{cat},\Omega_j^\mathrm{cat}$ 를 넣고
+$s{=}+1$ 을 대입해(\S\ref{sec:center} 규약 --- 결과-사슬 boxed 식에서 $s$ 소멸)
+\begin{equation}
+V_{\eq,j}^\mathrm{cat}(\xi)=U_j^\mathrm{cat}
++\frac{RT}{F}\ln\frac{\xi}{1-\xi}+\frac{\Omega_j^\mathrm{cat}}{F}(1-2\xi),
+\label{eq:lco-Veq}
+\end{equation}
+```
+- 근거: 흑연 원식 eq:Veq(`ch1_sec04_hys.tex:74–77`)는 $RT/sF\cdot\Omega/sF$ 로 $s$ 를 명시 유지하고 "(d) 박스 --- $s=+1$ 정리"에서 소거를 선언; §1 규약(`ch1_sec01_n0n1.tex:32–34`)도 "$s$ 는 … 본론의 결과-사슬 boxed 식에서 $s{=}1$ 로 대입돼 소멸"로 소거 시점 명시를 요구. 현행 LCO 대입문은 파라미터 2건($U,\Omega$)만 언급하고 $s$ 소거는 암묵 — 반 줄로 닫으면 대입형 주장("실제로 넣은 대입형")이 문자 그대로 완전해짐. §2.2(b) 는 "(s=+1)" 을 명시하고 있어 장 내 일관성도 회복.
+
+### A18-L4 — 도핑 극한 괄호의 T_c 기준 명시
+- 파일:행: `ch1_sec13_lcohys.tex:211–212` | 유형: 문체 | 등급: **L**
+- 현행(축자):
+```latex
+(흑연 식~\eqref{eq:dUhys} 아래 Taylor 극한 재사용, $\mathrm{artanh}\,u=u+u^3/3+\cdots$,
+$T_{c,j}=\Omega_j^\mathrm{cat}/2R$)이고, $\Omega_j^\mathrm{cat,dop}\le2RT$ 로 피팅되는 전이는 같은 식 안에서
+```
+- 제안(완성 LaTeX — 대체):
+```latex
+(흑연 식~\eqref{eq:dUhys} 아래 Taylor 극한 재사용, $\mathrm{artanh}\,u=u+u^3/3+\cdots$;
+일반 정의 $T_{c,j}=\Omega_j/2R$ 를 도핑값에 적용하면 $T_{c,j}^\mathrm{dop}=\Omega_j^\mathrm{cat,dop}/2R$)이고,
+$\Omega_j^\mathrm{cat,dop}\le2RT$ 로 피팅되는 전이는 같은 식 안에서
+```
+- 근거: 이 소절의 극한 변수는 $\Omega_j^\mathrm{cat,dop}$ 인데 괄호의 임계온도만 무첨자 $\Omega_j^\mathrm{cat}$ 로 적혀, "도핑으로 $T_c$ 가 측정 온도 아래로 내려간다"는 이 절의 물리(흑연 fig:hysgap (b) 캡션 "도핑 $\Omega\downarrow$ 도 같은 축")가 기호에서 끊김. 일반 정의+도핑 적용형으로 반 줄 정리.
+
+### A18-L5 — "유일한 가정" 반 줄 한정
+- 파일:행: `ch1_sec13_lcohys.tex:10–12` | 유형: 설명 | 등급: **L**
+- 현행(축자):
+```latex
+\textbf{(a) 출발.} Part 0(\S\ref{sec:sm-mf})의 격자기체 화학퍼텐셜 식~\eqref{eq:mu} 와 자유에너지 식~\eqref{eq:gxi}(\S\ref{sec:hys} 가 받아 쓰는)의 유일한
+가정 ``동등한 자리에 리튬이 차고 빈다''는 LCO $\mathrm{Li}_x\mathrm{CoO_2}$ 의 팔면체 리튬 자리에도
+문자 그대로 성립하므로(자리당 점유 0 또는 1), \S\ref{sec:lco-center} 의 LCO 전이 집합에 번호를 달아
+```
+- 제안(완성 LaTeX — 대체):
+```latex
+\textbf{(a) 출발.} Part 0(\S\ref{sec:sm-mf})의 격자기체 화학퍼텐셜 식~\eqref{eq:mu} 와 자유에너지 식~\eqref{eq:gxi}(\S\ref{sec:hys} 가 받아 쓰는)의 유일한
+\emph{물질 의존} 가정 ``동등한 자리에 리튬이 차고 빈다''는 LCO $\mathrm{Li}_x\mathrm{CoO_2}$ 의 팔면체 리튬 자리에도
+문자 그대로 성립하므로(자리당 점유 0 또는 1; 평균장(Bragg--Williams) 축약 자체는 흑연과 공유하는 모델 형이라
+전이 대상이 아니다 --- \S\ref{sec:sm-mf}), \S\ref{sec:lco-center} 의 LCO 전이 집합에 번호를 달아
+```
+- 근거: eq:mu·eq:gxi 는 동등 자리 가정 외에 평균장 근사(`ch1_sec02b_part0.tex:6–15` Bragg–Williams)도 딛고 있음 — "유일한 가정"은 host 치환 시 새로 검사할 가정이 하나뿐이라는 뜻으로 읽혀야 하는데 현행은 모델 가정 총수가 하나로 읽힐 여지. §2.1 (3)(`ch1_sec11_lcointro.tex:19–20`)의 같은 표현에도 동일 지적이 적용되나 그 절은 본 검토 범위 밖이라 여기(제안 채택 시 §2.1 도 동보조정 권고)만 기록.
+
+### A18-L6 — "config 는 실제로 엄밀" 한정 + Einstein 절 xr
+- 파일:행: `ch1_sec12_lcocenter.tex:79–82` | 유형: 설명 | 등급: **L**
+- 현행(축자):
+```latex
+$T^2$ 곡률식($\tfrac12(T^2-T_\mathrm{ref}^2)$ 곡률, 식~\eqref{eq:U1T2})이다. 이 ``$T^2$ 곡률 $=$ 전자 신호'' 식별은 config 부분몰 엔트로피가
+고정 $x$ 에서 엄밀히 $T$-무관이고 vib 몫도 상수라는 전제 위에 서는데, config 는 실제로 엄밀하나 vib 의 $T$-무관은
+고전 극한 $k_BT\gg\hbar\omega$ 의 근사다 --- $\mathrm{LiCoO_2}$ 포논이 수백 K 라 $300$ K 는 준양자 영역이어서 vib 잔여
+$T$-의존이 작지만 $0$ 은 아니며, 다온도 곡률 피팅에서는 이 vib 잔여 계수가 전자 신호($\propto T$ 항)에 소량 섞일 수 있다.
+```
+- 제안(완성 LaTeX — 대체; 두 한정 추가):
+```latex
+$T^2$ 곡률식($\tfrac12(T^2-T_\mathrm{ref}^2)$ 곡률, 식~\eqref{eq:U1T2})이다. 이 ``$T^2$ 곡률 $=$ 전자 신호'' 식별은 config 부분몰 엔트로피가
+고정 $x$ 에서 엄밀히 $T$-무관이고 vib 몫도 상수라는 전제 위에 서는데, config 는 정규용액(평균장) 틀 안에서 엄밀하나
+(섞임 몫이 $T$-비의존 함수 $R\ln[\cdot]$ 뿐 --- 평균장 밖 단거리질서의 잔여 $T$-의존은 이 틀 밖) vib 의 $T$-무관은
+고전 극한 $k_BT\gg\hbar\omega$ 의 근사다 --- $\mathrm{LiCoO_2}$ 포논이 수백 K 라 $300$ K 는 준양자 영역이어서 vib 잔여
+$T$-의존이 작지만 $0$ 은 아니며, 다온도 곡률 피팅에서는 이 vib 잔여 계수가 전자 신호($\propto T$ 항)에 소량 섞일 수 있다
+(잔여 vib 양자곡률의 별도 모델링과 함수형 분리(로그 곡률 vs $T^2$)는 \S\ref{sec:einstein} --- \S\ref{sec:lco-Se-units} 의 같은 규정).
+```
+- 근거: (1) "실제로 엄밀"은 모델-내 엄밀(격자기체 섞임 엔트로피가 $x$ 만의 함수)이지 자연-내 엄밀이 아님 — 평균장 밖(단거리질서·quasi-chemical)에선 config 도 $T$-의존을 얻으므로 틀 한정이 정직. (2) §2.5(`ch1_sec15_lcoelec.tex:229–234`)는 같은 vib 잔여를 "Einstein 온도 $\theta_E$ 별도 모델링 … 로그 곡률이라 $T^2$ 전자곡률과 함수형으로 갈린다"로 닫는데 §2.2 는 "섞일 수 있다"에서 멈춰 두 절의 결이 어긋나 보일 수 있음 — xr 한 줄로 "유한 창에선 섞일 수 있으나 함수형 분리 모델이 있다"는 전체 그림 완성.
+
+### A18-L7 — srcbox 다리식의 동치 화살표 완화
+- 파일:행: `ch1_sec13_lcohys.tex:146–153` | 유형: 문체 | 등급: **L**
+- 현행(축자):
+```latex
+\begin{equation}
+\underbrace{\Omega_j^\mathrm{cat}\,\xi_j(1-\xi_j)}_{\text{식~\eqref{eq:lco-gxi} 정규용액 항}}
+\;\longleftrightarrow\;
+\underbrace{\big[\text{ECI 전개의 최근접 쌍 몫}\big]_{\text{평균장}}}_{\text{Van der Ven 클러스터 전개의 축약}},
+\qquad
+\Omega_j^\mathrm{cat}>2RT\ \Leftrightarrow\ \text{$x{\approx}\tfrac12$ 질서상 안정},
+\label{eq:br-vanderven1998-1}
+\end{equation}
+```
+- 제안(완성 LaTeX — 대체; 둘째 화살표만):
+```latex
+\begin{equation}
+\underbrace{\Omega_j^\mathrm{cat}\,\xi_j(1-\xi_j)}_{\text{식~\eqref{eq:lco-gxi} 정규용액 항}}
+\;\longleftrightarrow\;
+\underbrace{\big[\text{ECI 전개의 최근접 쌍 몫}\big]_{\text{평균장}}}_{\text{Van der Ven 클러스터 전개의 축약}},
+\qquad
+\Omega_j^\mathrm{cat}>2RT\ \longleftrightarrow\ \text{$x{\approx}\tfrac12$ 질서상 안정 (모델 대응)},
+\label{eq:br-vanderven1998-1}
+\end{equation}
+```
+- 근거: 같은 display 안에서 항 대응은 $\longleftrightarrow$(대응), 문턱–안정성은 $\Leftrightarrow$(논리 동치)로 화살표가 갈려, 후자가 유도된 iff 로 읽힐 수 있음. srcbox 산문 스스로 "대응한다"·"가정 차 --- … 유효 문턱만 남기고"로 한정하므로 화살표도 대응 기호로 통일이 정합(대체 — 자산 삭제 없음).
+
+### A18-L8 — 닫힌 전이의 폭 지위 반 줄 분리
+- 파일:행: `ch1_sec13_lcohys.tex:212–214` | 유형: 설명 | 등급: **L**
+- 현행(축자):
+```latex
+$T_{c,j}=\Omega_j^\mathrm{cat}/2R$)이고, $\Omega_j^\mathrm{cat,dop}\le2RT$ 로 피팅되는 전이는 같은 식 안에서
+gap 이 0 으로 닫힌다 --- 이것이 상전이 억제에 따른 히스 축소와 peak smear 의 수식 표현이며, 풀린 몫은
+\S\ref{sec:broadening} 의 broadening 폭이 더 크게 담는다.
+```
+- 제안(완성 LaTeX — 대체; 말미 문장만):
+```latex
+$T_{c,j}=\Omega_j^\mathrm{cat}/2R$)이고, $\Omega_j^\mathrm{cat,dop}\le2RT$ 로 피팅되는 전이는 같은 식 안에서
+gap 이 0 으로 닫힌다 --- 이것이 상전이 억제에 따른 히스 축소와 peak smear 의 수식 표현이다. 문턱 아래로
+닫힌 전이의 폭은 \S\ref{sec:width} 이중지위의 \emph{평형 예측} 쪽으로 복귀하고($w_\mathrm{eff}$ ---
+파생 C 와 같은 취지), 실측 smear 가 그 평형 폭을 넘는 몫은 \S\ref{sec:broadening} 의 앙상블
+몫(일반 $\eta$ 분포)이 담는다.
+```
+- 근거: §5(`ch1_sec05_width.tex:299–308`)의 이중지위 — 단상($\Omega\le2RT$)의 폭은 "검증 가능한 평형 예측", 두-상만 "broadening 이 정하는 현상학 폭". 도핑으로 문턱 아래로 내려간 전이는 정의상 첫째(평형) 지위로 돌아가므로 "broadening 폭이 담는다" 한 마디는 §5 의 지위 구분과 결이 어긋남. §7(57–62행)은 LCO 앙상블 몫을 "일반 $\eta$ 분포(iii-b)"로 한정하므로 초과 smear 의 슬롯 명시가 정합.
+
+### A18-L9 — verifybox 스케일 앵커에 기등재 entropymetry 반 줄 병기
+- 파일:행: `ch1_sec12_lcocenter.tex:89–91` | 유형: 보완 | 등급: **L**
+- 현행(축자):
+```latex
+\textbf{LCO 중심 부호 검산($T=298.15$ K)} --- 대표 단전극 엔트로피 계수 $\dd\phi/\dd T\approx+0.83$ mV/K\cite{swiderska2019}
+(tier B --- LCO \emph{단일전극} potentiometric, 크기$\cdot$부호 스케일 검증용 초기값)를 식~\eqref{eq:lco-dUdT}
+에 역대입하면 $\Delta S_{\rxn}^\mathrm{cat}=F\,\dd U/\dd T=96485\times0.83\times10^{-3}\approx+80$ J/(mol\,K)$>0$ ---
+```
+- 제안(완성 LaTeX — 대체; 괄호 한 줄 확장):
+```latex
+\textbf{LCO 중심 부호 검산($T=298.15$ K)} --- 대표 단전극 엔트로피 계수 $\dd\phi/\dd T\approx+0.83$ mV/K\cite{swiderska2019}
+(tier B --- LCO \emph{단일전극} potentiometric, 크기$\cdot$부호 스케일 검증용 초기값; $x$-분해 프로파일은
+entropymetry 실측\cite{kim_entropymetry2020} 이 존재해 전이별 값은 그쪽 계열$+$피팅 소관)를 식~\eqref{eq:lco-dUdT}
+에 역대입하면 $\Delta S_{\rxn}^\mathrm{cat}=F\,\dd U/\dd T=96485\times0.83\times10^{-3}\approx+80$ J/(mol\,K)$>0$ ---
+```
+- 근거: verifybox 의 스케일 앵커가 tier B 단일 출처인데, 같은 문서가 이미 V1 등재·인용 중인 kim_entropymetry2020(EES 13, 286 (2020) — tab:lco-staging 캡션의 order–disorder 서명 앵커)이 x-분해 프로파일의 존재를 보증 — 반 줄 병기로 "+0.83 은 대표 스케일일 뿐"이라는 본문 한정(96행)의 문헌적 근거가 생김. 신규 등재 불요(기존 V1 키).
+
+---
+
+## 2. 검증 로그 — 무발견 축 (검토했으나 문제 없음; 방법 명기)
+
+1. **eq:lco-n0sub 치환 선언** — §2.1 전극-중립 5식 목록(`ch1_sec11_lcointro.tex:14–24`)·eq:n0map 원문(`ch1_sec01_n0n1.tex:13–18`)과 대조: σ_d·|I| 환산 인용 정확, 치환 대상(전이 집합·ΔH/ΔS 입력)만 바뀐다는 주장 성립. 무발견.
+2. **eq:lco-dUdT 이중 경로** — 경로 1(순간 동결 직접 미분)·경로 2(∂ΔG/∂T|_P=−ΔS 항등 + ΔG=−FU 미분) 재유도: 두 경로 모두 ∂U/∂T=ΔS/F, 경로 2 는 ΔS(T) 에도 정확 — "순간 기울기 의미의 일치" 서술 정확. 흑연 eq:Ujmid/eq:Uj/eq:gibbsdef/eq:eqcond(s=+1) 원문 대조 일치. 무발견.
+3. **eq:lco-kirchhoff 적분형** — ∂U/∂T=ΔS(T)/F 의 정적분으로 재유도 일치; 전자항 ΔS_e=a_eT 대입 시 (a_e/2F)(T²−T_ref²) — eq:U1T2(`ch1_sec15_lcoelec.tex:224–227`)의 ½ 계수와 정확 일치. 무발견.
+4. **Kirchhoff 논거 자체** — ∂ΔH/∂T|_P=ΔC_p·T∂ΔS/∂T|_P=ΔC_p 재확인, "ΔH 고정∧∂_TΔS≠0 은 모순" 성립, 잉여항–드리프트 상쇄 재유도 성립(A18-M4 는 표현 보강 제안일 뿐 논리 무오류). 무발견.
+5. **verifybox 수치 전건 재계산** — 96485×0.83e−3=80.08→"≈+80" ✓; 0.83×30 K=24.9→"≈+25 mV" ✓; +80−46=+34 ✓; 게이트 골 깊이 −(π²/3)R(k_BT/e_V)(13/0.05)(¼)=−45.96(300 K)·−45.68(298.15 K)→§2.5 의 "−46"·"−45.7" 과 일치 ✓; 적분 방출 (π²/3)(k_BT)g_max=1.106→"≈1.1 k_B/atom" ✓(게이트 잔차 1−σ(3)=4.7%≈5% ✓). 무발견.
+6. **eq:lco-gxi→eq:lco-gpp→eq:lco-spinodal** — 2계 미분(로그 몫 RT/[ξ(1−ξ)]·상호작용 −2Ω) 재계산 ✓; ξ²−ξ+RT/2Ω=0 근의 공식 → (1±u)/2, u=√(1−2RT/Ω) ✓; Ω<2RT 허수·등호 u=0 경계 서술 ✓. 2RT=4957.9≈4958 J/mol@298.15 K ✓. 무발견.
+7. **ΔU^hys,cat 전개** — hyssub 두 인자((1±u)/(1∓u)·∓u) 대입, ln 역수쌍 → −4RT·artanh u, Ω 몫 → +2Ωu, 합 (2/F)[Ωu−2RT artanh u] ✓(흑연 eq:hysdiff 와 s=+1 정합); 극대(ξ_s^−)·극소(ξ_s^+) 판별 dV/dξ=g''/F 부호로 ✓; gap≥0(2RT[u/(1−u²)−artanh u] 급수 양수) ✓. 무발견.
+8. **eq:hyssym 대칭·eq:lco-Ubranch** — 평균에서 로그쌍·(1−2ξ)쌍 상쇄 → U_j^cat ✓; 분기식 슬롯(½σ_d h_η γ) 흑연 eq:Ubranch 와 1:1 ✓; 가지 배치·"탈리튬화 peak 가 높은 전위" 는 eq:lco-sigmaslot(`ch1_sec11_lcointro.tex:90–96`: 탈리튬화=+1, LCO 충전↦+1)·§2.1(b) 와 정합 ✓. 무발견.
+9. **eq:lco-dope Taylor** — Ω=2RT/(1−u²) 를 첫째 항에 함께 전개: 2RT[(u+u³)−(u+u³/3)]=(4RT/3)u³ → ΔU=(8RT/3F)u³ ✓ (흑연 §4 ★Taylor 함정 문단의 재사용 선언과 정합; 상수 대입 오답 −(4RT/3F)u³ 도 재현 확인). T_c=Ω/2R 정의 ✓(표기 문맥은 A18-L4). 무발견.
+10. **eq:lco-mit 슬롯 분리** — sec14 분해식(eq:lco-decomp)·sec15 몰당 환산(eq:dSemolar)·삽입 기준 부호(<0)와 기호·부호 전건 정합; 이중계산 경계(gap 에 ΔS_e 불혼입·온도 이동에만) 정합. 무발견(지위 문장 보강은 A18-M7).
+11. **T1/T2/T3 수치·조성 창** — 3.90/4.05/4.17–4.20 V·x 0.94–0.75·≈0.55/≈0.48: tab:lco-staging(`ch1_sec11_lcointro.tex:67–77`) 원문과 전건 일치. 무발견.
+12. **미배정 Ω=0 코드 대조** — `Anode_Fit_v1.0.22.py:436` `transition.get('Omega', 0.0)`(552행 동일) — "미배정 시 Ω=0 으로 두어 히스 분기 비활성" 서술과 일치. 무발견.
+13. **서지 축** — 본문 인용 7키 전건 Crossref MATCH(§서치 S-V). 무발견.
+14. **P3 관련** — 전하 보존 중심식 회귀 없음(§2.2 는 eqcond→U_j 열역학 경유, OCV 직독 아님); ver.N/Chapter 명칭 혼동 없음(두 파일에 ver.N 표기 부재); V_n 위계는 두 절에서 미사용(U_j·V_eq 만 등장 — 위계 충돌 여지 없음). 무발견.
+15. **xr 라벨 전수 실재 확인** — Ch1 측: eq:n0map·eq:eqcond·eq:eqbalance·eq:Ujmid·eq:Uj·eq:gibbsdef·eq:mu·eq:gxi·eq:gpp·eq:spinodal·eq:Veq·eq:hyssub·eq:hysdiff·eq:hyssym·eq:dUhys·eq:Ubranch·tab:staging·sec:center·sec:hys·sec:sm-mf·sec:width·sec:broadening 전건 소스 실재(ch2 드라이버 `\externaldocument{ch1_graphite_v1.0.22}` 확인); 로컬(Ch2 빌드 내): tab:lco-staging·sec:lco-direction·eq:lco-sigmaslot·sec:lco-why·sec:lco-decomp·sec:lco-electronic·sec:lco-Se·sec:lco-Se-units·sec:lco-Se-scale·sec:lco-gate·eq:U1T2 전건 실재. 무발견(포인터 정밀도 2건은 A18-L1·L2 로 분리).
+
+---
+
+## 3. 서치 절 보충 — S-C 신규 후보 표 (하이쿠 서브 #2 + 저자열 재확증 후속, Crossref 검증분만)
+
+> 규율: 아래는 **후보**다 — 본문 \cite 는 V1 원장 [검증→등재→인용] 절차 후에만 가능. 기억 서지 배제 — 전 항목 Crossref API 실조회 확정분. 관련 발견: A18-M3(S2)·A18-M8(S4)·A18-L9(S3).
+
+| # | 후보 (Crossref 확정 서지) | DOI | 용도(대상 발견) | 비고 |
+|---|---|---|---|---|
+| S2-1 | H. Tukamoto, A. R. West, "Electronic Conductivity of LiCoO2 and Its Enhancement by Magnesium Doping," *J. Electrochem. Soc.* **144**(9), 3164–3168 (1997) | 10.1149/1.1837976 | A18-M3 — Mg²⁺ 정공 도핑 기작의 1차 앵커 | 저자열 재확증 완료(2인) |
+| S2-2 | G. Ceder, Y.-M. Chiang, D. R. Sadoway, M. K. Aydinol, Y.-I. Jang, B. Huang, "Identification of cathode materials for lithium batteries guided by first-principles calculations," *Nature* **392**(6677), 694–696 (1998) | 10.1038/33647 | A18-M3 — Al 치환(비-redox) 제일원리 앵커 | 저자열 재확증 완료(6인) |
+| S3-1 | V. V. Viswanathan, D. Choi, D. Wang, W. Xu, S. Towne, R. E. Williford, J.-G. Zhang, J. Liu, Z. Yang, "Effect of entropy change of lithium intercalation in cathodes and anodes on Li-ion battery thermal management," *J. Power Sources* **195**(11), 3720–3729 (2010) | 10.1016/j.jpowsour.2009.11.103 | A18-L9 대안 — LCO 포함 dU/dT 독립 실측(교차 앵커) | 저자열 재확증 완료(9인 — 1차 보고의 저자열 오류를 재조회로 교정) |
+| S1-1 | (기인용 키 reimers1992 로 충족) J. N. Reimers, J. R. Dahn, JES **139**, 2091 (1992) | 10.1149/1.2221184 | x≈½ 질서 전이의 온도 소멸(~50–60 °C) 원전 후보 — **전문 수치 대조 필요** | 신규 등재 불요(기존 V1 키) |
+
+- **S4 (0.47/1.49 원전)**: **NOT FOUND** — Crossref·웹 스윕에서 1차 원전 미확인(후보로 검토된 Kawaji 등 2002 JTAC 68, 833, DOI 10.1023/a:1016169917912 은 x=1 조성 저온 열용량이라 부적합 판정·제외). NaxCoO₂ 질서 문헌 유래 오귀속 가능성 리드만 기록 → A18-M8.
+- **제외(EXCLUDED — 재료 불일치)**: Reynier–Yazami–Fultz JES 151, A422 (2004) = 흑연/무질서 탄소(LCO 아님 — S-V 부기와 동일 경고); Jalkanen 등 JPS 243, 354 (2013) = LFP 전셀; Levasseur 등 Chem. Mater. 14, 3644 (2002) = 과리튬 LCO(Mg/Al 도핑 특정 아님 — 부분 관련로 판단, 후보 표에서 제외).
+- **미확보(정직 표기)**: Al/Mg 도핑 시 dQ/dV peak 억제의 직접 실측 1차 문헌 — 이번 스윕 한도 내 미발견(A18-M3 제안문이 기작·이론 수준 앵커로 한정한 이유).
+
+---
+
+## 4. 말미 4-tier 분류
+
+- **확정**(원문 대조·재계산·재유도로 닫힘): A18-M1(§5:310–314·§7:12–26 원문 대조 — 선취·비전이 포함·gloss 부재 3점 모두 원문으로 확정), A18-M2(§2.3.1:35–37 ↔ §2.3.5:216–217 충돌 + 코드 `get('Omega', 0.0)` 확인), A18-M4 의 상쇄 대수, A18-M5·M6 의 수치·슬롯 사실관계, A18-L1·L2(라벨 실위치), A18-L3(eq:Veq 의 s 슬롯 원문), A18-L4(문맥·기호), 검증 로그 1–15 전건, 서지 7키 MATCH.
+- **추정**(개선 이득·위험 평가에 판단 섞임 — 채택은 마스터 몫): A18-M3 의 "전자항 보존" 긴장 평가(게이트 조정 '여지'는 §2.5 (i) 원문 근거·기작은 문헌 제목/초록 수준), A18-M7 의 오독 위험, A18-M8 의 NaxCoO₂ 오귀속 가설(리드일 뿐), A18-L5–L9 의 보강 필요성.
+- **미검증**(접근 한계 — 정직 표기): (i) swiderska2019 **전문 내** 수치(+0.83 의 측정 SOC·전셀 −0.37~+0.1 mV/K 범위) — 본문 tier B 유지 지지, 반박 근거 없음; (ii) reynier2004 **전문 내** 질서상 조성 x=½·⅚ 및 "config>½" — 본문 tier A 주장의 전문 대조 미수행(초록 수준 정합); (iii) 0.47/1.49 의 1차 원전 — 독립 서치 NOT FOUND(본문 tier C 스탠스 지지); (iv) reimers1992 전문 내 OD 전이온도 수치(~50–60 °C) — 제목·초록 수준 후보 확인까지; (v) S-C 신규 후보 3키의 **본문 내용** 적합성 — 서지 필드만 Crossref 확정(전문 미접근).
+- **무발견 축**: §2 검증 로그 1–15(각 항목 방법 명기). **H 등급 발견 없음** — 두 절의 수식 사슬은 흑연 검증식의 대입형이라는 주장 그대로였고, 전 수식·수치 재계산에서 오류가 나오지 않았다.
+
+---
+
+- 상태: **본판 v1 (전 축 완료 — 서치 절 통합·4-tier 마감, 2026-07-18)**

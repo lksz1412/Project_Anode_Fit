@@ -498,6 +498,28 @@ $-FV_\eq^{0}\equiv\mu_\mathrm{Li}^{0}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}
 ---
 
 ## 4. 서치 절 (하이쿠 서브 위임 — doi 실검증분만·기억 서지 배제)
+
+하이쿠(model: haiku) 서브에이전트가 Crossref API(`api.crossref.org/works/<DOI>`)·doi.org 랜딩으로 실검증한 결과만 수록. 본 창은 결과를 재대조해 통합했다.
+
+### A. 기존 인용 재검증 (5건)
+
+| # | key | DOI | Crossref 확정 서지 | 일치 | 정량 물음 |
+|---|---|---|---|---|---|
+| A1 | sethuraman_stresspot2010 | 10.1149/1.3489378 | Sethuraman·Srinivasan·Bower·Guduru, "In Situ Measurements of Stress-Potential Coupling in Lithiated Silicon," JES **157**(11) A1253 (2010) | ✓ | **확인** — 초록에서 실측 결합 100–120 mV/GPa 명시(본문 verifybox·기호표·§3.1 사실 vi 의 "~100–120 mV/GPa" 와 정확 부합). 원장 잔여 "쪽 범위 확인필요" 에 대해 A1253 시작쪽 확인 — 종료쪽은 여전히 미확정 |
+| A2 | sethuraman_stressevo2010 | 10.1016/j.jpowsour.2010.02.013 | Sethuraman·Chon·Shimshak·Srinivasan·Guduru, "In situ measurements of stress evolution in silicon thin films...," JPS **195**(15) 5062–5066 (2010) | ✓ | **미확인** — Elsevier 접근 제한으로 초록 미접근: 압축 소성 유동 −1.75 GPa·인장 값의 공개 재확인 실패(서지·DOI 는 확정. −1.75 GPa 는 v1.0.21 원장 V1 승계 주장으로 존치) |
+| A3 | beaulieu2001 | 10.1149/1.1388178 | Beaulieu·Eberman·Turner·Krause·Dahn, "Colossal Reversible Volume Changes in Lithium Alloys," ESSL **4**(9) A137 (2001) | ✓ | **부분확인** — 초록 "strains approaching or exceeding 100%" 확인. "Si ~300%"·"부피의 Li 함량 선형성" 은 초록 수준 미확인(본문 필요 — A23-M3 이 약형 제안을 택한 근거) |
+| A4 | larchecahn1973 | 10.1016/0001-6160(73)90021-7 | Larché·Cahn, "A linear theory of thermochemical equilibrium of solids under stress," Acta Metall. **21**(8) 1051–1063 (1973) | ✓ | (정량 물음 없음 — 이론 원전 서지 확정) |
+| A5 | (미등재) moyassari_blend2022 | 10.1149/1945-7111/ac4545 | Moyassari·Roth·Kücher·Chang·Hou·Spingler·Jossen, "The Role of Silicon in Silicon-Graphite Composite Electrodes Regarding Specific Capacity, Cycle Stability, and Expansion," JES **169**(1) 010504 (2022) | ✓ | **확인** — 초록 "silicon contents ranging from 0 wt% to 20 wt%"(A23-H1 경로 B 의 스윕 커버 주장과 부합) |
+
+### B. 신규 후보 표 (검증분만 — 채택·등재는 마스터 소관)
+
+| # | 용도 | DOI | Crossref 확정 서지 | 판정 |
+|---|---|---|---|---|
+| B6 | A23-M4(탄소성 갈래 앵커) | 10.1016/j.jmps.2011.01.003 | Bower·Guduru·Sethuraman, "A finite strain model of stress, diffusion, plastic flow, and electrochemical reactions in a lithium-ion half-cell," JMPS **59**(4) 804–828 (2011) | ✓ 확정 — 본문 실측 인용(sethuraman 계열)과 같은 그룹 이론편이라 계보 정합. **추가 후보**(자동 반영 아님) |
+| B7a | (참고) 탄소성 종합 리뷰 | 10.1016/j.pmatsci.2014.02.001 | Mukhopadhyay·Sheldon, "Deformation and stress in electrode materials for Li-ion batteries," Prog. Mater. Sci. **63** 58–116 (2014) | ✓ 확정 — 대안 후보(리뷰라 tier B 상당). 채택 불요 시 무시 |
+| B7b | (기존 중복) | 10.1021/nn204476h | Liu 등, "Size-Dependent Fracture of Silicon Nanoparticles During Lithiation," ACS Nano **6**(2) 1522–1531 (2012) | 이미 ch3 bib 에 `liu_sizefracture2012` 로 실존(V1) — 신규 아님, 참고로만 기록 |
+
+미확인 잔여(하이쿠 보고 그대로): A2·A4 의 초록/본문 정량(출판사 접근 제한) — 기관 접근 또는 저자 preprint 로만 해소 가능.
 <!-- SEARCH -->
 
 ---
