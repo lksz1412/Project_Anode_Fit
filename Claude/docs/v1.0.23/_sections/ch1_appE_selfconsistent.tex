@@ -1,0 +1,209 @@
+% ====================================================================
+% 부록 E — 자기일관 해법: ratio 닫힘과 전달함수 (v1.0.23 신설)
+%   범위 = 동역학 지연(§8~§9, Volterra 자기일관) 의 해법 기법만. 본문 물리 서사와 분리된 "수식을 푸는 기법".
+%   근거 = P1 조건검수(results/comp_v23/COND_AUDIT.md·PHASE_P1_RESULT.md), 사용자 논문 Refs.6·7 ratio 닫힘.
+%   정직 프레임(P1) = 계산 절감 아님. 분석적 1차 닫힘 + 타당성 증명서 + 사용자 방법의 문건 내 시연.
+% ====================================================================
+% 부록 C·D(ch2_appA/appB)는 \section*(수동 letter, counter 미증가)라 auto \section 은 C 로 떨어져 충돌한다.
+% 이 부록이 5번째(E)가 되도록 section counter 를 4 로 고정한 뒤 \section → E. (\ref·부속 subsection 자동번호 정상.)
+\setcounter{section}{4}
+\section{자기일관 해법 --- ratio 닫힘과 전달함수}\label{sec:appendix-selfconsistent}
+본문 \S\ref{sec:lag}--\S\ref{sec:tail} 은 동역학 지연을 전이당 한 길이 $L_V$ 로 닫되, 그 $L_V$ 를 컷점에서
+\emph{상수로 동결}했다(식~\eqref{eq:Acut}$\cdot$\eqref{eq:LV}, ``실현 미분 $\partial\ln L_q/\partial V=0$''). 이 부록은
+그 동결이 우회한 \emph{참 자기일관}(지연 길이가 점유에 되먹임되는 $L_V=L_V(\xi)$)을 밝히고, 사용자 방법론(제2종
+적분방정식의 미지량을 \emph{비}로 치환해 닫는 기법, Refs.~\cite{lee2011jcp,son2013jcp} --- 적용 논문
+\cite{lee2017jcp})을 이 문제에 이식하여 \emph{1차 분석적 닫힌형}을 얻는다. 아울러 동결 기준해의 주파수영역 형태
+(저역통과 전달함수)를 제시한다. 이 부록은 본문의 물리 서사를 바꾸지 않는다 --- 본문은 동결 근사를 그대로 쓰고,
+이 부록은 그 근사가 \emph{언제 옳은지}를 부등식으로 증명하고(타당성 증명서), 한 차수 정밀한 분석적 보정을 선택지로 준다.
+
+\begin{warnbox}
+\textbf{적용 범위 --- 동역학 지연에만.} 본 부록의 ratio 닫힘$\cdot$전달함수는 \emph{동역학 지연}
+(\S\ref{sec:lag}--\S\ref{sec:tail}, 아래에서 밝히는 비선형 Volterra 자기일관)에만 적용된다. 전하 보존
+$U_\oc$ 반전(식~\eqref{eq:sm-mc-balance} 의 단조 대수 근, 그리고 블렌드 장의 이중합 반전)과 배경 자기일관
+($Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 의 대수 순환)은 \emph{적분핵이 없는 대수 근찾기}이며, 요동 양성
+$\partial\langle N\rangle/\partial\mu>0$(\S\ref{sec:eqpeak})이 유일성을 보증하는 가운데 Newton$\cdot$이분으로
+\emph{이미 저렴$\cdot$정확}하게 풀린다. 곧 이 기법의 대상이 아니다 --- 대수 근에 적분방정식 기계를 얹는 것은
+과장이므로 여기서 명시적으로 배제한다.
+\end{warnbox}
+
+\subsection{참 문제 --- 비선형 Volterra 자기일관과 동결 0차 기준}\label{sec:sc-volterra}
+\textbf{(원형 --- 동결 기준.}\ 먼저 본문이 실제로 푸는 \emph{원형}을 적는다.) 식~\eqref{eq:Lq} 의 지연 방정식을
+컷점 기울기로 전압축 환산(식~\eqref{eq:LV})하면, 방전 진행축 위에서 지연 $r\equiv\xi_\eq-\xi_{\mathrm{lag}}$ 은
+\begin{equation}
+\frac{\dd r}{\dd V}=\sigma(V)-\frac{r}{L_V},\qquad \sigma\equiv\frac{\dd\xi_\eq}{\dd V},\qquad(L_V=\text{const 동결})
+\label{eq:sc-frozen}
+\end{equation}
+를 따르고, 이는 상수계수 선형이라 정확한 인과 합성곱해 --- 곧 본문 식~\eqref{eq:lag}$\cdot$\eqref{eq:memory-Vaxis} 의
+$\xi_{\mathrm{lag}}$ --- 를 갖는다:
+\begin{equation}
+\xi_{\mathrm{lag}}^{(0)}(V)=\frac1{L_V}\int_{-\infty}^{V}\xi_\eq(u)\,e^{-(V-u)/L_V}\,\dd u,
+\qquad r_0=\xi_\eq-\xi_{\mathrm{lag}}^{(0)}.
+\label{eq:sc-ref}
+\end{equation}
+이 동결해가 아래 이식에서 사용자 논문의 ``가해(可解) 기준문제''(닫힌형이 이미 있는 $\delta$-싱크 기준, \cite{lee2017jcp}
+Eq.~25)에 대응한다 --- \emph{가해 기준이 이미 본문$\cdot$구현에 존재}한다는 점이 접목의 전제다.
+
+\textbf{(상호작용 항 복원 --- 참 문제.)} 동결은 완화율 $k_j$ 안의 컷 affinity 를 상수로 고정한 결과다. 그러나
+$\mathcal A_j=sF(V-U_j)-\Omega_j(1-2\xi_j)$ 는 \emph{상호작용 몫} $-\Omega_j(1-2\xi_j)$ 를 통해 점유 $\xi_j$ 에
+의존하며(식~\eqref{eq:kuniv}$\cdot$\eqref{eq:dHeff}), $L_q\propto e^{-\chi_d\mathcal A/RT}$ 이므로 지연 길이가
+\emph{점유의 함수}다. 본문은 이 몫을 깊은 꼬리 극한 $\xi\to1$ 의 상수 $+\Omega$ 로 동결했다(식~\eqref{eq:dHeff}).
+그 동결을 풀면, 국소 감쇠율 $\kappa(\xi)\equiv1/L_V(\xi)$ 는
+\begin{equation}
+\boxed{\;\frac{\dd r}{\dd V}=\sigma(V)-r\,\kappa(\xi),\quad \xi=\xi_\eq-r,\quad
+\kappa(\xi)=\kappa_0\,\exp\!\big[-2\chi_d(\Omega/RT)(1-\xi)\big]\;}
+\label{eq:sc-true}
+\end{equation}
+가 된다($\kappa_0=1/L_V^{(0)}$, 깊은 꼬리 $\xi\to1$ 에서 $\kappa=\kappa_0$ 로 동결 회수). 지수의 로그미분
+$\partial\ln L_V/\partial\xi=-2\chi_d(\Omega/RT)$ 는 상호작용 몫이 forward 장벽 $-\chi_d\mathcal A/RT$ 를 채우는 데서
+나오며, 부호는 본문 \S\ref{sec:lag} 단조성($V\!\uparrow\Rightarrow\xi\!\uparrow\Rightarrow$ 장벽$\downarrow\Rightarrow
+L_V\!\downarrow$)과 정합한다. 미지 $\xi=\xi_\eq-r$ 이 감쇠율 $\kappa$ 안에 들어가 \textbf{미지량이 핵 안팎에 동시
+등장} --- 형식적 정확해는 제2종 \emph{Volterra}(인과$\cdot$1측) 적분방정식이다:
+\begin{equation}
+r(V)=\int_{-\infty}^{V}\sigma(u)\,\exp\!\Big[-\!\int_u^V\kappa\big(\xi(V')\big)\,\dd V'\Big]\dd u .
+\label{eq:sc-volterra-eq}
+\end{equation}
+
+\begin{bgbox}
+\textbf{사용자 논문과의 구조 차이(정직).} 논문 \cite{lee2017jcp} 의 대상은 \emph{고정 구간}$\cdot$양측 결합의 제2종
+\emph{Fredholm} 방정식(Eq.~32)인 반면, 문건의 지연은 \emph{가변 상한}$\cdot$인과 1측의 \emph{Volterra}(식~\eqref{eq:sc-volterra-eq})
+이고, 그 지수핵은 rank-1(Markov)이라 \emph{등가 국소형이 1계 ODE}(식~\eqref{eq:sc-true})다. 곧 리터럴한 Fredholm
+기계장치의 이식은 성립하지 않는다 --- 이식되는 것은 Eq.~34 의 \emph{철학}(미지량을 비로 남기고 그 비를 가해 기준의
+비로 치환)뿐이며, 아래 \S\ref{sec:sc-ratio} 가 그 철학이 Volterra 위에서 성립함을 보인다.
+\end{bgbox}
+
+\subsection{1차 ratio 닫힘 --- 사용자 방법론의 이식}\label{sec:sc-ratio}
+논문의 3단(형식 정확해 $\to$ 비 고립 $\to$ 가해 기준 비로 치환)을 Volterra 판으로 옮긴다. 식~\eqref{eq:sc-volterra-eq}
+의 핵을 동결핵 $G_0(V,u)=e^{-(V-u)/L_V^{(0)}}$ 로 갈라 \emph{보정비} $R$ 를 고립한다:
+\begin{equation}
+\exp\!\Big[-\!\int_u^V\!\kappa(\xi)\dd V'\Big]=G_0(V,u)\cdot R[V,u;\xi],\qquad
+R[V,u;\xi]=\exp\!\Big[-\!\int_u^V\!\delta\kappa\big(\xi(V')\big)\dd V'\Big],\ \ \delta\kappa\equiv\kappa(\xi)-\kappa_0 .
+\label{eq:sc-split}
+\end{equation}
+미지 $\xi$ 는 이제 \emph{오직 보정비 $R$} 를 통해서만 등장한다 --- 논문 Eq.~33(``미지량을 비로만 남긴다'')의 대응이다.
+논문 Eq.~34(미지 비 $\to$ 가해 기준 비, $\bar W_u(r_1)/\bar W_u(r)$ 를 Eqs.~37$\cdot$38 로 치환)를 그대로 이식하여,
+$R$ 안의 미지 궤적 $\xi$ 를 \emph{가해 기준 궤적} $\xi_0=\xi_\eq-r_0$(식~\eqref{eq:sc-ref}, 기지)로 치환하면 닫힌형이 나온다:
+\begin{equation}
+\boxed{\;r_1(V)=\int_{-\infty}^{V}\sigma(u)\,e^{-(V-u)/L_V^{(0)}}\,
+\exp\!\Big[-\!\int_u^V\!\delta\kappa\big(\xi_0(V')\big)\dd V'\Big]\dd u\;}
+\label{eq:sc-ratio}
+\end{equation}
+등가 국소형(구현이 그대로 따르는 형)은 \emph{기준 궤적 위에서 평가한 변계수 선형 ODE} 다:
+\begin{equation}
+\frac{\dd r_1}{\dd V}=\sigma(V)-r_1\,\kappa\big(\xi_0(V)\big),\qquad \xi_0=\xi_\eq-r_0\ \ (\text{기준}\cdot\text{기지}).
+\label{eq:sc-ratio-local}
+\end{equation}
+곧 ``자기참조 상태 $\xi=\xi_\eq-r$ 를 가해 기준 $\xi_0$ 로 대체'' --- 이것이 Eq.~34 철학의 정본 이식이다. Volterra
+라 각 스텝은 $\mathcal O(N)$ 전진해이며, 식~\eqref{eq:sc-ratio-local} 은 기준해 위 \emph{한 번의 추가 전진 패스}로 닫힌다.
+
+\begin{derivbox}
+\textbf{동결극한 정확 회수(닫힘 무결성).} 상태의존을 끄면($\Omega\to0$ 또는 $g\equiv\Omega/RT\to0$) $\delta\kappa\equiv0$
+$\Rightarrow R\equiv1\Rightarrow r_1=r_0$ 가 \emph{정확히} 성립한다(식~\eqref{eq:sc-ratio} 이 식~\eqref{eq:sc-ref} 로 환원).
+수치 검산(P1, \code{comp\_v23/p1\_ratio\_check.py}): $g=0$ 에서 $\lVert r_1-r_0\rVert$ 가 이산화 바닥($\sim10^{-8}$),
+$g$ 축소 시 동결오차 $\mathrm{err}_0\sim\mathcal O(\varepsilon)$ 대비 보정오차 $\mathrm{err}_1\sim\mathcal O(\varepsilon^2)$
+--- ratio 치환이 선행 차수 오차를 제거함(논문 ``비는 함수보다 근사에 둔감''의 수치 확증).
+\end{derivbox}
+
+\subsection{ref.\ 방법론 도입 기록 --- 서지$\cdot$위치$\cdot$구조$\cdot$매핑$\cdot$가정차}\label{sec:sc-p35}
+외부 방법론을 도입할 때 요구되는 다섯 항을 분리 기록한다.
+\begin{enumerate}
+\item[\textbf{①\ 서지.}] 적용 논문 = K.~Lee, S.~Lee, C.~H.~Choi, S.~Lee, \emph{J.\ Chem.\ Phys.} \textbf{147}, 144111 (2017)
+  \cite{lee2017jcp}. 원 방법론(제2종 Fredholm 의 효율 해법) = \textbf{Ref.~6} \cite{lee2011jcp}$\cdot$\textbf{Ref.~7} \cite{son2013jcp}.
+\item[\textbf{②\ 논문 내 사용 위치.}] \cite{lee2017jcp}: Eq.~(32)=지연 재결합쌍 $\bar W_u(r)$ 의 제2종 Fredholm; Eq.~(33)=형식
+  정확해(미지량을 비로 고립); Eq.~(34)=결정적 근사(미지 비 $\to$ $\delta$-싱크 가해기준 비 Eqs.~37$\cdot$38, 닫힌형
+  Eq.~25); 타당성 = Sec.~III. 원 유도는 Refs.~6$\cdot$7. \emph{(페이지$\cdot$문단 세부는 원문 대조로 확정 --- 본 판은 방법
+  구조 기준.)}
+\item[\textbf{③\ 원 방법론 수학 구조.}] $[\text{상수}]-f(r)=\int K(r,r_1)f(r_1)\dd r_1$(미지 $f$ 선형$\cdot$상수원)에서
+  $f(r)$ 로 나눠 미지를 \emph{비} $f(r_1)/f(r)$ 로 고립 $\Rightarrow f(r)=1/[1+\int K\,(\text{비})\dd r_1]$. 그 비를 가해
+  기준문제 비 $f^0(r_1)/f^0(r)$ 로 치환 $\Rightarrow$ 닫힌형. 근거 = 비는 함수보다 근사에 둔감.
+\item[\textbf{④\ 변수 매핑(graphite lag).}] $\bar W_u(r)\leftrightarrow$ 지연 $r(V)$; 적분핵 $K\leftrightarrow$ 기억핵
+  $\exp[-\int\kappa\,\dd V']$; \emph{가해 기준}($\delta$-싱크 Eq.~25)$\leftrightarrow$ 동결 합성곱 $r_0$(식~\eqref{eq:sc-ref});
+  미지 비 $\leftrightarrow$ 보정비 $R$(식~\eqref{eq:sc-split}); 온사거 척도 $r_c\leftrightarrow$ 동결 $L_V^{(0)}$; 접촉 반응성
+  $\sigma_{\text{sink}}\leftrightarrow$ 핵 지지폭 $L_V/w$.
+\item[\textbf{⑤\ 물리 가정 차(그대로 이식 금지).}] (1) \emph{종이 다름} --- Fredholm(전역$\cdot$양측) vs Volterra(인과$\cdot$1측
+  $=$Markov): 문건은 등가 국소 ODE 라 값싼 전진해가 존재하므로 ratio 의 \emph{계산 동기}가 전이되지 않는다(아래 정직 주). (2)
+  \emph{되먹임 경로} --- 논문은 $\bar W$ 가 적분 안, 문건은 $\xi$ 가 \emph{감쇠율 $\kappa$ 안}(지수적)이라 선형화가 곧
+  ``기준 궤적 대입''(식~\eqref{eq:sc-ratio-local}). (3) \emph{소파라미터} --- 논문 Sec.~III 타당성 $\leftrightarrow$ 문건
+  $\varepsilon$(식~\eqref{eq:sc-valid}); 고전류$\cdot$강 $\Omega$ 에서 붕괴. (4) \emph{규격} --- 논문 $\bar W\in[0,1]$ 확률 vs
+  문건 $r$ 유계 지연(양수성은 \S\ref{sec:tail} 이 별도 보증).
+\end{enumerate}
+
+\begin{keybox}
+\textbf{정직 프레임(P1 조건검수).} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{참 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
+--- 동결 0차$\cdot$1차 ratio$\cdot$참 비선형 Picard 수렴이 모두 $\mathcal O(N)$. 따라서 이 이식의 값어치는 논문에서의
+``전역 역산 회피(계산 절감)''가 \emph{아니라}, (i) 동결 근사 위의 \emph{분석적 1차 닫힌형}(식~\eqref{eq:sc-ratio}),
+(ii) 동결이 언제 옳은지를 정량하는 \emph{타당성 증명서}(식~\eqref{eq:sc-valid}), (iii) 사용자 방법의 문건 내 시연 ---
+이 셋이다. ``수치 인과기억 루프를 계산 절감으로 대체''로 읽지 말 것.
+\end{keybox}
+
+\subsection{타당성 부등식 --- 동결 근사의 안전 증명서}\label{sec:sc-valid-sub}
+1차 치환의 오차원은 보정비 지수 $\int_u^V\delta\kappa(\xi_0)\dd V'$ 가 핵 지지폭($\sim L_V$) 위에서 작아야 한다는 것이다.
+$\delta\kappa\cdot L_V\approx\delta\ln L_V$ 이고 $\partial\ln L_V/\partial\xi=-2\chi_d(\Omega/RT)$(식~\eqref{eq:sc-true})이므로,
+지지폭 위 $\xi$ 변동 $\Delta\xi_{\text{supp}}$ 에 대해
+\begin{equation}
+\boxed{\;\varepsilon\equiv\Big|\frac{\partial\ln L_V}{\partial\xi}\Big|\,\Delta\xi_{\text{supp}}
+=2\chi_d\,(\Omega/RT)\,\Delta\xi_{\text{supp}}\ \ll\ 1,\qquad \Delta\xi_{\text{supp}}\approx\frac{L_V}{4w}\;}
+\label{eq:sc-valid}
+\end{equation}
+이 성립할 때 1차 닫힘이 제어된 근사다. $\varepsilon$ 은 자기일관 반복(Picard)의 수축률과 일치한다 --- 수치(P1):
+$\varepsilon=0.073$ 에서 스텝당 오차감소 $\approx0.10$, $\varepsilon=0.28$ 에서 $\approx0.43$, $\varepsilon\to0.84$ 에서
+$\approx0.88$(수축 정지 근방). 논문 Sec.~III 의 세 타당성과 1:1 로 대응한다:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{0.30\textwidth}p{0.30\textwidth}p{0.32\textwidth}@{}}
+\toprule
+논문 Sec.~III 타당성 & 물리 의미 & 문건 대응(lag) \\
+\midrule
+(i) 비등방 섭동 $K$ 과대 아님 & 기준 이탈이 소섭동 & 상태의존 $\delta\kappa$ 가 동결률 $\kappa_0$ 의 소섭동 ($2\chi_d(\Omega/RT)\Delta\xi_{\text{supp}}\ll1$) \\
+(ii) 온사거 척도 $r_c$ 지배 & 가해 기준이 지배 물리 포착 & 동결 $L_V^{(0)}$ 지배, $\Omega$ 변조는 하위 보정 \\
+(iii) 접촉 반응성 소(단거리 싱크) & 싱크 단거리 $\to$ $\delta$-기준 지배 & 기억핵 단거리 $L_V/w\to0$ 이면 $\varepsilon\to0$ \\
+(iii$'$) ``반응대 넓어짐 $\to$ 악화'' & 싱크 광역화 & 고전류 $L_V\!\uparrow(\propto|I|)$ $\to$ $\Delta\xi_{\text{supp}}\!\sim\!\mathcal O(1)$ $\to$ $\varepsilon\!\sim\!\mathcal O(1)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+\textbf{열화 조건.} $\varepsilon\gtrsim0.5$(고전류 $L_V/w\gtrsim1$ 이며 강 상호작용 $\Omega\gtrsim2RT$)에서는 1차 보정도
+반복도 무력해진다 --- 논문 ``반응대가 넓어지면 근사가 악화된다''의 문건판이다. 이 영역에서는 식~\eqref{eq:sc-true} 의
+참 비선형 전진해(직접 적분)를 쓴다. 반대로 기본 상태처럼 $L_V/w$ 가 매우 작아 꼬리가 평형종에서 갈라지지 않는
+영역(\S\ref{sec:tail} 의 $L_V\!\to\!0$ 해석적 극한, 식~\eqref{eq:tail-limit})에서는 지연 자체가 휴면이라 보정이 무의미하다.
+실이득창은 \emph{중간 전류}($0.1\lesssim L_V/w\lesssim0.6$)로, 여기서 1차가 동결오차를 $3$--$10\times$ 감축한다.
+\end{warnbox}
+
+\subsection{전달함수 --- 동결 기준해의 주파수영역 형태}\label{sec:sc-transfer}
+동결 0차(식~\eqref{eq:sc-frozen})는 병진불변 선형시스템(LTI)이라 진행축 $V$ 의 Fourier 켤레 $\omega$ 에서 대각화된다.
+1계 완화의 전달함수는 저역통과다:
+\begin{equation}
+\widehat{\xi}_{\mathrm{lag}}(\omega)=H(\omega)\,\widehat{\xi}_{\eq}(\omega),\qquad
+\boxed{\,H(\omega)=\frac1{1+i\omega L_V}\,},\qquad
+\frac{\dd Q}{\dd V}\Big|_{\app}(\omega)=H(\omega)\,\frac{\dd Q}{\dd V}\Big|_{\eq}(\omega),
+\label{eq:sc-transfer}
+\end{equation}
+$\dd Q/\dd V$ 가 선형 범함수라 그 자체가 같은 $H$ 로 필터된다. 크기 $|H|=[1+(\omega L_V)^2]^{-1/2}$ 는 대칭 저역통과
+(폭 예산 ②③ 크기 규정), 위상 $\arg H=-\arctan(\omega L_V)$ 는 인과 skew(① 꼬리 규정), 차단은 $\omega_c=1/L_V$
+($|H(\omega_c)|=1/\sqrt2$). 수치(P1, SURV): FFT 대조 상대오차 $\sim10^{-9}$(기계정밀), $\omega_c$$\cdot$반출력점 재현,
+본문 \code{fig:reversal} 자기정합. 한 문장으로: \emph{관측 $\dd Q/\dd V$ 는 평형 곡선을 (상태의존) 저역통과 필터에
+통과시킨 것}이다.
+
+\emph{1차의 주파수 해석(정직).} 상태의존 $\kappa(\xi_0(V))$ 는 병진불변을 깨므로 단일 $H$ 가 없다 --- 극점 $1/L_V$ 가
+$V$ 를 따라 완만히 이동하는 공간변조 저역통과다. $\varepsilon\ll1$ 에서 극점 변조가 소섭동이라 ``약하게 처프된 1차
+필터''로 읽히고, $\varepsilon\sim1$ 에서 필터 개념 자체가 붕괴한다(강 비선형).
+
+\subsection{구현 대응 지도}\label{sec:sc-codemap}
+본 부록의 수식과 구현(\code{Anode\_Fit\_v1.0.23.py})의 대응은 다음과 같다(부록~\ref{sec:appendix-code} 의 지도 확장).
+\begin{longtable}{p{0.30\textwidth} p{0.30\textwidth} p{0.34\textwidth}}
+\caption{자기일관 해법 $\leftrightarrow$ 구현 대응.}\label{tab:sc-codemap}\\
+\toprule 부록 E 수식 & 구현 식별자 & 비고 \\ \midrule \endfirsthead
+\toprule 부록 E 수식 & 구현 식별자 & 비고 \\ \midrule \endhead
+동결 0차 $\xi_{\mathrm{lag}}^{(0)}$ (\eqref{eq:sc-ref}) & \code{\_causal\_memory\_pointwise} & 구간별 지수 정확적분(현행 기본 경로) \\
+동결 길이 $L_V^{(0)}$ & \code{\_resolve\_lag\_length},\,\code{func\_L\_q} & 컷 동결 상수(식~\eqref{eq:LV}) \\
+감쇠율 $\kappa(\xi)$ (\eqref{eq:sc-true}) & (상태의존 옵션) & $L_V(\xi)=L_V^{(0)}e^{2\chi_d(\Omega/RT)(1-\xi)}$ \\
+1차 ratio 보정 $r_1$ (\eqref{eq:sc-ratio-local}) & (선택적 분석 경로) & 기준 궤적 $\xi_0$ 위 변계수 선형 --- 한 전진 패스 \\
+전달함수 $H(\omega)$ (\eqref{eq:sc-transfer}) & (FFT 경로) & 동결 기준해의 주파수형(기기응답) \\
+\bottomrule
+\end{longtable}
+현행 기본 경로는 동결 0차(\code{\_causal\_memory\_pointwise})이며, 상태의존$\cdot$1차 ratio$\cdot$전달함수 경로는
+\emph{선택적 고정밀 분석 경로}로 제공된다 --- 동결 경로를 끄지 않으면 기존 결과와 bit-exact 다. 열화 영역
+($\varepsilon\gtrsim0.5$)의 ``정확 경로''는 참 비선형 전진해(식~\eqref{eq:sc-true} 직접 적분)가 더 자연스럽고,
+ratio 는 그 사이의 \emph{분석적 중간항}임을 명기한다(계산 절감이 아닌 분석적 닫힘$\cdot$증명서로서의 가치, \S\ref{sec:sc-p35} keybox).
+
+% 자산: [E-001 참문제=비선형Volterra(Markov)·동결0차=가해기준] [E-002 1차ratio 닫힌형·등가국소 변계수선형·동결극한 정확회수] [E-003 P3-5 5항 서지·위치·구조·매핑·가정차] [E-004 타당성 ε=2χd(Ω/RT)Δξsupp=Picard수축률·논문(i)(ii)(iii) 1:1·열화 warnbox] [E-005 전달함수 H=1/(1+iωL_V) 저역통과·기기응답·1차=공간변조] [E-006 구현 대응지도·동결 bit-exact fallback] [E-007 적용불가 I·III 서두 warnbox] [E-008 정직프레임: 계산절감 아님·분석닫힘+증명서]
