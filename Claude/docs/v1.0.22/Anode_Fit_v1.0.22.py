@@ -972,6 +972,354 @@ GRAPHITE_STAGING_LIT = [
 
 
 # ============================================================================
+# R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.22 §3.5 doc-leads 요구명세)
+#   근거 절: §3.3 eq:blend-balance(공통-μ 이중합 전하 보존·음함수 U_oc)·eq:blend-dqdv(dQ/dV =
+#     C_bg + host 이중합)·eq:blend-limit(f_Si→0 흑연 회수) / §3.5 eq:si-code-bitexact(f_Si=0
+#     bit-exact 계약)·ssec:code-synth(용량 배분·공통 V_n·C_bg 전극 1회)·ssec:code-caseset(si_case
+#     셋·SiOₓ 공백)·G1/G2/G3 게이트·GS-1/GS-2 코드 경계 / §3.2 tab:si-cases(tier 명기 시연값) /
+#     §notation(f_Si·m_Si·Q_gr/Q_Si/Q·C_bg 전극 단위·si_case).
+#   설계 = 합성(composition): 두 host 인스턴스(흑연·Si)를 표준 진입점(equilibrium·dqdv·curve)으로
+#     각각 평가해 공통 전위 축 위에서 더한다(§3.5 ssec:code-synth). 배경 C_bg 는 흑연(다수) host 가
+#     전극 단위로 1회 싣고 Si host 는 C_bg=0 → host 별 이중 가산 금지. f_Si=0 이면 Si 항이 통째로
+#     0 이 되어 반환 배열이 흑연 단독과 부동소수점까지 동일(eq:si-code-bitexact = eq:blend-limit 코드판).
+#   ★기존 코드 경로(GraphiteAnodeDischargeDQDV·LCO·기존 함수·데이터셋·__main__) 무수정 — 본 구획은
+#     전부 추가(additive)다. 기존 게이트(test_gates_v1022.py G1/G2/G3/n(T))는 GREEN 유지.
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Si 케이스 셋 데이터 — tier 명기 시연 초기값(§3.2 tab:si-cases; 신뢰값 아님, 피팅 override 전제)
+#   ★[출처 라벨] LCO_MSMR_LIT 와 동일 지위 — round-trip 피팅 前 placeholder. 케이스 리스트는 곡선
+#     기술 성분이지 물리 상전이 성분이 아니다(§3.2 ssec:si-carry 성분≠상전이 경고). 'U'=평형 중심
+#     [V]·'w'=폭[V](현상학적 자유 피팅 핸들)·'Q'=host 내부 전이 용량 가중(절대 스케일은 f_Si 가 정함).
+#   ★공백 계승(§3.2 srcbox·§3.5 ssec:code-caseset): '확인 필요' 값은 임의로 메우지 않고 placeholder
+#     +주석(⚠ CAUTION)으로 명시 계승한다. SI_CASE_GAPS 가 케이스별 공백을 전건 기록(조용한 날조 금지).
+# ----------------------------------------------------------------------------
+
+# 원소 Si — 두-상 경사·결정화 feature (limthongkul2003 A·obrovac_christensen2004 A·obrovac_chevrier2014 B)
+SI_ELEMENTAL_LIT: List[Dict[str, Any]] = [
+    {   # 상단 경사역 — 평균 전위 0.2–0.5 V(obrovac_chevrier2014, tier-B 리뷰 경유) 범위 내 시연 중심.
+        'U': 0.300, 'w': 0.060, 'Q': 0.60,   # w=비정질 solid-solution 경사 시연폭(자유 피팅)
+    },
+    {   # 하단 경사역 — 깊은 탈리튬 쪽(결정화 Li15Si4 ~50 mV 는 리튬화 feature; 탈리튬 경사 대표값).
+        'U': 0.450, 'w': 0.050, 'Q': 0.40,
+    },
+]
+
+# SiOₓ (SiO) — 비정질 연속 경로 (kitada_sio2019 A·zhang_sio2018 A[용량]); 평균 전위·절대 히스 = 공백
+SIOX_LIT: List[Dict[str, Any]] = [
+    {   # 연속적 비정질 Li_xSi 형성/분해(이산 상전이 없음) — 원소 Si 보다 강화된 경사 → 넓은 단일 전이.
+        # ⚠ CAUTION: 'U'(절대 평균 전위)는 §3.2 표 각주 c 의 '확인 필요' 공백 — 순수 SiOₓ 1차 문헌 mV
+        #   미특정이라 절대값이 없다. 아래는 원소 Si 계열 범위(0.2–0.5 V)에서 취한 tier-C placeholder
+        #   로 신뢰값 아님(임의값 아님 임을 강조 — 계열 범위 앵커). SI_CASE_GAPS['siox'] 가 이 공백을
+        #   전건 기록하고 생성 시 경고를 낸다(조용히 날조하지 않는다).
+        'U': 0.300, 'w': 0.090, 'Q': 1.00,   # U=placeholder(공백)·w=강화 경사 시연폭
+        # ⚠ 히스테리시스 절대 mV(§3.2 각주 f '확인 필요')도 공백 → Omega/gamma 미부여(히스 비활성).
+    },
+]
+
+# Si–C 복합 — 상용급 개형·피크 분리 (andersen_sic2019 A·naboka_sic2021 A) — 최완비 tier-A 케이스
+SIC_LIT: List[Dict[str, Any]] = [
+    {   # 평균 탈리튬화 전위 ~0.4 V(andersen_sic2019, tier-A)를 감싸는 이중 시연 전이(Si 별도 피크
+        'U': 0.300, 'w': 0.050, 'Q': 0.50,   #   분리 관측, naboka_sic2021). 중심·폭은 tier-C 시연.
+    },
+    {
+        'U': 0.420, 'w': 0.050, 'Q': 0.50,
+    },
+    # ⚠ 주의: 산업 폐실리콘 실사용 순환(lee_sic2025)은 서지만 tier-B — 정량값 확인 필요(demo 파라미터
+    #   에는 영향 없음; §3.2 ssec:si-sic).
+]
+
+# 케이스 선택자 → 전이 셋(§3.5 ssec:code-caseset: 'elemental'·'siox'·'sic')
+SI_CASE_SETS: Dict[str, List[Dict[str, Any]]] = {
+    'elemental': SI_ELEMENTAL_LIT,
+    'siox': SIOX_LIT,
+    'sic': SIC_LIT,
+}
+
+# 케이스별 명시 공백('확인 필요') — 전건 기록(§3.2 srcbox·§3.5 ssec:code-caseset; 조용한 날조 금지).
+#   demo 전이 파라미터(U·w)에 실제 영향을 주는 공백만 등재 → 생성 시 경고. 주변부 tier-B 미확정(예:
+#   sic 의 lee_sic2025 순환값)은 demo 파라미터에 무관하므로 주석으로만 남기고 경고에서 제외.
+SI_CASE_GAPS: Dict[str, List[str]] = {
+    'elemental': [],
+    'siox': ['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)',
+             '히스테리시스 절대 mV (미확보 — 표 각주 f)'],
+    'sic': [],
+}
+
+# Si 케이스별 이론/가역 비용량 q_Si [mAh/g] — wt%→f_Si 환산(C-052)용 tier-A 표값(§3.2 tab:si-cases):
+#   원소 Si 1차 가역 ~1000(limthongkul2003)·SiO 이론 1710(zhang_sio2018)·Si–C 1차 충전 3117(andersen_sic2019).
+SI_SPECIFIC_CAPACITY: Dict[str, float] = {
+    'elemental': 1000.0,
+    'siox': 1710.0,
+    'sic': 3117.0,
+}
+
+# 흑연 비용량 [mAh/g] — LiC6 이론값(관례 상수; 본 장 수치 아님 — wt% 환산 편의 기본값, override 가능).
+GRAPHITE_SPECIFIC_CAPACITY: float = 372.0
+
+
+class BlendedAnodeDQDV:
+    """흑연+Si 블렌드(혼합) 음극 dQ/dV — 공통-μ 대정준 반전의 코드판(문건 v1.0.22 §3.3·§3.5).
+
+    흑연 다수에 실리콘 소수를 섞은 혼합 음극은 두 활물질이 한 집전체·한 전해질에서 같은 전위 손잡이
+    (평형에서 μ 하나)를 공유한다. 본 클래스는 이를 기존 흑연 클래스 GraphiteAnodeDischargeDQDV 두
+    인스턴스의 합성(composition)으로 구현한다(§3.5 ssec:code-synth). 관측 미분용량은 두 host 전이
+    기여의 배경 위 선형 합이다(eq:blend-dqdv):
+
+        dQ/dV|_{U_oc} = C_bg + Σ_{host∈{gr,Si}} Σ_j  Q_j^host ξ_j^host (1−ξ_j^host) / w_j^host
+
+    ★설계(합성): 흑연 host 가 전극 배경 C_bg 를 1회 싣고(다수 host = 전극 배경 담지), Si host 는
+      C_bg=0 으로 둔다 → 배경 이중 가산 금지(§3.5 ssec:code-synth). 두 host 를 같은 V 배열(공통 전위
+      축 = 두 host 가 μ 하나를 공유한다는 물리의 코드 표현) 위에서 평가해 더한다.
+    ★하위호환 계약(eq:si-code-bitexact, 최우선): f_Si=0 이면 Si 전이 용량이 통째로 0 이 되어 Si host
+      반환이 순수 0 배열 → 합이 흑연 단독 경로와 부동소수점까지 동일(bit-exact). 이는 eq:blend-limit
+      (f_Si→0 흑연 회수)의 코드판이다(수치 재현이 아니라 식이 같아짐).
+    ★공통-μ 전하 보존(중심식 eq:blend-balance): solve_U_oc 가 두 host 전이를 한 저장조로 묶어
+        Σ_{host} Σ_j Q_j^host ξ_{eq,j}^host(U_oc,T) = Q x̄,   Q = Q_gr + Q_Si,   f_Si = Q_Si/Q
+      를 수치 유일근으로 푼다(§3.1 앵커의 혼합판 — 흑연 단독 반전의 이중합 한 줄 일반화). U_oc 는
+      음함수로 앉는다(정의상 implicit formulation, 논리 공백 아님).
+
+    ⚠ CAUTION — 코드 경계(정직 공백, §3.5 warnbox — 조용히 날조하지 않는다):
+      · GS-1(기계 히스): Si 히스테리시스를 1차원리로 합성하지 않는다. 응력 결합은 선택적
+        si_stress_offset(=Λ_σ·σ_h [V]; 경로 의존 σ_h 는 사용자 입력) 전이 중심 오프셋 훅으로만
+        노출하고, 소성 폐합(plastic loop)은 미구현 → plastic_hysteresis_loop() 이 NotImplementedError.
+      · GS-2(비가산): 합성은 공통-μ 완전 동시반응 1차 근사(평형 층)까지다. 구간별 host 전환·유한
+        율속 비가산 보정은 미구현 → nonadditive_correction() 이 NotImplementedError. G2 스윕 연속성은
+        이 1차 근사 안에서의 연속성 검사임(범위 밖 = 마스터플랜 후속 버전).
+
+    생성자 인자
+    ----------
+    f_Si : float
+        Si 용량 분율 Q_Si/Q ∈ [0,1) — 전하 보존식 내부 변수·코드 토글(§notation). 질량 분율
+        m_Si(wt%)로 선언·스윕하려면 from_wt() 를 쓴다(C-052 환산).
+    si_case : str
+        Si 케이스 선택자 'elemental'|'siox'|'sic'(§3.5 ssec:code-caseset). 각 케이스는 SI_CASE_SETS
+        의 tier 명기 시연 전이 셋을 쓴다(신뢰값 아님 — 피팅 override).
+    graphite_transitions : List[dict] | None
+        흑연 host 전이 셋(기본 None = GRAPHITE_STAGING_LIT). 흑연 단독 경로와 동일 셋이어야 f_Si=0
+        bit-exact 가 성립한다(흑연 Q 는 f_Si 로 재스케일하지 않음 — 아래 용량 배분 주석).
+    si_transitions : List[dict] | None
+        Si host 전이 셋 직접 지정(기본 None = si_case 로 선택).
+    Cbg : float | callable
+        전극 배경 미분용량 — 흑연 host 에 1회만 실린다(§3.5 ssec:code-synth host 중복 가산 금지).
+    si_stress_offset : float | None
+        GS-1 응력 결합 훅 Λ_σ·σ_h [V]. 주면 Si 전이 중심을 그만큼 이동(경로 의존 σ_h 는 사용자
+        책임). 기본 None(오프셋 없음). 소성 폐합은 여전히 미구현(⚠ 위 GS-1).
+    **host_kwargs
+        두 host 공통 생성자 인자(x·Rn·chi·chi_split·use_dH_eff·z_cut·A_cap_RT·seed_* 등) —
+        GraphiteAnodeDischargeDQDV 로 그대로 전달.
+
+    주요 속성
+    --------
+    gr_host, si_host : GraphiteAnodeDischargeDQDV
+        각각 흑연(C_bg 담지)·Si(C_bg=0) host 인스턴스.
+    Q_gr, Q_Si, Q : float
+        흑연·Si·총 용량(Q=Q_gr+Q_Si; f_Si=Q_Si/Q).
+    gaps : List[str]
+        선택 케이스의 명시 공백('확인 필요') 목록(SI_CASE_GAPS).
+    """
+
+    def __init__(self, f_Si: float, si_case: str = 'sic',
+                 graphite_transitions: Optional[List[Dict[str, Any]]] = None,
+                 si_transitions: Optional[List[Dict[str, Any]]] = None,
+                 Cbg: Union[float, Callable] = 0.0,
+                 si_stress_offset: Optional[float] = None,
+                 **host_kwargs: Any) -> None:
+        # (가드) f_Si ∈ [0,1) 용량 분율(§notation). f_Si→1 은 전-Si(흑연 소멸)로 본 스케일 밖이며
+        #   (wt% 기준 [0,0.30] 은 f_Si≈0–0.7 에 대응, §3.3 각주), 상한 배제로 1/(1−f_Si) 발산도 차단.
+        f_Si = _finite_nonneg("f_Si", f_Si)
+        if f_Si >= 1.0:
+            raise ValueError(f"f_Si must be in [0, 1) (capacity fraction); got {f_Si!r}.")
+        self.f_Si = f_Si
+        self.si_case = si_case
+
+        gr_trs = GRAPHITE_STAGING_LIT if graphite_transitions is None else graphite_transitions
+
+        # Si 전이 셋 선택 — 원본 데이터셋 미변조(얕은 복사 후 스케일/오프셋 적용; dict 값은 전부 스칼라).
+        if si_transitions is None:
+            if si_case not in SI_CASE_SETS:
+                raise ValueError(
+                    f"si_case must be one of {sorted(SI_CASE_SETS)}; got {si_case!r}.")
+            si_src = SI_CASE_SETS[si_case]
+        else:
+            si_src = si_transitions
+        si_trs: List[Dict[str, Any]] = [dict(tr) for tr in si_src]
+        self.gaps: List[str] = list(SI_CASE_GAPS.get(si_case, []))
+
+        # ── 공백 경고(조용한 날조 금지, §3.5 ssec:code-caseset) — placeholder 값이 실제로 쓰일 때만 ──
+        if self.gaps and f_Si > 0.0:
+            import warnings
+            warnings.warn(
+                f"[BlendedAnodeDQDV] si_case='{si_case}' 은(는) 확인 필요 공백 보유: "
+                f"{'; '.join(self.gaps)} — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).",
+                stacklevel=2)
+
+        # ── GS-1 응력 결합 훅(선택) — Si 전이 중심 오프셋만(소성 폐합 미구현, ⚠ 클래스 독스트링) ──
+        self.si_stress_offset = si_stress_offset
+        if si_stress_offset is not None:
+            dU = _finite("si_stress_offset", si_stress_offset)
+            for tr in si_trs:
+                if 'U' in tr:
+                    tr['U'] = float(tr['U']) + dU
+                else:  # dH_rxn/dS_rxn 셋이면 중심 이동 ΔU 는 등가 ΔH(−F·ΔU) — 시연 Si 셋은 'U' 사용
+                    tr['dH_rxn'] = float(tr.get('dH_rxn', 0.0)) - F * dU
+
+        # ── 용량 배분(§3.5 ssec:code-synth·eq:blend-balance 정의: Q_Si=f_Si Q, Q_gr=(1−f_Si)Q) ──
+        #   흑연 host 는 native 용량 Q_gr0 를 그대로 지닌다(= Q_gr; f_Si=0 bit-exact 위해 흑연 Q 무재스케일).
+        #   Si host 는 f_Si 로 절대 스케일: Q_Si = [f_Si/(1−f_Si)]·Q_gr0 → Q_Si/(Q_gr0+Q_Si)=f_Si 성립
+        #   (Q=Q_gr0/(1−f_Si)). host 내부 전이 배분 {Q_j^Si} 는 케이스 리스트 가중을 그대로 쓴다.
+        Q_gr0 = float(sum(_finite("Q", tr['Q']) for tr in gr_trs))
+        if Q_gr0 <= 0.0:
+            raise ValueError("sum of graphite transition 'Q' must be > 0.")
+        Q_si0 = float(sum(_finite("Q", tr['Q']) for tr in si_trs))
+        if f_Si == 0.0:
+            si_scale = 0.0
+        else:
+            if Q_si0 <= 0.0:
+                raise ValueError("sum of Si transition 'Q' must be > 0 for f_Si > 0.")
+            si_scale = (f_Si / (1.0 - f_Si)) * (Q_gr0 / Q_si0)
+        for tr in si_trs:
+            tr['Q'] = float(tr['Q']) * si_scale
+        self.Q_gr: float = Q_gr0
+        self.Q_Si: float = float(sum(tr['Q'] for tr in si_trs))   # = [f_Si/(1−f_Si)]·Q_gr0 (또는 0)
+        self.Q: float = self.Q_gr + self.Q_Si
+
+        # ── 두 host 인스턴스(§3.5 ssec:code-synth) — 배경은 흑연 host 만(전극 1회 가산) ──
+        self.Cbg = Cbg
+        self._host_kwargs: Dict[str, Any] = dict(host_kwargs)
+        self.gr_host = GraphiteAnodeDischargeDQDV(gr_trs, Cbg=Cbg, **host_kwargs)
+        self.si_host = GraphiteAnodeDischargeDQDV(si_trs, Cbg=0.0, **host_kwargs)
+
+        # ── 공통-μ 전하 보존(중심식 eq:blend-balance) 전용 pooled host ──
+        #   두 host 전이를 한 저장조로 묶는다(Q>0 만 — f_Si=0 서 흑연 단독과 bracket·근이 bit-exact).
+        #   solve_U_oc 는 C_bg·Rn·chi 무관(U_j·n_j·Q 만 사용)이라 pooled 로 안전 위임.
+        pooled: List[Dict[str, Any]] = ([dict(tr) for tr in gr_trs]
+                                        + [dict(tr) for tr in si_trs if tr['Q'] > 0.0])
+        self._balance_host = GraphiteAnodeDischargeDQDV(pooled, Cbg=0.0, **host_kwargs)
+        self.transitions: List[Dict[str, Any]] = pooled   # 진단/검사용(이중합 지표 (host,j) 의 코드 표현)
+
+    # ---- wt% 선언 진입점(C-052 범위 좌표 규약: 선언·스윕=질량 분율, 내부=용량 분율) ----
+    @classmethod
+    def from_wt(cls, m_Si: float, q_Si: Optional[float] = None,
+                q_gr: float = GRAPHITE_SPECIFIC_CAPACITY,
+                si_case: str = 'sic', **kwargs: Any) -> "BlendedAnodeDQDV":
+        """질량 분율 m_Si(wt%) 선언 → 용량 분율 f_Si 환산 후 생성(C-052, §3.3 각주·§notation).
+
+            f_Si = m_Si q_Si / [ m_Si q_Si + (1−m_Si) q_gr ]     (q = 비용량 [mAh/g])
+
+        선언·스윕은 업계 배합 관행인 질량 분율 기준(기준 범위 m_Si∈[0,0.30] = 0–30 wt%)이고 전하
+        보존식 내부 변수는 용량 분율 f_Si 다. q_Si≫q_gr 라 f_Si 가 wt% 수치보다 크게 앉는다
+        (0–30 wt% ≈ f_Si 0–0.7). wt% 실측과의 대조는 이 환산을 거친다.
+
+        Args:
+            m_Si : Si 질량 분율(0–1; wt%/100). [0,0.30] 이 기준 스윕 범위.
+            q_Si : Si 비용량 [mAh/g]. None 이면 si_case tier-A 표값(SI_SPECIFIC_CAPACITY).
+            q_gr : 흑연 비용량 [mAh/g](기본 372 = LiC6 관례 상수).
+            si_case, **kwargs : 생성자로 전달.
+        Returns:
+            BlendedAnodeDQDV(f_Si, si_case, ...)
+        """
+        m = _finite_nonneg("m_Si", m_Si)
+        if m >= 1.0:
+            raise ValueError(f"m_Si must be in [0, 1) (mass fraction); got {m!r}.")
+        if q_Si is None:
+            q_Si = SI_SPECIFIC_CAPACITY.get(si_case)
+            if q_Si is None:
+                raise ValueError(
+                    f"q_Si required (no default specific capacity for si_case={si_case!r}).")
+        q_Si = _finite_pos("q_Si", q_Si)
+        q_gr = _finite_pos("q_gr", q_gr)
+        num = m * q_Si
+        f_Si = num / (num + (1.0 - m) * q_gr)   # C-052 비용량 환산
+        return cls(f_Si, si_case=si_case, **kwargs)
+
+    # ---- 평형 곡선(|I|→0 기준선) — eq:blend-dqdv 의 |I|→0 판 ----
+    def equilibrium(self, V_n: ScalarOrArray, T: float = 298.15) -> ScalarOrArray:
+        """평형 dQ/dV(|I|→0) — 배경 위 두 host 평형 종의 합(eq:blend-dqdv, |I|→0).
+
+        C_bg 는 흑연 host 가 1회 싣고 Si host(C_bg=0)는 전이 항만 더한다 → 전극 배경 1회 가산.
+        f_Si=0 이면 Si host 가 순수 0 배열이라 흑연 단독 equilibrium 과 bit-exact(eq:si-code-bitexact).
+        """
+        return self.gr_host.equilibrium(V_n, T) + self.si_host.equilibrium(V_n, T)
+
+    # ---- 충방전·온도·C-rate dQ/dV — eq:blend-dqdv(관측) ----
+    def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray],
+             I_abs: float, Q_cell: float, s: int = +1) -> ScalarOrArray:
+        """관측 dQ/dV — 두 host 표준 dqdv 의 합(eq:blend-dqdv). 인자·규약은 host dqdv 와 동일.
+
+        두 host 를 같은 V_app 위에서 평가(공통 전위 축)해 더한다. C_bg 는 흑연 host 1회. f_Si=0 서
+        Si 항이 순수 0 → 흑연 단독 dqdv 와 bit-exact. (⚠ GS-2: 이 합은 공통-μ 1차 근사이지 유한
+        율속 비가산 실측이 아니다 — nonadditive_correction() 미구현.)
+        """
+        return (self.gr_host.dqdv(V_app, T, I_abs, Q_cell, s=s)
+                + self.si_host.dqdv(V_app, T, I_abs, Q_cell, s=s))
+
+    # ---- 편의 facade : 실험조건으로 바로 호출 ----
+    def curve(self, V_app: ScalarOrArray, direction: Union[int, str] = "discharge",
+              c_rate: float = 0.0, Q_cell: float = 1.0,
+              T: Union[float, np.ndarray] = 298.15,
+              I_abs: Optional[float] = None) -> ScalarOrArray:
+        """실험조건 → 블렌드 dQ/dV(두 host curve 의 합; 내부는 host dqdv 재사용, 새 물리 X).
+
+        두 host 모두 흑연형(탈리튬화=방전)이라 direction 라벨 환산이 일치한다. f_Si=0 bit-exact 동일.
+        """
+        return (self.gr_host.curve(V_app, direction, c_rate, Q_cell, T, I_abs)
+                + self.si_host.curve(V_app, direction, c_rate, Q_cell, T, I_abs))
+
+    # ---- 공통-μ 전하 보존 반전(중심식 eq:blend-balance) ----
+    def solve_U_oc(self, x_bar: ScalarOrArray, T: float = 298.15,
+                   **kw: Any) -> ScalarOrArray:
+        """공통-μ 전하 보존 음함수(중심식 eq:blend-balance)의 해 U_oc [V].
+
+            Σ_{host} Σ_j Q_j^host ξ_{eq,j}^host(U_oc,T) = Q x̄
+
+        를 수치 유일근으로 푼다 — 두 host 전이를 한 저장조(pooled)로 묶은 흑연 solve_U_oc 의 이중합
+        일반화(요동 양성 유일근 이월). f_Si=0 이면 pooled 가 흑연 전이만이라 흑연 단독 해와 bit-exact.
+        (x_bar 은 총용량 Q=Q_gr+Q_Si 기준 탈리튬 분율. kw 는 host solve_U_oc 로 전달: U_lo/U_hi 등.)
+        """
+        return self._balance_host.solve_U_oc(x_bar, T, **kw)
+
+    # ---- 진단: host 별 배경 제외 기여(겹침 전위 창의 두 봉우리 포갬 확인용, §3.3) ----
+    def host_contributions(self, V_n: ScalarOrArray,
+                           T: float = 298.15) -> Tuple[np.ndarray, np.ndarray]:
+        """(흑연 기여, Si 기여) 배경 제외 평형 종 [dQ/dV]. 합 = equilibrium(V,T) − C_bg.
+
+        C_bg 는 전극 1회 가산이라 여기선 두 host 모두 배경을 빼고 순수 전이 종만 돌려준다 — 저-Si
+        블렌드에서 Si·흑연 피크가 부분 분리로 관측되는 §3.3 겹침 실측 접점 진단용.
+        """
+        V = np.asarray(V_n, dtype=float)
+        bg = (np.asarray(self.Cbg(V), dtype=float) * np.ones_like(V)
+              if callable(self.Cbg) else np.full_like(V, float(self.Cbg)))
+        gr = np.asarray(self.gr_host.equilibrium(V, T), dtype=float) - bg
+        si = np.asarray(self.si_host.equilibrium(V, T), dtype=float)   # Si host C_bg=0
+        return gr, si
+
+    # ---- GS-1 코드 경계(§3.5 warnbox·ssec:si-lc-gap): 소성 히스 폐합 미구현 ----
+    def plastic_hysteresis_loop(self, *args: Any, **kwargs: Any) -> None:
+        """⚠ 미구현(정직 공백 GS-1). Si 소성(응력 이력) 히스테리시스 폐합은 본 블렌드 골격 밖이다.
+
+        응력 결합은 선택적 si_stress_offset(=Λ_σ·σ_h) 전이 중심 오프셋 훅으로만 노출한다(생성자).
+        경로 의존 소성 유동·이력 폐합은 평형 대정준 반전 밖의 새 물리(GS-1)이며, 조용히 날조하지
+        않기 위해 명시적으로 미구현으로 둔다.
+        """
+        raise NotImplementedError(
+            "GS-1: Si 소성 히스테리시스 폐합 미구현(범위 밖). 응력 결합은 si_stress_offset 훅만 "
+            "노출 — §3.5 warnbox·ssec:si-lc-gap.")
+
+    # ---- GS-2 코드 경계(§3.5 warnbox·ssec:si-blend-gs2): 유한 율속 비가산 미구현 ----
+    def nonadditive_correction(self, *args: Any, **kwargs: Any) -> None:
+        """⚠ 미구현(정직 공백 GS-2). 구간별 host 전환·유한 율속 비가산 보정은 본 골격 밖이다.
+
+        본 합성은 공통-μ 완전 동시반응 1차 근사(평형 층)까지다 — 유한 율속에서 우세 반응 host 가
+        SoC 구간별로 전환되고 혼합 dQ/dV 가 f_Si-가중 단순합에서 벗어나는 비가산은 동역학 층의 별도
+        하위 모형(범위 밖)이다. 조용한 날조 금지로 명시적 미구현.
+        """
+        raise NotImplementedError(
+            "GS-2: 유한 율속 host 전환·비가산 보정 미구현(범위 밖). 합성은 공통-μ 1차 근사까지 "
+            "— §3.5 warnbox·ssec:si-blend-gs2.")
+
+
+# ============================================================================
 # 작동 검증 — 충전/방전 × C-rate × 온도 × T(V) (알파: 논리·실행·유한 확인)
 #   ※ print 는 ASCII 안전 라벨(콘솔 cp949 등 비UTF 환경에서도 실행 보장).
 # ============================================================================

@@ -20,6 +20,18 @@
 [부록 — n(T) 전파 증빙(ch1_appB)] n_T1 부재=상수 n bit-exact(값 수준)·발효 시
   ∂w/∂T=(R/F)(n(T)+T·n_T1) 해석=수치 일치·n_T1≠0 round-trip 정합.
 
+[R6 블렌드 게이트 — 문건 §3.5 doc-leads 요구명세(BlendedAnodeDQDV)] ★위 G1/G2/G3 과 별개 번호계다
+  (혼동 금지 — 위는 v1.0.19 하위호환/B.2 회귀/θ_E; 아래는 §3.5 블렌드 G1/G2/G3):
+  · R6-G1(bit-exact): f_Si=0 에서 BlendedAnodeDQDV ≡ GraphiteAnodeDischargeDQDV 부동소수점 동일
+    (equilibrium·dqdv(dis/chg×C-rate)·curve·solve_U_oc 전 경로 np.array_equal; eq:si-code-bitexact)
+    + 발효(f_Si=0.3 이 곡선을 실제로 바꿈).
+  · R6-G2(스윕 연속성): m_Si∈(0,0.30] wt% 균일 그리드(f_Si=C-052 환산)에서 인접 스윕 점 간 곡선
+    sup-편차가 (i) 전부 유한 (ii) 점프 없음(max/mean < 5) (iii) 그리드 2배 세분 시 최대 스텝 ~½
+    (Lipschitz 연속의 수치 서명; 불연속이면 세분화에도 안 줄어듦) — 공통-μ 1차 근사 안의 연속성.
+  · R6-G3(용량 보존): 평형 산출 ∫(dQ/dV−C_bg)dV = Q_gr+Q_Si 가 f_Si 전 구간 성립. 검사 창 = 전
+    전이 U_j±k·w_j(k=20), 잘림 상한 Σ Q_j e^{-k}, 상대 공차 |Δ|/Q ≤ 1e-6.
+  · 커버리지: 3 케이스('elemental'·'siox'·'sic') 구성·실행 + SiOₓ 공백 경고 발효(조용한 날조 금지).
+
 [재현] PYTHONIOENCODING=utf-8 python test_gates_v1020.py
   (v1.0.19 폴더는 읽기 전용 사용 — sys.dont_write_bytecode 로 pyc 미생성.
    G3 변형 모듈 임시 파일 위치는 env ANODEFIT_TMP 지정 가능, 기본 tempfile.)
@@ -42,6 +54,17 @@ G2_FD_ANALYTIC_UVK = 1e-3   # round-trip |FD-해석| < 0.001 µV/K (B.2)
 G2_DERIVA_MVK = 1e-2        # 파생 A 표시 정밀도 ≲ 1e-2 mV/K
 G2_STEP_UVK = 25.0          # 경계 국소 계단 부재: 격자 스텝당 < 25 µV/K
                             # (원 검증 최대 13 µV/K/step; 최소 인접 plateau 간격 52 µV/K 미만)
+
+# --- R6 블렌드 게이트 상수(문건 §3.5 codebox 제안값) ------------------------------
+R6_G2_JUMP_FACTOR = 5.0     # 점프 없음 판정: 인접 스윕 sup-편차 max/mean 상한(연속·매끈 진화 판정)
+R6_G2_REFINE_LO = 0.40     # 그리드 2배 세분 시 최대 스텝 비 하한(Lipschitz 연속 ~0.5)
+R6_G2_REFINE_HI = 0.62     #   상한(불연속이면 세분화에도 ~1.0 유지 → 이 창 밖이면 FAIL)
+R6_G3_K = 20               # 검사 창 여유 배수 k(전 전이 U_j±k·w_j; 잘림 상한 Σ Q_j e^{-k})
+R6_G3_RTOL = 1e-6          # 용량 보존 상대 공차 |∫(dQ/dV−C_bg)dV − Q|/Q
+R6_G3_NPTS = 400001        # 구적 격자점(창 폭에 대해 w≫ΔV — 사다리꼴 잘림·구적 오차 ≪ 공차)
+
+# np.trapz 는 numpy 2.0 에서 np.trapezoid 로 개명 — 버전 무관 안전 별칭.
+_trapz = getattr(np, "trapezoid", None) or getattr(np, "trapz")
 
 
 def load(path, name):
@@ -408,6 +431,174 @@ def check_nT(m):
     return ok
 
 
+# ============================================================================
+# R6 블렌드 게이트 — BlendedAnodeDQDV (문건 §3.5 doc-leads 요구명세)
+#   ★번호계 주의(P3 항목 7): 아래 R6-G1/G2/G3 은 문건 §3.5 codebox 의 블렌드 게이트로, 위쪽
+#     G1/G2/G3(v1.0.19 하위호환·B.2 회귀·θ_E bit-exact)과 이름만 같을 뿐 별개다.
+# ============================================================================
+def gate_R6_G1(m):
+    """R6-G1: f_Si=0 에서 흑연 단독과 부동소수점 동일(eq:si-code-bitexact)."""
+    print("=" * 74)
+    print("R6-G1 (blend): f_Si=0 bit-exact vs graphite-only  (eq:si-code-bitexact)")
+    V = np.linspace(0.03, 0.55, 1200)          # 흑연~Si 전위대 포함
+    xg = np.linspace(0.05, 0.95, 91)
+    kw = dict(x=0.5, Rn=0.01, use_dH_eff=True)  # 흑연 단독 회귀 조건과 동일
+    gr = m.GraphiteAnodeDischargeDQDV(m.GRAPHITE_STAGING_LIT, Cbg=0.05, **kw)
+    bl = m.BlendedAnodeDQDV(0.0, si_case='sic',
+                            graphite_transitions=m.GRAPHITE_STAGING_LIT, Cbg=0.05, **kw)
+    checks = [("equilibrium",
+               np.asarray(gr.equilibrium(V, 298.15)),
+               np.asarray(bl.equilibrium(V, 298.15)))]
+    for s, nm in [(+1, "dis"), (-1, "chg")]:
+        for I in (0.02, 0.2, 1.0):
+            checks.append((f"dqdv_{nm}_I{I}",
+                           np.asarray(gr.dqdv(V, 298.15, I, 1.0, s=s)),
+                           np.asarray(bl.dqdv(V, 298.15, I, 1.0, s=s))))
+    checks.append(("curve_dis_0.2C",
+                   np.asarray(gr.curve(V, direction="discharge", c_rate=0.2, Q_cell=1.0, T=298.15)),
+                   np.asarray(bl.curve(V, direction="discharge", c_rate=0.2, Q_cell=1.0, T=298.15))))
+    checks.append(("solve_U_oc",
+                   np.asarray(gr.solve_U_oc(xg, 298.15)),
+                   np.asarray(bl.solve_U_oc(xg, 298.15))))
+    ok = True
+    worst = 0.0
+    for nm, a, b in checks:
+        eq = np.array_equal(a, b)
+        d = float(np.max(np.abs(a - b))) if a.shape == b.shape else np.inf
+        worst = max(worst, d)
+        ok &= eq
+        print(f"  {nm:16s} array_equal={eq}  max|diff|={d:.3e}")
+    # 발효: f_Si>0 이면 Si 항이 실제로 곡선을 바꾼다(무효 no-op 아님을 확인)
+    bl2 = m.BlendedAnodeDQDV(0.3, si_case='sic',
+                             graphite_transitions=m.GRAPHITE_STAGING_LIT, Cbg=0.05, **kw)
+    d_on = float(np.max(np.abs(np.asarray(bl2.equilibrium(V, 298.15))
+                               - np.asarray(gr.equilibrium(V, 298.15)))))
+    q_ok = abs(bl2.Q_Si / bl2.Q - 0.3) < 1e-12   # 용량 배분 Q_Si/Q=f_Si 검산
+    eff = (d_on > 0.0) and q_ok
+    ok &= eff
+    print(f"  effectiveness: f_Si=0.3 changes equilibrium (max|diff|={d_on:.3e}>0) & "
+          f"Q_Si/Q={bl2.Q_Si/bl2.Q:.6f}(=0.3): {eff}")
+    print(f"  R6-G1 RESULT: {'PASS' if ok else 'FAIL'}  (worst bit-diff={worst:.3e})")
+    return ok
+
+
+def gate_R6_G2(m):
+    """R6-G2: m_Si∈(0,0.30] wt% 스윕 곡선 연속성(f_Si=C-052 환산; 공통-μ 1차 근사 안)."""
+    print("=" * 74)
+    print("R6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)")
+    V = np.linspace(-0.1, 0.7, 1600)           # 흑연+Si 전 전이 덮게
+    kw = dict(x=0.5, Rn=0.0, use_dH_eff=True)
+    q_Si = m.SI_SPECIFIC_CAPACITY['sic']       # 3117 mAh/g (tier-A)
+    q_gr = m.GRAPHITE_SPECIFIC_CAPACITY        # 372 mAh/g (관례)
+
+    def sweep(n):
+        ms = np.linspace(0.30 / n, 0.30, n)    # (0,0.30] 균일 그리드
+        C, fS = [], []
+        for mm in ms:
+            bl = m.BlendedAnodeDQDV.from_wt(mm, q_Si=q_Si, q_gr=q_gr,
+                                            si_case='sic', Cbg=0.05, **kw)
+            C.append(np.asarray(bl.equilibrium(V, 298.15), dtype=float))
+            fS.append(bl.f_Si)
+        return np.asarray(fS), np.asarray(C)
+
+    n = 60
+    fS, C = sweep(n)
+    finite = bool(np.all(np.isfinite(C)))
+    D = np.max(np.abs(np.diff(C, axis=0)), axis=1)      # 인접 스윕 점 간 sup-norm 편차
+    Dmax, Dmean = float(np.max(D)), float(np.mean(D))
+    no_jump = finite and (Dmax <= R6_G2_JUMP_FACTOR * Dmean)     # 점프 없음(단일 급증 없음)
+    # 세분화 수렴(연속의 강한 서명): 그리드 2배 → 최대 스텝 ~½(불연속이면 안 줄어듦)
+    _, C2 = sweep(2 * n)
+    _, C4 = sweep(4 * n)
+    D2max = float(np.max(np.max(np.abs(np.diff(C2, axis=0)), axis=1)))
+    D4max = float(np.max(np.max(np.abs(np.diff(C4, axis=0)), axis=1)))
+    r1, r2 = D2max / Dmax, D4max / D2max
+    refine = (R6_G2_REFINE_LO <= r1 <= R6_G2_REFINE_HI
+              and R6_G2_REFINE_LO <= r2 <= R6_G2_REFINE_HI)
+    ok = finite and no_jump and refine
+    print(f"  f_Si range over m_Si∈(0,0.30]: [{fS.min():.4f}, {fS.max():.4f}] (doc: wt%→f_Si≈0–0.7)")
+    print(f"  finite curves: {finite}")
+    print(f"  adjacent sup-diff: max={Dmax:.4e} mean={Dmean:.4e} max/mean={Dmax/Dmean:.2f} "
+          f"(<{R6_G2_JUMP_FACTOR} no-jump): {no_jump}")
+    print(f"  refinement max-step: n={n}:{Dmax:.4e} 2n:{D2max:.4e} 4n:{D4max:.4e}  "
+          f"ratios={r1:.3f},{r2:.3f} (~0.5 Lipschitz): {refine}")
+    print(f"  R6-G2 RESULT: {'PASS' if ok else 'FAIL'}")
+    return ok
+
+
+def gate_R6_G3(m):
+    """R6-G3: 평형 산출 ∫(dQ/dV−C_bg)dV = Q_gr+Q_Si (f_Si 전 구간; eq:blend-dqdv 용량 몫)."""
+    print("=" * 74)
+    print("R6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si")
+    T = 298.15
+    kw = dict(x=0.5, Rn=0.0, use_dH_eff=True)
+    ok = True
+    for f_Si in (0.0, 0.1, 0.3, 0.5):
+        bl = m.BlendedAnodeDQDV(f_Si, si_case='sic',
+                                graphite_transitions=m.GRAPHITE_STAGING_LIT, Cbg=0.05, **kw)
+        # 검사 창 = 전 전이 U_j ± k·w_j 를 덮게(pooled = 흑연 + (Q>0) Si 전이)
+        cs, ws = [], []
+        for tr in bl.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                U = float(m.func_U_j(T, tr['dH_rxn'], tr['dS_rxn']))
+            else:
+                U = float(tr['U'])
+            w = float(m.func_w(T, bl._balance_host._n_factor(tr, T)))
+            cs.append(U)
+            ws.append(w)
+        Vlo = min(c - R6_G3_K * w for c, w in zip(cs, ws))
+        Vhi = max(c + R6_G3_K * w for c, w in zip(cs, ws))
+        V = np.linspace(Vlo, Vhi, R6_G3_NPTS)
+        eq = np.asarray(bl.equilibrium(V, T), dtype=float)
+        bg = (np.asarray(bl.Cbg(V), dtype=float) * np.ones_like(V)
+              if callable(bl.Cbg) else np.full_like(V, float(bl.Cbg)))
+        integ = float(_trapz(eq - bg, V))
+        Q = bl.Q                                   # = Q_gr + Q_Si
+        rel = abs(integ - Q) / Q
+        trunc = sum(abs(tr['Q']) for tr in bl.transitions) * np.exp(-R6_G3_K) / Q
+        hit = rel <= R6_G3_RTOL
+        ok &= hit
+        print(f"  f_Si={f_Si:.2f}: int={integ:.9f} Q={Q:.9f} "
+              f"(Q_gr={bl.Q_gr:.4f},Q_Si={bl.Q_Si:.4f}) rel={rel:.2e} "
+              f"(<={R6_G3_RTOL:.0e}; trunc<={trunc:.1e}) {'OK' if hit else 'FAIL'}")
+    print(f"  R6-G3 RESULT: {'PASS' if ok else 'FAIL'}")
+    return ok
+
+
+def gate_R6_coverage(m):
+    """R6 커버리지: 3 케이스 구성·실행 + SiOₓ 공백 경고 발효(조용한 날조 금지 확인)."""
+    print("=" * 74)
+    print("R6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)")
+    import warnings
+    V = np.linspace(0.0, 0.6, 400)
+    kw = dict(x=0.5, Rn=0.01, use_dH_eff=True)
+    ok = True
+    for case in ('elemental', 'siox', 'sic'):
+        with warnings.catch_warnings(record=True) as wl:
+            warnings.simplefilter("always")
+            bl = m.BlendedAnodeDQDV(0.2, si_case=case, Cbg=0.05, **kw)
+            y = np.asarray(bl.equilibrium(V, 298.15), dtype=float)
+        runs = bool(np.all(np.isfinite(y)))
+        warned = any("확인 필요" in str(w.message) for w in wl)
+        want_warn = (len(m.SI_CASE_GAPS.get(case, [])) > 0)
+        gap_ok = (warned == want_warn)
+        ok &= runs and gap_ok
+        print(f"  si_case={case:9s} finite={runs} gaps={m.SI_CASE_GAPS.get(case, [])!r} "
+              f"warned={warned}(expect {want_warn}) {'OK' if runs and gap_ok else 'FAIL'}")
+    # GS-1/GS-2 명시 경계: 요청 시 NotImplementedError(조용한 날조 금지)
+    bl = m.BlendedAnodeDQDV(0.2, si_case='sic', Cbg=0.05, **kw)
+    for meth in ('plastic_hysteresis_loop', 'nonadditive_correction'):
+        try:
+            getattr(bl, meth)()
+            hit = False
+        except NotImplementedError:
+            hit = True
+        ok &= hit
+        print(f"  boundary {meth}() -> NotImplementedError: {hit}")
+    print(f"  R6 coverage RESULT: {'PASS' if ok else 'FAIL'}")
+    return ok
+
+
 def main():
     m19 = load(CODE_V19, "anodefit_v1019")
     m20 = load(CODE_V20, "anodefit_v1020")
@@ -416,11 +607,19 @@ def main():
     g2 = gate_G2(m20)
     g3 = gate_G3(m20)
     nt = check_nT(m20)
+    # R6 블렌드 게이트(문건 §3.5 — 위 G1/G2/G3 과 별개 번호계) — 기존 게이트 전건 GREEN 유지 위에 증축.
+    r6g1 = gate_R6_G1(m20)
+    r6g2 = gate_R6_G2(m20)
+    r6g3 = gate_R6_G3(m20)
+    r6cov = gate_R6_coverage(m20)
     print("=" * 74)
     print(f">>> SUMMARY: G1 {'PASS' if g1 else 'FAIL'} (module max|d|={w_mod:.1e}, "
           f"golden max|d|={w_gold:.1e}, bit-exact={bit}) | G2 {'PASS' if g2 else 'FAIL'} | "
           f"G3 {'PASS' if g3 else 'FAIL'} | n(T) {'PASS' if nt else 'FAIL'}")
-    sys.exit(0 if (g1 and g2 and g3 and nt) else 1)
+    print(f">>> R6 BLEND (§3.5): R6-G1 {'PASS' if r6g1 else 'FAIL'} | R6-G2 {'PASS' if r6g2 else 'FAIL'} | "
+          f"R6-G3 {'PASS' if r6g3 else 'FAIL'} | coverage {'PASS' if r6cov else 'FAIL'}")
+    all_green = g1 and g2 and g3 and nt and r6g1 and r6g2 and r6g3 and r6cov
+    sys.exit(0 if all_green else 1)
 
 
 if __name__ == "__main__":
