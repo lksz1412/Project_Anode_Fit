@@ -1,0 +1,1500 @@
+# -*- coding: utf-8 -*-
+# ============================================================================
+# ★ Anode_Fit  release 버전 = 1.0.21  — 문건 Ch1/Ch2 1.0.21 와 동일 버전·matched
+#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15 → 1.0.16 → 1.0.17 → 1.0.18.1 → 1.0.18.2 → 1.0.19 → 1.0.20 → 1.0.21. 코드·문건 버전 통일.
+#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처. 1.0.16 = 폭 다중도 n 의 온도 함수 n(T) 피팅 지원·가역열 config 항 ∂w/∂T 전파[증판 시점 v1.0.15 승계].
+#    1.0.17 = 문건 register 정련 동반판(코드 물리 무변경 이월). 1.0.18.1 = 이월(코드 무변경). 1.0.18.2 = 제안1 vib Einstein 양자 보정(θ_E additive·미지정 bit-exact). 1.0.19 = Ch1+Ch2 전면 재작성 정합 — x̄→U_oc 전하보존 솔버(eq:implicit)·x̄ 진입점(entropy_coefficient_x·reversible_heat_x)·완전식/단순식 분리 출력(return_terms) 추가[전부 additive, 기존 V_n 경로·물리 로직 무변경].
+#    1.0.21 = 문건 v1.0.21 부록 B(doc-leads 요구명세) 정합 이월 — B.1 x̄ 진입점 3종·B.3 θ_E 하위호환·ch1 부록 B n_j(T)=n_j+n_T1(T−T_ref) 선형 잔여 전부 v1.0.19 승계, 물리·수치 경로 무변경. 회귀 기준 B.2(74.4 mV·−0.204/−0.134/−0.070 mV/K·round-trip·5점 표·파생 A 175점)·G1 하위호환·G3 θ_E bit-exact 는 test_gates_v1021.py 로 전건 수치 재증빙.)
+# ----------------------------------------------------------------------------
+# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.21 (v11_final 기반 계보, 2026-07-17)
+#   [1.0.10 변경] use_w_eff 경로 제거: ξ_eq 폭·분모 w 불일치로 면적보존 깨짐(버그) — w=자유 피팅 파라미터만.
+#   [폭 정합 주의] 전이 폭 w=nRT/F (_n_factor: 'n' 우선 → 없으면 'w' 역산 → 없으면 n=1).
+#     GRAPHITE_STAGING_LIT 는 'n':1.0 보유 → 기본 폭=RT/F≈25.7mV(298K); 'w' 폴백(0.012 등)은
+#     'n' 존재 시 inert. 문건 "w=현상학적 자유 피팅"의 피팅 핸들=n(또는 'n' 제거 시 'w').
+#     dQ/dV 개형 = 정상 종(면적 보존; plot_dqdv.py 실증).
+# ============================================================================
+# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — v11_final (체리픽 통합 + 재검수·보완 최종, 2026-06-29)
+#   v10(체리픽 통합본) 을 adversarial 재검수 후 보완한 최종본(20번째 산출).
+#   재검수 정리: func_U_branch 활성화(인라인 중복 제거)·死변수 U_j_rep 제거·
+#   v_span_floor 인자화 + per-transition override 격리 self-test 추가(회귀 가드).
+#   9건 독립 구현 → 보완(9b) → 2회 검토를 거쳐 master(Opus)가 보완본들의 장점만
+#   체리픽한 10번째 통합본. 베이스 = v04b(6차원 무결함). 추가 흡수:
+#     · 남은 매직넘버 전부 인자화(grid_pad_lo/hi·n_work_min·min_lag_grid_steps)
+#     · per-transition override(z_cut·A_cap_RT·use_dH_eff) — "모든 인자 입력" 완성
+#   v04b 의 χ_d 주입·가드·facade·D1·충전부호·원형보존·포괄검증은 그대로 계승.
+#   (이식금지였던 v09b −σ_d 부호회귀·v08b func 적출/gamma 무조건주입은 채택 안 함.)
+#   ─────────────────────────────────────────────────────────────────────────
+#   v04_opus(6차원 무결함 골격)의 1차 보완본. 충·방전 부호·인자 완전노출·원형
+#   보존·비변조·clean 을 그대로 유지하면서 4가지 강점을 흡수한다(별도 사본; v04 보존):
+#     (A) 교체 가능한 χ_d 규칙 : 방향별 전달계수 χ_d 를 고정 분기 대신 주입 가능한
+#         callable(chi_split)로 노출 — 히스/χ_d 규칙 사용자 교체(기본 = func_chi_d).
+#     (B) 매직넘버 hoist + 유한 가드 : z_cut·A_cap_RT 등 남은 상수를 named 인자로
+#         확정·검증하고, 비유한/음수 입력(T·I·Q_cell·dict 값)을 막는 가드를 둔다.
+#     (C) 편의 facade : curve(q|sto, 방향, C-rate, Q_cell, T) — 실험조건으로 바로 호출
+#         (내부는 기존 dqdv 재사용; C-rate→|I|·방향 문자열→σ_d 환산만).
+#     (D) D1(ΔH_a^eff) 응집 : 분산됐던 χ_d·ΔH_a^eff 산출을 단일 헬퍼로 모음.
+#
+#   [보존] 사용자 원형 함수 그대로(보완·노출만):
+#     func_w · func_U_j · func_ksi_eq · func_L_q · GRAPHITE_STAGING_LIT.
+#
+#   [근거 문건] graphite_ica_ch1_v1.0.21.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
+#     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
+#     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (eq:Uj/func_U_j)
+#     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
+#     · 분기 중심   U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys                (eq:Ubranch)
+#     · 폭          w = nRT/F  — 두-상 전이에선 현상학적 자유 피팅 폭  (eq:wbase/func_w)
+#     · 평형 진행률 ξ_eq = logistic[ s(V_n−U)/w ]                   (eq:xieq/func_ksi_eq)
+#     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:belliden)
+#     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chid)
+#     · 지연 길이   L_q = (|I|h/Q_cell kB T)·e^{(ΔH_a^eff−TΔS_a−χ_d A)/RT}/(1+e^{−A/RT})
+#                   L_V = |dV_n/dq|_qa · L_q                        (eq:Lqfull/eq:LV/func_L_q)
+#     · 유효장벽    ΔH_a^eff = ΔH_a − χ_d·Ω                         (eq:dHeff)
+#     · 꼬리        인과 지수기억 (eq:memory 합성곱) — σ_d 방향                (eq:peakshape)
+#     · 합산        dQ/dV = C_bg + Σ_j Q_j[ 평형 peak − 지연 꼬리 ]   (eq:sum)
+#
+#   [v04 → v04b 변경 요약]
+#     (A) func_chi_d 모듈 함수 신설 + 생성자 chi_split: Callable[[float,int],float]
+#         주입(기본 func_chi_d). _chi_d 가 이를 호출 — 기본 동작 불변, 규칙 교체 가능.
+#     (B) __init__ 가드 : chi/z_cut/A_cap_RT/seed_* 유한·범위 검증(_finite_pos 등).
+#         dqdv·_resolve_lag_length·_build_seed_L_V : T·I·Q_cell·dict 값 유한·음수 가드.
+#     (C) curve(...) facade : C-rate·방향문자열·sto→실험조건 → 내부 dqdv 재사용.
+#     (D) _chi_and_dH_eff(tr, σ_d) 단일 헬퍼로 χ_d·ΔH_a^eff 응집(_resolve_lag_length 정리).
+# ============================================================================
+from __future__ import annotations
+import numpy as np
+from typing import Dict, Any, List, Union, Callable, Optional, Tuple
+
+R  = 8.314
+F  = 96485.0
+kB = 1.380649e-23
+h  = 6.62607015e-34
+
+# 수치 해상 가드(D6): 지수 기억 커널이 한 격자 간격 안에서 e^{−a} 로 완전히 소진되는
+#   (a=char_h/L_V > 이 상한) 미해상 영역에서만 (ξ_eq−ξ_lag)/L_V 가 0/0 로 불안정하다 →
+#   그 영역은 평형 종(L_V→0 해석적 극한, Ch1 eq:tail-limit)을 직접 쓴다. 이 상한에서
+#   기억식(유한차분 Δξ/h)과 평형 종이 이미 일치하므로 불연속이 없다. 물리 분기가 아니라
+#   부동소수 안전장치 — 해상 가능한 꼬리는 격자 밀도와 무관하게 항상 기억식으로 계산한다.
+_LAG_RESOLVE_DECAY_CAP = 40.0
+
+ScalarOrArray = Union[float, np.ndarray]
+
+
+# ===== 사용자 원형 보존(추출본 그대로 — 1바이트도 변조 X) =====================
+def func_w(T: ScalarOrArray, n: float = 1.0) -> ScalarOrArray:
+    return n * R * T / F
+
+
+def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float) -> ScalarOrArray:
+    return (-dH_rxn + T * dS_rxn) / F
+
+
+def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray,
+                n: float = 1.0, s: int = 1) -> ScalarOrArray:
+    z = s * (V_n - U) / func_w(T, n)
+    return np.where(z >= 0, 1.0 / (1.0 + np.exp(-z)), np.exp(z) / (1.0 + np.exp(z)))
+
+
+def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float,
+             x: float, A: float) -> float:
+    if I <= 0:
+        return -np.inf
+    T_attempt = (I / Q_cell) * h / kB
+    dG_a = dH_a - T * dS_a
+    ln_Lq = np.log(T_attempt / T) - np.log(1.0 + np.exp(-A / (R * T))) + dG_a / (R * T) - x * A / (R * T)
+    return np.exp(ln_Lq)
+
+
+def _causal_memory_pointwise(V_prog: np.ndarray,
+                             ksi_eq: np.ndarray,
+                             lag_length: float) -> np.ndarray:
+    """인과 기억 적분 ξ_lag(V)=(1/L_V)∫ ξ_eq(u) e^{−(V−u)/L_V} du 의 점별 평가(Ch1 eq:lag).
+
+    V_prog : 진행 방향으로 정렬된 내부 전위(방전 오름차순·충전 내림차순, eq:reversal).
+    ksi_eq : 같은 순서의 평형 진행률.
+    반환   : 같은 순서의 지연 진행률 ξ_lag.
+
+    지수 커널을 구간 [i−1,i] 마다 정확 적분(ξ_eq 구간 선형 가정)한다 — 균일 작업 격자·
+    리샘플 없이 임의 간격의 입력점에서 직접 성립. 간격 h=|ΔV|, a=h/L_V, e=e^{−a} 에서
+        seg = ξ_i(1−e) − (Δξ/a)(1−(1+a)e),   ξ_lag[i] = e·ξ_lag[i−1] + seg
+    (a→0 = 사다리꼴 평균 = 연속 완화 dξ_lag/dV=(ξ_eq−ξ_lag)/L_V; a→∞ = Δξ/h 유한차분
+    도함수 = 평형 종으로 매끈히 수렴.)
+    """
+    n = ksi_eq.size
+    out = np.empty(n, dtype=float)
+    out[0] = float(ksi_eq[0])  # 진행 시작 이전 ξ_eq 상수 근사(하한 자연경계 −∞)
+    for i in range(1, n):
+        h = abs(float(V_prog[i] - V_prog[i - 1]))
+        a = h / lag_length
+        if a < 1e-4:  # 조밀 구간: 사다리꼴 극한(seg 둘째항 파괴적 상쇄·언더플로 회피)
+            out[i] = (1.0 - a) * out[i - 1] + a * 0.5 * (float(ksi_eq[i]) + float(ksi_eq[i - 1]))
+        else:
+            e = float(np.exp(-a))
+            dksi = float(ksi_eq[i]) - float(ksi_eq[i - 1])
+            seg = float(ksi_eq[i]) * (1.0 - e) - (dksi / a) * (1.0 - (1.0 + a) * e)
+            out[i] = e * out[i - 1] + seg
+    return out
+# ===========================================================================
+
+
+# ===== 보완: 분기 중심·유효폭·유효장벽·전달계수 — 인자 전부 노출 ===============
+def func_dU_hys(T: float, Omega: float) -> float:
+    """spinodal 상한 분기 gap ΔU_hys [V] (eq:dUhys).
+    Ω≤2RT 면 0(제곱근 NaN 영역 명시 분기). Ω 만 인자(하드코딩 없음)."""
+    two_RT = 2.0 * R * T
+    if Omega <= two_RT:
+        return 0.0
+    u = np.sqrt(1.0 - two_RT / Omega)
+    return float((2.0 / F) * (Omega * u - two_RT * np.arctanh(u)))
+
+
+def func_U_branch(T: float, U_j: float, Omega: float, gamma: float,
+                  sigma_d: int, h_eta: float = 1.0) -> float:
+    """분기 중심 U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch).
+    partial_hys 를 h_eta(부분 cycle 인자, 기본 1.0)로 노출 — 하드코딩 제거."""
+    return float(U_j + 0.5 * sigma_d * h_eta * gamma * func_dU_hys(T, Omega))
+
+
+
+def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float) -> float:
+    """유효 활성화 엔탈피 ΔH_a^eff = ΔH_a − χ_d·Ω (eq:dHeff).
+    깊은 꼬리에서 상호작용 상수 몫 +Ω 가 장벽에 흡수. 방향별(χ_d)."""
+    return float(dH_a - chi_d * Omega)
+
+
+def func_chi_d(chi: float, sigma_d: int) -> float:
+    """방향별 전달계수 χ_d (eq:chid 합-1): 방전(σ_d≥0) χ_d=χ, 충전 χ_d=1−χ.
+    꼬리 깊은 쪽 거울 대칭(방전 ξ→1 / 충전 ξ→0)으로 역방향 장벽 상수몫이 갈린다.
+    ★기본 규칙 — 생성자 chi_split 인자에 다른 callable 을 주입해 교체 가능
+       (예: 비대칭 분배, 부분 cycle 보정 규칙). 시그니처 = (chi, sigma_d)->χ_d."""
+    return chi if sigma_d >= 0 else (1.0 - chi)
+
+
+# ===== LCO 양극 확장: 전자 엔트로피(MIT) — Ch1 sec:lco-Se, eq:dSegate =============
+EV_TO_J = 1.602176634e-19  # eV→J 다리 (elementary charge; eq:gunit: g_J = g_eV / e_V)
+
+
+def func_dSe_molar(x: ScalarOrArray, T: float,
+                   g_max_eV: float, x_MIT: float, dx_MIT: float) -> ScalarOrArray:
+    """부분몰 전자 엔트로피 ΔS_e(x,T) [J/(mol·K)] — MIT 게이트형(Ch1 eq:dSegate;
+    몰당 환산·게이트 대입형은 eq:dSemolar·eq:ggate).
+
+    금속-절연체 전이(MIT) 창 안에서 상태밀도 g(E_F) 가 급변하며 부분몰 전자 엔트로피가
+    골(음의 피크)을 이룬다. σ=1/(1+exp(−(x−x_MIT)/dx_MIT)) 로 창을 열고 σ(1−σ) 게이트:
+        ΔS_e = −(π²/3)·R·(k_B·T/e_V)·(g_max_eV/dx_MIT)·σ(1−σ)
+    ★단위 3중 가드: 부호 leading −(삽입 시 g 감소, Ch1 규약 ΔS_e<0) · ÷e_V(eV⁻¹→J⁻¹,
+      곱하면 ~4e37배 오류) · 몰당 R·k_B(자리당 k_B² 아님; N_A k_B²=R k_B). 검산:
+      g_max_eV=13·dx_MIT=0.05·T=298 → 골 깊이 ≈ −45.7 J/mol/K (Ch1 검증값 −46 정합).
+    x-의존 골이나 U_j(T) 온도이동에만 작용(면적·폭 불변, Ch1 sec:lco-decomp).
+    """
+    z = (np.asarray(x, dtype=float) - x_MIT) / dx_MIT
+    sig = 1.0 / (1.0 + np.exp(-z))
+    gate = sig * (1.0 - sig)
+    return -(np.pi**2 / 3.0) * R * (kB * T / EV_TO_J) * (g_max_eV / dx_MIT) * gate
+
+
+# --- (B) 입력 가드 헬퍼 — 비유한/음수 차단(named, 작은 단위) ------------------
+def _finite(name: str, value: float) -> float:
+    """유한성 가드. NaN/±inf 면 ValueError(메시지에 인자명)."""
+    v = float(value)
+    if not np.isfinite(v):
+        raise ValueError(f"{name} must be finite (got {value!r}).")
+    return v
+
+
+def _finite_pos(name: str, value: float) -> float:
+    """유한 + 양수 가드(>0). 폭·용량·온도 같은 분모/지수 인자용."""
+    v = _finite(name, value)
+    if v <= 0.0:
+        raise ValueError(f"{name} must be > 0 (got {v!r}).")
+    return v
+
+
+def _finite_nonneg(name: str, value: float) -> float:
+    """유한 + 비음수 가드(≥0). |I|·저항 같은 크기 인자용."""
+    v = _finite(name, value)
+    if v < 0.0:
+        raise ValueError(f"{name} must be >= 0 (got {v!r}).")
+    return v
+# ===========================================================================
+
+
+class GraphiteAnodeDischargeDQDV:
+    """흑연 음극 dQ/dV 물리 모델 — 충전·방전·온도·C-rate 작동.
+
+    [인자 노출 원칙] 커브식의 모든 기호 = 코드 입력. 전이 dict 키 또는
+    생성자/호출 인자. 내부 하드코딩 상수는 없다(전부 기본값+override).
+
+    생성자 인자
+    ----------
+    transitions : List[dict]
+        전이별 파라미터. 키:
+          U | (dH_rxn, dS_rxn) : 평형 중심 [V] 또는 열역학 환산
+          w | n                : 폭 [V] 또는 다중도(없으면 1)
+          Q                    : 전이 용량(전하) 가중
+          Omega, gamma         : 정규용액 상호작용 [J/mol]·분기 축소 인자(히스)
+          dH_a, dS_a           : 활성화 엔탈피·엔트로피 [J/mol]·[J/mol/K] (동역학)
+          dVdq_qa              : 컷점 OCV 기울기 |dV/dq| [V] (L_q→L_V 환산)
+          h_eta                : 부분 cycle 인자(기본 1.0)
+          L_V                  : (선택) 지연 길이 직접 지정 [V] — 있으면 동역학 우회
+    x : float                  : 전이상태 분율 위치 χ(방전 기준, 0~1; 기본 0.5)
+    Rn : float                 : 직렬 저항 [Ω] (분극)
+    Cbg : float|callable       : 배경 dQ/dV (상수 또는 V 함수)
+    chi : float|None           : χ 직접 지정(없으면 x 사용)
+    chi_split : callable        : (chi, σ_d)→χ_d 방향별 전달계수 규칙(기본 func_chi_d).
+                                 ★주입 교체 가능 — 히스/χ_d 분배 규칙을 사용자가 바꿈.
+    use_dH_eff : bool          : ΔH_a^eff=ΔH_a−χ_d·Ω 보강 적용(기본 True; eq:dHeff)
+    z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = 미분 종 ξ(1−ξ) 정점 5% 컷)
+    A_cap_RT : float           : 컷 affinity 상한 A ≤ A_cap_RT·RT (기본 4.0)
+    """
+
+    # 탈리튬화에 대응하는 셀 라벨(Ch1 eq:lco-sigmaslot): 음극(흑연) = 방전.
+    #   curve() 의 direction 라벨→σ_d 환산에만 쓰이고, dqdv(s=...) 저수준 경로는 무관.
+    _delith_is_discharge: bool = True
+
+    def __init__(self, transitions: List[Dict[str, Any]], x: float = 0.5,
+                 Rn: float = 0.0, Cbg: Union[float, Callable] = 0.0,
+                 chi: Optional[float] = None,
+                 chi_split: Callable[[float, int], float] = func_chi_d,
+                 use_dH_eff: bool = True,
+                 z_cut: float = 4.357, A_cap_RT: float = 4.0,
+                 seed_T: float = 298.15, seed_I: float = 0.1,
+                 seed_Q_cell: float = 1.0):
+        self.transitions = transitions
+        # (B) 매직넘버·스칼라 인자 유한·범위 가드(생성 시 즉시 fail-fast).
+        self.x = _finite("x", x)
+        self.Rn = _finite_nonneg("Rn", Rn)
+        self.Cbg = Cbg  # float 또는 callable — 호출 시 유한성은 출력에서 검사 X(사용자 책임)
+        self.chi = _finite("chi", chi) if chi is not None else self.x
+        if not callable(chi_split):
+            raise TypeError("chi_split must be callable (chi, sigma_d) -> chi_d.")
+        self.chi_split = chi_split
+        self.use_dH_eff = bool(use_dH_eff)
+        self.z_cut = _finite_pos("z_cut", z_cut)
+        self.A_cap_RT = _finite_pos("A_cap_RT", A_cap_RT)
+
+        # [보완(1)] transition 에 없는 파생 초기값(L_V seed)을 물리로 계산해 채움.
+        #   ★원본 line 81 `self.transitions["L_V"] = self._init_L_V` 는 List 에
+        #     문자열 키 대입이라 TypeError — 그 "파생 초기값 채움" 의도를 살려,
+        #     별도 리스트 self.seed_L_V 에 전이별 seed 값을 계산·저장한다(삭제 X).
+        #   seed 는 대표 조건(seed_T/seed_I/seed_Q_cell, 방전 기준)에서의 L_V —
+        #     dqdv() 가 실제 (T,I,Q_cell) 로 재산출하므로 seed 는 진단·초기값용.
+        self.seed_L_V: List[float] = self._build_seed_L_V(
+            _finite_pos("seed_T", seed_T),
+            _finite_nonneg("seed_I", seed_I),
+            _finite_pos("seed_Q_cell", seed_Q_cell))
+
+    # ---- 보완(1): 파생 초기값(L_V seed) 산출 ------------------------------
+    def _build_seed_L_V(self, T: float, I: float, Q_cell: float) -> List[float]:
+        """전이별 L_V 시작값(seed)을 물리로 계산. 방전(σ_d=+1) 기준."""
+        seeds: List[float] = []
+        for tr in self.transitions:
+            n_j = float(np.asarray(self._n_factor(tr, T)).reshape(-1)[0])
+            seeds.append(self._resolve_lag_length(
+                tr, T, I, Q_cell, n_j, sigma_d=+1))
+        return seeds
+
+    # ---- 폭 다중도 n (선택적 온도 함수 n(T)) -----------------------------
+    def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+        """폭 다중도 n (eq:wbase 의 n_j). 'n' 직접, 또는 'w' 에서 n=w·F/(RT) 역산, 없으면 1.
+
+        ★1.0.16 — 'n' 경로에 선형 온도 함수 n(T) 지원(폭 T-의존 피팅). 전이 dict 에
+        'n_T1'(계수 [1/K], 기본 부재=0=상수 n)·'n_T_ref'(기준온도 [K], 기본 298.15)가 있으면
+        n(T) = n + n_T1·(T − n_T_ref). 폭 w=n(T)·RT/F 가 되어 열적 스케일 위에 잔여 T-의존을
+        얹는다(가역열 config 항은 _dwdT 가 ∂w/∂T 를 정합 전파). 'w'-단독은 T-동결 폭이라 n(T) 미적용."""
+        if tr.get('n_T1') is not None and tr.get('n') is None:
+            raise ValueError("transition 'n_T1' requires 'n' (n(T)=n+n_T1·(T−n_T_ref)).")
+        if tr.get('n') is not None:
+            n0 = _finite("n", tr['n'])
+            n_T1 = tr.get('n_T1')
+            if n_T1 is None:
+                return n0
+            n_T1 = _finite("n_T1", n_T1)
+            T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
+            return n0 + n_T1 * (np.asarray(T, dtype=float) - T_ref)
+        if tr.get('w') is not None:
+            return tr['w'] * F / (R * T)
+        return 1.0
+
+    # ---- 폭 w (자유 피팅 파라미터: w|n 직접 지정, 없으면 n=1) ----------------
+    def _width(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+        """전이 폭 w [V] = nRT/F(=func_w, eq:wbase). w|n 직접 지정 우선, 없으면 n=1.
+        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)
+        ★1.0.16 — n(T) 도입으로 폭이 음/영이 될 수 있어(n(T)≤0) w>0 fail-fast 가드."""
+        w = func_w(T, self._n_factor(tr, T))
+        if not np.all(np.asarray(w, dtype=float) > 0.0):
+            raise ValueError("width w=n(T)·RT/F must be > 0 (n(T)≤0 at some T — check n/n_T1/n_T_ref).")
+        return w
+
+    # ---- ∂w/∂T (가역열 config 항 계수; n(T) 정합 전파) -------------------
+    def _dwdT(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+        """봉우리 폭의 온도 미분 ∂w_j/∂T [V/K] — 가역열 config 항 계수(Ch2 eq:dxidT 둘째 조각).
+
+        열적 폭 w=n(T)·RT/F 이므로 ∂w/∂T = (R/F)·d[n(T)·T]/dT = (R/F)·(n(T) + T·n_T1).
+        상수 n(n_T1=0): (R/F)·n = n·R/F (1.0.15 형과 bit-exact). 'w'-단독·기본 = T-동결 → 0."""
+        if tr.get('n') is None:
+            return 0.0  # 'w'-단독 또는 기본 = T-동결 폭 취급(단순식 경로)
+        n0 = _finite("n", tr['n'])
+        n_T1 = _finite("n_T1", tr.get('n_T1', 0.0))
+        T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
+        Tv = np.asarray(T, dtype=float)
+        nT = n0 + n_T1 * (Tv - T_ref)
+        return (R / F) * (nT + Tv * n_T1)
+
+    # ---- 제안 1: vib 엔트로피 Einstein 양자 보정 (v1.0.18.2, additive) ----
+    def _vib_theta(self, tr: Dict[str, Any]) -> Optional[float]:
+        """전이의 Einstein 온도 θ_E [K](키 'theta_E'), 부재=None."""
+        te = tr.get('theta_E')
+        if te is None:
+            return None
+        te = _finite("theta_E", te)
+        if te <= 0.0:
+            raise ValueError("transition 'theta_E' (Einstein 온도) must be > 0 K.")
+        return te
+
+    def _S_vib(self, T: ScalarOrArray, theta_E: float) -> ScalarOrArray:
+        """단일 모드 Einstein 진동 엔트로피 [J/(mol·K)]
+           S_vib(T) = R[−ln(1−e^{−x}) + x/(e^x−1)], x=θ_E/T.
+           고온극한(kT≫ℏω): →R[1+ln(T/θ_E)](고전값·현 동결과 정합), 저온: →0."""
+        Tv = np.asarray(T, dtype=float)
+        x = theta_E / Tv
+        return R * (-np.log1p(-np.exp(-x)) + x / np.expm1(x))
+
+    def _vib_dU(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+        """vib 양자 보정의 평형 중심 U_j 이동 [V] — Helmholtz 자유에너지 편차.
+           ΔU_vib(T) = −(1/F)[ΔF_vib(T) − ΔF_vib(T_ref) + S_vib(T_ref)·(T−T_ref)],
+           ΔF_vib(T)=R·T·ln(1−e^{−θ_E/T}), T_ref='theta_E_Tref'(기본 298.15).
+           θ_E 부재 → 0(additive·bit-exact). ∂ΔU_vib/∂T = [S_vib(T)−S_vib(T_ref)]/F
+           = _vib_dS/F 이므로 entropy_coefficient 와 round-trip 정합(∂U/∂T=ΔS(T)/F)."""
+        te = self._vib_theta(tr)
+        if te is None:
+            return 0.0
+        Tref = _finite("theta_E_Tref", tr.get('theta_E_Tref', 298.15))
+        Tv = np.asarray(T, dtype=float)
+        dF = lambda t: R * np.asarray(t, dtype=float) * np.log1p(-np.exp(-te / np.asarray(t, dtype=float)))
+        Sref = float(self._S_vib(Tref, te))
+        return -(dF(Tv) - float(dF(Tref)) + Sref * (Tv - Tref)) / F
+
+    def _vib_dS(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+        """vib 양자 보정의 표준엔트로피 편차 S_vib(T)−S_vib(T_ref) [J/(mol·K)] —
+           entropy_coefficient dS_eff 에 가산(가역열 ∂U/∂T 의 vib T-signature,
+           전자항 ∝T 와 분리 식별용). θ_E 부재 → 0(bit-exact)."""
+        te = self._vib_theta(tr)
+        if te is None:
+            return 0.0
+        Tref = _finite("theta_E_Tref", tr.get('theta_E_Tref', 298.15))
+        return self._S_vib(T, te) - float(self._S_vib(Tref, te))
+
+    # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chid) -----------
+    def _chi_d(self, sigma_d: int) -> float:
+        """전달계수 χ_d = chi_split(χ, σ_d). 기본 func_chi_d(방전 χ / 충전 1−χ).
+        ★규칙 자체는 self.chi_split 로 교체 가능(히스/χ_d 확장성)."""
+        return float(self.chi_split(self.chi, sigma_d))
+
+    # ---- (D) χ_d·ΔH_a^eff 응집 헬퍼 -------------------------------------
+    def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int,
+                        use_dH_eff: Optional[bool] = None) -> Tuple[float, float]:
+        """방향별 (χ_d, ΔH_a^eff) 한 곳에서 산출(eq:chid·eq:dHeff).
+        use_dH_eff=False 면 ΔH_a^eff=ΔH_a(보강 없음). per-tr override(None=전역)."""
+        chi_d = self._chi_d(sigma_d)
+        ud = self.use_dH_eff if use_dH_eff is None else bool(use_dH_eff)
+        dH_a_use = func_dH_a_eff(dH_a, Omega, chi_d) if ud else float(dH_a)
+        return chi_d, dH_a_use
+
+    # ---- 보완(2): 지연 길이 resolver (이름 통일·완성) --------------------
+    def _resolve_lag_length(self, transition: Dict[str, Any], T: float,
+                            I: float, Q_cell: float, n_j: float,
+                            sigma_d: int = +1) -> float:
+        """전이 하나의 지연 길이 L_V [V] (eq:LV: L_V=|dV/dq|_qa·L_q).
+
+        - 'L_V' 직접 지정이 있으면 그대로(피팅·테스트, 동역학 우회).
+        - 없으면 동역학 산출: 컷 affinity A → func_L_q → ×|dVdq_qa|.
+        - I≤0 또는 동역학 키 부재 → 0(평형 종, 꼬리 없음).
+        χ_d·ΔH_a^eff 방향 의존을 sigma_d 로 받는다(충방전 별 꼬리 길이 갈림).
+        (B) 직접 L_V·dict 동역학 값의 유한성 가드 포함."""
+        L_V_override = transition.get('L_V')
+        if L_V_override is not None:
+            v = float(L_V_override)
+            if not np.isfinite(v) or v < 0.0:
+                raise ValueError(f"transition 'L_V' must be finite & >=0 (got {v!r}).")
+            return v
+        if I <= 0 or transition.get('dH_a') is None:
+            return 0.0
+
+        # [원본 _init_L_V 의도 복원] 미정의였던 s/OCV/U/dOCVdsto 를 물리로 연결:
+        #   · A = 꼬리 컷점 affinity(eq:Acut). 원천 dξ_eq/dq 가 정점의 ~5%(z_cut=4.357)로
+        #         떨어지는 컷에서 A=z_cut·n·RT (충·방전 동일 크기), A_cap_RT·RT 상한.
+        #         (원본 `min(s·F·(OCV−U), 4RT)` 의 등가형 — s 는 크기에 안 들어가고
+        #          방향은 아래 χ_d/ΔH_eff 가 받는다. s 를 min 밖에 두면 충전서 음수
+        #          상한이 되던 원본 버그를 정정.)
+        n_safe = abs(_finite("n_j", n_j))
+        z_cut = _finite_pos("z_cut", transition.get('z_cut', self.z_cut))
+        A_cap = _finite_pos("A_cap_RT", transition.get('A_cap_RT', self.A_cap_RT))
+        A = float(min(z_cut * n_safe * R * T, A_cap * R * T))
+
+        dH_a = _finite("dH_a", transition['dH_a'])
+        dS_a = _finite("dS_a", transition.get('dS_a', 0.0))
+        Omega = _finite_nonneg("Omega", transition.get('Omega', 0.0))
+
+        # (D) χ_d·ΔH_a^eff 응집 헬퍼 — eq:dHeff 방향별. use_dH_eff 로 on/off.
+        chi_d, dH_a_use = self._chi_and_dH_eff(
+            dH_a, Omega, sigma_d, transition.get('use_dH_eff'))
+
+        # func_L_q(x=χ_d) — 원형 그대로. x 자리에 방향별 χ_d 주입(충전 χ→1−χ).
+        L_q = func_L_q(T, I, Q_cell, dH_a_use, dS_a, chi_d, A)
+        if not np.isfinite(L_q):
+            return 0.0
+
+        # [_init_L_V 의 dOCVdsto] = 컷점 OCV 기울기 |dV/dq| → 전이 dict 'dVdq_qa'.
+        return abs(_finite("dVdq_qa", transition.get('dVdq_qa', 0.0))) * float(L_q)
+
+    # ---- 평형 곡선(|I|→0 기준선) ----------------------------------------
+    def equilibrium(self, V_n: ScalarOrArray, T: float = 298.15) -> ScalarOrArray:
+        """평형 dQ/dV (|I|→0). 충방전 방향 불변(평형 peak; eq:eqpeak)."""
+        T = _finite_pos("T", T)
+        V = np.asarray(V_n, dtype=float)
+        baseline = (np.asarray(self.Cbg(V), dtype=float) * np.ones_like(V)
+                    if callable(self.Cbg)
+                    else np.full_like(V, float(self.Cbg)))
+        dqdv = baseline
+        for tr in self.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)) + self._vib_dU(tr, T))
+            else:
+                U_j = tr['U']
+            n_j = self._n_factor(tr, T)
+            w = self._width(tr, T)
+            ksi_eq = func_ksi_eq(T, V, U_j, n_j)
+            dqdv = dqdv + tr['Q'] * ksi_eq * (1.0 - ksi_eq) / w
+        return dqdv
+
+    # ---- 보완(3)(4): 충방전·온도·C-rate dQ/dV ---------------------------
+    def dqdv(self,
+             V_app: ScalarOrArray,
+             T: Union[float, np.ndarray],
+             I_abs: float,
+             Q_cell: float,
+             s: int = +1) -> ScalarOrArray:
+        """관측 dQ/dV (eq:vn 분극 → eq:sum 점별 합산).
+
+        V_app  : 인가(측정) 전위 배열 [V] (스칼라 또는 배열). 모든 평가는 이 전위에서
+                 점별(pointwise) — 균일 작업 격자·리샘플·역보간 없음. 스칼라·단일점은
+                 스윕 이력이 없어 꼬리 미정의 → 평형 종.
+        T      : 온도 [K] (스칼라 등온, 또는 V_app 길이 배열 = 비등온 T(V))
+        I_abs  : 전류 크기 |I| (>= 0)
+        Q_cell : 셀 용량(전하) — q=Q/Q_cell 환산 (> 0)
+        s      : 방향 부호 σ_d (방전 +1 / 충전 −1)
+
+        반영: 분극 V_n=V_app−σ_d|I|R_n · 분기중심 U^d(σ_d) · peak 모양 (ξ_eq−ξ_lag)/L_V
+              (Ch1 eq:peakshape; ξ_lag=인과 기억 적분 eq:lag, 방향 반전 eq:reversal).
+              L_V→0 극한은 평형 종 ξ_eq(1−ξ_eq)/w (eq:tail-limit) — 분기 없음, 수치 가드만.
+        (B) I_abs·Q_cell·T 유한·범위 가드.
+        """
+        sigma_d = +1 if s >= 0 else -1
+
+        # (B) 입력 가드 — fail-fast.
+        I_abs = _finite_nonneg("I_abs", I_abs)
+        Q_cell = _finite_pos("Q_cell", Q_cell)
+
+        V_in = np.asarray(V_app, dtype=float)
+        is_scalar = (V_in.ndim == 0)
+        V_in = np.atleast_1d(V_in)
+        if V_in.size == 0:
+            raise ValueError("V_app must be non-empty.")
+        if not np.all(np.isfinite(V_in)):
+            raise ValueError("V_app contains non-finite entries.")
+
+        T_input = np.asarray(T, dtype=float)
+        T_is_array = (T_input.ndim >= 1 and T_input.size > 1)
+        if not np.all(np.isfinite(T_input)) or np.any(T_input <= 0.0):
+            raise ValueError("T must be finite and > 0 (K).")
+        if T_is_array and T_input.size != V_in.size:
+            raise ValueError("T array length must match V_app (per-point T(V)).")
+
+        # 분극: V_n = V_app − σ_d|I|R_n (eq:vn) — 이후 모든 평가는 V_n 위에서 점별.
+        V_n = V_in - sigma_d * I_abs * self.Rn
+        n_pts = V_n.size
+
+        # 진행 방향 정렬(eq:reversal): 인과 기억은 "진행 방향의 과거"를 훑는다.
+        #   방전(σ_d=+1) 진행=V 증가 → 오름차순 / 충전(σ_d=−1) 진행=V 감소 → 내림차순.
+        order = np.argsort(V_n, kind="stable")
+        if sigma_d < 0:
+            order = order[::-1]
+        inv_order = np.empty(n_pts, dtype=int)
+        inv_order[order] = np.arange(n_pts)
+        V_prog = V_n[order]
+        T_prog = (T_input[order] if T_is_array
+                  else np.full(n_pts, float(T_input), dtype=float))
+        T_rep = float(np.mean(T_prog))
+
+        # 배경 미분용량(입력 전위에서 직접).
+        if callable(self.Cbg):
+            bg = np.asarray(self.Cbg(V_n), dtype=float) * np.ones_like(V_n)
+        else:
+            bg = np.full_like(V_n, float(self.Cbg))
+
+        # 수치 해상 가드용 대표 간격(진행 격자의 양수 중앙값).
+        if n_pts >= 2:
+            dV_pos = np.abs(np.diff(V_prog))
+            dV_pos = dV_pos[dV_pos > 0.0]
+            char_h = float(np.median(dV_pos)) if dV_pos.size else 0.0
+        else:
+            char_h = 0.0
+
+        acc_prog = np.zeros(n_pts, dtype=float)  # 진행 순서 전이 합
+        for tr in self.transitions:
+            # 평형 중심 U_j(T) — 배열 T 대응
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                U_j = func_U_j(T_prog, tr['dH_rxn'], self._effective_dS_rxn(tr, T_prog)) + self._vib_dU(tr, T_prog)
+            else:
+                U_j = float(tr['U'])
+
+            # ★히스테리시스 분기 중심 U^d = U + ½·σ_d·h_η·γ·ΔU_hys (eq:Ubranch). γ=0 → 0.
+            Omega = float(tr.get('Omega', 0.0))
+            gamma = float(tr.get('gamma', 0.0))
+            h_eta = float(tr.get('h_eta', 1.0))
+            if gamma != 0.0 and Omega > 0.0:
+                center = U_j + func_U_branch(T_rep, 0.0, Omega, gamma, sigma_d, h_eta)
+            else:
+                center = U_j
+
+            n_j = self._n_factor(tr, T_prog)
+            w = self._width(tr, T_prog)
+            # 평형 진행률 ξ_eq(진행 순서) — 방향 s 는 logistic 부호. 분기중심 center.
+            ksi_eq = np.asarray(func_ksi_eq(T_prog, V_prog, center, n_j, sigma_d), dtype=float)
+
+            # 지연 길이 — 전이당 상수(대표 T_rep·대표 n)로 1회. χ_d·ΔH_eff 방향별.
+            n_rep = float(np.asarray(self._n_factor(tr, T_rep)).reshape(-1)[0])
+            lag_len_V = self._resolve_lag_length(
+                tr, T_rep, I_abs, Q_cell, n_rep, sigma_d)
+
+            # 수치 가드(D6): 스칼라·단일점·비유한·미해상(커널이 한 격자점 안에서 소진,
+            #   a=char_h/L_V > _LAG_RESOLVE_DECAY_CAP) 또는 char_h≤0(전 V 동일) → 평형 종 직접.
+            #   ξ_lag→ξ_eq 인 (ξ_eq−ξ_lag)/L_V 0/0 을 피하는 수치 안전장치. 평형 종은
+            #   (ξ_eq−ξ_lag)/L_V 의 L_V→0 해석적 극한(eq:tail-limit)이지 물리 분기가 아니다.
+            unresolved = (char_h <= 0.0) or (lag_len_V * _LAG_RESOLVE_DECAY_CAP < char_h)
+            if (is_scalar or n_pts < 2 or (not np.isfinite(lag_len_V))
+                    or lag_len_V <= 0.0 or unresolved):
+                peak_shape = ksi_eq * (1.0 - ksi_eq) / w
+            else:
+                # 인과 기억 적분 ξ_lag(진행 방향, eq:lag·eq:reversal) → peak(eq:peakshape).
+                ksi_lag = _causal_memory_pointwise(V_prog, ksi_eq, lag_len_V)
+                peak_shape = (ksi_eq - ksi_lag) / lag_len_V
+
+            acc_prog = acc_prog + tr['Q'] * peak_shape
+
+        # 진행 순서 누적을 입력 순서로 되돌려 배경 위에 점별 합산(역보간 없음).
+        dqdv_out = bg + acc_prog[inv_order]
+        return float(dqdv_out[0]) if is_scalar else dqdv_out
+
+    # ---- (C) 편의 facade : 실험조건으로 바로 호출 ------------------------
+    def curve(self,
+              V_app: ScalarOrArray,
+              direction: Union[int, str] = "discharge",
+              c_rate: float = 0.0,
+              Q_cell: float = 1.0,
+              T: Union[float, np.ndarray] = 298.15,
+              I_abs: Optional[float] = None) -> ScalarOrArray:
+        """실험조건 → dQ/dV 상위 편의 메서드(내부는 dqdv 재사용, 새 물리 X; 환산은 eq:n0map).
+
+        V_app     : 인가 전위 격자 [V]
+        direction : 방향 — 'discharge'/'d'/'dis'/+1  또는 'charge'/'c'/'chg'/−1
+        c_rate    : C-rate [1/h]. |I| = c_rate · Q_cell 로 환산(I_abs 미지정 시).
+        Q_cell    : 셀 용량(전하). c_rate→|I| 환산·q 환산에 공용(> 0).
+        T         : 온도 [K] (scalar 또는 V_app 길이 array — 비등온 T(V)).
+        I_abs     : (선택) 전류 크기 직접 지정. 주면 c_rate 무시(우선).
+
+        반환 = dqdv(V_app, T, |I|, Q_cell, σ_d) 결과(동일 배열/스칼라 규약).
+        """
+        sigma_d = self._direction_to_sigma(direction)
+        if not self._delith_is_discharge:
+            # 전극 인지 환산(Ch1 eq:lco-sigmaslot): σ_d 슬롯의 물리 = 탈리튬화 = +1.
+            # 양극(LCO)은 '충전' 라벨이 탈리튬화이므로 셀 라벨 부호를 뒤집어 먹인다.
+            # 저수준 경로(dqdv 의 s 인자 직접 지정)는 환산 없이 물리 부호 그대로.
+            sigma_d = -sigma_d
+        Q_cell = _finite_pos("Q_cell", Q_cell)
+        if I_abs is None:
+            c = _finite_nonneg("c_rate", c_rate)
+            I_use = c * Q_cell          # |I| = C-rate · Q_cell (전류 = 율 × 용량)
+        else:
+            I_use = _finite_nonneg("I_abs", I_abs)
+        return self.dqdv(V_app, T, I_use, Q_cell, s=sigma_d)
+
+    # ===== 가역 발열 · 전자엔트로피 seam (P4: LCO 양극·발열 확장) ================
+    def _effective_dS_rxn(self, tr: Dict[str, Any],
+                          T: Union[float, np.ndarray]) -> ScalarOrArray:
+        """전이의 유효 표준 엔트로피 ΔS_rxn [J/(mol·K)] — 흑연 base = 항등(값 그대로).
+
+        ★seam: equilibrium·dqdv·entropy_coefficient 세 경로가 공유하는 dS_rxn 진입점.
+        LCO 서브클래스가 전자항 ΔS_e 를 이 한 곳에서 가산 → 세 산출의 T1 전자항 일치
+        (검토1 ⑤ 결함 해소). 흑연은 tr['dS_rxn'] 을 그대로 반환하므로 func_U_j 인자가
+        완전히 동일 → 흑연 곡선 byte 0-diff 보장(가산·부동소수점 연산 자체가 없음).
+        """
+        return tr['dS_rxn']
+
+    def entropy_coefficient(self, V_n: ScalarOrArray,
+                            T: Union[float, np.ndarray] = 298.15,
+                            return_terms: bool = False
+                            ) -> Union[ScalarOrArray, Dict[str, ScalarOrArray]]:
+        """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.8 keybox 종합식 eq:complete).
+
+        관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
+        ★config 항 계수 = ∂w_j/∂T = n_j·R/F (v1.0.14 R2 정정 — 구판은 R/F 로 n_j=1 특수형;
+          기본 데이터셋 n_j=1.0 에서는 수치 동일(bit-exact), n_j≠1 피팅 시에만 발현).
+        ★config 항은 폭의 열적 서식 w=nRT/F('n' 키 경로) 전제 — 'w'-단독 전이는 폭이
+          T-동결(∂w/∂T=0)이라 config 항을 가산하지 않는다(단순식이 옳음, Ch2 파생 A srcbox).
+        첫 항 = 봉우리 중심 표준 엔트로피 ΔS⁰_j/F(seam 경유 = LCO 전자항 포함;
+        LCO 개별 전이의 이 관계식은 eq:lco-dUdT), 둘째 항 =
+        봉우리 내부 configurational 분포항. ★dqdv 곡선은 이 config 항을 넣지 않는다(폭
+        w 가 이미 담음, Ch2 파생 B) — q_rev 경로만 명시 가산한다. 두 경로는 같은 물리의
+        다른 산출(직교; 이중계산 아님). 평형 진행률 ξ_eq(|I|→0) 기준. 히스 분기평균 가역열
+        (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
+        전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
+        ★v1.0.19 — return_terms=True 면 {'complete','simple','config'} dict 반환:
+          complete = 기본 반환과 동일(완전식 eq:complete), simple = 중심값만의 단순식
+          (eq:weighted, config 항 제외), config = complete − simple(봉우리 내부 분포 몫).
+          기본 return_terms=False 의 반환·수치는 불변(순수 additive). Ch2 §2.8(c)·부록 B.2
+          분해 −0.204 = −0.134 + (−0.070) mV/K 의 코드 대응 — 지배 두-상 config 몫이
+          다온도 round-trip 으로 확정되기 전까지 단순식이 보수적 기준(B.4)이라 분리 제공.
+        """
+        # T: 스칼라(등온) 또는 V_n 길이 배열 T(V)(비등온 — dqdv 와 동일). 각 점 실측 온도.
+        T = np.asarray(T, dtype=float)
+        if not np.all(np.isfinite(T)) or np.any(T <= 0.0):
+            raise ValueError("T must be finite and > 0 (K).")
+        V = np.atleast_1d(np.asarray(V_n, dtype=float))
+        if T.ndim >= 1 and T.size > 1 and T.size != V.size:
+            raise ValueError("T array length must match V_n (per-point T(V)).")
+        num = np.zeros_like(V)
+        num_s = np.zeros_like(V)  # 단순식(중심값만) 분자 — return_terms 분리용(기본 경로 무영향)
+        den = np.zeros_like(V)
+        eps = 1e-12
+        for tr in self.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                dS0 = self._effective_dS_rxn(tr, T)
+                dS_eff = dS0 + self._vib_dS(tr, T)   # 제안1: vib Einstein 편차(θ_E 부재=0=bit-exact)
+                U_j = func_U_j(T, tr['dH_rxn'], dS0) + self._vib_dU(tr, T)
+            else:
+                dS_eff = 0.0
+                U_j = float(tr['U'])
+            n_j = self._n_factor(tr, T)
+            w = self._width(tr, T)
+            xi = np.asarray(func_ksi_eq(T, V, U_j, n_j), dtype=float)
+            g = xi * (1.0 - xi) / w
+            xi_c = np.clip(xi, eps, 1.0 - eps)
+            # config 항 = ∂w_j/∂T · ln[ξ/(1−ξ)] (Ch2 eq:dxidT 둘째 조각). _dwdT 가 열적/n(T)/
+            #   T-동결('w'-단독·기본)을 정합 처리: 상수 n → n·R/F(1.0.15 bit-exact),
+            #   n(T) → (R/F)(n(T)+T·n_T1), 'w'-단독·기본 → 0(단순식).
+            config = self._dwdT(tr, T) * np.log(xi_c / (1.0 - xi_c))
+            Qg = tr['Q'] * g
+            num = num + Qg * (dS_eff / F + config)
+            num_s = num_s + Qg * (dS_eff / F)
+            den = den + Qg
+        dUdT = np.where(den > 0.0, num / np.maximum(den, eps), 0.0)
+        if not return_terms:
+            return dUdT
+        dUdT_s = np.where(den > 0.0, num_s / np.maximum(den, eps), 0.0)
+        return {'complete': dUdT, 'simple': dUdT_s, 'config': dUdT - dUdT_s}
+
+    def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray] = 298.15,
+                        I: float = 1.0) -> ScalarOrArray:
+        """가역 발열 q_rev = −I·T·∂U_oc/∂T [W] (Ch2 eq:qrev, ★T 한 번).
+
+        ∂U_oc/∂T 가 이미 [V/K] 이므로 −I·T·(∂U/∂T) 로 T 는 한 번만 곱한다(T² 금지).
+        방전 I>0: ΔS>0(∂U/∂T>0) → q_rev<0 흡열 / ΔS<0(∂U/∂T<0) → 발열(Ch2 부호규약).
+        ★라벨 층위 주의: 이 '방전(I>0)'은 Bernardi 셀-수지 라벨(흑연 하프셀 = 리튬화)로,
+          curve() 의 direction='discharge'(σ_d=+1, 탈리튬화)와 반대 화학 방향이다 —
+          부호는 라벨이 아니라 전류 부호 I 로 읽는다(Ch2 eq:qrev 라벨 층위 주의).
+        """
+        T = np.asarray(T, dtype=float)  # 스칼라/배열 — 유한·양수·길이 검증은 entropy_coefficient 가 수행
+        return -float(I) * T * self.entropy_coefficient(V_n, T)
+
+    # ---- v1.0.19: x̄ 진입점 — 전하보존 음함수(eq:implicit) → U_oc → 가역열 ----
+    def solve_U_oc(self, x_bar: ScalarOrArray, T: float = 298.15,
+                   U_lo: Optional[float] = None, U_hi: Optional[float] = None,
+                   tol: float = 1e-13, max_iter: int = 200) -> ScalarOrArray:
+        """전하 보존 음함수(Ch2 eq:implicit) Σ_j Q_j·ξ_eq,j(U_oc,T) = Q·x̄ 의 해 U_oc [V].
+
+        탈리튬화 분율 x̄(0<x̄<1, Q=Σ_j Q_j 기준)에서 개방회로 전위 U_oc(x̄,T)를 푼다 —
+        Ch2 §2.8 계산 순서(C-106)의 첫 단계·부록 B.1 구현 타깃. 좌변이 U_oc 에 단조증가라
+        유일근이며 순수 이분법으로 충분(외부 의존성 없음). ξ_eq 평가 규약은 equilibrium·
+        entropy_coefficient 와 동일: s=+1·평형 중심 U_j(분기 shift 無, 부록 B.4)·seam
+        _effective_dS_rxn(LCO 전자항 일관)·vib 보정 _vib_dU 포함 — 신규 물리 없음(기존
+        헬퍼 func_U_j·func_ksi_eq 재사용).
+
+        x_bar   : 분율 스칼라 또는 배열(점별 독립 해; dqdv 와 동일 스칼라/배열 규약)
+        T       : 온도 [K] (스칼라 등온 — 음함수는 T 하나에서 푼다)
+        U_lo/U_hi : 이분법 초기 괄호 [V]. 기본 None = 전이 중심 min/max 에
+                    ±max(1 V, 40·w_max) 자동 마진(흑연·LCO 등 전위대 무관 공통) —
+                    z=±40 에서 ξ_eq 가 극한값에 ~e⁻⁴⁰ 로 붙어 괄호가 항상 성립.
+        tol     : U_oc 수렴 괄호 폭 [V] / max_iter : 이분법 최대 반복
+        반환    : U_oc [V] (x_bar 스칼라 → float, 배열 → ndarray)
+        """
+        T = _finite_pos("T", T)
+        x_in = np.asarray(x_bar, dtype=float)
+        is_scalar = (x_in.ndim == 0)
+        x_arr = np.atleast_1d(x_in)
+        if not np.all(np.isfinite(x_arr)) or np.any(x_arr <= 0.0) or np.any(x_arr >= 1.0):
+            raise ValueError("x_bar must be finite and in (0, 1) (delithiation fraction).")
+
+        # 전이별 (Q_j, U_j(T), n_j(T)) 1회 산출 — equilibrium 과 동일 중심/폭 규약.
+        params: List[Tuple[float, float, float]] = []
+        Q_tot = 0.0
+        for tr in self.transitions:
+            if 'dH_rxn' in tr and 'dS_rxn' in tr:
+                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)) + self._vib_dU(tr, T))
+            else:
+                U_j = float(tr['U'])
+            n_j = float(np.asarray(self._n_factor(tr, T)).reshape(-1)[0])
+            Q_j = _finite("Q", tr['Q'])
+            params.append((Q_j, U_j, n_j))
+            Q_tot += Q_j
+        if Q_tot <= 0.0:
+            raise ValueError("sum of transition 'Q' must be > 0 for eq:implicit.")
+
+        # 초기 괄호 — 미지정 시 전이 중심·폭에서 자동(전위대 무관: 흑연 ~0.1 V·LCO ~3.9 V 공통).
+        w_max = max(abs(float(func_w(T, n_j))) for (_, _, n_j) in params)
+        margin = max(1.0, 40.0 * w_max)
+        U_lo = (min(U_j for (_, U_j, _) in params) - margin
+                if U_lo is None else _finite("U_lo", U_lo))
+        U_hi = (max(U_j for (_, U_j, _) in params) + margin
+                if U_hi is None else _finite("U_hi", U_hi))
+        if U_lo >= U_hi:
+            raise ValueError(f"U_lo must be < U_hi (got {U_lo!r} >= {U_hi!r}).")
+
+        def _charge(U_oc: float) -> float:
+            """좌변 Σ_j Q_j·ξ_eq,j(U_oc,T) — s=+1·평형 중심(부록 B.4 입력 규약)."""
+            total = 0.0
+            for Q_j, U_j, n_j in params:
+                total += Q_j * float(func_ksi_eq(T, U_oc, U_j, n_j))
+            return total
+
+        out = np.empty(x_arr.size, dtype=float)
+        for k, xb in enumerate(x_arr):
+            target = Q_tot * float(xb)
+            lo, hi = U_lo, U_hi
+            f_lo = _charge(lo) - target
+            f_hi = _charge(hi) - target
+            if not (f_lo < 0.0 < f_hi):
+                raise ValueError(
+                    f"eq:implicit bracket fail at x_bar={float(xb)!r}: "
+                    f"f(U_lo)={f_lo:.3e}, f(U_hi)={f_hi:.3e} — widen U_lo/U_hi.")
+            for _ in range(int(max_iter)):
+                if (hi - lo) < tol:
+                    break
+                mid = 0.5 * (lo + hi)
+                if _charge(mid) - target < 0.0:
+                    lo = mid
+                else:
+                    hi = mid
+            out[k] = 0.5 * (lo + hi)
+        return float(out[0]) if is_scalar else out
+
+    def entropy_coefficient_x(self, x_bar: ScalarOrArray, T: float = 298.15,
+                              return_terms: bool = False
+                              ) -> Union[ScalarOrArray, Dict[str, ScalarOrArray]]:
+        """x̄ 진입점 가역 엔트로피 계수 ∂U_oc/∂T(x̄) [V/K] — Ch2 §2.8 계산 순서(C-106) 실현.
+
+        eq:implicit 솔버(solve_U_oc)로 U_oc(x̄,T)를 얻고 그 U_oc 를 entropy_coefficient
+        (완전식 eq:complete)에 되먹인다 — 부록 B.1 "x̄ → U_oc → ∂U_oc/∂T → Q̇_rev"
+        파이프라인의 직접 진입점. 기존 V_n 진입점 entropy_coefficient 는 그대로 병행
+        (additive; 내부 재사용, 새 물리 X).
+        return_terms=True 면 {'U_oc','complete','simple','config'} dict — 회귀 기준
+        (부록 B.2): x̄=0.25·298.15 K 에서 U_oc=74.4 mV·완전식 −0.204·단순식 −0.134·
+        config −0.070 mV/K.
+
+        x_bar : 분율 스칼라/배열 · T : 온도 [K] 스칼라(등온).
+        반환  : ∂U_oc/∂T [V/K] (x_bar 스칼라 → float, 배열 → ndarray;
+                return_terms=True 는 dict — 각 값 동일 스칼라/배열 규약).
+        """
+        U_oc = self.solve_U_oc(x_bar, T)
+        res = self.entropy_coefficient(U_oc, T, return_terms=return_terms)
+        x_is_scalar = (np.asarray(x_bar, dtype=float).ndim == 0)
+        if not return_terms:
+            arr = np.atleast_1d(np.asarray(res, dtype=float))
+            return float(arr[0]) if x_is_scalar else arr
+        out: Dict[str, ScalarOrArray] = {'U_oc': U_oc}
+        for key in ('complete', 'simple', 'config'):
+            arr = np.atleast_1d(np.asarray(res[key], dtype=float))
+            out[key] = float(arr[0]) if x_is_scalar else arr
+        return out
+
+    def reversible_heat_x(self, x_bar: ScalarOrArray, T: float = 298.15,
+                          I: float = 1.0) -> ScalarOrArray:
+        """x̄ 진입점 가역 발열 q_rev(x̄) = −I·T·∂U_oc/∂T(x̄) [W] (Ch2 eq:qrev·§2.8(e)).
+
+        eq:implicit 로 U_oc(x̄,T)를 풀어 완전식 ∂U_oc/∂T 에 되먹인 뒤 Bernardi 출구로
+        닫는다(내부는 solve_U_oc·entropy_coefficient 재사용 — 새 물리 X). 부호 규약·라벨
+        층위는 reversible_heat 와 동일(I>0 = Bernardi 셀-수지 방전 라벨, T 는 한 번만).
+        회귀 기준(부록 B.2): x̄=0.25·298.15 K·I=1 → q_rev/I=+60.8 mV(방전 발열),
+        tab:qrev 5점(x̄=0.10~0.90) 발열→흡열 부호 교대.
+        """
+        dUdT = self.entropy_coefficient_x(x_bar, T)
+        return -float(I) * float(T) * dUdT
+
+    def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray,
+                          I: float) -> ScalarOrArray:
+        """비가역 발열(과전압 소산) q_irr = I·(U_oc−V) ≥ 0 [W] — lumped(Ch2 eq:qrev 첫 항).
+
+        ★3분해(I²R_n + I·η_ct + I·η_diff)는 Ch2 에 boxed 식이 없다(eq:qrev 주변 prose·srcbox 는
+        lumped 만 제시) → 본 구현은 lumped 만 둔다. 개별 과전압 분해는 다온도·율의존
+        피팅 단계의 과제(근거 미발견, 옵션)로 분리한다.
+        """
+        return np.asarray(I) * (np.asarray(U_oc, dtype=float) - np.asarray(V, dtype=float))
+
+    @staticmethod
+    def _direction_to_sigma(direction: Union[int, str]) -> int:
+        """방향 입력(문자열/정수)을 σ_d(+1 방전 / −1 충전)로 환산.
+        문자열: discharge/d/dis/+ → +1, charge/c/chg/− → −1 (대소문자 무시).
+        정수/실수: ≥0 → +1, <0 → −1."""
+        if isinstance(direction, str):
+            key = direction.strip().lower()
+            if key in ("discharge", "dis", "d", "+", "+1", "1", "sigma+"):
+                return +1
+            if key in ("charge", "chg", "c", "-", "-1", "sigma-"):
+                return -1
+            raise ValueError(
+                f"direction must be discharge/charge (or +1/-1), got {direction!r}.")
+        val = _finite("direction", direction)
+        return +1 if val >= 0 else -1
+
+
+# ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco-code ==============================
+#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
+#   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화 — 평형·∂U/∂T 경로 한정,
+#   방향 작용처의 슬롯은 탈리튬화=+1 = LCO 충전, eq:lco-sigmaslot; curve 라벨은 자동 환산)·
+#   부호 골격 흑연 동일(Ch1 Part II sec:lco-map·sec:lco-direction). 전자항(MIT)은 'electronic' 전이에
+#   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
+#   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,
+#     피팅 함수의 시연용 초기값). U(298) 는 dH_rxn/dS_rxn 로 목표 전위에 정합.
+LCO_MSMR_LIT = [
+    {   # T1 주 평탄역(MIT, U≈3.930 V) — x≈0.75-0.95, MIT 창 포함 → 전자 엔트로피 골(ΔS_e<0)
+        # ΔH = T_ref·ΔS_eff − F·U — 전자항 ΔS_e(T_ref)≈−45.678 을 흡수해 T_ref 평탄역이
+        #   U 에 놓이게 재보정(측정 OCV=총엔트로피 반영). ΔS_e 는 ∂U/∂T(가역열)에만 작용.
+        # [v1.0.14 루프 B] 전자항을 물리 anchor(T1=MIT, x_MIT≈0.85 — Ch1 tab:lco-staging)
+        #   dict 로 재정렬(구판은 중간 dict x_MIT=0.50 tier-C 시연 배정).
+        #   역산 상수 = 본 모듈 F=96485.0 (CODATA 96485.332 로 역산하면 −391017.4,
+        #   순전파 U(298) +13 μV 어긋남 — 코드 자체 상수 기준으로 정합).
+        'U': 3.930, 'w': 0.030, 'Q': 0.55,
+        'dH_rxn': -391016.1, 'dS_rxn': +6.0, 'n': 1.0,
+        'electronic': True, 'x_center': 0.85,
+        'g_max_eV': 13.0, 'x_MIT': 0.85, 'dx_MIT': 0.05,
+    },
+    {   # order-disorder(≈3.880 V) — x≈0.5 (전자항 흡수 해제로 ΔH 재보정, F=96485.0 역산)
+        'U': 3.880, 'w': 0.024, 'Q': 0.30,
+        'dH_rxn': -375554.4, 'dS_rxn': -4.0, 'n': 1.0,
+    },
+    {   # 고전위 곁가지(≈4.050 V) — x≈0.35
+        'U': 4.050, 'w': 0.028, 'Q': 0.15,
+        'dH_rxn': -391360.0, 'dS_rxn': -2.0, 'n': 1.0,
+    },
+]
+
+
+class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
+    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco-code: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j,
+    f↔+σ_d — 진행률↔진행률 pairing, 원계열 f=F/RT>0 의 재모수화).
+
+    흑연 음극 모델을 그대로 상속한다 — 곡선 골격(분극·히스 분기·평형/꼬리·면적보존
+    DC=1)은 부호까지 동일하다(Ch1 sec:lco-map: 방전 σ_d=+1 은 LCO 엔 리튬화이며
+    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다 — 단
+    이는 평형·∂U/∂T 경로 한정이다. 평형 종은 방향 불변이나, 방향 의존 작용처
+    (분극·분기·꼬리)에 LCO 데이터를 걸 때는 셀 라벨이 아니라 탈리튬화 여부로 s 를
+    준다(충전 곡선↦s=+1 — Ch1 sec:lco-direction 방향 규약, eq:lco-sigmaslot). 현재 LCO_MSMR_LIT 는
+    Omega·dH_a 미배정으로 분기·꼬리 비활성이라 실질 방향 의존은 분극뿐이다.
+    ★전극 인지 환산(v1.0.14 루프 B 구현): 본 클래스는 _delith_is_discharge=False 라
+    curve() 의 direction 셀 라벨('charge'/'discharge')이 자동으로 탈리튬화 부호로
+    환산된다 — LCO 충전 곡선은 direction='charge' 그대로 주면 σ_d=+1 슬롯에 간다.
+    저수준 dqdv(s=...) 는 환산 없이 물리 부호(탈리튬화=+1)를 직접 받는다).
+
+    유일한 확장 = 금속-절연체 전이(MIT)의 전자 엔트로피 항을 seam _effective_dS_rxn
+    한 곳에서 'electronic' 전이의 ΔS_rxn 에 가산하는 것뿐이다(Ch1 sec:lco-code). 이
+    항은 U_j(T) 의 온도이동에만 작용하고 봉우리 면적·폭은 바꾸지 않는다. equilibrium·
+    dqdv·entropy_coefficient(발열) 세 경로가 같은 seam 을 공유하므로 T1 전자항이 세
+    산출에 일관되게 반영된다.
+    """
+
+    # 양극(LCO): 탈리튬화 = '충전' 라벨 (Ch1 eq:lco-sigmaslot — curve() 라벨 환산용)
+    _delith_is_discharge: bool = False
+
+    def _effective_dS_rxn(self, tr: Dict[str, Any],
+                          T: Union[float, np.ndarray]) -> ScalarOrArray:
+        """LCO 유효 표준 엔트로피 = ΔS_rxn + (MIT 전이면) 전자항 ΔS_e
+        (config+vib+electronic 분해; eq:lco-decomp).
+
+        ★전자항은 기준온도 T_ref 에서 동결한 상수 오프셋으로 더한다(단일-기준 근사).
+          → dS_eff 가 T-무관이 되어 U_j(T)=(−ΔH+T·dS_eff)/F 가 T-선형이고
+            ∂U_oc/∂T=dS_eff/F 가 평형 peak(equilibrium·dqdv)와 발열(entropy_coefficient)
+            세 경로에서 factor-2 없이 일관된다(검토1·adversarial 항목7 해소).
+          ΔS_e 의 Sommerfeld T-스케일(∝T)과 eq:U1T2 의 center-T_ref 별도적분(½=a_e/2F
+            인자)은 다온도 round-trip 피팅 단계의 과제로 분리한다(P4 미구현, 라벨).
+        """
+        dS = tr['dS_rxn']
+        if tr.get('electronic'):
+            T_ref = 298.15
+            dS = dS + func_dSe_molar(tr['x_center'], T_ref,
+                                     tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT'])
+        return dS
+
+
+# ===== 전이 초기값 데이터셋 — 사용자 원형 보존(GRAPHITE_STAGING_LIT) ==========
+#   [출처 라벨] 값은 초기값(시작점)일 뿐 — 신뢰값 아님, 사용자 피팅으로 override 전제.
+#   ΔH_rxn/ΔS_rxn = 열역학(U(298) 정합), ΔH_a = DFT 활성화(저SOC→만충 감소 경향),
+#   dVdq_qa = 컷 OCV 기울기(fit), Omega = 정규용액(상분리·히스, 추정).
+GRAPHITE_STAGING_LIT = [
+    {   # stage 4→3 (x=0.08-0.16, U≈0.210 V)
+        'U': 0.210, 'w': 0.020, 'Q': 0.10, 'Omega': 6000.0,     # 폴백(하위호환)
+        'dH_rxn': -11700.0, 'dS_rxn': +29.0, 'n': 1.0,          # 열역학:
+        # ΔH=-11.7 kJ/mol, ΔS=+29.0 J/mol/K
+        'dH_a': 48000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,          # 동역학:
+        # DFT ΔH_a~48kJ/mol(저SOC, Anniés empty); dVdq_qa=컷 OCV기울기[V](fit); dS_a→0
+    },
+    {   # stage 3→2L (x=0.16-0.25, U≈0.140 V)
+        'U': 0.140, 'w': 0.016, 'Q': 0.12, 'Omega': 8000.0,     # 폴백(하위호환)
+        'dH_rxn': -13500.0, 'dS_rxn': 0.0, 'n': 1.0,            # 열역학:
+        # ΔH=-13.5 kJ/mol(=ΔG@ΔS≈0) → U(298)=0.140 정합
+        'dH_a': 46000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,          # 동역학:
+        # DFT ΔH_a~46kJ/mol(중간 stage); dVdq_qa=컷 OCV기울기[V](fit); dS_a→0
+    },
+    {   # stage 2L→2 (x=0.25-0.50, U≈0.120 V)
+        'U': 0.120, 'w': 0.014, 'Q': 0.25, 'Omega': 10000.0,    # 폴백(하위호환)
+        'dH_rxn': -13100.0, 'dS_rxn': -5.0, 'n': 1.0,           # 열역학:
+        # ΔH=-13.1 kJ/mol, ΔS=-5 J/mol/K
+        'dH_a': 44000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,          # 동역학:
+        # DFT ΔH_a~44kJ/mol(stage II, Thinius LiC12 45.3); dVdq_qa=컷 OCV기울기[V](fit); dS_a→0
+    },
+    {   # stage 2→1 (x=0.50-1.00, U≈0.085 V)  — 최대용량/최에너지
+        'U': 0.085, 'w': 0.012, 'Q': 0.50, 'Omega': 13000.0,    # 폴백(하위호환)
+        'dH_rxn': -13000.0, 'dS_rxn': -16.0, 'n': 1.0,          # 열역학:
+        # ΔH=-13.0 kJ/mol, ΔS=-16 J/mol/K
+        'dH_a': 40000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,          # 동역학:
+        # DFT ΔH_a~40kJ/mol(만충 stage I, Thinius LiC6 40.5); dVdq_qa=컷 OCV기울기[V](fit); dS_a→0
+    },
+]
+
+
+# ============================================================================
+# R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.23 §3.5 doc-leads 요구명세)
+#   근거 절: §3.3 eq:blend-balance(공통-μ 이중합 전하 보존·음함수 U_oc)·eq:blend-dqdv(dQ/dV =
+#     C_bg + host 이중합)·eq:blend-limit(f_Si→0 흑연 회수) / §3.5 eq:si-code-bitexact(f_Si=0
+#     bit-exact 계약)·ssec:code-synth(용량 배분·공통 V_n·C_bg 전극 1회)·ssec:code-caseset(si_case
+#     셋·SiOₓ 공백)·G1/G2/G3 게이트·GS-1/GS-2 코드 경계 / §3.2 tab:si-cases(tier 명기 시연값) /
+#     §notation(f_Si·m_Si·Q_gr/Q_Si/Q·C_bg 전극 단위·si_case).
+#   설계 = 합성(composition): 두 host 인스턴스(흑연·Si)를 표준 진입점(equilibrium·dqdv·curve)으로
+#     각각 평가해 공통 전위 축 위에서 더한다(§3.5 ssec:code-synth). 배경 C_bg 는 흑연(다수) host 가
+#     전극 단위로 1회 싣고 Si host 는 C_bg=0 → host 별 이중 가산 금지. f_Si=0 이면 Si 항이 통째로
+#     0 이 되어 반환 배열이 흑연 단독과 부동소수점까지 동일(eq:si-code-bitexact = eq:blend-limit 코드판).
+#   ★기존 코드 경로(GraphiteAnodeDischargeDQDV·LCO·기존 함수·데이터셋·__main__) 무수정 — 본 구획은
+#     전부 추가(additive)다. 기존 게이트(test_gates_v1023.py G1/G2/G3/n(T))는 GREEN 유지.
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Si 케이스 셋 데이터 — tier 명기 시연 초기값(§3.2 tab:si-cases; 신뢰값 아님, 피팅 override 전제)
+#   ★[출처 라벨] LCO_MSMR_LIT 와 동일 지위 — round-trip 피팅 前 placeholder. 케이스 리스트는 곡선
+#     기술 성분이지 물리 상전이 성분이 아니다(§3.2 ssec:si-carry 성분≠상전이 경고). 'U'=평형 중심
+#     [V]·'w'=폭[V](현상학적 자유 피팅 핸들)·'Q'=host 내부 전이 용량 가중(절대 스케일은 f_Si 가 정함).
+#   ★공백 계승(§3.2 srcbox·§3.5 ssec:code-caseset): '확인 필요' 값은 임의로 메우지 않고 placeholder
+#     +주석(⚠ CAUTION)으로 명시 계승한다. SI_CASE_GAPS 가 케이스별 공백을 전건 기록(조용한 날조 금지).
+# ----------------------------------------------------------------------------
+
+# 원소 Si — 두-상 경사·결정화 feature (limthongkul2003 A·obrovac_christensen2004 A·obrovac_chevrier2014 B)
+SI_ELEMENTAL_LIT: List[Dict[str, Any]] = [
+    {   # 상단 경사역 — 평균 전위 0.2–0.5 V(obrovac_chevrier2014, tier-B 리뷰 경유) 범위 내 시연 중심.
+        'U': 0.300, 'w': 0.060, 'Q': 0.60,   # w=비정질 solid-solution 경사 시연폭(자유 피팅)
+    },
+    {   # 하단 경사역 — 깊은 탈리튬 쪽(결정화 Li15Si4 ~50 mV 는 리튬화 feature; 탈리튬 경사 대표값).
+        'U': 0.450, 'w': 0.050, 'Q': 0.40,
+    },
+]
+
+# SiOₓ (SiO) — 비정질 연속 경로 (kitada_sio2019 A·zhang_sio2018 A[용량]); 평균 전위·절대 히스 = 공백
+SIOX_LIT: List[Dict[str, Any]] = [
+    {   # 연속적 비정질 Li_xSi 형성/분해(이산 상전이 없음) — 원소 Si 보다 강화된 경사 → 넓은 단일 전이.
+        # ⚠ CAUTION: 'U'(절대 평균 전위)는 §3.2 표 각주 c 의 '확인 필요' 공백 — 순수 SiOₓ 1차 문헌 mV
+        #   미특정이라 절대값이 없다. 아래는 원소 Si 계열 범위(0.2–0.5 V)에서 취한 tier-C placeholder
+        #   로 신뢰값 아님(임의값 아님 임을 강조 — 계열 범위 앵커). SI_CASE_GAPS['siox'] 가 이 공백을
+        #   전건 기록하고 생성 시 경고를 낸다(조용히 날조하지 않는다).
+        'U': 0.300, 'w': 0.090, 'Q': 1.00,   # U=placeholder(공백)·w=강화 경사 시연폭
+        # ⚠ 히스테리시스 절대 mV(§3.2 각주 f '확인 필요')도 공백 → Omega/gamma 미부여(히스 비활성).
+    },
+]
+
+# Si–C 복합 — 상용급 개형·피크 분리 (andersen_sic2019 A·naboka_sic2021 A) — 최완비 tier-A 케이스
+SIC_LIT: List[Dict[str, Any]] = [
+    {   # 평균 탈리튬화 전위 ~0.4 V(andersen_sic2019, tier-A)를 감싸는 이중 시연 전이(Si 별도 피크
+        'U': 0.300, 'w': 0.050, 'Q': 0.50,   #   분리 관측, naboka_sic2021). 중심·폭은 tier-C 시연.
+    },
+    {
+        'U': 0.420, 'w': 0.050, 'Q': 0.50,
+    },
+    # ⚠ 주의: 산업 폐실리콘 실사용 순환(lee_sic2025)은 서지만 tier-B — 정량값 확인 필요(demo 파라미터
+    #   에는 영향 없음; §3.2 ssec:si-sic).
+]
+
+# 케이스 선택자 → 전이 셋(§3.5 ssec:code-caseset: 'elemental'·'siox'·'sic')
+SI_CASE_SETS: Dict[str, List[Dict[str, Any]]] = {
+    'elemental': SI_ELEMENTAL_LIT,
+    'siox': SIOX_LIT,
+    'sic': SIC_LIT,
+}
+
+# 케이스별 명시 공백('확인 필요') — 전건 기록(§3.2 srcbox·§3.5 ssec:code-caseset; 조용한 날조 금지).
+#   demo 전이 파라미터(U·w)에 실제 영향을 주는 공백만 등재 → 생성 시 경고. 주변부 tier-B 미확정(예:
+#   sic 의 lee_sic2025 순환값)은 demo 파라미터에 무관하므로 주석으로만 남기고 경고에서 제외.
+SI_CASE_GAPS: Dict[str, List[str]] = {
+    'elemental': [],
+    'siox': ['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)',
+             '히스테리시스 절대 mV (미확보 — 표 각주 f)'],
+    'sic': [],
+}
+
+# Si 케이스별 이론/가역 비용량 q_Si [mAh/g] — wt%→f_Si 환산(C-052)용 tier-A 표값(§3.2 tab:si-cases):
+#   원소 Si 1차 가역 ~1000(limthongkul2003)·SiO 이론 1710(zhang_sio2018)·Si–C 1차 충전 3117(andersen_sic2019).
+SI_SPECIFIC_CAPACITY: Dict[str, float] = {
+    'elemental': 1000.0,
+    'siox': 1710.0,
+    'sic': 3117.0,
+}
+
+# 흑연 비용량 [mAh/g] — LiC6 이론값(관례 상수; 본 장 수치 아님 — wt% 환산 편의 기본값, override 가능).
+GRAPHITE_SPECIFIC_CAPACITY: float = 372.0
+
+
+class BlendedAnodeDQDV:
+    """흑연+Si 블렌드(혼합) 음극 dQ/dV — 공통-μ 대정준 반전의 코드판(문건 v1.0.23 §3.3·§3.5).
+
+    흑연 다수에 실리콘 소수를 섞은 혼합 음극은 두 활물질이 한 집전체·한 전해질에서 같은 전위 손잡이
+    (평형에서 μ 하나)를 공유한다. 본 클래스는 이를 기존 흑연 클래스 GraphiteAnodeDischargeDQDV 두
+    인스턴스의 합성(composition)으로 구현한다(§3.5 ssec:code-synth). 관측 미분용량은 두 host 전이
+    기여의 배경 위 선형 합이다(eq:blend-dqdv):
+
+        dQ/dV|_{U_oc} = C_bg + Σ_{host∈{gr,Si}} Σ_j  Q_j^host ξ_j^host (1−ξ_j^host) / w_j^host
+
+    ★설계(합성): 흑연 host 가 전극 배경 C_bg 를 1회 싣고(다수 host = 전극 배경 담지), Si host 는
+      C_bg=0 으로 둔다 → 배경 이중 가산 금지(§3.5 ssec:code-synth). 두 host 를 같은 V 배열(공통 전위
+      축 = 두 host 가 μ 하나를 공유한다는 물리의 코드 표현) 위에서 평가해 더한다.
+    ★하위호환 계약(eq:si-code-bitexact, 최우선): f_Si=0 이면 Si 전이 용량이 통째로 0 이 되어 Si host
+      반환이 순수 0 배열 → 합이 흑연 단독 경로와 부동소수점까지 동일(bit-exact). 이는 eq:blend-limit
+      (f_Si→0 흑연 회수)의 코드판이다(수치 재현이 아니라 식이 같아짐).
+    ★공통-μ 전하 보존(중심식 eq:blend-balance): solve_U_oc 가 두 host 전이를 한 저장조로 묶어
+        Σ_{host} Σ_j Q_j^host ξ_{eq,j}^host(U_oc,T) = Q x̄,   Q = Q_gr + Q_Si,   f_Si = Q_Si/Q
+      를 수치 유일근으로 푼다(§3.1 앵커의 혼합판 — 흑연 단독 반전의 이중합 한 줄 일반화). U_oc 는
+      음함수로 앉는다(정의상 implicit formulation, 논리 공백 아님).
+
+    ⚠ CAUTION — 코드 경계(정직 공백, §3.5 warnbox — 조용히 날조하지 않는다):
+      · GS-1(기계 히스): Si 히스테리시스를 1차원리로 합성하지 않는다. 응력 결합은 선택적
+        si_stress_offset(=Λ_σ·σ_h [V]; 경로 의존 σ_h 는 사용자 입력) 전이 중심 오프셋 훅으로만
+        노출하고, 소성 폐합(plastic loop)은 미구현 → plastic_hysteresis_loop() 이 NotImplementedError.
+      · GS-2(비가산): 합성은 공통-μ 완전 동시반응 1차 근사(평형 층)까지다. 구간별 host 전환·유한
+        율속 비가산 보정은 미구현 → nonadditive_correction() 이 NotImplementedError. G2 스윕 연속성은
+        이 1차 근사 안에서의 연속성 검사임(범위 밖 = 마스터플랜 후속 버전).
+
+    생성자 인자
+    ----------
+    f_Si : float
+        Si 용량 분율 Q_Si/Q ∈ [0,1) — 전하 보존식 내부 변수·코드 토글(§notation). 질량 분율
+        m_Si(wt%)로 선언·스윕하려면 from_wt() 를 쓴다(C-052 환산).
+    si_case : str
+        Si 케이스 선택자 'elemental'|'siox'|'sic'(§3.5 ssec:code-caseset). 각 케이스는 SI_CASE_SETS
+        의 tier 명기 시연 전이 셋을 쓴다(신뢰값 아님 — 피팅 override).
+    graphite_transitions : List[dict] | None
+        흑연 host 전이 셋(기본 None = GRAPHITE_STAGING_LIT). 흑연 단독 경로와 동일 셋이어야 f_Si=0
+        bit-exact 가 성립한다(흑연 Q 는 f_Si 로 재스케일하지 않음 — 아래 용량 배분 주석).
+    si_transitions : List[dict] | None
+        Si host 전이 셋 직접 지정(기본 None = si_case 로 선택).
+    Cbg : float | callable
+        전극 배경 미분용량 — 흑연 host 에 1회만 실린다(§3.5 ssec:code-synth host 중복 가산 금지).
+    si_stress_offset : float | None
+        GS-1 응력 결합 훅 Λ_σ·σ_h [V]. 주면 Si 전이 중심을 그만큼 이동(경로 의존 σ_h 는 사용자
+        책임). 기본 None(오프셋 없음). 소성 폐합은 여전히 미구현(⚠ 위 GS-1).
+    **host_kwargs
+        두 host 공통 생성자 인자(x·Rn·chi·chi_split·use_dH_eff·z_cut·A_cap_RT·seed_* 등) —
+        GraphiteAnodeDischargeDQDV 로 그대로 전달.
+
+    주요 속성
+    --------
+    gr_host, si_host : GraphiteAnodeDischargeDQDV
+        각각 흑연(C_bg 담지)·Si(C_bg=0) host 인스턴스.
+    Q_gr, Q_Si, Q : float
+        흑연·Si·총 용량(Q=Q_gr+Q_Si; f_Si=Q_Si/Q).
+    gaps : List[str]
+        선택 케이스의 명시 공백('확인 필요') 목록(SI_CASE_GAPS).
+    """
+
+    def __init__(self, f_Si: float, si_case: str = 'sic',
+                 graphite_transitions: Optional[List[Dict[str, Any]]] = None,
+                 si_transitions: Optional[List[Dict[str, Any]]] = None,
+                 Cbg: Union[float, Callable] = 0.0,
+                 si_stress_offset: Optional[float] = None,
+                 **host_kwargs: Any) -> None:
+        # (가드) f_Si ∈ [0,1) 용량 분율(§notation). f_Si→1 은 전-Si(흑연 소멸)로 본 스케일 밖이며
+        #   (wt% 기준 [0,0.30] 은 f_Si≈0–0.7 에 대응, §3.3 각주), 상한 배제로 1/(1−f_Si) 발산도 차단.
+        f_Si = _finite_nonneg("f_Si", f_Si)
+        if f_Si >= 1.0:
+            raise ValueError(f"f_Si must be in [0, 1) (capacity fraction); got {f_Si!r}.")
+        self.f_Si = f_Si
+        self.si_case = si_case
+
+        gr_trs = GRAPHITE_STAGING_LIT if graphite_transitions is None else graphite_transitions
+
+        # Si 전이 셋 선택 — 원본 데이터셋 미변조(얕은 복사 후 스케일/오프셋 적용; dict 값은 전부 스칼라).
+        if si_transitions is None:
+            if si_case not in SI_CASE_SETS:
+                raise ValueError(
+                    f"si_case must be one of {sorted(SI_CASE_SETS)}; got {si_case!r}.")
+            si_src = SI_CASE_SETS[si_case]
+        else:
+            si_src = si_transitions
+        si_trs: List[Dict[str, Any]] = [dict(tr) for tr in si_src]
+        self.gaps: List[str] = list(SI_CASE_GAPS.get(si_case, []))
+
+        # ── 공백 경고(조용한 날조 금지, §3.5 ssec:code-caseset) — placeholder 값이 실제로 쓰일 때만 ──
+        if self.gaps and f_Si > 0.0:
+            import warnings
+            warnings.warn(
+                f"[BlendedAnodeDQDV] si_case='{si_case}' 은(는) 확인 필요 공백 보유: "
+                f"{'; '.join(self.gaps)} — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).",
+                stacklevel=2)
+
+        # ── GS-1 응력 결합 훅(선택) — Si 전이 중심 오프셋만(소성 폐합 미구현, ⚠ 클래스 독스트링) ──
+        self.si_stress_offset = si_stress_offset
+        if si_stress_offset is not None:
+            dU = _finite("si_stress_offset", si_stress_offset)
+            for tr in si_trs:
+                if 'U' in tr:
+                    tr['U'] = float(tr['U']) + dU
+                else:  # dH_rxn/dS_rxn 셋이면 중심 이동 ΔU 는 등가 ΔH(−F·ΔU) — 시연 Si 셋은 'U' 사용
+                    tr['dH_rxn'] = float(tr.get('dH_rxn', 0.0)) - F * dU
+
+        # ── 용량 배분(§3.5 ssec:code-synth·eq:blend-balance 정의: Q_Si=f_Si Q, Q_gr=(1−f_Si)Q) ──
+        #   흑연 host 는 native 용량 Q_gr0 를 그대로 지닌다(= Q_gr; f_Si=0 bit-exact 위해 흑연 Q 무재스케일).
+        #   Si host 는 f_Si 로 절대 스케일: Q_Si = [f_Si/(1−f_Si)]·Q_gr0 → Q_Si/(Q_gr0+Q_Si)=f_Si 성립
+        #   (Q=Q_gr0/(1−f_Si)). host 내부 전이 배분 {Q_j^Si} 는 케이스 리스트 가중을 그대로 쓴다.
+        Q_gr0 = float(sum(_finite("Q", tr['Q']) for tr in gr_trs))
+        if Q_gr0 <= 0.0:
+            raise ValueError("sum of graphite transition 'Q' must be > 0.")
+        Q_si0 = float(sum(_finite("Q", tr['Q']) for tr in si_trs))
+        if f_Si == 0.0:
+            si_scale = 0.0
+        else:
+            if Q_si0 <= 0.0:
+                raise ValueError("sum of Si transition 'Q' must be > 0 for f_Si > 0.")
+            si_scale = (f_Si / (1.0 - f_Si)) * (Q_gr0 / Q_si0)
+        for tr in si_trs:
+            tr['Q'] = float(tr['Q']) * si_scale
+        self.Q_gr: float = Q_gr0
+        self.Q_Si: float = float(sum(tr['Q'] for tr in si_trs))   # = [f_Si/(1−f_Si)]·Q_gr0 (또는 0)
+        self.Q: float = self.Q_gr + self.Q_Si
+
+        # ── 두 host 인스턴스(§3.5 ssec:code-synth) — 배경은 흑연 host 만(전극 1회 가산) ──
+        self.Cbg = Cbg
+        self._host_kwargs: Dict[str, Any] = dict(host_kwargs)
+        self.gr_host = GraphiteAnodeDischargeDQDV(gr_trs, Cbg=Cbg, **host_kwargs)
+        self.si_host = GraphiteAnodeDischargeDQDV(si_trs, Cbg=0.0, **host_kwargs)
+
+        # ── 공통-μ 전하 보존(중심식 eq:blend-balance) 전용 pooled host ──
+        #   두 host 전이를 한 저장조로 묶는다(Q>0 만 — f_Si=0 서 흑연 단독과 bracket·근이 bit-exact).
+        #   solve_U_oc 는 C_bg·Rn·chi 무관(U_j·n_j·Q 만 사용)이라 pooled 로 안전 위임.
+        pooled: List[Dict[str, Any]] = ([dict(tr) for tr in gr_trs]
+                                        + [dict(tr) for tr in si_trs if tr['Q'] > 0.0])
+        self._balance_host = GraphiteAnodeDischargeDQDV(pooled, Cbg=0.0, **host_kwargs)
+        self.transitions: List[Dict[str, Any]] = pooled   # 진단/검사용(이중합 지표 (host,j) 의 코드 표현)
+
+    # ---- wt% 선언 진입점(C-052 범위 좌표 규약: 선언·스윕=질량 분율, 내부=용량 분율) ----
+    @classmethod
+    def from_wt(cls, m_Si: float, q_Si: Optional[float] = None,
+                q_gr: float = GRAPHITE_SPECIFIC_CAPACITY,
+                si_case: str = 'sic', **kwargs: Any) -> "BlendedAnodeDQDV":
+        """질량 분율 m_Si(wt%) 선언 → 용량 분율 f_Si 환산 후 생성(C-052, §3.3 각주·§notation).
+
+            f_Si = m_Si q_Si / [ m_Si q_Si + (1−m_Si) q_gr ]     (q = 비용량 [mAh/g])
+
+        선언·스윕은 업계 배합 관행인 질량 분율 기준(기준 범위 m_Si∈[0,0.30] = 0–30 wt%)이고 전하
+        보존식 내부 변수는 용량 분율 f_Si 다. q_Si≫q_gr 라 f_Si 가 wt% 수치보다 크게 앉는다
+        (0–30 wt% ≈ f_Si 0–0.7). wt% 실측과의 대조는 이 환산을 거친다.
+
+        Args:
+            m_Si : Si 질량 분율(0–1; wt%/100). [0,0.30] 이 기준 스윕 범위.
+            q_Si : Si 비용량 [mAh/g]. None 이면 si_case tier-A 표값(SI_SPECIFIC_CAPACITY).
+            q_gr : 흑연 비용량 [mAh/g](기본 372 = LiC6 관례 상수).
+            si_case, **kwargs : 생성자로 전달.
+        Returns:
+            BlendedAnodeDQDV(f_Si, si_case, ...)
+        """
+        m = _finite_nonneg("m_Si", m_Si)
+        if m >= 1.0:
+            raise ValueError(f"m_Si must be in [0, 1) (mass fraction); got {m!r}.")
+        if q_Si is None:
+            q_Si = SI_SPECIFIC_CAPACITY.get(si_case)
+            if q_Si is None:
+                raise ValueError(
+                    f"q_Si required (no default specific capacity for si_case={si_case!r}).")
+        q_Si = _finite_pos("q_Si", q_Si)
+        q_gr = _finite_pos("q_gr", q_gr)
+        num = m * q_Si
+        f_Si = num / (num + (1.0 - m) * q_gr)   # C-052 비용량 환산
+        return cls(f_Si, si_case=si_case, **kwargs)
+
+    # ---- 평형 곡선(|I|→0 기준선) — eq:blend-dqdv 의 |I|→0 판 ----
+    def equilibrium(self, V_n: ScalarOrArray, T: float = 298.15) -> ScalarOrArray:
+        """평형 dQ/dV(|I|→0) — 배경 위 두 host 평형 종의 합(eq:blend-dqdv, |I|→0).
+
+        C_bg 는 흑연 host 가 1회 싣고 Si host(C_bg=0)는 전이 항만 더한다 → 전극 배경 1회 가산.
+        f_Si=0 이면 Si host 가 순수 0 배열이라 흑연 단독 equilibrium 과 bit-exact(eq:si-code-bitexact).
+        """
+        return self.gr_host.equilibrium(V_n, T) + self.si_host.equilibrium(V_n, T)
+
+    # ---- 충방전·온도·C-rate dQ/dV — eq:blend-dqdv(관측) ----
+    def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray],
+             I_abs: float, Q_cell: float, s: int = +1) -> ScalarOrArray:
+        """관측 dQ/dV — 두 host 표준 dqdv 의 합(eq:blend-dqdv). 인자·규약은 host dqdv 와 동일.
+
+        두 host 를 같은 V_app 위에서 평가(공통 전위 축)해 더한다. C_bg 는 흑연 host 1회. f_Si=0 서
+        Si 항이 순수 0 → 흑연 단독 dqdv 와 bit-exact. (⚠ GS-2: 이 합은 공통-μ 1차 근사이지 유한
+        율속 비가산 실측이 아니다 — nonadditive_correction() 미구현.)
+        """
+        return (self.gr_host.dqdv(V_app, T, I_abs, Q_cell, s=s)
+                + self.si_host.dqdv(V_app, T, I_abs, Q_cell, s=s))
+
+    # ---- 편의 facade : 실험조건으로 바로 호출 ----
+    def curve(self, V_app: ScalarOrArray, direction: Union[int, str] = "discharge",
+              c_rate: float = 0.0, Q_cell: float = 1.0,
+              T: Union[float, np.ndarray] = 298.15,
+              I_abs: Optional[float] = None) -> ScalarOrArray:
+        """실험조건 → 블렌드 dQ/dV(두 host curve 의 합; 내부는 host dqdv 재사용, 새 물리 X).
+
+        두 host 모두 흑연형(탈리튬화=방전)이라 direction 라벨 환산이 일치한다. f_Si=0 bit-exact 동일.
+        """
+        return (self.gr_host.curve(V_app, direction, c_rate, Q_cell, T, I_abs)
+                + self.si_host.curve(V_app, direction, c_rate, Q_cell, T, I_abs))
+
+    # ---- 공통-μ 전하 보존 반전(중심식 eq:blend-balance) ----
+    def solve_U_oc(self, x_bar: ScalarOrArray, T: float = 298.15,
+                   **kw: Any) -> ScalarOrArray:
+        """공통-μ 전하 보존 음함수(중심식 eq:blend-balance)의 해 U_oc [V].
+
+            Σ_{host} Σ_j Q_j^host ξ_{eq,j}^host(U_oc,T) = Q x̄
+
+        를 수치 유일근으로 푼다 — 두 host 전이를 한 저장조(pooled)로 묶은 흑연 solve_U_oc 의 이중합
+        일반화(요동 양성 유일근 이월). f_Si=0 이면 pooled 가 흑연 전이만이라 흑연 단독 해와 bit-exact.
+        (x_bar 은 총용량 Q=Q_gr+Q_Si 기준 탈리튬 분율. kw 는 host solve_U_oc 로 전달: U_lo/U_hi 등.)
+        """
+        return self._balance_host.solve_U_oc(x_bar, T, **kw)
+
+    # ---- 진단: host 별 배경 제외 기여(겹침 전위 창의 두 봉우리 포갬 확인용, §3.3) ----
+    def host_contributions(self, V_n: ScalarOrArray,
+                           T: float = 298.15) -> Tuple[np.ndarray, np.ndarray]:
+        """(흑연 기여, Si 기여) 배경 제외 평형 종 [dQ/dV]. 합 = equilibrium(V,T) − C_bg.
+
+        C_bg 는 전극 1회 가산이라 여기선 두 host 모두 배경을 빼고 순수 전이 종만 돌려준다 — 저-Si
+        블렌드에서 Si·흑연 피크가 부분 분리로 관측되는 §3.3 겹침 실측 접점 진단용.
+        """
+        V = np.asarray(V_n, dtype=float)
+        bg = (np.asarray(self.Cbg(V), dtype=float) * np.ones_like(V)
+              if callable(self.Cbg) else np.full_like(V, float(self.Cbg)))
+        gr = np.asarray(self.gr_host.equilibrium(V, T), dtype=float) - bg
+        si = np.asarray(self.si_host.equilibrium(V, T), dtype=float)   # Si host C_bg=0
+        return gr, si
+
+    # ---- GS-1 코드 경계(§3.5 warnbox·ssec:si-lc-gap): 소성 히스 폐합 미구현 ----
+    def plastic_hysteresis_loop(self, *args: Any, **kwargs: Any) -> None:
+        """⚠ 미구현(정직 공백 GS-1). Si 소성(응력 이력) 히스테리시스 폐합은 본 블렌드 골격 밖이다.
+
+        응력 결합은 선택적 si_stress_offset(=Λ_σ·σ_h) 전이 중심 오프셋 훅으로만 노출한다(생성자).
+        경로 의존 소성 유동·이력 폐합은 평형 대정준 반전 밖의 새 물리(GS-1)이며, 조용히 날조하지
+        않기 위해 명시적으로 미구현으로 둔다.
+        """
+        raise NotImplementedError(
+            "GS-1: Si 소성 히스테리시스 폐합 미구현(범위 밖). 응력 결합은 si_stress_offset 훅만 "
+            "노출 — §3.5 warnbox·ssec:si-lc-gap.")
+
+    # ---- GS-2 코드 경계(§3.5 warnbox·ssec:si-blend-gs2): 유한 율속 비가산 미구현 ----
+    def nonadditive_correction(self, *args: Any, **kwargs: Any) -> None:
+        """⚠ 미구현(정직 공백 GS-2). 구간별 host 전환·유한 율속 비가산 보정은 본 골격 밖이다.
+
+        본 합성은 공통-μ 완전 동시반응 1차 근사(평형 층)까지다 — 유한 율속에서 우세 반응 host 가
+        SoC 구간별로 전환되고 혼합 dQ/dV 가 f_Si-가중 단순합에서 벗어나는 비가산은 동역학 층의 별도
+        하위 모형(범위 밖)이다. 조용한 날조 금지로 명시적 미구현.
+        """
+        raise NotImplementedError(
+            "GS-2: 유한 율속 host 전환·비가산 보정 미구현(범위 밖). 합성은 공통-μ 1차 근사까지 "
+            "— §3.5 warnbox·ssec:si-blend-gs2.")
+
+
+# ============================================================================
+# 작동 검증 — 충전/방전 × C-rate × 온도 × T(V) (알파: 논리·실행·유한 확인)
+#   ※ print 는 ASCII 안전 라벨(콘솔 cp949 등 비UTF 환경에서도 실행 보장).
+# ============================================================================
+if __name__ == "__main__":
+    V = np.linspace(0.03, 0.34, 1000)
+    model = GraphiteAnodeDischargeDQDV(
+        GRAPHITE_STAGING_LIT, x=0.5, Rn=0.01, Cbg=0.05,
+        use_dH_eff=True)
+
+    def _ok(y: np.ndarray) -> bool:
+        return bool(np.all(np.isfinite(y)))
+
+    print("=== seed L_V (derived init, discharge rep cond) ===")
+    print("  ", [f"{v:.4f}" for v in model.seed_L_V])
+
+    print("=== equilibrium (|I|->0 baseline; U from dH_rxn/dS_rxn) ===")
+    yeq = model.equilibrium(V, T=298.15)
+    print(f"  min={np.min(yeq):.3f} max={np.max(yeq):.3f} finite={_ok(yeq)}")
+    for tr in GRAPHITE_STAGING_LIT:
+        U298 = float(func_U_j(298.15, tr['dH_rxn'], tr['dS_rxn']))
+        print(f"    U(298)={U298:.3f} V  (target {tr['U']:.3f})")
+
+    print("=== discharge/charge x C-rate (Q_cell=1.0) @298K ===")
+    all_ok = True
+    for s, name in [(+1, "dis"), (-1, "chg")]:
+        for I in (0.02, 0.2, 1.0):
+            y = model.dqdv(V, T=298.15, I_abs=I, Q_cell=1.0, s=s)
+            all_ok &= _ok(y)
+            neg = bool(np.any(y < -1e-9))
+            print(f"  {name} I={I:>4}: min={np.min(y):7.3f} max={np.max(y):7.3f} "
+                  f"peak@V={V[np.argmax(y)]:.3f} neg={neg} finite={_ok(y)}")
+
+    print("=== temperature dependence (discharge 0.2C) ===")
+    for Tk in (258.15, 298.15, 318.15):
+        y = model.dqdv(V, T=Tk, I_abs=0.2, Q_cell=1.0, s=+1)
+        all_ok &= _ok(y)
+        print(f"  {Tk-273.15:+5.0f}C: max={np.max(y):7.3f} peak@V={V[np.argmax(y)]:.3f} finite={_ok(y)}")
+
+    print("=== T(V) non-isothermal profile ===")
+    Tprof = np.linspace(288.15, 308.15, V.size)
+    yT = model.dqdv(V, T=Tprof, I_abs=0.2, Q_cell=1.0, s=+1)
+    all_ok &= _ok(yT)
+    print(f"  finite={_ok(yT)} max={np.max(yT):.3f}")
+
+    # ---- (C) facade : curve() with experiment conditions ----
+    print("=== (C) facade curve(): C-rate + direction string ===")
+    yc_dis = model.curve(V, direction="discharge", c_rate=0.2, Q_cell=1.0, T=298.15)
+    yc_chg = model.curve(V, direction="charge", c_rate=0.2, Q_cell=1.0, T=298.15)
+    yc_ref = model.dqdv(V, T=298.15, I_abs=0.2, Q_cell=1.0, s=+1)
+    match = float(np.max(np.abs(yc_dis - yc_ref)))
+    all_ok &= (_ok(yc_dis) and _ok(yc_chg) and match < 1e-12)
+    print(f"  curve(dis,0.2C) == dqdv(I=0.2,s=+1)? max_diff={match:.2e} (expect ~0)")
+    print(f"  curve(chg) peak@V={V[np.argmax(yc_chg)]:.3f}  finite={_ok(yc_chg)}")
+    # sto convenience: |I| via I_abs override, sto axis = V here (q->V mapping is user's)
+    yc_I = model.curve(V, direction="d", I_abs=0.2, Q_cell=2.0, T=298.15)
+    all_ok &= _ok(yc_I)
+    print(f"  curve(I_abs override) finite={_ok(yc_I)}")
+
+    # ---- (A) chi_split : injectable rule (default vs custom) ----
+    print("=== (A) injectable chi_split rule ===")
+    m_def = GraphiteAnodeDischargeDQDV(
+        [{'U': 0.12, 'w': 0.014, 'Q': 0.5, 'Omega': 10000.0,
+          'dH_a': 44000.0, 'dVdq_qa': 0.30}], chi=0.5)
+    # custom rule: asymmetric split (charge gets 0.3 instead of 1-chi)
+    custom = lambda chi, sd: chi if sd >= 0 else 0.3
+    m_cus = GraphiteAnodeDischargeDQDV(
+        [{'U': 0.12, 'w': 0.014, 'Q': 0.5, 'Omega': 10000.0,
+          'dH_a': 44000.0, 'dVdq_qa': 0.30}], chi=0.5, chi_split=custom)
+    Ld_def = m_def._resolve_lag_length(m_def.transitions[0], 298.15, 0.5, 1.0, 1.0, -1)
+    Ld_cus = m_cus._resolve_lag_length(m_cus.transitions[0], 298.15, 0.5, 1.0, 1.0, -1)
+    print(f"  charge L_V default(1-chi=0.5)={Ld_def:.4e}  custom(0.3)={Ld_cus:.4e}  "
+          f"differ={abs(Ld_def-Ld_cus) > 1e-12}")
+
+    print("=== HYSTERESIS branch (gamma>0): dis peak vs chg peak split ===")
+    hys = GraphiteAnodeDischargeDQDV(
+        [{'U': 0.12, 'w': 0.014, 'Q': 0.5, 'Omega': 12000.0, 'gamma': 1.0}],
+        x=0.5, Rn=0.0, Cbg=0.0)
+    yhd = hys.dqdv(V, T=298.15, I_abs=1e-4, Q_cell=1.0, s=+1)
+    yhc = hys.dqdv(V, T=298.15, I_abs=1e-4, Q_cell=1.0, s=-1)
+    Vd, Vc = V[np.argmax(yhd)], V[np.argmax(yhc)]
+    dU = func_dU_hys(298.15, 12000.0)
+    print(f"  dU_hys={dU*1000:.1f} mV  dis peak@V={Vd:.4f}  chg peak@V={Vc:.4f}  "
+          f"d(dis-chg)={(Vd-Vc)*1000:+.1f} mV (expect +gamma*dU_hys={dU*1000:+.1f})")
+
+    print("=== TAIL direction reversal (direct L_V): dis/chg opposite sides ===")
+    demo = GraphiteAnodeDischargeDQDV(
+        [{'U': 0.12, 'w': 0.014, 'Q': 0.5, 'L_V': 0.02}], x=0.5, Rn=0.0, Cbg=0.0)
+    yad = demo.dqdv(V, T=298.15, I_abs=0.5, Q_cell=1.0, s=+1)
+    yac = demo.dqdv(V, T=298.15, I_abs=0.5, Q_cell=1.0, s=-1)
+    nd = bool(np.any(yad < -1e-9)); nc = bool(np.any(yac < -1e-9))
+    print(f"  dis: peak@V={V[np.argmax(yad)]:.3f}  neg={nd}")
+    print(f"  chg: peak@V={V[np.argmax(yac)]:.3f}  neg={nc}")
+
+    print("=== reduction checks (limits) ===")
+    # Omega<=2RT -> gap 0
+    g0 = func_dU_hys(298.15, 2.0 * R * 298.15)
+    print(f"  Omega=2RT -> dU_hys={g0:.3e} (expect 0)")
+    # |I|->0 -> dis/chg curves coincide (gamma=0 transition)
+    m0 = GraphiteAnodeDischargeDQDV([{'U': 0.12, 'w': 0.014, 'Q': 0.5}], Cbg=0.0)
+    a = m0.dqdv(V, T=298.15, I_abs=1e-6, Q_cell=1.0, s=+1)
+    b = m0.dqdv(V, T=298.15, I_abs=1e-6, Q_cell=1.0, s=-1)
+    print(f"  gamma=0,|I|->0: dis/chg max diff={np.max(np.abs(a-b)):.3e} (expect ~0)")
+
+    # ---- v1.0.19: x_bar 진입점 — eq:implicit -> U_oc -> dU/dT -> Qrev (Ch2 부록 B.2) ----
+    print("=== v1.0.19 x_bar entry: eq:implicit -> U_oc -> dU/dT -> Qrev (doc B.2) ===")
+    terms = model.entropy_coefficient_x(0.25, 298.15, return_terms=True)
+    Uoc_mV = terms['U_oc'] * 1e3
+    comp_mVK = terms['complete'] * 1e3
+    simp_mVK = terms['simple'] * 1e3
+    conf_mVK = terms['config'] * 1e3
+    qrev_mV = model.reversible_heat_x(0.25, 298.15, I=1.0) * 1e3
+    print(f"  x=0.25: U_oc={Uoc_mV:.2f} mV (doc 74.4)")
+    print(f"          dU/dT complete={comp_mVK:+.4f} simple={simp_mVK:+.4f} "
+          f"config={conf_mVK:+.4f} mV/K (doc -0.204/-0.134/-0.070)")
+    print(f"          Qrev/I={qrev_mV:+.2f} mV (doc +60.8, discharge exothermic)")
+    ok_x25 = (abs(Uoc_mV - 74.4) < 0.1 and abs(comp_mVK + 0.204) < 1e-3
+              and abs(simp_mVK + 0.134) < 1e-3 and abs(conf_mVK + 0.070) < 1e-3
+              and abs(qrev_mV - 60.8) < 0.1)
+    all_ok &= ok_x25
+    print(f"  worked-example match (B.2): {ok_x25}")
+
+    # tab:qrev 5점 부호 교대(완전식·298.15 K) — 저-x 발열 -> 고-x 흡열
+    doc_qrev = {0.10: (-0.307, +91.5), 0.25: (-0.204, +60.8), 0.50: (-0.089, +26.6),
+                0.75: (+0.044, -13.2), 0.90: (+0.218, -64.9)}
+    ok_tab = True
+    for xb, (d_doc, q_doc) in doc_qrev.items():
+        d = model.entropy_coefficient_x(xb, 298.15) * 1e3          # mV/K
+        q = model.reversible_heat_x(xb, 298.15, I=1.0) * 1e3       # mV
+        ok_tab &= (abs(d - d_doc) < 1e-3) and (abs(q - q_doc) < 0.1)
+        print(f"  x={xb:.2f}: dU/dT={d:+.4f} mV/K (doc {d_doc:+.3f})  "
+              f"Qrev/I={q:+.2f} mV (doc {q_doc:+.1f})")
+    all_ok &= ok_tab
+    print(f"  tab:qrev 5-point sign alternation match: {ok_tab}")
+
+    # round-trip: 유한차분 [U_oc(T+3)-U_oc(T-3)]/6K vs 해석 완전식 (doc <0.001 uV/K)
+    fd = (model.solve_U_oc(0.25, 298.15 + 3.0) - model.solve_U_oc(0.25, 298.15 - 3.0)) / 6.0
+    an = model.entropy_coefficient_x(0.25, 298.15)
+    rt_uVK = abs(fd - an) * 1e6
+    ok_rt = rt_uVK < 1e-3
+    all_ok &= ok_rt
+    print(f"  round-trip |FD - analytic| = {rt_uVK:.6f} uV/K (doc < 0.001): {ok_rt}")
+
+    # ---- (B) finite/range guards ----
+    print("=== (B) input guards (expect ValueError each) ===")
+    guard_hits = 0
+    for label, fn in [
+        ("T<=0", lambda: model.dqdv(V, T=0.0, I_abs=0.1, Q_cell=1.0, s=+1)),
+        ("Q_cell<=0", lambda: model.dqdv(V, T=298.15, I_abs=0.1, Q_cell=0.0, s=+1)),
+        ("I_abs<0", lambda: model.dqdv(V, T=298.15, I_abs=-0.1, Q_cell=1.0, s=+1)),
+        ("T NaN", lambda: model.dqdv(V, T=np.nan, I_abs=0.1, Q_cell=1.0, s=+1)),
+        ("bad direction", lambda: model.curve(V, direction="sideways")),
+        ("z_cut<=0 ctor", lambda: GraphiteAnodeDischargeDQDV(GRAPHITE_STAGING_LIT, z_cut=0.0)),
+        ("L_V inf in dict", lambda: GraphiteAnodeDischargeDQDV(
+            [{'U': 0.12, 'Q': 0.5, 'L_V': np.inf}]).dqdv(V, 298.15, 0.5, 1.0)),
+    ]:
+        try:
+            fn(); print(f"  [MISS] {label}: no error raised")
+        except (ValueError, TypeError):
+            guard_hits += 1
+    print(f"  guards fired: {guard_hits}/7")
+
+    # ---- per-transition override isolation (v11 회귀 가드) ----
+    print("=== per-tr override isolation (z_cut on tr[0] only) ===")
+    _base = [{'U': 0.12, 'Q': 0.5, 'Omega': 10000.0, 'dH_a': 44000.0, 'dVdq_qa': 0.30},
+             {'U': 0.20, 'Q': 0.5, 'Omega': 10000.0, 'dH_a': 44000.0, 'dVdq_qa': 0.30}]
+    m_b = GraphiteAnodeDischargeDQDV([dict(t) for t in _base])
+    m_o = GraphiteAnodeDischargeDQDV([dict(_base[0], z_cut=2.0), dict(_base[1])])
+    L0b = m_b._resolve_lag_length(m_b.transitions[0], 298.15, 0.5, 1.0, 1.0, +1)
+    L0o = m_o._resolve_lag_length(m_o.transitions[0], 298.15, 0.5, 1.0, 1.0, +1)
+    L1b = m_b._resolve_lag_length(m_b.transitions[1], 298.15, 0.5, 1.0, 1.0, +1)
+    L1o = m_o._resolve_lag_length(m_o.transitions[1], 298.15, 0.5, 1.0, 1.0, +1)
+    iso = (abs(L0b - L0o) > 1e-15) and (abs(L1b - L1o) < 1e-18)
+    print(f"  tr[0] z_cut override -> only tr[0] changes: {iso}")
+    print(f"    L0 {L0b:.3e}->{L0o:.3e} (diff)   L1 {L1b:.3e}=={L1o:.3e} (same)")
+    all_ok &= iso
+
+    all_ok &= (guard_hits == 7)
+    print(f"\n>>> overall OK: {all_ok}  (no exception => reached here)")

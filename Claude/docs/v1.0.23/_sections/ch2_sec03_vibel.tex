@@ -1,0 +1,118 @@
+% ====================================================================
+% §2.3 vibrational(포논)·electronic(전자) 엔트로피 — 두 분포의 추가
+% ====================================================================
+\section{vibrational(포논)$\cdot$electronic(전자) 엔트로피 --- 두 분포의 추가}\label{sec:vibel}
+
+configurational 엔트로피는 Li 이온의 \emph{배열} 분포였다. 그러나 격자에는 또 다른 두 자유도가 있고, 각각
+자신의 분포를 갖는다 --- 격자 진동(포논)은 Bose--Einstein 분포를, 전도 전자는 Fermi--Dirac 분포를 따른다.
+왜 포논이 Bose--Einstein 을, 전자가 Fermi--Dirac 을 따르는가 --- 같은 종류 입자의 교환 대칭성과
+스핀--통계 --- 의 양자 배경은 Part 0 의 배경 박스(페르미온$\cdot$보손과 양자 통계, \S\ref{sec:sm-site})가 한자리에 정리했다.
+이 절은 같은 분포 언어로 두 항을 세워, 세 분포가 합쳐져 한 전극의 엔트로피를 이룸을 보인다. 진동 항이
+남기는 \emph{온도 편차}는 여기서 문제로 짚어 두고, 그 닫음은 다음 절(\S\ref{sec:einstein})로 넘긴다.
+
+\subsection{vibrational 엔트로피 --- 포논 Bose--Einstein 분포}\label{ssec:vib}
+삽입은 격자 상수와 결합 강도를 바꾸어 포논 스펙트럼을 이동시킨다. 진동수 $\omega_k$ 의 한 조화 모드는
+보손이고, 평균 점유는 Bose--Einstein 분포 $n_k=1/(e^{\beta\hbar\omega_k}-1)$ 이다. 한 모드의 엔트로피는 그
+모드의 자유에너지 $f_k=\kB T\ln(1-e^{-\beta\hbar\omega_k})$(영점 에너지 $\hbar\omega_k/2$ 는 $T$-무관이라
+엔트로피에 기여하지 않아 생략한 열적 몫)에서 $S_{\vib,k}=-\partial f_k/\partial T$ 로 얻거나,
+동등하게 모드의 들뜸수 분포(점유 $n_k$)에 대한 정보 엔트로피로 셈한다. 앞 경로를 명시하면, 곱의 규칙이
+로그 항을, $\beta=1/\kB T$ 를 지나는 연쇄율이 점유 항을 주어
+$S_{\vib,k}=-\kB\ln(1-e^{-\beta\hbar\omega_k})+\kB\,\beta\hbar\omega_k\,n_k$ 가 되고, BE 분포 정의를 뒤집은 두
+항등식 $1-e^{-\beta\hbar\omega_k}=1/(1+n_k)$ 와 $\beta\hbar\omega_k=\ln[(1+n_k)/n_k]$ 로 로그$\cdot$지수를 전부
+$n_k$ 로 갈아 끼우면, 어느 경로든 같은 보손 통계의 닫힌형
+\begin{equation}
+S_{\vib,k} \;=\; \kB\bigl[(1+n_k)\ln(1+n_k) - n_k\ln n_k\bigr],
+\label{eq:Svib_mode}
+\end{equation}
+가 된다 --- 여기서 첫 항은 빈 들뜸을 채우는 경우의 수, 둘째 항은 이미 들뜬 양자의 가짓수에서 온다. 전
+모드에 대해 합하고 1몰당으로 환산하면($R=N_A\kB$ 를 써서) 격자의 vibrational 엔트로피는
+$S_\vib=R\sum_k[(1+n_k)\ln(1+n_k)-n_k\ln n_k]$ 가 된다. 삽입에 따른 부분몰 변화 $\Delta S_\vib=\partial
+S_\vib/\partial x$ 는 모드 연화/경화에 따라 부호가 갈리는데, 흑연에서는 고-$x$(만충에 가까운) 영역에서
+\emph{음의 baseline}을 만든다(Reynier 의 ``second contribution'') \cite{reynier2003}. 저-$x$ 에서는
+configurational 양의 발산이 지배하고, 고-$x$ 에서 이 vibrational 음 baseline 이 드러난다. 제일원리 계산도
+흑연 삽입 엔트로피를 vibrational$\cdot$configurational 기여로 분해해 같은 추세를 보고한다 \cite{jpcc2021}.
+
+\begin{srcbox}
+\textbf{다리 --- $\Delta S_\vib$ 음 baseline 이 어느 실측 앵커인가.} 식~\eqref{eq:Svib_mode} 가 낳는 부분몰
+$\Delta S_\vib=\partial S_\vib/\partial x$ 의 고-$x$ 음 baseline 은 Reynier 등\cite{reynier2003} 의 실측 흑연
+엔트로피 분해 중 vibrational ``second contribution'' 에 대응한다: 우리 포논 BE 항 $S_\vib$(식~\eqref{eq:Svib_mode})
+$\leftrightarrow$ Reynier 의 측정 $\Delta S(x)$ 를 config 발산 항과 vib 음 baseline 으로 가른 둘째 몫.
+\emph{방법 요지} --- Reynier 등은 흑연 삽입 엔트로피$\cdot$엔탈피를 온도 의존 전위 측정으로 실측하고, $\Delta
+S(x)$ 를 configurational 발산과 vibrational 음 baseline 으로 갈라 해석한다. \emph{가정 차} --- Reynier 는 부호
+$\cdot$추세를 두 기여로 정성 분해하나(전이별 정밀값 아님, tier B), 본문은 vib 항을 포논 BE 분포에서
+제일원리적으로 세워(식~\eqref{eq:Svib_mode}) 봉우리 폭 안 $T$-무관 상수로 중심 흡수하므로, Reynier 는 고-$x$
+음 baseline 의 부호$\cdot$스케일 앵커로만 쓰고 모드별 정량은 제일원리 포논(\cite{jpcc2021}) 소관으로 넘긴다.
+\end{srcbox}
+
+전이 폭 안에서 $\Delta S_\vib$ 가 천천히 변하면(흑연의 통상적 경우) 그 값은 봉우리 중심 표준값 $\Delta S^0_j$
+에 흡수된다(파생 B 의 ``중심 흡수'') --- 표~\ref{tab:ds} 의 고-$x$ 음수값($-5,-16$ J\,mol$^{-1}$K$^{-1}$)이
+이미 vibrational 기여를 품고 있다. 다만 이 흡수는 $\Delta S_\vib$ 를 전이 폭 안에서 $T$-무관 상수로 본 것으로,
+관련 포논 모드가 고전 극한 $\kB T\gg\hbar\omega$ 에 있을 때의 근사다. 준양자 영역($\kB T\!\sim\!\hbar\omega$)의
+모드는 작은 잔여 $T$-의존을 남기며, 다온도 곡률 피팅에서 이 vib 잔여가 electronic($\propto T$,
+\S\ref{ssec:elec}) 신호에 소량 섞일 수 있다(Part I 의 대응 한정과 동급). 이 잔여를 명시적으로 닫아
+electronic 과 분리 식별하는 일이 다음 절(\S\ref{sec:einstein}, Einstein 모드 보정)의 동기이며, 본 절은 여기서
+그 문제만 세워 둔다.
+
+\subsection{electronic 엔트로피 --- Fermi--Dirac 분포와 Sommerfeld 항}\label{ssec:elec}
+금속성 호스트에서는 전도 전자도 엔트로피를 진다. 전도 전자는 에너지 준위 $E$ 를 Fermi--Dirac 분포
+$f(E)=1/(e^{\beta(E-E_F)}+1)$ 로 점유하므로($E_F$=Fermi 준위), 그 분포의 엔트로피는 준위마다 2-상태(채움/빔)
+점유의 정보 엔트로피를 모든 준위에 합한 것이다:
+\begin{equation}
+S_e \;=\; -\kB\int g(E)\,[\,f\ln f+(1-f)\ln(1-f)\,]\,\dd E,
+\label{eq:Se_start}
+\end{equation}
+이는 config 식~\eqref{eq:Sconfig} 와 \emph{같은 꼴}이되 자리가 ``전자 준위''라는 점만 다르다. 축퇴 극한($\kB
+T\ll E_F$)에서는 Fermi 준위 근방 폭 $\sim\kB T$ 의 좁은 창에만 기여가 살아, 표준 Sommerfeld 적분
+$\int(-\partial f/\partial E)(E-E_F)^2\dd E=\tfrac{\pi^2}{3}(\kB T)^2$ 가 먼저 전자 비열
+\[
+C_e=\frac{\partial U_e}{\partial T}=\frac{\pi^2}{3}\,\kB^2\,T\,g(E_F)
+\]
+를 닫고($g$ 를 창 안에서 $g(E_F)$ 로 동결), 이를 $S_e=\int_0^T (C_e/T')\,\dd T'$ 로 적분하면($C_e/T'$ 가
+$T'$-무관 상수이므로 곧바로 닫혀)
+\begin{equation}
+\boxed{\;S_e \;=\; \frac{\pi^2}{3}\,\kB^2\,T\,g(E_F)\;,}
+\label{eq:Se-ch2}
+\end{equation}
+가 되어 온도에 \emph{선형}이고 Fermi 준위 상태밀도 $g(E_F)$ 에 비례한다. 이 Fermi--Dirac$\to$Sommerfeld
+유도의 전 단계 --- 정보 엔트로피 합에서 비열을 거쳐 $S_e$ 까지 --- 는 Chapter 2 \S\ref{sec:lco-electronic}(LCO 전자 엔트로피)의 전자
+엔트로피 유도가 상술했고, 본 파트는 그 결과를 분포 언어로 확장해 받는다. 식~\eqref{eq:Se-ch2} 의 $S_e$ 는 자리당
+엔트로피다 --- $g$ 가 1/에너지 차원이라 $\kB^2 T\,g(E_F)$ 의 알짜 차원은 $\kB$ 이고, 몰당 $\Delta S(x)$ 분해에는
+$N_A\kB=R$ 로 환산해 넣는다(Part 0 의 단위 환산, \S\ref{sec:sm-lattice}). 부분몰 전자 엔트로피 $\Delta S_e=\partial S_e/\partial x$
+는 삽입이 $g(E_F)$ 와 $E_F$ 를 바꾸는 방식에 달려 있다 --- 부호를 정하는 것은 리튬화 일반이 아니라
+$\partial g(E_F)/\partial x$ 다. 밴드 채움으로 $E_F$ 부근 상태밀도가 줄어드는 호스트는 $\Delta S_e<0$
+이고(아래 LCO 가 대표), 반대 방향의 호스트도 있다(아래 흑연).
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item \textbf{흑연 하프셀}: 부호와 규모가 갈린다 --- 삽입 전자가 $E_F$ 를 준금속 최소점 위로 올려
+$g(E_F)$ 는 오히려 커지지만($\partial g/\partial x>0$ 방향), $S_e\sim(\pi^2/3)\kB^2T\,g(E_F)$ 의 몰 환산
+규모 자체가 config$\cdot$vib 의 수십 J\,mol$^{-1}$K$^{-1}$ 에 크게 못 미쳐 $\Delta S_e\approx0$ --- 전자
+항은 부호와 무관하게 소수이고 config$+$vib 가 지배한다. 본 장 주 사례에서 electronic 은 보정항이다.
+\item \textbf{LCO 하프셀(사례)}: Li$_x$CoO$_2$ 는 $x$ 에 따라 MIT 를 겪어 $g(E_F)$ 가 급변한다. 그 전이 폭
+안에서 $\Delta S_e$ 가 \emph{급변}하므로 중심 표준값에 흡수되지 못하고 $x$-의존으로 유지된다(중심 흡수 근사의
+예외 코너, \S\ref{sec:limits}). 이것이 electronic 항을 분포로 다뤄야 하는 이유의 본보기이며, 그 전개는
+Chapter 2 \S\ref{sec:lco-hys}$\cdot$\S\ref{sec:lco-electronic} 가 상술한다.
+\end{itemize}
+
+\subsection{세 분포의 총괄과 반응 vs 활성화 엔트로피}\label{ssec:threedist}
+\begin{keybox}
+세 분포가 한 전극의 엔트로피를 이룬다: Li 배열(Part 0 의 ``배치'')의 \emph{격자기체}(config), 격자 진동의
+\emph{Bose--Einstein}(vib), 전도 전자의 \emph{Fermi--Dirac}(electronic). 측정 부분몰 엔트로피는
+\S\ref{ssec:decomp} ★이중계산 warnbox 의 분해 $\Delta S(x)=\Delta S^0_j+R\ln[\xi/(1-\xi)]+\delta S_{\vib/e}(x)$
+그대로이고, 가역 발열은 이 세 분포를 재배열하는 열이다. config 는 봉우리 \emph{내부}를 비선형으로 만들고
+($\pm\infty$ 발산), vib 는 고-$x$ 음 baseline 을, electronic 은 (MIT 가 없으면) 작은 상수를 준다.
+\end{keybox}
+
+한 가지 경계를 못박고 절을 닫는다. 가역 발열에 들어가는 것은 위 세 분포가 주는 \emph{반응(평형) 엔트로피}
+$\Delta S(x)$ 뿐이다. 이는 \S\ref{sec:lag}$\cdot$\S\ref{sec:tail} 동역학 꼬리의 \emph{활성화 엔트로피} $\Delta S_{a,j}$(Eyring
+속도 $k_j\propto\exp[-(\Delta H_a-T\Delta S_a)/RT]$ 의 prefactor 몫)와 \emph{차원은 같으나 물리가 다른
+양}이다. 활성화 엔트로피는 \emph{비가역} 동역학을 지배하고 가역 발열에는 들어가지 않는다 --- 가역 발열을
+지배하는 것이 (평형) 엔트로피 계수라는 틀은 \cite{msmr_partI} 그대로이고, 반응/활성화의 구분 자체는
+Part I 의 TST 유도(\S\ref{sec:lag})가 닫는다. 둘을 혼동하면 가역 발열을 동역학 lag 와 섞게 된다. 세 분포를 손에 쥐었으니, 진동 항의 온도 편차를 먼저
+정밀하게 닫고(\S\ref{sec:einstein}), 이어서 세 분포 전체를 겹침 합성으로 조립한다(\S\ref{sec:mixing}).
+
+% 자산: [C-43] vib=BE·electron=FD 각자 분포 · [C-44] 단일모드 S_vib,k (eq:Svib_mode) ·
+%   [C-45] 전모드 S_vib·부호 갈림·고-x 음 baseline(reynier2003) · [C-46] 제일원리 vib·config 분해(jpcc2021) ·
+%   [C-47] 전이폭 내 ΔS_vib 완만→중심흡수·고전극한 · [C-48] 준양자 잔여 T-의존→elec 섞임=§2.4 동기 ·
+%   [C-64] S_e=−k_B∫g[f ln f+(1−f)ln(1−f)]dE (eq:Se_start, config 같은 꼴) ·
+%   [C-65] Sommerfeld→C_e→S_e (eq:Se-ch2, Ch1 eq:Se와 라벨 충돌 회피 개명) · [C-66] 차원(자리당·몰당 R) · [C-67] ΔS_e=∂S_e/∂x, 리튬화 <0 ·
+%   [C-68] 흑연 준금속 ΔS_e≈0(보정항) · [C-69] LCO MIT g(E_F) 급변→x-의존(중심흡수 예외) ·
+%   [C-70] ★핵심박스 세 분포 총괄(분해식 그대로) · [C-71] ★반응 vs 활성화 엔트로피 구분(msmr_partI, 경계)

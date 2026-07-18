@@ -1,0 +1,94 @@
+% ====================================================================
+% §0 서론 — 이 문건이 따라가는 것
+% ====================================================================
+\section*{서론 --- 본 장이 따라가는 것}
+\addcontentsline{toc}{section}{서론}
+
+리튬이온전지 흑연 음극의 incremental capacity analysis(ICA)는 충방전 곡선 $Q(V)$ 의 미분
+$\dd Q/\dd V$ 를 관측 대상으로 삼는다 \cite{bloom2005,dubarry2012}. 흑연은 리튬을 받아들이며 staging
+상전이(stage $4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$)를 차례로 거치고 \cite{dahn1991,ohzuku1993}, 각 전이
+전위에서 두 상이 공존하면 전위가 거의 평탄해져 좁은 $\dd V$ 구간에 큰 $\dd Q$ 가 몰린다 --- 그래서
+$\dd Q/\dd V$ 가 그 전위에서 봉우리(peak)로 치솟는다. 상전이 하나가 곡선 위 peak 하나로 대응하는 이
+사상이 ICA 를 상전이의 지문으로 만든다.
+
+본 장은 이 곡선을 \emph{한 번 그리는 계산}을 처음부터 끝까지 그대로 따라간다. 계산은 전이 루프에 들어가기 전에
+한 번만 실행되는 두 노드 --- 외부 실험조건을 모델 입력으로 환산하는 $\mathrm N0$ 와 측정 전위에서 분극을 벗기는
+$\mathrm N1$ --- 에서 출발해, 전이 $j$ 마다 반복하는 전이 루프 $\mathrm N2$--$\mathrm N8$ 로 진행하고,
+모든 전이가 루프를 마치면 합산 $\mathrm N9$ 가 배경 위에 한 곡선을 닫는다(그림~\ref{fig:spine}). 각 절은 그 한 단계의 물리식을, 그 단계를
+이해하는 데 필요한 만큼 \emph{유도}한다 --- 결과식만 나열하지 않고, 출발 전제에서 그 식까지 가는 중간
+단계를 빠짐없이 보인다. 곡선에 직접 들어가지 않는 일반론은 결과식이 쓰이는 한에서만 최소로 인용한다.
+도착점은 한 줄 합산식과, ``본 장만 보고 같은 곡선을 재현하는 코드를 짤 수 있다''는 실행 가능성이다.
+
+문서는 세 층으로 짜인다. 본론 $\mathrm N1$--$\mathrm N9$ 가 결과로만 받아 쓰는 평형식들(점유 통계$\cdot$
+logistic$\cdot$평균장 상호작용$\cdot$Nernst 식)을, 본론에 앞선 Part 0(\S\ref{sec:sm-found})이 통계역학 첫
+원리(분배함수)에서 유도해 둔다. 그 위에서 본론(Part I)이 흑연 곡선 사슬을 닫고, 이어지는 Part T 가 같은
+전극$\cdot$같은 입력에서 곡선 대신 \emph{열} --- 반응 엔트로피의 세 분포 분해와 가역 발열 --- 을 닫는다.
+곧 본 장은 Part 0 $\to$ 흑연 곡선(Part I) $\to$ 흑연 열특성(Part T) 의 세 층이다. 같은 골격을 두 번째
+활물질에 거는 일은 뒤 장들의 몫이다 --- LCO 양극(파라미터 교체에 전자 엔트로피 항 하나를 더한 확장)은
+Chapter 2 가, 실리콘계$\cdot$혼합 음극은 Chapter 3 가 다룬다. 아래 관측이 이 모든 계산이 설명하려는 대상이다.
+
+\textbf{관측.}
+\begin{quote}\itshape
+$\dd Q/\dd V$ 상전이 peak 의 위치$\cdot$너비$\cdot$높이는 (a) 온도 $T$, (b) 극판 전위, (c) C-rate(전류)
+세 가지에 따라 변한다. 저온$\cdot$고율일수록 peak 의 꼬리가 길어져 다음 peak 와 겹치고, 같은 전이가 충전과 방전에서
+서로 다른 전위에 peak 를 남기며(충방전 히스테리시스 --- 이하 `히스'로도 축약), 이 갈림에는 전류를 $0$ 으로 줄여도 사라지지 않는 성분이 있다.
+\end{quote}
+
+세 인자는 모두 하나의 속도식 $k\simeq k_0\exp[-\Delta G_a/RT]$ 의 서로 다른 자리로 들어온다 --- 온도는 지수의 분모,
+전위는 장벽 $\Delta G_a$ 자체, C-rate 는 요구 속도와 공급 속도의 경쟁이다. 이 속도식이 한편으로는 평형(정$\cdot$역
+속도가 같아지는 정지점)을, 다른 한편으로는 유한 전류의 지연(꼬리)을 낳는다 --- 본 장의 유도는 줄곧 이 한 식의 가지를
+펼치는 일이다. 계산 진행이 이 세 갈래를 차례로 닫는다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=4.0mm and 7mm,
+  font=\scriptsize,
+  stage/.style={draw,rounded corners=1.5pt,minimum height=7.6mm,inner xsep=4pt,inner ysep=2.4pt,align=center},
+  loopstage/.style={stage,fill=black!8},
+  core/.style={stage,fill=black!55,text=white},
+  io/.style={font=\scriptsize\itshape,align=center},
+  ar/.style={-{Latex[length=1.5mm]},thick},
+  arthin/.style={-{Latex[length=1.2mm]},semithick}]
+% ---- pre-loop: input mapping and polarization (run once) ----
+\node[io] (in) {input: $V_\app$, direction $\to\sigma_d$, c-rate $\to|I|$, $T$, $Q_\cell$};
+\node[stage,below=5mm of in] (n0) {N0: map inputs\quad 식~\eqref{eq:n0map}};
+\node[stage,below=of n0] (n1) {N1: polarization\quad 식~\eqref{eq:vn}\\$V_n=V_\app-\sigma_d|I|R_n$};
+% ---- per-transition loop body ----
+\node[loopstage,below=of n1] (n2) {N2: center $U_j(T)$\quad 식~\eqref{eq:Uj}\\$U_j=(-\Delta H_\rxn+T\Delta S_\rxn)/F$};
+\node[loopstage,below=of n2] (n3) {N3: hysteresis branch\quad 식~\eqref{eq:Ubranch}\\center $\to U_j+\tfrac12\sigma_d h_\eta\gamma_j\Delta U_j^\hys$};
+\node[loopstage,below=of n3] (n45) {N4/N5: width, $\xi_\eq$\quad 식~\eqref{eq:wbase}\eqref{eq:xieq}\\$\xi_\eq=\mathrm{logistic}[\sigma_d(V-U_j^{\,d})/w_j]$};
+% single peak-shape formula (N6--N8); equilibrium peak is its L_V->0 limit
+\node[loopstage,below=of n45] (n78) {N6--N8: peak shape\quad 식~\eqref{eq:LV}\eqref{eq:peakshape}\\$Q_j(\xi_\eq-\xi_\mathrm{lag})/L_{V,j}$\ \ ($L_V\!\to\!0$: 평형 종)};
+% ---- post-loop: sum over transitions j, once ----
+\node[core,below=6mm of n78] (n9) {N9: sum\quad 식~\eqref{eq:sum}\\$C_\bg+\sum_jQ_j[\cdot]_j$};
+\node[io,below=4.5mm of n9] (out) {output: $\dd Q/\dd V$ at $V_n$};
+% ---- arrows ----
+\draw[ar] (in) -- (n0);
+\draw[ar] (n0) -- (n1);
+\draw[ar] (n1) -- (n2);
+\draw[ar] (n2) -- (n3);
+\draw[ar] (n3) -- (n45);
+\draw[ar] (n45) -- (n78);
+\draw[ar] (n78) -- (n9);
+\draw[ar] (n9) -- (out);
+% ---- per-transition loop bracket ----
+\begin{scope}[on background layer]
+\node[draw,dashed,rounded corners,fit=(n2)(n3)(n45)(n78),inner sep=3.2mm,
+  label={[font=\scriptsize\itshape,anchor=north west]north west:per-transition loop $j=1..N_p$}] (loop) {};
+\end{scope}
+\end{tikzpicture}
+\caption{한 곡선을 그리는 계산 진행(spine). 외부 실험조건 $(V_\app,\text{direction},\text{c\_rate},Q_\cell,T)$
+이 N0 에서 모델 입력 $(\sigma_d,|I|)$ 로 환산되고(식~\eqref{eq:n0map}), 분극으로 내부 전위 $V_n$ 을 얻은 뒤(N1,
+식~\eqref{eq:vn}), 파선 상자 안(전이별 반복 계산 단위, $j=1..N_p$)에서 전이 $j$ 마다 평형 중심(N2)$\cdot$히스
+분기(N3)$\cdot$폭$\cdot$평형 진행률(N4/N5)을 잇달아 계산하고, 지연 길이 $L_V$ 와 peak 모양(N6--N8,
+식~\eqref{eq:LV}$\cdot$\eqref{eq:peakshape})을 단일 꼬리식으로 얻는다 --- 평형 종(식~\eqref{eq:eqpeak})은 그 $L_V\!\to\!0$ 극한이다(식~\eqref{eq:tail-limit}).
+모든 전이가 이 loop 를 마치면 N9(진한 상자, 식~\eqref{eq:sum})가 배경 위에 합산한다.}
+\label{fig:spine}
+\end{figure}
+
+\tableofcontents
+\newpage
+
+
+% 자산: [A-001] [A-002] [A-003] [A-004] [A-005] [A-006] [A-007]
