@@ -77,6 +77,18 @@ v1.0.22 는 흑연 dQ/dV·DVA 를 열역학·동역학으로 닫았으나, **자
 
 ---
 
+
+### 5-bis. 서베이 4창 결과 반영 (2026-07-18 — comp_v23/SURV_SYNTHESIS.md)
+
+**총평(정직)**: 4클러스터 중 **3개(점근·볼록/역·분기/확률)가 A급 0건** — 문건이 이미 spinodal 닫힌근·cusp 3/2·볼록성 부록·원자 Preisach·CNT·Legendre·Fredholm-1종 피팅을 자력 보유. "고등수학 추가 심화" 기대의 상당부는 이미 충족. 진짜 새 닫힘은 **2건뿐**.
+
+- **Tier 1(코어 강권·상호 시너지)**: #0 Fredholm ratio(lag 비선형 닫힘) + **Laplace 전달함수**(SURV-1 A·`H=1/(1+iωL_V)`·rel err 1e-8·fig:reversal 자기정합). H = #0 의 동결 기준해의 주파수형 → "평형 곡선을 저역통과 필터 통과 = 관측 dQ/dV" 한 프레임.
+- **Tier 2(강 옵션·B+)**: Fisher 정보기하(피팅 식별성)·정합점근 Watson(eq:widthbudget L_V² 제1원리 확증·단 휴면).
+- **Tier 3(부록 옵션·B)**: Legendre-Fenchel·Preisach 명명노트·cusp 각주·FPT/Kramers·베이즈·안장점.
+- **기각(non-goal 명시)**: Wiener-Hopf·WKB·다중척도·중심다양체·Langevin·Preisach 연산자채택·Kubo 동적 χ(경고). 역문제(Tikhonov/Bayes)=v1.0.24 동반문건.
+
+**권고 코어 갱신**: 기존 §5 "#0+A+B" → **#0 + Laplace 전달함수(신 A급)** 를 Tier1 코어로, Fisher 정보기하를 Tier2 강옵션으로 승격. Legendre-Fenchel 은 Tier3 부록.
+
 ## 6. Phase 계획 (P0~P5 — 게이트 순차)
 
 | Phase | 범위 | 산출 | 게이트 | 모델 |
