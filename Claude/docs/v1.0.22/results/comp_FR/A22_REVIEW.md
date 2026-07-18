@@ -604,6 +604,20 @@ $^c$SiO 절대 평균전위(V)는 본 조사
 
 ## §서치 — 하이쿠 서브에이전트 문헌 후보 (doi 실검증분만)
 
+하이쿠(model: haiku) 서브에이전트 1회 위임 — **기존 V1 등재 키의 주장 세부 검증 8건**(신규 후보 발굴은 불요 판단: 본 검토의 전 발견이 기존 원장 키 + 내부 산술로 성립하고, "확인 필요" 공백(SiOx 평균전위·히스 mV)은 정직 공백 존중 원칙상 후보 충전 대상이 아님. moyassari_blend2022 는 이미 R4 `BLEND_UP.md:23` 에 doi 검증분(10.1149/1945-7111/ac4545, tier A)으로 존재 — H-5 의 등재 후보로 재탐색 불요).
+
+| # | 키 | DOI | 접근 경로 | 판정 | 원문 근거(하이쿠 fetch 분) | 연동 발견 |
+|---|---|---|---|---|---|---|
+| 1 | wang_asi2013 | 10.1021/nl304379k | Crossref·Semantic Scholar | 부분(제목) | 제목 "Two-Phase Electrochemical Lithiation in **Amorphous** Silicon" 확인 — a-Si/a-Li₂.₅Si 상 쌍 자체는 초록 비공개로 외부 미확인 | H-1 (내부 자기모순 논거로 이미 확정) |
+| 2 | mcdowell_coreshell2013 | 10.1021/nl3044508 | Crossref·Semantic Scholar | 확인 | 제목 "In Situ TEM of Two-Phase Lithiation of **Amorphous Silicon Nanospheres**" — 비정질 나노구 명시 | H-2 확정 |
+| 3 | obrovac_christensen2004 | 10.1149/1.1652421 | IOPscience 부분 접근 | 부분 확인 | "highly lithiated amorphous silicon suddenly **crystallizes at 50 mV** to form ... **Li₁₅Si₄**" — (a) 50 mV 결정화 확인; (b) 탈리튬화 피크 전위·(c) 3579 mAh/g 는 paywall 미확인 | M-4(방향 명시는 내부 논거 유지·전위 수치 병기는 보류)·M-6 |
+| 4 | wen_huggins1981 | 10.1016/0022-4596(81)90487-4 | Semantic Scholar | 부분 확인 | 메타데이터에 "[**415°C**]" — 고온 측정 확인; Li₂₂Si₅ 상 명칭은 본문 미접근 | M-6 (제안의 "고온 용융염 평형"에 "(415 $^\circ$C)" 병기 가능 — 검증분) |
+| 5 | arnot_calorimetry2021 | 10.1149/1945-7111/ac315c | Crossref API | 확인 | JES **168**(11), article **110509** — Crossref 확정 | 부수: `ch3v22_bib.tex:33`(110509) **무결**·R4 `SI_ENTROPY_UP.md:16` 의 110536 이 오기(원장 계보 기록 정정 후보 — .tex 수정 불요) |
+| 6 | andersen_sic2019 | 10.1038/s41598-019-51324-4 | Nature 리다이렉트 실패 | 미확인 | 질량 기준(g-Si vs g-복합) 미확인 | M-9 "확인 필요" 마커 유지(내부 재계산 논거는 유효) |
+| 7 | yom_sio2016 | 10.1016/j.jpowsour.2016.02.025 | Semantic Scholar | 미확인 | ~40% 실리케이트 전액 귀속 명시 여부 미확인(초록 비공개) | M-8 제안은 산술 관계(확정) 기반 — 원문이 전액 귀속을 명시하면 "원문 주장" 꼬리표 대안 |
+| 8 | zhang_sio2018 | 10.1149/2.0431810jes | Crossref·Semantic Scholar | 미확인 | 1710 의 화학량론 명시 여부 미확인 | M-2 제안의 "(화학량론 귀속은 원문 확인 필요)" 마커 필수 유지 |
+
+집계: 확인 2 · 부분 확인 3 · 미확인 3 (접근 제약: ACS 403·Nature 리다이렉트·ScienceDirect/IOP 초록 비공개). **기억 서지 0건** — 위 표의 모든 판정은 하이쿠 창의 실제 fetch 분만.
 <!-- SEARCH-END -->
 
 ---

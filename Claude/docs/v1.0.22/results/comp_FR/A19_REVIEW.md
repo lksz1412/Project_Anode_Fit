@@ -5,7 +5,7 @@
   · `/home/user/Project_Anode_Fit/Claude/docs/v1.0.22/_sections/ch1_sec15_lcoelec.tex` (387행)
   — 두 파일 전문 정독 완료. 파일명은 ch1_* 이나 소속은 ch2_lco_v1.0.22.tex 빌드(역사적 파일명).
 - 검토 4관점: ①내용 보완 ②논리 오류(재계산·재유도) ③더 쉬운 설명 ④산문→수식 간결화
-- 상태: 진행 중 — 발견 검증 완료분부터 즉시 append.
+- 상태: **완료** — 발견 16건(H2·M10·L4) + 검증 로그 V-A~E + 서치 2건 + 4-tier + 무발견 축. (수시 저장 원칙에 따라 검증 완료 순 append 로 작성됨)
 
 ## 발견 표
 
@@ -448,16 +448,166 @@ Chapter 1 Part T & 전이 \emph{전체 상수}(성분 미분해 총합) & 총합
 
 **근거.** 같은 기호의 장 간 의미 충돌은 표 대조가 오독 방지에 가장 강함 — P3-7(명칭 혼동 방지) 정신.
 
+### A19-16 (L·설명) — "가장 정밀한" 최상급의 완화
+
+**파일:행** `ch1_sec15_lcoelec.tex:292-293`.
+
+**현행(축자)**
+```latex
+재현하지 못해(가장 정밀한 config 전용 스케일브리징 계산\cite{ml2024}도 order--disorder 소관이지 전자
+자유도는 다루지 않는다)
+```
+
+**제안(완성 LaTeX)**
+```latex
+재현하지 못해(정밀 config 전용 스케일브리징 계산의 최근 사례\cite{ml2024}도 order--disorder 소관이지 전자
+자유도는 다루지 않는다)
+```
+
+**근거.** "가장 정밀한"은 검증 불가 최상급(과대 주장 축) — ml2024 의 order–disorder 스코프는 초록 수준 확인(§서치)되나 '최고 정밀' 서열과 '전자 자유도 미포함'(부정 주장)은 본문 대조 미완. 완화가 안전.
+
+| (인덱스 표 추가행) A19-16 | ch1_sec15_lcoelec.tex:292-293 | 설명 | L | "가장 정밀한 config 전용 …" | 최상급 완화 | 검증 불가 최상급·부정 주장 미검증 |
+
 <!-- FINDINGS-APPEND -->
 
 ## 검증 로그 (축별, 완료 즉시 append)
+
+### V-A. 구현 구동 재검증 — §lco-worked (sec15:340-381) [축 ②·완료]
+
+도구: `Anode_Fit_v1.0.22.py` 를 그대로 import 해 `LCOCathodeDQDV(LCO_MSMR_LIT).entropy_coefficient_x` 구동(스크립트 scratchpad/verify_a19.py — 소스 무수정).
+
+| 실행 | 본문 주장 | 재계산 | 판정 |
+|------|-----------|--------|------|
+| gate ON, x̄=0.50 | U_oc 3.9243 V / −0.312 / (−0.328/+0.015) | 3.9242 / −0.312 / (−0.327/+0.015) | 일치(반올림) |
+| gate ON, x̄=0.85 | 4.0095 / −0.128 / (−0.215/+0.087) | 4.0095 / −0.128 / (−0.215/+0.087) | 일치 |
+| gate OFF(ΔH 고정), x̄=0.85 | +0.160 mV/K·U_oc 4.1008 V | +0.160 / 4.1008 | 일치 — (c) 재현 |
+| gate OFF(ΔH 고정), x̄=0.50 | (본문 (ii): "계수 불변") | **−0.035 mV/K·U_oc 4.0426 V** | **반증** → A19-02 |
+| gate OFF(U(298) 재보정), x̄=0.50 | 〃 | **+0.054 mV/K** | **반증**(어느 규약이든) |
+| 게이트 상수값 | −45.7 J/(mol K) | func_dSe_molar=−45.678 | 일치 |
+| U₁ 이동 | 게이트 켜면 U_oc −91 mV | TΔS_e/F=−141.2 mV → U_oc −91.3 mV(완충) | 일치 — (c) 서술 정합 |
+| T1 가중(x̄=0.50) | — | 74.8%(T2 24.3/T3 1.0) — 슬롯 −0.411 mV/K 지배 | A19-02 근거 |
+| eq:lco-xmap 국소 게이트 | (a) "게이트 중심 x̄=0.85" | x̄=0.50→x=0.854, σ(1−σ)=0.2496(중심) · x̄=0.85→x=0.762, σ(1−σ)=0.126(금속측, ΔS_e^국소=−23.1) | **역전** → A19-01 |
+
+### V-B. 수학 항등식 재계산 — sec15 유도 사슬 [축 ②·완료, 전항 무발견]
+
+| 항목 | 본문 | 재계산 | 판정 |
+|------|------|--------|------|
+| ∫ŝ(ζ)dζ | π²/3 | 3.289868 (차 6e-15) | ✓ |
+| ∫ζŝ dζ (홀×짝 상쇄) | 0 | −9.6e-13 | ✓ (각주 O(T³) 구조: Taylor 재유도로 g′ 항 소거·½k_Bg″(k_BT)³∫ζ²ŝ 계수 일치, ∫ζ²ŝ=15.153 유한) |
+| Sommerfeld 적분 ∫ζ²(−∂f/∂ζ) | π²/3 | 3.289868 | ✓ (C_e=π²/3·k_B²Tg — 고정 μ·동결 g 에서 ∂N/∂T=0 이라 μ-보정 불요, 재유도 확인) |
+| S_e=∫C_e/T′dT′ | π²/3·k_B²Tg | 적분 즉시 닫힘(상수 피적분) | ✓ 두 경로(비열/직접) 합치 |
+| 골 깊이 T=298.15/300 | −45.7/−46 | −45.68/−45.96 | ✓ |
+| S_e/k_B (T=300, g=13) | ≈1.1 | 1.1056 (본문 산술 3.29·0.0259·13=1.1077) | ✓ |
+| 적분 방출량 vs 끝점 | "항등" | 1.053 vs 1.106 k_B (95.3% — 게이트 x=1 잔차 4.74%) | ✓* → A19-13(L) |
+| 슬롯 산술 | +6−45.7=−39.7 → −0.411 mV/K | −39.678 → −0.4112 | ✓ |
+| eV 곱셈 오류 배율 | ≈4×10³⁷ | 1/e_V²=3.896e37 | ✓ |
+| N_A k_B²=Rk_B | 〃 | N_Ak_B=8.314463=R | ✓ |
+| eq:dSegate 유도 | ∂g/∂x=−(g_max/Δx)σ(1−σ) | σ′=σ(1−σ)·연쇄율 재유도 일치, 앞 음부호·σ(1−σ)max=¼ | ✓ |
+| eq:U1T2 | ½ 인자 | ∫a_eT′dT′=a_e(T²−T_ref²)/2 재유도 | ✓ (a_e=−0.1532 J/(mol K²), a_e/2F=−0.79 μV/K²; 고온 외삽 하향 부호 ✓) |
+| eq:br-marianetti2004-1 | 0.75/0.95 | 0.85∓2·0.05 | ✓ (2상역 0.19 ↔ ±2Δx 유효폭 0.2 ✓) |
+| k_BT/E_F | ~0.03 | 0.026/1 eV | ✓ |
+| 그림 tikz 좌표 | 실선 8점·파선 11점 | 전점 재계산 일치(스케일 2.6/5.4, xx=1−x 매핑, x_MIT→xx=0.15) | ✓ |
+
+### V-C. 규약 정합 재유도 — sec14 [축 ②·완료, 무발견(핵심 확인 1건)]
+
+- **eq:lco-configsplit 혼합항 부호 +R ln[ξ/(1−ξ)] — 정합 확인**(초기 의심 해소): 본 프로젝트의 ξ 는 점유의 여집합(탈리튬화 진행률; `sec:dist` "ξ_eq 는 평형 점유 분포의 여집합"). ∂S_mix/∂θ=−R ln[θ/(1−θ)] 에 θ=1−ξ 대입 → **+R ln[ξ/(1−ξ)]** (삽입 기준). `ch2_sec02_config.tex:48` 의 동일 유도·`eq:complete`(ch2_sec08:18)의 config 항·`ch2_sec03_vibel.tex:96` 의 ★이중계산 분해와 3중 정합. w_j=n_jRT/F 서식 유도(∂w/∂T=n_jR/F, `ch2_sec05_mixing:46`)와도 일치 — "혼합 분포항은 w_j 가 담음" 주장 참.
+- eq:lco-Zfact→eq:lco-Sadd: 로그 가법성→S=−∂F/∂T 선형성→부분몰 가법성 사슬 무결. F× 잔차의 지위(선도 차수 무시+게이트 폭 흡수) 서술 일관.
+- eq:lco-slots ↔ eq:lco-decomp ↔ §15 eq:dSemolar: 셋째 슬롯 N_A∂S_e/∂x 1:1, 부호(삽입 기준 <0)·∝T 표기 일관.
+- 가산성(직교)/무이중계산(기입 규칙) 분리 논증: 논리 무결(별개 질문 명시 정확).
+- srcbox Reynier 등치식 eq:br-reynier2004-1: 자명 항등(F dU/dT=ΔS) ✓. G1/G2/G3 정의(sec14)와 §15 "갭 G2" 상호 참조 정합. 설계 항목 (i)(ii)의 포인터(eq:lco-xmap·round-trip 가드) 실존 확인 — 단 (i)의 매핑을 §lco-worked 가 실제 사용하지 않는 문제는 A19-01 로 계상.
+- tab:lco-staging(0.47/1.49 T2/T3·tier C·혼동 가드) ↔ sec14:136-138 인용 정합. 시연 세트(U 3.93/3.88/4.05·ΔS +6/−4/−2·Q 0.55/0.30/0.15)의 문서↔코드 일치 확인.
+
+### V-D. 참조 라벨·구조 [완료, 무발견]
+
+sec14/15 가 참조하는 라벨 전수 실존 확인: eq:sum·eq:fermifn·sec:dist·sec:sm-lattice·sec:sm-mf·eq:belliden·eq:sm-mc-balance·eq:complete·sec:einstein·sec:mixing·sec:revheat·sec:sum-worked·tab:staging(이상 Ch1/PartT — xr)·eq:lco-dUdT·tab:lco-staging·sec:lco-hys·sec:lco-hys-dope·sec:lco-code·eq:lco-xmap·eq:lco-U1V·sec:appendix-code(Ch2 내). eq:lco-dUdT 는 Gibbs 항등식 2경로 유도(sec12:34-50)로 재확인. P3-7 명칭 규율: sec14/15 의 N9′/N5+ 태그와 절 제목 병기 정합.
+
+### V-E. 서지 검증 [완료 — §서치]
+
+8/8 DOI 리졸브·주요 정량 주장 초록 수준 확인(4.2/9.0 k_B 축자 포함), 미확인 3건 분리 — 상세는 §서치.
 
 <!-- VERIFY-APPEND -->
 
 ## 서치 (하이쿠 서브에이전트 위임 — doi 실검증분만)
 
+하이쿠(model: haiku) 서브에이전트 2건 위임. 기억 서지 불사용 — 실제 fetch 확인분만 수록. APS/Nature/RSC 원문은 403/인증 차단이라 초록·공개 미러(ASU Elsevier Pure·arXiv·RSC 초록면) 수준 확인임을 명시(tier 판단은 마스터 몫).
+
+### 서치-1: 본문 cite 8키 DOI·정량 주장 (ch2v22_bib.tex 기록과 대조)
+
+**DOI 리졸브: 8/8 전건 일치** — reynier2004(10.1103/PhysRevB.70.174304)·marianetti2004(10.1038/nmat1178)·motohashi2009(10.1103/PhysRevB.80.165114)·menetrier1999(10.1039/a900016j)·reimers1992(10.1149/1.2221184)·mott1968(10.1103/RevModPhys.40.677)·imada1998(10.1103/RevModPhys.70.1039)·ml2024(10.1016/j.jmps.2024.105726). 제목·저널·연도·권 모두 원장 기록과 정합.
+
+**정량 주장 판정 표(원문 확인분)**
+
+| 본문 주장(sec14/15) | 판정 | 원문 축자(초록) |
+|--------------------|------|------------------|
+| Reynier 삼분해(config/phonon-INS/electronic) | 확인 | "Three contributions to the entropy of lithiation … phonon entropy …, electronic structure calculations …, and configurational entropy from lithium-vacancy disorder" |
+| O3 범위 0.5<x≤1.0 | 확인 | "for 0.5 < x ≤ 1.0 was determined from measurements" |
+| config 지배(>½, 조성추세 대부분) | 확인 | "large enough to account for most of the compositional trend … of the O3 phase" |
+| MIT 서 electronic·config 비등 중요 | 확인 | "of comparable importance for this metal-insulator transition" |
+| **4.2 k_B/atom(O3 내)** | **확인(축자)** | "as large as 4.2 k_B/atom within the 'O3' layered hexagonal structure" |
+| **9.0 k_B/atom(전 구간 최대)** | **확인(축자)** | "measured changes in the entropy of the lithiation reaction as large as 9.0 k_B/atom" |
+| phonon 음의 리튬화 엔트로피 상당분 | 확인 | "can account for much of the negative entropy of lithiation" |
+| Marianetti 대형 초격자 DFT | 확인 | "Using density functional theory calculations on large supercells" |
+| 불순물 준위 Mott(빈자리 속박 정공) | 확인 | "the vacancy binds its hole and forms impurity states yielding a Mott insulator" |
+| 절연 x≳0.95 / 금속 x≲0.75 | 확인(실험 경계와의 일치 문맥) | "metallic state for x<0.75 and insulating for x>0.95" |
+| CoO2(x=0) 금속 | 확인 | "CoO2, the x=0 end member is a non-correlated metal in the whole temperature range studied" (arXiv:0909.3556) |
+| 2상역 0.75–0.94 | 확인(menetrier1999 경유) | "two-phase domain for 0.75≤x≤0.94" |
+
+**미확인(전문 접근 필요 — 본문 flag/tier 유지 대상)**: ①0.18 k_B/atom(초록 미등장 — sec14:124 ★flag 유지 타당) ②motohashi g(E_F)≈13 e/eV/atom(초록 미등장 — 어느 측정에서 왔는지도 미확인) ③ml2024 '전자 자유도 미포함'(부정 주장 — methodology 필요) ④menetrier 'band insulator/t2g⁶' 축자 ⑤reimers1992 자체의 정확 2상 범위(초록은 "three distinct phase transitions… first order with coexisting phases"까지).
+
+### 서치-2: 흑연/LiC6 g(E_F) — A19-04 보강 후보
+
+| 후보 | DOI(리졸브) | 수치 | 접근 수준 |
+|------|-------------|------|-----------|
+| Holzwarth, Rabii, Girifalco, "Theoretical study of lithium graphite. I. Band structure, density of states, and Fermi-surface properties", PRB **18**, 5190 (1978) | 10.1103/PhysRevB.18.5190 ✓ | LiC6 g(E_F)=0.25 states/(eV·C atom); LiC12 0.12 | 초록·검색 수준(전문 403) |
+| Dresselhaus & Dresselhaus, Adv. Phys. **30**, 139 (1981) / **51**, 1 (2002) | 10.1080/00018738100101367 ✓ / 10.1080/00018730110113644 ✓ | 수치 미확인 | 검색 확인만 |
+
+판정: LiC6 0.25 vs LCO 금속상 13 e/(eV·atom) — **~50배 차** → A19-04 의 "절대 규모" 논거를 정량 지지(단 0.25 는 검색 수준 확인이라 채택 시 원문 대조·원장 V1 등재 절차 필요 — 후보로만 제출). 순흑연 g(E_F) 정량값은 검증분 없음(반정금속 정성만).
+
 <!-- SEARCH-APPEND -->
 
 ## 등급별 정리
 
-<!-- SUMMARY-APPEND -->
+**H (2건 — 논리/물리 오류·오귀속)**
+- A19-01 §lco-worked 좌표 등치 오류: x̄(탈리튬화 분율)와 x_MIT(Li 함량)를 등치 — 문서 자체 매핑(eq:lco-xmap) 적용 시 (b)표 두 행의 게이트 역할이 역전(x̄=0.50 이 실제 게이트 중심 σ(1−σ)=0.2496, x̄=0.85 는 금속측 0.126). 수치는 동결-상수 구현의 산물로 전량 재현되므로 서술·라벨만 교체하는 보존적 수정안 제시.
+- A19-02 verifybox (ii) "국소성 확인" 허위: 구현 직접 구동으로 반증(x̄=0.50 에서 전자항 off 시 −0.312→−0.035[ΔH 고정]/+0.054[재보정] mV/K). 동결 상수 전자항엔 조성 국소성이 원천 부재. (i)·(iii)은 재현 확인 — (ii)만 교체.
+
+**M (10건 — 의미·이해 실질 개선)**
+- A19-03 이중 동결(T_ref+x_center) 중 조성 동결 누락 서술 — H 두 건의 서술적 뿌리.
+- A19-04 흑연 무전자항 논거 교정(상대 변화 아닌 절대 규모) — 서치-2 후보(Holzwarth 1978, LiC6 0.25 e/eV/C)로 정량 지지 가능.
+- A19-05 caption "작지만(−46)" 술어 오배정 — '세 양의 구분' 자기규율 위반 해소.
+- A19-06 ∂g(E_F,x)/∂x 전미분 자격 명시(독자 질문 선제).
+- A19-07 부호 규약 산문 사슬 → 함의 사슬 수식.
+- A19-08 몰당 게이트 닫힌식 식번호 승격(3중 식번호 조합 참조 해소·구현 func_dSe_molar 와 1:1).
+- A19-09 Li 금속측 상수 몫의 ΔS⁰ 흡수 명시(Reynier 등치 정밀화).
+- A19-10 ★4.2/9.0 k_B flag **해소**(원문 초록 축자 확인 — RV 기지 flag 의 심화·해소 이행; 0.18 flag 는 유지).
+- A19-11 Sommerfeld 동결 정당화의 순환 문형 해소.
+- A19-12 정공 생성(x<1)과 금속화(0.94)의 분리 — bgbox 와 본문 정합화.
+
+**L (4건 — 문체·표기)**
+- A19-13 "적분≈1.1 k_B 항등"에 게이트 잔차 5% 주석. A19-14 신뢰 3구성요소 표화. A19-15 ★스코프 주의 표화. A19-16 "가장 정밀한" 최상급 완화.
+
+**제안 공통 원칙 준수**: 기존 자산·수식 삭제 없음(전건 대체·보강); G1/G2/G3·GS 공백은 메우지 않음(A19-10 은 flag 상태 갱신 제안일 뿐 갭 자체는 유지); bgbox 증축분 독립성 무손상; P5 명칭·구조 보존(신규 라벨은 제안 표기).
+
+## 말미 4-tier
+
+**확정(재계산·구동·원문 축자로 잠금)**
+- A19-01·02(구현 구동 반증 + eq:sm-mc-balance/eq:lco-xmap 원문 근거), A19-03(§17 원문 대조), A19-05·13(산술), A19-10 의 4.2/9.0 축자 확인(초록 미러 경유).
+- V-A 재현 전항(−0.312/−0.128/+0.160/4.1008 V/−91 mV/−45.678), V-B 수학 항등식 전항, V-C 부호 규약 정합(eq:lco-configsplit — 초기 의심을 재유도로 **해소**), V-D 라벨 전수 실존.
+
+**추정(정황 근거 — 단정 불가)**
+- verifybox (ii)의 기원 = 구판 시연(중간 dict 에 x_MIT=0.50 배정, py:872-873 주석)의 화석이라는 가설.
+- A19-04 의 "~50배" 정량(LiC6 0.25 는 검색 수준 확인 — 원문 대조 전).
+- reimers1992 의 2상 범위는 menetrier1999 초록(0.75≤x≤0.94)으로 간접 지지.
+
+**미검증(전문 접근 불가 — 본문 현행 flag/tier 유지가 타당)**
+- 0.18 k_B/atom(sec14:124 ★flag 정당 — 초록 미등장), motohashi g(E_F)=13(출처 측정 종류 포함 미확인 — 본문 tier A 부여의 외부 재확인 불가), ml2024 '전자 자유도 미포함'(부정 주장), menetrier 'band insulator' 축자, marianetti "재현한다" 표현의 강도(초록은 실험 경계 일치 문맥 — 과대 위험 경미), Reynier phonon "x-변화 작음"(초록 밖), §lco-worked 의 (b) config 몫 +0.015/+0.087 의 내부 산출 세부(완전식 구현 경유 재현으로 갈음 — 식 수준 손계산은 미실시).
+
+## 무발견 축 (검토했으나 문제 없음 — 명시)
+
+- **sec14 축 ②(논리)**: eq:lco-Zfact 인수분해→eq:lco-Sadd 가법성 사슬, eq:lco-configsplit 부호(ξ=여집합 규약 3중 정합 — 검증 로그 V-C), eq:lco-slots/eq:lco-decomp 슬롯·부호·∝T 표기, 가산성 vs 무이중계산 분리 논증, eq:br-reynier2004-1 항등, G1–G3 정의 정합 — **오류 무발견**.
+- **sec15 축 ②(논리) 유도 본체**: FD→C_e→S_e 두 경로 교차검증, O(T³) 각주, 단위 사슬(eq:gunit·eq:dSemolar·N_Ak_B²=Rk_B·1/e_V²), eq:dSegate 닫힌식, eq:U1T2 ½ 인자, 게이트 3 초기값 근거 사슬(중앙 0.845≈0.85·폭 0.19↔0.2·σ(1−σ)max=¼), 그림 tikz 좌표 전점 — **오류 무발견**(§lco-worked 소절만 H 2건).
+- **P3 관점**: V_n 위계 충돌 없음(본 두 절은 U_j·V 층위만 사용), 전하 보존 중심식 유지(§lco-worked 도 eq:sm-mc-balance 반전 경유 — 흐름 자체는 규율 준수), ver.N↔Chapter 명칭 혼동 없음(N9′/N5+ 태그 정합).
+- **축 ③·④ 전수 훑기 잔여**: 위 발견 외 문단들(★가법성 정당화·srcbox 두 건·bgbox·§lco-gate (i)-(iv)·세 양의 구분 본문)은 재서술 필요 수준의 막힘 없음 — 현행 유지 타당.
+
+---
+*작성: FR-A19 (v1.0.22 심층 검토 창) — 2026-07-18. 검증 스크립트: 세션 scratchpad/verify_a19.py (구동 로그는 V-A/V-B 표에 전사). 소스·git·Codex/ 무접촉.*
