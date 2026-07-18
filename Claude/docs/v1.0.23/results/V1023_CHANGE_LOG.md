@@ -12,3 +12,6 @@
 | A-021 | P3 | Anode_Fit_v1.0.23.py | 부록 E 자기일관 옵션 구현: `_causal_memory_ratio`(1차 ratio 보정)·`_lag_ratio_geff`(g_eff=2χ_d·Ω/RT)·`transfer_apparent_from_equilibrium`(H=1/(1+iωL_V) FFT)·`__init__` 플래그 `lag_ratio_correction`(기본 False)·dqdv elif 분기·헤더 (E)(F). **기본 off = 동결 bit-exact(G1 max\|d\|=0)** | 신규 함수 2·메서드 1·플래그 1·분기 1 |
 | B-001 | P3 | test_gates_v1023_selfconsistent.py(신설) | 자기일관 옵션 게이트 G-E1~E5(동결회수·dqdv bit-exact·차수이득 Picard·전달함수·liveness) 5/5 PASS | 신설 게이트 1본 |
 | A-022 | P3 | _sections/ch1_appE_selfconsistent.tex | E.6 코드 지도 3행을 실 함수명으로 갱신(수식↔코드 1:1 정합 확정) | 표 3행 갱신(신 물리 0) |
+| C-057 | P5 | _sections/ch1_appE_selfconsistent.tex | 적대검수(AUD-4) 수치 증거 정정: F-1 derivbox "~1e-8"(오귀속)→"정확히 0(항등)"·F-2 E.5 "1e-9"→커밋 게이트 G-E4 rel RMS 3.96e-6·F-3 warnbox "3–10×"→"2–10×"·F-4 "일치"→"정합(계수~1.5)"·F-6 충전 거울 1문장 | 수치문장 4정정+1추가(밑바탕 주장 불변) |
+| C-058 | P5 | _sections/ch1_appB_codemap.tex·Anode_Fit_v1.0.23.py | stale 버전 라벨 정정(AUD-1 F-1): appB 코드파일명 v1.0.21→v1.0.23·코드헤더 release 1.0.21→1.0.23·test_gates_v1021→v1023·f_Si 라벨 0.7→0.8(주석만·로직 무변경, G1 bit-exact 재확인) | 문자열/주석 정정(로직 0) |
+| B-002 | P5 | test_gates_v1023_selfconsistent.py | G-E4 허용오차 5e-3→1e-4(AUD-4 F-7·실측 3.96e-6 대비 회귀감지력 확보) | 게이트 임계 강화 |
