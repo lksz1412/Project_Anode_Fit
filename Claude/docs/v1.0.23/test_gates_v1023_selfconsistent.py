@@ -100,8 +100,8 @@ def g_e4():
     num = float(np.sqrt(np.mean((peak_H[m]-peak_frozen[m])**2)))
     den = float(np.max(np.abs(peak_frozen[m])))
     rel = num/den
-    ok = rel < 5e-3
-    print(f"G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS={rel:.2e} (<5e-3)  {'PASS' if ok else 'FAIL'}")
+    ok = rel < 1e-4   # 실측 ~4e-6 대비 ~25× 여유(회귀 감지력 확보; AUD-4 F-7)
+    print(f"G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS={rel:.2e} (<1e-4)  {'PASS' if ok else 'FAIL'}")
     PASS.append(ok)
 
 # ---------- G-E5 liveness (발효) ----------
