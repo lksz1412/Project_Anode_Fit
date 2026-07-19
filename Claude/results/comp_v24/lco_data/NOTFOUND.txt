@@ -1,0 +1,56 @@
+NOTFOUND / NEGATIVE-RESULT LOG  (targets that yielded no usable REAL O3-LCO numeric data)
+=========================================================================================
+Date: 2026-07-19.  Rule followed: no data fabricated; only genuinely retrieved data was saved.
+
+------------------------------------------------------------------------------------------
+TARGET 2 - LiionDB (github.com/ndrewwang/liiondb, paper DOI 10.1088/2516-1083/ac692c)
+STATUS: NO DATA RETRIEVED (database unreachable).
+What I tried:
+  - Shallow-cloned the repo. It contains ONLY client code (liiondb.py, functions/fn_db.py, notebooks).
+    The actual parameter data is NOT in the repo - it lives in a hosted PostgreSQL server.
+  - Connection target (from functions/fn_db.py): host dfn-parameters.postgres.database.azure.com:5432,
+    db 'dfndb', user 'liiondb@dfn-parameters' (public read creds published in the repo).
+  - TCP reachability test (no creds) FAILED: socket.gaierror(-2, 'Name or service not known')
+    => the Azure host does not resolve from this environment. (Azure Database for PostgreSQL 'Single Server'
+    was retired by Microsoft in 2025; this endpoint appears decommissioned, and/or this sandbox only permits
+    egress via the HTTPS proxy, which cannot tunnel the raw Postgres wire protocol on :5432.)
+  - Python DB drivers psycopg2 / sqlalchemy are NOT installed in this environment.
+  - Zenodo archive of LiionDB (DOI 10.5281/zenodo.5574514) is ONLY a 292 kB source-code snapshot
+    (ndrewwang/liiondb-v0.5.0-beta.zip) - it contains NO SQL dump / no data.
+  - The example-query notebook shows the schema (tables data/parameter/material/paper; parameter.name='half cell ocv';
+    material has class/ni/co-type columns) but the example materials are NCA/NMC/LFP; LiCoO2 presence is unverifiable
+    without live DB access.
+CONCLUSION: LiionDB LCO OCP is inaccessible from here. No offline copy of its data exists to extract.
+
+------------------------------------------------------------------------------------------
+TARGET 4 - Zenodo / figshare open O3-LCO half-cell OCV / GITT / entropy datasets
+STATUS: NO OPEN NUMERIC O3-LCO DATASET FOUND.
+What I tried / found:
+  - Zenodo 10.5281/zenodo.20086298 "Half-Cell OCV of Several Li-ion Active Materials ... (pseudo-OCV vs GITT)"
+    (SINTEF, Flores et al., 2026, CC-BY-4.0, 96 parquet files). REAL measured half-cell OCV+GITT data, BUT the
+    materials are ONLY: graphite, silicon, silicongraphite (anodes) and LFP, LNMO, NMC111, NMC532 (cathodes).
+    Confirmed programmatically: NO LiCoO2 / LCO / cobalt file in any of the 96 files. (A web-search summary that
+    claimed it 'includes LiCoO2' was incorrect.)
+  - PyBEP OCP database (github.com/JonPisek/PyBEP, paper 10.3390/batteries11080295): cloned and inspected.
+    cathode_data/ holds NMC111/523/622/811 and LFP only - NO LiCoO2. (A search summary claiming PyBEP 'includes
+    LiCoO2' was also incorrect.)
+  - Broad Zenodo/figshare/github searches for 'LiCoO2 OCV dataset', 'LCO GITT open data', 'LiCoO2 entropy dU/dT
+    data' returned papers/figures but no downloadable numeric O3-LCO OCV or entropy tables.
+
+------------------------------------------------------------------------------------------
+TARGET 5 - Reynier 2004 (Phys. Rev. B 70, 174304) dU/dT ; Hudak 2014 (JES, DOI 10.1149/2.0071503jes) OCV+dE/dT
+STATUS: NO OPEN NUMERIC / DIGITIZED DATASET FOUND (data exists only inside the papers' figures).
+What I tried / found:
+  - Searched github, Zenodo, figshare, and the web for digitized datasets of Reynier 2004 and Hudak 2014.
+    None located as numeric data. Related real work exists but only as PDFs/figures, e.g.
+    OSTI 1225867 "Cycling-Induced Changes in the Entropy Profiles of Lithium Cobalt Oxide Electrodes"
+    (a genuine LiCoO2 dU/dT study) - but no accompanying open numeric dataset.
+  - These sources DO contain real O3-LiCoO2 OCV and entropy (dU/dT) curves, but only as published figures.
+    Extracting them would require the figure images + WebPlotDigitizer. Not done here because (a) the raw figure
+    images were not cleanly retrievable in this environment and (b) per instructions I must not fabricate/estimate
+    numbers. If the user wants these, the honest path is: obtain the figure image and digitize with WebPlotDigitizer.
+
+------------------------------------------------------------------------------------------
+NET: The only genuinely REAL (digitized-from-measurement) LCO OCV obtained is O2-LiCoO2 (Carlier/Delmas 2002,
+via the diffthermo repo). REAL *O3*-LiCoO2 numeric OCV/entropy remains unavailable from open repositories in this
+environment; the O3 material we can supply is ANALYTIC only (PyBaMM Ramadass2004 OCP + Moura2016 entropy).

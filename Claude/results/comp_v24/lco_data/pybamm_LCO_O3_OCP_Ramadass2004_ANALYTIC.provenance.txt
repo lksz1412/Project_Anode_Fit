@@ -1,0 +1,24 @@
+FILE: pybamm_LCO_O3_OCP_Ramadass2004_ANALYTIC.csv
+=================================================
+SOURCE: PyBaMM parameter set 'Ramadass2004'
+  file: pybamm/input/parameters/lithium_ion/Ramadass2004.py  (tag v23.9)
+  raw: https://raw.githubusercontent.com/pybamm-team/PyBaMM/v23.9/pybamm/input/parameters/lithium_ion/Ramadass2004.py
+  function: lico2_ocp_Ramadass2004(sto)
+ORIGINAL REF: P. Ramadass, B. Haran, P. M. Gomadam, R. White, B. N. Popov,
+  "Development of First Principles Capacity Fade Model for Li-Ion Cells", J. Electrochem. Soc. 151 (2) A196 (2004).
+  (PyBaMM's Ramadass2004 set is a curated 'Frankenstein' set; PyBaMM docstring also footcites Zhao2018
+   [X.-G. Zhao et al., J. Electrochem. Soc. 165 (2018) A3169] as a curation reference, but the OCP FORMULA itself is
+   the Ramadass 2004 rational-polynomial fit.)
+
+FORMULA (analytic; stretch=1.13, s=1.13*sto):
+  U(sto) = (-4.656 + 88.669 s^2 - 401.119 s^4 + 342.909 s^6 - 462.471 s^8 + 433.434 s^10)
+           / (-1 + 18.933 s^2 - 79.532 s^4 + 37.311 s^6 - 73.083 s^8 + 95.96 s^10)
+
+COLUMNS: sto_y_in_LiyCoO2 (positive-electrode Li fraction y in Li_yCoO2), OCP_V (V vs Li/Li+).
+ROWS: 87, sto = 0.45..0.88 step 0.005.
+VALIDITY / CAVEAT: the rational fit has POLES (denominator zeros) at sto ~ 0.245, 0.374, and 0.889.
+  Tabulation is deliberately restricted to the pole-free, monotonic branch 0.45-0.88 (U: 4.216 -> 3.212 V).
+  Do NOT evaluate outside this window (blows up near 0.889).
+POLYTYPE: O3 (commercial/standard LiCoO2, R-3m; Ramadass models Sony-type 18650 cells = O3 polytype). NOT O2.
+MEASURED / DIGITIZED / ANALYTIC:  ANALYTIC empirical fit (NOT measured, NOT digitized). Includes an electrode
+  'stretch' factor (1.13) -> this is an engineering electrode OCP, not a pure thermodynamic half-cell OCV.

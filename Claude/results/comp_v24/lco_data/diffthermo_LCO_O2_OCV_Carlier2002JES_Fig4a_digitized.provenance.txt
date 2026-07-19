@@ -1,0 +1,30 @@
+FILE: diffthermo_LCO_O2_OCV_Carlier2002JES_Fig4a_digitized.csv
+=============================================================
+SOURCE (repo): github.com/BattModels/Diffthermo_OCV_paper
+  path: data_for_manuscripts/RK_fit_JPCL_Jan2024/LCO/LCO_Carlier2012JES_Fig4a.csv
+  (retrieved 2026-07-19 via git clone of main branch)
+ORIGINAL DATA SOURCE (per repo README data_for_manuscripts/RK_fit_JPCL_Jan2024/README.md):
+  D. Carlier, I. Saadoune, M. Menetrier, C. Delmas,
+  "Lithium Electrochemical Deintercalation from O2-LiCoO2: Structure and Physical Properties",
+  Journal of The Electrochemical Society 149 (10) A1310 (2002).
+  DOI: 10.1149/1.1503075 . Data taken from FIGURE 4a.
+  Digitized by the diffthermo authors using WebPlotDigitizer (https://automeris.io/WebPlotDigitizer/).
+  (NOTE: repo filename says "Carlier2012JES" but the README DOI 10.1149/1.1503075 is the 2002 JES paper;
+   the "2012" in the filename is a mislabel by the repo authors. Correct year = 2002.)
+
+COLUMNS:
+  col1 = x_Li_in_LixCoO2  : lithium content x in Li_xCoO2 (dimensionless stoichiometry). Range 0.170 - 0.958.
+  col2 = OCV_V            : cell voltage vs Li/Li+ [V] read off the (near-equilibrium) discharge curve. Range 3.04 - 4.55 V.
+  162 data rows (+1 header row). Data values are byte-identical to the repo CSV; only a header line was added
+  and ", " separators normalized to ",".
+
+POLYTYPE:  O2  (CRITICAL)
+  The 2002 Carlier/Delmas paper studies the METASTABLE O2-LiCoO2 polytype (ion-exchanged from P2-Na cobaltate),
+  NOT the common O3 (R-3m) LiCoO2. Abstract: "electrochemical deintercalation of Li from the metastable O2-LiCoO2 phase";
+  phase sequence O2 / T#2 / T#2' / O6 during deintercalation. => This is O2, do NOT treat as O3.
+
+MEASURED / DIGITIZED / ANALYTIC:  DIGITIZED-FROM-FIGURE (of a real experimental electrochemical curve).
+  i.e. real measured O2-LCO deintercalation voltage, digitized point-by-point from published Fig 4a.
+  It is NOT a raw instrument file and NOT an analytic fit.
+
+USED-IN: diffthermo OCV-fitting paper (RK_fit_JPCL_Jan2024 = JPCL 2024). This CSV is the fit TARGET (input data).

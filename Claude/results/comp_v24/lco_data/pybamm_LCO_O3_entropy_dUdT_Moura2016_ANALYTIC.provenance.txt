@@ -1,0 +1,22 @@
+FILE: pybamm_LCO_O3_entropy_dUdT_Moura2016_ANALYTIC.csv
+=======================================================
+SOURCE: PyBaMM parameter set 'Ramadass2004' (same file as OCP)
+  file: pybamm/input/parameters/lithium_ion/Ramadass2004.py  (tag v23.9)
+  function: lico2_entropic_change_Moura2016(sto, c_s_max)
+ORIGINAL REF: fit taken from Scott Moura's fastDFN code (https://github.com/scott-moura/fastDFN).
+  Ultimate experimental origin of this LiCoO2 entropy fit is not documented in PyBaMM/fastDFN.
+
+FORMULA (analytic; stretch=1.062, s=1.062*sto, c_s_max=51555 mol/m^3 for Ramadass2004 positive):
+  dU/dT = 0.07645*(-54.4806/c_s_max)*sech^2(30.834-54.4806 s)
+        + 2.1581*(-50.294/c_s_max)*sech^2(52.294-50.294 s)
+        + 0.14169*(19.854/c_s_max)*sech^2(11.0923-19.8543 s)
+        - 0.2051*(5.4888/c_s_max)*sech^2(1.4684-5.4888 s)
+        - (0.2531/0.1316/c_s_max)*sech^2((-s+0.56478)/0.1316)
+        - (0.02167/0.006/c_s_max)*sech^2((s-0.525)/0.006)
+
+COLUMNS: sto_y_in_LiyCoO2, dUdT_V_per_K (entropic coefficient dU/dT at 298.15 K).
+ROWS: 197, sto = 0.02..1.0 step 0.005. Value range ~ -2.1e-3 .. -7.7e-7 V/K (predominantly negative; note the
+  narrow spike near sto=0.525 from the width-0.006 term).
+POLYTYPE: O3 (commercial LiCoO2, associated with Ramadass2004 O3 electrode). NOT O2.
+MEASURED / DIGITIZED / ANALYTIC:  ANALYTIC fit (NOT measured). c_s_max-scaled per PyBaMM/fastDFN convention;
+  provided as an analytic O3-LCO entropy reference only - it is NOT independent measured dU/dT data.

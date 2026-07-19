@@ -1,0 +1,15 @@
+FILE: diffthermo_LCO_O2_RK_parameters.csv
+=========================================
+SOURCE: github.com/BattModels/Diffthermo_OCV_paper
+  path: data_for_manuscripts/RK_fit_JPCL_Jan2024/LCO/8_RK_params/pred.py  (hardcoded params_list, the fit outputs)
+CONTENT: fitted Redlich-Kister coefficients for the O2-LCO OCV, units J/mol:
+  Omega0..Omega8 (9 excess-enthalpy RK terms) + G0 (reference Gibbs energy of the intercalation reaction).
+GIBBS MODEL (from repo train.py):
+  G(x) = x*G0 + R*T*[x ln x + (1-x) ln(1-x)] + sum_{i=0..8} Omega_i * x(1-x)(1-2x)^i ,  T=300 K, R=8.314, F=96485
+  OCV(x) = -(dG/dx)/F ; two-phase regions replaced by common-tangent (=> 3.683 V plateau).
+VERIFICATION (done here): reconstructing OCV = -(dG/dx)/F from these 9 Omegas + G0 reproduces the repo's saved
+  prediction RK_diffthermo.npz across the whole SINGLE-PHASE region (x 0.18-0.70, agreement ~<15 mV); the plateau
+  region differs only because the common-tangent construction is applied in their pipeline. Dropping Omega8 breaks
+  the match, confirming all 9 Omega + G0 are the operative fitted set.
+POLYTYPE: O2.
+MEASURED / DIGITIZED / ANALYTIC:  ANALYTIC-FIT (fitted model parameters).

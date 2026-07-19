@@ -1,0 +1,13 @@
+FILE: diffthermo_LCO_O2_OCV_RKfit_diffthermo_prediction.csv
+==========================================================
+SOURCE: github.com/BattModels/Diffthermo_OCV_paper
+  path: data_for_manuscripts/RK_fit_JPCL_Jan2024/LCO/8_RK_params/RK_diffthermo.npz  (arrays x, y)
+COLUMNS:
+  col1 = x_Li_in_LixCoO2      : same stoichiometry grid as the digitized data (0.170 - 0.958)
+  col2 = OCV_V_predicted      : OCV predicted by the diffthermo (PyTorch) Redlich-Kister fit.
+  162 rows (+header).
+MODEL: diffthermo Gibbs free energy G(x)=x*G0 + RT[x ln x + (1-x)ln(1-x)] + sum_i Omega_i x(1-x)(1-2x)^i,
+  9 Omega terms (i=0..8) + G0; OCV = -(dG/dx)/F. A common-tangent (miscibility-gap) construction produces the
+  FLAT PLATEAU at 3.683 V over x ~ 0.70-0.94.
+POLYTYPE: O2 (it is a fit to the O2 digitized data above).
+MEASURED / DIGITIZED / ANALYTIC:  ANALYTIC-FIT (model prediction; NOT measured, NOT digitized).
