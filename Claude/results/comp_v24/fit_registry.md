@@ -1,5 +1,5 @@
 <!-- 자동생성: v24_master_fit.py — 데이터 추가 시 재실행하면 갱신 -->
-## 피팅 레지스트리 (N=12 셀·조건)
+## 피팅 레지스트리 (N=18 셀·조건)
 
 | # | label | chem | role | 조건 | R² | U_gr(V) | w_gr(mV) | U_si(V) | w_si(mV) | f_Si(fit/exp) | 출처 |
 |--:|---|---|---|---|--:|---|---|---|---|---|---|
@@ -15,3 +15,9 @@
 | 10 | SiGr3_B_c2 | SiGr_B | anode | pOCV/25C | 0.8276 | [0.0994, 0.1371, 0.1777, 0.2241] | [4.37, 5.05, 12.48, 1.88] | [0.4252, 0.58] | [10.0, 232.3] | 0.892/0.655 | Zenodo 20086298 (SINTEF, CC-BY-4.0, pOCV C/50, 25C) |
 | 11 | NMC111_c1 | NMC111 | cathode | pOCV/25C | 0.9943 | [3.7483, 3.8155, 3.9322, 4.1845] | [18.64, 31.12, 57.26, 105.48] | [] | [] | 0.0/None | Zenodo 20086298 (SINTEF, CC-BY-4.0, pOCV C/50, 25C) ⚠LCO아님(층상 대리) |
 | 12 | NMC532_c1 | NMC532 | cathode | pOCV/25C | 0.9952 | [3.721, 3.774, 3.8782, 4.153] | [12.31, 24.07, 50.5, 114.87] | [] | [] | 0.0/None | Zenodo 20086298 (SINTEF, CC-BY-4.0, pOCV C/50, 25C) ⚠LCO아님(층상 대리) |
+| 13 | Gr_Ecker2015 | graphite_OCP | anode | OCP-digit | 0.9725 | [0.0845, 0.0893, 0.1277, 0.1703] | [1.51, 5.36, 1.82, 27.31] | [] | [] | 0.0/None | PyBaMM Ecker2015 (Kokam 흑연 OCP, 디지타이즈) |
+| 14 | Gr_Enertech | graphite_OCP | anode | OCP-digit | 0.9824 | [0.1041, 0.1379, 0.1565, 0.2255] | [4.35, 5.21, 26.85, 5.61] | [] | [] | 0.0/None | PyBaMM Ai2020 (Enertech 흑연 OCP) |
+| 15 | Gr_Chen2020 | graphite_OCP | anode | OCP-digit | 0.9648 | [0.079, 0.093, 0.1333, 0.2166] | [3.33, 2.25, 2.21, 2.09] | [] | [] | 0.0/None | PyBaMM Chen2020 (LG M50 흑연 OCP) |
+| 16 | Gr_PyBEP_xcrp | graphite_OCP | anode | OCP-digit | 0.9789 | [0.069, 0.1059, 0.1195, 0.198] | [2.8, 3.01, 3.77, 1.99] | [] | [] | 0.0/None | PyBEP (xcrp 2020, 10.1016/j.xcrp.2020.100253) |
+| 17 | Gr_PyBEP_srep | graphite_OCP | anode | OCP-digit | 0.9903 | [0.0805, 0.1196, 0.1223, 0.2964] | [1.88, 3.43, 40.5, 4.79] | [] | [] | 0.0/None | PyBEP (srep 2016, 10.1038/srep32639) |
+| 18 | LCO_Marquis2019 | LCO | cathode | OCP-digit | 0.9653 | [3.7562, 3.9145, 3.9856, 4.2677] | [18.24, 7.02, 43.13, 55.57] | [] | [] | 0.0/None | PyBaMM Marquis2019 (Doyle/Garcia Dualfoil LCO 반쪽셀 OCP) |

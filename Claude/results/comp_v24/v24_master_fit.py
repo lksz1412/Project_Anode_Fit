@@ -36,11 +36,19 @@ DATASETS=[
  dict(label="SiGr3_B_c2",  file="sigr3B_c2_pocv.parquet", chem="SiGr_B",   role="anode", theo=900, cond="pOCV/25C", NG=4,NS=2, win=(0.05,0.60), source=Z1),
  dict(label="NMC111_c1",   file="nmc111_c1_pocv.parquet", chem="NMC111",   role="cathode",theo=None,cond="pOCV/25C", NG=4,NS=0, win=(3.55,4.28), source=Z1+" ⚠LCO아님(층상 대리)"),
  dict(label="NMC532_c1",   file="nmc532_c1_pocv.parquet", chem="NMC532",   role="cathode",theo=None,cond="pOCV/25C", NG=4,NS=0, win=(3.55,4.28), source=Z1+" ⚠LCO아님(층상 대리)"),
+ # ── OCP(x,V) 디지타이즈/분석 곡선 — 서로 다른 소재(평형 dQ/dV=|dx/dV|). w_j 는 디지타이즈 해상 영향(주의) ──
+ dict(label="Gr_Ecker2015",   file="gr_Ecker2015.csv",        chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBaMM Ecker2015 (Kokam 흑연 OCP, 디지타이즈)"),
+ dict(label="Gr_Enertech",    file="gr_Enertech_Ai2020.csv",  chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBaMM Ai2020 (Enertech 흑연 OCP)"),
+ dict(label="Gr_Chen2020",    file="gr_Chen2020_LGM50.csv",    chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBaMM Chen2020 (LG M50 흑연 OCP)"),
+ dict(label="Gr_PyBEP_xcrp",  file="gr_PyBEP_xcrp2020.txt",    chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBEP (xcrp 2020, 10.1016/j.xcrp.2020.100253)"),
+ dict(label="Gr_PyBEP_srep",  file="gr_PyBEP_srep2016.txt",    chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBEP (srep 2016, 10.1038/srep32639)"),
+ dict(label="LCO_Marquis2019",file="lco_Marquis2019.csv",      chem="LCO",          role="cathode",theo=None,cond="OCP-digit", NG=4,NS=0, win=(3.60,4.30), src="ocp", source="PyBaMM Marquis2019 (Doyle/Garcia Dualfoil LCO 반쪽셀 OCP)"),
 ]
 
 Ug0=[0.104,0.1415,0.227,0.140]; wg0=[0.0009,0.0011,0.0016,0.018]
 Uc0=[3.68,3.75,3.90,4.05]; si_init=[(0.30,0.05),(0.45,0.05),(0.20,0.05)]
 
+SCO="/tmp/claude-0/-home-user-Project-Anode-Fit/e8d4cdbc-60e6-548e-b742-1446b8f7a8bd/scratchpad/ocp"
 def load_delith(path):
     d=pd.read_parquet(os.path.join(SC,path))
     I=d['Current / A'].to_numpy(); V=d['Voltage / V'].to_numpy(); Q=d['Cumulative Capacity / Ah'].to_numpy()*1000.0
@@ -48,6 +56,20 @@ def load_delith(path):
     if len(idx)==0: return None
     seg=max(np.split(idx,np.where(np.diff(idx)>1)[0]+1),key=len)
     return V[seg], Q[seg]-Q[seg][0]
+
+def load_ocp(path):
+    """OCP(x,V) 곡선(디지타이즈/분석) → (V, Q=x·100). dQ/dV=|dx/dV| 로 평형 dQ/dV 재현.
+    포맷: 주석(#)·구분자(공백/콤마) 자동. 열=(stoichiometry, OCP[V])."""
+    rows=[]
+    for ln in open(os.path.join(SCO,path)):
+        ln=ln.strip()
+        if not ln or ln[0]=='#': continue
+        parts=ln.replace(',',' ').split()
+        try: rows.append((float(parts[0]),float(parts[1])))
+        except Exception: continue
+    a=np.array(rows); x,V=a[:,0],a[:,1]
+    o=np.argsort(V); V,x=V[o],x[o]           # V 오름차순
+    return V, x*100.0                        # Q ∝ x (스케일은 Q_j 피팅 흡수)
 
 def make_model(NG,NS,role):
     cls=LCO if role=="cathode" else GR
@@ -62,7 +84,7 @@ def make_model(NG,NS,role):
     return f
 
 def fit_ds(ds):
-    r=load_delith(ds["file"])
+    r=load_ocp(ds["file"]) if ds.get("src")=="ocp" else load_delith(ds["file"])
     if r is None: return dict(label=ds["label"], error="no delith seg")
     V,Q=r; LO,HI=ds["win"]; NG,NS=ds["NG"],ds["NS"]
     dvv=0.001 if ds["role"]=="cathode" else 0.0005
