@@ -1,0 +1,245 @@
+% ====================================================================
+% §9 인과 기억 꼬리와 충전에서의 방향 반전 (N8)
+% ====================================================================
+\section{인과 기억 꼬리와 충전에서의 방향 반전 (N8)}\label{sec:tail}
+지연 길이 $L_{V,j}$ 가 정해지면(N7), 전이 $j$ 의 peak 모양은 이 절이 닫는 하나의 표현으로 정해진다 ---
+평형 목표 $\xi_{\eq,j}$ 를 그 자신의 인과 기억으로 적분해 지연 진행률 $\xi_{\mathrm{lag},j}$ 를 얻고, 그
+차를 길이로 나눈 것이 peak 모양이다. 이 절은 그 기억 적분과, 충전에서 그 적분이 향하는 방향을 닫는다 ---
+부호 오류가 발생하기 쉬운 지점이므로 \S\ref{sec:signcheck} 에서 별도 검산한다.
+
+\subsection{인과 기억 적분과 지연 진행률 $\xi_\mathrm{lag}$}\label{sec:tail-memory}
+\textbf{(a) 출발 --- 1계 선형 ODE.} 지연 방정식~\eqref{eq:Lq} 는 1계 선형이라 적분인자 $e^{q/L_{q,j}}$ 로
+닫힌 해를 갖는다. \textbf{(b) 연산 --- 적분인자.} 양변에 $e^{q/L_{q,j}}$ 를 곱하면 좌변이 완전 미분으로
+묶이고
+\begin{equation}
+\frac{\dd}{\dd q}\Big(r_j\,e^{q/L_{q,j}}\Big)
+=e^{q/L_{q,j}}\Big(\frac{\dd r_j}{\dd q}+\frac{r_j}{L_{q,j}}\Big)
+=e^{q/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q},
+\label{eq:intfactor}
+\end{equation}
+\textbf{(c) 중간식 --- 적분해 일반해.} $q_0$ 부터 적분하고 $e^{-q/L_{q,j}}$ 를 곱해 $r_j$ 를 꺼내면
+\begin{equation}
+r_j(q)=r_j(q_0)\,e^{-(q-q_0)/L_{q,j}}
++\int_{q_0}^{q}e^{-(q-q')/L_{q,j}}\,\frac{\dd\xi_{\eq,j}}{\dd q'}\,\dd q'
+\label{eq:memory}
+\end{equation}
+--- 초기 지연의 지수 감쇠 $+$ 과거 목표 변화율을 지수 커널 $K(\Delta q)=e^{-\Delta q/L_q}$ 로 가중한
+\emph{기억}의 합성곱이다(계는 길이 $L_q$ 만큼의 최근 과거만 기억). 이 결핍 $r_j=\xi_{\eq,j}-\xi_j$
+의 인과 기억은 시작점 $q_0$ 를 어디에 두어도 성립하는 항등식이며, $q_0$ 를 밀어낼 자유가 다음
+단계를 연다.
+
+시작점 $q_0$ 는 물리가 아니라 적분의 자유 상수다 --- $r_j$ 는 유계(진행률의 차이라 $|r_j|<1$)이고
+$L_{q,j}>0$ 이므로, $q_0$ 를 과거로 밀면 $r_j(q_0)e^{-(q-q_0)/L_{q,j}}\to0$ 이 지수로 소멸한다.
+\textbf{(a) 출발 --- 경계를 무한히 밀어내기.} $q_0\to-\infty$ 로 보내 이 항을 버리고, 컷점에서 얼어붙은
+고정 기울기(식~\eqref{eq:LV})로 좌표를 $q\to V$ 로 바꾸면(방전 기준 $\sigma_d=+1$; 일반 방향은
+아래 소절), 식~\eqref{eq:memory} 는 시작점 없는 형태로 좁혀진다:
+\begin{equation}
+r_j(V)=\int_{-\infty}^{V} e^{-(V-u)/L_{V,j}}\,\frac{\dd\xi_{\eq,j}}{\dd u}\,\dd u
+\label{eq:memory-Vaxis}
+\end{equation}
+--- 하한 $-\infty$ 가 곧 \S\ref{sec:pol} 이 말한 ``자연 경계''다. \textbf{(b) 연산 --- 부분적분.}
+$f(u)=e^{-(V-u)/L_{V,j}}$, $g(u)=\xi_{\eq,j}(u)$ 로 두면 $f'(u)=(1/L_{V,j})e^{-(V-u)/L_{V,j}}=f(u)/L_{V,j}$
+이고, $\int f\,g'\,\dd u=[fg]-\int f'g\,\dd u$ 를 식~\eqref{eq:memory-Vaxis} 에 적용하면
+\begin{equation}
+r_j(V)=\Big[e^{-(V-u)/L_{V,j}}\xi_{\eq,j}(u)\Big]_{-\infty}^{V}
+-\frac{1}{L_{V,j}}\int_{-\infty}^{V} e^{-(V-u)/L_{V,j}}\,\xi_{\eq,j}(u)\,\dd u.
+\label{eq:lag-byparts}
+\end{equation}
+\textbf{(c) 중간식 --- 경계항 평가.} 위끝 $u=V$ 에서 $e^{0}\xi_{\eq,j}(V)=\xi_{\eq,j}(V)$, 아래끝
+$u\to-\infty$ 에서 $e^{-(V-u)/L_{V,j}}\to0$ 이 $\xi_{\eq,j}$ 의 유계값(logistic, $0<\xi_\eq<1$)을
+누르므로 경계항은 $\xi_{\eq,j}(V)$ 하나만 남고,
+\begin{equation}
+r_j(V)=\xi_{\eq,j}(V)-\frac{1}{L_{V,j}}\int_{-\infty}^{V} e^{-(V-u)/L_{V,j}}\,\xi_{\eq,j}(u)\,\dd u.
+\label{eq:lag-mid}
+\end{equation}
+\textbf{(d) 박스 --- 지연 진행률.} \S\ref{sec:lag} 의 정의 $r_j\equiv\xi_{\eq,j}-\xi_j$ 와
+식~\eqref{eq:lag-mid} 를 나란히 두면 $\xi_j$ 가 곧 닫힌 적분으로 떨어진다 --- 이 인과 기억 적분값을
+지연 진행률 $\xi_{\mathrm{lag},j}$ 로 명명한다($\xi_{\mathrm{lag},j}=\xi_j$, 운동방정식 해의 꼬리 문맥 이름):
+\begin{equation}
+\boxed{\;\xi_{\mathrm{lag},j}(V)=\frac{1}{L_{V,j}}\int_{-\infty}^{V} \xi_{\eq,j}(u)\,e^{-(V-u)/L_{V,j}}\,\dd u\;.}
+\label{eq:lag}
+\end{equation}
+커널이 규격화되어 있음이 곧바로 검산된다 --- $w=V-u$ 로 바꾸면
+$\int_{-\infty}^{V}(1/L_{V,j})e^{-(V-u)/L_{V,j}}\dd u=\int_0^\infty (1/L_{V,j})e^{-w/L_{V,j}}\dd w=1$.
+곧 $\xi_{\mathrm{lag},j}$ 는 평형 목표 $\xi_{\eq,j}$ 를 그 자신의 과거 위에서 규격화된 지수 가중으로
+평균한 값이다 --- 임의의 평가점 $V$ 마다 그 점 하나의 적분으로 닫힌다.
+그림~\ref{fig:relaxode} 가 목표 $\xi_\eq$, 지연 $\xi_\mathrm{lag}$, 그 차 $r=\xi_\eq-\xi_\mathrm{lag}$ 를
+보인다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.7cm,y=1.3cm]
+% relaxation ODE: target xi_eq (step-like rise) and lagged response
+% [lagged curve = pointwise memory integral of xi_eq, L=0.4 q-units (eq:lag).]
+\draw[-{Latex[length=1.4mm]}] (-0.1,0) -- (3.6,0) node[below,font=\scriptsize] {$q$ (capacity coord)};
+\draw[-{Latex[length=1.4mm]}] (-0.1,0) -- (-0.1,2.4) node[above,font=\scriptsize] {$\xi$};
+% target xi_eq: smooth rising sigmoid to 2
+\draw[densely dashed,thick] plot[smooth] coordinates {(0,0.10) (0.3,0.18) (0.6,0.36) (0.9,0.74) (1.2,1.24) (1.5,1.62) (1.8,1.82) (2.1,1.92) (2.4,1.96) (2.7,1.98) (3.0,1.99) (3.3,2.0)};
+\node[above,font=\scriptsize] at (2.9,2.02) {target $\xi_\eq$};
+% lagged xi (follows behind, smaller, shifted right)
+\draw[thick] plot[smooth] coordinates {(0,0.10) (0.3,0.12) (0.6,0.21) (0.9,0.40) (1.2,0.73) (1.5,1.11) (1.8,1.44) (2.1,1.67) (2.4,1.81) (2.7,1.90) (3.0,1.94) (3.3,1.97)};
+\node[right,font=\scriptsize] at (2.5,1.30) {lagged $\xi_\mathrm{lag}$};
+% gap arrow r = xi_eq - xi_lag at q=1.5
+\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]},gray] (1.5,1.11) -- (1.5,1.62);
+\node[right,font=\scriptsize] at (1.60,0.88) {$r=\xi_\eq-\xi_\mathrm{lag}$};
+\draw[densely dotted,gray] (1.5,0) -- (1.5,1.11);
+\node[font=\scriptsize] at (1.1,2.15) {peak shape $=(\xi_\eq-\xi_\mathrm{lag})/L_V$};
+\end{tikzpicture}
+\caption{지연의 완화. 파선 $=$ 평형 목표 $\xi_\eq(q)$, 실선 $=$ 인과 기억 적분(식~\eqref{eq:lag})으로
+뒤처진 $\xi_\mathrm{lag}$. 둘의 차 $r=\xi_\eq-\xi_\mathrm{lag}$ 가 지연이고, peak 모양
+$(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape})는 이 차를 길이로 나눈 것이다. $L_{V,j}\to0$
+에서 이 차분이 평형 종의 미분으로 매끈히 수렴하는 논증(식~\eqref{eq:tail-limit})은 본문 \S\ref{sec:tail}
+다음 소절이 닫는다. (좌표는 기억 적분의 도식 평가다.)}
+\label{fig:relaxode}
+\end{figure}
+
+\subsection{peak 모양과 그 평형 극한}\label{sec:tail-peakshape}
+\textbf{(a)(b)(c) 출발$\cdot$연산$\cdot$중간식.} 진행률은 어디서나 $\xi_j=\xi_{\eq,j}-r_j$ 이고(지연
+$r_j$ 는 식~\eqref{eq:lag} 이 전 구간 결정), 그 미분 $\dd\xi_j/\dd V=\dd\xi_{\eq,j}/\dd V-\dd r_j/\dd V$
+를 보존식 $\dd Q/\dd V=C_\bg+\sum Q_j\,\dd\xi_j/\dd V$ 에 넣으면 각 전이의 기여는 ``평형 전환율에서
+지연의 변화율을 뺀 것''이 된다. \textbf{(d) 박스.}
+\begin{equation}
+\boxed{\;\text{peak shape}=\frac{\xi_{\eq,j}-\xi_{\mathrm{lag},j}}{L_{V,j}}=\frac{r_j}{L_{V,j}}\;.}
+\label{eq:peakshape}
+\end{equation}
+($\xi_{\mathrm{lag},j}$ 는 식~\eqref{eq:lag} 의 점별 적분값.) 방전 기준으로 식~\eqref{eq:memory-Vaxis}
+의 피적분함수는 $\dd\xi_{\eq,j}/\dd u\ge0$(\S\ref{sec:eqpeak})이고 커널도 양수라 $r_j\ge0$ 이 적분
+형태에서 바로 보인다 --- peak 모양은 음이 되지 않는다.
+
+평형 peak(식~\eqref{eq:eqpeak})와 이 꼬리식(식~\eqref{eq:peakshape})은 지금까지 서로 다른 절에서
+닫혔다 --- 둘이 한 표현의 두 극한임을 다음이 보인다. \textbf{(a) 출발 --- 적분인자 이전 형태.}
+식~\eqref{eq:memory-Vaxis} 를 그대로 $L_{V,j}$ 로 나누면
+\begin{equation}
+\frac{r_j}{L_{V,j}}=\frac{1}{L_{V,j}}\int_{-\infty}^{V} e^{-(V-u)/L_{V,j}}\,\frac{\dd\xi_{\eq,j}}{\dd u}\,\dd u.
+\label{eq:tail-limit-start}
+\end{equation}
+\textbf{(b) 연산 --- 치환.} $t=(V-u)/L_{V,j}$(곧 $u=V-L_{V,j}t$, $\dd u=-L_{V,j}\dd t$; $u\to-\infty
+\Rightarrow t\to+\infty$, $u=V\Rightarrow t=0$)로 바꾸면
+\begin{equation}
+\frac{r_j}{L_{V,j}}=\int_0^{\infty} e^{-t}\,\frac{\dd\xi_{\eq,j}}{\dd V}\bigg|_{V-L_{V,j}t}\,\dd t.
+\label{eq:tail-limit-sub}
+\end{equation}
+이 치환이 하는 일은 $L_{V,j}$ 를 적분 구간이 아니라 피적분함수 안(평가점 $V-L_{V,j}t$)으로 옮기는 것이라,
+식~\eqref{eq:peakshape} 에 $L_V\to0$ 을 소박하게 대입할 때 보이던 $0/0$ 꼴의 겉보기 부정형이 사라진다.
+\textbf{(c) 중간식 --- 지배수렴.} $|\dd\xi_{\eq,j}/\dd V|=\xi_{\eq,j}(1-\xi_{\eq,j})/w_j\le1/(4w_j)$
+(식~\eqref{eq:belliden})라 피적분함수가 $|e^{-t}\,\dd\xi_{\eq,j}/\dd V|\le e^{-t}/(4w_j)$ 로 눌리고, 이 지배함수는
+$\int_0^\infty e^{-t}/(4w_j)\,\dd t=1/(4w_j)<\infty$ 로 적분가능하다. $L_{V,j}\to0$ 에서 각 $t$ 마다 평가점
+$V-L_{V,j}t\to V$ 이고 $\dd\xi_{\eq,j}/\dd V$ 는 연속이라 극한과 적분을 바꿀 수 있다(지배수렴정리):
+\begin{equation}
+\lim_{L_{V,j}\to0}\frac{r_j}{L_{V,j}}
+=\Big(\frac{\dd\xi_{\eq,j}}{\dd V}\Big)_{\!V}\int_0^\infty e^{-t}\,\dd t
+=\Big(\frac{\dd\xi_{\eq,j}}{\dd V}\Big)_{\!V}.
+\label{eq:tail-limit-mid}
+\end{equation}
+\textbf{(d) 박스.} 이 소절은 방전($\sigma_d{=}+1$) 기준이라 $\dd\xi_{\eq,j}/\dd V=\xi_{\eq,j}(1-\xi_{\eq,j})/w_j\ge0$ 이고,
+\begin{equation}
+\boxed{\;\lim_{L_{V,j}\to0}\text{peak shape}
+=\frac{\dd\xi_{\eq,j}}{\dd V}
+=\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}\;.}
+\label{eq:tail-limit}
+\end{equation}
+곧 정확히 식~\eqref{eq:eqpeak} 의 평형 종이다(충전은 아래 절의 식~\eqref{eq:reversal} 로 같은 양의 종을 주어 평형 종은
+$\sigma_d$ 불변). 꼬리식(식~\eqref{eq:peakshape})은 모든 $L_{V,j}>0$ 에서 하나의 표현이고, 평형 종은 그 $L_{V,j}\to0$
+해석적 극한이다. 지배함수 $e^{-t}/(4w_j)$ 가 적분가능해 극한$\cdot$적분 교환이 정당하고, $\xi_{\eq,j}$ 자체도 매끈해
+극한값이 어떤 문턱에서의 전환이 아니라 극한 그 자체로 닫힌다. $|I|\to0$ 이면 $L_{V,j}\propto|I|\to0$(식~\eqref{eq:LV})이므로,
+이 극한이 곧 저전류 기준선으로 가는 길이다.
+
+\subsection{충전에서의 방향 반전 --- 진행 방향의 과거}\label{sec:tail-reversal}
+식~\eqref{eq:lag} 는 방전($\sigma_d=+1$) 기준으로 닫았다. 이 절은 같은 적분이 충전에서 향하는 방향을
+닫는다.
+
+\textbf{(a) 출발 --- $q$ 와 $V$ 의 상대 방향.} 인과 순서는 언제나 용량축 $q$(항상 진행 방향으로
+늘어나는 좌표)가 쥔다 --- 지연 방정식(식~\eqref{eq:Lq})도 그 해(식~\eqref{eq:memory})도 $q$ 에서
+닫혔다. $q$ 를 $V$ 로 옮기는 컷점 기울기의 부호가 곧 $\sigma_d$ 다(식~\eqref{eq:LV} 의
+$|\dd V/\dd q|_{q_a}$ 에는 크기만 담겨 있다) --- 방전은 $\dd V/\dd q>0$(전위가 진행과 함께 오른다),
+충전은 $\dd V/\dd q<0$(\S\ref{sec:notation}: 진행이 $V$ 감소 방향).
+
+\textbf{(b) 연산 --- 과거의 방향이 뒤집힌다.} $q$-축의 인과 순서(``$q$ 증가 $=$ 과거에서 현재로'')를
+그대로 $V$ 로 옮기면, 방전은 $q$ 증가가 $V$ 증가와 같은 방향이라 과거가 낮은 $V$ 쪽에 있고(하한
+$-\infty$, 식~\eqref{eq:lag} 그대로), 충전은 $q$ 증가가 $V$ \emph{감소}와 같은 방향이라 과거가 오히려
+높은 $V$ 쪽에 있다 --- 적분의 하한$\cdot$상한과 커널의 부호가 함께 뒤집힌다.
+
+\textbf{(c) 중간식 --- 뒤집힌 커널과 구간.} 방전의 커널 $e^{-(V-u)/L_{V,j}}$(지수는 ``$u$ 가 $V$ 보다
+얼마나 과거인가''를 잰다)에서, 충전은 과거의 방향이 반대이므로 지수의 부호도 반대가 되어
+$e^{-(u-V)/L_{V,j}}$ 이고, 적분은 $u=V$ 에서 시작해 $u\to+\infty$(더 먼 과거)로 뻗는다. 식
+~\eqref{eq:memory-Vaxis}--\eqref{eq:lag} 의 (a)--(d) 유도를 이 뒤집힌 커널$\cdot$구간에 그대로
+반복하면(같은 부분적분, 경계항은 이번엔 $u=V$ 쪽에서 $\xi_{\eq,j}(V)$, $u\to+\infty$ 쪽에서 $0$)
+거울 형태가 닫힌다.
+
+\textbf{(d) 박스 --- 두 방향.}
+\begin{equation}
+\boxed{\;
+\xi_{\mathrm{lag},j}(V)=
+\begin{cases}
+\dfrac{1}{L_{V,j}}\displaystyle\int_{-\infty}^{V} \xi_{\eq,j}(u)\,e^{-(V-u)/L_{V,j}}\,\dd u
+& \sigma_d=+1\ (\text{방전})\\[12pt]
+\dfrac{1}{L_{V,j}}\displaystyle\int_{V}^{+\infty} \xi_{\eq,j}(u)\,e^{-(u-V)/L_{V,j}}\,\dd u
+& \sigma_d=-1\ (\text{충전})
+\end{cases}\;}
+\label{eq:reversal}
+\end{equation}
+인과 기억이 진행 방향의 과거를 훑는다는 것이 이 두 식의 공통 내용이다 --- 방향을 어기면 비인과가
+된다.
+
+두 커널 모두 $\int(\cdots)\dd u=1$ 로 규격화된 가중평균이라 $\xi_{\mathrm{lag},j}$ 는 어느 방향에서도
+$\xi_{\eq,j}$ 와 같은 유계 범위 안에 있고, $r_j=\xi_{\eq,j}-\xi_{\mathrm{lag},j}$ 는 두 방향 모두
+``진행 방향으로 앞선 목표에서, 그 과거의 가중평균을 뺀 값''이라 peak 모양
+$(\xi_{\eq,j}-\xi_{\mathrm{lag},j})/L_{V,j}$ 는 부호를 유지한다(방전$\cdot$충전 모두 음이 아니다).
+이 방향을 어기면 --- 이를테면 충전에 방전의 적분을 그대로 쓰면 --- 꼬리가 아직 지나지 않은 전위
+쪽의 값을 앞당겨 반영하는 비인과 신호가 되어 peak 가 엉뚱한 쪽으로 번진다. \emph{부호 결과} ---
+충전 $\dd Q/\dd V$ 는 방전의 거울이고, 꼬리는 진행상 나중에 지나는 전위 쪽으로 늘어진다(방전은 높은
+$V$, 충전은 낮은 $V$ 쪽으로). 그림~\ref{fig:reversal} 가 두 방향을 나란히 보인다.
+
+\begin{figure}[t]
+\centering
+% T7 fig:reversal  (quantitative-density; GENUINE numeric, not schematic)
+% peak shape = (xi_eq - xi_lag)/L_V, xi_lag from causal memory integral eq:lag / eq:reversal
+%   w=1, U=0, L_V=1.5w.
+%   discharge sigma_d=+1: peak-shape max 0.1955 at V=+1.01 w (tail -> higher V).
+%   charge   sigma_d=-1: eq:reversal lower branch = exact mirror, max 0.1955 at V=-1.01 w.
+%   equilibrium species (dotted) = xi_eq(1-xi_eq)/w, peak 0.25 at 0, direction-invariant.
+\begin{tikzpicture}[x=0.72cm,y=8cm,>=Latex]
+% ================= (a) DISCHARGE (top) =================
+\begin{scope}
+\draw[->] (-6.3,0) -- (9.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-6.3,0) -- (-6.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-4,0,4,8} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(-6,0.0010) (-4.8,0.0033) (-3.6,0.0106) (-3,0.0187) (-2.4,0.0325) (-1.8,0.0546) (-1.2,0.0864) (-0.6,0.1260) (0,0.1647) (0.6,0.1902) (1.0,0.1955) (1.2,0.1945) (1.8,0.1790) (2.4,0.1517) (3,0.1210) (3.6,0.0923) (4.2,0.0683) (4.8,0.0493) (5.4,0.0350) (6,0.0246) (6.9,0.0142) (7.8,0.0081) (8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (1.0,0.1955) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[right,font=\scriptsize] at (1.2,0.205) {$({+}1.01w,\,0.196)$ tail};
+\draw[->,line width=0.9pt] (-5.6,0.275) -- (-2.4,0.275);
+\node[right,font=\scriptsize] at (-5.6,0.292) {progress $V\!\uparrow$ (time $\to$)};
+\draw[->,gray] (4.0,0.15) -- (6.6,0.075);
+\node[right,font=\scriptsize] at (4.4,0.175) {tail $\to$ higher $V$};
+\node[right,font=\scriptsize] at (2.6,0.265) {(a) discharge $\sigma_d{=}{+}1$};
+\end{scope}
+% ================= (b) CHARGE (bottom, mirror) =================
+\begin{scope}[yshift=-3.9cm]
+\draw[->] (-9.3,0) -- (6.3,0) node[below,font=\scriptsize] {$V$ [$w$]};
+\draw[->] (-9.3,0) -- (-9.3,0.30) node[above,font=\scriptsize] {peak [1/$w$]};
+\foreach \xx in {-8,-4,0,4} {\draw (\xx,0.006) -- (\xx,-0.006) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted,thick] plot[smooth] coordinates {(-6,0.0025) (-4.8,0.0081) (-3.6,0.0259) (-3,0.0452) (-2.4,0.0763) (-1.8,0.1217) (-1.2,0.1779) (-0.6,0.2288) (0,0.2500) (0.6,0.2288) (1.2,0.1779) (1.8,0.1217) (2.4,0.0763) (3,0.0452) (3.6,0.0259) (4.8,0.0081) (6,0.0025)};
+\draw[thick] plot[smooth] coordinates {(6,0.0010) (4.8,0.0033) (3.6,0.0106) (3,0.0187) (2.4,0.0325) (1.8,0.0546) (1.2,0.0864) (0.6,0.1260) (0,0.1647) (-0.6,0.1902) (-1.0,0.1955) (-1.2,0.1945) (-1.8,0.1790) (-2.4,0.1517) (-3,0.1210) (-3.6,0.0923) (-4.2,0.0683) (-4.8,0.0493) (-5.4,0.0350) (-6,0.0246) (-6.9,0.0142) (-7.8,0.0081) (-8.7,0.0045)};
+\fill (0,0.25) circle (1.4pt); \fill (-1.0,0.1955) circle (1.4pt);
+\node[above,font=\scriptsize] at (0,0.253) {$(0,\,0.25)$ eq};
+\node[left,font=\scriptsize] at (-1.2,0.205) {tail $({-}1.01w,\,0.196)$};
+\draw[<-,line width=0.9pt] (2.4,0.275) -- (5.6,0.275);
+\node[left,font=\scriptsize] at (6.1,0.292) {progress $V\!\downarrow$ (reversed integral)};
+\draw[->,gray] (-4.0,0.15) -- (-6.6,0.075);
+\node[left,font=\scriptsize] at (-4.4,0.175) {tail $\to$ lower $V$};
+\node[left,font=\scriptsize] at (-2.6,0.265) {(b) charge $\sigma_d{=}{-}1$ (mirror of a)};
+\end{scope}
+\end{tikzpicture}
+\caption{인과 꼬리의 방향 --- 좌표는 식~\eqref{eq:lag}$\cdot$\eqref{eq:reversal} 의 점별 적분을 수치
+평가한 값이다($w{=}1$, $L_V{=}1.5w$). 점선 $=$ 평형 종 $\xi_\eq(1-\xi_\eq)/w$(정점 $0.25$@중심, 방향
+불변), 실선 $=$ peak shape $(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape}). (a) 방전은 진행이
+$V\!\uparrow$ 라 꼬리가 높은 $V$ 쪽으로, 정점 $({+}1.01w,\,0.196)$(식~\eqref{eq:reversal} 상단 분기).
+(b) 충전은 진행이 $V\!\downarrow$ 라 인과 적분이 향하는 쪽이 뒤집혀(식~\eqref{eq:reversal} 하단 분기)
+꼬리가 낮은 $V$ 쪽으로, 정점 $({-}1.01w,\,0.196)$ --- 방전의 정확한 거울. 두 경우 모두 peak 는 양수.
+(좌표는 기억 적분의 도식 수치평가다.)}
+\label{fig:reversal}
+\end{figure}
+
+% 자산: [B2-015] [B2-016] [B2-017] [B2-018] [B2-019] [B2-020] [B2-021] [B2-022] [B2-023] [B2-024] [B2-025] [B2-026] [B2-027] [B2-028] [B2-029]

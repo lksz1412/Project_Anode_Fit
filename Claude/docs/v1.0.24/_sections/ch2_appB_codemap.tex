@@ -1,0 +1,75 @@
+% ====================================================================
+% 부록 D — 열특성 코드 요구명세 (doc-leads: 코드가 이 문건을 구현할 때 만족할 기준)
+% ====================================================================
+\section*{부록 D --- 열특성 코드 구현 요구명세(회귀 기준$\cdot$하위호환)}
+\addcontentsline{toc}{section}{부록 D --- 열특성 코드 구현 요구명세(회귀 기준·하위호환)}
+\phantomsection\label{sec:codemap-thermal}
+
+★\textbf{doc-leads.} 본서가 권위이며, 코드(\code{Anode\_Fit})는 이후 본서에 맞춰 개정된다. 따라서 이
+부록은 \emph{현 구현을 기술하지 않는다} --- 대신 코드 개정이 \emph{재현해야 할} 회귀 기준값과 하위호환 조건을
+요구명세로 못박는다. 본문 물리$\cdot$식이 상위이고, 아래는 그 물리를 옮긴 구현이 통과해야 할 검사다. 함수명은
+부록(본 부록과 부록 B)에만 등장한다(본문은 교과서 register 로 물리$\cdot$모델 언어만 쓴다).
+
+\textbf{D.1 최종 구현 타깃.} 실전 계산의 유일 타깃은 종합식~\eqref{eq:complete} 이다: 입력
+$\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Part I 기원의 $\xi_j(V,T)$(본 파트 식~\eqref{eq:logistic})를 받아, 전하 보존
+음함수~\eqref{eq:implicit} 로 $U_\oc(\bar x,T)$ 를 풀고, $\partial U_\oc/\partial T$ 와 $\dot Q_\rev=-IT\,\partial
+U_\oc/\partial T$~\eqref{eq:qrev} 를 낸다. 진동 온도 편차가 지정되면 입력을 $\Delta S^0_j\to\Delta
+S^0_j+\Delta S_\vib(T)$, $U_j\to U_j+\Delta U_\vib(T)$ 로 온도 확장한다(\S\ref{sec:einstein}).
+이 타깃의 구현 진입점 명명(요구명세): 조성 $\bar x$ 를 직접 받는 세 진입점 ---
+\code{solve\_U\_oc}$(\bar x,T)$ $=$ 음함수~\eqref{eq:implicit} 의 유일근 솔버,
+\code{entropy\_coefficient\_x}$(\bar x,T)$ $=$ 그 근에서의 $\partial U_\oc/\partial T$(완전식~\eqref{eq:complete}),
+\code{reversible\_heat\_x}$(\bar x,T,I)$ $=$ 출구~\eqref{eq:qrev} --- 를 두고, 기존 내부 전위 입력
+\code{entropy\_coefficient}$(V_n,T)$ 경로는 그대로 유지한다(하위호환 --- 두 진입점의 입력 좌표가
+$\bar x$ vs $V_n$ 으로 다르다는 것이 아래 D.2 첫 행의 함수명 구분 근거다). \code{solve\_U\_oc} 가 전제하는
+유일근은 구현의 요행이 아니라 통계역학의 보증이다 --- 입자수 요동의 양성
+$\partial\langle N\rangle/\partial\mu=\beta\,\mathrm{var}(N)>0$ 이 음함수~\eqref{eq:implicit} 좌변의 $U_\oc$
+단조를 만든다는 증명은 Part 0 의 다클래스 소절(\S\ref{sec:sm-mc} 식~\eqref{eq:sm-mc-balance})이 상술한다.
+
+\textbf{D.2 회귀 기준값.} 아래 값을 구현이 재현해야 한다(298.15 K, Part I 4-전이 staging[표~\ref{tab:staging}], $w_j{=}RT/F$).
+\begin{longtable}{p{0.30\textwidth} p{0.42\textwidth} c}
+\toprule
+요구 항목 & 재현해야 할 기준값 & 근거 \\
+\midrule
+\endfirsthead
+\toprule
+요구 항목 & 재현해야 할 기준값 & 근거 \\
+\midrule
+\endhead
+\code{entropy\_coefficient\_x}$(\bar x{=}0.25)$ &
+$\partial U_\oc/\partial T=-0.204$ mV/K(완전식); 단순식 하한 $-0.134$; config 몫 $-0.070$
+(\code{entropy\_coefficient} 는 $V_n$ 입력 경로 --- $\bar x$ 입력은 \code{\_x} 접미 진입점) &
+\S\ref{ssec:worked}(c) \\
+$U_\oc(\bar x{=}0.25)$ &
+$74.4$ mV(음함수~\eqref{eq:implicit} 유일근) &
+\S\ref{ssec:worked}(a) \\
+round-trip 유한차분 &
+$[U_\oc(T{+}3){-}U_\oc(T{-}3)]/6\,\mathrm K=-0.204$ mV/K, 해석 완전식과 $<0.001\,\mu$V/K 일치 &
+\S\ref{ssec:worked}(d) \\
+$\dot Q_\rev/I(\bar x{=}0.25)$ &
+$\Delta S=-19.7$ J\,mol$^{-1}$K$^{-1}$, $\dot Q_\rev/I=+60.8$ mV(방전 발열) &
+\S\ref{ssec:worked}(e) \\
+SOC 부호 교대(5점) &
+$\bar x{=}0.10/0.25/0.50/0.75/0.90$ 에서 $\partial U_\oc/\partial T=-0.307/-0.204/-0.089/+0.044/+0.218$ mV/K,
+$\dot Q_\rev/I=+91.5/+60.8/+26.6/-13.2/-64.9$ mV(발열$\to$흡열) &
+표~\ref{tab:qrev} \\
+전 범위 파생 A &
+175 점에서 완전식이 유한차분과 표시 정밀도($\lesssim10^{-2}$ mV/K) 일치, 내부 경계 3 곳 연속 블렌드 &
+\S\ref{ssec:blend}, \cite{numverif2026} \\
+\bottomrule
+\end{longtable}
+
+\textbf{D.3 하위호환 조건.} Einstein 진동 보정(\S\ref{sec:einstein})은 \emph{선택적}이어야 한다: 전이 $j$ 의
+Einstein 온도 $\theta_{E,j}$ 를 지정하지 않으면 두 가산 $\Delta U_\vib(T)$, $\Delta S_\vib(T)$ 가 모든 $T$ 에서
+항등적으로 $0$ 이 되어, 보정을 켜기 이전 계산과 \emph{완전히 동일한 값}(bit-exact)을 내야 한다. 곧 이 개정은
+$\theta_{E,j}$ 미지정 경로에서 회귀를 일으키지 않는다.
+
+\textbf{D.4 입력 규약 준수.} 평형 $\xi_j(V,T)$ 는 방향 부호가 아니라 $s{=}+1$$\cdot$평형 중심 $U_j$(분기 shift
+無)로 평가한다(\S\ref{ssec:synth}). 두-상 전이의 폭 $w_j$ 는 평형 예측 $n_jRT/F$ 를 강제 값으로 쓰지 않고
+다온도 $dQ/dV$ 피팅의 자유 폭으로 받는다(\S\ref{ssec:weff}); 지배 두-상 config 몫은 다온도 round-trip 확정
+전까지 단순식을 보수적 기준으로 둔다(\S\ref{ssec:synth}). 중심 $U_j$ 는
+$(-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j})/F$ 환산값으로 평가한다(표시 반올림 전위 입력 금지 --- D.2 의
+$U_\oc$ 기준행은 이 규약에서만 재현된다, \S\ref{ssec:worked}).
+
+% 자산: (신규 물리 자산 없음 — doc-leads 요구명세 표면. 코드 anchor 재프레이밍:
+%   [C-111] entropy_coefficient −0.204·round-trip 회귀 기준 · [C-114] tab:qrev 5점 회귀값 ·
+%   [C-61] θ_E 미지정 bit-exact 하위호환 · [C-102/103] eq:complete 최종 타깃·입력 인터페이스 · [C-133] numverif 전범위 기준)

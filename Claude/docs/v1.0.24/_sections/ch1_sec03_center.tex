@@ -1,0 +1,121 @@
+% ====================================================================
+% §3 평형 중심 U_j(T) (N2)
+% ====================================================================
+\section{평형 중심 $U_j(T)$ --- 열역학에서 (N2)}\label{sec:center}
+전이 루프 안의 첫 물리량은 전이 $j$ 의 평형 중심 전위 $U_j(T)$ 다. 이 값은 열역학 입력 $(\Delta H_\rxn,\Delta S_\rxn)$
+에서 식~\eqref{eq:Uj}로 계산되거나, 주어지지 않으면 $U$ 값을 직접 취한다. 이 절은 그 환산식이 어디서 오는지를, Gibbs
+자유에너지의 정의에서 한 단계씩 닫는다. 이 유도가 딛는 통계역학적 기원($Z\to\mu$·전기화학 결선·$G\simeq F$ 다리)은
+Part 0(\S\ref{sec:sm-ensemble}$\cdot$\S\ref{sec:sm-electro}$\cdot$\S\ref{sec:sm-macro})가 세웠다 --- 이 절은 그 위에서 입력
+$(\Delta H_\rxn,\Delta S_\rxn)$ 으로 잇는 결과 사슬 쪽이다.
+
+\subsection{$G,\mu$ 와 평형 조건 --- 유도}\label{sec:center-eqcond}
+\textbf{(a) 출발 --- 두 정의.} 등온$\cdot$등압 계(전지)의 자발성$\cdot$평형을 판정하는 퍼텐셜은 Gibbs 자유에너지
+\begin{equation}
+G\;\equiv\;H-TS
+\label{eq:gibbsdef}
+\end{equation}
+이며, 이 두 항 --- 엔탈피 $H$ 와 $-TS$ --- 의 상대적 크기를 온도가 정한다. 입자 1몰 변화당 $G$ 변화가 화학퍼텐셜이다:
+\begin{equation}
+\mu\;\equiv\;\frac{\partial G}{\partial n}\Big|_{T,P}.
+\label{eq:mudef}
+\end{equation}
+두 장소의 $\mu$ 일치가 입자 교환 평형이다. \textbf{(b) 연산 --- 삽입 반응의 전기화학 평형.} 리튬은 Li$^+$ 와 $e^-$ 로
+갈라져 드나들므로 각 종의 화학퍼텐셜에 전기 일 $zF\phi$(1몰)가 더해진 전기화학 퍼텐셜 $\tilde\mu\equiv\mu+zF\phi$(식~\eqref{eq:sm-emu})가 균형을
+이룬다. 삽입 반응 $\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\text{흑연})}$ 의 평형 조건
+$\delta G=[\tilde\mu_\mathrm{Li}-\tilde\mu_{\mathrm{Li}^+}-\tilde\mu_{e^-}]\,\dd n=0$, 곧
+\begin{equation}
+\tilde\mu_{\mathrm{Li}^+}+\tilde\mu_{e^-}=\tilde\mu_\mathrm{Li}
+\label{eq:eqbalance}
+\end{equation}
+에서, 전자 항이 $z=-1$ 이라 측정 전위 $V$ 를 통해 $\tilde\mu_{e^-}=\mu_{e^-}^0-FV$ 로 들어온다. \textbf{(c) 중간식 ---
+상수 덩이를 중심으로 흡수.} 좌변에서 $-FV$ 만 전위 의존이고 나머지(Li$^+$ 활동도$\cdot$기준 퍼텐셜)는 주어진 $T$ 에서
+상수이므로, 그 상수 덩이 $C$ 에서 비배치 기준 $\mu^0$ 를 뗀 나머지를 $sFU$ 로 정의해($C\equiv\mu^0+sFU$ ---
+Part 0 식~\eqref{eq:sm-eqcond} 의 $U\equiv(\mu_\mathrm{Li}^\mathrm{metal}-\mu^0)/F$ 와 동일; $s=+1$ 라
+$-FV=-sFV$) 묶으면 평형 조건이
+\begin{equation}
+\mu_\mathrm{Li}(\theta_\eq)\;=\;\mu^0-sF\,(V-U),
+\qquad \Delta G_j\;=\;-sF\,U_j
+\label{eq:eqcond}
+\end{equation}
+형태가 된다. 여기서 $s$ 는 방전 규약의 고정 부호 $+1$ 이고, $U$ 는 비배치 몫 자유에너지를 전위로 환산한 값이다. \textbf{(d) 부호 핵심.} $\Delta G_j=-sFU_j$ ---
+$U_j$ 가 양이면 $\Delta G_j<0$, 곧 전이가 자발 진행할 전위가 양의 중심이다. 또한 $V$ 상승(전자 화학퍼텐셜 하락)$\Rightarrow$
+평형 점유율 하강, 곧 ``$V$ 를 올리면 탈리튬화''가 이 한 식에 이미 들어 있다(\S\ref{sec:width} 의 logistic 부호로 회수).
+
+\subsection{$U_j(T)$ --- 온도 환산}\label{sec:center-Uj}
+\textbf{(a) 출발.} 평형 조건의 비배치 몫은 반응 자유에너지 $\Delta G_j=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 다.
+\textbf{(b)(c) 연산$\cdot$중간식 --- 식~\eqref{eq:eqcond} 의 $\Delta G_j=-sFU_j$($s=+1$)에 대입해 $U_j$ 로 이항.}
+\begin{equation}
+\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}=-F\,U_j
+\quad\Longrightarrow\quad
+U_j=-\frac{\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}}{F}
+\label{eq:Ujmid}
+\end{equation}
+\textbf{(d) 박스 --- 분자 부호 정리.}
+\begin{equation}
+\boxed{\;U_j(T)\;=\;\frac{-\Delta H_{\rxn,j}+T\,\Delta S_{\rxn,j}}{F}\;.}
+\label{eq:Uj}
+\end{equation}
+부호 --- 발열 반응
+$\Delta H_\rxn<0$ 이면 분자 $-\Delta H_\rxn>0$ 이 중심을 \emph{올린다}(흡열 아님에 주의). 온도 의존은 식~\eqref{eq:Uj} 를
+$T$ 로 미분한 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 이며, 이는 Gibbs 항등식 $\partial\Delta G/\partial T=-\Delta S$ 와
+식~\eqref{eq:eqcond} 의 $\Delta G=-FU$ 를 잇는 것과 같은 결과다. $|\Delta S_\rxn|\sim$ 수$\sim$수십 J/(mol\,K) 라 $30$ K
+창에서 수 mV 규모로 중심이 이동한다 --- 다온도 피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 이유다. 온도가 배열
+$T(V)$(비등온)이면 $U_j$ 도 $V_n$ 점별 배열로 나온다. 네 전이의 $U_j(T)$ 직선과 기울기 부호의 갈림은
+그림~\ref{fig:UjT} 가 한 장에 보인다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.135cm,y=0.030cm,>=Latex]
+% ---- reference isotherm T=298.15 ----
+\draw[densely dotted,black!55] (298.15,74) -- (298.15,226);
+\node[font=\tiny,black!55,anchor=south] at (298.15,226) {$298.15$ K};
+% ---- axes (y starts at 75 mV; note the offset) ----
+\draw[-{Latex[length=1.6mm]}] (268,75) -- (334,75) node[below right,font=\scriptsize] {$T$ [K]};
+\draw[-{Latex[length=1.4mm]}] (268,75) -- (268,229) node[above,font=\scriptsize] {$U_j$ [mV]};
+\foreach \tt in {270,290,310,330} {\draw (\tt,77)--(\tt,73) node[below,font=\scriptsize] {\tt};}
+\foreach \uu in {100,150,200} {\draw (269.5,\uu)--(266.5,\uu) node[left,font=\scriptsize] {\uu};}
+% ---- four center lines U_j(T) (straight; slope = dS_rxn/F) ----
+\draw[very thick]                 (268,201.81) -- (328,219.85);  % 4->3  dS=+29 (rises)
+\draw[thick,densely dashed]       (268,139.92) -- (328,139.92);  % 3->2L dS=0   (flat)
+\draw[thick,black!55]             (268,121.88) -- (328,118.77);  % 2L->2 dS=-5  (slight fall)
+\draw[very thick,densely dotted]  (268,90.29)  -- (328,80.34);   % 2->1  dS=-16 (falls)
+% ---- right-end transition names (single line each) ----
+\node[font=\scriptsize,anchor=west]        at (329,220.0) {$4\!\to\!3$};
+\node[font=\scriptsize,anchor=west]        at (329,140.5) {$3\!\to\!2\mathrm L$};
+\node[font=\scriptsize,anchor=west,black!55]at (329,118.0) {$2\mathrm L\!\to\!2$};
+\node[font=\scriptsize,anchor=west]        at (329,83.0)  {$2\!\to\!1$};
+% ---- slope-direction arrows on the two signed lines ----
+\draw[->,gray] (282,209.6) -- (290,212.0); % rising (4->3)
+\draw[->,gray] (282,88.2)  -- (290,86.9);  % falling (2->1)
+% ---- legend box (slopes = dS_rxn/F) in the empty mid-left band ----
+\node[draw,rounded corners,font=\tiny,align=left,inner sep=3pt] at (293,172)
+  {$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ [mV/K]:\\
+   $4\!\to\!3$: $\Delta S{=}{+}29\Rightarrow{+}0.301$\\
+   $3\!\to\!2\mathrm L$: $\Delta S{=}0\Rightarrow 0$\\
+   $2\mathrm L\!\to\!2$: $\Delta S{=}{-}5\Rightarrow{-}0.052$\\
+   $2\!\to\!1$: $\Delta S{=}{-}16\Rightarrow{-}0.166$};
+\end{tikzpicture}
+\caption{평형 중심의 온도 의존 $U_j(T)$(식~\eqref{eq:Uj}; 좌표는 식 그대로의 수치 평가: 표~\ref{tab:staging}
+의 네 전이 $(\Delta H_{\rxn,j},\Delta S_{\rxn,j})$, $T{=}268$--$328$ K). 각 직선의 기울기가 정확히
+$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 라, 반응 엔트로피의 \emph{부호}가 중심의 이동 방향을 정한다 ---
+$\Delta S{>}0$ 인 $4\!\to\!3$($+29$)은 온도가 오르면 중심이 \emph{올라가고}, $\Delta S{=}0$ 인 $3\!\to\!2\mathrm L$
+은 평평하며, $\Delta S{<}0$ 인 $2\!\to\!1$($-16$)$\cdot$$2\mathrm L\!\to\!2$($-5$)은 \emph{내려간다}. 기울기 규모는
+$|\Delta S|/F\sim$ 수십 $\mu$V/K$\sim0.3$ mV/K 이라 $60$ K 창에서 중심이 수$\sim$수십 mV 이동한다 --- 다온도
+피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 까닭이 이 서로 다른 기울기다. 세로축은 $75$ mV 에서 끊어
+그렸다.}
+\label{fig:UjT}
+\end{figure}
+% 자산(v1.0.21 신규): [V21-R-01 U_j(T) 온도 지도 fig:UjT — FIGS_PICK N-3(베이스 FO3-4)]
+
+전이 중심의 실제 산출 경로를 정리하면 --- $U_j(T)$ 는 열역학 입력 $(\Delta H_\rxn,\Delta S_\rxn)$ 이 주어지면
+식~\eqref{eq:Uj} 로 계산되고(비등온이면 배열 $T$ 그대로), 주어지지 않으면 $U$ 값을 직접 취한다. 이때
+반응 엔트로피 자리에는 전극별 유효값이 들어가는데, 흑연에서는 입력 그대로(항등)이고 LCO 에서는 전자
+엔트로피 항이 더해진다(Chapter 2 \S\ref{sec:lco-code}). 수치 예시로 stage $2\to1$ 의 초기값
+$\Delta H_\rxn=-13000$ J/mol, $\Delta S_\rxn=-16$ J/(mol\,K)를 넣으면
+$U(298)=(13000-298.15\times16)/96485\approx0.0853$ V 로 목표 $0.085$ V 와 정합한다. 구현 대응은
+부록~\ref{sec:appendix-code} 에 둔다.
+
+다음은 같은 루프 안에서 이 중심을 충$\cdot$방전으로 갈라놓는 히스테리시스 분기다 --- 그 갈림은 식~\eqref{eq:mudef} 의
+$\mu$ 에 상호작용 몫이 들어가 평형이 비틀리는 데서 온다.
+
+% 자산: [A-075] [A-076] [A-077] [A-078] [A-079] [A-080] [A-081] [A-082] [A-083] [A-084] [A-085]
