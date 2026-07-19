@@ -79,16 +79,13 @@ $\int(\dd Q/\dd V)_{\mathrm{Si}}\dd V=Q\!\int_0^1\dd\theta=Q$ 로 전이 총 전
 \textbf{(d) Si-host $=$ 소수 broad gallery, 그리고 블렌드 가산 중첩.} 연속 고용체를 forward 모델로 담는 방식은
 그 연속 등온선을 \emph{소수의 넓은 gallery 전이}로 이산화하는 것이다 --- 각 gallery 가 식~\eqref{eq:si-fr-kernel} 의
 넓은 종 하나이고, 이들의 합이 매끄러운 $U(x)$ 를 근사한다(다반응$\cdot$speciation 의 전하 보존 구조\cite{verbrugge_lisi2016},
-$\Omega$/$\omega$ 정규용액 형식\cite{msmr_origin2017}). 이 Si-host 커널은 혼합 음극 합성식
-~\eqref{eq:blend-dqdv} 의 Si 이중합 몫에 그대로 꽂힌다 --- 두 host 가 \emph{같은 전위 손잡이}(공통 $\mu$)를
-공유하므로, 관측 dQ/dV 는 흑연 종과 Si Frumkin 종의 \emph{같은 전위축 위 선형 합}이다:
-\begin{equation}
-\frac{\dd Q}{\dd V}\bigg|_{U_\mathrm{oc}}=C_\bg+\sum_{\mathrm{host}}\sum_j
-\frac{Q_j^{\mathrm{host}}\,\xi_{\eq,j}^{\mathrm{host}}(1-\xi_{\eq,j}^{\mathrm{host}})}{w_j^{\mathrm{host}}}
-\bigg|_{\mathrm{Si\ 몫\ \to\ 식~\eqref{eq:si-fr-kernel}}},
-\label{eq:si-fr-blend}
-\end{equation}
-곧 Si 몫만 로지스틱 종에서 Frumkin 종으로 바꾼 것이다. 블렌드 실측이 두 host 기여의 중첩으로 읽힌다는 것
+$\Omega$/$\omega$ 정규용액 형식\cite{msmr_origin2017}). 이 Si-host 커널은 혼합 음극 합성식~\eqref{eq:blend-dqdv} 의
+Si 이중합 몫에 그대로 꽂힌다 --- 식~\eqref{eq:blend-dqdv} 의 Si host 종
+$\xi_{\eq,j}^{\mathrm{Si}}(1-\xi_{\eq,j}^{\mathrm{Si}})/w_j^{\mathrm{Si}}$ 를 식~\eqref{eq:si-fr-kernel} 의 Frumkin
+종으로 바꾸고 흑연 몫은 로지스틱 종을 유지한다(식 자체는 \eqref{eq:blend-dqdv} 재정의 없이 host 커널 선택만
+Si 에서 \code{regsol} 로 분기 --- 미지정 시 로지스틱 폴백 bit-exact). 두 host 가 \emph{같은 전위 손잡이}(공통
+$\mu$)를 공유하므로 관측 dQ/dV 는 흑연 종과 Si Frumkin 종의 \emph{같은 전위축 위 선형 합}이다. 블렌드 실측이
+두 host 기여의 중첩으로 읽힌다는 것
 (``clearly a superposition'')은 축소차수 블렌드 모형이 직접 보고하며\cite{tu_blend2024}, 저-Si 복합에서 Si$\cdot$흑연
 peak 가 부분 분리로 관측되는 것(\S\ref{ssec:si-sic}\cite{naboka_sic2021})이 그 실측 접점이다 --- 단 이 가산 중첩은
 \emph{평형(공통 $\mu$)에서 정확}하고 유한 율속 편차는 GS-2 공백(\S\ref{ssec:si-blend-gs2})이 별도로 진단한다.
@@ -100,11 +97,11 @@ peak 가 부분 분리로 관측되는 것(\S\ref{ssec:si-sic}\cite{naboka_sic20
 $(\dd Q/\dd V)_{\mathrm{Si}}=QF/|RT/(\theta(1-\theta))-2\Omega|$(식~\eqref{eq:si-fr-kernel}, $\Omega<2RT$)로,
 $\Omega\!\to\!2RT$ 서 sharpen$\cdot$발산 $\cdot$$\Omega<0$ 서 broaden $\cdot$$\Omega\!\to\!0$ 서 로지스틱 폴백
 (bit-exact)한다 --- 흑연 두-상과 \emph{같은 정규용액 커널의 두 극한}. 유일 두-상은 $c$-$\mathrm{Li_{15}Si_4}$
-(1차 리튬화 $\sim$50--60 mV, 순환 a-Si 부재). Si-host 는 소수 broad gallery 로 이산화되어 공통-$\mu$ 합성
-~\eqref{eq:si-fr-blend} 에 가산 중첩된다\cite{tu_blend2024}.
+(1차 리튬화 $\sim$50--60 mV, 순환 a-Si 부재). Si-host 는 소수 broad gallery 로 이산화되어 공통-$\mu$
+합성~\eqref{eq:blend-dqdv} 의 Si 몫으로 가산 중첩된다\cite{tu_blend2024}.
 \end{keybox}
 
 % 자산(comp_R1 W5 신규): [W5-SIFR-01 a-Si 단일상 물리 기작(무질서 자리 에너지 분포·Ω<2RT screened)]
 %   [W5-SIFR-02 폭 진단 [1.45,2.74,1.09]≳1 vs 흑연 ≪0.12(20–50×)] [W5-SIFR-03 Frumkin 커널 유도 boxed eq:si-fr-kernel(eq:mu·eq:si-fr-V·eq:si-fr-dVdtheta)]
 %   [W5-SIFR-04 3극한 sharpen/폴백/broaden·폭 이중지위 단상 첫째 지위] [W5-SIFR-05 verifybox 폭진단·면적보존·폴백 bit-exact·Li15Si4 예외]
-%   [W5-SIFR-06 소수 broad gallery 이산화·공통-μ 가산중첩 eq:si-fr-blend(eq:blend-dqdv Si몫 교체)·tu2024 superposition]
+%   [W5-SIFR-06 소수 broad gallery 이산화·공통-μ 가산중첩(eq:blend-dqdv Si몫 커널 교체·regsol 분기·폴백 bit-exact)·tu2024 superposition]

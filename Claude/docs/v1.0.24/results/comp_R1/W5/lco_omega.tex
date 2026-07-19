@@ -1,0 +1,111 @@
+% ====================================================================
+% lco_omega.tex — [LCO-Ω] LCO per-peak Ω(정칙용액 커널) + 전자항 on/off 토글 (신규 소절)
+%   삽입 위치: Chapter 2 LCO, §13 히스(ch1_sec13_lcohys)·§15 전자항(ch1_sec15_lcoelec)·§16 peak(ch1_sec16_lcopeak) 정합.
+%   저작 sub W5 초안 — 물리 기작·직관 전면(WHY 전자항이 fixed-T 커브엔 안 보이고 ∂U/∂T 엔 산다). 표기·라벨 계승.
+%   저작 근거·가정·#7 정정 소재지·불확실점은 같은 폴더 NOTES.md.
+% ====================================================================
+\subsection{LCO per-peak $\Omega$ 와 전자항 on/off 토글 --- 상온 커브엔 없고 $\partial U/\partial T$ 엔 사는 몫}\label{sec:lco-omega}
+LCO 하프셀 dQ/dV 는 흑연과 \emph{같은} MSMR 커널을 쓴다(식~\eqref{eq:lco-eqpeak}). 그러나 세 feature 는 상 성격이
+서로 달라 전이별 $\Omega_j^\cat$ 가 필요하고(per-peak $\Omega$), 그 $\Omega_j^\cat$ 가 \emph{무엇인지}는 오독하기
+쉬우며(정정 대상 #7), T1 에는 흑연엔 없는 전자 엔트로피 항이 \emph{켜졌다 꺼지는} 특별한 지위로 붙는다. 이 소절이
+셋을 한자리에서 닫는다 --- 앞의 둘은 커널의 정밀화이고, 셋째는 그 커널이 \emph{어느 관측량에} 드러나는가의 문제다.
+
+\textbf{(a) per-peak $\Omega$ --- feature 마다 상 성격이 다르다.} 흑연 네 전이가 각자 $\Omega_j$ 를 갖듯, LCO 세
+전이도 전이별 $\Omega_j^\cat$ 로 상 성격이 갈린다. T1(MIT $\sim$3.90 V)은 절연체$\to$금속 \emph{구조적 2상역}이라
+$\Omega_1^\cat>2RT$ 의 sharp(델타에 가까운) peak 이고\cite{reimers1992,menetrier1999}, T2$\cdot$T3
+($x\!\approx\!\tfrac12$ order--disorder)는 Li$\cdot$빈자리 정렬의 \emph{유효 인력}이라 그 두-상 여부가 피팅된
+$\Omega_{2,3}^\cat$ 에 달렸다(\S\ref{sec:lco-hys-od}\cite{vanderven1998,reynier2004}). 이 성격 차는
+식~\eqref{eq:lco-eqpeak} 의 평형 peak 에 전이별로 실린다 --- 반충전 순높이가
+$(\dd Q/\dd V)^\eq_{j,\max}=[Q_j^\cat/(4w_j)]/|1-\Omega_j^\cat/2RT|$ 라, sharp 한 두-상($\Omega_j^\cat\!\to\!2RT^+$
+측)일수록 높고 좁으며(그리고 분기 gap 식~\eqref{eq:lco-dUhys} 도 $\Omega_j^\cat$ 에 단조증가), order--disorder 는
+$\Omega_j^\cat$ 가 작게 피팅되면 넓다. 곧 흑연 두-상(\S\ref{sec:gr-2L})$\cdot$Si 고용체(\S\ref{ssec:si-frumkin})$\cdot$LCO
+세 feature 가 \emph{같은 정규용액 커널의 서로 다른 $\Omega$ 점}이며, 그것을 전이별로 두는 것이 per-peak $\Omega$ 다.
+합산은 식~\eqref{eq:lco-eqpeak}(세 전이 평형 종의 배경 위 선형 합) 그대로이되, 전이별 sharpness 가
+$\Omega_j^\cat$ 로 갈리는 것이 단상 반충전 순높이에 다음 인자로 실린다:
+\begin{equation}
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq_{j,\max}=\frac{Q_j^\cat}{4w_j}\,\frac{1}{\big|1-\Omega_j^\cat/2RT\big|}\,,
+\qquad j\in\{\mathrm{T1,T2,T3}\}\;}
+\label{eq:lco-omega-kernel}
+\end{equation}
+--- $\Omega_j^\cat\!\to\!2RT$ 로 갈수록 순높이가 커지고 폭이 좁아지며(sharp 한 T1 두-상), 두-상 측으로 넘어간
+전이의 실측 폭은 broadening 이 담는 현상학적 폭이다(\S\ref{sec:lco-peak} 폭의 지위; 흑연 식~\eqref{eq:gr-criterion}
+$\cdot$Si 식~\eqref{eq:si-fr-kernel} 과 같은 $|1-\Omega/2RT|$ 인자). per-peak $\Omega$ 도입은 LCO 곡선맞춤을
+$+1.25$\%p 개선하고, H1--3 고전압 미세구조까지 세분하면 $+1.90$\%p 에 이른다(내부 ablation, tier B) --- feature 별
+상 성격을 한 $\Omega$ 로 뭉개지 않은 대가다.
+
+\textbf{(b) 정정 #7 --- $\Omega_j^\cat$ 는 유효 평균장 축약이지 미시 질서구조가 아니다.} 여기서 한 문구를 바로잡는다.
+$\Omega_j^\cat$ 를 order--disorder 상 자체와 등치하는 읽기($\Omega_j^\cat>2RT\ \Leftrightarrow\ x\!\approx\!\tfrac12$
+질서상 ``안정'', 식~\eqref{eq:br-vanderven1998-1} 의 표현)는 오해를 부른다. 정확한 지위는 다음이다:
+\begin{equation}
+\boxed{\;\Omega_j^\cat=\text{전이 $j$ 진행좌표 $\xi_j$ 의 유효 \emph{평균장 쌍상호작용} 축약}\ \ (\text{미시 질서구조 아님})\;;\quad
+\Delta S_j^\config\ \text{는 \emph{별도} 슬롯}\;}
+\label{eq:lco-omega-hash7}
+\end{equation}
+--- van der Ven 의 다체 클러스터 전개\cite{vanderven1998} 를 전이 $j$ 창의 진행률 $\xi_j$ 좌표에서 \emph{최근접 쌍
+한 항}으로 접은 유효 상호작용이 $\Omega_j^\cat$[J/mol]이고, 그것이 정하는 것은 spinodal 문턱(gap$\cdot$sharpness)
+\emph{뿐}이다. 정렬의 charge-order 엔트로피 $\Delta S_j^\config$[J/(mol\,K)]는 \emph{다른 종류의 양}으로, $U_j^\cat(T)$
+의 온도 이동(식~\eqref{eq:lco-dUdT})에 들어가는 별도 슬롯이며 $\Omega_j^\cat$ 로 직접 연결하지 않는다(차원부터
+다르다). 물리는 그대로이고 문구만 정확해진다 --- 이 혼동 가드는 \S\ref{sec:lco-hys-od} 의 ``$\Omega$ 와 config
+$\Delta S$ 의 구분''을 계승한다.
+\begin{warnbox}
+\textbf{$\Omega_j^\cat$ 오독 금지.} $\Omega_j^\cat>2RT$ 는 그 전이가 \emph{상분리(두-상) 가지}로 들어감을 뜻할
+뿐, $x\!\approx\!\tfrac12$ 미시 초격자의 존재$\cdot$안정성을 그 값이 \emph{정하는} 것이 아니다(그것은
+제일원리\cite{vanderven1998,ml2024} 소관). $\Omega_j^\cat$ 의 실제 gap 유무는 최종적으로 \emph{피팅된}
+$\Omega_j^\cat$ 이 $2RT$ 를 넘는지가 정하고, config 엔트로피는 그와 무관한 별도 슬롯이다(식~\eqref{eq:lco-omega-hash7}).
+``$0.47/1.49\ \mathrm{J/(mol\,K)}\to\Omega_j^\cat$''처럼 엔트로피를 상호작용 에너지로 직결하지 않는다.
+\end{warnbox}
+
+\textbf{(c) 전자항 토글 --- 왜 상온 커브엔 안 보이고 $\partial U/\partial T$ 엔 사는가.} T1 에 붙는 전자 엔트로피
+$\Delta S_{e}(x,T)$(MIT 게이트, 중심에서 $\approx-45.7$ J/(mol\,K), 식~\eqref{eq:dSe}$\cdot$\eqref{eq:dSegate})는
+다른 항과 결정적으로 다른 지위를 갖는다 --- \emph{고정 온도 커브에는 전혀 나타나지 않고, 온도 미분
+$\partial U/\partial T$(가역열)에만 산다}. 까닭은 그 항이 들어가는 자리에 있다. 평형 중심은 기준온도에서
+\begin{equation}
+U_1(T)=U_1(T_\mathrm{ref})+\frac{\Delta S_0}{F}(T-T_\mathrm{ref})+\frac{a_e}{2F}(T^2-T_\mathrm{ref}^2),
+\qquad a_e=\frac{\Delta S_{e}}{T}\ (\propto\!T\text{-계수})
+\label{eq:lco-omega-U1T}
+\end{equation}
+로 적분된다(식~\eqref{eq:U1T2}; $\Delta S_0=\Delta S^\config+\Delta S^\vib$ 는 $T$-무관). $T=T_\mathrm{ref}$ 에서
+둘째$\cdot$셋째 항이 \emph{항등적으로 0} 이라, 상온 커브가 쓰는 것은 $U_1(T_\mathrm{ref})$ 와 폭 $w_1$ 뿐이다 --- 곧
+$\Delta S_e$ 가 실린 값은 피팅된 $U_1(T_\mathrm{ref})$ 가 흡수하고($-\Delta H$ 재기준), 고정 온도 dQ/dV 는 그것을
+\emph{분리해 볼 수 없다}. 전자항이 커브에 무관하다는 이 논리는 실측으로도 확인된다: 전자항을 뺀 plain MSMR 가
+LCO 커브를 $R^2\!=\!0.944$ 로 맞춰 흑연 $0.940$ 과 대등하다(내부 검증, tier B) --- 커브만 볼 땐 전자항이 필요 없다.
+
+전자항이 살아나는 유일한 창은 \emph{온도 미분}이다. $\Delta S_e\!\propto\!T$(Sommerfeld, 식~\eqref{eq:Se})라 전자
+기여 $\partial U_1/\partial T|_e=\Delta S_e/F\!\propto\!T$ 가 \emph{$T$ 에 선형}인데, config$\cdot$vib 는 $\partial U/\partial T$
+가 \emph{상수}다. 따라서 다온도 $\partial U/\partial T$ 의 \emph{$T$-선형 성분}(위치로는 $T^2$ 곡률, 식~\eqref{eq:lco-omega-U1T})이
+전자항의 유일 지문이며, 이것이 단일 온도 커브에는 없고 다온도 가역열에만 있는 까닭이다. 식별 신호는
+``$\partial U/\partial T$ 가 $T$ 에 선형''이지 ``peak 위치가 $T$ 에 선형''이 아님에 유의한다.
+\begin{equation}
+\boxed{\;
+\underbrace{\text{고정 $T$ 커브}}_{U_1(T_\mathrm{ref}),\,w_1\ \text{만}}\!:\ \Delta S_e\ \text{무영향(}\Delta H\text{ 흡수)}
+\quad\Big\|\quad
+\underbrace{\partial U_1/\partial T}_{\text{가역열}}\!:\ \frac{\partial U_1}{\partial T}\Big|_e=\frac{\Delta S_e}{F}\propto T\ \text{(유일 지문)}\;}
+\label{eq:lco-omega-toggle}
+\end{equation}
+곧 코드는 이 지위를 \emph{플래그}로 실현한다 --- \code{include\_electronic\_entropy} 를 기본 \code{False}(커브 산출:
+전자항 잉여이므로 OFF)로 두고, 다온도 엔트로피/가역열 분석에서만 \code{True}(∂U/∂T 에 게이트 골 ON)로 켠다.
+이 토글이 식~\eqref{eq:lco-mit} 의 슬롯 분리(구조적 2상역 $\Leftarrow\Omega_1^\cat$ $\|$ 전자 엔트로피
+$\Leftarrow\Delta S_e$)를 코드 층에서 그대로 지킨다.
+\begin{codebox}
+\code{include\_electronic\_entropy: bool = False}. \emph{OFF}(기본): $\Delta S_e\!\equiv\!0$ 슬롯 --- 상온 dQ/dV
+커브 산출용(전자항 잉여, $U_1(T_\mathrm{ref})$ 가 $\Delta H$ 재기준으로 흡수, $U(298)$ 보존). \emph{ON}(옵션):
+게이트 골 $\Delta S_e(x,T)$(식~\eqref{eq:dSegate})를 T1 슬롯에 실어 $\partial U/\partial T$ 의 $T$-선형 성분 활성 ---
+회사 다온도 데이터로 가역열/전자 신호를 확인할 때만. \emph{게이트 OFF 가 기본이라 기존 커브는 불변}(단, 현
+구현이 $\Delta S_e$ 상시 ON 이면 OFF 전환은 $U(298)$ 보존을 위한 $\Delta H$ 재기준을 요구 --- R2 게이트 소관).
+\end{codebox}
+
+\begin{keybox}
+\textbf{LCO $\Omega$$\cdot$전자항 한 줄.} LCO 는 흑연과 같은 MSMR 커널이되 feature 별 상 성격이 달라 per-peak
+$\Omega_j^\cat$ 로 sharpness$\cdot$gap 을 잡는다(T1 MIT 두-상 sharp $\cdot$T2/T3 order--disorder,
+식~\eqref{eq:lco-omega-kernel}; ablation $+1.25$\textasciitilde$1.90$\%p). \textbf{#7} --- $\Omega_j^\cat$ 는 진행좌표의
+\emph{유효 평균장 축약}(미시 질서구조 아님)이고 config 엔트로피는 \emph{별도 슬롯}이다(식~\eqref{eq:lco-omega-hash7};
+문구만 정정, 물리 유지). \textbf{전자항 토글} --- $\Delta S_e$($\approx-45.7$ J/(mol\,K), $\propto T$)는 $T_\mathrm{ref}$
+동결로 \emph{상온 커브엔 무영향}(plain MSMR $R^2\!=\!0.944\!\approx\!$흑연 $0.940$)이고 \emph{$\partial U/\partial T$
+의 $T$-선형 성분}에만 산다(식~\eqref{eq:lco-omega-toggle}) --- 코드 \code{include\_electronic\_entropy=False} 기본
+OFF(커브)$\cdot$ON(∂U/∂T) 토글로 실현.
+\end{keybox}
+
+% 자산(comp_R1 W5 신규): [W5-LCOΩ-01 per-peak Ω boxed eq:lco-omega-kernel(전이별 sharpness·gap; T1 두-상 sharp·T2/T3 OD; ablation +1.25/1.90%p)]
+%   [W5-LCOΩ-02 #7 정정 boxed eq:lco-omega-hash7 + warnbox(Ω=유효 평균장 축약·config 별도 슬롯·eq:br-vanderven1998-1 문구 정정)]
+%   [W5-LCOΩ-03 전자항 토글 유도 eq:lco-omega-U1T(T_ref 동결→커브 무영향; eq:U1T2 계승)]
+%   [W5-LCOΩ-04 boxed 토글 eq:lco-omega-toggle(커브 || ∂U/∂T; ΔS_e∝T 유일 지문) + codebox include_electronic_entropy]

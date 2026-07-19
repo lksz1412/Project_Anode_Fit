@@ -1,0 +1,119 @@
+% ====================================================================
+% lco_omega.tex — [LCO-Ω] LCO per-peak Ω(정칙용액 커널) + 전자항 on/off 토글 (신규 subsection)
+%   배치: Chapter 2(LCO), \S\ref{sec:lco-hys}·\S\ref{sec:lco-electronic}·\S\ref{sec:lco-peak} 정합.
+%   저작: comp_R1 W3 (교과서 register·전제부터·G-follow/G-usable). 초안 — master 확정 전.
+% ====================================================================
+\subsection{per-peak $\Omega_j^\mathrm{cat}$ 커널과 전자항 on/off 토글 --- 곡선은 $\Omega/w$, 가역열만 $\Delta S_e$}\label{ssec:lco-perpeak}
+\S\ref{sec:lco-peak} 이 LCO 세 peak 를 흑연과 \emph{같은} 평형 종 유도로 닫았고(식~\eqref{eq:lco-eqpeak}),
+\S\ref{sec:lco-code} 가 그것이 MSMR 미분용량과 동형임을 보였다(식~\eqref{eq:lco-msmrpeak}). 남은 두 물음이
+이 소절의 몫이다. 첫째 --- 세 feature 는 같은 커널을 쓰면서도 상 성격이 서로 다르다(T1 MIT 는 날카로운 두-상,
+$x\!\approx\!\tfrac12$ order--disorder 는 상대적으로 넓다). 이 차이를 무엇이 담는가? 답은 \emph{전이마다 다른}
+$\Omega_j^\mathrm{cat}$(per-peak $\Omega$)이고, 그 커널은 흑연$\cdot$Si 와 같은 정칙용액 미분이다(전제부터
+유도). 둘째 --- \S\ref{sec:lco-electronic} 의 전자 엔트로피 $\Delta S_e$ 는 상온 dQ/dV 를 바꾸는가? 답은
+\emph{아니오}이며, 그 까닭($T_\mathrm{ref}$ 동결)과 코드 토글을 닫는다. 이 소절은 곡선을 정하는 것이
+$\Omega_j^\mathrm{cat}/w_j$ 이고 $\Delta S_e$ 는 오직 가역열($\partial U/\partial T$)에만 작용함을 명확히 갈라
+둔다.
+
+\textbf{(a) 출발 --- 같은 커널, 전이마다 다른 $\Omega_j^\mathrm{cat}$.} \S\ref{sec:lco-hys} 가 세 전이를 같은
+정칙용액 자유에너지(식~\eqref{eq:lco-gxi})에 넣었으므로, 각 전이의 평형 전위 곡선은 식~\eqref{eq:lco-Veq} 의
+$V_{\eq,j}^\mathrm{cat}(\xi)=U_j^\mathrm{cat}+(RT/F)\ln[\xi/(1-\xi)]+(\Omega_j^\mathrm{cat}/F)(1-2\xi)$ 이고,
+결정적으로 $\Omega_j^\mathrm{cat}$ 은 \emph{전이별로 독립}이다(상첨자 $j$). feature 사이의 상 성격 차이 --- T1
+MIT 의 날카로운 두-상 plateau($\sim$3.90 V) 대 $x\!\approx\!\tfrac12$ order--disorder 쌍(T2$\sim$4.05 V$\cdot$%
+T3$\sim$4.17--4.20 V)의 상대적 넓음 --- 는 새 물리항이 아니라 이 \emph{per-peak} $\Omega_j^\mathrm{cat}$ 의
+값 차이가 담는다. 곧 흑연 staging 이 전이마다 다른 $\Omega_j$ 를 갖듯(표~\ref{tab:staging}), LCO 도 전이마다
+다른 $\Omega_j^\mathrm{cat}$ 를 가지며, 커널의 \emph{형태}는 셋이 공유하되 그 sharpness 만 $\Omega_j^\mathrm{cat}$
+가 조절한다.
+
+\textbf{(b) 연산 --- per-peak Frumkin 커널.} 전이 $j$ 의 단일 입자 평형 미분용량은 \S\ref{sec:lco-peak}(a) 와
+같은 전하 보존 사슬로 얻는다 --- $\dd Q=Q_j^\mathrm{cat}\dd\xi$ 이므로 $\dd Q/\dd V=Q_j^\mathrm{cat}/
+|\dd V_{\eq,j}^\mathrm{cat}/\dd\xi|$ 이고, 식~\eqref{eq:lco-Veq} 의 기울기가 곡률 식~\eqref{eq:lco-gpp} 을 $F$
+로 나눈 $\dd V_{\eq,j}^\mathrm{cat}/\dd\xi=(1/F)[RT/(\xi(1-\xi))-2\Omega_j^\mathrm{cat}]$ 이라
+\begin{equation}
+\Big(\frac{\dd Q}{\dd V}\Big)_{\!j}^{\eq}
+=\frac{Q_j^\mathrm{cat}\,F}{\big|\,RT/[\xi(1-\xi)]-2\Omega_j^\mathrm{cat}\,\big|}
+\qquad(\Omega_j^\mathrm{cat}<2RT),
+\label{eq:lcoom-frumkin}
+\end{equation}
+곧 흑연 이상 극한$\cdot$Chapter 3 Si-host 와 \emph{같은} 정칙용액(Frumkin) 커널이다 --- $\Omega_j^\mathrm{cat}{=}0$
+이면 폭 $w_j{=}RT/F$ 의 평형 종(식~\eqref{eq:eqpeak}$\cdot$\eqref{eq:lco-eqpeak})을 회수하고,
+$\Omega_j^\mathrm{cat}\!\to\!2RT^{-}$ 이면 $\xi{=}\tfrac12$ 에서 분모 $4RT-2\Omega_j^\mathrm{cat}\!\to\!0$ 이라
+peak 가 좁아지며 발산한다. $\Omega_j^\mathrm{cat}>2RT$ 로 넘어가면 spinodal(식~\eqref{eq:lco-spinodal})이 열려
+평형 peak 가 near-delta 가 되고, 그 실측 폭은 broadening 이 정하는 현상학적 $w_j$ 가 담는다
+(\S\ref{sec:broadening} --- \S\ref{sec:lco-peak} 이 이미 쓴 식~\eqref{eq:lco-eqpeak} 의 $w_j$ 형이 이 두-상 측
+표현이다). 따라서 per-peak $\Omega_j^\mathrm{cat}$ 하나가 세 feature 를 연속으로 잇는다 --- 큰
+$\Omega_j^\mathrm{cat}$(T1 MIT) 는 sharp two-phase, 문턱 근처는 넓은 order--disorder.
+
+\textbf{(c) $\Omega_j^\mathrm{cat}$ 의 정체 --- 평균장 축약이지 미시 질서구조가 아니다(혼동 가드 계승$\cdot$%
+문구 정정).} per-peak $\Omega_j^\mathrm{cat}$ 를 쓸 때 반드시 지킬 해석 경계가 하나 있다. $\Omega_j^\mathrm{cat}$ 는
+\emph{전이당 진행좌표 $\xi_j$ 의 유효 평균장 쌍상호작용으로 축약된 한 수}이지, $x\!\approx\!\tfrac12$ 초격자의
+\emph{미시 질서구조 그 자체}가 아니다 --- 제일원리 다체 클러스터 전개를 전이 창의 진행률 좌표에서 최근접 쌍
+한 항으로 접은 것이 $\Omega_j^\mathrm{cat}$ 이다(\S\ref{sec:lco-hys-od} 의 Van der Ven 대응
+식~\eqref{eq:br-vanderven1998-1}). 따라서 ``$\Omega_j^\mathrm{cat}>2RT\Leftrightarrow x\!\approx\!\tfrac12$
+질서상 안정''은 두 상태의 \emph{동시 발생}을 요약하는 대응일 뿐, $\Omega_j^\mathrm{cat}$ 가 질서상의 미시
+구조를 \emph{담는다}는 뜻이 아니며, 각 전이의 실제 gap 유무는 최종적으로 \emph{피팅된} $\Omega_j^\mathrm{cat}$
+가 $2RT$ 를 넘는지가 정한다. 결정적으로, 정렬의 config 엔트로피(charge-order $\Delta S^\mathrm{config}$)는
+$\Omega_j^\mathrm{cat}$ 가 아니라 \emph{별도 슬롯}(식~\eqref{eq:lco-decomp} 의 $\Delta S_j^\mathrm{config}$,
+$U_j^\mathrm{cat}(T)$ 의 온도 이동)에 들어간다 --- $\Omega_j^\mathrm{cat}$[J/mol]은 gap$\cdot$sharpness 를
+정하는 \emph{상호작용 에너지}이고 $\Delta S^\mathrm{config}$[J/(mol\,K)]는 중심의 \emph{온도 의존}을 정하는
+엔트로피라, 차원도 작용처도 다르다. 이 슬롯 분리가 \S\ref{sec:lco-hys-od} 의 혼동 가드를 그대로 계승하며,
+``$\Omega_j^\mathrm{cat}$ 하나가 질서상 안정성$\cdot$gap$\cdot$config 엔트로피를 동시에 뜻한다''는 오독을 막는다.
+
+\textbf{(d) 박스 --- LCO per-peak 평형 dQ/dV.} (b)를 세 전이에 합하면 양극 평형 기준선이 per-peak
+$\Omega_j^\mathrm{cat}$ 로 닫힌다:
+\begin{equation}
+\boxed{\;
+\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_\mathrm{LCO}(V,T)
+=C_\bg+\sum_{j=1}^{3}\frac{Q_j^\mathrm{cat}\,F}{\big|\,RT/[\xi_{\eq,j}(1-\xi_{\eq,j})]-2\Omega_j^\mathrm{cat}\,\big|}
+\Bigg|_{\Omega_j^\mathrm{cat}<2RT}
+\xrightarrow{\ \Omega_j^\mathrm{cat}>2RT\ }
+C_\bg+\sum_{j=1}^{3}\frac{Q_j^\mathrm{cat}\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}\;}
+\label{eq:lcoom-kernel}
+\end{equation}
+--- 왼쪽이 단일상(order--disorder 가 넓게 피팅되는 전이)의 Frumkin 형, 오른쪽이 두-상(T1 MIT 등 near-delta)의
+broadening-흡수 형(식~\eqref{eq:lco-eqpeak})이며, 판정은 per-peak $\Omega_j^\mathrm{cat}$ 대 $2RT$ 다.
+$\xi_{\eq,j}$ 는 분기 중심 $U_j^{\,d,\mathrm{cat}}$(식~\eqref{eq:lco-Ubranch})의 logistic(식~\eqref{eq:xieq}).
+
+\medskip
+\textbf{전자항 on/off 토글 --- 상온 곡선엔 무영향, 가역열에만 작용.} 이제 둘째 물음을 닫는다. T1 의 전자
+엔트로피 $\Delta S_{e,1}(x,T)$(\S\ref{sec:lco-electronic}, MIT 게이트 골 $\approx-45.7$ J/(mol\,K) at
+$x_\mathrm{MIT}$)는 상온 dQ/dV 를 바꾸는가? 상온 곡선은 식~\eqref{eq:lcoom-kernel} 대로 중심
+$U_j^{\,d,\mathrm{cat}}(T_\mathrm{ref})$ 와 폭$\cdot\Omega_j^\mathrm{cat}$ 만으로 정해지고, 전자항은
+\emph{오직} 온도 계수 $\partial U_j/\partial T=\Delta S_{\rxn,j}^\mathrm{cat}/F$ 를 통해서만 중심에 들어온다
+(식~\eqref{eq:lco-dUdT}). 그런데 현행 모델은 $\Delta S_e$ 를 기준온도 $T_\mathrm{ref}$ 에서 동결하고
+$U_j^\mathrm{cat}(T_\mathrm{ref})$ 를 목표(피팅) 중심에 고정하므로 --- 곧 $\Delta H$ 를 재기준해 $\Delta S_e$
+를 흡수시켜 $U_j(T_\mathrm{ref})$ 를 보존하므로(식~\eqref{eq:lco-mit} 의 구조/전자 슬롯 분리 ``$\|$'') ---
+$\Delta S_e$ 는 $T_\mathrm{ref}$ \emph{에서의 곡선}에 항등적으로 기여하지 않는다. 그것이 작용하는 곳은
+$\partial U_j/\partial T$(가역열), 곧 \emph{다온도} 곡선이 온도에 따라 이동하는 방식뿐이며(그 이동은 $T^2$
+곡률 --- 식~\eqref{eq:U1T2}), 상온 한 곡선에는 잉여다.
+\begin{equation}
+\boxed{\;
+\underbrace{\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_\mathrm{LCO}\Big|_{T_\mathrm{ref}}}_{\Delta S_e\text{-무관}(U_j(T_\mathrm{ref})\text{ 고정})}
+\qquad\Big\|\qquad
+\underbrace{\frac{\partial U_j}{\partial T}=\frac{\Delta S_j^\mathrm{config}+\Delta S_j^\mathrm{vib}
++b\cdot\Delta S_{e,j}^{\,\mathrm{mol}}(x,T)}{F}}_{b=\code{include\_electronic\_entropy}\in\{0,1\}}\;}
+\label{eq:lcoom-toggle}
+\end{equation}
+곧 코드 플래그 $b=\code{include\_electronic\_entropy}$ 는 기본 OFF($b{=}0$: 상온 커브 산출 --- 전자항
+불필요)이고, 다온도 엔트로피$\cdot$가역열을 다룰 때만 ON($b{=}1$: $\partial U/\partial T$ 에 $\Delta S_e$ 활성)
+으로 켠다. bit-exact 주의 --- OFF 로 되돌릴 때 $U_j(T_\mathrm{ref})$ 보존을 위해 $\Delta H$ 재기준이 필요하다
+(현행 코드는 $\Delta S_e$ 상시 ON 이므로, 토글 OFF 는 $U_j(298)$ 불변을 보장하는 $\Delta H$ 재기준과 짝을
+이뤄야 상온 곡선이 불변이다).
+\begin{verifybox}
+검산(전자항이 곡선에 불필요하다는 실증) --- LCO 를 전자항 없는 plain MSMR(식~\eqref{eq:lco-msmrpeak})로만
+상온 dQ/dV 를 맞추면 $R^2\!\approx\!0.944$ 로, 흑연 plain MSMR 의 $R^2\!\approx\!0.940$ 과 사실상 같다
+(내부 ablation --- 전이별 정밀값 아님, 곡선 품질 대조용). 곧 상온 곡선 재현에 전자항은 유의한 개선을 주지
+않으며($b{=}0$ 로 충분), $\Delta S_e$ 의 역할은 곡선이 아니라 다온도 $\partial U_1/\partial T$ 의 부호$\cdot$%
+$T$-선형 기울기(식별 신호, \S\ref{sec:lco-Se})다. 한 점 시연(\S\ref{sec:lco-worked})이 $b{=}1$ 에서 T1 창
+관측 계수를 $+0.160\!\to\!-0.128$ mV/K 로 뒤집는 것이 바로 이 ``가역열에만'' 작용의 크기다 --- 같은 슬롯이
+상온 \emph{곡선}은 건드리지 않는다.
+\end{verifybox}
+\begin{keybox}
+\textbf{한 줄.} LCO dQ/dV 는 흑연과 \emph{같은} MSMR 커널이고, feature 별 상 성격 차이(T1 MIT sharp 두-상 대
+$x\!\approx\!\tfrac12$ order--disorder 넓음)는 \emph{per-peak} $\Omega_j^\mathrm{cat}$ 하나가 담는다 --- 커널은
+Frumkin 정칙용액 형(식~\eqref{eq:lcoom-kernel}), $\Omega_j^\mathrm{cat}<2RT$ 는 넓은 단일상,
+$\Omega_j^\mathrm{cat}>2RT$ 는 broadening-흡수 두-상. $\Omega_j^\mathrm{cat}$ 는 \emph{진행좌표의 평균장 축약}
+이지 미시 질서구조가 아니며 config 엔트로피는 별도 슬롯이다(혼동 가드 계승). 전자항 $\Delta S_e$ 는
+$T_\mathrm{ref}$ 동결로 상온 커브에 무영향(dH 흡수)이고 $\partial U/\partial T$(가역열)에만 작용하므로, 코드는
+$\code{include\_electronic\_entropy}$ 를 기본 OFF(커브)$\cdot$선택 ON(다온도 엔트로피)로 토글한다
+(식~\eqref{eq:lcoom-toggle}; plain MSMR $R^2\!\approx\!0.944\!\approx\!$흑연 $0.940$ 이 곡선 무관성의 실증).
+\end{keybox}
