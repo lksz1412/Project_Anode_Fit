@@ -15,7 +15,7 @@ R,F,T=8.314,96485.0,298.15; RTF=R*T/F; _trapz=getattr(np,'trapezoid',getattr(np,
 
 def logi(V,U,w,Q):
     z=(V-U)/w; s=np.where(z>=0,1/(1+np.exp(-z)),np.exp(z)/(1+np.exp(z))); return Q*s*(1-s)/w
-XG=np.linspace(1e-3,1-1e-3,300)
+XG=np.linspace(1e-3,1-1e-3,150)  # 커널격자(속도) — 플롯품질 충분
 # binodal xa(Ω) 룩업테이블(brentq 를 hot-loop서 제거 — 속도 핵심). a=Ω/RT∈[2.0,8].
 def _bsolve(a):
     try: return brentq(lambda x: np.log(x/(1-x))+a*(1-2*x),1e-9,0.5-1e-12)
@@ -111,6 +111,37 @@ axc.plot(Vx,mb(Vx,*pb),color='tab:red',lw=1,label=f'{best} {res[best]:.3f}')
 axc.set_xlim(0.07,0.55); axc.set_xlabel('V'); axc.set_ylabel('dQ/dV'); axc.set_title(f'최고 조합: {best}',fontsize=11); axc.legend(fontsize=8); axc.grid(alpha=.3)
 fig.suptitle('흑연+Si 블렌드 — @1·@3·@5 조합 ablation',fontsize=13); fig.tight_layout()
 fig.savefig(f"{OUT}/ablation_combo.png",dpi=120); print("saved ablation_combo.png")
+
+# ===== 그림2: 조합별 dQ/dV 피팅 전체곡선 (실측 vs 문건기본 vs 조합) =====
+allc=["문건기본"]+order  # 8개
+mB,pB=models["문건기본"]; residB=Dx-mB(Vx,*pB)
+fig2,ax2=plt.subplots(2,4,figsize=(21,9.5))
+for idx,nm in enumerate(allc):
+    a=ax2.flat[idx]; m,p=models[nm]
+    a.plot(Vx,Dx,'k',lw=1.6,alpha=.9,label='실측(공개)')
+    if nm!="문건기본": a.plot(Vx,mB(Vx,*pB),color='tab:gray',ls=':',lw=1.3,label=f'문건기본 {r2B:.3f}')
+    a.plot(Vx,m(Vx,*p),color='tab:red',lw=1.4,label=f'{nm} {res[nm]:.4f}')
+    dd=(res[nm]-r2B)*100
+    a.set_title(f'{nm}   R²={res[nm]:.4f}   ΔR²={dd:+.2f}%p',fontsize=11,fontweight='bold' if nm!="문건기본" else 'normal')
+    a.set_xlim(0.07,0.55); a.set_xlabel('V vs Li',fontsize=9); a.set_ylabel('dQ/dV',fontsize=9)
+    a.legend(fontsize=8,loc='upper right'); a.grid(alpha=.3)
+fig2.suptitle('흑연+Si 블렌드 — 조합별 dQ/dV 피팅 전체곡선 (검정=실측·회색=문건기본·빨강=조합)',fontsize=14)
+fig2.tight_layout(); fig2.savefig(f"{OUT}/ablation_combo_curves.png",dpi=115); print("saved ablation_combo_curves.png")
+
+# ===== 그림3: 잔차(실측−모델) — 0에 가까울수록 정확. 회색=문건기본 대비 =====
+fig3,ax3=plt.subplots(2,4,figsize=(21,9.5))
+ymax=np.nanmax(np.abs(residB))*1.15
+for idx,nm in enumerate(allc):
+    a=ax3.flat[idx]; m,p=models[nm]; resid=Dx-m(Vx,*p)
+    a.axhline(0,color='k',lw=.7)
+    if nm!="문건기본": a.plot(Vx,residB,color='tab:gray',lw=1.1,alpha=.7,label=f'문건기본 잔차(RMSE {np.sqrt(np.mean(residB**2)):.2f})')
+    a.plot(Vx,resid,color='tab:red',lw=1.2,label=f'{nm} 잔차(RMSE {np.sqrt(np.mean(resid**2)):.2f})')
+    a.fill_between(Vx,resid,color='tab:red',alpha=.12)
+    a.set_title(f'{nm}   R²={res[nm]:.4f}',fontsize=11); a.set_xlim(0.07,0.55); a.set_ylim(-ymax,ymax)
+    a.set_xlabel('V vs Li',fontsize=9); a.set_ylabel('실측−모델',fontsize=9); a.legend(fontsize=8); a.grid(alpha=.3)
+fig3.suptitle('조합별 잔차 (실측−모델): 빨강이 0선·회색보다 붙을수록 개선. Si 봉우리(0.3~0.5V)가 관건',fontsize=14)
+fig3.tight_layout(); fig3.savefig(f"{OUT}/ablation_combo_resid.png",dpi=115); print("saved ablation_combo_resid.png")
+
 json.dump({"cell":cell,"baseline":r2B,"R2":res,"individual_dR2_pct":{k:ind[k]*100 for k in ind},
            "interaction_pct":{n:((res[n]-r2B)-sum(ind[p] for p in parts(n)))*100 for n in comb}},
           open(f"{OUT}/ablation_combo_result.json","w"),indent=1,default=float)
