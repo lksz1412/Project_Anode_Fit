@@ -43,6 +43,10 @@ DATASETS=[
  dict(label="Gr_PyBEP_xcrp",  file="gr_PyBEP_xcrp2020.txt",    chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBEP (xcrp 2020, 10.1016/j.xcrp.2020.100253)"),
  dict(label="Gr_PyBEP_srep",  file="gr_PyBEP_srep2016.txt",    chem="graphite_OCP", role="anode", theo=372, cond="OCP-digit", NG=4,NS=0, win=(0.05,0.30), src="ocp", source="PyBEP (srep 2016, 10.1038/srep32639)"),
  dict(label="LCO_Marquis2019",file="lco_Marquis2019.csv",      chem="LCO",          role="cathode",theo=None,cond="OCP-digit", NG=4,NS=0, win=(3.60,4.30), src="ocp", source="PyBaMM Marquis2019 (Doyle/Garcia Dualfoil LCO 반쪽셀 OCP)"),
+ # ── Si-graphene(Si+few-layer-graphene) 반쪽셀 GCD delith(Zenodo 18119350, CC-BY) — sparse 저품질 사례 ──
+ #    nSi/S150 은 열구조 파손·저V영역 결측으로 제외; 2열 클린 S300/S450 만 채택(모델vs데이터 sparse 축).
+ dict(label="SiFLG_S300", file="S300_GCD_100cycles.xlsx", chem="Si_FLG", role="anode", theo=None, cond="GCD/1C(sparse)", NG=0,NS=3, win=(0.08,0.60), src="gcd", source="Zenodo 18119350 (Si-graphene S300, sparse)"),
+ dict(label="SiFLG_S450", file="S450_GCD_100cycles.xlsx", chem="Si_FLG", role="anode", theo=None, cond="GCD/1C(sparse)", NG=0,NS=3, win=(0.08,0.60), src="gcd", source="Zenodo 18119350 (Si-graphene S450, sparse)"),
 ]
 
 Ug0=[0.104,0.1415,0.227,0.140]; wg0=[0.0009,0.0011,0.0016,0.018]
@@ -56,6 +60,25 @@ def load_delith(path):
     if len(idx)==0: return None
     seg=max(np.split(idx,np.where(np.diff(idx)>1)[0]+1),key=len)
     return V[seg], Q[seg]-Q[seg][0]
+
+SIG="/tmp/claude-0/-home-user-Project-Anode-Fit/e8d4cdbc-60e6-548e-b742-1446b8f7a8bd/scratchpad/sig"
+def load_gcd_xlsx(fname):
+    """Si-graphene GCD xlsx → 최장 delith(V-증가) run. 첫 2열=(cap,V). 반주기 라벨/열구조 가변 대응.
+    ※ 이 데이터는 sparse(반주기당 수백점)라 SINTEF 대비 저품질 — 모델vs데이터 축의 sparse 사례."""
+    import glob as _g
+    f=_g.glob(f"{SIG}/**/GCD-Raw/{fname}", recursive=True)[0]
+    df=pd.read_excel(f); cap=df.iloc[:,0].to_numpy(float); V=df.iloc[:,1].to_numpy(float)
+    ok=np.isfinite(V)&np.isfinite(cap); cap,V=cap[ok],V[ok]
+    dv=np.diff(V); sign=np.sign(dv); runs=[]; st=0
+    for i in range(1,len(sign)):
+        if sign[i]!=sign[i-1]:
+            if sign[i-1]>0: runs.append((st,i+1))
+            st=i
+    if len(sign) and sign[-1]>0: runs.append((st,len(V)))
+    if not runs: return None
+    s,e=max(runs,key=lambda r:r[1]-r[0])
+    Vd=V[s:e]; capd=cap[s:e]-cap[s]
+    return (Vd, capd) if len(Vd)>=40 else None
 
 def load_ocp(path):
     """OCP(x,V) 곡선(디지타이즈/분석) → (V, Q=x·100). dQ/dV=|dx/dV| 로 평형 dQ/dV 재현.
@@ -84,9 +107,14 @@ def make_model(NG,NS,role):
     return f
 
 def fit_ds(ds):
-    r=load_ocp(ds["file"]) if ds.get("src")=="ocp" else load_delith(ds["file"])
+    if ds.get("src")=="ocp": r=load_ocp(ds["file"])
+    elif ds.get("src")=="gcd": r=load_gcd_xlsx(ds["file"])
+    else: r=load_delith(ds["file"])
     if r is None: return dict(label=ds["label"], error="no delith seg")
     V,Q=r; LO,HI=ds["win"]; NG,NS=ds["NG"],ds["NS"]
+    # 데이터 품질 지표(모델vs데이터 판정용): 창내 원점수·밀도(pts/mV)·V 단조율
+    _in=(V>=LO)&(V<=HI); _npts=int(np.sum(_in)); _dens=round(_npts/max((HI-LO)*1000,1e-9),2)
+    _dv=np.diff(V[np.argsort(V)]) if len(V)>2 else np.array([1.0]); _vmono=round(float(np.mean(np.diff(V)>=0)),3)
     dvv=0.001 if ds["role"]=="cathode" else 0.0005
     gx,gy=bdd.dqdv_grid_bdd(V,Q, dV=dvv)                    # ★ BDD 스무딩 사용
     m=(gx>=LO)&(gx<=HI); Vx,Dx=gx[m],gy[m]
@@ -113,6 +141,7 @@ def fit_ds(ds):
     sorder=np.argsort(Us) if NS else []
     return dict(label=ds["label"], chem=ds["chem"], role=ds["role"], cond=ds["cond"],
                 theo=ds["theo"], source=ds["source"], R2=round(float(r2),4), area=round(area,3),
+                npts=_npts, density=_dens, v_mono=_vmono,
                 U_gr=[round(float(Ug[k]),4) for k in gorder], w_gr_mV=[round(float(wg[k])*1000,2) for k in gorder],
                 Q_gr=[round(float(Qg[k]),4) for k in gorder],
                 U_si=[round(float(Us[k]),4) for k in sorder], w_si_mV=[round(float(ws[k])*1000,1) for k in sorder],
@@ -203,6 +232,24 @@ for lab in labels:
     if nu[0]: lines.append(f"| {lab} | {nu[0]} | {nu[1]} | {nu[2]} | {nu[3]}–{nu[4]} | {nw[1]} | {nw[2]} | {nw[3]}–{nw[4]} |")
 open(f"{OUT}/param_dist_stats.md","w").write("\n".join(lines))
 print("saved param_dist_stats.md")
+
+# ===== 모델 vs 데이터 판정: R² vs 데이터 품질(밀도·단조율) 전 20셀 =====
+Q=[r for r in ok if r.get("density") is not None]
+dens=np.array([r["density"] for r in Q]); r2=np.array([r["R2"] for r in Q]); vm=np.array([r["v_mono"] for r in Q])
+figq,axq=plt.subplots(1,2,figsize=(15,5.6))
+cq={"graphite":"tab:blue","graphite_OCP":"tab:cyan","Si":"tab:green","Si_FLG":"tab:olive","SiGr_low":"tab:orange","SiGr_high":"tab:red","SiGr_B":"tab:purple","NMC111":"tab:brown","NMC532":"tab:pink","LCO":"black"}
+for r in Q: axq[0].scatter(r["density"],r["R2"],c=cq.get(r["chem"],"gray"),s=55)
+for r in Q: axq[0].annotate(r["label"],(r["density"],r["R2"]),fontsize=6)
+axq[0].set_xscale('log'); axq[0].set_xlabel("데이터 밀도 pts/mV (log) = 데이터 품질"); axq[0].set_ylabel("R²")
+cc2=np.corrcoef(np.log10(dens),r2)[0,1]
+axq[0].set_title(f"★ 모델 vs 데이터: R² vs 밀도 (상관 r={cc2:.2f})\n저밀도(sparse)=저R² → 데이터 문제 / 고밀도서도 낮으면 모델")
+axq[0].grid(alpha=.3,which='both')
+import matplotlib.patches as mpat
+axq[1].scatter(vm*100,r2,c=[cq.get(r["chem"],"gray") for r in Q],s=55)
+for r in Q: axq[1].annotate(r["label"],(r["v_mono"]*100,r["R2"]),fontsize=6)
+axq[1].set_xlabel("V 단조율 %"); axq[1].set_ylabel("R²"); axq[1].set_title("R² vs V 단조율"); axq[1].grid(alpha=.3)
+axq[1].legend(handles=[mpat.Patch(color=v,label=k) for k,v in cq.items()],fontsize=6,loc='lower right',ncol=2)
+figq.tight_layout(); figq.savefig(f"{OUT}/quality_vs_r2.png",dpi=120); print("saved quality_vs_r2.png (r_density=%.2f)"%cc2)
 
 # ===== 자동 레지스트리 마크다운(출처+피팅 전건) =====
 ml=["<!-- 자동생성: v24_master_fit.py — 데이터 추가 시 재실행하면 갱신 -->",

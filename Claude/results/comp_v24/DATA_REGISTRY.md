@@ -50,6 +50,20 @@
 3. 재실행 → `fit_registry.{md,csv,json}`·`param_distributions.png`·`param_dist_stats.md` 자동 갱신.
 4. 새 조건(율속·온도)이면 `cond` 에 명기 → 분포가 조건축으로 확장.
 
+## 5b. ★모델 문제 vs 데이터 문제 판정 (사용자 핵심 질문 — `quality_vs_r2.png`)
+20셀 R² vs 데이터 품질(밀도 pts/mV·V단조율) 통계 결과 — **두 요인 모두 실재, 데이터 품질이 결정적일 때 있음**:
+| 데이터 유형 | 예 | 밀도 | R² | 잔차 원인 |
+|---|---|---:|---:|---|
+| **sparse 실측 GCD** | SiFLG_S300 | 0.2/mV | **0.55** | ★**데이터**(sparse·noisy) — 순수 Si(clean)는 0.998인데 급락 |
+| sparse 실측 GCD | SiFLG_S450 | 0.6/mV | 0.89 | 데이터(sparse) |
+| clean 고밀도 실측 | SINTEF Si | 15–17/mV | **0.998** | (거의 완벽) |
+| clean 고밀도 실측 | SINTEF 흑연 | 63/mV | 0.95 | **모델**(두-상 near-delta, MSMR 한계) |
+| digitize OCP(평활) | Ecker/Chen/PyBEP | 0.1–4/mV | 0.96–0.99 | (평활곡선이라 양호) |
+- **판정**: **데이터가 나쁘면(sparse Si-graphene) R²가 0.55로 붕괴 = 데이터 문제**(사용자 직관 실증). **데이터가
+  깨끗하면(SINTEF·OCP) R²=0.95–0.998이고 남는 잔차는 모델**(두-상 near-delta). 즉 사용자 말대로 실무 데이터에선
+  데이터 품질이 흔한 원인이고, 문건식 자체는 깨끗한 데이터를 잘 설명한다(둘 다 참).
+- 도구: 밀도·단조율이 레지스트리에 자동 기록 → 네 노이즈 데이터 넣으면 즉시 데이터문제 비중 판정.
+
 ## 6. 한계·정직
 - 두-상 near-delta 피크 높이는 해상도 의존(모델 finite-w 로 delta 재현 불가 — MSMR 구조 한계, IMPROVEMENT_DIRECTIONS §4).
 - 저Si f_Si 축퇴·B/SiGr c2 저품질(R²=0.83, 국소최소/데이터) = 개별 플래그.

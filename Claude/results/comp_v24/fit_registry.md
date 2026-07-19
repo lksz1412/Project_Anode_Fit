@@ -1,5 +1,5 @@
 <!-- 자동생성: v24_master_fit.py — 데이터 추가 시 재실행하면 갱신 -->
-## 피팅 레지스트리 (N=18 셀·조건)
+## 피팅 레지스트리 (N=20 셀·조건)
 
 | # | label | chem | role | 조건 | R² | U_gr(V) | w_gr(mV) | U_si(V) | w_si(mV) | f_Si(fit/exp) | 출처 |
 |--:|---|---|---|---|--:|---|---|---|---|---|---|
@@ -21,3 +21,5 @@
 | 16 | Gr_PyBEP_xcrp | graphite_OCP | anode | OCP-digit | 0.9789 | [0.069, 0.1059, 0.1195, 0.198] | [2.8, 3.01, 3.77, 1.99] | [] | [] | 0.0/None | PyBEP (xcrp 2020, 10.1016/j.xcrp.2020.100253) |
 | 17 | Gr_PyBEP_srep | graphite_OCP | anode | OCP-digit | 0.9903 | [0.0805, 0.1196, 0.1223, 0.2964] | [1.88, 3.43, 40.5, 4.79] | [] | [] | 0.0/None | PyBEP (srep 2016, 10.1038/srep32639) |
 | 18 | LCO_Marquis2019 | LCO | cathode | OCP-digit | 0.9653 | [3.7562, 3.9145, 3.9856, 4.2677] | [18.24, 7.02, 43.13, 55.57] | [] | [] | 0.0/None | PyBaMM Marquis2019 (Doyle/Garcia Dualfoil LCO 반쪽셀 OCP) |
+| 19 | SiFLG_S300 | Si_FLG | anode | GCD/1C(sparse) | 0.5531 | [] | [] | [0.15, 0.2868, 0.4661] | [300.0, 25.1, 54.6] | 1.0/None | Zenodo 18119350 (Si-graphene S300, sparse) |
+| 20 | SiFLG_S450 | Si_FLG | anode | GCD/1C(sparse) | 0.891 | [] | [] | [0.2437, 0.3084, 0.4558] | [25.8, 23.9, 43.0] | 1.0/None | Zenodo 18119350 (Si-graphene S450, sparse) |
