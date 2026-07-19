@@ -23,11 +23,23 @@
 - LCO 열역학(엔트로피·∂φ/∂T: Hudak2014·Świderska2019·Reynier) = 논문 그림/유료, 기계판독 데이터셋 아님.
 - Materials Project = **계산(DFT) OCV**, 실측 아님(형상 baseline만).
 
-## 검증 스코프 함의 (정직)
-- **공개데이터로 가능**: 흑연·블렌드의 **상온 평형/앙상블 브로드닝(②③)·피크 높이(M-제거 핵심)** 검증.
-- **공개데이터로 불가 → 회사 데이터(사내)**: (a) LCO 전체, (b) 율 시리즈 ①(0.05/0.1/0.2C), (c) T-의존(15/23/35/45°C). Zenodo는 C/50·상온뿐.
-- → 제작한 검증 스크립트를 사내에서 회사 데이터에 그대로 적용하는 경로.
+## ★업데이트 (V2c/V3 확장 조사 — 2026-07-19) : 공백이 일부 메워짐
+추가 리서치 2창으로 이전 "공백" 판정을 갱신:
+| 축 | 이전 판정 | 갱신 |
+|---|---|---|
+| 율속①(0.05–3C) | 사내 필요 | **공개 확보**: Zenodo **20323533**(DLR BAK 흑연-SiOx 음극 반쪽셀, delith 율속 1:2:5:10:20, CSV) → V3 검증 완료 |
+| T-의존(다온도) | 사내 필요 | **부분 공개**: Zenodo **5171874**(O'Regan 2022 WMG, 흑연-SiOx dU/dT 엔트로피·다온도 OCP, 독립그룹) |
+| LCO | 공백 | **여전히 실측 반쪽셀 0건**. 대리: (a) 동일 20086298 내 **NMC111/532 반쪽셀**(층상 R-3m 유사체 — V2c 검증, ⚠LCO아님), (b) **Materials Project mp-24850**(LiCoO2 계산 OCV 형상, API키 필요), (c) Reimers&Dahn1992·Ohzuku1994(그림→디지타이즈) |
+| 추가 흑연-SiOx | — | Zenodo **15520717**(LG MJ1 음극 GITT, parquet) |
+
+**제외(풀셀 함정)**: Zenodo 7235857(Imperial)·4032561(Chen2020) — "SiGr 음극" 라벨이나 실제 풀셀.
+
+## 검증 스코프 함의 (갱신)
+- **공개데이터로 가능(확대)**: 흑연·Si·블렌드 평형②③·피크높이(M-제거 평형절반)·**율속①(20323533)**·양극식(NMC 대리)·부분 T(5171874).
+- **여전히 공개 불가 → 회사 데이터**: (a) **LCO 고유** 실측(NMC는 구조 대리일 뿐), (b) 회사 표준 매트릭스 그대로(GITT/0.05/0.1/0.2C × 15/23/35/45°C 동일 전극) = 사내 스크립트 적용.
 
 ## Sources
-- https://zenodo.org/records/20086298 (D-1 확보)
-- batteryarchive.org(전부 풀셀)·calce.umd.edu·Materials Project(계산)·Mendeley c35zbmn7j8(풀셀)
+- https://zenodo.org/records/20086298 (D-1 흑연·Si·블렌드·NMC 확보)
+- https://zenodo.org/records/20323533 (율속① 확보) · https://zenodo.org/records/5171874 (O'Regan T-의존) · https://zenodo.org/records/15520717 (MJ1 GITT)
+- https://legacy.materialsproject.org/materials/mp-24850/ (LCO 계산 OCV) · Reimers&Dahn 1992 DOI 10.1149/1.2221184 (그림)
+- 제외: batteryarchive.org·Zenodo 7235857·4032561 (전부 풀셀)

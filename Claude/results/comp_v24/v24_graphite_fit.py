@@ -143,7 +143,9 @@ for r, (name, (grids, fitpack)) in enumerate(panels.items()):
         gV, gd = grids["lith"]; mm = (gV >= LO) & (gV <= HI)
         ax.plot(gV[mm], gd[mm], color='tab:cyan', lw=1.0, alpha=.6, label='real lith (savgol)')
     if pred is not None:
-        ax.plot(Vx, pred, '--', color='k', lw=1.8, label=f'doc model FIT (R²={results[name]["R2"]:.3f})')
+        Vfine = np.arange(LO, HI, 0.00002)   # 고해상 0.02mV — 매끄러운 모델선(각짐=그림격자 아티팩트 회피)
+        ax.plot(Vfine, model_equilibrium(Vfine, *popt), '--', color='k', lw=1.6,
+                label=f'doc model FIT (R²={results[name]["R2"]:.3f})')
         for j, Uj in enumerate(results[name]["U_fit"]):
             ax.axvline(Uj, color='gray', ls=':', lw=0.7)
     ax.set_xlabel('Voltage / V'); ax.set_ylabel('dQ/dV / (mAh/V)')

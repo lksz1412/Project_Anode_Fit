@@ -93,11 +93,11 @@ for ax,(name,pk) in zip(axes,panels.items()):
     Us=popt[3*NG:3*NG+NS]; ws=popt[3*NG+NS:3*NG+2*NS]; Qs=popt[3*NG+2*NS:3*NG+3*NS]; Cbg=popt[-1]
     gr=[{'U':float(Ug[j]),'w':float(wg[j]),'Q':float(Qg[j])} for j in range(NG)]
     si=[{'U':float(Us[j]),'w':float(ws[j]),'Q':float(Qs[j])} for j in range(NS)]
-    Vm=np.linspace(LO,HI,3000)
+    Vm=np.arange(LO,HI,0.00002)   # 고해상 0.02mV — 매끄러운 모델선
     d_gr=np.asarray(af.GraphiteAnodeDischargeDQDV(gr,Cbg=float(Cbg)).equilibrium(Vm,T=298.15),float)
     d_si=np.asarray(af.GraphiteAnodeDischargeDQDV(si,Cbg=0.0).equilibrium(Vm,T=298.15),float)
     ax.plot(Vx,Dx,color='tab:blue',lw=1.5,label='real delith (savgol)')
-    ax.plot(Vx,pred,'--',color='k',lw=1.6,label=f'blend model FIT (R²={results[name]["R2"]:.3f})')
+    ax.plot(Vm,model_blend(Vm,*popt),'--',color='k',lw=1.5,label=f'blend model FIT (R²={results[name]["R2"]:.3f}, fine grid)')
     ax.plot(Vm,d_gr,':',color='tab:green',lw=1.3,label='  ├ graphite host (staging)')
     ax.plot(Vm,d_si,':',color='tab:red',lw=1.3,label=f'  └ Si host (broad, f_Si={results[name]["f_Si_fit"]:.2f})')
     ax.set_xlabel('Voltage / V'); ax.set_ylabel('dQ/dV / (mAh/V)')
