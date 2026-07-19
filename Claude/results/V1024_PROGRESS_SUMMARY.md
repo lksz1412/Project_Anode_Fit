@@ -12,6 +12,10 @@
 | V3 | 유한율속①(Zenodo 20323533) | 전류↑→피크 broaden·lower(191→3, ~10mA washout)+분극 shift 20mV/mA(V_n=V−|I|Rn). ① 정성 확인. |
 | V5 | 모델 vs 데이터(통계) | 20셀 R²-품질: **sparse 실측(SiFLG_S300) R²=0.55=데이터문제** / **clean(SINTEF·OCP) R²=0.95–0.998, 잔차=모델**(두-상 near-delta). 둘 다 참(사용자 직관 실증). |
 | V6 | 소재 확장(N=12→20) | ★**LCO 첫 실피팅** R²=0.965(Doyle/Garcia Dualfoil). 흑연 5소재 OCP(R²=0.96–0.99). Si-graphene 2셀. |
+| V3q | 유한율속 정량 | 옴 분극 Rn≈21Ω 확인이나 상용셀 **비옴 농도분극** 지배 → 정량 peak 재현 스코프 밖(순수흑연 필요). |
+| V4 | 온도 ∂U/∂T=ΔS/F | O'Regan 흑연 dU/dT 재현 R²=0.645. **dQ/dV·entropy 둘 다 전이4→6(#1) 수렴 지목**. |
+| #4 | 정칙용액 프로토타입 | 단일상 Frumkin R²=0.79<0.95(꼬리무거움) → near-delta 는 두-상 Maxwell 만 원리해법(무거움). |
+| 종합 | 검증 문건화 | `comp_v24/VALIDATION_SYNTHESIS.md` — 전 축 실측검증 종합(문건 완성도 '실측이 식 설명' 축 마감). |
 
 ## B. 만든 도구 (재사용 인프라)
 1. **BDD 스무딩 포팅** `bdd_smoothing.py` — 사용자 BDD/99_Backend 방법론: 다척도 중앙차분 median slope
