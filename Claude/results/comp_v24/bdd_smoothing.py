@@ -107,11 +107,13 @@ def dqdv_bdd(t, V, Q, *, denoise_strength=0.0, slope_win_pts=41,
 
 # ---------- 5b. 피팅용 안정판: 균일 V격자 dQ/dV (BDD 다척도slope + 왕복앙상블, 두-상 특이 회피) ----------
 def dqdv_grid_bdd(V, Q, *, dV=0.0005, slope_win_pts=15,
-                  ratios=(0.006,0.012,0.02,0.03), denoise_strength=0.0):
-    """V-Q 스윕 → 균일 V격자 위 |dQ/dV|(mAh/V). BDD 핵심(다척도 중앙차분 median slope + 왕복공간
-    savgol 앙상블)을 V-도메인에서 적용 → 두-상 plateau 시간특이 없이 안정. 단일 savgol 왜곡(피크
-    눌림·왕복 편향) 완화. 피팅·파라미터 분포 연구용 표준 추출기.
-    반환: (Vgrid, dQdV)."""
+                  ratios=(0.006,0.012,0.02,0.03), denoise_deriv=0.4, denoise_strength=0.0):
+    """V-Q 스윕 → 균일 V격자 위 |dQ/dV|(mAh/V). BDD 완전 파이프라인(V-도메인 안정판):
+      ① 다척도 중앙차분 median slope(dQ/dV)  ② ★웨이블릿 denoise(도함수, BDD 핵심 — 원본 위치:
+      slope→denoise→savgol)  ③ 왕복공간 savgol 앙상블(피크 눌림·왕복 편향 완화).
+    denoise_deriv = 도함수 웨이블릿 세기(0=끄기; 기본 0.4 — soft threshold 라 tall 피크는 보존,
+    잔여 노이즈만 제거). denoise_strength = (선택) Q(V) 사전 denoise.
+    두-상 plateau 시간특이 없이 안정. 피팅·분포 연구 표준 추출기. 반환: (Vgrid, dQdV)."""
     V=np.asarray(V,float); Q=np.asarray(Q,float)
     o=np.argsort(V); Vs,Qs=V[o],Q[o]
     Vu,inv=np.unique(np.round(Vs,6),return_inverse=True)
@@ -119,12 +121,13 @@ def dqdv_grid_bdd(V, Q, *, dV=0.0005, slope_win_pts=15,
     if len(Vu)<10: return Vu, np.zeros_like(Vu)
     grid=np.arange(Vu.min(),Vu.max(),dV); Qg=np.interp(grid,Vu,Qu)
     if denoise_strength>0: Qg=denoise(Qg,denoise_strength)
-    # 다척도 중앙차분 median slope: dQ/dV = slope(V→Q)
+    # ① 다척도 중앙차분 median slope
     dqdv=np.abs(slope_median(grid, Qg, slope_win_pts))
-    # NaN(에지) 채움 — 유한값 선형보간
     ok=np.isfinite(dqdv)
     if ok.sum()>=2: dqdv=np.interp(np.arange(len(dqdv)), np.where(ok)[0], dqdv[ok])
-    # 왕복공간 savgol 앙상블(피크 눌림/왕복 편향 완화)
+    # ② ★웨이블릿 denoise(도함수) — BDD 핵심 단계(slope→denoise→savgol). soft-threshold=tall 피크 보존.
+    if denoise_deriv>0 and _HAVE_PYWT: dqdv=np.clip(denoise(dqdv, denoise_deriv),0,None)
+    # ③ 왕복공간 savgol 앙상블
     dqdv=np.abs(savgol_ensemble(np.clip(dqdv,1e-9,None), ratios))
     dqdv=np.nan_to_num(dqdv, nan=0.0, posinf=0.0, neginf=0.0)
     return grid, dqdv
