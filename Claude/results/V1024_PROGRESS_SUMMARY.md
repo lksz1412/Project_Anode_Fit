@@ -10,7 +10,8 @@
 | V2b | 흑연+Si 블렌드 합성식(§3.5) | blend=흑연host+Si host 가산 R²=0.94–0.98. 흑연 피크 위치 불변. **고Si f_Si=0.776≈metadata 0.755**. |
 | V2c | 다중화학(10셀)+양극 | 순수 Si **R²=0.998**. 흑연 U_j 전조성 불변. **NMC 양극 R²=0.99**(⚠LCO 구조대리). 문건식=**MSMR 정확 동형**(w_j=ω_j·RT/F). |
 | V3 | 유한율속①(Zenodo 20323533) | 전류↑→피크 broaden·lower(191→3, ~10mA washout)+분극 shift 20mV/mA(V_n=V−|I|Rn). ① 정성 확인. |
-| V5 | 모델 vs 데이터(통계) | 공개셋 R²-단조율 상관 r=0.21(약)→이 깨끗한 데이터선 잔차=**모델**(두-상 near-delta) 지배. |
+| V5 | 모델 vs 데이터(통계) | 20셀 R²-품질: **sparse 실측(SiFLG_S300) R²=0.55=데이터문제** / **clean(SINTEF·OCP) R²=0.95–0.998, 잔차=모델**(두-상 near-delta). 둘 다 참(사용자 직관 실증). |
+| V6 | 소재 확장(N=12→20) | ★**LCO 첫 실피팅** R²=0.965(Doyle/Garcia Dualfoil). 흑연 5소재 OCP(R²=0.96–0.99). Si-graphene 2셀. |
 
 ## B. 만든 도구 (재사용 인프라)
 1. **BDD 스무딩 포팅** `bdd_smoothing.py` — 사용자 BDD/99_Backend 방법론: 다척도 중앙차분 median slope
