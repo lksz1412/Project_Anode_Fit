@@ -1,0 +1,97 @@
+% ====================================================================
+% [SI-FR] Si-host 정칙용액(Frumkin, Ω<2RT 고용체) 커널 (신규 소절 — ch3v22_sec02_cases 인접)
+%   저자-sub W7 초안 (산업 방어력 register). 실제 파일 편집 아님.
+%   계승: eq:mu·eq:gxi·eq:Veq·eq:eqpeak·eq:belliden·eq:wbase·eq:blend-dqdv·sec:si-blend·
+%         ssec:si-elemental·tab:si-cases. 신규 라벨: ssec:si-frumkin·eq:sifr-*.
+% ====================================================================
+\subsection{Si-host 정칙용액 커널 --- 단일상 고용체의 Frumkin peak ($\Omega<2RT$)}\label{ssec:si-frumkin}
+케이스 절(\S\ref{ssec:si-elemental})이 비정질 Si(a-Si)의 순환 개형을 ``plateau 없는 완만한 경사''로 기술했다.
+이 소절은 그 경사가 \emph{왜} 흑연 staging 의 날카로운 두-상 봉우리와 근본적으로 다른지를 정칙용액(Frumkin)
+단일상 커널로 닫고, 그 판정을 실측 폭으로 못박는다. 산업 방어의 관점에서 이것은 결정적이다 --- Si feature 를
+흑연처럼 ``믿을 수 있는 sharp 두-상''으로 모델하면 존재하지 않는 staging 봉우리를 곡선에 주입하게 되므로, Si-host
+의 물리적 정체(넓은 고용체)를 먼저 확정해야 피팅 파라미터가 방어 가능해진다. 등장하는 커널은 새 물리가 아니라
+\S\ref{sec:hys}$\cdot$\S\ref{sec:width} 의 흑연 정칙용액 골격을 $\Omega<2RT$(단일상) 쪽으로 읽은 같은 식이다.
+
+\textbf{(a) 출발 --- a-Si 는 단일상 고용체이지 두-상이 아니다(폭이 판정).} 비정질 Li$_x$Si 의 순환은 결정질
+Li-Si 특유의 이산 상전이 없이 \emph{연속적}으로 진행하며, 제일원리 계산이 이 경사 전위-조성 곡선을 재현하고
+\cite{chevrier_dahn2009}, 진화 알고리즘 기반 기계학습 상도표가 a-Li$_x$Si 의 연속 조성 스펙트럼(이산 화합물이
+아닌)을 확증한다\cite{artrith2018}. 이 ``단일상 대 두-상''의 판정자는 앞서 흑연에서와 같이 폭을 열 척도
+$RT/F$ 로 잰 무차원 비다 --- 흑연 두-상 봉우리가 $w_j/(RT/F)\ll0.12$ 의 near-delta 인 데 반해, Si feature 는
+\begin{equation}
+\frac{w_j^{\mathrm{Si}}}{RT/F}\ \approx\ [\,1.45,\ 2.74,\ 1.09\,]\ \gtrsim\ 1
+\qquad(\text{실측 폭 } [37.3,\,70.3,\,28.0]\ \mathrm{mV},\ RT/F{=}25.7\ \mathrm{mV})
+\label{eq:sifr-widthtest}
+\end{equation}
+로 $RT/F$ 규모 이상이다(본 세션 정칙용액 피팅, tier A). 곧 Si feature 는 흑연 두-상보다 폭이 \emph{$20$--$50$배}
+넓은 연속 고용체이며, 이 한 줄이 Si-host 를 sharp 두-상 커널이 아니라 넓은 Frumkin 단일상 커널로 모델해야
+하는 실측 근거다. \textbf{★산업 방어 --- 폭은 회사가 직접 검증한다.} 식~\eqref{eq:sifr-widthtest} 의 폭 비는
+회사 자신의 dQ/dV 에서 자 대듯 읽히는 양이라(피팅 이전에 관측만으로 확인 가능), Si-host 를 고용체로 두는 이
+모델 선택은 자유 가정이 아니라 \emph{검증 가능한 판정}이다.
+
+\textbf{(b) 연산 --- Frumkin 단일상 peak 커널의 유도.} 전이 창의 리튬 채움 $\theta$($0\!\to\!1$)에 대한 Si-host
+전위는 정칙용액 평형 전위(식~\eqref{eq:Veq} 와 같은 꼴, 리튬화 부호)로
+\begin{equation}
+V(\theta)=U^{\circ}-\frac{RT}{F}\ln\frac{\theta}{1-\theta}-\frac{\Omega}{F}(1-2\theta)
+\label{eq:sifr-V}
+\end{equation}
+이고(Frumkin 삽입 등온선 --- Levi--Aurbach\cite{leviaurbach1999} 의 host 삽입 표준형; MSMR 의 상호작용 $\omega$
+형식과 동치\cite{msmr_origin2017}), 관측 미분용량은 전하 보존 미분 $\dd Q/\dd V=(\dd Q/\dd\theta)/(\dd V/\dd\theta)$
+로 닫힌다. $\dd Q/\dd\theta=Q$(전이 총 전하)이고
+\begin{equation}
+\frac{\dd V}{\dd\theta}=-\frac{1}{F}\left[\frac{RT}{\theta(1-\theta)}-2\Omega\right]
+\label{eq:sifr-dVdtheta}
+\end{equation}
+이므로, 이를 나누면 단일상 Frumkin peak 이 닫힌다:
+\begin{equation}
+\boxed{\;
+\frac{\dd Q}{\dd V}=\frac{Q}{\bigl|\dd V/\dd\theta\bigr|}
+=\frac{Q\,F}{\left|\dfrac{RT}{\theta(1-\theta)}-2\Omega\right|}\,,\qquad \Omega<2RT\;.}
+\label{eq:sifr-kernel}
+\end{equation}
+\textbf{(c) 중간식 --- 커널의 세 극한이 골격과 정합한다.} 식~\eqref{eq:sifr-kernel} 의 거동이 Si-host 물리를
+그대로 담는다. \emph{(i) 이상 극한 $\Omega=0$}: 분모가 $RT/[\theta(1-\theta)]$ 라
+$\dd Q/\dd V=Q\,\theta(1-\theta)/(RT/F)=Q\,\theta(1-\theta)/w$($w=RT/F$)로, 흑연 평형 종
+식~\eqref{eq:eqpeak}$\cdot$\eqref{eq:belliden} 의 logistic 미분 종과 \emph{글자까지} 같아진다 --- Frumkin 커널은
+흑연 골격의 확장이지 새 함수족이 아니다. \emph{(ii) $\Omega\to2RT^-$}: 중앙 $\theta=\tfrac12$ 에서 분모
+$|4RT-2\Omega|\to0$ 이라 peak 이 sharpen$\cdot$발산해 두-상 문턱(near-delta)으로 연속 접근한다 ---
+식~\eqref{eq:gr2l-verdict} 의 판정자와 같은 문턱을 단일상 쪽에서 만난다. \emph{(iii) $\Omega<0$}(유효 반발): 분모가
+커져 peak 이 더 넓어진다(broaden). 곧 하나의 $\Omega$ 파라미터가 흑연 near-delta 부터 Si 넓은 hump 까지를
+연속으로 잇고, 그 위치는 전적으로 $\Omega$ 대 $2RT$ 의 대소가 정한다.
+
+\textbf{(d) 박스 --- Si-host 는 소수 broad gallery, 유일 두-상은 첫 심리튬화뿐.} 연속 고용체를 forward 모델에
+담는 방식은 \emph{소수의 넓은 전이}(큰 $w$$\cdot$작은 $\Omega$)로 그 연속 스펙트럼을 이산화하는 것이지,
+다수의 좁은 staging 봉우리로 쪼개는 것이 아니다(후자는 존재하지 않는 상을 주입하는 비물리):
+\begin{equation}
+\boxed{\;
+\text{a-Si(순환)}=\text{소수 broad gallery}\ (\Omega_j^{\mathrm{Si}}<2RT),\qquad
+\text{유일 진짜 두-상}=\text{c-Li}_{15}\text{Si}_4\ (\text{1차 심리튬화 }\sim50\text{--}60\ \mathrm{mV\ plateau})\;.}
+\label{eq:sifr-gallery}
+\end{equation}
+결정질 Li$_{15}$Si$_4$ 결정화만이 유일한 sharp 두-상 특징이나 이는 \emph{1차 심리튬화} feature 라 순환 a-Si dQ/dV
+에는 부재하며(\S\ref{ssec:si-elemental}), 필요 시 1차/심-SoC 전용 별도 plateau 항으로 둔다. 이 gallery 를 블렌드에
+합성하는 것은 두 host 가 같은 전위를 공유하는 공통-$\mu$ 가산 중첩이며 --- Tu 등의 축소모형이 블렌드 dQ/dV 를
+``명백한 중첩(a superposition)''으로 확인한다\cite{tu_blend2024} --- 그 규칙은 이미 \S\ref{sec:si-blend}
+식~\eqref{eq:blend-dqdv} 가 닫았으므로 여기서 되풀이하지 않는다(본 커널은 그 합의 Si-host 몫을 정한다).
+
+\begin{keybox}
+\textbf{Si-host 한 줄(산업 방어).} a-Si 는 단일상 고용체다 --- 폭 $w/(RT/F)\gtrsim1$(식~\eqref{eq:sifr-widthtest},
+흑연 두-상의 $20$--$50$배)이 회사 dQ/dV 에서 직접 읽히는 판정이고, 그래서 Si-host 는 흑연 near-delta 가 아니라
+Frumkin 단일상 커널 식~\eqref{eq:sifr-kernel}($\Omega<2RT$)로 모델한다. 이 커널은 $\Omega=0$ 에서 흑연 평형 종으로
+정확히 환원되므로(골격 불변), Si 로 바뀌는 것은 전이별 입력값 $(U^{\circ},\Omega,Q,w)$ 뿐이고 물리 골격은 하나다.
+\end{keybox}
+
+\begin{warnbox}
+\textbf{$\Omega_\mathrm{Si}$ 는 범위 시드이지 단일 문헌값이 아니다(정직 공백 D1).} half-cell Si dQ/dV 를 명시적
+연속 고용체 항으로 피팅해 a-Li$_x$Si 정칙용액 $\Omega_\mathrm{Si}$ 를 보고한 단일 1차 문헌은 \emph{없다} --- 조각만
+존재한다($\omega$ 형식 MSMR\cite{msmr_origin2017}$\cdot$비정질 형성에너지\cite{artrith2018}). 그래서 본 모델은
+$\Omega_\mathrm{Si}$ 를 정확한 단일값이 아니라 \emph{단일상 범위}(정칙용액 피팅에서 물리 캡의 바닥
+$\approx0.2\,RT$ 로 눌린 --- ``더 넓은 고용체를 원한다''는 데이터의 목소리)로 두고 피팅에 위임한다. \emph{믿을 수
+있는 것}은 폭이 $\gtrsim RT/F$ 인 고용체라는 \emph{판정}이고(식~\eqref{eq:sifr-widthtest}, tier A, 회사가 직접
+검증 가능), \emph{피팅에 맡기는 것}은 그 단일상 범위 안의 정확한 $\Omega_\mathrm{Si}$ 값이다 --- 이 분리가
+허위 정밀을 막는다. 개선 효과는 정직 산출값으로, 블렌드 음극에 Frumkin 커널을 넣으면 $R^2$ 가 $+0.67$\%p 오른다
+(단일 셀, tier A).
+\end{warnbox}
+
+% [W7 초안·비편집] 자산 후보: [SIFR-01 폭 판정 eq:sifr-widthtest] [SIFR-02 Frumkin 전위 eq:sifr-V]
+%   [SIFR-03 단일상 peak 커널 boxed eq:sifr-kernel(Ω=0→흑연 종 회수)] [SIFR-04 소수 broad gallery boxed eq:sifr-gallery]
+%   [SIFR-05 Ω_Si 범위 시드 정직 공백 D1 warnbox]

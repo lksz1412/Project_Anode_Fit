@@ -1,0 +1,93 @@
+% ====================================================================
+% [SI-FR] Si-host 정칙용액 커널 — Frumkin 단일상 peak (Ω<2RT 고용체)
+%   삽입 위치: ch3 Si, §3.2 케이스(ch3v22_sec02_cases, sec:si-cases) 인접 신규 subsection.
+%   라벨 규약: ch3 관행 그대로 — subsection=ssec:*, 식=eq:*.
+%   계승 기호: \Omega·w_j·\xi_{\eq,j}·\theta_j·Q_j^{host}·f_\mathrm{Si}·C_\bg — 재정의 없음.
+% ====================================================================
+\subsection{Si-host 정칙용액 커널 --- Frumkin 단일상 peak(\texorpdfstring{$\Omega\!<\!2RT$}{Omega<2RT} 고용체)}\label{ssec:si-frumkin}
+\S\ref{sec:si-cases} 가 세 계열의 곡선 개형을 읽고, \S\ref{sec:si-blend} 이 관측 $\dd Q/\dd V$ 를 두 host 평형
+종의 배경 위 선형 합~\eqref{eq:blend-dqdv} 으로 닫았을 때, Si-host 몫의 각 전이 종은 흑연과 같은 이상 logistic
+미분($w_j\!=\!RT/F$, $\Omega\!=\!0$)으로 적혀 있었다. 이 소절은 그 Si-host 종을 \emph{정칙용액(Frumkin) 커널} ---
+$\Omega\!<\!2RT$ 단일 고용체의 유효-폭 종 --- 로 일반화한다. 새 물리가 아니라 \S\ref{sec:width-w} 폭 이중지위의
+\emph{단상 측}을 Si 에 대해 명시적으로 적는 것이며, a-Si 가 sharp 두-상이 아니라 단일상 고용체라는 실측이 그
+근거다.
+
+\textbf{(a) 출발 --- 왜 단일상인가(폭/$(RT/F)\!\gtrsim\!1$).} 결정질 Si 의 첫 리튬화만 두-상
+평탄역(c-Si$\to$a-Li$_x$Si)이고\cite{limthongkul2003}, 첫 사이클 이후 순환 a-Si 는 plateau 없는 연속 경사 $U(x)$
+로 옮겨가 제일원리 계산이 이를 재현한다\cite{chevrier_dahn2009,wang_asi2013,mcdowell_coreshell2013}. 곧 순환 a-Si
+는 \emph{단일상 고용체}이지 sharp 두-상이 아니며, 이는 dQ/dV 폭에 정량으로 새겨진다 --- 정칙용액 피팅에서 Si
+전이의 폭/$(RT/F)$ 가 $\approx\![1.45,\,2.74,\,1.09]$ 로 모두 $1$ 이상인 반면, 흑연 두-상은 폭/$(RT/F)\!\ll\!0.12$
+(near-delta)라 \emph{$20$--$50$ 배}의 대조다. 유일한 진짜 두-상은 \emph{첫 심리튬화} 끝($\sim\!50$--$60$ mV)에서
+준안정 c-Li$_{15}$Si$_4$ 가 결정화하며 남기는 날카로운 특징이고\cite{obrovac_christensen2004,ogata_nmr2014}, 이는
+리튬화 방향의 1차 사이클 feature 라 순환 a-Si 탈리튬화 종에는 부재한다. 따라서 Si-host 전이는 ``연속 고용체를
+소수의 broad gallery 로 이산화한'' 종으로 다루고, 그 폭은 \S\ref{sec:width-w} 의 \emph{단상 평형 예측}
+지위(둘째 두-상 지위가 아니라)에 놓인다.
+
+\textbf{(b) 연산 --- 정칙용액 등온선에서 Frumkin 커널.} 한 host 전이의 점유(리튬화 분율) $\theta$ 에 대해 평형
+전위는 정칙용액 등온선(음극 부호 --- $\theta\!\uparrow$ 로 전위 하강)
+\begin{equation}
+V(\theta)=U^0-\frac{RT}{F}\ln\frac{\theta}{1-\theta}-\frac{\Omega}{F}\,(1-2\theta)
+\label{eq:si-frumkin-V}
+\end{equation}
+이며(흑연$\cdot$LCO 평형 등온선~\eqref{eq:Veq}$\cdot$\eqref{eq:lco-Veq} 와 같은 $\mu(\theta)$~\eqref{eq:mu} 뿌리, 진행률
+$\xi\!=\!1\!-\!\theta$ 여집합 좌표), $\theta$ 로 미분하면 로그 몫이 $-RT/[F\theta(1-\theta)]$, 상호작용 몫이
+$+2\Omega/F$ 라
+\[
+\frac{\dd V}{\dd\theta}=-\frac1F\Big[\frac{RT}{\theta(1-\theta)}-2\Omega\Big].
+\]
+관측 미분용량은 용량 가중 점유의 전위 미분 $\dd Q/\dd V=Q\,|\dd\theta/\dd V|=Q/(F|\dd V/\dd\theta|)$ 이므로,
+\S\ref{sec:eqpeak} 평형 peak 유도와 같은 연쇄율로 Frumkin 단일상 종이 닫힌다:
+\begin{equation}
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_{\mathrm{Si},j}
+=\frac{Q_j^\mathrm{Si}\,F}{\big|\,RT/[\theta_j(1-\theta_j)]-2\Omega_j\,\big|}\,,
+\qquad \Omega_j<2RT\;.}
+\label{eq:si-frumkin}
+\end{equation}
+$\Omega_j\!=\!0$ 이면 분모가 $RT/[\theta(1-\theta)]$ 라 식~\eqref{eq:si-frumkin} 이
+$Q_j\theta(1-\theta)/(RT/F)=Q_j\,\xi(1-\xi)/w_j$($w_j\!=\!RT/F$, $\theta(1-\theta)\!=\!\xi(1-\xi)$)로 \S\ref{sec:eqpeak}
+평형 peak~\eqref{eq:eqpeak} 의 이상 종과 \emph{글자까지} 일치하고, $0\!<\!\Omega_j\!<\!2RT$ 면 중심($\theta\!=\!\tfrac12$)
+분모가 $4RT-2\Omega_j=4RT(1-\Omega_j/2RT)$ 로 줄어 종이 $(1-\Omega_j/2RT)$ 배 좁고 높아지며($\Omega_j\!\to\!2RT$
+에서 $\dd Q/\dd V\!\to\!\infty$ 로 임계 발산), $\Omega_j\!<\!0$(유효 반발)이면 분모가 커져 종이 넓어진다. 이
+$(1-\Omega_j/2RT)$ 배 유효 폭이 곧 \S\ref{sec:width-w} 가 단상 지위에서 예고한 ``중심 기울기가
+$(1-\Omega_j/2RT)$ 배 좁아진 유효 폭''의 Si 판이며, Part T 파생 C(\S\ref{ssec:weff})의 두-상 유효-폭 축소
+\emph{금지}와 무모순이다(여기 좁힘은 단상 평형이 결정하는 해석적 성질이지 두-상 델타를 인위로 좁히는 항이 아니다).
+
+\textbf{(c) 중간식 --- 소수 broad gallery 와 $\Omega_\mathrm{Si}$ 시드.} Si-host 는 연속 고용체를 소수의 broad
+gallery(전이)로 이산화한 것이라, 각 전이의 $\Omega_j^\mathrm{Si}$ 는 $\Omega\!<\!2RT$ 이되 넓은 고용체를 향해
+바닥(예: $0.2\,RT$)으로 갈 수 있는 범위 시드로 두고 값은 피팅에 위임한다(흑연 두-상의 $\Omega\!>\!2RT$ 초기값과
+정반대 지향). 케이스별 개형(\S\ref{ssec:si-elemental}--\S\ref{ssec:si-sic})은 이 커널의 폭$\cdot$중심 배치로
+읽히며, SiO$_x$ 의 절대 위치처럼 \emph{확인 필요} 공백인 양은 개형(폭$\cdot$대칭)만 유효한 placeholder 로 남긴다
+(\S\ref{sec:si-cases} 표 각주 $c\!\cdot\!f$). 커널 자체는 \S\ref{sec:si-blend} 의 host 곱에 additive 로 얹혀,
+Si-host 전이의 종을 식~\eqref{eq:si-frumkin} 으로 바꾸고 미지정 시 이상 logistic 로 폴백하는(폴백 시
+$f_\mathrm{Si}\!\to\!0$ 흑연 회수~\eqref{eq:blend-limit} 와 같은 bit-exact 규율) 한 겹의 kernel 분기다.
+
+\textbf{(d) 박스 --- 블렌드 합성에의 접속(공통-$\mu$ 가산 중첩).} Frumkin 커널이 들어간 Si-host 종은
+\S\ref{sec:si-blend} 합성식~\eqref{eq:blend-dqdv} 의 Si 이중합 몫을 그대로 대체하므로, 관측 블렌드 미분용량은
+\begin{equation}
+\frac{\dd Q}{\dd V}\bigg|_{U_\oc}=C_\bg
++\sum_{j}\frac{Q_j^\mathrm{gr}\,\xi_{\eq,j}^\mathrm{gr}(1-\xi_{\eq,j}^\mathrm{gr})}{w_j^\mathrm{gr}}
++\sum_{j}\frac{Q_j^\mathrm{Si}\,F}{\big|\,RT/[\theta_j^\mathrm{Si}(1-\theta_j^\mathrm{Si})]-2\Omega_j^\mathrm{Si}\,\big|}
+\label{eq:si-frumkin-blend}
+\end{equation}
+로, 흑연 종(이상)과 Si 종(Frumkin)이 \emph{같은 전위 축} 위에 겹친다 --- 두 host 가 하나의 $U_\oc$ 를 공유하는
+평형(공통-$\mu$)에서 두 기여의 가산 중첩이 정확함은 Tu--Dao--Verbrugge--Koch 의 MSMR 블렌드 축소모형이
+``clearly a superposition''으로 실증한 바와 일치한다\cite{tu_blend2024}(유한 율속 비가산은 \S\ref{ssec:si-blend-gs2}
+GS-2 공백). 배경 $C_\bg$ 는 전극 단위로 한 번만 더한다(host 별 중복 금지).
+\begin{verifybox}
+검산 --- (i) \emph{차원.} 분모 $RT/[\theta(1-\theta)]$ 과 $2\Omega$ 는 모두 [J/mol] 라 $QF/|\cdots|$ 는
+[$Q_\cell\!\cdot\!\mathrm{C\,mol^{-1}}/\mathrm{J\,mol^{-1}}$] $=$ [$Q_\cell$/V] 로 미분용량 차원. (ii) \emph{이상
+회수(bit-exact).} $\Omega_j\!\to\!0$ 에서 식~\eqref{eq:si-frumkin} $=Q_j\,\xi(1-\xi)/(RT/F)$ 로 평형
+peak~\eqref{eq:eqpeak} 의 이상 종과 항등 --- kernel 미지정 폴백이 로지스틱과 일치하는 코드 규율의 이론 짝.
+(iii) \emph{임계 발산.} $\Omega_j\!\to\!2RT^-$ 에서 중심 분모 $4RT-2\Omega_j\!\to\!0^+$ 라 $\dd Q/\dd V\!\to\!+\infty$
+(단상 고용체가 miscibility gap 문턱에 닿는 임계점, 식~\eqref{eq:staging-mujudge} 판정자와 같은 $2RT$); $\Omega_j\!>\!2RT$
+는 두-상 영역이라 이 커널의 유효 범위 밖(그 때는 \S\ref{sec:broadening} 두-상 폭이 담당). (iv) \emph{부호$\cdot$면적.}
+$\theta(1-\theta)\!\ge\!0$, $\Omega_j\!<\!2RT$ 라 분모 부호 불변($>\!0$)이라 종은 양수$\cdot$방향 불변이고, 전위
+적분은 $\int(\dd Q/\dd V)\dd V=Q_j\!\int_0^1\dd\theta=Q_j^\mathrm{Si}$ 로 전이 총 전하(면적 보존).
+(v) \emph{tier.} 폭/$(RT/F)\!\approx\![1.45,2.74,1.09]$ 은 정칙용액 피팅 산출(단일상 확증의 근거값)이고,
+$\Omega_j^\mathrm{Si}$ 절대값은 범위 시드(피팅 위임) --- 값 확정 아님.
+\end{verifybox}
+
+% 자산(comp_R1 W8 신규): [SIFR-01 Frumkin 등온선 eq:si-frumkin-V(정칙용액 V(θ)·eq:mu 뿌리)]
+%   [SIFR-02 Frumkin 단일상 커널 boxed eq:si-frumkin(dQ/dV=QF/|RT/θ(1−θ)−2Ω|·Ω<2RT·이상 회수·임계 발산)]
+%   [SIFR-03 폭/(RT/F)≳1 단일상 실측(1.45/2.74/1.09 vs 흑연 ≪0.12·20–50배)·c-Li15Si4 유일 두-상]
+%   [SIFR-04 블렌드 가산중첩 접속 eq:si-frumkin-blend(host 곱 additive·Tu2024 superposition·C_bg 전극단위)]

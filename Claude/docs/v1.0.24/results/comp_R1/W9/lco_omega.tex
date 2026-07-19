@@ -1,0 +1,125 @@
+% ====================================================================
+% lco_omega.tex — [LCO-Ω] LCO per-peak Ω(정칙용액 커널) + 전자항 on/off 토글 (신규 subsection)
+%   삽입 위치: Chapter 2(LCO) — ch1_sec13_lcohys(정칙용액 Ω·#7 정정 대상)·
+%   ch1_sec15_lcoelec(전자 엔트로피)·ch1_sec16_lcopeak(세 peak) 정합.
+%   저자 sub W9 (comp_R1). 초안 — 실제 문건 편집 금지, 본 폴더 전용.
+%   강조: adversarial completeness + honest limits.
+% ====================================================================
+\subsection{LCO per-peak $\Omega$ 커널과 전자항 on/off 토글 --- 평균장 축약의 정직한 지위}\label{ssec:lco-omega}
+LCO 하프셀 dQ/dV 는 흑연과 \emph{같은} MSMR(전하 보존 반전 $\to$ 평형 peak, 식~\eqref{eq:lco-eqpeak})로 닫히고,
+전이 파라미터만 양극 값으로 바뀐다(표~\ref{tab:lco-staging}). 이 소절은 그 위에 두 가지를 정합하게 얹는다:
+(i) feature 별 상성격 차이를 담는 \emph{per-peak $\Omega_j^\cat$ 커널}과, 그와 얽힌 \S\ref{sec:lco-hys} 문구의
+\#7 정정, (ii) 전자 엔트로피 항을 \emph{커브에는 무영향$\cdot$가역열에만 작용}하는 on/off 토글로 재배치하는 규칙.
+새 물리는 없다 --- 식~\eqref{eq:lco-gxi}$\cdot$\eqref{eq:lco-gpp}$\cdot$\eqref{eq:lco-spinodal} 의 정칙용액 골격과
+식~\eqref{eq:dSegate}$\cdot$\eqref{eq:U1T2} 의 전자항을 \emph{어느 슬롯이 무엇을 담는가}로 정리할 뿐이다.
+
+\textbf{(a) 출발 --- feature 별 상성격은 per-peak $\Omega_j^\cat$ 가 가른다.} LCO 세 전이(표~\ref{tab:lco-staging})는
+상성격이 균일하지 않다: $\sim$3.90 V 의 MIT(절연체$\to$금속) 계열은 회절이 두 상 공존을 보이는 \emph{두-상 sharp}
+전이이고\cite{reimers1992,menetrier1999}, $x\approx\tfrac12$ 부근 order--disorder 계열은 정렬 상호작용이 무대인
+전이다\cite{vanderven1998}. 이 차이를 forward 모델은 전이별로 다른 $\Omega_j^\cat$ 하나로 담는다 --- 흑연
+판정자와 같은 문턱에서(식~\eqref{eq:lco-gpp}$\cdot$\eqref{eq:lco-spinodal})
+\begin{equation}
+\frac{\partial^2 g_j^\cat}{\partial\xi_j^2}=\frac{RT}{\xi_j(1-\xi_j)}-2\Omega_j^\cat,
+\qquad
+\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j=\frac{Q_j^\cat\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j},
+\label{eq:lcoomega-kernel}
+\end{equation}
+각 전이의 sharp/broad 는 \emph{피팅된} $\Omega_j^\cat$ 이 $2RT$ 를 넘는지가 정한다(\S\ref{sec:lco-hys}
+two-phase calibration) --- MIT 계열은 $\Omega_j^\cat>2RT$ 로 두-상 델타에 가깝고(실측 폭은 $w_j$ 가 담음), 도핑
+시료의 order--disorder 계열은 $\Omega_j^\cat$ 이 $2RT$ 아래로 억제되면(식~\eqref{eq:lco-dope}) 상대적으로
+\emph{broad} 하다. 곧 하나의 per-peak $\Omega_j^\cat$ 축이 세 feature 를 연속적으로 sharp$\leftrightarrow$broad
+로 조율하며, 이 자유도가 LCO 곡선을 흑연 균일 폭보다 잘 맞춘다(정칙용액 커널 개선 $+1.25\%$p, 우리 ablation 진단).
+
+\textbf{(b) 연산 --- \#7 정정: $\Omega_j^\cat$ 는 평균장 축약이지 미시 질서상 안정성 주장이 아니다.}
+\S\ref{sec:lco-hys} 가 order--disorder 를 정칙용액으로 접을 때 ``$\Omega_j^\cat>2RT\Leftrightarrow x\!\approx\!\tfrac12$
+질서상 안정''(식~\eqref{eq:br-vanderven1998-1} 부근)이라는 등가 문구는 \emph{과대 해석의 소지}가 있어 다음으로
+정정한다(물리는 유지, 문구만):
+\begin{equation}
+\boxed{\;
+\Omega_j^\cat\ \equiv\ \text{전이 $j$ 진행좌표 $\xi_j$ 의 \emph{유효 평균장 쌍상호작용 축약}}\ \ (\text{미시 질서구조가 아님}),
+\quad
+\Delta S_j^\config\ \perp\ \Omega_j^\cat\;}
+\label{eq:lcoomega-hash7}
+\end{equation}
+--- 즉 $\Omega_j^\cat$ 은 Van der Ven 등\cite{vanderven1998} 의 다체 클러스터 전개를 전이 창의 진행률 한 좌표로
+접었을 때 남는 \emph{최근접 쌍 몫의 평균장 값}이고, 그것이 $2RT$ 를 넘는다는 것은 그 유효 좌표의 볼록성 상실
+(두-상 문턱)을 뜻할 뿐, $x{=}\tfrac12$ Li$\cdot$빈자리 초격자의 \emph{미시 질서구조}를 $\Omega_j^\cat$ 이 기술한다는
+말이 아니다. 질서화가 나르는 \emph{배치 엔트로피}(config)는 별도 슬롯 $\Delta S_j^\config$
+(식~\eqref{eq:lco-decomp})에 들어가며 상호작용 에너지 $\Omega_j^\cat$[J/mol]와 \emph{직교}한다 --- 그래서
+정렬의 charge-order $\Delta S$($\sim$0.47/1.49 J/(mol\,K), 값$\cdot$배정 tier C)를 ``$\to\Omega_j^\cat$''로 직접
+연결하지 않는다(\S\ref{sec:lco-hys} 혼동 가드 계승). 이 정정이 \emph{gap 슬롯}($\Omega_j^\cat$)과 \emph{엔트로피
+슬롯}($\Delta S_j^\config$)의 이중계산을 문구 수준에서 막는다.
+
+\textbf{(c) 중간식 --- 전자항은 $T_\mathrm{ref}$ 동결로 상온 커브에 무영향, $\partial U/\partial T$ 에만 작용.}
+LCO 고유의 전자 엔트로피 $\Delta S_{e,j}(x,T)\propto T$(MIT 게이트, 식~\eqref{eq:dSegate})는 반응 엔트로피 슬롯에
+들어가되, 그 작용처가 커브와 가역열에서 다르다. 기준온도 $T_\mathrm{ref}$ 에서 중심 전위는 식~\eqref{eq:Uj} 로
+\begin{equation}
+U_j(T_\mathrm{ref})=\frac{-\Delta H_{\rxn,j}^\mathrm{eff}+T_\mathrm{ref}\,\Delta S_{\rxn,j}^{\cat}(T_\mathrm{ref})}{F},
+\qquad
+\Delta H_{\rxn,j}^\mathrm{eff}\equiv\Delta H_{\rxn,j}-T_\mathrm{ref}\,\Delta S_{e,j}^{\,\mathrm{mol}}(T_\mathrm{ref})\ \ (\text{재기준}),
+\label{eq:lcoomega-Tref}
+\end{equation}
+곧 $T_\mathrm{ref}$ 에서 전자항이 실은 상수 오프셋 $T_\mathrm{ref}\Delta S_{e,j}$ 는 유효 엔탈피 $\Delta H^\mathrm{eff}$
+로 흡수되어 $U_j(T_\mathrm{ref})$ 를 \emph{불변}으로 둔다. 따라서 상온($T{=}T_\mathrm{ref}$) 단일 커브는 전자항을
+켜든 끄든 같다 --- 전자항이 커브에 남기는 것은 $U_j(T_\mathrm{ref})$ 가 아니라 오직 그 \emph{온도 기울기}
+$\partial U_j/\partial T=\Delta S_{\rxn,j}^\cat/F$ 뿐이고, 이는 다온도 데이터(가역열, Chapter 1 Part T
+\S\ref{sec:revheat})에서만 관측된다. 실측 뒷받침 --- LCO plain MSMR 적합이 $R^2{=}0.944$ 로 흑연 $0.940$ 과
+사실상 같아(우리 진단), 상온 커브 재현에 전자항이 불필요함을 보인다.
+
+\textbf{(d) 박스 --- \code{include\_electronic\_entropy} 토글.} 이를 코드 플래그 한 개로 고정한다:
+\begin{equation}
+\boxed{\;
+\text{\code{include\_electronic\_entropy}}=
+\begin{cases}
+\textbf{False (기본)} & \Rightarrow\ \text{상온 커브 산출}\ (\Delta S_{e}\ \text{는 }\Delta H^\mathrm{eff}\text{ 로 재기준, }U_j(298)\ \text{bit-exact 보존}),\\[2pt]
+\textbf{True (옵션)} & \Rightarrow\ \partial U_j/\partial T=\dfrac{\Delta S_{\rxn,j}^\cat}{F}\ \text{에 }\Delta S_{e,j}(T)\propto T\ \text{활성}\ (U\text{-이동}\propto T^2,\ \text{식~\eqref{eq:U1T2}}).
+\end{cases}\;}
+\label{eq:lcoomega-toggle}
+\end{equation}
+곧 ``커브 산출엔 불필요$\cdot$다온도 엔트로피(가역열)에서만 선택 활성''이 규칙이다. 기본 OFF 가 기존 커브를
+불변으로 두려면 현행 상시-ON 코드가 $\Delta H$ 재기준으로 $U_j(298)$ 를 보존해야 하며(현 코드는 $\Delta S_e$
+상시 ON), 그 $U(298)$ 불변 보장은 R2(코드) 게이트 소관이다.
+
+\medskip
+\textbf{★적대적 검토 대응 --- 세 물음.} \emph{(1) ``전자항이 정말 필요한가.''} \emph{커브에는 불필요, 가역열에는
+필요.} 상온 dQ/dV 는 식~\eqref{eq:lcoomega-Tref} 로 전자항과 무관(plain MSMR $R^2{=}0.944\!\approx\!$흑연
+$0.940$)하나, MIT 구간의 $\partial U/\partial T$ 온도 서명은 전자항 없이 config 단독으로 재현되지 않는다
+(\S\ref{sec:lco-electronic}: config 전용 계산\cite{ml2024} 도 order--disorder 소관, 전자 자유도 미포함) --- ``작지만
+빠지면 MIT 를 못 그린다''는 서명이 \emph{가역열 축}에 산다. 곧 토글은 두 축을 정직하게 분리하는 장치다.
+\emph{(2) ``per-peak $\Omega$ 는 과적합 아닌가.''} $\Omega_j^\cat$ 은 자유 봉우리 추가가 아니라 회절
+\cite{reimers1992}$\cdot$제일원리 클러스터 전개\cite{vanderven1998}$\cdot$전자 상도표\cite{motohashi2009} 가
+받치는 \emph{상성격} 축이며, 판정자는 물리적 문턱($\Omega_j^\cat\!\lessgtr\!2RT$)이지 임의 폭이 아니다. 개선폭
+$+1.25\%$p 는 \emph{완만}하고 물리 동기가 분명하다(과적합이면 봉우리 수를 늘리지 $\Omega$ 한 축을 조율하지 않는다).
+\emph{(3) ``\#7 정정이 물리를 바꾸나.''} 아니다 --- 식$\cdot$값$\cdot$슬롯 배치 전부 유지하고, $\Omega_j^\cat$ 를
+``미시 질서상 안정성''으로 읽던 \emph{문구}만 ``평균장 축약''으로 정확화한다(식~\eqref{eq:lcoomega-hash7}).
+
+\begin{warnbox}
+\textbf{정직한 한계.} (i) \emph{O3-LCO 온도 의존은 다온도 데이터 없이 미검증.} 전자항의 유일한 관측 신호는
+$\partial U_1/\partial T$ 가 $T$ 에 선형으로 내려가는 것(U-이동 $\propto T^2$, 식~\eqref{eq:U1T2})인데, 상온 단일
+커브로는 이를 볼 수 없다 --- 회사 다온도 셀 데이터가 들어와야 $g_{\max}\cdot x_\mathrm{MIT}\cdot\Delta x_\mathrm{MIT}$
+게이트 세 초기값과 $\Delta S_e$ 부호$\cdot$기울기가 round-trip 으로 확정된다(현 상태: 연속 $g(E_F,x)$ 는 1차
+문헌 부재 갭 G2, \S\ref{sec:lco-Se}). (ii) \emph{전자항 크기의 tier 분리.} 함수형
+$S_e{=}\tfrac{\pi^2}{3}k_B^2Tg(E_F)$ 는 tier A(Sommerfeld 표준), 완전 metal 끝점 $g(E_F)\!\approx\!13$
+e/eV/atom 도 그 한 점에서 tier A\cite{motohashi2009}, 그러나 MIT 를 가로지르는 \emph{연속 곡선}은 tier 없음
+(모델 게이트 가정) --- 골 깊이 $\sim-45.7$ J/(mol\,K)($T_\mathrm{ref}$ 동결 시연값)는 시연 감각이지 실측 예측이
+아니다. (iii) \emph{6+ feature 는 폐기.} 흑연과 같은 규율 --- LCO 도 하프셀 상한($\le$4.2--4.5 V) 안에서 세
+feature 가 실측 상한(고전압 O3$\to$H1-3 는 범위 밖 옵션)이며, 이를 넘어 봉우리를 쪼개는 것은 상도표 미지원
+curve-fitting 이다. (iv) \emph{$\Delta S_j^\config$ 수치(0.47/1.49)는 값$\cdot$배정 양쪽 tier C} (원전 재확인
+중, \S\ref{sec:lco-hys} 혼동 가드) --- \#7 정정은 이 수치를 $\Omega$ 로 옮기지 말라는 경계이지 수치 확정이 아니다.
+\end{warnbox}
+
+\begin{keybox}
+\textbf{LCO $\Omega$$\cdot$전자항 다리.} feature 별 상성격은 per-peak $\Omega_j^\cat$(식~\eqref{eq:lcoomega-kernel})가
+피팅된 $2RT$ 초과 여부로 sharp/broad 를 가르며, \#7 정정으로 $\Omega_j^\cat$ 은 \emph{평균장 축약}(미시 질서상
+아님)$\cdot$config 엔트로피는 별도 슬롯 직교(식~\eqref{eq:lcoomega-hash7})다. 전자항은 $T_\mathrm{ref}$ 동결로
+상온 커브에 무영향($\Delta H^\mathrm{eff}$ 흡수, plain MSMR $R^2{=}0.944\!\approx\!$흑연 $0.940$)이고
+$\partial U/\partial T$(가역열)에만 작용하므로 \code{include\_electronic\_entropy} 기본 OFF
+(식~\eqref{eq:lcoomega-toggle}). \emph{정직 한계}: O3-LCO 온도 의존은 다온도 데이터 없이 미검증, 연속
+$g(E_F,x)$ 는 tier 없는 모델 게이트.
+\end{keybox}
+
+% 자산(comp_R1 W9 초안): [W9-LCOΩ-1 per-peak Ω_j^cat 커널 eq:lcoomega-kernel(eq:lco-gpp/spinodal 재사용·sharp/broad 피팅판정·+1.25%p)]
+%   [W9-LCOΩ-2 #7 정정 boxed eq:lcoomega-hash7(Ω=평균장 축약·config⊥Ω·혼동가드 계승)]
+%   [W9-LCOΩ-3 전자항 T_ref 동결 재기준 eq:lcoomega-Tref(커브 무영향·R²=0.944≈0.940)]
+%   [W9-LCOΩ-4 include_electronic_entropy 토글 boxed eq:lcoomega-toggle(OFF=커브 bit-exact·ON=∂U/∂T∝T)]
+%   [W9-LCOΩ-5 적대 3문+정직 한계 warnbox(전자항 커브불필요/가역열필요·O3 다온도 미검증·6+ 폐기·config tier C)]

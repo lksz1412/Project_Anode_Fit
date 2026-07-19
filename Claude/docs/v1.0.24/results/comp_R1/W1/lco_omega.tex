@@ -1,0 +1,140 @@
+% ====================================================================
+% [LCO-Ω] LCO per-peak Ω(정규용액 커널) + 전자항 on/off 토글 (신규 subsection)
+%   배치: Chapter 2 LCO, ch1_sec13_lcohys·ch1_sec15_lcoelec·ch1_sec16_lcopeak 정합.
+%   계승 라벨: eq:mu·eq:Uj·eq:eqpeak·eq:sm-thresh·eq:gr2l-judge(Ch1)·eq:lco-eqpeak·
+%     eq:lco-gxi·eq:lco-spinodal·eq:lco-mit·eq:dSegate·eq:U1T2·tab:lco-staging(Ch2).
+%   신규 라벨: ssec:lco-omega, eq:lcoom-*.
+% ====================================================================
+\subsection{LCO per-peak $\Omega$ 커널과 전자항 on/off 토글}\label{ssec:lco-omega}
+\S\ref{sec:lco-peak} 은 LCO 하프셀 dQ/dV 가 흑연과 \emph{동일한 MSMR}(전이별 평형 peak 합, 식~\eqref{eq:lco-eqpeak})
+임을 닫았다. 다만 세 feature 는 상 성격이 서로 다르다 --- 어떤 것은 두-상 sharp(miscibility gap), 어떤 것은
+$x\!\approx\!\tfrac12$ order--disorder 의 broad 종이다. 이 소절은 (A) 그 차이를 전이별 $\Omega_j^\cat$
+(정규용액 커널) 하나로 포착하고, (B) $\Omega_j^\cat$ 의 물리적 지위를 정정 명확화하며(#7), (C) LCO 고유의 전자
+엔트로피 항을 \emph{커브 대 가역열} 두 층으로 가르는 on/off 토글을 세운다.
+
+\subsubsection*{(A) per-peak $\Omega$ --- 정규용액 커널로 feature 별 상 성격}
+\textbf{(a) 출발 --- 같은 MSMR, 다른 $\Omega_j^\cat$.} \S\ref{sec:lco-hys} 은 LCO 세 전이를 흑연과 같은 정규용액
+자유에너지 식~\eqref{eq:lco-gxi} 에 넣어 전이별 입력 $\Omega_j^\cat$ 만 바꾼다. 전이 $j$ 의 평형 peak 은
+따라서 흑연 평형 peak(식~\eqref{eq:eqpeak})의 $\Omega_j^\cat$-일반화, 곧 Frumkin 단일상 커널이다.
+\textbf{(b) 연산 --- per-peak 정규용액 커널.} 점유 $\theta$($=$Li 자리 점유)의 정규용액 평형 전위
+$V(\theta)=U_j^\cat-(RT/F)\ln[\theta/(1-\theta)]-(\Omega_j^\cat/F)(1-2\theta)$ 를 미분한
+$\dd V/\dd\theta=-(1/F)[RT/\{\theta(1-\theta)\}-2\Omega_j^\cat]$ 를 연쇄율 $\dd Q/\dd V=Q_j^\cat/(\dd V/\dd\theta)$
+에 넣으면 \textbf{(c)(d) 박스 --- per-peak $\Omega$ 커널.}
+\begin{equation}
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_j=\frac{Q_j^\cat\,F}{\big\lvert\,RT/[\theta(1-\theta)]-2\Omega_j^\cat\,\big\rvert}\,,
+\qquad
+w_j^{\eff}=\frac{RT}{F}\Big(1-\frac{\Omega_j^\cat}{2RT}\Big)\ (\Omega_j^\cat<2RT)\;.}
+\label{eq:lcoom-kernel}
+\end{equation}
+이 커널은 흑연 이상 극한 식~\eqref{eq:lco-eqpeak}($\Omega_j^\cat{=}0$ 이면 $Q_j^\cat\xi(1-\xi)/w_j$)를 각
+peak 의 자기 $\Omega_j^\cat$ 로 일반화한 것이고, 그 상 성격은 \S\ref{ssec:gr-stage2l}(A) 식~\eqref{eq:gr2l-judge}
+와 \emph{같은 판정자}로 갈린다:
+\begin{equation}
+\Omega_j^\cat>2RT:\ \text{두-상 sharp(near-delta, 폭은 broadening 현상학)};\qquad
+\Omega_j^\cat<2RT:\ \text{order--disorder broad(폭 $w_j^{\eff}$ 는 평형 예측)}.
+\label{eq:lcoom-dual}
+\end{equation}
+feature 대응은 이렇다 --- $\sim$3.90 V(MIT$\cdot$staging 계열)와 그 아래 staging 전이는 상평형에서
+$\Omega_j^\cat>2RT$ 의 두-상 sharp 후보이고(\S\ref{sec:lco-hys} two-phase calibration,
+표~\ref{tab:lco-staging}), $x\!\approx\!\tfrac12$ 부근 order--disorder(T2$\cdot$T3)는 $\Omega_j^\cat$ 이 문턱을
+넘는지에 따라 sharp/ broad 가 갈린다. 전이별로 자기 $\Omega_j^\cat$ 을 두는 이 per-peak 처방이 흑연 단일
+폭 획일 처방보다 LCO 개형을 낫게 담는다.
+
+\begin{verifybox}
+검산 --- (i) \emph{$\Omega^\cat{=}0$ 회수.} 식~\eqref{eq:lcoom-kernel} 에 $\Omega_j^\cat{=}0$ 이면
+$Q_j^\cat\,\theta(1-\theta)/(RT/F)$ 로 식~\eqref{eq:lco-eqpeak} 의 이상 항($n_j{=}1$)과 좌표 여집합까지
+같다 --- per-peak 커널은 MSMR 동형을 깨지 않는 $\Omega$-확장이다. (ii) \emph{같은 판정자.} 두-상/고용체 갈림은
+흑연$\cdot$Si 와 같은 식~\eqref{eq:gr2l-judge}($\dd\mu/\dd\theta|_{1/2}=4RT-2\Omega_j^\cat$)이고, 곡률 문턱
+식~\eqref{eq:sm-thresh}$\cdot$LCO spinodal 식~\eqref{eq:lco-spinodal} 과 한 조건이다. (iii) \emph{개선 폭.}
+per-peak $\Omega_j^\cat$ 도입은 내부 ablation 에서 LCO dQ/dV 적합을 $+1.25$\%p(per-peak $\Omega$)$\cdot$최대
+$+1.90$\%p(H1/H2$\cdot$$x{=}0.5$ order--disorder$\cdot$H1-3 세분 포함)까지 올린다(내부 산출 \code{lco\_ablation\_result.json};
+tier B --- 곡선 적합 개선분). (iv) \emph{최종 지위는 피팅.} 표~\ref{tab:lco-staging} 는 $\Omega_j^\cat$ 수치 열을
+싣지 않으므로(초기값 미배정, \S\ref{sec:lco-hys-gxi}) 각 peak 의 sharp/broad 최종 판정은 round-trip 피팅된
+$\Omega_j^\cat$ 이 $2RT$($\approx4958$ J/mol@$298.15$ K)를 넘는지가 정한다.
+\end{verifybox}
+
+\subsubsection*{(B) $\Omega_j^\cat$ 의 지위 정정(\#7) --- 유효 평균장 축약, 미시 질서 아님}
+\S\ref{sec:lco-hys-od} 의 다리(식~\eqref{eq:br-vanderven1998-1})가 ``$\Omega_j^\cat>2RT\Leftrightarrow x\!\approx\!\tfrac12$
+질서상 안정''로 적은 대응을, 물리는 유지한 채 문구만 정확히 다시 놓는다. $\Omega_j^\cat$ 은 order--disorder
+질서상의 \emph{미시 구조}가 아니라, Van der Ven\cite{vanderven1998} 다체 클러스터 전개(유효 클러스터
+상호작용 집합)를 \emph{전이당 진행좌표 $\xi_j$} 의 최근접 쌍 한 항으로 접은 \emph{유효 평균장 축약}이다 --- 미시
+질서는 이 유효 인력의 \emph{기원}이고, 평균장 축약이 남기는 것은 상분리의 유효 문턱($\Omega_j^\cat$ 대 $2RT$)뿐이다.
+따라서 정정된 읽기는
+\begin{equation}
+\boxed{\;\Omega_j^\cat>2RT\ \Longleftrightarrow\ \text{진행좌표 자유에너지의 볼록성 상실(2상 문턱)}\;;
+\quad \Omega_j^\cat\ (\text{J/mol})\ \perp\ \Delta S_j^\config\ (\text{J/(mol\,K)})\;.}
+\label{eq:lcoom-guard}
+\end{equation}
+곧 $\Omega_j^\cat$[J/mol]은 gap$\cdot$문턱을 정하는 \emph{상호작용 에너지}이고, 정렬의 config 엔트로피
+$\Delta S_j^\config$[J/(mol\,K)]는 $U_j^\cat(T)$ 의 온도 이동(식~\eqref{eq:Uj} 의 $\partial U/\partial T=\Delta
+S_\rxn/F$)에 들어가는 \emph{별도 슬롯}이라, 둘은 차원부터 다르다. 그러므로 order--disorder 의 charge-order
+엔트로피 값($\approx0.47/1.49$ J/(mol\,K), tier C)을 $\Omega_j^\cat$ 으로 \emph{직접 연결하지 않으며}, 그 값은
+config 슬롯에, $\Omega_j^\cat$ 은 별도 피팅 파라미터로 둔다 --- \S\ref{sec:lco-hys-od} 의 혼동 가드를 그대로
+계승한다.
+
+\begin{srcbox}
+\textbf{정정의 요지($x\!\approx\!\tfrac12$ ``안정''의 정확한 뜻).} 원 대응이 옳게 가리키는 것은 ``$x{=}\tfrac12$
+Li$\cdot$빈자리 질서상을 안정화하는 조성$\cdot$온도 창''과 ``유효 문턱 $\Omega_j^\cat>2RT$ 가 켜지는 창''이 겹친다는
+\emph{대응}이지, $\Omega_j^\cat$ 이 질서상의 미시 구조(초격자 대칭$\cdot$점유 패턴) \emph{그 자체}라는 등치가
+아니다. Van der Ven 계산은 여러 유효 클러스터 상호작용과 명시적 질서 바닥상태를 모두 담으나, 본문은 이를
+전이별 단일 평균장 쌍 $\Omega_j^\cat$ 하나로 축약(정규용액 이중웰)하므로 질서상의 미시 구조를 버리고 상분리의
+유효 문턱만 남긴다 --- 각 전이의 실제 gap 유무는 최종적으로 \emph{피팅된} $\Omega_j^\cat$ 이 $2RT$ 를 넘는지가
+정한다(도핑 정량형은 \S\ref{sec:lco-hys-dope}). 물리 골격(정규용액 이중웰$\cdot$spinodal gap
+식~\eqref{eq:lco-dUhys})은 불변이고, 바뀐 것은 ``$\Omega\Leftrightarrow$질서상''을 ``$\Omega\Leftrightarrow$유효
+2상 문턱, 미시 질서는 기원''으로 읽는 문구뿐이다.
+\end{srcbox}
+
+\subsubsection*{(C) 전자항 on/off 토글 --- 커브 무영향$\cdot$$\partial U/\partial T$ 만}
+\textbf{(a) 출발 --- 전자항은 $\Delta S_{\rxn,1}^\cat$ 슬롯에.} LCO T1(MIT)의 반응 엔트로피에는 흑연에 없는
+전자 몫 $\Delta S_{e,1}(x,T)\approx-45.7$ J/(mol\,K)(게이트 중심 골 깊이, 식~\eqref{eq:dSegate})가 더해진다.
+\textbf{(b) 연산 --- $T_\mathrm{ref}$ 동결이 커브를 지운다.} 평형 중심은 식~\eqref{eq:Uj} 로
+$U_1(T_\mathrm{ref})=[-\Delta H_1+T_\mathrm{ref}\,\Delta S_{\rxn,1}^\cat]/F$ 이다. 전자항을 켜고 끄면
+$\Delta S_{\rxn,1}^\cat$ 이 $\pm\Delta S_e$ 만큼 바뀌지만, 기준온도 커브의 peak 위치 $U_1(T_\mathrm{ref})$ 를
+보존하려면($U(298)$ 불변 규약) 엔탈피가 $\Delta H_1\mapsto\Delta H_1\mp T_\mathrm{ref}\Delta S_e$ 로 재기준되어
+전자항이 $\Delta H$ 에 흡수된다 --- 곧 \emph{기준온도 커브는 토글에 불변}이고, 전자항이 남기는 것은 오직
+\begin{equation}
+\frac{\partial U_1}{\partial T}\bigg|_e=\frac{\Delta S_{e,1}}{F}\quad(\propto T),\qquad
+U_1(T)=U_1(T_\mathrm{ref})+\frac{\Delta S_0}{F}(T-T_\mathrm{ref})+\frac{a_e}{2F}(T^2-T_\mathrm{ref}^2)
+\label{eq:lcoom-utref}
+\end{equation}
+의 가역열($\partial U/\partial T$) 기울기와 그 적분이 만드는 $T^2$ 곡률(식~\eqref{eq:U1T2},
+$a_e<0$)뿐이다. \textbf{(c) 중간식 --- 두 슬롯의 명시 분리.} 이는 식~\eqref{eq:lco-mit} 의 이중계산
+금지 경계와 같은 분리다 --- 구조적 2상 gap 은 $\Omega_1^\cat$ 이, 전자항은 $\partial U_1/\partial T$ 가
+받는 서로 다른 슬롯이다. 따라서 코드는 플래그 \code{include\_electronic\_entropy}(기본 \code{False})로 이
+두 용도를 가른다. \textbf{(d) 박스 --- 토글 규약.}
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+&\text{OFF(기본): 커브 산출} && \Delta S_e\ \text{를 }\Delta H\text{ 로 재기준}\Rightarrow U(T_\mathrm{ref})\ \text{불변(bit-exact)},\\
+&\text{ON(옵션): }\partial U/\partial T\ \text{(가역열)} && \Delta S_e/F\ \text{가 }T\text{-선형 기울기}\cdot U\text{-이동 }\propto T^2\ \text{에만 발효}.
+\end{aligned}\;}
+\label{eq:lcoom-toggle}
+\end{equation}
+
+\begin{verifybox}
+검산 --- (i) \emph{커브 무영향(실측).} 전자항 없는 LCO plain MSMR 이 dQ/dV 적합 $R^2\!\approx\!0.944$
+로 흑연 $R^2\!\approx\!0.940$ 과 대등하다(내부 ablation, tier B) --- 상온 단일 커브의 적합은 전자항과
+\emph{무관}함이 수치로 확인된다. (ii) \emph{선택 활성의 자리.} 전자항이 유일하게 발효되는 곳은 다온도
+$\partial U/\partial T$(가역열)와 그 $T^2$ 곡률 식~\eqref{eq:lcoom-utref}$\cdot$\eqref{eq:U1T2} 이며, 식별
+신호는 ``$\partial U/\partial T$ 가 $T$ 에 \emph{선형}''(peak 위치가 $T$ 선형이 아님)이다 --- 회사 다온도
+엔트로피 데이터로 영향을 확인하는 용도다. (iii) \emph{부호$\cdot$크기 일관.} $\Delta S_{e,1}\!<\!0$(삽입 기준,
+탈리튬화 방출)$\cdot$골 깊이 $-45.7$ J/(mol\,K)는 \S\ref{sec:lco-electronic} 의 게이트 검산값 그대로이고,
+$U(298)$ 재기준 규약 하에서 기준온도 커브가 불변임과 무모순이다. (iv) \emph{bit-exact 주의.} 현 코드는
+$\Delta S_e$ 상시 ON 이므로 토글 OFF 는 $\Delta H$ 재기준($U(298)$ 보존)을 동반해야 기준온도 커브가
+불변이다 --- 그 보존 보장은 코드 게이트(R2) 소관이고, 본 소절은 물리 분리만 확정한다.
+\end{verifybox}
+
+\begin{keybox}
+\textbf{LCO $\Omega$$\cdot$전자항 한 줄.} LCO dQ/dV 는 흑연과 동형 MSMR 이되 feature 별 상 성격이 달라, 전이별
+정규용액 커널 식~\eqref{eq:lcoom-kernel} 이 두-상 sharp($\Omega_j^\cat>2RT$)와 order--disorder
+broad($\Omega_j^\cat<2RT$)를 같은 판정자(식~\eqref{eq:gr2l-judge})로 포착한다. $\Omega_j^\cat$ 은 진행좌표의
+\emph{유효 평균장 축약}(미시 질서 아님)이고 config 엔트로피와 별도 슬롯이다(#7 정정, 식~\eqref{eq:lcoom-guard}).
+전자 엔트로피 항은 $T_\mathrm{ref}$ 동결로 \emph{상온 커브에 무영향}($\Delta H$ 흡수)이고 오직 가역열
+$\partial U/\partial T$ 에만 작용하므로, \code{include\_electronic\_entropy} 플래그(기본 OFF)로 커브(잉여)와
+$\partial U/\partial T$(선택)를 가른다(식~\eqref{eq:lcoom-toggle}; plain MSMR $R^2{\approx}0.944\!\approx$흑연).
+\end{keybox}
+
+% 자산(comp_R1 W1 신규): [W1-LCOOM-01 per-peak Ω 정규용액 커널 eq:lcoom-kernel(MSMR 동형 Ω-확장·eq:lco-eqpeak 회수)]
+%   [W1-LCOOM-02 feature별 dual-status eq:lcoom-dual(두-상 sharp Ω>2RT·order-disorder broad Ω<2RT·같은 판정자)]
+%   [W1-LCOOM-03 #7 정정 eq:lcoom-guard(Ω^cat=유효 평균장 축약·미시 질서 아님·config 엔트로피 별도 슬롯·혼동 가드 계승)]
+%   [W1-LCOOM-04 전자항 토글 eq:lcoom-toggle(T_ref 동결→커브 불변·∂U/∂T만·include_electronic_entropy 기본 OFF·R²=0.944)]
