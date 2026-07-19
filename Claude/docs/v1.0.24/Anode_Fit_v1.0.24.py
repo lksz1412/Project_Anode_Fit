@@ -102,8 +102,53 @@ def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray,
     return np.where(z >= 0, 1.0 / (1.0 + np.exp(-z)), np.exp(z) / (1.0 + np.exp(z)))
 
 
+# ===== [v1.0.24 @3] 정칙용액(Frumkin) 커널 — Si 고용체(Ω<2RT)·두-상(Ω>2RT) 통합 =========
+#   근거(이 세션 실검증): Si a-Si = 단일상 고용체(폭/(RT/F)≳1, regsol_si)·블렌드 R² +0.66%p(ablation)·
+#     LCO per-peak Ω +1.25%p(lco_ablation). 흑연 두-상 Ω/RT>2(regsol2).
+#   정칙용액 μ(θ)=μ°+RT ln[θ/(1−θ)]+Ω(1−2θ). V(θ)=U0−(RT/F)ln[θ/(1−θ)]−(Ω/F)(1−2θ).
+#     Ω<2RT: V(θ) 단조 → 단일상 broad peak(고용체). Ω>2RT: Maxwell 공존평탄(near-delta).
+#   dQ/dV(V) = Σ_θ Q·Δθ·sech²((V−V(θ))/2δ)/(4δ) (δ=kinetic 폭·유한화). 로지스틱과 별 커널.
+#   ★기본 경로(전이 dict 에 'kernel' 없음/‘logistic’) = 기존 로지스틱 그대로(bit-exact). 'kernel':'regsol' 만 본 커널.
+_REGSOL_XG = np.linspace(1e-4, 1.0 - 1e-4, 1200)  # 조밀 격자(꼬리 ripple 억제·매끈 곡선)
+def _regsol_binodal_xa(a: float) -> float:
+    """공존 조성 θ_a (a=Ω/RT). a≤2 → 0.5(단일상, 공존역 없음). a>2 → 이분법근."""
+    if a <= 2.0:
+        return 0.5
+    lo, hi = 1e-6, 0.5 - 1e-9
+    for _ in range(60):
+        mid = 0.5 * (lo + hi)
+        f = np.log(mid / (1.0 - mid)) + a * (1.0 - 2.0 * mid)
+        if f > 0.0:
+            hi = mid
+        else:
+            lo = mid
+    return 0.5 * (lo + hi)
+def _regsol_dqdv(V: np.ndarray, U0: float, Omega: float, Q: float,
+                 delta: float, T: float) -> np.ndarray:
+    """정칙용액 전이의 dQ/dV 기여(V 격자에서 점별). δ=유한 kinetic 폭(>0)."""
+    RTF = R * T / F
+    a = Omega / (R * T)
+    xa = _regsol_binodal_xa(a)
+    xg = _REGSOL_XG
+    Vi = np.where((xg > xa) & (xg < 1.0 - xa), U0,
+                  U0 - RTF * np.log(xg / (1.0 - xg)) - (Omega / F) * (1.0 - 2.0 * xg))
+    wi = Q * (xg[1] - xg[0])
+    d = max(float(delta), 1e-9)
+    z = np.clip((np.asarray(V, dtype=float)[:, None] - Vi[None, :]) / (2.0 * d), -350.0, 350.0)
+    c = 1.0 / np.cosh(z)
+    return (wi * c * c / (4.0 * d)).sum(axis=1)
+
+
 def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float,
              x: float, A: float) -> float:
+    # ★[v1.0.24 단위계약 명시 — 값 무변경/bit-exact, Codex #1 정정]
+    #   T_attempt = (I/Q_cell)·h/kB 는 Eyring 시도빈도 스케일. curve()/dqdv() 진입에서
+    #   |I| = c_rate·Q_cell 이고 c_rate 는 [1/h] 이므로 (I/Q_cell) 는 [1/h] 로 대입된다.
+    #   반면 h/kB 는 SI([초]) 상수라, 물리적으로 옳은 per-second 시도빈도는 (I/Q_cell)·(1/3600).
+    #   → 본 식은 그 3600 인자를 tier-C placeholder dH_a 에 흡수한 규약이다: ln_Lq 는
+    #     +dG_a/RT 를 포함하므로, 물리 활성엔탈피 dH_a^phys = dH_a − R·T·ln(3600) (≈ dH_a−20 kJ/mol).
+    #   dH_a 가 피팅 대상(tier-C)이라 곡선·피팅 결과는 불변(본 주석은 dH_a 의 물리해석만 고정).
+    #   Q_cell 을 [C](=A·s)로 주면 (I/Q_cell) 가 [1/s] 가 되어 3600 흡수 없이 직접 정합.
     if I <= 0:
         return -np.inf
     T_attempt = (I / Q_cell) * h / kB
@@ -540,8 +585,12 @@ class GraphiteAnodeDischargeDQDV:
                 U_j = tr['U']
             n_j = self._n_factor(tr, T)
             w = self._width(tr, T)
-            ksi_eq = func_ksi_eq(T, V, U_j, n_j)
-            dqdv = dqdv + tr['Q'] * ksi_eq * (1.0 - ksi_eq) / w
+            if tr.get('kernel') == 'regsol':   # [v1.0.24 @3] 정칙용액(Frumkin) 커널 — Si 고용체 등
+                delta = float(tr.get('delta', w))
+                dqdv = dqdv + _regsol_dqdv(V, U_j, float(tr.get('Omega', 0.0)), float(tr['Q']), delta, T)
+            else:                              # 기본(로지스틱 MSMR) — bit-exact 보존
+                ksi_eq = func_ksi_eq(T, V, U_j, n_j)
+                dqdv = dqdv + tr['Q'] * ksi_eq * (1.0 - ksi_eq) / w
         return dqdv
 
     # ---- 보완(3)(4): 충방전·온도·C-rate dQ/dV ---------------------------
@@ -1000,6 +1049,28 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
     # 양극(LCO): 탈리튬화 = '충전' 라벨 (Ch1 eq:lco-sigmaslot — curve() 라벨 환산용)
     _delith_is_discharge: bool = False
 
+    def __init__(self, *args, include_electronic_entropy: bool = True, **kwargs):
+        """[v1.0.24 전자항 on/off 토글 — 사용자 A].
+        include_electronic_entropy=True(기본) → v1.0.23 거동 bit-exact(ΔS_e 상시 가산·G1 게이트).
+        =False → 전자항을 커브에서 제외. 이때 U(T_ref) 를 보존하기 위해 T_ref·ΔS_e 를 dH_rxn 에
+          접어(fold) 넣으므로 상온(T_ref) 커브는 불변이고 ∂U/∂T 만 ΔS_rxn/F 로 바뀐다
+          (전자항은 상온 커브에 무영향·∂U/∂T=가역열 에만 작용 — LCO_DIAGNOSIS 실증).
+        → 회사가 다온도 데이터로 전자항 영향을 직접 확인·유지/제거 결정할 수 있게 연다.
+        """
+        super().__init__(*args, **kwargs)
+        self.include_electronic_entropy = bool(include_electronic_entropy)
+        if not self.include_electronic_entropy:
+            T_ref = 298.15
+            folded = []
+            for tr in self.transitions:
+                if tr.get('electronic'):
+                    tr = dict(tr)  # 공유 LCO_MSMR_LIT 불변(사본만 수정)
+                    dSe = float(func_dSe_molar(tr['x_center'], T_ref,
+                                               tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT']))
+                    tr['dH_rxn'] = float(tr['dH_rxn']) - T_ref * dSe  # U(T_ref) 보존 fold
+                folded.append(tr)
+            self.transitions = folded
+
     def _effective_dS_rxn(self, tr: Dict[str, Any],
                           T: Union[float, np.ndarray]) -> ScalarOrArray:
         """LCO 유효 표준 엔트로피 = ΔS_rxn + (MIT 전이면) 전자항 ΔS_e
@@ -1013,7 +1084,8 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
             인자)은 다온도 round-trip 피팅 단계의 과제로 분리한다(P4 미구현, 라벨).
         """
         dS = tr['dS_rxn']
-        if tr.get('electronic'):
+        # [v1.0.24] 토글 ON(기본)일 때만 ΔS_e 가산. OFF 는 __init__ 서 dH 접어(U(T_ref) 보존) ΔS_e 제외.
+        if getattr(self, 'include_electronic_entropy', True) and tr.get('electronic'):
             T_ref = 298.15
             dS = dS + func_dSe_molar(tr['x_center'], T_ref,
                                      tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT'])
@@ -1052,6 +1124,44 @@ GRAPHITE_STAGING_LIT = [
         # ΔH=-13.0 kJ/mol, ΔS=-16 J/mol/K
         'dH_a': 40000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,          # 동역학:
         # DFT ΔH_a~40kJ/mol(만충 stage I, Thinius LiC6 40.5); dVdq_qa=컷 OCV기울기[V](fit); dS_a→0
+    },
+]
+
+
+# ============================================================================
+# [v1.0.24 @5] 흑연 XRD 5-feature staging (선택 — 기본은 위 4전이 GRAPHITE_STAGING_LIT)
+#   근거: Dahn PRB44,9170(1991) in-situ XRD 확정 서열 = dilute 1′→4→3→2L→2→1.
+#     두-상 4개(1′↔4·3↔2L·2L↔2·2↔1, Ω>2RT sharp) + 4↔3 고용체 shoulder(Ω<2RT, 새 상 아님).
+#   실검증(이 세션): 두-상 Ω/RT=[4.06,2.02,3.55,4.07] 전부>2RT(regsol2). stage-2L 엔트로피
+#     안정화 → 3↔2L·2L↔2 의 Δ(ΔS)=29 J/mol/K 로 ∂U/∂T=ΔS/F 분리 0.30 mV/℃·병합~10℃·
+#     45℃ 2피크/25℃ 병합(T_SPLIT_FINDING; 재현 0.271 mV/℃). 6+ 전이=curve-fitting(XRD 미지원)=폐기.
+#   dH_rxn 은 U(298)=(−dH+298.15·dS)/F 로 역산. Ω>2RT=sharp(w 작음)·Ω<2RT=shoulder(w 큼).
+#   ★사용 시 GraphiteAnodeDischargeDQDV(GRAPHITE_STAGING_XRD_v1024) 로 전달(기본 경로 무영향=bit-exact).
+GRAPHITE_STAGING_XRD_v1024 = [
+    {   # 1′↔4 dilute (U≈0.210 V) — 두-상 약함(x≈0.04부터)
+        'U': 0.210, 'w': 0.018, 'Q': 0.06, 'Omega': 6000.0,     # Ω=6000<2RT? 2RT≈4958 → >2RT 경계
+        'dH_rxn': -11616.0, 'dS_rxn': +29.0, 'n': 1.0,          # U(298)=0.210
+        'dH_a': 48000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
+    },
+    {   # 4↔3 (U≈0.170 V) — ★고용체 shoulder(Dahn 예외: 두-상 아님, Ω<2RT broad)
+        'U': 0.170, 'w': 0.026, 'Q': 0.10, 'Omega': 3000.0,     # Ω=3000<2RT(4958) = 고용체
+        'dH_rxn': -16402.0, 'dS_rxn': 0.0, 'n': 1.0,            # U(298)=0.170
+        'dH_a': 47000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
+    },
+    {   # 3↔2L (U≈0.132 V) — 두-상 sharp, stage-2L 분리쌍 高V(ΔS=+15)
+        'U': 0.132, 'w': 0.011, 'Q': 0.12, 'Omega': 10000.0,    # Ω>2RT sharp
+        'dH_rxn': -8264.0, 'dS_rxn': +15.0, 'n': 1.0,          # U(298)=0.132; Δ(ΔS) vs 2L↔2 = 29
+        'dH_a': 46000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
+    },
+    {   # 2L↔2 (U≈0.116 V) — 두-상 sharp, stage-2L 분리쌍 低V(ΔS=−14)
+        'U': 0.116, 'w': 0.011, 'Q': 0.20, 'Omega': 10000.0,    # Ω>2RT sharp
+        'dH_rxn': -15366.0, 'dS_rxn': -14.0, 'n': 1.0,         # U(298)=0.116
+        'dH_a': 44000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
+    },
+    {   # 2↔1 (U≈0.085 V) — 두-상 최sharp(LiC₁₂↔LiC₆)
+        'U': 0.085, 'w': 0.012, 'Q': 0.50, 'Omega': 13000.0,    # Ω>2RT 최sharp
+        'dH_rxn': -12971.0, 'dS_rxn': -16.0, 'n': 1.0,         # U(298)=0.085
+        'dH_a': 40000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
     },
 ]
 
