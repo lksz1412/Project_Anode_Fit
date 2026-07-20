@@ -36,6 +36,6 @@
 - **정직 회계(스킬 대비 실집행) — ★R5(3) 에서 ②·검토2 까지 완주**: 스킬 골격 `①9창 → 검토1 → ②방향성보완 → 검토2 → ③체리픽 → ④적대재검수`. 실집행:
   - `①9창`(R1) → `검토1`(3소절 독립 별창 채점, base=W9) → `③체리픽`(base+graft/이식금지) → `④적대재검수`(R3 3차원) — 여기까지 R5(2) 완료.
   - **`②방향성보완`**(R5-3): 3 개선창이 각 통합본을 방향-only 로 `*_b` 개선(gr_2L=§7 위임 airtight+명칭대응 정정·si_fr=n_j vs Ω 폭출처+대칭성·lco_omega=Ω→0 환원 명시+헤더 OFF 정정). 산출 `refine_b/`.
-  - **`검토2`**(R5-3, 회귀 렌즈): gr_2L=별창 ACCEPT(회귀 0·강점 전보존 독립확인); si_fr·lco_omega=master 인라인 회귀검수(추가 ref 전 실재·3장 빌드 0-err·undefined 0·STRUCTURE_CHECK PASS = 회귀 0). 3소절 전 `*_b` 라이브 적용.
+  - **`검토2`**(R5-3, 회귀 렌즈) — **3소절 전부 독립 별창 ACCEPT**: gr_2L 별창 ACCEPT(회귀 0·강점 전보존)·si_fr 별창 ACCEPT("graft entire, reject none"·유일 신규 ref eq:wbase 실재)·lco_omega 별창 ACCEPT(회귀 0·죽은 참조 0[eq:lco-Veq/dUhys/gpp/eqpeak·sec:lco-peak 전 실재]·w_j^eq 기호 충돌 0·3 boxed+Tref byte-identical·G1 bit-exact가 ON 경로에 묶여 default-OFF 코드와 무모순). master 인라인 적용(3 `*_b` 라이브)을 **세 별창이 독립 확인** — 인라인이 별창을 앞질렀으나 별창 완료분을 폐기 않고 verdict 로 교차검증(3/3 ACCEPT). 병행 확인: 3장 빌드 0-err·undefined 0·STRUCTURE_CHECK PASS.
   - **검토2 가 실결함 2건 포착**(압축 실행이 놓쳤던 것): (1) gr_2L (d)(ii) 잔존 "나머지를 두-상으로" = §7 모순 미제거분 → 제거. (2) lco_omega 헤더 주석 "기본 True" 잔재(토글 박스만 고쳤던 것) → OFF 정정. ⇒ ②·검토2 라운드가 값을 입증.
   - **남은 것 = 없음**(6단계 전부 실행). Phase0 KNOWN_DEFECTS.md 만 누락(누적 결함표 — 기능상 CHERRYPICK_R1.md 가 대체).
