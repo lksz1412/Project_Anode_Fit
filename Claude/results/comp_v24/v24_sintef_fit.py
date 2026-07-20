@@ -17,6 +17,8 @@ R_GAS=8.314462618; F_CONST=96485.33212
 def load(n,p): s=importlib.util.spec_from_file_location(n,p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 m=load("af",f"{DOC}/Anode_Fit_v1.0.24.py"); bdd=load("bdd",f"{CV}/bdd_smoothing.py")
 GR=m.GraphiteAnodeDischargeDQDV
+m._REGSOL_XG=np.linspace(1e-4,1.0-1e-4,600)   # 피팅 속도(출하 1200→600; 곡선 형상·R² 무영향, 매끈 유지)
+MAXPTS=320                                     # 창내점 상한(regsol 비용 억제; 균등 서브샘플)
 
 def load_delith(k):
     """리포 CSV 우선(영구보존) → 없으면 스크래치 parquet 폴백."""
@@ -54,16 +56,18 @@ def model(NG,NS,kernel):
 def fit(kernel,k,win,dvv,gr_seed,si_seed):
     """gr_seed/si_seed = [(U,Omega,Q_frac,w), ...]. 로지스틱은 Omega 무시."""
     V,Q=load_delith(k); Vx,Dx=dqdv(V,Q,win,dvv)
+    if len(Vx)>MAXPTS:                                     # 균등 서브샘플(형상 보존·regsol 비용 억제)
+        sel=np.linspace(0,len(Vx)-1,MAXPTS).round().astype(int); Vx,Dx=Vx[sel],Dx[sel]
     NG,NS=len(gr_seed),len(si_seed); area=float(_trapz(Dx,Vx)); p0=[];lo=[];hi=[]
     def push(seed,Ulo,Uhi,wlo,whi):
-        for (U,Om,Qf,w) in seed:
-            if kernel=='regsol': p0.extend([U,Om,Qf*area,w]); lo.extend([Ulo,0.0,1e-6,wlo]); hi.extend([Uhi,20000.0,10*area,whi])
-            else:                p0.extend([U,w,Qf*area]);    lo.extend([Ulo,wlo,1e-6]);      hi.extend([Uhi,whi,10*area])
+        for (U,Om,Qf,w,OmLo,OmHi) in seed:                # OmLo/OmHi = 전이별 Ω 경계(자유 or §7분류 부과)
+            if kernel=='regsol': p0.extend([U,Om,Qf*area,w]); lo.extend([Ulo,OmLo,1e-6,wlo]); hi.extend([Uhi,OmHi,10*area,whi])
+            else:                p0.extend([U,w,Qf*area]);    lo.extend([Ulo,wlo,1e-6]);       hi.extend([Uhi,whi,10*area])
     push(gr_seed,0.05,0.30,0.0008,0.060)
     push(si_seed,0.15,0.60,0.0030,0.080)
     p0.append(max(Dx.min(),1e-6)); lo.append(0.0); hi.append(max(Dx)+1e-9)
     fn=model(NG,NS,kernel)
-    popt,_=curve_fit(fn,Vx,Dx,p0=p0,bounds=(lo,hi),maxfev=400000)
+    popt,_=curve_fit(fn,Vx,Dx,p0=p0,bounds=(lo,hi),maxfev=40000)
     pred=fn(Vx,*popt); r2=1.0-np.sum((Dx-pred)**2)/np.sum((Dx-Dx.mean())**2)
     # 파라미터 분해 + Ω/RT (두-상>2 vs 고용체<2 판정)
     RT=R_GAS*298.15; npar=4 if kernel=='regsol' else 3; i=0; trs=[]; Qg=Qs=0.0
@@ -86,57 +90,66 @@ def fit(kernel,k,win,dvv,gr_seed,si_seed):
     fSi=Qs/(Qg+Qs) if (Qg+Qs)>0 else None
     return dict(Vx=Vx,Dx=Dx,pred=pred,r2=float(r2),NG=NG,NS=NS,npts=len(Vx),grc=grc,sic=sic,fSi=fSi,trs=trs,kernel=kernel)
 
-# ---- 시드: (U, Omega, Q_frac, w) ----
-# 흑연 @5 XRD 5-feature(stage-2L 분리: 3↔2L=0.132 · 2L↔2=0.116). Ω 자유(두-상 자발 판정).
-GR5=[(0.210,6000,0.06,0.016),(0.170,3000,0.10,0.022),(0.132,10000,0.12,0.010),
-     (0.116,10000,0.20,0.010),(0.090,13000,0.45,0.012)]
-GR4=[(0.088,0,0.12,0.004),(0.120,0,0.20,0.006),(0.142,0,0.30,0.016),(0.210,0,0.10,0.006)]  # 로지스틱 대조(4전이)
-# Si @3 regsol: broad a-Si(Ω<2RT) + c-Li15Si4 sharp(Ω>2RT 두-상).
-SI3=[(0.28,2000,0.40,0.050),(0.43,10000,0.15,0.006),(0.47,3000,0.30,0.050)]
-SI3L=[(0.28,0,0.40,0.050),(0.43,0,0.15,0.006),(0.47,0,0.30,0.050)]                          # 로지스틱 대조
+# ---- 시드: (U, Omega, Q_frac, w, Ω_lo, Ω_hi) ----  2RT(298K)≈4958 J/mol = Ω/RT 2 경계
+# 흑연 @5 XRD 5-feature(stage-2L 분리: 3↔2L=0.132 · 2L↔2=0.116).
+GR5_free=[(0.210,3000,0.06,0.016,0,20000),(0.170,3000,0.10,0.022,0,20000),(0.132,6000,0.12,0.010,0,20000),
+          (0.116,8000,0.20,0.010,0,20000),(0.090,12000,0.45,0.012,0,20000)]        # Ω 완전자유(자발판정)
+# §7(sec:broadening) 분류 부과: dilute·4→3·3→2L=고용체(Ω<2RT), 2L→2·2→1=두-상(Ω>2RT). §7 line24 "네 전이가
+#   초기값 Ω로 문턱 넘지만 물리적으론 두 전이만 두-상" 을 그대로 강제 → 문건 분류가 데이터와 양립하나 시험.
+GR5_con =[(0.210,3000,0.06,0.016,200,4900),(0.170,3000,0.10,0.022,200,4900),(0.132,3000,0.12,0.016,200,4900),
+          (0.116,8000,0.20,0.010,4958,20000),(0.090,12000,0.45,0.012,4958,20000)]
+GR4=[(0.088,0,0.12,0.004,0,20000),(0.120,0,0.20,0.006,0,20000),(0.142,0,0.30,0.016,0,20000),(0.210,0,0.10,0.006,0,20000)]
+# Si @3: a-Si 고용체 + c-Li15Si4 유일 두-상.
+SI3_free=[(0.28,2000,0.40,0.050,0,20000),(0.43,8000,0.15,0.006,0,20000),(0.47,2000,0.30,0.050,0,20000)]
+SI3_con =[(0.28,2000,0.40,0.050,200,4900),(0.43,8000,0.15,0.006,4958,20000),(0.47,2000,0.30,0.050,200,4900)]
+SI3L=[(0.28,0,0.40,0.050,0,20000),(0.43,0,0.15,0.006,0,20000),(0.47,0,0.30,0.050,0,20000)]
 
-# ---- @3/@5 regsol 피팅(본선) + 로지스틱 baseline(대조) ----
-R={}
-R['gr_rs']  = fit('regsol',  'gr',  (0.086,0.30),0.0005, GR5, [])
-R['si_rs']  = fit('regsol',  'si',  (0.06,0.55), 0.001,  [],  SI3)
-R['sg_rs']  = fit('regsol',  'sigr',(0.05,0.52), 0.0007, GR5, SI3)
-R['gr_lg']  = fit('logistic','gr',  (0.086,0.30),0.0005, GR4, [])
-R['si_lg']  = fit('logistic','si',  (0.06,0.55), 0.001,  [],  SI3L)
-R['sg_lg']  = fit('logistic','sigr',(0.05,0.52), 0.0007, GR4, SI3L)
+# ---- 3방: 로지스틱 baseline · regsol 자유-Ω · regsol §7분류부과 ----
+import sys,time
+R={}; T0=time.time()
+def go(key,*a):
+    R[key]=fit(*a); r=R[key]
+    print(f"[{time.time()-T0:5.1f}s] {key:6s} R²={r['r2']:.4f} npts={r['npts']} ({r['kernel']})",flush=True)
+go('gr_lg','logistic','gr',  (0.086,0.30),0.0005, GR4, [])
+go('si_lg','logistic','si',  (0.06,0.55), 0.001,  [],  SI3L)
+go('sg_lg','logistic','sigr',(0.05,0.52), 0.0007, GR4, SI3L)
+go('gr_rf','regsol',  'gr',  (0.086,0.30),0.0005, GR5_free, [])
+go('si_rf','regsol',  'si',  (0.06,0.55), 0.001,  [],  SI3_free)
+go('sg_rf','regsol',  'sigr',(0.05,0.52), 0.0007, GR5_free, SI3_free)
+go('gr_rc','regsol',  'gr',  (0.086,0.30),0.0005, GR5_con, [])
+go('si_rc','regsol',  'si',  (0.06,0.55), 0.001,  [],  SI3_con)
+go('sg_rc','regsol',  'sigr',(0.05,0.52), 0.0007, GR5_con, SI3_con)
 
-# ---- 그림: 상단=@3/@5 regsol 피팅, 하단=Ω/RT 막대(두-상>2 vs 고용체<2) ----
-fig=plt.figure(figsize=(18,9)); gs=fig.add_gridspec(2,3,height_ratios=[2.3,1.0])
+# ---- 그림: 상단=§7분류부과 regsol 피팅(문건 그대로), 하단=커널 3방 R² 비교 ----
+fig=plt.figure(figsize=(18,9)); gs=fig.add_gridspec(2,3,height_ratios=[2.2,1.0])
 def draw(a,title,r,showcomp=False):
     a.plot(r['Vx'],r['Dx'],'o',ms=2.0,color='0.4',alpha=.5,label=f"실측 dQ/dV (BDD, {r['npts']}점)")
-    a.plot(r['Vx'],r['pred'],'-',color='tab:red',lw=2,label=f"@3/@5 regsol 피팅 (R²={r['r2']:.4f})")
+    a.plot(r['Vx'],r['pred'],'-',color='tab:red',lw=2,label=f"regsol(§7분류 부과) R²={r['r2']:.4f}")
     if showcomp and r['grc'] is not None:
         a.plot(r['Vx'],r['grc'],'--',color='tab:blue',lw=1.1,label='흑연 성분(@5 5-feature)')
         a.plot(r['Vx'],r['sic'],':',color='tab:green',lw=1.5,label=f"Si 성분(@3 Frumkin, f_Si={r['fSi']:.2f})")
     a.set_title(title,fontsize=10); a.set_xlabel('V vs Li'); a.set_ylabel('dQ/dV'); a.legend(fontsize=7.5); a.grid(alpha=.3)
-def bars(a,title,r):
-    xs=range(len(r['trs'])); vals=[t[2] for t in r['trs']]; cols=['tab:red' if v>2 else 'tab:green' for v in vals]
-    a.bar(xs,vals,color=cols,alpha=.8); a.axhline(2.0,color='k',ls='--',lw=1)
-    a.text(0.02,0.92,'Ω/RT=2 (두-상↔고용체 경계)',transform=a.transAxes,fontsize=7.5,va='top')
-    a.set_xticks(list(xs)); a.set_xticklabels([f"{t[0]}\n{t[1]:.3f}V" for t in r['trs']],fontsize=7)
-    a.set_ylabel('Ω/RT'); a.set_title(title,fontsize=9); a.grid(alpha=.3,axis='y')
 axA=[fig.add_subplot(gs[0,j]) for j in range(3)]; axB=[fig.add_subplot(gs[1,j]) for j in range(3)]
-draw(axA[0],'(1) 흑연 반쪽셀 — @5 5-feature+regsol\nSINTEF Zenodo(실측 pOCV C/50)',R['gr_rs'])
-draw(axA[1],'(2) 실리콘 반쪽셀 — @3 Frumkin regsol\nSINTEF(고용체 Ω<2RT + c-Li15Si4 Ω>2RT)',R['si_rs'])
-draw(axA[2],'(3) 흑연+Si 블렌드 — @5+@3 가산\nSINTEF',R['sg_rs'],showcomp=True)
-bars(axB[0],'흑연 전이별 Ω/RT (빨강=두-상>2)',R['gr_rs'])
-bars(axB[1],'Si 전이별 Ω/RT (c-Li15Si4=두-상)',R['si_rs'])
-bars(axB[2],'블렌드 전이별 Ω/RT',R['sg_rs'])
-fig.suptitle('v1.0.24 — SINTEF 실측 @3(Si Frumkin)·@5(흑연 5-feature stage-2L) 반영식 피팅 + Ω/RT 두-상 분류',fontsize=13)
+draw(axA[0],'(1) 흑연 반쪽셀 — @5 5-feature + regsol(§7 분류 부과)\nSINTEF Zenodo(실측 pOCV C/50)',R['gr_rc'])
+draw(axA[1],'(2) 실리콘 반쪽셀 — @3 Frumkin regsol\n(a-Si 고용체 + c-Li15Si4 두-상)',R['si_rc'])
+draw(axA[2],'(3) 흑연+Si 블렌드 — @5+@3 가산',R['sg_rc'],showcomp=True)
+# 하단: 커널 3방 R² (로지스틱 / 자유-Ω / §7분류부과) — 단일T 에서 거의 동등함을 보인다
+cells=[('흑연',['gr_lg','gr_rf','gr_rc']),('실리콘',['si_lg','si_rf','si_rc']),('블렌드',['sg_lg','sg_rf','sg_rc'])]
+labs=['로지스틱\nbaseline','regsol\n자유-Ω','regsol\n§7분류부과']
+for a,(nm,keys) in zip(axB,cells):
+    vals=[R[k]['r2'] for k in keys]; a.bar(range(3),vals,color=['0.6','tab:orange','tab:red'],alpha=.85)
+    for i,v in enumerate(vals): a.text(i,v+0.001,f"{v:.4f}",ha='center',va='bottom',fontsize=7.5)
+    a.set_xticks(range(3)); a.set_xticklabels(labs,fontsize=7.5); a.set_ylim(0.90,1.01)
+    a.set_ylabel('R²'); a.set_title(f"{nm} — 커널 3방 R² (단일T 거의 동등)",fontsize=9); a.grid(alpha=.3,axis='y')
+fig.suptitle('v1.0.24 — SINTEF 실측 @3/@5 반영식(Frumkin regsol) 피팅: 문건 §7/@3 분류 부과 + 커널 3방 R² 비교',fontsize=12.5)
 fig.tight_layout(); fig.savefig(f"{CV}/final_fit_sintef.png",dpi=120)
 
-print("="*84)
-print(f"{'셀':20s} {'@3/@5 regsol':>14s} {'로지스틱 baseline':>16s}   전이(gr/Si)")
-for lab,rk,lk in [("흑연(SINTEF)",'gr_rs','gr_lg'),("실리콘(SINTEF)",'si_rs','si_lg'),("흑연+Si 블렌드",'sg_rs','sg_lg')]:
-    rr=R[rk]; rl=R[lk]
-    print(f"{lab:20s}  R²={rr['r2']:.4f}      R²={rl['r2']:.4f}       {rr['NG']}/{rr['NS']}")
-print("-"*84)
-print("★Ω/RT 두-상(>2) vs 고용체(<2) — @3/@5 물리가 실측에서 자발적으로 갈리는지:")
-for lab,rk in [("흑연",'gr_rs'),("Si",'si_rs'),("블렌드",'sg_rs')]:
-    tags=[f"{t[0]}@{t[1]:.3f}V:Ω/RT={t[2]:.1f}{'(두-상)' if t[2]>2 else '(고용체)'}" for t in R[rk]['trs']]
-    print(f"  {lab:6s}: "+" · ".join(tags))
+print("="*92)
+print(f"{'셀':14s} {'로지스틱baseline':>16s} {'regsol자유Ω':>14s} {'regsol§7분류':>14s}")
+for nm,lg,rf,rc in [("흑연(SINTEF)",'gr_lg','gr_rf','gr_rc'),("실리콘(SINTEF)",'si_lg','si_rf','si_rc'),("흑연+Si블렌드",'sg_lg','sg_rf','sg_rc')]:
+    print(f"{nm:14s}  R²={R[lg]['r2']:.4f}       R²={R[rf]['r2']:.4f}     R²={R[rc]['r2']:.4f}")
+print("-"*92)
+print("★자유-Ω 흑연(§7 예측=Ω과다배정, 물리분류 아님): "+" · ".join(f"{t[1]:.3f}V:Ω/RT={t[2]:.1f}" for t in R['gr_rf']['trs']))
+print("★§7분류부과 흑연(고용체<2·두-상>2 강제): "+" · ".join(f"{t[1]:.3f}V:Ω/RT={t[2]:.1f}" for t in R['gr_rc']['trs']))
+print("★§7분류부과 Si(a-Si고용체+c-Li15Si4두-상): "+" · ".join(f"{t[1]:.3f}V:Ω/RT={t[2]:.1f}" for t in R['si_rc']['trs']))
 print("saved: final_fit_sintef.png")
