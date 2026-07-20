@@ -27,7 +27,7 @@ cumulative R-step 5–9.
 - **기존 게이트 bit-exact 보존**: `test_gates_v1024.py` → G1 PASS(module max|d|=**0.0e+00**·golden 4.3e-15·bit-exact=True)·G2·G3·n(T)·R6 BLEND(G1/G2/G3/coverage) 전 PASS. selfconsistent 5/5 ALL PASS.
 - **신규 반영 게이트** `test_gates_v1024_reflect.py` → **ALL PASS (4/4)**:
   - G-R1 @5: 전이 5·유한·비음·stage-2L 분리기울기 **0.301 mV/℃**(Dahn 0.30 정합)·sep 25℃16→45℃22mV.
-  - G-R2 토글: 기본=ON max|Δ|=0.0(bit-exact)·OFF@298 U(T_ref)보존 max|Δ|=0.0·OFF@318 ∂U/∂T차 max|Δ|=0.66(>0).
+  - G-R2 토글: 기본=**OFF**(시드/브리프 사양·R5 정정)·ON=OFF@298 U(T_ref)보존 max|Δ|=0.0·∂U/∂T@318 차 max|Δ|=0.66(>0). (G1 회귀는 ON 경로로 bit-exact.)
   - G-R3 @3: 유한·비음·면적=1.001·prominent 봉=**1**(단일 broad·매끈).
   - G-R4 #1: func_L_q 정상·값 무변경.
 - 곡선 물리 타당성 `reflect_curves.png`: @5 매끈 T-의존·@3 단일 broad 매끈·LCO 토글 298 ON=OFF 동일·318 분기.

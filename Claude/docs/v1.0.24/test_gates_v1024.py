@@ -110,8 +110,14 @@ def output_set(m):
         out[f"entropy_x_terms_{k}"] = np.asarray(tx[k], dtype=float)
     out["qrev_x"] = np.asarray(model.reversible_heat_x(xg, 298.15, I=1.0), dtype=float)
     # LCO 서브클래스 경로(seam·전자항 — 흑연 무섭동 확인 대상)
+    # ★[v1.0.24] 전자항 토글 기본 OFF(시드/브리프 사양). v1.0.19 는 상시 ON 이므로,
+    #   회귀 비교는 v1.0.24 를 명시적 ON 으로 지정해 ON-경로 bit-exact 를 검증한다
+    #   (기본 OFF 거동은 test_gates_v1024_reflect.py G-R2 가 별도 검증).
     VL = np.linspace(3.75, 4.15, 800)
-    lco = m.LCOCathodeDQDV(m.LCO_MSMR_LIT, Rn=0.005, Cbg=0.0)
+    try:
+        lco = m.LCOCathodeDQDV(m.LCO_MSMR_LIT, Rn=0.005, Cbg=0.0, include_electronic_entropy=True)
+    except TypeError:
+        lco = m.LCOCathodeDQDV(m.LCO_MSMR_LIT, Rn=0.005, Cbg=0.0)  # v1.0.19(토글 없음·상시 ON)
     out["lco_eq_298"] = np.asarray(lco.equilibrium(VL, T=298.15), dtype=float)
     out["lco_curve_chg"] = np.asarray(
         lco.curve(VL, direction="charge", c_rate=0.2, Q_cell=1.0, T=298.15), dtype=float)

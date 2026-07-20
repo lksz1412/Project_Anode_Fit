@@ -24,14 +24,15 @@ kw=dict(Rn=0.005,Cbg=0.0); Vc=np.linspace(3.5,4.3,2000)
 lco_on=m.LCOCathodeDQDV(m.LCO_MSMR_LIT,include_electronic_entropy=True,**kw)
 lco_off=m.LCOCathodeDQDV(m.LCO_MSMR_LIT,include_electronic_entropy=False,**kw)
 lco_def=m.LCOCathodeDQDV(m.LCO_MSMR_LIT,**kw)
-d_on=np.asarray(lco_on.equilibrium(Vc,T=298.15)); d_def=np.asarray(lco_def.equilibrium(Vc,T=298.15))
-d_off=np.asarray(lco_off.equilibrium(Vc,T=298.15))
+d_on=np.asarray(lco_on.equilibrium(Vc,T=298.15)); d_off=np.asarray(lco_off.equilibrium(Vc,T=298.15))
 d_on318=np.asarray(lco_on.equilibrium(Vc,T=318.15)); d_off318=np.asarray(lco_off.equilibrium(Vc,T=318.15))
-def_is_on=float(np.max(np.abs(d_on-d_def)))          # 기본=ON(bit-exact)
-uref=float(np.max(np.abs(d_on-d_off)))               # OFF 상온 U(T_ref) 보존 → ~0
-diff318=float(np.max(np.abs(d_on318-d_off318)))      # 318K서 ∂U/∂T 차 → >0
-g_r2 = def_is_on==0.0 and uref<1e-9 and diff318>1e-6
-print(f"G-R2 LCO 토글: 기본=ON max|Δ|={def_is_on:.1e}(=0) | OFF@298 U(T_ref)보존 max|Δ|={uref:.1e}(<1e-9) | OFF@318 ∂U/∂T차 max|Δ|={diff318:.2e}(>0) → {'PASS' if g_r2 else 'FAIL'}")
+d_def318=np.asarray(lco_def.equilibrium(Vc,T=318.15))
+def_is_off=float(np.max(np.abs(d_off318-d_def318))) # ★기본=OFF(시드/브리프 사양): 318K서 OFF와 동일 →0
+def_ne_on=float(np.max(np.abs(d_on318-d_def318)))   # 기본 ≠ ON: 318K서 ON과 차 >0
+uref=float(np.max(np.abs(d_on-d_off)))              # 상온 U(T_ref) 보존: ON@298==OFF@298 → ~0
+diff318=float(np.max(np.abs(d_on318-d_off318)))     # 318K서 ∂U/∂T 차(ON vs OFF) → >0
+g_r2 = def_is_off==0.0 and def_ne_on>1e-6 and uref<1e-9 and diff318>1e-6
+print(f"G-R2 LCO 토글: 기본=OFF(def=off@318 max|Δ|={def_is_off:.1e}=0·def≠on {def_ne_on:.2e}>0) | 상온 U(T_ref)보존 ON=OFF@298 max|Δ|={uref:.1e}(<1e-9) | ∂U/∂T차@318 {diff318:.2e}(>0) → {'PASS' if g_r2 else 'FAIL'}")
 PASS = PASS and g_r2
 
 # ===== G-R3: @3 정칙용액(Frumkin Ω<2RT) 커널 =====

@@ -27,10 +27,11 @@ v1.0.23 을 승계해, 최근(2021–2026) 문헌 고도화 연구(LCO·흑연·
 - **@3 Si Frumkin (§3.2.5)** = a-Si 는 폭 판정 `w/(RT/F)=[1.45,2.74,1.09]≳1`(흑연 두-상 20–50× 대조)로
   **단일상 고용체**. 커널 `dQ/dV=QF/|RT/[θ(1−θ)]−2Ω|`(Ω<2RT), Ω→0 로지스틱 **폴백 bit-exact**. 유일 두-상 =
   1차 c-Li₁₅Si₄. **★정직**: Ω_Si 는 **범위 시드(Ω<2RT)일 뿐 점-식별 안 됨**(피팅 위임).
-- **LCO 전자항 토글 (§2.6.1)** = `include_electronic_entropy` **기본 True**(완전 모델·v1.0.19 회귀 bit-exact).
-  **상온 커브(dQ/dV @T_ref)는 토글과 무관하게 불변**(전자항이 ΔH^eff 로 흡수 — 사용자 "커브 구할 땐 빼고"는
-  값선택 무관 성립). 토글은 오직 `∂U/∂T`(가역열·다온도)를 가름. 회사가 **False 로 전자항 가역열 기여를 정량화**해
-  제거 여부 결정. plain MSMR R²=0.944≈흑연 0.940(전자항 커브 무관 실증).
+- **LCO 전자항 토글 (§2.6.1)** = `include_electronic_entropy` **기본 False**(전자항 제외 — 사용자 "커브 구할
+  땐 빼고"·AUTHOR_BRIEF "기본 OFF" 사양). **상온 커브(dQ/dV @T_ref)는 토글과 무관하게 불변**(전자항이 ΔH^eff
+  로 흡수 — 값선택 무관 성립). 토글은 오직 `∂U/∂T`(가역열·다온도)를 가름. 회사가 **True 로 전자항 가역열 기여를
+  켜서 정량화**해 유지/제거 결정. v1.0.19/v1.0.23 상시-ON 거동은 True 경로가 bit-exact 보존(G1 회귀가 ON 경로로
+  검증). plain MSMR R²=0.944≈흑연 0.940(전자항 커브 무관 실증).
 - **#7 문구정정** = `Ω_j^cat` 은 **유효 평균장 쌍상호작용 축약**(미시 질서상 아님), config 엔트로피는 **별도 슬롯 직교**. 물리 유지·문구만.
 - **#1 단위계약** = `func_L_q` 의 c-rate[1/h] vs Eyring[1/s] 3600× 불일치를 **주석으로 명시**(dH_a^phys=dH_a−RT·ln3600), **값 bit-exact 무변경**.
 
@@ -38,7 +39,7 @@ v1.0.23 을 승계해, 최근(2021–2026) 문헌 고도화 연구(LCO·흑연·
 
 - **@3 regsol**: Si-host 전이 dict 에 `'kernel':'regsol'`+`'Omega'`(<2RT) 추가 → Frumkin 커널. 미지정 = 로지스틱(bit-exact).
 - **@5 5-feature**: `GraphiteAnodeDischargeDQDV(GRAPHITE_STAGING_XRD_v1024, ...)` (선택·additive; 기본은 `GRAPHITE_STAGING_LIT` 4-전이 유지).
-- **LCO 전자항**: `LCOCathodeDQDV(..., include_electronic_entropy=False)` → 가역열서 전자항 제외(상온 커브 불변). 기본 True.
+- **LCO 전자항**: 기본 **False**(전자항 제외·상온 커브 불변). `LCOCathodeDQDV(..., include_electronic_entropy=True)` 로 가역열(∂U/∂T)에 전자항 활성(회사 다온도 확인용).
 - 빌드: `xelatex -interaction=nonstopmode` 3-pass, **ch1 먼저**(xr 외부참조), 그다음 ch2·ch3.
 
 ## 4. 검수 상태

@@ -1049,13 +1049,16 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
     # 양극(LCO): 탈리튬화 = '충전' 라벨 (Ch1 eq:lco-sigmaslot — curve() 라벨 환산용)
     _delith_is_discharge: bool = False
 
-    def __init__(self, *args, include_electronic_entropy: bool = True, **kwargs):
-        """[v1.0.24 전자항 on/off 토글 — 사용자 A].
-        include_electronic_entropy=True(기본) → v1.0.23 거동 bit-exact(ΔS_e 상시 가산·G1 게이트).
-        =False → 전자항을 커브에서 제외. 이때 U(T_ref) 를 보존하기 위해 T_ref·ΔS_e 를 dH_rxn 에
-          접어(fold) 넣으므로 상온(T_ref) 커브는 불변이고 ∂U/∂T 만 ΔS_rxn/F 로 바뀐다
-          (전자항은 상온 커브에 무영향·∂U/∂T=가역열 에만 작용 — LCO_DIAGNOSIS 실증).
-        → 회사가 다온도 데이터로 전자항 영향을 직접 확인·유지/제거 결정할 수 있게 연다.
+    def __init__(self, *args, include_electronic_entropy: bool = False, **kwargs):
+        """[v1.0.24 전자항 on/off 토글 — 사용자 A·시드/브리프 사양 '기본 OFF'].
+        include_electronic_entropy=False(기본) → 전자항을 기본에서 제외(사용자 "커브 구할 땐 빼고" +
+          AUTHOR_BRIEF/REFLECT_SEED_TABLE '기본 OFF' 사양). 상온(T_ref) 커브는 어차피 전자항 무영향이라
+          곡선은 불변이고, 기본 ∂U/∂T(가역열)에서 ΔS_e 를 뺀다. U(T_ref) 보존을 위해 T_ref·ΔS_e 를
+          dH_rxn 에 접어(fold) 넣는다(∂U/∂T=ΔS_rxn/F, ΔS_e 제외).
+        =True(옵션) → ∂U/∂T(가역열)에 ΔS_e 상시 가산 = v1.0.23/v1.0.19 거동과 동일.
+          ★G1 회귀는 이 ON 경로로 bit-exact 검증(v1.0.19 는 상시 ON 이므로 골든 비교 시 ON 지정).
+          회사가 다온도 데이터로 전자항 영향을 직접 확인·유지/제거 결정할 수 있게 연다.
+        (전자항은 상온 커브에 무영향·∂U/∂T=가역열 에만 작용 — LCO_DIAGNOSIS 실증.)
         """
         super().__init__(*args, **kwargs)
         self.include_electronic_entropy = bool(include_electronic_entropy)
