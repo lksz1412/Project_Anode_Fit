@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
 # ★ Anode_Fit  release 버전 = 1.0.24  — 문건 Ch1/Ch2 v1.0.24 와 동일 버전·matched
-#    (물리·수치 경로는 1.0.21 확정본 승계·무변경; v1.0.24 은 부록 E 자기일관 옵션만 additive·기본 off)
+#    (기본 흑연 dQ/dV 평형곡선 경로만 1.0.21 bit-exact 승계. v1.0.24 additive: @3 regsol 커널(opt-in)·@5 XRD
+#     5-feature staging(별도 셋)·LCO 전자항 on/off 토글(기본 OFF)·R6 흑연+Si 블렌드·부록 E 자기일관(기본 off).
+#     ★감사 F-4: LCO 전자항 토글 기본이 ON(≤1.0.23)→OFF(1.0.24)로 바뀌어 LCO 가역열·∂U/∂T 기본출력은 변경됨 — 평형 T_ref 곡선만 불변)
 #   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15 → 1.0.16 → 1.0.17 → 1.0.18.1 → 1.0.18.2 → 1.0.19 → 1.0.20 → 1.0.21. 코드·문건 버전 통일.
 #    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처. 1.0.16 = 폭 다중도 n 의 온도 함수 n(T) 피팅 지원·가역열 config 항 ∂w/∂T 전파[증판 시점 v1.0.15 승계].
 #    1.0.17 = 문건 register 정련 동반판(코드 물리 무변경 이월). 1.0.18.1 = 이월(코드 무변경). 1.0.18.2 = 제안1 vib Einstein 양자 보정(θ_E additive·미지정 bit-exact). 1.0.19 = Ch1+Ch2 전면 재작성 정합 — x̄→U_oc 전하보존 솔버(eq:implicit)·x̄ 진입점(entropy_coefficient_x·reversible_heat_x)·완전식/단순식 분리 출력(return_terms) 추가[전부 additive, 기존 V_n 경로·물리 로직 무변경].
 #    1.0.21 = 문건 v1.0.21 부록 B(doc-leads 요구명세) 정합 이월 — B.1 x̄ 진입점 3종·B.3 θ_E 하위호환·ch1 부록 B n_j(T)=n_j+n_T1(T−T_ref) 선형 잔여 전부 v1.0.19 승계, 물리·수치 경로 무변경. 회귀 기준 B.2(74.4 mV·−0.204/−0.134/−0.070 mV/K·round-trip·5점 표·파생 A 175점)·G1 하위호환·G3 θ_E bit-exact 는 test_gates_v1024.py 로 전건 수치 재증빙.)
 # ----------------------------------------------------------------------------
-# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.21 (v11_final 기반 계보, 2026-07-17)
+# [이력 블록 — 1.0.21 시점 · 현 release 는 상단 1.0.24] Anode_Fit 흑연 음극 dQ/dV 물리 구현 (v11_final 기반 계보, 2026-07-17)
 #   [1.0.10 변경] use_w_eff 경로 제거: ξ_eq 폭·분모 w 불일치로 면적보존 깨짐(버그) — w=자유 피팅 파라미터만.
 #   [폭 정합 주의] 전이 폭 w=nRT/F (_n_factor: 'n' 우선 → 없으면 'w' 역산 → 없으면 n=1).
 #     GRAPHITE_STAGING_LIT 는 'n':1.0 보유 → 기본 폭=RT/F≈25.7mV(298K); 'w' 폴백(0.012 등)은
@@ -38,7 +40,8 @@
 #   [보존] 사용자 원형 함수 그대로(보완·노출만):
 #     func_w · func_U_j · func_ksi_eq · func_L_q · GRAPHITE_STAGING_LIT.
 #
-#   [근거 문건] graphite_ica_ch1_v1.0.21.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
+#   [근거 문건] 현행 마스터 = ch1_graphite_v1.0.24.tex(+ch2_lco_v1.0.24·ch3_si_v1.0.24) — 커브식 명세
+#     (계보 원천 = 옛 graphite_ica_ch1_v1.0.21.tex·Opus_v6; 현 디렉토리엔 v1.0.24 마스터만 존재). 본 구현이 따르는 식:
 #     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
 #     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (eq:Uj/func_U_j)
 #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
@@ -107,8 +110,11 @@ def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray,
 #     LCO per-peak Ω +1.25%p(lco_ablation). 흑연 두-상 Ω/RT>2(regsol2).
 #   정칙용액 μ(θ)=μ°+RT ln[θ/(1−θ)]+Ω(1−2θ). V(θ)=U0−(RT/F)ln[θ/(1−θ)]−(Ω/F)(1−2θ).
 #     Ω<2RT: V(θ) 단조 → 단일상 broad peak(고용체). Ω>2RT: Maxwell 공존평탄(near-delta).
-#   dQ/dV(V) = Σ_θ Q·Δθ·sech²((V−V(θ))/2δ)/(4δ) (δ=kinetic 폭·유한화). 로지스틱과 별 커널.
+#   dQ/dV(V) = Σ_θ (Q/N)·sech²((V−V(θ))/2δ)/(4δ) (N=격자점수·δ=kinetic 폭·유한화; Σ(Q/N)=Q 로 용량보존). 로지스틱과 별 커널.
 #   ★기본 경로(전이 dict 에 'kernel' 없음/‘logistic’) = 기존 로지스틱 그대로(bit-exact). 'kernel':'regsol' 만 본 커널.
+#   ★스코프 한정(감사 F-2): 이 regsol 분기는 equilibrium() 평형 baseline(line 588)에만 적용된다. 관측커브
+#     dqdv()·entropy_coefficient()·solve_U_oc() 는 'kernel' 키를 무시하고 항상 로지스틱을 쓴다 — 곧 regsol 전이는
+#     평형=binodal near-delta, 유한율속/가역열/솔버=로지스틱 으로 다르게 계산된다(현 설계는 평형 baseline 한정).
 _REGSOL_XG = np.linspace(1e-4, 1.0 - 1e-4, 1200)  # 조밀 격자(꼬리 ripple 억제·매끈 곡선)
 def _regsol_binodal_xa(a: float) -> float:
     """공존 조성 θ_a (a=Ω/RT). a≤2 → 0.5(단일상, 공존역 없음). a>2 → 이분법근."""
@@ -132,7 +138,7 @@ def _regsol_dqdv(V: np.ndarray, U0: float, Omega: float, Q: float,
     xg = _REGSOL_XG
     Vi = np.where((xg > xa) & (xg < 1.0 - xa), U0,
                   U0 - RTF * np.log(xg / (1.0 - xg)) - (Omega / F) * (1.0 - 2.0 * xg))
-    wi = Q * (xg[1] - xg[0])
+    wi = Q / xg.size          # [v1.0.24 감사정정] Σwi=Q 정확(용량보존 G3). 기존 Q·(xg[1]−xg[0])는 격자 끝점효과로 Σ=1.000634·Q(+0.063%, G3 tol 1e-6 초과) — regsol 한정 결함이었음(로지스틱 경로는 무영향).
     d = max(float(delta), 1e-9)
     z = np.clip((np.asarray(V, dtype=float)[:, None] - Vi[None, :]) / (2.0 * d), -350.0, 350.0)
     c = 1.0 / np.cosh(z)
@@ -142,11 +148,12 @@ def _regsol_dqdv(V: np.ndarray, U0: float, Omega: float, Q: float,
 def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float,
              x: float, A: float) -> float:
     # ★[v1.0.24 단위계약 명시 — 값 무변경/bit-exact, Codex #1 정정]
-    #   T_attempt = (I/Q_cell)·h/kB 는 Eyring 시도빈도 스케일. curve()/dqdv() 진입에서
-    #   |I| = c_rate·Q_cell 이고 c_rate 는 [1/h] 이므로 (I/Q_cell) 는 [1/h] 로 대입된다.
-    #   반면 h/kB 는 SI([초]) 상수라, 물리적으로 옳은 per-second 시도빈도는 (I/Q_cell)·(1/3600).
-    #   → 본 식은 그 3600 인자를 tier-C placeholder dH_a 에 흡수한 규약이다: ln_Lq 는
-    #     +dG_a/RT 를 포함하므로, 물리 활성엔탈피 dH_a^phys = dH_a − R·T·ln(3600) (≈ dH_a−20 kJ/mol).
+    #   T_attempt = (I/Q_cell)·h/kB 는 특성 온도 T_∗[K](스윕률 (I/Q_cell)=dq/dt 를 Eyring 인자 h/kB 로 온도
+    #   환산한 것 — 시도빈도 자체가 아님). curve()/dqdv() 진입에서 |I|=c_rate·Q_cell, c_rate[1/h] 이므로
+    #   (I/Q_cell) 는 [1/h] 로 대입되고, 물리적으로 옳은 per-second 값은 (I/Q_cell)·(1/3600) 이다(h/kB 가 SI[초]).
+    #   → 본 식은 그 3600 인자를 tier-C placeholder dH_a 에 흡수한 규약이다: 코드가 rate 를 3600배 크게 대입해
+    #     T_∗(∴ ln_Lq)가 +ln(3600) 만큼 과대하므로, 물리 per-second rate 로 같은 L_q 를 내려면 물리 활성엔탈피
+    #     dH_a^phys = dH_a + R·T·ln(3600) (≈ dH_a+20.3 kJ/mol) 로 그만큼 커야 한다(감사 D-1/F-3 부호정정: 이전 −20 오기).
     #   dH_a 가 피팅 대상(tier-C)이라 곡선·피팅 결과는 불변(본 주석은 dH_a 의 물리해석만 고정).
     #   Q_cell 을 [C](=A·s)로 주면 (I/Q_cell) 가 [1/s] 가 되어 3600 흡수 없이 직접 정합.
     if I <= 0:
@@ -262,7 +269,7 @@ def func_U_branch(T: float, U_j: float, Omega: float, gamma: float,
 
 def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float) -> float:
     """유효 활성화 엔탈피 ΔH_a^eff = ΔH_a − χ_d·Ω (eq:dHeff).
-    깊은 꼬리에서 상호작용 상수 몫 +Ω 가 장벽에 흡수. 방향별(χ_d)."""
+    깊은 꼬리에서 상호작용 항이 −χ_d·Ω 로 장벽에 흡수(방향별 χ_d)."""
     return float(dH_a - chi_d * Omega)
 
 
@@ -348,8 +355,10 @@ class GraphiteAnodeDischargeDQDV:
     chi_split : callable        : (chi, σ_d)→χ_d 방향별 전달계수 규칙(기본 func_chi_d).
                                  ★주입 교체 가능 — 히스/χ_d 분배 규칙을 사용자가 바꿈.
     use_dH_eff : bool          : ΔH_a^eff=ΔH_a−χ_d·Ω 보강 적용(기본 True; eq:dHeff)
-    z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = 미분 종 ξ(1−ξ) 정점 5% 컷)
-    A_cap_RT : float           : 컷 affinity 상한 A ≤ A_cap_RT·RT (기본 4.0)
+    z_cut : float              : 꼬리 컷점 affinity 의 z=A/(nRT) (기본 4.357 = 미분 종 ξ(1−ξ) 정점 5% 컷).
+                                 ★단 A=min(z_cut·n·RT, A_cap_RT·RT) 이라 기본 A_cap_RT=4.0 이 n=1(기본 전 데이터셋)
+                                 에서 z=4.0(≈7.1% 컷)로 clamp → 실현 컷은 z=4.0; 5% 컷은 A_cap_RT>4.357 일 때만(감사 F-6).
+    A_cap_RT : float           : 컷 affinity 상한 A ≤ A_cap_RT·RT (기본 4.0 — n=1 에서 z_cut=4.357 을 눌러 binding)
     """
 
     # 탈리튬화에 대응하는 셀 라벨(Ch1 eq:lco-sigmaslot): 음극(흑연) = 방전.
@@ -1087,8 +1096,9 @@ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
             인자)은 다온도 round-trip 피팅 단계의 과제로 분리한다(P4 미구현, 라벨).
         """
         dS = tr['dS_rxn']
-        # [v1.0.24] 토글 ON(기본)일 때만 ΔS_e 가산. OFF 는 __init__ 서 dH 접어(U(T_ref) 보존) ΔS_e 제외.
-        if getattr(self, 'include_electronic_entropy', True) and tr.get('electronic'):
+        # [v1.0.24] 토글 ON 일 때만 ΔS_e 가산(★기본은 OFF=False). OFF 는 __init__ 서 dH 접어(U(T_ref) 보존) ΔS_e 제외.
+        #   getattr fallback=False: attribute 는 __init__ 에서 항상 set 되어 도달 불가하나, 기본 OFF 사양과 일관되게 False(감사 F-1).
+        if getattr(self, 'include_electronic_entropy', False) and tr.get('electronic'):
             T_ref = 298.15
             dS = dS + func_dSe_molar(tr['x_center'], T_ref,
                                      tr['g_max_eV'], tr['x_MIT'], tr['dx_MIT'])
@@ -1133,16 +1143,20 @@ GRAPHITE_STAGING_LIT = [
 
 # ============================================================================
 # [v1.0.24 @5] 흑연 XRD 5-feature staging (선택 — 기본은 위 4전이 GRAPHITE_STAGING_LIT)
-#   근거: Dahn PRB44,9170(1991) in-situ XRD 확정 서열 = dilute 1′→4→3→2L→2→1.
-#     두-상 4개(1′↔4·3↔2L·2L↔2·2↔1, Ω>2RT sharp) + 4↔3 고용체 shoulder(Ω<2RT, 새 상 아님).
-#   실검증(이 세션): 두-상 Ω/RT=[4.06,2.02,3.55,4.07] 전부>2RT(regsol2). stage-2L 엔트로피
+#   근거: Dahn PRB44,9170(1991) in-situ XRD 확정 서열 = dilute 1′→4→3→2L→2→1(구조 해상도 = 개수·위치).
+#   ★상성격(두-상/고용체) 분류는 §7(sec:broadening, 권위)에 위임한다(감사 A-1/E-1 정정). §7 은 물리 두-상을
+#     2개(2L→2=LiC₁₂·2→1=LiC₆)로 한정하고 dilute 1′→4·4→3·3→2L 은 연속 고용체로 둔다; 문건 §5b(d)(iii)도
+#     "5-feature 시드는 전이별 상성격을 배정하지 않는다(§7 위임)"고 명시. 아래 각 항 'Omega' 는 초기 시드값일 뿐
+#     (피팅 override 전제)이라 seed Ω>2RT ≠ 물리 두-상(§7 line24: 초기 Ω 로는 네 전이가 문턱을 넘지만 물리 두-상은 2개).
+#   참고(감사 E-2): Ω/RT=[4.06,2.02,3.55,4.07](regsol2 진단)은 위 5-feature 가 아니라 tab:staging **4전이**
+#     (GRAPHITE_STAGING_LIT) 소속이다(§5b:59). stage-2L 엔트로피
 #     안정화 → 3↔2L·2L↔2 의 Δ(ΔS)=29 J/mol/K 로 ∂U/∂T=ΔS/F 분리 0.30 mV/℃·병합~10℃·
 #     45℃ 2피크/25℃ 병합(T_SPLIT_FINDING; 재현 0.271 mV/℃). 6+ 전이=curve-fitting(XRD 미지원)=폐기.
 #   dH_rxn 은 U(298)=(−dH+298.15·dS)/F 로 역산. Ω>2RT=sharp(w 작음)·Ω<2RT=shoulder(w 큼).
 #   ★사용 시 GraphiteAnodeDischargeDQDV(GRAPHITE_STAGING_XRD_v1024) 로 전달(기본 경로 무영향=bit-exact).
 GRAPHITE_STAGING_XRD_v1024 = [
     {   # 1′↔4 dilute (U≈0.210 V) — 두-상 약함(x≈0.04부터)
-        'U': 0.210, 'w': 0.018, 'Q': 0.06, 'Omega': 6000.0,     # Ω=6000<2RT? 2RT≈4958 → >2RT 경계
+        'U': 0.210, 'w': 0.018, 'Q': 0.06, 'Omega': 6000.0,     # seed Ω=6000 > 2RT(≈4958), Ω/RT=2.42 (물리 상성격은 §7 위임)
         'dH_rxn': -11616.0, 'dS_rxn': +29.0, 'n': 1.0,          # U(298)=0.210
         'dH_a': 48000.0, 'dS_a': 0.0, 'dVdq_qa': 0.30,
     },
