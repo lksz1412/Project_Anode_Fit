@@ -1,7 +1,20 @@
 % ====================================================================
-% ch3v22_sec02b_sifr.tex — [SI-FR] Si-host 정칙용액(Frumkin, Ω<2RT 고용체) 커널
-%   삽입: §3.2 케이스별 활물질(ch3v22_sec02_cases, sec:si-cases) 뒤. v1.0.24 신규(@3 반영).
-%   저자 = comp_R1 W9 초안(master 통합판). 신규 cite: artrith2018·verbrugge2017(ch3v22_bib 등재).
+% si_fr_b.tex — [SI-FR · refine_b] Si-host 정칙용액(Frumkin, Ω<2RT 고용체) 커널
+%   Phase-② competition-cherrypick 개선본(비파괴 사본). 원본(라이브, 미변경):
+%   ../../_sections/ch3v22_sec02b_sifr.tex
+%   삽입 위치: §3.2 케이스별 활물질(sec:si-cases) 뒤. 저자 계보 = comp_R1 W9 → master 통합판.
+%   cite: 기존 cite 만 재사용(신규 = artrith2018·verbrugge2017, 이미 ch3v22_bib 등재).
+%   label/ref: 기존 라벨 + 본 파일 자체 신규 라벨(eq:sifr-*)만 사용 — 신규 ref 무.
+%   개선 방향(4):
+%     (1) 넓은 폭의 출처 = 폭 다중도 n_j (w_j=n_jRT/F), Ω<2RT 아님 을 전 소절 일관화 —
+%         인력 Ω>0 는 폭을 오히려 좁힘(w_eff=(RT/F)(1−Ω/2RT)); Ω<2RT 는 단일상 가드일 뿐.
+%     (2) 단일 Frumkin 종은 θ=½ 대칭(수치 검증: V=U° 대칭 rel-diff~1e-16) —
+%         케이스별 비대칭은 폭이 다른 여러 종의 envelope 에서만 옴(단일 종이 비대칭이라는 문장 제거·차단).
+%     (3) honest-limit airtight: Ω_Si 는 범위 시드(0.2RT≲Ω<2RT, 인력·비-점식별)·
+%         폭 [1.45,2.74,1.09] 은 tier-B 우리 진단(문헌 아님, n_j 추정)·Ω>2RT 는 커널 유효범위 밖
+%         (현상학 broadening)·c-Li15Si4 는 유일 두-상(1차 한정, 순환 a-Si 부재).
+%     (4) 강점 보존: boxed eq:sifr-kernel·Ω→0 로지스틱 폴백(bit-exact)·blend box eq:sifr-blend·
+%         ω-형 verbrugge2017 대응 — 식/라벨 전부 원본과 동일, 산문만 명확화.
 % ====================================================================
 \subsection{Si-host 정칙용액 커널 --- 단일상 고용체의 Frumkin peak 과 그 식별 한계}\label{ssec:si-fr}
 \S\ref{sec:si-cases} 가 원소 Si$\cdot$SiO$_x$$\cdot$Si--C 세 계열의 개형을 실측으로 읽었으니, 이 소절은 그
@@ -19,11 +32,13 @@ sharp 두-상 전이가 아니라 \emph{단일상 연속 고용체}이며, 그 d
 \end{equation}
 곧 자연 열폭 $RT/F$ 의 $\sim$1--3 배로 \emph{넓다}(전이별 실폭 $[\,37.3,\,70.3,\,28.0\,]$ mV 를
 $RT/F\!\approx\!25.7$ mV$@298$ K 로 나눈 값 --- 회사가 자기 dQ/dV 에서 폭을 직접 읽어 검산 가능한
-tier-B 진단값이지 문헌 anchor 가 아니다). 이는 흑연 두-상 전이의 평형 등온선 폭(near-delta plateau,
-$w/(RT/F)\!\ll\!0.12$)과 $\sim$20--50$\times$ 대조된다 --- 두-상이면 평형이 예측하는 것이 폭이 아니라 날카로운
-선(\S\ref{sec:width} 이중지위 둘째 지위)인데, a-Si 는 정반대로 \emph{평형이 유한 폭을 예측}한다. 이 폭 대조가
-``a-Si $=$ 단일상 고용체''의 실측 근거이며, 미시적으로는 비정질 host 의 자리 에너지 분산이 연속 고용체를 만드는
-것과 정합한다\cite{chevrier_dahn2009,artrith2018}.
+tier-B 진단값이지 문헌 anchor 가 아니다). 이 정규화 값은 정의상 폭 다중도 $n_j$($w_j{=}n_jRT/F$,
+식~\eqref{eq:wbase})이며, 그것이 $\gtrsim1$ 인 것이 넓은 폭의 출처다(뒤 (c)에서 정밀화 --- 상호작용 $\Omega$ 가
+아니라 $n_j$). 이는 흑연 두-상 전이의 평형 등온선 폭(near-delta plateau, $w/(RT/F)\!\ll\!0.12$)과 $\sim$20--50$\times$
+대조된다 --- 두-상이면 평형이 예측하는 것이 폭이 아니라 날카로운 선(\S\ref{sec:width} 이중지위 둘째 지위)인데,
+a-Si 는 정반대로 \emph{평형이 유한 폭을 예측}한다. 이 \emph{유한-대-델타} 대조가 ``a-Si $=$ 단일상 고용체''의
+실측 근거이고(단일상 판정은 폭의 \emph{크기}가 아니라 폭이 유한이냐 델타냐가 가른다; 크기 $n_j$ 는 별개 축이다),
+미시적으로는 비정질 host 의 자리 에너지 분산이 연속 고용체를 만드는 것과 정합한다\cite{chevrier_dahn2009,artrith2018}.
 
 \textbf{(b) 연산 --- Frumkin 단일상 peak 의 유도.} 단일상 고용체의 전위-조성 관계는 정칙용액 화학퍼텐셜을 전위로
 환산해 얻는다. 자리 점유 $\theta$(리튬화 진행)에 대해
@@ -48,28 +63,41 @@ $(1-2\theta)$ 몫이 여집합 교환에서 각각 부호를 바꿔 상쇄), 이
 이것이 Si-host 전이 하나의 평형 종이다 --- 흑연 평형 peak 식~\eqref{eq:eqpeak}($Q_j\xi(1-\xi)/w_j$)의 이상 극한과
 같은 대상의 $\Omega\ne0$ 일반형이며, $\Omega{\to}0$ 에서 분모 $RT/[\theta(1-\theta)]$ 가 되어 로지스틱 종
 $QF\theta(1-\theta)/RT$ 로 정확히 환원된다(미지정 커널의 로지스틱 폴백과 bit-exact --- 시드표 코드 규약).
+식~\eqref{eq:sifr-kernel} 의 열척도는 $n_j{=}1$ 기준이고, 넓은 갤러리의 폭은 이 척도를 다중도로 키운
+$w_j{=}n_jRT/F$(식~\eqref{eq:wbase})가 지며 $\Omega$ 는 그 위에서 peak 의 날카로움만 바꾼다 --- 폭의 출처를
+아래 (c)가 정밀화한다.
 
 \begin{signbox}
-\textbf{$\Omega$ 의 세 지위(부호$\cdot$극한).} 분모 $RT/[\theta(1-\theta)]-2\Omega$ 는 $\theta{=}\tfrac12$ 에서
-최소 $4RT-2\Omega$ 다. (i) $0<\Omega<2RT$: 분모가 전 구간 양수라 단일 유한 peak(단일상). $\Omega$ 가 $2RT$ 로
-다가갈수록 peak 정점이 $Q F/(4RT-2\Omega)$ 로 \emph{솟고}(sharpen), $\Omega{\to}2RT^-$ 에서 발산 --- 이것이 두-상
-문턱이다(그 위는 miscibility gap, \S\ref{ssec:si-fr} 밖). (ii) $\Omega{=}0$: 이상 로지스틱 종($RT/F$ 폭). (iii)
-$\Omega<0$(질서화 경향): $-2\Omega>0$ 이 분모를 키워 peak 가 \emph{낮고 넓어짐}(broaden). 곧 하나의 $\Omega$ 가
-peak 의 날카로움을 연속으로 조율하며, $\Omega<2RT$ 라는 부등호가 ``새 상 없이 한 종''임을 보장한다.
+\textbf{$\Omega$ 의 세 지위(부호$\cdot$극한).} 아래는 열척도 기준 $n_j{=}1$ 형(분모 $RT/[\theta(1-\theta)]-2\Omega$,
+$\theta{=}\tfrac12$ 에서 최소 $4RT-2\Omega$)의 모양 분석이다. (i) $0<\Omega<2RT$: 분모가 전 구간 양수라 단일 유한
+peak(단일상). $\Omega$ 가 $2RT$ 로 다가갈수록 peak 정점이 $Q F/(4RT-2\Omega)$ 로 \emph{솟고}(sharpen, 곧 폭이
+좁아짐), $\Omega{\to}2RT^-$ 에서 발산 --- 이것이 두-상 문턱이다(그 위는 miscibility gap, \S\ref{ssec:si-fr} 밖). (ii)
+$\Omega{=}0$: 이상 로지스틱 종($RT/F$ 폭 --- 곧 열척도 기준 $n_j{=}1$; 넓은 갤러리는 이 척도를 $n_jRT/F$ 로 키운다,
+(c)). (iii) $\Omega<0$(질서화 경향): $-2\Omega>0$ 이 분모를 키워 peak 가 \emph{낮고 넓어짐}(broaden). 곧 하나의 $\Omega$
+는 (고정 열척도 위에서) peak 의 \emph{날카로움}만 연속 조율할 뿐이고, 넓은 폭 자체의 출처는 $\Omega$ 가 아니라
+다중도 $n_j$(아래 (c))다; $\Omega<2RT$ 라는 부등호는 폭을 넓히는 손잡이가 아니라 ``새 상 없이 한 종''임을 보장하는
+\emph{단일상 가드}이며, 그 경계 $\Omega{\to}2RT^-$ 는 폭을 오히려 \emph{좁힌다}(sharpen).
 \end{signbox}
 
 \textbf{(c) 중간식 --- Si-host 는 소수의 넓은 갤러리, 유일 두-상은 $c$-Li$_{15}$Si$_4$.} 연속 고용체는 하나의
 매끄러운 $U(\theta)$ 곡선이지만 forward 모델은 이를 \emph{소수의 넓은 Frumkin 종}(식~\eqref{eq:sifr-kernel})의
-합으로 이산화해 근사한다. \textbf{폭의 출처(정밀)} --- 각 종의 \emph{넓은} 폭은 다중도 $n_j{>}1$(넓은 gallery,
-$w_j{=}n_jRT/F$)에서 오지 $\Omega<2RT$ 에서 오지 않는다: 인력 $\Omega{>}0$ 는 오히려
-$w_\mathrm{eff}{=}(RT/F)(1-\Omega/2RT)$ 로 폭을 \emph{좁힌다}. 곧 폭 판정~\eqref{eq:sifr-width} 의 $\gtrsim1$ 을
-지는 것은 $\Omega$ 가 아니라 $n_j$ 이며, $\Omega<2RT$ 는 그 넓은 종이 두-상으로 갈라지지 않게 하는
-\emph{단일상 가드}일 뿐이다. 이렇게 넓은 종들이 겹쳐 연속 경사를 재구성한다(케이스별 개형은
-표~\ref{tab:si-cases}$\cdot$그림~\ref{fig:si-cases-shape}). 이 그림에서 \emph{예외}는 하나뿐이다: 결정질 Si 의
-\emph{1차} 심리튬화 끝 $\sim$50--60 mV 의 $c$-Li$_{15}$Si$_4$ 결정화 plateau 는 진짜 두-상 전이라\cite{obrovac_christensen2004,ogata_nmr2014}
-Frumkin 단일상 커널의 대상이 아니며(별도 sharp feature), 순환 a-Si 경로에는 \emph{부재}한다\cite{chevrier_dahn2009}.
-곧 순환 Si-host 는 ``넓은 고용체 갤러리 $+$ (1차에 한한) 단일 두-상 결정화''로 갈리며, 본 커널은 앞쪽을 담고
-뒤쪽은 first-cycle 전용 feature 로 분리한다(honest scoping).
+합으로 이산화해 근사한다. \textbf{폭의 출처(정밀) --- 넓은 폭 $=$ 다중도 $n_j$, 상호작용 $\Omega$ 아님.} 각 종의
+\emph{넓은} 폭은 폭 다중도 $n_j{>}1$(넓은 gallery, $w_j{=}n_jRT/F$, 식~\eqref{eq:wbase})에서 오지 상호작용 $\Omega$
+에서 오지 않는다. 실제로 폭 판정~\eqref{eq:sifr-width} 의 정규화 값 $[1.45,2.74,1.09]$ 은 측정 폭이 낸 \emph{(유효)
+다중도} $w_j/(RT/F)$ 그 자체이며 이미 $\gtrsim1$ 이다. 상호작용은 정반대 방향으로 작용한다: 시드가 인력 $\Omega{>}0$
+(아래 정직한 한계 (i))이면 식~\eqref{eq:sifr-kernel} 분모의 $-2\Omega$ 가 중심 분모를 줄여 peak 를 높이고
+\emph{좁힌다}(\S\ref{sec:width} 이중지위 첫째 지위의 $(1-\Omega/2RT)$ 축소와 동일; $n_j{=}1$ 기준 유효폭
+$w_\mathrm{eff}{=}(RT/F)(1-\Omega/2RT)<RT/F$). 곧 좁힘을 되돌린 바탕 $n_j$ 는 관측 정규화 값 $[1.45,2.74,1.09]$ 보다
+크면 컸지 작지 않으므로, $\gtrsim1$ 의 넓이를 지는 것은 어느 경우에도 $\Omega$ 가 아니라 $n_j$ 이다. $\Omega<2RT$ 는
+그 넓은 종이 두-상으로 갈라지지 않게 하는 \emph{단일상 가드}일 뿐(폭을 넓히는 손잡이가 아니며, 가드 경계
+$\Omega{\to}2RT$ 는 폭을 좁힌다)이다. 이렇게 넓은 종들이 겹쳐 연속 경사를 재구성하되, \emph{각 단일 종은} 분모의
+$\theta(1-\theta)$ 우함수성($\theta{=}\tfrac12$)과 $V(\theta){-}U^\circ$ 의 기함수성 때문에 중심 $V{=}U^\circ$ 에
+\emph{대칭}이라 그 자체로는 비대칭이 될 수 없고, 케이스별 개형의 \emph{비대칭}은 오직 폭이 다른 여러 종의 envelope
+에서만 온다(케이스별 개형은 표~\ref{tab:si-cases}$\cdot$그림~\ref{fig:si-cases-shape}). 이 그림에서 \emph{예외}는
+하나뿐이다: 결정질 Si 의 \emph{1차} 심리튬화 끝 $\sim$50--60 mV 의 $c$-Li$_{15}$Si$_4$ 결정화 plateau 는 진짜 두-상
+전이라\cite{obrovac_christensen2004,ogata_nmr2014} Frumkin 단일상 커널의 대상이 아니며(별도 sharp feature), 순환
+a-Si 경로에는 \emph{부재}한다\cite{chevrier_dahn2009}. 곧 순환 Si-host 는 ``넓은 고용체 갤러리 $+$ (1차에 한한)
+단일 두-상 결정화''로 갈리며, 본 커널은 앞쪽을 담고 뒤쪽은 first-cycle 전용 feature 로 분리한다(honest scoping).
 
 \textbf{(d) 박스 --- 블렌드 가산 중첩의 정당성.} Si-host 종을 흑연 종과 같은 전위축에 얹는 것(블렌드
 식~\eqref{eq:blend-dqdv})은 두 host 가 \emph{같은} 전위 손잡이(공통 $\mu$, \S\ref{sec:si-blend})를 공유하기
@@ -88,43 +116,55 @@ Frumkin 단일상 커널의 대상이 아니며(별도 sharp feature), 순환 a-
 \textbf{★적대적 검토 대응 --- 세 물음.} \emph{(1) ``a-Si 의 넓은 peak 은 두-상을 못 맞춘 변명 아닌가.''}
 아니다 --- 폭 판정~\eqref{eq:sifr-width} 이 정반대 방향의 실측이다: 두-상이면 평형 폭이 $\ll RT/F$(델타)여야
 하는데 a-Si 는 $\gtrsim RT/F$(20--50$\times$ 초과)라, 넓은 종은 커널의 실패가 아니라 \emph{단일상이라는 실측의
-직접 결과}다. 또한 제일원리$\cdot$기계학습 퍼텐셜 계산이 a-Li$_x$Si 의 연속 경사 $U(x)$ 를 독립 재현한다\cite{chevrier_dahn2009,artrith2018}.
+직접 결과}다(그 유한 폭의 \emph{크기}는 다중도 $n_j$ 가 정하지 $\Omega$ 가 아니다 --- (a)$\cdot$(c)). 또한
+제일원리$\cdot$기계학습 퍼텐셜 계산이 a-Li$_x$Si 의 연속 경사 $U(x)$ 를 독립 재현한다\cite{chevrier_dahn2009,artrith2018}.
 \emph{(2) ``$\Omega_\mathrm{Si}$ 는 식별 가능한가.''} \textbf{제한적이다} --- 물리가 고정하는 것은 \emph{영역}
 ($\Omega<2RT$, 단일상)뿐이고 \emph{점값}이 아니다. 아래 정직한 한계 참조. \emph{(3) ``Frumkin 커널이 없어도
-로지스틱으로 되지 않나.''} $\Omega{=}0$ 로지스틱은 폭 $RT/F$ 의 고정 종만 내지만, a-Si 종은 $\Omega\ne0$ 로
-sharpen($0<\Omega<2RT$)$\cdot$broaden($\Omega<0$)하는 \emph{폭 조율}이 필요하다 --- 단일 Frumkin 종은
-$\theta{=}\tfrac12$ 대칭이며, 케이스별 개형의 \emph{비대칭}은 폭이 다른 여러 종의 포갬(envelope)에서 온다
-(그림~\ref{fig:si-cases-shape}). 커널 분기가 이 폭 자유도 하나를 열되, 미지정 시 로지스틱 폴백으로 bit-exact
-회수돼 흑연 골격을 손상하지 않는다.
+로지스틱으로 되지 않나.''} $\Omega{=}0$ 로지스틱은 폭이 $n_jRT/F$ 로만 정해지는 \emph{대칭 종}(모양 고정)만 내지만,
+a-Si 종은 그 위에 평균장 $\Omega$ 가 주는 \emph{날카로움(peakedness)} 자유도 --- sharpen($0<\Omega<2RT$)$\cdot$broaden
+($\Omega<0$) --- 하나가 더 필요하다. 이 $\Omega$ 는 \emph{모양(날카로움)} 손잡이이지 넓은 폭의 출처가 아니다(넓은
+폭 $=n_j$, 인력 $\Omega{>}0$ 는 오히려 좁힘 --- (c)). 그리고 \emph{단일} Frumkin 종은 $\theta{=}\tfrac12$ 대칭이라 그
+자체로는 결코 비대칭이 아니며, 케이스별 개형의 \emph{비대칭}은 오직 폭이 다른 여러 종의 포갬(envelope)에서만 온다
+(그림~\ref{fig:si-cases-shape}). 커널 분기가 이 $\Omega$(모양) 자유도 하나를 열되, 미지정($\Omega$ 무입력) 시
+로지스틱 폴백으로 bit-exact 회수돼 흑연 골격을 손상하지 않는다.
 
 \begin{warnbox}
-\textbf{정직한 한계.} (i) \emph{$\Omega_\mathrm{Si}$ 는 범위 시드일 뿐 점-식별 안 됨.} 시드는 $\Omega<2RT$
-(넓은 고용체 지향, $\delta$-물리캡 바닥 $\sim0.2RT$)라는 \emph{범위}이고, 실제 점값은 피팅에 위임한다 --- 넓은
-단일상 종은 $\Omega$ 에 대한 민감도가 낮아(peak 정점이 $\Omega{\to}2RT$ 근처에서만 급변) 상온 단일 곡선만으로는
-$\Omega_\mathrm{Si}$ 를 잘 조이지 못한다. 물리가 확정하는 것은 \emph{상성격}(단일상)이지 $\Omega$ 의 숫자가
-아니다. (ii) \emph{폭 진단값의 tier.} 식~\eqref{eq:sifr-width} 의 $[1.45,2.74,1.09]$ 는 우리 regsol\_si 피팅
-산출이지 문헌 anchor 가 아니다(전이별 문헌 $\Omega_\mathrm{Si}$ 미발견). (iii) \emph{케이스 개형은 시연값.}
-표~\ref{tab:si-cases}$\cdot$그림~\ref{fig:si-cases-shape} 의 Si 전이 중심$\cdot$폭은 tier-C 시연값(피팅 override
-전제)이며, 특히 SiO$_x$ 절대 전위$\cdot$히스 mV 는 순수 SiO$_x$ 1차 문헌 미특정으로 ``확인 필요'' 공백이다.
-(iv) \emph{$\omega$-형식 대응.} 식~\eqref{eq:sifr-kernel} 은 substitutional 열역학 모델의 $\omega$(상호작용) 형식
-\cite{verbrugge2017} 과 같은 정칙용액 골격이나, 그 원 논문의 다-사이트 파라미터화와 본 커널의 전이별
-$\Omega_k^\mathrm{Si}$ 매핑은 피팅 단계에서 확정한다(구조 대응이지 값 1:1 아님). (v) \emph{커널 유효범위$\cdot$차원.}
-분모 $RT/[\theta(1-\theta)]-2\Omega$ 는 단위가 [J/mol]이라 $QF/|\cdot|$ 가 $[Q]{\cdot}\mathrm{C/mol}\div\mathrm{J/mol}={[Q]}/\mathrm V$ 로
-차원 정합한다. $\Omega>2RT$ 는 본 커널의 \emph{유효범위 밖}(분모 비단조$\cdot$부호 반전 = van der Waals 고리)이라,
-그 영역의 두-상 peak 은 이 커널에 $\Omega>2RT$ 를 대입해 얻지 않고 흑연처럼 broadening 이 정하는 현상학적 종
-(\S\ref{sec:width} 이중지위)으로 다룬다.
+\textbf{정직한 한계.} (i) \emph{$\Omega_\mathrm{Si}$ 는 범위 시드일 뿐 점-식별 안 됨.} 물리가 확정하는 것은
+\emph{상성격}(단일상, 곧 $\Omega<2RT$)뿐이고, 시드는 그 안에서 인력 쪽 $0.2RT\lesssim\Omega<2RT$(넓은 고용체 지향;
+바닥은 $\delta$-물리캡 $\sim0.2RT$, 천장은 단일상 문턱 $2RT$)를 택하되 \emph{점값}은 피팅에 위임한다 --- 넓은
+단일상 종은 $\Omega$ 민감도가 낮아(peak 정점이 $\Omega{\to}2RT$ 근처에서만 급변) 상온 단일 곡선만으로는
+$\Omega_\mathrm{Si}$ 를 잘 조이지 못한다. 요컨대 물리가 주는 것은 $\Omega$ 의 숫자가 아니라 부등호($\Omega<2RT$)와
+시드 범위다. (ii) \emph{폭 진단값의 tier.} 식~\eqref{eq:sifr-width} 의 $[1.45,2.74,1.09]$ 는 우리 regsol\_si 피팅이
+낸 \emph{tier-B 진단값}(회사가 자기 dQ/dV 폭으로 검산 가능)이지 문헌 anchor 가 아니다 --- 전이별 문헌
+$\Omega_\mathrm{Si}$ 는 본 조사 미발견이라, 이 값은 폭 다중도 $n_j$ 의 관측 추정일 뿐 $\Omega$ 의 문헌값이 아니다.
+(iii) \emph{케이스 개형은 시연값.} 표~\ref{tab:si-cases}$\cdot$그림~\ref{fig:si-cases-shape} 의 Si 전이 중심$\cdot$폭은
+tier-C 시연값(피팅 override 전제)이며, 특히 SiO$_x$ 절대 전위$\cdot$히스 mV 는 순수 SiO$_x$ 1차 문헌 미특정으로
+``확인 필요'' 공백이다. (iv) \emph{$\omega$-형식 대응.} 식~\eqref{eq:sifr-kernel} 은 substitutional 열역학 모델의
+$\omega$(상호작용) 형식 \cite{verbrugge2017} 과 같은 정칙용액 골격이나, 그 원 논문의 다-사이트 파라미터화와 본
+커널의 전이별 $\Omega_k^\mathrm{Si}$ 매핑은 피팅 단계에서 확정한다(구조 대응이지 값 1:1 아님). (v) \emph{커널
+유효범위$\cdot$차원.} 분모 $RT/[\theta(1-\theta)]-2\Omega$ 는 단위가 [J/mol]이라 $QF/|\cdot|$ 가
+$[Q]{\cdot}\mathrm{C/mol}\div\mathrm{J/mol}={[Q]}/\mathrm V$ 로 차원 정합한다. $\Omega>2RT$ 는 단일상 가드
+$\Omega<2RT$ 를 넘겨 본 커널의 \emph{유효범위 밖}(분모 비단조$\cdot$부호 반전 $=$ van der Waals 고리)이라, 그
+영역의 두-상 peak 은 이 커널에 $\Omega>2RT$ 를 대입해 얻지 않고 흑연처럼 broadening 이 정하는 현상학적 종
+(\S\ref{sec:width} 이중지위 둘째 지위)으로 다룬다.
 \end{warnbox}
 
 \begin{keybox}
-\textbf{Si-host 커널 다리.} a-Si 는 폭 판정~\eqref{eq:sifr-width}($w/(RT/F)\gtrsim1$, 흑연 두-상 대비 20--50$\times$)로
-\emph{단일상 고용체}이며, 그 평형 peak 은 Frumkin 종~\eqref{eq:sifr-kernel}
-$\dd Q/\dd V=QF/|RT/[\theta(1-\theta)]-2\Omega|$($\Omega<2RT$)로 닫힌다 --- $\Omega{\to}2RT$ sharpen$\cdot\Omega{=}0$
-로지스틱 폴백(bit-exact)$\cdot\Omega<0$ broaden. 유일 두-상은 1차 $c$-Li$_{15}$Si$_4$ plateau(순환 a-Si 엔 부재).
-블렌드 가산 중첩~\eqref{eq:sifr-blend} 은 공통-$\mu$ 로 유효(평형 극한). \emph{정직 한계}: $\Omega_\mathrm{Si}$ 는
-범위 시드($\Omega<2RT$)일 뿐 점-식별되지 않고 피팅에 위임된다.
+\textbf{Si-host 커널 다리.} a-Si 는 폭 판정~\eqref{eq:sifr-width}($w/(RT/F)\gtrsim1$, 흑연 두-상 델타 대비
+20--50$\times$)로 \emph{단일상 고용체}이며, 그 평형 peak 은 Frumkin 종~\eqref{eq:sifr-kernel}
+$\dd Q/\dd V=QF/|RT/[\theta(1-\theta)]-2\Omega|$($\Omega<2RT$)로 닫힌다. \emph{넓은 폭}은 다중도 $n_j$
+($w_j{=}n_jRT/F$)가 지고, $\Omega$ 는 그 위 \emph{날카로움}만 조율한다 --- $\Omega{\to}2RT$ sharpen(좁힘)$\cdot\Omega{=}0$
+로지스틱 폴백(bit-exact)$\cdot\Omega<0$ broaden; 인력 $\Omega{>}0$ 는 폭을 넓히지 않고 좁힌다. \emph{단일} 종은
+$\theta{=}\tfrac12$ 대칭이고 비대칭은 여러 종 envelope 에서만 온다. 유일 두-상은 1차 $c$-Li$_{15}$Si$_4$
+plateau(순환 a-Si 엔 부재). 블렌드 가산 중첩~\eqref{eq:sifr-blend} 은 공통-$\mu$ 로 유효(평형 극한).
+\emph{정직 한계}: $\Omega_\mathrm{Si}$ 는 범위 시드($0.2RT\lesssim\Omega<2RT$, 인력)일 뿐 점-식별되지 않고
+피팅에 위임되며, 폭 $[1.45,2.74,1.09]$ 는 tier-B 진단($n_j$ 추정)이다.
 \end{keybox}
 
 % 자산(comp_R1 W9 → master 통합): [SIFR-1 폭 판정 eq:sifr-width(단일상 실측·20-50× 대조)]
 %   [SIFR-2 Frumkin peak 유도 eq:sifr-V→dVdtheta→boxed eq:sifr-kernel(Ω→0 로지스틱 폴백)]
 %   [SIFR-3 Ω 세 지위 signbox] [SIFR-4 소수 넓은 갤러리·유일 두-상 c-Li15Si4]
 %   [SIFR-5 블렌드 가산중첩 boxed eq:sifr-blend(공통-μ·tu_blend2024)] [SIFR-6 적대 3문+정직 한계 warnbox]
+% refine_b(Phase-② 개선, 비파괴): 폭 출처 n_j 일관화(§a·b·c·signbox·keybox)·단일 종 θ=½ 대칭 명시
+%   (§c·적대3·keybox)·honest-limit airtight(Ω 범위 시드 부호·폭 tier-B·Ω>2RT 유효범위 밖·c-Li15Si4)
+%   — boxed 식/라벨/cite 전부 원본 동일, 신규 ref 무.
