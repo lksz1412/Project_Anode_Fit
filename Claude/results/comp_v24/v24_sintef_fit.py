@@ -18,7 +18,7 @@ R_GAS=8.314462618; F_CONST=96485.33212; RT=R_GAS*298.15; TWORT=2*RT   # 2RT≈49
 def load(n,p): s=importlib.util.spec_from_file_location(n,p); mm=importlib.util.module_from_spec(s); s.loader.exec_module(mm); return mm
 m=load("af",f"{DOC}/Anode_Fit_v1.0.24.py"); bdd=load("bdd",f"{CV}/bdd_smoothing.py")
 GR=m.GraphiteAnodeDischargeDQDV
-m._REGSOL_XG=np.linspace(1e-4,1.0-1e-4,400)   # regsol 내부격자(출하 1200→400; 형상·R² 무영향)
+m._REGSOL_XG=np.linspace(1e-4,1.0-1e-4,300)   # regsol 내부격자(출하 1200→300; 형상·R² 무영향)
 MAXPTS=280; MAXNFEV=6000                        # 해상도 유지(gr_5f stage-2L 분해) + 유계반복(블렌드 완주보장)
 
 def load_delith(k):
@@ -63,15 +63,15 @@ def pack(kernel,seed,area):
             U,w,Qf=s; p0+=[U,w,Qf*area]; lo+=[max(0.03,U-0.06),0.0008,1e-6]; hi+=[U+0.06,0.09,10*area]
     return p0,lo,hi
 
-def fit(gk,sk,k,win,dvv,gr_seed,si_seed):
+def fit(gk,sk,k,win,dvv,gr_seed,si_seed,mp=MAXPTS,mf=MAXNFEV):
     V,Q=load_delith(k); Vx,Dx=dqdv(V,Q,win,dvv)
-    if len(Vx)>MAXPTS:
-        sel=np.linspace(0,len(Vx)-1,MAXPTS).round().astype(int); Vx,Dx=Vx[sel],Dx[sel]
+    if len(Vx)>mp:
+        sel=np.linspace(0,len(Vx)-1,mp).round().astype(int); Vx,Dx=Vx[sel],Dx[sel]
     NG,NS=len(gr_seed),len(si_seed); area=float(_trapz(Dx,Vx))
     pg,lg,hg=pack(gk,gr_seed,area); ps,ls,hs=pack(sk,si_seed,area)
     p0=pg+ps+[max(Dx.min(),1e-6)]; lo=lg+ls+[0.0]; hi=hg+hs+[max(Dx)+1e-9]
     fn=modelf(NG,NS,gk,sk)
-    res=least_squares(lambda p: fn(Vx,p)-Dx, p0, bounds=(lo,hi), max_nfev=MAXNFEV, ftol=1e-10, xtol=1e-10, gtol=1e-10)
+    res=least_squares(lambda p: fn(Vx,p)-Dx, p0, bounds=(lo,hi), max_nfev=mf, ftol=1e-10, xtol=1e-10, gtol=1e-10)
     popt=res.x; pred=fn(Vx,popt); r2=1.0-np.sum((Dx-pred)**2)/np.sum((Dx-Dx.mean())**2)
     gr,si,Cbg=build(popt,NG,NS,gk,sk)
     trs=[]; Qg=Qs=0.0
@@ -92,15 +92,15 @@ SI3R=[(0.28,1500,0.40,0.050,200,4900),(0.43,8000,0.15,0.006,4958,20000),(0.47,15
 
 import time
 R={}; T0=time.time()
-def go(key,*a):
-    R[key]=fit(*a); r=R[key]
+def go(key,*a,**kw):
+    R[key]=fit(*a,**kw); r=R[key]
     print(f"[{time.time()-T0:5.1f}s] {key:6s} R²={r['r2']:.4f} npts={r['npts']} (gr={a[0]},si={a[1]})",flush=True)
 go('gr_bl','logistic','logistic','gr',  (0.086,0.30),0.0005, GR4, [])   # 흑연 baseline(4-feature)
 go('gr_5f','logistic','logistic','gr',  (0.086,0.30),0.0005, GR5, [])   # 흑연 @5(5-feature stage-2L)
 go('si_bl','logistic','logistic','si',  (0.06,0.55), 0.001,  [],  SI3L) # Si baseline(로지스틱)
 go('si_fr','logistic','regsol',  'si',  (0.06,0.55), 0.001,  [],  SI3R) # Si @3(Frumkin regsol)
 go('sg_bl','logistic','logistic','sigr',(0.05,0.52), 0.0007, GR4, SI3L) # 블렌드 baseline
-go('sg_35','logistic','regsol',  'sigr',(0.05,0.52), 0.0007, GR5, SI3R) # 블렌드 @3/@5
+go('sg_35','logistic','regsol',  'sigr',(0.05,0.52), 0.0007, GR5, SI3R, mp=200, mf=2500) # 블렌드 @3/@5(유계·경량)
 
 # ---- 그림: 상단=@3/@5 반영식 피팅, 하단=baseline↔@3/@5 R² 대조 ----
 fig=plt.figure(figsize=(18,9)); gs=fig.add_gridspec(2,3,height_ratios=[2.2,1.0])
