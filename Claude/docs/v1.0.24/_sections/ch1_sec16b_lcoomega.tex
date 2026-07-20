@@ -17,14 +17,18 @@ LCO 하프셀 dQ/dV 는 흑연과 \emph{같은} MSMR(전하 보존 반전 $\to$ 
 상성격이 균일하지 않다: $\sim$3.90 V 의 MIT(절연체$\to$금속) 계열은 회절이 두 상 공존을 보이는 \emph{두-상 sharp}
 전이이고\cite{reimers1992,menetrier1999}, $x\approx\tfrac12$ 부근 order--disorder 계열은 정렬 상호작용이 무대인
 전이다\cite{vanderven1998}. 이 차이를 forward 모델은 전이별로 다른 $\Omega_j^\cat$ 하나로 담는다 --- 흑연
-판정자와 같은 문턱에서(식~\eqref{eq:lco-gpp}$\cdot$\eqref{eq:lco-spinodal})
+판정자와 같은 문턱에서(식~\eqref{eq:lco-gpp}$\cdot$\eqref{eq:lco-spinodal}), 자유에너지 곡률이 정하는 정칙용액
+(Frumkin) 단일 peak 커널로 닫힌다:
 \begin{equation}
-\frac{\partial^2 g_j^\cat}{\partial\xi_j^2}=\frac{RT}{\xi_j(1-\xi_j)}-2\Omega_j^\cat,
-\qquad
-\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j=\frac{Q_j^\cat\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j},
+\frac{\partial^2 g_j^\cat}{\partial\xi_j^2}=\frac{RT}{\xi_j(1-\xi_j)}-2\Omega_j^\cat
+\ \Longrightarrow\
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j=\frac{Q_j^\cat\,F}{\big|\,RT/[\xi_j(1-\xi_j)]-2\Omega_j^\cat\,\big|}\;}
+\ \xrightarrow[\ ]{\ \Omega_j^\cat\to0\ }\ \frac{Q_j^\cat\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j},
 \label{eq:lcoomega-kernel}
 \end{equation}
-각 전이의 sharp/broad 는 \emph{피팅된} $\Omega_j^\cat$ 이 $2RT$ 를 넘는지가 정한다(\S\ref{sec:lco-hys}
+곧 흑연 판정자(\S\ref{ssec:gr-2L} 식~\eqref{eq:gr2l-disc})$\cdot$Si-host Frumkin 종과 \emph{같은} 분모
+$RT/[\xi(1-\xi)]-2\Omega$ 를 쓰는 한 커널이며, $\Omega_j^\cat\!\to\!0$ 에서 로지스틱 평형 peak 식~\eqref{eq:lco-eqpeak}
+로 정확히 환원된다(미지정 시 bit-exact 폴백). 각 전이의 sharp/broad 는 \emph{피팅된} $\Omega_j^\cat$ 이 $2RT$ 를 넘는지가 정한다(\S\ref{sec:lco-hys}
 two-phase calibration) --- MIT 계열은 $\Omega_j^\cat>2RT$ 로 두-상 델타에 가깝고(실측 폭은 $w_j$ 가 담음), 도핑
 시료의 order--disorder 계열은 $\Omega_j^\cat$ 이 $2RT$ 아래로 억제되면(식~\eqref{eq:lco-dope}) 상대적으로
 \emph{broad} 하다. 곧 하나의 per-peak $\Omega_j^\cat$ 축이 세 feature 를 연속적으로 sharp$\leftrightarrow$broad
