@@ -72,3 +72,16 @@
   문턱을 넘지만 물리적으론 2 전이만 두-상"이라 명시). 즉 코드 주석은 **seed-Ω 문턱초과 집합**을 "두-상"으로 표기해
   §7 의 물리분류와 **어긋난다**(물리 오류가 아니라 주석 표현 문제). → **문건/코드 미수정, 후보로만 보고**(P5). 정정 시
   주석을 "seed Ω>2RT (문턱초과; 물리 두-상은 §7 대로 2L→2·2→1)" 로 바꾸면 §7 과 정합.
+
+## 문건↔코드 정합 정정 — sifr Ω>2RT binodal (사용자 지시로 문건 수정)
+- **발견(사용자 지적)**: 문건 sifr 절(ch3v22_sec02b_sifr) warnbox (v)가 "Ω>2RT 는 커널 유효범위 밖 → 이 커널에
+  대입해 얻지 않고 현상학적 broadening 으로 다룬다"고 적었으나, **코드 `_regsol_dqdv` 는 Ω>2RT 를 `_regsol_binodal_xa`
+  의 Maxwell 공존(binodal) 구성으로 실제 처리**한다(공존역 V=U° 평탄 → U° near-delta + δ=w_j broadening). 즉 문건이
+  코드 능력을 축소·부정확 기술 = 문건↔코드 불일치.
+- **판정**: 정확성 버그 아님(기본경로 bit-exact·a-Si Ω<2RT 는 doc=code). 순수 문서화 gap. lcoomega 절은 이미
+  "커널의 두-상 델타 → 관측 폭 w_j" 로 코드와 정합했음(sifr 만 어긋났음).
+- **조치(사용자 결정 "코드가 정상이니 문건을 고쳐라")**: sifr warnbox (v)를 **코드에 맞춰 정정** — Ω>2RT 에서
+  Maxwell binodal(공통접선 평탄)로 vdW 고리 해소·U° near-delta+δ=w_j·lcoomega 서술과 정합·a-Si 는 단일상이라 미탑승·
+  c-Li₁₅Si₄ 는 Ω>2RT 시드로 binodal 분기가 담음을 명기. **ch3 재빌드 GREEN**(0 err·0 undefined ref·20p·추가 ref 3개
+  전부 해결). 나의 SINTEF 피팅이 c-Li₁₅Si₄ 를 regsol Ω/RT=3.7(binodal)로 잡은 것과도 이제 문건이 정합.
+- **v1.0.23 여부**: v1.0.23 엔 regsol 커널 자체가 없음(grep 0) → 이 불일치는 v1.0.24 신규(@3), v23 엔 부재.

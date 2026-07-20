@@ -143,10 +143,16 @@ tier-C 시연값(피팅 override 전제)이며, 특히 SiO$_x$ 절대 전위$\cd
 $\omega$(상호작용) 형식 \cite{verbrugge2017} 과 같은 정칙용액 골격이나, 그 원 논문의 다-사이트 파라미터화와 본
 커널의 전이별 $\Omega_k^\mathrm{Si}$ 매핑은 피팅 단계에서 확정한다(구조 대응이지 값 1:1 아님). (v) \emph{커널
 유효범위$\cdot$차원.} 분모 $RT/[\theta(1-\theta)]-2\Omega$ 는 단위가 [J/mol]이라 $QF/|\cdot|$ 가
-$[Q]{\cdot}\mathrm{C/mol}\div\mathrm{J/mol}={[Q]}/\mathrm V$ 로 차원 정합한다. $\Omega>2RT$ 는 단일상 가드
-$\Omega<2RT$ 를 넘겨 본 커널의 \emph{유효범위 밖}(분모 비단조$\cdot$부호 반전 $=$ van der Waals 고리)이라, 그
-영역의 두-상 peak 은 이 커널에 $\Omega>2RT$ 를 대입해 얻지 않고 흑연처럼 broadening 이 정하는 현상학적 종
-(\S\ref{sec:width} 이중지위 둘째 지위)으로 다룬다.
+$[Q]{\cdot}\mathrm{C/mol}\div\mathrm{J/mol}={[Q]}/\mathrm V$ 로 차원 정합한다. $\Omega>2RT$ 에서는 식~\eqref{eq:sifr-kernel} 의 naive 분모가 비단조$\cdot$부호 반전(van der Waals 고리)을
+내지만, 이 커널의 구현(\code{\_regsol\_dqdv})은 그 고리를 \emph{Maxwell 공존(binodal)} 구성으로 해소한다 ---
+공존 조성 $\theta_a$(\code{\_regsol\_binodal\_xa}; $\Omega\!\le\!2RT$ 면 $\theta_a{=}\tfrac12$ 로 공존역 없음,
+$\Omega\!>\!2RT$ 면 이분법근)를 구해, 바깥 $\theta\!<\!\theta_a\,(\text{또는}\,\theta\!>\!1{-}\theta_a)$ 는 단일상
+가지로 두고 안쪽 공존역 $\theta\!\in\!(\theta_a,1{-}\theta_a)$ 는 $V(\theta){=}U^\circ$ 평탄(공통접선)으로 접어
+$U^\circ$ 에 평형 near-delta 를 세운 뒤, 그 위에 유한 폭 $\delta{=}w_j$ 로 broadening 을 얹는다 ---
+곧 \emph{두-상 델타 $+$ 현상학적 폭}(\S\ref{sec:width} 이중지위 둘째 지위; LCO 절 \S\ref{ssec:lco-omega} 의
+``커널의 두-상 델타 $\to$ 관측 폭 $w_j$'' 서술과 정합)이라, 두-상도 \emph{같은} 커널이 binodal 로 처리한다.
+a-Si 는 상성격이 단일상($\Omega<2RT$)이라 이 공존 분기를 타지 않을 뿐이며(그래서 위 (a)$\cdot$(c)는 단일상
+가지만 쓴다), 유일 두-상 $c$-Li$_{15}$Si$_4$ 는 $\Omega>2RT$ 시드로 이 binodal 분기가 담을 수 있다(순환 a-Si 엔 부재).
 \end{warnbox}
 
 \begin{keybox}
