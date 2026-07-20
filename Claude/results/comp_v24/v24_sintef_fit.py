@@ -18,8 +18,8 @@ R_GAS=8.314462618; F_CONST=96485.33212; RT=R_GAS*298.15; TWORT=2*RT   # 2RT≈49
 def load(n,p): s=importlib.util.spec_from_file_location(n,p); mm=importlib.util.module_from_spec(s); s.loader.exec_module(mm); return mm
 m=load("af",f"{DOC}/Anode_Fit_v1.0.24.py"); bdd=load("bdd",f"{CV}/bdd_smoothing.py")
 GR=m.GraphiteAnodeDischargeDQDV
-m._REGSOL_XG=np.linspace(1e-4,1.0-1e-4,450)   # regsol 내부격자(출하 1200→450; 형상·R² 무영향)
-MAXPTS=280
+m._REGSOL_XG=np.linspace(1e-4,1.0-1e-4,400)   # regsol 내부격자(출하 1200→400; 형상·R² 무영향)
+MAXPTS=280; MAXNFEV=6000                        # 해상도 유지(gr_5f stage-2L 분해) + 유계반복(블렌드 완주보장)
 
 def load_delith(k):
     csv=f"{DATA}/{k}.csv"
@@ -71,7 +71,7 @@ def fit(gk,sk,k,win,dvv,gr_seed,si_seed):
     pg,lg,hg=pack(gk,gr_seed,area); ps,ls,hs=pack(sk,si_seed,area)
     p0=pg+ps+[max(Dx.min(),1e-6)]; lo=lg+ls+[0.0]; hi=hg+hs+[max(Dx)+1e-9]
     fn=modelf(NG,NS,gk,sk)
-    res=least_squares(lambda p: fn(Vx,p)-Dx, p0, bounds=(lo,hi), max_nfev=20000, ftol=1e-10, xtol=1e-10, gtol=1e-10)
+    res=least_squares(lambda p: fn(Vx,p)-Dx, p0, bounds=(lo,hi), max_nfev=MAXNFEV, ftol=1e-10, xtol=1e-10, gtol=1e-10)
     popt=res.x; pred=fn(Vx,popt); r2=1.0-np.sum((Dx-pred)**2)/np.sum((Dx-Dx.mean())**2)
     gr,si,Cbg=build(popt,NG,NS,gk,sk)
     trs=[]; Qg=Qs=0.0
