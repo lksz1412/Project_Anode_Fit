@@ -19,6 +19,7 @@
 | `test_gates_v1024_reflect.py` | 반영 게이트 4종(@5·토글·@3·#1). |
 | `test_gates_v1024_selfconsistent.py` | 부록 E 자기일관 게이트 5종(동결 bit-exact·전달함수 잔차). |
 | `CODE_GUIDE_v24.md` | **코드 이해 가이드** — 구조도·플로우차트(mermaid)·평형 커널분기·옵션 전수·사용법 복붙예·상수·변수/기호 사전. |
+| `CODE_GUIDE_v24.html` | 위 가이드의 **self-contained HTML 판** — mermaid.js 내장(오프라인/회사망에서도 6개 다이어그램 렌더), 라이트/다크 자동. 브라우저로 바로 열기. |
 | `FITTING_GUIDE.md` | 피팅 절차 가이드(파라미터 tier·초기값·경계·수렴·역식별 사슬). |
 
 ## 공개 실측 검증 + 전수 감사 (R4 후 강화, `Claude/results/comp_v24/`)

@@ -64,7 +64,7 @@ classDiagram
     class BlendedAnodeDQDV {
         <<블렌드: 합성>>
         +f_Si, si_case
-        +from_wt(m_Si)$ wt%→f_Si (C-052)
+        +from_wt(m_Si) wt%→f_Si (C-052)
         +equilibrium / dqdv / curve
         +solve_U_oc() 공통-μ pooled
         +host_contributions() 전극별 분해
