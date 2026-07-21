@@ -140,8 +140,14 @@ $3\!\to\!2\mathrm L\approx$0.132, $2\mathrm L\!\to\!2\approx$0.116, $2\!\to\!1\a
 $U\,(0.210/0.140/0.120/0.085)$와 위치가 다르다(라벨은 계승, 위치는 재유도). 이 더한 dilute 특징은
 \S\ref{sec:broadening-class} 이 \emph{고용체}로 분류$\cdot$명명한 dilute$\to$stage4 영역이다(표는 이를 별행 없이
 고전위 끝에 접어 둔다). 곧 시드의 다섯 라벨(XRD 구조 해상도)을 표의 네 전이 \emph{피팅 기준선}
-(\code{GRAPHITE\_STAGING\_LIT}, 무변경)과 혼동해선 안 되며, 시드 U-위치는 그 기준선이 아니라 XRD 사다리다. \emph{5 개를 넘어 6+ 로 쪼개는 것은 XRD 미지원 curve-fitting} 이라 폐기한다(봉우리를
-더 얹으면 $R^2$ 는 오르지만 대응 회절 상이 없다).
+(\code{GRAPHITE\_STAGING\_LIT}, 무변경)과 혼동해선 안 되며, 시드 U-위치는 그 기준선이 아니라 XRD 사다리다.
+\emph{6 개 이상의 별개 \textbf{물리 상(phase)}으로 쪼개는 것은 XRD 미지원 curve-fitting} 이라 폐기한다(회절 상 없이
+봉우리만 얹으면 $R^2$ 는 오르나 대응 상이 없다). \textbf{단} \emph{gallery} 수(곡선표현의 로지스틱 개수)는 상 수와
+다르다 --- MSMR 문헌\cite{verbrugge2017} 은 흑연을 \emph{6-gallery} 로 적합하되 U0 가 거의 같은 gallery
+\emph{쌍}(한 물리 peak 을 폭 다른 두 로지스틱으로)으로 표현한다(gallery $\ne$ 상). 이 고분해능 곡선표현은 새 상을
+posit 하지 않으므로 정당하며, 코드에 \emph{선택} 시드 \code{GRAPHITE\_STAGING\_MSMR6\_LIT}(6-gallery, $\omega_j\cdot U0_j$
+문헌 anchor)로 병존한다 --- 곧 해상도 사다리는 \{4-전이 기준(기본)$\cdot$5-feature XRD$\cdot$6-gallery MSMR\}이고,
+어느 것도 4-전이 피팅 기준선을 바꾸지 않는다(전부 additive opt-in).
 
 \medskip
 \textbf{★적대적 검토 대응 --- ``stage-2L 은 실재 상인가, 곡선맞춤인가.''} 셋으로 답한다. \emph{첫째, 실측 근거.}
@@ -178,7 +184,9 @@ $\Omega_j$ 소관이다(판정자는 분류를 다시 열지 않음). 가운데 
 쌍이며, 그 존재의 서명이 $\Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}\Rightarrow0.30\ \mathrm{mV/^\circ C}$
 온도 분리(식~\eqref{eq:gr2l-box}, 재현 $0.271$; operando XRD 부호 정합\cite{schmitt2022})라는 \emph{반증 가능}한
 예측이다. 5-feature 세분은 tab:staging 4-전이 기준을 \emph{라벨 그대로} 보존하고 고전위 끝 dilute $1'\!\to\!4$
-하나만 더 얹는(5 $=$ 4 $+$ 1) \emph{추가 후보}(선택 시드, 상성격은 \S\ref{sec:broadening-class} 소관)이며 6+ 는 XRD 미지원으로 폐기.
+하나만 더 얹는(5 $=$ 4 $+$ 1) \emph{추가 후보}(선택 시드, 상성격은 \S\ref{sec:broadening-class} 소관)다. \emph{별개 물리 상}
+6+ 는 XRD 미지원으로 폐기하나, gallery$\ne$상이라 6-gallery MSMR 곡선표현(코드 \code{GRAPHITE\_STAGING\_MSMR6\_LIT}, opt-in)은
+정당 --- 해상도 사다리 \{4-전이(기본)$\cdot$5-feature$\cdot$6-gallery\}는 전부 additive 이고 4-전이 피팅 기준선을 바꾸지 않는다.
 \end{keybox}
 
 % 자산(v1.0.24 @5 반영 — master 재조정판 · refine_b 위임-airtight화): [GR2L-1 판정자 dμ/dθ|½=4RT-2Ω eq:gr2l-disc(eq:gpp 대칭점)·기준식이지 판결 아님]

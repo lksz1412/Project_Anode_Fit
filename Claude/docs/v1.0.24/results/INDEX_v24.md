@@ -5,7 +5,7 @@
 ## 문건 (3 챕터, 빌드 산출 PDF)
 | 파일 | 내용 | 신규 소절 |
 |---|---|---|
-| `ch1_graphite_v1.0.24.{tex,pdf}` | 흑연 dQ/dV 이론+Part T 열특성 (89p) | **§1.5.4** stage-2L 엔트로피 온도분리(`ch1_sec05b_gr2L.tex`) |
+| `ch1_graphite_v1.0.24.{tex,pdf}` | 흑연 dQ/dV 이론+Part T 열특성 (91p) | **§1.5.4** stage-2L 엔트로피 온도분리(`ch1_sec05b_gr2L.tex`) + 6-gallery 해상도 사다리 |
 | `ch2_lco_v1.0.24.{tex,pdf}` | LCO 양극 (28p) | **§2.6.1** per-peak Ω·#7·전자항 토글(`ch1_sec16b_lcoomega.tex`) |
 | `ch3_si_v1.0.24.{tex,pdf}` | Si·혼합음극 (20p) | **§3.2.5** Si-host Frumkin 커널(`ch3v22_sec02b_sifr.tex`) |
 | `_sections/` (57 파일) | 절 원본 (신규 3 포함) | — |
@@ -14,7 +14,7 @@
 ## 코드
 | 파일 | 내용 |
 |---|---|
-| `Anode_Fit_v1.0.24.py` | 반영 4건: `GRAPHITE_STAGING_XRD_v1024`(@5)·`_regsol_dqdv`+equilibrium 분기(@3)·`LCOCathodeDQDV(include_electronic_entropy)`(토글)·`func_L_q` 단위주석(#1). 기본 경로 bit-exact. |
+| `Anode_Fit_v1.0.24.py` | 반영 4건: `GRAPHITE_STAGING_XRD_v1024`(@5)·`_regsol_dqdv`+equilibrium 분기(@3)·`LCOCathodeDQDV(include_electronic_entropy)`(토글)·`func_L_q` 단위주석(#1). **+감사 정정**(regsol 용량 `wi=Q/xg.size`·주석 다수) **+6-gallery opt-in** `GRAPHITE_STAGING_MSMR6_LIT`(IMPROVEMENT #1). 기본 4전이 경로 bit-exact. |
 | `test_gates_v1024.py` | 회귀 게이트(G1 bit-exact·G2·G3·n(T)·R6 블렌드). |
 | `test_gates_v1024_reflect.py` | 반영 게이트 4종(@5·토글·@3·#1). |
 | `test_gates_v1024_selfconsistent.py` | 부록 E 자기일관 게이트 5종(동결 bit-exact·전달함수 잔차). |

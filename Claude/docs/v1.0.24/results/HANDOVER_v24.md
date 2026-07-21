@@ -44,7 +44,7 @@ v1.0.23 을 승계해, 최근(2021–2026) 문헌 고도화 연구(LCO·흑연·
 
 ## 4. 검수 상태
 
-- 빌드 3장 **0-error** 89/28/20p·undefined ref/cite **0**·STRUCTURE_CHECK PASS(dup/unresolved/cite-undef/bib-uncited/env 전부 0).
+- 빌드 3장 **0-error** 91/28/20p·undefined ref/cite **0**·STRUCTURE_CHECK PASS(dup/unresolved/cite-undef/bib-uncited/env 전부 0).
 - 코드 게이트: G1 bit-exact max|d|=**0**·selfconsistent 5/5·반영게이트 4/4.
 - 통합 적대검수(R3, 인라인): doc↔code·물리유도·장간정합 **3차원 CLEAN**, blocker 0. 코드상수 U(298) 자기정합.
 - **부수 복구**: R0 에서 구조검증 도구 JSON 이 덮어써 커밋됐던 `ch1_graphite_v1.0.24.tex` 마스터를 v1.0.23 셸+빌드로그로 재구성.
@@ -68,4 +68,6 @@ R4 마감 이후 다음을 추가 수행했다(전부 반영·검증·커밋·ma
 - **공개 실측 피팅 검증** (`comp_v24/FIT_CHECK_v1024.md`·`final_fit_sintef.png`·`sintef_data/` CSV 영구보존): SINTEF Zenodo 20086298(CC-BY-4.0) 실측 pOCV 를 **@3/@5 실제 코드경로**로 피팅 — 흑연 @5 5-feature 0.9525→**0.9731**·실리콘 @3 Frumkin regsol **0.9944**(Ω/RT 이 문건 분류 자발 재현: a-Si 고용체 + c-Li₁₅Si₄ 두-상)·흑연+Si 블렌드 **0.9848**(f_Si≈0.75). (초판이 실수로 기본 로지스틱으로 피팅한 것을 regsol 실경로로 정정.)
 - **sifr Ω>2RT binodal 정합**: 문건 sifr warnbox(v)가 "Ω>2RT 커널 유효범위 밖" 이라 적었으나 코드 `_regsol_dqdv` 는 `_regsol_binodal_xa` 의 Maxwell 공존으로 실제 처리 → 문건을 코드에 맞춰 정정.
 - **★전수 doc↔code 정합 감사** (`comp_v24/AUDIT_v1024_DOC_CODE.md`, 6 병렬 에이전트 + 마스터 수치 재검증): **곡선·피팅 정확성 BUG 0**. 잠재 코드버그 1건 수정(`_regsol_dqdv` 용량 +0.063% → `wi=Q/xg.size`, 재검증 area=1.000000·로지스틱 bit-exact 불변) + 주석/문서 불일치 다수 정정(func_L_q dH_a^phys 부호 −→+·regsol 스코프 equilibrium 전용 고지·XRD "두-상4"→§7 위임·토글 "ON(기본)"→기본OFF·헤더 "부록E만·무변경" 정정·z_cut clamp·stale 파일명 등). 문건 3건 정정(lcoomega 토글 True 선형화·gr2L §5b(d)(iii) 재유도 사다리·§10 반올림).
-- **최종 검증**: 게이트 전건 GREEN(G1 bit-exact 0.0·reflect **4/4**·self-consistent **5/5**·R6 **3/3**) · 빌드 GREEN(ch1 89p·ch2 28p·ch3 20p·0 err·0 undefined ref). **코드=문건=주석 전면 정합.**
+- **최종 검증**: 게이트 전건 GREEN(G1 bit-exact 0.0·reflect **4/4**·self-consistent **5/5**·R6 **3/3**) · 빌드 GREEN(ch1 91p·ch2 28p·ch3 20p·0 err·0 undefined ref). **코드=문건=주석 전면 정합.**
+
+- **흑연 6-gallery 고분해능 opt-in 추가 (IMPROVEMENT #1)**: 문헌 6-gallery MSMR(`GRAPHITE_STAGING_MSMR6_LIT`, ad2061 ω_j·U0_j)를 **additive opt-in** 으로 추가 — 기본 4전이 bit-exact 무변경(G1 0.0 보존). 해상도 사다리 {4-전이(기본)·5-feature XRD·6-gallery MSMR}. 문건 §5b 에 gallery≠물리상 구분 명시(6+ 별개 상은 XRD 미지원 폐기·gallery 표현은 정당). 검증: 전이6·유한·비음·ω 검산 정확·게이트 전건 GREEN.

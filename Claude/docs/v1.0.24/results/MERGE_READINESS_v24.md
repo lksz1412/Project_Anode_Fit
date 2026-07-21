@@ -4,7 +4,7 @@
 
 | # | 항목 | 판정 | 증빙 |
 |---|---|---|---|
-| 1 | **빌드 GREEN** (3장 컴파일) | **PASS** | xelatex 3-pass×2R: ch1 0-err **89p**·ch2 0-err **28p**·ch3 0-err **20p**. 'undefined' 로그 = 한글폰트 italic shape 경고뿐(benign). |
+| 1 | **빌드 GREEN** (3장 컴파일) | **PASS** | xelatex 3-pass×2R: ch1 0-err **91p**·ch2 0-err **28p**·ch3 0-err **20p**. 'undefined' 로그 = 한글폰트 italic shape 경고뿐(benign). |
 | 2 | **구조 검증** (labels·refs·cites·env) | **PASS** | `tools_check_structure.py check` 3장: dup **0**·unresolved **0**·cite-undef **0**·bib-uncited **0**·env-pairing **0**. |
 | 3 | **코드 게이트** (회귀+신규) | **PASS** | G1 bit-exact max\|d\|=**0**·selfconsistent **5/5**·R6 블렌드 4종·반영게이트 **4/4**(@5 0.301mV/℃·토글 ON=OFF@298·regsol 단일봉·#1 값무변경). |
 | 4 | **doc↔code 정합** | **PASS** | AUD-1(인라인) 4/4: 토글 기본 **False**(코드 L1052·시드/브리프 사양)·XRD 상수 ΔS+15/−14·regsol 분기 L588·func_L_q 주석만 L144. |

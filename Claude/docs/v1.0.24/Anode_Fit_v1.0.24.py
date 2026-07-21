@@ -1184,6 +1184,28 @@ GRAPHITE_STAGING_XRD_v1024 = [
 
 
 # ============================================================================
+# [v1.0.24 감사후속 · IMPROVEMENT_DIRECTIONS #1 반영] 흑연 6-gallery MSMR (고분해능 opt-in)
+#   목적: 고품질 흑연 dQ/dV 는 5–6 feature. 기본 4전이(GRAPHITE_STAGING_LIT)는 그중 성긴 유효표현이며,
+#     본 상수는 그 위 최고 해상도 옵션(4-전이 · 5-feature XRD · 6-gallery MSMR 의 해상도 사다리).
+#   근거: MSMR 흑연 6-gallery 문헌(coal-graphite, J. Electrochem. Soc. 2024, 1945-7111/ad2061;
+#     Verbrugge·Baker·Koch MSMR 원전 2017 JES E3243). ω_j(=w_j·F/RT)={3.96,0.24,0.66,0.086,0.16,0.047},
+#     U0_j={0.333,0.210,0.128,0.126,0.089,0.089} V. w_j=ω_j·RT/F(298K). 두 near-degenerate 쌍
+#     (0.128/0.126·0.089/0.089)=한 물리 peak 을 폭 다른 두 로지스틱으로 쓰는 MSMR 관용(문헌 방식).
+#     순수 로지스틱(Omega 무 — sharpness 는 작은 w_j 가 냄) → 커널 분기 안 탐(기본 로지스틱).
+#   ★기본 경로(GRAPHITE_STAGING_LIT 4전이) bit-exact 무변경 — 본 상수는 additive opt-in 이다.
+#   ★tier: U0·w 는 문헌 anchor(ad2061). Q_j 는 tier-C seed(원저 X_j 미확보 — 피팅 override 전제).
+#   사용: GraphiteAnodeDischargeDQDV(GRAPHITE_STAGING_MSMR6_LIT, ...)  (선택; 상성격 분류는 §7 소관).
+GRAPHITE_STAGING_MSMR6_LIT = [
+    {'U': 0.333, 'w': 0.10174,  'Q': 0.05},   # dilute/표면 (ω=3.96, broad)
+    {'U': 0.210, 'w': 0.0061659,'Q': 0.10},   # 4→3       (ω=0.24)
+    {'U': 0.128, 'w': 0.016956, 'Q': 0.15},   # 3→2L      (ω=0.66)
+    {'U': 0.126, 'w': 0.0022094,'Q': 0.15},   # 2L 근방 near-degenerate sharp (ω=0.086)
+    {'U': 0.089, 'w': 0.0041106,'Q': 0.30},   # 2→1       (ω=0.16)
+    {'U': 0.089, 'w': 0.0012075,'Q': 0.25},   # 2→1 near-degenerate sharp    (ω=0.047)
+]
+
+
+# ============================================================================
 # R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.24 §3.5 doc-leads 요구명세)
 #   근거 절: §3.3 eq:blend-balance(공통-μ 이중합 전하 보존·음함수 U_oc)·eq:blend-dqdv(dQ/dV =
 #     C_bg + host 이중합)·eq:blend-limit(f_Si→0 흑연 회수) / §3.5 eq:si-code-bitexact(f_Si=0
