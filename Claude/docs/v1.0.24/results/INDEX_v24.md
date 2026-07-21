@@ -6,8 +6,8 @@
 | 파일 | 내용 | 신규 소절 |
 |---|---|---|
 | `ch1_graphite_v1.0.24.{tex,pdf}` | 흑연 dQ/dV 이론+Part T 열특성 (89p) | **§1.5.4** stage-2L 엔트로피 온도분리(`ch1_sec05b_gr2L.tex`) |
-| `ch2_lco_v1.0.24.{tex,pdf}` | LCO 양극 (27p) | **§2.6.1** per-peak Ω·#7·전자항 토글(`ch1_sec16b_lcoomega.tex`) |
-| `ch3_si_v1.0.24.{tex,pdf}` | Si·혼합음극 (19p) | **§3.2.5** Si-host Frumkin 커널(`ch3v22_sec02b_sifr.tex`) |
+| `ch2_lco_v1.0.24.{tex,pdf}` | LCO 양극 (28p) | **§2.6.1** per-peak Ω·#7·전자항 토글(`ch1_sec16b_lcoomega.tex`) |
+| `ch3_si_v1.0.24.{tex,pdf}` | Si·혼합음극 (20p) | **§3.2.5** Si-host Frumkin 커널(`ch3v22_sec02b_sifr.tex`) |
 | `_sections/` (57 파일) | 절 원본 (신규 3 포함) | — |
 | `_sections/ch{1,3}v22_bib.tex` | 서지 (신규 schmitt2022·artrith2018·verbrugge2017) | — |
 
@@ -17,12 +17,23 @@
 | `Anode_Fit_v1.0.24.py` | 반영 4건: `GRAPHITE_STAGING_XRD_v1024`(@5)·`_regsol_dqdv`+equilibrium 분기(@3)·`LCOCathodeDQDV(include_electronic_entropy)`(토글)·`func_L_q` 단위주석(#1). 기본 경로 bit-exact. |
 | `test_gates_v1024.py` | 회귀 게이트(G1 bit-exact·G2·G3·n(T)·R6 블렌드). |
 | `test_gates_v1024_reflect.py` | 반영 게이트 4종(@5·토글·@3·#1). |
+| `test_gates_v1024_selfconsistent.py` | 부록 E 자기일관 게이트 5종(동결 bit-exact·전달함수 잔차). |
+
+## 공개 실측 검증 + 전수 감사 (R4 후 강화, `Claude/results/comp_v24/`)
+| 파일 | 내용 |
+|---|---|
+| `FIT_CHECK_v1024.md` | 공개 실측 dQ/dV 피팅 재현(@3/@5 실경로): 흑연 0.9731·Si 0.9944·블렌드 0.9848·LCO 0.94–0.9999. 정직 한계. |
+| `final_fit_sintef.png`·`v24_sintef_fit.py` | SINTEF 실측 흑연·Si·블렌드 피팅 그림·스크립트. |
+| `sintef_data/{gr,si,sigr}.csv`·`SOURCES.md` | SINTEF Zenodo 20086298 delith 세그먼트 **영구보존**(재다운로드 불필요). |
+| `AUDIT_v1024_DOC_CODE.md` | **전수 doc↔code 정합 감사**(6에이전트+재검증): BUG 0, 코드버그 1 수정·주석/문서 다수 정정. |
+| `IMPROVEMENT_DIRECTIONS.md` | 모델 개선 후보 랭크(#1 전이 4→6·#2 비대칭폭·#4 정칙용액) — 실측 검증·P5 선택. |
+| `DATA_REGISTRY.md`·`fit_registry.md` | 실측 피팅 데이터 레지스트리(출처·결과·파라미터 분포). |
 
 ## 마감·검증 문서 (`results/`)
 | 파일 | 내용 |
 |---|---|
 | `HANDOVER_v24.md` | **시작점** — 무엇을·핵심결과(정직)·사용법·한계. |
-| `MERGE_READINESS_v24.md` | 9항 게이트(9/9 PASS). |
+| `MERGE_READINESS_v24.md` | 10항 게이트(10/10 PASS · R4 후 공개실측+전수감사로 강화). |
 | `REFLECT_SEED_TABLE.md` | R0 사양 원천(@3/@5/토글/#1/#7 확정물리·값·서지). |
 | `PHASE_R0/R1/R2/R3_RESULT.md` | 단계별 Result(11항). |
 | `V1024_REFLECT_EXECUTION_LEDGER.md` | 실행 원장(12-col, R0–R4). |
