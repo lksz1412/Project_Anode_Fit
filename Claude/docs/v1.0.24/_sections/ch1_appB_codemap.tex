@@ -2,8 +2,7 @@
 % 부록 B — 구현 대응표 (단방향 연계: 구현→식번호)
 % ====================================================================
 \section{곡선 계산 구현 대응표}\label{sec:appendix-code}
-문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.24.py} --- v1.0.19 에서 물리$\cdot$수치
-경로 무변경 이월)의 주석$\cdot$docstring 이 본 장의 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
+문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.24.py})의 주석$\cdot$docstring 이 본 장의 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
 대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(본 장과
 구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade --- 방향 문자열$\cdot$c-rate 를
 식~\eqref{eq:n0map} 으로 환산)와 \code{dqdv}(물리 부호 $s$ 직접 입력)이며, LCO 서브클래스
@@ -96,7 +95,7 @@ config 계수에 동반 전파(Part T 폭 $T$-의존 일반화, \S\ref{sec:mixin
 \code{electronic},\code{x\_center} & 전이 dict & \code{False}, — & 전자항 plug-in 스위치$\cdot$동결 조성 \\
 \code{g\_max\_eV},\code{x\_MIT},\code{dx\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ (출처$\cdot$tier 는 \S\ref{sec:lco-gate}) & MIT 게이트 초기값 (\eqref{eq:ggate}) \\
 \code{\_delith\_is\_discharge} & 클래스 & 흑연 \code{True}/LCO \code{False} & 셀 라벨$\to$탈리튬화 부호 환산 (\eqref{eq:lco-sigmaslot}) \\
-\multicolumn{4}{l}{\emph{— vib Einstein 양자보정(전이 dict, v1.0.18.2; 부재 $=$ 동결 bit-exact) —}}\\
+\multicolumn{4}{l}{\emph{— vib Einstein 양자보정(전이 dict; 부재 $=$ 동결 bit-exact) —}}\\
 \code{theta\_E},\code{theta\_E\_Tref} & 전이 dict & --- $/\,298.15$ & Einstein 온도 $\theta_{E,j}$[K]$\cdot$기준온도 (Part T Einstein 절, \S\ref{sec:einstein}) \\
 \bottomrule
 \end{longtable}
@@ -129,10 +128,9 @@ N2$'$ & \code{func\_U\_j}(동일) \\
 N3$'$ & \code{func\_dU\_hys},\,\code{func\_U\_branch}(LCO 값, 동일 함수) \\
 N5$+$ & \code{func\_dSe\_molar} \\
 N9$'$ & \code{\_effective\_dS\_rxn} \\
-$\bar x$ 진입점 & \code{solve\_U\_oc}(Part T 전하 보존 음함수~\eqref{eq:implicit} 의 유일근 솔버)$\cdot$
+$\bar x$ 진입점 & \code{solve\_U\_oc}(Part T 전하 보존 음함수~\eqref{eq:implicit} 의 유일한 근 솔버)$\cdot$
 \code{entropy\_coefficient\_x}$\cdot$\code{reversible\_heat\_x} --- 조성 $\bar x$ 에서
-$U_\mathrm{oc}\cdot\partial U_\mathrm{oc}/\partial T\cdot\dot Q_\mathrm{rev}$ 를 직접 산출(v1.0.19
-additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 열특성 부록 D) \\
+$U_\mathrm{oc}\cdot\partial U_\mathrm{oc}/\partial T\cdot\dot Q_\mathrm{rev}$ 를 직접 산출(additive --- 기존 $V_n$ 경로 무섭동; 요구명세는 열특성 부록 D) \\
 \bottomrule
 \end{longtable}
 \endgroup

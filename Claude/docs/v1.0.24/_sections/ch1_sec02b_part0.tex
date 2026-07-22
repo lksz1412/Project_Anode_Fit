@@ -41,7 +41,7 @@ $\theta$ 로 미분하면 다음이 나온다 --- 로그 몫 $RT\ln[\theta/(1-\t
 \mu_\mathrm{Li}(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}+\Omega_j\,(1-2\theta).
 \label{eq:mu}
 \end{equation}
-(그림~\ref{fig:sm-mu} 가 이 함수의 세 얼굴이다.) 진행률 $\xi=1-\theta$ 로 옮기면 섞임 몫과
+(그림~\ref{fig:sm-mu} 가 이 함수의 세 가지 개형이다.) 진행률 $\xi=1-\theta$ 로 옮기면 섞임 몫과
 $\theta(1-\theta)=\xi(1-\xi)$ 몫이 모두 $\xi\leftrightarrow1-\xi$ 자리바꿈에 대칭(우함수)이라 조성 몫의 꼴이
 불변이고, 남는 것은 $\mu^0\theta=\mu^0(1-\xi)$ 의 상수$+\xi$-직선(아핀) 몫뿐이다. 아핀 몫은 공통
 접선$\cdot$곡률 판정에 기여하지 않으므로 하나의 기호 $g_j^0(\xi)\equiv\mu^0(1-\xi)$ 로 모아 적는다 ---
@@ -283,9 +283,9 @@ $\theta_\eq=1-\xi_\eq$ 와 중심 $V=U$ 에서 교차한다($\tfrac12$).}
 \S\ref{sec:sm-lattice} 는 동등 자리 $M$ 개의 한 클래스에서 인수분해 $\Xi_M=\Xi_1^{\,M}$ 을 닫았고,
 \S\ref{sec:sm-electro} 는 $\mu$ 를 측정 전위 $V$ 에 결선해 전이 하나의 평형 점유를 logistic 으로 닫았다.
 실제 전극은 전이 하나가 아니라 staging 이 나누는 여러 전이를 동시에 갖는다 --- 이 소절은 두 결과를 전이
-여럿으로 한 줄 넓혀, 본론과 Part T 가 중심식으로 쓰는 전하 보존 음함수가 이 대정준 구조의
-\emph{제약 반전}(constrained inversion)임을 보인다. 도착점은 그 음함수의 통계역학적 기원과 반전 유일근의
-요동 증명이고, 이를 받아 다음 소절(\S\ref{sec:sm-macro})이 사다리를 마감한다.
+여럿으로 한 줄 넓혀, 본론과 Part T 가 중심식으로 쓰는 전하 보존 \emph{음함수}(implicit function)가 이 대정준 구조의
+\emph{제약 반전}(constrained inversion)임을 보인다. 도착점은 그 음함수의 통계역학적 기원과 반전 유일한 근(unique root)의
+fluctuation 증명이고, 이를 받아 다음 소절(\S\ref{sec:sm-macro})이 사다리를 마감한다.
 
 \textbf{(a) 출발 --- ``전이 $j$ $=$ 자리 클래스 $M_j$'' 프레이밍.} \S\ref{sec:sm-lattice} 의
 인수분해~\eqref{eq:sm-factor} 는 자리가 전부 동등하다는 전제 위에 섰다. 실제 전극의 자리는 한 종류가 아니다
@@ -295,7 +295,7 @@ $\tilde\varepsilon_j(T)$ --- 식~\eqref{eq:sm-epstilde} 의 클래스판으로, 
 클래스마다 반복하면 전이 중심 $U_j$ 를 정하는 그 양이다 --- 를 갖는다. 가정 1(hard-core 배타)은 자리마다
 그대로 두고, 가정 2(자리 독립, \S\ref{sec:sm-site})는 클래스 언어로 다시 적는다 --- 클래스 안에서든 클래스
 사이에서든 자리들은 독립이다. 모든 클래스는 \emph{같은} 저장조(그림~\ref{fig:sm-reservoir})와 입자를
-교환하므로 화학퍼텐셜은 $\mu$ 하나뿐이다 --- 전이가 여러 개라도 전극에 거는 전위 손잡이는 하나라는 실험
+교환하므로 화학퍼텐셜은 $\mu$ 하나뿐이다 --- 전이가 여러 개라도 전극에 거는 전위가 하나라는 실험
 구도의 통계역학 쪽 표현이다.
 
 \textbf{(b) 연산 --- 클래스곱 인수분해.} 대정준 합은 독립 자리별 곱으로 갈라지고(\S\ref{sec:sm-lattice} 와
@@ -356,8 +356,8 @@ x$)를 고정하고 그에 맞는 전위를 푼다. 곧 $U_\mathrm{oc}$ 가 식 
 고정-함량 반전의 \emph{정의상 implicit formulation} 이며, 대정준($\mu$ 독립)$\to$정준($\langle N\rangle$
 고정)의 Legendre-켤레 반전이다.
 \begin{verifybox}
-검산 세 건 --- (i) \emph{유일근(요동 양성).} 식~\eqref{eq:sm-mc-occ} 을 $\mu$ 로 미분하면 클래스마다
-요동--응답 관계~\eqref{eq:sm-flucres} 가 반복되어
+검산 세 건 --- (i) \emph{유일한 근(fluctuation positivity).} 식~\eqref{eq:sm-mc-occ} 을 $\mu$ 로 미분하면 클래스마다
+fluctuation--response 관계~\eqref{eq:sm-flucres} 가 반복되어
 \begin{equation}
 \frac{\partial\langle N\rangle}{\partial\mu}
 =\beta\sum_{j=1}^{N_p}M_j\,\theta_j(1-\theta_j)
@@ -369,15 +369,15 @@ $\partial\langle N\rangle/\partial\mu=\beta[\langle N^2\rangle-\langle N\rangle^
 \cite{mcquarrie1976}. 유한 $T$ 에서 $0<\theta_j<1$ 라 부등호가 강하고, 결선~\eqref{eq:sm-eqcond}($s{=}+1$)이
 $\mu$ 를 $V$ 의 단조 아핀 함수로 놓으므로 박스~\eqref{eq:sm-mc-balance} 좌변은 $U_\mathrm{oc}$ 에 연속
 순증이며 $U_\mathrm{oc}\to\mp\infty$ 에서 $0/Q$ 로 간다 --- $\bar x\in(0,1)$ 마다 근이 존재하고 유일하다.
-입자수 요동의 양성이 유일근을 보증한다는 이 한 줄이 Part T 의 계산(그 파트의 유일근 서술, \S\ref{ssec:overlap})의 통계역학
-증명이고, 단일 자리 요동~\eqref{eq:sm-flucres} 의 거시판이다. 가드 --- 평균장 이중웰($\Omega_j>2RT$,
+입자수 fluctuation 의 positivity 가 유일한 근을 보증한다는 이 한 줄이 Part T 의 계산(그 파트의 유일한 근 서술, \S\ref{ssec:overlap})의 통계역학
+증명이고, 단일 자리 fluctuation~\eqref{eq:sm-flucres} 의 거시판이다. 가드 --- 평균장 이중웰($\Omega_j>2RT$,
 식~\eqref{eq:sm-thresh})의 비단조 등온선 가지(그림~\ref{fig:sm-mu})는 이 보증의 밖이고 그 창의 분기 구성은
 \S\ref{sec:hys} 소관이며, 본론과 Part T 가 반전에 실제로 쓰는 전이별 logistic 서식(폭 $w_j$ 의 이중지위는
 \S\ref{sec:width})은 항마다 강단조라 보증 안이다. (ii) \emph{확장 off --- $N_p=1$ 회수.} 클래스가 하나면
 \eqref{eq:sm-mc-factor} 는 $\Xi=\Xi_1^{\,M}$~\eqref{eq:sm-factor} 로, \eqref{eq:sm-mc-occ} 는
 $\langle N\rangle=M\theta$(\S\ref{sec:sm-lattice})로 정확히 되돌아가고, 박스~\eqref{eq:sm-mc-balance} 는
 $\xi_\eq=\bar x$ --- 전이 하나의 진행률이 곧 추출 분율이라는 좌표 항등 --- 으로 줄어 그 닫힌 역이 다음 소절의
-Nernst 식이다($N_p\ge2$ 겹침에서는 닫힌 역이 없어 수치 유일근만 남는다). (iii) \emph{부호 읽기.}
+Nernst 식이다($N_p\ge2$ 겹침에서는 닫힌 역이 없어 수치 유일한 근만 남는다). (iii) \emph{부호 읽기.}
 \eqref{eq:sm-eqcond} 로 지수 $\beta(\tilde\varepsilon_j-\mu)$ 는 몰당 $+F(V-U_j)/RT$($s{=}+1$)로 환산되어
 $V\!\uparrow\Rightarrow\theta_j\!\downarrow\Rightarrow\sum_jQ_j\xi_{\eq,j}\!\uparrow$ --- 전위를 올리면 추출이
 진행한다는 \S\ref{sec:sm-electro} 의 부호 검산과 같은 방향이고, $\bar x$ 고정에서 $\mu$ 를 푸는 일은 곧 $V$
@@ -385,24 +385,24 @@ $V\!\uparrow\Rightarrow\theta_j\!\downarrow\Rightarrow\sum_jQ_j\xi_{\eq,j}\!\upa
 \end{verifybox}
 
 \begin{bgbox}
-\textbf{앙상블 동등성 --- 상대 요동의 $1/\sqrt{M}$ 소멸.} \S\ref{sec:sm-lattice} 는 대정준 경로(자리 하나의
+\textbf{앙상블 동등성 --- 상대 fluctuation 의 $1/\sqrt{M}$ 소멸.} \S\ref{sec:sm-lattice} 는 대정준 경로(자리 하나의
 확률)와 셈법 경로(배치 수의 로그)가 같은 $\mu(\theta)$ 에 닿는 것을 \emph{앙상블 동등성}이라 불렀고
 (식~\eqref{eq:sm-mucount}), 이 소절은 고정 함량 반전을 대정준$\to$정준 Legendre 반전으로 닫았다. 두 앙상블이
-같은 열역학을 주는 근거가 방금 계산한 요동에 있다. 식~\eqref{eq:sm-mc-fluc} 로 입자수 분산은 자리 수에
+같은 열역학을 주는 근거가 방금 계산한 fluctuation 에 있다. 식~\eqref{eq:sm-mc-fluc} 로 입자수 분산은 자리 수에
 비례하고($\mathrm{var}(N)=\sum_jM_j\theta_j(1-\theta_j)=O(M)$, $M\equiv\sum_jM_j$) 평균도 자리 수에
-비례하므로($\langle N\rangle=\sum_jM_j\theta_j=O(M)$, 식~\eqref{eq:sm-mc-occ}), \emph{상대} 요동은
+비례하므로($\langle N\rangle=\sum_jM_j\theta_j=O(M)$, 식~\eqref{eq:sm-mc-occ}), \emph{상대} fluctuation 은
 \[
 \frac{\sqrt{\mathrm{var}(N)}}{\langle N\rangle}\ \sim\ \frac{1}{\sqrt{M}}
 \ \xrightarrow[\ M\to\infty\ ]{}\ 0
 \]
 로 거시 자리 수 $M$(마이크론 흑연 입자에서 $M\gg10^{8}$)에서 소멸한다. 곧 $\mu$ 를 고정하면 --- 대정준에서
-$\langle N\rangle$ 이 요동하더라도 --- 함량이 사실상 한 값에 못박혀, $N$ 을 고정한 정준 기술과 같은 강도적
+$\langle N\rangle$ 에 fluctuation 이 있더라도 --- 함량이 사실상 한 값에 고정되어, $N$ 을 고정한 정준 기술과 같은 강도적
 열역학을 준다. 대정준($\mu$ 독립)으로 세든 정준($\bar x$ 고정)으로 세든 결과가 같다는 앙상블 동등성이 이
 소멸의 따름이며 \cite{hill1960,mcquarrie1976}, 이 소절의 반전이 대정준 근 $U_\mathrm{oc}$ 를 정준 관측(고정
 $\bar x$)으로 읽어도 되는 근거다 --- $\sqrt{\mathrm{var}(N)}/\langle N\rangle$ 이 곧 $U_\mathrm{oc}$ 를
 흐리는 함량 폭인데, 그 폭이 거시 $M$ 에서 소멸하기 때문이다. \emph{한정} --- 이 소멸은 자리
 독립(식~\eqref{eq:sm-mc-factor})의 인수분해 전제 위에서다; 평균장 이중웰($\Omega_j>2RT$,
-식~\eqref{eq:sm-thresh})의 상분리 창은 강상관 영역이라 요동이 거시적으로 자라 상대 요동이 $1/\sqrt{M}$ 로 죽지
+식~\eqref{eq:sm-thresh})의 상분리 창은 강상관 영역이라 fluctuation 이 거시적으로 자라 상대 fluctuation 이 $1/\sqrt{M}$ 로 죽지
 않으며, 그 창의 분기 구성은 \S\ref{sec:hys} 소관이다(본론과 Part T 가 반전에 실제로 쓰는 전이별 강단조
 서식은 이 소멸 안).
 \end{bgbox}
@@ -462,10 +462,10 @@ V_\eq(\xi)=U_j+\frac{RT}{sF}\,\ln\frac{\xi}{1-\xi}
 
 \begin{keybox}
 \textbf{Part 0 사다리.} 등확률~\eqref{eq:sm-S} $\to$ Gibbs 인자·$\Xi$~\eqref{eq:sm-gc} $\to$ 단일 자리
-$\theta$~\eqref{eq:fermifn}·요동~\eqref{eq:sm-flucres} $\to$ lattice gas·섞임 엔트로피~\eqref{eq:sm-Smix}
+$\theta$~\eqref{eq:fermifn}·fluctuation~\eqref{eq:sm-flucres} $\to$ lattice gas·섞임 엔트로피~\eqref{eq:sm-Smix}
 $\to$ 평균장 $\Omega$~\eqref{eq:mu}·\eqref{eq:gxi}·문턱~\eqref{eq:sm-thresh} $\to$ 전위
-손잡이~\eqref{eq:sm-eqcond} $\to$ logistic~\eqref{eq:sm-logistic} $\to$ 다클래스 전하 보존
-반전~\eqref{eq:sm-mc-balance}($\langle N\rangle{=}\sum_jM_j\theta_j$ 의 유일근 $U_\mathrm{oc}$)
+결선~\eqref{eq:sm-eqcond} $\to$ logistic~\eqref{eq:sm-logistic} $\to$ 다클래스 전하 보존
+반전~\eqref{eq:sm-mc-balance}($\langle N\rangle{=}\sum_jM_j\theta_j$ 의 유일한 근 $U_\mathrm{oc}$)
 $\to$ Nernst~\eqref{eq:sm-nernst}. 본론이 결과로
 쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(N1--N9) 순서로
 다시 밟는다.

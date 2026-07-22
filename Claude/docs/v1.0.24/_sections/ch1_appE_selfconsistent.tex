@@ -20,7 +20,7 @@
 \textbf{적용 범위 --- 동역학 지연에만.} 본 부록의 ratio 닫힘$\cdot$전달함수는 \emph{동역학 지연}
 (\S\ref{sec:lag}--\S\ref{sec:tail}, 아래에서 밝히는 비선형 Volterra 자기일관)에만 적용된다. 전하 보존
 $U_\oc$ 반전(식~\eqref{eq:sm-mc-balance} 의 단조 대수 근, 그리고 블렌드 장의 이중합 반전)과 배경 자기일관
-($Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 의 대수 순환)은 \emph{적분핵이 없는 대수 근찾기}이며, 요동 양성
+($Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 의 대수 순환)은 \emph{적분핵이 없는 대수 근찾기}이며, fluctuation positivity
 $\partial\langle N\rangle/\partial\mu>0$(\S\ref{sec:eqpeak})이 유일성을 보증하는 가운데 Newton$\cdot$이분으로
 \emph{이미 저렴$\cdot$정확}하게 풀린다. 곧 이 기법의 대상이 아니다 --- 대수 근에 적분방정식 기계를 얹는 것은
 과장이므로 여기서 명시적으로 배제한다.
@@ -65,10 +65,10 @@ r(V)=\int_{-\infty}^{V}\sigma(u)\,\exp\!\Big[-\!\int_u^V\kappa\big(\xi(V')\big)\
 \end{equation}
 
 \begin{bgbox}
-\textbf{사용자 논문과의 구조 차이(정직).} 논문 \cite{lee2017jcp} 의 대상은 \emph{고정 구간}$\cdot$양측 결합의 제2종
+\textbf{사용자 논문과의 구조 차이.} 논문 \cite{lee2017jcp} 의 대상은 \emph{고정 구간}$\cdot$양측 결합의 제2종
 \emph{Fredholm} 방정식(Eq.~32)인 반면, 문건의 지연은 \emph{가변 상한}$\cdot$인과 1측의 \emph{Volterra}(식~\eqref{eq:sc-volterra-eq})
 이고, 그 지수핵은 rank-1(Markov)이라 \emph{등가 국소형이 1계 ODE}(식~\eqref{eq:sc-true})다. 곧 리터럴한 Fredholm
-기계장치의 이식은 성립하지 않는다 --- 이식되는 것은 Eq.~34 의 \emph{철학}(미지량을 비로 남기고 그 비를 가해 기준의
+형식의 이식은 성립하지 않는다 --- 이식되는 것은 Eq.~34 의 \emph{철학}(미지량을 비로 남기고 그 비를 가해 기준의
 비로 치환)뿐이며, 아래 \S\ref{sec:sc-ratio} 가 그 철학이 Volterra 위에서 성립함을 보인다.
 \end{bgbox}
 
@@ -122,7 +122,7 @@ $\tfrac14$ 로 감소 확인) --- ratio 치환이 선행 차수 오차를 제거
   미지 비 $\leftrightarrow$ 보정비 $R$(식~\eqref{eq:sc-split}); 온사거 척도 $r_c\leftrightarrow$ 동결 $L_V^{(0)}$; 접촉 반응성
   $\sigma_{\text{sink}}\leftrightarrow$ 핵 지지폭 $L_V/w$.
 \item[\textbf{⑤\ 물리 가정 차(그대로 이식 금지).}] (1) \emph{종이 다름} --- Fredholm(전역$\cdot$양측) vs Volterra(인과$\cdot$1측
-  $=$Markov): 문건은 등가 국소 ODE 라 값싼 전진해가 존재하므로 ratio 의 \emph{계산 동기}가 전이되지 않는다(아래 정직 주). (2)
+  $=$Markov): 문건은 등가 국소 ODE 라 저렴한 전진해가 존재하므로 ratio 의 \emph{계산 동기}가 전이되지 않는다. (2)
   \emph{되먹임 경로} --- 논문은 $\bar W$ 가 적분 안, 문건은 $\xi$ 가 \emph{감쇠율 $\kappa$ 안}(지수적)이라 선형화가 곧
   ``기준 궤적 대입''(식~\eqref{eq:sc-ratio-local}). (3) \emph{소파라미터} --- 논문 Sec.~III 타당성 $\leftrightarrow$ 문건
   $\varepsilon$(식~\eqref{eq:sc-valid}); 고전류$\cdot$강 $\Omega$ 에서 붕괴. (4) \emph{규격} --- 논문 $\bar W\in[0,1]$ 확률 vs
@@ -130,11 +130,11 @@ $\tfrac14$ 로 감소 확인) --- ratio 치환이 선행 차수 오차를 제거
 \end{enumerate}
 
 \begin{keybox}
-\textbf{정직 프레임(P1 조건검수).} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{참 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
---- 동결 0차$\cdot$1차 ratio$\cdot$참 비선형 Picard 수렴이 모두 $\mathcal O(N)$. 따라서 이 이식의 값어치는 논문에서의
+\textbf{이식의 실이득.} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{참 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
+--- 동결 0차$\cdot$1차 ratio$\cdot$참 비선형 Picard 수렴이 모두 $\mathcal O(N)$. 따라서 이 이식의 의의는 논문에서의
 ``전역 역산 회피(계산 절감)''가 \emph{아니라}, (i) 동결 근사 위의 \emph{분석적 1차 닫힌형}(식~\eqref{eq:sc-ratio}),
 (ii) 동결이 언제 옳은지를 정량하는 \emph{타당성 증명서}(식~\eqref{eq:sc-valid}), (iii) 사용자 방법의 문건 내 시연 ---
-이 셋이다. ``수치 인과기억 루프를 계산 절감으로 대체''로 읽지 말 것.
+이 셋이다. 이는 ``수치 인과기억 루프를 계산 절감으로 대체''를 뜻하지 않는다.
 \end{keybox}
 
 \subsection{타당성 부등식 --- 동결 근사의 안전 증명서}\label{sec:sc-valid-sub}
@@ -155,7 +155,7 @@ $\varepsilon=0.125$ 에서 $\approx0.17$, $\varepsilon=0.25$ 에서 $\approx0.47
 \toprule
 논문 Sec.~III 타당성 & 물리 의미 & 문건 대응(lag) \\
 \midrule
-(i) 비등방 섭동 $K$ 과대 아님 & 기준 이탈이 소섭동 & 상태의존 $\delta\kappa$ 가 동결률 $\kappa_0$ 의 소섭동 ($2\chi_d(\Omega/RT)\Delta\xi_{\text{supp}}\ll1$) \\
+(i) 비등방 섭동(perturbation) $K$ 과대 아님 & 기준 이탈이 소섭동 & 상태의존 $\delta\kappa$ 가 동결률 $\kappa_0$ 의 소섭동 ($2\chi_d(\Omega/RT)\Delta\xi_{\text{supp}}\ll1$) \\
 (ii) 온사거 척도 $r_c$ 지배 & 가해 기준이 지배 물리 포착 & 동결 $L_V^{(0)}$ 지배, $\Omega$ 변조는 하위 보정 \\
 (iii) 접촉 반응성 소(단거리 싱크) & 싱크 단거리 $\to$ $\delta$-기준 지배 & 기억핵 단거리 $L_V/w\to0$ 이면 $\varepsilon\to0$ \\
 (iii$'$) ``반응대 넓어짐 $\to$ 악화'' & 싱크 광역화 & 고전류 $L_V\!\uparrow(\propto|I|)$ $\to$ $\Delta\xi_{\text{supp}}\!\sim\!\mathcal O(1)$ $\to$ $\varepsilon\!\sim\!\mathcal O(1)$ \\
@@ -187,7 +187,7 @@ $\dd Q/\dd V$ 가 선형 범함수라 그 자체가 같은 $H$ 로 필터된다.
 인과 합성곱(\code{\_causal\_memory\_pointwise})을 상대 RMS $3.96\times10^{-6}$ 로 재현($\omega_c$$\cdot$반출력점 정합).
 한 문장으로: \emph{관측 $\dd Q/\dd V$ 는 평형 곡선을 (상태의존) 저역통과 필터에 통과시킨 것}이다.
 
-\emph{1차의 주파수 해석(정직).} 상태의존 $\kappa(\xi_0(V))$ 는 병진불변을 깨므로 단일 $H$ 가 없다 --- 극점 $1/L_V$ 가
+\emph{1차의 주파수 해석.} 상태의존 $\kappa(\xi_0(V))$ 는 병진불변을 깨므로 단일 $H$ 가 없다 --- 극점 $1/L_V$ 가
 $V$ 를 따라 완만히 이동하는 공간변조 저역통과다. $\varepsilon\ll1$ 에서 극점 변조가 소섭동이라 ``약하게 처프된 1차
 필터''로 읽히고, $\varepsilon\sim1$ 에서 필터 개념 자체가 붕괴한다(강 비선형).
 

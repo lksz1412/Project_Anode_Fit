@@ -103,12 +103,12 @@ P_i=\frac{e^{-\beta(E_i-\mu N_i)}}{\Xi},\qquad
 \label{fig:sm-reservoir}
 \end{figure}
 
-\subsection{단일 삽입 자리 --- 점유 통계와 그 요동}\label{sec:sm-site}
+\subsection{단일 삽입 자리 --- 점유 통계와 fluctuation}\label{sec:sm-site}
 앞 소절이 놓은 대정준 도구(식~\eqref{eq:sm-gc})를 가장 작은 계 --- 격자의 삽입 자리 \emph{하나} --- 에
 적용한다. 자리는 전해질 너머의 Li 저장조와 입자를 교환하므로 식~\eqref{eq:sm-gc} 의 대정준 설정 그대로다.
 전개는 두 단으로 놓는다 --- 먼저 이온을 내부 구조 없는 점입자로 이상화한 두-상태 원형을 표준 유도
 그대로 닫고, 이어 점유 이온의 진동 자유도를 켠 확장이 같은 함수형으로 되돌아옴을 보인 뒤, 점유의
-요동까지 읽는다. 도착점인 점유율 $\theta$ 와 유효 자리 자유에너지 $\tilde\varepsilon(T)$ 는
+fluctuation 까지 읽는다. 도착점인 점유율 $\theta$ 와 유효 자리 자유에너지 $\tilde\varepsilon(T)$ 는
 \S\ref{sec:sm-lattice} 의 lattice gas 와 \S\ref{sec:sm-electro} 의 전기화학 결선이 받는 입력이다.
 
 \textbf{(a) 출발 --- 두 가정과 원형의 두-상태 목록.} 유도에 앞서 두 가정을 명시한다.
@@ -155,7 +155,7 @@ $P_0=1/\Xi_1^{0}$·$P_1=e^{-\beta(\varepsilon_0-\mu)}/\Xi_1^{0}$ 이고, 평균 
 \end{equation}
 이 두-상태 대정준 유도는 국소화 흡착(localized adsorption)의 Langmuir 등온선 표준 유도
 그대로이고 \cite{hill1960,fowler1939}, 삽입 전극에의 적용 원형은 McKinnon--Haering
-\cite{mckinnon1983} 이다. 식~\eqref{eq:sm-bare} 의 $\langle n\rangle^{0}$ 은 준위 하나의 평균 전자 점유를
+\cite{mckinnon1983} 이다. 식~\eqref{eq:sm-bare} 의 $\langle n\rangle^{0}$ 은 준위(state) 하나의 평균 전자 점유를
 주는 Fermi--Dirac 함수 $f(E)=1/(e^{\beta(E-\mu)}+1)$ 에서 $E$ 자리에 $\varepsilon_0$ 이 앉은 것과
 \emph{동형}이다 --- 이 대응의 물리적 배경(페르미온$\cdot$보손의 양자 통계)은 별도의 배경 박스가
 자족적으로 정리한다.
@@ -302,15 +302,14 @@ $\tilde\varepsilon\to\varepsilon_0$·$\Delta\mu\to\varepsilon_0-\mu_\mathrm{Li}$
 이온 하나라는 기하다.
 \end{verifybox}
 
-한 걸음 더 --- $n\in\{0,1\}$ 라 $n^2=n$ 이므로 점유의 요동(분산)이 닫힌 꼴로 나온다:
+한 걸음 더 --- $n\in\{0,1\}$ 라 $n^2=n$ 이므로 점유의 fluctuation(분산)이 닫힌 꼴로 나온다:
 \begin{equation}
 \mathrm{var}(n)=\langle n^2\rangle-\langle n\rangle^2=\theta(1-\theta),
 \qquad
 \frac{\partial\theta}{\partial(\beta\mu)}=\theta(1-\theta)
 \label{eq:sm-flucres}
 \end{equation}
-(둘째 식은 식~\eqref{eq:fermifn} 의 $\beta\mu$ 미분). \emph{점유의 $\mu$-감도 $=$ 점유 요동} --- 요동--응답
-(fluctuation--response) 관계의 최소 사례이고, 본론 평형 peak 의 종 $\xi_\eq(1-\xi_\eq)$(\S\ref{sec:eqpeak})의
+(둘째 식은 식~\eqref{eq:fermifn} 의 $\beta\mu$ 미분). \emph{점유의 $\mu$-감도 $=$ 점유 fluctuation} --- fluctuation--response 관계의 최소 사례이고, 본론 평형 peak 의 종 $\xi_\eq(1-\xi_\eq)$(\S\ref{sec:eqpeak})의
 통계적 정체가 바로 이 분산이다.
 
 유효 자리 자유에너지 $\tilde\varepsilon(T)$ 가 하류에서 가는 곳은 두 갈래다. 첫째, 온도를 고정하고 보면
@@ -335,13 +334,13 @@ $-\hbar\omega/(2k_B)$ 이므로 온도 미분, 곧 엔트로피는 동일하다.
 $\dd U_j/\dd T=\Delta S_{\rxn,j}/F$(\S\ref{sec:center})에서 진동
 엔트로피가 차지하는 몫의 미시적 기원이 바로 $\tilde\varepsilon(T)$ 의 온도 의존, 곧 $q(T)$ 다.
 
-자리 하나가 준 답 --- 점유율 $\theta$, 요동 $\theta(1-\theta)$, 유효 자리 자유에너지
+자리 하나가 준 답 --- 점유율 $\theta$, fluctuation $\theta(1-\theta)$, 유효 자리 자유에너지
 $\tilde\varepsilon(T)$ --- 을 손에 쥐었으므로, 다음 소절은 같은 답을 $M$ 개의 독립 자리로 복제해 거시
 점유율과 섞임 엔트로피로 넓힌다.
 
 \subsection{$M$ 개의 독립 자리 --- lattice gas 와 섞임 엔트로피}\label{sec:sm-lattice}
 \textbf{(a) 출발 --- 동등·독립 자리의 집합.} 결정 안에 동등한 삽입 자리가 $M$ 개 있고 서로 상호작용하지
-않는다고 하자 --- 이 모형이 \emph{격자기체}(lattice gas)의 이상 극한이다. 미시상태는 점유 배열
+않는다고 가정한다 --- 이 모형이 \emph{격자기체}(lattice gas)의 이상 극한이다. 미시상태는 점유 배열
 $(n_1,\dots,n_M)$($n_k\in\{0,1\}$, 가정 1)에 각 점유 자리의 내부 배치가 붙은 것이고, $N=\sum_kn_k$ 다.
 
 \textbf{(b) 연산 --- 분배함수의 인수분해.} 자리들이 독립(가정 2)이라 대정준 합이 자리별 곱으로 갈라지고,
@@ -372,7 +371,7 @@ $\tilde\varepsilon$, 식~\eqref{eq:sm-epstilde})를 $N$ 으로 미분하면
 한편 식~\eqref{eq:fermifn} 를 $\mu$ 에 대해 뒤집어도($e^{\beta\Delta\mu}=(1-\theta)/\theta$) 같은
 식~\eqref{eq:sm-mucount} 가 나온다 --- 대정준 경로(자리 하나의 확률)와 셈법 경로(배치 수의 로그)가 같은
 $\mu(\theta)$ 에 닿는 것이 앙상블 동등성이며, 본론 \S\ref{sec:dist} 가 말하는 ``kinetic·thermo 두 경로가 한
-분포의 두 얼굴''의 평형 쪽 절반이 바로 이것이다.
+분포의 두 측면''의 평형 쪽 절반이 바로 이것이다.
 
 \textbf{(d) 박스 --- 몰 단위 이상 lattice gas 화학퍼텐셜.} 자리당 $k_B$·$\tilde\varepsilon$ 을 몰당
 $R=N_Ak_B$·$\mu^0\equiv N_A\tilde\varepsilon$ 으로 환산하면
