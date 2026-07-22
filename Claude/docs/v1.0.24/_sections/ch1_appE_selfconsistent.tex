@@ -107,27 +107,27 @@ $\tfrac14$ 로 감소 확인) --- ratio 치환이 선행 차수 오차를 제거
 
 \subsection{ref.\ 방법론 도입 기록 --- 서지$\cdot$위치$\cdot$구조$\cdot$매핑$\cdot$가정차}\label{sec:sc-p35}
 외부 방법론을 도입할 때 요구되는 다섯 항을 분리 기록한다.
-\begin{enumerate}
-\item[\textbf{①\ 서지.}] 적용 논문 = K.~Lee, S.~Lee, C.~H.~Choi, S.~Lee, \emph{J.\ Chem.\ Phys.} \textbf{147}, 144111 (2017)
+\begin{itemize}[leftmargin=1.7em,itemsep=0.4em,label={}]
+\item \textbf{①\ 서지.} 적용 논문 = K.~Lee, S.~Lee, C.~H.~Choi, S.~Lee, \emph{J.\ Chem.\ Phys.} \textbf{147}, 144111 (2017)
   \cite{lee2017jcp}. 원 방법론(제2종 Fredholm 의 효율 해법) = \textbf{Ref.~6} \cite{lee2011jcp}$\cdot$\textbf{Ref.~7} \cite{son2013jcp}.
-\item[\textbf{②\ 논문 내 사용 위치.}] \cite{lee2017jcp}: Eq.~(32)=지연 재결합쌍 $\bar W_u(r)$ 의 제2종 Fredholm; Eq.~(33)=형식
+\item \textbf{②\ 논문 내 사용 위치.} \cite{lee2017jcp}: Eq.~(32)=지연 재결합쌍 $\bar W_u(r)$ 의 제2종 Fredholm; Eq.~(33)=형식
   정확해(미지량을 비로 고립); Eq.~(34)=결정적 근사(미지 비 $\to$ $\delta$-싱크 가해기준 비 Eqs.~37$\cdot$38, 닫힌형
   Eq.~25); 타당성 = Sec.~III. 원 유도는 Refs.~6$\cdot$7. \emph{(페이지$\cdot$문단 세부는 원문 대조로 확정 --- 본 판은 방법
   구조 기준.)}
-\item[\textbf{③\ 원 방법론 수학 구조.}] $[\text{상수}]-f(r)=\int K(r,r_1)f(r_1)\dd r_1$(미지 $f$ 선형$\cdot$상수원)에서
+\item \textbf{③\ 원 방법론 수학 구조.} $[\text{상수}]-f(r)=\int K(r,r_1)f(r_1)\dd r_1$(미지 $f$ 선형$\cdot$상수원)에서
   $f(r)$ 로 나눠 미지를 \emph{비} $f(r_1)/f(r)$ 로 고립 $\Rightarrow f(r)=1/[1+\int K\,(\text{비})\dd r_1]$. 그 비를 가해
   기준문제 비 $f^0(r_1)/f^0(r)$ 로 치환 $\Rightarrow$ 닫힌형. 근거 = 비는 함수보다 근사에 둔감.
-\item[\textbf{④\ 변수 매핑(graphite lag).}] $\bar W_u(r)\leftrightarrow$ 지연 $r(V)$; 적분핵 $K\leftrightarrow$ 기억핵
+\item \textbf{④\ 변수 매핑(graphite lag).} $\bar W_u(r)\leftrightarrow$ 지연 $r(V)$; 적분핵 $K\leftrightarrow$ 기억핵
   $\exp[-\int\kappa\,\dd V']$; \emph{가해 기준}($\delta$-싱크 Eq.~25)$\leftrightarrow$ 동결 합성곱 $r_0$(식~\eqref{eq:sc-ref});
   미지 비 $\leftrightarrow$ 보정비 $R$(식~\eqref{eq:sc-split}); 온사거 척도 $r_c\leftrightarrow$ 동결 $L_V^{(0)}$; 접촉 반응성
   $\sigma_{\text{sink}}\leftrightarrow$ 핵 지지폭 $L_V/w$.
-\item[\textbf{⑤\ 물리 가정 차(그대로 이식 금지).}] (1) \emph{종이 다름} --- Fredholm(전역$\cdot$양측) vs Volterra(인과$\cdot$1측
+\item \textbf{⑤\ 물리 가정 차(그대로 이식 금지).} (1) \emph{종이 다름} --- Fredholm(전역$\cdot$양측) vs Volterra(인과$\cdot$1측
   $=$Markov): 문건은 등가 국소 ODE 라 저렴한 전진해가 존재하므로 ratio 의 \emph{계산 동기}가 전이되지 않는다. (2)
   \emph{되먹임 경로} --- 논문은 $\bar W$ 가 적분 안, 문건은 $\xi$ 가 \emph{감쇠율 $\kappa$ 안}(지수적)이라 선형화가 곧
   ``기준 궤적 대입''(식~\eqref{eq:sc-ratio-local}). (3) \emph{소파라미터} --- 논문 Sec.~III 타당성 $\leftrightarrow$ 문건
   $\varepsilon$(식~\eqref{eq:sc-valid}); 고전류$\cdot$강 $\Omega$ 에서 붕괴. (4) \emph{규격} --- 논문 $\bar W\in[0,1]$ 확률 vs
   문건 $r$ 유계 지연(양수성은 \S\ref{sec:tail} 이 별도 보증).
-\end{enumerate}
+\end{itemize}
 
 \begin{keybox}
 \textbf{이식의 실이득.} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{참 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
