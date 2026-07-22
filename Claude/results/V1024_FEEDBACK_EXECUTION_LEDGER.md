@@ -10,7 +10,7 @@
 | FB1 | 6-11 | 6-11 | code | F-11 코드=부록 정리(전역·최우선)+재발 grep 게이트 | PASS | 〃 | `PHASE_FB1_RESULT.md` | 8 tex 편집(gr2L·lcoomega·sifr·cases·blend·notation·sec05_code·bib)+마스터 `\appendix` | 본문 코드토큰 grep=0 · 빌드 91/28/20 0-err·0-undef · §3.5 부록이전 참조무결 · Fig2 캡션 물리 · **F-09 식2.39 overflow 부수해소** · 코드 sha256 무변경 | PASS_FB1_CODE_TO_APPENDIX | 12 |
 | FB2 | 12-14 | 12-14 | typeset | F-06 조판 전역(preamble) | PASS | 〃 | `PHASE_FB2_RESULT.md` | `common_preamble_v1024.tex`(여백25·줄간1.16·문단0.55·microtype)·`fb2_compare.png` | 빌드 98/30/21 0-err·0-undef · 전/후 렌더 밀도↓ · 단일 소스 정합 · 페이지수 91→98·28→30·20→21 | PASS_FB2_TYPESET | 15 |
 | FB3 | 15-24 | 15-24 | authoring | F-04 register+F-05 제목+F-10 용어 전역(4서브 G1-G4+master 통합) | PASS | 〃 | `PHASE_FB3_RESULT.md` | 25 tex(제목31·G1흑연본문·G2 LCO·G3 PartT·G4 Ch3+부록)+master 용어통일(음함수 국문복원·요동/양성 영문·유일근 풀어쓰기·정직한한계→적용·sec04 self-diff 평서화) | 빌드 98/30/21 0-err·undefined ref/cite 0 · full-diff invariant 4종(eq/label키/주석/xref키 변경 0) · 용어 running-form grep 통일 · register offender(survival술어·판번호·정직형용사) 소거 · TOC 5쌍 정합 | PASS_FB3_REGISTER_TERM | 25 |
-| FB4 | 25-30 | — | notation | F-02+F-03+F-05 노테이션 | 대기 | 〃 | — | — | — | — | — |
+| FB4 | 25-30 | 25-28 | notation | F-02 확률/압력 P 충돌+F-03 식1.21 f 명료화+F-05 잔여 제목 N-태그 | PASS | 〃 | `PHASE_FB4_RESULT.md` | ch1_sec02a(확률 P→p 11곳·f_int 자리당 가드)·ch1_sec01_n0n1(제목 N0/N1 태그 2건 제거) | aux로 식1.6/1.7/1.21 매핑 확정 · 확률 P 단일파일 국한+PartT 소문자 p 기존→개명이 정합↑(B5 divergence 1회 flag) · 압력 P 불변 · 빌드 98/30/21 0-err · label/식번호 불변 | PASS_FB4_NOTATION | 29 |
 | FB5 | 31-35 | — | overflow | F-07+F-09+전역 overflow | 대기 | 〃 | — | — | — | — | — |
 | FB6 | 36-39 | — | content | F-01+F-08 국소 | 대기 | 〃 | — | — | — | — | — |
 | FB7 | 40-46 | — | closeout | 검증·N회 적대검수·마감 | 대기 | 〃 | — | — | — | — | — |
