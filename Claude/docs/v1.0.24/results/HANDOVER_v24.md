@@ -71,3 +71,18 @@ R4 마감 이후 다음을 추가 수행했다(전부 반영·검증·커밋·ma
 - **최종 검증**: 게이트 전건 GREEN(G1 bit-exact 0.0·reflect **4/4**·self-consistent **5/5**·R6 **3/3**) · 빌드 GREEN(ch1 91p·ch2 28p·ch3 20p·0 err·0 undefined ref). **코드=문건=주석 전면 정합.**
 
 - **흑연 6-gallery 고분해능 opt-in 추가 (IMPROVEMENT #1)**: 문헌 6-gallery MSMR(`GRAPHITE_STAGING_MSMR6_LIT`, ad2061 ω_j·U0_j)를 **additive opt-in** 으로 추가 — 기본 4전이 bit-exact 무변경(G1 0.0 보존). 해상도 사다리 {4-전이(기본)·5-feature XRD·6-gallery MSMR}. 문건 §5b 에 gallery≠물리상 구분 명시(6+ 별개 상은 XRD 미지원 폐기·gallery 표현은 정당). 검증: 전이6·유한·비음·ω 검산 정확·게이트 전건 GREEN.
+
+---
+
+## 6. FB 1차 정독 피드백 리비전 (FB0~FB7, 2026-07-22)
+
+R4 마감 후 사용자 1차 정독 피드백(F-01~F-11)을 **문건 한정**으로 리비전(코드 bit-exact 무변경). 상세 = `Claude/results/V1024_FEEDBACK_EXECUTION_LEDGER.md`.
+
+- **FB1(F-11)** 코드=부록: 본문 코드 함수명 → 부록 전용(grep **0**). → CLAUDE.md P3-8 게이트 명문화(재발 방지).
+- **FB2(F-06)** 조판: 여백 25mm·줄간 1.16·문단 0.55em·microtype.
+- **FB3(F-04·05·10)** register+제목+용어: 수필체·survival 술어·판번호·자기-diff·정직 형용사 평서화; 제목 N-태그 제거(~33); **요동/양성→영문**(body 0)·**음함수/섭동/준위→국문+첫 병기**·유일근→"유일한 근".
+- **FB4(F-02·03)** 노테이션: 확률 **P→소문자 p**(압력 P 유지·Part T 소문자 p 와 정합)·f_int 자리당 vs Helmholtz F 가드.
+- **FB5(F-07·09)** overflow: E.3 서지 리스트 off-page(itemize 전환)·식2.39 재확인·**전역 픽셀-스캔 149쪽**으로 실 overflow 3건 추가 수정(Table11 `l l l l`→p{}·식2.18 주석 축약·식2.36 multline).
+- **FB6(F-01·08)** 내용: §1.1.4 배경 박스 압축(~50%↓·인용 5종 보존)·LCO장 서두+제목 **차이-선도**(σ_d·order-disorder·전자항) 재균형.
+- **빌드**: ch1 **97p**·ch2 **30p**·ch3 **21p**(0-err·undefined ref/cite 0). 코드 sha256 **f230f59b** 불변. **물리·식번호·label 정의 불변**(P→p 개명·식2.36 multline도 식번호 보존).
+- **적대 검수**(FB7): 3창 병렬(피드백완전성·register/용어·물리/label) — 결과 `PHASE_FB7_RESULT.md`.

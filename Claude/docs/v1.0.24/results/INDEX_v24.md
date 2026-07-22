@@ -52,3 +52,12 @@
 
 ## 빌드
 `xelatex -interaction=nonstopmode` 3-pass, **ch1 먼저**(xr), 그다음 ch2·ch3. (헬퍼: scratchpad `build_v1024.sh`.)
+
+---
+
+## FB 1차 정독 피드백 리비전 후 (2026-07-22)
+> 위 표의 페이지수(91/28/20)는 **R4 시점** 기록. 사용자 1차 정독 피드백(F-01~F-11) 리비전(FB0~FB7) 후:
+- **페이지수 = ch1 97p · ch2 30p · ch3 21p**(FB2 조판 완화 +7/+2/+1 → FB6 §1.1.4 배경 압축 −1). 빌드 0-err·0-undef ref/cite 유지.
+- **코드 `Anode_Fit_v1.0.24.py` sha256 f230f59b 무변경**(FB는 문건 한정 — register·용어·조판·overflow·배경압축).
+- **장 제목 변경**: Ch2 부제 "같은 골격, 추가되는 텀만…" → "방향 재배선·order--disorder·전자 엔트로피 항"(F-08).
+- 상세 = `Claude/results/V1024_FEEDBACK_EXECUTION_LEDGER.md` + `PHASE_FB0~FB7_RESULT.md` + 본 폴더 `MERGE_READINESS_v24.md` Addendum.

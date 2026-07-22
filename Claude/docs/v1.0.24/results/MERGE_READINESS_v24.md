@@ -26,3 +26,34 @@
 
 ## 부수
 - `ch1_graphite_v1.0.24.tex` 마스터 손상(R0 구조검증 JSON 덮어씀) **복구 완료** — 재빌드로 89p PDF 재확인.
+
+---
+
+## Addendum — 1차 정독 피드백 리비전 (FB0~FB7, 2026-07-22)
+
+> R4 마감 후 사용자 1차 정독 피드백(F-01~F-11)을 리비전. 본 addendum은 R4 본표를 **덮어쓰지 않고**(문건 보호 원칙) 변경분만 기록. 상세 = `Claude/results/V1024_FEEDBACK_EXECUTION_LEDGER.md` + `PHASE_FB0~FB7_RESULT.md`.
+
+### 리비전 요약 (F-01~F-11 → FB0~FB6)
+- **F-11**(FB1) 코드=부록: 본문 코드 함수명 → 부록 전용(본문 코드토큰 grep **0**). §3.5 코드절 부록 이전. → CLAUDE.md P3-8 게이트 명문화(FB7).
+- **F-06**(FB2) 조판: 여백 22→25mm·줄간 1.12→1.16·문단 0.45→0.55em·microtype.
+- **F-04·F-05·F-10**(FB3) register+제목+용어: 수필체·survival 술어·판번호·자기-diff·정직 형용사 평서화; 제목 N-태그 제거(~33); 요동/양성→영문(body **0**)·음함수/섭동/준위→국문+첫 병기·유일근→"유일한 근".
+- **F-02·F-03·F-05**(FB4) 노테이션: 확률 P→소문자 p(압력 P 유지)·f_int 자리당 vs Helmholtz F 가드·잔여 제목 N-태그.
+- **F-07·F-09**(FB5) overflow: E.3 서지 리스트 off-page(itemize 전환)·식2.39 재확인·**전역 픽셀-스캔 149쪽**으로 실 overflow 3건 추가 수정(Table11 `l l l l`→p{}·식2.18 주석·식2.36 multline).
+- **F-01·F-08**(FB6) 내용: §1.1.4 배경 박스 압축(~50%↓·인용 보존)·LCO장 서두+제목 차이-선도 재균형(σ_d·order-disorder·전자항).
+
+### 게이트 재확인 (FB7)
+| 항목 | 판정 | 증빙 |
+|---|---|---|
+| 빌드 GREEN | **PASS** | ch1 0-err **97p**·ch2 0-err **30p**·ch3 0-err **21p**. (R4 91/28/20 → FB2 조판 후 98/30/21 → FB6 §1.1.4 압축 후 **97/30/21**.) undefined ref/cite **0**(한글 italic fallback만). |
+| 코드 bit-exact | **PASS** | `Anode_Fit_v1.0.24.py` sha256 **f230f59b** 무변경(FB는 문건 한정). |
+| 물리·식·label 불변 | **PASS** | full-diff invariant: equation env·`\label` 정의·식번호·`\eqref/\ref/\cite` 키·`%`주석 불변(P→p 개명·식2.36 multline은 식번호 보존). |
+| 본문 코드토큰 | **PASS** | grep **0**(F-11 재발 게이트 = CLAUDE.md P3-8). |
+| 용어 running-form | **PASS** | 요동/양성/유일근 body **0**·음함수 병기 앵커 4(문서별 1). |
+| 적대 검수(N창 병렬) | *(FB7 3창 병렬: 피드백완전성·register/용어·물리/label — 결과 `PHASE_FB7_RESULT.md`)* |
+
+**판정**: FB 리비전은 표면/additive(register·용어·조판·overflow·배경압축)이며 **물리·코드·식번호 불변** → **MERGE-READY 유지**(적대 검수 확정은 PHASE_FB7_RESULT).
+
+### 추가 후보 (미집행 flag — 사용자 판단)
+- Ch3 defined term "생존 지도"·"정직 공백 GS" 중립화(의도적 유지).
+- LCO §2.1 도입 소절 제목 공유점 표현 추가 완화(내용 정합상 미개작).
+- orphan `ch1_appD_si`(마스터 미입력)·레거시 preamble(`ch1/ch2_preamble`) 정리.

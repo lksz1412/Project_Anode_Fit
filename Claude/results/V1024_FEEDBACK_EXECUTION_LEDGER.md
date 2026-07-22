@@ -13,7 +13,7 @@
 | FB4 | 25-30 | 25-28 | notation | F-02 확률/압력 P 충돌+F-03 식1.21 f 명료화+F-05 잔여 제목 N-태그 | PASS | 〃 | `PHASE_FB4_RESULT.md` | ch1_sec02a(확률 P→p 11곳·f_int 자리당 가드)·ch1_sec01_n0n1(제목 N0/N1 태그 2건 제거) | aux로 식1.6/1.7/1.21 매핑 확정 · 확률 P 단일파일 국한+PartT 소문자 p 기존→개명이 정합↑(B5 divergence 1회 flag) · 압력 P 불변 · 빌드 98/30/21 0-err · label/식번호 불변 | PASS_FB4_NOTATION | 29 |
 | FB5 | 31-35 | 31-35 | overflow | F-07 E.3 서지 off-page+F-09 식2.39 재확인+전역 픽셀-스캔 | PASS | 〃 | `PHASE_FB5_RESULT.md` | ch1_appE(E.3 enumerate→itemize lead-in)·ch1_appB(Table11 llll→p{})·ch1_sec14(식2.18/2.19 주석 축약)·ch1_sec16b(식2.36 multline 3줄) | F-07·F-09 렌더 clean · 픽셀-스캔 149쪽(실 overflow 6→0, 잔여 3=박스식 오탐 렌더확인) · Overfull hbox 대형=longtable 측정 오경보 확인 · 빌드 98/30/21 0-err · 식번호 2.18/2.19/2.36 불변 | PASS_FB5_OVERFLOW | 36 |
 | FB6 | 36-39 | 36-39 | content | F-01 §1.1.4 배경 압축+F-08 LCO장 서두 재균형 | PASS | 〃 | `PHASE_FB6_RESULT.md` | ch1_sec01_n0n1(§1.1.4 bgbox 14→7·srcbox 27→15, 인용 5종 보존)·ch2v22_sec00_intro(서두 차이-선도 재작성)·ch2_lco master(장 제목 개작) | §1.1.4 배경 ~50%↓·인용/GITT표 보존(D4 삭제아님) · LCO 서두+제목 σ_d/order-disorder/전자항 선도·공유 격하 · 빌드 97/30/21 0-err · label 정의 불변 · ch1 98→97쪽 | PASS_FB6_CONTENT | 40 |
-| FB7 | 40-46 | — | closeout | 검증·N회 적대검수·마감 | 대기 | 〃 | — | — | — | — | — |
+| FB7 | 40-46 | 40-46 | closeout | 코드검증·자동게이트·N창 적대검수·문서 addendum·CLAUDE.md 규칙 | 진행(A/B 대기) | 〃 | `PHASE_FB7_RESULT.md` | CLAUDE.md P3-8(코드=부록 게이트)·MERGE_READINESS/HANDOVER/INDEX addendum(97/30/21) | 코드 sha256 f230f59b 불변 · 본문 코드토큰 0 · 용어 grep 통일 · 빌드 97/30/21 0-err · 적대검수 C(물리/label) CLEAN·A(피드백완전성)/B(register용어) 대기 | (진행) | 46 |
 
 ## 인벤토리 요약(FB0 산출 — 후속 phase 입력)
 - **F-11(FB1)**: 본문 코드언급 17행(gr2L 6·lcoomega 3·blend 3·notation 1·cases 1·sifr 2·bib 1) + §3.5 절 전체(D5).
