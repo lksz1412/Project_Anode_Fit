@@ -18,9 +18,25 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 - **전문 정독**: `feedback_plan_template_11sections`·`feedback_phase_execution_loop`·`feedback_gate_design_principle`·`feedback_work_execution_methodology`·`global/CLAUDE.md`·`MEMORY.md`. 인덱스로 33종 전건 커버 확인.
 - 재확인된 상시 규칙: (a) 계획서 11절·cumulative step·챕터→Phase→step(**1챕터=1Phase 금지**)·섹션명 고정. (b) 5-stage 루프·Result 11항·Ledger 12-col·**result 저장은 다음 Phase 진입 절대 전제**. (c) gate=확인 가능 조건. (d) **Workflow 금지→Agent만**·GO 후 무중단·GO 전 편집 금지. (e) 문서 보호(이전 result/handover 덮어쓰기 X → Addendum/Correction). (f) **F-10 = 기존 상시 규칙**(`communication_style`: 본문 한글 prose + 학술/기술 용어 영어 원어·한글 번역 강요 X). (g) 원본 불가침·명시 선택을 효율 판단으로 대체 금지.
 
-**과거 이력 확인.**
-- 직전 계획서 = `Claude/plans/2026-07-19-v1024-si-2L-codex-reflection-plan.md`(반영 캠페인, 11절). 원장 = `docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md`(R0–R5 = step 1–27, 전 PASS). 마감 = `HANDOVER_v24.md`·`MERGE_READINESS_v24.md`·`INDEX_v24.md`.
+**과거 이력 확인 — 전 계보 4축 검토(검토 sub 4마리, `comp_v24/HIST_*.md`).** ※최초본은 v1.0.24 반영 계획서 하나만 보고 작성 → 사용자 재지적("이전 이력 전부 보라") → 아래로 갱신(Correction History 참조).
+
+- **★지배 문서(이번 리비전의 상위 근거 — FB 전 phase 가 gate 로 참조).**
+  - `docs/v1.0.15/CLOSING_v1.0.15.md` = **최상위 헌법 3종**(①교과서 register 최우선 ②논문 깊이 ③수식-주도) + **D1~D6** + 프로세스 규율(Part 2) + 재발방지(Part 3) + **착수 체크리스트(Part 5)**. "다음 버전 착수 전 반드시 정독"(HANDOVER·INDEX 보다 먼저). **내가 이번에 놓쳤던 문서.**
+  - `docs/v1.0.20/results/V1020_STYLE_RUBRIC.md` = **A~G 편집 gate**("P2 이후 모든 편집의 gate"). A5=코드 함수명 본문 0(부록 B 전용)·A6=독자 지칭·명령형 금지·B5=**기호 충돌은 각주 가드(개명 아님)**·C1~C3=용어 병기·고정 대역표·페르미온/보손·F1=라벨·식번호 불변.
+  - `results/process/V1013_TERMS_POLICY.md` = **용어 정책**(전문명사 27 + 약자 18, 한글유지/영문/병기 목록 + **치환 금지 5구역**[수식·`\code`·`\bibitem`·`%`·label/ref] + 첫 출현 병기 게이트[2회째 잔존=FAIL]).
+  - `results/process/V1014_TONE_AUDIT.md` = **문체 offender 카탈로그 79건**(물음형 제목·구어 은유·판이력 메타태그·괄호보충 종결 등) — F-04 스윕 체크리스트.
+  - `docs/v1.0.14 V1014_CODE_MENTION_AUDIT.md` = 코드=부록 규칙 **1차 집행(83 처분행, 2026-07-04)** — F-11 은 2차 재발.
+  - `results/process/PHASE_R0_convention-lock_RESULT.md` = **노테이션 락**(V_n 4종·부호 s·θ_j/ξ_j·**대문자=총량 / 소문자=자리당** 규약).
+- **직전 계획서** = `plans/2026-07-19-v1024-si-2L-codex-reflection-plan.md`(반영, 11절). 원장 = `docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md`(R0–R5=step 1–27, 전 PASS). 마감 = `HANDOVER_v24`·`MERGE_READINESS_v24`·`INDEX_v24`.
+- **Handover chain**: v24 ← v23 ← v22 ← v21 ← v20 ← v19 ← v18.2 ← … ← **v1.0.15/CLOSING(헌법)** ← v14 ← v13 ← v11(기점, v10 대검수).
 - 이번 세션 후속(비-ledger): SINTEF 피팅·전수 doc↔code 감사·CODE_GUIDE(.md/.html)·정독 피드백 적층 11건.
+
+**★이력이 확정한 것(재-litigate 금지) — 피드백별.**
+- **F-04**: 제목 **명사구화**·"라벨 불변, 문구만 교체"·**물음형 제목 제거**는 **이미 확정**(rubric A·V1014 audit). 특히 물음형 제목("왜 흑연엔 없고…")은 V1014(2026-07-04)서 잡혔으나 **borderline 로 방치 → 3주 뒤 F-04 재지적** = 재발의 직접 경로. 이번엔 결정으로 종결(재적용, 새 결정 아님).
+- **F-10**: **대정준(grand canonical)·정준·분배함수 = 유지 확정**(V1013 정책·rubric C2). **요동·양성·음함수·섭동·유일근 = 레지스트리 사각지대(미결) → 최초 처분**. 치환 금지 5구역·첫등장 병기 게이트 승계.
+- **F-11**: 코드=부록 규칙 = 헌법① + rubric A5 + CODE_MENTION_AUDIT 로 **이미 확정·1차 집행**. 재litigate 아니라 **CLAUDE.md 미명문화 → 신규 절 미승계** 교정(FB7 명문화 + grep 게이트).
+- **F-02/F-03**: 노테이션 락 = **대문자 총량 F/S vs 소문자 자리당 f/s** 의도적 규약. 기호 충돌 선례(rubric B5) = **개명 아닌 각주 가드**(Helmholtz F vs Faraday F). → F-03 f→F 승격은 총량 F 와 충돌(금지). F-02 P_i→p_i(사용자 방향)는 이 선례와 갈리므로 실행 전 평문 1회 고지([[feedback_execute_explicit_choice_not_judgment]]).
+- **F-05**: N-태그(N0~N9)=spine 노드, 정의·3중 참조 있는 정당한 태그. **제목 태그 스타일 재론은 F-05 가 최초**(과거 근거 미발견).
 
 **현재 상태(직접 확인).**
 - 빌드: ch1 91p·ch2 28p·ch3 20p, 0-err·undefined ref/cite 0(직전 확인). 코드 게이트 GREEN. git 4-ref 동일·tree clean.
@@ -49,8 +65,11 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 - **물리 내용·수식·`\label`·식 번호·물리 기호(V_n·ξ·Ω 등) 변경 X** — 표기(확률 P·자리당 f/s)·문체·용어·조판·배치만.
 - **신 버전번호 X** — v1.0.24 in-place 리비전(사용자 "1.0.24 리비전").
 - **v1.0.23 이하·원본 자료·Codex 산출물 수정 X**(원본 불가침).
-- **사용자 GO 전 tex 편집 X**(기획 vs 실행). **Workflow·AskUserQuestion·자동 플랜모드 X**.
-- 신규 물리·전이 증설·curve-fitting X(피드백 범위 밖).
+- **사용자 GO 전 tex 편집 X**(기획 vs 실행). **Workflow·AskUserQuestion·자동 플랜모드 X**(N5).
+- 신규 물리·전이 증설·curve-fitting X(피드백 범위 밖, N14·N16 forward-only).
+- **백지 재작성 X** — 헌법①: v1.0.14 목소리·구성 계승, **문제만 고친다**(누더기 땜질 X·전면 재작성 X). 단위=절(챕터 통째 Write 금지, N15).
+- **자기 diff·버전 이력 서술 X**(D1: "이전엔/폐지했다" 류 본문·캡션 금지) · **방어 어투("X가 아니다") 단독 X**(D2, 오독 방지 가드는 예외) · **외부 이미지 X**(N13, 전 그림 TikZ 실계산).
+- **기존 `\label`·식 번호·절 번호·`% 자산:` 앵커 불변**(rubric F1) — 제목·표기 문구만 교체.
 
 ## Implementation Changes
 
@@ -109,7 +128,7 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 - **Steps 16–22**: 본문 산문 register+용어 **단위 구성 루프**(챕터·절 단위, 하나씩): 구어 축약·서술 삽입구·수사 제거 + `TERM_DECISION_TABLE` 승인 용어 치환(첫 등장 영문 병기 규약). Ch1(16–18)·Ch2(19–20)·Ch3(21)·부록(22).
 - **Step 23**: 전역 일관성 — 용어·기호 표기 통일(도메인 일관성), 첫 등장 병기 누락 0.
 - **Step 24**: `PHASE_FB3_RESULT` + 빌드.
-- **게이트**: (1)제목 essayistic 0(재스캔). (2)`TERM_DECISION_TABLE` 승인분 전수 적용(grep 잔존 확인). (3)`\label`·식번호·물리기호 불변(diff 확인). (4)빌드 GREEN. (5)본문 register = 교과서(샘플 절 G-follow 렌즈 검수).
+- **게이트(지배 문서 대조)**: (1)제목 essayistic 0(재스캔 + `V1014_TONE_AUDIT` 79 offender 유형 대조). (2)본문 register = **rubric A~G 통과**(A1 전보체 0·A2 방어어투 0·A5 코드/라벨/고백조 0·A6 명령형 0). (3)`TERM_DECISION_TABLE` 승인분 전수 적용 + **치환 금지 5구역 무침범** + 첫등장 병기(2회째 잔존 0). (4)`\label`·식번호·물리기호 불변(diff). (5)빌드 GREEN. (6)헌법①(교과서 self-narrate 0·v1.0.14 목소리 연속) 샘플 절 G-follow 검수.
 - **중단 조건**: 용어 치환이 코드↔문건 정합(부록 코드맵) 깨뜨리면 해당 용어 보류·Decision.
 
 ## Phase FB4 — F-02+F-03+F-05 노테이션 정리 (Steps 25–30)
@@ -149,7 +168,7 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 - **Step 44**: 마감 문서 — `HANDOVER_v24_FEEDBACK_ADDENDUM`·`INDEX_v24` 갱신·`MERGE_READINESS` 리비전 Correction. **CLAUDE.md 코드=부록 규칙 명문화**(F-11 재발방지).
 - **Step 45**: commit(단위별 누적)·push·**main ff-merge·4-ref 동일** 확인.
 - **Step 46**: `PHASE_FB7_RESULT`·ledger 마감·최종 보고.
-- **게이트**: (1)코드 bit-exact max|d|=0. (2)자동 게이트 5종 전부 0/PASS(출력 인용). (3)N회 검수 연속 2R 0결함 수렴. (4)빌드 GREEN·overflow 0·본문코드 0. (5)4-ref 동일·마감 문서 존재. (6)물리·식·라벨 불변 diff.
+- **게이트**: (1)코드 bit-exact max|d|=0. (2)자동 게이트 5종 전부 0/PASS(출력 인용). (3)N회 검수 연속 2R 0결함 수렴. (4)빌드 GREEN·overflow 0·본문코드 0. (5)4-ref 동일·마감 문서 존재. (6)물리·식·라벨 불변 diff. (7)**헌법 3종 + D1~D6 체크리스트**(CLOSING Part 5) 통과 — 교과서 register·논문 깊이·수식-주도·D1 자기diff 0·D2 방어어투 0·D3 점프 0.
 
 ## Implementation Interfaces
 
@@ -167,8 +186,9 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 - **코드 bit-exact**: dqdv 표준입력 곡선 max|d|=0(FB0 스냅샷 대조) — 코드 무변경 증명.
 - **본문 코드 0**: 부록 제외 grep 공집합(출력 인용).
 - **overflow 0**: 빌드 로그 overfull 텍스트 실질 0 + 렌더 좌/우 넘침 시각 0(전/후 crop).
-- **용어/표기**: `TERM_DECISION_TABLE` 승인분 전수 적용·확률 P 잔존 0(grep).
-- **register**: 제목 essayistic 재스캔 0 + 대표 절 G-follow/G-usable 렌즈.
+- **용어/표기**: `V1013_TERMS_POLICY`+`TERM_DECISION_TABLE` 승인분 전수 적용·치환금지 5구역 무침범·첫등장 병기(2회째 잔존 0)·확률 P 잔존 0(grep).
+- **register**: `V1020_STYLE_RUBRIC` A~G 통과 + `V1014_TONE_AUDIT` 79 offender 유형 재스캔 0 + 제목 essayistic 0 + 대표 절 G-follow/G-usable 렌즈.
+- **헌법 대조**: 헌법 3종 + D1~D6(CLOSING Part 5 체크리스트) — 마감 게이트.
 - **상호참조·라벨**: undefined 0·`\label` diff 불변.
 - **N회 검수**: 라운드별 결함 수 추이(연속 2R 0 수렴).
 - **재현**: 인벤토리·결정표·게이트 스크립트·전후 렌더 커밋.
@@ -184,21 +204,23 @@ v1.0.24 문건(3챕터: ch1 흑연+Part T, ch2 LCO, ch3 Si·혼합)을 사용자
 ## Correction History
 
 - **직전**: 정독 피드백 적층 캠페인(F-01~F-11, `USER_FEEDBACK_v1024_READING.md`) → 사용자 "1차 피드백 끝. 수정하여 1.0.24 리비전하라. 작업 계획서부터." → **적층 모드 종료·리비전 실행 모드 전환**.
-- **내 프로세스 실패 2건 기록·교정**:
-  1. **F-11(코드=부록 위반)**: v1.0.24 신규 절(gr2L·lcoomega·sifr) 저작 시 기존 규칙("함수명은 부록에만", ch2_appB) 미승계 → 본문 코드 언급 다수. 교정 = FB1 전역 정리 + FB7 grep 게이트 + CLAUDE.md 명문화.
-  2. **세션 초 "지침 없음" 오판**: 사용자 제공 `portable_claude_config.zip`(scratchpad 전개)을 확인 안 하고 `_claude/memory/` 만 보고 "메모리 없음"·"이력 확인 불가"로 단정. 교정 = 압축파일·과거 이력 전수 확인 후 본 계획 작성(Current Ground Truth 근거 고정).
+- **내 프로세스 실패 3건 기록·교정**:
+  1. **F-11(코드=부록 위반)**: v1.0.24 신규 절(gr2L·lcoomega·sifr) 저작 시 기존 규칙(헌법①·rubric A5·`V1014_CODE_MENTION_AUDIT`·ch2_appB "함수명은 부록에만") 미승계 → 본문 코드 언급 다수. 교정 = FB1 전역 정리 + FB7 grep 게이트 + **CLAUDE.md 명문화**(미명문화가 근본원인).
+  2. **세션 초 "지침 없음" 오판**: 사용자 제공 `portable_claude_config.zip`(scratchpad 전개)을 확인 안 하고 `_claude/memory/` 만 보고 "메모리 없음"·"이력 확인 불가"로 단정. 교정 = 압축파일·과거 이력 전수 확인.
+  3. **★계획서 최초본을 v1.0.24 하나만 보고 작성**: 사용자 "이전 버전 계획서·이력 전부 확인하고 계획서 쓰라" 지시에도 직전 반영 계획서 1건만 읽고 작성 → 사용자 재지적("누가 1.0.24만 읽으래"). **이 실패는 헌법 `CLOSING_v1.0.15` Part 2-1/2-2 가 정확히 명시한 재발 패턴**("새 이슈로 보이면 = 과거 이력 미확인 신호"·"지침·과거 이력 실제로 확인하고 작업"). 교정 = **4축 이력 검토 sub**(register·용어·노테이션/코드·조판/버전아크 → `HIST_*.md`) + 헌법·rubric·terms-policy·audit 정독 → 본 계획 전면 재정초(지배 문서 gate 편입).
 
 ---
 
 ## Decisions Required (기본값 有 — "GO" 시 기본값대로 진행, 특정 항목만 조정 가능)
 
 > [[feedback_flow_interruption]]·[[feedback_execute_explicit_choice_not_judgment]]: 팝업 없이 평문+기본값. 이미 방향 주신 항목(F-02 확률 P→p·F-08 강조 방향)은 재질의 X — 그대로 집행.
+> **평문 1회 고지(F-02)**: 이력상 기호 충돌 처리 선례(rubric B5·헌법)는 **개명 아닌 각주 가드**(Helmholtz F vs Faraday F). 확률 P→소문자 p 는 그 선례와 갈리지만 **사용자 명시 방향이라 그대로 집행**한다(선례 이탈은 이 한 줄로 고지). 압력 P·총량 F/S 등 통상·확정 표기는 불변.
 
 - **D1 (범위·버전)**: v1.0.24 **in-place** 리비전(신 버전번호 X), 대상 **문건만**·코드 bit-exact. — *기본값: 그대로.*
-- **D2 (F-03 f/s 자리당)**: 소문자 f_int/s_int **유지 + 첫 등장에 "자리당(per-site)·총량 F/S 와 구분" 명시**(총량 대문자와 충돌 방지). 대안: `f_site`/`\tilde F` 등 명시 기호. — *기본값: 유지+명시(최소 침습, 규약 보존).*
+- **D2 (F-03 f/s 자리당)**: 소문자 f_int/s_int **유지 + 첫 등장에 "자리당(per-site)·총량 F/S 와 구분" 명시**. **이력 확정 근거**: convention-lock 이 "대문자=총량 F/S, 소문자=자리당 f/s"를 의도적 규약으로 락, rubric B5 는 기호 충돌을 **각주 가드**로 처리(개명 아님) — 따라서 f→F 승격은 총량 F 와 충돌하므로 배제. 대안(비권고): `f_site`/`\tilde F` 명시 기호. — *기본값: 유지+각주/첫등장 가드(이력 정합·최소 침습).*
 - **D3 (F-05 제목 N-태그)**: 절 **제목에서 (N0)~(N9)·(Part 0)·(N2′) 등 코드 제거**, spine 그림·노드맵 표로만 상호참조. 대안: 제목 유지. — *기본값: 제목에서 제거(전공서적 표제 순수성; 정보 손실 0).*
 - **D4 (F-01 §1.1.4)**: 측정원리 **배경 박스(bgbox·srcbox) 압축**(또는 부록 강등), 점별원칙 본문+keybox 유지. 대안: 절 전체 삭제 / 유지. — *기본값: 배경 압축·핵심 유지.*
 - **D5 (F-11 §3.5 코드명세절·bib 코드 인용)**: `ch3v22_sec05_code`(본문 §3.5 코드 명세) **부록으로 이전**; 서지 `\code{Anode_Fit_v1.0.19}` 인용은 **평문화(내부 데이터 출처로 유지, `\code` 제거)**. 대안: §3.5 현상 유지. — *기본값: 부록 이전 + bib 평문화.*
-- **D6 (F-10 용어)**: FB0서 `TERM_DECISION_TABLE` 제시 → **승인분만 치환**. 기본 제안: 요동→fluctuation(첫 병기)·양성→positivity·음함수→implicit function·섭동→perturbation; **정준/대정준/분배함수 = 국내 교과서 표준이라 유지**. 전건 사용자 최종 확정. — *기본값: 표 제안대로, 단 표는 GO 후 FB0서 확정 제시.*
+- **D6 (F-10 용어)**: FB0서 `TERM_DECISION_TABLE`(기존 `V1013_TERMS_POLICY` 승계) 제시 → **승인분만 치환**. **이력 확정(재litigate 금지)**: 대정준(grand canonical)·정준·분배함수 = 정책·rubric C2 **유지 확정**. **미결(최초 처분)**: 요동→fluctuation(첫 병기)·양성→positivity·음함수→implicit function·섭동→perturbation·유일근(문맥 검토). **치환 금지 5구역 준수**(수식 내부·`\code`·`\bibitem`·`%`·label/ref). 첫등장 병기 게이트(2회째 잔존=FAIL). 전건 사용자 최종 확정. — *기본값: 표 제안대로, 표는 GO 후 FB0서 확정 제시.*
 
 > **남은 유일 사용자 입력 = "GO"**(또는 D1~D6 중 조정). GO 시 FB0(인벤토리·baseline·결정표)→FB7(마감)까지 [[feedback_work_execution_methodology]] 대로 무중단 집행. 단 **D6 용어 결정표는 FB0서 작성해 확인받고 FB3서 적용**(치환 규모 큼).
