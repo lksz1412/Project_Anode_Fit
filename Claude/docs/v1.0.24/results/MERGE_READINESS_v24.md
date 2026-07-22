@@ -49,9 +49,9 @@
 | 물리·식·label 불변 | **PASS** | full-diff invariant: equation env·`\label` 정의·식번호·`\eqref/\ref/\cite` 키·`%`주석 불변(P→p 개명·식2.36 multline은 식번호 보존). |
 | 본문 코드토큰 | **PASS** | grep **0**(F-11 재발 게이트 = CLAUDE.md P3-8). |
 | 용어 running-form | **PASS** | 요동/양성/유일근 body **0**·음함수 병기 앵커 4(문서별 1). |
-| 적대 검수(N창 병렬) | *(FB7 3창 병렬: 피드백완전성·register/용어·물리/label — 결과 `PHASE_FB7_RESULT.md`)* |
+| 적대 검수(N창) | **PASS(triage 완료)** | FB7 3창 병렬 — C 물리/label/빌드 **CLEAN**·A 피드백 10/11 해소(F-04 부록E 공백 발견)·B 용어 CLEAN+register 잔여. **FB3 스윕 누락분 triage 수정 16+건**(부록E 제목 참문제/안전증명서·keybox·구어 진짜×6·"원전 재확인 중"×4·process 라벨·서사/자기-diff) → 재빌드 GREEN·물리/label 불변. 상세 `PHASE_FB7_RESULT.md`. |
 
-**판정**: FB 리비전은 표면/additive(register·용어·조판·overflow·배경압축)이며 **물리·코드·식번호 불변** → **MERGE-READY 유지**(적대 검수 확정은 PHASE_FB7_RESULT).
+**판정**: FB 리비전은 표면/additive(register·용어·조판·overflow·배경압축)이며 **물리·코드·식번호 불변**. 적대검수 3창 + triage 완료 → **MERGE-READY 유지 = YES**.
 
 ### 추가 후보 (미집행 flag — 사용자 판단)
 - Ch3 defined term "생존 지도"·"정직 공백 GS" 중립화(의도적 유지).

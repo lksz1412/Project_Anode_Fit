@@ -26,7 +26,7 @@ $\partial\langle N\rangle/\partial\mu>0$(\S\ref{sec:eqpeak})이 유일성을 보
 과장이므로 여기서 명시적으로 배제한다.
 \end{warnbox}
 
-\subsection{참 문제 --- 비선형 Volterra 자기일관과 동결 0차 기준}\label{sec:sc-volterra}
+\subsection{비선형 Volterra 자기일관과 동결 0차 기준}\label{sec:sc-volterra}
 \textbf{(원형 --- 동결 기준.}\ 먼저 본문이 실제로 푸는 \emph{원형}을 적는다.) 식~\eqref{eq:Lq} 의 지연 방정식을
 컷점 기울기로 전압축 환산(식~\eqref{eq:LV})하면, 방전 진행축 위에서 지연 $r\equiv\xi_\eq-\xi_{\mathrm{lag}}$ 은
 \begin{equation}
@@ -43,7 +43,7 @@ $\xi_{\mathrm{lag}}$ --- 를 갖는다:
 이 동결해가 아래 이식에서 사용자 논문의 ``가해(可解) 기준문제''(닫힌형이 이미 있는 $\delta$-싱크 기준, \cite{lee2017jcp}
 Eq.~25)에 대응한다 --- \emph{가해 기준이 이미 본문$\cdot$구현에 존재}한다는 점이 접목의 전제다.
 
-\textbf{(상호작용 항 복원 --- 참 문제.)} 동결은 완화율 $k_j$ 안의 컷 affinity 를 상수로 고정한 결과다. 그러나
+\textbf{(상호작용 항 복원 --- 완전 문제.)} 동결은 완화율 $k_j$ 안의 컷 affinity 를 상수로 고정한 결과다. 그러나
 $\mathcal A_j=sF(V-U_j)-\Omega_j(1-2\xi_j)$ 는 \emph{상호작용 몫} $-\Omega_j(1-2\xi_j)$ 를 통해 점유 $\xi_j$ 에
 의존하며(식~\eqref{eq:kuniv}$\cdot$\eqref{eq:dHeff}), $L_q\propto e^{-\chi_d\mathcal A/RT}$ 이므로 지연 길이가
 \emph{점유의 함수}다. 본문은 이 몫을 깊은 꼬리 극한 $\xi\to1$ 의 상수 $+\Omega$ 로 동결했다(식~\eqref{eq:dHeff}).
@@ -130,14 +130,14 @@ $\tfrac14$ 로 감소 확인) --- ratio 치환이 선행 차수 오차를 제거
 \end{itemize}
 
 \begin{keybox}
-\textbf{이식의 실이득.} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{참 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
---- 동결 0차$\cdot$1차 ratio$\cdot$참 비선형 Picard 수렴이 모두 $\mathcal O(N)$. 따라서 이 이식의 의의는 논문에서의
+\textbf{이식의 실질 이득.} 문건 지연의 자기일관은 Markov(지수핵)라 \emph{완전 문제 자체가} $\mathcal O(N)$ 전진 ODE 다
+--- 동결 0차$\cdot$1차 ratio$\cdot$완전 비선형 Picard 수렴이 모두 $\mathcal O(N)$. 따라서 이 이식의 의의는 논문에서의
 ``전역 역산 회피(계산 절감)''가 \emph{아니라}, (i) 동결 근사 위의 \emph{분석적 1차 닫힌형}(식~\eqref{eq:sc-ratio}),
-(ii) 동결이 언제 옳은지를 정량하는 \emph{타당성 증명서}(식~\eqref{eq:sc-valid}), (iii) 사용자 방법의 문건 내 시연 ---
+(ii) 동결이 언제 옳은지를 정량하는 \emph{타당 조건}(식~\eqref{eq:sc-valid}), (iii) 사용자 방법의 문건 내 시연 ---
 이 셋이다. 이는 ``수치 인과기억 루프를 계산 절감으로 대체''를 뜻하지 않는다.
 \end{keybox}
 
-\subsection{타당성 부등식 --- 동결 근사의 안전 증명서}\label{sec:sc-valid-sub}
+\subsection{타당성 부등식 --- 동결 근사의 유효 조건}\label{sec:sc-valid-sub}
 1차 치환의 오차원은 보정비 지수 $\int_u^V\delta\kappa(\xi_0)\dd V'$ 가 핵 지지폭($\sim L_V$) 위에서 작아야 한다는 것이다.
 $\delta\kappa\cdot L_V\approx\delta\ln L_V$ 이고 $\partial\ln L_V/\partial\xi=-2\chi_d(\Omega/RT)$(식~\eqref{eq:sc-true})이므로,
 지지폭 위 $\xi$ 변동 $\Delta\xi_{\text{supp}}$ 에 대해

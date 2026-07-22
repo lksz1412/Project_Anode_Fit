@@ -45,8 +45,18 @@ FB7 적대 검수 3창 병렬 dispatch(general-purpose, read-only, Codex 경계 
 
 **검수 결과:**
 - **C 물리/label/빌드 — CLEAN (회귀 없음).** 빌드 0-err 97/30/21·undefined ref/cite 0(전부 한글 italic fallback). 식번호 무결(eq:lcoomega-kernel=2.36·eq:lco-slots=2.18·eq:lco-decomp=2.19), `\label` 정의 삭제 0·식 환경 순증감 0·xref 키 변경 0. P/p 분리 정확(확률 p 8곳·압력 P 대문자 3곳 유지·Helmholtz/Faraday F 무손상). 식2.36 multline 수식항 byte 동일·단일 번호. overflow 3면 무넘침. 삭제된 `\ref`(eq2.19 sec:lco-electronic·§1.1.4 4건)은 중복·인접 재등장(undefined 0). multiply-defined(LastPage·swiderska2019·verbrugge2017)=선재 구조 산물, 회귀 아님.
-- **A 피드백 완전성 — [대기]**
-- **B register/용어 잔여 — [대기]**
+- **A 피드백 완전성 — 10/11 해소확인, F-04 부분(triage 필요).** F-01/02/03/05/06/07/08/09/10/11 해소확인·구조 회귀 0(undefined ref/cite 0). **F-04 공백 발견**: FB3 register 스윕이 컴파일 부록 `ch1_appE_selfconsistent.tex`를 실질 누락 — 제목 2건(L29 "참 문제 --- 비선형 Volterra…"·L140 "타당성 부등식 --- 동결 근사의 안전 증명서") + keybox register 잔존. 추가: 구어 "진짜" 본문 4곳(sec02a:227·map:43/114·sifr:97)·"되는 까닭" 1곳(mixing:186). → **FB7 triage 수정 대상.**
+- **B register/용어 잔여 — 용어 CLEAN·register 잔여 5+ 발견(triage 수정).** 요동/양성/유일근 body 0·음함수/섭동 국문 running·정직한/정직하게 body 0·물음형/서술형 제목 0·명령형 0 = **CLEAN**. 잔여 발견: process/ledger 라벨 본문 노출(comp_R4/원장 V1·"원전 재확인 중"×4·★확인 필요×2·comp_R4 캡션)·survival 술어 map:82·서사/자기-diff map:7/13/125·"살린다". → **FB7 triage 수정.**
+
+### FB7 적대검수 triage 집행 (A+B 발견 union 수정)
+A/B가 찾은 FB3 register 스윕 누락분 전량 수정(빌드 GREEN 재확인·물리/label 불변):
+- **부록 E register**(A·사용자 F-04 직접 지목): 제목 2건(L29 "참 문제 ---"→삭제·L140 "안전 증명서"→"유효 조건")·keybox(참 문제→완전 문제·증명서→타당 조건·실이득→실질 이득)·lead-in L46("참 문제"→"완전 문제").
+- **구어 "진짜"→"실제"** 6곳(sec02a:227·map:43/114·sifr:97·appD:79/80[사용자 직접 지목]). "되는 까닭"→"되는 이유"(mixing:186).
+- **process/WIP/ledger 라벨 제거**(B): blend:236(comp_R4/원장 V1 삭제)·"원전 재확인 중"→"원전 미확정"×4(sec11:65·sec13:171·sec14:137·sec16b:139)·★확인 필요×2 삭제(sec14:118/124)·cases:15 캡션(comp_R4 삭제).
+- **survival/서사/자기-diff**(B): map:82 "형식은 생존"→"유지"·map:7/13/125 "밟았다"/"장의 저작은"/"한 물음을 따라 전개된다"→평서·config:127 "살린다"→"유지한다".
+- **flag(미수정)**: J1 §3.5 코드절(=`\appendix` 뒤라 부록·비대칭만·위반 아님)·J3 SiOx "확인 필요"(체계적 데이터-tier 라벨·사용자 판단)·J4 음함수 2차 병기(무해)·J6 "생존 판정"(생존 지도 정의어 companion).
+- **검증**: 빌드 GREEN 97/30/21·진짜/참 문제/안전 증명서 body **0**·`\label` 정의·식 환경·`%`주석 변경 0.
+- **C 물리/label/빌드 — CLEAN(재확인).** 위 triage 후 재빌드 GREEN·물리 불변 유지.
 
 ## Validation (게이트별)
 - **코드 bit-exact** — PASS(sha256 f230f59b).
@@ -55,10 +65,10 @@ FB7 적대 검수 3창 병렬 dispatch(general-purpose, read-only, Codex 경계 
 - **빌드 GREEN** — PASS(97/30/21·undefined ref/cite 0).
 - **CLAUDE.md 코드=부록 명문화** — PASS(P3-8 신설, 검증 가능 게이트).
 - **R4 문서 addendum(덮어쓰지 않음)** — PASS(3종 addendum, 페이지수 갱신).
-- **적대 검수 N창** — [대기 — 3창 결과 반영].
+- **적대 검수 N창** — PASS(3창 병렬: **C** 물리/label/빌드 CLEAN·**A** 피드백 10/11 해소확인+F-04 부록E 공백 triage 수정·**B** 용어 CLEAN+register 잔여 triage 수정). FB3 스윕 누락분(부록E·process 라벨·구어 진짜·서사) 전량 remediation 후 재빌드 GREEN·물리/label 불변.
 
 ## Gate
-**PASS_FB7_CLOSEOUT** — [적대 검수 3창 CLEAN/triage 확정 후 최종 확정].
+**PASS_FB7_CLOSEOUT** (코드 bit-exact·본문 코드토큰 0·용어 running-form 통일·빌드 GREEN 97/30/21·CLAUDE.md P3-8 명문화·R4 문서 addendum·적대검수 3창 triage 완료·물리/식번호/label 불변).
 
 ## Confirmed Non-Changes
 - 코드 `.py` 무변경(sha256 f230f59b) — FB 전 phase 문건 한정.
