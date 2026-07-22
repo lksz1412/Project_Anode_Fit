@@ -1,0 +1,70 @@
+% ====================================================================
+% §16 LCO dQ/dV peak — 양극 영역의 세 peak
+% ====================================================================
+\section{LCO dQ/dV peak --- 양극 영역의 세 peak}\label{sec:lco-peak}
+\S\ref{sec:lco-center}--\S\ref{sec:lco-electronic} 이 LCO 의 중심$\cdot$분기$\cdot$엔트로피 분해를 닫았으므로,
+흑연 \S\ref{sec:eqpeak} 의 평형 peak 유도를 전이 집합만 바꿔 그대로 반복하면 양극 세 peak 가 닫힌다.
+
+\textbf{(a) 출발 --- 전하 보존식을 LCO 전이 집합으로.} 흑연 \S\ref{sec:eqpeak} 의 출발점인 전하 보존식은
+전극을 가리지 않으므로, 전이 집합만 $\mathcal J_\mathrm{LCO}$(식~\eqref{eq:lco-J})로 바꿔 그대로 적는다:
+\begin{equation}
+Q_\cell\,q=Q_\bg+\sum_{j\in\mathcal J_\mathrm{LCO}}Q_j^\mathrm{cat}\,\xi_j
+\;\Longrightarrow\;
+\frac{\dd Q}{\dd V}=C_\bg+\sum_{j=1}^{3}Q_j^\mathrm{cat}\,\frac{\dd\xi_j}{\dd V}.
+\label{eq:lco-charge}
+\end{equation}
+
+\textbf{(b) 연산 --- 평형 추종과 logistic 미분의 종 항등식.} 평형 추종이면 $\dd\xi_j/\dd V$ 에 평형 기울기가 들어가며, LCO 전이 $j$ 의 평형 진행률은 흑연 식~\eqref{eq:xieq}
+에 분기 중심 $U_j^{\,d,\mathrm{cat}}$(식~\eqref{eq:lco-Ubranch})을 넣은($\sigma_d$ 는 \S\ref{sec:lco-direction} 규약~\eqref{eq:lco-sigmaslot})
+$\xi_{\eq,j}=\{1+\exp[-\sigma_d(V-U_j^{\,d,\mathrm{cat}})/w_j]\}^{-1}$ 이고, $z_j\equiv\sigma_d(V-U_j^{\,d,
+\mathrm{cat}})/w_j$ 로 종 항등식~\eqref{eq:belliden}($\dd\xi_\eq/\dd z_j=\xi_\eq(1-\xi_\eq)$)과 연쇄율
+$\dd z_j/\dd V=\sigma_d/w_j$ 를 곱하면
+\begin{equation}
+\frac{\dd\xi_{\eq,j}}{\dd V}=\frac{\sigma_d\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\;\Longrightarrow\;
+\Big|\frac{\dd\xi_{\eq,j}}{\dd V}\Big|=\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\qquad(j\in\mathcal J_\mathrm{LCO}),
+\label{eq:lco-belliden}
+\end{equation}
+--- $\xi(1-\xi)\ge0$ 라 peak 모양은 방향 불변$\cdot$양수이며, $\xi\leftrightarrow1-\xi$($\sigma_d$ 뒤집기)에
+대칭이다.
+
+\textbf{(c) 중간식 --- peak 의 세 관측량.} 식~\eqref{eq:lco-belliden} 하나에서 전이 $j$ peak 의 위치$\cdot$
+순높이$\cdot$면적이 전부 읽힌다:
+\begin{equation}
+\begin{aligned}
+&V_{\mathrm{peak},j}=U_j^{\,d,\mathrm{cat}}\ (z_j{=}0),\qquad
+\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_{j,\max}=\frac{Q_j^\mathrm{cat}}{4w_j}\ \Big(\xi_\eq(1{-}\xi_\eq)\big|_{1/2}{=}\tfrac14\Big),\\
+&\int\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_{j}\dd V=Q_j^\mathrm{cat}\ \Big(\textstyle\int_0^1\dd\xi=1\Big).
+\end{aligned}
+\label{eq:lco-peakobs}
+\end{equation}
+\textbf{(d) 박스 --- LCO 하프셀 3-전이 평형 dQ/dV.} (b)를 (a)에 넣으면 양극 전위 영역의 평형 기준선이 닫히며
+\begin{equation}
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^{\eq}_\mathrm{LCO}(V,T)
+=C_\bg+\sum_{j=1}^{3}Q_j^\mathrm{cat}\,
+\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j},
+\qquad \xi_{\eq,j}=\frac{1}{1+\exp[-\sigma_d(V-U_j^{\,d,\mathrm{cat}})/w_j]}\;.}
+\label{eq:lco-eqpeak}
+\end{equation}
+흑연이 $\sim$0.085--0.21 V 에 네 peak 를 남기듯 이 식은 표~\ref{tab:lco-staging} 의 입력으로 세 peak ---
+T1 의 $\sim$3.90 V(MIT plateau), T2 의 $\sim$4.05 V, T3 의 $\sim$4.17--4.20 V(T2 와 한 쌍의 좁은
+order--disorder peak) --- 를 남긴다. 세 전위 창의 실측 계보는 표~\ref{tab:lco-staging} 의 anchor
+문헌\cite{xia2007,reynier2004,motohashi2009} 그대로다(\S\ref{sec:lco-map}). order--disorder 의 큰 $\Omega_j^\mathrm{cat}$($>2RT$ 로 피팅될 경우)는
+(i) plateau(두-상) 성격을 강화해 평형 peak 를 델타에 가깝게 하고(실측 폭은 $w_j$ 가 현상학적으로 담음 ---
+\S\ref{sec:broadening}), (ii) 분기 gap(식~\eqref{eq:lco-dUhys} --- $\Omega$ 에 단조증가,
+$\dd\Delta U_j^{\hys,\mathrm{cat}}/\dd\Omega_j^\mathrm{cat}=2u_j^\mathrm{cat}/F>0$)도 $\Omega_j^\mathrm{cat}$ 이 흑연 값보다
+크게 피팅되는 만큼 흑연보다 키운다.
+
+\textbf{폭의 지위.} 폭은 흑연과 같은 $w_j=n_jRT/F$(식~\eqref{eq:wbase}) 서식이되, pure-LCO 상도표 물리에서 세
+전이 모두 $\Omega_j^\mathrm{cat}>2RT$ 의 두-상 측에 놓이므로 그 폭은 \S\ref{sec:width} 이중지위의
+\emph{두-상} 측 --- 평형 예측이 아니라 broadening 이 정하는 현상학적 자유 피팅 폭이다(\S\ref{sec:broadening};
+최종 지위 판정은 피팅된 $\Omega_j^\mathrm{cat}$ --- \S\ref{sec:lco-hys} two-phase calibration).
+
+\textbf{T1 의 온도 신호.} T1 의 위치는 \S\ref{sec:lco-electronic} 의 전자항이 $\Delta S_{\rxn,1}^\mathrm{cat}$ 를 통해 $U_1(T)$ 의
+\emph{온도 이동}에 기여하므로(식~\eqref{eq:lco-dUdT}), 다온도 dQ/dV 에서 T1 peak 의 \emph{온도 이동률}
+$\partial U_1/\partial T$ 가 $T$ 에 선형으로 \emph{내려가는} 것이 전자항의 관측 신호이며($\Delta S_{e,1}=a_e\,T$, $a_e<0$ ---
+위치 이동은 $\propto T^2$, 식~\eqref{eq:U1T2}$\cdot$\S\ref{sec:lco-Se}), 도핑은 \S\ref{sec:lco-hys} 대로 peak 를 smear$\cdot$shift 시킨다($\Omega$ 는
+gap$\cdot$smear 슬롯, $U_j^\mathrm{cat}$ 이동은 별도 슬롯).
+
+% 자산: [B2-096] [B2-097] [B2-098] [B2-099] [B2-100] [B2-101]

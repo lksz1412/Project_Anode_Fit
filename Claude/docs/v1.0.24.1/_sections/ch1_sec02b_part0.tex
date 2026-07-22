@@ -1,0 +1,474 @@
+% ====================================================================
+% §2 통계역학 기초 (Part 0) — 파트 b: 평균장·전기화학 결선·거시 (2.4–2.6)
+%   (앞 파일 ch1_sec02a_part0 의 \section 아래로 이어지는 subsection)
+% ====================================================================
+\subsection{평균장 상호작용 --- 정규용액 $\mu(\theta)$·$g(\xi)$ 와 이중웰(double-well) 문턱}\label{sec:sm-mf}
+\textbf{(a) 출발 --- 이웃 상호작용의 평균장 근사.} 실제 격자에서 자리들은 독립이 아니다 --- 점유된 이웃은 다음
+Li 의 삽입 에너지를 바꾼다(정전 반발·탄성 변형·전자 구조). 점유 이웃 \emph{쌍}당 에너지를 $u$, 배위수를 $z$
+라 하면 정확한 상호작용 에너지는 배치마다 다르지만, 각 자리의 이웃 점유를 평균 $\theta$ 로 대체하는
+\emph{평균장}(mean-field, Bragg--Williams) 근사에서
+\begin{equation}
+E_\mathrm{int}\;\simeq\;\frac{Mz}{2}\,u\,\theta^2
+\label{eq:sm-mf}
+\end{equation}
+이 식에서 $M\theta$ 개의 점유 자리 각각이 평균 $z\theta$ 개의 점유 이웃과 마주하고, 앞의 $\tfrac12$ 은 한 쌍을 두 번
+세지 않기 위한 이중계수 방지 인자다.
+
+\textbf{(b) 연산 --- 항등 분해와 $\Omega$ 의 정의.} 자리 1몰당 상호작용 몫은 $\tfrac{z}{2}N_Au\,\theta^2$ 이고,
+항등식 $\theta^2=\theta-\theta(1-\theta)$ 로 분해하면
+\begin{equation}
+\frac{z}{2}N_Au\,\theta^2
+=\underbrace{\frac{z}{2}N_Au\,\theta}_{\text{선형 --- }\mu^0\text{ 에 흡수}}
++\;\Omega\,\theta(1-\theta),
+\qquad
+\Omega\;\equiv\;-\frac{z}{2}N_A\,u,
+\label{eq:sm-omega}
+\end{equation}
+곧 점유 이웃끼리 \emph{인력}($u<0$)이면 $\Omega>0$(같은 종이 뭉치려는 상분리 경향), 반발($u>0$)이면
+$\Omega<0$(교대 정렬 경향)이다. 이 한 모수로 혼합 자유에너지를 적는 모형이
+\emph{정규용액}이고, 본론 표~\ref{tab:staging} 의 $\Omega_j$ 와 Chapter 2 의
+$\Omega_j^\mathrm{cat}$(표 밖 --- 피팅 배정 전제, \S\ref{sec:lco-hys}) [J/mol]이 정확히 이 슬롯이다.
+
+\textbf{(c) 중간식 --- $g(\theta)$ 와 $\mu(\theta)$.} 자리 1몰당 자유에너지에 \eqref{eq:sm-Smix} 의 섞임 몫과
+\eqref{eq:sm-omega} 의 상호작용 몫을 더하면(이하 한 전이의 $\Omega\equiv\Omega_j$)
+\begin{equation}
+g(\theta)=\mu^0\theta+RT\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big]+\Omega_j\,\theta(1-\theta),
+\label{eq:sm-gtheta}
+\end{equation}
+$\theta$ 로 미분하면 다음이 나온다 --- 로그 몫 $RT\ln[\theta/(1-\theta)]$ 은 식~\eqref{eq:sm-mucount} 와 같은 계산이고,
+상호작용 몫은 $\Omega_j(1-2\theta)$ 로 상수 $\pm1$ 이 상쇄된 것이다:
+\begin{equation}
+\mu_\mathrm{Li}(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}+\Omega_j\,(1-2\theta).
+\label{eq:mu}
+\end{equation}
+(그림~\ref{fig:sm-mu} 가 이 함수의 세 가지 개형이다.) 진행률 $\xi=1-\theta$ 로 옮기면 섞임 몫과
+$\theta(1-\theta)=\xi(1-\xi)$ 몫이 모두 $\xi\leftrightarrow1-\xi$ 자리바꿈에 대칭(우함수)이라 조성 몫의 꼴이
+불변이고, 남는 것은 $\mu^0\theta=\mu^0(1-\xi)$ 의 상수$+\xi$-직선(아핀) 몫뿐이다. 아핀 몫은 공통
+접선$\cdot$곡률 판정에 기여하지 않으므로 하나의 기호 $g_j^0(\xi)\equiv\mu^0(1-\xi)$ 로 모아 적는다 ---
+$\xi$ 로 한 번 미분하면 $g_j^0$ 몫은 상수 $-\mu^0$ 하나로 줄고, 두 번 미분하면 완전히 사라진다:
+\begin{equation}
+g_j(\xi)=g_j^0+RT\big[\xi\ln\xi+(1-\xi)\ln(1-\xi)\big]+\Omega_j\,\xi(1-\xi),
+\label{eq:gxi}
+\end{equation}
+--- 이 우함수 대칭이 \S\ref{sec:hys} 의 1계 미분 논거($f'(1-\xi)=-f'(\xi)$)의 뿌리다.
+
+\textbf{(d) 박스 --- 볼록성 상실의 문턱.} 식~\eqref{eq:gxi} 를 두 번 미분하면
+$g_j''(\xi)=RT/[\xi(1-\xi)]-2\Omega_j$ 이고, 첫 항의 최솟값이 $\xi=\tfrac12$ 에서 $4RT$ 이므로
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+&g_j''(\xi)\ge0\ \ \forall\xi\ \Longleftrightarrow\ \Omega_j\le2RT\ \ (\text{단상·연속 고용체; 등호는 }\Omega_j{=}2RT,\ \xi{=}\tfrac12\ \text{한 점}),\\
+&\Omega_j>2RT\ \Longleftrightarrow\ \text{이중웰}\ \ \Big(T_{c,j}=\frac{\Omega_j}{2R}\Big)\;.
+\end{aligned}}
+\label{eq:sm-thresh}
+\end{equation}
+$\Omega_j>2RT$ 면 가운데($g''<0$)가 언덕이 되어 두 골짜기가 생기고(그림~\ref{fig:sm-gxi}), 그 변곡점
+(spinodal)의 닫힌 근과 거기서 자라는 히스테리시스 gap 은 \S\ref{sec:hys} 가 닫는다 --- Part 0 은 문턱까지만
+놓는다.
+\begin{verifybox}
+극한 검산 --- $\Omega_j\to0$: $g''\ge4RT>0$ 로 항상 한 웰(\S\ref{sec:sm-lattice} 로 환원);
+$\Omega_j\to2RT^-$: $g''(\tfrac12)\to0^+$ 로 바닥이 평탄해지되 아직 한 웰; $\Omega_j\to2RT^+$: 웰이 둘로
+갈라지기 시작하고 $T_{c,j}=\Omega_j/2R$ 아래에서만 상분리가 존재한다(안정하다). 이 $\mu(\theta)$ 를 측정 전위에 결선하는
+것이 다음 소절이다.
+\end{verifybox}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=9.6cm,y=6.8cm]
+\draw[-{Latex[length=1.6mm]}] (-0.02,-0.76) -- (-0.02,0.14) node[above,font=\scriptsize] {$f(\xi)/RT$ (mixing part)};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,1.0} {\draw (\xx,0.008) -- (\xx,-0.008) node[below,font=\scriptsize] {\xx};}
+% Omega = 0 RT (ideal mixing)
+\draw[black!45] plot[smooth] coordinates {(0.004,-0.0261) (0.020,-0.0980) (0.070,-0.2536) (0.118,-0.3625) (0.166,-0.4488) (0.213,-0.5183) (0.261,-0.5742) (0.309,-0.6182) (0.357,-0.6515) (0.404,-0.6748) (0.452,-0.6886) (0.500,-0.6931) (0.548,-0.6886) (0.596,-0.6748) (0.643,-0.6515) (0.691,-0.6182) (0.739,-0.5742) (0.787,-0.5183) (0.834,-0.4488) (0.882,-0.3625) (0.930,-0.2536) (0.980,-0.0980) (0.996,-0.0261)};
+% Omega = 1 RT
+\draw[black!45] plot[smooth] coordinates {(0.004,-0.0221) (0.020,-0.0784) (0.070,-0.1885) (0.118,-0.2586) (0.166,-0.3106) (0.213,-0.3505) (0.261,-0.3813) (0.309,-0.4047) (0.357,-0.4220) (0.404,-0.4339) (0.452,-0.4409) (0.500,-0.4431) (0.548,-0.4409) (0.596,-0.4339) (0.643,-0.4220) (0.691,-0.4047) (0.739,-0.3813) (0.787,-0.3505) (0.834,-0.3106) (0.882,-0.2586) (0.930,-0.1885) (0.980,-0.0784) (0.996,-0.0221)};
+% Omega = 2 RT (threshold: flat bottom)
+\draw[thick,black!70] plot[smooth] coordinates {(0.004,-0.0181) (0.020,-0.0588) (0.070,-0.1234) (0.118,-0.1547) (0.166,-0.1725) (0.213,-0.1827) (0.261,-0.1884) (0.309,-0.1913) (0.357,-0.1926) (0.404,-0.1930) (0.452,-0.1931) (0.500,-0.1931) (0.548,-0.1931) (0.596,-0.1930) (0.643,-0.1926) (0.691,-0.1913) (0.739,-0.1884) (0.787,-0.1827) (0.834,-0.1725) (0.882,-0.1547) (0.930,-0.1234) (0.980,-0.0588) (0.996,-0.0181)};
+% Omega = 2.5 RT (double well)
+\draw[densely dashed,thick] plot[smooth] coordinates {(0.004,-0.0161) (0.020,-0.0490) (0.070,-0.0909) (0.118,-0.1027) (0.166,-0.1034) (0.213,-0.0988) (0.261,-0.0919) (0.309,-0.0845) (0.357,-0.0778) (0.404,-0.0726) (0.452,-0.0693) (0.500,-0.0681) (0.548,-0.0693) (0.596,-0.0726) (0.643,-0.0778) (0.691,-0.0845) (0.739,-0.0919) (0.787,-0.0988) (0.834,-0.1034) (0.882,-0.1027) (0.930,-0.0909) (0.980,-0.0490) (0.996,-0.0161)};
+% Omega = 3 RT (double well, humped)
+\draw[thick] plot[smooth] coordinates {(0.004,-0.0141) (0.020,-0.0392) (0.070,-0.0583) (0.118,-0.0508) (0.166,-0.0343) (0.213,-0.0149) (0.261,0.0046) (0.309,0.0222) (0.357,0.0369) (0.404,0.0478) (0.452,0.0546) (0.500,0.0569) (0.548,0.0546) (0.596,0.0478) (0.643,0.0369) (0.691,0.0222) (0.739,0.0046) (0.787,-0.0149) (0.834,-0.0343) (0.882,-0.0508) (0.930,-0.0583) (0.980,-0.0392) (0.996,-0.0141)};
+% spinodal markers on Omega=3RT: xi_s = 0.2113 / 0.7887, f/RT = -0.0157
+\fill (0.2113,-0.0157) circle (0.5pt) node[below left,font=\scriptsize] {$\xi_s^-$};
+\fill (0.7887,-0.0157) circle (0.5pt) node[below right,font=\scriptsize] {$\xi_s^+$};
+% curve labels at xi = 0.5 (each just off its own curve)
+\node[font=\scriptsize] at (0.5,0.095) {$\Omega=3RT$};
+\node[font=\scriptsize] at (0.5,-0.115) {$2.5RT$};
+\node[font=\scriptsize] at (0.5,-0.235) {$2RT$};
+\node[font=\scriptsize] at (0.5,-0.40) {$1RT$};
+\node[font=\scriptsize] at (0.5,-0.655) {$\Omega=0$};
+\end{tikzpicture}
+\caption{정규용액 조성 자유에너지의 섞임 몫 $f(\xi)/RT=\xi\ln\xi+(1-\xi)\ln(1-\xi)+(\Omega/RT)\,\xi(1-\xi)$
+(좌표는 식 그대로의 수치 평가). $\Omega\le2RT$ 면 한 웰, $\Omega=2RT$ 에서 바닥이 평탄해지고
+(문턱, 식~\eqref{eq:sm-thresh}), $\Omega>2RT$ 면 가운데가 언덕이 된 이중웰 --- $\Omega=3RT$ 곡선의 점이
+spinodal $\xi_s^\pm=0.2113/0.7887$ 이다. 닫힌 근은 \S\ref{sec:hys} 가 닫으며, 그 절의 이중웰 그림이 이 가족
+중 $\Omega=3RT$ 한 장을 확대한 것이다.}
+\label{fig:sm-gxi}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=9.6cm,y=0.60cm]
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\theta$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,-4.3) -- (-0.02,4.4)
+  node[above,font=\scriptsize] {$(\mu-\mu^0)/RT$};
+\foreach \xx in {0.25,0.5,0.75} {\draw (\xx,0.07) -- (\xx,-0.07) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {-4,-2,2,4} {\draw (-0.014,\yy) -- (-0.026,\yy) node[left,font=\scriptsize] {\yy};}
+% Omega/RT = 0
+\draw[thin] plot[smooth] coordinates {(0.02,-3.892) (0.036,-3.288) (0.052,-2.903) (0.068,-2.618) (0.084,-2.389) (0.1,-2.197) (0.13,-1.901) (0.1689,-1.593) (0.2079,-1.338) (0.2468,-1.116) (0.2858,-0.9159) (0.3247,-0.7321) (0.3637,-0.5594) (0.4026,-0.3945) (0.4416,-0.2348) (0.4805,-0.07793) (0.5195,0.07793) (0.5584,0.2348) (0.5974,0.3945) (0.6363,0.5594) (0.6753,0.7321) (0.7142,0.9159) (0.7532,1.116) (0.7921,1.338) (0.8311,1.593) (0.87,1.901) (0.9,2.197) (0.916,2.389) (0.932,2.618) (0.948,2.903) (0.964,3.288) (0.98,3.892)};
+% Omega/RT = 2 (threshold)
+\draw[densely dashed] plot[smooth] coordinates {(0.02,-1.972) (0.036,-1.432) (0.052,-1.111) (0.068,-0.8898) (0.084,-0.7252) (0.1,-0.5972) (0.13,-0.421) (0.1689,-0.2689) (0.2079,-0.1692) (0.2468,-0.1029) (0.2858,-0.05908) (0.3247,-0.03103) (0.3637,-0.01415) (0.4026,-0.005038) (0.4416,-0.001072) (0.4805,-3.942e-05) (0.5195,3.942e-05) (0.5584,0.001072) (0.5974,0.005038) (0.6363,0.01415) (0.6753,0.03103) (0.7142,0.05908) (0.7532,0.1029) (0.7921,0.1692) (0.8311,0.2689) (0.87,0.421) (0.9,0.5972) (0.916,0.7252) (0.932,0.8898) (0.948,1.111) (0.964,1.432) (0.98,1.972)};
+% Omega/RT = 4 (van der Waals loop)
+\draw[thick] plot[smooth] coordinates {(0.02,-0.05182) (0.036,0.4244) (0.052,0.6809) (0.068,0.8382) (0.084,0.9388) (0.1,1.003) (0.13,1.059) (0.1689,1.055) (0.2079,0.9992) (0.2468,0.9097) (0.2858,0.7978) (0.3247,0.67) (0.3637,0.5311) (0.4026,0.3844) (0.4416,0.2326) (0.4805,0.07786) (0.5195,-0.07786) (0.5584,-0.2326) (0.5974,-0.3844) (0.6363,-0.5311) (0.6753,-0.67) (0.7142,-0.7978) (0.7532,-0.9097) (0.7921,-0.9992) (0.8311,-1.055) (0.87,-1.059) (0.9,-1.003) (0.916,-0.9388) (0.932,-0.8382) (0.948,-0.6809) (0.964,-0.4244) (0.98,0.05182)};
+% extrema (= spinodal) on Omega/RT=4
+\fill (0.1464,1.0657) circle (0.5pt) node[above,font=\scriptsize] {$\theta_s^-$};
+\fill (0.8536,-1.0657) circle (0.5pt) node[below,font=\scriptsize] {$\theta_s^+$};
+% curve labels
+\node[font=\scriptsize] at (0.115,-3.05) {$\Omega=0$};
+\node[font=\scriptsize,right] at (0.99,1.97) {$\Omega=2RT$};
+\node[font=\scriptsize] at (0.10,1.75) {$\Omega=4RT$};
+\end{tikzpicture}
+\caption{격자기체 화학퍼텐셜 $(\mu(\theta)-\mu^0)/RT=\ln[\theta/(1-\theta)]+(\Omega/RT)(1-2\theta)$
+의 개형(식~\eqref{eq:mu}; 좌표는 식 그대로의 수치 평가). $\Omega=0$ 단조(로그 몫이 양끝을
+잠금), $\Omega=2RT$ 에서 중심 기울기 $0$(문턱, 식~\eqref{eq:sm-thresh}), $\Omega=4RT$ 는 비단조 --- 한
+$\mu$ 에 세 $\theta$ 가 대응하는 van der Waals loop 이고 극값(점)이 spinodal $\theta_s^\pm=0.146/0.854$,
+값 $\pm1.066$. \S\ref{sec:hys} 과주행 그림의 $V_\eq(\xi)$ 곡선은 이 곡선의 $\theta=1-\xi$·부호 반전
+거울이라 같은 $\pm1.066$ 이 나타난다.}
+\label{fig:sm-mu}
+\end{figure}
+
+\subsection{전기화학 연결 --- $\mu_\mathrm{Li}=\mu^0-sF(V-U)$ 와 평형 점유 logistic}\label{sec:sm-electro}
+\textbf{(a) 출발 --- 전기화학 퍼텐셜과 삽입 반응.} 하전 종은 화학퍼텐셜에 정전 에너지가 더해진
+\emph{전기화학 퍼텐셜}(electrochemical potential)로 평형을 판정한다:
+\begin{equation}
+\tilde\mu\;\equiv\;\mu+zF\phi
+\label{eq:sm-emu}
+\end{equation}
+($z$ = 전하수, $\phi$ = 그 종이 있는 상의 정전 퍼텐셜). 삽입 반응
+$\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\mathrm{host})}$ 의 평형은 양변 $\tilde\mu$ 합의 일치이고
+(\S\ref{sec:center} 가 결과 사슬에서 같은 균형으로 진입한다), host 안의 Li 는 중성이라
+$\tilde\mu_\mathrm{Li}=\mu_\mathrm{Li}$ 다:
+\begin{equation}
+\big(\mu_{\mathrm{Li}^+}+F\phi_S\big)+\big(\mu_{e^-}-F\phi_M\big)=\mu_\mathrm{Li}(\theta)
+\label{eq:sm-workbal}
+\end{equation}
+($\phi_S$ = 전해질, $\phi_M$ = 작동 전극의 정전 퍼텐셜; $z_{\mathrm{Li}^+}{=}+1$, $z_{e^-}{=}-1$).
+
+\textbf{(b) 연산 --- 기준전극으로 측정 전위를 결선.} 같은 전해질에 담긴 기준 Li 금속 전극도 자기 평형
+$\mathrm{Li}^++e^-\rightleftharpoons\mathrm{Li}_{(\mathrm{metal})}$ 을 이룬다:
+\begin{equation}
+\big(\mu_{\mathrm{Li}^+}+F\phi_S\big)+\big(\mu_{e^-}-F\phi_\mathrm{ref}\big)=\mu_\mathrm{Li}^\mathrm{metal}.
+\label{eq:sm-refbal}
+\end{equation}
+\eqref{eq:sm-workbal} 에서 \eqref{eq:sm-refbal} 을 빼면 전해질 몫($\mu_{\mathrm{Li}^+}+F\phi_S$)이
+상쇄된다. 전자의 화학 몫도 상쇄되는데, 여기에는 한 단계가 숨어 있다 --- 두 전극의 전자 화학퍼텐셜은
+엄밀히는 재질에 따라 다르며, 그 차이(접촉 전위차)는 두 전극을 같은 재질의 도선 단자 사이에서 읽는 측정
+전위의 조작적 정의에 흡수되어 별도 항으로 남지 않는다(전기화학의 표준 처리). 그 결과 남는 것이 측정 전위 $V$(vs Li/Li$^+$)다 --- 같은 재질 단자 사이 전위차라는 조작적 정의가
+$-FV\equiv\tilde\mu_{e^-}^{M}-\tilde\mu_{e^-}^{\mathrm{ref}}$ 로 좌변 전자 몫 전체와 정확히 일치하며,
+두 전극의 전자 화학 몫이 같은 이상화에서는 $V=\phi_M-\phi_\mathrm{ref}$ 로 환원된다:
+\begin{equation}
+\mu_\mathrm{Li}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}=-F\,V.
+\label{eq:sm-muV}
+\end{equation}
+전위를 올리면 host 안 Li 의 화학퍼텐셜이 정확히 $-FV$ 만큼 낮아진다 --- ``$V$ 를 올리면 탈리튬화''가 이 한 줄이다.
+
+\textbf{(c) 중간식 --- 상수 덩이를 $U$ 로 묶기.} 식~\eqref{eq:sm-muV} 의 상수 $\mu_\mathrm{Li}^\mathrm{metal}$
+를 전이 중심 $U\equiv(\mu_\mathrm{Li}^\mathrm{metal}-\mu^0)/F$ 로 재포장하면($s=+1$ --- \S\ref{sec:notation}
+표의 유도 전용 고정 부호, 방향 부호 $\sigma_d$ 와 별개)
+\begin{equation}
+\mu_\mathrm{Li}(\theta_\eq)=\mu^0-sF\,(V-U),
+\qquad
+\Delta G_j\equiv\mu^0-\mu_\mathrm{Li}^\mathrm{metal}=-sF\,U_j
+\label{eq:sm-eqcond}
+\end{equation}
+--- \S\ref{sec:center}(N2)가 결과 사슬에서 다시 세우는 평형 조건과 글자까지 같은 식이다($U_j>0
+\Leftrightarrow\Delta G_j<0$, 곧 그 전이가 자발일 전위 창이 양수라는 부호 읽기도 동일). Part T 의
+식~\eqref{eq:muV}도 같은 관계다.
+
+\textbf{(d) 박스 --- 평형 점유 logistic.} $\Omega_j=0$ 이면 \eqref{eq:sm-muideal} 를 \eqref{eq:sm-eqcond} 에
+넣어 $RT\ln[\theta_\eq/(1-\theta_\eq)]=-sF(V-U)$, 로그를 풀면 닫힌 꼴이 나온다:
+\begin{equation}
+\boxed{\;\theta_\eq(V,T)=\frac{1}{1+e^{+sF(V-U)/RT}},\qquad
+\xi_\eq(V,T)=1-\theta_\eq=\frac{1}{1+e^{-sF(V-U)/RT}},\qquad
+w\equiv\frac{RT}{F}\;.}
+\label{eq:sm-logistic}
+\end{equation}
+자리당 언어와의 일치 검산 --- 식~\eqref{eq:fermifn} 의 지수는 $\beta\,\Delta\mu$ 이고, 몰로 올리면
+$(\mu^0-\mu_\mathrm{Li})/RT$, 여기에 \eqref{eq:sm-eqcond} 를 넣으면 $+sF(V-U)/RT$ --- 정확히
+\eqref{eq:sm-logistic} 의 $\theta_\eq$ 지수다(자리당 쌍 $(k_BT,\,e)$ 가 몰당 $(RT,\,F)$ 로 한꺼번에 환산).
+점유 $\theta_\eq$ 는 $V$ 에 감소하고 탈리튬화 진행률 $\xi_\eq$ 는 증가하는 logistic 이며,
+그림~\ref{fig:sm-occ} 가 온도별 개형과 두 곡선의 여집합 교차를 보인다. 여기서 세 가지가 본론으로 이어진다.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=1pt]
+\item \textbf{일반화는 \S\ref{sec:width} 소관.} 고정 부호 $s$ 자리에 방향 부호 $\sigma_d$, 중심에 분기 중심
+$U_j^{\,d}$(\S\ref{sec:hys}), 폭에 다중도 $w_j=n_jRT/F$ 를 넣은 것이 모델의 평형 진행률 $\xi_\eq$ 다 --- 단 지수의
+$\sigma_d$ 는 $\mathrm{logistic}[-x]=1-\mathrm{logistic}[x]$ 에 의한 $\xi\leftrightarrow1-\xi$ 여집합
+relabel 일 뿐 종 $\xi(1-\xi)$ 은 불변이라, 물리 작용처(\S\ref{sec:notation} 의 분극$\cdot$분기$\cdot$꼬리)로는
+세지 않는다.
+\item \textbf{동역학 경로와의 합류.} 같은 logistic 이 Eyring 속도식의 정지점(detailed balance,
+\S\ref{sec:width})에서도 나온다 --- 평형비 $\xi_\eq/(1-\xi_\eq)=e^{sF(V-U)/RT}$ 가 두 경로에서 같으니,
+통계(이 절)와 동역학(\S\ref{sec:width})은 한 분포의 두 유도다(\S\ref{sec:dist} 의 명제를 Part 0 이 평형
+쪽에서 선결).
+\item \textbf{$\Omega_j\ne0$ 이면 닫힌 logistic 이 아니다.} \eqref{eq:sm-eqcond} 에 상호작용까지 든
+식~\eqref{eq:mu} 를 넣고 $\xi$ 좌표의 우함수 대칭(\S\ref{sec:sm-mf})을 쓰면
+$RT\ln[\xi/(1-\xi)]+\Omega_j(1-2\xi)=sF(V-U)$ 의 암시적 등온선이 되고(\S\ref{sec:hys} 의 $V_\eq(\xi)$),
+$\Omega_j>2RT$(식~\eqref{eq:sm-thresh})면 비단조다. 곧 닫힌 logistic 은 $\Omega_j=0$ 에서만 엄밀하며,
+$\Omega_j\ne0$ 전이에 같은 서식을 계속 쓰는 것의 지위(평형 예측 vs 현상학적 폭)는 \S\ref{sec:width} 의
+폭 이중지위가 가른다.
+\end{enumerate}
+
+\begin{signbox}
+\textbf{부호(Part 0).} $s=+1$: $V\!\uparrow\Rightarrow\mu_\mathrm{Li}\!\downarrow$(식~\eqref{eq:sm-eqcond})
+$\Rightarrow\theta_\eq\!\downarrow,\ \xi_\eq\!\uparrow$ --- 전위를 올리면 탈리튬화가 진행한다(본론 규약 일치).
+$V=U\Rightarrow\theta_\eq=\xi_\eq=\tfrac12$, $T\to0$ 계단($w\to0$)·$T\!\uparrow$ 폭 비례($w=RT/F$).
+방향 부호 $\sigma_d$ 의 작용처(분극$\cdot$분기$\cdot$꼬리)는 \S\ref{sec:notation}·\S\ref{sec:signcheck} 소관 --- Part 0 은 $s=+1$ 고정.
+\end{signbox}
+
+\begin{figure}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+\begin{scope}[x=0.50cm,y=2.4cm]
+% ---- (a) dimensionless single-site occupancy ----
+\draw[-{Latex[length=1.6mm]}] (-6.6,0) -- (7.0,0)
+  node[below,font=\scriptsize] {$(\varepsilon-\mu)/k_BT_0$};
+\draw[-{Latex[length=1.6mm]}] (-6.6,0) -- (-6.6,1.18) node[above,font=\scriptsize] {$\theta$};
+\foreach \xx in {-4,-2,2,4} {\draw (\xx,0.013) -- (\xx,-0.013) node[below,font=\scriptsize] {\xx};}
+\draw (-6.54,1.0) -- (-6.66,1.0) node[left,font=\scriptsize] {1};
+\draw (-6.54,0.5) -- (-6.66,0.5) node[left,font=\scriptsize] {0.5};
+\draw[densely dotted,gray] (-6.6,0.5) -- (6.6,0.5);
+% T = T0/2
+\draw[thick,densely dotted] plot[smooth] coordinates {(-6,1) (-5,1) (-4,0.9997) (-3.5,0.9991) (-3,0.9975) (-2.5,0.9933) (-2,0.982) (-1.5,0.9526) (-1,0.8808) (-0.5,0.7311) (0,0.5) (0.5,0.2689) (1,0.1192) (1.5,0.04743) (2,0.01799) (2.5,0.006693) (3,0.002473) (3.5,0.0009111) (4,0.0003354) (5,4.54e-05) (6,6.144e-06)};
+% T = T0
+\draw[thick] plot[smooth] coordinates {(-6,0.9975) (-5.5,0.9959) (-5,0.9933) (-4.5,0.989) (-4,0.982) (-3.5,0.9707) (-3,0.9526) (-2.5,0.9241) (-2,0.8808) (-1.5,0.8176) (-1,0.7311) (-0.5,0.6225) (0,0.5) (0.5,0.3775) (1,0.2689) (1.5,0.1824) (2,0.1192) (2.5,0.07586) (3,0.04743) (3.5,0.02931) (4,0.01799) (4.5,0.01099) (5,0.006693) (5.5,0.00407) (6,0.002473)};
+% T = 2T0
+\draw[thick,densely dashed] plot[smooth] coordinates {(-6,0.9526) (-5.5,0.9399) (-5,0.9241) (-4.5,0.9047) (-4,0.8808) (-3.5,0.852) (-3,0.8176) (-2.5,0.7773) (-2,0.7311) (-1.5,0.6792) (-1,0.6225) (-0.5,0.5622) (0,0.5) (0.5,0.4378) (1,0.3775) (1.5,0.3208) (2,0.2689) (2.5,0.2227) (3,0.1824) (3.5,0.148) (4,0.1192) (4.5,0.09535) (5,0.07586) (5.5,0.06009) (6,0.04743)};
+\node[font=\scriptsize,align=left] at (3.6,0.82)
+  {dotted: $T=T_0/2$\\ solid: $T=T_0$\\ dashed: $T=2T_0$};
+\node[font=\scriptsize] at (0,-0.30) {(a)};
+\end{scope}
+\begin{scope}[xshift=8.9cm,x=33cm,y=2.4cm]
+% ---- (b) electrochemical dress: xi_eq(V), theta_eq(V) ----
+\draw[-{Latex[length=1.6mm]}] (-0.006,0) -- (0.215,0) node[below,font=\scriptsize] {$V$ [V]};
+\draw[-{Latex[length=1.6mm]}] (-0.006,0) -- (-0.006,1.18)
+  node[above,font=\scriptsize] {$\xi_\eq,\ \theta_\eq$};
+\foreach \xx in {0.05,0.1,0.15,0.2}
+  {\draw (\xx,0.013) -- (\xx,-0.013) node[below,font=\scriptsize] {\xx};}
+\draw[densely dotted] (0.085,0) -- (0.085,1.0);
+\node[below,font=\scriptsize] at (0.085,-0.10) {$U$};
+% xi_eq, T=268.15 K
+\draw[thick,densely dotted] plot[smooth] coordinates {(0,0.02464) (0.008,0.03448) (0.016,0.04806) (0.024,0.06662) (0.032,0.09165) (0.04,0.1248) (0.048,0.1678) (0.056,0.2218) (0.064,0.2872) (0.072,0.3629) (0.08,0.4461) (0.088,0.5324) (0.096,0.6168) (0.104,0.6947) (0.112,0.7629) (0.12,0.8198) (0.128,0.8654) (0.136,0.9009) (0.144,0.9278) (0.152,0.9478) (0.16,0.9625) (0.168,0.9732) (0.176,0.9809) (0.184,0.9864) (0.192,0.9903) (0.2,0.9932)};
+% xi_eq, T=298.15 K
+\draw[thick] plot[smooth] coordinates {(0,0.03529) (0.008,0.04756) (0.016,0.06383) (0.024,0.08516) (0.032,0.1128) (0.04,0.1479) (0.048,0.1915) (0.056,0.2444) (0.064,0.3063) (0.072,0.3761) (0.08,0.4515) (0.088,0.5292) (0.096,0.6054) (0.104,0.6769) (0.112,0.7409) (0.12,0.7961) (0.128,0.8421) (0.136,0.8792) (0.144,0.9086) (0.152,0.9314) (0.16,0.9488) (0.168,0.962) (0.176,0.9719) (0.184,0.9792) (0.192,0.9847) (0.2,0.9887)};
+% xi_eq, T=328.15 K
+\draw[thick,densely dashed] plot[smooth] coordinates {(0,0.04716) (0.008,0.06163) (0.016,0.08017) (0.024,0.1037) (0.032,0.133) (0.04,0.1692) (0.048,0.2127) (0.056,0.2639) (0.064,0.3224) (0.072,0.3871) (0.08,0.4559) (0.088,0.5265) (0.096,0.596) (0.104,0.6619) (0.112,0.7221) (0.12,0.7752) (0.128,0.8206) (0.136,0.8586) (0.144,0.8896) (0.152,0.9145) (0.16,0.9342) (0.168,0.9496) (0.176,0.9615) (0.184,0.9707) (0.192,0.9778) (0.2,0.9832)};
+% theta_eq = 1 - xi_eq, T=298.15 K
+\draw[gray,thick] plot[smooth] coordinates {(0,0.9647) (0.008,0.9524) (0.016,0.9362) (0.024,0.9148) (0.032,0.8872) (0.04,0.8521) (0.048,0.8085) (0.056,0.7556) (0.064,0.6937) (0.072,0.6239) (0.08,0.5485) (0.088,0.4708) (0.096,0.3946) (0.104,0.3231) (0.112,0.2591) (0.12,0.2039) (0.128,0.1579) (0.136,0.1208) (0.144,0.09142) (0.152,0.06864) (0.16,0.05122) (0.168,0.03803) (0.176,0.02814) (0.184,0.02077) (0.192,0.0153) (0.2,0.01125)};
+\node[font=\scriptsize] at (0.163,0.72) {$\xi_\eq$};
+\node[gray,font=\scriptsize] at (0.033,0.70) {$\theta_\eq=1-\xi_\eq$};
+\node[font=\scriptsize,align=left] at (0.175,0.30)
+  {dotted: 268 K\\ solid: 298 K\\ dashed: 328 K};
+\node[font=\scriptsize] at (0.1,-0.30) {(b)};
+\end{scope}
+\end{tikzpicture}%
+}
+\caption{단일 자리 점유의 전기화학적 재매개변수화(좌표는 식 그대로의 수치 평가). (a) 식~\eqref{eq:fermifn} 의
+$\theta$ --- $\varepsilon=\mu$ 에서 $\tfrac12$, 낮은 $T$ 일수록 계단($\beta\to\infty$ --- $T\to0$ 극한이
+계단 함수다), 높은 $T$ 일수록 완만. (b) 식~\eqref{eq:sm-logistic} 의 $\xi_\eq(V)$ ($U=0.085$ V, stage
+$2\!\to\!1$ 초기값) --- 폭 $w=RT/F$ 가 $23.1/25.7/28.3$ mV($268/298/328$ K)로 $T$ 에 비례해 열리고, 회색
+$\theta_\eq=1-\xi_\eq$ 와 중심 $V=U$ 에서 교차한다($\tfrac12$).}
+\label{fig:sm-occ}
+\end{figure}
+
+\subsection{다클래스 lattice gas --- 전하 보존식의 대정준 반전}\label{sec:sm-mc}
+\S\ref{sec:sm-lattice} 는 동등 자리 $M$ 개의 한 클래스에서 인수분해 $\Xi_M=\Xi_1^{\,M}$ 을 닫았고,
+\S\ref{sec:sm-electro} 는 $\mu$ 를 측정 전위 $V$ 에 결선해 전이 하나의 평형 점유를 logistic 으로 닫았다.
+실제 전극은 전이 하나가 아니라 staging 이 나누는 여러 전이를 동시에 갖는다 --- 이 소절은 두 결과를 전이
+여럿으로 한 줄 넓혀, 본론과 Part T 가 중심식으로 쓰는 전하 보존 \emph{음함수}(implicit function)가 이 대정준 구조의
+\emph{제약 반전}(constrained inversion)임을 보인다. 도착점은 그 음함수의 통계역학적 기원과 반전 유일한 근(unique root)의
+fluctuation 증명이고, 이를 받아 다음 소절(\S\ref{sec:sm-macro})이 사다리를 마감한다.
+
+\textbf{(a) 출발 --- ``전이 $j$ $=$ 자리 클래스 $M_j$'' 프레이밍.} \S\ref{sec:sm-lattice} 의
+인수분해~\eqref{eq:sm-factor} 는 자리가 전부 동등하다는 전제 위에 섰다. 실제 전극의 자리는 한 종류가 아니다
+--- staging 갤러리마다 삽입 환경이 달라, 자리 전체는 전이 $j=1,\dots,N_p$(\S\ref{sec:notation}) 별
+\emph{자리 클래스}(site class)로 갈라진다: 클래스 $j$ 는 동등 자리 $M_j$ 개와 유효 자리 자유에너지
+$\tilde\varepsilon_j(T)$ --- 식~\eqref{eq:sm-epstilde} 의 클래스판으로, \S\ref{sec:sm-electro} 의 재포장을
+클래스마다 반복하면 전이 중심 $U_j$ 를 정하는 그 양이다 --- 를 갖는다. 가정 1(hard-core 배타)은 자리마다
+그대로 두고, 가정 2(자리 독립, \S\ref{sec:sm-site})는 클래스 언어로 다시 적는다 --- 클래스 안에서든 클래스
+사이에서든 자리들은 독립이다. 모든 클래스는 \emph{같은} 저장조(그림~\ref{fig:sm-reservoir})와 입자를
+교환하므로 화학퍼텐셜은 $\mu$ 하나뿐이다 --- 전이가 여러 개라도 전극에 거는 전위가 하나라는 실험
+구도의 통계역학 쪽 표현이다.
+
+\textbf{(b) 연산 --- 클래스곱 인수분해.} 대정준 합은 독립 자리별 곱으로 갈라지고(\S\ref{sec:sm-lattice} 와
+같은 대수), 같은 클래스에 속한 인수 $M_j$ 개는 서로 같으므로
+\begin{equation}
+\Xi=\prod_{j=1}^{N_p}\Xi_{1,j}^{\,M_j},\qquad
+\ln\Xi=\sum_{j=1}^{N_p}M_j\,\ln\Xi_{1,j},\qquad
+\Xi_{1,j}=1+e^{-\beta(\tilde\varepsilon_j-\mu)}
+\label{eq:sm-mc-factor}
+\end{equation}
+--- 독립 부분계 분배함수의 표준 인수분해다 \cite{hill1960,mcquarrie1976}. 근사 경계는 두 겹이다: (i) 클래스 \emph{안}의 이웃 상호작용 $\Omega_j$(\S\ref{sec:sm-mf})는 각 자리가
+자기 클래스의 평균 점유만 느끼는 자기무모순 평균장으로 들어간다 --- 명시하면
+\S\ref{sec:sm-electro} (iii) 의 암시 등온선 그대로, \eqref{eq:sm-mc-occ} 의 지수가 몰당
+$[sF(V-U_j)+\Omega_j(1-2\theta_j)]/RT$ 로 밀려 $\theta_j$ 자신이 지수에 되먹임되는(정의상 implicit) 서식이고,
+아래 \eqref{eq:sm-mc-occ}--\eqref{eq:sm-mc-fluc} 의 \emph{명시 꼴}은 그 되먹임을 끈($\Omega_j{=}0$, 곧
+상호작용 몫을 상수로 $U_j$ 에 흡수한) 독립 자리 서식이다; (ii) 클래스
+\emph{사이}의 상관 --- 한 갤러리의 채움이 이웃 stage 의 문턱을 옮기는 staging 결합 --- 은 이 곱에서 빠진다.
+곧 식~\eqref{eq:sm-mc-factor} 는 평균장 수준에서 정확하다.
+
+\textbf{(c) 중간식 --- 평균 입자수 $=$ 용량가중 점유합.} 식~\eqref{eq:sm-gc} 의 셋째 식을
+\eqref{eq:sm-mc-factor} 의 로그에 적용하면 미분이 항별로 갈라져 \S\ref{sec:sm-site} 의 단일 자리 계산이
+클래스마다 반복된다:
+\begin{equation}
+\langle N\rangle
+=k_BT\,\frac{\partial\ln\Xi}{\partial\mu}
+=\sum_{j=1}^{N_p}M_j\,\theta_j(\mu),
+\qquad
+\theta_j=\frac{1}{1+e^{+\beta(\tilde\varepsilon_j-\mu)}}
+\label{eq:sm-mc-occ}
+\end{equation}
+--- $\theta_j$ 는 점유율~\eqref{eq:fermifn} 의 클래스판이다. 저장된 Li 총량은 클래스 크기로 가중한
+점유합이라는, 그 자체로는 자명해 보이는 이 식이 전하로 읽는 순간 중심식이 된다.
+
+\textbf{(d) 박스 --- 전하 보존 음함수의 식별.} 남은 일은 입자수를 전하로 읽는 것뿐이다. 자리당 전하가
+$F/N_A$ 이므로 클래스 용량과 총용량을 $Q_j\equiv(F/N_A)M_j$·$Q\equiv\sum_jQ_j$ 로, 추출(탈리튬화) 전하
+분율을 $\bar x\equiv1-\langle N\rangle/\sum_jM_j$ 로 두면(좌표 --- $\bar x$ 는 Li 함량 $x$ 와 배향이
+반대다), 식~\eqref{eq:sm-mc-occ} 에서
+\[
+Q\,\bar x
+\;=\;Q-\frac{F}{N_A}\,\langle N\rangle
+\;=\;\sum_j Q_j\bigl(1-\theta_j\bigr)
+\;=\;\sum_j Q_j\,\xi_j
+\]
+이고, 진행률 $\xi_j=1-\theta_j$(자리 공위 $=$ 탈리튬화 진행)는 $\mu\leftrightarrow V$
+결선(\S\ref{sec:sm-electro})을 거치면 평형 진행률 $\xi_{\eq,j}(V,T)$~\eqref{eq:sm-logistic} 그 자체다. 고정된
+$\bar x$ 에서 이 등식을 만족시키는 전위가 관측 평형 전위 $U_\mathrm{oc}(\bar x,T)$ 다:
+\begin{equation}
+\boxed{\;\sum_{j=1}^{N_p} Q_j\,\xi_{\eq,j}\bigl(U_\mathrm{oc},T\bigr)\;=\;Q\,\bar x,
+\qquad Q_j=\frac{F}{N_A}\,M_j,\quad Q=\sum_jQ_j\;.}
+\label{eq:sm-mc-balance}
+\end{equation}
+이 식은 Part T 가 겹침 가중의 출발점으로 세우는 전하 보존 음함수(\S\ref{ssec:overlap} 식~\eqref{eq:implicit})와 글자까지
+같고, 본론 \S\ref{sec:eqpeak}(N6)이 관측 $\dd Q/\dd V$ 의 출발로 놓는 보존식
+$Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 의 전이 몫 $\sum_jQ_j\xi_j$ 의 통계역학적 기원이다 --- 배경 몫
+$Q_\bg$ 는 클래스 구조 밖의 비전이 저장이 더하는 가법 항이다. 반전의 지위도 여기서 정확해진다: 대정준에서는
+$\mu$(결선하면 $V$)가 독립변수여서 $\langle N\rangle(\mu)$ 가 결정되는 반면, 측정은 거꾸로 통과 전하($\bar
+x$)를 고정하고 그에 맞는 전위를 푼다. 곧 $U_\mathrm{oc}$ 가 식 안에 음함수로 앉는 것은 논리 공백이 아니라 이
+고정-함량 반전의 \emph{정의상 implicit formulation} 이며, 대정준($\mu$ 독립)$\to$정준($\langle N\rangle$
+고정)의 Legendre-켤레 반전이다.
+\begin{verifybox}
+검산 세 건 --- (i) \emph{유일한 근(fluctuation positivity).} 식~\eqref{eq:sm-mc-occ} 을 $\mu$ 로 미분하면 클래스마다
+fluctuation--response 관계~\eqref{eq:sm-flucres} 가 반복되어
+\begin{equation}
+\frac{\partial\langle N\rangle}{\partial\mu}
+=\beta\sum_{j=1}^{N_p}M_j\,\theta_j(1-\theta_j)
+=\beta\,\mathrm{var}(N)\;>\;0
+\label{eq:sm-mc-fluc}
+\end{equation}
+--- 둘째 등호는 독립 자리의 분산 가법이고, 대정준 일반 항등식
+$\partial\langle N\rangle/\partial\mu=\beta[\langle N^2\rangle-\langle N\rangle^2]$ 의 특수형이다
+\cite{mcquarrie1976}. 유한 $T$ 에서 $0<\theta_j<1$ 라 부등호가 강하고, 결선~\eqref{eq:sm-eqcond}($s{=}+1$)이
+$\mu$ 를 $V$ 의 단조 아핀 함수로 놓으므로 박스~\eqref{eq:sm-mc-balance} 좌변은 $U_\mathrm{oc}$ 에 연속
+순증이며 $U_\mathrm{oc}\to\mp\infty$ 에서 $0/Q$ 로 간다 --- $\bar x\in(0,1)$ 마다 근이 존재하고 유일하다.
+입자수 fluctuation 의 positivity 가 유일한 근을 보증한다는 이 한 줄이 Part T 의 계산(그 파트의 유일한 근 서술, \S\ref{ssec:overlap})의 통계역학
+증명이고, 단일 자리 fluctuation~\eqref{eq:sm-flucres} 의 거시판이다. 가드 --- 평균장 이중웰($\Omega_j>2RT$,
+식~\eqref{eq:sm-thresh})의 비단조 등온선 가지(그림~\ref{fig:sm-mu})는 이 보증의 밖이고 그 창의 분기 구성은
+\S\ref{sec:hys} 소관이며, 본론과 Part T 가 반전에 실제로 쓰는 전이별 logistic 서식(폭 $w_j$ 의 이중지위는
+\S\ref{sec:width})은 항마다 강단조라 보증 안이다. (ii) \emph{확장 off --- $N_p=1$ 회수.} 클래스가 하나면
+\eqref{eq:sm-mc-factor} 는 $\Xi=\Xi_1^{\,M}$~\eqref{eq:sm-factor} 로, \eqref{eq:sm-mc-occ} 는
+$\langle N\rangle=M\theta$(\S\ref{sec:sm-lattice})로 정확히 되돌아가고, 박스~\eqref{eq:sm-mc-balance} 는
+$\xi_\eq=\bar x$ --- 전이 하나의 진행률이 곧 추출 분율이라는 좌표 항등 --- 으로 줄어 그 닫힌 역이 다음 소절의
+Nernst 식이다($N_p\ge2$ 겹침에서는 닫힌 역이 없어 수치 유일한 근만 남는다). (iii) \emph{부호 읽기.}
+\eqref{eq:sm-eqcond} 로 지수 $\beta(\tilde\varepsilon_j-\mu)$ 는 몰당 $+F(V-U_j)/RT$($s{=}+1$)로 환산되어
+$V\!\uparrow\Rightarrow\theta_j\!\downarrow\Rightarrow\sum_jQ_j\xi_{\eq,j}\!\uparrow$ --- 전위를 올리면 추출이
+진행한다는 \S\ref{sec:sm-electro} 의 부호 검산과 같은 방향이고, $\bar x$ 고정에서 $\mu$ 를 푸는 일은 곧 $V$
+를 푸는 일이라 그 근이 $U_\mathrm{oc}(\bar x,T)$ 다.
+\end{verifybox}
+
+\begin{bgbox}
+\textbf{앙상블 동등성 --- 상대 fluctuation 의 $1/\sqrt{M}$ 소멸.} \S\ref{sec:sm-lattice} 는 대정준 경로(자리 하나의
+확률)와 셈법 경로(배치 수의 로그)가 같은 $\mu(\theta)$ 에 닿는 것을 \emph{앙상블 동등성}이라 불렀고
+(식~\eqref{eq:sm-mucount}), 이 소절은 고정 함량 반전을 대정준$\to$정준 Legendre 반전으로 닫았다. 두 앙상블이
+같은 열역학을 주는 근거가 방금 계산한 fluctuation 에 있다. 식~\eqref{eq:sm-mc-fluc} 로 입자수 분산은 자리 수에
+비례하고($\mathrm{var}(N)=\sum_jM_j\theta_j(1-\theta_j)=O(M)$, $M\equiv\sum_jM_j$) 평균도 자리 수에
+비례하므로($\langle N\rangle=\sum_jM_j\theta_j=O(M)$, 식~\eqref{eq:sm-mc-occ}), \emph{상대} fluctuation 은
+\[
+\frac{\sqrt{\mathrm{var}(N)}}{\langle N\rangle}\ \sim\ \frac{1}{\sqrt{M}}
+\ \xrightarrow[\ M\to\infty\ ]{}\ 0
+\]
+로 거시 자리 수 $M$(마이크론 흑연 입자에서 $M\gg10^{8}$)에서 소멸한다. 곧 $\mu$ 를 고정하면 --- 대정준에서
+$\langle N\rangle$ 에 fluctuation 이 있더라도 --- 함량이 사실상 한 값에 고정되어, $N$ 을 고정한 정준 기술과 같은 강도적
+열역학을 준다. 대정준($\mu$ 독립)으로 세든 정준($\bar x$ 고정)으로 세든 결과가 같다는 앙상블 동등성이 이
+소멸의 따름이며 \cite{hill1960,mcquarrie1976}, 이 소절의 반전이 대정준 근 $U_\mathrm{oc}$ 를 정준 관측(고정
+$\bar x$)으로 읽어도 되는 근거다 --- $\sqrt{\mathrm{var}(N)}/\langle N\rangle$ 이 곧 $U_\mathrm{oc}$ 를
+흐리는 함량 폭인데, 그 폭이 거시 $M$ 에서 소멸하기 때문이다. \emph{한정} --- 이 소멸은 자리
+독립(식~\eqref{eq:sm-mc-factor})의 인수분해 전제 위에서다; 평균장 이중웰($\Omega_j>2RT$,
+식~\eqref{eq:sm-thresh})의 상분리 창은 강상관 영역이라 fluctuation 이 거시적으로 자라 상대 fluctuation 이 $1/\sqrt{M}$ 로 죽지
+않으며, 그 창의 분기 구성은 \S\ref{sec:hys} 소관이다(본론과 Part T 가 반전에 실제로 쓰는 전이별 강단조
+서식은 이 소멸 안).
+\end{bgbox}
+% 자산(v1.0.22 SM2): [V22-SM2-B 앙상블 동등성=상대 요동 1/√M 소멸(강상관 Ω>2RT 예외 가드)]
+
+이로써 사다리에는 logistic 과 Nernst 사이에 ``다클래스 반전'' 계단이 하나 더 놓였다 --- 본론
+\S\ref{sec:eqpeak} 과 Part T 의 겹침 가중·계산용 종합식(\S\ref{ssec:overlap}$\cdot$\S\ref{sec:synthesis})이 이 계단을 결과 사슬에서 그대로 재현한다. 남은
+것은 이 통계역학 $\mu$ 가 본론의 거시 정의($G\equiv H-TS$)와 같은 양이라는 다리이며, 다음 소절이 그 다리와
+Nernst 식으로 Part 0 을 마감한다.
+
+% 자산(v1.0.21 신규): [V21-Q2-01 다클래스 클래스곱 인수분해 eq:sm-mc-factor] [V21-Q2-02 용량가중 점유합 eq:sm-mc-occ]
+%   [V21-Q2-03 전하 보존식=대정준 제약 반전 식별 eq:sm-mc-balance(=Ch2 eq:implicit·N6 전이 몫 기원)]
+%   [V21-Q2-04 요동 양성→유일근 증명 eq:sm-mc-fluc(eq:sm-flucres 거시판·이중웰 가드 포함)]
+
+\subsection{거시 열역학 유도 --- $G\equiv H-TS$, $\Delta G_j=-sFU_j$, Nernst 식}\label{sec:sm-macro}
+\textbf{(a) 출발 --- 두 언어의 같은 $\mu$.} 본론 \S\ref{sec:center} 는 거시 정의 --- Gibbs 자유에너지
+$G\equiv H-TS$ 와 $\mu\equiv\partial G/\partial n|_{T,P}$ --- 에서 출발한다. 통계역학 쪽 정의는
+\S\ref{sec:sm-ensemble} 의 $\mu=\partial F/\partial N|_{T,V}$ 였다. 둘의 다리는 $G=F+PV$ 다 --- 완전한
+$F$ 라면 두 미분은 항등으로 같고($\partial G/\partial n|_{T,P}=\partial F/\partial n|_{T,V}$: 역학 평형
+$P=-\partial F/\partial V$ 의 연쇄율), 근사가 실제로 앉는 곳은 격자를 강체로 두어 부피 일을 떨어뜨린 모형
+$F$ 쪽이다. 응축상 격자에 이온 1몰을 넣을 때의 $P\Delta v$ 몫(상압에서 부분몰 부피 수 cm$^3$/mol 기준
+$\sim1$ J/mol 미만)은 $RT\sim2.5$ kJ/mol·전기 일 $F\times$수백 mV $\sim10^1$ kJ/mol 에 비해 무시되므로
+\begin{equation}
+\mu=\frac{\partial G}{\partial n}\Big|_{T,P}\;\simeq\;\frac{\partial F}{\partial n}\Big|_{T,V}
+\qquad(\text{삽입 고체: }P\Delta v\ll RT)
+\label{eq:sm-mubridge}
+\end{equation}
+--- \S\ref{sec:sm-lattice}--\S\ref{sec:sm-electro} 에서 세운 $\mu(\theta)$ 를 본론의 거시 $\mu$ 자리에
+그대로 꽂아도 되는 근거가 이 한 줄이다.
+
+\textbf{(b) 연산 --- 반응 자유에너지의 $H,S$ 분해.} \eqref{eq:sm-eqcond} 의 비배치 몫
+$\Delta G_j=\mu^0-\mu_\mathrm{Li}^\mathrm{metal}$ 은 온도의 함수이고, $G\equiv H-TS$ 를 반응 차분에 적용하면
+$\Delta G_j(T)=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 다.
+
+\textbf{(c) 중간식 --- 평형 중심의 온도 환산.}
+이를 $\Delta G_j=-sFU_j$ 와 등치하면 $\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}=-FU_j(T)$($s{=}1$) --- 그 이항이
+\S\ref{sec:center} 의 결과 박스($U_j(T)$·$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$)이며, 박스는 그 절의
+것을 그대로 쓰고 여기 다시 적지 않는다.
+
+\textbf{(d) 박스 --- Nernst 식으로 마감.} 마지막으로 \eqref{eq:sm-logistic} 의 $\xi_\eq$ 를 전위에 대해
+뒤집으면($\xi/(1-\xi)=e^{sF(V-U)/RT}$ 의 로그) 이상 극한($\Omega_j=0$)의 평형 전위 곡선이 닫힌다:
+\begin{equation}
+\boxed{\;
+\Delta G_j=-sF\,U_j,
+\qquad
+V_\eq(\xi)=U_j+\frac{RT}{sF}\,\ln\frac{\xi}{1-\xi}
+\qquad(\Omega_j=0,\ s=+1)\;.}
+\label{eq:sm-nernst}
+\end{equation}
+로그 몫의 정체는 \eqref{eq:sm-Smix} 섞임 엔트로피의 부분몰 몫이다 --- Nernst 식의 $\ln[\xi/(1-\xi)]$ 는
+곡선맞춤이 아니라 배치 셈법에서 온다(Part T 의 식~\eqref{eq:Vxi}가 같은 결론을 발열 관점에서 재사용한다).
+\begin{verifybox}
+극한·부호 검산 --- $\xi=\tfrac12$ 에서 $V=U_j$(중심), $T\!\uparrow$ 이면 로그 몫의 기울기(폭 $w=RT/F$)가
+비례해 커지고, $\Delta S_{\rxn,j}>0$ 이면 중심이 온도에 오른다. 상호작용 몫 $\Omega_j(1-2\xi)/sF$ 를 더하면
+\S\ref{sec:hys} 의 $V_\eq(\xi)$ 로 확장되고, $\Omega_j>2RT$ 의 비단조가 히스테리시스로 이어진다.
+\end{verifybox}
+
+\begin{keybox}
+\textbf{Part 0 사다리.} 등확률~\eqref{eq:sm-S} $\to$ Gibbs 인자·$\Xi$~\eqref{eq:sm-gc} $\to$ 단일 자리
+$\theta$~\eqref{eq:fermifn}·fluctuation~\eqref{eq:sm-flucres} $\to$ lattice gas·섞임 엔트로피~\eqref{eq:sm-Smix}
+$\to$ 평균장 $\Omega$~\eqref{eq:mu}·\eqref{eq:gxi}·문턱~\eqref{eq:sm-thresh} $\to$ 전위
+결선~\eqref{eq:sm-eqcond} $\to$ logistic~\eqref{eq:sm-logistic} $\to$ 다클래스 전하 보존
+반전~\eqref{eq:sm-mc-balance}($\langle N\rangle{=}\sum_jM_j\theta_j$ 의 유일한 근 $U_\mathrm{oc}$)
+$\to$ Nernst~\eqref{eq:sm-nernst}. 본론이 결과로
+쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(N1--N9) 순서로
+다시 따른다.
+\end{keybox}
+
+% 자산: [A-047] [A-048] [A-049] [A-050] [A-051] [A-052] [A-053] [A-054] [A-055] [A-056] [A-057] [A-058] [A-059] [A-060] [A-061] [A-062] [A-063] [A-064] [A-065] [A-066] [A-067] [A-068] [A-069]

@@ -1,0 +1,103 @@
+% ====================================================================
+% si_fr.tex — [SI-FR] Si-host 정칙용액(Frumkin, Ω<2RT 고용체) 커널 소절 (W6 초안)
+%   부착 위치: ch3(Si) §3.2(sec:si-cases) 인접 신규 subsection.
+%   W6 강조: 교차물질 통일 — Si 는 흑연이 세운 공통 판정자(식~\eqref{eq:gr-classifier})의
+%     \emph{Ω<2RT 고용체 가지}에 통째로 앉는 극이다. 같은 MSMR 커널·같은 정칙용액 Ω 분류자.
+%   계승 기호: ξ_j·w_j·Ω_j·U_j·Q_j·V_n·host 첨자·f_Si / 계승 식: eq:eqpeak·eq:wbase·eq:blend-dqdv·eq:gr-classifier
+% ====================================================================
+\subsection{Si-host 정칙용액 커널 --- 공통 판정자의 $\Omega<2RT$ 고용체 가지}\label{ssec:si-frumkin}
+\S\ref{sec:si-cases} 가 원소 Si$\cdot$SiO$_x$$\cdot$Si--C 의 곡선 개형을 계열별로 읽었다. 이 소절은 그 개형이
+\emph{왜} 흑연과 달리 완만한 경사인지를 한 문장으로 닫는다 --- Si-host 는 흑연이 \S\ref{ssec:gr-2L} 에서 세운
+교차물질 공통 판정자(식~\eqref{eq:gr-classifier})의 \emph{반대 극}, 곧 $\Omega_j<2RT$ 의 단상 고용체 가지에
+통째로 앉기 때문이다. 흑연 staging 은 그 판정자의 두-상($\Omega>2RT$, near-delta) 극이 지배했고, Si 는 같은
+판정자의 고용체($\Omega<2RT$, 넓은 종) 극이 지배한다 --- \emph{다른 물질, 같은 커널, 다른 $\Omega$-가지}. 새
+커널을 도입하는 것이 아니라 \S\ref{sec:si-blend} 의 host 곱 골격(식~\eqref{eq:blend-dqdv})에 이미 들어와 있는
+전이별 $\Omega_j^\mathrm{Si}$ 를 그 가지에서 명시적으로 읽는 것이다.
+
+\subsubsection{a-Si $=$ 단일상 고용체 --- 판정자가 폭 축에서 읽히다}\label{ssec:si-frumkin-single}
+비정질 Li$_x$Si 는 형성에너지가 조성에 대해 \emph{연속}(매끈)이라 sharp 한 이산 상전이 없이 하나의 고용체로
+진행한다 --- 제일원리 계산이 이 매끈한 전위-조성 곡선을 재현하고\cite{chevrier_dahn2009}, ML 보조 표본화로
+비정질 Li$_x$Si 전영역 상도를 세운 계산이 형성에너지의 연속성(featureless OCV)을 확증한다\cite{artrith2018}.
+곧 순환 a-Si 의 전이는 판정자~\eqref{eq:gr-classifier} 의 $\Omega_j<2RT$ 가지다. 이 성격은 \emph{폭 축}에서
+직접 읽힌다: 정칙용액 커널을 Si-host dQ/dV 에 맞춘 진단이 폭비 $w_j/(RT/F)=[1.45,\,2.74,\,1.09]\gtrsim1$ 을
+주는데, 이는 흑연 두-상 전이의 평형 단일 입자가 near-delta($w_\eff/(RT/F)\!\ll\!1$)로 무너지는 것과 자릿수급
+대조($\sim\!20$--$50\times$ 넓음)다 --- \emph{같은 정칙용액 커널을 두 물질에 걸었을 때 폭비가 갈리는 것 자체가
+$\Omega$-가지의 판독}이다($\Omega_j<2RT$ 는 넓은 종, $\Omega_j\!\gtrsim\!0$ 이하로 내려가면 더 넓어진다).
+
+\begin{table}[t]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{공통 판정자~\eqref{eq:gr-classifier} 위의 흑연$\leftrightarrow$Si 대조 --- 같은 커널, 다른 $\Omega$-가지.
+폭비는 정칙용액 커널 fit 진단(Si 는 넓은 고용체, 흑연 두-상은 near-delta). Si 폭비 $[1.45,2.74,1.09]$$\cdot$흑연
+두-상 fit $\Omega_j/RT{=}[4.06,2.02,3.55,4.07]$ 는 본 문서 정칙용액 진단분(피팅 override 전제).}
+\label{tab:si-frumkin-contrast}
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+ & 흑연 staging(지배) & Si-host(지배) & 판정자~\eqref{eq:gr-classifier} \\
+\midrule
+$\Omega$-가지        & $\Omega>2RT$(두-상)          & $\Omega<2RT$(고용체)          & $\mathrm{sgn}(2RT-\Omega_j)$ \\
+평형 단일 입자       & near-delta(plateau)          & 유한 넓은 종                  & 식~\eqref{eq:gr-classifier} 분모 \\
+폭비 $w_j/(RT/F)$    & $\ll1$(near-delta)           & $[1.45,2.74,1.09]\gtrsim1$    & $\Omega\!\uparrow$ 좁아짐 \\
+유일 예외 전이       & (모두 두-상)                  & c-Li$_{15}$Si$_4$(1차만)      & $\Omega>2RT$ 로 반전 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Frumkin 단일상 peak --- 판정자의 고용체 가지 명시}\label{ssec:si-frumkin-peak}
+\textbf{(a) 출발 --- Si-host 평형 전위.} host $=$Si 의 전이 $j$ 평형 전위는 흑연 식~\eqref{eq:Veq} 를 host 판으로
+받은 정칙용액 형이다(점유 좌표 $\theta_j=1-\xi_j$ 로 적으면 seed 규약과 같다):
+\begin{equation}
+V_j(\theta_j)\;=\;U_j^\mathrm{Si}\;-\;\frac{RT}{F}\ln\frac{\theta_j}{1-\theta_j}\;-\;\frac{\Omega_j^\mathrm{Si}}{F}\,(1-2\theta_j),
+\label{eq:si-fr-V}
+\end{equation}
+--- Frumkin 삽입 등온선\cite{leviaurbach1999} 의 host 판이며, $\Omega_j^\mathrm{Si}$ 는 흑연과 동일 슬롯의 Si
+값(치환형 활물질의 정칙용액 $\omega$ 형식\cite{verbrugge2017})이다. \textbf{(b) 연산 --- 기울기와 그 역수.}
+$\dd V_j/\dd\theta_j=-(1/F)[RT/(\theta_j(1-\theta_j))-2\Omega_j^\mathrm{Si}]$ 이므로 미분용량은 그 절댓값의
+역수에 용량 가중을 곱한다. \textbf{(c) 박스 --- Si-host 단일상 커널.}
+\begin{equation}
+\boxed{\;
+\Big(\frac{\dd Q}{\dd V}\Big)^\mathrm{Si}_j
+=\frac{Q_j^\mathrm{Si}\,F}{\big|\,RT/[\theta_j(1-\theta_j)]-2\Omega_j^\mathrm{Si}\,\big|},
+\qquad \Omega_j^\mathrm{Si}<2RT\;.}
+\label{eq:si-fr-peak}
+\end{equation}
+이는 흑연이 세운 공통 판정자~\eqref{eq:gr-classifier} 와 \emph{글자까지 같은 분모}이고, Si 는 그 부등식의
+$\Omega_j^\mathrm{Si}<2RT$ 가지에 앉는다는 것만이 차이다 --- 곧 흑연 stage-2L 두-상 peak 과 Si 고용체 종은
+\emph{한 식의 두 부호 영역}이다. \textbf{(d) 극한 --- 판정자 위의 세 거동.} $\Omega_j^\mathrm{Si}\!\to\!2RT^-$
+면 분모가 $\theta{=}\tfrac12$ 에서 $0$ 으로 가 peak 이 \emph{sharpen$\cdot$발산}(고용체$\to$임계),
+$\Omega_j^\mathrm{Si}\!\to\!0$ 이면 식~\eqref{eq:eqpeak} 의 이상 종 $Q_j^\mathrm{Si}\theta_j(1-\theta_j)/(RT/F)$
+($w{=}RT/F$)으로 환원, $\Omega_j^\mathrm{Si}<0$(순 반발)이면 유효 폭 $w_\eff=(RT/F)(1-\Omega_j^\mathrm{Si}/2RT)>RT/F$
+로 \emph{더 넓어진다}(위 폭비 $\gtrsim1$ 의 물리). Si-host 는 이 넓은 종을 \emph{소수의 broad gallery}(연속
+고용체를 몇 개 전이로 이산화)로 담으며(다중 narrow 전이가 아님 --- 비물리 staging peak 주입 금지), 이것이
+\S\ref{ssec:si-elemental}--\S\ref{ssec:si-sic} 세 계열 개형의 공통 커널이다.
+
+\textbf{유일 두-상 예외 --- c-Li$_{15}$Si$_4$.} Si-host 에서 판정자가 $\Omega>2RT$ 로 \emph{반전}하는 전이는
+하나뿐이다: 1차 심리튬화 끝($\sim\!50$--$60$ mV)에서 준안정 c-Li$_{15}$Si$_4$ 가 결정화하는 두-상
+plateau\cite{obrovac_christensen2004} 다. 이는 순환 a-Si 엔 거의 부재(1차$\cdot$심SOC 특이)라, 필요 시
+\emph{1차 전용 별도 두-상 항}으로 두고 순환 커널(고용체)과 분리한다 --- 같은 판정자가 한 물질 안에서도
+전이별로 가지를 달리 정하는(LCO per-peak $\Omega$ 와 같은 정신, \S\ref{ssec:lco-omega}) Si 의 사례다.
+
+\subsubsection{블렌드 가산 중첩 --- 공통 전위에서 두 host 커널의 합}\label{ssec:si-frumkin-blend}
+Si-host 커널~\eqref{eq:si-fr-peak} 이 흑연 staging 커널과 \emph{같은 판정자의 두 가지}라는 사실은 블렌드에서
+곧바로 쓰인다: 한 집전체$\cdot$한 전해질의 두 host 는 평형에서 하나의 $\mu$(공통 전위)를 공유하므로
+(\S\ref{sec:si-blend}), 관측 dQ/dV 는 두 host 전이 기여의 배경 위 \emph{선형 합}
+(식~\eqref{eq:blend-dqdv})이다. 곧 흑연의 $\Omega>2RT$ 종들과 Si 의 $\Omega<2RT$ 종들이 같은 전위 축 위에
+포개지며, 저-Si(10 wt\%) 블렌드에서 Si$\cdot$흑연 peak 이 부분 분리로 관측되는 것\cite{naboka_sic2021} 이 이
+겹침의 실측 접점이다. 이 가산 중첩은 같은 학파의 SiO/graphite 블렌드 축소모형이 ``sloped Si voltage curve 위의
+세 흑연 plateau $=$ 명백한 흑연과 Si 기여의 중첩(clearly a superposition)''으로 직접 지지한다\cite{tu_blend2024}
+--- 단 이 등가는 \emph{평형(준정적)}에서 정확하며, 유한 율속의 host 전환$\cdot$비가산은 GS-2 공백
+(\S\ref{ssec:si-blend-gs2})으로 분리 진단된다(본 소절은 평형 커널의 $\Omega$-가지 판독까지다).
+
+\begin{keybox}
+\textbf{한 줄.} Si-host 는 흑연이 세운 교차물질 판정자~\eqref{eq:gr-classifier} 의 \emph{$\Omega<2RT$ 고용체 가지}
+그 자체다 --- 같은 분모 $|RT/[\theta(1-\theta)]-2\Omega|$(식~\eqref{eq:si-fr-peak}), 다른 부호 영역. a-Si 는
+단일상 고용체(형성E 연속\cite{chevrier_dahn2009,artrith2018}; 폭비 $[1.45,2.74,1.09]\gtrsim1$ 대 흑연 두-상
+near-delta)라 소수 broad gallery 로 담고($\Omega\!\to\!2RT$ sharpen$\cdot$$\Omega{=}0$ 이상 종$\cdot$$\Omega<0$
+broaden), 유일 두-상은 1차 c-Li$_{15}$Si$_4$($\Omega>2RT$ 반전, 순환 부재). 블렌드는 공통 전위에서 두 host
+$\Omega$-가지 종의 선형 합(식~\eqref{eq:blend-dqdv}\cite{tu_blend2024}). 같은 커널$\cdot$같은 분류자가 흑연
+(\S\ref{ssec:gr-2L})$\cdot$LCO(\S\ref{ssec:lco-omega})와 한 틀이다.
+\end{keybox}
+
+% 자산(W6 초안): [W6-SI-01 Si=공통 판정자 Ω<2RT 가지 명시(eq:gr-classifier 반대 극)·폭비 [1.45,2.74,1.09]≳1 대 흑연 near-delta tab:si-frumkin-contrast]
+%   [W6-SI-02 Frumkin 단일상 커널 boxed eq:si-fr-peak(eq:gr-classifier 동일 분모·Ω→2RT sharpen·Ω=0 eq:eqpeak 환원·Ω<0 broaden)]
+%   [W6-SI-03 유일 두-상 c-Li15Si4 Ω>2RT 반전(1차 전용·순환 부재)] [W6-SI-04 블렌드 가산중첩 eq:blend-dqdv·tu_blend2024 "superposition"·GS-2 한정]

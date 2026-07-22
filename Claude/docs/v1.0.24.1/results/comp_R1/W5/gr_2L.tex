@@ -1,0 +1,157 @@
+% ====================================================================
+% gr_2L.tex — [GR-2L] 흑연 stage-2L·XRD 5-feature staging (신규 소절)
+%   삽입 위치: Chapter 1 흑연, §5 폭 소절(ch1_sec05_width, \label{sec:width}) 뒤.
+%   저작 sub W5 초안 — 물리 기작·직관 전면(WHY). 표기·라벨·식은 기존 계승, 신규 라벨만 새 이름.
+%   저작 근거(읽은 파일·행)·가정·불확실점은 같은 폴더 NOTES.md.
+% ====================================================================
+\subsection{stage-2L 와 XRD 5-feature staging --- 두-상 판정과 엔트로피 안정화 상}\label{sec:gr-2L}
+앞 소절은 폭 $w_j$ 의 \emph{이중지위} --- 단상이면 평형 예측, 두-상이면 broadening 이 정하는 현상학적 폭 ---
+를 그 전이의 $\Omega_j$ \emph{값}이 가른다고 세웠다(\S\ref{sec:width-w}). 그런데 ``어느 전이가 어느 지위인가''라는
+\emph{전이별 분류}의 물리 근거는 그 소절이 \S\ref{sec:broadening-class} 로 미뤄 두었다. 이 소절이 그 빈자리를
+흑연 staging 의 \emph{실측 상도표}(X-선 회절, XRD)로 채운다. 두 가지를 닫는다: (i) 흑연이 남기는 전이의 개수와
+성격 --- 두-상 몇 개, 연속 고용체 몇 개 --- 를 XRD 5-feature 로 확정하고(그래서 표~\ref{tab:staging} 의 네 슬롯이
+비로소 물리적 정체를 얻고), (ii) 그중 \emph{stage-2L} 이 왜 온도가 올라야 비로소 갈라지는 \emph{엔트로피 안정화
+상}인지를 평형 중심의 온도 관계 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$(\S\ref{sec:center}) 한 줄로 설명한다.
+전자는 판정 규칙이고 후자는 그 규칙이 온도축에서 드러내는 신호다.
+
+\textbf{(a) XRD 가 고정하는 staging 서열 --- 두-상 4 $+$ 고용체 1.} Li 가 흑연에 삽입되면 갤러리(graphene 층
+사이 공간)를 채우는 순서가 \emph{stage} 로 정해진다 --- stage-$n$ 은 Li 가 $n$ 개 갤러리마다 하나씩 채운 주기
+구조다. Dahn 의 $\mathrm{Li}_x\mathrm{C_6}$ 상도표 XRD\cite{dahn1991} 는 리튬화가 진행되며 나타나는 상
+전이를 \emph{다섯 개의 회절 특징}으로 고정한다:
+\begin{equation}
+\underbrace{\text{dilute}\ 1'\!\leftrightarrow\!4}_{\sim0.21\,\mathrm V}\ \to\
+\underbrace{4\!\leftrightarrow\!3}_{\sim0.14\text{--}0.20\,\mathrm V}\ \to\
+\underbrace{3\!\leftrightarrow\!2\mathrm L}_{\sim0.13\,\mathrm V}\ \to\
+\underbrace{2\mathrm L\!\leftrightarrow\!2}_{\sim0.115\,\mathrm V}\ \to\
+\underbrace{2\!\leftrightarrow\!1}_{\sim0.085\,\mathrm V}.
+\label{eq:gr-xrdseq}
+\end{equation}
+결정적인 점은 이 다섯이 \emph{같은 종류가 아니라는} 것이다 --- 넷($1'\!\leftrightarrow\!4$, $3\!\leftrightarrow\!2\mathrm L$,
+$2\mathrm L\!\leftrightarrow\!2$, $2\!\leftrightarrow\!1$)은 두 상이 공존하는 \emph{두-상(1차) 전이}이고, 하나
+($4\!\leftrightarrow\!3$)만은 새 상을 만들지 않고 조성이 이어지는 \emph{연속 고용체 shoulder} 다\cite{dahn1991}.
+곧 XRD 가 주는 상한은 ``두-상 4 $+$ 고용체 1''이며, 이 개수가 뒤(d)에서 모델 슬롯 수의 물리적 천장이 된다.
+
+\textbf{(b) 두-상이냐 고용체냐 --- $\Omega_j\!\gtrless\!2RT$ 한 문턱이 가른다.} 어떤 전이가 두-상이 될지는 임의
+분류가 아니라 그 전이 진행좌표의 정규용액 상호작용 $\Omega_j$ 하나가 정한다. Part 0 의 격자기체 화학퍼텐셜
+(식~\eqref{eq:mu}; 자유에너지 식~\eqref{eq:gxi} 의 미분)
+\begin{equation}
+\mu(\theta)=\mu^\circ+RT\ln\frac{\theta}{1-\theta}+\Omega_j(1-2\theta)
+\label{eq:gr-mu}
+\end{equation}
+를 점유 $\theta$ 로 미분하면(이것이 곧 자유에너지 곡률 식~\eqref{eq:gpp} 이다)
+\begin{equation}
+\frac{\dd\mu}{\dd\theta}=\frac{RT}{\theta(1-\theta)}-2\Omega_j
+\quad\xrightarrow{\ \theta=\frac12\ }\quad
+\left.\frac{\dd\mu}{\dd\theta}\right|_{1/2}=4RT-2\Omega_j,
+\label{eq:gr-dmudtheta}
+\end{equation}
+반충전($\theta=\tfrac12$)에서의 기울기가 $4RT-2\Omega_j$ 다. 이 부호가 모든 것을 가른다:
+\begin{equation}
+\boxed{\;
+\Omega_j>2RT:\ \left.\frac{\dd\mu}{\dd\theta}\right|_{1/2}<0\ \Rightarrow\ \text{비단조 }\mu\ \Rightarrow\
+\text{miscibility gap(두-상, 평형 dQ/dV 델타)}\;;\quad
+\Omega_j<2RT:\ \text{단상 고용체(유한 종)}\;}
+\label{eq:gr-criterion}
+\end{equation}
+--- $\Omega_j>2RT$ 이면 $\mu(\theta)$ 가 반충전 부근에서 내려가는 van der Waals 고리를 그려 두 상이 갈라지고
+(spinodal 식~\eqref{eq:spinodal}), 평형 단일 입자 dQ/dV 는 \emph{날카로운 선}(공통 전위의 델타)이 된다 --- 실측
+종으로 펴는 몫은 broadening(\S\ref{sec:broadening})이 담는다. $\Omega_j<2RT$ 이면 $\mu$ 가 단조라 상분리가 없고,
+평형 등온선이 \emph{이미} 폭 $w_j=n_jRT/F$ 의 종이다(식~\eqref{eq:eqpeak}). 여기서 앞 소절의 이중지위와 정확히
+맞물린다 --- 단상의 유효 폭은 $w_j^{\eff}=(RT/F)(1-\Omega_j/2RT)$ 로 $\Omega_j\!\to\!2RT$ 에서 0 으로 좁아지며
+발산하고, 이것이 두-상 문턱을 향한 ``sharpening''의 평형 표현이다(\S\ref{sec:width-w} 의 $(1-\Omega_j/2RT)$ 인자).
+
+이 문턱이 흑연 네 슬롯에서 실제로 어디에 놓이는지는 실측이 답한다. 본 세션의 정칙용액 재적합(regsol2)에서 표
+~\ref{tab:staging} 네 전이의 $\Omega_j/RT=[4.06,\,2.02,\,3.55,\,4.07]$ 가 \emph{모두} $2$ 를 넘어(전부 두-상 측),
+XRD 가 지목한 두-상 4 와 부호까지 합치한다(내부 수치 검증 --- 정밀값 아닌 확증, tier B). 다만 표
+~\ref{tab:staging} 의 $\Omega_j$ 는 거친 \emph{초기값}이라 피팅이 override 하며, 어느 전이가 최종적으로 어느
+지위인지는 피팅된 $\Omega_j$ 가 $2RT(\!\approx\!4958$ J/mol$@298$ K$)$ 를 넘는지가 정한다(\S\ref{sec:width-w}
+$\cdot$\S\ref{sec:broadening-class} 의 한정과 동일).
+
+\textbf{(c) stage-2L 는 왜 온도가 올라야 갈라지는가 --- 엔트로피 안정화 상.} 다섯 특징 중 물리적으로 가장 흥미로운
+것은 stage-2L 이다. ``2L''은 stage-2(Li 가 한 갤러리 걸러 채워진 구조)이되 \emph{채워진 갤러리 안의 면내 Li 배열이
+질서를 잃은 액체-유사(liquid-like) 상}이고, 조밀 정렬된 stage-2($\sqrt3\!\times\!\sqrt3$ 초격자, $\mathrm{LiC_{12}}$)와
+구별된다. 핵심은 면내 무질서가 곧 \emph{큰 배치(configurational) 엔트로피}라는 데 있다 --- 2L 의 자유에너지
+$G_{2\mathrm L}=H_{2\mathrm L}-T\,S_{2\mathrm L}$ 에서 $S_{2\mathrm L}$ 항이 이웃 질서상(stage-3$\cdot$stage-2)보다
+크므로, $2L$ 은 \emph{온도가 충분히 높을 때만} 공통접선 아래로 내려가 독립 상영역으로 열린다. 온도가 어떤 문턱
+($\approx10\,^\circ$C) 아래로 내려가면 $-T\,S_{2\mathrm L}$ 이 부족해 2L 상영역이 닫히고, 계는 stage-3 에서
+stage-2 로 \emph{곧장} 간다 --- 곧 2L 은 열역학적으로 \emph{엔트로피가 켜야 존재하는} 상이다.
+
+이 엔트로피 안정화가 dQ/dV 온도축에 남기는 지문은 \emph{정확히 반대 부호의 반응 엔트로피 쌍}이다. 2L 을 사이에 둔
+두 전이를 보자 --- $3\!\to\!2\mathrm L$(질서 stage-3 에서 무질서 2L 로: 배치 엔트로피 \emph{증가}, $\Delta S_{\rxn}>0$)와
+$2\mathrm L\!\to\!2$(무질서 2L 에서 조밀 정렬 stage-2 로: 배치 엔트로피 \emph{감소}, $\Delta S_{\rxn}<0$). 시드 실측
+계보의 대표 분리쌍 값은 고전위 몫 $3\!\to\!2\mathrm L\!:\ \Delta S_{\rxn}\!\approx\!+15$, 저전위 몫
+$2\mathrm L\!\to\!2\!:\ \Delta S_{\rxn}\!\approx\!-14$ J/(mol\,K)이며, 물리적으로 견고한 양은 개별값이 아니라 그 \emph{차}
+\begin{equation}
+\Delta(\Delta S_{\rxn})\equiv\Delta S_{\rxn}^{3\to2\mathrm L}-\Delta S_{\rxn}^{2\mathrm L\to2}
+\approx15-(-14)=29\ \mathrm{J/(mol\,K)}\;(>0)
+\label{eq:gr-dds}
+\end{equation}
+이다. $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$(\S\ref{sec:center})를 두 전이에 걸면, 고전위 peak 는 온도와 함께
+\emph{올라가고}($+15/F$) 저전위 peak 는 \emph{내려가}($-14/F$), 두 peak 의 간격이 온도에 선형으로 벌어진다:
+\begin{equation}
+\boxed{\;
+\frac{\dd}{\dd T}\big(V_{\mathrm{peak}}^{3\to2\mathrm L}-V_{\mathrm{peak}}^{2\mathrm L\to2}\big)
+=\frac{\Delta(\Delta S_{\rxn})}{F}\approx\frac{29}{96485}\ \mathrm{V/K}\approx0.30\ \mathrm{mV/K}\;,\qquad
+T_{\mathrm{merge}}\approx10\,^\circ\mathrm C\;}
+\label{eq:gr-split}
+\end{equation}
+--- 분리율 $0.30$ mV/$^\circ$C 를 병합 온도 $\approx10\,^\circ$C 에서 외삽하면, $25\,^\circ$C 에선 간격이
+$\sim\!4.5$ mV(거의 병합)이고 $45\,^\circ$C 에선 $\sim\!10.5$ mV(뚜렷한 두 peak)라, ``$45\,^\circ$C 두 peak /
+$25\,^\circ$C 병합''의 관측이 그대로 나온다. 본 세션 재현값은 $0.271$ mV/$^\circ$C 로 $0.30$ 과 정합한다(내부 수치
+검증, tier B). 곧 \emph{peak 갈라짐 자체가 2L 의 엔트로피 안정화를 온도축에서 읽어내는 계량기}이며 --- 낮은 온도에서
+두 peak 가 하나로 합쳐지는 것은 곡선맞춤 인공물이 아니라 2L 상영역이 닫히는 열역학의 직접 신호다.
+
+\begin{signbox}
+\textbf{부호 --- 분리 방향.} 삽입(리튬화) 기준 $\Delta S_{\rxn}$ 로, $3\!\to\!2\mathrm L$ 은 무질서 상 형성이라 $+$,
+$2\mathrm L\!\to\!2$ 는 정렬이라 $-$. $\partial U/\partial T=\Delta S_{\rxn}/F$ 라 $T\!\uparrow$ 에서 고전위 peak $\uparrow$
+$\cdot$저전위 peak $\downarrow$ $\Rightarrow$ 간격 $\uparrow$(식~\eqref{eq:gr-split}). $T\!\downarrow$ 에서 간격
+$\to0$ (병합, 2L 상영역 닫힘). \emph{개별 $\pm15/\mp14$ 는 대표 분리쌍, 견고량은 차 $\Delta(\Delta S)\!\approx\!29$}
+(식~\eqref{eq:gr-dds}) --- 표~\ref{tab:staging} 의 초기값과는 tier 가 다르며 round-trip 피팅으로 정합한다.
+\end{signbox}
+
+\begin{srcbox}
+\textbf{다리 --- 온도-분리 2L 이 어느 실측에 기대는가.} 엔트로피 안정화 2L 의 온도 의존은 operando XRD 로
+직접 관측된다\cite{schmitt2022}: 탈리튬화 시 $43\,^\circ$C 에서 stage-2L 형성이 $25\,^\circ$C 보다 \emph{뚜렷}하고
+$0\,^\circ$C 에서는 \emph{관측되지 않는다} --- 곧 2L 이 고온에서만 발현하는 상이라는 식~\eqref{eq:gr-split} 의
+$T_{\mathrm{merge}}$ 그림을 회절이 확증한다. 대응은 결과 구조 수준이다(왼쪽 본문, 오른쪽 원 논문 결과):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:gr-xrdseq},~\eqref{eq:gr-split}) & Schmitt\cite{schmitt2022}$\cdot$Dahn\cite{dahn1991} 결과 \\
+\hline
+두-상 4 $+$ 고용체 1 (dilute$\cdot4\!\leftrightarrow\!3$ 연속) & $\mathrm{Li}_x\mathrm{C_6}$ XRD 상도표의 stage 서열\cite{dahn1991} \\
+2L $=$ 면내 액체-유사(무질서) 고엔트로피 상 & 탈리튬 시 stage-2 와 3L 사이 2L 관측\cite{schmitt2022} \\
+$T_{\mathrm{merge}}\!\approx\!10\,^\circ$C 아래 병합 & $0\,^\circ$C: 2L 없음; $43\,^\circ$C: 2L 뚜렷\cite{schmitt2022} \\
+$\Delta(\Delta S)\!\approx\!29$ J/(mol\,K) 분리쌍 & 흑연 삽입 엔트로피 부호$\cdot$스케일\cite{reynier2003} \\
+\hline
+\end{tabular}
+\end{center}
+\emph{방법 요지} --- Schmitt 등은 C/20 저율속 operando XRD 로 온도별 phase evolution 을 추적해 2L 발현의
+온도 의존을 보였고, Dahn 은 $\mathrm{Li}_x\mathrm{C_6}$ 상도표로 staging 서열과 상 성격을 고정했다. \emph{가정 차} ---
+원 실측은 회절 세기$\cdot$격자 상수로 상을 판별하나, 본문은 그 상 성격을 전이별 $\Omega_j$$\cdot\Delta S_{\rxn,j}$
+두 입력으로 축약해 forward dQ/dV 로 접는다(2L 의 미시 면내 구조가 아니라 그 열역학 서명만 남긴다). $\Delta S$ 의
+전이별 정밀값은 reynier\cite{reynier2003}(부호$\cdot$스케일 anchor, tier B)를 넘어 우리 데이터 피팅으로 정한다.
+\end{srcbox}
+
+\textbf{(d) 경계 --- 네 슬롯이 이미 두-상 4 이고, 6전이 이상은 XRD 미지원.} 표~\ref{tab:staging} 의 네 전이 슬롯은
+XRD 가 분해하는 두-상 특징의 \emph{개수}(넷)와 정확히 같다 --- 새 피팅 슬롯을 더할 필요가 없다. XRD 5-feature 가
+주는 것은 슬롯의 \emph{정체 재확인}이지 슬롯 증설이 아니다: 최고전위 슬롯은 dilute$\to$stage-4 두-상 개시로,
+$4\!\leftrightarrow\!3$ 는 별도 슬롯이 아니라 연속 고용체 shoulder 로(연속 배경에 접힘) 읽는 것이 XRD 정합이며, 이
+재식별은 표~\ref{tab:staging} 의 값을 바꾸지 않는 \emph{해석 층위}다(라벨 재배정은 추가 후보 --- NOTES). 여섯 이상의
+전이로 곡선을 쪼개는 것은 XRD 상도표가 지지하지 않는 curve-fitting 이므로 폐기 상태를 유지한다 --- 물리적 상 전이
+수가 자유 파라미터 수의 상한이다.
+
+\begin{keybox}
+\textbf{stage-2L 한 줄.} XRD 는 흑연 staging 을 \emph{두-상 4 $+$ 고용체 1}(식~\eqref{eq:gr-xrdseq})로 고정하고,
+두-상/고용체는 반충전 기울기 $\dd\mu/\dd\theta|_{1/2}=4RT-2\Omega_j$(식~\eqref{eq:gr-dmudtheta})의 부호 --- 곧
+$\Omega_j\!\gtrless\!2RT$(식~\eqref{eq:gr-criterion}) --- 가 가른다(regsol2 실측 $\Omega_j/RT$ 넷 모두 $>2$). stage-2L 은
+면내 무질서의 \emph{엔트로피 안정화 상}이라, 이를 사이에 둔 두 전이의 반응 엔트로피가 $+15/-14$(차
+$\Delta(\Delta S)\!\approx\!29$, 식~\eqref{eq:gr-dds})로 갈려 $\partial U/\partial T=\Delta S_{\rxn}/F$ 를 통해 두 peak 를
+$0.30$ mV/$^\circ$C 로 벌리고 $\approx10\,^\circ$C 아래에서 병합시킨다(식~\eqref{eq:gr-split}; operando XRD
+확증\cite{schmitt2022}). 네 모델 슬롯이 이미 두-상 4 라 6전이 이상은 XRD 미지원 curve-fitting 으로 폐기.
+\end{keybox}
+
+% 자산(comp_R1 W5 신규): [W5-GR2L-01 XRD 5-feature 서열 eq:gr-xrdseq(두-상4+고용체1)]
+%   [W5-GR2L-02 두-상 판정 dμ/dθ|½=4RT−2Ω 유도+boxed criterion eq:gr-dmudtheta·eq:gr-criterion(eq:mu·eq:gpp·eq:spinodal 정합)]
+%   [W5-GR2L-03 2L 엔트로피 안정화·분리쌍 ΔS eq:gr-dds] [W5-GR2L-04 온도-분리율 0.30 mV/℃·Tmerge boxed eq:gr-split(∂U/∂T=ΔS/F)]
+%   [W5-GR2L-05 signbox 분리 부호] [W5-GR2L-06 srcbox Dahn1991·Schmitt2022 온도-2L 실측 다리] [W5-GR2L-07 경계 4슬롯=두-상4·6+폐기]

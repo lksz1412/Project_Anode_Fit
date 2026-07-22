@@ -1,0 +1,116 @@
+% ====================================================================
+% lco_omega.tex — [LCO-Ω] LCO per-peak Ω(정칙용액 커널) + 전자항 on/off 토글 소절 (W6 초안)
+%   부착 위치: ch2 LCO. ch1_sec13_lcohys·ch1_sec15_lcoelec·ch1_sec16_lcopeak 정합 신규 subsection.
+%   W6 강조: 교차물질 통일 — LCO 는 흑연이 세운 공통 판정자(식~\eqref{eq:gr-classifier})가
+%     \emph{한 물질 안에서 전이별로 두 가지에 걸치는} 혼합 사례다. 같은 MSMR·같은 정칙용액 Ω 분류자.
+%   #7 정정: Ω_j^cat = 유효 평균장 축약(미시 질서구조 아님)·config 엔트로피 별도 슬롯(물리 유지·문구만).
+%   계승 기호: ξ_j·w_j·Ω_j^cat·U_j^cat·ΔS_rxn^cat·Q_j^cat·ΔS_e / 계승 식: eq:lco-eqpeak·eq:lco-gpp·eq:lco-dUhys·eq:dSe·eq:U1T2·eq:gr-classifier
+% ====================================================================
+\subsection{LCO per-peak $\Omega$ 와 전자항 토글 --- 같은 판정자의 혼합 사례}\label{ssec:lco-omega}
+\S\ref{sec:lco-hys}--\S\ref{sec:lco-peak} 이 LCO 세 전이의 중심$\cdot$분기$\cdot$엔트로피 분해를 흑연 대입형으로
+닫았다. 이 소절은 그 결과를 교차물질 틀 안에 자리매김한다 --- LCO 는 흑연이 \S\ref{ssec:gr-2L} 에서 세운 공통
+판정자(식~\eqref{eq:gr-classifier})가 \emph{한 물질 안에서 전이마다 두 가지로 갈리는} 혼합 사례다. 흑연은 그
+판정자의 두-상 극($\Omega>2RT$)이, Si 는 고용체 극($\Omega<2RT$, \S\ref{ssec:si-frumkin})이 지배했으나, LCO 는
+MIT 두-상 sharp 와 order--disorder 를 한 dQ/dV 안에 함께 담아 \emph{per-peak $\Omega$}(전이별 정칙용액 커널)
+가 각 feature 의 가지를 따로 정한다. 아울러 이 소절은 (i) $\Omega_j^\cat$ 의 물리 지위를 정정하고(\#7 ---
+문구만, 물리 유지), (ii) 흑연엔 없는 전자 엔트로피 항을 \emph{on/off 토글}로 분리해 곡선 산출과 가역 발열을
+가른다.
+
+\subsubsection{per-peak $\Omega$ --- MSMR 동형 위에서 전이별 가지}\label{ssec:lco-omega-perpeak}
+\textbf{(a) 출발 --- LCO dQ/dV 는 흑연과 같은 MSMR.} 양극 세 peak 는 흑연 평형 종을 전이 집합만 바꿔 그대로
+반복한 식~\eqref{eq:lco-eqpeak} 다 --- 곧 $(\dd Q/\dd V)^\eq_\mathrm{LCO}=C_\bg+\sum_{j}Q_j^\cat\,\xi_{\eq,j}(1-\xi_{\eq,j})/w_j$
+로, 커널$\cdot$부호 규약이 흑연과 동형이고 값만 LCO 로 바뀐다(치환형 활물질의 정칙용액 $\omega$ 형식\cite{verbrugge2017};
+MSMR 전이별 logistic 합\cite{msmr_origin2017}). \textbf{(b) 연산 --- feature 별 상 성격이 갈린다.} 그런데 LCO
+feature 는 상 성격이 전이마다 다르다: T1(MIT, $\sim\!3.90$ V, insulator$\to$metal)은 in situ 회절이 2상 공존을
+확정한 두-상 sharp\cite{reimers1992,menetrier1999} 이고(고전압 O2/O3 stacking 전이도 같은 두-상 부류),
+$x\!\approx\!\tfrac12$ 부근 T2$\cdot$T3(order--disorder)은 초격자 정렬 전이다\cite{reimers1992,vanderven1998}.
+\textbf{(c) 중간식 --- 판정자를 전이별로.} 흑연 곡률 식~\eqref{eq:lco-gpp}($g_j^{\cat\prime\prime}=RT/[\xi_j(1-\xi_j)]-2\Omega_j^\cat$)
+을 판정자~\eqref{eq:gr-classifier} 에 넣으면, 각 feature 의 가지는 그 전이의 \emph{피팅된} $\Omega_j^\cat$ 하나가
+정한다. \textbf{(d) 박스 --- LCO per-peak 분류.}
+\begin{equation}
+\boxed{\;
+\text{feature }j\ \text{의 상 성격}=\mathrm{sgn}\big(2RT-\Omega_j^\cat\big):\quad
+\underbrace{\text{T1(MIT)$\cdot$O2/O3}}_{\Omega_j^\cat>2RT\ \text{두-상 sharp}}
+\ \big\|\
+\underbrace{\text{T2$\cdot$T3(order--disorder)}}_{\Omega_j^\cat\ \text{전이별 fit}}\;.}
+\label{eq:lco-omega-class}
+\end{equation}
+곧 흑연이 staging 전이마다, Si 가 gallery 마다 $\Omega$-가지를 정했듯, LCO 는 \emph{peak 마다} 정한다 ---
+per-peak $\Omega^\cat$ 가 정칙용액 커널로 두-상 sharp(near-delta$\cdot$plateau)와 order--disorder 를 한 곡선 안에
+동시에 포착하는 것이 이 혼합 사례의 요체이며, 이 per-peak $\Omega$ 세분이 흑연-동형 plain 대비 블렌드 R$^2$ 를
+$+1.25$\%p 개선한다(정칙용액 per-peak $\Omega$ ablation). 두-상($\Omega_j^\cat>2RT$)으로 피팅되는 feature 는
+(i) 평형 peak 를 델타에 가깝게 하고(실측 폭은 $w_j$ 가 현상학적으로 흡수, \S\ref{sec:broadening}), (ii) 분기 gap
+(식~\eqref{eq:lco-dUhys}, $\Omega_j^\cat$ 에 단조증가)도 그만큼 키운다.
+
+\subsubsection{$\Omega_j^\cat$ 의 물리 지위 --- 유효 평균장 축약(\#7 정정)}\label{ssec:lco-omega-guard}
+per-peak $\Omega_j^\cat$ 를 미시 질서구조와 혼동하지 않도록 그 지위를 명확히 둔다(물리는 유지, 문구만
+정정). $\Omega_j^\cat$ 는 \emph{전이당 진행좌표 $\xi_j$ 의 유효 평균장 축약}이다 --- 제일원리 클러스터 전개의
+다체 상호작용을 전이 $j$ 창의 $\xi_j$ 좌표에서 \emph{최근접 쌍 한 항}으로 접은 유효 쌍상호작용이며\cite{vanderven1998},
+$x\!\approx\!\tfrac12$ 초격자의 \emph{미시 질서구조 자체}가 아니라 그 상분리의 유효 문턱만 남긴 양이다. 따라서:
+\begin{equation}
+\boxed{\;
+\underbrace{\Omega_j^\cat\ [\mathrm{J/mol}]}_{\text{gap$\cdot$smear 문턱 (식~\eqref{eq:gr-classifier}$\cdot$\eqref{eq:lco-dUhys})}}
+\quad\perp\quad
+\underbrace{\Delta S_j^\mathrm{config}\ [\mathrm{J/(mol\,K)}]}_{\text{$U_j^\cat(T)$ 온도 이동 슬롯 (\S\ref{sec:lco-decomp})}}\;}
+\label{eq:lco-omega-slot}
+\end{equation}
+--- 정렬의 charge-order 엔트로피 변화 $\Delta S_j^\mathrm{config}$ 는 반응 엔트로피 분해의 별도 슬롯($U_j^\cat(T)$ 의
+온도 이동)에 들어가는 \emph{엔트로피}이지 spinodal 문턱을 정하는 \emph{상호작용 에너지} $\Omega_j^\cat$ 가
+아니므로, 둘을 직접 연결하지 않는다($\Delta S^\mathrm{config}\!\to\!\Omega^\cat$ 금지). 곧 판정자~\eqref{eq:gr-classifier}
+의 부등식 ``$\Omega_j^\cat>2RT$''은 그 전이가 상분리(두-상 gap)라는 \emph{유효 문턱}의 진술이지 ``$x\!\approx\!\tfrac12$
+질서상이 안정''이라는 미시 구조의 진술이 아니다 --- 두 진술은 층위가 달라, 후자의 미시 안정성은
+$\Delta S^\mathrm{config}$ 슬롯과 제일원리 상도표\cite{vanderven1998,reynier2004} 소관이고, 전자의 gap 유무는
+\emph{피팅된} $\Omega_j^\cat$ 이 $2RT$ 를 넘는지가 정한다(\S\ref{sec:lco-hys} two-phase calibration; pure-LCO
+$\Omega_j^\cat$ 는 개념적 출발점, 수치는 우리 데이터 피팅). 이 슬롯 분리가 config 2상역과 상호작용 에너지를
+이중계산하지 않는 경계다.
+
+\subsubsection{전자 엔트로피 항 --- on/off 토글(곡선 vs 가역 발열)}\label{ssec:lco-omega-toggle}
+LCO 가 흑연과 구조적으로 다른 유일한 항은 T1(MIT)에 더해지는 전자 엔트로피 $\Delta S_{e,j}(x,T)$
+(식~\eqref{eq:dSe}, MIT 게이트 골 깊이 $\approx\!-45.7$ J/(mol\,K)@$x_\mathrm{MIT}$)다\cite{motohashi2009,marianetti2004}.
+이 항은 다른 항과 결정적으로 달라 \emph{on/off 토글}로 분리된다. \textbf{(a) 출발 --- 두 자리로 들어간다.}
+$\Delta S_{e,j}$ 는 삽입 반응 엔트로피 슬롯 $\Delta S_{\rxn,j}^\cat$ 를 통해 중심의 온도 이동
+$\partial U_j^\cat/\partial T=\Delta S_{\rxn,j}^\cat/F$ 에 들어가고, 그 적분이 $U_j^\cat(T)$ 를 옮긴다.
+\textbf{(b) 연산 --- 기준온도 동결이 상온 커브를 지운다.} 현행 모델은 $\Delta S_{e,j}$ 를 기준온도
+$T_\mathrm{ref}$ 에서 동결한 상수 오프셋으로 넣고 $U_j^\cat(T_\mathrm{ref})$ 를 보존하도록 $\Delta H$ 를
+재기준하므로($T_\mathrm{ref}$ 에서 $-T_\mathrm{ref}\Delta S_e$ 가 $\Delta H$ 에 흡수), \emph{상온
+($T{=}T_\mathrm{ref}$) 커브는 전자항 유무에 불변}이고 전자항은 오직 $\partial U/\partial T$(가역 발열)에만
+작용한다. \textbf{(c) 박스 --- 토글의 두 출력.}
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+&\code{include\_electronic\_entropy}=\text{False (기본)}:\quad
+\Big(\frac{\dd Q}{\dd V}\Big)^\eq_\mathrm{LCO}(T_\mathrm{ref})\ \text{불변}\quad(\text{$U_j^\cat(T_\mathrm{ref})$ 보존, $\Delta H$ 흡수}),\\[2pt]
+&\code{include\_electronic\_entropy}=\text{True (옵션)}:\quad
+\frac{\partial U_1^\cat}{\partial T}\Big|_e=\frac{\Delta S_{e,1}(x,T)}{F}\propto T\quad(\text{$U_1$ 이동 $\propto T^2$, 식~\eqref{eq:U1T2}}).
+\end{aligned}\;}
+\label{eq:lco-elec-toggle}
+\end{equation}
+\textbf{(d) 지위 --- 커브엔 불필요, 다온도 엔트로피에서만 선택 활성.} 곧 전자항은 dQ/dV 커브 산출엔 \emph{불필요}
+(기본 OFF=잉여)하고, 회사 다온도 데이터로 가역열 $\partial U/\partial T$ 를 설명할 때만 \emph{선택 활성}(ON)한다
+--- 식별 신호는 ``$\partial U_1/\partial T$ 가 $T$ 에 선형''($\Delta S_{e,1}\!=\!a_e T$, $a_e<0$)이지 ``peak 위치가
+$T$ 에 선형''이 아니다(위치 이동 $\propto T^2$). 이 잉여성은 실측으로 뒷받침된다: 전자항 없는 plain MSMR 이
+LCO 상온 dQ/dV 에서 흑연과 동등한 피팅 품질(LCO R$^2\!\approx\!0.944\approx$ 흑연 $0.940$)을 내므로, \emph{커브
+품질은 전자항과 무관}하다 --- 전자항은 커브를 위한 항이 아니라 가역 발열의 다온도 서명을 위한 항이다.
+
+\begin{codebox}
+\textbf{토글 구현 대응.} \code{include\_electronic\_entropy: bool=False} 플래그를 \code{\_effective\_dS\_rxn}
+의 LCO 서브클래스에 둔다 --- False(기본)에서는 $\Delta S_e$ 를 커브 산출 경로에서 제외하되 $U_j(T_\mathrm{ref})$
+가 보존되도록 $\Delta H$ 재기준을 강제해 상온 커브 bit-exact 를 지키고(R2 게이트 --- $U(298)$ 불변 보장),
+True 에서는 $\partial U/\partial T$ 평가 경로에만 $\Delta S_e$ 게이트(식~\eqref{eq:dSegate})를 실어 가역
+발열을 켠다. 흑연은 이 자리가 항상 $0$(전자항 부재)이라 플래그가 무작용이다.
+\end{codebox}
+
+\begin{keybox}
+\textbf{한 줄.} LCO 는 교차물질 판정자~\eqref{eq:gr-classifier} 가 \emph{한 물질 안에서 전이별로 갈리는} 혼합
+사례다 --- 같은 MSMR(식~\eqref{eq:lco-eqpeak}), per-peak $\Omega_j^\cat$(식~\eqref{eq:lco-omega-class})가 T1(MIT)
+$\cdot$O2/O3 를 두-상 sharp($\Omega>2RT$)로, T2$\cdot$T3 를 order--disorder 로 전이별 포착($+1.25$\%p). \#7
+정정: $\Omega_j^\cat$ 는 진행좌표의 \emph{유효 평균장 축약}(미시 질서구조 아님, 식~\eqref{eq:lco-omega-slot})이고
+config 엔트로피는 별도 슬롯 --- 물리 유지, 문구만. 전자항은 on/off 토글(식~\eqref{eq:lco-elec-toggle}):
+$T_\mathrm{ref}$ 동결로 상온 커브 불변(기본 OFF=잉여)$\cdot$$\partial U/\partial T$ 에만 작용(ON 옵션), plain MSMR
+R$^2{=}0.944\!\approx\!$흑연 $0.940$ 이 커브의 전자항 무관을 실증. 흑연(\S\ref{ssec:gr-2L})$\cdot$Si
+(\S\ref{ssec:si-frumkin})와 한 커널$\cdot$한 분류자.
+\end{keybox}
+
+% 자산(W6 초안): [W6-LCO-01 per-peak Ω boxed eq:lco-omega-class(sgn(2RT−Ω_j^cat)·T1/O2/O3 두-상 vs T2/T3 OD·+1.25%p·eq:gr-classifier 혼합 사례)]
+%   [W6-LCO-02 #7 정정 eq:lco-omega-slot(Ω_j^cat=유효 평균장 축약≠미시 질서·ΔS_config 별도 슬롯·물리 유지 문구만)]
+%   [W6-LCO-03 전자항 on/off 토글 boxed eq:lco-elec-toggle(T_ref 동결→상온 커브 불변·∂U/∂T만·flag include_electronic_entropy·R²=0.944≈0.940)]

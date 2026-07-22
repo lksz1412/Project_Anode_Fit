@@ -1,0 +1,172 @@
+% ====================================================================
+% gr_2L.tex — [GR-2L] 흑연 stage-2L·XRD 5-feature staging 소절 (W6 초안)
+%   부착 위치: ch1(흑연) §5(sec:width) 뒤, §7(sec:broadening) 앞의 신규 subsection.
+%   W6 강조: 교차물질 통일 — 정칙용액 커널 하나(per-transition Ω)와 Ω>2RT / Ω<2RT
+%     판정자를 흑연·Si·LCO 를 관통하는 단일 틀로 세운다. 본 파일이 그 공통 판정자
+%     (식~\eqref{eq:gr-classifier})의 \emph{정의처}이며, si_fr.tex·lco_omega.tex 가 이를 참조한다.
+%   계승 기호: ξ_j·w_j·Ω_j·U_j·ΔS_rxn·Q_j·V_n / 계승 식: eq:gpp·eq:spinodal·eq:Veq·eq:eqpeak·eq:wbase·eq:sum
+% ====================================================================
+\subsection{stage-2L 와 XRD 5-feature staging --- 정칙용액 판정자 하나로 (N6$'$)}\label{ssec:gr-2L}
+\S\ref{sec:width} 이 폭 $w_j$ 의 이중지위(단상 평형 예측 vs 두-상 현상학 폭)를 세웠고 \S\ref{sec:hys} 가 그
+갈림의 문턱을 정규용액 spinodal $\Omega_j>2RT$(식~\eqref{eq:spinodal})에 두었다. 이 소절은 그 두 결과를 한
+발 더 밀어, 흑연 staging 의 \emph{모든} 전이를 \emph{하나의 정칙용액 판정자}로 읽는다 --- 그리고 그 판정자가
+흑연에 그치지 않고 Si-host 고용체(\S\ref{ssec:si-frumkin})와 LCO per-peak $\Omega$(\S\ref{ssec:lco-omega})까지
+관통하는 \emph{교차물질 공통 틀}임을 세운다. 곧 흑연은 이 틀의 ``$\Omega>2RT$ 두-상''이 지배하는 극이고,
+Si 는 ``$\Omega<2RT$ 고용체'' 극이며, LCO 는 두 극이 한 물질 안에 섞인 사례다. 자족 전개를 위해 먼저
+판정자를 정칙용액 화학퍼텐셜에서 유도해 박스로 닫고(\ref{ssec:gr-2L-classifier}), 그 위에서 XRD 가 확정한
+5-feature staging 을 판정자에 배치한 뒤(\ref{ssec:gr-2L-xrd}), stage-2L 의 온도 분리를 반응 엔트로피 차로
+닫는다(\ref{ssec:gr-2L-tsplit}).
+
+\subsubsection{정칙용액 판정자 --- 세 물질 공통의 한 부등식}\label{ssec:gr-2L-classifier}
+\textbf{(a) 출발 --- 전이당 정칙용액 화학퍼텐셜.} 한 전이 $j$ 를 ``동등한 자리에 리튬이 차고 빈다''는
+격자기체로 보면(\S\ref{sec:hys}(a)), 진행률 좌표 $\xi_j$ 의 정칙용액 자유에너지 식~\eqref{eq:gxi} 의 1계 미분이
+그 전이의 유효 화학퍼텐셜 몫이다(식~\eqref{eq:Veq} 유도의 $g_j'$):
+\begin{equation}
+\mu_j(\xi_j)\;=\;\mu_j^{0}\;+\;RT\ln\frac{\xi_j}{1-\xi_j}\;+\;\Omega_j\,(1-2\xi_j),
+\label{eq:gr-regsol-mu}
+\end{equation}
+--- 이상(ideal) 혼합의 로그 몫에 정칙용액 상호작용 몫 $\Omega_j(1-2\xi_j)$ 가 얹힌 Frumkin 형이다(격자기체
+삽입 등온선의 표준 꼴\cite{leviaurbach1999}; $\xi_j\!\leftrightarrow\!1-\xi_j$ 점유 좌표로 옮겨도 대칭이라
+$\xi_j(1-\xi_j)=\theta_j(1-\theta_j)$). \textbf{(b) 연산 --- 한 번 더 미분해 곡률.} 식~\eqref{eq:gr-regsol-mu}
+를 $\xi_j$ 로 미분하면(로그 몫 $\to RT/[\xi_j(1-\xi_j)]$, 상호작용 몫 $\to -2\Omega_j$) 자유에너지 곡률
+$g_j''$(식~\eqref{eq:gpp})이 그대로 나오고, 반충전 $\xi_j=\tfrac12$ 에서 $\xi_j(1-\xi_j)=\tfrac14$ 이라
+\begin{equation}
+\frac{\dd\mu_j}{\dd\xi_j}=\frac{RT}{\xi_j(1-\xi_j)}-2\Omega_j=g_j''(\xi_j),
+\qquad
+\frac{\dd\mu_j}{\dd\xi_j}\bigg|_{1/2}=4RT-2\Omega_j=2\,(2RT-\Omega_j).
+\label{eq:gr-dmudxi}
+\end{equation}
+\textbf{(c) 중간식 --- 곡률이 곧 단일 입자 평형 dQ/dV 의 역수.} 평형 전위 곡선 식~\eqref{eq:Veq} 의 기울기가
+$\dd V_{\eq,j}/\dd\xi_j=g_j''/F$($s{=}1$)이므로, 단일 입자 평형 미분용량은 그 역수에 용량 가중을 곱한
+$(\dd Q/\dd V)_j=Q_j\,|\dd\xi_j/\dd V|=Q_jF/|g_j''|$ 다. \textbf{(d) 박스 --- 공통 판정자.} 곧 세 물질을 관통하는
+단일 식과 그 부호 분기가 다음 하나로 닫힌다:
+\begin{equation}
+\boxed{\;
+\Big(\frac{\dd Q}{\dd V}\Big)^{\eq,\text{single}}_j
+=\frac{Q_j\,F}{\big|\,RT/[\xi_j(1-\xi_j)]-2\Omega_j\,\big|},
+\qquad
+\underbrace{\Omega_j>2RT}_{\text{두-상(miscibility gap)}}
+\ \big\|\
+\underbrace{\Omega_j=2RT}_{\text{임계(발산)}}
+\ \big\|\
+\underbrace{\Omega_j<2RT}_{\text{단상 고용체}}\;.}
+\label{eq:gr-classifier}
+\end{equation}
+반충전 부호 $\mathrm{sgn}(2RT-\Omega_j)$ 하나가 전이의 상 성격을 가른다: $\Omega_j<2RT$ 면 $g_j''>0$ 이 전
+구간 양이라 $\mu_j(\xi_j)$ 가 단조 --- 단상 고용체의 유한 Frumkin peak 이고(높이 $Q_jF/[2(2RT-\Omega_j)]$,
+$\Omega_j\!\to\!2RT^-$ 서 발산=sharpen), $\Omega_j=2RT$ 면 임계점에서 peak 이 발산하며, $\Omega_j>2RT$ 면
+$g_j''<0$ 구간이 생겨 $\mu_j$ 가 비단조 --- Maxwell 공통접선이 plateau 를 한 전위로 모아 평형 단일 입자가
+\emph{델타에 가깝다}(그 유한 폭은 broadening 이 정하는 현상학 폭, \S\ref{sec:broadening}). 이 판정자는 새 물리가
+아니라 \S\ref{sec:hys} 의 spinodal 문턱과 \S\ref{sec:width-w} 의 폭 이중지위를 \emph{한 부등식}으로 되읽은
+것이며(이상 극한 $\Omega_j{=}0$ 에서 식~\eqref{eq:eqpeak} 의 $Q_j\xi_\eq(1-\xi_\eq)/w_j$ 로 정확히 환원 ---
+$w_j{=}RT/F$), 판정의 \emph{입력} $\Omega_j$ 는 전이당 정칙용액 상호작용 $\omega$-형식의 한 파라미터다(치환형
+활물질의 정칙용액 $\omega$ 형식\cite{verbrugge2017}; MSMR 계열이 전극 조성을 전이별 logistic 합으로 적을 때
+폭 인자에 얹는 그 $\omega$\cite{msmr_partII}). \emph{교차물질 예고} --- Si 는 이 판정자의
+$\Omega_j<2RT$ 가지에 통째로 앉고(\S\ref{ssec:si-frumkin}, 식~\eqref{eq:si-fr-peak}), LCO 는 전이마다 $\Omega_j$
+가 문턱의 양쪽으로 갈리는 혼합 사례다(\S\ref{ssec:lco-omega}). \emph{한정} --- 폭 자체는 판정자가 아니다:
+유한 폭은 입도$\cdot$계면$\cdot$동역학이 얹어(\S\ref{sec:broadening}) 두-상도 유한 폭으로 관측되므로, 두-상/고용체를
+가르는 것은 폭이 아니라 XRD 공존(고정 d-spacing 2개 vs 연속 이동)이다\cite{dahn1991} --- 아래 (\ref{ssec:gr-2L-xrd})가
+그 실측 근거다.
+
+\subsubsection{XRD 가 확정한 5-feature staging --- 판정자 위의 배치}\label{ssec:gr-2L-xrd}
+판정자~\eqref{eq:gr-classifier} 의 $\Omega_j$ 부호를 전이마다 정하는 것은 \emph{피팅 폭이 아니라 XRD 상평형}이다.
+Dahn 의 in-situ XRD 상도($0\!<\!x\!<\!1$, $0$--$70^\circ$C)\cite{dahn1991} 는 리튬화 서열
+dilute $1'\!\to\!4\!\to\!3\!\to\!2\mathrm L\!\to\!2\!\to\!1$ 에서 \emph{stage $4\!\to\!3$ 전이만 예외}적으로 연속(고용체)이고
+나머지는 모두 공존(1차 두-상)임을 보고한다 --- 곧 표~\ref{tab:gr-2L-xrd} 의 \emph{두-상 4 $+$ 고용체 1} 이
+XRD 가 확정한 상한 feature 수다. 두-상 지목의 정량 뒷받침은 정칙용액 커널을 실측 곡선에 맞춘
+$\Omega_j/RT=[4.06,\,2.02,\,3.55,\,4.07]$ 로, 네 두-상 후보가 전부 문턱 $2RT$ 를 넘어(식~\eqref{eq:gr-classifier}
+의 두-상 가지) 두-상임을 확증한다.
+
+\begin{table}[t]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{XRD 확정 5-feature staging(Dahn in-situ XRD\cite{dahn1991}; 교차확인 Ohzuku 등\cite{ohzuku1993})
+--- 판정자~\eqref{eq:gr-classifier} 위의 배치. 리튬화 전위는 시료$\cdot$이력 의존 근사값(tier C, 표~\ref{tab:staging}
+와 같은 지위). ``XRD 성격''이 판정자이지 dQ/dV 폭이 아니다. $4\!\to\!3$ 만 공존역 없는 연속 고용체 shoulder
+($\Omega<2RT$)이며, 나머지 넷은 공존 확인 두-상($\Omega>2RT$; 정칙용액 fit $\Omega_j/RT{=}4.06/2.02/3.55/4.07$).
+$5$ 개 초과(6+) feature 는 XRD 미지원 curve-fitting 이라 폐기한다(\S\ref{sec:broadening-class} 유지).}
+\label{tab:gr-2L-xrd}
+\begin{tabular}{@{}l c l l c@{}}
+\toprule
+feature & $\sim V$(리튬화) [V] & XRD 성격 & 판정자~\eqref{eq:gr-classifier} & $\Delta S_\rxn$ 시드 [J/(mol\,K)] \\
+\midrule
+dilute $1'\!\to\!4$   & $0.20$--$0.22$ & 두-상(약, $x\!\gtrsim\!0.04$) & $\Omega>2RT$          & $+29$ (dilute 양수) \\
+$4\!\to\!3$           & $0.14$--$0.20$ & \textbf{고용체 shoulder}      & $\Omega<2RT$(연속)     & $\approx0$ \\
+$3\!\to\!2\mathrm L$  & $0.12$--$0.14$ & 두-상 sharp                    & $\Omega>2RT$          & $+15$ (2L 분리쌍 고V) \\
+$2\mathrm L\!\to\!2$  & $0.11$--$0.12$ & 두-상 sharp                    & $\Omega>2RT$          & $-14$ (2L 분리쌍 저V) \\
+$2\!\to\!1$           & $0.085$--$0.09$& 두-상 최sharp(near-delta)      & $\Omega>2RT$          & $-16$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{기존 4-전이와의 정합(역사적 명칭 가드).} 표~\ref{tab:staging} 의 모델 4-전이($4\!\to\!3$$\cdot$$3\!\to\!2\mathrm L$
+$\cdot$$2\mathrm L\!\to\!2$$\cdot$$2\!\to\!1$)는 이 XRD 5-feature 의 \emph{coarse-graining} 이다 --- 곧 표~\ref{tab:gr-2L-xrd}
+의 두-상 넷과 고용체 shoulder 하나가 판정자 위의 세분이고, 모델은 그 위에서 전이 dict 를 유지한다. 판정자가
+확정하는 것은 \emph{개수의 상한}(두-상 4 $+$ 고용체 1)과 각 feature 의 $\Omega$-가지이지, $4\!\to\!3\!\cdots$ 라는
+전이 dict 라벨을 바꾸지 않는다(\S\ref{sec:sum} 표~\ref{tab:staging} 불변). 어느 전이가 최종적으로 어느 가지에
+앉는지는 \emph{피팅된} $\Omega_j$ 가 정하며(\S\ref{sec:width-w} 지위 구분의 되읽기), 두-상/고용체 경계 서술은
+\S\ref{sec:broadening-class} 소관이다.
+
+\subsubsection{stage-2L 의 온도 분리 --- 반응 엔트로피 차가 여는 두 peak}\label{ssec:gr-2L-tsplit}
+5-feature 중 유독 \emph{온도로 열리고 닫히는} 것은 stage-2L 을 낀 한 쌍 --- $3\!\to\!2\mathrm L$ 과
+$2\mathrm L\!\to\!2$ --- 이다. stage-2L 은 면내 질서가 풀린(``liquid-like'') 고배위 엔트로피 상이라 배위
+엔트로피로 안정화되어 $\sim\!10^\circ$C 이상에서만 존재하고, 저온에서는 미형성이라 $3\!\leftrightarrow\!2$ 단일
+전이(1 peak)로 병합, 고온에서는 출현해 $3\!\to\!2\mathrm L$$\cdot$$2\mathrm L\!\to\!2$ 두 전이(2 peak)로 갈린다
+--- 이 방향(고온 분리$\cdot$저온 병합)이 열 broadening 가설(고온일수록 병합)의 \emph{정반대}라, 관측된 온도
+분리는 broadening 이 아니라 \emph{두-상 2L 의 열역학적 출현}이 그 정체다\cite{dahn1991}. 탈리튬화(방전 음극)
+dV/dQ 에서 같은 2L 분리가 재확인된다\cite{schmitt2022}.
+
+\textbf{(a) 출발 --- 중심의 온도 의존은 반응 엔트로피가 정한다.} 전이 중심의 온도 이동은
+$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$(식~\eqref{eq:Uj})이므로, 한 쌍 전이의 \emph{분리 속도}는 두 반응
+엔트로피의 차가 정한다. \textbf{(b) 연산 --- 두 중심의 차.} $3\!\to\!2\mathrm L$ 과 $2\mathrm L\!\to\!2$ 의
+중심 차 $\Delta U_{\mathrm{2L}}\equiv U_{3\to2\mathrm L}-U_{2\mathrm L\to2}$ 의 온도 미분은
+\begin{equation}
+\frac{\dd\,\Delta U_{\mathrm{2L}}}{\dd T}
+=\frac{\Delta S_{\rxn,\,3\to2\mathrm L}-\Delta S_{\rxn,\,2\mathrm L\to2}}{F}
+\equiv\frac{\Delta(\Delta S)}{F},
+\qquad
+\Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}.
+\label{eq:gr-2L-dSsplit}
+\end{equation}
+(Dahn 분리 기울기에서 역산한 두 전이의 가역 엔트로피 차 --- 직접 열량계 값 아님, tier C). \textbf{(c) 중간식 ---
+분리 속도의 수치.} $\Delta(\Delta S)\approx29$ 을 넣으면 $\dd\Delta U_{\mathrm{2L}}/\dd T\approx29/96485
+\approx0.30\ \mathrm{mV/{}^\circ C}$ 이고, 병합점(분리 $=0$)이 2L 출현 온도 $\sim\!10^\circ$C 에 앉는다.
+\textbf{(d) 박스 --- 온도 분리 닫힌 꼴.}
+\begin{equation}
+\boxed{\;
+\Delta U_{\mathrm{2L}}(T)\;\approx\;\frac{\Delta(\Delta S)}{F}\,(T-T_{\mathrm{2L}}),
+\qquad
+\frac{\dd\Delta U_{\mathrm{2L}}}{\dd T}\approx0.30\ \mathrm{mV/{}^\circ C},
+\quad T_{\mathrm{2L}}\approx10^\circ\mathrm C\;}
+\label{eq:gr-2L-slope}
+\end{equation}
+--- 곧 $25^\circ$C 에서는 분리가 병합폭(FWHM) 안이라 1 peak, $45^\circ$C 에서는 분리가 그를 넘어 2 peak 로
+갈린다. 이 온도 분리는 판정자~\eqref{eq:gr-classifier} 위의 두 \emph{두-상}($\Omega>2RT$) 전이가 서로 다른
+$\Delta S_\rxn$ 로 반대 방향으로 미끄러지는 것이며, 상(phase) 추가가 아니라 \emph{기존 두-상 두 개}의 온도 창
+분리다(폐기한 ``$4\!\to\!6$ 전이''와 근본적으로 다르다 --- 2L 은 XRD 공존 확인된 기존 feature).
+
+\begin{verifybox}
+검산 --- (i) 방향: 열 broadening 이면 고온서 병합해야 하나 관측$\cdot$식~\eqref{eq:gr-2L-slope} 모두 고온 분리라
+broadening 가설을 배제한다. (ii) 물리 시드 재현: 두-상 폭($w\!\approx\!1.6$ mV=$\Omega>2RT$ sharp 시드)과
+$\Delta(\Delta S){=}29$(예: $3\!\to\!2\mathrm L{:}+14.5$$\cdot$$2\mathrm L\!\to\!2{:}-14.5$, $T_{\mathrm{2L}}{=}10^\circ$C
+앵커)을 출하 \code{equilibrium()} 에 주입하면 분리 기울기 $0.271\ \mathrm{mV/{}^\circ C}\approx0.30$(Dahn),
+병합 $\sim\!10^\circ$C, $25^\circ$C 병합$\cdot$$45^\circ$C 분리가 재현된다. (iii) 판정자 무모순: 온도가
+$\Delta S_\rxn/F$ 로 중심만 옮길 뿐 $\Omega_j$ 의 두-상 가지 지목은 바꾸지 않는다(폭 sharpness 는
+$\Omega>2RT$ 유지). (iv) 이상 극한: $\Delta(\Delta S)\!\to\!0$ 이면 두 중심이 겹쳐 온도 무관 단일 peak ---
+현행 출하 default($3\!\to\!2\mathrm L{:}0$$\cdot$$2\mathrm L\!\to\!2{:}-5$, $\Delta{=}5\!\Rightarrow\!0.05$
+mV/$^\circ$C)가 분리를 거의 못 보이는 까닭이 이 과소 시드다(표~\ref{tab:staging}, 피팅 override 대상).
+\end{verifybox}
+
+\begin{keybox}
+\textbf{한 줄.} 흑연 staging 은 정칙용액 판정자~\eqref{eq:gr-classifier}($\mathrm{sgn}(2RT-\Omega_j)$)의 실사례다
+--- XRD(공존)가 $\Omega_j$ 의 가지를 정해 \emph{두-상 4}($1'\!\to\!4$$\cdot$$3\!\to\!2\mathrm L$$\cdot$$2\mathrm L\!\to\!2$
+$\cdot$$2\!\to\!1$, $\Omega>2RT$; fit $\Omega_j/RT{=}4.06/2.02/3.55/4.07$)$+$\emph{고용체 shoulder 1}($4\!\to\!3$,
+$\Omega<2RT$)이 상한 feature 다(6+ 폐기). stage-2L 은 배위 엔트로피 안정화 두-상이라 $\Delta(\Delta S){\approx}29$
+J/(mol\,K)로 $\partial U/\partial T{=}\Delta S_\rxn/F$ 를 통해 $0.30$ mV/$^\circ$C 로 분리($T_{\mathrm{2L}}{\sim}10^\circ$C,
+$25^\circ$C 병합$\cdot$$45^\circ$C 2 peak; 재현 $0.271$ mV/$^\circ$C). 같은 판정자가 Si(\S\ref{ssec:si-frumkin})
+$\cdot$LCO(\S\ref{ssec:lco-omega})로 이어진다.
+\end{keybox}
+
+% 자산(W6 초안): [W6-GR-01 정칙용액 공통 판정자 eq:gr-classifier(dQ/dV=Q F/|RT/ξ(1−ξ)−2Ω|·sgn(2RT−Ω) 3분기·eq:gpp/eq:spinodal 되읽기·Ω=0→eq:eqpeak 환원)]
+%   [W6-GR-02 XRD 5-feature 배치 tab:gr-2L-xrd(두-상4+고용체1·regsol2 Ω/RT=4.06/2.02/3.55/4.07·기존 4전이 coarse-graining 정합)]
+%   [W6-GR-03 stage-2L 온도 분리 eq:gr-2L-dSsplit/eq:gr-2L-slope(Δ(ΔS)=29→0.30 mV/℃·T_2L~10℃·재현 0.271)]

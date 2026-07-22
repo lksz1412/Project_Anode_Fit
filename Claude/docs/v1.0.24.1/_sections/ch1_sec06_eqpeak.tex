@@ -1,0 +1,89 @@
+% ====================================================================
+% §6 평형 peak — |I|→0 기준선 (N6)
+% ====================================================================
+\section{평형 peak --- $|I|\to0$ 기준선}\label{sec:eqpeak}
+평형 진행률에서 곧바로 얻어지는 것이 평형 peak 모양 $\xi_\eq(1-\xi_\eq)/w$ 이다. 이것이 전류가 없을 때($|I|\to0$)의
+기준선이며, 동역학 꼬리가 무시될 만큼 작을 때 곡선이 이 종으로 직접 환원되는 항이다.
+
+\textbf{(a) 출발 --- 전하 보존식.} 관측 $\dd Q/\dd V$ 는 전하 보존식 $Q_\cell q=Q_\bg(V_n)+\sum_jQ_j\xi_j$ 를 궤적
+$q$ 로 미분해 닫힌다 --- 양변을 $q$ 로 미분하면 $Q_\cell=C_\bg\,\dd V_n/\dd q+\sum_jQ_j\,\dd\xi_j/\dd q$ 이고,
+$\dd V_n/\dd q$ 로 나누면 $\dd Q/\dd V_n=C_\bg+\sum_jQ_j\,\dd\xi_j/\dd V_n$ 이다. \textbf{(b) 연산 --- logistic
+미분의 종 항등식.} 평형 추종이면 $\dd\xi_j/\dd V_n$ 에 평형 기울기가 들어가고, $z\equiv\sigma_d(V-U_j^{\,d})/w_j$ 로
+$\xi_\eq=(1+e^{-z})^{-1}$ 를 미분하면
+\begin{equation}
+\frac{\dd\xi_\eq}{\dd z}=\frac{e^{-z}}{(1+e^{-z})^2}
+=\underbrace{\frac{1}{1+e^{-z}}}_{\xi_\eq}\cdot\underbrace{\frac{e^{-z}}{1+e^{-z}}}_{1-\xi_\eq}
+=\xi_\eq(1-\xi_\eq)
+\label{eq:belliden}
+\end{equation}
+--- $\xi(1-\xi)$ 는 $\xi=\tfrac12$ 에서 최대 $\tfrac14$ 인 종이다. \textbf{(c) 중간식 --- 연쇄율.} 연쇄율
+$\dd z/\dd V=\sigma_d/w_j$ 를 곱하면 $\dd\xi_{\eq,j}/\dd V=\sigma_d\,\xi_\eq(1-\xi_\eq)/w_j$. \textbf{(d) 박스.}
+이를 보존식 미분에 넣으면 전이 $j$ 의 평형 peak 이 닫힌다:
+\begin{equation}
+\frac{\dd\xi_{\eq,j}}{\dd V}=\frac{\sigma_d\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+\;\Longrightarrow\;
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j
+=Q_j\,\frac{\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+=Q_j\,\Big|\frac{\dd\xi_{\eq,j}}{\dd V}\Big|\;.}
+\label{eq:eqpeak}
+\end{equation}
+이 값이 전이별로 합산되어 배경과 함께 $|I|\to0$ 극한을 이룬다 --- 단 $\gamma_j\ne0$ 이면 이 극한은 분기
+중심 $U_j^{\,d}$ 에 남는 히스테리시스 잔존 극한이고, 분기 없는 가역 기준선($U_j$ 중심)과는
+$\gamma_j\to0$ 에서만 일치한다(히스테리시스는 열역학적 --- \S\ref{sec:hys}). 부호 --- $\sigma_d$ 가 미분에서 한 번 들어오지만 peak 모양은
+절댓값 $|\dd\xi/\dd V|=\xi_\eq(1-\xi_\eq)/w$ 로 양수이고 방향 불변이다($\xi(1-\xi)\ge0$). 세 양 --- 위치 $=$ 중심
+$U_j^{\,d}$, 순높이 $=Q_j/(4w_j)$($\xi=\tfrac12$ 에서 $\xi(1-\xi)=\tfrac14$), 배경 차감 면적 $=Q_j$
+($\int_0^1\dd\xi=1$, 식~\eqref{eq:belliden} 의 종이 $\dd\xi_\eq$ 의 치환적분이라 면적 $1$) --- 가 이 한 식에서 읽힌다.
+
+\begin{bgbox}
+\textbf{평형 peak 은 등온 감수율 --- fluctuation--dissipation 읽기.} 식~\eqref{eq:eqpeak} 의 평형 peak 은 곡선맞춤 종이
+아니라 전극에 저장된 전하의 \emph{등온 입자수 감수율}(isothermal particle-number susceptibility) 그
+자체다. Part 0 이 자리 하나에서 fluctuation--response 관계 $\mathrm{var}(n)=\theta(1-\theta)$(식~\eqref{eq:sm-flucres})를,
+다클래스에서 $\partial\langle N\rangle/\partial\mu=\beta\,\mathrm{var}(N)$(식~\eqref{eq:sm-mc-fluc})를 세웠고,
+$\langle N\rangle=\sum_jM_j\theta_j$(식~\eqref{eq:sm-mc-occ})였다. 이 fluctuation 을 관측 $\dd Q/\dd V$ 에 곧장
+잇는다. 이상 폭($w_j=RT/F$, 곧 $n_j=1$)에서 식~\eqref{eq:eqpeak} 의 전이 몫은 $Q_j=(F/N_A)M_j$ 와
+$\theta(1-\theta)=\xi(1-\xi)$ 로
+\[
+\Big(\frac{\dd Q}{\dd V}\Big)^\eq_j
+=\frac{Q_j\,\xi_{\eq,j}(1-\xi_{\eq,j})}{w_j}
+=\frac{F^2}{N_A RT}\,M_j\,\theta_j(1-\theta_j)
+=\frac{F^2}{N_A RT}\,\mathrm{var}_j(N),
+\]
+전 전이를 더하고 $\mathrm{var}(N)=\kB T\,\partial\langle N\rangle/\partial\mu$(식~\eqref{eq:sm-mc-fluc})와
+$\kB/R=1/N_A$ 를 쓰면
+\[
+\boxed{\;\Big(\frac{\dd Q}{\dd V}\Big)^\eq
+=\frac{F^2}{N_A RT}\,\mathrm{var}(N)
+=e^2\,\frac{\partial\langle N\rangle}{\partial\mu}\;}
+\qquad(e\equiv F/N_A,\ \text{이상 폭}),
+\]
+곧 \emph{평형 $\dd Q/\dd V$ 는 저장 전하의 fluctuation 스펙트럼}이다. $\mu\leftrightarrow V$
+결선(식~\eqref{eq:sm-eqcond})이 감수율 $\partial\langle N\rangle/\partial\mu$ 를 전위축 응답
+$\partial Q/\partial V$ 로 옮긴 것이 이 항등식 --- fluctuation--dissipation 관계의 전기화학판이며, 자리당 $e^2$ 과 몰당
+$F^2/N_ART$ 는 같은 환산의 두 표기다($e$ 는 자리당 전하, $F=N_Ae$). \emph{봉우리 하나가 fluctuation 하나}이고,
+곡선 전체가 평형 fluctuation 의 지문이다 --- Part 0 이 fluctuation positivity $\partial\langle N\rangle/\partial\mu>0$ 으로
+유일한 근을 보증한 바로 그 $\mathrm{var}(N)$(식~\eqref{eq:sm-mc-fluc})이, 여기서는 peak 높이로 관측된다.
+\begin{verifybox}
+검산 --- (i) \emph{합규칙(면적 $=$ 용량).} $\int(\dd Q/\dd V)^\eq_j\,\dd V=Q_j\!\int_0^1\dd\xi=Q_j$ 라
+감수율의 전위 적분이 전이 총 전하다 --- fluctuation 스펙트럼의 합규칙이 곧 이동 가능한 전하량(식~\eqref{eq:eqpeak}
+면적 읽기와 동일). (ii) \emph{정점.} $\xi=\tfrac12$ 에서 $\mathrm{var}$ 가 최대라 순높이 $Q_j/(4w_j)$ --- fluctuation 이
+가장 큰 반충전에서 감수율이 최대다. (iii) \emph{폭 이중지위 가드.} 이 감수율 항등의 \emph{유도 서식}($\mathrm{var}_j=M_j\theta_j(1-\theta_j)$
+의 독립-자리 분산과 $w_j=RT/F$)은 이상 격자기체($\Omega_j=0$)에서 정확하다 --- $n_j=1$ 이어도
+$\Omega_j\neq0$ 이면(본문 기본 상태 $\Omega_j>2RT$ 포함) 이 서식은 근사가 되고, fluctuation--response 등식
+$\mathrm{var}(N)=\kB T\,\partial\langle N\rangle/\partial\mu$ 자체만 대정준 일반으로 남는다. 두-상 전이의
+현상학적 자유 폭($w_j$ 가 broadening 을 흡수 --- \S\ref{sec:width}$\cdot$\S\ref{sec:broadening})에서는
+peak 이 그 감수율을 폭 $n_j$ 배로 펴고 높이 $1/n_j$ 배로 누른 상이라 문자 그대로의 감수율 \emph{크기}가
+재척도된다(형상 근거는 유지되나 두-상 폭은 평형 예측이 아니다). (iv)
+\emph{배경 제외.} 비전이 배경 $C_\bg$(식~\eqref{eq:sum})는 클래스 밖 저장이라 이 fluctuation 항에 들지 않는다.
+\end{verifybox}
+\end{bgbox}
+% 자산(v1.0.22 SM2): [V22-SM2-A 평형 peak=등온 감수율 항등(dQ/dV=e²∂⟨N⟩/∂μ·합규칙·폭 이중지위 가드)]
+
+
+이 식이 쓰이는 조건은 지연 길이가 peak 폭에 비해 무시될 만큼 작을 때다 --- \S\ref{sec:lag}(N7)이 그 지연
+길이 $L_V$ 를 세우고, $L_{V,j}\ll w_j$ 면(또는 동역학 입력이 없으면) 식~\eqref{eq:eqpeak} 의 평형 종으로
+매끈히 환원된다(식~\eqref{eq:tail-limit} 의 $L_V\to0$ 극한 --- 초기 상태 수치로는 $L_{V,j}\sim10^{-10}$--$10^{-8}$ V
+대 $w_j$ 수십 mV, \S\ref{sec:sum}). 이것이 $|I|\to0$ 환원이다.
+그 전에, 다음 절(\S\ref{sec:broadening})이 이 평형 종이 \emph{두-상 전이}에서 어떻게 실측 종으로 펴지는지 ---
+곧 폭 $w_j$ 의 두-상 지위 --- 를 모델 안의 양들로 닫는다.
+
+% 자산: [A-123] [A-124] [A-125] [A-126] [A-127] [A-128] [A-129]

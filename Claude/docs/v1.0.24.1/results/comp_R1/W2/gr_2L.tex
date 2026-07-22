@@ -1,0 +1,142 @@
+% ====================================================================
+% gr_2L.tex — [GR-2L] 흑연 stage-2L·XRD 5-feature staging 신규 소절 (W2 초안)
+%   삽입 위치: ch1 흑연, §5(폭·이중지위, ch1_sec05_width) 뒤 — §7 broadening 분류(§sec:broadening-class) 앞
+%   계승 라벨만 참조(재정의 0). 신규 라벨 = ssec:gr-stage2L·eq:gr2l-*.
+%   W2 강조 = 실측 검증치로 물리를 지지("데이터가 보이고 모델이 재현").
+% ====================================================================
+\subsection{흑연 stage-2L 와 XRD 5-feature staging --- $\Omega$ 판정자$\cdot$온도 분리$\cdot$6-전이 폐기}\label{ssec:gr-stage2L}
+\S\ref{sec:width-w} 가 폭 $w_j$ 의 이중지위 --- 단상이면 평형 예측, 두-상이면 broadening 자유 폭 --- 를 세웠고,
+그 지위를 가르는 것이 전이의 $\Omega_j$ 값이라 했다. 그렇다면 흑연 등온선에 \emph{몇 개의} 전이를 두어야 하며,
+그 각각이 어느 지위인가라는 물음이 남는다. 이 소절은 그 물음을 \emph{곡선맞춤이 아니라 XRD 상평형}으로
+닫는다 --- 전이의 개수와 성격은 dQ/dV 의 봉우리 수를 세어 정하는 것이 아니라, 고정 격자간격(d-spacing)의
+공존을 직접 보는 회절이 정한다. 결론을 먼저 적으면: XRD 가 확정하는 흑연 staging 은 \emph{두-상 4 $+$ 고용체
+shoulder 1 $=$ 5-feature} 이고, 그 중 stage-2L 을 만드는 한 쌍(3$\to$2L$\cdot$2L$\to$2)은 \emph{엔트로피로
+안정화되는 온도-게이트 전이}라 저온에서 병합$\cdot$고온에서 분리된다. 전이를 6 개 이상으로 늘리는 것은 XRD 가
+지지하지 않는 curve-fitting 이다.
+
+\textbf{(a) 출발 --- XRD 확정 staging 서열(Dahn 1991).}
+in-situ XRD 로 $0<x<1$$\cdot$$0$--$70^\circ$C 의 $\mathrm{Li}_x\mathrm{C_6}$ 상도표를 그린 정본은
+리튬화 증가 방향으로 여섯 상 --- dilute $1'$ $\to$ stage 4 $\to$ stage 3 $\to$ stage 2L(liquid-like)
+$\to$ stage 2($\mathrm{LiC_{12}}$) $\to$ stage 1($\mathrm{LiC_6}$) --- 을 확정한다\cite{dahn1991}. 상 사이의
+다섯 전이는 성격이 둘로 갈린다(표~\ref{tab:staging} 의 정수 행 라벨과 같은 전이):
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}llll@{}}
+\hline
+전이 & $\sim V$(리튬화) & XRD 성격 & dQ/dV 개형 \\
+\hline
+dilute $1'\!\leftrightarrow\!4$ & $\sim0.20$--$0.22$ V & 두-상(약함, $x\!\gtrsim\!0.04$) & sharp(약) \\
+stage $4\!\leftrightarrow\!3$ & $\sim0.14$--$0.20$ V & \emph{고용체(공존역 없음)} & broad shoulder \\
+stage $3\!\leftrightarrow\!2\mathrm L$ & $\sim0.13$ V & 두-상 & sharp \\
+stage $2\mathrm L\!\leftrightarrow\!2$ & $\sim0.115$ V & 두-상 & sharp \\
+stage $2\!\leftrightarrow\!1$ & $\sim0.085$ V & 두-상(최강$\cdot$최sharp) & near-delta \\
+\hline
+\end{tabular}
+\end{center}
+곧 \emph{두-상 전이 4 개}($1'\!\leftrightarrow\!4\cdot3\!\leftrightarrow\!2\mathrm L\cdot2\mathrm L\!\leftrightarrow\!2
+\cdot2\!\leftrightarrow\!1$)와 \emph{고용체 shoulder 1 개}($4\!\leftrightarrow\!3$, 공존역 없는 연속 등온선)이다.
+Dahn 초록이 명시적으로 ``$4\!\to\!3$ 전이만 예외''(연속)라 적으며, Ohzuku 등\cite{ohzuku1993}$\cdot$초기
+XRD\cite{dahn1995} 이 서열을 교차확인한다. 표~\ref{tab:staging} 의 네 전이는 이 두-상 계열
+($3\!\to\!2\mathrm L\cdot2\mathrm L\!\to\!2\cdot2\!\to\!1$)에 $4\!\to\!3$ shoulder 를 더한 배치이며, stage-2L 을
+\emph{이미 별도 전이로 명명}하고 있다 --- 새 상을 추가하는 것이 아니라, XRD 가 확정한 5-feature 를 기존 골격
+안에서 \emph{읽는} 일이다.
+
+\textbf{(b) 연산 --- $\Omega>2RT$ 판정자: 어느 전이가 두-상인가.}
+두-상(공존)과 고용체(연속)를 가르는 것은 dQ/dV 폭이 아니라 정규용액 화학퍼텐셜의 단조성이다.
+Part 0 격자기체 화학퍼텐셜~\eqref{eq:mu} 를 전이 $j$ 창의 진행률 $\xi_j$ 좌표로 적으면
+\begin{equation}
+\mu_j(\xi_j)=\mu_j^{\circ}+RT\ln\frac{\xi_j}{1-\xi_j}+\Omega_j\,(1-2\xi_j),
+\qquad
+\frac{\dd\mu_j}{\dd\xi_j}=\frac{RT}{\xi_j(1-\xi_j)}-2\Omega_j,
+\label{eq:gr2l-mu}
+\end{equation}
+이고(둘째 식은 자유에너지 곡률 $\partial^2 g_j/\partial\xi_j^2$~\eqref{eq:gpp} 와 같은 양 --- $\mu_j=\partial
+g_j/\partial\xi_j$), 그 최소값은 대칭점 $\xi_j=\tfrac12$ 에서
+\begin{equation}
+\boxed{\;\left.\frac{\dd\mu_j}{\dd\xi_j}\right|_{\xi_j=1/2}=4RT-2\Omega_j
+\;\;\begin{cases}>0\ (\Omega_j<2RT):&\mu_j\ \text{단조}\Rightarrow\text{단일 고용체(shoulder)},\\[2pt]
+<0\ (\Omega_j>2RT):&\mu_j\ \text{비단조}\Rightarrow\text{miscibility gap(두-상 공존)},\end{cases}\;}
+\label{eq:gr2l-judge}
+\end{equation}
+로 부호가 갈린다($2RT\approx4958$ J/mol@298.15 K, spinodal 문턱~\eqref{eq:spinodal} 과 같은 조건).
+$\Omega_j>2RT$ 이면 $\mu_j$ 가 비단조라 Maxwell 공통접선이 plateau 를 한 전위로 모으고 평형 dQ/dV 가
+델타에 수렴하며(실측 종은 broadening 이 담음 --- \S\ref{sec:broadening}), 고정 d-spacing 두 개가 XRD 에
+공존으로 찍힌다. $\Omega_j<2RT$ 이면 $\mu_j$ 가 단조라 $V(\xi)$ 가 연속 경사이고 dQ/dV 는 유한 broad
+shoulder 다 --- 큰(subcritical) $\Omega$ 는 변곡을 만들어 봉우리 분리처럼 보이나 \emph{새 상이 아니다}.
+판정자는 XRD(공존 d-spacing 대 연속 이동)이지 폭이 아니며, 유한 폭 자체는 입도$\cdot$계면$\cdot$동역학으로도
+생기므로 두-상/고용체를 가르지 못한다.
+
+\begin{verifybox}
+\textbf{실측 검증 --- $\Omega>2RT$ 확증(이 세션).} 흑연 실측 dQ/dV(방전 음극)의 네 staging 봉우리를 전이별
+정규용액(Frumkin) 커널로 피팅하면 $\Omega_j/RT=[4.06,\,2.02,\,3.55,\,4.07]$ 로 \emph{네 전이 전부} 문턱
+$2RT$ 위에 앉아 두-상 성격을 확증하며, per-peak $\Omega$ 도입이 $R^2$ 를 $0.938\!\to\!0.943$
+($\Delta R^2\!\approx\!+0.5$\%p)로 올린다(\code{regsol2\_result.json}$\cdot$\code{regsol2.png}). 두-상 봉우리의
+피팅 폭은 $\delta\!\approx\!1.0$--$1.6$ mV 로 $RT/F\!\approx\!25.7$ mV 의 $\lesssim\!0.06$ 배 --- \S\ref{sec:width-w}
+가 예고한 ``두-상 델타''의 정량 실현이다(고용체 shoulder 의 $\sim RT/F$ 급 폭과 $\sim20$--$50\times$ 대조 ---
+\S\ref{ssec:si-frumkin} Si 대조와 짝). $\Omega/RT\!=\!2.02$ 로 문턱에 가장 가까운 한 봉우리가 shoulder/두-상
+경계의 실측 위치이며, 최종 지위는 round-trip 피팅된 $\Omega_j$ 가 정한다(\S\ref{sec:width-w} 이중지위).
+\emph{framing 주의} --- 이 커널 피팅은 sharp 봉우리의 두-상성을 확증하되 $4\!\leftrightarrow\!3$ 고용체
+shoulder 의 지위를 \emph{판정하지 않는다}: shoulder 는 dQ/dV 폭이 아니라 XRD 공존 부재로 가려지는
+저$\cdot$broad feature 라(Dahn 의 명시적 ``$4\!\to\!3$ 예외''), sharp 4-봉우리 피팅이 이를 분리하지 않는다
+--- (a) 표의 XRD 판정과 이 피팅은 서로 다른 framing 이라 모순이 아니고, $4\!\leftrightarrow\!3$ 는 XRD 가
+가른다.
+\end{verifybox}
+
+\textbf{(c) 중간식 --- stage-2L 은 엔트로피-안정화 온도 게이트.}
+5-feature 중 stage-2L(liquid-like: 면내 질서가 풀린 고배위 무질서 stage)은 \emph{배위 엔트로피로 안정화}되어
+$\sim\!10^\circ$C 이상에서만 존재한다 --- 저온에서는 2L 이 형성되지 않아 $3\!\leftrightarrow\!2$ 가 단일 전이
+(1 봉우리)이고, 고온에서는 2L 이 출현해 $3\!\leftrightarrow\!2\mathrm L$ 과 $2\mathrm L\!\leftrightarrow\!2$ 의
+두 전이(2 봉우리)로 갈린다. 이 온도 분리는 \emph{열 broadening 이 아니다} --- 열 broadening 이면 $k_BT$
+증가로 폭이 늘어 고온에서 \emph{병합}해야 하나, 관측은 정반대(고온 분리$\cdot$저온 병합)라 인접 두 전이가
+고온에서 \emph{벌어지는} 현상이다. 벌어짐의 크기는 두 전이의 가역 엔트로피 차가 정한다: \S\ref{sec:center}
+의 온도 관계 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 를 두 전이에 걸면 두 중심의 간격이
+\begin{equation}
+\boxed{\;\frac{\partial}{\partial T}\big[U_{3\to2\mathrm L}-U_{2\mathrm L\to2}\big]
+=\frac{\Delta S_{\rxn,\,3\to2\mathrm L}-\Delta S_{\rxn,\,2\mathrm L\to2}}{F}
+=\frac{\Delta(\Delta S)}{F},\qquad \Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}\;}
+\label{eq:gr2l-2Lsplit}
+\end{equation}
+로 온도에 선형 이동한다. Dahn 상도표에서 읽은 $\Delta(\Delta S)\approx29$ J/(mol\,K)(2L 분리쌍의 고-$V$ 몫
+$3\!\to\!2\mathrm L$ 이 양수, 저-$V$ 몫 $2\mathrm L\!\to\!2$ 가 음수)는 분리 기울기 $29/F\approx0.30$ mV/$^\circ$C
+와 병합 온도 $\sim\!10^\circ$C(2L 소멸점)를 준다 --- 이 값이 표~\ref{tab:staging} 의 default
+$\Delta S_\rxn(3\!\to\!2\mathrm L,\,2\mathrm L\!\to\!2)=(0,-5)$($\Delta(\Delta S)=5$, 곧 $0.05$ mV/$^\circ$C)를
+실측 시드로 갱신하는 후보다(예: 대칭 배치 $+14.5/-14.5$, $T_m\!=\!10^\circ$C 앵커).
+
+\begin{verifybox}
+\textbf{실측 재현 --- 온도 분리(이 세션).} 두-상 폭($w\!=\!1.6$ mV)과 $\Delta(\Delta S)=29$ J/(mol\,K)를
+출하 \code{equilibrium()} 에 주입하면 분리 기울기 $0.271$ mV/$^\circ$C($\approx$ Dahn $0.30$),
+병합 $\sim\!10^\circ$C, 그리고 \emph{$25^\circ$C 병합/$45^\circ$C 2 봉우리}가 정확히 재현된다
+(\code{T\_SPLIT\_FINDING.md}$\cdot$\code{T\_split.png}; 분리/병합 판정 $=$ 봉우리 간격 $<$ FWHM$=3.53w$
+$\Rightarrow$ 병합). 탈리튬화(방전 음극)에서의 2L 분리 재확인은 Schmitt 등\cite{schmitt2022} 과 일치하며,
+$2\!\to\!1$ plateau 가 $\partial/\partial T\!\approx\!0$ 으로 견고한 것(2L 구역만 $T$-민감)은
+Reynier 등\cite{reynier2003} 의 실측과 정합한다. \emph{정직 단서} --- $\Delta(\Delta S)\!=\!29$ 는 분리
+기울기에서 역산한 값(직접 열량계 값 아님)이고 병합 온도는 율속$\cdot$이력 의존($\sim\!10^\circ$C 근사)이다.
+\end{verifybox}
+
+\textbf{(d) 박스 --- 5-feature 는 상한, 6-전이는 폐기.}
+XRD 가 확정하는 흑연 staging 은 \emph{두-상 4 $+$ 고용체 shoulder 1 $=$ 5-feature 가 상한}이다. $0.14$--$0.22$ V
+경사에서 별도 여섯째 ``상''을 뽑는 것은 고용체 shoulder 를 curve-fitting 하는 것이라 XRD 가 지지하지 않는다
+--- DFT cluster-expansion$+$MC 도 stage 1/2 의 두-상만 신뢰 재현하고 stage 3/4 는 제외한다\cite{persson2010}.
+\begin{keybox}
+\textbf{staging 요지.} XRD 5-feature $=$ 두-상 4($1'\!\leftrightarrow\!4\cdot3\!\leftrightarrow\!2\mathrm L\cdot
+2\mathrm L\!\leftrightarrow\!2\cdot2\!\leftrightarrow\!1$, $\Omega_j\!>\!2RT$, near-delta) $+$ 고용체 shoulder 1
+($4\!\leftrightarrow\!3$, $\Omega_j\!<\!2RT$, broad). 판정자는 $\Omega\!>\!2RT$~\eqref{eq:gr2l-judge}$\cdot$
+실측 확증 $\Omega_j/RT\!=\![4.06,2.02,3.55,4.07]$. stage-2L 은 엔트로피-게이트 온도 분리~\eqref{eq:gr2l-2Lsplit}
+($\Delta(\Delta S)\!\approx\!29\Rightarrow0.30$ mV/$^\circ$C, 병합 $\sim10^\circ$C, 재현 $0.271$ mV/$^\circ$C).
+6-전이는 XRD 미지원 curve-fitting --- 폐기.
+\end{keybox}
+
+\begin{warnbox}
+\textbf{정직 공백 --- 5-feature 의 실측 이득은 온도-게이트다.} stage-2L 분리는 XRD-실재이나 \emph{상온
+곡선의 $R^2$ 이득으로 나타나지 않는다}: $25^\circ$C 단일 곡선에서 2L 쌍은 병합 상태라, 상온 음극 데이터에
+5-전이(4$\to$5)를 강제하면 $R^2$ 가 오히려 $-0.44$\%p 내려간다(\code{ablation\_result.json},
+$0.9871\!\to\!0.9827$). 5-feature 의 물리적 지지는 (i) $\Omega>2RT$ 확증(regsol2)과 (ii) 온도 분리 재현
+($0.271$ mV/$^\circ$C)에서 오지, 상온 단일-온도 봉우리 수 증가에서 오지 않는다 --- 이득은 \emph{다온도}
+($45^\circ$C 2 봉우리)와 상평형 서사에서 발효되며(회사 다온도 매트릭스 설명력의 근거), 곡선맞춤 $R^2$ 로
+평가하면 안 된다. LCO 에서는 같은 5-feature 세분이 $+1.90$\%p 이득을 내는데(\S\ref{ssec:lco-omega-toggle}),
+이는 LCO O2 실측이 그 미세구조를 상온에서 이미 분해하기 때문이다.
+\end{warnbox}
+
+% NOTES 참조: 신규 서지 key = schmitt2022(Schmitt 2022, graphite delithiation dV/dQ stage-2L).
+%   기존 key 재사용 = dahn1991·ohzuku1993·dahn1995·persson2010·reynier2003.
+%   실측 검증 근거 파일 = regsol2_result.json·regsol2.png·T_SPLIT_FINDING.md·T_split.png·ablation_result.json·GRAPHITE_STAGING_XRD.md.
