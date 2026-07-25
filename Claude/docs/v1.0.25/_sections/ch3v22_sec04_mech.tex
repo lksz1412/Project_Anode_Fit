@@ -1,0 +1,110 @@
+% ====================================================================
+% ch3v22_sec04_mech.tex — §3.4 기계 히스테리시스 Larché–Cahn+GS-1 (R5 채택 = W1 기반)
+% ====================================================================
+\section{기계 히스테리시스 --- Larché--Cahn 유도 시도와 미결 공백 GS-1}\label{sec:si-mech}
+대응 지도(§3.1)에서 골격 밖 ``새 물리'' 로 분류된 유일한 노드는 N3(히스테리시스)였다. 크기와 기원이
+모두 다르다: 골격의 spinodal 상한 gap 은 $\Omega_j{=}4RT$ 에서 $\approx55$ mV(식~\eqref{eq:dUhys})인데
+Si 실측 갈림은 수백 mV 이고\cite{obrovac_chevrier2014}, in~situ 측정이 보이는 것은 자유에너지
+이중웰이 아니라 소성 유동과 응력--전위 결합이다(§3.1 사실 vi) --- 열 쪽 실측도 이를 뒷받침한다(가역열이
+발열 3성분 중 최소, §3.2 \cite{arnot_calorimetry2021}). 골격에 없는 것은 \emph{응력이 화학퍼텐셜에 들어가는
+항}이며, 그 이론틀의 표준 출발점이 개방계 고체의 응력--조성 결합 열역학(Larché--Cahn)이다\cite{larchecahn1973}.
+본 절은 그 항을 골격의 결과-사슬 문법((a)$\to$(d))으로 끌어와 \emph{닫히는 데까지} 유도하고
+(\S\ref{ssec:si-lc-derive}), 닫히지 않는 지점을 정확히 짚어 GS-1 을 미결 공백으로 선언한다
+(\S\ref{ssec:si-lc-gap}).
+
+\subsection{닫히는 데까지 --- 가역 화학역학 결합의 전위 이동}\label{ssec:si-lc-derive}
+\textbf{(a) 출발 --- 응력항을 실은 화학퍼텐셜.} Part 0 의 전기화학 평형(\S\ref{sec:sm-electro}
+식~\eqref{eq:sm-muV})은 무응력 고체를 전제로 $\mu_\mathrm{Li}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}
+=-FV$ 였다. Larché--Cahn 이론은 응력 하 고체에서 이동 종(Li)의 화학퍼텐셜에 응력--부피 결합 몫을
+더한다\cite{larchecahn1973}. 평균(정수압) 응력을 $\sigma_\mathrm{h}\equiv\tfrac13\mathrm{tr}(\bm\sigma)$,
+Li 부분몰 부피를 $\bar v_\mathrm{Li}\equiv\partial v/\partial(\text{Li 함량})$ 라 두면, 선형
+결합의 1차 항은
+\begin{equation}
+\mu_\mathrm{Li}^\mathrm{host}(\theta,\sigma_\mathrm{h})
+=\mu_\mathrm{Li}^{0}(\theta)-\bar v_\mathrm{Li}\,\sigma_\mathrm{h}
+\label{eq:si-lcmu}
+\end{equation}
+--- 새 기호 셋($\sigma_\mathrm{h}$ 평균 응력$\cdot$$\bar v_\mathrm{Li}$ 부분몰 부피$\cdot$뒤의 $\Lambda_\sigma$
+결합 계수)은 본 절 도입이며 골격의 $\Omega_j$(정규용액 상호작용 [J/mol])와 무관하다. 부호 읽기 --- 압축
+($\sigma_\mathrm{h}<0$)이고 삽입이 팽창을 부르면($\bar v_\mathrm{Li}>0$) $-\bar v_\mathrm{Li}\sigma_\mathrm{h}>0$
+이라 $\mu_\mathrm{Li}$ 가 올라, 압축된 격자에 Li 를 더 넣기가 불리해진다(물리적으로 옳다).
+
+\textbf{(b) 연산 --- 평형 조건에 대입.} 식~\eqref{eq:si-lcmu} 을 무응력 평형
+식~\eqref{eq:sm-muV} 자리에 넣으면
+\begin{equation}
+\mu_\mathrm{Li}^{0}(\theta_\eq)-\bar v_\mathrm{Li}\,\sigma_\mathrm{h}-\mu_\mathrm{Li}^\mathrm{metal}=-F\,V
+\label{eq:si-lcbal}
+\end{equation}
+이고, 무응력 극한($\sigma_\mathrm{h}{=}0$)의 평형 전위를
+$-FV_\eq^{0}\equiv\mu_\mathrm{Li}^{0}(\theta_\eq)-\mu_\mathrm{Li}^\mathrm{metal}$ 로 정의해 빼면 상수
+덩이가 상쇄된다.
+
+\textbf{(c) 중간식 --- 응력에 의한 전위 이동.} 남는 것은 응력 몫뿐이라
+\begin{equation}
+V(\theta,\sigma_\mathrm{h})=V_\eq^{0}(\theta)+\frac{\bar v_\mathrm{Li}}{F}\,\sigma_\mathrm{h}
+\label{eq:si-vshift}
+\end{equation}
+--- 측정 전위가 무응력 평형에서 $\dfrac{\bar v_\mathrm{Li}}{F}\sigma_\mathrm{h}$ 만큼 어긋난다.
+
+\textbf{(d) 박스 --- 응력--전위 결합 계수.} 결합 계수를 정의하면
+\begin{equation}
+\boxed{\;\Lambda_\sigma\equiv\frac{\partial V}{\partial\sigma_\mathrm{h}}=\frac{\bar v_\mathrm{Li}}{F},
+\qquad
+\Delta V^\mathrm{mech}=\Lambda_\sigma\bigl(\sigma_\mathrm{h}^{\dis}-\sigma_\mathrm{h}^{\chg}\bigr)\;.}
+\label{eq:si-coupling}
+\end{equation}
+리튬화(충전 라벨, $\sigma_d{=}-1$)는 압축($\sigma_\mathrm{h}<0$)이라 전위를 아래로, 탈리튬화(방전 라벨,
+$\sigma_d{=}+1$)는 인장 쪽이라 위로 옮긴다 --- 곧 탈리튬화 가지가 높은 전위에 남아
+$V^{\dis}>V^{\chg}$ 로, 흑연 분기 식~\eqref{eq:Ubranch} 의 부호($U_j^{\dis}>U_j^{\chg}$)와 \emph{같은}
+방향이다(기원은 다르나 부호 규약은 일관). 여기까지 --- 가역 화학역학 결합에 의한 전위 이동 --- 는 골격
+문법으로 두 스텝에 닫힌다.
+\begin{verifybox}
+크기 검산(정성) --- 식~\eqref{eq:si-coupling} 의 $\Lambda_\sigma=\bar v_\mathrm{Li}/F$ 는 실측
+응력--전위 결합 $\sim100$--$120$ mV/GPa 그 자체다(tier A\cite{sethuraman_stresspot2010}). 같은
+$\bar v_\mathrm{Li}$ 가 Si 의 $\sim300\%$ 만충 팽창을 부르는 부피이므로(tier A\cite{beaulieu2001}), 두
+tier-A 실측(팽창 크기와 결합 기울기)은 $\bar v_\mathrm{Li}$ 를 통해 서로 정합하며 $\Lambda_\sigma$ 가
+$O(100\ \mathrm{mV/GPa})$ 규모임이 자연스럽다. \textbf{단} $\bar v_\mathrm{Li}$ 의 수치(Si 부분몰 부피)를
+넣은 정량 산출($\Lambda_\sigma$ 의 정확한 mV/GPa 계산)은 검증 표 밖 입력을 요구하므로 그 \emph{정확값은
+확인 필요}로 남긴다 --- 정성 정합(규모 일치)까지만 tier-A 근거로 주장한다.
+\end{verifybox}
+
+\subsection{닫히지 않는 데 --- 미결 공백 GS-1}\label{ssec:si-lc-gap}
+식~\eqref{eq:si-coupling} 은 \emph{가역} 결합이다: 만약 변형이 순수 탄성이라면 $\sigma_\mathrm{h}$ 가
+$\theta$ 의 단일값 함수이므로 닫힌 사이클에서 $\sigma_\mathrm{h}^{\dis}=\sigma_\mathrm{h}^{\chg}$ 가 되어
+$\Delta V^\mathrm{mech}=0$ --- 히스테리시스가 없다. Si 히스테리시스가 존재하는 까닭은 바로 변형이 순수
+탄성이 아니라 \emph{소성}이기 때문이다: in~situ 측정은 리튬화 시 소성 유동(압축 $\sim-1.75$ GPa)을 직접
+보이고\cite{sethuraman_stressevo2010}, 소성은 경로 의존$\cdot$비가역 과정이라 $\sigma_\mathrm{h}$ 가
+리튬화 경로와 탈리튬화 경로에서 서로 다른 값을 취한다. 곧
+\begin{equation}
+\Delta V^\mathrm{mech}=\Lambda_\sigma\bigl(\sigma_\mathrm{h}^{\dis}-\sigma_\mathrm{h}^{\chg}\bigr)\ne0
+\quad\Longleftarrow\quad
+\sigma_\mathrm{h}=\sigma_\mathrm{h}(\theta,\ \text{이력})\ \ (\text{경로 의존})
+\label{eq:si-plastic}
+\end{equation}
+이며, 이 $\Delta V^\mathrm{mech}$ 를 예측하려면 $\sigma_\mathrm{h}(\theta,\text{이력})$ 의 \emph{구성식}
+--- 항복 응력$\cdot$유동 법칙의 탄소성, 또는 입자$\cdot$SEI 점탄소성\cite{koebbing2024}, 또는 다단
+상전이$\cdot$결정화 경로 분기의 현상학\cite{jiang_sihys2020} --- 이 필요하다. 이것은 평형 자유에너지
+$g(\xi)$ 로 적히는 양이 \emph{아니고}, 별도의 소산 역학 하위 모형이다. 여기서 유도가 닫히지 않는다.
+
+\begin{keybox}
+\textbf{GS-1 공백 4분류.}
+$\cdot$ \textbf{물리 가정 충돌} --- 골격의 히스 gap(식~\eqref{eq:dUhys})은 정규용액 이중웰($\Omega_j>2RT$)이라는
+\emph{열역학 쌍안정}에서 온다. Si 갈림은 소성 \emph{소산}(경로 의존$\cdot$비가역, 비열역학)에서 온다. 두
+기작이 물리적으로 다르므로, ``히스테리시스 $=$ 평형 자유에너지 분기'' 라는 골격 가정이 Si 지배 기작과
+충돌한다(§3.1 N3$\cdot$§3.2 열 서명 정합).
+$\cdot$ \textbf{유도 미완결(범위 선언, 논리 공백 아님)} --- 가역 결합(식~\eqref{eq:si-coupling})은
+닫혔다. 닫히지 않는 것은 $\sigma_\mathrm{h}(\theta,\text{이력})$ 의 구성식(식~\eqref{eq:si-plastic})이며,
+이는 소산 역학 하위 모형으로 본 장 범위 밖이다(마스터플랜 Non-goals: 1차원리 기계 히스는 Larché--Cahn
+접속이 닫히는 범위까지만 --- 못 닫으면 미결 공백 유지). 유사 유도로 소성 구성식을 지어내지 않는다.
+\end{keybox}
+
+\begin{warnbox}
+기계 히스테리시스의 가역 화학역학 결합은 식~\eqref{eq:si-coupling}까지 닫힌다. 남은 공백(GS-1)은
+``응력항의 존재''가 아니라 ``응력의 경로 의존 구성식'' --- 곧 \emph{범위 밖 소산 역학}이다.
+Si 전용 완결 유도(소성 구성식 접속)는 Si 실측 응력--전위 곡선 확보 후 후속 장 소관이다.
+\end{warnbox}
+
+% 자산: [V22-R5-16 Larché–Cahn 응력-화학퍼텐셜 유도 시도 sec:si-mech]
+%   [V22-R5-17 응력항 실은 화학퍼텐셜 eq:si-lcmu(신규 기호 σ_h·v̄_Li 도입)]
+%   [V22-R5-18 응력에 의한 전위 이동 eq:si-vshift·결합 계수 eq:si-coupling(Λ_σ=v̄_Li/F, ~100 mV/GPa 정성 정합)]
+%   [V22-R5-19 경로 의존 소성 → GS-1 공백 eq:si-plastic(물리 가정 충돌+유도 미완결 4분류·부록 대비 공백 위치 1단계 좁힘)]

@@ -1,0 +1,64 @@
+% ====================================================================
+% §2.9 방법론 출구와 정직한 한계
+% ====================================================================
+\section{방법론 출구와 적용 한계}\label{sec:method}
+
+종합식이 실전 수치를 냈으니, 남은 두 가지를 밝힌다 --- 그 입력 $\{\Delta S^0_j,Q_j,U_j,w_j\}$ 를 실측
+$dQ/dV$ 에서 얻는 절차(\S\ref{ssec:procedure})와, 본 파트 닫힌식에 남는 공백(\S\ref{ssec:gaps})이다.
+
+\subsection{다온도 $dQ/dV$ 에서 중심 표준값 추정 절차}\label{ssec:procedure}
+\begin{procedurebox}
+\textbf{방법론 출구 --- 다온도 $dQ/dV$ 에서 중심 표준값 $\Delta S^0_j=F\,\dd U_j/\dd T$ 추정 절차.} 위 종합식의
+입력 $\{\Delta S^0_j,Q_j,U_j,w_j\}$ 중 전이별 중심 표준값 $\Delta S^0_j$ 는 다음 순서로 추정한다.
+\begin{enumerate}[leftmargin=1.8em,itemsep=2pt,topsep=2pt]
+\item 충분히 낮은 율의 준평형 코인 하프셀 $dQ/dV$ 를 여러 온도 $T_k$ 에서 측정한다(저율$\cdot$과평활 회피로
+전이 폭이 동역학 lag 로 부풀지 않게 한다).
+\item 측정 전위에서 분극을 먼저 분리한다 --- \S\ref{sec:pol} 의 $V_n=V_\mathrm{app}-\sigma_d|I|R_n$~\eqref{eq:vn} 로
+IR$\cdot$과전압을 빼야 \emph{평형} $U_\oc$ 의 온도 의존만 남는다.
+\item 같은 $Q_j$ 구조를 공유하되 각 온도의 중심 $U_j(T_k)$ 와 폭 $w_j(T_k)$ 를 허용해 Part I 의 logistic
+전이 모델~\eqref{eq:logistic} 을 \emph{동시} 피팅하며, 이는 반응별 $U_j^0(T)$ 를 온도 연속함수로 두는 MSMR
+(Multi-Species, Multi-Reaction) 절차(Chapter 2 \S\ref{sec:lco-code})와 직접 대응한다 \cite{msmr_partI,msmr_partII}.
+\item 회귀한 $U_j(T)$ 의 중심 기울기에서 $\Delta S^0_j=F\,\dd U_j/\dd T$ 를 얻고, Allart 등의 전극 분리
+$\Delta S(x)$ \cite{allart2018} 와 부호$\cdot$규모를 대조해 검증한다(표~\ref{tab:ds}).
+\item 봉우리 \emph{내부}의 $x$-의존은 따로 입력하지 않는다 --- 식~\eqref{eq:single_config} 의 분포 config 항
+$(n_jR/F)\ln[\xi_j/(1-\xi_j)]$ 가 자동으로 채우며, 마지막으로 종합식~\eqref{eq:complete} 과
+$\dot Q_\rev=-IT\,\partial U_\oc/\partial T$(Bernardi 출구 \cite{bernardi1985})로 가역 발열을 산출한다.
+\end{enumerate}
+전이 $j$ 가 준양자 진동 편차를 갖는다면, electronic 항($\propto T$)과 분리하기 위해 준양자 영역($\kB
+T\!\lesssim\!\hbar\omega$)에 놓인, 서로 충분히 벌어진 $T$ 점을 셋 이상 확보한다(\S\ref{ssec:einstein-numid}).
+\end{procedurebox}
+
+\begin{srcbox}
+\textbf{다리 --- $\Delta S^0_j$ 를 무엇으로 검증하나.} procedurebox 4 의 회귀량 $\Delta S^0_j=F\,\dd
+U_j/\dd T$ 는 Allart 등\cite{allart2018} 의 흑연 전극 분리 $\Delta S(x)$ 와 대조해 검증한다:
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문 & Allart\cite{allart2018} 대응 \\
+\hline
+전이별 중심 표준값 $\Delta S^0_j=F\,\dd U_j/\dd T$ & 흑연 전극 몫 $\Delta S(x)$(조성 분해 실측) \\
+회귀 $U_j(T)$ 중심 기울기 & 평형 곡선 $U(x)$ 의 온도 의존 \\
+표~\ref{tab:ds} 부호$\cdot$규모 & $\Delta S(x)$ 실측 부호$\cdot$규모 \\
+\hline
+\end{tabular}
+\end{center}
+\emph{방법 요지} --- Allart 등은 흑연 하프셀의 평형 곡선과 온도계단 전위차법 엔트로피 변화 곡선을 전위차
+분석으로 함께 얻어 흑연 전극 몫의 $\Delta S(x)$ 를 조성 분해로 준다. \emph{가정 차} --- Allart 의 $\Delta S(x)$
+는 조성 연속의 전극 몫 실측이나 표~\ref{tab:ds} 의 $\Delta S^0_j$ 는 전이별 봉우리 \emph{중심} 표준값이고
+봉우리 내부 $x$-의존은 식~\eqref{eq:single_config} 의 config 항이 자동 생성하므로, 대조는 중심값
+부호$\cdot$규모 수준이지 봉우리 내부 프로파일의 점대점 일치가 아니다.
+\end{srcbox}
+
+\subsection{모델의 한계}\label{ssec:gaps}
+본 파트의 닫힌식에는 다음 공백이 남는다. (1) 완전식의 표시-정밀도 일치(파생 A, 175 점)는 \emph{시뮬레이션
+자기일관성} 검증이다 --- 남는 공백은 그 완전식이 가정하는 logistic 전이형$\cdot$파라미터 집합
+$\{\Delta S^0_j,Q_j,U_j,w_j\}$ 가 실측 흑연을 얼마나 충실히 재현하는지를 \emph{실데이터 round-trip 피팅}으로
+확정하는 일이다(시뮬레이션 검증과 실측 검증의 구분). (2) 히스테리시스 하 경로의존 $\partial U_\oc/\partial T$ 의
+측정 불확실도 정량화는 본 장 범위 밖이며, 파생 D(\S\ref{ssec:hys})는 가역/비가역 분리의 틀만 제시한다
+\cite{hysteresis2018}. (3) 상호작용 $\Omega$ 의 온도 의존(파생 C 의 2차 항)과 그 흑연에서의 값은 아직
+확보하지 못했다. (4) electronic 항의 절대값은 흑연에서 소수로 취급했으며, LCO 의 MIT 예외는 분포 언어의
+사례로만 다뤘다. (5) 전셀 합성은 본 장의 범위 밖이고, 그 근거는 서두 범위 박스에 명시했다. 이 다섯 공백을
+명시적으로 열어 둔 채, 다음 절이 본 파트를 매듭짓는다.
+
+% 자산: [C-116] ★procedurebox 5단계(저율 다온도 dQ/dV·분극분리 Ch1 §1·동시피팅=MSMR Ch1 §17·ΔS⁰=F dU_j/dT Allart 대조·봉우리내부 자동) ·
+%   [C-115] 정직한 한계 5(완전식=시뮬 자기일관성≠실측·히스 경로의존 범위밖·Ω(T) 미확보·elec 흑연소수·전셀 범위밖)

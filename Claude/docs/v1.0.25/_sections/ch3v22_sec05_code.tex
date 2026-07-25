@@ -1,0 +1,70 @@
+% ====================================================================
+% ch3v22_sec05_code.tex — §3.5 R6 코드 요구명세 (R5 채택 = W3 기반·라벨 재지정)
+% ====================================================================
+\section{블렌드 합성 코드 요구명세}\label{sec:si-code}
+본 절은 블렌드 합성 코드의 요구명세다. 설계 관점은 하나다 ---
+\emph{코드는 대응 지도를 실행 가능하게 만든 것}이다: N9(이월)는 $f_\mathrm{Si}{=}0$ bit-exact
+게이트로, 재해석$\cdot$부분 노드 중 케이스 성분이 담는 셋(N2$\cdot$N4$\cdot$N6)은 Si 케이스 셋 파라미터로, 새 물리$\cdot$비가산 공백
+(GS-1$\cdot$GS-2)은 \emph{명시적 코드 경계}로 들어간다(임의값으로 채우지 않는다).
+
+\subsection{계약 --- $f_\mathrm{Si}{=}0$ 에서 흑연 단독 bit-exact}\label{ssec:code-contract}
+신규 클래스 \code{BlendedAnodeDQDV(f\_Si, si\_case)}(제안)는 기존 흑연 클래스
+\code{GraphiteAnodeDischargeDQDV} 를 \emph{합성}으로 감싼다 --- 두 host 인스턴스(흑연$\cdot$Si)를 각각
+표준 진입점(\code{curve}$\cdot$\code{dqdv}$\cdot$\code{equilibrium})으로 평가하고, 공통 전위 축에서
+합친다. 최우선 계약은 하위호환이다:
+\begin{equation}
+f_\mathrm{Si}=0\ \Longrightarrow\ \code{BlendedAnodeDQDV}(\cdot)\ \equiv\ \code{GraphiteAnodeDischargeDQDV}(\cdot)
+\quad(\text{bit-exact})
+\label{eq:si-code-bitexact}
+\end{equation}
+--- 식~\eqref{eq:blend-balance} 의 검산 (ii)($Q_\mathrm{Si}{=}0$ 회수)의 코드판이다. Si 합이 통째로
+사라지므로 반환 배열이 흑연 단독 경로와 부동소수점까지 동일해야 한다(회귀 게이트).
+
+\subsection{합성 --- 용량 배분과 공통 $V_n$}\label{ssec:code-synth}
+용량은 $f_\mathrm{Si}$ 로 배분되고(식~\eqref{eq:blend-balance} 의 정의: $Q_\mathrm{Si}{=}f_\mathrm{Si}Q$,
+$Q_\mathrm{gr}{=}(1{-}f_\mathrm{Si})Q$), host 내부 전이 배분 $\{Q_j^{\mathrm{host}}\}$ 은 각 host 케이스
+리스트가 정한다. dQ/dV 는 두 host 평형 종의 합~\eqref{eq:blend-dqdv} 을 \emph{같은} $V_\app$ 배열
+위에서 평가해 얻는다 --- 공통 $V_n$ 이란 두 host 가 하나의 전위 축을 공유한다는 뜻이고, 이는 두 host 가
+$\mu$ 하나를 공유한다는 물리(\S\ref{ssec:si-blend-derive})의 코드 표현이다. 배경 미분용량 \code{Cbg} 는
+전극 단위로 한 번만 더한다(host 별 중복 가산 금지).
+
+\subsection{Si 케이스 셋 --- \code{si\_case} 선택자}\label{ssec:code-caseset}
+\code{si\_case} 는 세 서브케이스를 고른다 --- \code{'elemental'}$\cdot$\code{'siox'}$\cdot$\code{'sic'}.
+각 케이스는 흑연 \code{GRAPHITE\_STAGING\_LIT} 에 대응하는 Si 전이 초기값 리스트(제안 명:
+\code{SI\_ELEMENTAL\_LIT}$\cdot$\code{SIOX\_LIT}$\cdot$\code{SIC\_LIT})를 갖고, 값은 표~\ref{tab:si-cases}
+의 tier 명기 시연값이다(신뢰값 아님 --- round-trip 피팅 override 전제). 케이스 리스트는 곡선 기술
+성분이지 물리 상전이 성분이 아님을 주석에 명시한다(\S\ref{ssec:si-carry} 의 성분 $\ne$ 상전이 경고).
+SiO$_x$ 의 두 공백(평균 전위$\cdot$절대 히스, \S\ref{ssec:si-siox})은 코드에서도 tier-C placeholder
+또는 명시적 \code{None}(공백)으로 계승하고, 임의값으로 메우지 않는다.
+
+\subsection{게이트와 적용 경계}\label{ssec:code-gates}
+\begin{codebox}
+\textbf{요구 게이트(구현 통과 조건).}
+$\cdot$ \textbf{G1 bit-exact}: $f_\mathrm{Si}{=}0$ 에서 흑연 단독과 부동소수점 동일(\eqref{eq:si-code-bitexact}).
+$\cdot$ \textbf{G2 스윕 연속성}: $m_\mathrm{Si}\in(0,0.30]$(wt\% 기준 스윕 --- $f_\mathrm{Si}$ 는 비용량 환산, \S\ref{ssec:si-blend-derive} 각주)에서 곡선이 $f_\mathrm{Si}$ 에 연속(불연속 점프 없음)
+--- 대조 데이터는 $m_\mathrm{Si}$(wt\%) 스윕 실측(\cite{gautam_blend2024}: 5--20$\cdot$\cite{moyassari_blend2022}: 0--20$\cdot$\cite{chatzogiannakis_blend2025}: 30 wt\%, tier-A --- $[0,20]$ wt\% 연속 커버 $+$ 30 wt\% 단일점, $(20,30)$ 구간은 보간).
+$\cdot$ \textbf{G3 용량 보존}: 평형 산출에서 배경을 뺀 적분
+$\int\bigl(\dd Q/\dd V-C_\bg\bigr)\,\dd V=Q=Q_\mathrm{gr}+Q_\mathrm{Si}$ 가 $f_\mathrm{Si}$
+전 구간에서 성립(host 합이 총용량을 정확히 재현 --- 식~\eqref{eq:blend-dqdv} 에서 용량을 나르는 것은
+host 이중합 몫뿐). 검사 창은 전 전이를 덮게 잡고(모든 $U_j^\mathrm{host}$ 에서 $k\,w_j^\mathrm{host}$
+이상 여유, 잘림 오차 상한 $\sum_{\mathrm{host},j}Q_j^\mathrm{host}e^{-k}$), 구적$\cdot$잘림 합산 상대
+공차는 구현에서 명시해 고정한다(제안 예: $k{=}20$, $|\Delta|/Q\le10^{-6}$).
+\end{codebox}
+
+\begin{warnbox}
+\textbf{코드 경계(공백의 코드 표현).} 두 공백을 코드가 \emph{침범하지 않는다} --- (i) \textbf{GS-1(기계
+히스)}: \code{BlendedAnodeDQDV} 는 Si 히스테리시스를 1차원리로 합성하지 않는다. 응력 결합 항
+\eqref{eq:si-vshift} 은 선택적 $\Lambda_\sigma\!\cdot\!\sigma_\mathrm{h}$ 오프셋 훅으로만 노출하고(경로 의존 $\sigma_h$
+는 사용자 입력), 소성 폐합은 구현하지 않는다(\S\ref{ssec:si-lc-gap} 범위 선언). (ii) \textbf{GS-2(비가산)}:
+합성은 공통-$\mu$ \emph{완전 동시반응 1차 근사}까지다 --- 구간별 host 전환$\cdot$비가산 보정은 구현하지
+않으며(\S\ref{ssec:si-blend-gs2} 범위 밖), G2 스윕 연속성은 이 1차 근사 안에서의 연속성 검사임을 docstring
+에 명시한다. 곧 코드가 낼 수 있는 것과 못 내는 것의 경계가 문건 공백과 1:1 이다.
+\end{warnbox}
+
+이 요구명세로 구현은 흑연 단독 회귀를 깨지 않으면서($G1$) 블렌드 곡선을 $f_\mathrm{Si}$ 하나로 토글하고
+($G2$$\cdot$$G3$), 두 미결 공백을 코드 경계로 보존한다 --- 대응 지도(\S\ref{sec:si-map})가 문건에서
+한 판정이 코드에서도 그대로 판정으로 남는다.
+
+% 자산(comp_R5 W3): [V22-R5-20 f_Si=0 bit-exact 계약 eq:si-code-bitexact(=eq:blend-balance 검산 ii 코드판)]
+%   [V22-R5-21 용량 배분·공통 V_n 합성 요구 ssec:code-synth] [V22-R5-22 si_case 셋 구조·SiOₓ 공백 계승 ssec:code-caseset]
+%   [V22-R5-23 게이트 G1/G2/G3 codebox] [V22-R5-24 GS-1/GS-2 코드 경계=문건 공백 1:1 warnbox]
