@@ -302,12 +302,11 @@ python Anode_Fit_v1.0.24.py        >>> overall OK: True
 `tools_gate_forbidden_selftest.py` (기존 `tools_check_structure.py` 와 같은 자리). `tools_tex_strict_check.py`
 의 baseline 은 외부 스냅샷 파일 대신 `docs/v1.0.24.1/` 원본에서 즉석 수집하도록 바꿨다(의존 제거).
 
-## 5. 한계 — 반드시 남는 잔여 게이트
-- ★**실제 LaTeX 빌드 미수행**: 이 PC 에 `xelatex`·`pdflatex`·`latexmk`·`lualatex` 전부 부재
-  (PATH · `C:\texlive` · MiKTeX 경로 탐색으로 확인). 위 §3.1–3.2 는 **참조·환경·라벨·매크로의 정적 검사**이며
-  **TeX 문법·조판·플로트 배치·페이지 수는 커버하지 못한다.** TeX 가 있는 환경에서 ch1→ch2→ch3 3-pass
-  0-error 를 **머지 전 필수 잔여 게이트**로 남긴다(`MERGE_READINESS_v25.md` 등재).
-- 특히 다음 세 곳이 빌드에서 처음 검증된다: (i) `ch1_sec18_inputs.tex` 의 `warnbox` 안 `enumerate`
-  중첩, (ii) `ch1_appB_codemap.tex` `longtable` 셀에 넣은 긴 서술의 행 넘침, (iii) `ch1_sec09_tail.tex` ·
-  `ch1_sec10_sum.tex` 의 신규 `\footnote` 배치.
-- **미해결 물리 판단 1건** = §2 의 "흑연 물리 두-상 4 vs 2"(사용자 확인 요청).
+## 5. 한계 — 잔여 게이트 (★빌드 해소됨)
+- ~~실제 LaTeX 빌드 미수행~~ → ★**해소(2026-07-26)**: MiKTeX 25.12(XeLaTeX 4.16)를 설치해 3장을 빌드했다
+  — **오류 0 · Reference/Citation undefined 0** · 원본 v1.0.24.1 과 경고 프로파일 완전 동일(상세 =
+  `MERGE_READINESS_v25.md` §0-A). §4-A 에서 빌드에서 처음 검증된다고 했던 세 곳((i) `ch1_sec18_inputs.tex`
+  warnbox 안 enumerate, (ii) `ch1_appB_codemap.tex` longtable 셀 긴 서술, (iii) 신규 `\footnote` 배치) **전부
+  정상 조판·오류 0**. 신설 식 페이지(ch1 p37 `eq:gr2l-fwhm`·p41 `eq:skewpeak`·`eq:skewapex`)를 PNG 렌더로
+  시각 확인 완료.
+- **미해결 물리 판단 1건** = §2 의 "흑연 물리 두-상 4 vs 2"(사용자 확인 요청) — 비-차단, 유일하게 남은 항목.

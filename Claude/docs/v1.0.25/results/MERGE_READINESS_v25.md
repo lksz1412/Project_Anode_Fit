@@ -10,16 +10,50 @@
 
 ## 0. 최종 판정
 
-> ### **MERGE-READY = 조건부 YES — "LaTeX 빌드 확인 후 머지".**
+> ### **MERGE-READY = YES.** ★2026-07-26 갱신 — 유일한 차단 항목이던 LaTeX 빌드가 **해소**됨.
 >
-> **코드·문건의 내용은 머지 준비 완료**다(GREEN 12항 · 게이트 전건 PASS · 골든 bit-exact max\|d\|=0.0 ·
-> doc↔code 30/30 · 신규 라벨 3 정의 1회·orphan 0 · 삭제 라벨 0 · 원본 아카이브 무변경).
-> 그러나 ★**실제 LaTeX 빌드가 이 환경에서 수행되지 않았다** — 정적 검사는 참조·환경·라벨·매크로만 커버하고
-> **TeX 문법·조판·플로트 배치·페이지 수는 커버하지 못한다.**
-> 따라서 **AMBER-1(빌드) 해소 = 머지 전 필수 조건**이며, 그 하나가 유일한 차단 항목이다.
-> 나머지 미해결 13항은 전부 **비-차단**(데이터 재현성·표기 통일·차기 게이트).
+> **코드·문건 전부 머지 준비 완료.** GREEN 전항 + ★**실제 XeLaTeX 빌드 통과**(아래 §0-A).
+> 잔여 미해결 12항은 전부 **비-차단**(데이터 재현성·표기 통일·차기 개선). **RED·AMBER-차단 항목 없음.**
 >
-> **RED 항목은 없다.**
+> _(이하 본문 §0 원문은 빌드 수행 \emph{전} 시점의 판정으로 보존한다 — supersession 규약. 그 시점 결론
+> "조건부 YES = 빌드 확인 후 머지" 는 §0-A 로 그 조건이 충족되어 무조건 YES 로 승격되었다.)_
+
+## 0-A. ★ LaTeX 빌드 수행·통과 (2026-07-26 · MiKTeX 25.12 설치 후)
+
+작업 PC 에 TeX 배포판이 없던 제약을 **해소** — MiKTeX 25.12(XeLaTeX 4.16)를 사용자 단위(관리자 불필요)로
+설치하고(무결성 = miktex.org·CTAN illinois 두 독립 출처 SHA256 일치), D2Coding 폰트가 fontconfig 에
+인식됨을 확인한 뒤 3장 전건을 빌드했다.
+
+**빌드 시퀀스**: `xelatex -interaction=nonstopmode` 로 ch1→ch2→ch3 각 3패스(라운드1, aux 생성) +
+각 2패스(라운드2, 교차문서 xr 해소). MiKTeX AutoInstall 로 kotex·tikz 등 누락 패키지 자동 수급.
+
+**결과 (v1.0.25)**:
+
+| 장 | 오류 | Reference undefined | Citation undefined | 쪽수 | PDF |
+|---|---|---|---|---|---|
+| ch1_graphite | **0** | **0** | **0** | 102 | 1091 KB |
+| ch2_lco | **0** | **0** | **0** | 30 | 495 KB |
+| ch3_si | **0** | **0** | **0** | 22 | 443 KB |
+
+**원본 대조 (v1.0.24.1 동일 환경 빌드)**: 오류 0 · ref/cite undefined 0 · 쪽수 97/30/21 · `multiply defined`
+2/2/3 — v1.0.25 와 **경고 프로파일 완전 동일**(multiply 2/2/3 동일). 쪽수만 ch1 +5·ch3 +1(내 +262줄 반영).
+곧 **내 편집이 새 경고를 하나도 만들지 않았다.**
+
+**잔존 경고 = 전부 benign·선행(내 편집 무관)**:
+- `Label 'swiderska2019'·'verbrugge2017'·'LastPage' multiply defined` — 장별 bibliography(`\bibitem`)가
+  xr 로 겹쳐 보이는 것 + lastpage 패키지. 정의 파일 = `ch1v22_bib.tex`·`ch2v22_bib.tex`·`ch3v22_bib.tex`
+  (내 편집 15파일에 bib 파일 **0개**). 원본 v1.0.24.1 에도 동일 존재. 각 PDF 안에서는 로컬 bibitem 이 이김.
+- `Font shape TU/UnBatang·D2Coding /m/it undefined` — 한글 폰트에 진짜 이탤릭 자형이 없어 XeLaTeX 대체.
+  마스터·본 판정서가 예고한 그 benign 조판 경고.
+
+**시각 확인**: 신설 식 페이지를 PNG 렌더해 조판 정합 확인 — ch1 p41 = `eq:skewpeak`(식 1.77)·
+`eq:skewapex`(식 1.78) boxed 정상, "+17.8 mV·4.45/3.53/3.02/2.74배·0.80/1.00/1.18/1.30" 서술 정상,
+교차참조 전건 해소(?? 0). ch1 p37 = `eq:gr2l-fwhm`(식 1.72) 닫힌형 + λ^{3/2} 점근 + u-전개 + 정정 오차율
+(0.6/1.2/3.0/27%) 정상.
+
+**PDF 커밋**: v1.0.24.1 이 최종 PDF 3개를 추적하는 관행에 맞춰 v1.0.25 도 빌드 PDF 3개를 커밋한다
+(빌드 중간산물 aux/log/out/toc 는 `.gitignore` 로 제외). 원본 v1.0.24.1 폴더는 빌드 후 `git checkout` +
+중간산물 삭제로 **완전 무변경 복원**(추적 파일 0 변경).
 
 **본 서브세션의 권고 = 마스터가 제시한 권고와 동일하다**: "코드·문건 내용은 머지 준비 완료, 단
 LaTeX 빌드 검증이 남았으므로 **빌드 확인 후 머지**". 본 세션이 독립 대조한 범위(변경 지점·줄 수·라벨 증감·
@@ -161,10 +195,9 @@ Ch2·Ch3 에서 Ch1 라벨을 참조하는 경로는 모두 `\externaldocument{c
 |---|---|---|
 | **AMBER-2** 정적 검사 시점 불일치 | ★**해소** | 문건 편집 종료 후 전건 재실행 — `STRUCTURE_CHECK: PASS`(ch1 라벨 266·ref **1115**·dup 0·미해소 0·env 0·boxed 39) · `STRICT CHECK: ALL PASS`(장별 xr 미해소 0·$ 패리티 불변·중괄호 균형·라벨 삭제 0) · **doc↔code 30/30 PASS**. `_sections` 최종 = **15파일 +262줄** |
 | **AMBER-3** G-금지 미구현 | ★**해소** | `test_gates_v1025.py` 에 `gate_forbidden()` 신설(규칙 4종·금지 서술 면제 패턴) → 게이트 **8종 → 9종, 9/9 PASS**. 공허성 배제 = `tools_gate_forbidden_selftest.py`(위반 문장 **5/5 탐지** · 금지 서술 **4/4 면제 통과**) |
-| **AMBER-1** LaTeX 빌드 | **미해소 — 유일한 차단 항목 유지** | TeX 배포판 부재(환경 제약). 본문 §2 AMBER-1 의 실행 지시 그대로 남는다 |
+| **AMBER-1** LaTeX 빌드 | ★**해소** | MiKTeX 25.12(XeLaTeX 4.16) 설치 후 3장 빌드 — **오류 0 · Reference/Citation undefined 0** · 원본과 경고 프로파일 동일(§0-A). 신설 식 페이지 PNG 렌더로 조판 정합 시각 확인 |
 
-**갱신 판정**: GREEN 16 / AMBER **1** / RED 0. 차단 항목은 **X1(빌드) 하나뿐**이며,
-판정은 여전히 **조건부 YES = "빌드 확인 후 머지"** 다(조건이 3개 → 1개로 줄었다).
+**갱신 판정**: GREEN **17** / AMBER **0** / RED 0. **차단 항목 없음 → MERGE-READY = YES**(조건 3개 전부 충족).
 
 부수 반영: 검증 도구 3종을 리포로 이관하고 경로를 리포 상대로 고쳤다 —
 `results/tools_tex_strict_check.py` · `tools_doc_code_audit.py` · `tools_gate_forbidden_selftest.py`
