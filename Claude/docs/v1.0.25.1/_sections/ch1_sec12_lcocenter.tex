@@ -1,0 +1,112 @@
+% ====================================================================
+% §12 LCO 평형 중심과 Kirchhoff 일관성 (N2')
+% ====================================================================
+\section{LCO 평형 중심과 $\partial U_j/\partial T$ --- 양극 부호와 Kirchhoff 일관성}\label{sec:lco-center}
+Part I 의 평형 중심 유도(\S\ref{sec:center})에는 어느 다리에도 ``흑연''이라는 물질 고유 항이 없다. 이 절은 그
+전극-무관성을 식으로 확인하고, LCO 양극 중심 $U_j^\mathrm{cat}(T)$ 를 흑연과 같은 관계식으로 닫은 뒤, 다온도
+전자항이 부르는 Kirchhoff 일관성과 단전극$\cdot$전셀 혼동을 가드로 세운다.
+
+\subsection{세 진입점과 온도 계수의 이중 경로}\label{sec:lco-center-deriv}
+\textbf{(a) 출발 --- 전극-중립 골격의 세 진입.} 평형 중심 유도의 세 다리는 host 를 가리지 않는다 ---
+(i) 실험조건 매핑 식~\eqref{eq:n0map} 의 방향 부호$\cdot$전류 환산
+$\sigma_d=\pm1$, $|I|=\text{c-rate}\times Q_\cell$ 은 삽입형 전극이면 종류를 가리지 않고, (ii) 전기화학 평형
+조건 식~\eqref{eq:eqcond}($\mu_\mathrm{Li}(\theta_\eq)=\mu^0-sF(V-U),\ \Delta G_j=-sFU_j$)는 삽입
+반쪽반응 $\mathrm{Li}^++e^-+[\,]\rightleftharpoons\mathrm{Li}_{(\text{host})}$ 의 전기화학 평형
+(식~\eqref{eq:eqbalance})에서 나와 host 의 화학 정체가 상수 $\mu^0$ 와 반응 몫 입력값으로 흡수되며,
+(iii) 비배치 몫 $\Delta G_j=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 은 반응 종에 무관한 열역학 항등식이라,
+LCO 로 넘어갈 때 이 세 자리에 들어가는 것은 전이 집합과 입력값의 치환뿐이다:
+\begin{equation}
+j\in\mathcal J_\mathrm{LCO}=\{\mathrm{T1},\mathrm{T2},\mathrm{T3}\},\qquad
+(\Delta H_{\rxn,j},\Delta S_{\rxn,j})\ \longmapsto\
+(\Delta H_{\rxn,j}^\mathrm{cat},\Delta S_{\rxn,j}^\mathrm{cat}).
+\label{eq:lco-n0sub}
+\end{equation}
+곧 $\sigma_d$ 는 방향 선택 슬롯에 남고, 평형 중심 $U_j(T)$ 의 Gibbs 환산식에는 새 양극 부호가 끼지 않는다.
+
+\textbf{(b) 연산 --- 평형 조건에 반응 자유에너지 대입.}
+전이 $j$ 의 비배치 반응 자유에너지 $\Delta G_j^\mathrm{cat}=\Delta H_{\rxn,j}^\mathrm{cat}
+-T\Delta S_{\rxn,j}^\mathrm{cat}$ 를 식~\eqref{eq:eqcond} 의 $\Delta G_j=-sFU_j$($s=+1$)에 넣으면
+\[
+\Delta H_{\rxn,j}^\mathrm{cat}-T\Delta S_{\rxn,j}^\mathrm{cat}=-F\,U_j^\mathrm{cat}(T),
+\]
+곧 흑연 식~\eqref{eq:Ujmid} 과 글자 그대로 같은 식에 상첨자 $\mathrm{cat}$ 만 붙는다.
+
+\textbf{(c) 중간식 --- 중심과 온도 미분(이중 경로 교차검증).}
+(b)를 $U_j^\mathrm{cat}$ 로 이항하면 $U_j^\mathrm{cat}(T)=(-\Delta H_{\rxn,j}^\mathrm{cat}
++T\Delta S_{\rxn,j}^\mathrm{cat})/F$ 로 흑연 식~\eqref{eq:Uj} 와 같은 함수형이고, 온도 계수는 두 독립
+경로가 같은 값에 닿는다. \emph{경로 1(직접 미분)}: $\Delta H^\mathrm{cat}$ 는 $T$ 무관, $T\Delta S^\mathrm{cat}$
+의 미분이 $\Delta S^\mathrm{cat}$ 이라 $\partial U_j^\mathrm{cat}/\partial T=\Delta S_{\rxn,j}^\mathrm{cat}/F$
+--- 이는 그 온도에서의 $\Delta S_{\rxn,j}^\mathrm{cat}$ \emph{순간값}을 상수로 둔 순간 기울기다.
+\emph{경로 2(Gibbs 항등식 경유)}: 등압 Gibbs 항등식 $\partial\Delta G_j/\partial T|_P=-\Delta S_{\rxn,j}^\mathrm{cat}$
+(식~\eqref{eq:gibbsdef} $G\equiv H-TS$ 에서 --- $\Delta S$ 의 $T$-의존 여부와 무관하게 성립하는 정확한
+항등식)와 식~\eqref{eq:eqcond} 의 $\Delta G_j=-FU_j$ 를 미분한
+$\partial\Delta G_j/\partial T=-F\,\partial U_j^\mathrm{cat}/\partial T$ 를 등치하면
+\[
+-F\,\frac{\partial U_j^\mathrm{cat}}{\partial T}=-\Delta S_{\rxn,j}^\mathrm{cat}
+\ \Longrightarrow\
+\frac{\partial U_j^\mathrm{cat}}{\partial T}=\frac{\Delta S_{\rxn,j}^\mathrm{cat}}{F}.
+\]
+두 경로 어디에도 host 구분 항이 없고, 둘의 일치는 ``그 온도에서의 순간 기울기''라는 의미에서다 ---
+이것이 ``전극 불문''의 수식적 의미다.
+
+\textbf{(d) 박스 --- LCO 양극 중심과 온도 계수.}
+\begin{equation}
+\boxed{\;
+U_j^\mathrm{cat}(T)=\frac{-\Delta H_{\rxn,j}^\mathrm{cat}+T\Delta S_{\rxn,j}^\mathrm{cat}}{F},
+\qquad
+\frac{\partial U_j^\mathrm{cat}}{\partial T}=\frac{\Delta S_{\rxn,j}^\mathrm{cat}}{F}
+\quad(j\in\mathcal J_\mathrm{LCO})\;}
+\label{eq:lco-dUdT}
+\end{equation}
+관계식은 흑연 식~\eqref{eq:Uj} 와 부호까지 1:1 이고 바뀌는 것은 값뿐이다 --- 양극의 높은 중심
+($\sim$3.9--4.2 V)은 분자 $-\Delta H_{\rxn,j}^\mathrm{cat}$ 가 크게 양인 데서 오고, $\Delta S_{\rxn,j}^\mathrm{cat}$
+는 \S\ref{sec:lco-decomp} 의 분해식에서 config(배치)$\cdot$vib(격자진동)$\cdot$전자 세 성분으로 분해된다.
+대표 단전극 스케일($\dd\phi/\dd T\approx+0.83$ mV/K $\to\approx+80$ J/(mol\,K)[tier B])의 역산과
+전이별 성분값과의 층위 분리$\cdot$T1 전자항과의 부호 공존은 아래 verifybox 가 정량으로 닫는다.
+
+\subsection{다온도 전자항과 Kirchhoff 일관성}\label{sec:lco-center-kirchhoff}
+\textbf{다온도 전자항 주의 --- 기계 미분이 낳는 비물리 잉여항.} $\Delta S_{e,j}(x,T)\propto T$
+인 항(전자항, \S\ref{sec:lco-electronic})을 다온도 모델에 풀 때 고정 $\Delta H$ 로 $U_j(T)=(-\Delta H+T\Delta S(T))/F$ 를 기계 미분하면 생기는
+잉여항 $T\,\partial_T\Delta S$ 는 Kirchhoff 일관성 위반($\partial\Delta H/\partial T=\Delta C_p$ 이고
+$T\,\partial\Delta S/\partial T=\Delta C_p$ 라 ``$\Delta H$ 고정$\wedge\partial_T\Delta S\ne0$'' 가정 자체가
+성립하지 않는다)의 비물리 항이므로, 유지할 불변식은 식~\eqref{eq:lco-dUdT} 의
+$\partial U_j/\partial T=\Delta S_{\rxn,j}^\mathrm{cat}(T)/F$ 이고 위치는 기준온도에서
+\begin{equation}
+U_j^\mathrm{cat}(T)=U_j^\mathrm{cat}(T_\mathrm{ref})+\frac1F\int_{T_\mathrm{ref}}^{T}\Delta S_{\rxn,j}^\mathrm{cat}(T')\,\dd T'
+\label{eq:lco-kirchhoff}
+\end{equation}
+로 \emph{적분형}으로 해석해야 한다 --- 전자항 $\propto T'$ 를 실제 적분한 닫힌 특수형이 \S\ref{sec:lco-Se} 의
+$T^2$ 곡률식($\tfrac12(T^2-T_\mathrm{ref}^2)$ 곡률, 식~\eqref{eq:U1T2})이다. 이 ``$T^2$ 곡률 $=$ 전자 신호'' 식별은 config 부분몰 엔트로피가
+고정 $x$ 에서 엄밀히 $T$-무관이고 vib 몫도 상수라는 전제 위에 서는데, config 는 실제로 엄밀하나 vib 의 $T$-무관은
+고전 극한 $k_BT\gg\hbar\omega$ 의 근사다 --- $\mathrm{LiCoO_2}$ 포논이 수백 K 라 $300$ K 는 준양자 영역이어서 vib 잔여
+$T$-의존이 작지만 $0$ 은 아니며, 다온도 곡률 피팅에서는 이 vib 잔여 계수가 전자 신호($\propto T$ 항)에 소량 섞일 수 있다.
+\textbf{(부호 좌표 고정)} --- 아래 검산의 $\Delta S_{\rxn,j}^\mathrm{cat}$ 는 반쪽반응을
+\emph{삽입 방향}(Li$^+$ 가 host 로 들어옴)으로 적은 반응 엔트로피이며(표~\ref{tab:staging} 흑연 삽입 규약과
+동일 좌표), 단전극 potentiometric $\dd\phi/\dd T$ 의 부호는 측정 규약 의존이므로 아래 verifybox 는 그
+대표 스케일을 삽입-반응 $\Delta S_{\rxn}^\mathrm{cat}$ 로 환산해 크기$\cdot$부호 sanity 만 확인한다.
+
+\begin{verifybox}
+\textbf{LCO 중심 부호 검산($T=298.15$ K)} --- 대표 단전극 엔트로피 계수 $\dd\phi/\dd T\approx+0.83$ mV/K\cite{swiderska2019}
+(tier B --- LCO \emph{단일전극} potentiometric, 크기$\cdot$부호 스케일 검증용 초기값)를 식~\eqref{eq:lco-dUdT}
+에 역대입하면 $\Delta S_{\rxn}^\mathrm{cat}=F\,\dd U/\dd T=96485\times0.83\times10^{-3}\approx+80$ J/(mol\,K)$>0$ ---
+이 스케일에서 평형 중심이 온도에 \emph{오른다}($\partial U/\partial T>0$), $30$ K 창에서 $\Delta U\approx+25$ mV 규모다.
+\textbf{단전극 대 전셀 혼동 금지} --- 이 $+0.83$ mV/K 는 \emph{LCO 단일전극}(vs Li) 값이고 본 장(하프셀
+범위)은 이 단전극 부호만 쓴다(전셀 합성은 후속) --- 같은 문헌\cite{swiderska2019} 의 \emph{전셀}(LCO$-$graphite) 엔트로피 계수는
+SOC 에 따라 부호가 전환되며($-0.37$\,\textasciitilde$+0.1$ mV/K) 흑연 항이 합산된 다른 양이다. 또한
+$\dd\phi/\dd T$ 의 부호$\cdot$크기는 $x$(SOC)에 의존하므로 위 $+0.83$ 은 \emph{대표 스케일}일 뿐 전이별
+정밀값이 아니다 --- 전이별 $\Delta S_{\rxn,j}^\mathrm{cat}$ 는 표~\ref{tab:lco-staging}$\cdot$\S\ref{sec:lco-decomp}
+분해식의 초기값을 데이터로 피팅해 정하며(허위 정밀 금지, tier 병기), 다온도 피팅에선 온도마다 $U_j(T)$ 를 따로 읽는다.
+\textbf{전자항과의 부호 공존(오독 방지)} --- 이 $\Delta S_{\rxn}^\mathrm{cat}\!\approx\!+80$ J/(mol\,K)$>0$ 은
+대표 SOC(MIT 창 \emph{밖}, 전자항 $\approx\!0$)에서 읽은 config$+$vib 기저 계수의 \emph{대표 스케일}이며,
+T1 의 전자항 $\Delta S_{e,j}<0$(삽입 기준, \S\ref{sec:lco-electronic})과 모순되지 않는다 --- 전자항은 MIT 게이트의
+$x$-\emph{국소 골}로, 창 중심에서 몰당 $\approx\!-46$ J/(mol\,K)(부분몰 골 \emph{깊이} --- $x$ 적분 게이트 총 방출 $\approx\!1.1\,k_B$/atom 과는 별개 척도,
+\S\ref{sec:lco-gate}), 창 밖에서 $\approx\!0$ 이다. 창 중심에서 이 $-46$ 이 config$+$vib 기저에 더해질 때, \emph{기저가 대표 스케일($+80$)이면} 총합이 $\approx\!+80-46\approx\!+34>0$ 으로
+양이 유지되고 창 밖에선 보정이 소멸해 $\approx\!+80$ 만 남는다. 다만 이 기저 $+80$ 은 대표 스케일(tier B)이고
+전이별 기저는 $x$(SOC)-의존이라, 창 중심의 실제 기저가 작으면(예: 코드 시연의 T1 config 기여) $-46$ 이 이겨 총부호가
+음이 될 수도 있다 --- 곧 창 중심 총부호의 양/음 판정 자체가 round-trip 피팅 대상이다(위 공존 논거는 ``$+80$
+기저 $\ne$ 전자항 $-46$ 이 서로 다른 층위의 양''이라는 것이지, 총부호가 반드시 양이라는 주장은 아니다). 표~\ref{tab:lco-staging}
+의 config 값(그리고 \S\ref{sec:lco-decomp} 의 vib 슬롯)은 \emph{전이별 부분몰} 성분, $+80$ 은 \emph{전체 계수}의 대표 스케일로 \emph{서로 다른
+종류$\cdot$층위의 양}이라(\S\ref{sec:lco-decomp}) 둘의 공존은 모순이 아니다.
+\end{verifybox}
+
+% 자산: [B2-050] [B2-051] [B2-052] [B2-053] [B2-054] [B2-055] [B2-056] [B2-057] [B2-058] [B2-059]

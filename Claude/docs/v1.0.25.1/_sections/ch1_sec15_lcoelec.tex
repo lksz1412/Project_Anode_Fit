@@ -1,0 +1,396 @@
+% ====================================================================
+% §15 LCO 전자 엔트로피 항 — 흑연엔 없는 성분 (N5+)
+% ====================================================================
+\section{LCO 전자 엔트로피 항 --- 흑연에 없는 성분}\label{sec:lco-electronic}
+\S\ref{sec:lco-decomp} 의 삼분해에서 셋째 슬롯으로 자리만 잡아 둔 전자(electronic) 엔트로피 몫을 이 절이 닫는다.
+지금까지 $\Delta S_{\rxn,j}$ 는 배치$\cdot$격자진동 두 몫이면 흑연에서 닫혔으나, LCO 양극은 전자 엔트로피
+몫이 하나 더 있다 --- 까닭(MIT 로 $g(E_F)$ 가 켜짐)은 \S\ref{sec:lco-why} 가 연다.
+이 절은 \S\ref{sec:dist} 의 점유 분포 언어를 전자 준위로 옮겨 Fermi--Dirac 분포에서 이 항을 유도하고,
+1차 문헌에 없는 연속 곡선의 빈자리를 \emph{MIT-logistic 게이트}라는 모델 가정으로 메우되 그 가정을 물리로
+정당화한다.
+
+\subsection{흑연 부재·LCO 발현의 근거 --- MIT 의 물리}\label{sec:lco-why}
+삽입 반응의 전체 엔트로피 변화는 ``리튬 자리 배열''(config)$\cdot$``격자 진동''(vib)$\cdot$``전자 준위 점유''
+(electronic) 세 자유도의 합이며, 흑연에서는 셋째 몫이 작다 --- 흑연$\cdot$$\mathrm{LiC_6}$ 모두 전도성이 좋아
+충방전 동안 $g(E_F)$ 가 크게 바뀌지 않아 전자 분포의 엔트로피 \emph{변화}가 거의 없다. LCO 는 다르다:
+$x{=}1$($\mathrm{LiCoO_2}$)은 Co$^{3+}$($t_{2g}^6$ low-spin, 닫힌 껍질)라 \emph{전기 절연체}($g(E_F)\!\approx\!0$)
+이며, 그 부류는 단일입자 띠 그림 안에서 닫히는 \emph{밴드 절연체}(band insulator)다 --- 산소 팔면체의
+\emph{결정장}(crystal field)이 가른 아래 $t_{2g}$ 띠를 여섯 $3d$ 전자가 가득 채우고 그 위 $e_g$ 띠는 비어, Fermi 준위가 두 띠 사이의 \emph{띠간극}(band gap)에 놓인다.
+탈리튬화로 $x$ 가 $\sim$0.94 아래로 내려가면 Co$^{4+}$ 정공이 생겨 $t_{2g}$ 띠에 전도 전자가 열려
+\emph{금속}이 된다($g(E_F)\!\to\!$유한)\cite{menetrier1999,motohashi2009}. 이 MIT 는 $x\approx0.75$--$0.94$ 의
+2상역에서 일어나며(\S\ref{sec:lco-hys} 의 T1) 그 구간에서만 전자 분포가 켜지므로 전자 엔트로피 \emph{변화}도
+그 구간에 국소한다 --- 곧 ``전자항이 켜지는 게이트''는 MIT 의 직접 결과다.
+
+다만 이 켜짐의 \emph{꼴}은 밴드 그림 하나로는 닫히지 않는다: 단순 밴드 채움 논리라면 가득 찬 $t_{2g}$ 띠
+꼭대기에 정공이 생기는 즉시 --- 임의로 작은 정공 농도에서 --- 금속이 되어야 하나, 실측 MIT 는 위 조성 창의
+2상 공존을 동반한 \emph{1차 전이}로 관측된다\cite{menetrier1999,reimers1992,motohashi2009}. 정공이 곧바로
+퍼진 전도 상태가 되지 못하고 유한 조성 창에서 한꺼번에 풀리는 까닭과, 그 배경이 되는 절연체의
+두 부류$\cdot$Mott 물리$\cdot$불순물 기작은 별도의 배경 박스가 자족적으로 정리한다.
+
+\begin{bgbox}
+\textbf{금속--절연체 전이와 Mott 물리 ---} 고체가 절연체가 되는 길은 두 부류로 갈린다.
+\emph{밴드 절연체}(band insulator)는 단일입자 띠 그림 안에서 닫히는 부류다 --- Fermi 준위가 가득 찬 띠와
+빈 띠 사이의 띠간극(band gap)에 놓여 $g(E_F){=}0$ 이 되고, 전자 사이 상호작용을 부르지 않고도 절연이
+설명된다. \emph{Mott 절연체}(Mott insulator)는 그 그림의 바깥이다 --- 띠가 반쯤 차(half-filling) 띠
+그림으로는 금속이어야 하나($g(E_F){>}0$), 같은 자리에 전자 둘이 겹칠 때의 Coulomb 반발 $U$ 가 자리 사이
+\emph{이동적분}(hopping integral) $t$ 가 버는 비국소화 에너지를 누르면 전자가 이웃으로 건너가지 못하고
+자리마다 하나씩 국소화되어 절연한다(여기의 $U$ 와 $t$ 는 본 장의 전극 전위 $U_j$ 와 별개인 상관 물리의
+관용 기호다). 판별은 두 에너지의 크기 대결이다:
+\begin{equation}
+\underbrace{U}_{\text{같은 자리 이중 점유의 반발 비용}}
+\;\gtrsim\;
+\underbrace{W\simeq 2zt}_{\text{띠 형성(비국소화)이 버는 띠폭}}
+\quad\Longrightarrow\quad
+\text{반충전 국소화(Mott 절연)},
+\label{eq:lco-mottcrit}
+\end{equation}
+($z$ 는 격자 배위수 --- \S\ref{sec:sm-mf} 의 $\Omega$ 유도와 같은 기호). 곧 띠 구조가
+아니라 \emph{전자 상관}(electron correlation)이 만드는 절연이다\cite{mott1968,imada1998}. 금속상과 절연상을
+가르는 \emph{금속--절연체 전이}(metal--insulator transition, MIT)는 띠 채움(도핑)$\cdot$띠폭(압력)$\cdot$상관
+세기의 경쟁이 기울 때 일어난다\cite{imada1998}. $\mathrm{LiCoO_2}$($x{=}1$)의 절연은 이 중 첫째 부류다 ---
+Co$^{3+}$($t_{2g}^6$ low-spin)의 가득 찬 $t_{2g}$ 띠가 만드는 \emph{밴드 절연체}이고\cite{menetrier1999},
+Mott 절연체와 공유하는 것은 ``절연''이라는 결과뿐이며 여기의 절연은 상관이 아니라 가득 찬 띠가 만든다.
+밴드 절연체에 정공을 도핑하면 \emph{강체 띠}(rigid band) 채움 논리로는 임의로 작은 농도에서 곧바로 금속이 되어야 하나, 실측
+$\mathrm{Li}_x\mathrm{CoO_2}$ 의 MIT 는 $x\approx0.75$--$0.94$ 2상 공존역의 \emph{1차
+전이}다\cite{menetrier1999,reimers1992,motohashi2009}. Marianetti--Kotliar--Ceder 는 대형 초격자 DFT 계산으로
+그 까닭을 제시했다: 탈리튬화가 만드는 정공은 $t_{2g}$ 띠 전체로 곧장 퍼지는 대신 Li 빈자리에 속박된
+\emph{불순물 준위}(impurity state)로 띠간극 안에 갇히고, 이 준위들이 이루는 불순물 띠(impurity band)가 임계
+농도에서 한꺼번에 비국소화(delocalization)하는 \emph{불순물 준위의 Mott 전이}가 1차 MIT 와 2상 공존을
+설명한다\cite{marianetti2004}(계산은 $x\gtrsim0.95$ 절연$\cdot$$x\lesssim0.75$ 금속을 재현한다). 곧 상관
+물리가 작용하는 자리는 host $t_{2g}$ 띠가 아니라 탈리튬화가 심는 불순물 준위다 --- $x{=}1$ 끝점의 절연은 밴드
+절연체인 채로 남고, Mott 물리는 불순물 띠의 소관이다. forward 모델은 이 미시 기작 전체를 Fermi 준위
+상태밀도의 조성축 게이트 $g(E_F,x)$ 하나로 현상학화한다 --- 게이트 중심 $x_\mathrm{MIT}$ 는 실측 2상역의
+중앙(전이가 일어나는 조성)이고, 폭 $\Delta x_\mathrm{MIT}$ 는 결함이 흩뜨리는 발현 조성의 분산이다(세
+초기값과 logistic 함수형의 정당화는 \S\ref{sec:lco-gate} 가 닫는다). 미시 기작은 게이트가 \emph{왜} 그
+조성에서 급격히 켜지는가를 답하고, 현상학 게이트는 그 켜짐이 조성축에서 \emph{어떻게} 진행하는가를 피팅
+가능한 꼴로 적는다.
+\end{bgbox}
+
+\begin{srcbox}
+\textbf{다리 --- MIT 게이트 $g(E_F,x)$ 가 어느 미시 계산에 기대는가.} 게이트~\eqref{eq:ggate} 가 조성창
+$x_\mathrm{MIT}\!\approx\!0.85$ 중심$\cdot$유한 폭 $\Delta x_\mathrm{MIT}\!\approx\!0.05$ 로 \emph{매끄럽게}
+켜지도록 둔 것은, 단순 강체 띠 채움이 예측하는 ``임의로 작은 정공에서 즉시 금속''(0폭 step)이 아니라 실측
+MIT 가 유한 조성창의 1차 전이$\cdot$2상 공존이라는 사실(\S\ref{sec:lco-why})에 근거하며, 그 미시 까닭을
+Marianetti--Kotliar--Ceder\cite{marianetti2004} 가 대형 초격자 DFT 로 세웠다. 대응은 다음과 같다(왼쪽이
+본문 기호, 오른쪽이 원 논문 결과):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:ggate},~\eqref{eq:dSegate}) & Marianetti\cite{marianetti2004} 대응 결과 \\
+\hline
+게이트 중심 $x_\mathrm{MIT}\!\approx\!0.85$ & 절연($x\gtrsim0.95$)--금속($x\lesssim0.75$) 2상역의 중앙 \\
+게이트 폭 $\Delta x_\mathrm{MIT}\!\approx\!0.05$ & 유한 조성창(1차 전이 2상 공존)의 폭 \\
+$g(E_F,x)\!:\ 0\!\to\!g_{\max}$ 켜짐 & DFT 상태밀도: 절연 $g(E_F){\approx}0$ $\to$ 금속 $g(E_F){>}0$ \\
+``왜 한꺼번에''(유한창 1차 전이) & 불순물 띠의 임계농도 일괄 비국소화(불순물 Mott) \\
+정공이 국소화하는 자리 & host $t_{2g}$ 띠가 아니라 Li 빈자리 속박 불순물 준위 \\
+\hline
+\end{tabular}
+\end{center}
+등치의 핵은 조성 경계다 --- 게이트가 켜지는 구간~\eqref{eq:ggate} 의 두 끝
+($x_\mathrm{MIT}\!\pm\!2\Delta x_\mathrm{MIT}\!\approx\!0.75$--$0.95$)이 원 계산의 금속$\cdot$절연 경계와
+겹친다:
+\begin{equation}
+x_\mathrm{MIT}-2\Delta x_\mathrm{MIT}\ \approx\ 0.75\ (\text{금속측}),\qquad
+x_\mathrm{MIT}+2\Delta x_\mathrm{MIT}\ \approx\ 0.95\ (\text{절연측}),
+\label{eq:br-marianetti2004-1}
+\end{equation}
+곧 우리 게이트의 세 초기값 중 중심$\cdot$폭 두 개가 이 1차 문헌의 조성 경계를 직접 읽은 값이다(높이
+$g_{\max}\!=\!13$ 는 \S\ref{sec:lco-gate}(i) 의 별도 anchor\cite{motohashi2009}). \emph{방법 요지} ---
+Marianetti 등은 대형 초격자 DFT 로 탈리튬화가 심는 정공이 host $t_{2g}$ 띠로 곧장 퍼지는 대신 Li
+빈자리에 속박된 \emph{불순물 준위}를 이루고, 이 불순물 띠가 임계 농도에서 한꺼번에 비국소화하는
+\emph{불순물 준위의 Mott 전이}로 1차 MIT 와 2상 공존을 설명한다($x\gtrsim0.95$ 절연$\cdot$$x\lesssim0.75$
+금속을 재현). \emph{가정 차} --- 원 계산은 상관(Mott) 물리와 불순물 준위 구조를 \emph{미시적}으로 다루나,
+본문 forward 모델은 이 기작 전체를 조성축 logistic 게이트 $g(E_F,x)$ \emph{하나}로 현상학화해 발현
+조성의 분산을 폭 $\Delta x_\mathrm{MIT}$ 하나에 흡수하므로, 우리 판별식~\eqref{eq:lco-mottcrit}
+($U\!\gtrsim\!W\!\simeq\!2zt$)은 교과서 Mott 판별식(\cite{mott1968,imada1998})이지 Marianetti 의 정량
+모델식이 아니다 --- 게이트는 그 켜짐이 조성축에서 \emph{어떻게} 진행하는가만 적고, \emph{왜} 그
+조성에서 켜지는가의 미시 근거를 이 논문에서 빌린다.
+\end{srcbox}
+
+게이트가 MIT 의 직접 결과라는 이 자리매김 아래, 켜진 전자 분포가 실제로 얼마만큼의 엔트로피를 담는가는
+다음 소절(\S\ref{sec:lco-Se})이 Fermi--Dirac 분포에서 출발하는 유도로 닫는다.
+
+\subsection{Fermi--Dirac 에서 Sommerfeld 전자 엔트로피로 --- 유도}\label{sec:lco-Se}
+\textbf{(a) 출발 --- 전도 전자의 Fermi--Dirac 분포.} \S\ref{sec:dist} 에서 흑연 리튬 자리의 평형 점유가 Fermi-함수형이었듯, LCO 의 전도 전자도 에너지 준위 $E$ 를
+Fermi--Dirac 분포로 점유하며($E_F$=Fermi 준위):
+\begin{equation}
+f(E)=\frac{1}{1+e^{(E-E_F)/k_BT}}
+\label{eq:fd}
+\end{equation}
+입자 0/1 배타 점유라는 구조가 식~\eqref{eq:fermifn} 의 리튬 자리 점유와 \emph{같다} --- 다만 자리가 ``리튬 흡착
+자리''가 아니라 ``전자 에너지 준위''다. \textbf{(b) 연산 --- 분포에서 엔트로피.} 이 분포의 엔트로피는 두 상태 점유의 정보 엔트로피를 모든 준위에 합한 것이며($-k_B\sum[f\ln f+(1-f)\ln(1-f)]$,
+식~\eqref{eq:fd} 를 자리당 점유로 본 Part 0 \S\ref{sec:sm-lattice} 의 $S_\mathrm{mix}$ 와 같은 꼴), 축퇴 전자기체($k_BT\!\ll\!E_F$)
+에서 이 합은 Fermi 준위 근방의 좁은 열폭($\sim k_BT$)에만 기여가 남아 Sommerfeld 전개로 닫힌다. \textbf{(c) 중간식 --- Sommerfeld 전개로 $C_e$, 그리고 적분으로 $S_e$.}
+여기서 한 가정을 명시한다 --- 표준 Sommerfeld 처방대로 상태밀도 $g(E)$ 를 그 좁은 열폭($\sim k_BT$) 안에서 $E_F$
+근방의 \emph{상수} $g(E_F)$ 로 동결하며($g(E)\approx g(E_F)$), 이 동결이 정당한 까닭은 적분에 기여하는 띠가 폭
+$\sim k_BT$ 로 좁고 축퇴 극한 $k_BT\!\ll\!E_F$ 에서는 그 좁은 창 안에서 $g(E)$ 의 에너지 의존이 선도 차수로
+무시되는 금속 전자기체의 표준 Sommerfeld 근사이기 때문이다. 이 동결 아래 내부에너지 $U_e=\int E\,g(E)f\,\dd E$ 의
+온도 미분에 표준 Sommerfeld 적분 $\int(-\partial f/\partial E)(E-E_F)^2\dd E=\tfrac{\pi^2}{3}(k_BT)^2$ 를 대입하면
+전자 \emph{비열} $C_e=\partial U_e/\partial T=\tfrac{\pi^2}{3}k_B^2T\,g(E_F)$($T$-선형, 금속의 표준 결과)이 먼저
+닫히고, 이를 $S_e=\int_0^T (C_e/T')\,\dd T'$ 로 적분하면($C_e/T'=\tfrac{\pi^2}{3}k_B^2g(E_F)$ 가 $T'$ 무관 상수라
+적분이 곧바로 닫혀)
+\begin{equation}
+S_e(T,x)\;=\;\frac{\pi^2}{3}\,k_B^2\,T\,g(E_F,x)
+\label{eq:Se}
+\end{equation}
+로 닫힌다($g(E_F,x)$ = 자리당 Fermi 준위 상태밀도). \textbf{직접 엔트로피 경로(교차검증).} 같은 결과를 비열 없이 정보 엔트로피에서 곧장 닫아 맞대어 보면, 분포~\eqref{eq:fd} 의 엔트로피
+$S_e=-k_B\int g(E)\,[f\ln f+(1-f)\ln(1-f)]\,\dd E$ 는 무차원 변수 $\zeta\equiv(E-E_F)/k_BT$ 와 엔트로피 핵
+$\hat s(\zeta)\equiv-[f\ln f+(1-f)\ln(1-f)]\ge0$ 로 $\zeta=0$ 대칭의 종이 되며 표준 Fermi 적분 항등식
+$\int_{-\infty}^{\infty}\hat s(\zeta)\,\dd\zeta=\pi^2/3$ 를 만족한다. 동결 $g\approx g(E_F)$ 아래 $\dd E=k_BT\,\dd\zeta$
+를 넣으면
+\begin{equation}
+S_e=+k_B\int g(E)\,\hat s(\zeta)\,\dd E
+=k_B\,g(E_F)\,k_BT\!\int_{-\infty}^{\infty}\!\hat s(\zeta)\,\dd\zeta
+=\frac{\pi^2}{3}\,k_B^2\,T\,g(E_F)
+\label{eq:Sedirect}
+\end{equation}
+가 되어 비열 경로의 식~\eqref{eq:Se} 와 한 항등식 $\int \hat s(\zeta)\,\dd\zeta=\pi^2/3$ 으로 일치한다 --- 두 경로의
+합치가 함수형의 교차검증이다(부호 --- $\hat s(\zeta)\ge0$, $g\ge0$ 이라 $S_e\ge0$; 극한 $T\to0$ 또는 $g(E_F)\to0$ 에서
+$S_e\to0$).
+\textbf{Sommerfeld 동결의 유효 경계.} 위 동결 $g\approx g(E_F)$ 의 첫 보정은 대칭성 상쇄 때문에
+$\mathcal O(T^3)$ 에서야 시작한다\footnote{보정의 세부: 고정 $E_F$(grand-canonical)에서는 엔트로피 핵
+$\hat s(\zeta)$ 가 짝함수라 $g'(E_F)$ 항이 $\int_{-\infty}^{\infty}\!\zeta\,\hat s(\zeta)\,\dd\zeta=0$
+(홀$\times$짝)으로 상쇄되고, 첫 보정은 $\tfrac12 k_B\,g''(E_F)(k_BT)^3\!\int\zeta^2 \hat s(\zeta)\,\dd\zeta$
+곧 $\mathcal O(T^3)$ 이다. 고정 조성 $x$ 에서는 $\mu(T)$ 이동이 같은 차수의 $g'^2/g$ 항을 더하나 역시
+$\mathcal O(T^3)$ 이며, $g'(E_F)(k_BT)^2$ 형 $\mathcal O(T^2)$ Mott 항은 thermopower$\cdot$전도도
+소관이지 엔트로피의 선도 보정이 아니다.}. 상대 크기는 여전히 $\mathcal O[(k_BT/E_F)^2]$ 급이라,
+LCO 금속상은 $E_F\sim$ eV, $k_BT@300\,\mathrm K\approx0.026$ eV 로 $k_BT/E_F\sim0.03$ 이니 보정이 무시할 수준이다. 다만 MIT 전이 \emph{중심}에서는 $g(E_F)$
+가 0 에서 켜지며 $E_F$ 근방 상태밀도가 급변하므로, 동결 가정은 완전 metal 끝점에서 가장 견고하고 전이 중심에서
+가장 약하다 --- forward 모델이 전이를 게이트 폭 $\Delta x_\mathrm{MIT}$ 로 매끄럽게 보간하므로 이 약화는 피팅 폭에
+흡수된다. \textbf{세 구성요소의 신뢰 등급 분리(허위 정밀 금지).}
+식~\eqref{eq:Se} 를 한 등급으로 뭉개지 않도록 이를 이루는 세 구성요소 --- \emph{식의 함수형}$\cdot$\emph{끝점
+anchor 값}$\cdot$\emph{조성에 따른 연속 곡선} --- 을 갈라 신뢰 등급을 따로 매긴다. 첫째, 함수형
+$S_e=\tfrac{\pi^2}{3}k_B^2T\,g(E_F)$ 는 교과서 Sommerfeld 표준 결과라 \emph{tier A} 이며(가정은 위 (c) 의
+$g\!\approx\!g(E_F)$ 동결), 둘째, 완전 metal 의 \emph{단일 anchor} 값 $g(E_F)\!\approx\!13$ e/eV/atom
+($\mathrm{CoO_2}$, $x{=}0$)도 측정된 끝점인 그 \emph{한 점}에서만 \emph{tier A} 다\cite{motohashi2009}. 셋째,
+MIT 를 가로지르는 \emph{연속 곡선} $g(E_F,x)$ 는 1차 문헌에 \emph{부재}하여(갭 G2 --- 본 장이 추적하는
+세 문헌 공백 G1--G3 의 정의는 \S\ref{sec:lco-decomp}) 신뢰 등급이 없으며,
+\S\ref{sec:lco-gate} 의 logistic 게이트로 \emph{모델 가정}을 세운 뒤 데이터 피팅에 위임한다 --- 함수형$\cdot$anchor
+의 견고함을 전이 곡선의 불확실로 끌어내려 뭉개서는 안 된다. \textbf{(d) 박스 --- 전이당(삽입당) 전자 엔트로피.} forward 모델이 $\Delta S_{\rxn,j}$ 자리에 쓰는 양은 \emph{삽입 반응 엔트로피}로 --- 흑연의
+stage $2\!\to\!1$ 삽입 초기값(표~\ref{tab:staging})이 $\Delta S_\rxn=-16$ J/(mol\,K)$<0$
+을 넣어 $U(298)\approx0.085$ V 를 round-trip 으로 맞추는 바로 그 슬롯(반응식
+Li$^+$$+e^-+[\,]\rightleftharpoons$Li, 삽입 방향; 부호 규약은 \emph{삽입 기준}, $x\!\uparrow$ 당 변화)이며,
+전자항도 같은 삽입 방향으로 $g(E_F)$ 의 조성 미분에 부호를 실어 전이당 전자 엔트로피를
+\begin{equation}
+\boxed{\;\Delta S_{e,j}(x,T)\;\equiv\;\frac{\partial S_e}{\partial x}\Big|_T
+=\frac{\pi^2}{3}\,k_B^2\,T\,\frac{\partial g(E_F,x)}{\partial x}\;\;(<0\ \text{at MIT, 삽입 기준})\;}
+\label{eq:dSe}
+\end{equation}
+로 정의한다.
+
+\subsection{단위 환산과 부호$\cdot$온도 의존}\label{sec:lco-Se-units}
+\textbf{단위 환산(자리당 $k_B$ $\to$ 몰당 $R$).} 식~\eqref{eq:dSe} 의 박스는 \emph{자리당}($k_B^2$ 차원, 원자 1개당) 양인 반면 forward 슬롯
+$\Delta S_{\rxn,j}$ 는 \emph{몰당}(J/(mol\,K), Li 1몰 삽입당) 양이므로, 그대로 넣으면 단위가 어긋나 Avogadro 수
+$N_A$ 를 곱해 몰당으로 환산하면($N_A k_B^2=R k_B$, 곧 자리당 $k_B$ 한 몫이 몰당 $R$ 로 올라간다)
+\begin{equation}
+\Delta S_{e,j}^{\,\mathrm{mol}}(x,T)=N_A\,\frac{\partial S_e}{\partial x}\Big|_T
+=\frac{\pi^2}{3}\,R\,k_B\,T\,\frac{\partial g(E_F,x)}{\partial x}
+\qquad[\text{J/(mol\,K)};\ N_A k_B^2=R k_B]
+\label{eq:dSemolar}
+\end{equation}
+가 \S\ref{sec:lco-decomp} 분해식의 $\Delta S_{e,j}$ 자리에 들어가는 실제 몰당 값이다($g$ 가 e/eV 단위면 eV$\to$J
+환산도 함께 적용) --- $N_A$ 배를 누락하면 전자항이 자리당 값으로 남아 $\sim10^{23}$ 배 과소가 된다.
+\textbf{eV$\to$J 단위 환산식(부호 분모 주의).} $g$ 의 분모가 eV 이므로 J 단위 상태밀도는 $e_V$ 로 \emph{나눠} 얻는다:
+\begin{equation}
+g_J(E_F,x)=\frac{g_{\mathrm{eV}}(E_F,x)}{e_V}\quad[\text{states/J/atom}],
+\qquad e_V=1.602176634\times10^{-19}\ \text{J/eV}.
+\label{eq:gunit}
+\end{equation}
+이를 대입한 게이트형 몰당 닫힌식은 $\Delta S_{e,j}^{\,\mathrm{mol}}=-\tfrac{\pi^2}{3}R(k_BT/e_V)(g_{\max}/
+\Delta x_\mathrm{MIT})\sigma(1-\sigma)$ 이며(게이트 파라미터 $g_{\max}\cdot x_\mathrm{MIT}\cdot\Delta x_\mathrm{MIT}$
+와 logistic $\sigma$ 의 정의는 다음 소절 \S\ref{sec:lco-gate} 가 닫는다 --- 여기서는 그 닫힌꼴을 미리 제시),
+변환에서 $e_V$ 를 곱하면(나눗셈 대신) 결과가 $1/e_V^2$ 배, 곧
+$\approx4\times10^{37}$ 배 어긋난다 --- 부호는
+환산에 불변이므로($N_A>0,\ e_V>0$) 아래 부호 규약은 자리당$\cdot$몰당 양쪽에 그대로 성립한다. \textbf{부호 규약.} \emph{삽입 기준이며}, $\Delta S_{\rxn,j}$ 슬롯(흑연 $2\!\to\!1$ 삽입 $-16$ J/(mol\,K))과 일관한다 --- 물리적으로
+탈리튬화($x\!\downarrow$, 본 장 LCO 충전 주 진행) 시 전자 엔트로피가 방출되며, 그 방출량은 게이트가 스스로
+예측하는 MIT 전 구간 적분 $\int|\partial S_e/\partial x|\,\dd x\approx1.1\,k_B$/atom(완전 metal 끝점 $S_e$ 와
+항등)이고, reynier\cite{reynier2004} 의 O3 총 부분몰 $\approx0.18\,k_B$/atom(config$+$vib$+$전자 총합, tier B)은
+전자항 단독량이 아닌 별개 anchor 다(\S\ref{sec:lco-gate} 의 ``세 양의 구분''). 닫는 논리는 --- 삽입($x\!\uparrow$)
+으로 금속$\to$절연체라 $g(E_F)$ 가 $g_{\max}\!\to\!0$ 으로 \emph{감소}하므로 $\partial g/\partial x<0$, 따라서
+식~\eqref{eq:dSe} 의 $\Delta S_{e,j}=+\partial S_e/\partial x<0$ --- MIT 구간에서 전이당(삽입당) 전자 엔트로피가
+\emph{음의 골}이고, 그 절댓값 $|\Delta S_{e,j}|=-\partial S_e/\partial x>0$ 이 탈리튬화 시 방출되는 봉우리다
+(그림~\ref{fig:lco-electronic} 의 파선이 이 양의 방출량 $-\partial g/\partial x$) --- 흑연의 음의 $\Delta S_\rxn$
+슬롯과 같은 삽입-기준 부호이며, 박스$\cdot$프레임 그림$\cdot$분해식(\S\ref{sec:lco-decomp})이 모두 같은
+삽입-기준 $\Delta S_{e,j}<0$(탈리튬화 방출 $|\Delta S_{e,j}|>0$)을 가리킨다. \textbf{온도 의존.} 식~\eqref{eq:dSe} 는 다른 항과 결정적으로 다르다 --- $\Delta S_{e,j}\propto T$ 이므로(상수 $\Delta S_\rxn$ 인
+config$\cdot$vib 와 달리) 전자 기여 $\partial U_j/\partial T|_e=\Delta S_{e,j}/F\propto T$ 가 \emph{$T$ 에 선형}이며,
+이를 적분한 전자항의 $U_1$ 이동은 $\propto T^2$ 다(선형 아님 --- 식별 신호는 ``$\partial U/\partial T$ 가 $T$ 에
+선형''이지 ``peak 위치가 $T$ 에 선형''이 아니다). 다온도 피팅에서 전자항만 이 $T$ 의존을 보이며, Chapter 1 Part T 의 가역 발열(\S\ref{sec:revheat})로 확장할 때 중요하다.
+
+\textbf{$T^2$ 누적계수 --- 적분형의 $\tfrac12$.} 전자항이 $T$ 선형이므로 T1 의 총 삽입 엔트로피를 상수 몫과 선형 몫으로 적으면
+$\Delta S_{\rxn,1}^\mathrm{cat}(T)=\Delta S_0+a_e\,T$ 이고($\Delta S_0=\Delta S_0^\mathrm{config}+
+\Delta S_0^\mathrm{vib}$ 는 $T$ 무관, 전자 기울기 $a_e=-\tfrac{\pi^2}{3}R\,(k_B/e_V)\,(g_{\max}/
+\Delta x_\mathrm{MIT})\,\sigma(1-\sigma)<0$ 는 식~\eqref{eq:dSemolar}$\cdot$\eqref{eq:gunit} 의 몰당 나눗셈 형).
+$\partial U_1/\partial T=\Delta S_{\rxn,1}^\mathrm{cat}(T)/F$ 를 기준온도 $T_\mathrm{ref}$ 에서 적분하면(아래 boxed 식은 자기완결이며, \S\ref{sec:lco-code} 식~\eqref{eq:lco-U1V} 가 같은 구조를 $V$-의존까지 재도출한다)
+\begin{equation}
+\boxed{\;U_1(T)=U_1(T_\mathrm{ref})+\frac{\Delta S_0}{F}\,(T-T_\mathrm{ref})+\frac{a_e}{2F}\,(T^2-T_\mathrm{ref}^2)\;.}
+\label{eq:U1T2}
+\end{equation}
+전자항의 $T^2$ 계수는 $a_e/(2F)$ 이며, $\tfrac12$ 인자는 $\int_{T_\mathrm{ref}}^{T}a_e T'\,\dd T'=\tfrac{a_e}{2}
+(T^2-T_\mathrm{ref}^2)$ 에서 나온다($T\cdot\Delta S$ 의 단순 곱으로 섞으면 이 $\tfrac12$ 을 잃는다) --- config$\cdot$vib 는
+본 절의 전제(config 는 $T$-무관 상수 몫, vib 는 고전근사의 $T_\mathrm{ref}$ 동결 상수) 하에서
+$T$-선형 항 $\tfrac{\Delta S_0}{F}(T-T_\mathrm{ref})$ 만 남기고, 곡률($a_e/(2F)<0$)은 그 전제 하에서
+전자항이 만들며, 준양자 모드가 남기는 잔여 vib 양자곡률은 Einstein 온도 $\theta_E$ 로 별도
+모델링한다(Chapter 1 Part T Einstein 절 \S\ref{sec:einstein} --- 강제 $T_\mathrm{ref}$ 영점$\cdot$로그 곡률이라 $T^2$ 전자곡률과 함수형으로
+갈린다). 고온 외삽이 선형 외삽보다 낮아지는 것이 전자항의 식별 신호다.
+
+\subsection{$g(E_F,x)$ 의 MIT-logistic 게이트 --- 모델 가정과 그 정당화}\label{sec:lco-gate}
+식~\eqref{eq:dSe} 를 쓰려면 $g(E_F,x)$ 의 \emph{연속 곡선}이 필요하나 1차 문헌엔 없어(Motohashi
+등\cite{motohashi2009}의 완전 metal $\mathrm{CoO_2}$($x{=}0$) 단일 anchor $g(E_F)\!\approx\!13$ e/eV/atom 과
+``$x\!\downarrow$ 로 $g$ 가 켜진다''는 정성 추세만 있음 --- 이것이 갭 G2), 흑연 staging 초기값의
+``문헌값=초기값, 데이터로 피팅'' 원칙을 그대로 적용해 MIT 의 전이를 \emph{logistic 게이트}로 근사한다:
+\begin{equation}
+\boxed{\;g(E_F,x)\;\approx\;g_{\max}\Big[\,1-\sigma\!\Big(\frac{x-x_\mathrm{MIT}}{\Delta x_\mathrm{MIT}}\Big)\Big],
+\quad g_{\max}=13\ \text{e/eV/atom},\;x_\mathrm{MIT}\approx0.85,\;\Delta x_\mathrm{MIT}\approx0.05\;}
+\label{eq:ggate}
+\end{equation}
+($\sigma$=logistic, $x\!\downarrow$ 로 $g$ 가 $0\!\to\!g_{\max}$ 켜짐) 세 초기값$(g_{\max},x_\mathrm{MIT},
+\Delta x_\mathrm{MIT})$ 이 피팅 대상이며, 식~\eqref{eq:dSe} 에 넣으면 삽입 기준 $\Delta S_e(x)\propto\partial g
+/\partial x<0$(탈리튬화 방출 $|\Delta S_e|\propto-\partial g/\partial x>0$)가 MIT 부근의 \emph{국소 골}
+(절댓값 봉우리, 작지만 0 아님)이 된다.
+
+게이트~\eqref{eq:ggate} 를 식~\eqref{eq:dSe} 에 대입해 한 줄 닫힌식으로 적으면 --- logistic 미분 항등식
+$\sigma'(z)=\sigma(z)[1-\sigma(z)]$(식~\eqref{eq:belliden} 의 종 항등식과 같은 것, 연쇄율로
+$\partial\sigma/\partial x=\sigma'/\Delta x_\mathrm{MIT}$)를 써서 $\partial g/\partial x=-\dfrac{g_{\max}}{\Delta x_\mathrm{MIT}}
+\sigma(1-\sigma)<0$ 이므로
+\begin{equation}
+\boxed{\;\Delta S_{e,j}(x,T)
+=-\frac{\pi^2}{3}\,k_B^2\,T\,\frac{g_{\max}}{\Delta x_\mathrm{MIT}}\,
+\sigma\!\Big(\frac{x-x_\mathrm{MIT}}{\Delta x_\mathrm{MIT}}\Big)
+\Big[1-\sigma\!\Big(\frac{x-x_\mathrm{MIT}}{\Delta x_\mathrm{MIT}}\Big)\Big]\;<0\;}
+\label{eq:dSegate}
+\end{equation}
+--- 앞의 음부호가 삽입 기준 $\Delta S_{e,j}<0$ 을 식 자체로 고정하며($g_{\max},\Delta x_\mathrm{MIT},
+\sigma(1-\sigma)$ 모두 양), $x_\mathrm{MIT}$ 에서 $\sigma(1-\sigma)$ 가 최대 $\tfrac14$ 라 골이 가장 깊고 양쪽으로
+지수적으로 죽어 T1 에만 국소화된 종(절댓값 봉우리)이다 --- 식~\eqref{eq:dSemolar} 의 몰당 환산을 적용하면
+$\Delta S_{e,j}^{\,\mathrm{mol}}=N_A\Delta S_{e,j}$ 가 forward 슬롯에 들어간다.
+
+\textbf{모델 가정의 물리적 정당화 --- step 대신 logistic 을 택한 이유와 세 초기값의 근거.} 이 게이트는 임의 곡선맞춤이 아니라
+다음 물리에 근거한다.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2pt]
+\item \textbf{$g_{\max}=13$ e/eV/atom --- anchor.} 완전 탈리튬 $\mathrm{CoO_2}$ 의 metallic $g(E_F)$ 가 이 값이며(tier A 단일점)\cite{motohashi2009}, 게이트의
+``켜진'' 높이는 측정된 끝점이지 자유 파라미터가 아니다(초기값으로 고정, 도핑 시 소폭 조정).
+\item \textbf{$x_\mathrm{MIT}\approx0.85$ --- 전이 중심.} MIT 2상역이 $x\approx0.75$--$0.94$ 에서 관측되므로\cite{menetrier1999,reimers1992},
+그 중앙 $\approx0.85$ 가 게이트 중심이다 --- 전이가 일어나는 조성을 직접 읽은 값이다.
+\item \textbf{$\Delta x_\mathrm{MIT}\approx0.05$ --- 폭.} 발현 2상역의 조성 폭($\approx0.94{-}0.75=0.19$)을 logistic 의 $\pm2\Delta x$ 유효폭($\approx0.2$)에 맞춘
+것으로, 이 폭은 \emph{결함 농도}에 의존한다 --- 실제 시료는 산소 결손$\cdot$양이온 무질서가 MIT 발현 조성을
+분산시키므로 step(0폭)이 아니라 유한 폭이 물리적이며, \emph{logistic 을 택한 이유}가 바로 이것이다: (1) 매끄러운
+$\partial U_j/\partial T$ 를 주어 Chapter 1 Part T 의 겹침 가중(\S\ref{sec:mixing})과 일관되고, (2) 결함이 만드는 발현 조성의 분산을 \emph{폭
+하나}로 흡수해 데이터로 피팅 가능하게 한다 --- step 함수는 $\partial g/\partial x$ 가 델타라 비물리적 스파이크를
+내고 결함 분산을 담지 못한다.
+\item \textbf{게이트 형태의 자기일관성.} 식~\eqref{eq:ggate} 의 logistic 은 \S\ref{sec:dist} 의 점유 분포(식~\eqref{eq:fermifn})와 \emph{같은 함수형}
+이다 --- 전자 띠가 열리는 전이를 ``Fermi-함수형 게이트''로 적는 것은 전도 전자 점유 자체가 Fermi--Dirac
+(식~\eqref{eq:fd})인 것과 한 언어이며, 게이트는 LCO 전자구조의 점유 분포 관점이 자연히 낳는 꼴이다.
+\end{enumerate}
+
+\subsection{크기 검산과 세 양의 구분}\label{sec:lco-Se-scale}
+\textbf{크기 검산 --- 작지만 MIT 게이트로 필수.} 완전 metal 한계의 자리당 전자 엔트로피는 식~\eqref{eq:Se} 로 $S_e/k_B=\tfrac{\pi^2}{3}(k_BT)\,g(E_F)
+=3.29\times0.0259\ \mathrm{eV}\times13/\mathrm{eV}\approx1.1\,k_B$/atom($T{=}300$ K)이며, 이 값이 게이트가
+스스로 예측하는 MIT 적분 전자 방출량과 항등이다. 한편 O3 영역의 부분몰 차 $\approx0.18\,k_B$/atom
+\cite{reynier2004}(tier B)는 config$+$vib$+$전자 \emph{총합}의 부분몰량이라 위 전자 단독 절댓값($1.1$)과
+\emph{척도가 다른 양}이다(아래 ``세 양의 구분'' 참조 --- 같은 자릿수 대조를 하지 않는다). 그 O3 총합은 config 가
+지배하나(>$\tfrac12$\cite{reynier2004}, tier A), 전자항이 없으면 config 단독으로는 MIT 2상역의 엔트로피 거동을
+재현하지 못해(가장 정밀한 config 전용 스케일브리징 계산\cite{ml2024}도 order--disorder 소관이지 전자
+자유도는 다루지 않는다) 절연체$\to$금속의 전자 자유도가 켜지는 신호를 오직 $\Delta S_e$ 게이트만
+담는다 --- ``작지만 빠지면 MIT 를 못 그린다''.
+
+\textbf{세 양의 구분(서로 다른 척도).} 위 크기 논의에 등장하는 세 수치 --- 완전 metal 의 \emph{전체} 자리당 전자 엔트로피
+$S_e/k_B=\tfrac{\pi^2}{3}(k_BT)g(E_F)\approx1.1\,k_B$/atom(식~\eqref{eq:Se}, $x{=}0$ 끝점, 절대량), O3 영역의
+\emph{부분몰} 차 $\approx0.18\,k_B$/atom\cite{reynier2004}(한 조성 구간의 변화량 anchor), 게이트 미분의
+\emph{골 깊이}(식~\eqref{eq:dSegate}$\cdot$\eqref{eq:gunit} 의 몰당 닫힌식으로 전이 중심 $\sigma(1-\sigma)=
+\tfrac14$, $g_{\max}{=}13$, $\Delta x_\mathrm{MIT}{=}0.05$, $T{=}300$ K 에서 $-\tfrac{\pi^2}{3}R(k_BT/e_V)
+(g_{\max}/\Delta x_\mathrm{MIT})\cdot\tfrac14\approx-46$ J/(mol\,K)) --- 는 서로 다른 양이므로 한자리에 섞지
+않는다. 골 깊이가 부분몰 차보다 큰 것은 $1/\Delta x_\mathrm{MIT}\approx20$ 의 게이트 미분 증폭 때문이며, 어느
+하나를 다른 하나의 검산으로 쓰지 않는다.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=7.2cm,y=1.0cm]
+% x-axis is Li content x, decreasing to the right (delithiation -> )
+\draw[-{Latex[length=1.6mm]}] (-0.04,0) -- (1.04,0) node[below=3.5mm,font=\scriptsize] {Li content $x$ (delithiation $\rightarrow$: $x$ 감소)};
+\draw[-{Latex[length=1.6mm]}] (0,-0.2) -- (0,3.3) node[above,font=\scriptsize] {$g(E_F,x)$ \&\ $|\Delta S_e|\propto-\partial g/\partial x$};
+\foreach \xx/\lab in {0.0/1.0,0.25/0.75,0.5/0.5,0.75/0.25,1.0/0.0} {\draw (\xx,0.05)--(\xx,-0.05) node[below,font=\scriptsize] {\lab};}
+\draw (-0.02,2.6)--(0.02,2.6) node[left,font=\scriptsize] {$g_{\max}$};
+% g(E_F): logistic gate, ~0 at x=1 (left tick label); rises as we go right (x decreasing).
+% map: tick at xx=0 -> x=1 (insulator), xx=1 -> x=0 (metal). x_MIT=0.85 -> xx=0.15
+\draw[thick] plot[smooth] coordinates {(0.0,0.123) (0.05,0.310) (0.10,0.699) (0.15,1.300) (0.20,1.901) (0.25,2.290) (0.32,2.516) (0.45,2.594) (0.7,2.600) (1.0,2.600)};
+\node[right,font=\scriptsize] at (0.5,2.78) {$g(E_F,x)$ (MIT-logistic gate)};
+\node[right,font=\scriptsize] at (0.34,0.30) {insulator ($x\!\to\!1$ 좌측 끝: $g\!\to\!0$ 부근 --- 게이트 잔차 $\approx5\%$)};
+\node[font=\scriptsize] at (0.9,2.35) {metal};
+% Delta S_e ~ -dg/dx : a localized bump near x_MIT (xx=0.15)
+\draw[densely dashed,thick] plot[smooth] coordinates {(0.0,0.244) (0.05,0.567) (0.08,0.857) (0.10,1.062) (0.12,1.235) (0.15,1.350) (0.18,1.235) (0.20,1.062) (0.22,0.857) (0.25,0.567) (0.30,0.244) (0.35,0.095) (0.45,0.013) (0.7,0.000) (1.0,0.000)};
+\node[font=\scriptsize] at (0.36,1.25) {$|\Delta S_e|(x)$ bump};
+\draw[densely dotted] (0.15,0)--(0.15,1.35);
+\node[below,font=\scriptsize] at (0.15,-0.42) {$x_\mathrm{MIT}\!\approx\!0.85$};
+\end{tikzpicture}
+\caption{LCO 전자 엔트로피의 MIT-logistic 게이트. 실선 $=g(E_F,x)$(식~\eqref{eq:ggate}): $x\!\approx\!1$
+절연체에서 $\approx0$, 탈리튬화로 $x_\mathrm{MIT}\!\approx\!0.85$ 부근에서 metal 의 $g_{\max}\!=\!13$ e/eV/atom 으로 켜진다.
+파선 $=$ 탈리튬화 시 방출되는 부분몰 전자 엔트로피 $|\Delta S_e|=-\partial S_e/\partial x\propto-\partial g/\partial x>0$
+(식~\eqref{eq:dSe}$\cdot$닫힌식~\eqref{eq:dSegate}; 삽입 기준 $\Delta S_e=\partial S_e/\partial x<0$ 의 절댓값으로,
+$x_\mathrm{MIT}$ 에서 $\sigma(1-\sigma)$ 가 최대): 전이 중심의 \emph{국소
+봉우리}다 --- 적분 방출량은 작지만($\approx1.1\,k_B$/atom) 골 깊이는 게이트 미분 증폭($1/\Delta x_\mathrm{MIT}$)으로 몰당 $\approx-46$ J/(mol\,K) 에 이르러(\S\ref{sec:lco-Se-scale} 세 양의 구분) MIT 구간 T1 슬롯을 지배하며, config 단독으로 대체 불가.
+$\Delta S_{e,j}\propto T$ 라 다른 항과 달리 전자 기여의 $\partial U/\partial T$ 가 $T$ 에 선형(\S\ref{sec:lco-Se}; U-이동은
+$\propto T^2$). 흑연엔 이 봉우리가 없다($g(E_F)$ 변화 미미).}
+\label{fig:lco-electronic}
+\end{figure}
+
+이 전자항이 합산식~\eqref{eq:sum} 에 $U_j(T)$ 를 통해 들어가는 $\Delta S_{\rxn,j}^\mathrm{cat}$ 의 분해
+(\S\ref{sec:lco-decomp})에서 셋째 성분으로 plug-in 되며(흑연은 이 자리가 0),
+이 일반화는 전이 파라미터를 LCO 값으로 치환하고 이 항 하나를 추가하는 것만으로 LCO 에 적용된다(\S\ref{sec:lco-code}).
+
+\subsection{한 점 시연 --- 게이트 골이 $\partial U_\mathrm{oc}/\partial T$ 에 들어가는 곳}\label{sec:lco-worked}
+게이트의 수치 감각을 흑연 계산 예제(\S\ref{sec:sum-worked})와 같은 정신으로 한 점에서 닫는다. 입력은
+\S\ref{sec:lco-code} 의 LCO 3-전이 시연 세트($U=3.93/3.88/4.05$ V·$\Delta S_\rxn=+6/-4/-2$
+J/(mol\,K)·T1 게이트 $x_\mathrm{MIT}=0.85$·$\Delta x_\mathrm{MIT}=0.05$·$g_\mathrm{max}=13$
+states/(eV$\cdot$Co)) --- \emph{tier-C 시연값}(round-trip 피팅 전 placeholder)이므로 아래 수치는 물리
+크기의 감각이지 실측 예측이 아니다. 전자항은 이중 동결 근사 --- 기준온도 $T_\mathrm{ref}$ 동결($T^2$
+곡률은 식~\eqref{eq:U1T2} 소관)에 더해 조성도 $x{=}x_\mathrm{center}$ 로 동결한 $V$-무관 상수
+오프셋(\S\ref{sec:lco-code} 단일-기준 근사; 단위$\cdot$부호 규약은 \S\ref{sec:lco-Se-units}) --- 로
+들어간다. $T=298.15$ K.
+
+\textbf{(a) 슬롯 산술 --- 동결 조성 $=$ 게이트 중심.} 현행 모델은 전자항을 동결 조성
+$x_\mathrm{center}{=}x_\mathrm{MIT}$ 에서 평가한 $V$-무관 상수로 T1 슬롯에 넣으므로(\S\ref{sec:lco-code}
+단일-기준 근사), 슬롯에 실리는 값은 게이트 중심 조성 $x{=}x_\mathrm{MIT}{=}0.85$(Li 함량)의 골 깊이
+식~\eqref{eq:dSegate} $\Delta S_e=-45.7$ J/(mol\,K)(\S\ref{sec:lco-Se-scale} 의 검산값 그대로)이다 ---
+아래 $\bar x$ 는 전하 보존 좌표(탈리튬화 분율, 식~\eqref{eq:sm-mc-balance})로 게이트의 조성 좌표
+$x$(Li 함량)와 \emph{다른 축}이며, 좌표 매핑 \S\ref{sec:lco-code} 식~\eqref{eq:lco-xmap} 으로는
+$\bar x{=}0.50$ 근방이 T1 창 중앙($\xi_{\eq,1}{\approx}0.45$, $x{\approx}0.85$)에 대응한다. T1 슬롯의
+유효 반응 엔트로피와 그 기울기 몫은
+\[
+\Delta S_{\rxn,1}^\mathrm{eff}=+6.0+(-45.7)=-39.7\ \mathrm{J/(mol\,K)}
+\quad\Longrightarrow\quad
+\Delta S_{\rxn,1}^\mathrm{eff}/F=-0.411\ \mathrm{mV/K}.
+\]
+
+\textbf{(b) 전하 보존 반전과 관측 계수.} 고정 $\bar x$ 에서 전하 보존
+음함수(implicit function)~\eqref{eq:sm-mc-balance} 를 풀어 $U_\mathrm{oc}$ 를 얻고, 그 근에서 완전식(겹침 가중$+$config;
+Chapter 1 Part T 의 완전식~\eqref{eq:complete} 와 같은 구조)으로 $\partial U_\mathrm{oc}/\partial T$ 를 평가하면:
+\[
+\begin{array}{lccc}
+ & U_\mathrm{oc}\ [\mathrm V] & \partial U_\mathrm{oc}/\partial T\ [\mathrm{mV/K}] & \text{(단순식/config 몫)}\\
+\bar x=0.50\ (\text{T1 창 중앙, }\xi_{\eq,1}{\approx}0.45) & 3.9243 & -0.312 & (-0.328/+0.015)\\
+\bar x=0.85\ (\text{T1 창 후반$\cdot$T3 활성, }\xi_{\eq,1}{\approx}0.96) & 4.0095 & -0.128 & (-0.215/+0.087)
+\end{array}
+\]
+
+\textbf{(c) 게이트를 껐다 켜기.} 같은 $\bar x=0.85$ 에서 전자항만 끄면($\Delta S_e\equiv0$) 계수는
+$+0.160$ mV/K, $U_\mathrm{oc}$ 는 $4.1008$ V 다. 게이트를 켜면 슬롯에 실린 $-45.7$ J/(mol\,K) 가 관측
+계수를 $+0.160\to-0.128$ mV/K 로 \emph{부호까지 뒤집고}, $U_\mathrm{oc}$ 도 $-91$ mV 이동한다 ---
+$\Delta S_e$ 가 기울기($\Delta S_\rxn^\mathrm{eff}/F$)와 중심($U_j(T)$ 의 $T\Delta S$ 항) 양쪽으로
+들어가기 때문이다. 슬롯 값 $-0.411$ mV/K 가 관측 계수 $-0.128$ mV/K 로 눌리는 것은 겹침
+가중(세 전이 분담)과 config 몫($+0.087$)의 완충 --- 전이 하나의 슬롯이 곧 관측 기울기가 아니라는
+\S\ref{sec:lco-decomp} 의 요지가 수치로 보인다.
+\begin{verifybox}
+검산 --- (i) 골 깊이 $-45.7$ J/(mol\,K) = \S\ref{sec:lco-Se-scale} 검산값$\cdot$구현
+대응값(부록~\ref{sec:appendix-code})과 일치. (ii) 동결 근사(\S\ref{sec:lco-code})의 전자항은 $V$-무관 상수라 조성 국소성이 \emph{없다} ---
+$\bar x{=}0.50$ 에서도 T1 슬롯(가중 $\approx75\%$)에 $-45.7$ J/(mol\,K) 가 실려 있으며, 끄면 계수가
+$-0.312\to-0.035$ mV/K(ΔH 고정 규약)로 크게 변한다. 게이트의 조성 국소성($\bar x$ 축 아닌 $x$ 축,
+식~\eqref{eq:lco-SeV} 의 $z_e(V)$)은 조성-국소 평가를 도입하는 round-trip 피팅 단계의 검증
+항목이다. (iii) 본 소절의 전 수치는
+같은 시연 세트로 구현을 실행해 재현된다(도출 사슬: 음함수 유일한 근 $\to$ 완전식 $\to$ 게이트 슬롯 ---
+전 단계가 흑연과 동일 구조, 파라미터와 전자항만 LCO).
+\end{verifybox}
+
+% 자산(v1.0.21 신규): [V21-Q6-01 LCO 한 점 시연 sec:lco-worked — 게이트 부호 반전(+0.160→−0.128 mV/K)·슬롯→관측 완충·tier-C 명시]
+
+% 자산(v1.0.20 신규): [V20-003 MIT 배경 bgbox — 밴드/Mott 절연체·불순물 Mott 기작·왜/어떻게 분업]
+% 자산: [B2-075] [B2-076] [B2-077] [B2-078] [B2-079] [B2-080] [B2-081] [B2-082] [B2-083] [B2-084] [B2-085] [B2-086] [B2-087] [B2-088] [B2-089] [B2-090] [B2-091] [B2-092] [B2-093] [B2-094] [B2-095]

@@ -1,0 +1,178 @@
+% ====================================================================
+% [GR-2L] 흑연 stage-2L · XRD 5-feature staging (신규 subsection)
+%   배치: Chapter 1 흑연, \S\ref{sec:width}(폭·이중지위) 뒤.
+%   계승 라벨만 사용(eq:mu·eq:sm-thresh·eq:Uj·eq:eqpeak·eq:belliden·tab:staging).
+%   신규 라벨: ssec:gr-stage2l, eq:gr2l-*.
+% ====================================================================
+\subsection{stage-2L 와 XRD 5-feature staging --- 두-상 판정자와 엔트로피 안정화 상}\label{ssec:gr-stage2l}
+\S\ref{sec:width-w} 의 폭 이중지위는 전이가 \emph{두-상}인지 \emph{연속 고용체}인지에 따라 갈렸고, 그 갈림을
+정하는 것이 전이별 $\Omega_j$ 값이라고만 두었다. 이 소절은 그 판정을 두 방향에서 닫는다 --- (i) ``$\Omega_j$ 대
+$2RT$'' 가 왜 두-상/고용체의 판정자인지를 정규용액 화학퍼텐셜의 단조성에서 유도하고 그것을 XRD 실측 서열에
+결선하며(\ref{ssec:gr-stage2l}-A), (ii) 그렇게 확정된 두-상 전이 중 stage-2L 을 낀 한 쌍($3\!\to\!2\mathrm L$,
+$2\mathrm L\!\to\!2$)이 온도에 따라 갈라졌다 합쳐지는 현상을 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$
+(식~\eqref{eq:Uj})로 유도한다(\ref{ssec:gr-stage2l}-B). 두 논점은 하나의 경계로 닫힌다 --- XRD 가 지지하는
+staging feature 는 \emph{두-상 4 $+$ 고용체 1 $=$ 5} 뿐이고, 그 이상의 전이 세분은 곡선맞춤이다.
+
+\subsubsection*{(A) 두-상 판정자 --- 정규용액 $\mu(\theta)$ 의 단조성과 XRD 결선}
+\textbf{(a) 출발 --- 한 모수 정규용액.} 한 staging 전이를 ``동등한 팔면체 자리에 리튬이 차고 비는'' 격자기체로
+보면, 점유율 $\theta$ 의 화학퍼텐셜은 Part 0 이 세운 식~\eqref{eq:mu} 그대로
+\begin{equation}
+\mu_\mathrm{Li}(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}+\Omega_j\,(1-2\theta)
+\label{eq:gr2l-mu}
+\end{equation}
+이며, 상호작용 몫은 동종 이웃 인력 세기 $\Omega_j$ 한 모수로 요약된다($\Omega_j>0$ 인력$\cdot$$\Omega_j<0$
+교대 정렬). \textbf{(b) 연산 --- $\theta$ 미분과 반충전 최소.} 식~\eqref{eq:gr2l-mu} 를 $\theta$ 로 미분하면
+로그 몫이 $RT[1/\theta+1/(1-\theta)]=RT/[\theta(1-\theta)]$, 상호작용 몫이 $-2\Omega_j$ 라
+\begin{equation}
+\frac{\dd\mu_\mathrm{Li}}{\dd\theta}=\frac{RT}{\theta(1-\theta)}-2\Omega_j,
+\label{eq:gr2l-dmudtheta}
+\end{equation}
+이고 첫 항 $RT/[\theta(1-\theta)]$ 은 $\theta=\tfrac12$ 에서 최소 $4RT$ 를 취하므로, 미분의 최솟값이
+\begin{equation}
+\frac{\dd\mu_\mathrm{Li}}{\dd\theta}\bigg|_{\theta=1/2}=4RT-2\Omega_j
+\label{eq:gr2l-half}
+\end{equation}
+이다. \textbf{(c) 중간식 --- 단조성 $=$ 상 판정.} $\mu(\theta)$ 가 전 구간 순증(단조)인지가 상의 존재를
+가른다 --- 감소 구간이 생기면 한 전위에 여러 $\theta$ 가 대응해 계가 두 조성으로 갈라지기 때문이다. 식~\eqref{eq:gr2l-dmudtheta}
+는 $\theta=\tfrac12$ 에서 가장 작으므로 그 최솟값 식~\eqref{eq:gr2l-half} 의 부호가 전 구간 단조성을 정하고,
+이는 자유에너지 볼록성 문턱 식~\eqref{eq:sm-thresh}($g_j''\ge0\Leftrightarrow\Omega_j\le2RT$)와 정확히 같은 한 점
+($\theta=\tfrac12$)에서의 같은 조건이다($g_j''=\dd\mu/\dd\theta$ 는 부호가 같다). 곧 $\Omega_j=2RT$ 가
+임계점이고, 거기서 $\dd\mu/\dd\theta|_{1/2}=0$ 이라 등온선 기울기가 $0$ 이 되어 평형 $\dd Q/\dd V$ 가 발산한다.
+\textbf{(d) 박스 --- 판정자.}
+\begin{equation}
+\boxed{\;
+\frac{\dd\mu_\mathrm{Li}}{\dd\theta}\bigg|_{1/2}=4RT-2\Omega_j
+\ \Longrightarrow\
+\begin{cases}
+\Omega_j>2RT: & \mu\ \text{비단조}\Rightarrow\text{miscibility gap}\Rightarrow\text{2상 공존}\Rightarrow\dd Q/\dd V\ \text{near-delta},\\[2pt]
+\Omega_j=2RT: & \text{임계점}\Rightarrow\dd Q/\dd V\ \text{발산},\\[2pt]
+\Omega_j<2RT: & \mu\ \text{단조}\Rightarrow\text{단일 고용체}\Rightarrow\dd Q/\dd V\ \text{유한 broad peak}.
+\end{cases}\;}
+\label{eq:gr2l-judge}
+\end{equation}
+핵심 정정 --- $RT\lesssim\Omega_j<2RT$ 의 \emph{큰(subcritical)} 상호작용은 등온선에 변곡$\cdot$어깨(shoulder)를
+만들어 peak 분리처럼 보이나 \emph{새 상이 아니다}(단일 고용체의 $\Omega$-어깨). 폭이 좁아 보이는 것과 두-상인
+것은 별개이며(폭은 입도$\cdot$계면$\cdot$동역학도 좁힌다), 판정자는 \emph{폭이 아니라} 식~\eqref{eq:gr2l-judge}
+의 $\Omega_j$ 대 $2RT$, 곧 실측으로는 XRD 다.
+
+\begin{verifybox}
+검산 --- (i) \emph{XRD 가 판정자.} 두-상은 공존역에서 두 상의 격자간격(d-spacing)이 \emph{고정된 값 둘}로
+동시에 관측되고(공통접선 plateau), 고용체는 격자간격이 조성에 따라 \emph{연속 이동}한다 --- $\dd Q/\dd V$
+폭만으로는 둘을 못 가르므로(유한 폭은 앙상블$\cdot$동역학이 만든다, \S\ref{sec:broadening}) 판정은 XRD 의
+소관이다. (ii) \emph{Dahn 1991 서열.} in-situ XRD\cite{dahn1991} 는 dilute $1'\!\to\!4\cdot3\!\to\!2\mathrm
+L\cdot2\mathrm L\!\to\!2\cdot2\!\to\!1$ 넷을 \emph{공존(두-상)}으로, $4\!\to\!3$ 하나만 \emph{연속(고용체)}으로
+관측한다 --- 곧 표~\ref{tab:staging} 의 네 정수 전이 라벨 중 $4\!\to\!3$ 행이 유일한 $\Omega_j<2RT$ 후보이고
+나머지 셋($3\!\to\!2\mathrm L\cdot2\mathrm L\!\to\!2\cdot2\!\to\!1$)에 $1'\!\to\!4$ 를 더한 \emph{네} 전이가 두-상이다.
+(iii) \emph{초기값 대 최종 판정.} 표~\ref{tab:staging} 의 \emph{초기} $\Omega_j$ 로는 네 전이가 모두 $2RT$
+($\approx4958$ J/mol@$298.15$ K)를 넘지만, 어느 전이가 어느 지위인지의 물리 근거는 초기값이 아니라 실측
+plateau$\cdot$staging 상평형이며(\S\ref{sec:broadening-class}), 최종 지위는 \emph{피팅된} $\Omega_j$ 가
+$2RT$ 를 넘는지가 정한다. (iv) \emph{임계 발산.} $\Omega_j\to2RT$ 에서 식~\eqref{eq:gr2l-half}$\to0$ 이라
+평형 peak 높이 $\propto1/(4RT-2\Omega_j)\to\infty$ --- 두-상 델타는 이 발산의 극한이다.
+\end{verifybox}
+
+\begin{srcbox}
+\textbf{다리 --- 단일 $\Omega$ 는 2-sublattice 정규용액의 평균장 축약이다.} 식~\eqref{eq:gr2l-mu} 의 한 모수
+$\Omega_j$ 는 흑연 staging 의 두 상호작용 --- 면내(in-plane) 인력과 층간(staging) 질서 --- 을 한 좌표로
+접은 것이다. 2-sublattice 정규용액 피팅\cite{fergusonbazant2014,guo2016} 은 면내 $\Omega_a\approx3.4\,\kB
+T\,(>2\kB T)$ 를 실제 면내 상분리(LiC$_6$/LiC$_{12}$ 응축의 sharp 기원)로, 층간 $\Omega_b\approx1.4\,\kB
+T\,(<2\kB T)$ 를 단독으로는 상분리 못 하는 반발로 가르며, staging 자체(Daumas--H\'erold 교대충전)는 대형
+$\Omega_c$ 가 강제한다 --- 곧 staging 은 단일 $\Omega$ 가 아니라 다층 ordering 이다. 대응은 다음과 같다(왼쪽
+본문 기호, 오른쪽 원 논문 량):
+\begin{center}\footnotesize
+\begin{tabular}{@{}ll@{}}
+\hline
+본문(식~\eqref{eq:gr2l-mu},~\eqref{eq:gr2l-judge}) & 2-sublattice 정규용액\cite{fergusonbazant2014,guo2016} 대응량 \\
+\hline
+단일 인력 $\Omega_j$ (평균장) & 면내 $\Omega_a$ $+$ 층간 $\Omega_b$ $+$ staging $\Omega_c$ 의 축약 \\
+문턱 $\Omega_j>2RT$ (2상) & $\Omega_a{=}3.4\kB T{>}2\kB T$ (면내 응축 $=$ 실제 상분리) \\
+$4\!\to\!3$ 고용체($\Omega_j<2RT$) & 공존역 없는 연속 등온선(단독 $\Omega_b<2\kB T$) \\
+\hline
+\end{tabular}
+\end{center}
+\emph{방법 요지} --- Bazant 계열은 면내$\cdot$층간 두 부분격자의 점유를 각각 정규용액으로 적고 그 결합으로
+staging 상도표를 재현한다; DFT 클러스터 전개$+$몬테카를로\cite{persson2010b} 도 stage 1/2 의 두-상은
+재현하되 stage 3/4 는 신뢰 밖으로 둔다. \emph{가정 차} --- 본문은 이 다체 구조를 전이당 \emph{단일} 평균장
+$\Omega_j$ 하나로 축약하므로(정규용액 이중웰), 면내 sharpness 만 포착하고 staging 다층 질서는 담지 못하는
+근사다 --- 판정식~\eqref{eq:gr2l-judge} 은 그 근사 안에서 두-상/고용체의 유효 문턱만 정한다.
+\end{srcbox}
+
+\subsubsection*{(B) stage-2L 의 온도 분리 --- 엔트로피 안정화 상과 $\partial U/\partial T=\Delta S_\rxn/F$}
+\textbf{(a) 출발 --- 2L 은 엔트로피가 안정화하는 상.} stage-2L($\text{liquid-like}$ 면내 무질서)은 면내 질서가
+풀린 고배위 엔트로피 상이라, 자유에너지 $G=H-TS$ 에서 $-TS$ 몫이 온도와 함께 커져야 안정된다 --- 곧 2L 은
+\emph{임계 온도(대략 $\sim\!10^\circ$C) 이상에서만} 존재한다\cite{dahn1991}. 저온에서는 2L 이 형성되지 않아
+$3\!\to\!2$ 가 \emph{한} 전이(1 peak)이고, 고온에서는 2L 이 출현해 $3\!\to\!2\mathrm L$ 과 $2\mathrm L\!\to\!2$
+\emph{두} 전이(2 peak)로 갈린다 --- 온도가 오를수록 2L 창이 넓어져 분리가 커진다.
+\textbf{(b) 연산 --- 두 분리쌍 중심의 온도 기울기.} 두 하위 전이의 평형 중심은 각각 식~\eqref{eq:Uj} 의
+$U_j(T)=(-\Delta H_{\rxn,j}+T\Delta S_{\rxn,j})/F$ 를 따르고, 그 온도 기울기는 식~\eqref{eq:Uj} 아래에서 닫힌
+\begin{equation}
+\frac{\partial U_j}{\partial T}=\frac{\Delta S_{\rxn,j}}{F}
+\label{eq:gr2l-dUdT}
+\end{equation}
+이다. 2L 분리쌍은 반응 엔트로피가 서로 반대 부호로 벌어져 있어(고전위 가지 $3\!\to\!2\mathrm L$: $\Delta
+S\approx+15$; 저전위 가지 $2\mathrm L\!\to\!2$: $\Delta S\approx-14$ J/(mol\,K) --- stage-2L 시드), 그
+\emph{차}가
+\begin{equation}
+\Delta(\Delta S)\equiv\Delta S_{\rxn}^{\,3\to2\mathrm L}-\Delta S_{\rxn}^{\,2\mathrm L\to2}\approx29\ \mathrm{J/(mol\,K)}
+\label{eq:gr2l-ddS}
+\end{equation}
+이다. \textbf{(c) 중간식 --- 분리 전위와 그 온도율.} 두 peak 의 중심 전위 차(분리)는
+$\Delta U_\mathrm{split}(T)\equiv U^{\,3\to2\mathrm L}(T)-U^{\,2\mathrm L\to2}(T)$ 이고, 식~\eqref{eq:gr2l-dUdT}
+로 그 온도 도함수가 곧 엔트로피 차/ $F$ 다:
+\begin{equation}
+\frac{\dd\,\Delta U_\mathrm{split}}{\dd T}=\frac{\Delta(\Delta S)}{F}\approx\frac{29}{96485}\approx0.30\ \mathrm{mV/K}.
+\label{eq:gr2l-splitrate}
+\end{equation}
+2L 이 소멸하는 병합 온도 $T^\ast\approx283$ K($\sim\!10^\circ$C)에서 $\Delta U_\mathrm{split}(T^\ast)=0$ 이라,
+그 위에서 분리가 $\Delta U_\mathrm{split}(T)=(\Delta(\Delta S)/F)(T-T^\ast)$ 로 선형으로 벌어진다. 두 peak 가
+\emph{분해}되는 조건은 그 분리가 반높이 전폭을 넘을 때, 곧 $\Delta U_\mathrm{split}(T)>\mathrm{FWHM}=2\ln(3+2\sqrt2)\,w_j\approx3.53\,w_j$
+(식~\eqref{eq:widthbudget})이다. \textbf{(d) 박스 --- 온도 분리 법칙.}
+\begin{equation}
+\boxed{\;\Delta U_\mathrm{split}(T)=\frac{\Delta(\Delta S)}{F}\,(T-T^\ast),
+\quad \frac{\dd\,\Delta U_\mathrm{split}}{\dd T}\approx0.30\ \mathrm{mV/K},
+\quad T^\ast\approx10^\circ\mathrm{C};
+\quad \text{분해}\Leftrightarrow\Delta U_\mathrm{split}>3.53\,w_j\;.}
+\label{eq:gr2l-tsplit}
+\end{equation}
+
+\begin{verifybox}
+검산 --- (i) \emph{열 broadening 이 아니다(부호가 증거).} 열 broadening 가설이면 $\kB T$ 증가로 폭이 커져 고온에서
+\emph{더 병합}해야 하나, 관측은 정반대(고온 분리$\cdot$상온 병합)다 --- 곧 인접 두 전이가 고온에서 \emph{벌어지는}
+현상이고, 그 벌어짐이 식~\eqref{eq:gr2l-splitrate} 의 엔트로피 차 구동이다. (ii) \emph{수치 재현.} 두-상 폭
+$w\!\approx\!1.6$ mV 와 식~\eqref{eq:gr2l-ddS} 의 $\Delta(\Delta S){=}29$ 를 병합점 $T^\ast{=}10^\circ$C 에
+앵커해 출하 \code{equilibrium()} 을 직접 평가하면, 분리 기울기 $0.271$ mV/$^\circ$C($\approx$Dahn $0.30$),
+$25^\circ$C 병합(1 peak)$\cdot$$45^\circ$C 분해(2 peak)가 관측과 정합한다(내부 재현분 \code{T\_split.png};
+정직 단서 --- $\Delta(\Delta S){=}29$ 는 Dahn 분리 기울기에서 역산한 값이지 직접 열량계 값이 아니다,
+tier B$\cdot$C). (iii) \emph{분리쌍 엔트로피는 차만 관측 가능.} 식~\eqref{eq:gr2l-splitrate} 의 분리율은
+$\Delta(\Delta S)$ \emph{차}에만 의존하므로, $(+15,-14)$ 든 $(+14.5,-14.5)$ 든 같은 $0.30$ mV/K 를 준다 ---
+절대 분배는 병합 온도 $T^\ast$ 가 따로 앵커한다(표~\ref{tab:staging} 의 현행 $3\!\to\!2\mathrm L{=}0$$\cdot$$2\mathrm
+L\!\to\!2{=}{-}5$ 는 $\Delta(\Delta S){=}5\to0.05$ mV/K 라 전 온도 병합 --- 2L 물리를 담으려면 이 두 값이
+분리쌍 시드로 갱신되어야 한다; 갱신은 R2/마스터 소관, 본 소절은 물리만 확정).
+\end{verifybox}
+
+\begin{srcbox}
+\textbf{다리 --- 2L 온도 분리의 XRD$\cdot$dV/dQ 실측 계보.} 식~\eqref{eq:gr2l-tsplit} 이 기대는 세 실측은
+다음과 같다. Dahn\cite{dahn1991} in-situ XRD 는 $0$--$70^\circ$C Li$_x$C$_6$ 상도에서 2L 상이 $\sim\!10^\circ$C
+이상에서만 존재하고 $3\!\to\!2\mathrm L\cdot2\mathrm L\!\to\!2$ 분리가 $\approx0.30$ mV/$^\circ$C 로 벌어짐을
+준다(본 소절 정량 앵커). Schmitt 등\cite{schmitt2022} 은 \emph{탈리튬화}(방전 음극) dV/dQ 에서 2L 분리를
+재확인해 고온 분해$\cdot$상온 병합을 보이며 --- 관측이 ``방전 3번째 전이''인 점이 이 delithiation-특이 보고와
+정확히 일치한다. Reynier 등\cite{reynier2003} 은 $2\!\to\!1$ plateau 의 $\partial U/\partial T\approx0$
+(견고한 두-상 서명)을 주어, T-민감한 구간이 2L 쌍에 국한됨을 대조로 확인한다. \emph{가정 차} --- 세 실측은
+\emph{현상}(2L 의 존재$\cdot$분리 온도율)을 확정하나, 본 소절의 분리쌍 $\Delta S$ 절대 분배는 병합 온도로
+앵커한 시드이지 전이별 열량계 정밀값이 아니다.
+\end{srcbox}
+
+\begin{keybox}
+\textbf{staging feature 경계 --- 두-상 4 $+$ 고용체 1.} XRD\cite{dahn1991} 가 지지하는 staging feature 는
+공존(두-상) \emph{넷}($1'\!\to\!4\cdot3\!\to\!2\mathrm L\cdot2\mathrm L\!\to\!2\cdot2\!\to\!1$)과 연속 고용체
+\emph{하나}($4\!\to\!3$ $\Omega$-어깨) $=$ \emph{다섯}이다. stage-2L 은 \emph{새 상이 아니라} 이미 두-상 넷 중
+둘($3\!\to\!2\mathrm L\cdot2\mathrm L\!\to\!2$, 표~\ref{tab:staging} 가 이미 별도 명명)이며, 그 둘이 온도에 따라
+갈렸다 합쳐지는 것이 식~\eqref{eq:gr2l-tsplit} 이다. 곧 ``조건 따라 피크 개수 변함''은 불일치가 아니라 모델이
+\emph{언제($>\!T^\ast$)$\cdot$얼마나($0.30$ mV/K)} 분리되는지 예측하는 물리 강점이다. $0.14$--$0.22$ V 경사에서
+$5$번째 ``상''을 뽑거나 전이를 $6$개 이상으로 세분하는 것은 XRD 가 지지하지 않는 고용체 어깨의 곡선맞춤이라
+\emph{폐기}를 유지한다(식~\eqref{eq:gr2l-judge} 판정자로 배제).
+\end{keybox}
+
+% 자산(comp_R1 W1 신규): [W1-GR2L-01 두-상 판정자 dμ/dθ|½=4RT−2Ω 유도 eq:gr2l-judge(정규용액 단조성↔miscibility gap·XRD 결선)]
+%   [W1-GR2L-02 2-sublattice 축약 srcbox(Ωa=3.4kT 면내 응축·persson2010b DFT 확증·단일Ω 근사 한계)]
+%   [W1-GR2L-03 stage-2L 온도 분리 eq:gr2l-tsplit(∂U/∂T=ΔS/F·Δ(ΔS)=29·0.30 mV/K·병합 10℃·열broadening 반증)]
+%   [W1-GR2L-04 feature 경계 keybox(두-상4+고용체1=5·2L=기존4중2·6+ 폐기)]

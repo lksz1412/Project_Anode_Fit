@@ -1,0 +1,497 @@
+% ====================================================================
+% appendix_phase_separation.tex — Appendix (초안; 최초 작성 v1.0.14 계획 Step 7 — 이력 스탬프, 버전업 시 보존)
+%   v1.0.21 승계 — 물리 내용 미개정
+%   (Part 0=§2 · 히스 gap=§4.2 · spinodal 근=§4.1 · broadening=§7).
+%   상분리의 열역학: 혼합 자유에너지·공통접선(binodal)·spinodal·Maxwell
+%   construction·핵생성 vs spinodal 분해 — 사전지식 없는 독자를 위한 자족적 유도.
+%   지위: ★독립 초안 — 본문(Ch1) 편입 여부는 사용자 검토 후 결정(계획 Step 7).
+%   ★기호 배향 주의: 본 부록 ξ = B(Li 점유) 자리 분율 = 본문 θ(점유율)에 해당.
+%   본문 진행률 ξ(=1−θ)와는 여집합 — f 는 우함수라 결과 동일, 1계 미분은 부호 반전.
+%   본문 참조는 라벨이 아니라 절 번호 텍스트로만 적는다(독립 컴파일 유지).
+%   build: xelatex -interaction=nonstopmode 2-pass (kotex).
+% ====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,backgrounds}
+\setstretch{1.12}
+\setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+  pdftitle={Appendix — 상분리의 열역학: binodal, spinodal, Maxwell construction}}
+
+\newtheorem*{keybox}{핵심}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eq}{\mathrm{eq}}
+
+\renewcommand{\theequation}{A.\arabic{equation}}
+\renewcommand{\thesection}{A.\arabic{section}}
+\title{\textbf{\LARGE Appendix}\\[0.35em]\Large 상분리의 열역학 --- 혼합 자유에너지, binodal 과 spinodal,\\ Maxwell construction, 핵생성과 spinodal 분해}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+본문 Part 0(\S2)은 정규용액(regular solution)의 자유에너지가 $\Omega_j>2RT$ 에서 볼록성을 잃는다는
+문턱식을 제시하고, \S4.2 는 그 이중웰 위에서 히스테리시스 gap 의 spinodal 상한을 닫는다. 두 논의는
+공존 곡선(binodal), spinodal, 준안정(metastable) 영역, Maxwell construction 이라는 상분리 열역학의
+표준 개념을 전제한다. 본 부록은 이 전제들을 사전지식이 없는 독자도 따라올 수 있도록, 격자 모형의
+혼합 자유에너지에서 출발하여 순서대로 유도한다. 전개 순서는 다음과 같다. 먼저 혼합 자유에너지
+곡선 $g(\xi)$ 를 미시 모형으로부터 구성하고(\S\ref{app:mixfe}), 균일한 상이 두 상으로 나뉠 때
+자유에너지가 어떻게 비교되는지를 현(chord) 의 기하로 정식화한다(\S\ref{app:chord}). 이 비교를
+최적화하면 공존 조성을 결정하는 공통접선(common tangent) 조건과 binodal 이 얻어지고(\S\ref{app:binodal}),
+국소 안정성의 경계로서 spinodal 이 곡률 조건 $g''=0$ 으로 정의된다(\S\ref{app:spinodal}).
+같은 내용을 화학퍼텐셜 곡선의 언어로 옮기면 Maxwell construction 의 등면적 규칙이
+된다(\S\ref{app:maxwell}). 마지막으로 준안정 영역과 불안정 영역에서 상분리가 실제로 진행되는 두
+동역학 경로, 곧 핵생성(nucleation)과 spinodal 분해(spinodal decomposition)를
+구분한다(\S\ref{app:kinetics}). 전개의 표준적 원천은 상전이 교과서 [A3]·[A4] 와 재료 동역학(kinetics) 교과서
+[A5] 이며, 절별 1차 문헌은 해당 자리에 표기한다. 기호에 관해 한 가지를 명확히 해 둔다. 본 부록의 $\xi$ 는 B 성분(삽입
+전극에서는 Li 이 점유한 자리)의 분율, 곧 본문 Part 0 의 \emph{점유율} $\theta$ 에 해당하며, 본문의 전이
+진행률 $\xi(=1-\theta)$ 와는 여집합 관계다. 혼합 자유에너지 $f$ 는 우함수 대칭 $f(\xi)=f(1-\xi)$ 을
+가지므로 binodal$\cdot$spinodal$\cdot$Maxwell 의 모든 결과는 두 좌표에서 동일하지만, 1계
+미분(화학퍼텐셜, 나아가 전위 결선)은 반대칭 $f'(1-\xi)=-f'(\xi)$ 이라 부호가 뒤집힌다 --- 본문
+\S4.2 가 그 부호 처리를 우함수 대칭 논거로 닫고 있으므로, 본 부록의 $\mu(\xi)$ 를 본문의 진행률 좌표에
+옮길 때는 그 논거를 따라야 한다. $\Omega$ 는 본문과 동일한 상호작용 파라미터[J/mol]이다.
+
+\section{혼합 자유에너지 곡선 --- 격자 모형으로부터의 유도}\label{app:mixfe}
+
+\textbf{(a) 출발 --- 모형과 물음.} $N$ 개의 자리(site)로 이루어진 격자에 두 종 A, B 가 자리를 나누어
+차지한다고 하자. B 의 자리 분율을 $\xi=N_B/N$ 이라 한다. 삽입 전극의 문맥에서는 A 가 빈 자리, B 가
+Li 이 점유한 자리에 해당하므로, 이 두-성분 혼합 문제는 본문 Part 0 의 격자기체(lattice gas)와 같은
+조합론을 공유한다. 물음은 다음과 같다: 조성 $\xi$ 의 균일한 혼합 상태가 갖는 자리당 자유에너지
+$g(\xi)$ 는 어떤 함수인가.
+
+\textbf{(b) 연산 --- 혼합 엔트로피.} 균일 혼합 상태의 미시상태 수는 $N$ 자리 중 $N_B$ 자리를 고르는
+경우의 수이다:
+\begin{equation}
+W=\frac{N!}{N_B!\,(N-N_B)!}\,.
+\label{eq:app-W}
+\end{equation}
+Boltzmann 관계 $S=k_B\ln W$ 에 Stirling 근사 $\ln N!\simeq N\ln N-N$ 을 적용하면
+\begin{equation}
+S_\mathrm{mix}=k_B\bigl[N\ln N-N_B\ln N_B-(N-N_B)\ln(N-N_B)\bigr]
+=-Nk_B\bigl[\xi\ln\xi+(1-\xi)\ln(1-\xi)\bigr]
+\label{eq:app-Smix}
+\end{equation}
+이 된다. 자리당(몰당) 혼합 엔트로피는 $s_\mathrm{mix}=-R[\xi\ln\xi+(1-\xi)\ln(1-\xi)]$ 이다.
+
+\textbf{(c) 중간식 --- 혼합 에너지와 평균장 근사.} 배위수 $z$ 인 격자에서 최근접 쌍의 총수는 $Nz/2$
+이다. 자리 점유가 서로 무관하다는 평균장(mean-field) 근사, 곧 임의의 이웃 자리가 B 일 확률을 $\xi$ 로
+놓는 무작위 혼합(random mixing) 하에서 각 쌍 종류의 수는 $N_{AA}=\tfrac{Nz}{2}(1-\xi)^2$,
+$N_{BB}=\tfrac{Nz}{2}\xi^2$, $N_{AB}=Nz\,\xi(1-\xi)$ 이다. 쌍 에너지를 $w_{AA},w_{BB},w_{AB}$ 라 하면
+혼합 상태의 에너지에서 두 순수 상의 조성-가중 평균(분리 상태의 에너지)을 뺀 잉여분은
+\begin{equation}
+U_\mathrm{mix}
+=\frac{Nz}{2}\Bigl[(1-\xi)^2w_{AA}+\xi^2 w_{BB}+2\xi(1-\xi)w_{AB}\Bigr]
+-\frac{Nz}{2}\Bigl[(1-\xi)w_{AA}+\xi w_{BB}\Bigr]
+=Nz\,\xi(1-\xi)\,\Delta w
+\label{eq:app-Umix}
+\end{equation}
+로 정리된다. 여기서 $\Delta w\equiv w_{AB}-\tfrac12(w_{AA}+w_{BB})$ 는 이종 쌍이 동종 쌍 평균보다
+비싼 정도이다. 몰당 상호작용 파라미터를 $\Omega\equiv z N_\mathrm{A}\Delta w$ ($N_\mathrm{A}$ =
+Avogadro 수)로 정의하면 몰당 혼합 에너지는 $\Omega\,\xi(1-\xi)$ 이고, $\Omega>0$ 는 동종 쌍 선호,
+곧 상분리 경향을 뜻한다.
+
+\textbf{(d) 박스 --- 정규용액 자유에너지.} 두 결과를 $f=u_\mathrm{mix}-Ts_\mathrm{mix}$ 로 묶으면
+몰당 혼합 자유에너지는
+\begin{equation}
+\boxed{\;f(\xi)=RT\bigl[\xi\ln\xi+(1-\xi)\ln(1-\xi)\bigr]+\Omega\,\xi(1-\xi)\;}
+\label{eq:app-fxi}
+\end{equation}
+이다. 전체 자유에너지는 순수 성분의 기준 항을 더한 $g(\xi)=(1-\xi)g_A^0+\xi g_B^0+f(\xi)$ 이지만,
+기준 항은 $\xi$ 의 선형 함수이므로 이후의 모든 안정성 판정에 기여하지 않는다. 실제로 곡선과 현을
+비교하는 판정(\S\ref{app:chord})에서 선형 항은 양쪽에 같은 양으로 더해져 상쇄되고, 이계 미분 $g''=f''$
+도 선형 항에 무관하다. 따라서 이하에서는 일반성을 잃지 않고 섞임 몫 $f(\xi)$ 만으로 논의한다.
+식~\eqref{eq:app-fxi} 의 $f(\xi)$ 는 본문 Part 0 의 $g_j(\xi)$ 에서 상수$\cdot$선형 묶음 $g_j^0$ 를 뺀
+섞임$\cdot$상호작용 몫에 대응하며(위 논증대로 안정성 판정에는 두 표기의 차이가 없다),
+$f(\xi)=f(1-\xi)$ 의 우함수 대칭을 갖는다. 극한 검산으로, $\xi\to0^+$ 에서 $f\to0$ 이되 기울기 $f'\to-\infty$ 로 발산하므로 순수 상은
+언제나 미량 혼합으로 자유에너지를 낮출 수 있고, 이 로그 발산이 양 끝 조성을 붙잡는 역할은 온도가
+있는 한 사라지지 않는다.
+
+\section{균일상은 언제 불리해지는가 --- 현의 기하와 지렛대 법칙}\label{app:chord}
+
+\textbf{(a) 출발 --- 두 상으로 나뉜 계의 자유에너지.} 평균 조성 $\bar\xi$ 의 계가 조성 $\xi_\alpha$ 인
+상과 조성 $\xi_\beta$ 인 상($\xi_\alpha<\xi_\beta$)으로 나뉘었다고 하자. 상 $\beta$ 가 차지하는 자리
+분율을 $\lambda$ 라 하면 물질 보존은
+\begin{equation}
+\bar\xi=(1-\lambda)\,\xi_\alpha+\lambda\,\xi_\beta
+\qquad\Longleftrightarrow\qquad
+\lambda=\frac{\bar\xi-\xi_\alpha}{\xi_\beta-\xi_\alpha}
+\label{eq:app-lever}
+\end{equation}
+를 요구한다. 식~\eqref{eq:app-lever} 가 지렛대 법칙(lever rule)이다: 평균 조성이 $\xi_\alpha$ 에서
+$\xi_\beta$ 쪽으로 치우친 만큼 상 $\beta$ 의 분율이 커진다.
+
+\textbf{(b) 연산 --- 분리 상태의 자유에너지는 현 위의 점.} 두 상이 각각 균일하고 계면의 기여를
+무시하면, 분리 상태의 자리당 자유에너지는 두 상 값의 분율-가중 평균이다:
+\begin{equation}
+f_\mathrm{sep}(\bar\xi)=(1-\lambda)f(\xi_\alpha)+\lambda f(\xi_\beta)
+=f(\xi_\alpha)+\frac{f(\xi_\beta)-f(\xi_\alpha)}{\xi_\beta-\xi_\alpha}\,(\bar\xi-\xi_\alpha)\,.
+\label{eq:app-chord}
+\end{equation}
+우변은 곡선 위의 두 점 $(\xi_\alpha,f(\xi_\alpha))$, $(\xi_\beta,f(\xi_\beta))$ 를 잇는
+현(chord)을 $\bar\xi$ 에서 읽은 값이다. 곧 ``두 상으로 나뉜다'' 는 조작은 자유에너지 그림 위에서
+``곡선 값 $f(\bar\xi)$ 를 현 값으로 바꾼다'' 는 조작과 같다.
+
+\textbf{(c) 중간식 --- 볼록성 판정.} 균일상이 안정할 조건은 어떤 분해를 시도해도 현이 곡선보다 낮아지지
+않는 것이다:
+\begin{equation}
+f(\bar\xi)\;\le\;(1-\lambda)f(\xi_\alpha)+\lambda f(\xi_\beta)
+\quad\text{(모든 }\xi_\alpha\le\bar\xi\le\xi_\beta\text{에 대해)}\,.
+\label{eq:app-convex}
+\end{equation}
+식~\eqref{eq:app-convex} 는 볼록 함수(convex function)의 정의 그 자체이다. 따라서 $f$ 가 전 구간에서
+볼록하면($f''\ge0$) 어떤 조성에서도 상분리가 이득이 되지 않고, $f$ 에 오목한 구간($f''<0$)이 생기면
+그 구간을 가로지르는 현이 곡선 아래로 지나가므로 상분리가 자유에너지를 낮춘다.
+
+\textbf{(d) 박스 --- 분해 이득.} 임의의 분해에 대한 자유에너지 변화는
+\begin{equation}
+\boxed{\;\Delta f_\mathrm{sep}=(1-\lambda)f(\xi_\alpha)+\lambda f(\xi_\beta)-f(\bar\xi)
+\;\begin{cases}\ge0 &\text{($f$ 볼록: 균일상 안정)}\\[2pt]
+<0\ \text{가능} &\text{($f$ 비볼록: 상분리 이득)}\end{cases}}
+\label{eq:app-gain}
+\end{equation}
+이다. 정규용액에서는 본문 Part 0 의 문턱식이 보이듯 $\Omega\le2RT$ 이면 $f''\ge0$ 이 전 구간에서
+성립하여 균일 고용체가 안정하고, $\Omega>2RT$ 이면 가운데가 오목해져 상분리 구간이 열린다. 남은
+물음은 두 가지이다: 분해가 이득이라면 \emph{어떤 두 조성으로} 나뉘는가(\S\ref{app:binodal}), 그리고
+분해가 \emph{저절로 시작되는가 아니면 문턱을 넘어야 하는가}(\S\ref{app:spinodal},
+\S\ref{app:kinetics}).
+
+\section{공존 조성의 결정 --- 공통접선과 binodal}\label{app:binodal}
+
+\textbf{(a) 출발 --- 최적 분해의 변분 문제.} 평균 조성 $\bar\xi$ 를 고정하고, 식~\eqref{eq:app-chord}
+의 $f_\mathrm{sep}$ 을 두 끝 조성 $\xi_\alpha,\xi_\beta$ 에 대해 최소화한다. 최소점에서 두 상은 더
+이상 조성을 바꿀 유인이 없으므로, 이 변분 문제의 정류 조건이 곧 두-상 공존의 평형 조건이다.
+
+\textbf{(b) 연산 --- 정류 조건.} 식~\eqref{eq:app-chord} 을 $\xi_\beta$ 로 편미분하면
+($\bar\xi,\xi_\alpha$ 고정)
+\begin{equation}
+\frac{\partial f_\mathrm{sep}}{\partial\xi_\beta}
+=\frac{\bar\xi-\xi_\alpha}{(\xi_\beta-\xi_\alpha)^2}
+\Bigl[f'(\xi_\beta)(\xi_\beta-\xi_\alpha)-\bigl(f(\xi_\beta)-f(\xi_\alpha)\bigr)\Bigr]=0
+\label{eq:app-statA}
+\end{equation}
+이고, $\xi_\alpha$ 로 편미분하면 같은 구조로
+$f'(\xi_\alpha)(\xi_\beta-\xi_\alpha)=f(\xi_\beta)-f(\xi_\alpha)$ 를 얻는다. 두 조건을 묶으면
+\begin{equation}
+f'(\xi_\alpha)=f'(\xi_\beta)=\frac{f(\xi_\beta)-f(\xi_\alpha)}{\xi_\beta-\xi_\alpha}\,,
+\label{eq:app-ct}
+\end{equation}
+곧 두 접점에서 접선 기울기가 서로 같고, 그 공통 기울기가 두 점을 잇는 현의 기울기와도 같다. 이는
+하나의 직선이 곡선에 $\xi_\alpha$ 와 $\xi_\beta$ 두 곳에서 동시에 접한다는 뜻이며, 이 구성을
+공통접선(common tangent construction)이라 한다.
+
+\textbf{(c) 중간식 --- 접선의 두 절편은 두 성분의 화학퍼텐셜.} 공통접선 조건이 익숙한 ``화학퍼텐셜
+일치'' 와 같은 내용임을 확인한다. 전체 자유에너지 $G=N g(\xi)$, $\xi=N_B/N$, $N=N_A+N_B$\footnote{이하
+$N_A,N_B$ 는 Avogadro 수와 무관한 A/B-종 자리 수이다.} 에서
+\begin{equation}
+\mu_B=\frac{\partial G}{\partial N_B}\Big|_{N_A}=g+(1-\xi)\,g'\,,\qquad
+\mu_A=\frac{\partial G}{\partial N_A}\Big|_{N_B}=g-\xi\,g'
+\label{eq:app-mus}
+\end{equation}
+이다. 한편 $\xi_0$ 에서의 접선 $t(\xi)=g(\xi_0)+g'(\xi_0)(\xi-\xi_0)$ 을 양 끝에서 읽으면
+$t(0)=g-\xi_0 g'=\mu_A$, $t(1)=g+(1-\xi_0)g'=\mu_B$ 이다. 따라서 두 상이 한 접선을 공유한다는 것은
+$\mu_A^{(\alpha)}=\mu_A^{(\beta)}$ 이고 $\mu_B^{(\alpha)}=\mu_B^{(\beta)}$ 라는 것, 곧 \emph{두 성분
+각각의 화학퍼텐셜이 두 상에서 일치}한다는 평형 조건과 동치이다. 아울러 기울기 자체는
+$g'=\mu_B-\mu_A$ 로, 자리 수를 고정한 채 A 하나를 B 로 바꾸는 교환 화학퍼텐셜(exchange chemical
+potential)이다. 본문 Part 0 의 $\mu(\theta)=\mu^0+RT\ln[\theta/(1-\theta)]+\Omega(1-2\theta)$ 가
+바로 이 $f'$ 에 기준 항을 더한 양이다.
+
+\textbf{(d) 박스 --- binodal.} 온도를 바꾸어 가며 공통접선의 두 접점을 추적한 자취가 공존
+곡선(coexistence curve), 곧 binodal 이다. 대칭 정규용액에서는 $f(\xi)=f(1-\xi)$ 이므로 접점도
+$\xi_b$ 와 $1-\xi_b$ 로 대칭이고, 두 접점의 $f$ 값이 같아 공통접선은 수평선이 된다. 이때
+식~\eqref{eq:app-ct} 은 $f'(\xi_b)=0$ 으로 줄고, 식~\eqref{eq:app-fxi} 를 미분하면
+\begin{equation}
+\boxed{\;RT\ln\frac{\xi_b}{1-\xi_b}+\Omega\,(1-2\xi_b)=0\,,\qquad
+\frac{T}{T_c}=\frac{2(1-2\xi_b)}{\ln\bigl[(1-\xi_b)/\xi_b\bigr]}\,,\qquad
+T_c=\frac{\Omega}{2R}\;}
+\label{eq:app-binodal}
+\end{equation}
+이 binodal 을 결정한다(둘째 식은 첫째 식을 $T/T_c=2RT/\Omega$ 로 푼 것; 공통접선$\cdot$공존 곡선의
+일반론은 [A3]·[A4]). 주의할 점으로,
+$\Omega>2RT$ 에서 $f'(\xi)=0$ 의 근은 셋이다: 바깥 두 근이 $f$ 의 두 극소로서 binodal 접점이고,
+가운데 근 $\xi=\tfrac12$ 은 언덕 꼭대기(극대)여서 공존 조성이 아니다. 접선이 곡선 \emph{아래}에
+놓여야 한다는 요구가 극소 두 개를 선택한다. 수치 예로 $\Omega=3RT$ 이면
+식~\eqref{eq:app-binodal} 의 비자명 근은 $\xi_b^\pm=0.0707/0.9293$ 이고 공통접선 높이는
+$f(\xi_b)/RT=-0.0583$ 이다(그림~\ref{fig:app-tangent}). $\xi_b\to\tfrac12$ 극한은 L'H\^opital
+규칙으로 $T/T_c\to1$ 을 주므로, binodal 의 꼭대기가 임계점 $(\xi,T)=(\tfrac12,\,T_c)$ 이다.
+
+\section{국소 안정성의 경계 --- spinodal}\label{app:spinodal}
+
+\textbf{(a) 출발 --- 무한소 요동에 대한 안정성.} binodal 은 ``충분히 큰'' 재배치, 곧 멀리 떨어진 두
+조성으로의 분해까지 허용한 \emph{전역} 판정이었다. 이제 판정을 좁혀, 균일상이 \emph{무한소} 조성
+요동에 대해서라도 안정한지 묻는다. 균일 조성 $\bar\xi$ 의 계를 절반씩 $\bar\xi+\delta$ 와
+$\bar\xi-\delta$ 로 나누는 대칭 요동을 생각하면($\delta\to0$), 물질 보존은 자동으로 만족되고
+자유에너지 변화는
+\begin{equation}
+\Delta f=\tfrac12 f(\bar\xi+\delta)+\tfrac12 f(\bar\xi-\delta)-f(\bar\xi)
+=\tfrac12 f''(\bar\xi)\,\delta^2+O(\delta^4)
+\label{eq:app-fluct}
+\end{equation}
+이다(홀수 차수는 대칭으로 소거).
+
+\textbf{(b) 연산 --- 곡률 판정과 spinodal.} 식~\eqref{eq:app-fluct} 에서 $f''(\bar\xi)>0$ 이면 모든
+무한소 요동이 자유에너지를 올리므로 균일상은 국소적으로 안정하고, $f''(\bar\xi)<0$ 이면 임의로 작은
+요동조차 자유에너지를 낮추므로 균일상은 문턱 없이 무너진다. 경계 $f''=0$ 의 자취가 spinodal 이다.
+정규용액에서는
+\begin{equation}
+f''(\xi)=\frac{RT}{\xi(1-\xi)}-2\Omega=0
+\quad\Longrightarrow\quad
+\xi_s^\pm=\tfrac12\Bigl(1\pm u\Bigr),\qquad u=\sqrt{1-\frac{2RT}{\Omega}}\,,
+\label{eq:app-spinodal}
+\end{equation}
+로 닫힌 꼴이 나오며, 이는 본문 \S4.1 의 spinodal 근과 동일하다. $T/T_c$ 로 적으면 spinodal 은
+$T/T_c=4\xi(1-\xi)$ 의 포물선형 곡선이고, 역시 꼭대기 $(\tfrac12,\,T_c)$ 에서 binodal 과 만난다.
+
+\textbf{(c) 분류표 --- 세 영역의 분류.} binodal 과 spinodal 은 임계점에서만 만나고 그 아래 온도에서는
+binodal 이 바깥, spinodal 이 안쪽에 놓인다(그림~\ref{fig:app-phasediag} 의 상평형도가 이 포함 관계를
+온도 축 전체에서 보인다). 이는 두 판정의 논리적 포함 관계의 기하적 표현이다:
+국소 불안정($f''<0$)이면 반드시 전역 불안정이지만, 전역 불안정이어도 국소적으로는 안정할 수 있다.
+따라서 조성 축은 세 영역으로 나뉜다.
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+영역 & 위치 & 판정 & 귀결 \\
+\midrule
+안정 & binodal 바깥 & $\Delta f_\mathrm{sep}\ge0$, $f''>0$ & 균일 고용체가 평형 \\
+준안정 & binodal--spinodal 사이 & $\Delta f_\mathrm{sep}<0$ 이되 $f''>0$ & 문턱(핵생성) 넘어야 분해 \\
+불안정 & spinodal 안쪽 & $f''<0$ & 무한소 요동으로 즉시 분해 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{(d) 박스 --- 영역 분류의 요약.}
+\begin{keybox}
+균일상의 운명은 $f(\xi)$ 의 기하가 결정한다. 현이 곡선 아래로 지나가면(binodal 안) 상분리가
+열역학적으로 이득이고, 곡률까지 음이면(spinodal 안) 상분리가 동역학적 문턱 없이 자발한다. 그
+사이의 준안정 영역에서는 상분리가 이득이지만 유한 크기의 요동, 곧 핵(nucleus)을 요구한다
+(\S\ref{app:kinetics}).
+\end{keybox}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11.0cm,y=30.0cm]
+% region shading (background)
+\begin{scope}[on background layer]
+\fill[black!6] (0.0707,-0.085) rectangle (0.2113,0.075);
+\fill[black!6] (0.7887,-0.085) rectangle (0.9293,0.075);
+\fill[black!13] (0.2113,-0.085) rectangle (0.7887,0.075);
+\end{scope}
+% axes
+\draw[-{Latex[length=1.6mm]}] (-0.02,-0.085) -- (-0.02,0.082) node[above,font=\scriptsize] {$f(\xi)/RT$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.5,1.0} {\draw (\xx,0.0015) -- (\xx,-0.0015) node[below,font=\scriptsize] {\xx};}
+% f(xi)/RT for Omega = 3RT (same numerical evaluation as main-text family figure)
+\draw[thick] plot[smooth] coordinates {(0.004,-0.0141) (0.020,-0.0392) (0.070,-0.0583) (0.118,-0.0508) (0.166,-0.0343) (0.213,-0.0149) (0.261,0.0046) (0.309,0.0222) (0.357,0.0369) (0.404,0.0478) (0.452,0.0546) (0.500,0.0569) (0.548,0.0546) (0.596,0.0478) (0.643,0.0369) (0.691,0.0222) (0.739,0.0046) (0.787,-0.0149) (0.834,-0.0343) (0.882,-0.0508) (0.930,-0.0583) (0.980,-0.0392) (0.996,-0.0141)};
+% suboptimal chord (illustrative decomposition into xi = 0.166 / 0.834)
+\draw[densely dotted] (0.166,-0.0343) -- (0.834,-0.0343);
+\draw[-{Latex[length=1.4mm]}] (0.5,0.0569) -- (0.5,-0.0333);
+\node[right,font=\scriptsize] at (0.505,0.012) {$\Delta f_\mathrm{sep}<0$ (임의 분해, 현)};
+% common tangent (horizontal, at f_b/RT = -0.0583)
+\draw[dashed] (0.02,-0.0583) -- (0.98,-0.0583);
+\node[below,font=\scriptsize] at (0.5,-0.0593) {공통접선 $f'(\xi_b)=0$ (최적 분해)};
+% binodal points
+\fill (0.0707,-0.0583) circle (0.5pt) node[below,font=\scriptsize] {$\xi_b^-$};
+\fill (0.9293,-0.0583) circle (0.5pt) node[below,font=\scriptsize] {$\xi_b^+$};
+% spinodal points
+\fill (0.2113,-0.0157) circle (0.5pt) node[above left,font=\scriptsize] {$\xi_s^-$};
+\fill (0.7887,-0.0157) circle (0.5pt) node[above right,font=\scriptsize] {$\xi_s^+$};
+% region labels
+\node[font=\scriptsize] at (0.036,0.068) {안정};
+\node[font=\scriptsize] at (0.141,0.068) {준안정};
+\node[font=\scriptsize] at (0.5,0.068) {불안정};
+\node[font=\scriptsize] at (0.859,0.068) {준안정};
+\node[font=\scriptsize] at (0.964,0.068) {안정};
+\end{tikzpicture}
+\caption{$\Omega=3RT$ 의 혼합 자유에너지 $f(\xi)/RT$(식~\eqref{eq:app-fxi}; 좌표는 식 그대로의
+수치 평가) 위에서의 세 구성. 점선 현은 임의 분해($\xi=0.166/0.834$)로도 언덕 구간에서 자유에너지가
+내려감을 보이고(화살표), 파선 공통접선은 그중 최적 분해를 준다 --- 접점이 binodal
+$\xi_b^\pm=0.0707/0.9293$ (식~\eqref{eq:app-binodal}, 접선 높이 $f/RT=-0.0583$), 변곡점이 spinodal
+$\xi_s^\pm=0.2113/0.7887$ (식~\eqref{eq:app-spinodal}, $f/RT=-0.0157$)이다. 음영은 준안정
+영역(연함)과 불안정 영역(진함)이다.}
+\label{fig:app-tangent}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=11.0cm,y=4.4cm]
+% axes
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (-0.02,1.12) node[above,font=\scriptsize] {$T/T_c$};
+\draw[-{Latex[length=1.6mm]}] (-0.02,0) -- (1.06,0) node[below,font=\scriptsize] {$\xi$};
+\foreach \xx in {0.25,0.5,0.75,1.0} {\draw (\xx,0.008) -- (\xx,-0.008) node[below,font=\scriptsize] {\xx};}
+\foreach \yy in {0.5,1.0} {\draw (-0.014,\yy) -- (-0.026,\yy) node[left,font=\scriptsize] {\yy};}
+% binodal (T/Tc = 2(1-2xi)/ln((1-xi)/xi))
+\draw[thick] plot[smooth] coordinates {(0.01,0.4265) (0.02,0.4933) (0.05,0.6113) (0.0707,0.6667) (0.10,0.7282) (0.15,0.8071) (0.20,0.8656) (0.25,0.9102) (0.30,0.9442) (0.35,0.9692) (0.40,0.9865) (0.45,0.9967) (0.50,1.0) (0.55,0.9967) (0.60,0.9865) (0.65,0.9692) (0.70,0.9442) (0.75,0.9102) (0.80,0.8656) (0.85,0.8071) (0.90,0.7282) (0.9293,0.6667) (0.95,0.6113) (0.98,0.4933) (0.99,0.4265)};
+% spinodal (T/Tc = 4 xi (1-xi))
+\draw[thick,densely dashed] plot[smooth] coordinates {(0.02,0.0784) (0.05,0.19) (0.10,0.36) (0.15,0.51) (0.20,0.64) (0.2113,0.6667) (0.25,0.75) (0.30,0.84) (0.35,0.91) (0.40,0.96) (0.45,0.99) (0.50,1.0) (0.55,0.99) (0.60,0.96) (0.65,0.91) (0.70,0.84) (0.75,0.75) (0.7887,0.6667) (0.80,0.64) (0.85,0.51) (0.90,0.36) (0.95,0.19) (0.98,0.0784)};
+% critical point
+\fill (0.5,1.0) circle (0.6pt) node[above,font=\scriptsize] {임계점 $(\tfrac12,\,T_c=\Omega/2R)$};
+% operating isotherm Omega = 3RT: T/Tc = 2/3
+\draw[black!55] (0.0,0.6667) -- (1.0,0.6667) node[right,font=\scriptsize] {$T/T_c=\tfrac23$ ($\Omega=3RT$)};
+\fill (0.0707,0.6667) circle (0.5pt) node[below left,font=\scriptsize] {$\xi_b^-$};
+\fill (0.2113,0.6667) circle (0.5pt) node[below right,font=\scriptsize] {$\xi_s^-$};
+\fill (0.7887,0.6667) circle (0.5pt) node[below left,font=\scriptsize] {$\xi_s^+$};
+\fill (0.9293,0.6667) circle (0.5pt) node[below right,font=\scriptsize] {$\xi_b^+$};
+% region labels
+\node[font=\scriptsize] at (0.5,1.07) {단상(안정)};
+\node[font=\scriptsize] at (0.5,0.40) {불안정 (spinodal 안)};
+\node[font=\scriptsize,rotate=68] at (0.093,0.42) {준안정};
+\node[font=\scriptsize,rotate=-68] at (0.907,0.42) {준안정};
+\node[font=\scriptsize] at (0.24,1.015) {binodal};
+\node[font=\scriptsize] at (0.318,0.755) {spinodal};
+\end{tikzpicture}
+\caption{대칭 정규용액의 상평형 그림(신규 그림 --- 좌표는 식~\eqref{eq:app-binodal}·%
+\eqref{eq:app-spinodal} 그대로의 수치 평가). 실선 binodal $T/T_c=2(1-2\xi)/\ln[(1-\xi)/\xi]$ 아래가
+혼합 간극(miscibility gap)이고, 파선 spinodal $T/T_c=4\xi(1-\xi)$ 이 그 안쪽에서 준안정과 불안정을
+가른다. 두 곡선은 임계점에서 만난다. 수평선은 $\Omega=3RT$ 등온 조건이며, 네 교점이
+그림~\ref{fig:app-tangent} 의 $\xi_b^\pm,\xi_s^\pm$ 과 같은 값이다.}
+\label{fig:app-phasediag}
+\end{figure}
+
+\section{화학퍼텐셜 언어의 등가 서술 --- Maxwell construction}\label{app:maxwell}
+
+\textbf{(a) 출발 --- 비단조 $\mu(\xi)$.} 교환 화학퍼텐셜 $\mu(\xi)=f'(\xi)$ 로 같은 내용을 다시
+적는다(기준 항은 상수 이동이므로 생략한다). $\Omega>2RT$ 이면 $f$ 의 오목 구간에서 $\mu(\xi)$ 는
+감소하고, 곡선은 한 $\mu$ 값에 세 조성이 대응하는 비단조 고리 --- van der Waals loop --- 를 그린다.
+평형 공존은 이 고리를 어떤 수평선 $\mu=\mu^\ast$ 로 잘라야 하는가의 물음이 된다.
+
+\textbf{(b) 연산 --- 공통접선 조건의 번역.} \S\ref{app:binodal} 의 공통접선 조건
+식~\eqref{eq:app-ct} 은 두 문장으로 나뉜다. 첫째, 접선 기울기의 일치는
+$\mu(\xi_\alpha)=\mu(\xi_\beta)\equiv\mu^\ast$ 이다. 둘째, 접선이 한 직선이라는 것, 곧 현의 기울기와도
+같다는 것은 $f(\xi_\beta)-f(\xi_\alpha)=\mu^\ast(\xi_\beta-\xi_\alpha)$ 이다. 그런데 미적분학의 기본
+정리로 $f(\xi_\beta)-f(\xi_\alpha)=\int_{\xi_\alpha}^{\xi_\beta}\mu(\xi)\,\dd\xi$ 이므로, 둘째 문장은
+\begin{equation}
+\int_{\xi_\alpha}^{\xi_\beta}\bigl[\mu(\xi)-\mu^\ast\bigr]\,\dd\xi=0
+\label{eq:app-maxwell}
+\end{equation}
+이 된다.
+
+\textbf{(c) 중간식 --- 등면적 규칙.} 식~\eqref{eq:app-maxwell} 은 수평선 $\mu=\mu^\ast$ 가 고리와
+이루는 위쪽 면적과 아래쪽 면적이 같도록 $\mu^\ast$ 를 고르라는 규칙, 곧 Maxwell 의 등면적
+작도(equal-area construction)이다. 대칭 정규용액에서는 $\mu(\xi)$(섞임 몫)가 $\xi=\tfrac12$ 에 대해
+기함수이므로 $\mu^\ast=\mu(\tfrac12)$ 로 등면적이 자동 성립하고, 이는 수평 공통접선과 같은 내용이다.
+
+\textbf{(d) 박스 --- 삽입 전극에서의 의미.} 삽입 전극에서는 본문 Part 0(\S2)의 결선
+$\mu=\mu^0-sF(V-U)$ 를 통해 화학퍼텐셜 축이 전위 축으로 바뀐다. 따라서 등면적 규칙이 고르는 한 값
+$\mu^\ast$ 는 \emph{한 값의 평형 전위}로 번역된다:
+\begin{keybox}
+두-상 공존 구간 전체가 단일 전위(plateau)에서 진행되고, 미분 용량 $\dd Q/\dd V$ 는 그 전위에
+델타형으로 집중된다. 본문 \S4.2 가 다루는 히스테리시스는 실제 소인(sweep)이 이 Maxwell 전위에
+머무르지 못하고 준안정 가지를 따라 spinodal 까지 과주행할 때 생기며, 두 spinodal 의 전위 차가 그
+gap 의 상한이 된다.
+\end{keybox}
+
+\section{준안정과 불안정의 동역학 --- 핵생성 대 spinodal 분해}\label{app:kinetics}
+
+앞 절까지의 논의는 ``어디가 평형인가'' 만 답했고, ``어떻게 도달하는가'' 는 영역에 따라 정성적으로
+다른 두 경로를 따른다. 준안정 영역과 불안정 영역의 구분이 실질적 의미를 갖는 것은 바로 이 동역학
+차이 때문이다. 이하 두 소절(\S\ref{app:nucleation}, \S\ref{app:spindecomp})은 다른 절의 (a)--(d) 4단
+구성과 달리 내용의 성격상 2\textasciitilde3단으로 축약되어 전개된다.
+
+\subsection{준안정 영역 --- 핵생성}\label{app:nucleation}
+
+\textbf{(a) 출발 --- 유한 요동의 비용과 이득.} 준안정 영역에서는 $f''>0$ 이므로 무한소 요동은 모두
+되돌아간다. 분해가 시작되려면 새 상의 작은 영역(핵)이 유한 크기로 생겨야 하는데(고전 핵생성 이론 [A3]·[A5]), 핵의
+부피는 자유에너지를 낮추지만 모상과의 계면은 계면 에너지 $\gamma$[J/m$^2$]만큼 비용을 문다. 부피당
+구동력은 모상($\bar\xi$)의 접선에서 잰 신상 몰당 이득의 부피 환산
+$\Delta g_v=\bigl[f(\xi_\beta)-f(\bar\xi)-f'(\bar\xi)(\xi_\beta-\bar\xi)\bigr]/v_m<0\;[\mathrm{J/m^3}]$($v_m$ =
+몰부피 $[\mathrm{m^3/mol}]$)이다
+--- \S\ref{app:chord} 의 계 전체 이득 $\Delta f_\mathrm{sep}$ 와는 핵의 몰분율 $\lambda$ 를 매개로
+$\Delta f_\mathrm{sep}=\lambda\,v_m\,\Delta g_v$(소량 핵 극한)로 연결되며, 공통접선 조건에서 이 접선
+구동력이 정확히 $0$ 이 된다. 반지름 $r$ 의 구형 핵에 대해
+\begin{equation}
+\Delta G(r)=\frac{4}{3}\pi r^3\,\Delta g_v+4\pi r^2\gamma
+\label{eq:app-cnt}
+\end{equation}
+이다.
+
+\textbf{(b) 연산 --- 임계 핵.} $\dd\Delta G/\dd r=4\pi r^2\Delta g_v+8\pi r\gamma=0$ 에서
+\begin{equation}
+r^\ast=\frac{2\gamma}{|\Delta g_v|}\,,\qquad
+\Delta G^\ast=\Delta G(r^\ast)=\frac{16\pi\gamma^3}{3\,\Delta g_v^{\,2}}
+\label{eq:app-rstar}
+\end{equation}
+을 얻는다. $r<r^\ast$ 인 핵은 계면 비용이 지배하여 녹아 없어지고, $r>r^\ast$ 인 핵만 성장한다. 핵생성
+속도는 열적 요동이 이 장벽을 넘는 빈도이므로 $\propto\exp(-\Delta G^\ast/k_BT)$ 로 지수 억제되며,
+binodal(공통접선) 접점에서 위 접선 구동력이 정확히 $0$ 이라 그 근처에서
+$|\Delta g_v|\to0$ 이 되고 $\Delta G^\ast\propto|\Delta g_v|^{-2}$ 가 발산하여
+분해가 사실상 일어나지 않는다. 준안정 상태가 실험적으로 오래 관찰되는 이유가 이것이다.
+
+\subsection{불안정 영역 --- spinodal 분해}\label{app:spindecomp}
+
+\textbf{(a) 출발 --- 구배 벌칙과 자유에너지 범함수.} spinodal 안쪽에서는 장벽이 없으므로 분해의
+초기 동역학은 미소 요동의 선형 성장으로 기술된다. 조성이 공간적으로 느리게 변할 때 자유에너지는
+국소 항에 구배 벌칙을 더한 범함수
+\begin{equation}
+F[\xi]=\int\Bigl[f\bigl(\xi(\mathbf{r})\bigr)+\kappa\,\bigl|\nabla\xi\bigr|^2\Bigr]\dd V
+\qquad(\kappa>0)
+\label{eq:app-ch-F}
+\end{equation}
+로 확장된다(Cahn--Hilliard [A1]; spinodal 분해의 선형 이론은 [A2], 교과서 전개는 [A5]).
+확산 흐름은 화학퍼텐셜 $\mu=\delta F/\delta\xi=f'(\xi)-2\kappa\nabla^2\xi$
+의 구배를 따르고, 보존장의 연속 방정식과 결합하면 $\partial\xi/\partial t=M\nabla^2\mu$ 이다($M>0$ =
+이동도). 여기서 $f$ 는 식~\eqref{eq:app-fxi} 의 몰당 양을 몰부피 $v_m$ 으로 나눈 부피 밀도 $[\mathrm{J\,m^{-3}}]$ 로 읽어 $F$ 가 총자유에너지 $[\mathrm J]$ 가 되게 하며, 그러면 차원 정합이 $[\kappa]=\mathrm{J\,m^{-1}}$, $[M]=\mathrm{m^{5}\,J^{-1}\,s^{-1}}$ 을 준다.
+
+\textbf{(b) 연산 --- 모드별 성장률.} 균일 상태 $\bar\xi$ 위의 미소 요동을 Fourier 모드
+$\delta\xi\propto e^{i\mathbf{k}\cdot\mathbf{r}+R(k)t}$ 로 넣고 선형화하면
+\begin{equation}
+R(k)=-M\,k^2\Bigl[f''(\bar\xi)+2\kappa k^2\Bigr]
+\label{eq:app-ch-R}
+\end{equation}
+을 얻는다. $f''>0$ 이면 모든 모드가 감쇠하여 균일상이 유지된다. $f''<0$ 이면
+$0<k<k_c=\sqrt{-f''/2\kappa}$ 의 장파장 밴드 전체가 지수 성장하고, 성장률은
+$k_m=k_c/\sqrt2$ 에서 최대가 된다 --- 특정 파장의 조성 물결이 계 전체에서 동시에 증폭되는, 핵생성과
+정성적으로 다른 분해 양식이다.
+
+\textbf{(c) 박스 --- 두 경로의 대조.}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & 핵생성 (준안정) & spinodal 분해 (불안정) \\
+\midrule
+요동의 성격 & 국소·유한 진폭 (핵) & 전역·무한소 진폭 (조성 물결) \\
+활성화 장벽 & $\Delta G^\ast=16\pi\gamma^3/(3\Delta g_v^2)>0$ & 없음 ($R(k)>0$ 밴드) \\
+초기 형태 & 뚜렷한 계면의 액적/입자 & 확산적 계면의 주기 구조 ($k_m$) \\
+속도 결정 & $\exp(-\Delta G^\ast/k_BT)$ & $\max_k R(k)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{본문과의 연결}\label{app:link}
+
+본 부록의 각 결과는 본문에서 다음 자리에 대응한다. 첫째, 식~\eqref{eq:app-fxi} 와 볼록성 문턱
+$\Omega=2RT$ 는 Part 0(\S2)의 자유에너지 및 문턱식과 동일하며, 본 부록은 그 문턱의 앞뒤 ---
+왜 비볼록이면 분해가 이득인지(\S\ref{app:chord}), 분해의 종착 조성이 무엇인지(\S\ref{app:binodal})
+--- 를 채운다. 둘째, spinodal 닫힌 근 식~\eqref{eq:app-spinodal} 은 \S4.2 가 히스테리시스 gap 의
+상한을 닫을 때 쓰는 근과 같은 식이다. 셋째, Maxwell construction(\S\ref{app:maxwell})은 두-상
+plateau 가 단일 평형 전위로 나타나는 근거이자, 실측 plateau \emph{전위가 그 Maxwell 전위에서
+벗어나는} 이유(준안정 가지 과주행 --- 히스테리시스 분기)를 진술할 기준선이다; 봉우리의 유한
+\emph{폭}의 기원은 별개의 질문으로, 본문 \S7(broadening 절)의 소관이다. 넷째, 핵생성 대 spinodal 분해의 구분(\S\ref{app:kinetics})은 본문
+범위 밖의 동역학이지만, ``spinodal 까지 과주행한다'' 는 \S4.2 의 서술이 어떤 동역학적 그림을
+전제하는지 --- 준안정 가지에서 핵생성이 지수 억제로 지연되는 동안 소인이 전위를 계속 옮긴다는 것 ---
+를 물리적으로 뒷받침한다.
+
+\section*{참고문헌}
+\begin{enumerate}[label={[A\arabic*]},leftmargin=3.2em]
+\item J.~W. Cahn, J.~E. Hilliard, ``Free energy of a nonuniform system. I. Interfacial free energy,''
+\textit{J. Chem. Phys.} \textbf{28}, 258--267 (1958). DOI: 10.1063/1.1744102.
+\item J.~W. Cahn, ``On spinodal decomposition,'' \textit{Acta Metall.} \textbf{9}, 795--801 (1961).
+DOI: 10.1016/0001-6160(61)90182-1.
+\item D.~A. Porter, K.~E. Easterling, \textit{Phase Transformations in Metals and Alloys}, 2nd ed.,
+Chapman \& Hall (1992) --- Ch.~1 (공통접선·binodal), Ch.~5 (핵생성·spinodal 분해).
+\item M. Hillert, \textit{Phase Equilibria, Phase Diagrams and Phase Transformations: Their
+Thermodynamic Basis}, 2nd ed., Cambridge Univ. Press (2008).
+\item R.~W. Balluffi, S.~M. Allen, W.~C. Carter, \textit{Kinetics of Materials}, Wiley (2005) ---
+Ch.~18--19 (Cahn--Hilliard 선형화$\cdot$핵생성 이론).
+\end{enumerate}
+
+\end{document}
