@@ -5,12 +5,12 @@
 > ★2026-06-30 구조 A 재정리: 흩어진 결과물을 docs(문건)/results(코드·빌드·조사)로 통일. 구버전·빌드산물 → `docs/_archive/`.
 
 ## ★현행 최신 — v1.0.25.1 (v1.0.25 검증 + 정직성 touch-up 리비전, 2026-07-26)
-> **이 PC 현행 릴리스.** v1.0.25(국소 수정판: @2 skew-logistic α opt-in·인과 pad·SI 상수 opt-in·**regsol 커널 삭제**·Si7 opt-in·FWHM λ^{3/2} 정정)을 마스터가 **독립 검증**(게이트 9/9 직접 재실행·골든 bit-exact·skew/FWHM 물리 손검산+수치·코드 델타 정독·적대검수 2세션) 후 **반영**. 문건 산문 **touch-up 4건**(F1 regsol 삭제근거 정직화 n=1 유보·F3 inline·M-w §5 폭 포인터·L-bg §6 α=1 표지) 적용. 식·라벨·boxed(39)·코드 **불변**(코드 byte-identical=v1.0.25). 검증 후: STRUCTURE/STRICT PASS·게이트 9/9. **빌드는 회사 TeX 환경 재빌드 대상**(이 PC TeX 부재). 미완(비차단) = N4 흑연 두-상 4vs2 표기·N6~9 데이터 리포 영구보존·regsol 철회 다중셀 확인.
+> **이 PC 현행 릴리스.** v1.0.25(국소 수정판: @2 skew-logistic α opt-in·인과 pad·SI 상수 opt-in·**regsol 커널 삭제**·Si7 opt-in·FWHM λ^{3/2} 정정)을 마스터가 **독립 검증**(게이트 9/9 직접 재실행·골든 bit-exact·skew/FWHM 물리 손검산+수치·코드 델타 정독·적대검수 2세션) 후 **반영**. 문건 산문 **touch-up 4건**(F1 regsol 삭제근거 정직화 n=1 유보·F3 inline·M-w §5 폭 포인터·L-bg §6 α=1 표지) 적용. 식·라벨·boxed(39)·코드 **불변**(코드 byte-identical=v1.0.25). 검증 후: STRUCTURE/STRICT PASS·게이트 9/9·**XeLaTeX 빌드 완료(이 PC MiKTeX, 오류 0·102/30/22p·PDF 커밋)**. 미완(비차단) = N4 흑연 두-상 4vs2 표기(Ω/RT=[4.06,2.02,3.55,4.07] 진단상 3전이 Ω>2RT — 검토 중)·N6~9 데이터 리포 영구보존·regsol 철회 다중셀 확인.
 
 | 경로 | 1줄 요약 | 동의어 키워드 | 갱신일 |
 |---|---|---|---|
 | v1.0.25.1/results/V1025_1_TOUCHUP_NOTE.md | ★현행 권위 기록 — 마스터 독립 검증표·touch-up 4건(F1/F3/M-w/L-bg)·재검증·미완·Chain | 1.0.25.1, touch-up, 검증, regsol 삭제, skew, FWHM, 현행 최신 | 2026-07-26 |
-| v1.0.25.1/ (전체) | v1.0.25 + 산문 touch-up 리비전(마스터 3·_sections 56·코드 byte-identical·빌드 PDF 재빌드 대상) | 1.0.25.1, 흑연, LCO, Si, 국소수정, doc touch-up | 2026-07-26 |
+| v1.0.25.1/ (전체) | v1.0.25 + 산문 touch-up 리비전(마스터 3·_sections 56·코드 byte-identical·**빌드 PDF 102/30/22p 커밋**) | 1.0.25.1, 흑연, LCO, Si, 국소수정, doc touch-up, 빌드 완료 | 2026-07-26 |
 | v1.0.25/ (base, 무수정 보존) | 저치(Fable5/Opus5/Opus4.8) 국소 수정판 원본 — regsol 삭제·α/pad/SI opt-in·빌드 통과 97/30/21→102/30/22. 검증·판정 원문 = results/HANDOVER_v25·MERGE_READINESS_v25·V1025_CHANGE_LEDGER | 1.0.25, surgical, regsol 삭제, skew opt-in, 인과 pad, 빌드 통과 | 2026-07-26 |
 
 ## ★아카이브 — v1.0.24.1 (v1.0.24 피드백 리비전 FB0~FB9 동결 스냅샷, 2026-07-22)
