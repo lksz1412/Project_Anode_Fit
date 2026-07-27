@@ -1,7 +1,9 @@
 # Phase 058 v1.0.10 과거 문제·무결성 보고서 재판정
 
-정본일: 2026-07-28  
-대상: Phase 058 Step 29.4  
+정본일: 2026-07-28
+
+대상: Phase 058 Step 29.4
+
 claim matrix:
 `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.json`
 
