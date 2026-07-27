@@ -42,6 +42,7 @@
 | LR-025 | logistic helper가 극단 입력에서도 경고 없음 | overflow/invalid warning 3건 | FAIL | branch-evaluated stable implementation 사용 |
 | LR-026 | C-rate 시간 basis가 물리적으로 명시됨 | 같은 물리율 표현의 Lq 비 3600 | FAIL | 초/시간 변환을 API·식·검사에서 하나로 고정 |
 | LR-027 | 후보의 정본/검증 지위가 명시됨 | 현재 병행 독립 후보, main 미병합 | GOVERNANCE | 검증 전용/정본 후보/부분 역이식 중 사용자 결정 |
+| LR-028 | gate가 저장소 루트에서도 재현 가능 | reflect/selfconsistent는 cwd-relative source import | PARTIAL | `__file__` 기준 경로로 고정 |
 
 ## 해석 주의
 
