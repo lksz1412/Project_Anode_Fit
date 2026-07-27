@@ -365,3 +365,23 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_GOLDEN_NPZ_REVIEW.md`.
 - Step 27은 완료됐다. 다음은 Step 28.1 PDF 8개 215 pages
   전 페이지 render와 source 대응 감사다.
+
+### 2026-07-28 — Step 28.1
+
+- PDF skill 절차로 8개 PDF 215 pages를 96 dpi PNG로 전 페이지
+  render하고 17개 contact sheet를 모두 시각 검독했다.
+- page count 215/215, blank 0, replacement character 0,
+  media/crop mismatch 0, font는 전부 embedded였다.
+- full-resolution edge 후보 검독에서 clipping 4쪽을 확인했다:
+  v1.0.10 Ch2 p.10, v1.0.11 Ch2 p.10, v1.0.12 Ch1 p.37,
+  v1.0.12 Ch2 p.11.
+- v1.0.10과 v1.0.11은 Ch1 35/35, Ch2 13/13 pages가
+  pixel-identical해 v1.0.11을 새 PDF 검증으로 세지 않았다.
+- v1.0.10 Ch1 PDF 뒤 TeX 1행 변경은 source comment뿐이라 visible
+  stale artifact는 아니지만 build genealogy에는 기록했다.
+- 근거:
+  `Codex/results/PHASE_058_PDF_RENDER_METRICS.json`,
+  `Codex/results/PHASE_058_PDF_VISUAL_REVIEW.json`,
+  `Codex/results/PHASE_058_PDF_IMAGE_RENDER_AUDIT.md`.
+- 판정: `LAYOUT_PASS_WITH_4_RECORDED_DEFECTS`.
+- 다음은 Step 28.2 standalone image 8개 원해상도 검독이다.

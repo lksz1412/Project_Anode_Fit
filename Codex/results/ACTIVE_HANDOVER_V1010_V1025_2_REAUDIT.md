@@ -111,6 +111,15 @@
 - Phase 058 NPZ review:
   `Codex/results/PHASE_058_GOLDEN_NPZ_REVIEW.md`,
   `Codex/results/PHASE_058_GOLDEN_NPZ_AUDIT.json`.
+- Phase 058 PDF audit:
+  8/8 PDFs, 215/215 pages rendered; 17/17 contact sheets and four
+  full-resolution edge candidates inspected. No blank/replacement-glyph/crop
+  mismatch; four confirmed right-edge clipping defects. v1.0.10/v1.0.11
+  48 pages are pixel-identical.
+- Phase 058 PDF evidence:
+  `Codex/results/PHASE_058_PDF_RENDER_METRICS.json`,
+  `Codex/results/PHASE_058_PDF_VISUAL_REVIEW.json`,
+  `Codex/results/PHASE_058_PDF_IMAGE_RENDER_AUDIT.md`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -133,11 +142,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 28.1:
-PDF skill 절차에 따라 8개 PDF 215 pages를 전 페이지 render하고,
-page count, missing glyph, blank/cropped content와 대응 TeX 상태를 감사한다.
+Phase 058 Step 28.2:
+standalone image 8개를 원해상도로 검독해 axis, unit, legend,
+temperature/current condition, sign, peak morphology와 glyph를 판정한다.
 완료:
-Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.5.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
+27.1–27.5, 28.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -148,6 +158,7 @@ Legacy test/demo 11개 byte-identical 격리 실행과 source hash 보존 확인
 Production 3개 version 독립 conservation/sign/limit/current/temperature
 probe와 판정 저장.
 Golden NPZ 13개 array 전수 비교와 evidence-class 판정 저장.
+PDF 8개 215쪽 전 페이지 render·시각 검독과 조판 결함 4건 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
