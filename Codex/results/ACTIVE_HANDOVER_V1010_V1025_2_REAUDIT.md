@@ -9,9 +9,11 @@
 2. 계획 운영 지침: `Codex/plans/phase_planning_operations_guide.md`
 3. 활성 마스터 계획:
    `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
-4. 실행 원장:
+4. 활성 phase 세부 계획:
+   `Codex/plans/2026-07-28-phase058-v1010-v1013-lineage-detailed-plan.md`
+5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
-5. 현재 phase result:
+6. 현재 phase result:
    `Codex/results/PHASE_057_USER_INTENT_RECOVERY_RESULT.md`
 
 ## Current State
@@ -49,6 +51,10 @@
   `PASS_P057_CONFLICT_RESOLUTION`.
 - Intent recovery final gate:
   `PASS_P057_INTENT_RECOVERY`.
+- 활성 Phase: 058.
+- Phase 058 frozen scope:
+  56 paths, 45 unique blobs, 27 full-text blobs/13,757 lines,
+  8 PDFs/215 pages, 8 images, 1 NPZ, 1 generated pyc.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -71,10 +77,12 @@
 
 ## Next Exact Step
 
-Phase 058 planning gate before Step 26:
-v1.0.10–v1.0.13의 theory source, code, tests, PDF, image 및
-commit diff를 독립 재감사하는 detailed plan을 먼저 저장한다.
-완료 Step 18.1–25.8:
+Phase 058 Step 26.1:
+Phase 056 manifest에서 v1.0.10–v1.0.13의 56 path/45 blob을
+content-addressed audit queue로 추출하고 version occurrence,
+role, review mode와 extent를 보존한다.
+완료:
+Phase 057 Steps 18.1–25.8 및 Phase 058 detailed plan.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
