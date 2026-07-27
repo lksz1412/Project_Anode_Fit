@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  158 documents, 35,148 lines.
+  169 documents, 36,220 lines.
 - Latest observation:
-  `Codex/results/PHASE_057T_V1022_R4_MATERIAL_SURVEY_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057U_V1022_R5_RV_SM2_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,17 +36,17 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.6F:
-v1.0.22 R5 Ch3 저작, RV 교차 검토, SM2
-11문건 1,072행을 첫 행부터 끝 행까지 전문 검독한다.
+Phase 057 Step 19.6G:
+v1.0.22 FR A01–A08 및 A20 심층 review
+10문건 3,579행을 첫 행부터 끝 행까지 전문 검독한다.
 활성 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1022-read-map.md`.
 현재 batch:
-19.6F, R5 Ch3 저작·RV·SM2 11문건 1,072행.
-완료 Step 19.6E:
-R4 조사·승급 11문건 1,047행 전량 `READ`.
+19.6G, FR A01–A08 및 A20 심층 review 10문건 3,579행.
+완료 Step 19.6F:
+R5 Ch3 저작·RV 교차 검토·SM2 11문건 1,072행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057T_V1022_R4_MATERIAL_SURVEY_OBSERVATIONS.md`.
+`Codex/results/PHASE_057U_V1022_R5_RV_SM2_OBSERVATIONS.md`.
 
 ## Resume Gate
 
