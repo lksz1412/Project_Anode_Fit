@@ -39,6 +39,10 @@
 Phase 057 Step 19.5:
 v1.0.21 queue를 논리 batch로 나누는 상세 검독 지도를 먼저 저장한 뒤,
 각 문건을 첫 행부터 끝 행까지 전문 검독하고 claim/evidence 관찰을 저장한다.
+활성 상세 지도:
+`Codex/plans/2026-07-28-phase057-v1021-read-map.md`.
+현재 batch: 19.5A, change log/execution ledger/reference ledger/handover
+4문건 117행.
 완료 Step 19.4:
 v1.0.20 81문건, 17,041행 전량 `READ`.
 최종 결과:
