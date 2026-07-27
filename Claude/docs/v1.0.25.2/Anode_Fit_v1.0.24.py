@@ -1384,6 +1384,13 @@ SI_MSMR7_LIT: List[Dict[str, Any]] = [
 #         세우는 손잡이로 쓰이고 있다. 적합 이득은 실재하나 alpha 를 물리량으로 읽지 말 것
 #         (§18 식별 가드의 '경계 포화 = 미식별' 과 같은 병리).
 #     (c) w=0.1 mV 급은 계측 분해 한계 아래다(원자료 평탄의 FWHM ≲ 1 mV = RT/F 의 1/25).
+#   ★★폭 규약 주의(v1.0.25.2 · Codex 감사 P0-6 대조) — 본 셋은 'w' 단독이라 **T-동결 폭**이다.
+#     구 기본 GRAPHITE_STAGING_LIT 은 'n' 보유라 w=n·RT/F 로 열 척도를 타고 ∂w/∂T=n·R/F≠0 이었다.
+#     기본 셋이 본 상수로 바뀌면서 **기본 경로의 ∂w/∂T 가 0 이 된다** → Ch2 가역 발열의 config 항이
+#     기본 경로에서 소거된다. 이는 의도된 선택이다(두-상 near-delta 폭은 열 척도가 아니라 현상학이
+#     정한다 — 문건 §5 이중지위 둘째 지위). 열 척도 거동이 필요하면 둘 중 하나를 쓸 것:
+#       · use_legacy_4transition(True) — 구 기본(n 보유 4 전이)으로 복귀
+#       · 각 전이에 'n' 추가 — n_j = w_j·F/(R·298.15); 298.15 K 에서 폭은 동일하고 T-의존만 복원된다
 #   ★@2 비대칭: 본 셋은 'alpha' 키를 두지 않는다(부재=1.0=대칭=bit-exact). 비대칭을 켜려면
 #     전이별로 'alpha' 를 추가하고, 같은 전이의 L_V 는 동결한다(§18 식별 가드 — 구현이 경고를 낸다).
 #   사용: GraphiteAnodeDischargeDQDV(GRAPHITE_MSMR7_LIT, ...) 또는
@@ -1408,6 +1415,7 @@ GRAPHITE_MSMR7_LIT: List[Dict[str, Any]] = [
 #   블렌드 14 전이 확정 구성 = GRAPHITE_MSMR7_LIT(7) + 본 상수(7).
 #   ★tier-C seed(피팅 override 전제): 단일 셀·비평형 pOCV. alpha 는 흑연 쪽과 같은 경계 포화
 #     병리를 공유할 수 있으므로 **값을 물리량으로 읽지 말 것**(§18 식별 가드).
+#   ★폭 규약: 본 셋도 'w' 단독 = T-동결 폭(위 GRAPHITE_MSMR7_LIT 주의와 동일 — ∂w/∂T=0).
 #   ★짝 배경: C_bg ≈ 0.051 (창 0.150–0.700 V). 전이만 옮기고 배경을 빠뜨리면 벨리역이 어긋난다.
 SI_MSMR7_SKEW_LIT: List[Dict[str, Any]] = [
     {'U': 0.189394, 'w': 0.050660, 'Q': 0.531809, 'alpha': 6.943034},
@@ -1428,26 +1436,38 @@ SI_MSMR7_SKEW_LIT: List[Dict[str, Any]] = [
 #       use_legacy_4transition(True)  → 기본 셋이 GRAPHITE_STAGING_LIT / SI_CASE_SETS 로 복귀(v1.0.25 거동)
 #       use_legacy_4transition(False) → 확정 구성 복귀(기본 상태)
 #   명시 인자(graphite_transitions=... / si_transitions=...)는 스위치와 무관하게 항상 우선한다.
-DEFAULT_GRAPHITE_TRANSITIONS: List[Dict[str, Any]] = GRAPHITE_MSMR7_LIT
-DEFAULT_SI_TRANSITIONS: Optional[List[Dict[str, Any]]] = SI_MSMR7_SKEW_LIT
+# ★★v1.0.25.2 정정(감사 U12): 기본을 7-gallery 로 두면 **온도 의존이 통째로 소실**된다 —
+#   두 skew 시드는 dH_rxn·dS_rxn(중심 U_j(T))·n(폭 w(T))을 결여하므로 U_j·w 가 모두 T-동결이 되고,
+#   Ch2 의 가역 발열·엔트로피 계열이 기본 경로에서 상수 곡선을 받는다(실측: 288→308 K max|Δ| 0.5252 → 0).
+#   전이 수·비대칭은 **곡선 표현**의 개선이지 열역학 입력의 대체가 아니므로, 시드가 완성되기 전까지
+#   기본은 열역학 입력을 갖춘 레거시 셋으로 둔다. 7-gallery skew 는 **명시 지정**으로 쓴다:
+#       GraphiteAnodeDischargeDQDV(GRAPHITE_MSMR7_LIT, ...)
+#       BlendedAnodeDQDV(graphite_transitions=GRAPHITE_MSMR7_LIT, si_transitions=SI_MSMR7_SKEW_LIT)
+#   또는 use_skew7_default(True) 로 일괄 전환(아래).
+DEFAULT_GRAPHITE_TRANSITIONS: List[Dict[str, Any]] = GRAPHITE_STAGING_LIT
+DEFAULT_SI_TRANSITIONS: Optional[List[Dict[str, Any]]] = None
 #   짝 배경(같은 창에서 함께 적합된 값) — 전이만 쓰고 배경을 빠뜨리면 벨리역이 어긋난다.
 DEFAULT_CBG_GRAPHITE = 0.550
 DEFAULT_CBG_SI = 0.051
 
 
-def use_legacy_4transition(enable: bool = True) -> None:
-    """[v1.0.25.2] 기본 전이 셋을 v1.0.25 레거시(흑연 4 전이 대칭 · Si 케이스셋)로 전환/복귀.
+def use_skew7_default(enable: bool = True) -> None:
+    """[v1.0.25.2] 기본 전이 셋을 7-gallery skew 확정 구성으로 전환/복귀.
 
-    enable=True  → 기본 셋 = GRAPHITE_STAGING_LIT, Si 기본 = si_case 셋(v1.0.25 거동 = 골든 bit-exact 기준).
-    enable=False → 기본 셋 = GRAPHITE_MSMR7_LIT · SI_MSMR7_SKEW_LIT (v1.0.25.2 확정 구성 = 기본 상태).
-    골든 회귀·게이트는 이 함수로 레거시를 복원한 뒤 비교한다."""
+    enable=True  → 기본 = GRAPHITE_MSMR7_LIT · SI_MSMR7_SKEW_LIT (곡선 표현 최량).
+      ⚠️ 두 시드는 dH_rxn·dS_rxn·n 을 결여하므로 **중심·폭의 온도 의존이 없다**. 정온 곡선 적합
+      전용으로 쓰고, Ch2 가역 발열·엔트로피 계열이나 다온도 해석에는 쓰지 말 것(감사 U12).
+    enable=False → 기본 = GRAPHITE_STAGING_LIT · si_case 셋 (열역학 입력 보유 = 기본 상태).
+
+    ※ 시드에 dH_rxn·dS_rxn·n 이 채워지면 이 경고는 해소되고 기본을 되뒤집을 수 있다. 남은 결정은
+      각 gallery 군집이 어느 staging 전이에 속하는가(그 전이의 dS_rxn 을 상속)이며 물리 배정이다."""
     global DEFAULT_GRAPHITE_TRANSITIONS, DEFAULT_SI_TRANSITIONS
     if enable:
-        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_STAGING_LIT
-        DEFAULT_SI_TRANSITIONS = None          # None = si_case 셋 경로(v1.0.25 거동)
-    else:
         DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_MSMR7_LIT
         DEFAULT_SI_TRANSITIONS = SI_MSMR7_SKEW_LIT
+    else:
+        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_STAGING_LIT
+        DEFAULT_SI_TRANSITIONS = None
 
 # ============================================================================
 # R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.24 §3.5 doc-leads 요구명세)
