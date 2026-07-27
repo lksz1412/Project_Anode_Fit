@@ -261,6 +261,15 @@
   `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITION_REVIEW.md`,
   `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITIONS.json`
   (`PASS_P058_THEORY_CLAIM_DISPOSITIONS`, 32/32 checks).
+- Phase 058 four-axis conformance:
+  핵심 26 rows를 theory/code/test/artifact로 분리했고 aligned 6,
+  partial 6, misaligned 8, absent 5, unverified 1이다. 내부 aligned
+  항목도 material external validity는 0건이다. 각 row에 해당
+  PASS가 뜻하지 않는 범위를 기록했다.
+- Phase 058 four-axis evidence:
+  `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_REVIEW.md`,
+  `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_MATRIX.json`
+  (`PASS_P058_FOUR_AXIS_CONFORMANCE`, 44/44 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -283,12 +292,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 32.2:
-문건–code–test–PDF/image의 4축 matrix를 닫고, 각 PASS가
-검사하지 않은 범위를 명시한다.
+Phase 058 Step 32.3:
+후속 Phase 059–069에서 사용할 carry-forward asset과 repair,
+new-scope, evidence blocker를 분리한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -334,6 +343,8 @@ pedagogical depth와 물리 폐쇄를 분리. Ch1 code mention 215회,
 84/84 closure gate 통과.
 Phase 058 theory equation 323/323 occurrences에 7-state disposition을
 부여하고 unassigned 0, assignment hash/32-check gate 통과.
+26개 핵심 계약을 theory/code/test/artifact 4축으로 닫아 aligned
+6/partial6/misaligned8/absent5/unverified1, 44/44 gate 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

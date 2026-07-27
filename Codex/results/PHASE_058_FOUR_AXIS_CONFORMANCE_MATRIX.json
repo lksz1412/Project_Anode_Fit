@@ -1,0 +1,360 @@
+{
+  "schema_version": "phase058-four-axis-conformance-v1",
+  "audit_boundary": "V1010_TO_V1013_THEORY_CODE_TEST_ARTIFACT_ALIGNMENT_NOT_EXTERNAL_VALIDATION",
+  "axis_status_vocabulary": {
+    "theory": [
+      "PRESENT_VALID",
+      "PRESENT_CONDITIONAL",
+      "PRESENT_DEFECT",
+      "PLACEHOLDER",
+      "ABSENT"
+    ],
+    "code": [
+      "IMPLEMENTED_MATCH",
+      "IMPLEMENTED_PARTIAL",
+      "IMPLEMENTED_MISMATCH",
+      "DEFAULT_INACTIVE",
+      "ABSENT",
+      "NOT_APPLICABLE"
+    ],
+    "test": [
+      "FAILURE_GATE",
+      "PARTIAL_GATE",
+      "INDEPENDENT_PROBE_ONLY",
+      "REPORT_ONLY",
+      "ABSENT",
+      "NOT_APPLICABLE"
+    ],
+    "artifact": [
+      "CURRENT",
+      "PARTIAL",
+      "MODEL_OUTPUT_ONLY",
+      "LAYOUT_DEFECT",
+      "STALE",
+      "ABSENT",
+      "NOT_APPLICABLE"
+    ],
+    "overall": [
+      "ALIGNED",
+      "PARTIAL",
+      "MISALIGNED",
+      "ABSENT",
+      "UNVERIFIED"
+    ]
+  },
+  "rows": [
+    {
+      "id": "F4-01",
+      "topic": "c_rate_and_capacity_unit_contract",
+      "theory": "PRESENT_DEFECT",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "ABSENT",
+      "overall": "MISALIGNED",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "No legacy test establishes the hour-to-second conversion."
+    },
+    {
+      "id": "F4-02",
+      "topic": "ohmic_polarization_sign",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "PARTIAL",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "The sign contract does not validate material resistance values."
+    },
+    {
+      "id": "F4-03",
+      "topic": "ideal_logistic_peak_area_height_and_temperature_width",
+      "theory": "PRESENT_VALID",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "Ideal-kernel agreement is not a material fit."
+    },
+    {
+      "id": "F4-04",
+      "topic": "nonideal_regular_solution_equilibrium",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "ABSENT",
+      "artifact": "PARTIAL",
+      "overall": "MISALIGNED",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "Homogeneous free-energy algebra does not justify a closed logistic at nonzero interaction."
+    },
+    {
+      "id": "F4-05",
+      "topic": "convexified_phase_equilibrium_and_binodal",
+      "theory": "ABSENT",
+      "code": "ABSENT",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "ABSENT",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "A spinodal plot is not a binodal or common-tangent closure."
+    },
+    {
+      "id": "F4-06",
+      "topic": "multi_transition_host_topology_and_capacity_partition",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "REPORT_ONLY",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "PARTIAL",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "Peak-area addition does not prove mutually consistent phase topology."
+    },
+    {
+      "id": "F4-07",
+      "topic": "n_and_w_width_semantics",
+      "theory": "PRESENT_DEFECT",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "MISALIGNED",
+      "carry_decision": "EMPIRICAL_ONLY",
+      "pass_does_not_mean": "Four numerically separable peaks do not identify microscopic multiplicity."
+    },
+    {
+      "id": "F4-08",
+      "topic": "ensemble_heterogeneity_forward_integral",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "ABSENT",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "ABSENT",
+      "carry_decision": "THEORY_ONLY",
+      "pass_does_not_mean": "A conceptual integral is not an observation layer."
+    },
+    {
+      "id": "F4-09",
+      "topic": "finite_current_causal_relaxation",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "DEFAULT_INACTIVE",
+      "test": "REPORT_ONLY",
+      "artifact": "PARTIAL",
+      "overall": "PARTIAL",
+      "carry_decision": "THEORY_ONLY",
+      "pass_does_not_mean": "The reduced model does not demonstrate the user's condition-dependent broadening with shipped defaults."
+    },
+    {
+      "id": "F4-10",
+      "topic": "local_activation_barrier_temperature_current_and_potential",
+      "theory": "PRESENT_DEFECT",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "MISALIGNED",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "A frozen cut affinity is not local electrode-potential dependence."
+    },
+    {
+      "id": "F4-11",
+      "topic": "zero_current_limit",
+      "theory": "PRESENT_VALID",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "ABSENT",
+      "overall": "PARTIAL",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "The computed path is not continuous when direct L_V bypasses current."
+    },
+    {
+      "id": "F4-12",
+      "topic": "persistent_hysteresis_memory",
+      "theory": "PRESENT_DEFECT",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "ABSENT",
+      "overall": "MISALIGNED",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "A direction-dependent static center is not path-state memory."
+    },
+    {
+      "id": "F4-13",
+      "topic": "graphite_direction_mapping",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "PARTIAL",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "Some stored image labels remain inconsistent."
+    },
+    {
+      "id": "F4-14",
+      "topic": "lco_charge_to_delithiation_mapping",
+      "theory": "PRESENT_VALID",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "PARTIAL",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "The regression harness does not gate this changed path."
+    },
+    {
+      "id": "F4-15",
+      "topic": "ideal_n1_entropy_coefficient",
+      "theory": "PRESENT_VALID",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "The identity does not validate fitted reaction entropies."
+    },
+    {
+      "id": "F4-16",
+      "topic": "arbitrary_n_configurational_entropy",
+      "theory": "PRESENT_DEFECT",
+      "code": "IMPLEMENTED_MISMATCH",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "MISALIGNED",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "Algebraic temperature differentiation is not a microscopic entropy proof."
+    },
+    {
+      "id": "F4-17",
+      "topic": "reversible_heat_identity",
+      "theory": "PRESENT_VALID",
+      "code": "IMPLEMENTED_MATCH",
+      "test": "INDEPENDENT_PROBE_ONLY",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "ALIGNED",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "The sign identity does not validate calorimetry or all heat components."
+    },
+    {
+      "id": "F4-18",
+      "topic": "lco_electronic_entropy_and_t_squared_signal",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "PARTIAL",
+      "carry_decision": "THEORY_ONLY",
+      "pass_does_not_mean": "The derived T-squared signal is absent from the frozen linear implementation."
+    },
+    {
+      "id": "F4-19",
+      "topic": "lco_transition_defaults_and_phase_assignment",
+      "theory": "PLACEHOLDER",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "ABSENT",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "UNVERIFIED",
+      "carry_decision": "UNVERIFIED",
+      "pass_does_not_mean": "A plotted three-peak curve is not an experimentally assigned phase model."
+    },
+    {
+      "id": "F4-20",
+      "topic": "doped_high_voltage_lco_stability",
+      "theory": "PLACEHOLDER",
+      "code": "ABSENT",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "ABSENT",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "Lowering Omega does not cover oxygen loss, reconstruction, migration, interface chemistry, or the 4.55 V transition."
+    },
+    {
+      "id": "F4-21",
+      "topic": "public_experimental_data_fit_uncertainty_and_holdout",
+      "theory": "PLACEHOLDER",
+      "code": "ABSENT",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "ABSENT",
+      "carry_decision": "UNVERIFIED",
+      "pass_does_not_mean": "A fitting plan is not a fitted result."
+    },
+    {
+      "id": "F4-22",
+      "topic": "graphite_golden_regression",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "PARTIAL_GATE",
+      "artifact": "MODEL_OUTPUT_ONLY",
+      "overall": "PARTIAL",
+      "carry_decision": "PRESERVE",
+      "pass_does_not_mean": "Thirteen graphite arrays do not gate scalar, entropy, LCO, physical validity, or portability."
+    },
+    {
+      "id": "F4-23",
+      "topic": "pdf_source_layout_consistency",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "NOT_APPLICABLE",
+      "test": "PARTIAL_GATE",
+      "artifact": "LAYOUT_DEFECT",
+      "overall": "PARTIAL",
+      "carry_decision": "CORRECT",
+      "pass_does_not_mean": "Complete rendering does not mean four clipped pages are acceptable or the science is valid."
+    },
+    {
+      "id": "F4-24",
+      "topic": "image_source_provenance_and_scientific_evidence",
+      "theory": "PRESENT_CONDITIONAL",
+      "code": "IMPLEMENTED_PARTIAL",
+      "test": "REPORT_ONLY",
+      "artifact": "STALE",
+      "overall": "MISALIGNED",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "Nonblank images and successful rerendering do not make stale or non-bit-exact plots current evidence."
+    },
+    {
+      "id": "F4-25",
+      "topic": "silicon_and_graphite_silicon_composite",
+      "theory": "ABSENT",
+      "code": "ABSENT",
+      "test": "ABSENT",
+      "artifact": "ABSENT",
+      "overall": "ABSENT",
+      "carry_decision": "UNVERIFIED",
+      "pass_does_not_mean": "No v1.0.10-to-v1.0.13 asset addresses this current user goal."
+    },
+    {
+      "id": "F4-26",
+      "topic": "theory_only_document_architecture",
+      "theory": "PRESENT_DEFECT",
+      "code": "NOT_APPLICABLE",
+      "test": "ABSENT",
+      "artifact": "CURRENT",
+      "overall": "MISALIGNED",
+      "carry_decision": "REJECT",
+      "pass_does_not_mean": "A current 50-page PDF does not satisfy the theory-only manuscript boundary."
+    }
+  ],
+  "overall_counts": {
+    "ABSENT": 5,
+    "ALIGNED": 6,
+    "MISALIGNED": 8,
+    "PARTIAL": 6,
+    "UNVERIFIED": 1
+  },
+  "evidence_summary": {
+    "theory_source_count": 6,
+    "theory_equation_occurrence_count": 323,
+    "production_code_blob_count": 3,
+    "production_code_line_count": 2610,
+    "test_and_demo_document_count": 11,
+    "python_assert_count": 0,
+    "legacy_execution_case_count": 11,
+    "legacy_report_only_success_count": 9,
+    "golden_array_count": 13,
+    "golden_bit_exact_count": 1,
+    "golden_allclose_1e12_count": 13,
+    "pdf_count": 8,
+    "pdf_page_count": 215,
+    "pdf_confirmed_clipping_defect_count": 4,
+    "standalone_image_count": 8,
+    "stale_image_count": 2,
+    "public_experimental_dataset_count": 0
+  },
+  "verdict": "NO_SINGLE_AXIS_PASS_IS_A_PHYSICAL_CLOSURE;_SIX_TOPICS_ALIGN_INTERNALLY_BUT_NONE_ESTABLISHES_MATERIAL_EXTERNAL_VALIDITY"
+}

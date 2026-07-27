@@ -837,3 +837,33 @@ lineage report를 기계 검증한다.
 - 기계 gate:
   `PASS_P058_THEORY_CLAIM_DISPOSITIONS`.
 - 다음은 Step 32.2 theory–code–test–PDF/image 4축 matrix를 닫는다.
+
+### 2026-07-28 — Step 32.2
+
+- 핵심 계약 26개를 theory, production code, test gate,
+  PDF/image/data artifact 네 축으로 분리했다.
+- 종합 상태는 aligned 6, partial 6, misaligned 8, absent 5,
+  unverified 1이다.
+- ideal kernel, polarization sign, graphite/LCO direction,
+  ideal-n1 entropy와 reversible heat identity의 내부 정합은
+  확인했지만 어느 것도 material external validity를 확정하지
+  않는다.
+- multi-transition, finite-current, zero-current, LCO electronic,
+  golden regression과 PDF는 한 축 이상이 빠진 partial이다.
+- C-rate unit, nonideal logistic, width semantics, local barrier,
+  hysteresis memory, arbitrary-n entropy, image provenance와
+  theory-only architecture는 misaligned다.
+- convexified phase equilibrium, executable ensemble observation,
+  doped high-voltage LCO, public fit/uncertainty, Si/composite는
+  absent다. LCO defaults/phase assignment은 unverified다.
+- source 6/theory equations 323, production blobs 3/2,610행,
+  test+demo 11/assert 0, legacy execution 11/report-only 9,
+  golden 13/bit-exact 1, PDF 8/215 pages/clipping 4,
+  images 8/stale 2, public data 0을 evidence summary로 고정했다.
+- 44/44 machine checks가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_REVIEW.md`,
+  `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_MATRIX.json`.
+- 기계 gate:
+  `PASS_P058_FOUR_AXIS_CONFORMANCE`.
+- 다음은 Step 32.3 후속 phase carry-forward와 blocker를 분리한다.
