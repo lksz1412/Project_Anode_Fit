@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  251 documents, 50,368 lines.
+  254 documents, 50,578 lines.
 - Latest observation:
-  `Codex/results/PHASE_057AL_V1024_R1_R3_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057AM_V1024_HANDOVER_MERGE_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,15 +36,14 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.8G:
-v1.0.24.1 handover·index·merge readiness 3문건 210행을
-전문 검독한다.
+Phase 057 Step 19.8H:
+v1.0.24.1 Markdown code guide 1문건 374행을 전문 검독한다.
 활성 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1024-v1025_2-read-map.md`.
-완료 Step 19.8A–F:
-v24.1 archive부터 R1–R3까지 21문건 1,496행 전량 `READ`.
+완료 Step 19.8A–G:
+v24.1 archive부터 handover·merge까지 24문건 1,706행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057AL_V1024_R1_R3_OBSERVATIONS.md`.
+`Codex/results/PHASE_057AM_V1024_HANDOVER_MERGE_OBSERVATIONS.md`.
 
 ## Resume Gate
 
