@@ -239,6 +239,18 @@
   `Codex/results/PHASE_058_V1013_PATCH_REVIEW.md`,
   `Codex/results/PHASE_058_V1013_PATCH_ADJUDICATION.json`
   (`PASS_P058_V1013_PATCH_ADJUDICATION`, 87/87 checks).
+- Phase 058 v1.0.13 explanation closure:
+  Ch1의 50 pages에는 실제 ideal-core 유도가 있지만
+  physics→material topology→nonequilibrium→observation→public fit
+  사슬은 닫히지 않았다. Ch1 code mentions 215회 중 넓은 구현
+  경계 밖이 129회라 theory-only 원칙을 위반하고, Ch2는 0회다.
+  저온·유한전류 관측은 정성 기작만 있으며 local-potential barrier,
+  doped high-voltage LCO, silicon/composite, 공개 data fit과
+  uncertainty는 미폐쇄 또는 부재다.
+- Phase 058 v1.0.13 closure evidence:
+  `Codex/results/PHASE_058_V1013_CLOSURE_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_CLOSURE_AUDIT.json`
+  (`PASS_P058_V1013_EXPLANATION_CLOSURE`, 84/84 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -261,13 +273,13 @@
 
 ## Next Exact Step
 
-Phase 058 Step 31.4:
-v1.0.13의 50-page급 상세성이 실제 설명 폐쇄인지, 반복 가정과
-LCO·finite-current placeholder가 분량을 대신했는지 문단 단위로
-판정한다.
+Phase 058 Step 32.1:
+v1.0.10–v1.0.13의 모든 theory claim을 `PRESERVE`, `CORRECT`,
+`SUPERSEDE`, `EMPIRICAL_ONLY`, `THEORY_ONLY`, `REJECT`,
+`UNVERIFIED`로 종합 분류한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.3.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -307,6 +319,10 @@ v1.0.12→v1.0.13 exact patch와 30개 callable을 대조해 세 메서드와
 LCO class/default data의 실제 변화를 분리하고, scalar·direction
 수정은 보존하되 empirical entropy 해석과 미검증 LCO 할당은
 기각·강등. 87/87 patch gate 통과.
+v1.0.13 Ch1 50쪽을 20개 closure dimension으로 판정해 실제
+pedagogical depth와 물리 폐쇄를 분리. Ch1 code mention 215회,
+넓은 구현 경계 밖 129회, 공개 dataset/fit/Si path 0을 확인하고
+84/84 closure gate 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

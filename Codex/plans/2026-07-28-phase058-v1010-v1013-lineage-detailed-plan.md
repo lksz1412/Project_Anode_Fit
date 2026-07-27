@@ -767,3 +767,46 @@ lineage report를 기계 검증한다.
 - 다음은 Step 31.4 50-page 상세성이 실제 설명 폐쇄인지, 반복
   가정과 LCO·finite-current placeholder가 분량을 대체했는지
   문단 단위로 판정한다.
+
+### 2026-07-28 — Step 31.4
+
+- v1.0.13 Ch1은 2,934 source lines/50 PDF pages/51 heading
+  blocks/111 equation labels이고, Part 0 501행, graphite operational
+  spine 1,018행, LCO theory 795행으로 실제 유도량이 있음을
+  확인했다.
+- ideal partition→logistic 사슬, 방향 contract, `nRT/F` 폭,
+  LCO logistic 재사용의 네 반복 cluster를 분리했다. 반복은
+  pedagogical 가치가 있지만 nonideal phase topology, local barrier,
+  material validation을 닫지 않는다.
+- Ch1의 코드 식별자는 215회/31 heading blocks다. 구현 경계를
+  2630–2852행으로 넉넉히 인정해도 129회/28 heading blocks가
+  밖에 남아 theory-only 분리 원칙을 위반한다. Ch2는 코드
+  식별자 0회다.
+- 이상 grand-canonical, 보존식, 부호 좌표, causal relaxation
+  출발점과 Sommerfeld endpoint는 보존 대상으로 판정했다.
+- convexified nonideal equilibrium, common-host multi-transition
+  topology, empirical width, persistent hysteresis와 local-state
+  barrier는 수정·재유도 대상으로 판정했다.
+- 저온·유한전류 peak suppression/broadening은 activated lag와
+  평형 폭의 경쟁이라는 정성 기작만 있고, default rate response,
+  local potential barrier, 조건 matrix와 데이터 fit이 없어
+  `THEORY_ONLY`다.
+- LCO three-transition/전자항은 generic kernel과 일부 endpoint
+  물리는 있으나 \(\Omega\) 미배정, composition gate 현상학,
+  \(T^2\) 미구현과 Tier-C default로 미검증이다.
+- 약 4.55 V transition은 원고 자체에서 범위 밖이고 도핑은
+  \(\Omega\) 저하+중심 shift로만 표현돼 high-voltage doped LCO
+  화학을 닫지 못했다.
+- silicon과 graphite–silicon composite theory/code path,
+  공개 experimental dataset, fit result와 optimizer state는
+  모두 0이다.
+- 20개 closure dimension을 처분했고 기계 검산 84/84가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_V1013_CLOSURE_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_CLOSURE_AUDIT.json`.
+- 기계 gate:
+  `PASS_P058_V1013_EXPLANATION_CLOSURE`.
+- 판정:
+  `V1013_HAS_REAL_PEDAGOGICAL_DEPTH_BUT_50_PAGES_DO_NOT_CLOSE_THE_PHYSICS_CHEMISTRY_OBSERVATION_OR_VALIDATION_CHAIN`.
+- Step 31은 완료됐다. 다음은 Step 32.1 모든 theory claim을
+  7개 결정 상태로 종합 분류한다.
