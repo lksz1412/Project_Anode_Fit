@@ -1,0 +1,146 @@
+{
+  "schema_version": "phase058-v1010-heat-lco-validation-v1",
+  "sources": {
+    "chapter_1": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+    "chapter_1_sha256": "dc53b0df2033ea536bdbcb119b0047be40cad1a033c3c283c878d895fa91de5c",
+    "chapter_2": "Claude/docs/v1.0.10/graphite_ica_ch2_v1.0.10.tex",
+    "chapter_2_sha256": "e7d3b6919f7f20e7a0083048aeb101d96b69908fbc55b2a8542b76a043ef322e",
+    "code": "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py",
+    "code_sha256": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b"
+  },
+  "source_evidence": {
+    "weighted_entropy_line": 471,
+    "reversible_heat_line": 645,
+    "electronic_gate_line": 1014,
+    "t_squared_line": 1060,
+    "code_config_line": 573,
+    "code_irreversible_line": 598,
+    "code_frozen_tref_line": 670
+  },
+  "entropy_coefficient_cases": [
+    {
+      "mode": "n_factor",
+      "parameter": 1.0,
+      "temperature_k": 298.15,
+      "xi": 0.8,
+      "voltage_v": 0.12090970555595462,
+      "independent_dudt_v_per_k": -4.637351590039102e-05,
+      "implementation_dudt_v_per_k": -4.637351590039102e-05,
+      "absolute_error_v_per_k": 0.0,
+      "implementation_to_independent": 1.0
+    },
+    {
+      "mode": "n_factor",
+      "parameter": 2.0,
+      "temperature_k": 298.15,
+      "xi": 0.8,
+      "voltage_v": 0.15652532394810142,
+      "independent_dudt_v_per_k": 7.308185351817946e-05,
+      "implementation_dudt_v_per_k": -4.637351590039102e-05,
+      "absolute_error_v_per_k": 0.00011945536941857048,
+      "implementation_to_independent": -0.6345421423781402
+    },
+    {
+      "mode": "constant_w",
+      "parameter": 0.04,
+      "temperature_k": 298.15,
+      "xi": 0.8,
+      "voltage_v": 0.14074586160860347,
+      "independent_dudt_v_per_k": -0.0001658288853189615,
+      "implementation_dudt_v_per_k": -4.637351590039102e-05,
+      "absolute_error_v_per_k": 0.00011945536941857048,
+      "implementation_to_independent": 0.27964679260307673
+    }
+  ],
+  "heat_sign_and_units": {
+    "reversible_identity": "q_rev=-I*T*dUoc/dT",
+    "units": "A*K*V/K=W",
+    "positive_heat_convention": "q_dot>0 means heat generation",
+    "positive_discharge_current_required": true,
+    "irreversible_positive_example_w": 1.0,
+    "irreversible_negative_example_w": -1.0,
+    "verdict": "THE_REVERSIBLE_IDENTITY_IS_DIMENSIONALLY_VALID_UNDER_ITS_SIGN CONVENTION; THE_IRREVERSIBLE_HELPER_DOES_NOT_ENFORCE_ENTROPY_PRODUCTION"
+  },
+  "electronic_entropy_gate": {
+    "temperature_k": 298.15,
+    "g_max_states_per_ev_atom": 13.0,
+    "x_mit": 0.5,
+    "dx_mit": 0.05,
+    "gate_center_j_per_mol_k": -45.678261885287384,
+    "integral_dse_dx_j_per_mol_k": -9.134822898763199,
+    "analytic_endpoint_entropy_change_j_per_mol_k": -9.135652377057477,
+    "integration_absolute_error_j_per_mol_k": 0.000829478294278374,
+    "integrated_change_over_r": -1.0987277963390905,
+    "stated_0p18_kb_anchor_j_per_mol_k": 1.4965199999999999,
+    "integrated_magnitude_to_0p18_anchor_ratio": 6.104043312994948,
+    "verdict": "THE_LOGISTIC_GATE_INTEGRATES_TO_THE_FULL_GMAX_ENDPOINT_CHANGE; THE_0P18_KB_ANCHOR_CANNOT_BE_DECLARED_INDEPENDENT_OF_THIS_SUM_RULE"
+  },
+  "electronic_temperature_dependence": {
+    "t_ref_k": 298.15,
+    "t_high_k": 328.15,
+    "dse_ref_j_per_mol_k": -45.678261885287384,
+    "electronic_slope_a_e_j_per_mol_k2": -0.15320564107089515,
+    "code_u_ref_v": 3.880006490323901,
+    "code_u_high_v": 3.8645600700869873,
+    "integrated_t_squared_u_high_v": 3.8638455285677673,
+    "code_minus_t_squared_v": 0.0007145415192200133,
+    "code_curvature_d2u_dt2": 0.0,
+    "theory_curvature_d2u_dt2_v_per_k2": -1.5878700427102156e-06,
+    "verdict": "THEORY_T_SQUARED_TERM_IS_NOT_IMPLEMENTED"
+  },
+  "lco_default_scope": {
+    "transition_count": 3,
+    "listed_u_values_v": [
+      3.93,
+      3.88,
+      4.05
+    ],
+    "maximum_listed_u_v": 4.05,
+    "transitions_with_omega": 0,
+    "transitions_with_gamma": 0,
+    "transitions_with_activation_enthalpy": 0,
+    "transitions_with_dopant_state": 0,
+    "maximum_abs_dqdv_difference_i0_i1": 0.0,
+    "covers_above_4p5_v": false,
+    "verdict": "DEFAULT_LCO_IS_A_RATE_INVARIANT_THREE_BELL_PLACEHOLDER_WITHOUT DOPING_OR_HIGH_VOLTAGE_CLOSURE"
+  },
+  "claim_dispositions": [
+    {
+      "claim": "The ideal n=1 configurational entropy coefficient follows from implicit differentiation.",
+      "disposition": "PRESERVE_IN_IDEAL_N1_LIMIT"
+    },
+    {
+      "claim": "The same R/F logit term remains valid for arbitrary n or constant empirical w.",
+      "disposition": "REJECT_WIDTH_ENTROPY_CONTRACT_MISMATCH"
+    },
+    {
+      "claim": "q_rev=-I*T*dU/dT.",
+      "disposition": "PRESERVE_WITH_EXPLICIT_CURRENT_AND_HEAT_SIGN"
+    },
+    {
+      "claim": "The irreversible heat helper always returns nonnegative dissipation.",
+      "disposition": "REJECT_NO_SIGN_OR_ENTROPY_PRODUCTION_GUARD"
+    },
+    {
+      "claim": "The LCO electronic entropy gate is quantitatively anchored.",
+      "disposition": "EMPIRICAL_ONLY_SUM_RULE_CONFLICT"
+    },
+    {
+      "claim": "The code implements the documented T-squared electronic shift.",
+      "disposition": "REJECT_FROZEN_TREF_LINEAR_ONLY"
+    },
+    {
+      "claim": "The default LCO model covers doped high-voltage finite-rate behavior.",
+      "disposition": "REJECT_PLACEHOLDER_ONLY"
+    }
+  ],
+  "validation": {
+    "ideal_n1_entropy_error_lt_1e_15": true,
+    "n2_entropy_mismatch_detected": true,
+    "constant_w_entropy_mismatch_detected": true,
+    "electronic_gate_integral_matches_endpoint": true,
+    "irreversible_negative_case_detected": true,
+    "t_squared_missing_detected": true,
+    "lco_rate_invariance_detected": true
+  }
+}

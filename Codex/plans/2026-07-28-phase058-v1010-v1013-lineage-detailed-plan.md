@@ -496,3 +496,33 @@ lineage report를 기계 검증한다.
   `REDUCED_RELAXATION_PROMISING_LEGACY_CLOSURE_REJECTED`.
 - 다음은 Step 29.3 entropy coefficient, reversible/irreversible heat와
   LCO extension의 부호·단위·물리 역할 재검산이다.
+
+### 2026-07-28 — Step 29.3
+
+- \(\partial U/\partial T=\Delta S/F\), implicit entropy weighting과
+  \(\dot Q_{\rm rev}=-IT\,\partial U/\partial T\)를 reaction/current/
+  heat sign을 명시하는 조건으로 보존했다.
+- entropy code의 \((R/F)\logit\xi\) 항은 ideal \(n=1\)에서만
+  독립 미분과 일치했다. \(n=2\)와 constant empirical \(w\)에서는
+  각각 \(1.1946\times10^{-4}\) V/K 오차가 생겨 width–entropy
+  contract가 불일치했다.
+- irreversible heat helper는 입력에 따라 \(-1\) W도 반환해
+  docstring의 \(\ge0\) invariant를 보장하지 않는다.
+- Sommerfeld functional form은 조건부 보존했지만 composition
+  logistic DOS gate는 empirical assumption으로 낮췄다.
+- gate center \(-45.678\) J/(mol K)는 수학적으로 재현됐으나 조성
+  적분이 \(-9.135\) J/(mol K) \(=-1.099R\)라 문건의
+  \(0.18k_B\) anchor보다 6.10배 컸다. derivative sum rule 때문에
+  두 수치를 독립 척도로 분리한 정당화를 기각했다.
+- 문건의 electronic \(T^2\) 식은 맞지만 code가 298.15 K offset으로
+  동결해 곡률 0이다. 328.15 K에서 이론 적분과 0.7145 mV 차이가 났다.
+- default LCO는 center 3.93/3.88/4.05 V의 rate-invariant three-bell
+  placeholder다. \(\Omega,\gamma,\Delta H_a\), dopant/oxygen/surface
+  state와 4.5 V 이상 closure가 전부 없다.
+- 근거:
+  `Codex/results/PHASE_058_V1010_HEAT_LCO_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_HEAT_LCO_VALIDATION.json`.
+- 판정:
+  `HEAT_IDENTITY_PRESERVED_ENTROPY_AND_LCO_CLOSURE_REJECTED`.
+- 다음은 Step 29.4 과거 problem/integrity report의 상충 진단을
+  actual source/output으로 재판정한다.

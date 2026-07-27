@@ -155,6 +155,15 @@
 - Phase 058 kinetic evidence:
   `Codex/results/PHASE_058_V1010_EQUILIBRIUM_KINETICS_DERIVATION.md`,
   `Codex/results/PHASE_058_V1010_KINETICS_VALIDATION.json`.
+- Phase 058 v1.0.10 heat/LCO derivation:
+  the reversible-heat identity is retained under an explicit sign
+  contract. The entropy formula matches only ideal n=1; electronic gate
+  depth conflicts with its integral anchor; documented T-squared
+  curvature is absent in code. Default LCO is a rate-invariant
+  3.88–4.05 V placeholder without dopant/high-voltage state.
+- Phase 058 heat/LCO evidence:
+  `Codex/results/PHASE_058_V1010_HEAT_LCO_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_HEAT_LCO_VALIDATION.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -177,12 +186,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 29.3:
-v1.0.10 entropy coefficient, reversible/irreversible heat와 LCO
-extension의 부호·단위·물리 역할을 독립 재검산한다.
+Phase 058 Step 29.4:
+v1.0.10 과거 problem report와 integrity report의 상충 진단을
+actual source/output으로 재판정한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.2.
+27.1–27.5, 28.1–28.3, 29.1–29.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -202,6 +211,8 @@ v1.0.10 좌표·보존식·logistic ICA의 독립 재유도와 unit/direction
 contract 판정 저장.
 v1.0.10 ideal/regular-solution 평형, causal relaxation,
 hysteresis와 barrier closure의 독립 극한·수치 판정 저장.
+v1.0.10 entropy weighting, reversible/irreversible heat와 LCO
+electronic/high-voltage scope의 독립 단위·sum-rule 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
