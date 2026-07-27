@@ -65,6 +65,22 @@ host 이중합 몫뿐). 검사 창은 전 전이를 덮게 잡고(모든 $U_j^\m
 ($G2$$\cdot$$G3$), 두 미결 공백을 코드 경계로 보존한다 --- 대응 지도(\S\ref{sec:si-map})가 문건에서
 한 판정이 코드에서도 그대로 판정으로 남는다.
 
+\subsection{두-상 정칙용액 종의 수치 평가 --- 요구명세}\label{ssec:code-twophase}
+Ch3 식~\eqref{eq:sifr-twophase} 의 두-상 평형 종은 \emph{채택 커널이 아니지만}(\S\ref{ssec:si-fr} 지위 상자),
+장차 구현할 경우를 위해 수치 요구명세만 여기에 남긴다 --- 식 자체를 그대로 이산화하면 틀린 곡선이 나오기
+때문이다. 세 항목 전부 로지스틱 계열에는 해당하지 않는다(해석함수 하나라 이산화가 없다).
+\begin{enumerate}[label=(\arabic*),leftmargin=2.0em,itemsep=3pt]
+\item \emph{고용체 항을 조성격자 합으로 계산하지 말 것.} broadening 폭이 이웃 격자점의 전위 간격보다
+좁으면 합이 매끄러운 종이 아니라 빗살이 된다 --- 흑연 최급준 전이의 관측 폭이 정확히 그 영역이다.
+격자를 조밀화하는 것이 아니라 식~\eqref{eq:sifr-twophase} 처럼 \emph{적분을 분해}하는 것이 해법이며,
+병진불변 핵에 대해 그 분해는 항등이므로 정확도 손실이 없다.
+\item \emph{혼화갭 항은 닫힌 형태로 더할 것.} 이를 전위 빈에 넣으면 공존 전위가 빈 폭의 절반까지 밀려
+좁은 폭에서 정점이 크게 틀어진다.
+\item \emph{조성 표본은 기하 간격으로 잡을 것.} 희박 극한에서 전위가 조성의 로그로 발산하므로, 조성을
+등간격으로 잡으면 꼬리에서 전위 간격이 벌어져 (1) 과 같은 빗살이 생긴다.
+\end{enumerate}
+재도입 시 새 게이트가 필요하다는 원칙(\S\ref{ssec:si-fr})은 그대로다.
+
 % 자산(comp_R5 W3): [V22-R5-20 f_Si=0 bit-exact 계약 eq:si-code-bitexact(=eq:blend-balance 검산 ii 코드판)]
 %   [V22-R5-21 용량 배분·공통 V_n 합성 요구 ssec:code-synth] [V22-R5-22 si_case 셋 구조·SiOₓ 공백 계승 ssec:code-caseset]
 %   [V22-R5-23 게이트 G1/G2/G3 codebox] [V22-R5-24 GS-1/GS-2 코드 경계=문건 공백 1:1 warnbox]
