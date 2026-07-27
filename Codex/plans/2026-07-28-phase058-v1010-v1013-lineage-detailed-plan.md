@@ -267,3 +267,20 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_THEORY_SOURCE_REVIEW.md`에 저장했다.
 - 아직 `PASS_P058_LINEAGE_A`가 아니다. Step 26.4의 symbol/definition
   충돌 전수화, Step 26.5 exact diff, Steps 27–32가 남았다.
+
+### 2026-07-28 — Steps 26.4–26.5, 27.1
+
+- 32개 core physical symbol에 quantity, unit, sign/role collision,
+  current disposition과 source evidence를 연결했다.
+- 323개 displayed equation environment의 category/source index와
+  core symbol contract를 함께 사용해 Step 29–31 독립 유도의 대기열을
+  닫았다. 이 단계의 `COMPLETE`는 물리 채택 판정이 아니다.
+- Ch1/Ch2의 v1.0.10→12, v1.0.12→13 exact unified diff 4개와
+  equation-label 변화표를 생성했다.
+- v1.0.10과 v1.0.11 theory source가 동일 blob임을 확인해 새 검증으로
+  중복 계상하지 않았다.
+- production code 3/3 blob, 2,610/2,610행을 전문 검독하고 AST API,
+  call graph, defaults와 exact code diff를 저장했다.
+- text coverage는 9/27 blobs, 12,142/13,757 lines COMPLETE다.
+- 아직 `PASS_P058_LINEAGE_A`가 아니다. tests 5개, demos 6개,
+  guides/handover/results 4개, PDF/image/NPZ와 독립 probes가 남았다.

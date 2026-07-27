@@ -1,0 +1,56 @@
+--- Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py
++++ Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py
+@@ -1,9 +1,10 @@
+ # -*- coding: utf-8 -*-
+ # ============================================================================
+-# ★ Anode_Fit  release 버전 = 1.0.10  — 문건 Ch1 1.0.10(graphite_ica_ch1_v1.0.10) 과 동일 버전·matched
+-#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10. 코드·문건 버전 통일.)
++# ★ Anode_Fit  release 버전 = 1.0.12  — 문건 Ch1/Ch2 1.0.12 와 동일 버전·matched
++#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12. 코드·문건 버전 통일.
++#    1.0.12 = Fable 전수 재검 반영판 — 코드 물리 로직 무변경(감사 결함 0), 헤더·라벨 위생만.)
+ # ----------------------------------------------------------------------------
+-# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.10 (v11_final 기반, 2026-07-01)
++# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.12 (v11_final 기반 계보, 2026-07-02)
+ #   [1.0.10 변경] use_w_eff 경로 제거: ξ_eq 폭·분모 w 불일치로 면적보존 깨짐(버그) — w=자유 피팅 파라미터만.
+ #   [폭 정합 주의] 전이 폭 w=nRT/F (_n_factor: 'n' 우선 → 없으면 'w' 역산 → 없으면 n=1).
+ #     GRAPHITE_STAGING_LIT 는 'n':1.0 보유 → 기본 폭=RT/F≈25.7mV(298K); 'w' 폴백(0.012 등)은
+@@ -40,7 +41,7 @@
+ #     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (func_U_j)
+ #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:hysdU)
+ #     · 분기 중심   U_j^d = U_j + ½·σ_d·h_η·γ·ΔU_hys                (eq:hyscenter)
+-#     · 폭          w = nRT/F  (옵션 w^eff = (RT/F)(1−Ω/2RT))       (func_w/eq:weff)
++#     · 폭          w = nRT/F  — 두-상 전이에선 현상학적 자유 피팅 폭  (func_w)
+ #     · 평형 점유   ξ_eq = logistic[ s(V_n−U)/w ]                   (func_ksi_eq)
+ #     · 평형 peak   Q_j·ξ_eq(1−ξ_eq)/w  (방향 불변)                 (eq:eqpeak/eq:dxidV)
+ #     · 전달계수    χ_d = χ(방전) / 1−χ(충전)  (callable 교체 가능)  (eq:chisum)
+@@ -615,7 +616,8 @@
+ 
+ 
+ # ===== LCO 양극 MSMR 시연 데이터셋 — Ch1 sec:lco ==============================
+-#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d. 방전 σ_d=+1(LCO 리튬화)·
++#   MSMR 동형: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔+σ_d(진행률↔진행률 pairing —
++#   원계열 f=F/RT>0 의 재모수화, Ch1 eq:lco-msmrmap). 방전 σ_d=+1(LCO 리튬화)·
+ #   부호 골격 흑연 동일(Ch1 sec:lco-map L304-307). 전자항(MIT)은 'electronic' 전이에
+ #   x_MIT 창의 ΔS_e 골(eq:dSegate)로 부여.
+ #   ★[출처 라벨] tier-C 시연 기본값 — round-trip 피팅 前 placeholder(실측 신뢰값 아님,
+@@ -641,11 +643,18 @@
+ 
+ 
+ class LCOCathodeDQDV(GraphiteAnodeDischargeDQDV):
+-    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j, f↔−σ_d).
++    """LCO 양극 dQ/dV — MSMR 동형(Ch1 sec:lco: X_j↔Q_j, U_j⁰↔U_j^d, ω_j↔w_j,
++    f↔+σ_d — 진행률↔진행률 pairing, 원계열 f=F/RT>0 의 재모수화).
+ 
+     흑연 음극 모델을 그대로 상속한다 — 곡선 골격(분극·히스 분기·평형/꼬리·면적보존
+     DC=1)은 부호까지 동일하다(Ch1 sec:lco-map: 방전 σ_d=+1 은 LCO 엔 리튬화이며
+-    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다).
++    ∂U_j/∂T=ΔS_rxn/F 의 부호 관계가 흑연과 같으므로 σ_d 를 뒤집지 않는다 — 단
++    이는 평형·∂U/∂T 경로 한정이다. 평형 종은 방향 불변이나, 방향 의존 작용처
++    (분극·분기·꼬리)에 LCO 데이터를 걸 때는 셀 라벨이 아니라 탈리튬화 여부로 s 를
++    준다(충전 곡선↦s=+1 — Ch1 sec:lco-peak 방향 슬롯 한정). 현재 LCO_MSMR_LIT 는
++    Omega·dH_a 미배정으로 분기·꼬리 비활성이라 실질 방향 의존은 분극뿐이고,
++    _direction_to_sigma 의 전극 인지 확장(전극 타입→탈리튬화 부호 환산)은 P4
++    코드개정 과제로 남긴다).
+ 
+     유일한 확장 = 금속-절연체 전이(MIT)의 전자 엔트로피 항을 seam _effective_dS_rxn
+     한 곳에서 'electronic' 전이의 ΔS_rxn 에 가산하는 것뿐이다(Ch1 sec:lco-code). 이

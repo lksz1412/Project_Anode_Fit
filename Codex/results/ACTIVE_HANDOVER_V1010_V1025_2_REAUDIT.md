@@ -65,6 +65,16 @@
   `Codex/results/PHASE_058_THEORY_SOURCE_REVIEW.md`.
 - Phase 058 theory equation/claim seed matrix:
   `Codex/results/PHASE_058_THEORY_EQUATION_CLAIM_MATRIX.json`.
+- Phase 058 core symbol contract:
+  32 symbols with quantity/unit/role collision and evidence.
+- Phase 058 exact theory diff:
+  4 version/chapter pairs, equation-label lineage included.
+- Phase 058 production code coverage:
+  3/3 unique blobs, 2,610/2,610 lines `COMPLETE`.
+- Phase 058 code review:
+  `Codex/results/PHASE_058_CODE_SOURCE_REVIEW.md`.
+- Phase 058 code behavior seed matrix:
+  `Codex/results/PHASE_058_CODE_BEHAVIOR_MATRIX.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -87,15 +97,17 @@
 
 ## Next Exact Step
 
-Phase 058 Step 26.4:
-6개 theory source의 변수 정의, 단위, 부호, 미분 방향과 동일 symbol의
-역할 충돌을 전수화한다. 이어 Step 26.5에서 v1.0.10→v1.0.12→v1.0.13의
-exact diff를 equation/claim 단위로 연결한다.
+Phase 058 Step 27.2:
+5개 unique test와 6개 demo blob을 전문 검독해 assertion, tolerance,
+실행 branch, 미검사 영역과 물리 주장 범위를 기록한다. 다음으로 guide,
+handover/result 4개를 포함한 나머지 text coverage를 닫는다.
 완료:
-Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.3.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
-environment의 source 위치와 1차 category index 작성, 초기 물리 검토와
-theory coverage 갱신.
+environment의 source 위치와 1차 category index 작성, 32 core symbol
+contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
+AST API/call/default 및 exact diff와 초기 code review 작성. Phase 058
+text coverage 9/27 blobs, 12,142/13,757 lines.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

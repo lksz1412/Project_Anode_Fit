@@ -1,0 +1,5295 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "status": "CODE_SOURCE_READ_COMPLETE; TEST_AND_PROBE_ADJUDICATION_PENDING",
+  "document_count": 3,
+  "total_lines": 2610,
+  "documents": [
+    {
+      "path": "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py",
+      "sha256": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b",
+      "line_count": 851,
+      "read_coverage": [
+        [
+          1,
+          851
+        ]
+      ],
+      "read_status": "COMPLETE",
+      "module_assignments": [
+        {
+          "name": "R",
+          "line": 65,
+          "value": 8.314
+        },
+        {
+          "name": "F",
+          "line": 66,
+          "value": 96485.0
+        },
+        {
+          "name": "kB",
+          "line": 67,
+          "value": 1.380649e-23
+        },
+        {
+          "name": "h",
+          "line": 68,
+          "value": 6.62607015e-34
+        },
+        {
+          "name": "EV_TO_J",
+          "line": 167,
+          "value": 1.602176634e-19
+        },
+        {
+          "name": "LCO_MSMR_LIT",
+          "line": 623,
+          "value": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -377400.0,
+              "dS_rxn": 6.0,
+              "n": 1.0
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -389174.0,
+              "dS_rxn": -4.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.5,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.5,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        {
+          "name": "GRAPHITE_STAGING_LIT",
+          "line": 680,
+          "value": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 214,
+          "line_end": 614,
+          "bases": [],
+          "class_assignments": [],
+          "methods": [
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+              "name": "__init__",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 243,
+              "line_end": 281,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transitions",
+                  "default": null
+                },
+                {
+                  "name": "x",
+                  "default": 0.5
+                },
+                {
+                  "name": "Rn",
+                  "default": 0.0
+                },
+                {
+                  "name": "Cbg",
+                  "default": 0.0
+                },
+                {
+                  "name": "chi",
+                  "default": null
+                },
+                {
+                  "name": "chi_split",
+                  "default": "func_chi_d"
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": true
+                },
+                {
+                  "name": "z_cut",
+                  "default": 4.357
+                },
+                {
+                  "name": "A_cap_RT",
+                  "default": 4.0
+                },
+                {
+                  "name": "grid_pad_lo",
+                  "default": 0.15
+                },
+                {
+                  "name": "grid_pad_hi",
+                  "default": 0.15
+                },
+                {
+                  "name": "n_work_min",
+                  "default": 2048
+                },
+                {
+                  "name": "min_lag_grid_steps",
+                  "default": 2.0
+                },
+                {
+                  "name": "v_span_floor",
+                  "default": 1e-06
+                },
+                {
+                  "name": "seed_T",
+                  "default": 298.15
+                },
+                {
+                  "name": "seed_I",
+                  "default": 0.1
+                },
+                {
+                  "name": "seed_Q_cell",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "TypeError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "bool",
+                "callable",
+                "int",
+                "self._build_seed_L_V"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+              "name": "_build_seed_L_V",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 284,
+              "line_end": 291,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "np.asarray",
+                "reshape",
+                "seeds.append",
+                "self._n_factor",
+                "self._resolve_lag_length"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+              "name": "_n_factor",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 294,
+              "line_end": 300,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+              "name": "_width",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 303,
+              "line_end": 306,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_w",
+                "self._n_factor"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+              "name": "_chi_d",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 309,
+              "line_end": 312,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "self.chi_split"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+              "name": "_chi_and_dH_eff",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 315,
+              "line_end": 322,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "dH_a",
+                  "default": null
+                },
+                {
+                  "name": "Omega",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "bool",
+                "float",
+                "func_dH_a_eff",
+                "self._chi_d"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+              "name": "_resolve_lag_length",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 325,
+              "line_end": 369,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transition",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "n_j",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "abs",
+                "float",
+                "func_L_q",
+                "min",
+                "np.isfinite",
+                "self._chi_and_dH_eff",
+                "transition.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+              "name": "equilibrium",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 372,
+              "line_end": 389,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.full_like",
+                "np.ones_like",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+              "name": "dqdv",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 392,
+              "line_end": 502,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "s",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_causal_lowpass",
+                "_finite_nonneg",
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_branch",
+                "func_U_j",
+                "func_ksi_eq",
+                "max",
+                "np.all",
+                "np.any",
+                "np.argsort",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.full_like",
+                "np.interp",
+                "np.isfinite",
+                "np.linspace",
+                "np.max",
+                "np.mean",
+                "np.min",
+                "np.ones",
+                "np.ones_like",
+                "reshape",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._resolve_lag_length",
+                "self._width",
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+              "name": "curve",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 505,
+              "line_end": 530,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "direction",
+                  "default": "discharge"
+                },
+                {
+                  "name": "c_rate",
+                  "default": 0.0
+                },
+                {
+                  "name": "Q_cell",
+                  "default": 1.0
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "_finite_nonneg",
+                "_finite_pos",
+                "self._direction_to_sigma",
+                "self.dqdv"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 533,
+              "line_end": 542,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": []
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+              "name": "entropy_coefficient",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 544,
+              "line_end": 578,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.clip",
+                "np.log",
+                "np.maximum",
+                "np.where",
+                "np.zeros_like",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+              "name": "reversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 580,
+              "line_end": 588,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "self.entropy_coefficient"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+              "name": "irreversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 590,
+              "line_end": 598,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "U_oc",
+                  "default": null
+                },
+                {
+                  "name": "V",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "np.asarray"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+              "name": "_direction_to_sigma",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 601,
+              "line_end": 614,
+              "arguments": [
+                {
+                  "name": "direction",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "direction.strip",
+                "isinstance",
+                "lower"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 643,
+          "line_end": 673,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "class_assignments": [],
+          "methods": [
+            {
+              "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "LCOCathodeDQDV",
+              "line_start": 657,
+              "line_end": 673,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_dSe_molar",
+                "tr.get"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "line_start": 74,
+          "line_end": 75,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "line_start": 78,
+          "line_end": 79,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "dH_rxn",
+              "default": null
+            },
+            {
+              "name": "dS_rxn",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "name": "func_U_j_hys",
+          "owner": null,
+          "line_start": 82,
+          "line_end": 91,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            },
+            {
+              "name": "last_eta",
+              "default": 1.0
+            },
+            {
+              "name": "last_rest",
+              "default": 600
+            }
+          ],
+          "calls": [
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "line_start": 94,
+          "line_end": 97,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "U",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ]
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "line_start": 100,
+          "line_end": 107,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "dS_a",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "A",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.exp",
+            "np.log"
+          ]
+        },
+        {
+          "qualified_name": "_causal_lowpass",
+          "name": "_causal_lowpass",
+          "owner": null,
+          "line_start": 110,
+          "line_end": 128,
+          "arguments": [
+            {
+              "name": "source_signal",
+              "default": null
+            },
+            {
+              "name": "grid_step",
+              "default": null
+            },
+            {
+              "name": "lag_length",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "lfilter",
+            "np.array",
+            "np.empty_like",
+            "np.exp",
+            "np.isfinite",
+            "range",
+            "source_signal.copy"
+          ]
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "line_start": 133,
+          "line_end": 140,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "line_start": 143,
+          "line_end": 148,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "h_eta",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ]
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "line_start": 152,
+          "line_end": 155,
+          "arguments": [
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "chi_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float"
+          ]
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "line_start": 158,
+          "line_end": 163,
+          "arguments": [
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "line_start": 170,
+          "line_end": 185,
+          "arguments": [
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "g_max_eV",
+              "default": null
+            },
+            {
+              "name": "x_MIT",
+              "default": null
+            },
+            {
+              "name": "dx_MIT",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ]
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "line_start": 189,
+          "line_end": 194,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "line_start": 197,
+          "line_end": 202,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "line_start": 205,
+          "line_end": 210,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 243,
+          "line_end": 281,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transitions",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": 0.5
+            },
+            {
+              "name": "Rn",
+              "default": 0.0
+            },
+            {
+              "name": "Cbg",
+              "default": 0.0
+            },
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "chi_split",
+              "default": "func_chi_d"
+            },
+            {
+              "name": "use_dH_eff",
+              "default": true
+            },
+            {
+              "name": "z_cut",
+              "default": 4.357
+            },
+            {
+              "name": "A_cap_RT",
+              "default": 4.0
+            },
+            {
+              "name": "grid_pad_lo",
+              "default": 0.15
+            },
+            {
+              "name": "grid_pad_hi",
+              "default": 0.15
+            },
+            {
+              "name": "n_work_min",
+              "default": 2048
+            },
+            {
+              "name": "min_lag_grid_steps",
+              "default": 2.0
+            },
+            {
+              "name": "v_span_floor",
+              "default": 1e-06
+            },
+            {
+              "name": "seed_T",
+              "default": 298.15
+            },
+            {
+              "name": "seed_I",
+              "default": 0.1
+            },
+            {
+              "name": "seed_Q_cell",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "int",
+            "self._build_seed_L_V"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 284,
+          "line_end": 291,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 294,
+          "line_end": 300,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 303,
+          "line_end": 306,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_w",
+            "self._n_factor"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 309,
+          "line_end": 312,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "self.chi_split"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 315,
+          "line_end": 322,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "use_dH_eff",
+              "default": null
+            }
+          ],
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 325,
+          "line_end": 369,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transition",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "n_j",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 372,
+          "line_end": 389,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 392,
+          "line_end": 502,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_causal_lowpass",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "max",
+            "np.all",
+            "np.any",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.full_like",
+            "np.interp",
+            "np.isfinite",
+            "np.linspace",
+            "np.max",
+            "np.mean",
+            "np.min",
+            "np.ones",
+            "np.ones_like",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 505,
+          "line_end": 530,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "direction",
+              "default": "discharge"
+            },
+            {
+              "name": "c_rate",
+              "default": 0.0
+            },
+            {
+              "name": "Q_cell",
+              "default": 1.0
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            }
+          ],
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 533,
+          "line_end": 542,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 544,
+          "line_end": 578,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 580,
+          "line_end": 588,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "self.entropy_coefficient"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 590,
+          "line_end": 598,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "U_oc",
+              "default": null
+            },
+            {
+              "name": "V",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 601,
+          "line_end": 614,
+          "arguments": [
+            {
+              "name": "direction",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ]
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "line_start": 657,
+          "line_end": 673,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ]
+        }
+      ],
+      "call_counts": {
+        "func_L_q": 1,
+        "func_U_branch": 1,
+        "func_U_j": 3,
+        "func_dH_a_eff": 1,
+        "func_dSe_molar": 1,
+        "func_dU_hys": 1,
+        "func_ksi_eq": 3,
+        "func_w": 2,
+        "self.Cbg": 2,
+        "self._build_seed_L_V": 1,
+        "self._chi_and_dH_eff": 1,
+        "self._chi_d": 1,
+        "self._direction_to_sigma": 1,
+        "self._effective_dS_rxn": 3,
+        "self._n_factor": 5,
+        "self._resolve_lag_length": 2,
+        "self._width": 3,
+        "self.chi_split": 1,
+        "self.dqdv": 1,
+        "self.entropy_coefficient": 1
+      }
+    },
+    {
+      "path": "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py",
+      "sha256": "050a558fd25934886cc059c0890df40e073782e3b71fcb5bf7342a609edfca62",
+      "line_count": 860,
+      "read_coverage": [
+        [
+          1,
+          860
+        ]
+      ],
+      "read_status": "COMPLETE",
+      "module_assignments": [
+        {
+          "name": "R",
+          "line": 66,
+          "value": 8.314
+        },
+        {
+          "name": "F",
+          "line": 67,
+          "value": 96485.0
+        },
+        {
+          "name": "kB",
+          "line": 68,
+          "value": 1.380649e-23
+        },
+        {
+          "name": "h",
+          "line": 69,
+          "value": 6.62607015e-34
+        },
+        {
+          "name": "EV_TO_J",
+          "line": 168,
+          "value": 1.602176634e-19
+        },
+        {
+          "name": "LCO_MSMR_LIT",
+          "line": 625,
+          "value": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -377400.0,
+              "dS_rxn": 6.0,
+              "n": 1.0
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -389174.0,
+              "dS_rxn": -4.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.5,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.5,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        {
+          "name": "GRAPHITE_STAGING_LIT",
+          "line": 689,
+          "value": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 215,
+          "line_end": 615,
+          "bases": [],
+          "class_assignments": [],
+          "methods": [
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+              "name": "__init__",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 244,
+              "line_end": 282,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transitions",
+                  "default": null
+                },
+                {
+                  "name": "x",
+                  "default": 0.5
+                },
+                {
+                  "name": "Rn",
+                  "default": 0.0
+                },
+                {
+                  "name": "Cbg",
+                  "default": 0.0
+                },
+                {
+                  "name": "chi",
+                  "default": null
+                },
+                {
+                  "name": "chi_split",
+                  "default": "func_chi_d"
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": true
+                },
+                {
+                  "name": "z_cut",
+                  "default": 4.357
+                },
+                {
+                  "name": "A_cap_RT",
+                  "default": 4.0
+                },
+                {
+                  "name": "grid_pad_lo",
+                  "default": 0.15
+                },
+                {
+                  "name": "grid_pad_hi",
+                  "default": 0.15
+                },
+                {
+                  "name": "n_work_min",
+                  "default": 2048
+                },
+                {
+                  "name": "min_lag_grid_steps",
+                  "default": 2.0
+                },
+                {
+                  "name": "v_span_floor",
+                  "default": 1e-06
+                },
+                {
+                  "name": "seed_T",
+                  "default": 298.15
+                },
+                {
+                  "name": "seed_I",
+                  "default": 0.1
+                },
+                {
+                  "name": "seed_Q_cell",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "TypeError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "bool",
+                "callable",
+                "int",
+                "self._build_seed_L_V"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+              "name": "_build_seed_L_V",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 285,
+              "line_end": 292,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "np.asarray",
+                "reshape",
+                "seeds.append",
+                "self._n_factor",
+                "self._resolve_lag_length"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+              "name": "_n_factor",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 295,
+              "line_end": 301,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+              "name": "_width",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 304,
+              "line_end": 307,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_w",
+                "self._n_factor"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+              "name": "_chi_d",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 310,
+              "line_end": 313,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "self.chi_split"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+              "name": "_chi_and_dH_eff",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 316,
+              "line_end": 323,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "dH_a",
+                  "default": null
+                },
+                {
+                  "name": "Omega",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "bool",
+                "float",
+                "func_dH_a_eff",
+                "self._chi_d"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+              "name": "_resolve_lag_length",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 326,
+              "line_end": 370,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transition",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "n_j",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "abs",
+                "float",
+                "func_L_q",
+                "min",
+                "np.isfinite",
+                "self._chi_and_dH_eff",
+                "transition.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+              "name": "equilibrium",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 373,
+              "line_end": 390,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.full_like",
+                "np.ones_like",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+              "name": "dqdv",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 393,
+              "line_end": 503,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "s",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_causal_lowpass",
+                "_finite_nonneg",
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_branch",
+                "func_U_j",
+                "func_ksi_eq",
+                "max",
+                "np.all",
+                "np.any",
+                "np.argsort",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.full_like",
+                "np.interp",
+                "np.isfinite",
+                "np.linspace",
+                "np.max",
+                "np.mean",
+                "np.min",
+                "np.ones",
+                "np.ones_like",
+                "reshape",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._resolve_lag_length",
+                "self._width",
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+              "name": "curve",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 506,
+              "line_end": 531,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "direction",
+                  "default": "discharge"
+                },
+                {
+                  "name": "c_rate",
+                  "default": 0.0
+                },
+                {
+                  "name": "Q_cell",
+                  "default": 1.0
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "_finite_nonneg",
+                "_finite_pos",
+                "self._direction_to_sigma",
+                "self.dqdv"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 534,
+              "line_end": 543,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": []
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+              "name": "entropy_coefficient",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 545,
+              "line_end": 579,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.clip",
+                "np.log",
+                "np.maximum",
+                "np.where",
+                "np.zeros_like",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+              "name": "reversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 581,
+              "line_end": 589,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "self.entropy_coefficient"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+              "name": "irreversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 591,
+              "line_end": 599,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "U_oc",
+                  "default": null
+                },
+                {
+                  "name": "V",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "np.asarray"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+              "name": "_direction_to_sigma",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 602,
+              "line_end": 615,
+              "arguments": [
+                {
+                  "name": "direction",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "direction.strip",
+                "isinstance",
+                "lower"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 645,
+          "line_end": 682,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "class_assignments": [],
+          "methods": [
+            {
+              "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "LCOCathodeDQDV",
+              "line_start": 666,
+              "line_end": 682,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_dSe_molar",
+                "tr.get"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "line_start": 75,
+          "line_end": 76,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "line_start": 79,
+          "line_end": 80,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "dH_rxn",
+              "default": null
+            },
+            {
+              "name": "dS_rxn",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "name": "func_U_j_hys",
+          "owner": null,
+          "line_start": 83,
+          "line_end": 92,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            },
+            {
+              "name": "last_eta",
+              "default": 1.0
+            },
+            {
+              "name": "last_rest",
+              "default": 600
+            }
+          ],
+          "calls": [
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "line_start": 95,
+          "line_end": 98,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "U",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ]
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "line_start": 101,
+          "line_end": 108,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "dS_a",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "A",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.exp",
+            "np.log"
+          ]
+        },
+        {
+          "qualified_name": "_causal_lowpass",
+          "name": "_causal_lowpass",
+          "owner": null,
+          "line_start": 111,
+          "line_end": 129,
+          "arguments": [
+            {
+              "name": "source_signal",
+              "default": null
+            },
+            {
+              "name": "grid_step",
+              "default": null
+            },
+            {
+              "name": "lag_length",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "lfilter",
+            "np.array",
+            "np.empty_like",
+            "np.exp",
+            "np.isfinite",
+            "range",
+            "source_signal.copy"
+          ]
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "line_start": 134,
+          "line_end": 141,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "line_start": 144,
+          "line_end": 149,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "h_eta",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ]
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "line_start": 153,
+          "line_end": 156,
+          "arguments": [
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "chi_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float"
+          ]
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "line_start": 159,
+          "line_end": 164,
+          "arguments": [
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "line_start": 171,
+          "line_end": 186,
+          "arguments": [
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "g_max_eV",
+              "default": null
+            },
+            {
+              "name": "x_MIT",
+              "default": null
+            },
+            {
+              "name": "dx_MIT",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ]
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "line_start": 190,
+          "line_end": 195,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "line_start": 198,
+          "line_end": 203,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "line_start": 206,
+          "line_end": 211,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 244,
+          "line_end": 282,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transitions",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": 0.5
+            },
+            {
+              "name": "Rn",
+              "default": 0.0
+            },
+            {
+              "name": "Cbg",
+              "default": 0.0
+            },
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "chi_split",
+              "default": "func_chi_d"
+            },
+            {
+              "name": "use_dH_eff",
+              "default": true
+            },
+            {
+              "name": "z_cut",
+              "default": 4.357
+            },
+            {
+              "name": "A_cap_RT",
+              "default": 4.0
+            },
+            {
+              "name": "grid_pad_lo",
+              "default": 0.15
+            },
+            {
+              "name": "grid_pad_hi",
+              "default": 0.15
+            },
+            {
+              "name": "n_work_min",
+              "default": 2048
+            },
+            {
+              "name": "min_lag_grid_steps",
+              "default": 2.0
+            },
+            {
+              "name": "v_span_floor",
+              "default": 1e-06
+            },
+            {
+              "name": "seed_T",
+              "default": 298.15
+            },
+            {
+              "name": "seed_I",
+              "default": 0.1
+            },
+            {
+              "name": "seed_Q_cell",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "int",
+            "self._build_seed_L_V"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 285,
+          "line_end": 292,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 295,
+          "line_end": 301,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 304,
+          "line_end": 307,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_w",
+            "self._n_factor"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 310,
+          "line_end": 313,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "self.chi_split"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 316,
+          "line_end": 323,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "use_dH_eff",
+              "default": null
+            }
+          ],
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 326,
+          "line_end": 370,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transition",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "n_j",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 373,
+          "line_end": 390,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 393,
+          "line_end": 503,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_causal_lowpass",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "max",
+            "np.all",
+            "np.any",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.full_like",
+            "np.interp",
+            "np.isfinite",
+            "np.linspace",
+            "np.max",
+            "np.mean",
+            "np.min",
+            "np.ones",
+            "np.ones_like",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 506,
+          "line_end": 531,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "direction",
+              "default": "discharge"
+            },
+            {
+              "name": "c_rate",
+              "default": 0.0
+            },
+            {
+              "name": "Q_cell",
+              "default": 1.0
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            }
+          ],
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 534,
+          "line_end": 543,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 545,
+          "line_end": 579,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 581,
+          "line_end": 589,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "self.entropy_coefficient"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 591,
+          "line_end": 599,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "U_oc",
+              "default": null
+            },
+            {
+              "name": "V",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 602,
+          "line_end": 615,
+          "arguments": [
+            {
+              "name": "direction",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ]
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "line_start": 666,
+          "line_end": 682,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ]
+        }
+      ],
+      "call_counts": {
+        "func_L_q": 1,
+        "func_U_branch": 1,
+        "func_U_j": 3,
+        "func_dH_a_eff": 1,
+        "func_dSe_molar": 1,
+        "func_dU_hys": 1,
+        "func_ksi_eq": 3,
+        "func_w": 2,
+        "self.Cbg": 2,
+        "self._build_seed_L_V": 1,
+        "self._chi_and_dH_eff": 1,
+        "self._chi_d": 1,
+        "self._direction_to_sigma": 1,
+        "self._effective_dS_rxn": 3,
+        "self._n_factor": 5,
+        "self._resolve_lag_length": 2,
+        "self._width": 3,
+        "self.chi_split": 1,
+        "self.dqdv": 1,
+        "self.entropy_coefficient": 1
+      }
+    },
+    {
+      "path": "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py",
+      "sha256": "492d1cce1e59c3ff89c8c35dfd0cc462408689b55536aeabcf4d5052c66d071c",
+      "line_count": 899,
+      "read_coverage": [
+        [
+          1,
+          899
+        ]
+      ],
+      "read_status": "COMPLETE",
+      "module_assignments": [
+        {
+          "name": "R",
+          "line": 66,
+          "value": 8.314
+        },
+        {
+          "name": "F",
+          "line": 67,
+          "value": 96485.0
+        },
+        {
+          "name": "kB",
+          "line": 68,
+          "value": 1.380649e-23
+        },
+        {
+          "name": "h",
+          "line": 69,
+          "value": 6.62607015e-34
+        },
+        {
+          "name": "EV_TO_J",
+          "line": 170,
+          "value": 1.602176634e-19
+        },
+        {
+          "name": "LCO_MSMR_LIT",
+          "line": 655,
+          "value": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -391016.1,
+              "dS_rxn": 6.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.85,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.85,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -375554.4,
+              "dS_rxn": -4.0,
+              "n": 1.0
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        {
+          "name": "GRAPHITE_STAGING_LIT",
+          "line": 728,
+          "value": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 217,
+          "line_end": 644,
+          "bases": [],
+          "class_assignments": [
+            {
+              "name": "_delith_is_discharge",
+              "line": 248,
+              "value": true
+            }
+          ],
+          "methods": [
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+              "name": "__init__",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 250,
+              "line_end": 288,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transitions",
+                  "default": null
+                },
+                {
+                  "name": "x",
+                  "default": 0.5
+                },
+                {
+                  "name": "Rn",
+                  "default": 0.0
+                },
+                {
+                  "name": "Cbg",
+                  "default": 0.0
+                },
+                {
+                  "name": "chi",
+                  "default": null
+                },
+                {
+                  "name": "chi_split",
+                  "default": "func_chi_d"
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": true
+                },
+                {
+                  "name": "z_cut",
+                  "default": 4.357
+                },
+                {
+                  "name": "A_cap_RT",
+                  "default": 4.0
+                },
+                {
+                  "name": "grid_pad_lo",
+                  "default": 0.15
+                },
+                {
+                  "name": "grid_pad_hi",
+                  "default": 0.15
+                },
+                {
+                  "name": "n_work_min",
+                  "default": 2048
+                },
+                {
+                  "name": "min_lag_grid_steps",
+                  "default": 2.0
+                },
+                {
+                  "name": "v_span_floor",
+                  "default": 1e-06
+                },
+                {
+                  "name": "seed_T",
+                  "default": 298.15
+                },
+                {
+                  "name": "seed_I",
+                  "default": 0.1
+                },
+                {
+                  "name": "seed_Q_cell",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "TypeError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "bool",
+                "callable",
+                "int",
+                "self._build_seed_L_V"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+              "name": "_build_seed_L_V",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 291,
+              "line_end": 298,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "np.asarray",
+                "reshape",
+                "seeds.append",
+                "self._n_factor",
+                "self._resolve_lag_length"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+              "name": "_n_factor",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 301,
+              "line_end": 307,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+              "name": "_width",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 310,
+              "line_end": 313,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_w",
+                "self._n_factor"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+              "name": "_chi_d",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 316,
+              "line_end": 319,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "float",
+                "self.chi_split"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+              "name": "_chi_and_dH_eff",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 322,
+              "line_end": 329,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "dH_a",
+                  "default": null
+                },
+                {
+                  "name": "Omega",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": null
+                },
+                {
+                  "name": "use_dH_eff",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "bool",
+                "float",
+                "func_dH_a_eff",
+                "self._chi_d"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+              "name": "_resolve_lag_length",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 332,
+              "line_end": 376,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "transition",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "n_j",
+                  "default": null
+                },
+                {
+                  "name": "sigma_d",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "_finite_nonneg",
+                "_finite_pos",
+                "abs",
+                "float",
+                "func_L_q",
+                "min",
+                "np.isfinite",
+                "self._chi_and_dH_eff",
+                "transition.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+              "name": "equilibrium",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 379,
+              "line_end": 396,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.full_like",
+                "np.ones_like",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+              "name": "dqdv",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 399,
+              "line_end": 515,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                },
+                {
+                  "name": "Q_cell",
+                  "default": null
+                },
+                {
+                  "name": "s",
+                  "default": 1
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_causal_lowpass",
+                "_finite_nonneg",
+                "_finite_pos",
+                "callable",
+                "float",
+                "func_U_branch",
+                "func_U_j",
+                "func_ksi_eq",
+                "max",
+                "np.all",
+                "np.any",
+                "np.argsort",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.full_like",
+                "np.interp",
+                "np.isfinite",
+                "np.linspace",
+                "np.max",
+                "np.mean",
+                "np.min",
+                "np.ones",
+                "np.ones_like",
+                "reshape",
+                "self.Cbg",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._resolve_lag_length",
+                "self._width",
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+              "name": "curve",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 518,
+              "line_end": 548,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_app",
+                  "default": null
+                },
+                {
+                  "name": "direction",
+                  "default": "discharge"
+                },
+                {
+                  "name": "c_rate",
+                  "default": 0.0
+                },
+                {
+                  "name": "Q_cell",
+                  "default": 1.0
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I_abs",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "_finite_nonneg",
+                "_finite_pos",
+                "self._direction_to_sigma",
+                "self.dqdv"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 551,
+              "line_end": 560,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": []
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+              "name": "entropy_coefficient",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 562,
+              "line_end": 605,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "func_U_j",
+                "func_ksi_eq",
+                "np.asarray",
+                "np.atleast_1d",
+                "np.clip",
+                "np.log",
+                "np.maximum",
+                "np.where",
+                "np.zeros_like",
+                "self._effective_dS_rxn",
+                "self._n_factor",
+                "self._width",
+                "tr.get"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+              "name": "reversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 607,
+              "line_end": 618,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "V_n",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": 298.15
+                },
+                {
+                  "name": "I",
+                  "default": 1.0
+                }
+              ],
+              "calls": [
+                "_finite_pos",
+                "float",
+                "self.entropy_coefficient"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+              "name": "irreversible_heat",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 620,
+              "line_end": 628,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "U_oc",
+                  "default": null
+                },
+                {
+                  "name": "V",
+                  "default": null
+                },
+                {
+                  "name": "I",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "np.asarray"
+              ]
+            },
+            {
+              "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+              "name": "_direction_to_sigma",
+              "owner": "GraphiteAnodeDischargeDQDV",
+              "line_start": 631,
+              "line_end": 644,
+              "arguments": [
+                {
+                  "name": "direction",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "ValueError",
+                "_finite",
+                "direction.strip",
+                "isinstance",
+                "lower"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 679,
+          "line_end": 721,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "class_assignments": [
+            {
+              "name": "_delith_is_discharge",
+              "line": 703,
+              "value": false
+            }
+          ],
+          "methods": [
+            {
+              "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+              "name": "_effective_dS_rxn",
+              "owner": "LCOCathodeDQDV",
+              "line_start": 705,
+              "line_end": 721,
+              "arguments": [
+                {
+                  "name": "self",
+                  "default": null
+                },
+                {
+                  "name": "tr",
+                  "default": null
+                },
+                {
+                  "name": "T",
+                  "default": null
+                }
+              ],
+              "calls": [
+                "func_dSe_molar",
+                "tr.get"
+              ]
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "line_start": 75,
+          "line_end": 76,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "line_start": 79,
+          "line_end": 80,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "dH_rxn",
+              "default": null
+            },
+            {
+              "name": "dS_rxn",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "name": "func_U_j_hys",
+          "owner": null,
+          "line_start": 83,
+          "line_end": 94,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            },
+            {
+              "name": "last_eta",
+              "default": 1.0
+            },
+            {
+              "name": "last_rest",
+              "default": 600
+            }
+          ],
+          "calls": [
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "line_start": 97,
+          "line_end": 100,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "U",
+              "default": null
+            },
+            {
+              "name": "n",
+              "default": 1.0
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ]
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "line_start": 103,
+          "line_end": 110,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "dS_a",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "A",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.exp",
+            "np.log"
+          ]
+        },
+        {
+          "qualified_name": "_causal_lowpass",
+          "name": "_causal_lowpass",
+          "owner": null,
+          "line_start": 113,
+          "line_end": 131,
+          "arguments": [
+            {
+              "name": "source_signal",
+              "default": null
+            },
+            {
+              "name": "grid_step",
+              "default": null
+            },
+            {
+              "name": "lag_length",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "lfilter",
+            "np.array",
+            "np.empty_like",
+            "np.exp",
+            "np.isfinite",
+            "range",
+            "source_signal.copy"
+          ]
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "line_start": 136,
+          "line_end": 143,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ]
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "line_start": 146,
+          "line_end": 151,
+          "arguments": [
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "U_j",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "gamma",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "h_eta",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ]
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "line_start": 155,
+          "line_end": 158,
+          "arguments": [
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "chi_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float"
+          ]
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "line_start": 161,
+          "line_end": 166,
+          "arguments": [
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "line_start": 173,
+          "line_end": 188,
+          "arguments": [
+            {
+              "name": "x",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "g_max_eV",
+              "default": null
+            },
+            {
+              "name": "x_MIT",
+              "default": null
+            },
+            {
+              "name": "dx_MIT",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ]
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "line_start": 192,
+          "line_end": 197,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "line_start": 200,
+          "line_end": 205,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "line_start": 208,
+          "line_end": 213,
+          "arguments": [
+            {
+              "name": "name",
+              "default": null
+            },
+            {
+              "name": "value",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 250,
+          "line_end": 288,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transitions",
+              "default": null
+            },
+            {
+              "name": "x",
+              "default": 0.5
+            },
+            {
+              "name": "Rn",
+              "default": 0.0
+            },
+            {
+              "name": "Cbg",
+              "default": 0.0
+            },
+            {
+              "name": "chi",
+              "default": null
+            },
+            {
+              "name": "chi_split",
+              "default": "func_chi_d"
+            },
+            {
+              "name": "use_dH_eff",
+              "default": true
+            },
+            {
+              "name": "z_cut",
+              "default": 4.357
+            },
+            {
+              "name": "A_cap_RT",
+              "default": 4.0
+            },
+            {
+              "name": "grid_pad_lo",
+              "default": 0.15
+            },
+            {
+              "name": "grid_pad_hi",
+              "default": 0.15
+            },
+            {
+              "name": "n_work_min",
+              "default": 2048
+            },
+            {
+              "name": "min_lag_grid_steps",
+              "default": 2.0
+            },
+            {
+              "name": "v_span_floor",
+              "default": 1e-06
+            },
+            {
+              "name": "seed_T",
+              "default": 298.15
+            },
+            {
+              "name": "seed_I",
+              "default": 0.1
+            },
+            {
+              "name": "seed_Q_cell",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "int",
+            "self._build_seed_L_V"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 291,
+          "line_end": 298,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 301,
+          "line_end": 307,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 310,
+          "line_end": 313,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_w",
+            "self._n_factor"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 316,
+          "line_end": 319,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            }
+          ],
+          "calls": [
+            "float",
+            "self.chi_split"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 322,
+          "line_end": 329,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "dH_a",
+              "default": null
+            },
+            {
+              "name": "Omega",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": null
+            },
+            {
+              "name": "use_dH_eff",
+              "default": null
+            }
+          ],
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 332,
+          "line_end": 376,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "transition",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "n_j",
+              "default": null
+            },
+            {
+              "name": "sigma_d",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 379,
+          "line_end": 396,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 399,
+          "line_end": 515,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            },
+            {
+              "name": "Q_cell",
+              "default": null
+            },
+            {
+              "name": "s",
+              "default": 1
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_causal_lowpass",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "max",
+            "np.all",
+            "np.any",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.full_like",
+            "np.interp",
+            "np.isfinite",
+            "np.linspace",
+            "np.max",
+            "np.mean",
+            "np.min",
+            "np.ones",
+            "np.ones_like",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 518,
+          "line_end": 548,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_app",
+              "default": null
+            },
+            {
+              "name": "direction",
+              "default": "discharge"
+            },
+            {
+              "name": "c_rate",
+              "default": 0.0
+            },
+            {
+              "name": "Q_cell",
+              "default": 1.0
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I_abs",
+              "default": null
+            }
+          ],
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 551,
+          "line_end": 560,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 562,
+          "line_end": 605,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width",
+            "tr.get"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 607,
+          "line_end": 618,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "V_n",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": 298.15
+            },
+            {
+              "name": "I",
+              "default": 1.0
+            }
+          ],
+          "calls": [
+            "_finite_pos",
+            "float",
+            "self.entropy_coefficient"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 620,
+          "line_end": 628,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "U_oc",
+              "default": null
+            },
+            {
+              "name": "V",
+              "default": null
+            },
+            {
+              "name": "I",
+              "default": null
+            }
+          ],
+          "calls": [
+            "np.asarray"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "line_start": 631,
+          "line_end": 644,
+          "arguments": [
+            {
+              "name": "direction",
+              "default": null
+            }
+          ],
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ]
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "line_start": 705,
+          "line_end": 721,
+          "arguments": [
+            {
+              "name": "self",
+              "default": null
+            },
+            {
+              "name": "tr",
+              "default": null
+            },
+            {
+              "name": "T",
+              "default": null
+            }
+          ],
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ]
+        }
+      ],
+      "call_counts": {
+        "func_L_q": 1,
+        "func_U_branch": 1,
+        "func_U_j": 3,
+        "func_dH_a_eff": 1,
+        "func_dSe_molar": 1,
+        "func_dU_hys": 1,
+        "func_ksi_eq": 3,
+        "func_w": 2,
+        "self.Cbg": 2,
+        "self._build_seed_L_V": 1,
+        "self._chi_and_dH_eff": 1,
+        "self._chi_d": 1,
+        "self._direction_to_sigma": 1,
+        "self._effective_dS_rxn": 3,
+        "self._n_factor": 5,
+        "self._resolve_lag_length": 2,
+        "self._width": 3,
+        "self.chi_split": 1,
+        "self.dqdv": 1,
+        "self.entropy_coefficient": 1
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "pair_id": "code_v1010_to_v1012",
+      "old_path": "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py",
+      "new_path": "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py",
+      "sequence_ratio": 0.9865575686732905,
+      "opcode_line_counts": {
+        "equal": 844,
+        "replace_old": 7,
+        "replace_new": 16,
+        "delete": 0,
+        "insert": 0
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/code_diffs/code_v1010_to_v1012.patch",
+      "exact_unified_diff_sha256": "c4685623ac707dba07f68f0d4889b274aaebe0a36e260b222c1008017523dc0d"
+    },
+    {
+      "pair_id": "code_v1012_to_v1013",
+      "old_path": "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py",
+      "new_path": "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py",
+      "sequence_ratio": 0.9130187606594656,
+      "opcode_line_counts": {
+        "equal": 803,
+        "replace_old": 57,
+        "replace_new": 74,
+        "delete": 0,
+        "insert": 22
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/code_diffs/code_v1012_to_v1013.patch",
+      "exact_unified_diff_sha256": "161d00af513ccbb4472ca6e55db249a6d3104986fc29dba9d4cfb92a5baa7c97"
+    }
+  ],
+  "provisional_findings": [
+    {
+      "id": "CODE-001",
+      "verdict": "BLOCKER_UNIT_CONTRACT",
+      "claim": "curve computes I_use = c_rate * Q_cell while the theory lineage also permits/declares Q_cell in coulombs."
+    },
+    {
+      "id": "CODE-002",
+      "verdict": "EMPIRICAL_ONLY",
+      "claim": "A is frozen per transition as min(z_cut*n*R*T, A_cap_RT*R*T); defaults n=1, z_cut=4.357, A_cap_RT=4 select 4RT."
+    },
+    {
+      "id": "CODE-003",
+      "verdict": "REJECT_ROLE_OVERLOAD",
+      "claim": "Default use_dH_eff=True subtracts chi_d*Omega from activation enthalpy, so equilibrium interaction values directly alter kinetics."
+    },
+    {
+      "id": "CODE-004",
+      "verdict": "DEFAULT_SHADOWING",
+      "claim": "GRAPHITE_STAGING_LIT and LCO_MSMR_LIT contain both w and n=1; _n_factor gives n precedence, making all listed w values inert."
+    },
+    {
+      "id": "CODE-005",
+      "verdict": "NUMERICAL_SWITCH",
+      "claim": "The lag/equilibrium handoff is controlled by min_lag_grid_steps times grid_step, not a physical asymptotic matching condition."
+    },
+    {
+      "id": "CODE-006",
+      "verdict": "THEORY_NOT_IMPLEMENTED",
+      "claim": "LCO electronic entropy is evaluated at x_center and T_ref=298.15, so the document's composition-local and T-proportional/T-squared chain is absent."
+    },
+    {
+      "id": "CODE-007",
+      "verdict": "CORRECTED_IN_V1013",
+      "claim": "v1.0.13 adds electrode-aware facade direction mapping through _delith_is_discharge=False for LCO."
+    },
+    {
+      "id": "CODE-008",
+      "verdict": "MATERIAL_SCOPE_MISSING",
+      "claim": "No silicon or graphite-silicon blend production model exists in this lineage."
+    },
+    {
+      "id": "CODE-009",
+      "verdict": "LCO_KINETICS_INACTIVE_BY_DEFAULT",
+      "claim": "LCO_MSMR_LIT has no Omega, gamma, dH_a, or L_V; finite-current lag and hysteresis are inactive unless supplied externally."
+    },
+    {
+      "id": "CODE-010",
+      "verdict": "INTERNAL_CONSISTENCY_ONLY",
+      "claim": "entropy_coefficient differentiates the imposed width law and uses clipping/overlap weighting; agreement with code finite differences does not validate experimental entropy."
+    }
+  ]
+}
