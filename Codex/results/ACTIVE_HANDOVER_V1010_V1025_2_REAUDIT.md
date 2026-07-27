@@ -173,6 +173,14 @@
   `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.md`,
   `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.json`
   (`PASS_P058_V1010_PRIOR_REPORT_ADJUDICATION`).
+- Phase 058 v1.0.11 copy lineage:
+  8/8 paired text files, 3,965/3,965 lines are byte-identical to
+  v1.0.10. The two rebuilt PDFs differ in file hash but all 48 pages
+  are pixel-identical. Scientific source/code/test changes are zero.
+- Phase 058 v1.0.11 evidence:
+  `Codex/results/PHASE_058_V1011_COPY_LINEAGE_REVIEW.md`,
+  `Codex/results/PHASE_058_V1011_COPY_LINEAGE_MATRIX.json`
+  (`PASS_P058_V1011_COPY_LINEAGE`).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -195,12 +203,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 30.1:
-v1.0.11이 v1.0.10과 content-identical인 영역과 version-only copy를
-정확히 분리한다.
+Phase 058 Step 30.2:
+v1.0.12의 LCO 수식화, width/default, guide와 sample 변화가
+물리 변화인지 설명 변화인지 patch로 판정한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -224,6 +232,8 @@ v1.0.10 entropy weighting, reversible/irreversible heat와 LCO
 electronic/high-voltage scope의 독립 단위·sum-rule 판정 저장.
 v1.0.10 과거 problem/integrity report 31개 claim을 actual
 source/output에 재연결하고 전역 integrity PASS 기각.
+v1.0.11 text 8개 3,965행과 PDF 48쪽 copy-lineage를 닫고
+scientific source/code/test 변화 0으로 판정.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

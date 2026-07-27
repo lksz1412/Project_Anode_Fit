@@ -555,3 +555,28 @@ lineage report를 기계 검증한다.
   `PASS_P058_V1010_PRIOR_REPORT_ADJUDICATION`.
 - Step 29는 완료됐다. 다음은 Step 30.1 v1.0.11이 v1.0.10과
   content-identical인 영역과 version-only copy를 정확히 분리한다.
+
+### 2026-07-28 — Step 30.1
+
+- commit `d86e00849a019463b6535df8322d6e8afc07b93a`에서 생성된
+  v1.0.11 대응 text 8개 3,965행을 v1.0.10과 대조했고
+  8/8이 byte-identical이었다.
+- production code, Chapter 1/2와 sample은 파일명만 v1.0.11로
+  바뀐 동일 blob이고, guide/demo/plot/regression은 동일 파일명의
+  byte-identical copy다.
+- PDF 2개는 CreationDate 때문에 file hash가 다르지만 기존 전페이지
+  render evidence에서 48/48 pages가 pixel-identical, 최대 channel
+  차이 0이었다. v1.0.10 Ch2 p.10 clipping도 그대로 복사됐다.
+- docs 밖에 새로 생긴 execution ledger는 Phase 0.1 baseline copy만
+  완료하고 LCO 수식화 등 Phase 1.1 이후를 미완으로 기록한다.
+- 따라서 scientific source, production path, defaults, test logic와
+  experimental validation 변화는 모두 0이다.
+- 근거:
+  `Codex/results/PHASE_058_V1011_COPY_LINEAGE_REVIEW.md`,
+  `Codex/results/PHASE_058_V1011_COPY_LINEAGE_MATRIX.json`.
+- 기계 gate:
+  `PASS_P058_V1011_COPY_LINEAGE` (64 checks).
+- 판정:
+  `V1011_IS_A_BYTE_IDENTICAL_TEXT_BASELINE_COPY_AND_RENDER_IDENTICAL_PDF_REBUILD`.
+- 다음은 Step 30.2 v1.0.12의 LCO 수식화, width/default, guide와
+  sample 변화가 물리 변화인지 설명 변화인지 patch로 판정한다.
