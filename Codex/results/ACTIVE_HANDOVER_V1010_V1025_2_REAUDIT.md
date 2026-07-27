@@ -26,7 +26,9 @@
 - Phase 057 content read:
   271 documents, 57,795 lines.
 - Latest observation:
-  `Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057AZ_INTENT_QUEUE_COVERAGE_CLOSURE.md`.
+- Read coverage gate:
+  `PASS_P057_READ_COVERAGE`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,17 +38,14 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.10:
-271문건의 queue–coverage path, blob, physical extent, EOF,
-contiguous range, duplicate representative, status count,
-idempotence를 독립 검증한다.
-활성 상세 지도:
-`Codex/plans/2026-07-28-phase057-v1024-v1025_2-read-map.md`.
-완료 Step 19.8A–Q, 19.9A–B:
-v1.0.24.1–v1.0.25.2 41문건 8,923행 및 전체 intent queue
-271문건 57,795행 전량 `READ`.
+Phase 057 Step 20.1:
+271문건의 최초 도입 commit과 후속 수정 commit을 실제 Git
+history에서 연결하는 machine genealogy를 만든다.
+완료 Step 18.1–19.10:
+전체 intent queue 271문건 57,795행 전량 `READ`, source
+blob/SHA/EOF/range/idempotence closure `PASS`.
 최신 결과:
-`Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md`.
+`Codex/results/PHASE_057AZ_INTENT_QUEUE_COVERAGE_CLOSURE.md`.
 
 ## Resume Gate
 
