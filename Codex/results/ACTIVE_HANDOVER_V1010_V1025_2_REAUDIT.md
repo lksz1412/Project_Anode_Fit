@@ -12,7 +12,7 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_057BF_ACTOR_AND_APPROVAL_SEPARATION_RESULT.md`
+   `Codex/results/PHASE_057BG_DIRECTION_DECISION_GENEALOGY_RESULT.md`
 
 ## Current State
 
@@ -41,6 +41,10 @@
   `PASS_P057_DECISION_EFFECTIVITY`.
 - Actor separation gate:
   `PASS_P057_ACTOR_SEPARATION`.
+- Direction genealogy gate:
+  `PASS_P057_DIRECTION_GENEALOGY`.
+- Canonical decisions:
+  22개, repository evidence 72개.
 - 404 provisional findings:
   USER_REQUIREMENT 43, MODEL_PROPOSAL 24,
   IMPLEMENTED_STATE 45, REVIEW_FINDING 292.
@@ -58,20 +62,21 @@
 
 ## Next Exact Step
 
-Phase 057 Step 22.1:
-프로젝트 목표와 관측 출발점을 복원하고, 43개 repository-reported
-user topic과 17개 direct-current direction을 변수·좌표·장 구조·문체·
-코드 경계·피팅 목표의 결정 계보로 통합한다.
-완료 Step 18.1–21.5:
+Phase 057 Step 23.1:
+임의 cap, clip, threshold, softplus, 사후 smoothing 및 기타
+편의 근사의 최초 도입, 후속 존치·철회·부활을 별도 폐기 계보로
+분리한다.
+완료 Step 18.1–22.6:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
 2,381 changed-file event의 claim–patch matrix `PASS`;
 243문건 3,487개 완료·권위·정합 후보의 위치 추출 및 전건 판정,
 229 commit/673 event의 copy-forward·철회·효력 계보,
-404 finding의 actor/approval/open/stale 분리 `PASS`.
+404 finding의 actor/approval/open/stale 분리, 22개 방향성
+decision과 72개 path+line+commit evidence 연결 `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BF_ACTOR_AND_APPROVAL_SEPARATION_RESULT.md`.
+`Codex/results/PHASE_057BG_DIRECTION_DECISION_GENEALOGY_RESULT.md`.
 
 ## Resume Gate
 

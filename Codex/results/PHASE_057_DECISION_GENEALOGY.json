@@ -1,0 +1,1168 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "source_findings": "Codex/results/PHASE_057_PROVISIONAL_FINDING_LEDGER.json",
+  "current_direction_register": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+  "decision_count": 22,
+  "allowed_statuses": [
+    "PRESERVE",
+    "CORRECT",
+    "SUPERSEDE",
+    "EMPIRICAL_ONLY",
+    "THEORY_ONLY",
+    "REJECT",
+    "UNVERIFIED"
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "topic": "audit-scope",
+      "statement": "새 이론·코드 작업 전에 v1.0.10–v1.0.25.2 전 계보를 다시 감사한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-01"
+      ],
+      "claim_ids": [
+        96,
+        181
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0096",
+          "title": "사용자는 무인지 축소·왜곡을 명시적으로 금지했다",
+          "path": "Codex/results/PHASE_057P_V1022_R1_CONTROL_AND_LINEAGE_OBSERVATIONS.md",
+          "lines": [
+            25,
+            40
+          ],
+          "commit": "a1c5005422afae8f035eb7d627bd533364a327ba"
+        },
+        {
+          "claim_id": "INTENT-PROV-0181",
+          "title": "resume·commit·push 규율은 compaction 대응 자산이다",
+          "path": "Codex/results/PHASE_057Y_V1022_FR_CONTROL_TRIAGE_EXEC_OBSERVATIONS.md",
+          "lines": [
+            151,
+            167
+          ],
+          "commit": "5fe91e39648340efb742ed383490723befb8bd10"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-002",
+      "topic": "scientific-baseline",
+      "statement": "v1.0.25.2를 최신 기준선으로 사용하고 v1.0.26은 권위에서 제외한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-02"
+      ],
+      "claim_ids": [
+        376,
+        378
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0376",
+          "title": "v1.0.25.2는 최신이지만 archive heading 자체는 stale하다",
+          "path": "Codex/results/PHASE_057AV_V1025_2_ARCHIVE_OBSERVATIONS.md",
+          "lines": [
+            185,
+            196
+          ],
+          "commit": "f3ac7f8cc4b37ba87f8c12f02ab99e800fbfb0e4"
+        },
+        {
+          "claim_id": "INTENT-PROV-0378",
+          "title": "v1.0.25.2가 최신이고 v1.0.26은 authority가 아니다",
+          "path": "Codex/results/PHASE_057AW_V1025_2_HANDOVER_OBSERVATIONS.md",
+          "lines": [
+            17,
+            28
+          ],
+          "commit": "2052ebeef9b3158af4d10944202725920536fca1"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-003",
+      "topic": "source-preservation",
+      "statement": "원본과 main을 수정하지 않고 전용 branch에서만 작업한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-03"
+      ],
+      "claim_ids": [
+        354
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0354",
+          "title": "원본 보존과 GitHub 기록은 사용자 운영 의도다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            142,
+            153
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-004",
+      "topic": "compaction-resilient-workflow",
+      "statement": "master phase plan, 세부 step plan, step history, ledger, handover, commit/push 사슬을 유지한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-04",
+        "UDIR-14"
+      ],
+      "claim_ids": [
+        181,
+        354
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0181",
+          "title": "resume·commit·push 규율은 compaction 대응 자산이다",
+          "path": "Codex/results/PHASE_057Y_V1022_FR_CONTROL_TRIAGE_EXEC_OBSERVATIONS.md",
+          "lines": [
+            151,
+            167
+          ],
+          "commit": "5fe91e39648340efb742ed383490723befb8bd10"
+        },
+        {
+          "claim_id": "INTENT-PROV-0354",
+          "title": "원본 보존과 GitHub 기록은 사용자 운영 의도다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            142,
+            153
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-005",
+      "topic": "reader-and-depth",
+      "statement": "대학원 교재의 친절한 유도와 review 논문의 깊이를 동시에 달성한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-07",
+        "UDIR-08"
+      ],
+      "claim_ids": [
+        26,
+        47,
+        111
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0026",
+          "title": "독자 수준과 깊이의 이중 요구",
+          "path": "Codex/results/PHASE_057E_V1020_FOUNDATION_INTENT_OBSERVATIONS.md",
+          "lines": [
+            25,
+            40
+          ],
+          "commit": "0b978d4f0ba4248b32281433bd5dba85748f91e9"
+        },
+        {
+          "claim_id": "INTENT-PROV-0047",
+          "title": "사용자가 원한 “교재+리뷰+피팅”의 결합 구조가 드러난다",
+          "path": "Codex/results/PHASE_057G_V1020_P7_REVIEW_DIRECTION_OBSERVATIONS.md",
+          "lines": [
+            169,
+            190
+          ],
+          "commit": "53d03db7169941de283caf6e2041534c993728f0"
+        },
+        {
+          "claim_id": "INTENT-PROV-0111",
+          "title": "사용자는 문헌 결론이 아니라 유도 다리를 원했다",
+          "path": "Codex/results/PHASE_057R_V1022_R2_CH1_COMPLETION_OBSERVATIONS.md",
+          "lines": [
+            32,
+            47
+          ],
+          "commit": "2f1f27fbc322ef1b6b531200bdc715ebae1b8a9d"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-006",
+      "topic": "self-contained-manuscript",
+      "statement": "최종 이론 문건은 과거 작업사와 버전 방어 문구 없이 한 권으로 자립한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-07"
+      ],
+      "claim_ids": [
+        20,
+        36
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0020",
+          "title": "문맥 연속성을 보존한 전면 재작성",
+          "path": "Codex/results/PHASE_057D_V1019_INTENT_OBSERVATIONS.md",
+          "lines": [
+            26,
+            38
+          ],
+          "commit": "ef517015e4d6b76787fe55ea5911f690b31b19c4"
+        },
+        {
+          "claim_id": "INTENT-PROV-0036",
+          "title": "자립 교재는 과거 작업사를 지워야 함",
+          "path": "Codex/results/PHASE_057F_V1020_P2_P6_INTENT_OBSERVATIONS.md",
+          "lines": [
+            59,
+            70
+          ],
+          "commit": "50f49e2a9064210f1dedd95a663ac7d1a0c76edb"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-007",
+      "topic": "theory-code-boundary",
+      "statement": "이론 문건에는 물리·화학만 두고 함수명, key, gate, code map은 별도 companion으로 분리한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-05"
+      ],
+      "claim_ids": [
+        30,
+        69,
+        139,
+        203,
+        244,
+        380,
+        394
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0030",
+          "title": "이론 본문은 독립 교재, 구현은 외부 계약",
+          "path": "Codex/results/PHASE_057E_V1020_FOUNDATION_INTENT_OBSERVATIONS.md",
+          "lines": [
+            88,
+            100
+          ],
+          "commit": "0b978d4f0ba4248b32281433bd5dba85748f91e9"
+        },
+        {
+          "claim_id": "INTENT-PROV-0069",
+          "title": "현재 사용자의 문건 순수성 규칙과 재대조가 필요하다",
+          "path": "Codex/results/PHASE_057J_V1021_CONTROL_DOCUMENT_INTENT_OBSERVATIONS.md",
+          "lines": [
+            83,
+            102
+          ],
+          "commit": "d130cb42836464a8d694be3b27c5ee2973537307"
+        },
+        {
+          "claim_id": "INTENT-PROV-0139",
+          "title": "R5의 코드 사양은 사용자가 원하는 이론 문건 경계를 넘는다",
+          "path": "Codex/results/PHASE_057U_V1022_R5_RV_SM2_OBSERVATIONS.md",
+          "lines": [
+            114,
+            133
+          ],
+          "commit": "ffbd39415082fb197b4e7b12c8d48530ed595787"
+        },
+        {
+          "claim_id": "INTENT-PROV-0203",
+          "title": "코드 대응표의 본문계 편입은 사용자의 최종 문건 경계와 충돌한다",
+          "path": "Codex/results/PHASE_057AC_V1023_P2_P3_OBSERVATIONS.md",
+          "lines": [
+            109,
+            124
+          ],
+          "commit": "bb319dcb693e71381b5168584d58e1eeec453922"
+        },
+        {
+          "claim_id": "INTENT-PROV-0244",
+          "title": "당시 본문에 내부 파일명을 인용한 관행은 최신 사용자 경계와 충돌한다",
+          "path": "Codex/results/PHASE_057AH_V1024_BRIEF_W1_W3_OBSERVATIONS.md",
+          "lines": [
+            163,
+            175
+          ],
+          "commit": "764307559d6cfbe96b2660b0badc0903943c0917"
+        },
+        {
+          "claim_id": "INTENT-PROV-0380",
+          "title": "문건의 코드 배제는 사용자가 직접 확정한 규칙이다",
+          "path": "Codex/results/PHASE_057AW_V1025_2_HANDOVER_OBSERVATIONS.md",
+          "lines": [
+            44,
+            56
+          ],
+          "commit": "2052ebeef9b3158af4d10944202725920536fca1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0394",
+          "title": "code guide는 최종 이론 문건 밖의 companion이어야 한다",
+          "path": "Codex/results/PHASE_057AX_V1024_HTML_GUIDE_OBSERVATIONS.md",
+          "lines": [
+            154,
+            168
+          ],
+          "commit": "134b1456c0feb7546d745c6952f217e8fc5bd7cc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-008",
+      "topic": "authority-direction",
+      "statement": "권위 방향은 theory → implementation contract → code이며 code-first cascade를 최종 방식으로 사용하지 않는다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-06"
+      ],
+      "claim_ids": [
+        6,
+        14,
+        277,
+        314,
+        346
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0006",
+          "title": "문건과 코드의 상호 유기성",
+          "path": "Codex/results/PHASE_057B_V1010_V1013_INTENT_OBSERVATIONS.md",
+          "lines": [
+            104,
+            117
+          ],
+          "commit": "8e7e83b402de676ae0bedc296648cca3d6f2fbc4"
+        },
+        {
+          "claim_id": "INTENT-PROV-0014",
+          "title": "문건과 코드의 상호충실성, 표현 층위는 분리",
+          "path": "Codex/results/PHASE_057C_V1014_V10182_INTENT_OBSERVATIONS.md",
+          "lines": [
+            103,
+            117
+          ],
+          "commit": "4220feb8a3c7242fe3856c95f3fc026d85fe9b77"
+        },
+        {
+          "claim_id": "INTENT-PROV-0277",
+          "title": "문건을 코드에 맞춰 고친 순서는 사용자의 최종 권위 방향과 반대다",
+          "path": "Codex/results/PHASE_057AM_V1024_HANDOVER_MERGE_OBSERVATIONS.md",
+          "lines": [
+            57,
+            73
+          ],
+          "commit": "7795275957f06d286e0c213d0417547ab2e99c9b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0314",
+          "title": "v1.0.25의 집행 순서는 현재 사용자 원칙과 반대였다",
+          "path": "Codex/results/PHASE_057AQ_V1025_CASCADE_LEDGER_OBSERVATIONS.md",
+          "lines": [
+            18,
+            33
+          ],
+          "commit": "c80ea0d1bcfbda8ef06d1cac8ce31846ee182075"
+        },
+        {
+          "claim_id": "INTENT-PROV-0346",
+          "title": "“문건=코드”는 사용자가 명시한 핵심 기준이다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            30,
+            43
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-009",
+      "topic": "literature-derivation",
+      "statement": "1차 문헌을 전제·변수 대응·유도·적용범위까지 검증하고 결론 인용만으로 닫지 않는다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-08"
+      ],
+      "claim_ids": [
+        111
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0111",
+          "title": "사용자는 문헌 결론이 아니라 유도 다리를 원했다",
+          "path": "Codex/results/PHASE_057R_V1022_R2_CH1_COMPLETION_OBSERVATIONS.md",
+          "lines": [
+            32,
+            47
+          ],
+          "commit": "2f1f27fbc322ef1b6b531200bdc715ebae1b8a9d"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-010",
+      "topic": "coordinate-separation",
+      "statement": "외부 누적용량 q, 재료 조성, 전극 내부전위, 관측 cell voltage를 별도 좌표로 정의한다.",
+      "status": "CORRECT",
+      "actor": "REVIEW_FINDING",
+      "current_direction_ids": [],
+      "claim_ids": [
+        50,
+        174
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0050",
+          "title": "단계별 역식별 사슬은 사용자 목표에 맞지만 수치 문턱은 권위가 아니다",
+          "path": "Codex/results/PHASE_057H_V1020_CLOSING_DIRECTION_INTENT_OBSERVATIONS.md",
+          "lines": [
+            50,
+            76
+          ],
+          "commit": "441e2c7a854f5bb756998fc5291cb12865fc944a"
+        },
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "READAUDIT_DERIVED"
+    },
+    {
+      "id": "DEC-011",
+      "topic": "charge-conservation",
+      "statement": "전하 보존과 공통 cell voltage 제약을 ICA/DVA 및 blend 조립의 중심에 둔다.",
+      "status": "PRESERVE",
+      "actor": "REVIEW_FINDING",
+      "current_direction_ids": [],
+      "claim_ids": [
+        174
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "READAUDIT_DERIVED"
+    },
+    {
+      "id": "DEC-012",
+      "topic": "material-free-energy",
+      "statement": "공통 보존법칙 위에 graphite, doped LCO, Si/SiOx/Si-C별 자유에너지와 상태변수를 분리한다.",
+      "status": "CORRECT",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-09"
+      ],
+      "claim_ids": [
+        174,
+        257
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0257",
+          "title": "고전압 도핑 LCO라는 사용자 목표는 이 저작 경쟁의 범위에 없다",
+          "path": "Codex/results/PHASE_057AJ_V1024_W7_W9_OBSERVATIONS.md",
+          "lines": [
+            113,
+            128
+          ],
+          "commit": "cf2db4237f4fddca6983957489a53d7717bca52f"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-013",
+      "topic": "equilibrium-kinetics-observation-layers",
+      "statement": "equilibrium state, kinetic barrier/internal variables, observation/differentiation을 연결하되 서로 혼합하지 않는다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-10",
+        "UDIR-11"
+      ],
+      "claim_ids": [
+        174,
+        219,
+        379
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0219",
+          "title": "기본 1C QA가 평형과 겹친다는 보고는 사용자의 출발 관찰을 재현하지 못한다",
+          "path": "Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md",
+          "lines": [
+            18,
+            41
+          ],
+          "commit": "63b9086718daa3746ead556d466dc1c1aa18b0f5"
+        },
+        {
+          "claim_id": "INTENT-PROV-0379",
+          "title": "“이론 regsol, fitting logistic”은 사용자 확정 이력이지만 최종 consistency 해법은 아니다",
+          "path": "Codex/results/PHASE_057AW_V1025_2_HANDOVER_OBSERVATIONS.md",
+          "lines": [
+            29,
+            43
+          ],
+          "commit": "2052ebeef9b3158af4d10944202725920536fca1"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-014",
+      "topic": "temperature-current-potential-barrier",
+      "statement": "장벽의 T·I·U 의존은 전위·과전압·상태·열활성화에서 유도하며 전류를 근거 없는 독립 barrier 변수로 삽입하지 않는다.",
+      "status": "CORRECT",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-10",
+        "UDIR-11"
+      ],
+      "claim_ids": [
+        174,
+        219,
+        253,
+        351,
+        403
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0219",
+          "title": "기본 1C QA가 평형과 겹친다는 보고는 사용자의 출발 관찰을 재현하지 못한다",
+          "path": "Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md",
+          "lines": [
+            18,
+            41
+          ],
+          "commit": "63b9086718daa3746ead556d466dc1c1aa18b0f5"
+        },
+        {
+          "claim_id": "INTENT-PROV-0253",
+          "title": "다온도 검증을 요구한 산업 방어 논리는 사용자 목표와 맞는다",
+          "path": "Codex/results/PHASE_057AJ_V1024_W7_W9_OBSERVATIONS.md",
+          "lines": [
+            36,
+            52
+          ],
+          "commit": "cf2db4237f4fddca6983957489a53d7717bca52f"
+        },
+        {
+          "claim_id": "INTENT-PROV-0351",
+          "title": "다온도·다율속 데이터가 핵심 식별 gate라는 사용자 방향이 남아 있다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            102,
+            115
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0403",
+          "title": "이 비교는 사용자의 최종 validation 범위를 거의 다루지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            201,
+            216
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-015",
+      "topic": "peak-broadening-decomposition",
+      "statement": "저온·유한전류 peak 저하·이동·broadening을 상공존, 이질성, kinetics, transport, observation으로 분해한다.",
+      "status": "CORRECT",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-10",
+        "UDIR-11"
+      ],
+      "claim_ids": [
+        15,
+        174,
+        219,
+        351,
+        403
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0015",
+          "title": "폭의 온도의존은 선험 고정이 아니라 데이터 판정",
+          "path": "Codex/results/PHASE_057C_V1014_V10182_INTENT_OBSERVATIONS.md",
+          "lines": [
+            118,
+            136
+          ],
+          "commit": "4220feb8a3c7242fe3856c95f3fc026d85fe9b77"
+        },
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0219",
+          "title": "기본 1C QA가 평형과 겹친다는 보고는 사용자의 출발 관찰을 재현하지 못한다",
+          "path": "Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md",
+          "lines": [
+            18,
+            41
+          ],
+          "commit": "63b9086718daa3746ead556d466dc1c1aa18b0f5"
+        },
+        {
+          "claim_id": "INTENT-PROV-0351",
+          "title": "다온도·다율속 데이터가 핵심 식별 gate라는 사용자 방향이 남아 있다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            102,
+            115
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0403",
+          "title": "이 비교는 사용자의 최종 validation 범위를 거의 다루지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            201,
+            216
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-016",
+      "topic": "thermodynamic-heat-closure",
+      "statement": "entropy와 reversible heat는 승인된 free energy의 온도 미분에서 파생하고 empirical shape가 이를 오염시키지 않게 한다.",
+      "status": "CORRECT",
+      "actor": "REVIEW_FINDING",
+      "current_direction_ids": [],
+      "claim_ids": [
+        15,
+        337
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0015",
+          "title": "폭의 온도의존은 선험 고정이 아니라 데이터 판정",
+          "path": "Codex/results/PHASE_057C_V1014_V10182_INTENT_OBSERVATIONS.md",
+          "lines": [
+            118,
+            136
+          ],
+          "commit": "4220feb8a3c7242fe3856c95f3fc026d85fe9b77"
+        },
+        {
+          "claim_id": "INTENT-PROV-0337",
+          "title": "empirical alpha가 entropy·reversible-heat 경로에 들어가면 열역학 오염 위험이 있다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            47,
+            63
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "READAUDIT_DERIVED"
+    },
+    {
+      "id": "DEC-017",
+      "topic": "public-data-validation",
+      "statement": "graphite, Si, blend, doped high-voltage LCO의 공개 다온도·다율속 데이터를 calibration과 holdout으로 사용한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-09"
+      ],
+      "claim_ids": [
+        257,
+        347,
+        351,
+        403
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0257",
+          "title": "고전압 도핑 LCO라는 사용자 목표는 이 저작 경쟁의 범위에 없다",
+          "path": "Codex/results/PHASE_057AJ_V1024_W7_W9_OBSERVATIONS.md",
+          "lines": [
+            113,
+            128
+          ],
+          "commit": "cf2db4237f4fddca6983957489a53d7717bca52f"
+        },
+        {
+          "claim_id": "INTENT-PROV-0347",
+          "title": "공개 데이터 직접 fitting과 peak·valley 형상 평가는 사용자 의도다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            44,
+            58
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0351",
+          "title": "다온도·다율속 데이터가 핵심 식별 gate라는 사용자 방향이 남아 있다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            102,
+            115
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0403",
+          "title": "이 비교는 사용자의 최종 validation 범위를 거의 다루지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            201,
+            216
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-018",
+      "topic": "fit-versus-identification",
+      "statement": "실제 fit 성공을 보존하되 basis component, phase, gallery, material constant의 식별로 자동 승격하지 않는다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-13",
+        "UDIR-16"
+      ],
+      "claim_ids": [
+        50,
+        219,
+        347,
+        399,
+        401,
+        402
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0050",
+          "title": "단계별 역식별 사슬은 사용자 목표에 맞지만 수치 문턱은 권위가 아니다",
+          "path": "Codex/results/PHASE_057H_V1020_CLOSING_DIRECTION_INTENT_OBSERVATIONS.md",
+          "lines": [
+            50,
+            76
+          ],
+          "commit": "441e2c7a854f5bb756998fc5291cb12865fc944a"
+        },
+        {
+          "claim_id": "INTENT-PROV-0219",
+          "title": "기본 1C QA가 평형과 겹친다는 보고는 사용자의 출발 관찰을 재현하지 못한다",
+          "path": "Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md",
+          "lines": [
+            18,
+            41
+          ],
+          "commit": "63b9086718daa3746ead556d466dc1c1aa18b0f5"
+        },
+        {
+          "claim_id": "INTENT-PROV-0347",
+          "title": "공개 데이터 직접 fitting과 peak·valley 형상 평가는 사용자 의도다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            44,
+            58
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0399",
+          "title": "C의 우세는 α의 물리적 식별을 뜻하지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            124,
+            145
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        },
+        {
+          "claim_id": "INTENT-PROV-0401",
+          "title": "fitted Ω/RT로 “흑연은 두-상”을 확정한 논리는 성립하지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            166,
+            183
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        },
+        {
+          "claim_id": "INTENT-PROV-0402",
+          "title": "report가 제안한 “상 구조와 곡선 표현 분리”는 살리되 단절 모델은 버린다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            184,
+            200
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-019",
+      "topic": "empirical-skew-basis",
+      "statement": "skew-logistic/gallery basis는 검증된 thermodynamic kernel이 아니라 empirical observation/heterogeneity 후보로만 보존한다.",
+      "status": "EMPIRICAL_ONLY",
+      "actor": "REVIEW_FINDING",
+      "current_direction_ids": [
+        "UDIR-16"
+      ],
+      "claim_ids": [
+        336,
+        337,
+        338,
+        399,
+        402
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0336",
+          "title": "skew 재모수화는 독립-site thermodynamic susceptibility를 보존하지 않는다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            32,
+            46
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0337",
+          "title": "empirical alpha가 entropy·reversible-heat 경로에 들어가면 열역학 오염 위험이 있다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            47,
+            63
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0338",
+          "title": "alpha는 비대칭뿐 아니라 위치와 폭도 바꾸는 강한 비식별 손잡이다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            64,
+            77
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0399",
+          "title": "C의 우세는 α의 물리적 식별을 뜻하지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            124,
+            145
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        },
+        {
+          "claim_id": "INTENT-PROV-0402",
+          "title": "report가 제안한 “상 구조와 곡선 표현 분리”는 살리되 단절 모델은 버린다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            184,
+            200
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-020",
+      "topic": "regular-solution-role",
+      "statement": "regular-solution 자유에너지는 재유도 후보로 남기되 패배한 curve fit의 Omega를 phase 권위로 이전하지 않는다.",
+      "status": "THEORY_ONLY",
+      "actor": "REVIEW_FINDING",
+      "current_direction_ids": [],
+      "claim_ids": [
+        339,
+        340,
+        370,
+        379,
+        398,
+        401
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0339",
+          "title": "`Omega=2RT`에서 “불연속 전환”이라는 표현은 재검토가 필요하다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            78,
+            93
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0340",
+          "title": "FWHM closed form은 유용하지만 homogeneous branch의 적용 범위를 명시해야 한다",
+          "path": "Codex/results/PHASE_057AS_V1025_DOC_EDIT_OBSERVATIONS.md",
+          "lines": [
+            94,
+            107
+          ],
+          "commit": "3294e2412a4480b0f627b6242593f1333a5d7a6b"
+        },
+        {
+          "claim_id": "INTENT-PROV-0370",
+          "title": "새 `eq:sifr-twophase`는 가장 가치 있는 대조 대상이지만 채택 구현은 아니다",
+          "path": "Codex/results/PHASE_057AV_V1025_2_ARCHIVE_OBSERVATIONS.md",
+          "lines": [
+            105,
+            120
+          ],
+          "commit": "f3ac7f8cc4b37ba87f8c12f02ab99e800fbfb0e4"
+        },
+        {
+          "claim_id": "INTENT-PROV-0379",
+          "title": "“이론 regsol, fitting logistic”은 사용자 확정 이력이지만 최종 consistency 해법은 아니다",
+          "path": "Codex/results/PHASE_057AW_V1025_2_HANDOVER_OBSERVATIONS.md",
+          "lines": [
+            29,
+            43
+          ],
+          "commit": "2052ebeef9b3158af4d10944202725920536fca1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0398",
+          "title": "A 대 B 비교는 kernel만의 비교가 아니다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            108,
+            123
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        },
+        {
+          "claim_id": "INTENT-PROV-0401",
+          "title": "fitted Ω/RT로 “흑연은 두-상”을 확정한 논리는 성립하지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            166,
+            183
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "READAUDIT_DERIVED"
+    },
+    {
+      "id": "DEC-021",
+      "topic": "numerical-guards",
+      "statement": "invalid input rejection은 보존하지만 값과 gradient를 몰래 바꾸는 cap, clip, clamp, fixed threshold/grid branch는 유도 없이는 거부한다.",
+      "status": "REJECT",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-12"
+      ],
+      "claim_ids": [
+        286
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0286",
+          "title": "hard cap·clamp·grid guard는 사용자 금지 원칙과 충돌한다",
+          "path": "Codex/results/PHASE_057AN_V1024_CODE_GUIDE_OBSERVATIONS.md",
+          "lines": [
+            58,
+            78
+          ],
+          "commit": "16ca943ef41f9e4cb56656a3558cc1360549884a"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    },
+    {
+      "id": "DEC-022",
+      "topic": "acceptance-boundary",
+      "statement": "문건–코드 conformance, 제한극한, parameter recovery, uncertainty, holdout, multi-condition/material transfer를 별도 gate로 통과한다.",
+      "status": "PRESERVE",
+      "actor": "USER_REQUIREMENT",
+      "current_direction_ids": [
+        "UDIR-13",
+        "UDIR-16"
+      ],
+      "claim_ids": [
+        174,
+        346,
+        347,
+        351,
+        403
+      ],
+      "repository_evidence": [
+        {
+          "claim_id": "INTENT-PROV-0174",
+          "title": "사용자가 요구한 끝판 방향은 물질별 자유에너지–동역학–관측자의 분리다",
+          "path": "Codex/results/PHASE_057X_V1022_FR_A17_A19_A21_A23_OBSERVATIONS.md",
+          "lines": [
+            247,
+            270
+          ],
+          "commit": "a34e056bcf95291490aa4408f35cc8de106ecfb1"
+        },
+        {
+          "claim_id": "INTENT-PROV-0346",
+          "title": "“문건=코드”는 사용자가 명시한 핵심 기준이다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            30,
+            43
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0347",
+          "title": "공개 데이터 직접 fitting과 peak·valley 형상 평가는 사용자 의도다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            44,
+            58
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0351",
+          "title": "다온도·다율속 데이터가 핵심 식별 gate라는 사용자 방향이 남아 있다",
+          "path": "Codex/results/PHASE_057AT_V1025_HANDOVER_INDEX_OBSERVATIONS.md",
+          "lines": [
+            102,
+            115
+          ],
+          "commit": "db34548bbfc425a0942f950042559ab5bdfda49e"
+        },
+        {
+          "claim_id": "INTENT-PROV-0403",
+          "title": "이 비교는 사용자의 최종 validation 범위를 거의 다루지 않는다",
+          "path": "Codex/results/PHASE_057AY_V1024_SNAPSHOT_V1025_2_KERNEL_REPORT_OBSERVATIONS.md",
+          "lines": [
+            201,
+            216
+          ],
+          "commit": "0d851db09669d4c60d98554a5b6735aa5ead1ecc"
+        }
+      ],
+      "conflicts": [],
+      "confidence": "DIRECT_CURRENT_AND_REPOSITORY_CORROBORATED"
+    }
+  ],
+  "validation": {
+    "decision_ids_unique": true,
+    "all_decisions_have_repository_evidence": true,
+    "all_evidence_has_path_lines_commit": true,
+    "all_statuses_allowed": true
+  }
+}
