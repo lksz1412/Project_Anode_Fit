@@ -1366,6 +1366,35 @@ SI_MSMR7_LIT: List[Dict[str, Any]] = [
 
 
 # ============================================================================
+# [v1.0.25.2] 흑연 7-gallery (고분해능 opt-in — 사용자 확정 2026-07-27)
+#   목적: 흑연 dQ/dV 를 7 전이로 표현하는 최고 해상도 옵션. 해상도 사다리의 마지막 칸이며
+#     GRAPHITE_STAGING_MSMR6_LIT(6-gallery)·SI_MSMR7_LIT 와 동일 지위·동일 관용이다.
+#   근거: 전이 수 스윕(흑연 반쪽셀 p-ocv) 에서 모수 보정 지표가 N=7 에서 최소이고 N=8 에서
+#     다시 오른다(포화). 검출 피크는 3 개 그대로인데 중심이 거의 같고 폭만 다른 near-degenerate
+#     쌍이 늘어나는 형태 — 곧 늘어난 전이는 새 상이 아니라 한 봉우리의 형상 분해다.
+#   ★gallery≠상(phase): XRD 상 수(흑연 staging 4)는 불변이다(§5b 해상도 사다리·§7 위임).
+#   ★기본 경로(GRAPHITE_STAGING_LIT 4전이) bit-exact 무변경 — 본 상수는 additive opt-in 이다.
+#   ★tier: 전부 tier-C **seed**(피팅 override 전제 — 신뢰값 아님). 특히
+#     (a) 단일 셀·비평형 plain p-OCV 위에서 얻었고,
+#     (b) 산출 당시 피팅에 자유 배경이 없어 배경이 한 전이의 Q 를 겸했다(N10) — 그 전이의 Q 는
+#         특히 신뢰하지 말 것. 자유 C_bg 를 두고 재피팅해 override 하는 것이 전제다.
+#     (c) w=0.1 mV 급은 계측 분해 한계 아래다(원자료 평탄의 FWHM ≲ 1 mV = RT/F 의 1/25).
+#   ★@2 비대칭: 본 셋은 'alpha' 키를 두지 않는다(부재=1.0=대칭=bit-exact). 비대칭을 켜려면
+#     전이별로 'alpha' 를 추가하고, 같은 전이의 L_V 는 동결한다(§18 식별 가드 — 구현이 경고를 낸다).
+#   사용: GraphiteAnodeDischargeDQDV(GRAPHITE_MSMR7_LIT, ...) 또는
+#         BlendedAnodeDQDV(graphite_transitions=GRAPHITE_MSMR7_LIT, si_transitions=SI_MSMR7_LIT)  # = 14
+GRAPHITE_MSMR7_LIT: List[Dict[str, Any]] = [
+    {'U': 0.10350, 'w': 0.000100, 'Q': 0.0727},  # 2→1 군 sharp   (w 가 분해 한계 아래 — 주의 (c))
+    {'U': 0.10426, 'w': 0.000360, 'Q': 0.1456},  # 2→1 군 near-degenerate
+    {'U': 0.10700, 'w': 0.001400, 'Q': 0.2258},  # 2→1 군 어깨
+    {'U': 0.14019, 'w': 0.023184, 'Q': 0.7626},  # 3→2L 군 broad  (★배경 겸용분 — 주의 (b))
+    {'U': 0.14126, 'w': 0.000593, 'Q': 0.2014},  # 3→2L 군 sharp
+    {'U': 0.14350, 'w': 0.002021, 'Q': 0.2074},  # 3→2L 군 near-degenerate
+    {'U': 0.22741, 'w': 0.001513, 'Q': 0.1070},  # 4→3 / dilute 측 단일
+]
+
+
+# ============================================================================
 # R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.24 §3.5 doc-leads 요구명세)
 #   근거 절: §3.3 eq:blend-balance(공통-μ 이중합 전하 보존·음함수 U_oc)·eq:blend-dqdv(dQ/dV =
 #     C_bg + host 이중합)·eq:blend-limit(f_Si→0 흑연 회수) / §3.5 eq:si-code-bitexact(f_Si=0
