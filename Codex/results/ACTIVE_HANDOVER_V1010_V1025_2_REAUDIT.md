@@ -120,6 +120,15 @@
   `Codex/results/PHASE_058_PDF_RENDER_METRICS.json`,
   `Codex/results/PHASE_058_PDF_VISUAL_REVIEW.json`,
   `Codex/results/PHASE_058_PDF_IMAGE_RENDER_AUDIT.md`.
+- Phase 058 standalone image audit:
+  8/8 images inspected at stored resolution and mapped to generators.
+  v1.0.10 P5 has Hangul tofu glyphs; v1.0.13 P4 has a truncated panel
+  title. LCO rate curves nearly overlap, low-temperature plots show the
+  equilibrium high/narrow trend, and v1.0.13 sample retains a direction
+  label inconsistent with the corrected P4/graph-suite convention.
+- Phase 058 standalone image evidence:
+  `Codex/results/PHASE_058_STANDALONE_IMAGE_AUDIT.json`,
+  `Codex/results/PHASE_058_STANDALONE_IMAGE_REVIEW.md`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -142,12 +151,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 28.2:
-standalone image 8개를 원해상도로 검독해 axis, unit, legend,
-temperature/current condition, sign, peak morphology와 glyph를 판정한다.
+Phase 058 Step 28.3:
+PDF/image의 저장 commit과 generator/source commit을 hash/Git history로
+연결하고 격리 재실행 산출물과 대조해 stale artifact 여부를 판정한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1.
+27.1–27.5, 28.1–28.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -159,6 +168,8 @@ Production 3개 version 독립 conservation/sign/limit/current/temperature
 probe와 판정 저장.
 Golden NPZ 13개 array 전수 비교와 evidence-class 판정 저장.
 PDF 8개 215쪽 전 페이지 render·시각 검독과 조판 결함 4건 저장.
+Standalone image 8개 원해상도 검독, generator hash inventory와
+그림별 과학 주장 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

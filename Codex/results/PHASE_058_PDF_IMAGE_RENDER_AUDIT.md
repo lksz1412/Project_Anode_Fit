@@ -75,5 +75,34 @@ Steps 29–32에서 별도로 수행한다.
 8개 PDF 215쪽의 전 페이지 렌더·시각 검독은 완료했다.
 문서는 전반적으로 읽을 수 있으나 clipping 4쪽 때문에
 `LAYOUT_PASS_WITH_4_RECORDED_DEFECTS`로 판정한다.
-다음은 8개 standalone image의 원해상도 축·단위·범례·조건·peak
-morphology와 glyph를 전수 검독한다.
+
+## Standalone image 감사
+
+8개 standalone PNG를 저장 원해상도로 각각 열어 축, 단위, 범례,
+조건, sign/direction, peak morphology와 glyph를 전수 검독했다.
+파일·generator hash, 크기와 raster metric은
+`Codex/results/PHASE_058_STANDALONE_IMAGE_AUDIT.json`,
+파일별 판정은
+`Codex/results/PHASE_058_STANDALONE_IMAGE_REVIEW.md`에 보존했다.
+
+주요 결과는 다음과 같다.
+
+- 8/8 image와 generator가 존재하고, 8개는 서로 다른 nonblank blob이다.
+- v1.0.10 P5 graph suite의 한글 glyph가 tofu square로 깨진다.
+- v1.0.13 P4 panel (c)의 긴 제목이 subplot 오른쪽에서 잘린다.
+- LCO C-rate 곡선은 sample/P4 전반에서 거의 겹쳐 current broadening을
+  검증하지 않는다.
+- 저온 graph는 더 높고 좁은 평형 peak를 보여 사용자의 finite-current
+  저온 관측을 설명하지 않는다.
+- LCO 방향 표기는 v1.0.13 code/demo 일부에서 고쳤지만
+  `sample_test_v1013.png`에는 `discharge`가 남아 같은 버전 안에서도
+  일관되지 않다.
+- 8개 모두 model-generated output이며 public experiment,
+  uncertainty, residual 또는 holdout overlay가 없다.
+
+## Step 28.2 판정
+
+판정은 `VISUAL_COMPLETE_SCIENTIFIC_VALIDATION_ABSENT`다.
+PDF/image render가 완료됐다는 사실을 물리 validation으로 승격하지
+않는다. 다음 Step 28.3에서 저장 artifact와 generator/source의 Git
+commit 및 격리 재실행 hash를 연결해 stale 여부를 확정한다.

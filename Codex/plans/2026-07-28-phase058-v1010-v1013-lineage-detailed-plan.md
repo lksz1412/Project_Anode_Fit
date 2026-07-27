@@ -385,3 +385,27 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_PDF_IMAGE_RENDER_AUDIT.md`.
 - 판정: `LAYOUT_PASS_WITH_4_RECORDED_DEFECTS`.
 - 다음은 Step 28.2 standalone image 8개 원해상도 검독이다.
+
+### 2026-07-28 — Step 28.2
+
+- standalone PNG 8/8을 저장 원해상도로 열어 axis, unit, legend,
+  condition, sign/direction, peak morphology와 glyph를 검독했다.
+- 8개 image와 대응 generator의 SHA-256, 크기, mode, content bounds와
+  pairwise pixel 관계를 기계 기록했다. 8개는 모두 서로 다른 nonblank
+  blob이고 generator가 존재한다.
+- v1.0.10 P5의 한글 tofu glyph와 v1.0.13 P4 panel (c) 제목
+  truncation을 확인했다.
+- LCO rate curve는 거의 겹치고, 저온 plot은 높고 좁은 평형 peak를
+  보였다. 따라서 저장 그림은 사용자의 finite-current·low-temperature
+  peak 저하와 broadening을 검증하지 않는다.
+- v1.0.13 일부 그림은 LCO 방향을 고쳤지만 sample image에는
+  `discharge`가 남아 같은 버전 내부에서도 direction label이
+  일관되지 않다.
+- 8개 모두 model-generated output이며 public experimental overlay,
+  uncertainty, residual 또는 holdout prediction이 없다.
+- 근거:
+  `Codex/results/PHASE_058_STANDALONE_IMAGE_AUDIT.json`,
+  `Codex/results/PHASE_058_STANDALONE_IMAGE_REVIEW.md`.
+- 판정: `VISUAL_COMPLETE_SCIENTIFIC_VALIDATION_ABSENT`.
+- 다음은 Step 28.3 artifact–generator Git genealogy와 isolated
+  regeneration hash 대조다.
