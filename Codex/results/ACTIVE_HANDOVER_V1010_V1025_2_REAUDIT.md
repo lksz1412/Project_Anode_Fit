@@ -137,6 +137,15 @@
 - Phase 058 genealogy evidence:
   `Codex/results/PHASE_058_ARTIFACT_GENEALOGY.json`,
   `Codex/results/PHASE_058_ARTIFACT_GENEALOGY_REVIEW.md`.
+- Phase 058 v1.0.10 coordinate derivation:
+  charge-balance/logistic area-height-FWHM are preserved, but the
+  C-rate facade has a factor-3600 error under the documented coulomb
+  contract. Default Q weights are normalized rather than intrinsically
+  coulomb-valued, and reaction direction must be separated from
+  half/full-cell charge/discharge labels.
+- Phase 058 coordinate evidence:
+  `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_VALIDATION.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -159,12 +168,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 29.1:
-v1.0.10 외부 \(q\), 조성, voltage와 dQ/dV 정의를 독립 재유도하고
-source 정의·단위·부호를 재판정한다.
+Phase 058 Step 29.2:
+v1.0.10 평형 peak kernel, broadening, apparent potential,
+hysteresis와 finite-current 식을 독립 미분·극한 검산한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3.
+27.1–27.5, 28.1–28.3, 29.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -180,6 +189,8 @@ Standalone image 8개 원해상도 검독, generator hash inventory와
 그림별 과학 주장 판정 저장.
 PDF/image 16개 artifact–source Git 계보와 격리 rerender hash 대조,
 stale PNG 2개 판정 저장.
+v1.0.10 좌표·보존식·logistic ICA의 독립 재유도와 unit/direction
+contract 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

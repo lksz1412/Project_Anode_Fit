@@ -1,0 +1,90 @@
+{
+  "schema_version": "phase058-v1010-coordinate-validation-v1",
+  "sources": {
+    "theory": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+    "theory_sha256": "dc53b0df2033ea536bdbcb119b0047be40cad1a033c3c283c878d895fa91de5c",
+    "code": "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py",
+    "code_sha256": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b"
+  },
+  "source_evidence": {
+    "theory_qcell_unit_c_line": 221,
+    "theory_c_rate_map_line": 200,
+    "theory_charge_balance_line": 1173,
+    "theory_direction_line": 206,
+    "code_c_rate_map_line": 527,
+    "code_kernel_line": 388
+  },
+  "independent_logistic_check": {
+    "temperature_k": 298.15,
+    "width_rt_over_f_v": 0.025691238016271958,
+    "integration_domain_widths_each_side": 20.0,
+    "numerical_unit_kernel_area": 0.999999995877693,
+    "analytic_unit_kernel_area": 1.0,
+    "area_absolute_error": 4.122307051268592e-09,
+    "numerical_peak_per_v": 9.730944061226575,
+    "analytic_peak_per_v": 9.730944061226575,
+    "peak_absolute_error_per_v": 0.0,
+    "numerical_fwhm_v": 0.09057189050256514,
+    "analytic_fwhm_v": 0.09057431442149787,
+    "fwhm_relative_error": 2.676165917682796e-05,
+    "analytic_fwhm_factor_times_w": 3.5254943480781726
+  },
+  "c_rate_unit_check": {
+    "capacity_coulomb": 3600.0,
+    "capacity_ampere_hour": 1.0,
+    "c_rate_per_hour": 0.2,
+    "correct_current_ampere": 0.2,
+    "legacy_facade_numeric_result": 720.0,
+    "legacy_to_correct_ratio": 3600.0,
+    "verdict": "FACTOR_3600_UNIT_ERROR_IF_Q_CELL_IS_COULOMB",
+    "valid_alternative_contract": "I_A = c_rate_per_hour * Q_cell_Ah; or I_A = c_rate_per_hour * Q_cell_C / 3600"
+  },
+  "default_capacity_weights": {
+    "graphite_sum_q": 0.97,
+    "lco_sum_q": 1.0,
+    "code_values_are_consistent_with": "NORMALIZED_CAPACITY_FRACTIONS_OR_USER_CHOSEN_CAPACITY_UNIT",
+    "conflict": "The theory table fixes Q_j and Q_cell to coulomb, while the shipped defaults are dimensionless weights and demos use Q_cell=1."
+  },
+  "coordinate_contract": {
+    "state_coordinate": "Q_state(V)=Q_bg(V)+sum_j Q_j xi_j(V)",
+    "normalized_state_coordinate": "q=Q_state/Q_cell",
+    "li_stoichiometry_relation": "For a delithiation progress coordinate, host Li fraction x_Li decreases as xi increases; the proportionality requires active-material inventory and usable stoichiometric window.",
+    "differential_capacity": "dQ_state/dV=C_bg+sum_j Q_j dxi_j/dV",
+    "plot_convention": "A positive ICA bell is |dQ_state/dV|. Accumulated passed capacity increasing with time needs an explicit branch sign.",
+    "constant_resistance_voltage_map": "V_internal=V_app-sigma*|I|R gives dV_internal/dV_app=1 only for constant I and R."
+  },
+  "direction_contract": {
+    "verdict": "REACTION_DIRECTION_MUST_BE_SEPARATED_FROM_CYCLE_LABEL",
+    "reason": "Delithiation is a material reaction direction. 'charge' and 'discharge' depend on whether the label refers to a graphite half-cell, an LCO half-cell, or the full cell. A universal sigma_d label cannot encode all three.",
+    "recommended_primitive": "Use s_rxn=+1 for delithiation (or define the opposite once), then map instrument current and cell/half-cell cycle labels through an electrode-specific observation layer."
+  },
+  "claim_dispositions": [
+    {
+      "claim": "Charge-balance differentiation yields a sum of local transition derivatives.",
+      "disposition": "PRESERVE_WITH_EXPLICIT_COORDINATE"
+    },
+    {
+      "claim": "The normalized logistic derivative has unit area and peak Q_j/(4w_j).",
+      "disposition": "PRESERVE"
+    },
+    {
+      "claim": "Q_cell is in coulomb and I=c_rate[h^-1]*Q_cell.",
+      "disposition": "REJECT_UNIT_INCONSISTENT"
+    },
+    {
+      "claim": "One discharge/charge sign convention is electrode-independent.",
+      "disposition": "REJECT_SEMANTIC_CONFLATION"
+    },
+    {
+      "claim": "Default Q_j values carry an intrinsic coulomb unit.",
+      "disposition": "UNVERIFIED_DEFAULTS_ARE_NORMALIZED_WEIGHTS"
+    }
+  ],
+  "validation": {
+    "finite": true,
+    "logistic_area_error_lt_1e_8": true,
+    "logistic_peak_error_lt_1e_12": true,
+    "fwhm_relative_error_lt_1e_4": true,
+    "c_rate_ratio_is_3600": true
+  }
+}

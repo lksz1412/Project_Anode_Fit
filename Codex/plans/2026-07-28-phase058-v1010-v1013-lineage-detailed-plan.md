@@ -433,3 +433,30 @@ lineage report를 기계 검증한다.
   `PROVENANCE_COMPLETE_WITH_2_STALE_IMAGES_AND_HISTORICAL_BLOB_LIMIT`.
 - Step 28은 완료됐다. 다음은 Step 29.1 v1.0.10 외부 \(q\), 조성,
   voltage와 dQ/dV 정의의 독립 재유도다.
+
+### 2026-07-28 — Step 29.1
+
+- circuit passed charge, reaction-state charge, normalized progress,
+  Li stoichiometry를 분리하고
+  \(Q_{\rm rxn}=Q_{\rm bg}+\sum_jQ_j\xi_j\)를 전위로 미분했다.
+- logistic derivative의 unit area, peak \(Q_j/(4w_j)\),
+  FWHM \(=4w_j\operatorname{arcosh}\sqrt2\)를 독립 유도·수치 검산했다.
+- \(Q_{\rm cell}\)을 C로 선언하면서
+  \(I=r_CQ_{\rm cell}\), \(r_C[{\rm h^{-1}}]\)를 쓴 문건·facade는
+  factor-3600 unit error임을 재확인했다.
+- default \(Q_j\) 합 graphite 0.97, LCO 1.00과 demo의
+  \(Q_{\rm cell}=1\)은 실제 C보다 normalized capacity weight 계약에
+  가깝다. 이론 표의 C 단위와 code default가 일치하지 않는다.
+- delithiation/lithiation이라는 reaction direction과
+  half-cell/full-cell charge/discharge protocol label을 분리했다.
+  v1.0.10의 electrode-independent \(\sigma_d\) 주장은 기각했다.
+- constant \(IR\) correction은 peak shift만 만들며 current broadening
+  physics가 아니다. state-dependent overpotential에는 별도 Jacobian이
+  필요하다.
+- 근거:
+  `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_VALIDATION.json`.
+- 판정:
+  `CORE_CONSERVATION_PRESERVED_COORDINATE_CONTRACT_REJECTED`.
+- 다음은 Step 29.2 평형 kernel, broadening, apparent potential,
+  hysteresis/finite-current 식의 독립 미분·극한 검산이다.
