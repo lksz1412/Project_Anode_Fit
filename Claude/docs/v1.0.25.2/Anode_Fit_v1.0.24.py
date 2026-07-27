@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
-# ★ Anode_Fit  release 버전 = 1.0.25  — 문건 Ch1/Ch2/Ch3 v1.0.25 정합판(파일명은 DG-2(a) 규약 유지)
+# ★ Anode_Fit  release 버전 = 1.0.25.2  — 문건 Ch1/Ch2/Ch3 v1.0.25.2 정합판(파일명은 DG-2(a) 규약 유지)
+#   v1.0.25.2 변경: 기본 전이 셋 = 7-gallery skew(DEFAULT_GRAPHITE_TRANSITIONS·DEFAULT_SI_TRANSITIONS)
+#     + 레거시 복귀 스위치 use_legacy_4transition() · 실측 시드 GRAPHITE_MSMR7_LIT·SI_MSMR7_SKEW_LIT 추가.
+#     골든 bit-exact 계약(G1)은 4 전이 기준 그대로이며, 게이트가 로드 직후 레거시를 복원해 유지한다.
 #    [v1.0.25 국소 수정 — 전부 additive·부재 시 bit-exact(test_gates_v1024 G1 골든 max|d|=0 보존)]
 #      C1 @2 skew-logistic 비대칭(opt-in): func_dxi_eq 신설·전이 dict 'alpha' 키(부재=1.0=bit-exact).
 #         equilibrium·dqdv(peak_shape)·entropy_coefficient(g_j)·solve_U_oc(누적 ξ) 가 동일 규약 공유.
