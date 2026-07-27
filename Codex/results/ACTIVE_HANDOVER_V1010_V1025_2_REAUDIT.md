@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  107 documents, 18,616 lines.
+  108 documents, 19,915 lines.
 - Latest observation:
-  `Codex/results/PHASE_057J_V1021_CONTROL_DOCUMENT_INTENT_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057K_V1021_Q0_BASELINE_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -43,7 +43,8 @@ v1.0.21 queue를 논리 batch로 나누는 상세 검독 지도를 먼저 저장
 `Codex/plans/2026-07-28-phase057-v1021-read-map.md`.
 완료 batch: 19.5A, change log/execution ledger/reference ledger/handover
 4문건 117행.
-현재 batch: 19.5B, Q0 baseline snapshot 1문건 1,299행.
+완료 batch: 19.5B, Q0 baseline snapshot 1문건 1,299행.
+현재 batch: 19.5C, Q2/Q3 snapshots 2문건 2,680행.
 완료 Step 19.4:
 v1.0.20 81문건, 17,041행 전량 `READ`.
 최종 결과:
