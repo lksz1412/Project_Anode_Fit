@@ -1,0 +1,286 @@
+{
+  "scope": {
+    "source": "Claude/docs/v1.0.25.2/Anode_Fit_v1.0.24.py",
+    "source_sha256": "c28101568b1b57f7dcb1e20c19fcdaa997fb5022d6230f839657216e1872ae44",
+    "source_lines": 2024,
+    "accepted_lineage_tip_reviewed": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+    "default_correction_commit_in_lineage": "7b342dd88aad6bf9ff08cb3568da374837008ca7",
+    "probe_role": "latest-release wiring audit; not original optimizer replay"
+  },
+  "public_symbols": {
+    "use_skew7_default_callable": true,
+    "use_legacy_4transition_callable": false
+  },
+  "source_documentation_residue": {
+    "use_legacy_4transition_text_occurrences": 5,
+    "header_claims_default_7gallery": true,
+    "constructor_doc_claims_default_7gallery": true,
+    "implementation_appendix_uses_removed_symbol": true
+  },
+  "legacy_gate_scope": {
+    "gate": "Claude/docs/v1.0.25.2/test_gates_v1024.py",
+    "calls_use_skew7_default_false": true,
+    "interpretation": "The legacy gate restores the four-transition path before its assertions, so a PASS does not independently test whichever global default was active on module import."
+  },
+  "current_release_default": {
+    "constructor": {
+      "graphite_transition_count": 4,
+      "silicon_transition_count": 2,
+      "graphite_Cbg": 0.0,
+      "silicon_Cbg": 0.0,
+      "declared_DEFAULT_CBG_GRAPHITE": 0.55,
+      "declared_DEFAULT_CBG_SI": 0.051
+    },
+    "temperature_sensitivity": {
+      "graphite_transition_count": 4,
+      "transition_key_sets": [
+        [
+          "Omega",
+          "Q",
+          "U",
+          "dH_a",
+          "dH_rxn",
+          "dS_a",
+          "dS_rxn",
+          "dVdq_qa",
+          "n",
+          "w"
+        ],
+        [
+          "Omega",
+          "Q",
+          "U",
+          "dH_a",
+          "dH_rxn",
+          "dS_a",
+          "dS_rxn",
+          "dVdq_qa",
+          "n",
+          "w"
+        ],
+        [
+          "Omega",
+          "Q",
+          "U",
+          "dH_a",
+          "dH_rxn",
+          "dS_a",
+          "dS_rxn",
+          "dVdq_qa",
+          "n",
+          "w"
+        ],
+        [
+          "Omega",
+          "Q",
+          "U",
+          "dH_a",
+          "dH_rxn",
+          "dS_a",
+          "dS_rxn",
+          "dVdq_qa",
+          "n",
+          "w"
+        ]
+      ],
+      "temperature_low_K": 288.15,
+      "temperature_high_K": 308.15,
+      "voltage_min_V": 0.03,
+      "voltage_max_V": 0.34,
+      "voltage_points": 1000,
+      "max_abs_equilibrium_difference": 0.5252164419568519,
+      "all_finite": true
+    },
+    "invalid_si_case": {
+      "accepted": false,
+      "error": "ValueError: si_case must be one of ['elemental', 'sic', 'siox']; got 'not-a-real-case'."
+    },
+    "blend_data_wiring_fit": {
+      "profile": "current release default: graphite 4 + Si sic case 2",
+      "graphite_transition_count": 4,
+      "silicon_transition_count": 2,
+      "optimization": "unweighted least_squares over f_Si and Cbg only; bounds f_Si=[0,0.99], Cbg=[0,max(observed)]",
+      "success": true,
+      "status": 2,
+      "nfev": 8,
+      "optimized_f_Si": 0.6954492533768717,
+      "optimized_Cbg": 0.6850524271713563,
+      "optimized_metrics_two_parameters": {
+        "R2": 0.07507231361482658,
+        "BIC": 4929.523521140269
+      },
+      "comparison_scope": "A wiring diagnostic, not a mechanism-selection contest: the host profiles and the accepted direct14 blend fit used different objectives."
+    }
+  },
+  "explicit_skew7_opt_in": {
+    "temperature_sensitivity": {
+      "graphite_transition_count": 7,
+      "transition_key_sets": [
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ],
+        [
+          "Q",
+          "U",
+          "alpha",
+          "w"
+        ]
+      ],
+      "temperature_low_K": 288.15,
+      "temperature_high_K": 308.15,
+      "voltage_min_V": 0.03,
+      "voltage_max_V": 0.34,
+      "voltage_points": 1000,
+      "max_abs_equilibrium_difference": 6.394884621840902e-14,
+      "all_finite": true
+    },
+    "invalid_si_case": {
+      "accepted": true,
+      "error": null,
+      "silicon_transition_count": 7
+    },
+    "blend_data_wiring_fit": {
+      "profile": "explicit 7+7 skew opt-in",
+      "graphite_transition_count": 7,
+      "silicon_transition_count": 7,
+      "optimization": "unweighted least_squares over f_Si and Cbg only; bounds f_Si=[0,0.99], Cbg=[0,max(observed)]",
+      "success": true,
+      "status": 2,
+      "nfev": 6,
+      "optimized_f_Si": 0.5812256533860571,
+      "optimized_Cbg": 4.257113345766098e-21,
+      "optimized_metrics_two_parameters": {
+        "R2": -1.6132166646788586,
+        "BIC": 6258.959197922917
+      },
+      "comparison_scope": "A wiring diagnostic, not a mechanism-selection contest: the host profiles and the accepted direct14 blend fit used different objectives."
+    }
+  },
+  "accepted_direct14_profile": {
+    "points": 1280,
+    "parameter_count": 57,
+    "curve_and_background_units": "mAh/V",
+    "bic_interpretation": "i.i.d.-Gaussian working-likelihood statistic on smoothed, correlated residuals; compare only within this preprocessing and objective",
+    "optimizer_full_precision_available": false,
+    "optimizer_prediction_available": false,
+    "optimizer_termination_metadata_available": false,
+    "optimizer_active_set_status_available": false,
+    "builder_required_optimizer_success": false,
+    "stored_8dp_background": 0.5169124,
+    "presentation_6dp_background": 0.516912,
+    "stored_8dp_metrics_recomputed": {
+      "R2": 0.99964941790404,
+      "BIC": -4760.653827485789
+    },
+    "presentation_6dp_metrics_recomputed": {
+      "R2": 0.9996494106423718,
+      "BIC": -4760.627314896314
+    },
+    "stored_8dp_release_kernel_vs_direct_max_abs": 1.4210854715202004e-14,
+    "stored_8dp_vs_presentation_6dp_max_abs": 0.006974421543937126,
+    "builder_from_best_rounded_R2": 0.99965,
+    "builder_from_best_rounded_BIC": -4760.7,
+    "stored_8dp_profile_diagnostics": {
+      "graphite": {
+        "grid_step_V": 0.00025,
+        "min_width_V": 0.00015824,
+        "max_width_V": 0.02847263,
+        "min_width_below_grid_step": true,
+        "min_alpha": 3.13194799,
+        "max_alpha": 7.99623012,
+        "stored_8dp_alpha_equals_lower_bound": false,
+        "stored_8dp_alpha_equals_upper_bound": false,
+        "stored_8dp_width_equals_upper_bound": false
+      },
+      "silicon": {
+        "grid_step_V": 0.001,
+        "min_width_V": 0.00245875,
+        "max_width_V": 0.05822931,
+        "min_width_below_grid_step": false,
+        "min_alpha": 0.15,
+        "max_alpha": 8.0,
+        "stored_8dp_alpha_equals_lower_bound": true,
+        "stored_8dp_alpha_equals_upper_bound": true,
+        "stored_8dp_width_equals_upper_bound": false
+      },
+      "blend": {
+        "grid_step_V": 0.0005,
+        "min_width_V": 0.00194054,
+        "max_width_V": 0.12,
+        "min_width_below_grid_step": false,
+        "min_alpha": 0.15400039,
+        "max_alpha": 7.70072936,
+        "stored_8dp_alpha_equals_lower_bound": false,
+        "stored_8dp_alpha_equals_upper_bound": false,
+        "stored_8dp_width_equals_upper_bound": true
+      }
+    },
+    "sha256_le_f64": {
+      "voltage": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+      "observed": "da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e",
+      "stored_8dp_parameters": "08216da1095a02bcb789a60f577f4afd1d581ad659a8129edaba7dc0dc5910d5",
+      "stored_8dp_prediction": "53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800",
+      "stored_8dp_residual": "1b874701ac72403f2836b352386e3c3a4f658c49238fd2fcf0a4931fd79398ec"
+    }
+  },
+  "remaining_implementation_probes": {
+    "keyless_temperature_roundtrip": {
+      "width_fd_V_per_K": 8.616883453126112e-05,
+      "width_reported_V_per_K": 0.0,
+      "Uoc_fd_V_per_K": -9.46661405376581e-05,
+      "entropy_reported_V_per_K": 0.0
+    },
+    "logistic_warning_probe": {
+      "warning_count": 3,
+      "warnings": [
+        "RuntimeWarning: overflow encountered in exp",
+        "RuntimeWarning: overflow encountered in exp",
+        "RuntimeWarning: invalid value encountered in divide"
+      ]
+    },
+    "rate_and_causal_contract": {
+      "same_physical_C_rate_hour_vs_second_Lq_ratio": 3599.9999999999914,
+      "activation_entropy_offset_physical_minus_legacy_at_fixed_enthalpy_J_per_mol_K": -68.08076138062908,
+      "single_temperature_apparent_activation_enthalpy_offset_if_entropy_fixed_J_per_mol": 20298.27900563456,
+      "duplicate_first_step_pad_points": 0,
+      "five_L_residual_fraction": 0.006737946999085467
+    }
+  },
+  "supersession": {
+    "supersedes_old_default_label": "PHASE_044_CURRENT_SOURCE_PROBES.json:shipped_default_7plus7_on_blend_data",
+    "does_not_supersede": "accepted direct14 reconstruction, array hashes, or the non-default implementation probes unless explicitly stated"
+  }
+}
