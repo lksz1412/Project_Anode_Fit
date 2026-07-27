@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  94 documents, 8,073 lines.
+  103 documents, 18,499 lines.
 - Latest observation:
-  `Codex/results/PHASE_057H_V1020_CLOSING_DIRECTION_INTENT_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057I_V1020_SNAPSHOT_LINEAGE_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,18 +36,13 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.4:
-v1.0.20 queue의 81개 문건, 17,041행을 논리 batch로 나눠
+Phase 057 Step 19.5:
+v1.0.21 queue를 논리 batch로 나누는 상세 검독 지도를 먼저 저장한 뒤,
 각 문건을 첫 행부터 끝 행까지 전문 검독하고 claim/evidence 관찰을 저장한다.
-활성 상세 지도:
-`Codex/plans/2026-07-28-phase057-v1020-read-map.md`.
-완료 batch: 19.4A, foundation/setup/reference 16문건 885행.
-완료 batch: 19.4B, P2–P6 plan/result/step/judgment 21문건 815행.
-완료 batch: 19.4C, P7 review/direction/triage 16문건 2,567행.
-완료 batch: 19.4D, figure framing/P8/fitting/Si-LCO/notes/handover
-19문건 2,348행.
-현재 batch: 19.4E, baseline/P0/P2/P3/P4/P5/P7/P7b/final snapshot
-9문건 10,426행.
+완료 Step 19.4:
+v1.0.20 81문건, 17,041행 전량 `READ`.
+최종 결과:
+`Codex/results/PHASE_057I_V1020_SNAPSHOT_LINEAGE_OBSERVATIONS.md`.
 
 ## Resume Gate
 
