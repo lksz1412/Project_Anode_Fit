@@ -284,3 +284,23 @@ lineage report를 기계 검증한다.
 - text coverage는 9/27 blobs, 12,142/13,757 lines COMPLETE다.
 - 아직 `PASS_P058_LINEAGE_A`가 아니다. tests 5개, demos 6개,
   guides/handover/results 4개, PDF/image/NPZ와 독립 probes가 남았다.
+
+### 2026-07-28 — Step 27.2와 나머지 text closure
+
+- unique test 5개와 demo 6개를 1행부터 EOF까지 전문 검독했다.
+- implementation guide 3개와 result/handover 4개도 전문 검독해
+  v1.0.10–v1.0.13 full-text coverage를 27/27 blobs,
+  13,757/13,757행 `COMPLETE`로 닫았다.
+- Python test/demo 11개에서 실제 `assert` statement는 0개였다.
+  regression 2개의 실패 exit는 13개 golden array의 bit-exact 비교에만
+  연결되고, `area_check`는 이름과 달리 면적 허용오차를 gate하지 않는다.
+- sample test와 graph/demo suite는 그림·유한값·비율을 출력하지만
+  public experiment, uncertainty 또는 holdout prediction을 검사하지 않는다.
+- v1.0.13 handover의 “미완료 없음”은 같은 문장에 이월한
+  LCO \(T^2\), interaction/barrier, lag rebaseline, fixed-point 때문에
+  사용자 연구 목표에 대한 완료 주장으로 인정하지 않았다.
+- 근거:
+  `Codex/results/PHASE_058_TEST_DEMO_CLAIM_MATRIX.json`,
+  `Codex/results/PHASE_058_TEST_DEMO_GUIDE_REVIEW.md`.
+- 아직 `PASS_P058_LINEAGE_A`가 아니다. Step 27.3 격리 실행,
+  Step 27.4 독립 probe, NPZ/PDF/image와 독립 유도·종합 판정이 남았다.

@@ -75,6 +75,17 @@
   `Codex/results/PHASE_058_CODE_SOURCE_REVIEW.md`.
 - Phase 058 code behavior seed matrix:
   `Codex/results/PHASE_058_CODE_BEHAVIOR_MATRIX.json`.
+- Phase 058 complete text coverage:
+  27/27 unique blobs, 13,757/13,757 lines `COMPLETE`.
+- Phase 058 test/demo source audit:
+  5 tests + 6 demos read; 0 Python `assert` statements.
+  Regression failure exits enforce only 13-array bit-exact invariance;
+  area and physical claims are printed, not gated.
+- Phase 058 guide/handover/result source audit:
+  3 guides + 4 result/handover documents read.
+- Phase 058 test/demo/guide review:
+  `Codex/results/PHASE_058_TEST_DEMO_GUIDE_REVIEW.md`,
+  `Codex/results/PHASE_058_TEST_DEMO_CLAIM_MATRIX.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -97,17 +108,18 @@
 
 ## Next Exact Step
 
-Phase 058 Step 27.2:
-5개 unique test와 6개 demo blob을 전문 검독해 assertion, tolerance,
-실행 branch, 미검사 영역과 물리 주장 범위를 기록한다. 다음으로 guide,
-handover/result 4개를 포함한 나머지 text coverage를 닫는다.
+Phase 058 Step 27.3:
+원본 source를 수정하지 않고 가능한 legacy test/demo를 격리 실행한다.
+hardcoded Windows path나 frozen dependency로 실패하면 환경 실패와
+모델 실패를 분리하고, 결과를 독립 probe의 입력으로 저장한다.
 완료:
-Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
-AST API/call/default 및 exact diff와 초기 code review 작성. Phase 058
-text coverage 9/27 blobs, 12,142/13,757 lines.
+AST API/call/default 및 exact diff와 초기 code review 작성. Test 5개,
+demo 6개, guide 3개, result/handover 4개를 추가 전문 검독해 Phase 058
+text coverage 27/27 blobs, 13,757/13,757 lines.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
