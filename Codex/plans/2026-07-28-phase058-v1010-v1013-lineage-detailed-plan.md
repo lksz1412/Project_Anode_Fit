@@ -683,3 +683,46 @@ lineage report를 기계 검증한다.
   `PASS_P058_V1013_STATMECH_REDERIVATION`.
 - 다음은 Step 31.2 interaction, degeneracy, multiplicity와
   effective \(n\)/width의 물리적 의미를 분리한다.
+
+### 2026-07-28 — Step 31.2
+
+- 반응 전자수 \(n_e\), 독립 자리 수 \(M_j\), 상태 축퇴도
+  \(g_1/g_0\), interaction \(\Omega_j\), 경험적 logistic 폭 비와
+  heterogeneity/kinetic/observation width를 분리했다.
+- 2-electron Nernst 폭은 \(RT/(2F)=12.846\) mV지만 현
+  `n=2` 식은 \(2RT/F=51.385\) mV라 4배 차이가 난다. 현 `n`은
+  전자수가 아니다.
+- 독립 자리 \(M=1,10,50\)의 binomial partition을 직접 합해
+  정규화 점유가 모두 0.4117647임을 확인했다. 자리 개수는
+  \(Q_j\)/면적을 정하며 정규화 폭을 바꾸지 않는다.
+- 상수 축퇴도는 중심을 옮기고 폭을 바꾸지 않으며, \(\Omega\)는
+  전체 implicit isotherm을 바꾸므로 상수 폭 다중도로 대체할 수 없다.
+- current `n`은
+  \(\lambda=wF/(RT)\)라는 empirical width ratio로만 보존할 수
+  있으며 “다중도” 명칭은 폐기해야 한다. sample `n=0.12`의
+  \(h=8.33\)은 equivalent logistic slope이지 microscopic
+  cooperativity 증거가 아니다.
+- empirical \(\lambda R\logit/F\)는 가정한 \(w(T)\)의 대수
+  미분이지 \(\lambda\ne1\)에서 이상 configurational entropy가
+  아니다.
+- `n` 입력은 \(w\propto T\), `w`-only 입력은 \(w=\)constant를
+  선택하므로 두 키는 별칭이 아니라 서로 다른 온도 모형이다.
+  shipped graphite/LCO 7개 transition은 모두 `n=1`이 저장된
+  `w`를 가린다.
+- 관측 peak를
+  \(K_\mathrm{obs}*K_\mathrm{kin}*\rho_\mathrm{het}*p_\mathrm{eq}\)
+  의 네 층으로 분리하고 normalized kernel의 area/height,
+  variance 장부를 유도했다.
+- 298.15→273.15 K에서 이상 평형 폭은 0.916배지만,
+  \(E_a=40\) kJ/mol의 예시 relaxation time은 4.379배가 되어
+  저온·유한전류 measured broadening이 평형 trend를 이길 수 있음을
+  확인했다. 이는 사용자의 핵심 관측을 설명할 forward 방향이며
+  재료 parameter 확정은 아니다.
+- 기계 검산 47/47가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS.json`.
+- 기계 gate:
+  `PASS_P058_V1013_WIDTH_SEMANTICS`.
+- 다음은 Step 31.3 v1.0.13 신규 식·문단·default와 code/test
+  변화를 exact patch로 연결한다.

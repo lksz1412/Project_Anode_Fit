@@ -214,6 +214,18 @@
   `Codex/results/PHASE_058_V1013_STATMECH_DERIVATION.md`,
   `Codex/results/PHASE_058_V1013_STATMECH_VALIDATION.json`
   (`PASS_P058_V1013_STATMECH_REDERIVATION`, 35/35 checks).
+- Phase 058 v1.0.13 width semantics:
+  current `n` is neither electron stoichiometry, site count nor constant
+  degeneracy. It is retainable only as an empirical dimensionless width
+  ratio \(\lambda=wF/(RT)\). The n/w input modes encode different
+  temperature laws, all seven stored default w values are shadowed by
+  n=1, and arbitrary-n algebraic temperature derivatives are not ideal
+  configurational entropy. Equilibrium, heterogeneity, kinetics and
+  observation must be separate forward layers.
+- Phase 058 v1.0.13 width evidence:
+  `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS.json`
+  (`PASS_P058_V1013_WIDTH_SEMANTICS`, 47/47 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -236,12 +248,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 31.2:
-v1.0.13 interaction, degeneracy, multiplicity와 effective
-\(n\)/width의 물리적 의미를 분리한다.
+Phase 058 Step 31.3:
+v1.0.13에서 새로 생긴 식·문단·default와 code/test 변화를
+v1.0.12에 대한 exact patch로 연결한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -274,6 +286,9 @@ representability만 확인하고 physical closure 승격은 기각.
 v1.0.13 이상 grand partition에서 occupancy, Nernst/logistic,
 dQ/dV 면적·높이·FWHM을 독립 재유도하고, 비이상 단상 폭,
 다중 전이 위상, convexification과 평형 방향의 미폐쇄를 판정.
+v1.0.13 `n`을 경험적 width ratio로 강등하고 전자수·자리수·축퇴도와
+분리했으며, equilibrium/heterogeneity/kinetics/observation의
+forward width hierarchy와 저온·유한전류 경쟁 스케일을 정립.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

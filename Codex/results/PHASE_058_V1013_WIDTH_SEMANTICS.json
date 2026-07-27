@@ -1,0 +1,221 @@
+{
+  "schema_version": "phase058-v1013-width-semantics-v1",
+  "audit_boundary": "PHYSICAL_MEANING_SEPARATION_NOT_PARAMETER_IDENTIFICATION",
+  "sources": {
+    "chapter_1": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+    "chapter_1_sha256": "d3a7b658c2ae099694e877cfde0b7b3870f87b411b675305cf6eb3a2480a4278",
+    "chapter_2": "Claude/docs/v1.0.13/graphite_ica_ch2_v1.0.13.tex",
+    "chapter_2_sha256": "3b5959220860790b8dac733e4aea57c9485af689d9cc3fe7f71bbe0b5f96120f",
+    "production_code": "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py",
+    "production_code_sha256": "492d1cce1e59c3ff89c8c35dfd0cc462408689b55536aeabcf4d5052c66d071c",
+    "sample": "Claude/docs/v1.0.13/sample_test_v1013.py",
+    "sample_sha256": "263c0151db2b73a07b513c93654393cc05e002f4dad644b35ca8ea33989df0d3"
+  },
+  "source_evidence": {
+    "n_named_width_multiplicity_line": 241,
+    "width_equation_line": 1117,
+    "subcritical_width_claim_line": 1126,
+    "finite_rate_broadening_line": 1384,
+    "ensemble_integral_line": 1429,
+    "chapter_2_generalized_config_line": 553,
+    "chapter_2_conditional_validation_line": 512,
+    "code_func_w_line": 75,
+    "code_n_precedence_line": 301,
+    "sample_n_0p12_line": 40
+  },
+  "symbol_taxonomy": [
+    {
+      "symbol": "n_e",
+      "meaning": "electron stoichiometric number per written reaction",
+      "equilibrium_effect": "ideal Nernst width R*T/(n_e*F)",
+      "capacity_effect": "charge per reaction extent scales with n_e*F",
+      "disposition": "RESERVE_SYMBOL_AND_DO_NOT_MAP_TO_CURRENT_n"
+    },
+    {
+      "symbol": "M_j",
+      "meaning": "number of independent equivalent sites or species-j multiplicity",
+      "equilibrium_effect": "does not change normalized ideal occupation width",
+      "capacity_effect": "sets Q_j and absolute fluctuation amplitude",
+      "disposition": "SEPARATE_FROM_WIDTH"
+    },
+    {
+      "symbol": "g_1/g_0",
+      "meaning": "occupied-to-empty state degeneracy ratio",
+      "equilibrium_effect": "shifts standard center by (R*T/F)*ln(g_1/g_0) without changing ideal FWHM",
+      "capacity_effect": "none at fixed site count",
+      "disposition": "CENTER_OR_STANDARD_ENTROPY"
+    },
+    {
+      "symbol": "Omega_j",
+      "meaning": "regular-solution interaction energy",
+      "equilibrium_effect": "changes the implicit isotherm and phase stability; not a constant logistic multiplier",
+      "capacity_effect": "none by itself",
+      "disposition": "FREE_ENERGY_PARAMETER"
+    },
+    {
+      "symbol": "lambda_j",
+      "meaning": "dimensionless empirical logistic width ratio w_j*F/(R*T)",
+      "equilibrium_effect": "equivalent to inverse local Hill slope only as a fitted logistic surrogate",
+      "capacity_effect": "none if peak area is separately constrained",
+      "disposition": "RENAME_CURRENT_n_TO_lambda_OR_omega"
+    },
+    {
+      "symbol": "h_j",
+      "meaning": "effective Hill/cooperative slope, defined only for a logistic surrogate as h_j=1/lambda_j",
+      "equilibrium_effect": "w_j=R*T/(h_j*F)",
+      "capacity_effect": "none",
+      "disposition": "DESCRIPTIVE_NOT_MECHANISTIC_WITHOUT_MICROSCOPIC_MODEL"
+    },
+    {
+      "symbol": "sigma_U,j",
+      "meaning": "distribution width of equilibrium or apparent transition centers from material/electrode heterogeneity",
+      "equilibrium_effect": "convolution broadening that can persist at zero current",
+      "capacity_effect": "preserves area for a normalized kernel",
+      "disposition": "SEPARATE_FORWARD_HETEROGENEITY_KERNEL"
+    },
+    {
+      "symbol": "L_U,j",
+      "meaning": "one-sided kinetic lag scale |dU/dt|*tau_j",
+      "equilibrium_effect": "none in the zero-rate limit",
+      "capacity_effect": "preserves area in the continuous normalized convolution",
+      "disposition": "SEPARATE_RATE_TEMPERATURE_STATE_DEPENDENT_KERNEL"
+    },
+    {
+      "symbol": "sigma_obs",
+      "meaning": "instrument, sampling and preprocessing observation width",
+      "equilibrium_effect": "none",
+      "capacity_effect": "preserves area only for a normalized observation kernel and full integration window",
+      "disposition": "SEPARATE_OBSERVATION_KERNEL"
+    },
+    {
+      "symbol": "alpha",
+      "meaning": "charge-transfer coefficient or transition-state partition parameter",
+      "equilibrium_effect": "must cancel from detailed balance equilibrium",
+      "capacity_effect": "none",
+      "disposition": "KINETIC_ASYMMETRY_NOT_EQUILIBRIUM_WIDTH"
+    }
+  ],
+  "numeric_invariants": {
+    "temperature_k": 298.15,
+    "gas_constant_j_per_mol_k": 8.31446261815324,
+    "faraday_constant_c_per_mol": 96485.33212,
+    "ideal_one_electron_width_v": 0.02569257912196725,
+    "ideal_two_electron_width_v": 0.012846289560983624,
+    "current_formula_n_2_width_v": 0.0513851582439345,
+    "current_formula_to_two_electron_width_ratio": 4.0,
+    "sample_lambda": 0.12,
+    "sample_lambda_width_v": 0.0030831094946360696,
+    "sample_lambda_fwhm_v": 0.010869485097845613,
+    "sample_inverse_hill_slope": 8.333333333333334,
+    "ideal_config_dudt_at_xi_0p8_v_per_k": 0.00011946160509612555,
+    "lambda_0p12_algebraic_dudt_at_xi_0p8_v_per_k": 0.000014335392611535065,
+    "site_multiplicity_probe_fugacity": 0.7,
+    "site_multiplicity_probe_values": [
+      1,
+      10,
+      50
+    ],
+    "site_multiplicity_normalized_occupancy": 0.4117647058823529,
+    "illustrative_variance_components_v2": {
+      "ideal_logistic": 0.0021716703200939064,
+      "heterogeneity_sigma_10mv": 0.0001,
+      "kinetic_lag_20mv": 0.0004,
+      "observation_sigma_5mv": 0.000025
+    },
+    "illustrative_total_standard_deviation_v": 0.05192947448312862,
+    "illustrative_variance_equivalent_logistic_width_v": 0.028630219806617438,
+    "illustrative_activation_energy_j_per_mol": 40000.0,
+    "illustrative_tau_ratio_273p15k_to_298p15k": 4.3790315263196495,
+    "equilibrium_width_ratio_273p15k_to_298p15k": 0.9161495891329867
+  },
+  "implementation_probe": {
+    "default_graphite_transition_count": 4,
+    "default_lco_transition_count": 3,
+    "default_transitions_with_n_equal_one": 7,
+    "default_transitions_with_stored_w": 7,
+    "default_transitions_where_n_shadows_w": 7,
+    "code_width_v_at_298p15k_n_1": 0.025691238016271958,
+    "code_width_v_at_298p15k_n_0p12": 0.003082948561952635,
+    "sample_uses_n_0p12_only_as_phenomenological_fit": true
+  },
+  "claim_dispositions": [
+    {
+      "id": "W13-01",
+      "claim": "The current n_j is an electron stoichiometric number.",
+      "disposition": "REJECT_OPPOSITE_WIDTH_SCALING"
+    },
+    {
+      "id": "W13-02",
+      "claim": "The current n_j is a count of independent sites.",
+      "disposition": "REJECT_SITE_COUNT_CHANGES_CAPACITY_NOT_NORMALIZED_WIDTH"
+    },
+    {
+      "id": "W13-03",
+      "claim": "State degeneracy explains n_j-dependent broadening.",
+      "disposition": "REJECT_CONSTANT_DEGENERACY_SHIFTS_CENTER"
+    },
+    {
+      "id": "W13-04",
+      "claim": "The current n_j may be retained as a dimensionless empirical logistic width ratio.",
+      "disposition": "PRESERVE_AFTER_RENAME_TO_lambda_OR_MSMR_omega"
+    },
+    {
+      "id": "W13-05",
+      "claim": "n_j=0.12 proves a microscopic cooperativity of 8.33.",
+      "disposition": "REJECT_ONLY_AN_EQUIVALENT_LOGISTIC_SLOPE"
+    },
+    {
+      "id": "W13-06",
+      "claim": "The n_j*R*logit/F temperature derivative is configurational entropy for arbitrary fitted n_j.",
+      "disposition": "REJECT_PHYSICAL_IDENTITY_EXCEPT_IDEAL_NORMALIZATION"
+    },
+    {
+      "id": "W13-07",
+      "claim": "The same n_j can absorb equilibrium interaction, static heterogeneity, finite-rate lag and observation smoothing without loss of interpretation.",
+      "disposition": "REJECT_IDENTIFIABILITY_AND_DOUBLE_COUNTING"
+    },
+    {
+      "id": "W13-08",
+      "claim": "A normalized forward broadening kernel preserves transition area.",
+      "disposition": "PRESERVE_WITH_FULL_WINDOW_AND_NUMERICAL_CONSERVATION_GATE"
+    },
+    {
+      "id": "W13-09",
+      "claim": "Finite-rate broadening must vanish as current or scan rate tends to zero.",
+      "disposition": "PRESERVE_FOR_KINETIC_COMPONENT"
+    },
+    {
+      "id": "W13-10",
+      "claim": "Static material heterogeneity must vanish at zero current.",
+      "disposition": "REJECT_CAN_PERSIST_AT_QUASI_EQUILIBRIUM"
+    },
+    {
+      "id": "W13-11",
+      "claim": "Lower temperature necessarily narrows the measured finite-current peak because R*T/F decreases.",
+      "disposition": "REJECT_KINETIC_LAG_CAN_DOMINATE_AND_REVERSE_TREND"
+    },
+    {
+      "id": "W13-12",
+      "claim": "The transfer coefficient alpha changes the detailed-balance equilibrium width.",
+      "disposition": "REJECT_ALPHA_IS_KINETIC_ASYMMETRY"
+    },
+    {
+      "id": "W13-13",
+      "claim": "Stored w values and n values simultaneously constrain the shipped defaults.",
+      "disposition": "REJECT_n_PRECEDENCE_SHADOWS_ALL_SEVEN_STORED_w_VALUES"
+    }
+  ],
+  "recommended_symbol_contract": {
+    "n_e": "integer or explicitly effective electron stoichiometry in reaction thermodynamics",
+    "M_j": "site/species count mapped to Q_j",
+    "g_j": "state degeneracy, not peak shape",
+    "Omega_j": "interaction energy in a free-energy model",
+    "lambda_j": "dimensionless fitted logistic width ratio only",
+    "w_eq_j": "width derived from the selected equilibrium free energy, not always logistic",
+    "rho_het_j": "normalized forward heterogeneity distribution",
+    "tau_j": "kinetic state timescale",
+    "K_obs": "normalized observation kernel",
+    "w_reported_j": "descriptive summary of the final observed peak, never a cause"
+  },
+  "verdict": "CURRENT_n_IS_AN_EMPIRICAL_WIDTH_RATIO_NOT_A_DERIVED_MULTIPLICITY;_EQUILIBRIUM_HETEROGENEITY_KINETICS_AND_OBSERVATION_MUST_BE_SEPARATE"
+}
