@@ -106,3 +106,21 @@ Steps 29–32에서 별도로 수행한다.
 PDF/image render가 완료됐다는 사실을 물리 validation으로 승격하지
 않는다. 다음 Step 28.3에서 저장 artifact와 generator/source의 Git
 commit 및 격리 재실행 hash를 연결해 stale 여부를 확정한다.
+
+## Step 28.3 생성 계보 판정
+
+PDF 8개와 PNG 8개의 저장 commit을 TeX, generator와 model commit에
+연결했다. 상세 기계 기록과 판정은 다음에 보존했다.
+
+- `Codex/results/PHASE_058_ARTIFACT_GENEALOGY.json`
+- `Codex/results/PHASE_058_ARTIFACT_GENEALOGY_REVIEW.md`
+
+v1.0.10 P4 LCO/heat 그림은 factor-2 정정 및 model 변경 전 artifact,
+v1.0.10 dQ/dV overview는 최종 model 변경 전 artifact다. 두 그림은
+최종 코드 상태의 증거에서 제외한다. 나머지 6개 PNG의 build ordering은
+현재지만 격리 재실행과 bit-exact한 그림은 0/8이었다. PNG hash는
+rendering environment에 민감하므로 commit ordering과 plot-data
+assertion을 함께 보존해야 한다.
+
+Step 28 판정은
+`PROVENANCE_COMPLETE_WITH_2_STALE_IMAGES_AND_HISTORICAL_BLOB_LIMIT`다.

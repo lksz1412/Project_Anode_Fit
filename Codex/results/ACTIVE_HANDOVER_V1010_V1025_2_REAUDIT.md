@@ -129,6 +129,14 @@
 - Phase 058 standalone image evidence:
   `Codex/results/PHASE_058_STANDALONE_IMAGE_AUDIT.json`,
   `Codex/results/PHASE_058_STANDALONE_IMAGE_REVIEW.md`.
+- Phase 058 artifact genealogy:
+  PDF/image 16/16 mapped to source commits. Two v1.0.10 PNGs are
+  provenance-stale: P4 LCO/heat predates a factor-2 correction and later
+  model state; the initial dQ/dV overview predates the final model state.
+  Isolated rendering produced 8/8 images but 0/8 bit-exact PNGs.
+- Phase 058 genealogy evidence:
+  `Codex/results/PHASE_058_ARTIFACT_GENEALOGY.json`,
+  `Codex/results/PHASE_058_ARTIFACT_GENEALOGY_REVIEW.md`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -151,12 +159,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 28.3:
-PDF/image의 저장 commit과 generator/source commit을 hash/Git history로
-연결하고 격리 재실행 산출물과 대조해 stale artifact 여부를 판정한다.
+Phase 058 Step 29.1:
+v1.0.10 외부 \(q\), 조성, voltage와 dQ/dV 정의를 독립 재유도하고
+source 정의·단위·부호를 재판정한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.2.
+27.1–27.5, 28.1–28.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -170,6 +178,8 @@ Golden NPZ 13개 array 전수 비교와 evidence-class 판정 저장.
 PDF 8개 215쪽 전 페이지 render·시각 검독과 조판 결함 4건 저장.
 Standalone image 8개 원해상도 검독, generator hash inventory와
 그림별 과학 주장 판정 저장.
+PDF/image 16개 artifact–source Git 계보와 격리 rerender hash 대조,
+stale PNG 2개 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
