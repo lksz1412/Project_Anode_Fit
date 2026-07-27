@@ -526,3 +526,32 @@ lineage report를 기계 검증한다.
   `HEAT_IDENTITY_PRESERVED_ENTROPY_AND_LCO_CLOSURE_REJECTED`.
 - 다음은 Step 29.4 과거 problem/integrity report의 상충 진단을
   actual source/output으로 재판정한다.
+
+### 2026-07-28 — Step 29.4
+
+- 과거 problem report와 integrity report의 31개 claim을 actual
+  manuscript, production source, isolated execution, independent
+  probe, PDF/image와 Step 29.1–29.3 재유도에 다시 연결했다.
+- 판정은 `CONFIRMED` 10, `PARTIAL` 9, `REJECTED` 12,
+  `UNRESOLVED` 0이며 source hash, claim ID uniqueness, status와
+  evidence existence 25개 gate가 모두 통과했다.
+- 최초 R1의 “분리 peak 생성 불가”는 실행으로 기각했다. 그러나 이를
+  철회한 뒤 “폭 물리가 온전하다”고 확대한 integrity 결론도 기각했다.
+  peak representability는 thermodynamic provenance가 아니다.
+- near-delta+convolution을 무조건 강제하는 옛 처방은 채택하지 않는다.
+  equilibrium phase response, kinetic state, ensemble heterogeneity,
+  observation kernel을 forward hierarchy로 분리하고 식별 가능성을
+  검사하는 방향으로 정리했다.
+- default kinetic-off, tail 방향 모순, 전역 \(\Omega>2RT\) constraint
+  충돌, heat sign, report-only area gate와 stale provenance/layout
+  진단은 보존했다.
+- “모든 잔여는 minor”, electronic entropy 완전 검증,
+  Chapter 2 thermodynamic integrity, redesign 금지와 LCO placeholder
+  강등 주장은 현 사용자 목표와 독립 검산에 따라 기각했다.
+- 근거:
+  `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.md`,
+  `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.json`.
+- 기계 gate:
+  `PASS_P058_V1010_PRIOR_REPORT_ADJUDICATION`.
+- Step 29는 완료됐다. 다음은 Step 30.1 v1.0.11이 v1.0.10과
+  content-identical인 영역과 version-only copy를 정확히 분리한다.

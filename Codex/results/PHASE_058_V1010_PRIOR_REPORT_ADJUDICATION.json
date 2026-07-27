@@ -1,0 +1,321 @@
+{
+  "schema_version": "phase058-v1010-prior-report-adjudication-v1",
+  "audit_boundary": "HISTORICAL_AUDIT_NOT_THEORY_CANON",
+  "sources": [
+    {
+      "path": "Claude/docs/v1.0.10/V1010_PROBLEM_REPORT.md",
+      "sha256": "a20894b1c798d6318a63e16a16ca21fe0d71aed3e178444a78401c0a91103f5c"
+    },
+    {
+      "path": "Claude/docs/v1.0.10/V1010_HANDOVER_INTEGRITY_REPORT.md",
+      "sha256": "1ca778092f7ff65a0619c91a9948e1ac3b31a89e4bf2c341492dd4c3d9192cd3"
+    }
+  ],
+  "allowed_statuses": [
+    "CONFIRMED",
+    "PARTIAL",
+    "REJECTED",
+    "UNRESOLVED"
+  ],
+  "claims": [
+    {
+      "id": "P-R1-ORIGINAL",
+      "source_report": "problem",
+      "source_lines": "13-18",
+      "claim": "The kernel is structurally unable to produce separated near-delta staging peaks.",
+      "status": "REJECTED",
+      "reason": "The isolated n=0.12 demonstrations produce four local maxima, so numerical representability is present.",
+      "carry_forward": "Do not infer thermodynamic validity from representability; fitted sub-thermal width remains empirical."
+    },
+    {
+      "id": "P-R1-WITHDRAWAL",
+      "source_report": "problem",
+      "source_lines": "3,45-50",
+      "claim": "Withdrawal of the structural-inability claim establishes that the bell/apparent-potential broadening physics is intact.",
+      "status": "REJECTED",
+      "reason": "The withdrawal proves flexibility only. It does not derive a finite two-phase equilibrium width or separate equilibrium, heterogeneity, kinetic and observation broadening.",
+      "carry_forward": "Retain the empirical kernel only as an observation-level candidate pending layer separation."
+    },
+    {
+      "id": "P-R2",
+      "source_report": "problem",
+      "source_lines": "20-22",
+      "claim": "Default kinetic tails are inactive and the C-rate plots reduce to no shape change or an ohmic shift.",
+      "status": "CONFIRMED",
+      "reason": "Independent probes found zero default current dependence at Rn=0 and all default lag lengths below the grid switch.",
+      "carry_forward": "Treat default current broadening as absent."
+    },
+    {
+      "id": "P-R3",
+      "source_report": "problem",
+      "source_lines": "24-25",
+      "claim": "The charging-tail prose contradicts the caption and executed mirror direction.",
+      "status": "CONFIRMED",
+      "reason": "Chapter 1 lines 1609-1641 contain the conflicting high-V versus low-V descriptions.",
+      "carry_forward": "Use reaction-oriented traversal signs and derive display labels only in an adapter."
+    },
+    {
+      "id": "P-R4",
+      "source_report": "problem",
+      "source_lines": "27-28",
+      "claim": "The fitting guide's Omega greater than 2RT lower bound conflicts with the manuscript's solid-solution allowance.",
+      "status": "CONFIRMED",
+      "reason": "The guide imposes the bound globally while the manuscript expects selected transitions to fit below the critical value.",
+      "carry_forward": "Never impose a phase-regime bound before phase assignment and model comparison."
+    },
+    {
+      "id": "P-R5",
+      "source_report": "problem",
+      "source_lines": "30-31",
+      "claim": "The old w_eff=(RT/F)(1-Omega/2RT) expression should be restored as a single-phase equilibrium narrowing prediction.",
+      "status": "PARTIAL",
+      "reason": "The expression can be interpreted as a local center-slope matching, but it is not a global logistic solution of the interacting regular-solution equation.",
+      "carry_forward": "Retain the exact implicit regular-solution equation; label any local effective width as an approximation."
+    },
+    {
+      "id": "P-R6",
+      "source_report": "problem",
+      "source_lines": "33-34",
+      "claim": "The irreversible-heat helper does not enforce nonnegative entropy production.",
+      "status": "CONFIRMED",
+      "reason": "The helper returns negative power for valid numeric inputs because the sign/domain contract is not structural.",
+      "carry_forward": "Construct irreversible heat as signed flux times thermodynamic force under one explicit convention."
+    },
+    {
+      "id": "P-R7-AREA-GATE",
+      "source_report": "problem",
+      "source_lines": "36-37",
+      "claim": "The regression test calls an area printout an assertion although it has no failing area gate.",
+      "status": "CONFIRMED",
+      "reason": "The scripts contain no Python assert and merely print the finite-window integral.",
+      "carry_forward": "Separate executable conservation assertions from report-only diagnostics."
+    },
+    {
+      "id": "P-R7-GLYPH",
+      "source_report": "problem",
+      "source_lines": "36-37",
+      "claim": "The stored P5 figure has broken Hangul glyphs.",
+      "status": "CONFIRMED",
+      "reason": "Original-resolution visual inspection found tofu glyphs in the v1.0.10 P5 image.",
+      "carry_forward": "Require visual QA for generated artifacts."
+    },
+    {
+      "id": "P-LCO-NOT-DEFECT",
+      "source_report": "problem",
+      "source_lines": "39-41",
+      "claim": "The LCO placeholder and missing T-squared term are not defects because they were disclosed as future work.",
+      "status": "REJECTED",
+      "reason": "Disclosure is honest scope control but does not satisfy the user's target of doped high-voltage LCO and temperature-dependent electrochemistry.",
+      "carry_forward": "Preserve the disclosure; classify the scientific closure as missing."
+    },
+    {
+      "id": "P-FP-G1",
+      "source_report": "problem",
+      "source_lines": "43-46",
+      "claim": "All reported area loss is a false positive caused only by grid-window truncation.",
+      "status": "PARTIAL",
+      "reason": "The logistic kernel has unit area on a wide domain, but finite experimental voltage-window accounting remains a real observation-model issue.",
+      "carry_forward": "Preserve analytic normalization and explicitly model censoring/window tails."
+    },
+    {
+      "id": "P-FP-E2",
+      "source_report": "problem",
+      "source_lines": "47",
+      "claim": "The entropy-coefficient implementation is fully intact because the implicit solve is only an axis relabeling.",
+      "status": "PARTIAL",
+      "reason": "The identity holds for the ideal n=1 width contract, but fails for n not equal to 1 and for constant empirical w.",
+      "carry_forward": "Derive dU/dT from the selected width/free-energy contract rather than inserting R/F universally."
+    },
+    {
+      "id": "P-FP-E3",
+      "source_report": "problem",
+      "source_lines": "48",
+      "claim": "Gamma equal to zero proves the hysteresis formulation is intact.",
+      "status": "PARTIAL",
+      "reason": "It proves only that shipped defaults disable the branch split. The model has no cross-call history state and the spinodal gap is not measured hysteresis.",
+      "carry_forward": "Keep the closed form only as a metastability scale or static branch parameter."
+    },
+    {
+      "id": "P-PASS-QREV",
+      "source_report": "problem",
+      "source_lines": "50",
+      "claim": "The reversible-heat path is reconfirmed as physically complete.",
+      "status": "PARTIAL",
+      "reason": "The identity -IT dU/dT is dimensionally correct, but electrode reaction, cell-current and heat-generation signs are not unified in the public interfaces.",
+      "carry_forward": "Preserve the identity under an explicit sign contract."
+    },
+    {
+      "id": "P-PASS-ELECTRONIC",
+      "source_report": "problem",
+      "source_lines": "50",
+      "claim": "Reproducing the -45.68 J mol-1 K-1 electronic-entropy depth reconfirms the electronic-entropy physics.",
+      "status": "REJECTED",
+      "reason": "The logistic derivative integrates to -9.135 J mol-1 K-1, 6.10 times the cited 0.18 kB anchor, and the documented T-squared voltage curvature is absent in code.",
+      "carry_forward": "Retain the conditional Sommerfeld form, not the gate normalization or physical validation claim."
+    },
+    {
+      "id": "I-GLOBAL",
+      "source_report": "integrity",
+      "source_lines": "6-7,44-45",
+      "claim": "The v1.0.10 handover is robust and all remaining defects are minor.",
+      "status": "REJECTED",
+      "reason": "Unit, equilibrium/free-energy consistency, default-current invariance, barrier closure, heat-sign, entropy-width and LCO-scope defects are scientifically material.",
+      "carry_forward": "Use v1.0.10 as a historical empirical baseline, not a scientific authority."
+    },
+    {
+      "id": "I-BROADENING",
+      "source_report": "integrity",
+      "source_lines": "9-10,15,17-20",
+      "claim": "The restored broadening/apparent-potential construction is physically intact and should not be redesigned.",
+      "status": "PARTIAL",
+      "reason": "It is a useful flexible reduced kernel, but its equilibrium, heterogeneity, kinetic and instrument contributions are not identifiable or thermodynamically separated.",
+      "carry_forward": "Preserve the first-order relaxation candidate; redesign the layer contract without reviving ill-posed inverse PSD claims."
+    },
+    {
+      "id": "I-KNOWN-DEFECTS",
+      "source_report": "integrity",
+      "source_lines": "11",
+      "claim": "Six known defects are completely corrected because source diffs and internal regression checks pass.",
+      "status": "PARTIAL",
+      "reason": "Internal source preservation is supported, but it does not close the current scientific defects or external validity.",
+      "carry_forward": "Record historical fixes without promoting them to model validation."
+    },
+    {
+      "id": "I-ELECTRONIC",
+      "source_report": "integrity",
+      "source_lines": "12",
+      "claim": "Electronic-entropy physics is lossless, strengthened and numerically fully verified.",
+      "status": "REJECTED",
+      "reason": "Only the hardcoded target is internally reproduced; composition normalization, sum rule, two-phase mapping and T-squared implementation fail closure.",
+      "carry_forward": "Return the electronic term to hypothesis status until literature/data validation."
+    },
+    {
+      "id": "I-CH2",
+      "source_report": "integrity",
+      "source_lines": "13",
+      "claim": "Chapter 2 statistical thermodynamics is intact with zero degradation.",
+      "status": "REJECTED",
+      "reason": "The chapter combines an interacting regular-solution free energy with an ideal logistic peak and uses a universal configurational entropy derivative beyond its width contract.",
+      "carry_forward": "Re-derive thermodynamics from one free energy before selecting a reduced observation kernel."
+    },
+    {
+      "id": "I-TWO-AXES",
+      "source_report": "integrity",
+      "source_lines": "3,14,44-45",
+      "claim": "The no-gap derivation and graduate-textbook accessibility axes are both maintained.",
+      "status": "REJECTED",
+      "reason": "The manuscript is detailed, but several derivation closures are missing and code identifiers/gates occupy the theory body, violating the user's present manuscript boundary.",
+      "carry_forward": "Preserve pedagogical ambition while separating theory from conformance documentation."
+    },
+    {
+      "id": "I-BELL",
+      "source_report": "integrity",
+      "source_lines": "15,18-20",
+      "claim": "The merged bell is intended, area preserving and therefore not a defect.",
+      "status": "PARTIAL",
+      "reason": "Area preservation and adjustable peak separation are confirmed; intent does not establish material phase assignment or broadening provenance.",
+      "carry_forward": "Call it an empirical fit shape until thermodynamic and observational layers are identified."
+    },
+    {
+      "id": "I-REDESIGN-BAN",
+      "source_report": "integrity",
+      "source_lines": "19",
+      "claim": "A two-layer redesign is dangerous and must be withdrawn.",
+      "status": "REJECTED",
+      "reason": "A forced convolution or inverse PSD is not automatically justified, but conceptual and computational separation of equilibrium, kinetics, heterogeneity and observation is necessary.",
+      "carry_forward": "Use forward hierarchical composition with identifiability tests; do not perform unconstrained inverse deconvolution."
+    },
+    {
+      "id": "I-H1",
+      "source_report": "integrity",
+      "source_lines": "25",
+      "claim": "The electronic-entropy byte-identical history statement is stale.",
+      "status": "CONFIRMED",
+      "reason": "The source itself contains conflicting byte-preservation statements while later content is additive.",
+      "carry_forward": "Use blob hashes and exact diff scope for provenance claims."
+    },
+    {
+      "id": "I-H2",
+      "source_report": "integrity",
+      "source_lines": "26",
+      "claim": "Chapter and PDF version labels are stale.",
+      "status": "CONFIRMED",
+      "reason": "The v1.0.10 Chapter 1 metadata says v9 and Chapter 2 metadata says v5.",
+      "carry_forward": "Treat labels as provenance defects, not physics evidence."
+    },
+    {
+      "id": "I-H3",
+      "source_report": "integrity",
+      "source_lines": "27",
+      "claim": "Only diagnostic prose about stretched kinetic tails remains missing.",
+      "status": "REJECTED",
+      "reason": "The actual default kinetics are inactive, grid-switched and based on an unclosed molecular-to-electrode coarse graining; this is not merely prose.",
+      "carry_forward": "Rebuild the kinetic closure and then document it."
+    },
+    {
+      "id": "I-H4",
+      "source_report": "integrity",
+      "source_lines": "28",
+      "claim": "The 1.5 J mol-1 K-1 versus -46 J mol-1 K-1 mismatch needs only a forward reference.",
+      "status": "REJECTED",
+      "reason": "The derivative sum rule gives a quantitative normalization conflict, not a navigation defect.",
+      "carry_forward": "Resolve physical definitions, normalization and phase-fraction mapping before reuse."
+    },
+    {
+      "id": "I-H5",
+      "source_report": "integrity",
+      "source_lines": "29",
+      "claim": "A removed w_eff path remains in the code header.",
+      "status": "CONFIRMED",
+      "reason": "The v1.0.10 code header still advertises the option while the live path is removed.",
+      "carry_forward": "Keep comments and executable capabilities under the same conformance gate."
+    },
+    {
+      "id": "I-H6",
+      "source_report": "integrity",
+      "source_lines": "30",
+      "claim": "The earlier overfull-fixed claim requires verification.",
+      "status": "CONFIRMED",
+      "reason": "Full PDF rendering found four right-edge clipping defects across the v1.0.10-v1.0.12 artifact set.",
+      "carry_forward": "Require page-level render QA before declaring layout fixed."
+    },
+    {
+      "id": "I-H7",
+      "source_report": "integrity",
+      "source_lines": "31",
+      "claim": "Broadening revisions require coordinated Chapter 1 and Chapter 2 changes.",
+      "status": "PARTIAL",
+      "reason": "Cross-chapter consistency is necessary, but the final theory should be implementation-free and governed by one symbol/equation registry rather than code-coupled edits.",
+      "carry_forward": "Apply a theory-wide dependency matrix and separate conformance report."
+    },
+    {
+      "id": "I-H8",
+      "source_report": "integrity",
+      "source_lines": "32",
+      "claim": "The LCO placeholder is merely a downgraded future item.",
+      "status": "REJECTED",
+      "reason": "For the user's stated endpoint, doped high-voltage LCO is a first-class acceptance requirement, not an optional cosmetic warning.",
+      "carry_forward": "Make high-voltage LCO chemistry, data and holdout validation a blocking phase."
+    }
+  ],
+  "summary": {
+    "claim_count": 31,
+    "confirmed": 10,
+    "partial": 9,
+    "rejected": 12,
+    "unresolved": 0,
+    "global_verdict": "PRIOR_REPORTS_CONTAIN_USEFUL_LOCAL_DIAGNOSES_BUT_THE_INTEGRITY_PASS_IS_REJECTED"
+  },
+  "evidence_files": [
+    "Codex/results/PHASE_058_THEORY_SOURCE_REVIEW.md",
+    "Codex/results/PHASE_058_CODE_SOURCE_REVIEW.md",
+    "Codex/results/PHASE_058_TEST_DEMO_GUIDE_REVIEW.md",
+    "Codex/results/PHASE_058_LEGACY_EXECUTION_REVIEW.md",
+    "Codex/results/PHASE_058_INDEPENDENT_PROBE_REVIEW.md",
+    "Codex/results/PHASE_058_PDF_IMAGE_RENDER_AUDIT.md",
+    "Codex/results/PHASE_058_STANDALONE_IMAGE_REVIEW.md",
+    "Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_DERIVATION.md",
+    "Codex/results/PHASE_058_V1010_EQUILIBRIUM_KINETICS_DERIVATION.md",
+    "Codex/results/PHASE_058_V1010_HEAT_LCO_DERIVATION.md"
+  ]
+}

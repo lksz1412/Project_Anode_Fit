@@ -164,6 +164,15 @@
 - Phase 058 heat/LCO evidence:
   `Codex/results/PHASE_058_V1010_HEAT_LCO_DERIVATION.md`,
   `Codex/results/PHASE_058_V1010_HEAT_LCO_VALIDATION.json`.
+- Phase 058 v1.0.10 prior-report adjudication:
+  31 claims were reconnected to source/output: 10 confirmed, 9 partial,
+  12 rejected. The original claim of numerical inability to separate
+  peaks is rejected, but its withdrawal does not validate broadening
+  provenance. The global integrity PASS is rejected.
+- Phase 058 prior-report evidence:
+  `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.md`,
+  `Codex/results/PHASE_058_V1010_PRIOR_REPORT_ADJUDICATION.json`
+  (`PASS_P058_V1010_PRIOR_REPORT_ADJUDICATION`).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -186,12 +195,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 29.4:
-v1.0.10 과거 problem report와 integrity report의 상충 진단을
-actual source/output으로 재판정한다.
+Phase 058 Step 30.1:
+v1.0.11이 v1.0.10과 content-identical인 영역과 version-only copy를
+정확히 분리한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.3.
+27.1–27.5, 28.1–28.3, 29.1–29.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -213,6 +222,8 @@ v1.0.10 ideal/regular-solution 평형, causal relaxation,
 hysteresis와 barrier closure의 독립 극한·수치 판정 저장.
 v1.0.10 entropy weighting, reversible/irreversible heat와 LCO
 electronic/high-voltage scope의 독립 단위·sum-rule 판정 저장.
+v1.0.10 과거 problem/integrity report 31개 claim을 actual
+source/output에 재연결하고 전역 integrity PASS 기각.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
