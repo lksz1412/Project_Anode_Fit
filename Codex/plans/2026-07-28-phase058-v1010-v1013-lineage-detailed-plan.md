@@ -614,3 +614,35 @@ lineage report를 기계 검증한다.
   `V1012_CONTAINS_REAL_THEORY_CORRECTIONS_BUT_NO_EXECUTABLE_PHYSICS_ADVANCE`.
 - 다음은 Step 30.3 R1 철회가 source, code, tests와 figure에서 실제로
   일관적인지 확인한다.
+
+### 2026-07-28 — Step 30.3
+
+- R1 철회의 historical claim, v1.0.12 theory, code, sample/test와
+  stored figure를 12개 facet으로 교차 판정했다.
+- 298.15 K에서 shipped \(n=1\), \(w=25.691\) mV는 local maximum
+  1개, fitted \(n=0.12\), \(w=3.083\) mV는 4개를 만들었다.
+  따라서 “분리 peak 생성 불가”는 좁은 의미에서 기각했다.
+- shipped transition은 네 개 모두 \(n=1\)이고 stored `w` fallback은
+  shadowed다. default는 여전히 merged이며 \(R_n=0\)에서
+  \(I=0\)과 1 A shape 차이는 정확히 0이다.
+- 원고는 near-delta equilibrium과 \(\rho(U_\app)\) forward
+  broadening을 개념적으로 분리했지만 production에는 explicit
+  ensemble integral이 없다.
+- 같은 theory 절에서 finite-current ①은 \(w\)가 아니라 \(L_V\)라고
+  한 뒤 keybox는 ①·②·③을 모두 \(w\)가 흡수한다고 적어 내부 모순도
+  남는다.
+- v1.0.12 sample source와 PNG는 same-commit current artifact이고
+  default/fitted를 정직하게 표시한다. 그러나 sample과 regression의
+  Python assert는 각각 0개다.
+- copied regression은 v1.0.12에서도 v1.0.10 module path를 hardcode해
+  v1.0.12나 R1을 gate하지 않는다.
+- 근거:
+  `Codex/results/PHASE_058_R1_WITHDRAWAL_CONSISTENCY_REVIEW.md`,
+  `Codex/results/PHASE_058_R1_WITHDRAWAL_CONSISTENCY_MATRIX.json`.
+- 기계 gate:
+  `PASS_P058_R1_CROSS_ARTIFACT_ADJUDICATION` (24 checks).
+- 판정:
+  `R1_WITHDRAWAL_IS_CONSISTENT_ONLY_FOR_NUMERICAL_FLEXIBILITY_NOT_FOR_PHYSICAL_CLOSURE`.
+- Step 30은 완료됐다. 다음은 Step 31.1 v1.0.13 partition function,
+  occupancy, chemical potential, Nernst/logistic와 multi-transition
+  합을 표준 통계역학에서 재유도한다.

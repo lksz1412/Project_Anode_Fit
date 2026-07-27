@@ -1,0 +1,122 @@
+{
+  "schema_version": "phase058-r1-withdrawal-consistency-v1",
+  "audit_boundary": "CROSS_ARTIFACT_CONSISTENCY_NOT_THEORY_CANON",
+  "claim_under_test": "The original R1 structural-inability diagnosis is withdrawn because the model can generate separated peaks; the withdrawal is then used to assert intact apparent-potential broadening physics.",
+  "facets": [
+    {
+      "id": "R1-X01",
+      "surface": "production_numerical_capability",
+      "decision": "PRESERVE",
+      "finding": "At 298.15 K the shipped n=1 configuration has one local maximum while setting every transition to n=0.12 gives four.",
+      "scope": "NUMERICAL_REPRESENTABILITY_ONLY"
+    },
+    {
+      "id": "R1-X02",
+      "surface": "shipped_defaults",
+      "decision": "PRESERVE",
+      "finding": "All four graphite transitions still ship with n=1; no default was changed to the narrow demonstration value.",
+      "scope": "DEFAULT_REMAINS_MERGED"
+    },
+    {
+      "id": "R1-X03",
+      "surface": "width_api",
+      "decision": "EMPIRICAL_ONLY",
+      "finding": "The code exposes n or w as fit handles, but n takes precedence and the four stored w fallbacks are inert under shipped defaults.",
+      "scope": "FLEXIBLE_PARAMETERIZATION_NOT_PHASE_DERIVATION"
+    },
+    {
+      "id": "R1-X04",
+      "surface": "chapter_1_theory",
+      "decision": "PRESERVE",
+      "finding": "The manuscript distinguishes a two-phase near-delta equilibrium response from apparent-potential broadening and writes a forward ensemble average.",
+      "scope": "CONCEPTUAL_LAYERING_PRESENT"
+    },
+    {
+      "id": "R1-X05",
+      "surface": "chapter_1_internal_consistency",
+      "decision": "REJECT",
+      "finding": "One paragraph says finite-current contribution 1 is excluded from w and handled by L_V, while the later keybox says all three sources are absorbed by the phenomenological width.",
+      "scope": "RESIDUAL_SELF_CONTRADICTION"
+    },
+    {
+      "id": "R1-X06",
+      "surface": "theory_code_conformance",
+      "decision": "REJECT",
+      "finding": "The theory writes an explicit rho(U_app) forward ensemble integral, while production implements one effective logistic width and no explicit ensemble distribution or convolution.",
+      "scope": "EXPLANATION_ONLY_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "R1-X07",
+      "surface": "sample_script",
+      "decision": "PRESERVE",
+      "finding": "The v1.0.12 sample honestly labels default n=1 as merged and fitted n=0.12 as four resolved peaks.",
+      "scope": "REPORT_ONLY"
+    },
+    {
+      "id": "R1-X08",
+      "surface": "sample_figure",
+      "decision": "PRESERVE",
+      "finding": "The stored v1.0.12 PNG and generator were committed together and visual review confirms the labeled comparison.",
+      "scope": "CURRENT_GENERATED_ARTIFACT"
+    },
+    {
+      "id": "R1-X09",
+      "surface": "regression_test",
+      "decision": "REJECT",
+      "finding": "The copied v1.0.12 regression script still hardcodes the v1.0.10 production path, has no Python assert and does not gate peak count or two-phase provenance.",
+      "scope": "NO_R1_REGRESSION_GATE"
+    },
+    {
+      "id": "R1-X10",
+      "surface": "sample_test_gate",
+      "decision": "EMPIRICAL_ONLY",
+      "finding": "The sample counts peaks but explicitly calls the output report-only and never fails when the peak count or physical interpretation is wrong.",
+      "scope": "DEMONSTRATION_NOT_TEST"
+    },
+    {
+      "id": "R1-X11",
+      "surface": "experimental_validation",
+      "decision": "UNVERIFIED",
+      "finding": "No source, test or figure in this lineage fits a public graphite data set to discriminate equilibrium, heterogeneity, kinetic and instrument widths.",
+      "scope": "EXTERNAL_VALIDATION_ABSENT"
+    },
+    {
+      "id": "R1-X12",
+      "surface": "redesign_prohibition",
+      "decision": "REJECT",
+      "finding": "Unconstrained inverse PSD recovery should remain prohibited, but a blanket ban on separating equilibrium, kinetics, heterogeneity and observation layers is scientifically unsupported.",
+      "scope": "FORWARD_HIERARCHY_REQUIRED"
+    }
+  ],
+  "numeric_probe": {
+    "temperature_k": 298.15,
+    "default_n": 1.0,
+    "fitted_n": 0.12,
+    "default_width_v": 0.025691238016271958,
+    "fitted_width_v": 0.003082948561952635,
+    "default_local_maximum_count": 1,
+    "fitted_local_maximum_count": 4,
+    "default_current_shape_change_rn0_i0_to_i1": 0.0,
+    "stored_w_fallback_shadowed": true
+  },
+  "test_probe": {
+    "sample_assert_statement_count": 0,
+    "regression_assert_statement_count": 0,
+    "sample_peak_count_is_failure_gate": false,
+    "regression_code_literal": "D:\\Projects\\Project_Anode_Fit\\Claude\\docs\\v1.0.10\\Anode_Fit_v1.0.10.py"
+  },
+  "artifact_probe": {
+    "path": "Claude/docs/v1.0.12/sample_test_v1012.png",
+    "generator": "Claude/docs/v1.0.12/sample_test_v1012.py",
+    "artifact_sha256": "0e0a1e608de9017e2575e572290ee8a9864925b008d2ab4d75dc0eaa471e248c",
+    "generator_sha256": "40adc3a2331849cf59553c4f33cb087d3e44667a6dcc1982c030a41aef713df0",
+    "commit_relation": "SAME_COMMIT",
+    "scientific_validation": "ABSENT"
+  },
+  "summary": {
+    "facet_count": 12,
+    "narrow_withdrawal_verdict": "CONFIRMED_NUMERICAL_REPRESENTABILITY",
+    "broad_physics_verdict": "REJECTED_AS_UNVALIDATED_AND_INTERNALLY_INCONSISTENT",
+    "global_verdict": "R1_WITHDRAWAL_IS_CONSISTENT_ONLY_FOR_NUMERICAL_FLEXIBILITY_NOT_FOR_PHYSICAL_CLOSURE"
+  }
+}
