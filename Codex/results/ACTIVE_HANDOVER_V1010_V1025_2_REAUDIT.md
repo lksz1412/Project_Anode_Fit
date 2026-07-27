@@ -336,6 +336,22 @@
   `Codex/work/v1014_v1018_2_phase059/theory_diffs/`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_theory_index.py`
   (`PASS_P059_THEORY_INDEX_AND_DIFF`, 17/17 checks).
+- Phase 059 theory contracts:
+  coordinates, phase separation, width, memory, \(n(T)\),
+  entropy/heat, Einstein vibration과 LCO electronic/high-voltage의
+  8 topic을 38 symbol/unit/sign/assumption contract로 분해했다.
+  disposition은 preserve 13, correct 13, empirical-only 9,
+  theory-only 1, reject 1, unverified 1이다.
+- Phase 059 contract evidence:
+  `Codex/results/PHASE_059_THEORY_CONTRACT_MATRIX.json`,
+  `Codex/results/PHASE_059_THEORY_CONTRACT_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_theory_contracts.py`
+  (`PASS_P059_THEORY_CONTRACTS`, 19/19 checks).
+- Contract critical boundary:
+  frozen affinity는 local barrier 요구와 양립하지 않아 REJECT다.
+  two-phase/config 의미 충돌, direct lag의 zero-current limit,
+  joint temperature-term identifiability, Einstein reaction spectrum,
+  doped high-voltage LCO는 OPEN이다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -358,16 +374,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 33.4:
-coordinate, phase separation, width, pointwise memory, \(n(T)\),
-entropy/heat, Einstein vibration과 LCO electronic 항의
-symbol·unit·sign·assumption contract를 source 위치에 연결한다.
+Phase 059 Step 33.5:
+guide, handover, closing과 roadmap의 완료·권위·이월 claim을
+actual source patch와 연결하고 과거 reviewer/agent 판정을
+과학적 근거와 분리한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–33.3.
+Phase 059 Steps 33.1–33.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

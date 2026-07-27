@@ -1,0 +1,1572 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Phase 059 Step 33.4 source-linked symbol, unit, sign/orientation, and assumption contracts",
+  "status": "PASS_P059_THEORY_CONTRACT_EXTRACTION",
+  "authority_boundary": "Audit contracts and provisional dispositions, not final theory canon, code conformance, literature verification, or material validation.",
+  "allowed_dispositions": [
+    "CORRECT",
+    "EMPIRICAL_ONLY",
+    "PRESERVE",
+    "REJECT",
+    "THEORY_ONLY",
+    "UNVERIFIED"
+  ],
+  "record_count": 38,
+  "topic_counts": {
+    "coordinates": 5,
+    "einstein_vibration": 3,
+    "entropy_heat": 5,
+    "lco_electronic": 6,
+    "memory": 6,
+    "n_of_T": 3,
+    "phase_separation": 5,
+    "width": 5
+  },
+  "disposition_counts": {
+    "CORRECT": 13,
+    "EMPIRICAL_ONLY": 9,
+    "PRESERVE": 13,
+    "REJECT": 1,
+    "THEORY_ONLY": 1,
+    "UNVERIFIED": 1
+  },
+  "closure_state_counts": {
+    "CLOSED_ALGEBRA_OPEN_PHYSICAL_ROLE": 1,
+    "CLOSED_CONVENTION_NEEDS_MATERIAL_REFERENCE": 1,
+    "CLOSED_DEFINITION_NEEDS_ELECTRODE_MAP": 1,
+    "CLOSED_FORMULA_OPEN_SIGN_MAPPING": 1,
+    "CLOSED_IDEAL_LIMIT_ONLY": 1,
+    "CLOSED_INTERNAL_ROUND_TRIP": 1,
+    "CLOSED_KERNEL_IDENTITY": 1,
+    "CLOSED_LIMIT_OPEN_TRANSITION_REGION": 1,
+    "CLOSED_MATHEMATICS_OPEN_PROTOCOL_CONTRACT": 1,
+    "CLOSED_SINGLE_OSCILLATOR_ONLY": 1,
+    "CLOSED_WITHIN_SYMMETRIC_REGULAR_SOLUTION": 1,
+    "OPEN_COUPLING_AND_CODE_CONFORMANCE": 1,
+    "OPEN_DIMENSIONAL_BLOCKER": 1,
+    "OPEN_DOPED_MATERIAL_VALIDATION": 1,
+    "OPEN_EQUILIBRIUM_DIRECTION_CONTAMINATION": 1,
+    "OPEN_FIXED_POINT_AND_CHAIN_RULE": 1,
+    "OPEN_IDENTIFIABILITY_AND_EXTRAPOLATION": 1,
+    "OPEN_INITIAL_HISTORY": 1,
+    "OPEN_LOCAL_BARRIER_CONTRADICTION": 1,
+    "OPEN_METASTABLE_DYNAMICS": 1,
+    "OPEN_METASTABLE_SYMMETRY_ASSUMPTION": 1,
+    "OPEN_MICROSCOPIC_MEANING": 1,
+    "OPEN_NONMONOTONE_AND_LOCAL_MAP": 1,
+    "OPEN_PARAMETER_IDENTIFIABILITY": 1,
+    "OPEN_PRIMARY_DATA_AND_CATEGORY_ERROR": 1,
+    "OPEN_PRODUCTION_TWO_PHASE_CLOSURE": 1,
+    "OPEN_RATE_SCALE_AND_QCELL_UNITS": 1,
+    "OPEN_REACTION_QUANTITY_DEFINITION": 1,
+    "OPEN_ROLE_SPLIT": 1,
+    "OPEN_THERMODYNAMIC_INTERPRETATION": 1,
+    "OPEN_TWO_PHASE_SEMANTIC_CONTRADICTION": 1,
+    "OPEN_UNIT_AND_ORIENTATION_CONTRACT": 1,
+    "OPEN_USER_GOAL_HIGH_VOLTAGE_LCO": 1,
+    "OPEN_ZERO_CURRENT_LIMIT": 1,
+    "PARTIAL_OBSERVATION_LAYER": 1,
+    "PRESERVE_AS_OBSERVATION_HYPOTHESIS": 1,
+    "THEORY_ONLY_DIMENSIONALLY_REPAIRED": 1,
+    "THEORY_ONLY_NOT_PRODUCTION_CLOSURE": 1
+  },
+  "rules": [
+    "One symbol denotes one physical quantity within a derivation.",
+    "Units and reference reactions are part of the public contract.",
+    "Protocol direction does not define equilibrium state.",
+    "Empirical observation kernels are not equilibrium thermodynamics.",
+    "A reference-subtracted correction is not a reaction quantity until product/reactant states and weights are defined.",
+    "Theory-body prose remains physics/chemistry only; implementation traceability belongs in separate conformance artifacts."
+  ],
+  "records": [
+    {
+      "id": "P059-CON-001",
+      "topic": "coordinates",
+      "symbols": [
+        "V_app",
+        "V_n",
+        "R_n",
+        "sigma_d",
+        "|I|"
+      ],
+      "quantity": "measured terminal voltage and a lumped polarization-corrected model voltage",
+      "unit": "V; R_n in ohm; |I| in A",
+      "sign_or_orientation": "V_n = V_app - sigma_d |I| R_n",
+      "assumptions": [
+        "One constant resistance represents all modeled polarization.",
+        "Electrode identity and protocol sign are supplied separately."
+      ],
+      "source_claim": "The internal evaluation voltage is obtained by a direction-signed lumped ohmic subtraction.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "PARTIAL_OBSERVATION_LAYER",
+      "required_action": "Keep this in the observation layer and split electrolyte, solid, and interfacial potentials in any mechanistic extension.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:vn",
+          "line_start": 968,
+          "line_end": 968,
+          "source_excerpt": "\\boxed{\\;V_n\\;=\\;V_\\app\\;-\\;\\sigma_d\\,|I|\\,R_n\\;.} \\label{eq:vn} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:n0map",
+          "line_start": 219,
+          "line_end": 219,
+          "source_excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정}). \\label{eq:n0map} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-002",
+      "topic": "coordinates",
+      "symbols": [
+        "q",
+        "Q",
+        "Q_cell"
+      ],
+      "quantity": "normalized accumulated charge coordinate q = Q/Q_cell",
+      "unit": "q dimensionless; Q and Q_cell on one explicit charge/capacity basis",
+      "sign_or_orientation": "The orientation of increasing q must be fixed independently of charge/discharge labels.",
+      "assumptions": [
+        "Q and Q_cell use the same basis.",
+        "The mapping from q to material stoichiometry is electrode specific."
+      ],
+      "source_claim": "Charge conservation is written on a normalized trajectory coordinate.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_UNIT_AND_ORIENTATION_CONTRACT",
+      "required_action": "Define separate variables for coulombs, ampere-hours, normalized capacity, and host stoichiometry.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "Q_\\\\cell q=Q_\\\\bg",
+          "match_count": 2,
+          "line_start": 1555,
+          "line_end": 1555,
+          "source_excerpt": "\\textbf{(a) 출발 — 전하 보존식.} 관측 $\\dd Q/\\dd V$ 는 전하 보존식 $Q_\\cell q=Q_\\bg(V_n)+\\sum_jQ_j\\xi_j$ 를 궤적 $q$ 로 미분해 닫힌다 — 양변을 $q$ 로 미분하면 $Q_\\cell=C_\\bg\\,\\dd V_n/\\dd q+\\sum_jQ_j\\,\\dd\\xi_j/\\dd q$ 이고,"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "Q_\\\\cell.*C\\(또는 A",
+          "match_count": 1,
+          "line_start": 244,
+          "line_end": 244,
+          "source_excerpt": "$|I|$ & A & 전류 크기 $=$ c-rate$\\,\\cdot Q_\\cell$ \\\\ $Q_\\cell$ & C(또는 A\\,h) & 셀 용량(전하); $q=Q/Q_\\cell$ 환산$\\cdot$$|I|$ 환산 공용 — $|I|$ 환산 시 c-rate 와 시간 단위 정합 \\\\ $T$ & K & 온도 — 스칼라(등온) 또는 $V_\\app$ 길이 배열($T(V)$ 비등온) \\\\"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-003",
+      "topic": "coordinates",
+      "symbols": [
+        "c_rate",
+        "|I|",
+        "Q_cell"
+      ],
+      "quantity": "conversion from C-rate and capacity to current magnitude",
+      "unit": "c_rate in h^-1, Q_cell in Ah gives A; Q_cell in C requires division by 3600 s/h",
+      "sign_or_orientation": "|I| is nonnegative; direction is not carried by its sign",
+      "assumptions": [
+        "Capacity and time units are explicitly compatible."
+      ],
+      "source_claim": "|I| = c_rate Q_cell, with prose allowing Q_cell in C or Ah.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_DIMENSIONAL_BLOCKER",
+      "required_action": "Make Ah the facade capacity unit or require SI coulombs with an explicit 3600 conversion.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:n0map",
+          "line_start": 219,
+          "line_end": 219,
+          "source_excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정}). \\label{eq:n0map} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "c\\\\_rate 는 시간 역수",
+          "match_count": 1,
+          "line_start": 221,
+          "line_end": 221,
+          "source_excerpt": "\\end{equation} c\\_rate 는 시간 역수이므로 $Q_\\cell$ 과 시간 단위를 맞춰 대입한다([1/h]$\\cdot$[A\\,h]$\\to$[A]; 정규화 $Q_\\cell{=}1$ 에서는 무차원 배율). 방향 부호의 작용처는 셋이다 — 분극 부호($\\mathrm N1$)$\\cdot$분기 중심 선택($\\mathrm N3$)$\\cdot$꼬리($\\mathrm N7\\cdot\\mathrm N8$:"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-004",
+      "topic": "coordinates",
+      "symbols": [
+        "theta",
+        "xi"
+      ],
+      "quantity": "Li-site occupancy theta and delithiation progress xi = 1-theta",
+      "unit": "dimensionless",
+      "sign_or_orientation": "Increasing xi means delithiation; increasing theta means lithiation.",
+      "assumptions": [
+        "A transition can be represented by one scalar progress variable."
+      ],
+      "source_claim": "Occupancy and progress are complementary coordinates.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_DEFINITION_NEEDS_ELECTRODE_MAP",
+      "required_action": "Preserve one global state orientation and map protocol direction only in the observation/trajectory layer.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "\\\\theta_j=1-\\\\xi_j",
+          "match_count": 1,
+          "line_start": 227,
+          "line_end": 227,
+          "source_excerpt": "\\textbf{전이 인덱스.} $j=1,\\dots,N_p$($N_p\\approx3$--$4$). 전이 $j$ 의 진행률 $\\xi_j$(방전 시 $0\\to1$ 로 증가, 곧 탈리튬화 진행), 용량 가중 $Q_j$. 박스 결과식은 $j$ 첨자를 단다. 점유율과 진행률은 $\\theta_j=1-\\xi_j$ 로 묶이며(점유 $\\theta$ 가 $1\\to0$ 줄어드는 것이 진행 $\\xi$ 가 $0\\to1$ 느는 것), 유도에서 둘은 부호 한 번 차이로 오간다."
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:fermifn",
+          "line_start": 524,
+          "line_end": 524,
+          "source_excerpt": "\\qquad \\Delta\\mu\\equiv\\tilde\\varepsilon(T)-\\mu_\\mathrm{Li}\\;.} \\label{eq:fermifn} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-005",
+      "topic": "coordinates",
+      "symbols": [
+        "sigma_d",
+        "s"
+      ],
+      "quantity": "protocol traversal sign sigma_d versus fixed thermodynamic reaction-orientation sign s",
+      "unit": "dimensionless signs",
+      "sign_or_orientation": "sigma_d changes with protocol; s is fixed after defining the reference reaction.",
+      "assumptions": [
+        "Equilibrium state is independent of protocol direction."
+      ],
+      "source_claim": "The sources distinguish a protocol sign from a fixed derivation sign but still place sigma_d in the equilibrium logistic.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_EQUILIBRIUM_DIRECTION_CONTAMINATION",
+      "required_action": "Remove protocol direction from the equilibrium occupancy and use it only to traverse a fixed equilibrium relation or a metastable kinetic state.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:xieq",
+          "line_start": 1331,
+          "line_end": 1331,
+          "source_excerpt": "\\boxed{\\;\\xi_{\\eq,j}(V,T)=\\frac{1}{1+\\exp\\!\\big[-\\sigma_d(V-U_j^{\\,d})/w_j\\big]}\\;.} \\label{eq:xieq} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "유도 전용 고정 부호",
+          "match_count": 3,
+          "line_start": 242,
+          "line_end": 242,
+          "source_excerpt": "$\\sigma_d$ & --- & 방향 부호 — 방전 $+1$/충전 $-1$ \\\\ $s$ & --- & 유도 전용 고정 부호 — 항상 $+1$(\\S\\ref{sec:center}$\\cdot$\\S\\ref{sec:hys} 의 $U_j$ 정의 관례); 방향에 따라 $\\pm1$ 로 바뀌는 $\\sigma_d$ 와 별개, 본론 결과-사슬 boxed 식에서 $s{=}1$ 대입돼 소멸(Part 0 의 박스는 $s$ 를 명시 유지) \\\\ $|I|$ & A & 전류 크기 $=$ c-rate$\\,\\cdot Q_\\cell$ \\\\"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-006",
+      "topic": "phase_separation",
+      "symbols": [
+        "g(xi)",
+        "Omega",
+        "T_c"
+      ],
+      "quantity": "symmetric regular-solution molar free energy and its mean-field critical condition",
+      "unit": "g and Omega in J mol^-1; T and T_c in K",
+      "sign_or_orientation": "Omega > 0 penalizes mixing; Omega > 2RT produces nonconvexity.",
+      "assumptions": [
+        "Symmetric Bragg-Williams mean field.",
+        "One conserved composition coordinate."
+      ],
+      "source_claim": "The homogeneous free energy loses convexity at Omega = 2RT.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_WITHIN_SYMMETRIC_REGULAR_SOLUTION",
+      "required_action": "Keep the criterion only for the stated symmetric mean-field model and do not treat fitted Omega as a universal material constant.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:gxi",
+          "line_start": 665,
+          "line_end": 665,
+          "source_excerpt": "g_j(\\xi)=g_j^0+RT\\big[\\xi\\ln\\xi+(1-\\xi)\\ln(1-\\xi)\\big]+\\Omega_j\\,\\xi(1-\\xi), \\label{eq:gxi} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:sm-thresh",
+          "line_start": 677,
+          "line_end": 677,
+          "source_excerpt": "\\end{aligned}} \\label{eq:sm-thresh} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-007",
+      "topic": "phase_separation",
+      "symbols": [
+        "xi_b",
+        "xi_s",
+        "mu_A",
+        "mu_B"
+      ],
+      "quantity": "binodal coexistence compositions and spinodal local-stability limits",
+      "unit": "compositions dimensionless; chemical potentials J mol^-1",
+      "sign_or_orientation": "Binodal is a global common-tangent condition; spinodal is f''=0.",
+      "assumptions": [
+        "Symmetric regular solution for the displayed closed forms."
+      ],
+      "source_claim": "The appendix correctly separates coexistence from loss of local stability.",
+      "disposition": "PRESERVE",
+      "closure_state": "THEORY_ONLY_NOT_PRODUCTION_CLOSURE",
+      "required_action": "Use the binodal for equilibrium phase fractions and the spinodal only for metastability limits.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "label": "eq:app-binodal",
+          "line_start": 215,
+          "line_end": 215,
+          "source_excerpt": "T_c=\\frac{\\Omega}{2R}\\;} \\label{eq:app-binodal} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "label": "eq:app-spinodal",
+          "line_start": 248,
+          "line_end": 248,
+          "source_excerpt": "\\xi_s^\\pm=\\tfrac12\\Bigl(1\\pm u\\Bigr),\\qquad u=\\sqrt{1-\\frac{2RT}{\\Omega}}\\,, \\label{eq:app-spinodal} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-008",
+      "topic": "phase_separation",
+      "symbols": [
+        "Delta U_hys",
+        "gamma_j",
+        "h_eta,j"
+      ],
+      "quantity": "spinodal overdrive voltage span and empirical branch scaling",
+      "unit": "Delta U_hys in V; gamma_j and h_eta,j dimensionless",
+      "sign_or_orientation": "The modeled discharge center is shifted above the charge center under the chosen convention.",
+      "assumptions": [
+        "Metastable traversal reaches a scaled fraction of a mean-field spinodal span.",
+        "Partial cycling is represented by a static scalar."
+      ],
+      "source_claim": "A closed spinodal gap is reduced by empirical factors to create branch centers.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_METASTABLE_DYNAMICS",
+      "required_action": "Replace static branch factors with an internal-state kinetic model or label them strictly phenomenological.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:dUhys",
+          "line_start": 1161,
+          "line_end": 1161,
+          "source_excerpt": "\\qquad u_j=\\sqrt{1-\\frac{2RT}{\\Omega_j}}\\;.} \\label{eq:dUhys} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Ubranch",
+          "line_start": 1182,
+          "line_end": 1182,
+          "source_excerpt": "\\boxed{\\;U_j^{\\,d}\\;=\\;U_j\\;+\\;\\tfrac12\\,\\sigma_d\\,h_{\\eta,j}\\,\\gamma_j\\,\\Delta U_j^\\hys\\;.} \\label{eq:Ubranch} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-009",
+      "topic": "phase_separation",
+      "symbols": [
+        "f",
+        "kappa",
+        "M",
+        "R(k)"
+      ],
+      "quantity": "Cahn-Hilliard volumetric free-energy functional and linear growth rate",
+      "unit": "f J m^-3; kappa J m^-1; M m^5 J^-1 s^-1; R(k) s^-1",
+      "sign_or_orientation": "R(k)>0 denotes growth of an unstable Fourier mode.",
+      "assumptions": [
+        "Conserved order parameter.",
+        "Constant mobility.",
+        "Small-amplitude linearization."
+      ],
+      "source_claim": "v1.0.17 repairs the earlier molar/volumetric dimensional ambiguity.",
+      "disposition": "PRESERVE",
+      "closure_state": "THEORY_ONLY_DIMENSIONALLY_REPAIRED",
+      "required_action": "Keep volumetric and molar free-energy symbols distinct and supply material kappa and M before quantitative use.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "label": "eq:app-ch-F",
+          "line_start": 435,
+          "line_end": 435,
+          "source_excerpt": "\\qquad(\\kappa>0) \\label{eq:app-ch-F} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "label": "eq:app-ch-R",
+          "line_start": 446,
+          "line_end": 446,
+          "source_excerpt": "R(k)=-M\\,k^2\\Bigl[f''(\\bar\\xi)+2\\kappa k^2\\Bigr] \\label{eq:app-ch-R} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "pattern": "부피 밀도",
+          "match_count": 1,
+          "line_start": 440,
+          "line_end": 440,
+          "source_excerpt": "의 구배를 따르고, 보존장의 연속 방정식과 결합하면 $\\partial\\xi/\\partial t=M\\nabla^2\\mu$ 이다($M>0$ = 이동도). 여기서 $f$ 는 식~\\eqref{eq:app-fxi} 의 몰당 양을 몰부피 $v_m$ 으로 나눈 부피 밀도 $[\\mathrm{J\\,m^{-3}}]$ 로 읽어 $F$ 가 총자유에너지 $[\\mathrm J]$ 가 되게 하며, 그러면 차원 정합이 $[\\kappa]=\\mathrm{J\\,m^{-1}}$, $[M]=\\mathrm{m^{5}\\,J^{-1}\\,s^{-1}}$ 을 준다."
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-010",
+      "topic": "phase_separation",
+      "symbols": [
+        "two-phase plateau",
+        "production bell kernel"
+      ],
+      "quantity": "relationship between equilibrium convexification and measured finite-width dQ/dV peaks",
+      "unit": "plateau potential V; dQ/dV charge per V",
+      "sign_or_orientation": "Equilibrium common tangent fixes a plateau potential but not a measured peak width.",
+      "assumptions": [
+        "Instrument, heterogeneity, finite size, and kinetics may broaden an equilibrium singularity."
+      ],
+      "source_claim": "The appendix explicitly leaves finite peak width to a separate broadening model.",
+      "disposition": "THEORY_ONLY",
+      "closure_state": "OPEN_PRODUCTION_TWO_PHASE_CLOSURE",
+      "required_action": "Connect convexified phase fractions to an observation kernel without reusing ideal-solution configurational entropy by notation alone.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/appendix_phase_separation.tex",
+          "pattern": "봉우리의 유한",
+          "match_count": 1,
+          "line_start": 475,
+          "line_end": 475,
+          "source_excerpt": "plateau 가 단일 평형 전위로 나타나는 근거이자, 실측 plateau \\emph{전위가 그 Maxwell 전위에서 벗어나는} 이유(준안정 가지 과주행 --- 히스테리시스 분기)를 진술할 기준선이다; 봉우리의 유한 \\emph{폭}의 기원은 별개의 질문으로, 본문 \\S1.7(broadening 절)의 소관이다. 넷째, 핵생성 대 spinodal 분해의 구분(\\S\\ref{app:kinetics})은 본문"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "w_j.*phenomenological",
+          "match_count": 1,
+          "line_start": 1860,
+          "line_end": 1860,
+          "source_excerpt": "\\node[font=\\scriptsize] at (1.45,1.15) {$\\eta(t)$ tail (①)}; \\node[font=\\scriptsize,align=center] at (0,-0.7) {(b) two-phase ($\\mathrm{LiC_{12}},\\mathrm{LiC_6}$):\\\\near-delta $\\to$ bell by broadening\\\\($w_j$ phenomenological)}; \\end{scope}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-011",
+      "topic": "width",
+      "symbols": [
+        "w_j",
+        "n_j",
+        "R",
+        "T",
+        "F"
+      ],
+      "quantity": "logistic voltage scale",
+      "unit": "w_j in V; n_j dimensionless",
+      "sign_or_orientation": "w_j must be strictly positive.",
+      "assumptions": [
+        "Ideal independent-site logistic when w_j = n_j RT/F is given a thermodynamic interpretation."
+      ],
+      "source_claim": "All transitions share the numerical form w_j = n_j RT/F.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_ROLE_SPLIT",
+      "required_action": "Use separate symbols for ideal thermal width and empirical ensemble/two-phase width.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:wbase",
+          "line_start": 1269,
+          "line_end": 1269,
+          "source_excerpt": "w_j=\\frac{n_jRT}{F}\\qquad(\\text{기본 폭}), \\label{eq:wbase} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:logistic",
+          "line_start": 167,
+          "line_end": 167,
+          "source_excerpt": "\\xi_\\eq(V,T)=1-\\theta_\\eq=\\frac{1}{1+\\exp\\!\\bigl[-(V-U_j)/w\\bigr]}\\;,} \\label{eq:logistic} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-012",
+      "topic": "width",
+      "symbols": [
+        "n_j"
+      ],
+      "quantity": "dimensionless empirical width ratio",
+      "unit": "dimensionless",
+      "sign_or_orientation": "n_j > 0",
+      "assumptions": [
+        "It may absorb degeneracy, heterogeneity, or unresolved interactions but is not an electron number."
+      ],
+      "source_claim": "The text calls n_j a multiplicity while fitting it as a free width factor.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_MICROSCOPIC_MEANING",
+      "required_action": "Rename it as an empirical width ratio unless a partition-function derivation and identifiability test support a microscopic meaning.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:wbase",
+          "line_start": 1269,
+          "line_end": 1269,
+          "source_excerpt": "w_j=\\frac{n_jRT}{F}\\qquad(\\text{기본 폭}), \\label{eq:wbase} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "폭을.*피팅",
+          "match_count": 1,
+          "line_start": 1274,
+          "line_end": 1274,
+          "source_excerpt": "얹으며, 그 $\\partial w_j/\\partial T=(R/F)(n_j(T)+T\\,\\dd n_j/\\dd T)$ 가 가역 발열 config 항에 자기정합 전파된다(Chapter 2 겹침 가중 파생 A 에서 유도, 발열 종합식이 받음; 상수 $n_j$ 는 $\\dd n_j/\\dd T{=}0$ 특수형). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅할지는 데이터가 정한다. 폭은 항상 이 한 식을 쓴다(상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지 않는다 — 그 까닭은 바로 아래"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-013",
+      "topic": "width",
+      "symbols": [
+        "w_two_phase",
+        "rho_U"
+      ],
+      "quantity": "distribution of apparent transition potentials for a broadened two-phase event",
+      "unit": "width in V; rho_U in V^-1",
+      "sign_or_orientation": "Distribution is nonnegative and normalized.",
+      "assumptions": [
+        "Finite width is observational/ensemble broadening, not ideal homogeneous mixing."
+      ],
+      "source_claim": "The two-phase bell is explicitly phenomenological.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "PRESERVE_AS_OBSERVATION_HYPOTHESIS",
+      "required_action": "Give this width its own symbol and infer a normalized heterogeneity kernel from data or microstructure.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "two-phase.*near-delta",
+          "match_count": 1,
+          "line_start": 1860,
+          "line_end": 1860,
+          "source_excerpt": "\\node[font=\\scriptsize] at (1.45,1.15) {$\\eta(t)$ tail (①)}; \\node[font=\\scriptsize,align=center] at (0,-0.7) {(b) two-phase ($\\mathrm{LiC_{12}},\\mathrm{LiC_6}$):\\\\near-delta $\\to$ bell by broadening\\\\($w_j$ phenomenological)}; \\end{scope}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:ensavg",
+          "line_start": 1660,
+          "line_end": 1660,
+          "source_excerpt": "\\qquad U_\\app=U_j+\\eta,\\ \\ U_j=\\text{const}, \\label{eq:ensavg} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-014",
+      "topic": "width",
+      "symbols": [
+        "Q_j",
+        "dQ/dV",
+        "w_j"
+      ],
+      "quantity": "area-normalized logistic derivative peak",
+      "unit": "Q_j charge; dQ/dV charge V^-1",
+      "sign_or_orientation": "Peak magnitude is nonnegative; integral over the full voltage domain equals Q_j.",
+      "assumptions": [
+        "Infinite or sufficiently wide integration domain.",
+        "Positive width."
+      ],
+      "source_claim": "The logistic derivative conserves transition capacity.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_KERNEL_IDENTITY",
+      "required_action": "Retain area conservation as a mandatory numerical gate for every broadened and kinetic kernel.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:belliden",
+          "line_start": 1564,
+          "line_end": 1564,
+          "source_excerpt": "=\\xi_\\eq(1-\\xi_\\eq) \\label{eq:belliden} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:eqpeak",
+          "line_start": 1575,
+          "line_end": 1575,
+          "source_excerpt": "=Q_j\\,\\Big|\\frac{\\dd\\xi_{\\eq,j}}{\\dd V}\\Big|\\;.} \\label{eq:eqpeak} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-015",
+      "topic": "width",
+      "symbols": [
+        "w_j",
+        "partial S_config/partial theta"
+      ],
+      "quantity": "thermal logistic slope versus configurational partial entropy",
+      "unit": "w_j V; partial entropy J mol^-1 K^-1",
+      "sign_or_orientation": "For the ideal lattice gas, R ln[xi/(1-xi)] changes sign at xi=1/2.",
+      "assumptions": [
+        "The width is the ideal-site thermal width, not a phenomenological two-phase distribution."
+      ],
+      "source_claim": "Ch2 reads the temperature derivative of w=nRT/F as a configurational entropy contribution.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_TWO_PHASE_SEMANTIC_CONTRADICTION",
+      "required_action": "Apply the configurational term only to a derived homogeneous occupancy model and not automatically to empirical two-phase widths.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dSconfig",
+          "line_start": 247,
+          "line_end": 247,
+          "source_excerpt": "\\;=\\; -R\\,\\ln\\!\\frac{\\theta}{1-\\theta}, \\label{eq:dSconfig} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dVdT_config",
+          "line_start": 257,
+          "line_end": 257,
+          "source_excerpt": "= \\frac{\\Delta S_{\\rxn,j}}{F}\\;+\\;\\frac{1}{F}\\frac{\\partial S_\\config}{\\partial\\theta}\\Big|_{\\theta=1-\\xi}, \\label{eq:dVdT_config} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "logistic 폭.*이미 부분몰",
+          "match_count": 1,
+          "line_start": 263,
+          "line_end": 263,
+          "source_excerpt": "$n_j{=}1$ 서식이며 전이별 일반형은 $n_jR/F$ 다(후술 \\S\\ref{ssec:overlap} 식~\\eqref{eq:dxidT}). 곧 \\textbf{Chapter 1 의 logistic 폭 $w=RT/F$ 가 이미 부분몰 configurational 엔트로피를 담고 있었다}. 봉우리 내부 $\\partial U_\\oc/\\partial T(x)$ 의 $x$-의존(비선형 모양)은 새 물리가 아니라, 점유 분포의 엔트로피가 $w$ 의 온도 의존을 통해 자동으로 들어온 것이다."
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-016",
+      "topic": "memory",
+      "symbols": [
+        "k_j",
+        "L_q",
+        "|I|",
+        "Q_cell"
+      ],
+      "quantity": "first-order relaxation rate and lag length in normalized capacity",
+      "unit": "k_j s^-1; L_q dimensionless if |I|/Q_cell is s^-1",
+      "sign_or_orientation": "L_q > 0",
+      "assumptions": [
+        "One exponential relaxation mode.",
+        "Time and capacity units are consistent."
+      ],
+      "source_claim": "L_q = |I|/(Q_cell k_j).",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_RATE_SCALE_AND_QCELL_UNITS",
+      "required_action": "Define the time basis explicitly and replace the universal molecular prefactor with a calibrated coarse-grained rate model.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Lq",
+          "line_start": 1894,
+          "line_end": 1894,
+          "source_excerpt": "\\qquad \\boxed{\\;L_{q,j}=\\frac{|I|}{Q_\\cell\\,k_j}\\;.} \\label{eq:Lq} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:kuniv",
+          "line_start": 1902,
+          "line_end": 1902,
+          "source_excerpt": "\\qquad r_j^+\\simeq k_0\\,e^{-(\\Delta G_{a,j}^\\eff-\\chi_d\\mathcal A_j)/RT}\\ (k_0=k_BT/h), \\label{eq:kuniv} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-017",
+      "topic": "memory",
+      "symbols": [
+        "L_V",
+        "L_q",
+        "dV/dq"
+      ],
+      "quantity": "voltage-domain image of a lag length",
+      "unit": "L_V in V",
+      "sign_or_orientation": "L_V is a positive length; traversal direction belongs in the causal integral limits.",
+      "assumptions": [
+        "A local monotone mapping V(q) exists."
+      ],
+      "source_claim": "L_V = L_q |dV/dq| at a representative condition.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_NONMONOTONE_AND_LOCAL_MAP",
+      "required_action": "Evolve the state in time or capacity and project to voltage afterward; do not reconstruct history by sorting voltage.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:LV",
+          "line_start": 1970,
+          "line_end": 1970,
+          "source_excerpt": "\\boxed{\\;L_{V,j}=\\Big|\\frac{\\dd V}{\\dd q}\\Big|_{q_a}\\,L_{q,j}\\;.} \\label{eq:LV} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "컷점 OCV 기울기",
+          "match_count": 3,
+          "line_start": 1966,
+          "line_end": 1966,
+          "source_excerpt": "$\\Delta H_a^\\eff$ 는, 유효 장벽 보강이 켜져 있을 때만 식~\\eqref{eq:dHeff} 의 $\\Delta H_a-\\chi_d\\Omega$ 이고, 꺼져 있으면 그대로 $\\Delta H_a$ 다. 전압축으로 옮기면, 컷점 OCV 기울기를 곱한다 — 꼬리 진폭이 용량축 $1/L_q$ 와 분모 $\\dd V_n/\\dd q$ 가 묶여 전압축 길이로 정리되는 것이다:"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-018",
+      "topic": "memory",
+      "symbols": [
+        "xi_lag",
+        "L_V"
+      ],
+      "quantity": "normalized one-sided exponential causal memory integral",
+      "unit": "xi_lag dimensionless; kernel V^-1",
+      "sign_or_orientation": "The past lies toward lower V for one monotone traversal and toward higher V for the reverse traversal.",
+      "assumptions": [
+        "Constant L_V over the integral.",
+        "Monotone voltage trajectory.",
+        "Specified infinite-past boundary."
+      ],
+      "source_claim": "The continuous integral and its reverse-direction mirror are mathematically normalized.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_MATHEMATICS_OPEN_PROTOCOL_CONTRACT",
+      "required_action": "Preserve the normalized kernel but state initial history and traversal as explicit inputs.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lag",
+          "line_start": 2045,
+          "line_end": 2045,
+          "source_excerpt": "\\boxed{\\;\\xi_{\\mathrm{lag},j}(V)=\\frac{1}{L_{V,j}}\\int_{-\\infty}^{V} \\xi_{\\eq,j}(u)\\,e^{-(V-u)/L_{V,j}}\\,\\dd u\\;.} \\label{eq:lag} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:reversal",
+          "line_start": 2164,
+          "line_end": 2164,
+          "source_excerpt": "\\end{cases}\\;} \\label{eq:reversal} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-019",
+      "topic": "memory",
+      "symbols": [
+        "xi_lag(V_0)",
+        "history boundary"
+      ],
+      "quantity": "initial condition and pre-window history of the lagged state",
+      "unit": "dimensionless",
+      "sign_or_orientation": "Initial state must correspond to the actual prior protocol.",
+      "assumptions": [
+        "The theoretical -infinity/+infinity boundary can be approximated by the observed finite window."
+      ],
+      "source_claim": "The theory uses an infinite-past integral and does not define a finite-window experimental initial-state contract.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_INITIAL_HISTORY",
+      "required_action": "Add an explicit initial state or preconditioning segment and test finite-window convergence.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lag",
+          "line_start": 2045,
+          "line_end": 2045,
+          "source_excerpt": "\\boxed{\\;\\xi_{\\mathrm{lag},j}(V)=\\frac{1}{L_{V,j}}\\int_{-\\infty}^{V} \\xi_{\\eq,j}(u)\\,e^{-(V-u)/L_{V,j}}\\,\\dd u\\;.} \\label{eq:lag} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "\\$u\\\\to-\\\\infty",
+          "match_count": 3,
+          "line_start": 977,
+          "line_end": 977,
+          "source_excerpt": "$[\\text{peak shape}]_j(V_n)$ 은 그 점 하나만으로 완결되는 값이고, 공유된 보조 좌표를 거치지 않는다. 전이의 인과 기억(\\S\\ref{sec:tail} 의 식~\\eqref{eq:lag})은 하한 $u\\to-\\infty$(방전) 또는 상한 $u\\to+\\infty$(충전)를 여는 적분이므로, 꼬리가 들어올 여유는 그 극한 자체가 이미 무한히 열어 둔다 ---"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "\\$u\\\\to\\+\\\\infty",
+          "match_count": 3,
+          "line_start": 978,
+          "line_end": 978,
+          "source_excerpt": "전이의 인과 기억(\\S\\ref{sec:tail} 의 식~\\eqref{eq:lag})은 하한 $u\\to-\\infty$(방전) 또는 상한 $u\\to+\\infty$(충전)를 여는 적분이므로, 꼬리가 들어올 여유는 그 극한 자체가 이미 무한히 열어 둔다 --- 평가점 $V$ 근방의 과거를 몇 배의 $L_{V,j}$ 만큼만 들여다보면 지수 가중치 $e^{-|V-u|/L_{V,j}}$ 가 스스로"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-020",
+      "topic": "memory",
+      "symbols": [
+        "A",
+        "z_cut",
+        "A_cap",
+        "Delta H_a_eff"
+      ],
+      "quantity": "reaction affinity used to modify an activation barrier",
+      "unit": "A and Delta H_a_eff in J mol^-1",
+      "sign_or_orientation": "Positive forward affinity lowers the forward barrier under the chosen convention.",
+      "assumptions": [
+        "A tail-cut affinity can represent local driving."
+      ],
+      "source_claim": "The source freezes A=min(z_cut nRT,A_cap RT) per transition, so the realized local voltage derivative is zero.",
+      "disposition": "REJECT",
+      "closure_state": "OPEN_LOCAL_BARRIER_CONTRADICTION",
+      "required_action": "Use a local thermodynamic affinity derived from electrochemical potentials and a rate law satisfying detailed balance.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Acut",
+          "line_start": 1916,
+          "line_end": 1916,
+          "source_excerpt": "\\qquad z_\\mathrm{cut}=4.357,\\ A_\\mathrm{cap}=4.0\\ (\\text{기본}). \\label{eq:Acut} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "실현되는.*미분은",
+          "match_count": 1,
+          "line_start": 1972,
+          "line_end": 1972,
+          "source_excerpt": "\\end{equation} \\emph{부호의 핵심} — $\\mathcal A$ 가 전이당 컷 상수로 동결되므로, \\emph{실현되는} 미분은 $\\partial\\ln L_q/\\partial V=0$ 이다(전이당 한 스칼라). 부등식 $\\partial\\ln L_q/\\partial V<0$ 은 \\emph{물리적 동기}로 읽어야"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-021",
+      "topic": "memory",
+      "symbols": [
+        "L_V_direct",
+        "|I|"
+      ],
+      "quantity": "direct empirical voltage-lag override",
+      "unit": "V",
+      "sign_or_orientation": "Must vanish as |I| approaches zero for a unique equilibrium curve.",
+      "assumptions": [
+        "A direct override is allowed independently of current in the historical model."
+      ],
+      "source_claim": "The physical derivation gives L_q proportional to |I|, but the fit architecture also permits an independent L_V.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_ZERO_CURRENT_LIMIT",
+      "required_action": "Parameterize empirical lag as an explicit function with L_V(0,T,state)=0 and test the limit.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Lq",
+          "line_start": 1894,
+          "line_end": 1894,
+          "source_excerpt": "\\qquad \\boxed{\\;L_{q,j}=\\frac{|I|}{Q_\\cell\\,k_j}\\;.} \\label{eq:Lq} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "L_V.*직접",
+          "match_count": 1,
+          "line_start": 1978,
+          "line_end": 1978,
+          "source_excerpt": "원천 정점의 일정 분율로 잡는다''는 컷 규칙의 정당성이다. 한편 $|I|$ 의존은 동결 뒤에도 살아 있다 — $L_q\\propto|I|$($T_*\\propto|I|$)라 $|I|\\to0$ 에서 $L_V\\to0$, 다음 절의 꼬리가 사라지고 평형 peak 으로 환원된다. 지연 길이를 직접 지정하면 동역학 계산을 우회해 그 값을 쓰고, $I\\le0$ 이거나 활성화 엔탈피 입력이 없거나 컷점 OCV 기울기 $|\\dd V/\\dd q|_{q_a}$ 가"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-022",
+      "topic": "n_of_T",
+      "symbols": [
+        "n_j(T)",
+        "n_0",
+        "n_1",
+        "T_ref"
+      ],
+      "quantity": "minimal empirical temperature dependence of a width ratio",
+      "unit": "n dimensionless; n_1 K^-1",
+      "sign_or_orientation": "n_j(T) > 0 over the fitted temperature window",
+      "assumptions": [
+        "A linear form is adequate only within a bounded calibration window."
+      ],
+      "source_claim": "n(T) is introduced as an optional data-decided residual width law.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_IDENTIFIABILITY_AND_EXTRAPOLATION",
+      "required_action": "Use only after per-temperature diagnostics and enforce positivity plus bounded extrapolation.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "온도 함수.*n_j\\(T\\)",
+          "match_count": 1,
+          "line_start": 1272,
+          "line_end": 1272,
+          "source_excerpt": "폭이 직접 주어지면(대신 $w$ 값 자체가 입력되면) $n_j=w_jF/(RT)$ 로 역산해 같은 식에 넣는다. 다중도를 온도 상수가 아니라 온도 함수 $n_j(T)$ 로 두면 폭 $w_j=n_j(T)RT/F$ 가 열적 스케일 위에 잔여 $T$-의존을 얹으며, 그 $\\partial w_j/\\partial T=(R/F)(n_j(T)+T\\,\\dd n_j/\\dd T)$ 가 가역 발열 config 항에 자기정합 전파된다(Chapter 2"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "잔여 폭.*n_j\\(T\\)",
+          "match_count": 1,
+          "line_start": 555,
+          "line_end": 555,
+          "source_excerpt": "\\textbf{★폭 다중도의 온도 함수화(선택 확장).} 위 둘째 조각은 폭 다중도 $n_j$ 를 온도 상수로 본 $\\partial w_j/\\partial T=n_jR/F$ 다. 잔여 폭 $T$-의존을 담고자 다중도를 온도의 함수 $n_j(T)$ 로 두면 폭이 $w_j=n_j(T)\\,RT/F$ 라 곱의 미분으로 \\begin{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-023",
+      "topic": "n_of_T",
+      "symbols": [
+        "partial w_j/partial T",
+        "n_j(T)"
+      ],
+      "quantity": "temperature derivative of w_j=n_j(T)RT/F",
+      "unit": "V K^-1",
+      "sign_or_orientation": "Sign depends on n_j(T)+T n_j'(T).",
+      "assumptions": [
+        "The same n(T) defines both width and its derivative."
+      ],
+      "source_claim": "The product-rule derivative is algebraically correct.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_ALGEBRA_OPEN_PHYSICAL_ROLE",
+      "required_action": "Keep one parameter source for w and dw/dT and separate empirical-width derivatives from configurational entropy.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dwdT-nT",
+          "line_start": 559,
+          "line_end": 559,
+          "source_excerpt": "=\\frac{R}{F}\\Big(n_j(T)+T\\,\\frac{\\mathrm{d}n_j}{\\mathrm{d}T}\\Big) \\label{eq:dwdT-nT} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "\\\\partial w_j/\\\\partial T",
+          "match_count": 1,
+          "line_start": 1273,
+          "line_end": 1273,
+          "source_excerpt": "다중도를 온도 상수가 아니라 온도 함수 $n_j(T)$ 로 두면 폭 $w_j=n_j(T)RT/F$ 가 열적 스케일 위에 잔여 $T$-의존을 얹으며, 그 $\\partial w_j/\\partial T=(R/F)(n_j(T)+T\\,\\dd n_j/\\dd T)$ 가 가역 발열 config 항에 자기정합 전파된다(Chapter 2 겹침 가중 파생 A 에서 유도, 발열 종합식이 받음; 상수 $n_j$ 는 $\\dd n_j/\\dd T{=}0$ 특수형). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅할지는 데이터가 정한다."
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-024",
+      "topic": "n_of_T",
+      "symbols": [
+        "n_j(T)",
+        "Delta S_rxn",
+        "theta_E",
+        "electronic entropy"
+      ],
+      "quantity": "separability of multiple temperature-dependent peak mechanisms",
+      "unit": "mixed parameters with explicit SI units",
+      "sign_or_orientation": "Each mechanism can shift or reshape a peak with different signs.",
+      "assumptions": [
+        "At least three temperatures and enough independent observables are available."
+      ],
+      "source_claim": "The source says data decide the scope but provides no identifiability proof.",
+      "disposition": "UNVERIFIED",
+      "closure_state": "OPEN_PARAMETER_IDENTIFIABILITY",
+      "required_action": "Use profile likelihood/Fisher-rank and held-out temperatures before enabling n(T), vibrational, and electronic terms together.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "피팅하는 스코프는 데이터가 정한다",
+          "match_count": 1,
+          "line_start": 563,
+          "line_end": 563,
+          "source_excerpt": "가역 발열 계수(\\S\\ref{sec:revheat})가 같은 $n_j(T)$ 로 자기정합하게 전파된다($n_j$ 상수면 $\\mathrm{d}n_j/\\mathrm{d}T{=}0$ 으로 $n_jR/F$ 로 환원). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅하는 스코프는 데이터가 정한다(본 문건은 스코프를 정하지 않는다). 첫 조각만(중심 이동)을 \\eqref{eq:gj}$\\cdot$\\eqref{eq:dxidT} 와 함께 \\eqref{eq:implicit_diff} 에 넣으면, 분모의"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-025",
+      "topic": "entropy_heat",
+      "symbols": [
+        "U_j(T)",
+        "Delta H_rxn",
+        "Delta S_rxn",
+        "F"
+      ],
+      "quantity": "equilibrium insertion-reaction potential and entropy coefficient",
+      "unit": "U V; Delta H J mol^-1; Delta S J mol^-1 K^-1",
+      "sign_or_orientation": "For the stated insertion convention, U=(-Delta H+T Delta S)/F and dU/dT=Delta S/F.",
+      "assumptions": [
+        "Reference reaction and electron number are fixed.",
+        "Pressure work is negligible."
+      ],
+      "source_claim": "The center-temperature sign chain is internally consistent under its reaction convention.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_CONVENTION_NEEDS_MATERIAL_REFERENCE",
+      "required_action": "State the half-reaction for every electrode and never compare cumulative formation enthalpy with differential reaction enthalpy.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Uj",
+          "line_start": 1047,
+          "line_end": 1047,
+          "source_excerpt": "\\boxed{\\;U_j(T)\\;=\\;\\frac{-\\Delta H_{\\rxn,j}+T\\,\\Delta S_{\\rxn,j}}{F}\\;.} \\label{eq:Uj} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lco-dUdT",
+          "line_start": 2513,
+          "line_end": 2513,
+          "source_excerpt": "\\quad(j\\in\\mathcal J_\\mathrm{LCO})\\;} \\label{eq:lco-dUdT} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-026",
+      "topic": "entropy_heat",
+      "symbols": [
+        "S_config",
+        "partial S_config/partial theta"
+      ],
+      "quantity": "ideal binary-site configurational entropy and its partial-molar derivative",
+      "unit": "J mol^-1 K^-1",
+      "sign_or_orientation": "The derivative changes sign at half occupancy and diverges at ideal endpoints.",
+      "assumptions": [
+        "Independent equivalent sites.",
+        "Homogeneous single phase.",
+        "Thermodynamic-limit ideal mixing."
+      ],
+      "source_claim": "The configurational formula is correct for the ideal lattice gas.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_IDEAL_LIMIT_ONLY",
+      "required_action": "Replace endpoint divergences and two-phase regions with the appropriate interacting/convexified chemical potential.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:Sconfig",
+          "line_start": 234,
+          "line_end": 234,
+          "source_excerpt": "\\;=\\; -R\\bigl[\\theta\\ln\\theta + (1-\\theta)\\ln(1-\\theta)\\bigr]\\;.} \\label{eq:Sconfig} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dSconfig",
+          "line_start": 247,
+          "line_end": 247,
+          "source_excerpt": "\\;=\\; -R\\,\\ln\\!\\frac{\\theta}{1-\\theta}, \\label{eq:dSconfig} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-027",
+      "topic": "entropy_heat",
+      "symbols": [
+        "g_j(V)",
+        "dU/dT_weighted"
+      ],
+      "quantity": "peak-amplitude-weighted apparent entropy coefficient in overlapping transitions",
+      "unit": "V K^-1",
+      "sign_or_orientation": "Weights are nonnegative and normalized where total peak amplitude is nonzero.",
+      "assumptions": [
+        "Independent additive transition peaks.",
+        "A local apparent coefficient is meaningful under overlap."
+      ],
+      "source_claim": "The weighted formula is an observation-level blend, not a unique thermodynamic partial molar entropy.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_THERMODYNAMIC_INTERPRETATION",
+      "required_action": "Label the result as an apparent overlap-weighted coefficient and validate against independently measured entropy.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:weighted",
+          "line_start": 571,
+          "line_end": 571,
+          "source_excerpt": "\\;=\\; \\frac1F\\,\\frac{\\sum_j Q_j\\,g_j(x)\\,\\Delta S_{\\rxn,j}}{\\sum_j Q_j\\,g_j(x)}\\;.} \\label{eq:weighted} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "겹침 가중",
+          "match_count": 7,
+          "line_start": 515,
+          "line_end": 515,
+          "source_excerpt": "실제 흑연 곡선은 단일 전이가 아니라 여러 전이가 \\emph{겹쳐} 있다. 한 SOC 에서 여러 전이의 점유 분포가 동시에 변하고 있고, 측정 $\\partial U_\\oc/\\partial T(x)$ 는 그 분포들의 가중 합으로 나타난다. 이 절은 (A) 겹침 가중식을 음함수 미분으로 닫고 수치로 검증하며, (B) 이중계산을 분리하고, (C) 폭 $w_j$ 의 이중지위 — 단상 평형 예측 vs"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-028",
+      "topic": "entropy_heat",
+      "symbols": [
+        "hysteresis branch mean",
+        "dU/dT"
+      ],
+      "quantity": "average of charge/discharge branch derivatives",
+      "unit": "V K^-1",
+      "sign_or_orientation": "Arithmetic branch averaging cancels only symmetric branch contributions.",
+      "assumptions": [
+        "Charge and discharge branches are symmetric around a thermodynamic center."
+      ],
+      "source_claim": "The source treats branch averaging as entropy recovery.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_METASTABLE_SYMMETRY_ASSUMPTION",
+      "required_action": "Use equilibrium or relaxation-derived OCV for entropy; treat branch averaging as a tested approximation.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:hys_branch",
+          "line_start": 690,
+          "line_end": 690,
+          "source_excerpt": "\\;=\\;\\frac1F\\,\\frac{\\sum_j Q_j\\,g_j^{(d)}(x)\\,\\Delta S_{\\rxn,j}}{\\sum_j Q_j\\,g_j^{(d)}(x)}. \\label{eq:hys_branch} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:hys_rev",
+          "line_start": 697,
+          "line_end": 697,
+          "source_excerpt": "\\;=\\;\\tfrac12\\Bigl(\\frac{\\partial U_\\oc^\\mathrm{ch}}{\\partial T}+\\frac{\\partial U_\\oc^\\mathrm{dis}}{\\partial T}\\Bigr)\\;.} \\label{eq:hys_rev} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-029",
+      "topic": "entropy_heat",
+      "symbols": [
+        "q_rev",
+        "I",
+        "T",
+        "dU_oc/dT"
+      ],
+      "quantity": "reversible heat rate",
+      "unit": "W",
+      "sign_or_orientation": "q_rev = -I T dU_oc/dT under the stated cell-current convention.",
+      "assumptions": [
+        "Current sign and electrode/full-cell voltage convention are explicit.",
+        "Temperature is absolute K."
+      ],
+      "source_claim": "The reversible-heat identity is standard but electrode and cell current labels must not be mixed.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_FORMULA_OPEN_SIGN_MAPPING",
+      "required_action": "Provide a half-cell/full-cell sign table and test heat signs against calorimetry.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:qrev",
+          "line_start": 764,
+          "line_end": 764,
+          "source_excerpt": "\\boxed{\\;\\dot Q_\\rev \\;=\\; -\\,I\\,T\\,\\frac{\\partial U_\\oc}{\\partial T}\\;=\\;-\\,\\frac{I\\,T}{F}\\,\\Delta S(x)\\;,} \\label{eq:qrev} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:complete",
+          "line_start": 797,
+          "line_end": 797,
+          "source_excerpt": "g_j=\\frac{\\xi_j(1-\\xi_j)}{w_j}\\;} \\label{eq:complete} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-030",
+      "topic": "einstein_vibration",
+      "symbols": [
+        "S_vib",
+        "theta_E",
+        "u=theta_E/T"
+      ],
+      "quantity": "entropy of one molar Einstein oscillator mode",
+      "unit": "J mol^-1 K^-1",
+      "sign_or_orientation": "S_vib >= 0, tends to zero as T approaches zero, and grows logarithmically in the classical high-T limit.",
+      "assumptions": [
+        "One harmonic mode with fixed frequency.",
+        "No anharmonicity or mode coupling."
+      ],
+      "source_claim": "The single-mode entropy expression and limits are internally correct.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_SINGLE_OSCILLATOR_ONLY",
+      "required_action": "Retain as a basis function, not yet as an insertion-reaction entropy.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:Svib-einstein",
+          "line_start": 420,
+          "line_end": 420,
+          "source_excerpt": "\\qquad u_j\\equiv\\frac{\\theta_{E,j}}{T}, \\label{eq:Svib-einstein} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "저온.*S_\\\\vib\\\\to0",
+          "match_count": 1,
+          "line_start": 428,
+          "line_end": 428,
+          "source_excerpt": "$u_j/(e^{u_j}-1)\\to1-u_j/2$ 가 상쇄해 $S_\\vib\\to R[1+\\ln(T/\\theta_{E,j})]$ --- 앞 문단이 흡수한 ``$T$-무관 상수''는 이 보편식을 $T_\\mathrm{ref}$ 에서 한 번 평가해 동결한 고온 코너다. 저온 $u_j\\to\\infty$ 에서는 $S_\\vib\\to0$."
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-031",
+      "topic": "einstein_vibration",
+      "symbols": [
+        "Delta S_vib(T)",
+        "Delta U_vib(T)",
+        "T_ref"
+      ],
+      "quantity": "reference-subtracted vibrational entropy and voltage correction",
+      "unit": "Delta S J mol^-1 K^-1; Delta U V",
+      "sign_or_orientation": "Both corrections are zero at T_ref by construction.",
+      "assumptions": [
+        "The same oscillator defines free energy and entropy.",
+        "Reference constants are absorbed into baseline center parameters."
+      ],
+      "source_claim": "The derivative of the reference-subtracted voltage correction matches the entropy correction.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_INTERNAL_ROUND_TRIP",
+      "required_action": "Keep the round-trip gate while adding reaction-spectrum amplitudes and positive reference-temperature validation.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dSvib",
+          "line_start": 435,
+          "line_end": 435,
+          "source_excerpt": "\\qquad \\Delta S_\\vib(T_\\mathrm{ref})=0. \\label{eq:dSvib} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:dUvib",
+          "line_start": 449,
+          "line_end": 449,
+          "source_excerpt": "\\frac{\\partial\\,\\Delta U_\\vib}{\\partial T}=\\frac{\\Delta S_\\vib(T)}{F}\\;} \\label{eq:dUvib} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-032",
+      "topic": "einstein_vibration",
+      "symbols": [
+        "Delta phonon DOS",
+        "mode multiplicity",
+        "theta_E,j"
+      ],
+      "quantity": "vibrational contribution to an insertion reaction",
+      "unit": "J mol_reaction^-1 K^-1",
+      "sign_or_orientation": "Sign follows product-minus-reactant spectrum and stoichiometry, not an absolute oscillator entropy.",
+      "assumptions": [
+        "Reaction entropy is a difference between host states and all participating phases."
+      ],
+      "source_claim": "The historical term uses one unit-amplitude absolute oscillator and does not define product/reactant spectral differences.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_REACTION_QUANTITY_DEFINITION",
+      "required_action": "Introduce weighted product-minus-reactant phonon spectra or fitted signed mode amplitudes constrained by DFT/calorimetry.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "pattern": "전 모드 합을 대표 진동수 하나로 접고",
+          "match_count": 1,
+          "line_start": 414,
+          "line_end": 414,
+          "source_excerpt": "\\textbf{(a) 출발 --- Einstein 단일 모드.} 식~\\eqref{eq:Svib_mode} 유도의 모드 자유에너지 $f_k=\\kB T\\ln(1-e^{-\\beta\\hbar\\omega_k})$ 에서 전 모드 합을 대표 진동수 하나로 접고($\\kB\\theta_{E,j}\\equiv\\hbar\\omega_{E,j}$, 점유 $n=1/(e^{u_j}-1)$, $u_j\\equiv\\theta_{E,j}/T$ --- 무차원 비를 $u_j$ 로 적어 본 장의 리튬 함량 $x$ 와 구분한다),"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch2_v1.0.18.2.tex",
+          "label": "eq:Svib_mode",
+          "line_start": 391,
+          "line_end": 391,
+          "source_excerpt": "S_{\\vib,k} \\;=\\; \\kB\\bigl[(1+n_k)\\ln(1+n_k) - n_k\\ln n_k\\bigr], \\label{eq:Svib_mode} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-033",
+      "topic": "lco_electronic",
+      "symbols": [
+        "U_T1",
+        "U_T2",
+        "U_T3",
+        "U_T4"
+      ],
+      "quantity": "LCO transition centers and declared voltage scope",
+      "unit": "V vs Li/Li+",
+      "sign_or_orientation": "Increasing cathode potential corresponds to delithiation on charge.",
+      "assumptions": [
+        "The modeled O3 window ends below the O3-to-H1-3 high-voltage event."
+      ],
+      "source_claim": "The document places the approximately 4.55 V transition explicitly outside scope.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_USER_GOAL_HIGH_VOLTAGE_LCO",
+      "required_action": "Add a separately validated doped high-voltage LCO phase/oxygen-redox model and public data before claiming the requested scope.",
+      "evidence": [
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "4\\.55.*O3.*H1-3",
+          "match_count": 2,
+          "line_start": 2333,
+          "line_end": 2333,
+          "source_excerpt": "하프셀(코인, $\\le$4.2--4.5 V)은 세 전이를 남긴다\\cite{xia2007}: $\\sim$3.90 V 의 절연체$\\to$금속 전이(insulator-to-metal transition, MIT), $\\sim$4.05 V 와 $\\sim$4.17 V 의 한 쌍 order--disorder 전이다(고전압 $\\sim$4.55 V 의 O3$\\to$H1-3 는 하프셀 상한이 $\\le$4.2--4.5 V 면 범위 밖이라 옵션으로 둔다). 이 값들은 흑연과 마찬가지로 \\emph{신뢰값이 아니라 초기값}이며\\footnote{신뢰"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "고전압, 범위 밖",
+          "match_count": 1,
+          "line_start": 2362,
+          "line_end": 2362,
+          "source_excerpt": "\\midrule (T4) & $\\sim$4.55 & $\\approx$0.2 & O3$\\to$H1-3 & --- & (고전압, 범위 밖) \\\\ \\bottomrule"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-034",
+      "topic": "lco_electronic",
+      "symbols": [
+        "g(E_F,x)",
+        "S_e"
+      ],
+      "quantity": "Sommerfeld electronic entropy from the Fermi-level density of states",
+      "unit": "g states J^-1 atom^-1 or states eV^-1 atom^-1 with explicit conversion; S_e J mol^-1 K^-1",
+      "sign_or_orientation": "Absolute electronic entropy is nonnegative; reaction partial entropy may have either sign.",
+      "assumptions": [
+        "Degenerate electrons.",
+        "DOS smooth over k_B T near E_F.",
+        "Normalization per atom is explicit."
+      ],
+      "source_claim": "The Sommerfeld formula and eV-to-J conversion are valid within the metallic smooth-DOS limit.",
+      "disposition": "PRESERVE",
+      "closure_state": "CLOSED_LIMIT_OPEN_TRANSITION_REGION",
+      "required_action": "Use electronic-structure or measured heat-capacity data through the MIT where the smooth-DOS assumption fails.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:Se",
+          "line_start": 2759,
+          "line_end": 2759,
+          "source_excerpt": "S_e(T,x)\\;=\\;\\frac{\\pi^2}{3}\\,k_B^2\\,T\\,g(E_F,x) \\label{eq:Se} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:gunit",
+          "line_start": 2816,
+          "line_end": 2816,
+          "source_excerpt": "\\qquad e_V=1.602176634\\times10^{-19}\\ \\text{J/eV}. \\label{eq:gunit} \\end{equation}"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-035",
+      "topic": "lco_electronic",
+      "symbols": [
+        "g_gate(E_F,x)",
+        "x_MIT",
+        "Delta x_MIT"
+      ],
+      "quantity": "empirical composition gate for the DOS across the MIT",
+      "unit": "g in states eV^-1 atom^-1; x dimensionless",
+      "sign_or_orientation": "Gate orientation must match metallic versus insulating composition sides.",
+      "assumptions": [
+        "A logistic in composition approximates an unknown continuous DOS curve."
+      ],
+      "source_claim": "The source admits the continuous g(E_F,x) curve is absent from primary literature and fills it with a logistic hypothesis.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_PRIMARY_DATA_AND_CATEGORY_ERROR",
+      "required_action": "Do not justify the composition gate by resemblance to a Fermi occupation; calibrate it to DOS/entropy data and propagate uncertainty.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:ggate",
+          "line_start": 2861,
+          "line_end": 2861,
+          "source_excerpt": "\\quad g_{\\max}=13\\ \\text{e/eV/atom},\\;x_\\mathrm{MIT}\\approx0.85,\\;\\Delta x_\\mathrm{MIT}\\approx0.05\\;} \\label{eq:ggate} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "연속 곡선.*1차 문헌",
+          "match_count": 2,
+          "line_start": 2789,
+          "line_end": 2789,
+          "source_excerpt": "($\\mathrm{CoO_2}$, $x{=}0$)도 측정된 끝점인 그 \\emph{한 점}에서만 \\emph{tier A} 다\\cite{motohashi2009}. 셋째, MIT 를 가로지르는 \\emph{연속 곡선} $g(E_F,x)$ 는 1차 문헌에 \\emph{부재}하여(갭 G2 — G$n$ 은 본 문건이 추적하는 1차 문헌 공백의 일련번호) 신뢰 등급이 없으며,"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-036",
+      "topic": "lco_electronic",
+      "symbols": [
+        "x(V)",
+        "xi_eq,1(V)",
+        "U_1(x,T)"
+      ],
+      "quantity": "mapping from voltage-domain transition progress to LCO stoichiometry and electronic center feedback",
+      "unit": "x and xi dimensionless; U V",
+      "sign_or_orientation": "Delithiation lowers x while the selected progress coordinate increases.",
+      "assumptions": [
+        "The first transition progress provides a valid local stoichiometry map.",
+        "A fixed point is unique and stable."
+      ],
+      "source_claim": "The precise theory is implicit because x depends on xi, xi on U, and U on electronic entropy at x.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_FIXED_POINT_AND_CHAIN_RULE",
+      "required_action": "Solve the implicit state equation and include dU/dV in dxi/dV; validate uniqueness and branch stability.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lco-xmap",
+          "line_start": 3170,
+          "line_end": 3170,
+          "source_excerpt": "x\\big(\\xi_{\\eq,1}(V)\\big)=x_{\\mathrm{hi},1}-\\big(x_{\\mathrm{hi},1}-x_{\\mathrm{lo},1}\\big)\\,\\xi_{\\eq,1}(V) \\label{eq:lco-xmap} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lco-U1V",
+          "line_start": 3193,
+          "line_end": 3193,
+          "source_excerpt": "\\end{aligned} \\label{eq:lco-U1V} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "고정점 구조",
+          "match_count": 1,
+          "line_start": 3200,
+          "line_end": 3200,
+          "source_excerpt": "(T-T_\\mathrm{ref})$ 의 \\emph{선형} $U(T)$ 가 된다(동결 근사의 결과 — 다온도 $T^2$ 곡률은 round-trip 피팅 단계 과제). 평가 순서 주의 — 식~\\eqref{eq:lco-xmap} 이 $\\xi_{\\eq,1}$ 을, $\\xi_{\\eq,1}$ 이 $U_1$ 을 참조하는 고정점 구조이나, 동결 근사는 순환이 없고, 정밀형도 전자항 제외 중심으로 $\\xi_{\\eq,1}^{(0)}$ 을 먼저 평가해 1회 갱신하는 것을 초기 근사로 채택한다(되먹임"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-037",
+      "topic": "lco_electronic",
+      "symbols": [
+        "Omega_doped",
+        "lambda_dop",
+        "delta U_dop"
+      ],
+      "quantity": "doping-induced suppression of ordering/hysteresis and independent center shift",
+      "unit": "Omega J mol^-1; lambda dimensionless; center shift V",
+      "sign_or_orientation": "Reducing Omega closes the symmetric mean-field gap; center shift is a separate signed parameter.",
+      "assumptions": [
+        "Doping effects can be reduced to Omega scaling plus an independent center shift."
+      ],
+      "source_claim": "The document labels quantitative doping shift as literature gap G3.",
+      "disposition": "EMPIRICAL_ONLY",
+      "closure_state": "OPEN_DOPED_MATERIAL_VALIDATION",
+      "required_action": "Fit dopant-specific parameters to public high-voltage datasets with chemistry, concentration, cycling, and temperature metadata.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lco-dope",
+          "line_start": 2709,
+          "line_end": 2709,
+          "source_excerpt": "\\Delta U_j^{\\hys,\\mathrm{cat,dop}}\\to\\frac{8RT}{3F}\\big(u_j^\\mathrm{cat,dop}\\big)^3\\to0, \\label{eq:lco-dope} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "갭 G3",
+          "match_count": 1,
+          "line_start": 2701,
+          "line_end": 2701,
+          "source_excerpt": "\\textbf{도핑 보정(우리 시료; 갭 G3)} — Al$^{3+}$/Mg$^{2+}$ 비-redox 치환은 Co redox$\\cdot$전자항을 보존하되 order--disorder$\\cdot$MIT 상전이를"
+        }
+      ]
+    },
+    {
+      "id": "P059-CON-038",
+      "topic": "lco_electronic",
+      "symbols": [
+        "Delta S_config",
+        "Delta S_vib",
+        "Delta S_e",
+        "U_1(T)"
+      ],
+      "quantity": "decomposition of LCO insertion entropy and electronic T-squared center shift",
+      "unit": "entropy terms J mol^-1 K^-1; U V",
+      "sign_or_orientation": "The insertion-reaction convention controls signs; a term linear in T in entropy integrates to one-half times T squared in voltage.",
+      "assumptions": [
+        "Config, vibrational, and electronic partition functions factorize to leading order.",
+        "The electronic entropy is locally linear in T."
+      ],
+      "source_claim": "The additive decomposition and one-half integration factor are algebraically sound, but config-electronic coupling is neglected.",
+      "disposition": "CORRECT",
+      "closure_state": "OPEN_COUPLING_AND_CODE_CONFORMANCE",
+      "required_action": "Test factorization, define reaction-resolved vibrational terms, and implement the same composition and temperature dependence in code.",
+      "evidence": [
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:lco-decomp",
+          "line_start": 3064,
+          "line_end": 3064,
+          "source_excerpt": "+\\underbrace{\\Delta S_{e,j}^{\\,\\mathrm{mol}}(x,T)}_{\\text{MIT 게이트, 삽입 기준 }<0,\\ \\propto T\\ (\\text{몰당 식~\\eqref{eq:dSemolar}})}\\;.} \\label{eq:lco-decomp} \\end{equation}"
+        },
+        {
+          "kind": "equation_or_label",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "label": "eq:U1T2",
+          "line_start": 2846,
+          "line_end": 2846,
+          "source_excerpt": "\\boxed{\\;U_1(T)=U_1(T_\\mathrm{ref})+\\frac{\\Delta S_0}{F}\\,(T-T_\\mathrm{ref})+\\frac{a_e}{2F}\\,(T^2-T_\\mathrm{ref}^2)\\;.} \\label{eq:U1T2} \\end{equation}"
+        },
+        {
+          "kind": "prose_regex",
+          "path": "Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex",
+          "pattern": "교차항.*0",
+          "match_count": 1,
+          "line_start": 3071,
+          "line_end": 3071,
+          "source_excerpt": "\\emph{점유 배열} vs 전도 전자 \\emph{밴드 점유})의 \\emph{근사적 직교}에서 온다 — 독립 극한에서 $Z=Z_\\mathrm{config}\\!\\cdot\\!Z_\\mathrm{elec}$ 이므로 $S=S_\\mathrm{config}+S_\\mathrm{elec}$(교차항 $0$; MIT 부근 리튬 정렬$\\cdot$밴드채움 결합은 선도 차수에서 무시)이 식~\\eqref{eq:lco-decomp} 의 config$+$elec"
+        }
+      ]
+    }
+  ]
+}
