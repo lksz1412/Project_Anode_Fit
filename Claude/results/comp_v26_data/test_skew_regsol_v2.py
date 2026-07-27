@@ -38,7 +38,10 @@ rcParams["axes.unicode_minus"] = False
 R, F, T = 8.314, 96485.0, 298.15
 RTF = R * T / F                                   # 25.69 mV
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = r"D:\Projects\Project_Anode_Fit\Claude\results\comp_v24\sintef_data"
+# 데이터 경로: PC 절대경로 우선, 없으면 리포 상대경로(타 OS·CI 이식).
+_D_WIN = r"D:\Projects\Project_Anode_Fit\Claude\results\comp_v24\sintef_data"
+_D_REL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "comp_v24", "sintef_data")
+DATA = _D_WIN if os.path.isdir(_D_WIN) else os.path.normpath(_D_REL)
 OUT = os.path.join(HERE, "out_v2"); os.makedirs(OUT, exist_ok=True)
 LOGP = os.path.join(OUT, "run_v2.log"); open(LOGP, "w", encoding="utf-8").close()
 _TRAPZ = getattr(np, "trapezoid", None) or np.trapz
