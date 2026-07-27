@@ -810,3 +810,30 @@ lineage report를 기계 검증한다.
   `V1013_HAS_REAL_PEDAGOGICAL_DEPTH_BUT_50_PAGES_DO_NOT_CLOSE_THE_PHYSICS_CHEMISTRY_OBSERVATION_OR_VALIDATION_CHAIN`.
 - Step 31은 완료됐다. 다음은 Step 32.1 모든 theory claim을
   7개 결정 상태로 종합 분류한다.
+
+### 2026-07-28 — Step 32.1
+
+- theory source 6개의 displayed equation 323 occurrences,
+  132 unique labels를 `PRESERVE`, `CORRECT`, `SUPERSEDE`,
+  `EMPIRICAL_ONLY`, `THEORY_ONLY`, `REJECT`, `UNVERIFIED` 중
+  하나로 전건 처분했다.
+- 처분 수는 preserve 145, correct 35, supersede 29,
+  empirical-only 29, theory-only 66, reject 6, unverified 13이며
+  미배정은 0이다.
+- v1.0.10→v1.0.12 changed label 4개와 pre-v1.0.13→v1.0.13
+  changed label 15개의 과거 occurrence를 `SUPERSEDE`로 분리해,
+  과거와 최신식을 동시에 정본 권위로 세지 않았다.
+- ideal statmech/보존식/열역학 항등식은 범위와 함께 보존하고,
+  nonideal topology/다중전이/entropy width는 수정,
+  arbitrary width와 MIT gate는 empirical, reduced kinetics와
+  미구현 LCO path는 theory-only, C-rate unit과 branch handoff는
+  reject, material LCO 귀속은 unverified로 판정했다.
+- 모든 `equation_id|decision` assignment를 SHA-256
+  `50016c639b06ceb4e5be417fbf35a5cf321b4e300eb1f6955b93ca691742f415`
+  로 동결했고 32/32 checks가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITION_REVIEW.md`,
+  `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITIONS.json`.
+- 기계 gate:
+  `PASS_P058_THEORY_CLAIM_DISPOSITIONS`.
+- 다음은 Step 32.2 theory–code–test–PDF/image 4축 matrix를 닫는다.

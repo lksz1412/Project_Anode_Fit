@@ -251,6 +251,16 @@
   `Codex/results/PHASE_058_V1013_CLOSURE_REVIEW.md`,
   `Codex/results/PHASE_058_V1013_CLOSURE_AUDIT.json`
   (`PASS_P058_V1013_EXPLANATION_CLOSURE`, 84/84 checks).
+- Phase 058 theory claim dispositions:
+  323/323 displayed equation occurrences, 132 unique labels를 전건
+  분류했다. Preserve 145, correct 35, supersede 29,
+  empirical-only 29, theory-only 66, reject 6, unverified 13,
+  unassigned 0이다. 역사적 replacement와 최신 물리 판정을
+  분리했고 assignment hash를 고정했다.
+- Phase 058 claim-disposition evidence:
+  `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITION_REVIEW.md`,
+  `Codex/results/PHASE_058_THEORY_CLAIM_DISPOSITIONS.json`
+  (`PASS_P058_THEORY_CLAIM_DISPOSITIONS`, 32/32 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -273,13 +283,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 32.1:
-v1.0.10–v1.0.13의 모든 theory claim을 `PRESERVE`, `CORRECT`,
-`SUPERSEDE`, `EMPIRICAL_ONLY`, `THEORY_ONLY`, `REJECT`,
-`UNVERIFIED`로 종합 분류한다.
+Phase 058 Step 32.2:
+문건–code–test–PDF/image의 4축 matrix를 닫고, 각 PASS가
+검사하지 않은 범위를 명시한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -323,6 +332,8 @@ v1.0.13 Ch1 50쪽을 20개 closure dimension으로 판정해 실제
 pedagogical depth와 물리 폐쇄를 분리. Ch1 code mention 215회,
 넓은 구현 경계 밖 129회, 공개 dataset/fit/Si path 0을 확인하고
 84/84 closure gate 통과.
+Phase 058 theory equation 323/323 occurrences에 7-state disposition을
+부여하고 unassigned 0, assignment hash/32-check gate 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

@@ -1,0 +1,183 @@
+{
+  "schema_version": "phase058-theory-claim-dispositions-v1",
+  "audit_boundary": "ALL_323_EQUATION_OCCURRENCES_IN_V1010_V1012_V1013_WITH_INTERNAL_PHYSICAL_ADJUDICATION_NOT_EXTERNAL_VALIDATION",
+  "source_matrix": "Codex/results/PHASE_058_THEORY_EQUATION_CLAIM_MATRIX.json",
+  "source_matrix_sha256": "1f63034413e6fdbfb7b025837f25a2d55e591f45e1ac0302a878055fdd387765",
+  "classifier": "Codex/work/v1010_v1013_phase058/classify_phase058_equations.py",
+  "classifier_sha256": "7c5d34f1c9072c5551d5b7a3e438468ad96ab914c24bdedf736ca971d44e9c35",
+  "allowed_decisions": [
+    "PRESERVE",
+    "CORRECT",
+    "SUPERSEDE",
+    "EMPIRICAL_ONLY",
+    "THEORY_ONLY",
+    "REJECT",
+    "UNVERIFIED"
+  ],
+  "assignment_rule": {
+    "category_default_count": 7,
+    "label_override_count": 83,
+    "v1010_superseded_by_v1012_label_count": 4,
+    "pre_v1013_superseded_by_v1013_label_count": 15,
+    "precedence": [
+      "v1.0.10 labels replaced by v1.0.12 receive SUPERSEDE",
+      "v1.0.10 or v1.0.12 labels replaced by v1.0.13 receive SUPERSEDE",
+      "latest semantic label override applies",
+      "otherwise category default applies"
+    ]
+  },
+  "coverage": {
+    "equation_occurrence_count": 323,
+    "assigned_equation_occurrence_count": 323,
+    "unassigned_equation_occurrence_count": 0,
+    "unique_equation_label_count": 132,
+    "assignment_sha256": "50016c639b06ceb4e5be417fbf35a5cf321b4e300eb1f6955b93ca691742f415"
+  },
+  "decision_counts": {
+    "CORRECT": 35,
+    "EMPIRICAL_ONLY": 29,
+    "PRESERVE": 145,
+    "REJECT": 6,
+    "SUPERSEDE": 29,
+    "THEORY_ONLY": 66,
+    "UNVERIFIED": 13
+  },
+  "version_decision_counts": {
+    "v1.0.10": {
+      "CORRECT": 8,
+      "EMPIRICAL_ONLY": 7,
+      "PRESERVE": 35,
+      "REJECT": 2,
+      "SUPERSEDE": 14,
+      "THEORY_ONLY": 16
+    },
+    "v1.0.12": {
+      "CORRECT": 11,
+      "EMPIRICAL_ONLY": 10,
+      "PRESERVE": 40,
+      "REJECT": 2,
+      "SUPERSEDE": 15,
+      "THEORY_ONLY": 24,
+      "UNVERIFIED": 6
+    },
+    "v1.0.13": {
+      "CORRECT": 16,
+      "EMPIRICAL_ONLY": 12,
+      "PRESERVE": 70,
+      "REJECT": 2,
+      "THEORY_ONLY": 26,
+      "UNVERIFIED": 7
+    }
+  },
+  "category_decision_counts": {
+    "coordinate_and_conservation": {
+      "CORRECT": 1,
+      "PRESERVE": 9,
+      "REJECT": 3,
+      "SUPERSEDE": 2
+    },
+    "equilibrium_and_statistical_mechanics": {
+      "CORRECT": 3,
+      "EMPIRICAL_ONLY": 4,
+      "PRESERVE": 64,
+      "SUPERSEDE": 10,
+      "THEORY_ONLY": 6
+    },
+    "hysteresis_and_kinetics": {
+      "CORRECT": 14,
+      "EMPIRICAL_ONLY": 14,
+      "THEORY_ONLY": 9,
+      "UNVERIFIED": 2
+    },
+    "lco_extension": {
+      "CORRECT": 2,
+      "EMPIRICAL_ONLY": 3,
+      "PRESERVE": 8,
+      "SUPERSEDE": 2,
+      "THEORY_ONLY": 8,
+      "UNVERIFIED": 2
+    },
+    "observation_and_fitting": {
+      "CORRECT": 5,
+      "PRESERVE": 6,
+      "REJECT": 3,
+      "SUPERSEDE": 2,
+      "THEORY_ONLY": 24,
+      "UNVERIFIED": 5
+    },
+    "peak_kernel_and_broadening": {
+      "EMPIRICAL_ONLY": 3,
+      "PRESERVE": 6
+    },
+    "thermal_and_entropy": {
+      "CORRECT": 10,
+      "EMPIRICAL_ONLY": 5,
+      "PRESERVE": 52,
+      "SUPERSEDE": 13,
+      "THEORY_ONLY": 19,
+      "UNVERIFIED": 4
+    }
+  },
+  "decision_meanings": {
+    "PRESERVE": "The mathematical or physical identity is retained under the explicit scope stated by the audit.",
+    "CORRECT": "The equation family is useful but its sign, scope, topology, semantics, or material interpretation must be repaired.",
+    "SUPERSEDE": "This historical occurrence is replaced by a later source occurrence and is not independently carried forward.",
+    "EMPIRICAL_ONLY": "The expression may parameterize data but has no accepted microscopic identity at this stage.",
+    "THEORY_ONLY": "The expression is a candidate or reduced theoretical relation not closed in production and experiment.",
+    "REJECT": "The claim is not admissible as written.",
+    "UNVERIFIED": "The material-specific or external-validity claim lacks the required evidence."
+  },
+  "critical_label_dispositions": [
+    {
+      "label": "eq:n0map",
+      "decision": "REJECT",
+      "reason": "The documented C-rate and coulomb capacity contract misses the factor 3600."
+    },
+    {
+      "label": "eq:wbase",
+      "decision": "EMPIRICAL_ONLY",
+      "reason": "n is an empirical width ratio, not a derived multiplicity."
+    },
+    {
+      "label": "eq:xieq",
+      "decision": "CORRECT",
+      "reason": "The closed logistic is exact only for the ideal or explicitly phenomenological branch and equilibrium direction is not a physical input."
+    },
+    {
+      "label": "eq:dUhys",
+      "decision": "CORRECT",
+      "reason": "The spinodal voltage difference is algebraically reproducible but is not by itself a convexified equilibrium gap or measured hysteresis."
+    },
+    {
+      "label": "eq:branch",
+      "decision": "REJECT",
+      "reason": "The numerical mode switch has an admitted discontinuous handoff and is not a physical closure."
+    },
+    {
+      "label": "eq:ggate",
+      "decision": "EMPIRICAL_ONLY",
+      "reason": "A composition logistic for g(E_F,x) is not derived from Fermi energy occupancy."
+    },
+    {
+      "label": "eq:lco-dope",
+      "decision": "UNVERIFIED",
+      "reason": "Lowering a fitted Omega is not a validated chemistry model of doped high-voltage LCO."
+    },
+    {
+      "label": "eq:U1T2",
+      "decision": "PRESERVE",
+      "reason": "The one-half factor follows from integrating a temperature-linear entropy term, while implementation and data validation remain separate axes."
+    },
+    {
+      "label": "eq:qrev",
+      "decision": "PRESERVE",
+      "reason": "The reversible heat identity is retained under the explicit current and electrode sign contract."
+    },
+    {
+      "label": "eq:lco-sigmaslot",
+      "decision": "PRESERVE",
+      "reason": "The slot correctly separates cell labels from electrode delithiation."
+    }
+  ],
+  "verdict": "ALL_323_THEORY_EQUATION_OCCURRENCES_ARE_DISPOSED_WITH_LATEST_CORRECTIONS_NOT_MISTAKEN_FOR_EXTERNAL_VALIDATION"
+}
