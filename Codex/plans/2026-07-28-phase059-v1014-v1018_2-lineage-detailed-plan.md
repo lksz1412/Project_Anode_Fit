@@ -603,3 +603,37 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 34.3 capture를 금지한 격리 환경에서 version별
   production self-check, regression verify, sample/demo/graph/plot을
   실행하고 결과·exit·output hash를 저장한다.
+
+### 2026-07-28 — Step 34.3
+
+- disposable temporary directory에서 6 versions × production
+  self-check/regression verify/sample/LCO demo/graph suite/plot의
+  36개 process를 실행했다. `capture`는 호출하지 않았고 source
+  tree와 NPZ mutation은 0이다.
+- production self-check와 24 print/figure 계열 실행은 30/30
+  exit 0이었다. regression verify 6개는 모두 exit 1이며
+  PASS banner는 0개다.
+- 각 version의 current 13 arrays와 저장 golden의 key/shape/dtype을
+  별도 진단했다. exact `array_equal`은 1/13, `rtol=0`,
+  `atol=1e-12`에서는 13/13이고 최대 절대차는
+  \(4.33\times10^{-15}\)이다. strict bit gate의 runtime/library
+  비이식성을 확인했다.
+- regression이 출력하는 finite-window area ratio는 모든 version에서
+  0.9363078774로 guide의 0.95 하한보다 작지만 `all_ok`와 exit에
+  포함되지 않는다. 이는 무한영역 capacity identity 자체의 반증이
+  아니라 현 harness window/gate의 결함이다.
+- 24 generated image의 hash를 temporary directory 안에서 수집한 뒤
+  폐기했다. stdout/stderr 72개를 temporary path 치환 후 저장했다.
+- 결과/summary/log aggregate SHA-256은 반복 실행 전후 동일했다.
+- 29/29 runtime-result/log/source/golden/no-mutation validation을
+  통과했지만 strict regression 실패 때문에 status는
+  `CONDITIONAL_P059_ISOLATED_RUNTIME`이다.
+- 근거:
+  `Codex/results/PHASE_059_ISOLATED_RUNTIME_RESULTS.json`,
+  `Codex/results/PHASE_059_ISOLATED_RUNTIME_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/runtime_logs/`,
+  `Codex/work/v1014_v1018_2_phase059/run_phase059_isolated_runtime.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_isolated_runtime.py`.
+- 다음은 Step 34.4 독립 probe로 memory, conservation, order/history,
+  current/unit, width/entropy, Einstein과 LCO electronic/barrier
+  contract를 직접 검산한다.

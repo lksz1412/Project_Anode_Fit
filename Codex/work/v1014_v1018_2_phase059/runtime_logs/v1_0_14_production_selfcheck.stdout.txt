@@ -1,0 +1,42 @@
+=== seed L_V (derived init, discharge rep cond) ===
+   ['0.0000', '0.0000', '0.0000', '0.0000']
+=== equilibrium (|I|->0 baseline; U from dH_rxn/dS_rxn) ===
+  min=0.080 max=7.350 finite=True
+    U(298)=0.211 V  (target 0.210)
+    U(298)=0.140 V  (target 0.140)
+    U(298)=0.120 V  (target 0.120)
+    U(298)=0.085 V  (target 0.085)
+=== discharge/charge x C-rate (Q_cell=1.0) @298K ===
+  dis I=0.02: min=  0.080 max=  7.350 peak@V=0.100 neg=False finite=True
+  dis I= 0.2: min=  0.082 max=  7.350 peak@V=0.102 neg=False finite=True
+  dis I= 1.0: min=  0.094 max=  7.350 peak@V=0.110 neg=False finite=True
+  chg I=0.02: min=  0.080 max=  7.350 peak@V=0.100 neg=False finite=True
+  chg I= 0.2: min=  0.078 max=  7.350 peak@V=0.098 neg=False finite=True
+  chg I= 1.0: min=  0.070 max=  7.350 peak@V=0.090 neg=False finite=True
+=== temperature dependence (discharge 0.2C) ===
+    -15C: max=  8.465 peak@V=0.107 finite=True
+    +25C: max=  7.350 peak@V=0.102 finite=True
+    +45C: max=  6.897 peak@V=0.100 finite=True
+=== T(V) non-isothermal profile ===
+  finite=True max=7.481
+=== (C) facade curve(): C-rate + direction string ===
+  curve(dis,0.2C) == dqdv(I=0.2,s=+1)? max_diff=0.00e+00 (expect ~0)
+  curve(chg) peak@V=0.098  finite=True
+  curve(I_abs override) finite=True
+=== (A) injectable chi_split rule ===
+  charge L_V default(1-chi=0.5)=2.1839e-08  custom(0.3)=1.0891e-07  differ=True
+=== HYSTERESIS branch (gamma>0): dis peak vs chg peak split ===
+  dU_hys=86.7 mV  dis peak@V=0.1634  chg peak@V=0.0765  d(dis-chg)=+86.9 mV (expect +gamma*dU_hys=+86.7)
+=== TAIL direction reversal (direct L_V): dis/chg opposite sides ===
+  dis: peak@V=0.134  neg=False
+  chg: peak@V=0.106  neg=False
+=== reduction checks (limits) ===
+  Omega=2RT -> dU_hys=0.000e+00 (expect 0)
+  gamma=0,|I|->0: dis/chg max diff=5.107e-15 (expect ~0)
+=== (B) input guards (expect ValueError each) ===
+  guards fired: 7/7
+=== per-tr override isolation (z_cut on tr[0] only) ===
+  tr[0] z_cut override -> only tr[0] changes: True
+    L0 2.184e-08->5.325e-08 (diff)   L1 2.184e-08==2.184e-08 (same)
+
+>>> overall OK: True  (no exception => reached here)

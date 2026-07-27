@@ -405,6 +405,22 @@
   `Codex/results/PHASE_059_TEST_DEMO_ASSERTION_REVIEW.md`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_test_demo_matrix.py`
   (`PASS_P059_TEST_DEMO_ASSERTIONS`, 34/34 checks).
+- Phase 059 isolated runtime:
+  temporary isolation에서 6 versions × 6 tasks = 36개를 실행했다.
+  production/print/figure 계열 30개는 exit0, regression verify
+  6개는 모두 exit1이다. `capture`/NPZ/source mutation은 0이다.
+- Regression runtime diagnosis:
+  각 version 13 arrays 중 exact는 1개, `rtol=0, atol=1e-12`에서는
+  13개 전부 일치하고 최대차는 \(4.33\times10^{-15}\)이다.
+  strict bit gate는 현재 runtime/library 환경에 이식되지 않는다.
+  출력-only area ratio 0.9363은 guide 0.95 하한 아래지만 exit gate에
+  들어가지 않는다.
+- Phase 059 runtime evidence:
+  `Codex/results/PHASE_059_ISOLATED_RUNTIME_RESULTS.json`,
+  `Codex/results/PHASE_059_ISOLATED_RUNTIME_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/runtime_logs/`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_isolated_runtime.py`
+  (`CONDITIONAL_P059_ISOLATED_RUNTIME_VALIDATED`, 29/29 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -427,16 +443,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 34.3:
-capture를 금지한 격리 환경에서 version별 production self-check,
-regression verify, sample/demo/graph/plot을 실행하고 exit, stdout,
-stderr와 output hash를 저장한다.
+Phase 059 Step 34.4:
+독립 probe로 pointwise memory/conservation/order/history,
+current/unit/zero-current, width/entropy, Einstein numerical limits와
+LCO electronic/barrier path를 검산한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–34.2.
+Phase 059 Steps 33.1–34.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

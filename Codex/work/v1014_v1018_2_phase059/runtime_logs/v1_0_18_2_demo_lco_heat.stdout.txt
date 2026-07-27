@@ -1,0 +1,17 @@
+=== 1. 전자엔트로피 골 깊이 검산 (Ch1 -46 J/mol/K) ===
+  func_dSe_molar(x=x_MIT=0.85, T1 anchor) = -45.68 J/mol/K  (기대 ~ -45.7)
+  func_dSe_molar(x=0.20, 창 밖) = -0.000 J/mol/K  (기대 ~ 0)
+=== 2. seam 3경로 공유 — LCO 전자전이 dS_eff = dS_rxn + dSe ===
+  전자전이(T1): dS_rxn=+6.0 + dSe(-45.7) = dS_eff=-39.68
+  비전자전이: dS_eff=-4.00 (=dS_rxn -4.0, 항등)
+  흑연 base seam 항등: 29.00 (=dS_rxn +29.0)
+=== 3. LCO dQ/dV 개형 (충전=탈리튬화, s=+1 — eq:lco-sigmaslot) ===
+  finite=True min=0.091 max=6.871
+  국소 피크 전위: ['3.919', '4.038']  (전이 U=3.880·3.930·4.050 — 폭 겹침으로 병합 피크, 분해하려면 n 축소(또는 'n' 제거 후 w))
+=== 4. 가역 발열 q_rev = -I·T·dU/dT (T 한 번) ===
+  흑연 q_rev: finite=True range=[-0.2162,0.1050] W
+  LCO  q_rev: finite=True range=[-0.0944,0.1760] W
+  흑연 dU/dT range=[-0.352,0.725] mV/K
+=== 5. 그래프 생성 ===
+  saved: D:\Projects\Project_Anode_Fit\Claude\docs\v1.0.18.2\figs\P4_lco_heat_validation.png
+=== P4 VALIDATION DONE ===
