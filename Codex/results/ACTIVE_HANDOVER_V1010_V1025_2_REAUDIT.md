@@ -12,7 +12,7 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_057BC_COMPLETION_AUTHORITY_CLAIM_EXTRACTION_RESULT.md`
+   `Codex/results/PHASE_057BD_COMPLETION_CLAIM_ADJUDICATION_RESULT.md`
 
 ## Current State
 
@@ -35,8 +35,11 @@
   `PASS_P057_COMMIT_PATCH_MATRIX`.
 - Completion/authority claim extraction gate:
   `PASS_P057_COMPLETION_CLAIM_EXTRACTION`.
-- 완료·권위·불변·정합 후보:
-  243문건 3,487개 위치, 아직 전건 `UNADJUDICATED`.
+- Completion claim adjudication gate:
+  `PASS_P057_COMPLETION_CLAIM_ADJUDICATION`.
+- 완료·권위·불변·정합 후보 3,487개 전건 처분:
+  비긍정 문맥 407; 긍정 주장 3,080 =
+  confirmed 3, overclaimed 4, partial 961, unverified 2,112.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -46,18 +49,19 @@
 
 ## Next Exact Step
 
-Phase 057 Step 20.4:
-3,487개 completion/authority/invariance/conformance 후보를
-실제 patch, 시험·machine evidence 및 후속 수정과 대조해
-`CONFIRMED`, `OVERCLAIMED`, `PARTIAL`, `UNVERIFIED`로 판정한다.
-완료 Step 18.1–20.3:
+Phase 057 Step 20.5:
+merge, copy-forward, revert, 후속 수정이 완료·권위·정합 선언의
+효력을 어떻게 바꿨는지 시간순으로 기록한다. v1.0.25.1 stale
+handover, v1.0.25.2의 7-gallery default 도입과 legacy4 복구,
+gate의 실제 검사 경로를 우선 닫는다.
+완료 Step 18.1–20.4:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
 2,381 changed-file event의 claim–patch matrix `PASS`;
-243문건 3,487개 완료·권위·정합 후보의 위치 추출 `PASS`.
+243문건 3,487개 완료·권위·정합 후보의 위치 추출 및 전건 판정 `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BC_COMPLETION_AUTHORITY_CLAIM_EXTRACTION_RESULT.md`.
+`Codex/results/PHASE_057BD_COMPLETION_CLAIM_ADJUDICATION_RESULT.md`.
 
 ## Resume Gate
 
