@@ -1,0 +1,324 @@
+--- Claude/docs/v1.0.17/graphite_ica_ch1_v1.0.17.tex
++++ Claude/docs/v1.0.18.1/graphite_ica_ch1_v1.0.18.1.tex
+@@ -2,7 +2,7 @@
+ % ★ release 1.0.16 (2026-07-06) — graphite_ica_ch1_v1.0.16.tex (계보 1.0.15 승계: 폭 n(T) 피팅 방향 반영)
+ %   = 1.0.10/1.0.11 기반 + Fable 전수 재검(docs/Fable_점검 감사 ①②③) 반영:
+ %     물리 주장 정정(H-1 Ch2 연동·H-2 w_j 지위)·서술/귀속 정정(M-1~M-11)·LCO 6절 수식화(P1.1 supplement 계승).
+-%     코드 Anode_Fit 1.0.16 와 동일 버전·matched.
++%     코드 Anode_Fit 1.0.18.1 와 동일 버전·matched (계보 1.0.16→1.0.17→1.0.18.1; 헤더 아래 블록은 1.0.16 이력).
+ % --------------------------------------------------------------------
+ % (계보 이력) release 1.0.10 (2026-07-01) — v10-11 내용 + 버전 1.0.10 라벨.
+ %   adversarial 2-에이전트 재검수(문건 물리·코드정합·그래프; 확정 CRIT/HIGH 0) 후 가독성 4-다리 보강:
+@@ -73,9 +73,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.17)}}
++  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.18.1)}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.17, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.18.1, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ 
+ \newtheorem*{keybox}{핵심}
+@@ -102,7 +102,7 @@
+ \renewcommand{\thesection}{1.\arabic{section}}
+ \title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 계산 진행을 따라가는 수식-구동판 — 유도 확장}
+ \author{}
+-\date{\normalsize 버전 1.0.17}
++\date{\normalsize 버전 1.0.18.1}
+ 
+ \makeatletter
+ \renewcommand*\l@section[2]{%
+@@ -235,6 +235,7 @@
+ 
+ \begin{longtable}{p{0.15\textwidth} p{0.16\textwidth} p{0.605\textwidth}}
+ \caption{기호$\cdot$단위$\cdot$의미 대응표 --- N0 실험조건 매핑 전제.}\label{tab:notation}\\
++\toprule 기호 & 단위 & 의미 \\ \midrule \endfirsthead
+ \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+ \multicolumn{3}{l}{\emph{— 실험조건$\cdot$방향(N0$\cdot$N1) —}}\\
+ $\sigma_d$ & --- & 방향 부호 — 방전 $+1$/충전 $-1$ \\
+@@ -432,10 +433,12 @@
+ \label{eq:sm-gc}
+ \end{equation}
+ ($\partial\ln\Xi/\partial\mu=\beta\sum_iN_iP_i=\beta\langle N\rangle$ 로 셋째 식이 첫째·둘째에서 나온다).
++\begin{verifybox}
+ 극한 검산 --- $\beta\to0$ 이면 $P_i\to$ 등확률(열적 규율 소실), $\beta\to\infty$ 면 $E_i-\mu N_i$ 최소 상태만
+ 남는다. 삽입 전극이 정확히 이 설정이다 --- 격자의 자리들이 전해질을 통해 Li 저장조(상대극 Li 금속)와 입자를
+ 교환하므로 $\mu$ 가 고정된 대정준 문제이고(그림~\ref{fig:sm-reservoir}), 다음 소절이 그 최소 단위(자리
+ 하나)를 푼다.
++\end{verifybox}
+ 
+ \begin{figure}[t]
+ \centering
+@@ -484,8 +487,9 @@
+ $q(T)$ 는 점유된 이온의 진동 등 국소 자유도의 단일 자리 분배함수다\footnote{이 $q(T)$(단일 자리 내부 분배함수)는 N6--N9 의 정규화 용량 좌표 $q{=}Q/Q_\cell$ 와 다른 양이다 --- 전자는 Part 0 의 국소 열역학량, 후자는 곡선 좌표.}. 일반적인 정의는 상태
+ 합 $q(T)=\mathrm{Tr}\,e^{-\beta H_\mathrm{int}}$ 이고 식~\eqref{eq:partfn} 의 위상공간 적분은 그 고전
+ 극한이다 — 자리 우물을 3차원 조화 퍼텐셜(진동수 $\omega_0$)로 근사하면 고전 극한에서
+-$q=(k_BT/\hbar\omega_0)^3$, 양자 상태 합으로는
+-$q=\prod_{i=1}^{3}[2\sinh(\beta\hbar\omega_i/2)]^{-1}$ 로 닫힌다. 이 전개는 국소화
++$q=(k_BT/\hbar\omega_0)^3$ 이고, 등방 가정(세 방향이 같은 $\omega_0$)을 풀어 데카르트 축마다 다른
++진동수를 허용하는 일반형으로 넓히면 양자 상태 합으로는
++$q=\prod_{i=1}^{3}[2\sinh(\beta\hbar\omega_i/2)]^{-1}$(축 지표 $i=1,2,3$ 마다 진동수 $\omega_i$)로 닫힌다. 이 전개는 국소화
+ 흡착의 Langmuir 등온선 표준 유도와 동일하고 \cite{hill1960,fowler1939,mcquarrie1976}, 삽입 전극에의
+ 적용 원형은 McKinnon--Haering \cite{mckinnon1983} 이다. 기호에 관하여 --- $\Xi_1$ 은 자리 1개의
+ \emph{대정준} 분배함수로, \S\ref{sec:sm-ensemble} 의 canonical $Z$ 와는 앙상블이 다르므로 기호부터
+@@ -519,6 +523,7 @@
+ \qquad \Delta\mu\equiv\tilde\varepsilon(T)-\mu_\mathrm{Li}\;.}
+ \label{eq:fermifn}
+ \end{equation}
++\begin{verifybox}
+ 극한 검산 --- $\beta\to\infty$($T\to0$)에서 $\Delta\mu\gtrless0$ 에 따라 $\theta\to0/1$ 의 계단
+ ($T\to0$ 에서 $\tilde\varepsilon$ 는 점유 상태의 바닥 에너지로 수렴한다 --- 고전 $q$ 면 $k_BT\ln q\to0$
+ 이라 $\varepsilon_0$, 양자 조화 $q$ 면 영점 에너지를 더한 $\varepsilon_0+\tfrac32\hbar\omega_0$ --- 어느
+@@ -531,6 +536,7 @@
+ 물리량은 다르다: 공유하는 것은 ``한 자리에 입자 0 또는 1''이라는 배타 점유의 대수 구조뿐이고(가정 1),
+ 여기의 입자는 전자가 아니라 Li 이온이며 배타성의 근거도 양자 통계가 아니라 자리 하나에 이온 하나라는
+ 기하다.
++\end{verifybox}
+ 
+ 한 걸음 더 --- $n\in\{0,1\}$ 라 $n^2=n$ 이므로 점유의 요동(분산)이 닫힌 꼴로 나온다:
+ \begin{equation}
+@@ -553,7 +559,8 @@
+ \;=\;k_B\,\frac{\partial\,(T\ln q)}{\partial T}
+ \label{eq:sm-sint}
+ \end{equation}
+-를 주는데, 이것이 Chapter 2 의 vibrational 엔트로피 사슬의 단일 자리 원형이다 --- 조화 모드의
++를 주는데, 이것이 Chapter 2 의 vibrational 엔트로피 사슬의 단일 자리 원형이다 --- 여기 자리 하나의
++세 축 진동수 $\omega_i$($i=1,2,3$)를 격자 전체의 모든 진동 모드를 헤아리는 지표 $k$ 로 넓혀, 조화 모드의
+ $q_k=[1-e^{-\beta\hbar\omega_k}]^{-1}$ 를 식~\eqref{eq:sm-sint} 에 넣으면 그 문건의 모드당 엔트로피
+ $s_k=k_B[(1+\bar n_k)\ln(1+\bar n_k)-\bar n_k\ln\bar n_k]$(Bose--Einstein 들뜸수 $\bar n_k$)가 그대로
+ 나온다. 기준점에 관한 사소한 주의로, 위 (b) 의 $[2\sinh(\beta\hbar\omega/2)]^{-1}$ 은 우물 바닥 기준
+@@ -580,17 +587,17 @@
+ 따라서 식~\eqref{eq:sm-gc} 의 셋째 식으로 $\langle N\rangle=k_BT\,\partial(M\ln\Xi_1)/\partial\mu=M\theta$ ---
+ 거시 점유율이 단일 자리 점유 확률 \eqref{eq:fermifn} 와 같다.
+ 
+-\textbf{(c) 중간식 --- 같은 결과의 셈법 경로(교차검증).} 이번엔 입자수 $n$ 을 고정하고 배치를 센다.
+-$M$ 자리에서 $n$ 자리를 고르는 경우의 수 $W=M!/[n!(M-n)!]$ 에 공준 2(식~\eqref{eq:sm-S})와 Stirling 근사
+-$\ln m!\simeq m\ln m-m$ 을 적용하면($\theta=n/M$)
++\textbf{(c) 중간식 --- 같은 결과의 셈법 경로(교차검증).} 이번엔 입자수 $N$ 을 고정하고 배치를 센다.
++$M$ 자리에서 $N$ 자리를 고르는 경우의 수 $W=M!/[N!(M-N)!]$ 에 공준 2(식~\eqref{eq:sm-S})와 Stirling 근사
++$\ln m!\simeq m\ln m-m$ 을 적용하면($\theta=N/M$)
+ \begin{equation}
+ S_\mathrm{mix}=k_B\ln W\simeq-k_BM\big[\theta\ln\theta+(1-\theta)\ln(1-\theta)\big],
+ \label{eq:sm-Smix}
+ \end{equation}
+-자유에너지 $F(n)=n\tilde\varepsilon-TS_\mathrm{mix}$(점유 자리당 자유에너지는 내부 자유도 몫까지 포함한
+-$\tilde\varepsilon$, 식~\eqref{eq:sm-epstilde})를 $n$ 으로 미분하면
+-\begin{equation}
+-\mu=\frac{\partial F}{\partial n}
++자유에너지 $F(N)=N\tilde\varepsilon-TS_\mathrm{mix}$(점유 자리당 자유에너지는 내부 자유도 몫까지 포함한
++$\tilde\varepsilon$, 식~\eqref{eq:sm-epstilde})를 $N$ 으로 미분하면
++\begin{equation}
++\mu=\frac{\partial F}{\partial N}
+ =\tilde\varepsilon+k_BT\ln\frac{\theta}{1-\theta}.
+ \label{eq:sm-mucount}
+ \end{equation}
+@@ -605,10 +612,12 @@
+ \boxed{\;\mu(\theta)=\mu^0+RT\ln\frac{\theta}{1-\theta}\qquad(\text{이상 lattice gas})\;.}
+ \label{eq:sm-muideal}
+ \end{equation}
++\begin{verifybox}
+ 부호·극한 검산 --- $\theta\to0$ 에서 $\mu\to-\infty$(거의 빈 격자에 입자를 넣는 일은 섞임 엔트로피 이득 때문에
+ 얼마든지 값싸다), $\theta\to1$ 에서 $+\infty$(마지막 빈자리는 무한히 비싸다), $\theta=\tfrac12$ 에서
+ $\mu=\mu^0$·자리당 $S_\mathrm{mix}$ 최대 $k_B\ln2$. 식~\eqref{eq:sm-muideal} 는 다음 소절 $\mu(\theta)$ 의
+ $\Omega=0$ 특수형이고, 상호작용 몫 $\Omega(1-2\theta)$ 를 다음 소절이 더한다.
++\end{verifybox}
+ \subsection{평균장 상호작용 --- 정규용액 $\mu(\theta)$·$g(\xi)$ 와 이중웰(double-well) 문턱}\label{sec:sm-mf}
+ \textbf{(a) 출발 --- 이웃 상호작용의 평균장 근사.} 실제 격자에서 자리들은 독립이 아니다 --- 점유된 이웃은 다음
+ Li 의 삽입 에너지를 바꾼다(정전 반발·탄성 변형·전자 구조). 점유 이웃 \emph{쌍}당 에너지를 $u$, 배위수를 $z$
+@@ -669,10 +678,13 @@
+ \end{equation}
+ $\Omega_j>2RT$ 면 가운데($g''<0$)가 언덕이 되어 두 골짜기가 생기고(그림~\ref{fig:sm-gxi}), 그 변곡점
+ (spinodal)의 닫힌 근과 거기서 자라는 히스테리시스 gap 은 \S\ref{sec:hys} 가 닫는다 --- Part 0 은 문턱까지만
+-놓는다. 극한 검산 --- $\Omega_j\to0$: $g''\ge4RT>0$ 로 항상 한 웰(\S\ref{sec:sm-lattice} 로 환원);
++놓는다.
++\begin{verifybox}
++극한 검산 --- $\Omega_j\to0$: $g''\ge4RT>0$ 로 항상 한 웰(\S\ref{sec:sm-lattice} 로 환원);
+ $\Omega_j\to2RT^-$: $g''(\tfrac12)\to0^+$ 로 바닥이 평탄해지되 아직 한 웰; $\Omega_j\to2RT^+$: 웰이 둘로
+ 갈라지기 시작하고 $T_{c,j}=\Omega_j/2R$ 아래에서만 상분리가 존재한다(안정하다). 이 $\mu(\theta)$ 를 측정 전위에 결선하는
+ 것이 다음 소절이다.
++\end{verifybox}
+ 
+ \begin{figure}[t]
+ \centering
+@@ -914,9 +926,11 @@
+ \end{equation}
+ 로그 몫의 정체는 \eqref{eq:sm-Smix} 섞임 엔트로피의 부분몰 몫이다 --- Nernst 식의 $\ln[\xi/(1-\xi)]$ 는
+ 곡선맞춤이 아니라 배치 셈법에서 온다(Chapter 2 의 식 (eq:Vxi)가 같은 결론을 발열 관점에서 재사용한다).
++\begin{verifybox}
+ 극한·부호 검산 --- $\xi=\tfrac12$ 에서 $V=U_j$(중심), $T\!\uparrow$ 이면 로그 몫의 기울기(폭 $w=RT/F$)가
+ 비례해 커지고, $\Delta S_{\rxn,j}>0$ 이면 중심이 온도에 오른다. 상호작용 몫 $\Omega_j(1-2\xi)/sF$ 를 더하면
+ \S\ref{sec:hys} 의 $V_\eq(\xi)$ 로 확장되고, $\Omega_j>2RT$ 의 비단조가 히스테리시스로 이어진다.
++\end{verifybox}
+ 
+ \begin{keybox}
+ \textbf{Part 0 사다리.} 등확률~\eqref{eq:sm-S} $\to$ Gibbs 인자·$\Xi$~\eqref{eq:sm-gc} $\to$ 단일 자리
+@@ -1020,7 +1034,7 @@
+ 
+ \subsection{$U_j(T)$ — 온도 환산}
+ \textbf{(a) 출발.} 평형 조건의 비배치 몫은 반응 자유에너지 $\Delta G_j=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 다.
+-\textbf{(b) 연산 — 식~\eqref{eq:eqcond} 의 $\Delta G_j=-sFU_j$($s=+1$)에 대입.} \textbf{(c) 중간식 — $U_j$ 로 이항.}
++\textbf{(b)(c) 연산$\cdot$중간식 — 식~\eqref{eq:eqcond} 의 $\Delta G_j=-sFU_j$($s=+1$)에 대입해 $U_j$ 로 이항.}
+ \begin{equation}
+ \Delta H_{\rxn,j}-T\Delta S_{\rxn,j}=-F\,U_j
+ \quad\Longrightarrow\quad
+@@ -1319,7 +1333,8 @@
+ 열역학은 detailed balance~\eqref{eq:db} 한 곳으로만 들어왔다 — logistic 은 속도식의 정지점에서 \emph{유도된}
+ 평형이다. 방향 부호가 logistic 인자의 부호로 들어가는 것이 식~\eqref{eq:xieq} 의
+ $z=\sigma_d(V-U_j^{\,d})/w_j$ 이며, 오버플로를 피하기 위해 $z\ge0/z<0$ 두 등가 형태로 나눠 평가한다(수학적으로
+-동일). 여기서 평가 전위는 \S\ref{sec:pol} 의 내부 전위 $V_n$ 이다. 중심 $U_j^{\,d}$
++동일)\footnote{여기 무차원 logistic 인자 $z$ 는 이 절 국소 표기이며, \S\ref{sec:sm-mf} 의 배위수(coordination
++number) $z$ 나 화학종의 전하수(charge number) $z$ 와는 무관하다.}. 여기서 평가 전위는 \S\ref{sec:pol} 의 내부 전위 $V_n$ 이다. 중심 $U_j^{\,d}$
+ 는 식~\eqref{eq:center} 의 분기 중심(분기 있으면 분기 중심, 없으면 $U_j$)이다.
+ 
+ \begin{figure}[t]
+@@ -2233,8 +2248,8 @@
+ override 하는 것이 전제) — 이 표가 있어 ``이 문건만으로 곡선 재현 코드를 짤 수 있다''.
+ 
+ \begin{table}[t]
+-\centering
+-\renewcommand{\arraystretch}{1.25}
++\centering\footnotesize
++\renewcommand{\arraystretch}{1.3}
+ \caption{전이 초기값(흑연 staging 4건) — 출발점, 피팅으로 override. $U$ 는 $(\Delta H_\rxn,\Delta S_\rxn)$
+ 정합 목표. 전위 anchor: $2\!\to\!1$($0.085$ V, Dahn\cite{dahn1991})$\cdot$$2\mathrm
+ L\!\to\!2$($0.120$ V, Ohzuku 등\cite{ohzuku1993})는 보고값과 정확 일치(2차 출처 경유 확인이라 tier B 로
+@@ -3291,7 +3306,7 @@
+ S3 & $\dd\xi/\dd V=\sigma_d\,\xi(1-\xi)/w$ --- peak 모양 $=|\dd\xi/\dd V|=\xi(1-\xi)/w\ge0$, 방향 불변.
+ & 식~\eqref{eq:eqpeak} & $\checkmark$ \\
+ S4 & $\Delta U_\hys\ge0$(극대 $>$ 극소), $\Omega\le2RT$ 에서 $0$($u_j\to0$); 분기 중심 $\pm\tfrac12\sigma_d$
+-라 $U^{\dis}>U^{\chg}$. & 식~\eqref{eq:dUhys}$\cdot$\eqref{eq:Ubranch} & $\checkmark$ \\
++라 $U^{\dis}>U^{\chg}$. & 식~\eqref{eq:dUhys}$\cdot$ \eqref{eq:Ubranch} & $\checkmark$ \\
+ S5 & $\chi_d$: 방전 $\chi$/충전 $1-\chi$(합-1 거울 대칭); $\Delta H_a^\eff=\Delta H_a-\chi_d\Omega$.
+ & 식~\eqref{eq:chid}$\cdot$\eqref{eq:dHeff} & $\checkmark$ \\
+ S6 & $\partial\ln L_q/\partial V<0$ 은 컷 규칙의 \emph{동기}로만 성립 --- $\mathcal A$ 가 컷 상수라 실현
+@@ -3310,31 +3325,31 @@
+ R6 은 LCO 중심 부호의 문헌 역대입이다(본문 \S\ref{sec:lco-center} verifybox 와 동일 수치 ---
+ 그 박스의 층위 구분 가드와 함께 읽는다). 여섯 행이 모두 통과한다 --- 부호 사슬 회귀 검산 PASS.
+ 
+-\begin{longtable}{@{}l p{6.4cm} p{5.2cm} p{2.4cm}@{}}
++\begin{longtable}{@{}l p{6.2cm} p{5.0cm} p{2.2cm} c@{}}
+ \caption{부호 사슬 수치$\cdot$극한 회귀 검산(R1--R6).}\label{tab:signcheck-R}\\
+ \toprule
+-\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 \\
++\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 & 판정 \\
+ \midrule
+ \endfirsthead
+ \toprule
+-\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 \\
++\# & 조건$\cdot$수치 & 결과와 판정 & 근거 식 & 판정 \\
+ \midrule
+ \endhead
+ R1 & 히스 분기 방향: $\Omega=12000$ J/mol, $\gamma=1$ ---
+ $u=\sqrt{1-2RT/\Omega}=0.766$, $\Delta U^\hys=\frac{2}{F}[\Omega u-2RT\,\mathrm{artanh}\,u]=86.7$ mV.
+ & 분기 중심이 방전 $+\tfrac12\Delta U^\hys$/충전 $-\tfrac12\Delta U^\hys$ 라 peak 갈림
+ $V_\dis-V_\chg=+86.7$ mV $>0$ --- 방전 peak 가 높은 전위(기준 명제 일치).
+-& 식~\eqref{eq:dUhys}$\cdot$\eqref{eq:Ubranch} \\
++& 식~\eqref{eq:dUhys}$\cdot$ \eqref{eq:Ubranch} & $\checkmark$ \\
+ R2 & 히스 문턱: $\Omega=2RT=4958$ J/mol --- $u=0$.
+ & $\Delta U^\hys=0.0$ mV --- $\Omega\le2RT$ 분기가 정확히 $0$ 으로 연속(상분리 미만 $=$ 갈림 없음).
+-& 식~\eqref{eq:dUhys} \\
++& 식~\eqref{eq:dUhys} & $\checkmark$ \\
+ R3 & $|I|\!\to\!0$ 환원: $\gamma=0$, $|I|=10^{-6}$ --- $L_V\propto|I|\to0$.
+ & $L_V\to0$ 극한(식~\eqref{eq:tail-limit})에서 꼬리식이 평형 종 $\xi_\eq(1-\xi_\eq)/w$ 로 매끈히 수렴하고 $\sigma_d$ 불변 ---
+ 방전$\cdot$충전 곡선 차 $\to0$(S3 의 수치 확인).
+-& 식~\eqref{eq:LV}$\cdot$ \eqref{eq:tail-limit}$\cdot$\eqref{eq:eqpeak} \\
++& 식~\eqref{eq:LV}$\cdot$ \eqref{eq:tail-limit}$\cdot$\eqref{eq:eqpeak} & $\checkmark$ \\
+ R4 & $L_q$ 동결 vs 부등식: $\mathcal A=\min(z_\mathrm{cut}n_jRT,\,A_\mathrm{cap}RT)$ 가 전이당 상수.
+ & 실현 미분 $\partial\ln L_q/\partial V=0$, 부등식 $<0$ 은 컷 규칙 동기로만 성립(S6 과 일관) ---
+-자기모순 $0$. & 식~\eqref{eq:Acut} \\
++자기모순 $0$. & 식~\eqref{eq:Acut} & $\checkmark$ \\
+ R5 & 꼬리식의 평형 극한 회귀 가드: 식~\eqref{eq:tail-limit} 의 치환 $t=(V-u)/L_{V,j}$ 로
+ peak 모양 $=\int_0^\infty e^{-t}\,(\dd\xi_\eq/\dd V)|_{V-L_{V,j}t}\,\dd t$.
+ & $L_V\to0$: 적분점마다 평가 위치 $V-L_{V,j}t\to V$ 이고 피적분함수가 적분가능 지배함수 $e^{-t}/(4w_j)$ 에
+@@ -3342,18 +3357,18 @@
+ $\to|\dd\xi_\eq/\dd V|=\xi_\eq(1-\xi_\eq)/w$(평형 종, $\sigma_d$ 불변). 부호 양$\cdot$차원 양변 $1/$V$\cdot$극한 정합
+ --- 방전$\cdot$충전(식~\eqref{eq:reversal})이 같은 양의 종을 주어 R3 와 일관(``$L_V$ 작으면 종으로 환원''이
+ 극한식으로 확인됨; 커널 규격화를 깨면 극한이 어긋나는 반증 가능 검산).
+-& 식~\eqref{eq:tail-limit}$\cdot$ \eqref{eq:peakshape}$\cdot$ \eqref{eq:eqpeak} \\
++& 식~\eqref{eq:tail-limit}$\cdot$ \eqref{eq:peakshape}$\cdot$ \eqref{eq:eqpeak} & $\checkmark$ \\
+ R6 & LCO 중심 부호: 대표 단전극 $\dd\phi/\dd T\approx+0.83$ mV/K(tier B)\cite{swiderska2019} 역대입.
+ & $\Delta S_{\rxn}^\mathrm{cat}=F\,\dd U/\dd T\approx+80$ J/(mol\,K)$>0$ --- 평형 중심이 온도에 오르고
+ $30$ K 창에서 $\Delta U\approx+25$ mV 규모(층위$\cdot$혼동 가드는 본문 \S\ref{sec:lco-center}).
+-& 식~\eqref{eq:lco-dUdT} \\
++& 식~\eqref{eq:lco-dUdT} & $\checkmark$ \\
+ \bottomrule
+ \end{longtable}
+ 
+ % ====================================================================
+ \section{구현 대응표}\label{sec:appendix-code}
+ % ====================================================================
+-문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.16.py})의 주석$\cdot$docstring 이 본 문건의
++문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.18.1.py})의 주석$\cdot$docstring 이 본 문건의
+ 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
+ 대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과
+ 구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade — 방향 문자열$\cdot$c-rate 를
+@@ -3403,17 +3418,21 @@
+ \bottomrule
+ \end{longtable}
+ 
+-\begin{table}[htbp]
+-\centering\footnotesize
++\begingroup
++\footnotesize
+ \renewcommand{\arraystretch}{1.18}
++\begin{longtable}{l l l l}
+ \caption{전체 입력 인자(코드 식별자)와 기본값. 전이 dict 키는 전이별, 생성자 인자는 모델 공통이며 일부는 전이 dict 로
+ per-transition override 된다($z_\mathrm{cut}$,$A_\mathrm{cap}$,\code{use\_dH\_eff}). 사용자 실무에서 이 인자들은
+-Optuna 등 최적화 도구의 탐색 변수로 노출된다.}
+-\label{tab:inputs}
+-\begin{tabular}{l l l l}
++Optuna 등 최적화 도구의 탐색 변수로 노출된다.}\label{tab:inputs}\\
+ \toprule
+ 인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\
+ \midrule
++\endfirsthead
++\toprule
++인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\
++\midrule
++\endhead
+ \multicolumn{4}{l}{\emph{— 전이 dict 키(전이별) —}}\\
+ \code{U} 또는 (\code{dH\_rxn},\code{dS\_rxn}) & 전이 & --- & 평형 중심 $U_j(T)$ (\eqref{eq:Uj}) \\
+ \code{w} 또는 \code{n} & 전이 & --- / $1$ & 폭 $w_j=n_jRT/F$ (\eqref{eq:wbase}) \\
+@@ -3437,18 +3456,21 @@
+ \code{g\_max\_eV},\code{x\_MIT},\code{dx\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ & MIT 게이트 초기값 (\eqref{eq:ggate}) \\
+ \code{\_delith\_is\_discharge} & 클래스 & 흑연 \code{True}/LCO \code{False} & 셀 라벨$\to$탈리튬화 부호 환산 (\eqref{eq:lco-sigmaslot}) \\
+ \bottomrule
+-\end{tabular}
+-\end{table}
+-
+-\begin{table}[htbp]
+-\centering
++\end{longtable}
++\endgroup
++
++\begingroup
+ \renewcommand{\arraystretch}{1.3}
+-\caption{노드 $\leftrightarrow$ 구현 식별자 대응(본문 표~\ref{tab:nodemap} 의 구현 열).}
+-\label{tab:nodecode}
+-\begin{tabular}{l p{0.78\textwidth}}
++\begin{longtable}{l p{0.78\textwidth}}
++\caption{노드 $\leftrightarrow$ 구현 식별자 대응(본문 표~\ref{tab:nodemap} 의 구현 열).}\label{tab:nodecode}\\
+ \toprule
+ 노드 & 구현 식별자 \\
+ \midrule
++\endfirsthead
++\toprule
++노드 & 구현 식별자 \\
++\midrule
++\endhead
+ N0 & \code{curve},\,\code{\_direction\_to\_sigma} \\
+ N1 & \code{dqdv}(분극 환산부: \code{V\_n = V\_in - sigma\_d * I\_abs * self.Rn}) \\
+ N2 & \code{func\_U\_j}(seam \code{\_effective\_dS\_rxn} 경유) \\
+@@ -3464,8 +3486,8 @@
+ N5$+$ & \code{func\_dSe\_molar} \\
+ N9$'$ & \code{\_effective\_dS\_rxn} \\
+ \bottomrule
+-\end{tabular}
+-\end{table}
++\end{longtable}
++\endgroup
+ 
+ 구현 스니펫 두 곳(본문 N2$\cdot$N7 에서 이관)을 원문 그대로 둔다.
+ \begin{codebox}

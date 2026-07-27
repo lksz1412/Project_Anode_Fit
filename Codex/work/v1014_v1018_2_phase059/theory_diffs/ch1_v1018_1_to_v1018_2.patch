@@ -1,0 +1,59 @@
+--- Claude/docs/v1.0.18.1/graphite_ica_ch1_v1.0.18.1.tex
++++ Claude/docs/v1.0.18.2/graphite_ica_ch1_v1.0.18.2.tex
+@@ -2,7 +2,7 @@
+ % ★ release 1.0.16 (2026-07-06) — graphite_ica_ch1_v1.0.16.tex (계보 1.0.15 승계: 폭 n(T) 피팅 방향 반영)
+ %   = 1.0.10/1.0.11 기반 + Fable 전수 재검(docs/Fable_점검 감사 ①②③) 반영:
+ %     물리 주장 정정(H-1 Ch2 연동·H-2 w_j 지위)·서술/귀속 정정(M-1~M-11)·LCO 6절 수식화(P1.1 supplement 계승).
+-%     코드 Anode_Fit 1.0.18.1 와 동일 버전·matched (계보 1.0.16→1.0.17→1.0.18.1; 헤더 아래 블록은 1.0.16 이력).
++%     코드 Anode_Fit 1.0.18.2 와 동일 버전·matched (계보 1.0.16→1.0.17→1.0.18.1→1.0.18.2; 헤더 아래 블록은 1.0.16 이력).
+ % --------------------------------------------------------------------
+ % (계보 이력) release 1.0.10 (2026-07-01) — v10-11 내용 + 버전 1.0.10 라벨.
+ %   adversarial 2-에이전트 재검수(문건 물리·코드정합·그래프; 확정 CRIT/HIGH 0) 후 가독성 4-다리 보강:
+@@ -73,9 +73,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.18.1)}}
++  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.18.2)}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.18.1, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.18.2, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ 
+ \newtheorem*{keybox}{핵심}
+@@ -102,7 +102,7 @@
+ \renewcommand{\thesection}{1.\arabic{section}}
+ \title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 계산 진행을 따라가는 수식-구동판 — 유도 확장}
+ \author{}
+-\date{\normalsize 버전 1.0.18.1}
++\date{\normalsize 버전 1.0.18.2}
+ 
+ \makeatletter
+ \renewcommand*\l@section[2]{%
+@@ -3051,7 +3051,7 @@
+ \begin{aligned}
+ \Delta S_j^\mathrm{config}\ &\leftarrow\ \Delta S_j^{0,\mathrm{config}}\ \text{만}
+ \ (\text{혼합 분포항은 }w_j\text{ 가 담음 — 재기입 금지}),\\
+-\Delta S_j^\mathrm{vib}\ &\leftarrow\ \text{창 내 완만 몫의 중심 흡수치},\\
++\Delta S_j^\mathrm{vib}\ &\leftarrow\ \text{창 내 완만 몫의 중심 흡수치}\ (\theta_{E,j}\text{ 부여 시 }T\text{-의존 Einstein 보정 --- Ch2 vibrational 절}),\\
+ \Delta S_{e,j}^{\,\mathrm{mol}}\ &\leftarrow\ N_A\,\frac{\partial S_e}{\partial x}\ \big(\text{게이트 골, 창 밖}\approx0\big).
+ \end{aligned}
+ \label{eq:lco-slots}
+@@ -3368,7 +3368,7 @@
+ % ====================================================================
+ \section{구현 대응표}\label{sec:appendix-code}
+ % ====================================================================
+-문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.18.1.py})의 주석$\cdot$docstring 이 본 문건의
++문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.18.2.py})의 주석$\cdot$docstring 이 본 문건의
+ 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
+ 대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과
+ 구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade — 방향 문자열$\cdot$c-rate 를
+@@ -3455,6 +3455,8 @@
+ \code{electronic},\code{x\_center} & 전이 dict & \code{False}, — & 전자항 plug-in 스위치$\cdot$동결 조성 \\
+ \code{g\_max\_eV},\code{x\_MIT},\code{dx\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ & MIT 게이트 초기값 (\eqref{eq:ggate}) \\
+ \code{\_delith\_is\_discharge} & 클래스 & 흑연 \code{True}/LCO \code{False} & 셀 라벨$\to$탈리튬화 부호 환산 (\eqref{eq:lco-sigmaslot}) \\
++\multicolumn{4}{l}{\emph{— vib Einstein 양자보정(전이 dict, v1.0.18.2; 부재 $=$ 동결 bit-exact) —}}\\
++\code{theta\_E},\code{theta\_E\_Tref} & 전이 dict & --- $/\,298.15$ & Einstein 온도 $\theta_{E,j}$[K]$\cdot$기준온도 (Ch2 vibrational 절) \\
+ \bottomrule
+ \end{longtable}
+ \endgroup

@@ -410,3 +410,41 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   않는다.
 - 다음은 Step 33.3 theory 17 blob의 structure/equation/label/
   definition/bibliography index와 exact source diff를 생성한다.
+
+### 2026-07-28 — Step 33.3
+
+- 17/17 unique theory blob, 28,876행을 content-addressed source
+  index에 연결했다.
+- 493 sections, 973 displayed equation environments, 1,481 label
+  occurrences, 635 definition cues, 252 bibliography-item occurrences와
+  40 unique bibliography keys의 위치·section ownership·source
+  excerpt·normalized hash를 생성했다.
+- v1.0.13→v1.0.14 Ch1/Ch2, Phase 059 각 연속판 Ch1/Ch2와
+  appendix의 17 exact text diff를 저장했다.
+- 각 diff에 endpoint Git blob SHA, exact patch SHA-256,
+  line opcode count, section add/remove와 labeled-equation
+  unchanged/changed/add/remove를 기록했다.
+- v1.0.15→v1.0.16 appendix가 byte-identical임을 별도
+  copy-forward로 검출했다. version occurrence는 보존하지만 새
+  물리 검증으로 세지 않는다.
+- 두 번 연속 생성한 source index, structure summary와 lineage
+  diff의 SHA-256이 같아 deterministic generation을 확인했다.
+- 17/17 read-only index/diff validation을 통과했다.
+- 근거:
+  `Codex/results/PHASE_059_THEORY_SOURCE_INDEX.json`,
+  `Codex/results/PHASE_059_THEORY_SOURCE_STRUCTURE_INDEX.md`,
+  `Codex/results/PHASE_059_THEORY_LINEAGE_DIFF.json`,
+  `Codex/work/v1014_v1018_2_phase059/theory_diffs/`,
+  `Codex/work/v1014_v1018_2_phase059/generate_phase059_theory_index.py`,
+  `Codex/work/v1014_v1018_2_phase059/generate_phase059_theory_diff.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_theory_index.py`.
+- gates:
+  `PASS_P059_THEORY_SOURCE_INDEX`,
+  `PASS_P059_THEORY_EXACT_DIFF`,
+  `PASS_P059_THEORY_INDEX_AND_DIFF`.
+- 이 PASS들은 source structure와 exact lineage만 뜻한다.
+  equation의 물리 타당성, 참고문헌 실재·귀속과 code conformance는
+  아직 부여하지 않는다.
+- 다음은 Step 33.4 coordinate, phase separation, width, memory,
+  \(n(T)\), entropy/heat, Einstein vibration과 LCO electronic
+  symbol·unit·sign·assumption contract를 추출한다.

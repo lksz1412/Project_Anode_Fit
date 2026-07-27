@@ -320,6 +320,22 @@
   \(n(T)\) default derivative 불일치, LCO theory/code/high-voltage
   범위 불일치와 Einstein reaction-spectrum 미정의가 남는다.
   test/demo 로직은 v1.0.14 이후 새 기능을 검증하지 않았다.
+- Phase 059 theory structure:
+  17/17 unique theory blobs/28,876행에서 493 sections,
+  973 displayed equation environments, 1,481 labels, 635 definition
+  cues, 252 bibliography-item occurrences와 40 unique bibliography
+  keys를 위치·hash와 함께 인덱싱했다.
+- Phase 059 theory lineage:
+  v1.0.13→14 및 Phase 059 연속판 Ch1/Ch2/appendix의 17 exact
+  source diff를 endpoint Git SHA와 patch SHA-256으로 고정했다.
+  v1.0.15→16 appendix 1건은 content-identical copy-forward다.
+- Phase 059 theory-index evidence:
+  `Codex/results/PHASE_059_THEORY_SOURCE_INDEX.json`,
+  `Codex/results/PHASE_059_THEORY_SOURCE_STRUCTURE_INDEX.md`,
+  `Codex/results/PHASE_059_THEORY_LINEAGE_DIFF.json`,
+  `Codex/work/v1014_v1018_2_phase059/theory_diffs/`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_theory_index.py`
+  (`PASS_P059_THEORY_INDEX_AND_DIFF`, 17/17 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -342,16 +358,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 33.3:
-17 unique theory blobs의 section, displayed equation environment,
-label, definition과 bibliography index를 만들고 v1.0.13→14 및
-각 후속판 exact source diff를 content-addressed evidence로 저장한다.
+Phase 059 Step 33.4:
+coordinate, phase separation, width, pointwise memory, \(n(T)\),
+entropy/heat, Einstein vibration과 LCO electronic 항의
+symbol·unit·sign·assumption contract를 source 위치에 연결한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–33.2.
+Phase 059 Steps 33.1–33.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

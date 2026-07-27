@@ -1,0 +1,139 @@
+--- Claude/docs/v1.0.16/graphite_ica_ch2_v1.0.16.tex
++++ Claude/docs/v1.0.17/graphite_ica_ch2_v1.0.17.tex
+@@ -1,5 +1,5 @@
+ % ====================================================================
+-% graphite_ica_ch2_v1.0.16.tex — Chapter 2 (release 1.0.16; 계보 1.0.15 승계 — Fable 전수 재검 반영 —
++% graphite_ica_ch2_v1.0.17.tex — Chapter 2 (release 1.0.17; 계보 1.0.16 승계 — Fable 전수 재검 반영 —
+ %   H-1 BW 부호·M-8 파생D 근사 명시·M-9 고온 코너 한정. 계보 v5: 코인 하프셀 엔트로피·가역
+ %   발열의 통계열역학, Opus build — v4-11 기반, w_eff 절 제거 정정본)
+ %   ★v5 = intercalation 엔트로피·가역 발열의 *통계열역학 챕터* — 분포를 명시
+@@ -33,14 +33,13 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.16): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
++  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.17): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.16, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.17, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ \newtheorem*{keybox}{핵심}
+ \newtheorem*{srcbox}{문헌 근거}
+ \newtheorem*{warnbox}{주의}
+-\newtheorem*{derbox}{유도}
+ \newtheorem*{procedurebox}{계산 절차}
+ \newcommand{\dd}{\mathrm{d}}
+ \newcommand{\rxn}{\mathrm{rxn}}
+@@ -447,7 +446,7 @@
+ 가역 발열에 들어가는 것은 위 세 분포가 주는 \emph{반응(평형) 엔트로피} $\Delta S(x)$ 뿐이다. 이는 Chapter 1
+ 동역학 꼬리의 \emph{활성화 엔트로피} $\Delta S_{a,j}$(Eyring 속도 $k_j\propto\exp[-(\Delta H_a-T\Delta S_a)/RT]$
+ 의 prefactor 온도의존)와 \emph{차원은 같으나 물리가 다른 양}이다. 활성화 엔트로피는 \emph{비가역} 동역학을
+-지배하고 가역 발열에는 들어가지 않으므로 \cite{msmr_partI}, 혼동하면 가역열을 동역학 lag 와 섞게 된다.
++지배하고 가역 발열에는 들어가지 않으므로 \cite{msmr_partI}, 혼동하면 가역 발열을 동역학 lag 와 섞게 된다.
+ 
+ % ====================================================================
+ \section{섞임과 겹침 — 분포가 만드는 $\partial U_\oc/\partial T(x)$ 의 모양}\label{sec:mixing}
+@@ -642,13 +641,13 @@
+ 가중식~\eqref{eq:hys_branch} 의 config 곡률 때문에 평균이 $\Delta S_{\rxn,j}/F$ 로 떨어지는 것은
+ $\Delta U^\hys$ 의 1차까지이고 유한 $\Delta U^\hys$ 에선 고차 보정이 남는다.
+ 히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, $\propto I\,\Delta U^\hys$ 의 소산율(한 사이클당
+-$\propto Q_\mathrm{cycle}\,\Delta U^\hys$ 의 소산(entropy production) 열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역열에 섞이지 않는다.
+-\begin{keybox}
+-\textbf{혼동 금지.} 가역 발열은 분기 평균~\eqref{eq:hys_rev} 로, 히스 gap 은 비가역열로 \emph{분리} 계산한다.
++$\propto Q_\mathrm{cycle}\,\Delta U^\hys$ 의 소산(entropy production) 열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역 발열에 섞이지 않는다.
++\begin{warnbox}
++\textbf{혼동 금지.} 가역 발열은 분기 평균~\eqref{eq:hys_rev} 로, 히스 gap 은 비가역 발열로 \emph{분리} 계산한다.
+ $\partial U^\rev/\partial T$ 는 분포 재배열의 가역 엔트로피이고, $\Delta U^\hys$ 는 경로 비가역성의 소산이다.
+ 하나의 $\partial U/\partial T$ 로 둘을 뭉뚱그리면 가역/비가역 발열을 섞게 된다(경로의존 측정 불확실도의
+ 정량은 본 장 범위 밖, 공백으로 명시 \cite{hysteresis2018}).
+-\end{keybox}
++\end{warnbox}
+ 
+ % ====================================================================
+ \section{극한과 코너(corner case) — 분포 검산과 ``$\Delta S_{\rxn,j}$ 상수'' 근사의 타당성}\label{sec:limits}
+@@ -705,7 +704,7 @@
+ \label{eq:qrev}
+ \end{equation}
+ 이다($I>0$ 방전, $V$ 단자 전압, $U_\oc$ 평형 전위); 첫 항은 과전압 소산(2법칙상 항상 발열, Chapter 1 의
+-동역학 꼬리$\cdot$분극이 만드는 소산)이고, 둘째 항이 가역열로 부호 양방향이다. 이 축약에는 두 전제가
++동역학 꼬리$\cdot$분극이 만드는 소산)이고, 둘째 항이 가역 발열로 부호 양방향이다. 이 축약에는 두 전제가
+ 더 들어 있다 — Bernardi 원식의 혼합 엔탈피(농도 구배 완화열) 항은 준평형 저율(농도 균일)을, 상변화 항은
+ staging 열이 평형 $U_\oc(x)$ 에 이미 흡수되어 있음을 전제로 소거한 것이며, 전제가 깨지는 고율
+ 조건에서는 두 성분 분해에 잔여 항이 남는다.
+@@ -729,13 +728,14 @@
+ 정합한다 \cite{standardised2024}.
+ 
+ \begin{keybox}
+-\textbf{계산용 종합식(use-this).} 하프셀 가역 발열을 실제로 산출할 때는 겹침 가중(단순식)에 봉우리 내부 분포
++\textbf{계산용 종합식(실전 사용식).} 하프셀 가역 발열을 실제로 산출할 때는 겹침 가중(단순식)에 봉우리 내부 분포
+ config 를 더한 \emph{완전식}을 쓴다:
+-\[
++\begin{equation}
+ \boxed{\;\frac{\partial U_\oc}{\partial T}(x)
+ =\frac{\sum_j Q_j\,g_j(x)\,\bigl[\Delta S^0_j/F+(n_jR/F)\ln(\xi_j/(1-\xi_j))\bigr]}{\sum_j Q_j\,g_j(x)},\quad
+ g_j=\frac{\xi_j(1-\xi_j)}{w_j}\;}
+-\]
++\label{eq:complete}
++\end{equation}
+ $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$ 로 얻으며, \emph{입력}은 $\{\Delta S^0_j,\,Q_j,\,U_j,\,w_j\}$ 와 Chapter 1 의
+ $\xi_j(V,T)$(본 장 식~\eqref{eq:logistic} — Chapter 1 eq:xieq 에서 $\sigma_d\to s{=}+1$·평형 중심 $U_j$(분기 shift 無)로 둔 형)다. 여기서 $\Delta S^0_j\equiv\Delta S_{\rxn,j}$ 는 봉우리 중심 표준값(파생 B 의
+ 정의)이고, $w_j$ 는 전이별 폭이다(단상 = 평형 예측, 이상 극한 $w_j{=}RT/F$; 흑연 두-상 = 다온도 $dQ/dV$
+@@ -753,7 +753,7 @@
+ \subsection{계산 예제 — stage $2\!\to\!1$ 부근 한 점의 가역 발열}\label{ssec:worked}
+ 종합식이 실제로 한 수를 내는 과정을 Chapter 1 의 4-전이 staging 파라미터(중심 $U_j$$\cdot$용량 $Q_j$$\cdot$중심 표준
+ 엔트로피 $\Delta S^0_j$[표~\ref{tab:ds}], 폭은 다중도 $n_j{=}1$ 의 열적 폭 $w_j{=}RT/F\!\approx\!25.7$ mV)로 한 SOC 에서
+-끝까지 따라간다 --- 코드(\texttt{Anode\_Fit\_v1.0.16})가 내는 값 그대로다. 대표점은 탈리튬화 분율 $\bar x=0.25$
++끝까지 따라간다 --- 모델이 산출하는 값과 일치한다. 대표점은 탈리튬화 분율 $\bar x=0.25$
+ ($T=298.15$ K) --- stage $2\!\to\!1$($\mathrm{LiC_6}$, 큰 음의 $\Delta S^0=-16$ J\,mol$^{-1}$K$^{-1}$)이 지배하는 저-$\bar x$ 영역이다.
+ 
+ \textbf{(a) 전하 보존으로 $U_\oc$ 결정.} 음함수~\eqref{eq:implicit} $\sum_jQ_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$
+@@ -797,7 +797,7 @@
+ \textbf{(d) round-trip 실증.} 열적 폭 $w_j{=}n_jRT/F$ 아래 중심 $U_j(T)$ 와 폭 $w_j(T)$ 를 함께 움직여
+ $U_\oc(\bar x,T)$ 를 $T\pm3$ K 에서 두 번 푼 유한차분 $[U_\oc(T{+}3)-U_\oc(T{-}3)]/6\,\mathrm K$ 는 $-0.204$ mV/K 로,
+ 해석 완전식~\eqref{eq:weighted}과 $<\!0.001\ \mu$V/K 로 일치한다 --- 음함수 미분 사슬(config 항 포함)이 수치와
+-왕복 정합함을 이 한 점에서 확인한다(전 범위 검증은 파생 A). 코드 \texttt{entropy\_coefficient} 도 같은 $-0.204$ 를 낸다. \textbf{(e) 유효 반응 엔트로피와 가역 발열.} 정의 $\Delta S(\bar x)=F\,\partial U_\oc/\partial T$ 와
++왕복 정합함을 이 한 점에서 확인한다(전 범위 검증은 파생 A). 모델의 \texttt{entropy\_coefficient} 계산도 같은 $-0.204$ 를 낸다. \textbf{(e) 유효 반응 엔트로피와 가역 발열.} 정의 $\Delta S(\bar x)=F\,\partial U_\oc/\partial T$ 와
+ Bernardi 출구~\eqref{eq:qrev} $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$ 로 닫으면
+ \begin{equation*}
+ \Delta S(\bar x{=}0.25)=-19.7\ \mathrm{J\,mol^{-1}K^{-1}}<0,
+@@ -807,7 +807,7 @@
+ 곧 이 SOC 에서 셀 방전($I>0$, 흑연 리튬화)은 $\dot Q_\rev>0$ 의 \emph{발열}이며, stage $2\!\to\!1$ 의 큰 음의
+ $\Delta S$ 가 남기는 가역 발열 신호(calorimetry 관측 \cite{standardised2024})와 부호$\cdot$규모가 정합한다.
+ config 항은 폭의 열적 서식 $w_j{=}n_jRT/F$ 를 전제하므로($n_j$ 키 기준), 지배 $2\!\to\!1$ 이 두-상이라 실측 폭이
+-$T$-동결에 가까우면 config 몫은 다온도 round-trip 으로 확정할 대상이고(use-this 박스$\cdot$\S\ref{ssec:weff}),
++$T$-동결에 가까우면 config 몫은 다온도 round-trip 으로 확정할 대상이고(종합식 박스$\cdot$\S\ref{ssec:weff}),
+ 그 하한은 단순식 $-0.134$ mV/K 다.
+ 
+ \begin{table}[t]
+@@ -874,7 +874,7 @@
+ $x$-의존을, 폭 $w_j$ 의 이중지위(파생 C — 단상은 평형 예측, 흑연 두-상은 현상학적 자유 피팅 폭, broadening
+ 기원은 Chapter 1)로 두-상 폭의 지위를, 히스 분기 평균(파생 D)으로 가역/비가역
+ 분리를 닫았다. 극한 여섯 코너가 분포 식을 검산하고, ``전이당 상수 $\Delta S^0_j$ $+$ 분포''로 측정급 비선형이
+-모델 안에서 자기일관하게 산출됨을 보였다(지배 두-상 전이의 폭 $T$-의존은 다온도 round-trip 으로 확정할 대상).
++모델 안에서 자기일관하게 산출됨을 보였다(지배 두-상 전이의 폭 $T$-의존은 다온도 round-trip 으로 확정할 대상). 한 계산 예제($\bar x{=}0.25$, \S\ref{ssec:worked})가 이 종합식~\eqref{eq:complete} 를 구체 수치로 닫아 유한차분 round-trip 과 $<0.001\,\mu$V/K 로 일치시켰고, 다섯 SOC 로 확장한 표~\ref{tab:qrev} 가 저-$\bar x$ 발열$\cdot$고-$\bar x$ 흡열의 부호 교대를 같은 식 하나로 재현했다 --- 다온도 $dQ/dV$ 에서 $\Delta S^0_j$ 를 얻는 절차(방법론 출구 박스)도 함께 제시했다.
+ 가역 발열 $\dot Q_\rev=-IT\,\partial U_\oc/\partial T$ 은 이 분포들을 재배열하는 열이다.
+ 
+ % ====================================================================
+@@ -885,14 +885,14 @@
+ \bibitem{bazant2013} M. Z. Bazant, ``Theory of Chemical Kinetics and Charge Transfer Based on Nonequilibrium Thermodynamics,'' \emph{Acc. Chem. Res.} \textbf{46}(5), 1144--1160 (2013). DOI: 10.1021/ar300145c. (regular-solution lattice-gas OCV·상분리 임계 $\Omega=2RT$.)
+ \bibitem{reynier2003} Y. Reynier, R. Yazami, B. Fultz, ``The entropy and enthalpy of lithium intercalation into graphite,'' \emph{J. Power Sources} \textbf{119--121}, 850--855 (2003). DOI: 10.1016/S0378-7753(03)00285-4.
+ \bibitem{allart2018} D. Allart \emph{et al.}, ``Model of Lithium Intercalation into Graphite by Potentiometric Analysis with Equilibrium and Entropy Change Curves of the Graphite Electrode,'' \emph{J. Electrochem. Soc.} \textbf{165}(2), A380 (2018). DOI: 10.1149/2.1251802jes.
+-\bibitem{occupation2019} ``Transitions of lithium occupation in graphite: A physically informed model in the dilute lithium occupation limit supported by electrochemical and thermodynamic measurements,'' \emph{Electrochimica Acta} (2019). DOI: 10.1016/j.electacta.2019.135634. [방법 수준 인용 — 원문 식 미확보.]
+-\bibitem{chemmater2015} ``Intercalation Compounds from LiH and Graphite: Relative Stability of Metastable Stages\ldots,'' \emph{Chem. Mater.} \textbf{27} (2015). DOI: 10.1021/acs.chemmater.5b00235. [형성 ΔH calorimetry — abstract tier.]
+-\bibitem{jpcc2021} ``Thermodynamic Analysis of Li-Intercalated Graphite by First-Principles Calculations with Vibrational and Configurational Contributions,'' \emph{J. Phys. Chem. C} \textbf{125}(51) (2021). DOI: 10.1021/acs.jpcc.1c08992. [abstract tier.]
+-\bibitem{msmr_partI} ``Quantifying the Entropy and Enthalpy of Insertion Materials for Battery Applications Via the Multi-Species, Multi-Reaction Model,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad1d27. [Chapter 1 이 인용하는 ECS Advances 의 ``Part 1''(MCMB 흑연 파라미터화, DOI: 10.1149/2754-2734/ad7d1c)과는 \emph{별개 논문} — 두 문헌이 공유하는 것은 Part II(DOI: 10.1149/1945-7111/ad70d9) 뿐이다.]
+-\bibitem{msmr_partII} ``Quantifying the Temperature Dependence of the MSMR Model Part II: Estimation of Entropy Coefficient for Meso-Carbon Micro-Bead Graphite,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad70d9.
+-\bibitem{standardised2024} ``A Standardised Potentiometric Method for the Effective Parameterisation of Reversible Heating in a Lithium-Ion Cell,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad4918.
+-\bibitem{hysteresis2018} ``Uncertainties in entropy due to temperature path dependent voltage hysteresis in Li-ion cells,'' \emph{J. Power Sources} (2018). DOI: 10.1016/j.jpowsour.2018.05.060.
+-\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.16} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \S\ref{ssec:overlap} 요지.]
++\bibitem{occupation2019} M. P. Mercer, M. Otero, M. Ferrer-Huerta, A. Sigal, D. E. Barraco, H. E. Hoster, E. P. M. Leiva, ``Transitions of lithium occupation in graphite: A physically informed model in the dilute lithium occupation limit supported by electrochemical and thermodynamic measurements,'' \emph{Electrochimica Acta} \textbf{324}, 134774 (2019). DOI: 10.1016/j.electacta.2019.134774. [방법 수준 인용 — 원문 식 미확보.]
++\bibitem{chemmater2015} S. Konar, U. Häussermann, G. Svensson, ``Intercalation Compounds from LiH and Graphite: Relative Stability of Metastable Stages\ldots,'' \emph{Chem. Mater.} \textbf{27}(7), 2566--2575 (2015). DOI: 10.1021/acs.chemmater.5b00235. [형성 ΔH calorimetry — abstract tier.]
++\bibitem{jpcc2021} J. Haruyama, S. Takagi, K. Shimoda, I. Watanabe, K. Sodeyama, T. Ikeshoji, M. Otani, ``Thermodynamic Analysis of Li-Intercalated Graphite by First-Principles Calculations with Vibrational and Configurational Contributions,'' \emph{J. Phys. Chem. C} \textbf{125}(51), 27891--27900 (2021). DOI: 10.1021/acs.jpcc.1c08992. [abstract tier.]
++\bibitem{msmr_partI} T. R. Garrick, B. J. Koch, M. Choi, X. Du, A. M. Adeyinka, J. A. Staser, S.-Y. Choe, ``Quantifying the Entropy and Enthalpy of Insertion Materials for Battery Applications Via the Multi-Species, Multi-Reaction Model,'' \emph{J. Electrochem. Soc.} \textbf{171}(2) (2024). DOI: 10.1149/1945-7111/ad1d27. [Chapter 1 이 인용하는 ECS Advances 의 ``Part 1''(MCMB 흑연 파라미터화, DOI: 10.1149/2754-2734/ad7d1c)과는 \emph{별개 논문} — 두 문헌이 공유하는 것은 Part II(DOI: 10.1149/1945-7111/ad70d9) 뿐이다.]
++\bibitem{msmr_partII} A. Paul, K. Wolfe, M. W. Verbrugge, B. J. Koch, J. S. Lowe, J. Trembly, J. A. Staser, T. R. Garrick, ``Quantifying the Temperature Dependence of the MSMR Model Part II: Estimation of Entropy Coefficient for Meso-Carbon Micro-Bead Graphite,'' \emph{J. Electrochem. Soc.} \textbf{171}(10) (2024). DOI: 10.1149/1945-7111/ad70d9.
++\bibitem{standardised2024} A. Hales, J. Bulman, ``A Standardised Potentiometric Method for the Effective Parameterisation of Reversible Heating in a Lithium-Ion Cell,'' \emph{J. Electrochem. Soc.} \textbf{171}(5), 050535 (2024). DOI: 10.1149/1945-7111/ad4918.
++\bibitem{hysteresis2018} I. Zilberman, A. Rheinfeld, A. Jossen, ``Uncertainties in entropy due to temperature path dependent voltage hysteresis in Li-ion cells,'' \emph{J. Power Sources} \textbf{395} (2018). DOI: 10.1016/j.jpowsour.2018.05.052.
++\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.17} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 확인, 본문 \S\ref{ssec:overlap} 요지.]
+ \end{thebibliography}
+ 
+ \end{document}

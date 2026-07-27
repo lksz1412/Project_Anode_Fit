@@ -1,0 +1,67 @@
+--- Claude/docs/v1.0.15/graphite_ica_ch2_v1.0.15.tex
++++ Claude/docs/v1.0.16/graphite_ica_ch2_v1.0.16.tex
+@@ -1,5 +1,5 @@
+ % ====================================================================
+-% graphite_ica_ch2_v1.0.15.tex — Chapter 2 (release 1.0.15; 계보 1.0.13 승계 — Fable 전수 재검 반영 —
++% graphite_ica_ch2_v1.0.16.tex — Chapter 2 (release 1.0.16; 계보 1.0.15 승계 — Fable 전수 재검 반영 —
+ %   H-1 BW 부호·M-8 파생D 근사 명시·M-9 고온 코너 한정. 계보 v5: 코인 하프셀 엔트로피·가역
+ %   발열의 통계열역학, Opus build — v4-11 기반, w_eff 절 제거 정정본)
+ %   ★v5 = intercalation 엔트로피·가역 발열의 *통계열역학 챕터* — 분포를 명시
+@@ -33,9 +33,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.15): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
++  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.16): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.15, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.16, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ \newtheorem*{keybox}{핵심}
+ \newtheorem*{srcbox}{문헌 근거}
+@@ -492,6 +492,16 @@
+ \qquad z_j=\ln\frac{\xi_j}{1-\xi_j}.
+ \label{eq:dxidT}
+ \end{equation}
++\textbf{★폭 다중도의 온도 함수화(선택 확장).} 위 둘째 조각은 폭 다중도 $n_j$ 를 온도 상수로 본 $\partial w_j/\partial T=n_jR/F$ 다.
++잔여 폭 $T$-의존을 담고자 다중도를 온도의 함수 $n_j(T)$ 로 두면 폭이 $w_j=n_j(T)\,RT/F$ 라 곱의 미분으로
++\begin{equation}
++\frac{\partial w_j}{\partial T}=\frac{R}{F}\,\frac{\mathrm{d}[n_j(T)\,T]}{\mathrm{d}T}
++=\frac{R}{F}\Big(n_j(T)+T\,\frac{\mathrm{d}n_j}{\mathrm{d}T}\Big)
++\label{eq:dwdT-nT}
++\end{equation}
++가 되어, 식~\eqref{eq:dxidT} 둘째 조각의 계수 $n_jR/F$ 가 그대로 $\partial w_j/\partial T$ 로 일반화된다 --- 완전식의 config 항과
++가역 발열 계수(\S\ref{sec:revheat})가 같은 $n_j(T)$ 로 자기정합하게 전파된다($n_j$ 상수면 $\mathrm{d}n_j/\mathrm{d}T{=}0$ 으로
++$n_jR/F$ 로 환원). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅하는 스코프는 데이터가 정한다(본 문건은 스코프를 정하지 않는다).
+ 첫 조각만(중심 이동)을 \eqref{eq:gj}$\cdot$\eqref{eq:dxidT} 와 함께 \eqref{eq:implicit_diff} 에 넣으면, 분모의
+ $\partial\xi_j/\partial U=g_j$ 와 분자의 $-g_j\partial U_j/\partial T$ 가 만나 겹침 가중의 \emph{중심값 식(단순식)}이
+ 닫힌다:
+@@ -732,7 +742,9 @@
+ 피팅의 현상학적 자유 폭 — 파생 C \S\ref{ssec:weff}). 지배 두-상 전이($2\mathrm L\!\to\!2\cdot2\!\to\!1$)에서는 완전식의
+ config 항이 폭의 열적 서식 $w_j=n_jRT/F$ 를 전제하므로, 실측 $w_j$ 가 $T$-동결에 가까우면 완전식 대 단순식의
+ 우열이 $\sim$0.3 mV/K 급으로 뒤집힌다(파생 A srcbox \S\ref{ssec:overlap}) — 지배 두-상 전이의 config 기여는
+-다온도 round-trip 으로 확정할 대상이며, 그 전까지 단순식(중심값)이 보수적 기준이다. 주어진 탈리튬화 분율 $\bar x$(식~\eqref{eq:implicit} 좌표)에서 $\xi_j$ 를 평가하려면 먼저 전하 보존
++다온도 round-trip 으로 확정할 대상이며, 그 전까지 단순식(중심값)이 보수적 기준이다. (폭 다중도를 온도 함수 $n_j(T)$ 로
++두면 이 config 계수 $n_jR/F$ 는 식~\eqref{eq:dwdT-nT} 의 $\partial w_j/\partial T=(R/F)(n_j(T)+T\,\mathrm{d}n_j/\mathrm{d}T)$ 로 일반화된다.)
++주어진 탈리튬화 분율 $\bar x$(식~\eqref{eq:implicit} 좌표)에서 $\xi_j$ 를 평가하려면 먼저 전하 보존
+ 음함수~\eqref{eq:implicit} $\sum_j Q_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$ 를 풀어 $U_\oc$ 를 얻고, 그 $U_\oc$ 를
+ $\xi_j(V,T)$ 에 되먹인다. $\Delta S^0_j$ 는 다온도 $dQ/dV$ 동시 피팅으로 얻고 나머지는 Chapter 1 모수이며, 단일 전이 지배 영역에서 이 식은
+ 식~\eqref{eq:single_config} 로 환원된다.
+@@ -741,7 +753,7 @@
+ \subsection{계산 예제 — stage $2\!\to\!1$ 부근 한 점의 가역 발열}\label{ssec:worked}
+ 종합식이 실제로 한 수를 내는 과정을 Chapter 1 의 4-전이 staging 파라미터(중심 $U_j$$\cdot$용량 $Q_j$$\cdot$중심 표준
+ 엔트로피 $\Delta S^0_j$[표~\ref{tab:ds}], 폭은 다중도 $n_j{=}1$ 의 열적 폭 $w_j{=}RT/F\!\approx\!25.7$ mV)로 한 SOC 에서
+-끝까지 따라간다 --- 코드(\texttt{Anode\_Fit\_v1.0.15})가 내는 값 그대로다. 대표점은 탈리튬화 분율 $\bar x=0.25$
++끝까지 따라간다 --- 코드(\texttt{Anode\_Fit\_v1.0.16})가 내는 값 그대로다. 대표점은 탈리튬화 분율 $\bar x=0.25$
+ ($T=298.15$ K) --- stage $2\!\to\!1$($\mathrm{LiC_6}$, 큰 음의 $\Delta S^0=-16$ J\,mol$^{-1}$K$^{-1}$)이 지배하는 저-$\bar x$ 영역이다.
+ 
+ \textbf{(a) 전하 보존으로 $U_\oc$ 결정.} 음함수~\eqref{eq:implicit} $\sum_jQ_j\xi_{\eq,j}(U_\oc,T)=Q\bar x$
+@@ -880,7 +892,7 @@
+ \bibitem{msmr_partII} ``Quantifying the Temperature Dependence of the MSMR Model Part II: Estimation of Entropy Coefficient for Meso-Carbon Micro-Bead Graphite,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad70d9.
+ \bibitem{standardised2024} ``A Standardised Potentiometric Method for the Effective Parameterisation of Reversible Heating in a Lithium-Ion Cell,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad4918.
+ \bibitem{hysteresis2018} ``Uncertainties in entropy due to temperature path dependent voltage hysteresis in Li-ion cells,'' \emph{J. Power Sources} (2018). DOI: 10.1016/j.jpowsour.2018.05.060.
+-\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.15} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \S\ref{ssec:overlap} 요지.]
++\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.16} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \S\ref{ssec:overlap} 요지.]
+ \end{thebibliography}
+ 
+ \end{document}

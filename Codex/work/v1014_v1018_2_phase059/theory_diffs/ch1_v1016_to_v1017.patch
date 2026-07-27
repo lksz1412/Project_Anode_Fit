@@ -1,0 +1,383 @@
+--- Claude/docs/v1.0.16/graphite_ica_ch1_v1.0.16.tex
++++ Claude/docs/v1.0.17/graphite_ica_ch1_v1.0.17.tex
+@@ -73,9 +73,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 코드 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.16)}}
++  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 계산 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.17)}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.16, 통계역학-first + 코드 진행)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.17, 통계역학-first + 계산 진행)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ 
+ \newtheorem*{keybox}{핵심}
+@@ -100,9 +100,9 @@
+ 
+ \renewcommand{\theequation}{1.\arabic{equation}}
+ \renewcommand{\thesection}{1.\arabic{section}}
+-\title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 코드 진행을 따라가는 수식-구동판 — 유도 확장}
++\title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 계산 진행을 따라가는 수식-구동판 — 유도 확장}
+ \author{}
+-\date{\normalsize 버전 1.0.16 \quad(코드 \texttt{Anode\_Fit 1.0.16} 와 동일 버전 · matched)}
++\date{\normalsize 버전 1.0.17}
+ 
+ \makeatletter
+ \renewcommand*\l@section[2]{%
+@@ -153,7 +153,7 @@
+ 세 인자는 모두 하나의 속도식 $k\simeq k_0\exp[-\Delta G_a/RT]$ 의 서로 다른 자리로 들어온다 — 온도는 지수의 분모,
+ 전위는 장벽 $\Delta G_a$ 자체, C-rate 는 요구 속도와 공급 속도의 경쟁이다. 이 속도식이 한편으로는 평형(정$\cdot$역
+ 속도가 같아지는 정지점)을, 다른 한편으로는 유한 전류의 지연(꼬리)을 낳는다 — 본 문건의 유도는 줄곧 이 한 식의 가지를
+-펼치는 일이다. 코드 진행이 이 세 갈래를 차례로 닫는다.
++펼치는 일이다. 계산 진행이 이 세 갈래를 차례로 닫는다.
+ 
+ \begin{figure}[t]
+ \centering
+@@ -209,7 +209,7 @@
+ % ====================================================================
+ \section{기호와 규약, 실험조건 매핑 (N0)}\label{sec:notation}
+ % ====================================================================
+-계산의 진입점은 실험조건 $(V_\app,\text{direction},\text{c\_rate},Q_\cell,T)$ 을 받아 그 첫 일로 이를 모델
++계산의 출발점은 실험조건 $(V_\app,\text{direction},\text{c\_rate},Q_\cell,T)$ 을 받아 그 첫 일로 이를 모델
+ 입력으로 환산하는 것이다 — 이것이 노드 $\mathrm N0$ 다. 방향 문자열은 방향 부호 $\sigma_d$ 로,
+ C-rate 는 전류 크기 $|I|$ 로 바뀐다:
+ \begin{equation}
+@@ -218,7 +218,7 @@
+ |I|=\text{c\_rate}\cdot Q_\cell\quad(\text{또는 }I_\mathrm{abs}\text{ 직접 지정}).
+ \label{eq:n0map}
+ \end{equation}
+-c\_rate 는 시간 역수이므로 $Q_\cell$ 과 시간 단위를 맞춰 대입한다([1/h]$\cdot$[A\,h]$\to$[A]; 코드 규격화
++c\_rate 는 시간 역수이므로 $Q_\cell$ 과 시간 단위를 맞춰 대입한다([1/h]$\cdot$[A\,h]$\to$[A]; 정규화
+ $Q_\cell{=}1$ 에서는 무차원 배율). 방향 부호의 작용처는 셋이다 — 분극 부호($\mathrm N1$)$\cdot$분기 중심 선택($\mathrm N3$)$\cdot$꼬리($\mathrm N7\cdot\mathrm N8$:
+ 방향별 전달계수 $\chi_d$ 가 꼬리 \emph{길이}를, 적분 방향(식~\eqref{eq:reversal})이 인과 기억의 진행 \emph{방향}을 가른다).
+ 평형 종 자체는 방향 불변이다(아래에서 식으로 회수). 본 장이 뽑는 양은 $\dd Q/\dd V$ 한 곡선이다.
+@@ -227,13 +227,14 @@
+ 용량 가중 $Q_j$. 박스 결과식은 $j$ 첨자를 단다. 점유율과 진행률은 $\theta_j=1-\xi_j$ 로 묶이며(점유 $\theta$ 가 $1\to0$
+ 줄어드는 것이 진행 $\xi$ 가 $0\to1$ 느는 것), 유도에서 둘은 부호 한 번 차이로 오간다.
+ 
+-\textbf{부호 규약(★최우선 결함 클래스).} 전위는 흑연 음극 반쪽전지 전위(vs Li/Li$^+$)다. 방향 부호 $\sigma_d=\pm1$
++\textbf{부호 규약.} 전위는 흑연 음극 반쪽전지 전위(vs Li/Li$^+$)다. 방향 부호 $\sigma_d=\pm1$
+ (방전 $+1$/충전 $-1$)이며, 평형 진행률 $\xi_\eq=\mathrm{logistic}[\sigma_d(V-U)/w]$ 에서 방전
+ ($\sigma_d=+1$)은 $V\!\uparrow\Rightarrow\xi_\eq\!\uparrow$(전위를 올리면 탈리튬화). 분기 중심 $+\tfrac12\sigma_d(\cdots)$
+ 는 $\sigma_d$ 를 따라 방전$\cdot$충전이 반대로 갈리고, 꼬리는 충전에서 적분 방향이 반전된다. 이 규약은 \S\ref{sec:notation}--\S\ref{sec:sum}
+ 과 Part II 전건에서 유지되며 \S\ref{sec:signcheck} 가 전수 검산한다.
+ 
+ \begin{longtable}{p{0.15\textwidth} p{0.16\textwidth} p{0.605\textwidth}}
++\caption{기호$\cdot$단위$\cdot$의미 대응표 --- N0 실험조건 매핑 전제.}\label{tab:notation}\\
+ \toprule 기호 & 단위 & 의미 \\ \midrule \endhead
+ \multicolumn{3}{l}{\emph{— 실험조건$\cdot$방향(N0$\cdot$N1) —}}\\
+ $\sigma_d$ & --- & 방향 부호 — 방전 $+1$/충전 $-1$ \\
+@@ -241,6 +242,7 @@
+ $|I|$ & A & 전류 크기 $=$ c-rate$\,\cdot Q_\cell$ \\
+ $Q_\cell$ & C(또는 A\,h) & 셀 용량(전하); $q=Q/Q_\cell$ 환산$\cdot$$|I|$ 환산 공용 — $|I|$ 환산 시 c-rate 와 시간 단위 정합 \\
+ $T$ & K & 온도 — 스칼라(등온) 또는 $V_\app$ 길이 배열($T(V)$ 비등온) \\
++$T_\rep$ & K & 비등온 시 전이당 대표(평균) 온도 $=\overline T$ — N1$\cdot$N3$\cdot$N7 대표조건 평가 \\
+ $R_n$ & $\Omega$ & 음극 lumped 분극 저항 \\
+ $V_\app$ & V & 인가(측정) 전위 배열 \\
+ $V_n$ & V & 내부(열역학) 전위 $=V_\app-\sigma_d|I|R_n$ \\
+@@ -254,6 +256,7 @@
+ $C_\bg$ & C/V & 배경 미분용량(상수 또는 $V$ 함수) \\
+ \multicolumn{3}{l}{\emph{— 히스테리시스 분기(N3) —}}\\
+ $\Omega_j$ & J/mol & 정규용액(regular solution) 상호작용 에너지($>2RT$ 면 상분리$\cdot$히스) \\
++$T_{c,j}$ & K & 히스 문턱 임계온도 $=\Omega_j/2R$(식~\eqref{eq:sm-thresh}) \\
+ $\gamma_j$ & --- & 분기 축소 인자 $0\le\gamma_j\le1$($0$ 이면 분기 없음) \\
+ $\Delta U_j^\hys$ & V & spinodal 상한 분기 gap \\
+ $h_{\eta,j}$ & --- & 부분 cycle 인자(기본 $1$) \\
+@@ -478,7 +481,7 @@
+ \end{equation}
+ --- $z_n$ 은 점유수 $n$ 인 상태들의 canonical 분배함수로, $z_0=1$(빈 자리는 상태 하나),
+ $z_1=e^{-\beta\varepsilon_0}q(T)$(우물 바닥 인자에 내부 자유도의 적분 $q(T)$ 가 곱해진다)이다.
+-$q(T)$ 는 점유된 이온의 진동 등 국소 자유도의 단일 자리 분배함수다. 일반적인 정의는 상태
++$q(T)$ 는 점유된 이온의 진동 등 국소 자유도의 단일 자리 분배함수다\footnote{이 $q(T)$(단일 자리 내부 분배함수)는 N6--N9 의 정규화 용량 좌표 $q{=}Q/Q_\cell$ 와 다른 양이다 --- 전자는 Part 0 의 국소 열역학량, 후자는 곡선 좌표.}. 일반적인 정의는 상태
+ 합 $q(T)=\mathrm{Tr}\,e^{-\beta H_\mathrm{int}}$ 이고 식~\eqref{eq:partfn} 의 위상공간 적분은 그 고전
+ 극한이다 — 자리 우물을 3차원 조화 퍼텐셜(진동수 $\omega_0$)로 근사하면 고전 극한에서
+ $q=(k_BT/\hbar\omega_0)^3$, 양자 상태 합으로는
+@@ -660,7 +663,7 @@
+ \boxed{\;
+ \begin{aligned}
+ &g_j''(\xi)\ge0\ \ \forall\xi\ \Longleftrightarrow\ \Omega_j\le2RT\ \ (\text{단상·연속 고용체; 등호는 }\Omega_j{=}2RT,\ \xi{=}\tfrac12\ \text{한 점}),\\
+-&\Omega_j>2RT\ \Longleftrightarrow\ \text{이중웰}\ \ \Big(T_c=\frac{\Omega_j}{2R}\Big)\;.
++&\Omega_j>2RT\ \Longleftrightarrow\ \text{이중웰}\ \ \Big(T_{c,j}=\frac{\Omega_j}{2R}\Big)\;.
+ \end{aligned}}
+ \label{eq:sm-thresh}
+ \end{equation}
+@@ -668,7 +671,7 @@
+ (spinodal)의 닫힌 근과 거기서 자라는 히스테리시스 gap 은 \S\ref{sec:hys} 가 닫는다 --- Part 0 은 문턱까지만
+ 놓는다. 극한 검산 --- $\Omega_j\to0$: $g''\ge4RT>0$ 로 항상 한 웰(\S\ref{sec:sm-lattice} 로 환원);
+ $\Omega_j\to2RT^-$: $g''(\tfrac12)\to0^+$ 로 바닥이 평탄해지되 아직 한 웰; $\Omega_j\to2RT^+$: 웰이 둘로
+-갈라지기 시작하고 $T_c=\Omega_j/2R$ 아래에서만 상분리가 존재한다(안정하다). 이 $\mu(\theta)$ 를 측정 전위에 결선하는
++갈라지기 시작하고 $T_{c,j}=\Omega_j/2R$ 아래에서만 상분리가 존재한다(안정하다). 이 $\mu(\theta)$ 를 측정 전위에 결선하는
+ 것이 다음 소절이다.
+ 
+ \begin{figure}[t]
+@@ -892,7 +895,9 @@
+ 
+ \textbf{(b) 연산 --- 반응 자유에너지의 $H,S$ 분해.} \eqref{eq:sm-eqcond} 의 비배치 몫
+ $\Delta G_j=\mu^0-\mu_\mathrm{Li}^\mathrm{metal}$ 은 온도의 함수이고, $G\equiv H-TS$ 를 반응 차분에 적용하면
+-$\Delta G_j(T)=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 다. \textbf{(c) 중간식 --- 평형 중심의 온도 환산.}
++$\Delta G_j(T)=\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}$ 다.
++
++\textbf{(c) 중간식 --- 평형 중심의 온도 환산.}
+ 이를 $\Delta G_j=-sFU_j$ 와 등치하면 $\Delta H_{\rxn,j}-T\Delta S_{\rxn,j}=-FU_j(T)$($s{=}1$) --- 그 이항이
+ \S\ref{sec:center} 의 결과 박스($U_j(T)$·$\partial U_j/\partial T=\Delta S_{\rxn,j}/F$)이며, 박스는 그 절의
+ 것을 그대로 쓰고 여기 다시 적지 않는다.
+@@ -918,7 +923,7 @@
+ $\theta$~\eqref{eq:fermifn}·요동~\eqref{eq:sm-flucres} $\to$ lattice gas·섞임 엔트로피~\eqref{eq:sm-Smix}
+ $\to$ 평균장 $\Omega$~\eqref{eq:mu}·\eqref{eq:gxi}·문턱~\eqref{eq:sm-thresh} $\to$ 전위
+ 손잡이~\eqref{eq:sm-eqcond} $\to$ logistic~\eqref{eq:sm-logistic}·Nernst~\eqref{eq:sm-nernst}. 본론이 결과로
+-쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(코드 진행 N1--N9) 순서로
++쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(N1--N9) 순서로
+ 다시 밟는다.
+ \end{keybox}
+ 
+@@ -979,7 +984,7 @@
+ 전이 루프 안의 첫 물리량은 전이 $j$ 의 평형 중심 전위 $U_j(T)$ 다. 이 값은 열역학 입력 $(\Delta H_\rxn,\Delta S_\rxn)$
+ 에서 식~\eqref{eq:Uj}로 계산되거나, 주어지지 않으면 $U$ 값을 직접 취한다. 이 절은 그 환산식이 어디서 오는지를, Gibbs
+ 자유에너지의 정의에서 한 단계씩 닫는다. 이 유도가 딛는 통계역학적 기원($Z\to\mu$·전기화학 결선·$G\simeq F$ 다리)은
+-Part 0(\S\ref{sec:sm-ensemble}$\cdot$\S\ref{sec:sm-electro}$\cdot$\S\ref{sec:sm-macro})가 세웠다 — 이 절은 그 위에서 코드 입력
++Part 0(\S\ref{sec:sm-ensemble}$\cdot$\S\ref{sec:sm-electro}$\cdot$\S\ref{sec:sm-macro})가 세웠다 — 이 절은 그 위에서 입력
+ $(\Delta H_\rxn,\Delta S_\rxn)$ 으로 잇는 결과 사슬 쪽이다.
+ 
+ \subsection{$G,\mu$ 와 평형 조건 — 유도}
+@@ -1433,7 +1438,7 @@
+ \subsection{같은 결과의 분포 관점 — $\xi_\eq$ 는 평형 점유 분포의 여집합}\label{sec:dist}
+ 앞에서 $\xi_\eq$ 는 두 경로로 나왔다 — (i) kinetic: 속도식 정지점에서 detailed balance~\eqref{eq:db}(식~\eqref{eq:logisticsolve}),
+ (ii) thermo: 자유에너지 최소화 $g_j'(\xi)=sF(V_\eq-U)$(식~\eqref{eq:Veq}). 이 둘은 사실 \emph{하나의 분포}의 두 얼굴이다.
+-이 소절은 결과식$\cdot$부호$\cdot$코드는 그대로 두고 $\xi_\eq$ 의 통계역학적 정체만 밝혀,
++이 소절은 결과식$\cdot$부호$\cdot$모델은 그대로 두고 $\xi_\eq$ 의 통계역학적 정체만 밝혀,
+ \S\ref{sec:lco-electronic} 의 LCO 전자 엔트로피와 같은 언어로 두 곳을 묶는다.
+ 
+ \textbf{(a)(b) --- Part 0 회수.} 단일 자리 분포는 Part 0 이 이미 닫았다 --- grand-canonical
+@@ -1603,7 +1608,7 @@
+ 온다(Levi--Aurbach\cite{leviaurbach1999}) — 이 몫은 전류와 무관한 \emph{평형 자체의 잔여 폭}이라 $|I|\!\to\!0$ 에서도
+ 남는다. $RT/F\!\approx\!26$ mV 는 $n_j{=}1$ 의 척도일 뿐 하한이 아니다 — plateau 끝 유효 다중도 $n_j$ 가
+ $1$ 미만이면 잔여 폭은 그보다 작아질 수 있고, \S\ref{sec:width} 폭 폴백 중 두-상 두 전이의 출발값
+-0.014 V($2\mathrm L\!\to\!2$)$\cdot$0.012 V($2\!\to\!1$)와 모순되지 않는다. 단 \emph{현재 코드의 staging
++0.014 V($2\mathrm L\!\to\!2$)$\cdot$0.012 V($2\!\to\!1$)와 모순되지 않는다. 단 \emph{현재 모델의 staging
+ 출발값은 $n_j{=}1$ 고정}이라 실제 평가 폭은 $RT/F\!\approx\!25.7$ mV 이고 폭 값을 직접 지정하는 경로는 다중도
+ $n$ 입력을 배제해야 활성화된다 — $n_j\!<\!1$ 은 피팅이 내려갈 수 있는 여지이지 현재 출발 상태가 아니다.
+ 
+@@ -1726,7 +1731,7 @@
+ $=2.90w_j$ 의 피타고라스 형태로, 본문 식~\eqref{eq:widthbudget} 과 일치한다. 다만 본문이 쓰는 ``같은 함수족이면 유효 scale
+ $1.6w_j$'' 지름길로 재현한 logistic 종은 이 실제 합성곱보다 peak 가 약 $10\%$ 높다(분산은
+ 정확해도 \emph{모양}까지 같은 logistic 족은 아님 --- 근사의 한계를 명시해 둔다). 굵은 실선 = $+$① 인과
+-지수 꼬리($L_V=1.5w_j$, 식~\eqref{eq:lag} 의 인과 메모리 적분으로 계산)가 종을 오른쪽으로 밀며,
++지수 꼬리($L_V=1.5w_j$, 식~\eqref{eq:lag} 의 인과 기억 적분으로 계산)가 종을 오른쪽으로 밀며,
+ peak 위치가 중심에서 이동한다. 세 척도($\sigma_\mathrm{int}$·$\sigma_\mathrm{sym}$·꼬리 길이 $L_V$)는
+ 치수선 길이로 직접 대비된다.}
+ \label{fig:widthbudget}
+@@ -1911,7 +1916,7 @@
+ \begin{cases}\chi & \sigma_d\ge0\ (\text{방전})\\ 1-\chi & \sigma_d<0\ (\text{충전}).\end{cases}
+ \label{eq:chid}
+ \end{equation}
+-\textbf{(d) 유효 장벽.}
++\textbf{(d) 박스 --- 유효 장벽.}
+ 구동력에 평균장 $\mu$ 의 상호작용 몫(식~\eqref{eq:mu} 의 몫을 $\xi$ 좌표로 옮긴 $\Omega(1-2\xi)$ — $\theta=1-\xi$ 에서 부호 반전)을 마저 실으면
+ $\mathcal A_j=sF(V-U_j)-\Omega_j(1-2\xi_j)$ 다 — 이 상수 몫은 아래처럼 \emph{장벽}으로만 흡수되고, 컷점
+ 판정(식~\eqref{eq:Acut})은 이상 몫 $sF(V-U_j)$ 로 남아 이중계산이 없다.
+@@ -1923,7 +1928,7 @@
+ \boxed{\;\Delta H_{a,j}^\eff=\Delta H_{a,j}-\chi_d\,\Omega_j\;.}
+ \label{eq:dHeff}
+ \end{equation}
+-단, 이 보강이 꺼져 있으면(토글 옵션) 보강 없이 $\Delta H_a$ 를 그대로 쓴다.
++단, 이 보강을 적용하지 않으면 보강 없이 $\Delta H_a$ 를 그대로 쓴다.
+ 
+ \subsection{$L_q$ 의 평가와 전압축 환산 $L_V$}
+ \textbf{(a) 출발 — 정$\cdot$역 합과 Eyring prefactor.} 식~\eqref{eq:kuniv} 의 $k_j=r_j^+(1+e^{-\mathcal A_j/RT})$ 와
+@@ -1973,7 +1978,7 @@
+ 차를 길이로 나눈 것이 peak 모양이다. 이 절은 그 기억 적분과, 충전에서 그 적분이 향하는 방향을 닫는다 ---
+ 부호 오류가 발생하기 쉬운 지점이므로 \S\ref{sec:signcheck} 에서 별도 검산한다.
+ 
+-\subsection{인과 메모리 적분과 지연 진행률 $\xi_\mathrm{lag}$}
++\subsection{인과 기억 적분과 지연 진행률 $\xi_\mathrm{lag}$}
+ \textbf{(a) 출발 --- 1계 선형 ODE.} 지연 방정식~\eqref{eq:Lq} 는 1계 선형이라 적분인자 $e^{q/L_{q,j}}$ 로
+ 닫힌 해를 갖는다. \textbf{(b) 연산 --- 적분인자.} 양변에 $e^{q/L_{q,j}}$ 를 곱하면 좌변이 완전 미분으로
+ 묶이고
+@@ -1991,7 +1996,7 @@
+ \end{equation}
+ --- 초기 지연의 지수 감쇠 $+$ 과거 목표 변화율을 지수 커널 $K(\Delta q)=e^{-\Delta q/L_q}$ 로 가중한
+ \emph{기억}의 합성곱이다(계는 길이 $L_q$ 만큼의 최근 과거만 기억). 이 결핍 $r_j=\xi_{\eq,j}-\xi_j$
+-의 인과 메모리는 시작점 $q_0$ 를 어디에 두어도 성립하는 항등식이며, $q_0$ 를 밀어낼 자유가 다음
++의 인과 기억은 시작점 $q_0$ 를 어디에 두어도 성립하는 항등식이며, $q_0$ 를 밀어낼 자유가 다음
+ 단계를 연다.
+ 
+ 시작점 $q_0$ 는 물리가 아니라 적분의 자유 상수다 --- $r_j$ 는 유계(진행률의 차이라 $|r_j|<1$)이고
+@@ -2050,7 +2055,7 @@
+ \draw[densely dotted,gray] (1.5,0) -- (1.5,1.11);
+ \node[font=\scriptsize] at (1.1,2.15) {peak shape $=(\xi_\eq-\xi_\mathrm{lag})/L_V$};
+ \end{tikzpicture}
+-\caption{지연의 완화. 파선 $=$ 평형 목표 $\xi_\eq(q)$, 실선 $=$ 인과 메모리 적분(식~\eqref{eq:lag})으로
++\caption{지연의 완화. 파선 $=$ 평형 목표 $\xi_\eq(q)$, 실선 $=$ 인과 기억 적분(식~\eqref{eq:lag})으로
+ 뒤처진 $\xi_\mathrm{lag}$. 둘의 차 $r=\xi_\eq-\xi_\mathrm{lag}$ 가 지연이고, peak 모양
+ $(\xi_\eq-\xi_\mathrm{lag})/L_V$(식~\eqref{eq:peakshape})는 이 차를 길이로 나눈 것이다. $L_{V,j}\to0$
+ 에서 이 차분이 평형 종의 미분으로 매끈히 수렴하는 논증(식~\eqref{eq:tail-limit})은 본문 \S\ref{sec:tail}
+@@ -2143,7 +2148,7 @@
+ \end{cases}\;}
+ \label{eq:reversal}
+ \end{equation}
+-인과 메모리가 진행 방향의 과거를 훑는다는 것이 이 두 식의 공통 내용이다 --- 방향을 어기면 비인과가
++인과 기억이 진행 방향의 과거를 훑는다는 것이 이 두 식의 공통 내용이다 --- 방향을 어기면 비인과가
+ 된다.
+ 
+ 두 커널 모두 $\int(\cdots)\dd u=1$ 로 규격화된 가중평균이라 $\xi_{\mathrm{lag},j}$ 는 어느 방향에서도
+@@ -2324,10 +2329,10 @@
+ \caption{LCO 하프셀 전이 초기값(3건, vs Li metal) — 출발점, 피팅으로 override. $x$ 는
+ $\mathrm{Li}_x\mathrm{CoO_2}$ 의 리튬 함량. ``성격''은 상전이 유형, ``전자항''은 \S\ref{sec:lco-electronic} 의 MIT
+ 게이트 발현 여부. 흑연 표~\ref{tab:staging} 와 같은 자리(전위$\cdot$성격$\cdot\Delta S$), 양극 부호.
+-★시연값($U{=}3.930/3.880/4.050$ V; 전자항은 T1$=$MIT dict 에
++★시연값($U{=}3.930/3.880/4.050$ V; 전자항은 T1(MIT 전이)에
+ $x_\mathrm{MIT}{=}0.85$ 물리 anchor 로 배정)은
+ \emph{tier-C 시연 초기값}으로, $U$·$\Delta S_\rxn$ 시연값은 본 표의 물리 anchor(T1 MIT $\sim$3.90 V$\cdot$T3 $\sim$4.17 V·config 값)와
+-별개라 round-trip 피팅으로 정합한다. 또한 현 구현은 $\Delta S_e$ 를 기준온도 $T_\mathrm{ref}$ 에서
++별개라 round-trip 피팅으로 정합한다. 또한 현행 모델은 $\Delta S_e$ 를 기준온도 $T_\mathrm{ref}$ 에서
+ 동결한 상수 오프셋으로 넣어(단일-기준 근사) peak 를 목표 전위에 둔다(조성 매핑$\cdot$다온도 $T^2$ 곡률
+ 과제는 \S\ref{sec:lco-code}).}
+ \label{tab:lco-staging}
+@@ -2385,7 +2390,7 @@
+ 
+ \textbf{평형 종의 불변(방향이 가르는 것과 가르지 않는 것).} 평형 종 자체는 이 선택에 불변이다 --- 같은
+ 중심$\cdot$폭에서 $1-\xi_\eq^{(\sigma_d)}=\xi_\eq^{(-\sigma_d)}$(여집합 교환; 식~\eqref{eq:xieq} 의 지수
+-부호 반전 그 자체이며, \S\ref{sec:lco-code} 의 변환 사전이 식으로 닫는다)이고 종 $\xi(1-\xi)$ 는 이 교환에
++부호 반전 그 자체이며, \S\ref{sec:lco-code} 의 변환 대응표가 식으로 닫는다)이고 종 $\xi(1-\xi)$ 는 이 교환에
+ 불변이라, 평형 peak 는 어느 읽기로도 같다. 방향 읽기가 갈라놓는 것은 오직 세 작용처 ---
+ 분극$\cdot$분기$\cdot$꼬리 --- 다. 이 구분이 Part II 전체의 부호 실수를 막는 가드다.
+ 
+@@ -2433,7 +2438,7 @@
+ 
+ \subsection{MSMR 대응 개관 --- 같은 logistic, 같은 부호 규약}\label{sec:lco-preview}
+ MSMR 모델은 양극 조성을 전위의 전이별 logistic 합으로 적는 표준
+-파라미터화라, Part II 종반에서 Ch1 곡선 클래스와 1:1 사전 --- $U\leftrightarrow V$,
++파라미터화라, Part II 종반에서 Ch1 곡선 클래스와 1:1 대응표 --- $U\leftrightarrow V$,
+ $U_j^0\leftrightarrow U_j^{\,d}$, $\omega_j\leftrightarrow w_j$, $X_j\leftrightarrow Q_j$, $f=+\sigma_d$ ---
+ 으로 맞물린다($f$ 는 원계열의 $F/RT>0$ 를 폭에 흡수하고 지수에 남는 방향 부호 인자). 이 가운데
+ $f=+\sigma_d$ 는 같은 물리량끼리 짝짓는 대응(pairing) 하의 유일해이며, 그 유도와 가드(``함수형 동형 $\ne$ 물리량
+@@ -2673,12 +2678,12 @@
+ \boxed{\;
+ \underbrace{\Delta U_1^{\hys,\mathrm{cat}}\ \text{(구조적 2상역)}\ \Leftarrow\ \Omega_1^\mathrm{cat}}_{\text{정규용액 히스 gap (이 절)}}
+ \quad\Big\|\quad
+-\underbrace{\partial U_1^\mathrm{cat}/\partial T\ \Leftarrow\ \Delta S_{e,1}^\mathrm{mol}(x,T)}_{\text{전자 엔트로피 (\S\ref{sec:lco-electronic})}}\;}
++\underbrace{\partial U_1^\mathrm{cat}/\partial T\ \Leftarrow\ \Delta S_{e,1}^\mathrm{mol}(x,T)}_{\text{config$\cdot$vib baseline 에 더해지는 전자 엔트로피 신규 항 (\S\ref{sec:lco-electronic})}}\;}
+ \label{eq:lco-mit}
+ \end{equation}
+ 이 분리가 config 2상역과 전자 엔트로피를 이중계산하지 않는 경계다.
+ 
+-\textbf{도핑 보정(우리 시료)} —
++\textbf{도핑 보정(우리 시료; 갭 G3)} —
+ Al$^{3+}$/Mg$^{2+}$ 비-redox 치환은 Co redox$\cdot$전자항을 보존하되 order--disorder$\cdot$MIT 상전이를
+ 억제한다 — 정규용액 틀에서 이는 pure-LCO 문헌 물리 $\Omega_j^\mathrm{cat,pure}$ 를 도핑 피팅값
+ $\Omega_j^\mathrm{cat,dop}$ 로 낮추는 입력 변화다. 식~\eqref{eq:lco-dUhys} 의 문턱 극한은
+@@ -2692,7 +2697,7 @@
+ $T_{c,j}=\Omega_j^\mathrm{cat}/2R$)이고, $\Omega_j^\mathrm{cat,dop}\le2RT$ 로 피팅되는 전이는 같은 식 안에서
+ gap 이 0 으로 닫힌다 — 이것이 상전이 억제에 따른 히스 축소와 peak smear 의 수식 표현이며, 풀린 몫은
+ \S\ref{sec:broadening} 의 broadening 폭이 더 크게 담는다. \textbf{★슬롯 분리} — 중심 전위의 미세 shift 는
+-같은 전이 dict 의 $U_j^\mathrm{cat}$ 피팅값 이동으로 \emph{따로} 들어가며, $\Omega_j^\mathrm{cat}$ 하나가
++같은 전이 파라미터 집합의 $U_j^\mathrm{cat}$ 피팅값 이동으로 \emph{따로} 들어가며, $\Omega_j^\mathrm{cat}$ 하나가
+ gap$\cdot$smear 와 중심 이동을 동시에 만든다고 쓰지 않는다(흑연의 네 staging 전이 초기값이 그러했듯,
+ pure-LCO $\Omega_j^\mathrm{cat}$ 가 초기값이고 폭$\cdot$shift 는 우리 데이터로 피팅).
+ 
+@@ -2740,21 +2745,21 @@
+ \end{equation}
+ 로 닫힌다($g(E_F,x)$ = 자리당 Fermi 준위 상태밀도). \textbf{★직접 엔트로피 경로(교차검증).} 같은 결과를 비열 없이 정보 엔트로피에서 곧장 닫아 맞대어 보면, 분포~\eqref{eq:fd} 의 엔트로피
+ $S_e=-k_B\int g(E)\,[f\ln f+(1-f)\ln(1-f)]\,\dd E$ 는 무차원 변수 $\zeta\equiv(E-E_F)/k_BT$ 와 엔트로피 핵
+-$s(\zeta)\equiv-[f\ln f+(1-f)\ln(1-f)]\ge0$ 로 $\zeta=0$ 대칭의 종이 되며 표준 Fermi 적분 항등식
+-$\int_{-\infty}^{\infty}s(\zeta)\,\dd\zeta=\pi^2/3$ 를 만족한다. 동결 $g\approx g(E_F)$ 아래 $\dd E=k_BT\,\dd\zeta$
++$\hat s(\zeta)\equiv-[f\ln f+(1-f)\ln(1-f)]\ge0$ 로 $\zeta=0$ 대칭의 종이 되며 표준 Fermi 적분 항등식
++$\int_{-\infty}^{\infty}\hat s(\zeta)\,\dd\zeta=\pi^2/3$ 를 만족한다. 동결 $g\approx g(E_F)$ 아래 $\dd E=k_BT\,\dd\zeta$
+ 를 넣으면
+ \begin{equation}
+-S_e=+k_B\int g(E)\,s(\zeta)\,\dd E
+-=k_B\,g(E_F)\,k_BT\!\int_{-\infty}^{\infty}\!s(\zeta)\,\dd\zeta
++S_e=+k_B\int g(E)\,\hat s(\zeta)\,\dd E
++=k_B\,g(E_F)\,k_BT\!\int_{-\infty}^{\infty}\!\hat s(\zeta)\,\dd\zeta
+ =\frac{\pi^2}{3}\,k_B^2\,T\,g(E_F)
+ \label{eq:Sedirect}
+ \end{equation}
+-가 되어 비열 경로의 식~\eqref{eq:Se} 와 한 항등식 $\int s(\zeta)\,\dd\zeta=\pi^2/3$ 으로 일치한다 — 두 경로의
+-합치가 함수형의 교차검증이다(부호 — $s(\zeta)\ge0$, $g\ge0$ 이라 $S_e\ge0$; 극한 $T\to0$ 또는 $g(E_F)\to0$ 에서
++가 되어 비열 경로의 식~\eqref{eq:Se} 와 한 항등식 $\int \hat s(\zeta)\,\dd\zeta=\pi^2/3$ 으로 일치한다 — 두 경로의
++합치가 함수형의 교차검증이다(부호 — $\hat s(\zeta)\ge0$, $g\ge0$ 이라 $S_e\ge0$; 극한 $T\to0$ 또는 $g(E_F)\to0$ 에서
+ $S_e\to0$).
+ \textbf{★Sommerfeld 동결의 유효 경계.} 위 동결 $g\approx g(E_F)$ 의 정확형은 상태밀도의 에너지 의존을 담은 보정항을
+-포함한다 --- 고정 $E_F$(grand-canonical)에서는 엔트로피 핵 $s(\zeta)$ 가 짝함수라 $g'(E_F)$ 항이 $\int_{-\infty}^{\infty}\!\zeta\,s(\zeta)\,\dd\zeta=0$(홀$\times$짝)으로
+-상쇄되고, 첫 보정은 $\tfrac12 k_B\,g''(E_F)(k_BT)^3\!\int\zeta^2 s(\zeta)\,\dd\zeta$ 곧 $\mathcal O(T^3)$ 이다(고정 조성 $x$ 에서는
++포함한다 --- 고정 $E_F$(grand-canonical)에서는 엔트로피 핵 $\hat s(\zeta)$ 가 짝함수라 $g'(E_F)$ 항이 $\int_{-\infty}^{\infty}\!\zeta\,\hat s(\zeta)\,\dd\zeta=0$(홀$\times$짝)으로
++상쇄되고, 첫 보정은 $\tfrac12 k_B\,g''(E_F)(k_BT)^3\!\int\zeta^2 \hat s(\zeta)\,\dd\zeta$ 곧 $\mathcal O(T^3)$ 이다(고정 조성 $x$ 에서는
+ $\mu(T)$ 이동이 같은 차수의 $g'^2/g$ 항을 더하나 역시 $\mathcal O(T^3)$; $g'(E_F)(k_BT)^2$ 형 $\mathcal O(T^2)$ Mott 항은
+ thermopower$\cdot$전도도 소관이지 엔트로피의 선도 보정이 아니다). 상대 크기는 여전히 $\mathcal O[(k_BT/E_F)^2]$ 급이라,
+ LCO 금속상은 $E_F\sim$ eV, $k_BT@300\,\mathrm K\approx0.026$ eV 로 $k_BT/E_F\sim0.03$ 이니 보정이 무시할 수준이다. 다만 MIT 전이 \emph{중심}에서는 $g(E_F)$
+@@ -2800,7 +2805,7 @@
+ 와 logistic $\sigma$ 의 정의는 다음 소절 \S\ref{sec:lco-gate} 가 닫는다 — 여기서는 그 닫힌꼴을 미리 제시),
+ 변환에서 $e_V$ 를 곱하면(나눗셈 대신) 결과가 $1/e_V^2$ 배, 곧
+ $\approx4\times10^{37}$ 배 어긋난다 — 부호는
+-환산에 불변이므로($N_A>0,\ e_V>0$) 아래 부호 규약은 자리당$\cdot$몰당 양쪽에 그대로 성립한다. \textbf{★부호 규약(★최우선 결함 클래스).} \emph{삽입 기준이며}, $\Delta S_{\rxn,j}$ 슬롯(흑연 $2\!\to\!1$ 삽입 $-16$ J/(mol\,K))과 일관한다 — 물리적으로
++환산에 불변이므로($N_A>0,\ e_V>0$) 아래 부호 규약은 자리당$\cdot$몰당 양쪽에 그대로 성립한다. \textbf{★부호 규약.} \emph{삽입 기준이며}, $\Delta S_{\rxn,j}$ 슬롯(흑연 $2\!\to\!1$ 삽입 $-16$ J/(mol\,K))과 일관한다 — 물리적으로
+ 탈리튬화($x\!\downarrow$, 본 문건 LCO 충전 주 진행) 시 전자 엔트로피가 방출되며, 그 방출량은 게이트가 스스로
+ 예측하는 MIT 전 구간 적분 $\int|\partial S_e/\partial x|\,\dd x\approx1.1\,k_B$/atom(완전 metal 끝점 $S_e$ 와
+ 항등)이고, reynier\cite{reynier2004} 의 O3 총 부분몰 $\approx0.18\,k_B$/atom(config$+$vib$+$전자 총합, tier B)은
+@@ -2931,7 +2936,7 @@
+ 
+ 이 전자항이 합산식~\eqref{eq:sum} 에 $U_j(T)$ 를 통해 들어가는 $\Delta S_{\rxn,j}^\mathrm{cat}$ 의 분해
+ (\S\ref{sec:lco-decomp})에서 셋째 성분으로 plug-in 되며(흑연은 이 자리가 0),
+-forward 코드는 전이 파라미터를 LCO 값으로 치환하고 이 항 하나를 추가하는 것만으로 LCO 에 적용된다(\S\ref{sec:lco-code}).
++이 일반화는 전이 파라미터를 LCO 값으로 치환하고 이 항 하나를 추가하는 것만으로 LCO 에 적용된다(\S\ref{sec:lco-code}).
+ 
+ \subsection{LCO dQ/dV peak — 양극 영역의 세 peak}\label{sec:lco-peak}
+ \textbf{(a) 출발 — 전하 보존식을 LCO 전이 집합으로.} 흑연 \S\ref{sec:eqpeak} 의 출발점인 전하 보존식은
+@@ -2994,7 +2999,7 @@
+ gap$\cdot$smear 슬롯, $U_j^\mathrm{cat}$ 이동은 별도 슬롯).
+ 
+ \subsection{LCO $\Delta S_{\rxn,j}^\mathrm{cat}$ 분해 — config + vib + electronic}\label{sec:lco-decomp}
+-흑연에서 합산식~\eqref{eq:sum} 의 $\Delta S_{\rxn,j}$ 는 평형 중심 $U_j(T)$ 를 통해 한 덩이로 작용했으나, LCO 양극에서는 이 한 덩이가 세 물리 성분(config=배치$\cdot$vib=격자진동$\cdot$electronic=전자)의 합임을 명시한다 — 식$\cdot$코드 경로는 그대로이고 $\Delta S$ 의 \emph{내부 분해}만 더하며, 그 근거부터 식으로 놓는다. \textbf{(a) 출발 — 분배함수의 인수분해.} 전이 $j$ 창의 한 미시상태는 (리튬 자리 배열)$\times$
++흑연에서 합산식~\eqref{eq:sum} 의 $\Delta S_{\rxn,j}$ 는 평형 중심 $U_j(T)$ 를 통해 한 덩이로 작용했으나, LCO 양극에서는 이 한 덩이가 세 물리 성분(config=배치$\cdot$vib=격자진동$\cdot$electronic=전자)의 합임을 명시한다 — 식$\cdot$모델 경로는 그대로이고 $\Delta S$ 의 \emph{내부 분해}만 더하며, 그 근거부터 식으로 놓는다. \textbf{(a) 출발 — 분배함수의 인수분해.} 전이 $j$ 창의 한 미시상태는 (리튬 자리 배열)$\times$
+ (포논 들뜸)$\times$(전자 준위 점유) 세 자유도의 곱집합이고, 세 자유도가 독립인 극한에서 분배함수가
+ 인수분해된다:
+ \begin{equation}
+@@ -3036,7 +3041,7 @@
+ \end{aligned}
+ \label{eq:lco-slots}
+ \end{equation}
+-이 규칙 아래 식~\eqref{eq:lco-Sadd} 의 세 항을 슬롯값으로 적은 것이 분해 박스다:
++\textbf{(d) 박스 --- 슬롯 분해식.} 이 규칙 아래 식~\eqref{eq:lco-Sadd} 의 세 항을 슬롯값으로 적으면 분해 박스가 닫힌다:
+ \begin{equation}
+ \boxed{\;\Delta S_{\rxn,j}^\mathrm{cat}(x,T)=\underbrace{\Delta S_j^\mathrm{config}}_{\text{중심 표준값(내부 분포는 }w\text{ 가 담음)}}
+ +\underbrace{\Delta S_j^\mathrm{vib}}_{\text{음의 baseline}}
+@@ -3069,7 +3074,7 @@
+ 
+ \textbf{★다음 두 설계 항목.} 이 분해를 적용하는 데 필요한 두 가지를 명시해 둔다.
+ \emph{(i) 좌표 매핑.} 전자항 $\Delta S_{e,j}(x,T)$ 는 조성 $x$ 의 함수인데 곡선 계산은 전위점 $V$ 에서 직접 진행되므로,
+-$x\!\leftrightarrow\!\xi_{\eq,1}(V)$ 매핑으로 좌표를 잇는다(구현식은 \S\ref{sec:lco-code} 식~\eqref{eq:lco-xmap}). \emph{(ii) round-trip 가드.} 식~\eqref{eq:lco-decomp} 의 config 중심 표준값
++$x\!\leftrightarrow\!\xi_{\eq,1}(V)$ 매핑으로 좌표를 잇는다(닫힌식은 \S\ref{sec:lco-code} 식~\eqref{eq:lco-xmap}). \emph{(ii) round-trip 가드.} 식~\eqref{eq:lco-decomp} 의 config 중심 표준값(갭 G1 --- 연속 $\Delta S(x)$ 부재)
+ $\Delta S_j^0$(Motohashi\cite{motohashi2009} $\approx0.47/1.49$ J/(mol\,K), T2/T3 — 배정 양쪽 tier C,
+ \S\ref{sec:lco-hys})은 아직 round-trip 으로 실증되지 않은
+ \emph{초기값}(신뢰값 아님)이므로, 흑연 $\Delta S_\rxn{=}-16$ J/(mol\,K) 의 round-trip 절차와 동격으로 T1 위치
+@@ -3127,7 +3132,7 @@
+ 쪽으로도 같으나, 방향 서술은 그렇지 않다). 이로써 탈리튬화/리튬화 진행 방향이 두 모델에서 일관되게
+ 맞춰진다($U_j^0\leftrightarrow U_j^{\,d}$ 대응은 방향분해 파라미터화로 읽으며, 순정 MSMR 평형 등온선은
+ $\gamma_j{=}0$ 의 $U_j$ 대응이 기본형이다). \textbf{(d) 박스 — MSMR$\to$평형 peak 변환 폐쇄.}
+-사전~\eqref{eq:lco-msmrmap} 아래에서 MSMR 종별 미분용량과 Ch1 평형 peak 은 같은 식이다:
++대응표~\eqref{eq:lco-msmrmap} 아래에서 MSMR 종별 미분용량과 Ch1 평형 peak 은 같은 식이다:
+ \begin{equation}
+ \boxed{\;Q_j\Big|\frac{\dd(x_j/X_j)}{\dd U}\Big|
+ =Q_j\,\frac{\theta_j^{\mathrm{MSMR}}(1-\theta_j^{\mathrm{MSMR}})}{\omega_j}
+@@ -3220,10 +3225,10 @@
+ \end{keybox}
+ 
+ \subsection{전체 진행 요약}\label{sec:facade}
+-요약하면 — 상위 진입점은 실험조건을 받아 방향 부호와 전류 크기로 환산하고(식~\eqref{eq:n0map}),
++요약하면 — 계산은 실험조건을 받아 방향 부호와 전류 크기로 먼저 환산하고(식~\eqref{eq:n0map}),
+ LCO 전극은 셀 라벨을 탈리튬화 부호로 자동 환산하며(식~\eqref{eq:lco-sigmaslot}), $|I|\to0$ 기준선은
+ 식~\eqref{eq:eqpeak} 만 합산한 충방전 불변$\cdot$히스테리시스 미반영 곡선이다. 전체 진행은
+-표~\ref{tab:nodemap} 가 노드와 식으로 정리하고, 구현 대응(진입점$\cdot$함수 이름)은
++표~\ref{tab:nodemap} 가 노드와 식으로 정리하고, 구현 대응표는
+ 부록~\ref{sec:appendix-code} 에 둔다.
+ 
+ \begin{table}[t]
+@@ -3301,7 +3306,7 @@
+ \end{longtable}
+ 
+ 표~\ref{tab:signcheck-R} 는 재현 가능한 수치$\cdot$극한으로 고정한 회귀 검산이다($T=298.15$ K).
+-R1--R3 은 구현 self-test 와 같은 양의 수기 재산출, R4 는 컷 규칙 정의 검사, R5 는 극한 논증,
++R1--R3 은 독립 수기 재산출로 동일 양을 재확인한 것, R4 는 컷 규칙 정의 검사, R5 는 극한 논증,
+ R6 은 LCO 중심 부호의 문헌 역대입이다(본문 \S\ref{sec:lco-center} verifybox 와 동일 수치 ---
+ 그 박스의 층위 구분 가드와 함께 읽는다). 여섯 행이 모두 통과한다 --- 부호 사슬 회귀 검산 PASS.
+ 

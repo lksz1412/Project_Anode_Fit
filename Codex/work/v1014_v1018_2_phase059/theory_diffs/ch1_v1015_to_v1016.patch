@@ -1,0 +1,71 @@
+--- Claude/docs/v1.0.15/graphite_ica_ch1_v1.0.15.tex
++++ Claude/docs/v1.0.16/graphite_ica_ch1_v1.0.16.tex
+@@ -1,8 +1,8 @@
+ % ====================================================================
+-% ★ release 1.0.15 (2026-07-04) — graphite_ica_ch1_v1.0.15.tex (계보 1.0.13 승계)
++% ★ release 1.0.16 (2026-07-06) — graphite_ica_ch1_v1.0.16.tex (계보 1.0.15 승계: 폭 n(T) 피팅 방향 반영)
+ %   = 1.0.10/1.0.11 기반 + Fable 전수 재검(docs/Fable_점검 감사 ①②③) 반영:
+ %     물리 주장 정정(H-1 Ch2 연동·H-2 w_j 지위)·서술/귀속 정정(M-1~M-11)·LCO 6절 수식화(P1.1 supplement 계승).
+-%     코드 Anode_Fit 1.0.15 와 동일 버전·matched.
++%     코드 Anode_Fit 1.0.16 와 동일 버전·matched.
+ % --------------------------------------------------------------------
+ % (계보 이력) release 1.0.10 (2026-07-01) — v10-11 내용 + 버전 1.0.10 라벨.
+ %   adversarial 2-에이전트 재검수(문건 물리·코드정합·그래프; 확정 CRIT/HIGH 0) 후 가독성 4-다리 보강:
+@@ -48,7 +48,7 @@
+ %   가져와 이 배치에 맞춰 다시 전개(베끼지 않음) — 각 결과 박스 위에
+ %   (a) 출발식/전제 -> (b) 적용 연산 -> (c) 중간식 >=1 -> (d) 박스 의 단계가 보인다.
+ %   유도 원천 = graphite_ica_ch1_Opus_v5.tex(통계역학 전 유도). 결과·부호 정본 =
+-%   Anode_Fit_v1.0.15.py(계보 v11_final→use_w_eff 제거→1.0.10→1.0.12→1.0.13→1.0.14→1.0.15). 무관 일반론(lever/chord·Marcus·KWW·적층·
++%   Anode_Fit_v1.0.16.py(계보 v11_final→use_w_eff 제거→1.0.10→1.0.12→1.0.13→1.0.14→1.0.15→1.0.16). 무관 일반론(lever/chord·Marcus·KWW·적층·
+ %   master 알고리즘 S0-S5)은 결과 박스로 수렴하지 않으므로 재유입 안 함.
+ %   그림 = v7-11 의 5개(spine·staging·hysloop·logistic·reversal) 보존 + 유도를
+ %   돕는 신규 4개(activation barrier·flux crossing·double-well·relaxation ODE).
+@@ -73,9 +73,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 코드 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.15)}}
++  pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 코드 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.16)}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.15, 통계역학-first + 코드 진행)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.16, 통계역학-first + 코드 진행)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ 
+ \newtheorem*{keybox}{핵심}
+@@ -102,7 +102,7 @@
+ \renewcommand{\thesection}{1.\arabic{section}}
+ \title{\textbf{\LARGE Chapter 1}\\[0.35em]\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 코드 진행을 따라가는 수식-구동판 — 유도 확장}
+ \author{}
+-\date{\normalsize 버전 1.0.15 \quad(코드 \texttt{Anode\_Fit 1.0.15} 와 동일 버전 · matched)}
++\date{\normalsize 버전 1.0.16 \quad(코드 \texttt{Anode\_Fit 1.0.16} 와 동일 버전 · matched)}
+ 
+ \makeatletter
+ \renewcommand*\l@section[2]{%
+@@ -1250,6 +1250,9 @@
+ \label{eq:wbase}
+ \end{equation}
+ 폭이 직접 주어지면(대신 $w$ 값 자체가 입력되면) $n_j=w_jF/(RT)$ 로 역산해 같은 식에 넣는다.
++다중도를 온도 상수가 아니라 온도 함수 $n_j(T)$ 로 두면 폭 $w_j=n_j(T)RT/F$ 가 열적 스케일 위에 잔여 $T$-의존을
++얹으며, 그 $\partial w_j/\partial T=(R/F)(n_j(T)+T\,\dd n_j/\dd T)$ 가 가역 발열 config 항에 자기정합 전파된다(Chapter 2
++겹침 가중 파생 A 에서 유도, 발열 종합식이 받음; 상수 $n_j$ 는 $\dd n_j/\dd T{=}0$ 특수형). 폭을 $n_j$(선택적으로 $n_j(T)$)로 피팅할지는 데이터가 정한다.
+ 폭은 항상 이 한 식을 쓴다(상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지 않는다 — 그 까닭은 바로 아래
+ 이중지위와 \S\ref{sec:broadening} 가 설명한다).
+ 
+@@ -2161,7 +2164,7 @@
+ %   charge   sigma_d=-1: eq:reversal lower branch = exact mirror,
+ %                        max 0.1955 at V=-1.01 w (tail -> lower V).
+ %   equilibrium species (dotted) = xi_eq(1-xi_eq)/w, peak 0.25 at 0, direction-invariant.
+-% [pointwise recomputed from memory integral eq:lag/eq:reversal (Anode_Fit_v1.0.15).]
++% [pointwise recomputed from memory integral eq:lag/eq:reversal (Anode_Fit_v1.0.16).]
+ \begin{tikzpicture}[x=0.72cm,y=8cm,>=Latex]
+ % ================= (a) DISCHARGE (top) =================
+ \begin{scope}
+@@ -3345,7 +3348,7 @@
+ % ====================================================================
+ \section{구현 대응표}\label{sec:appendix-code}
+ % ====================================================================
+-문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.15.py})의 주석$\cdot$docstring 이 본 문건의
++문건과 구현의 연계는 단방향이다 --- 구현(\code{Anode\_Fit\_v1.0.16.py})의 주석$\cdot$docstring 이 본 문건의
+ 식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\cdot$노드가 구현의 어느 식별자에
+ 대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과
+ 구현 사이의 1:1 대조)을 보존한다. 진입점은 \code{curve}(실험조건 facade — 방향 문자열$\cdot$c-rate 를

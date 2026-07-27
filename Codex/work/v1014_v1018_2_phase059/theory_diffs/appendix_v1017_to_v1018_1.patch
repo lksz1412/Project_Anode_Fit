@@ -1,0 +1,50 @@
+--- Claude/docs/v1.0.17/appendix_phase_separation.tex
++++ Claude/docs/v1.0.18.1/appendix_phase_separation.tex
+@@ -34,7 +34,7 @@
+ \renewcommand{\thesection}{A.\arabic{section}}
+ \title{\textbf{\LARGE Appendix (초안)}\\[0.35em]\Large 상분리의 열역학 --- 혼합 자유에너지, binodal 과 spinodal,\\ Maxwell construction, 핵생성과 spinodal 분해}
+ \author{}
+-\date{\normalsize 버전 1.0.17 초안 \quad(본문 편입 여부는 검토 후 결정)}
++\date{\normalsize 버전 1.0.18.1 초안 \quad(본문 편입 여부는 검토 후 결정)}
+ 
+ \begin{document}
+ \maketitle
+@@ -189,7 +189,8 @@
+ 공통접선(common tangent construction)이라 한다.
+ 
+ \textbf{(c) 중간식 --- 접선의 두 절편은 두 성분의 화학퍼텐셜.} 공통접선 조건이 익숙한 ``화학퍼텐셜
+-일치'' 와 같은 내용임을 확인한다. 전체 자유에너지 $G=N g(\xi)$, $\xi=N_B/N$, $N=N_A+N_B$ 에서
++일치'' 와 같은 내용임을 확인한다. 전체 자유에너지 $G=N g(\xi)$, $\xi=N_B/N$, $N=N_A+N_B$\footnote{이하
++$N_A,N_B$ 는 Avogadro 수와 무관한 A/B-종 자리 수이다.} 에서
+ \begin{equation}
+ \mu_B=\frac{\partial G}{\partial N_B}\Big|_{N_A}=g+(1-\xi)\,g'\,,\qquad
+ \mu_A=\frac{\partial G}{\partial N_A}\Big|_{N_B}=g-\xi\,g'
+@@ -249,7 +250,7 @@
+ 로 닫힌 꼴이 나오며, 이는 본문 \S1.5 의 spinodal 근과 동일하다. $T/T_c$ 로 적으면 spinodal 은
+ $T/T_c=4\xi(1-\xi)$ 의 포물선형 곡선이고, 역시 꼭대기 $(\tfrac12,\,T_c)$ 에서 binodal 과 만난다.
+ 
+-\textbf{(c) 중간식 --- 세 영역의 분류.} binodal 과 spinodal 은 임계점에서만 만나고 그 아래 온도에서는
++\textbf{(c) 분류표 --- 세 영역의 분류.} binodal 과 spinodal 은 임계점에서만 만나고 그 아래 온도에서는
+ binodal 이 바깥, spinodal 이 안쪽에 놓인다(그림~\ref{fig:app-phasediag} 의 상평형도가 이 포함 관계를
+ 온도 축 전체에서 보인다). 이는 두 판정의 논리적 포함 관계의 기하적 표현이다:
+ 국소 불안정($f''<0$)이면 반드시 전역 불안정이지만, 전역 불안정이어도 국소적으로는 안정할 수 있다.
+@@ -391,7 +392,8 @@
+ 
+ 앞 절까지의 논의는 ``어디가 평형인가'' 만 답했고, ``어떻게 도달하는가'' 는 영역에 따라 정성적으로
+ 다른 두 경로를 따른다. 준안정 영역과 불안정 영역의 구분이 실질적 의미를 갖는 것은 바로 이 동역학
+-차이 때문이다.
++차이 때문이다. 이하 두 소절(\S\ref{app:nucleation}, \S\ref{app:spindecomp})은 다른 절의 (a)--(d) 4단
++구성과 달리 내용의 성격상 3\textasciitilde4단으로 축약되어 전개된다.
+ 
+ \subsection{준안정 영역 --- 핵생성}\label{app:nucleation}
+ 
+@@ -399,7 +401,8 @@
+ 되돌아간다. 분해가 시작되려면 새 상의 작은 영역(핵)이 유한 크기로 생겨야 하는데(고전 핵생성 이론 [A3]·[A5]), 핵의
+ 부피는 자유에너지를 낮추지만 모상과의 계면은 계면 에너지 $\gamma$[J/m$^2$]만큼 비용을 문다. 부피당
+ 구동력은 모상($\bar\xi$)의 접선에서 잰 신상 몰당 이득의 부피 환산
+-$\Delta g_v=\bigl[f(\xi_\beta)-f(\bar\xi)-f'(\bar\xi)(\xi_\beta-\bar\xi)\bigr]/v_m<0$($v_m$ = 몰부피)이다
++$\Delta g_v=\bigl[f(\xi_\beta)-f(\bar\xi)-f'(\bar\xi)(\xi_\beta-\bar\xi)\bigr]/v_m<0\;[\mathrm{J/m^3}]$($v_m$ =
++몰부피 $[\mathrm{m^3/mol}]$)이다
+ --- \S\ref{app:chord} 의 계 전체 이득 $\Delta f_\mathrm{sep}$ 와는 핵의 몰분율 $\lambda$ 를 매개로
+ $\Delta f_\mathrm{sep}=\lambda\,v_m\,\Delta g_v$(소량 핵 극한)로 연결되며, 공통접선 조건에서 이 접선
+ 구동력이 정확히 $0$ 이 된다. 반지름 $r$ 의 구형 핵에 대해
