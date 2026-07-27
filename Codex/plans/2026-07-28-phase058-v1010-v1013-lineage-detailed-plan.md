@@ -646,3 +646,40 @@ lineage report를 기계 검증한다.
 - Step 30은 완료됐다. 다음은 Step 31.1 v1.0.13 partition function,
   occupancy, chemical potential, Nernst/logistic와 multi-transition
   합을 표준 통계역학에서 재유도한다.
+
+### 2026-07-28 — Step 31.1
+
+- 단일자리 grand partition에 빈/점유 상태 축퇴도까지 포함해
+  점유율, chemical potential, Li/Li\(^+\) 기준 전위,
+  Nernst/logistic과 이상 dQ/dV 종을 독립 재유도했다.
+- 298.15 K에서 이상 \(w=25.692579\) mV,
+  FWHM \(=90.579042\) mV, peak \(=9.730436\) V\(^{-1}\),
+  면적 1을 확인했다. 분배함수 점유와 직접 logistic의 최대 차이는
+  \(1.67\times10^{-16}\)이다.
+- 축퇴도 \(g_1/g_0=3\)은 중심을 28.226 mV 옮기지만 FWHM은
+  바꾸지 않으므로 폭 다중도 \(n_j\)의 유도가 될 수 없다고 판정했다.
+- 독립 자리/반응군이면
+  \(\Xi_{\rm total}=\prod_j\Xi_j^{M_j}\)에서 용량 합이 나오지만,
+  동일 host의 연속 staging 상태에는 상호배타 multi-state partition
+  또는 명시적 reaction extent가 필요함을 분리했다.
+- v1.0.13은 \(\Omega\ne0\)이면 닫힌 logistic이 아니라고 올바르게
+  쓰면서도, 다른 절에서는 모든 단상 \(\Omega\le2RT\)의 폭을
+  \(n_jRT/F\) 평형 예측으로 확장해 내부 충돌한다.
+- \(\Omega=RT,\xi=0.8\)에서 정규용액 전위가 이상 Nernst보다
+  15.416 mV 낮고, 중심 기울기 등가 폭도 \(RT/(2F)\)임을 검산했다.
+- \(\Omega=3RT\)의 binodal은
+  \(\theta=0.070720/0.929280\)이고 spinodal
+  \(0.211325/0.788675\)와 다르다. 비볼록 loop는 convexification
+  전 homogeneous/metastable branch이며 그 자체가 평형 plateau나
+  측정 hysteresis memory가 아니라고 판정했다.
+- 고정 \(s=+1\)의 평형 유도는 보존하지만, 후반의
+  \(\sigma_d\) 재도입은 물리적 평형 방향이 아니라 좌표 여집합
+  relabel 또는 별도 kinetic path로만 허용한다.
+- 13개 claim을 처분했고 기계 검산 35/35가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_V1013_STATMECH_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1013_STATMECH_VALIDATION.json`.
+- 기계 gate:
+  `PASS_P058_V1013_STATMECH_REDERIVATION`.
+- 다음은 Step 31.2 interaction, degeneracy, multiplicity와
+  effective \(n\)/width의 물리적 의미를 분리한다.

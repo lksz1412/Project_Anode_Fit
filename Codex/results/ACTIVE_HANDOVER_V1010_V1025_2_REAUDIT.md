@@ -201,6 +201,19 @@
   `Codex/results/PHASE_058_R1_WITHDRAWAL_CONSISTENCY_REVIEW.md`,
   `Codex/results/PHASE_058_R1_WITHDRAWAL_CONSISTENCY_MATRIX.json`
   (`PASS_P058_R1_CROSS_ARTIFACT_ADJUDICATION`).
+- Phase 058 v1.0.13 statistical-mechanics rederivation:
+  the ideal grand-partition→occupancy→chemical-potential→Nernst/logistic
+  chain is preserved. Degeneracy shifts the center but not ideal width.
+  A multi-transition capacity sum requires disjoint independent classes
+  or explicit reaction extents. The source correctly says
+  \(\Omega\ne0\) is not a closed logistic but elsewhere overextends
+  \(RT/F\) to all subcritical regular solutions. The nonconvex loop must
+  be convexified for equilibrium, and sweep direction is not an
+  equilibrium input.
+- Phase 058 v1.0.13 statistical-mechanics evidence:
+  `Codex/results/PHASE_058_V1013_STATMECH_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1013_STATMECH_VALIDATION.json`
+  (`PASS_P058_V1013_STATMECH_REDERIVATION`, 35/35 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -223,12 +236,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 31.1:
-v1.0.13 partition function, occupancy, chemical potential,
-Nernst/logistic와 multi-transition 합을 표준 통계역학에서 재유도한다.
+Phase 058 Step 31.2:
+v1.0.13 interaction, degeneracy, multiplicity와 effective
+\(n\)/width의 물리적 의미를 분리한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -258,6 +271,9 @@ v1.0.12 exact patch 739+/201−와 labeled equation 변화를 처분하고
 실행 AST·대표 4 outputs가 v1.0.11과 동일함을 판정.
 R1 source/code/test/figure 12-facet 교차감사에서 numerical
 representability만 확인하고 physical closure 승격은 기각.
+v1.0.13 이상 grand partition에서 occupancy, Nernst/logistic,
+dQ/dV 면적·높이·FWHM을 독립 재유도하고, 비이상 단상 폭,
+다중 전이 위상, convexification과 평형 방향의 미폐쇄를 판정.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

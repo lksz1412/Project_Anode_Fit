@@ -1,0 +1,140 @@
+{
+  "schema_version": "phase058-v1013-statmech-validation-v1",
+  "audit_boundary": "INDEPENDENT_STANDARD_STATISTICAL_MECHANICS_REDERIVATION_NOT_EXTERNAL_VALIDATION",
+  "sources": {
+    "chapter_1": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+    "chapter_1_sha256": "d3a7b658c2ae099694e877cfde0b7b3870f87b411b675305cf6eb3a2480a4278",
+    "chapter_2": "Claude/docs/v1.0.13/graphite_ica_ch2_v1.0.13.tex",
+    "chapter_2_sha256": "3b5959220860790b8dac733e4aea57c9485af689d9cc3fe7f71bbe0b5f96120f",
+    "production_code": "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py",
+    "production_code_sha256": "492d1cce1e59c3ff89c8c35dfd0cc462408689b55536aeabcf4d5052c66d071c"
+  },
+  "source_evidence": {
+    "chapter_2_single_site_partition_line": 127,
+    "chapter_2_ideal_logistic_line": 158,
+    "chapter_1_ideal_chemical_potential_line": 494,
+    "chapter_1_regular_solution_chemical_potential_line": 536,
+    "chapter_1_ideal_logistic_line": 680,
+    "chapter_1_nonideal_not_logistic_line": 700,
+    "chapter_1_width_generalization_line": 1114,
+    "chapter_1_directional_equilibrium_line": 1173,
+    "chapter_1_capacity_sum_line": 1323
+  },
+  "constants": {
+    "temperature_k": 298.15,
+    "gas_constant_j_per_mol_k": 8.31446261815324,
+    "faraday_constant_c_per_mol": 96485.33212
+  },
+  "independent_derivation": {
+    "single_site_grand_partition": "Xi_1=g_0+g_1*exp[-(epsilon-mu)/(R*T)]",
+    "occupancy": "theta=g_1*exp[-(epsilon-mu)/(R*T)]/Xi_1",
+    "chemical_potential": "mu=epsilon+R*T*ln[(g_0/g_1)*theta/(1-theta)]",
+    "electrode_potential": "U=(mu_Li_ref-mu_Li_host)/F",
+    "ideal_delithiation_progress": "xi=1/(1+exp[-F*(U-U_0)/(R*T)]) for g_0=g_1",
+    "ideal_nernst": "U=U_0+(R*T/F)*ln[xi/(1-xi)]",
+    "ideal_peak": "d(xi)/dU=xi*(1-xi)/(R*T/F)",
+    "independent_class_partition": "Xi_total=product_j Xi_j^(M_j)",
+    "capacity_superposition": "Q_rxn=sum_j Q_j*xi_j only when Q_j maps disjoint independent site/reaction classes or separately defined extents",
+    "regular_solution": "F*(U-U_0)=R*T*ln[xi/(1-xi)]+Omega*(1-2*xi)",
+    "critical_condition": "Omega_c=2*R*T",
+    "equilibrium_above_critical": "convex envelope/common tangent gives coexistence plateau; the nonconvex loop is homogeneous/metastable, not the final equilibrium branch"
+  },
+  "numeric_invariants": {
+    "ideal_width_v": 0.02569257912196725,
+    "ideal_fwhm_v": 0.09057904248204679,
+    "ideal_peak_per_v": 9.730436123722942,
+    "ideal_area": 1.0,
+    "degeneracy_ratio_g1_over_g0": 3.0,
+    "degeneracy_center_shift_v": 0.028226183150970932,
+    "degeneracy_fwhm_v": 0.09057904248204679,
+    "multi_transition_capacities": [
+      0.2,
+      0.35,
+      0.45
+    ],
+    "multi_transition_total_area": 1.0,
+    "subcritical_omega_over_rt": 1.0,
+    "subcritical_regular_minus_ideal_v_at_xi_0p8": -0.015415547473180349,
+    "subcritical_center_slope_equivalent_width_v": 0.012846289560983625,
+    "critical_curvature_j_per_mol": 0.0,
+    "binodal_omega_over_rt": 3.0,
+    "binodal_theta_low": 0.07072018167994484,
+    "binodal_theta_high": 0.9292798183200551,
+    "binodal_residual": 4.440892098500626e-16
+  },
+  "claim_dispositions": [
+    {
+      "id": "SM13-01",
+      "claim": "The nondegenerate single-site grand partition gives the ideal occupancy logistic.",
+      "disposition": "PRESERVE"
+    },
+    {
+      "id": "SM13-02",
+      "claim": "The ideal lattice-gas chemical potential and Nernst/logistic signs are consistent for theta=Li occupancy and xi=1-theta.",
+      "disposition": "PRESERVE_WITH_EXPLICIT_REFERENCE_REACTION"
+    },
+    {
+      "id": "SM13-03",
+      "claim": "The ideal logistic derivative has unit area, height 1/(4w), and FWHM 4*acosh(sqrt(2))*w.",
+      "disposition": "PRESERVE"
+    },
+    {
+      "id": "SM13-04",
+      "claim": "A degeneracy or standard-state entropy ratio changes the ideal logistic width.",
+      "disposition": "REJECT_DEGENERACY_SHIFTS_CENTER_NOT_WIDTH"
+    },
+    {
+      "id": "SM13-05",
+      "claim": "w=R*T/F is an exact equilibrium prediction for every single-phase regular solution with Omega<=2RT.",
+      "disposition": "REJECT_EXACT_ONLY_AT_OMEGA_ZERO"
+    },
+    {
+      "id": "SM13-06",
+      "claim": "The same closed logistic remains exact when Omega is nonzero.",
+      "disposition": "REJECT_AND_SOURCE_CORRECTLY_FLAGS_THIS"
+    },
+    {
+      "id": "SM13-07",
+      "claim": "Omega=2RT is the symmetric regular-solution critical threshold.",
+      "disposition": "PRESERVE"
+    },
+    {
+      "id": "SM13-08",
+      "claim": "The nonconvex van-der-Waals loop above the threshold is itself the equilibrium voltage curve and thermodynamics alone establishes measured hysteresis.",
+      "disposition": "REJECT_CONVEXIFY_EQUILIBRIUM_AND_ADD_PATH_DEPENDENT_KINETICS"
+    },
+    {
+      "id": "SM13-09",
+      "claim": "A weighted sum of transition derivatives follows from charge conservation.",
+      "disposition": "PRESERVE_WITH_DISJOINT_EXTENT_AND_CAPACITY_CONTRACT"
+    },
+    {
+      "id": "SM13-10",
+      "claim": "The multi-transition sum follows automatically from the one-site partition without an independence or state-topology assumption.",
+      "disposition": "REJECT_REQUIRES_PRODUCT_PARTITION_OR_EXPLICIT_REACTION_EXTENTS"
+    },
+    {
+      "id": "SM13-11",
+      "claim": "Sweep direction may change the equilibrium occupation at fixed U and T.",
+      "disposition": "REJECT_DIRECTION_BELONGS_TO_KINETIC_PATH_OR_COORDINATE_RELABELING"
+    },
+    {
+      "id": "SM13-12",
+      "claim": "C_bg is derived from the displayed grand partition function.",
+      "disposition": "REJECT_BACKGROUND_IS_A_SEPARATE_OBSERVATION_OR_SLOW_STORAGE_TERM"
+    },
+    {
+      "id": "SM13-13",
+      "claim": "The phenomenological width multiplier n_j is derived by the single-site partition function.",
+      "disposition": "REJECT_UNDERIVED_MODEL_FORM_HANDOFF_TO_STEP_31_2"
+    }
+  ],
+  "source_internal_consistency": {
+    "correctly_limits_closed_logistic_to_omega_zero": true,
+    "also_overstates_rt_over_f_for_all_subcritical_regular_solutions": true,
+    "uses_fixed_s_plus_one_in_first_principles_equilibrium_derivation": true,
+    "later_reintroduces_sigma_d_into_an_equilibrium_named_quantity": true,
+    "derives_capacity_sum_from_conservation_not_from_a_global_product_partition": true
+  },
+  "verdict": "V1013_REPAIRS_THE_IDEAL_STATMECH_CHAIN_BUT_DOES_NOT_CLOSE_NONIDEAL_WIDTH_MULTI_TRANSITION_TOPOLOGY_OR_EQUILIBRIUM_DIRECTION"
+}
