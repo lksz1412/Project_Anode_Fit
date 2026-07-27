@@ -104,6 +104,15 @@ def bounds_and_seed(kern, N, Vx, Dx, useeds):
         p0 = U + [2.4 * RT] * N + [q0] * N + [0.004] * N + [1.0] * N
         lb = [lo] * N + [0.0] * N + [1e-9] * N + [WLO] * N + [0.15] * N
         ub = [hi] * N + [8 * RT] * N + [qhi] * N + [WHI] * N + [8.0] * N
+    # ★수정(2026-07-27, N10): 배경 bg 를 실제 파라미터로 append 한다.
+    #   종전에는 bg0/bghi 를 계산만 하고 p0/lb/ub 에 넣지 않아, make_model 의 p[-1] 이
+    #   자유 배경이 아니라 **직전 블록의 마지막 값**을 aliasing 했다
+    #   (logistic → 마지막 Q≈0.76 / regsol → 마지막 w≈0.0016 / skew 계열 → 마지막 alpha).
+    #   곧 커널마다 다른 양이 배경 노릇을 해 비교가 교란됐고, 벨리역이 특히 망가졌다.
+    #   bg 는 맨 끝에만 붙으므로 커널 블록 인덱스(p[j + k*N])는 영향받지 않는다.
+    p0 = p0 + [bg0]
+    lb = lb + [min(0.0, bg0)]          # denoise 잔여로 bg0<0 이 나와도 시드가 경계 밖이 되지 않게
+    ub = ub + [bghi]
     return (np.clip(np.array(p0, float), lb, ub),
             np.array(lb, float), np.array(ub, float))
 

@@ -17,7 +17,7 @@ from matplotlib import font_manager, rcParams
 from scipy.optimize import least_squares
 from scipy.signal import find_peaks
 
-from test_skew_regsol_v2 import load_dqdv, k_logistic, DATA, _TRAPZ
+from test_skew_regsol_v2 import load_dqdv, k_logistic, k_skew_logistic, DATA, _TRAPZ
 from regsol_kernel import regsol_dqdv, binodal
 
 for _f in ("Malgun Gothic", "Gulim", "NanumGothic"):
@@ -57,6 +57,16 @@ def model_logistic(Vx, N):
     return f
 
 
+def model_skewlogistic(Vx, N):
+    """v1.0.25 @2 skew(alpha) 반영판. 블록 순서 = U, w, Q, alpha, bg (bounds_and_seed 와 동일)."""
+    def f(p):
+        out = np.full(Vx.size, p[-1])
+        for j in range(N):
+            out = out + k_skew_logistic(Vx, p[j], p[N + j], p[2 * N + j], p[3 * N + j])
+        return out
+    return f
+
+
 def model_regsol(Vx, N):
     def f(p):
         out = np.full(Vx.size, p[-1])
@@ -73,7 +83,8 @@ def fit(kind, N, Vx, Dx, upks, restarts=4, nfev=6000):
     으로 갈렸다(실측). 두 버전을 공정하게 비교하려면 같은 탐색 강도를 써야 한다.
     """
     import test_gallery_vs_regsol as SW
-    f = model_logistic(Vx, N) if kind == "logistic" else model_regsol(Vx, N)
+    f = {"logistic": model_logistic, "skew-logistic": model_skewlogistic,
+         "regsol": model_regsol}[kind](Vx, N)
     best, bc = None, np.inf
     for useeds in SW.seed_sets(Vx, Dx, N, upks):
         p0, lb, ub = SW.bounds_and_seed(kind, N, Vx, Dx, useeds)
@@ -99,7 +110,7 @@ def fit(kind, N, Vx, Dx, upks, restarts=4, nfev=6000):
     return dict(kind=kind, N=N, npar=int(best.size), R2=round(r2, 5), BIC=round(bic, 1),
                 peakRMSE=round(rn(pk), 3), valleyRMSE=round(rn(vl), 3),
                 area_model=round(float(_TRAPZ(P, Vx)), 4),
-                area_data=round(float(_TRAPZ(Dx, Vx)), 4),
+                area_data=round(float(_TRAPZ(Dx, Vx)), 4), bg=round(float(best[-1]), 6),
                 params=[round(float(x), 8) for x in best], pred=P)
 
 
@@ -110,6 +121,10 @@ def to_transitions(kind, N, p):
         if kind == "logistic":
             out.append(dict(U=round(float(p[j]), 6), w=round(float(p[N + j]), 6),
                             Q=round(float(p[2 * N + j]), 6)))
+        elif kind == "skew-logistic":
+            out.append(dict(U=round(float(p[j]), 6), w=round(float(p[N + j]), 6),
+                            Q=round(float(p[2 * N + j]), 6),
+                            alpha=round(float(p[3 * N + j]), 6)))
         else:
             Om = float(p[N + j])
             out.append(dict(U=round(float(p[j]), 6), Omega=round(Om, 2),
@@ -140,8 +155,12 @@ def plot(tag, mat, Vx, Dx, r, color, outdir, extra=None):
         # 전이별 성분
         N = r["N"]; p = np.array(r["params"])
         for j in range(N):
-            comp = (k_logistic(Vx, p[j], p[N + j], p[2 * N + j]) if r["kind"] == "logistic"
-                    else regsol_dqdv(Vx, p[j], p[N + j], p[2 * N + j], p[3 * N + j], 1.0))
+            if r["kind"] == "logistic":
+                comp = k_logistic(Vx, p[j], p[N + j], p[2 * N + j])
+            elif r["kind"] == "skew-logistic":
+                comp = k_skew_logistic(Vx, p[j], p[N + j], p[2 * N + j], p[3 * N + j])
+            else:
+                comp = regsol_dqdv(Vx, p[j], p[N + j], p[2 * N + j], p[3 * N + j], 1.0)
             a.plot(Vx, comp + p[-1], lw=0.9, alpha=0.55, color=color)
         a.set_xlim(xl); a.set_xlabel("V vs Li"); a.set_ylabel("dQ/dV (mAh/V)"); a.grid(alpha=.3)
         m = (Vx >= xl[0]) & (Vx <= xl[1])
@@ -159,7 +178,8 @@ def plot(tag, mat, Vx, Dx, r, color, outdir, extra=None):
 if __name__ == "__main__":
     dirA = os.path.join(OUT, "A_regsol"); os.makedirs(dirA, exist_ok=True)
     dirB = os.path.join(OUT, "B_gallery"); os.makedirs(dirB, exist_ok=True)
-    summary = {"A_regsol": {}, "B_gallery": {}}
+    dirC = os.path.join(OUT, "C_skew"); os.makedirs(dirC, exist_ok=True)
+    summary = {"A_regsol": {}, "B_gallery": {}, "C_skew": {}}
 
     # 버전별 소재 구성 —
     #  A: 흑연 regsol 4(물리 staging) · 실리콘 regsol 4(Ω 가 스스로 상분리 여부 판정) · 블렌드 8
@@ -167,6 +187,7 @@ if __name__ == "__main__":
     PLAN = [
         ("A_regsol", dirA, "regsol", {"graphite": 4, "silicon": 4, "blend": 8}, "seagreen"),
         ("B_gallery", dirB, "logistic", {"graphite": 7, "silicon": 7, "blend": 14}, "darkorange"),
+        ("C_skew", dirC, "skew-logistic", {"graphite": 7, "silicon": 7, "blend": 14}, "slateblue"),
     ]
     for vname, vdir, kind, ns, color in PLAN:
         log(f"\n{'='*78}\n### {vname}  (kernel={kind})")
@@ -187,7 +208,7 @@ if __name__ == "__main__":
                 json.dump({"material": mat, "kernel": kind, "N": N,
                            "metrics": {k: r[k] for k in ("R2", "BIC", "peakRMSE",
                                                          "valleyRMSE", "npar",
-                                                         "area_model", "area_data")},
+                                                         "area_model", "area_data", "bg")},
                            "transitions": trs}, fh, ensure_ascii=False, indent=2)
             if kind == "regsol":
                 tp = sum(1 for d in trs if d["two_phase"])
