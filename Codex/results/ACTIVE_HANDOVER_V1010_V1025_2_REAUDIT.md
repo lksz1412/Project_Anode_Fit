@@ -226,6 +226,19 @@
   `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS_REVIEW.md`,
   `Codex/results/PHASE_058_V1013_WIDTH_SEMANTICS.json`
   (`PASS_P058_V1013_WIDTH_SEMANTICS`, 47/47 checks).
+- Phase 058 v1.0.13 exact patch:
+  paired text 8쌍은 1,890+/1,268−이며 Chapter 1에는 25개 equation
+  label이 추가됐다. 생산 callable 30개 중 3개와 LCO class/default
+  data가 바뀌었다. Graphite 기본 vector 8 case는 동일하지만
+  scalar guard, entropy 두 경로, LCO direction/default는 실제로
+  달라진다. Scalar guard와 LCO direction fix는 보존하고,
+  empirical-n config identity와 검증 없는 LCO default 재배치는
+  기각 또는 Tier C로 강등한다. Regression은 새 경로를 gate하지
+  않으며 portable bit-exact 주장도 성립하지 않는다.
+- Phase 058 v1.0.13 patch evidence:
+  `Codex/results/PHASE_058_V1013_PATCH_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_PATCH_ADJUDICATION.json`
+  (`PASS_P058_V1013_PATCH_ADJUDICATION`, 87/87 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -248,12 +261,13 @@
 
 ## Next Exact Step
 
-Phase 058 Step 31.3:
-v1.0.13에서 새로 생긴 식·문단·default와 code/test 변화를
-v1.0.12에 대한 exact patch로 연결한다.
+Phase 058 Step 31.4:
+v1.0.13의 50-page급 상세성이 실제 설명 폐쇄인지, 반복 가정과
+LCO·finite-current placeholder가 분량을 대신했는지 문단 단위로
+판정한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.2.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -289,6 +303,10 @@ dQ/dV 면적·높이·FWHM을 독립 재유도하고, 비이상 단상 폭,
 v1.0.13 `n`을 경험적 width ratio로 강등하고 전자수·자리수·축퇴도와
 분리했으며, equilibrium/heterogeneity/kinetics/observation의
 forward width hierarchy와 저온·유한전류 경쟁 스케일을 정립.
+v1.0.12→v1.0.13 exact patch와 30개 callable을 대조해 세 메서드와
+LCO class/default data의 실제 변화를 분리하고, scalar·direction
+수정은 보존하되 empirical entropy 해석과 미검증 LCO 할당은
+기각·강등. 87/87 patch gate 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

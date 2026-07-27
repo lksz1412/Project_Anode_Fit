@@ -726,3 +726,44 @@ lineage report를 기계 검증한다.
   `PASS_P058_V1013_WIDTH_SEMANTICS`.
 - 다음은 Step 31.3 v1.0.13 신규 식·문단·default와 code/test
   변화를 exact patch로 연결한다.
+
+### 2026-07-28 — Step 31.3
+
+- v1.0.12→v1.0.13 대응 text 8쌍의 exact patch는 1,890행 추가,
+  1,268행 삭제이고, v1.0.13 전용 handover 24행과 graph suite
+  144행이 추가됐다.
+- Chapter 1은 2,358→2,934행, equation label 86→111개,
+  boxed occurrence 23→31개, heading 41→51개다. 기존 label은
+  모두 남고 Part 0 중심의 25개 label이 추가돼 실제 이론
+  재구조화임을 확인했다.
+- Chapter 2는 규모와 label 수가 사실상 같고 entropy/implicit
+  differentiation 관련 기존 식 5개가 바뀌었다.
+- 생산 모듈 callable 30개 가운데 27개는 AST가 같고 `curve`,
+  `dqdv`, `entropy_coefficient` 세 메서드만 바뀌었다. LCO
+  direction flag와 electronic transition/default enthalpy도
+  변경됐다.
+- graphite 기본 vector 8 case는 최대 절대차 0이지만 scalar
+  \(V=0.12\) V 경로는 v1.0.12가 평형 reference보다 6.912% 낮다.
+  v1.0.13 degenerate-span guard는 실제 결함 수정으로 보존했다.
+- `n=2`와 `w`-only entropy 경로는 실제로 바뀌었다. 전자는
+  empirical `n`의 대수 자기일관성일 뿐 미시 config entropy
+  승격은 기각했고, 후자의 고정 폭 config-term 제거는 보존했다.
+- LCO facade가 charge를 delithiation \(s=+1\)에 매핑하도록
+  바로잡힌 것은 보존했다. 반면 \(x_{\rm MIT}=0.85\) default
+  재배치는 multi-temperature curve와 entropy를 크게 바꾸면서
+  공개 데이터 검증이 없어 Tier C placeholder로 강등했다.
+- regression은 verify 기본값과 invalid-mode failure를 추가했지만
+  golden 경로가 Windows 절대경로이고, 바뀐 scalar/entropy/LCO
+  경로를 하나도 gate하지 않는다. 현재 환경에서 13개 array는
+  bit-exact 1개, \(10^{-12}\) allclose 13개다.
+- 13개 claim을 처분했고 기계 검산 87/87가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_V1013_PATCH_REVIEW.md`,
+  `Codex/results/PHASE_058_V1013_PATCH_ADJUDICATION.json`.
+- 기계 gate:
+  `PASS_P058_V1013_PATCH_ADJUDICATION`.
+- 판정:
+  `V1013_IS_A_REAL_THEORY_RESTRUCTURE_AND_TARGETED_EXECUTABLE_PATCH_NOT_A_PHYSICAL_CLOSURE_RELEASE`.
+- 다음은 Step 31.4 50-page 상세성이 실제 설명 폐쇄인지, 반복
+  가정과 LCO·finite-current placeholder가 분량을 대체했는지
+  문단 단위로 판정한다.
