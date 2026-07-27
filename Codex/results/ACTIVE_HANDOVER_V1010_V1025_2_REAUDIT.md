@@ -12,7 +12,7 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_057BH_REJECTION_DEFERMENT_GENEALOGY_RESULT.md`
+   `Codex/results/PHASE_057BI_CONFLICT_RESOLUTION_CONSTITUTION_RESULT.md`
 
 ## Current State
 
@@ -45,6 +45,11 @@
   `PASS_P057_DIRECTION_GENEALOGY`.
 - Rejection/deferment genealogy gate:
   `PASS_P057_REJECTION_DEFERMENT_GENEALOGY`.
+- Conflict resolution gate:
+  `PASS_P057_CONFLICT_RESOLUTION`.
+- Current intent constitution:
+  `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
+  (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
 - Canonical decisions:
   22개, repository evidence 72개.
 - 404 provisional findings:
@@ -64,11 +69,11 @@
 
 ## Next Exact Step
 
-Phase 057 Step 24.1:
-22개 방향성 decision과 20개 금지·철회·보류 항목의 충돌을
-시간순으로 배열하고, 완전 supersession과 scope narrowing을
-구분해 현재 사용자 방향 헌법을 작성한다.
-완료 Step 18.1–23.5:
+Phase 057 Step 25.1:
+271문건/57,795행 coverage, JSON traversal, 22개 decision evidence,
+actor 오귀속, 잠정 방향 11개와 헌법을 적대 검증하고 Phase 057
+최종 gate를 판정한다.
+완료 Step 18.1–24.5:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
@@ -77,9 +82,9 @@ blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 229 commit/673 event의 copy-forward·철회·효력 계보,
 404 finding의 actor/approval/open/stale 분리, 22개 방향성
 decision과 72개 path+line+commit evidence, 20개
-rejection/deferment 계보 연결 `PASS`.
+rejection/deferment 계보, conflict resolution과 사용자 방향 헌법 `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BH_REJECTION_DEFERMENT_GENEALOGY_RESULT.md`.
+`Codex/results/PHASE_057BI_CONFLICT_RESOLUTION_CONSTITUTION_RESULT.md`.
 
 ## Resume Gate
 
