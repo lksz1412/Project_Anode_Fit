@@ -1,0 +1,226 @@
+{
+  "schema_version": "phase058-v1010-kinetics-validation-v1",
+  "sources": {
+    "theory": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+    "theory_sha256": "dc53b0df2033ea536bdbcb119b0047be40cad1a033c3c283c878d895fa91de5c",
+    "code": "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py",
+    "code_sha256": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b"
+  },
+  "source_evidence": {
+    "logistic_direction_line": 775,
+    "broadening_three_sources_line": 1239,
+    "lag_definition_line": 1412,
+    "cut_affinity_line": 1433,
+    "effective_barrier_line": 1455,
+    "branch_switch_line": 1584,
+    "code_direct_override_line": 335,
+    "code_cut_affinity_line": 353
+  },
+  "regular_solution_spinodal": {
+    "critical_condition": "Omega > 2 R T",
+    "records": [
+      {
+        "omega_over_2rt": 0.99,
+        "u": null,
+        "implementation_gap_v": 0.0,
+        "independent_gap_v": 0.0,
+        "absolute_error_v": 0.0
+      },
+      {
+        "omega_over_2rt": 1.0,
+        "u": null,
+        "implementation_gap_v": 0.0,
+        "independent_gap_v": 0.0,
+        "absolute_error_v": 0.0
+      },
+      {
+        "omega_over_2rt": 1.000001,
+        "u": 0.0009999994999698024,
+        "implementation_gap_v": 6.850994749656148e-11,
+        "independent_gap_v": 6.850994745974008e-11,
+        "absolute_error_v": 3.682140213052104e-20
+      },
+      {
+        "omega_over_2rt": 1.1,
+        "u": 0.3015113445777637,
+        "implementation_gap_v": 0.002104752329196826,
+        "independent_gap_v": 0.002104752329196826,
+        "absolute_error_v": 0.0
+      },
+      {
+        "omega_over_2rt": 2.0,
+        "u": 0.7071067811865476,
+        "implementation_gap_v": 0.05475727452557034,
+        "independent_gap_v": 0.05475727452557034,
+        "absolute_error_v": 0.0
+      },
+      {
+        "omega_over_2rt": 4.0,
+        "u": 0.8660254037844386,
+        "implementation_gap_v": 0.220651121279007,
+        "independent_gap_v": 0.220651121279007,
+        "absolute_error_v": 0.0
+      }
+    ],
+    "maximum_absolute_error_v": 3.682140213052104e-20,
+    "interpretation": "The formula is the separation of homogeneous regular-solution spinodal extrema, an upper metastability scale rather than a closed prediction of measured hysteresis."
+  },
+  "continuous_relaxation": {
+    "equation": "d xi/dV = (xi_eq-xi)/L_V",
+    "width_v": 0.025691238016271958,
+    "records": [
+      {
+        "lag_over_width": 0.0,
+        "area": 0.9999999979388464,
+        "peak_height": 9.730944061226575,
+        "peak_voltage": 0.0,
+        "fwhm": 0.09057189050256514,
+        "peak_height_relative_to_equilibrium": 1.0,
+        "fwhm_relative_to_equilibrium": 1.0
+      },
+      {
+        "lag_over_width": 0.25,
+        "area": 0.9998000112937296,
+        "peak_height": 9.588749255548676,
+        "peak_voltage": 0.006199295733326449,
+        "fwhm": 0.09213648689775611,
+        "peak_height_relative_to_equilibrium": 0.9853873576106061,
+        "fwhm_relative_to_equilibrium": 1.0172746355023543
+      },
+      {
+        "lag_over_width": 0.5,
+        "area": 0.9999000012929201,
+        "peak_height": 9.255362608254536,
+        "peak_voltage": 0.011537934993107735,
+        "fwhm": 0.0958411634197025,
+        "peak_height_relative_to_equilibrium": 0.9511268947822836,
+        "fwhm_relative_to_equilibrium": 1.058177795427469
+      },
+      {
+        "lag_over_width": 1.0,
+        "area": 0.9999499987916558,
+        "peak_height": 8.415545592537626,
+        "peak_voltage": 0.019815651881950558,
+        "fwhm": 0.10540087308555729,
+        "peak_height_relative_to_equilibrium": 0.8648231394186903,
+        "fwhm_relative_to_equilibrium": 1.1637261020026093
+      },
+      {
+        "lag_over_width": 2.0,
+        "area": 0.9999749949239902,
+        "peak_height": 6.91135512696639,
+        "peak_voltage": 0.030916835828781686,
+        "fwhm": 0.12583825292750161,
+        "peak_height_relative_to_equilibrium": 0.7102450783275001,
+        "fwhm_relative_to_equilibrium": 1.3893742554036417
+      }
+    ],
+    "qualitative_result": "Increasing L_V lowers the peak, broadens it, shifts it in the causal direction, and conserves area over a sufficiently wide domain."
+  },
+  "legacy_grid_switch": {
+    "grid_step_v": 0.0002,
+    "branch_threshold_v": 0.0004,
+    "kinetic_probe_lag_v": 0.00040004,
+    "equilibrium_peak": 9.730944061226575,
+    "kinetic_peak_just_above_threshold": 7.499844614963762,
+    "peak_ratio_kinetic_to_equilibrium": 0.770721172352358,
+    "relative_jump_at_mode_switch": 0.22927882764764196
+  },
+  "default_dynamic_path": {
+    "temperature_k": 258.15,
+    "current_numeric": 1.0,
+    "q_cell_numeric": 1.0,
+    "lag_lengths_v": [
+      9.455370326513417e-06,
+      2.3368455342490108e-06,
+      5.775392038984476e-07,
+      4.4530662143647604e-08
+    ],
+    "maximum_lag_v": 9.455370326513417e-06,
+    "representative_work_grid_step_v": 0.0002032242305813385,
+    "equilibrium_switch_threshold_v": 0.000406448461162677,
+    "maximum_lag_to_threshold_ratio": 0.023263393099005974,
+    "all_default_transitions_use_equilibrium_branch": true
+  },
+  "default_hysteresis_path": {
+    "transition_count": 4,
+    "transitions_with_gamma": 0,
+    "implicit_gamma": 0.0,
+    "hysteresis_active": false,
+    "cross_call_state_variable": false,
+    "verdict": "DEFAULT_HYSTERESIS_DISABLED_AND_MODEL_STATELESS"
+  },
+  "direct_override_zero_current": {
+    "direct_l_v": 0.04,
+    "current_a": 0.0,
+    "equilibrium": {
+      "area": 0.9999996538384484,
+      "peak_height": 9.730944061226575,
+      "peak_voltage": 0.0,
+      "fwhm": 0.09055999999999997
+    },
+    "zero_current_with_override": {
+      "area": 0.9985994795771188,
+      "peak_height": 7.514861411846625,
+      "peak_voltage": 0.026560000000000028,
+      "fwhm": 0.11664000000000002
+    },
+    "maximum_absolute_curve_difference": 4.100315835068573,
+    "zero_current_peak_relative_to_equilibrium": 0.7722643727641966,
+    "zero_current_fwhm_relative_to_equilibrium": 1.2879858657243823,
+    "verdict": "DIRECT_LV_OVERRIDE_VIOLATES_I_TO_ZERO_LIMIT"
+  },
+  "affinity_and_barrier": {
+    "default_n": 1.0,
+    "z_cut": 4.357,
+    "a_cap_rt": 4.0,
+    "selected_affinity_j_per_mol": 9915.276399999999,
+    "selected_affinity_over_rt": 4.0,
+    "z_cut_is_inactive_at_default_n": true,
+    "local_voltage_dependence_in_code": false,
+    "effective_barrier_default_enabled": true,
+    "verdict": "THE_CODE_FREEZES_AN_ARBITRARY_CUT_AFFINITY_AND_OVERLOADS_OMEGA; IT_DOES_NOT_EVALUATE_A_LOCAL_POTENTIAL_DEPENDENT_BARRIER"
+  },
+  "equilibrium_direction_probe": {
+    "voltage_v": 0.025691238016271958,
+    "center_v": 0.0,
+    "xi_s_plus": 0.7310585786300049,
+    "xi_s_minus": 0.2689414213699951,
+    "sum": 1.0,
+    "verdict": "THE_KERNEL_IS_DIRECTION_INVARIANT_BUT_THE_EQUILIBRIUM_STATE VARIABLE_IS_PROTOCOL_DEPENDENT"
+  },
+  "claim_dispositions": [
+    {
+      "claim": "Linear first-order relaxation can lower and broaden a finite-rate ICA peak.",
+      "disposition": "PRESERVE_AS_REDUCED_MODEL"
+    },
+    {
+      "claim": "The stored default model demonstrates that mechanism.",
+      "disposition": "REJECT_DEFAULT_PATH_IS_EQUILIBRIUM"
+    },
+    {
+      "claim": "The regular-solution closed form is a measured hysteresis prediction.",
+      "disposition": "CORRECT_TO_SPINODAL_UPPER_SCALE"
+    },
+    {
+      "claim": "gamma and h_eta close hysteresis memory.",
+      "disposition": "REJECT_STATELESS_PHENOMENOLOGY"
+    },
+    {
+      "claim": "The barrier depends on local electrode potential.",
+      "disposition": "REJECT_AFFINITY_IS_FROZEN_PER_TRANSITION"
+    },
+    {
+      "claim": "A direct L_V is a physical parameter compatible with equilibrium.",
+      "disposition": "REJECT_UNLESS_PROTOCOL_SCALED"
+    }
+  ],
+  "validation": {
+    "regular_solution_error_lt_1e_15_v": true,
+    "relaxation_area_within_2e_4": true,
+    "peak_decreases_with_lag": true,
+    "fwhm_increases_with_lag": true,
+    "default_path_equilibrium": true,
+    "direct_override_differs_at_zero_current": true
+  }
+}

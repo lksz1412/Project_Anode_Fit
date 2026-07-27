@@ -146,6 +146,15 @@
 - Phase 058 coordinate evidence:
   `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_DERIVATION.md`,
   `Codex/results/PHASE_058_V1010_COORDINATE_CONSERVATION_VALIDATION.json`.
+- Phase 058 v1.0.10 equilibrium/kinetic derivation:
+  first-order causal relaxation can qualitatively lower and broaden peaks,
+  but the shipped defaults remain on the equilibrium branch. The
+  regular-solution/logistic combination, grid-dependent handoff, direct-LV
+  zero-current behavior, frozen 4RT affinity, underived Omega barrier
+  correction and stateless hysteresis are rejected.
+- Phase 058 kinetic evidence:
+  `Codex/results/PHASE_058_V1010_EQUILIBRIUM_KINETICS_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_KINETICS_VALIDATION.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -168,12 +177,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 29.2:
-v1.0.10 평형 peak kernel, broadening, apparent potential,
-hysteresis와 finite-current 식을 독립 미분·극한 검산한다.
+Phase 058 Step 29.3:
+v1.0.10 entropy coefficient, reversible/irreversible heat와 LCO
+extension의 부호·단위·물리 역할을 독립 재검산한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1.
+27.1–27.5, 28.1–28.3, 29.1–29.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -191,6 +200,8 @@ PDF/image 16개 artifact–source Git 계보와 격리 rerender hash 대조,
 stale PNG 2개 판정 저장.
 v1.0.10 좌표·보존식·logistic ICA의 독립 재유도와 unit/direction
 contract 판정 저장.
+v1.0.10 ideal/regular-solution 평형, causal relaxation,
+hysteresis와 barrier closure의 독립 극한·수치 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

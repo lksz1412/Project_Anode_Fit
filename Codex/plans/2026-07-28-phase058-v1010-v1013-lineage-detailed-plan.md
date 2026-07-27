@@ -460,3 +460,39 @@ lineage report를 기계 검증한다.
   `CORE_CONSERVATION_PRESERVED_COORDINATE_CONTRACT_REJECTED`.
 - 다음은 Step 29.2 평형 kernel, broadening, apparent potential,
   hysteresis/finite-current 식의 독립 미분·극한 검산이다.
+
+### 2026-07-28 — Step 29.2
+
+- ideal logistic, interacting regular solution과 two-phase branch를
+  독립 재유도했다. \(\Omega\ne0\) free energy를 선언하면서
+  equilibrium peak는 ideal logistic로 유지한 legacy 조합은
+  thermodynamically inconsistent하다.
+- first-order relaxation
+  \(d\xi/dV=(\xi_{\rm eq}-\xi)/L_V\)은 \(L_V/w\) 증가에 따라
+  peak 저하·FWHM 증가·causal shift·면적 보존을 보여 reduced model
+  골격으로 보존했다.
+- continuum \(L_V\to0\)은 평형 derivative로 매끄럽게 수렴하지만,
+  legacy의 \(2\Delta V_{\rm grid}\) mode switch는 대표 격자에서
+  peak를 22.9% jump시켰다.
+- 258.15 K, numeric \(I=1,Q_{\rm cell}=1\)에서도 default 최대
+  \(L_V\)가 switch threshold의 0.0233에 불과해 네 graphite 전이가
+  모두 equilibrium branch를 사용함을 확인했다.
+- direct \(L_V=0.04\) V는 \(I=0\)에서도 peak를 평형의 0.772로 낮추고
+  FWHM을 1.288배 넓혀 \(I\to0\) limit를 위반했다.
+- regular-solution spinodal gap 닫힌형은 독립 계산과 일치하지만,
+  measured hysteresis가 아니라 homogeneous metastability upper
+  scale로 한정했다. default gamma는 전부 0이고 cross-call history가
+  없어 branch memory는 닫히지 않았다.
+- default affinity는 \(A=4RT\)로 전이당 동결돼 local voltage
+  dependence가 0이다. \(\Delta H_a-\chi\Omega\)는 equilibrium
+  interaction을 underived activation correction으로 중복 사용한다.
+- thermodynamic heterogeneity와 kinetic overpotential을 모두
+  apparent-\(U\)의 \(\eta\)로 묶고, \(w\)와 \(L_V\)에 finite-rate
+  broadening을 동시에 흡수한 설명은 분리·교정 대상으로 판정했다.
+- 근거:
+  `Codex/results/PHASE_058_V1010_EQUILIBRIUM_KINETICS_DERIVATION.md`,
+  `Codex/results/PHASE_058_V1010_KINETICS_VALIDATION.json`.
+- 판정:
+  `REDUCED_RELAXATION_PROMISING_LEGACY_CLOSURE_REJECTED`.
+- 다음은 Step 29.3 entropy coefficient, reversible/irreversible heat와
+  LCO extension의 부호·단위·물리 역할 재검산이다.
