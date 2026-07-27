@@ -1417,6 +1417,36 @@ SI_MSMR7_SKEW_LIT: List[Dict[str, Any]] = [
 ]
 
 # ============================================================================
+# [v1.0.25.2] 기본 전이 셋 = 7-gallery skew (사용자 확정 2026-07-27)
+#   v1.0.25 까지 기본은 GRAPHITE_STAGING_LIT(4 전이 대칭)이고 7-gallery skew 는 opt-in 이었다.
+#   확정 구성이 곡선 표현의 표준이 되었으므로 **기본/opt-in 을 뒤집는다** — 4 전이는 이제 opt-in 이다.
+#   ★상 수(phase)는 여전히 XRD 위임이며 불변이다(흑연 staging 4). 바뀐 것은 곡선 표현 해상도의 기본값뿐.
+#   ★골든 bit-exact 계약(G1)은 4 전이 대칭 기준이므로, 회귀·게이트는 아래 스위치로 레거시를 복원한다:
+#       use_legacy_4transition(True)  → 기본 셋이 GRAPHITE_STAGING_LIT / SI_CASE_SETS 로 복귀(v1.0.25 거동)
+#       use_legacy_4transition(False) → 확정 구성 복귀(기본 상태)
+#   명시 인자(graphite_transitions=... / si_transitions=...)는 스위치와 무관하게 항상 우선한다.
+DEFAULT_GRAPHITE_TRANSITIONS: List[Dict[str, Any]] = GRAPHITE_MSMR7_LIT
+DEFAULT_SI_TRANSITIONS: Optional[List[Dict[str, Any]]] = SI_MSMR7_SKEW_LIT
+#   짝 배경(같은 창에서 함께 적합된 값) — 전이만 쓰고 배경을 빠뜨리면 벨리역이 어긋난다.
+DEFAULT_CBG_GRAPHITE = 0.550
+DEFAULT_CBG_SI = 0.051
+
+
+def use_legacy_4transition(enable: bool = True) -> None:
+    """[v1.0.25.2] 기본 전이 셋을 v1.0.25 레거시(흑연 4 전이 대칭 · Si 케이스셋)로 전환/복귀.
+
+    enable=True  → 기본 셋 = GRAPHITE_STAGING_LIT, Si 기본 = si_case 셋(v1.0.25 거동 = 골든 bit-exact 기준).
+    enable=False → 기본 셋 = GRAPHITE_MSMR7_LIT · SI_MSMR7_SKEW_LIT (v1.0.25.2 확정 구성 = 기본 상태).
+    골든 회귀·게이트는 이 함수로 레거시를 복원한 뒤 비교한다."""
+    global DEFAULT_GRAPHITE_TRANSITIONS, DEFAULT_SI_TRANSITIONS
+    if enable:
+        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_STAGING_LIT
+        DEFAULT_SI_TRANSITIONS = None          # None = si_case 셋 경로(v1.0.25 거동)
+    else:
+        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_MSMR7_LIT
+        DEFAULT_SI_TRANSITIONS = SI_MSMR7_SKEW_LIT
+
+# ============================================================================
 # R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.24 §3.5 doc-leads 요구명세)
 #   근거 절: §3.3 eq:blend-balance(공통-μ 이중합 전하 보존·음함수 U_oc)·eq:blend-dqdv(dQ/dV =
 #     C_bg + host 이중합)·eq:blend-limit(f_Si→0 흑연 회수) / §3.5 eq:si-code-bitexact(f_Si=0
@@ -1541,7 +1571,8 @@ class BlendedAnodeDQDV:
         Si 케이스 선택자 'elemental'|'siox'|'sic'(§3.5 ssec:code-caseset). 각 케이스는 SI_CASE_SETS
         의 tier 명기 시연 전이 셋을 쓴다(신뢰값 아님 — 피팅 override).
     graphite_transitions : List[dict] | None
-        흑연 host 전이 셋(기본 None = GRAPHITE_STAGING_LIT). 흑연 단독 경로와 동일 셋이어야 f_Si=0
+        흑연 host 전이 셋(기본 None = DEFAULT_GRAPHITE_TRANSITIONS = 7-gallery skew;
+        use_legacy_4transition(True) 시 4 전이). 흑연 단독 경로와 동일 셋이어야 f_Si=0
         bit-exact 가 성립한다(흑연 Q 는 f_Si 로 재스케일하지 않음 — 아래 용량 배분 주석).
     si_transitions : List[dict] | None
         Si host 전이 셋 직접 지정(기본 None = si_case 로 선택).
@@ -1578,10 +1609,12 @@ class BlendedAnodeDQDV:
         self.f_Si = f_Si
         self.si_case = si_case
 
-        gr_trs = GRAPHITE_STAGING_LIT if graphite_transitions is None else graphite_transitions
+        gr_trs = DEFAULT_GRAPHITE_TRANSITIONS if graphite_transitions is None else graphite_transitions
 
         # Si 전이 셋 선택 — 원본 데이터셋 미변조(얕은 복사 후 스케일/오프셋 적용; dict 값은 전부 스칼라).
-        if si_transitions is None:
+        if si_transitions is None and DEFAULT_SI_TRANSITIONS is not None:
+            si_src = DEFAULT_SI_TRANSITIONS
+        elif si_transitions is None:
             if si_case not in SI_CASE_SETS:
                 raise ValueError(
                     f"si_case must be one of {sorted(SI_CASE_SETS)}; got {si_case!r}.")

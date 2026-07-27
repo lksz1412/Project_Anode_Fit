@@ -249,3 +249,36 @@ marginal 두-상. §5b 서술과 정합(그 값에 맞춰 본문 구간을 1.9--
 본 식의 서술은 ``연속 접속'' 이라 적는다. 둘은 **다른 대상**이다 --- 전자는 broadening 이전 평형 등온선의
 성격 변화, 후자는 broadening 을 얹은 $\dd Q/\dd V$ 의 $\Omega$ 의존성. 모순은 아니나 **표현이 부딪히므로
 한 문장 각주로 구분해 두는 것이 남은 정리 항목**이다.
+
+## U10. 기본/opt-in 역전 + 표현 충돌 각주 (사용자 확정 2026-07-27 · 최종)
+
+### (1) 곡선 표현의 기준선을 7-gallery skew 로 이동
+
+v1.0.25 까지 기본 = 흑연 4 전이 대칭, 7-gallery skew = opt-in 이었다. **역전한다.**
+
+- 신설: `DEFAULT_GRAPHITE_TRANSITIONS`(= `GRAPHITE_MSMR7_LIT`) · `DEFAULT_SI_TRANSITIONS`(= `SI_MSMR7_SKEW_LIT`)
+  · `DEFAULT_CBG_GRAPHITE`(0.550) · `DEFAULT_CBG_SI`(0.051). 전이 셋 해석 지점이 이 포인터를 탄다.
+- 신설 스위치 `use_legacy_4transition(enable)` — `True` 면 v1.0.25 거동(4 전이 대칭 · Si 케이스셋)으로 복귀,
+  `False` 면 확정 구성. **명시 인자는 스위치와 무관하게 항상 우선**한다.
+- **골든 bit-exact 계약(G1) 처리**: 그 계약은 4 전이 기준이므로 `test_gates_v1024.py` 의 모듈 로더가
+  로드 직후 `use_legacy_4transition(True)` 를 호출하도록 했다. 곧 **골든 기준 자체는 무변경**이고,
+  바뀐 것은 기본 진입 경로뿐이다.
+- **상 수는 불변.** 바뀐 것은 곡선 표현의 기본 해상도이며, XRD 상 수(흑연 staging 4)는 그대로다.
+  표~`tab:staging` 의 4-전이는 **상 수와 1:1 대응하는 물리 기준**으로 계속 유효하다 --- 두 축이 갈린 것이지
+  하나가 다른 하나를 대체한 것이 아니다(§5b·§18 keybox 반영).
+
+**게이트 전건 GREEN(본 리비전에서 실행)**: `test_gates_v1024` R6-G1/G2/G3 + coverage PASS ·
+`test_gates_v1025` 9/9 · `reflect` 4/4 · `selfconsistent` 5/5.
+경로 검증: 기본 = 7 전이(α 보유) · 레거시 전환 = 4 전이 · 복귀 시 곡선 bit-exact 재현 · NaN/Inf 0.
+
+### (2) 연속/불연속 표현 충돌 해소 (U9 잔여 항목)
+
+`eq:sifr-twophase` 서술의 "연속 접속" 에 각주를 달아 §5b 의 "연속 보간이 아니다" 와 **대상이 다름**을 명시했다:
+전자는 broadening **이후** dQ/dV 의 Ω 의존성(값이 이어짐), 후자는 broadening **이전** 평형 등온선의
+성격 변화(불연속). 덧붙여 갭 무게가 문턱에서 $\sqrt{\Omega/2RT-1}$ 로 닫히므로
+**값은 이어지되 기울기는 이어지지 않는다**(도함수 발산)는 점을 수치 확인과 함께 적었다.
+
+### 잔여
+
+**XeLaTeX 3-pass 만 남았다** --- 본 환경에 TeX 배포판이 없다. 신규 요소 = `eq:sifr-twophase`(식 1) ·
+각주 1 · `\subsection` 2(`ssec:code-twophase` · `ssec:code-dqdv-numeric`) · `enumerate` 3.
