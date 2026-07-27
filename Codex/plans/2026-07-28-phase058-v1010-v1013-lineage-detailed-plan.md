@@ -346,3 +346,22 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_INDEPENDENT_PROBES.json`,
   `Codex/results/PHASE_058_INDEPENDENT_PROBE_REVIEW.md`.
 - 다음은 Step 27.5 golden NPZ 13 arrays 전수 처분이다.
+
+### 2026-07-28 — Step 27.5
+
+- v1.0.13 golden NPZ의 13/13 array를 key, shape, dtype, finite,
+  byte hash, bit equality, tolerance와 최대 오차로 전수 처분했다.
+- `V` 1개만 bit-exact였고 12개 model output은
+  `np.array_equal`에 실패했다. 전체 최대 절대차는
+  \(2.665\times10^{-15}\)였으며 13개 모두
+  `rtol=atol=1e-12`에서 allclose였다.
+- NPZ는 raw experiment, optimizer state, parameter covariance,
+  protocol metadata 또는 runtime provenance를 담지 않는
+  `DERIVED_MODEL_OUTPUT_SNAPSHOT`으로 분류했다.
+- v1.0.10 regression golden은 repository 밖 temporary path에만 있어
+  재현 불가능하다는 Step 27.3 blocker를 유지했다.
+- 근거:
+  `Codex/results/PHASE_058_GOLDEN_NPZ_AUDIT.json`,
+  `Codex/results/PHASE_058_GOLDEN_NPZ_REVIEW.md`.
+- Step 27은 완료됐다. 다음은 Step 28.1 PDF 8개 215 pages
+  전 페이지 render와 source 대응 감사다.
