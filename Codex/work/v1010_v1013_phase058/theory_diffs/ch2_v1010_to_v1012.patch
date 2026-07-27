@@ -1,0 +1,128 @@
+--- Claude/docs/v1.0.10/graphite_ica_ch2_v1.0.10.tex
++++ Claude/docs/v1.0.12/graphite_ica_ch2_v1.0.12.tex
+@@ -1,5 +1,6 @@
+ % ====================================================================
+-% graphite_ica_ch2_v5.tex — Chapter 2 (v5: 코인 하프셀 엔트로피·가역
++% graphite_ica_ch2_v1.0.12.tex — Chapter 2 (release 1.0.12; Fable 전수 재검 반영 —
++%   H-1 BW 부호·M-8 파생D 근사 명시·M-9 고온 코너 한정. 계보 v5: 코인 하프셀 엔트로피·가역
+ %   발열의 통계열역학, Opus build — v4-11 기반, w_eff 절 제거 정정본)
+ %   ★v5 = intercalation 엔트로피·가역 발열의 *통계열역학 챕터* — 분포를 명시
+ %        전개(분배함수 Z → 점유 분포 ⟨n⟩ = Ch1 logistic 의 기원 → configurational
+@@ -32,9 +33,9 @@
+ \setlength{\parskip}{0.45em}\setlength{\parindent}{0pt}\setlength{\headheight}{14pt}
+ \setlength{\emergencystretch}{2em}
+ \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,
+-  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v5): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
++  pdftitle={흑연 음극 dQ/dV — Chapter 2 (v1.0.12): 코인 하프셀 엔트로피·가역 발열의 통계열역학}}
+ \pagestyle{fancy}\fancyhf{}
+-\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v5, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
++\lhead{흑연 음극 $dQ/dV$ — Ch.2 (v1.0.12, 엔트로피 통계열역학)}\rhead{\thepage/\pageref{LastPage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+ \newtheorem*{keybox}{핵심}
+ \newtheorem*{srcbox}{문헌 근거}
+@@ -159,9 +160,21 @@
+ 
+ \begin{keybox}
+ Chapter 1 의 평형 종 $\xi_\eq$ 는 \emph{현상학적 곡선맞춤}이 아니라 \emph{격자기체 점유 분포의 여집합}(탈리튬화
+-진행률 $=1-\theta$)이다. logistic 폭 $w=RT/F$ 는(자리당 $n_j{=}1$ 기준; 전이별 유효 폭 $w_j=n_jRT/F$ 는 \S\ref{sec:revheat}$\cdot$코드 \texttt{func\_w}) 임의 모수가 아니라 단일 자리 2-상태 분배함수~\eqref{eq:Z1} 가
+-정하는 분포의 열적 폭이다. ★표기: $\theta=$ Li 점유율(만충서 1), $\xi=1-\theta=$ 탈리튬화 진행률(희박서 1);
+-둘은 같은 점유 분포의 두 이름이다. Chapter 2 는 이 분포를 결론이 아니라 출발점으로 삼아 엔트로피를 쌓는다.
++진행률 $=1-\theta$)이다. logistic 폭 $w=RT/F$ 는(자리당 $n_j{=}1$ 기준; 전이별 유효 폭 서식 $w_j=n_jRT/F$ 는
++\S\ref{sec:revheat}$\cdot$코드 \texttt{func\_w}) \emph{단상 전이($\Omega_j\le2RT$, 균질 고용체)에 한해} 임의
++모수가 아니라 단일 자리 2-상태 분배함수~\eqref{eq:Z1} 가 정하는 분포의 열적 폭 — 곧 측정 폭으로 검증
++가능한 \emph{평형 예측} — 이다. \emph{두-상 전이}($\Omega_j>2RT$; 흑연 staging 의
++$2\mathrm L\!\to\!2\cdot2\!\to\!1$ 가 피팅 후에도 여기 남는 전이다)에는 이 유도가 닿지 않는다 —
++식~\eqref{eq:Z1} 은 상호작용 모수 $\Omega$ 를 아예 담지 않는 \emph{비상호작용 단일 자리} 구성이라
++$\Omega>2RT$ 의 상분리 물리를 대변할 수 없고, 두-상 실측 종의 폭은 broadening 이 정하는 \emph{현상학적
++자유 피팅 폭}이다(파생 C \S\ref{ssec:weff}$\cdot$Chapter 1 의 폭 이중지위$\cdot$broadening 절). 여기서
++두 층위를 가른다 — 두-상에서 자유 피팅되는 것은 폭의 \emph{값}(진폭 $n_j$, 곧 기준온도의 $w_j$)이고,
++같은 $T$-의존 \emph{함수형} $w_j=n_jRT/F$($\partial w_j/\partial T=n_jR/F$)을 두-상에도 계속 쓰는 것은
++물리 유도가 아니라 코드 \texttt{func\_w} 가 $\Omega_j$ 를 가리지 않고 모든 전이에 공통으로 두는
++\emph{모델 선택}이며, 파생 A(\S\ref{ssec:overlap}) 수치검증의 전제가 바로 이 선택이다. 곧 어느 지위인지는
++코드 분기가 아니라 그 전이의 $\Omega_j$ 값이 가른다. ★표기: $\theta=$ Li 점유율(만충서 1),
++$\xi=1-\theta=$ 탈리튬화 진행률(희박서 1); 둘은 같은 점유 분포의 두 이름이다. Chapter 2 는 이 분포를
++결론이 아니라 출발점으로 삼아 엔트로피를 쌓는다.
+ \end{keybox}
+ 
+ $\xi=1-\theta$ 와 전위의 관계를 뒤집으면(점유 $\theta$ 의 Nernst 관계 $V=U_j+(RT/F)\ln[(1-\theta)/\theta]$ 에
+@@ -187,20 +200,20 @@
+ 모수 $\Omega$, regular-solution 형)다. $\Omega>0$ 은 같은 종끼리 뭉치려는 인력(상분리 경향), $\Omega<0$ 은
+ 교대 정렬(규칙화) 경향을 뜻한다. 평형 전위는 $\theta$ 1몰 삽입당 자유에너지 변화이므로
+ \begin{equation}
+-V_\eq(\theta) \;=\; U_j \;+\; \frac{RT}{F}\ln\!\frac{\theta}{1-\theta} \;+\; \frac{\Omega}{F}\,(1-2\theta),
++V_\eq(\theta) \;=\; U_j \;-\; \frac{RT}{F}\ln\!\frac{\theta}{1-\theta} \;-\; \frac{\Omega}{F}\,(1-2\theta),
+ \label{eq:Veq_BW}
+ \end{equation}
+-가 되어, 식~\eqref{eq:Vxi} 의 이상 격자기체에 상호작용 항 $\Omega(1-2\theta)/F$ 가 더해진다. 이 상호작용의
++가 되어, 식~\eqref{eq:Vxi} 의 이상 격자기체에 상호작용 항 $-\Omega(1-2\theta)/F$ 가 더해진다. 이 상호작용의
+ \emph{열역학적} 결과는 상분리 임계다: $\Omega$ 가 임계값을 넘으면 평형 등온선이 비단조가 되어 분포가 쌍봉
+ (bimodal)으로 갈리며 \emph{상분리}(plateau)가 일어난다. 임계 조건은 $\partial V_\eq/\partial\theta=0$ 의 첫 등장, 곧
+ \begin{equation}
+-\frac{\dd V_\eq}{\dd\theta} \;=\; \frac{RT}{F}\frac{1}{\theta(1-\theta)} \;-\; \frac{2\Omega}{F},
++\frac{\dd V_\eq}{\dd\theta} \;=\; -\frac{RT}{F}\frac{1}{\theta(1-\theta)} \;+\; \frac{2\Omega}{F},
+ \qquad
+-\theta=\tfrac12\text{ 에서 }\;\frac{\dd V_\eq}{\dd\theta}\Big|_{1/2}=\frac{4RT-2\Omega}{F},
++\theta=\tfrac12\text{ 에서 }\;\frac{\dd V_\eq}{\dd\theta}\Big|_{1/2}=\frac{2\Omega-4RT}{F},
+ \label{eq:slope_BW}
+ \end{equation}
+ 이 0 이 되는 $\Omega=2RT$ 다. $\Omega<2RT$ 면 등온선이 단조(균질 고용체), $\Omega>2RT$ 면 중앙에서
+-기울기가 음으로 뒤집혀(불안정) 상분리한다. 이 임계 $\Omega=2RT$ 가 \S\ref{sec:limits} 에서 핵심 코너로 다시
++기울기가 양으로 뒤집혀(불안정) 상분리한다. 이 임계 $\Omega=2RT$ 가 \S\ref{sec:limits} 에서 핵심 코너로 다시
+ 나온다. (한편 그 두-상 영역에서 \emph{실측} 봉우리가 갖는 유한 폭은 평형 등온선이 정하는 양이 아니라 현상학적
+ 피팅 폭이다 — \S\ref{sec:revheat} 종합식의 $w_j$ 지위와 Chapter 1 broadening 절을 보라.)
+ 
+@@ -482,7 +495,7 @@
+ \emph{완전식}이 되며(\S\ref{sec:config} 의 부분몰 config 와 동일), 이것이 다음 절 파생 B 와 수치 검증의 대상이다.
+ 
+ \begin{srcbox}
+-★\textbf{수치 검증(파생 A).} Chapter 1 코드(\texttt{Anode\_Fit\_v1.0.10})의 4-전이 흑연 staging 파라미터로,
++★\textbf{수치 검증(파생 A).} Chapter 1 코드(\texttt{Anode\_Fit\_v1.0.12})의 4-전이 흑연 staging 파라미터로,
+ 유한차분 $\partial U_\oc/\partial T|_x^\mathrm{FD}=[U_\oc(x,T_2)-U_\oc(x,T_1)]/\Delta T$ ($T_1{=}292.15$,
+ $T_2{=}298.15$ K)를 식~\eqref{eq:weighted} 의 \emph{단순식}(중심값 $\Delta S^0_j/F$ 만)과, 그리고 봉우리 내부
+ config 항 $z_j R/F$ ($z_j=(U_\oc-U_j)/w_j$)를 포함한 \emph{완전식}과 비교했다 \cite{numverif2026}. 결과:
+@@ -492,6 +505,16 @@
+ 사이 값을 취함)임도 확인됐다. 곧 \eqref{eq:weighted} 의 중심값 가중에 \S\ref{sec:config} 의
+ 분포 config 를 더하면, 임시 계단 함수나 외부 입력 없이 \emph{측정급 비선형} $\partial U_\oc/\partial T(x)$ 가
+ 모델 안에서 자동 생성된다.
++
++★\textbf{전제 명시(검증의 조건부).} 이 검증의 $w_j(T)$ 는 현행 코드(\texttt{func\_w}/\texttt{\_width})가
++\emph{모든} 전이(흑연 두-상 staging 포함)에 강제하는 열적 서식 $w_j=n_jRT/F$
++($\partial w_j/\partial T=n_jR/F$) 하에서 평가된 것이다 — 자유 피팅되는 것은 진폭 $n_j$(또는 기준온도의
++$w$)뿐이고 $T$-의존의 함수형은 고정이다. 따라서 완전식의 부동소수점 일치는 그 서식이 낳는 $w(T)$ 조각
++(식~\eqref{eq:dxidT} 둘째 항)까지 포함한 \emph{해석 미분 사슬의 자기일관성} 검증이지, 두-상 전이의
++물리적 폭이 실제로 $n_jRT/F$ 로 스케일한다는 \emph{실측 검증이 아니다}(만일 실측 $w_j$ 가 $T$-동결에
++가깝다면 단순식/완전식의 우열이 뒤집히는 $\sim$0.3 mV/K 급 차이가 남는다). 두-상 $w_j$ 의 지위(현상학적
++자유 폭)는 파생 C \S\ref{ssec:weff} 가, 그 $T$-의존 함수형까지 자유화할지는 다온도 실데이터 round-trip
++(\S\ref{sec:revheat} 한계 (1))과 코드 후속 과제가 확정한다.
+ \end{srcbox}
+ 
+ \begin{figure}[t]
+@@ -583,6 +606,10 @@
+ \;=\;\tfrac12\Bigl(\frac{\partial U_\oc^\mathrm{ch}}{\partial T}+\frac{\partial U_\oc^\mathrm{dis}}{\partial T}\Bigr)\;.}
+ \label{eq:hys_rev}
+ \end{equation}
++이 상쇄는 두 분기의 봉우리 형태 $g_j^{(d)}$ 가 같다고 본 \emph{선형화 근사}($\Delta U_j^\hys\!\ll\!w_j$)에서 정확하다 —
++분기 중심 $U_j^{(d)}=U_j\pm\tfrac12\Delta U_j^\hys$ 가 서로 달라 같은 $x$ 에서 $g_j^{(\mathrm{ch})}\!\ne\!g_j^{(\mathrm{dis})}$ 이면
++겹침 가중식~\eqref{eq:hys_branch} 의 config 곡률 때문에 두 분기 평균이 $\Delta S_{\rxn,j}/F$ 로 정확히 떨어지는 것은
++$\Delta U^\hys$ 의 1차 차수까지이고, 유한 $\Delta U^\hys$ 에선 고차 보정이 남는다.
+ 히스 gap $\Delta U^\hys$ 자체는 \emph{비가역} 과정으로, 한 사이클당 $\propto I\,\Delta U^\hys$ 의 entropy
+ production(소산열)을 만든다 — 이는 온도 미분 $\partial/\partial T$ 와 \emph{별개}이며 가역열에 섞이지 않는다.
+ \begin{keybox}
+@@ -612,7 +639,7 @@
+ $\xi=\tfrac12$ (봉우리 중심) & $=\Delta S_{\rxn,j}/F$ & config$=0$; 중심 표준값 정확 회수(파생 B 일관) \\
+ $\Omega\to2RT^-$ & 상분리 임계(plateau) & 평형 등온선 비단조화$\to$plateau; \emph{실측} 두-상 폭은 현상학적 피팅(\S\ref{ssec:weff}) \\
+ 단일 봉우리 (겹침 0) & $=\Delta S_{\rxn,j}/F+$ config & 가중식~\eqref{eq:weighted} 이 단일 전이로 환원 \\
+-고온 ($\kB T\!\sim\!E_F$ 근접) & electronic $\propto T$ 우세화 & FD Sommerfeld~\eqref{eq:Se}; $S_e$ 선형 증가 \\
++고온 ($\kB T\!\sim\!E_F$ 근접) & electronic $\propto T$ 우세화 & FD Sommerfeld~\eqref{eq:Se} 는 축퇴 극한 $\kB T\!\ll\!E_F$ 전용 — \emph{정성적} 방향(전자 기여 증대)만 유효, $\kB T\!\sim\!E_F$ 에선 정량 부적용 \\
+ \bottomrule
+ \end{tabular}
+ \end{table}
+@@ -744,7 +771,7 @@
+ \bibitem{msmr_partII} ``Quantifying the Temperature Dependence of the MSMR Model Part II: Estimation of Entropy Coefficient for Meso-Carbon Micro-Bead Graphite,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad70d9.
+ \bibitem{standardised2024} ``A Standardised Potentiometric Method for the Effective Parameterisation of Reversible Heating in a Lithium-Ion Cell,'' \emph{J. Electrochem. Soc.} (2024). DOI: 10.1149/1945-7111/ad4918.
+ \bibitem{hysteresis2018} ``Uncertainties in entropy due to temperature path dependent voltage hysteresis in Li-ion cells,'' \emph{J. Power Sources} (2018). DOI: 10.1016/j.jpowsour.2018.05.060.
+-\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.10} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 부동소수점 일치 PASS, 본문 \S\ref{ssec:overlap} 요지.]
++\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \texttt{Anode\_Fit\_v1.0.12} 4-전이 흑연 staging 파라미터, 유한차분 vs.\ 가중식 비교 (2026). [내부 자료 — 부동소수점 일치 PASS, 본문 \S\ref{ssec:overlap} 요지.]
+ \end{thebibliography}
+ 
+ \end{document}

@@ -250,3 +250,20 @@ lineage report를 기계 검증한다.
 - code 실행이 원본 수정 또는 legacy environment 오염을 요구함
 
 중단 시 원본을 고치지 않고 `BLOCKED`와 정확한 미완료 범위를 기록한다.
+
+## 진행 기록
+
+### 2026-07-28 — Steps 26.2–26.3
+
+- 6/6 unique theory source를 1행부터 EOF까지 연속 검독했다.
+- coverage: 9,532/9,532 theory lines.
+- 196 section/subsection headings와 323 displayed equation environments를
+  source line에 연결했다.
+- 각 equation environment를 7개 계획 category로 1차 분류했다.
+- 코드 식별자 표식은 Ch1에서 v1.0.10 193개, v1.0.12 195개,
+  v1.0.13 217개로 확인됐다. 이는 현행 사용자 경계상 theory/source
+  분리 대상이며, 과거 문건을 현 정본으로 승격하지 않는다.
+- 초기 물리 검토는
+  `Codex/results/PHASE_058_THEORY_SOURCE_REVIEW.md`에 저장했다.
+- 아직 `PASS_P058_LINEAGE_A`가 아니다. Step 26.4의 symbol/definition
+  충돌 전수화, Step 26.5 exact diff, Steps 27–32가 남았다.

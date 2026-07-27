@@ -1,0 +1,2288 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Core symbol, quantity, unit, sign, and role audit for six Phase 058 theory sources",
+  "status": "CORE_CONTRACT_COMPLETE; EXHAUSTIVE_EQUATION_ADJUDICATION_PENDING",
+  "record_count": 32,
+  "status_counts": {
+    "BLOCKED_BY_Q_CELL_UNITS": 1,
+    "BLOCKED_NORMALIZATION_AND_PHASE_RULE": 1,
+    "BLOCKER_UNIT_CONTRACT": 1,
+    "CORRECT_AND_ELECTRODE_MAP": 1,
+    "CORRECT_AND_SPLIT": 1,
+    "CORRECT_FREE_ENERGY_ROLE; REJECT_ROLE_OVERLOAD": 1,
+    "CORRECT_INPUT_CONVERSION": 1,
+    "CORRECT_MODEL_SCOPE": 1,
+    "CORRECT_OR_REPLACE_WITH_KINETIC_MODEL": 1,
+    "EMPIRICAL_NUMERICAL_KERNEL": 1,
+    "EMPIRICAL_OBSERVATION_LAYER": 2,
+    "EMPIRICAL_ONLY": 3,
+    "PRESERVE_IF_REACTION_DEFINED": 1,
+    "PRESERVE_KINEMATIC_IDENTITY_ONLY": 1,
+    "PRESERVE_V1013_DEFINITION": 1,
+    "PRESERVE_WITH_CAPACITY_BASIS": 1,
+    "PRESERVE_WITH_EXPLICIT_ORIENTATION": 1,
+    "PRESERVE_WITH_OBSERVATION_CONTRACT": 1,
+    "PRESERVE_WITH_REFERENCE_REACTION": 1,
+    "REJECT_CONSTANT_CAP_AS_PHYSICAL_AFFINITY": 1,
+    "REMOVE_FROM_EQUILIBRIUM_STATE": 1,
+    "SEVERE_SYMBOL_COLLISION": 2,
+    "SPLIT_IDEAL_AND_EMPIRICAL_WIDTHS": 1,
+    "SPLIT_STANDARD_CENTER_FROM_COMPOSITION_FUNCTION": 1,
+    "THEORY_HYPOTHESIS_UNVERIFIED": 1,
+    "UNVERIFIED_EFFECTIVE_KINETICS": 1,
+    "UNVERIFIED_PARAMETER_MEANING": 1,
+    "UNVERIFIED_SCALE": 1
+  },
+  "rules": [
+    "One symbol must denote one physical quantity within a derivation.",
+    "Reaction direction, electrode identity, and protocol label must be distinct.",
+    "Units are part of the public model contract, not prose annotations.",
+    "Empirical observation kernels cannot be promoted to equilibrium thermodynamics."
+  ],
+  "records": [
+    {
+      "id": "SYM-001",
+      "symbol": "V_app",
+      "intended_quantity": "externally applied/measured terminal voltage",
+      "unit": "V",
+      "status": "PRESERVE_WITH_OBSERVATION_CONTRACT",
+      "collision": "Must not be identified with internal electrode potential or equilibrium OCP.",
+      "occurrence_count": 51,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 161,
+          "excerpt": "\\node[io] (in) {input: $V_\\app$, direction $\\to\\sigma_d$, c-rate $\\to|I|$, $T$, $Q_\\cell$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 164,
+          "excerpt": "\\node[stage,below=of n0] (n1) {N1: polarization\\\\$V_n=V_\\app-\\sigma_d|I|R_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 194,
+          "excerpt": "계산의 진입점은 facade \\code{curve}$(V_\\app,\\text{direction},\\text{c\\_rate},Q_\\cell,T)$ 이고, 그 첫 일은 실험조건을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 222,
+          "excerpt": "$T$ (\\code{T}) & K & 온도 — 스칼라(등온) 또는 $V_\\app$ 길이 배열($T(V)$ 비등온) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 224,
+          "excerpt": "$V_\\app$ (\\code{V\\_app}) & V & 인가(측정) 전위 격자 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 225,
+          "excerpt": "$V_n$ & V & 내부(열역학) 전위 $=V_\\app-\\sigma_d|I|R_n$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 353,
+          "excerpt": "코어 \\code{dqdv} 의 첫 식은 분극을 벗기는 환산이다. 관측은 유한 전류에서 이루어지므로 측정 전위 $V_\\app$ 에는 셀의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 360,
+          "excerpt": "V_\\app\\;=\\;V_n+\\sigma_d\\,|I|\\,R_n"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 365,
+          "excerpt": "\\emph{높게} 관측된다($V_\\app>V_n$). 충전($\\sigma_d=-1$)은 부호가 반대다. \\textbf{(b) 연산 — $V_n$ 으로 이항.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 368,
+          "excerpt": "V_n\\;=\\;V_\\app-\\sigma_d\\,|I|\\,R_n,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 373,
+          "excerpt": "\\boxed{\\;V_n\\;=\\;V_\\app\\;-\\;\\sigma_d\\,|I|\\,R_n\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 377,
+          "excerpt": "방전에서 $V_n=V_\\app-|I|R_n<V_\\app$(측정이 내부보다 높음), 충전에서 $V_n=V_\\app+|I|R_n>V_\\app$ — 이며,"
+        }
+      ]
+    },
+    {
+      "id": "SYM-002",
+      "symbol": "V_n",
+      "intended_quantity": "internally corrected voltage after the model's polarization subtraction",
+      "unit": "V",
+      "status": "CORRECT_MODEL_SCOPE",
+      "collision": "A single lumped Rn correction is not a complete porous-electrode potential decomposition.",
+      "occurrence_count": 107,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 164,
+          "excerpt": "\\node[stage,below=of n0] (n1) {N1: polarization\\\\$V_n=V_\\app-\\sigma_d|I|R_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 172,
+          "excerpt": "\\node[io,below=4.5mm of n9] (out) {output: $\\dd Q/\\dd V$ at $V_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 181,
+          "excerpt": "로 환산($\\mathrm N0$)되어 코어 \\code{dqdv} 로 들어가고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤($\\mathrm N1$),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 225,
+          "excerpt": "$V_n$ & V & 내부(열역학) 전위 $=V_\\app-\\sigma_d|I|R_n$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 354,
+          "excerpt": "직렬 저항을 통과한 IR 분극이 실려 있고, 평형 열역학이 사는 전위는 그 분극을 벗긴 내부 전위 $V_n$ 이다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 360,
+          "excerpt": "V_\\app\\;=\\;V_n+\\sigma_d\\,|I|\\,R_n"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 365,
+          "excerpt": "\\emph{높게} 관측된다($V_\\app>V_n$). 충전($\\sigma_d=-1$)은 부호가 반대다. \\textbf{(b) 연산 — $V_n$ 으로 이항.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 366,
+          "excerpt": "식~\\eqref{eq:vapppol} 을 $V_n$ 에 대해 풀면(분극 항을 좌변으로 옮겨)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 368,
+          "excerpt": "V_n\\;=\\;V_\\app-\\sigma_d\\,|I|\\,R_n,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 373,
+          "excerpt": "\\boxed{\\;V_n\\;=\\;V_\\app\\;-\\;\\sigma_d\\,|I|\\,R_n\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 377,
+          "excerpt": "방전에서 $V_n=V_\\app-|I|R_n<V_\\app$(측정이 내부보다 높음), 충전에서 $V_n=V_\\app+|I|R_n>V_\\app$ — 이며,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 378,
+          "excerpt": "$|I|\\to0$ 또는 $R_n=0$ 에서 $V_n=V_\\app$ 로 두 전위가 일치한다."
+        }
+      ]
+    },
+    {
+      "id": "SYM-003",
+      "symbol": "U_j",
+      "intended_quantity": "equilibrium reaction/transition potential or OCP",
+      "unit": "V",
+      "status": "CORRECT_AND_SPLIT",
+      "collision": "Used as standard center, composition-dependent OCP, branch center, and a V-dependent fixed-point quantity.",
+      "occurrence_count": 687,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 16,
+          "excerpt": "% ③★집합 다입자 통계역학(앙상블 ρ(U_j) 전이전위 분포·비-크기 구조무질서·dahn1995·dreyer2010; forward ∫ρ·응답=eq:ensavg; ρ→δ 환원)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 17,
+          "excerpt": "% ★사이즈(반경) 효과 전면 배제(τ∝r²·반경→U_j·PSD 크기 convolution·cogswell2012 드롭). 범위경고=사이즈 동역학·반경→평형U·PSD 안 다룸."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 19,
+          "excerpt": "% forward-only(ρ(U_j) 역산 안 함·ill-posed). w_eff 완전제거 유지. 인용 정정: +dahn1995·dreyer2010, -cogswell2012(size). [v10-11 supersede: ρ(U_j)→ρ(U_app)·fly2020=A.Fly·R.Chen(종전 Schaltz/vol.29 표기 오류) — 아래 v10-11 블록 참조]"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 24,
+          "excerpt": "% (iii-b) plateau→실측 broadening = 앙상블 apparent-U=U_j+η 분포. forward 적분변수 ρ(U_j)→ρ(U_app),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 25,
+          "excerpt": "% U_app=U_j+η. ★평형 중심 U_j=입자 무관 상수(분포≈0), 분포하는 건 η(과전압·국소환경, 비-크기)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 165,
+          "excerpt": "\\node[stage,below=of n1] (n2) {N2: center\\\\$U_j(T)=(-\\Delta H+T\\Delta S)/F$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 166,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 227,
+          "excerpt": "$U_j(T)$ (\\code{U},\\,\\code{func\\_U\\_j}) & V & 전이 $j$ 평형 중심 전위 $=(-\\Delta H_\\rxn+T\\Delta S_\\rxn)/F$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 237,
+          "excerpt": "$\\Delta U_j^\\hys$ (\\code{func\\_dU\\_hys}) & V & spinodal 상한 분기 gap \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 239,
+          "excerpt": "$U_j^{\\,d}$ (\\code{center},\\,\\code{func\\_U\\_branch}) & V & 방향별 분기 중심 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 297,
+          "excerpt": "$j$, 진행률 $\\xi_j$, 평형 중심 $U_j$ 는 삽입형 전극이면 어디서나 같은 골격이다. 이 절은 같은 골격을 두 번째 사례인"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 306,
+          "excerpt": "($x$ 감소, 전위 상승)이다. 평형 중심의 온도 의존 $\\partial U_j/\\partial T=\\Delta S_{\\rxn,j}/F$(식~\\eqref{eq:Uj} 미분)는"
+        }
+      ]
+    },
+    {
+      "id": "SYM-004",
+      "symbol": "U_j^(d)",
+      "intended_quantity": "phenomenological direction/branch-shifted transition center",
+      "unit": "V",
+      "status": "EMPIRICAL_ONLY",
+      "collision": "Must not be described as direction-dependent thermodynamic equilibrium without metastable-state specification.",
+      "occurrence_count": 75,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 239,
+          "excerpt": "$U_j^{\\,d}$ (\\code{center},\\,\\code{func\\_U\\_branch}) & V & 방향별 분기 중심 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 518,
+          "excerpt": "$U_j^{\\,d}$ 로 옮긴다. 본 문건의 주 전개는 방전이며, 히스테리시스는 그 위의 \\emph{구조적 분기}로 선언된다 — 방전과 충전이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 625,
+          "excerpt": "\\subsection{방향별 분기 중심 $U_j^{\\,d}$}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 635,
+          "excerpt": "\\boxed{\\;U_j^{\\,d}\\;=\\;U_j\\;+\\;\\tfrac12\\,\\sigma_d\\,h_{\\eta,j}\\,\\gamma_j\\,\\Delta U_j^\\hys\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 773,
+          "excerpt": "폭 척도 $w_j=n_jRT/F$(식~\\eqref{eq:wbase})로 묶고 방향 부호 $\\sigma_d$ 와 분기 중심 $U_j^{\\,d}$ 로 일반화하면"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 775,
+          "excerpt": "\\boxed{\\;\\xi_{\\eq,j}(V,T)=\\frac{1}{1+\\exp\\!\\big[-\\sigma_d(V-U_j^{\\,d})/w_j\\big]}\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 780,
+          "excerpt": "$z=\\sigma_d(V_\\work-U_j^{\\,d})/w_j$(폭은 \\code{func\\_w}$(T,n)$)이며, 코드는 오버플로 방지를 위해 $z\\ge0$ 과 $z<0$ 을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 784,
+          "excerpt": "$V_\\work$ 위에서 풀고 출력만 $V_n$ 으로 역보간하는 규약, 식~\\eqref{eq:vwork}). 호출 시 중심 $U_j^{\\,d}$ 는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 854,
+          "excerpt": "극한 — $V\\gg U_j^{\\,d}\\Rightarrow\\xi_\\eq\\to1$(방전), $V\\ll U_j^{\\,d}\\Rightarrow0$, $V=U_j^{\\,d}\\Rightarrow\\tfrac12$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 912,
+          "excerpt": "\\draw[-{Latex[length=1.6mm]}] (-4.3,0) -- (4.5,0) node[below,font=\\scriptsize] {$z=\\sigma_d(V-U_j^{\\,d})/w_j$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 924,
+          "excerpt": "\\node[below,font=\\scriptsize] at (0,-0.32) {center $U_j^{\\,d}$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 927,
+          "excerpt": "미분 $w_j|d\\xi_\\eq/dV|=\\xi_\\eq(1-\\xi_\\eq)$ — $z=0$(중심 $U_j^{\\,d}$)에서 최대 $\\tfrac14$ 인 종 모양. 이 종이"
+        }
+      ]
+    },
+    {
+      "id": "SYM-005",
+      "symbol": "q",
+      "intended_quantity": "normalized accumulated charge/protocol coordinate",
+      "unit": "dimensionless when Q/Q_cell",
+      "status": "PRESERVE_WITH_EXPLICIT_ORIENTATION",
+      "collision": "Orientation and relation to material stoichiometry are not globally fixed in early sources.",
+      "occurrence_count": 107,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 167,
+          "excerpt": "\\node[stage,below=of n3] (n4) {N4/N5: width $w$, $\\xi_\\eq$\\\\$\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 211,
+          "excerpt": "(방전 $+1$/충전 $-1$)이 코드의 \\code{s} 인자이며, 평형 점유 $\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$ 에서 방전"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 221,
+          "excerpt": "$Q_\\cell$ (\\code{Q\\_cell}) & C & 셀 용량(전하); $q=Q/Q_\\cell$ 환산$\\cdot$$|I|$ 환산 공용 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 247,
+          "excerpt": "$L_{V,j}$ (\\code{lag\\_len\\_V}) & V & 전압축 지연 길이 $=|\\dd V/\\dd q|_{q_a}L_{q,j}$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 248,
+          "excerpt": "$|\\dd V/\\dd q|_{q_a}$ (\\code{dVdq\\_qa}) & V & 컷점 OCV 기울기($L_q\\to L_V$ 환산) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 769,
+          "excerpt": "\\xi_\\eq=\\frac{1}{1+e^{-sF(V_n-U_j)/RT}}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 846,
+          "excerpt": "$\\xi_\\eq$(식~\\eqref{eq:logisticsolve}). $\\mathcal A>0$($r^+=2r^-$, 검정)이면 $\\xi_\\eq=2/3$, $\\mathcal A=0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 888,
+          "excerpt": "$\\xi_\\eq$ 이며, 둘은 \\S\\ref{sec:notation} 의 묶음 $\\xi_\\eq=1-\\theta_\\eq$ 로 한 번의 부호 차이만큼 떨어져 있다. 방향 부호"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 890,
+          "excerpt": "$\\xi_\\eq=1-\\theta_\\eq$ 는 logistic 동형이라 같은 미분식을 공유하고 식~\\eqref{eq:fermifn} 의 한 형태로 함께 적힌다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1173,
+          "excerpt": "\\textbf{(a) 출발 — 전하 보존식.} 관측 $\\dd Q/\\dd V$ 는 전하 보존식 $Q_\\cell q=Q_\\bg(V_n)+\\sum_jQ_j\\xi_j$ 를 궤적"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1174,
+          "excerpt": "$q$ 로 미분해 닫힌다 — 양변을 $q$ 로 미분하면 $Q_\\cell=C_\\bg\\,\\dd V_n/\\dd q+\\sum_jQ_j\\,\\dd\\xi_j/\\dd q$ 이고,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1175,
+          "excerpt": "$\\dd V_n/\\dd q$ 로 나누면 $\\dd Q/\\dd V_n=C_\\bg+\\sum_jQ_j\\,\\dd\\xi_j/\\dd V_n$ 이다. \\textbf{(b) 연산 — logistic"
+        }
+      ]
+    },
+    {
+      "id": "SYM-006",
+      "symbol": "Q_cell",
+      "intended_quantity": "cell/reference capacity used for normalization",
+      "unit": "v1.0.10–12 state C; v1.0.13 allows C or Ah",
+      "status": "BLOCKER_UNIT_CONTRACT",
+      "collision": "The same variable is multiplied by c_rate[h^-1] to obtain current and divides I in a time derivative; C versus Ah changes the result by 3600.",
+      "occurrence_count": 73,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 161,
+          "excerpt": "\\node[io] (in) {input: $V_\\app$, direction $\\to\\sigma_d$, c-rate $\\to|I|$, $T$, $Q_\\cell$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 180,
+          "excerpt": "\\caption{한 곡선을 그리는 코드 진행(spine). 외부 실험조건이 \\code{curve} facade 에서 $(\\sigma_d,|I|,T,Q_\\cell)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 194,
+          "excerpt": "계산의 진입점은 facade \\code{curve}$(V_\\app,\\text{direction},\\text{c\\_rate},Q_\\cell,T)$ 이고, 그 첫 일은 실험조건을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 200,
+          "excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 220,
+          "excerpt": "$|I|$ (\\code{I\\_abs}) & A & 전류 크기 $=$ c\\_rate$\\cdot Q_\\cell$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 221,
+          "excerpt": "$Q_\\cell$ (\\code{Q\\_cell}) & C & 셀 용량(전하); $q=Q/Q_\\cell$ 환산$\\cdot$$|I|$ 환산 공용 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1173,
+          "excerpt": "\\textbf{(a) 출발 — 전하 보존식.} 관측 $\\dd Q/\\dd V$ 는 전하 보존식 $Q_\\cell q=Q_\\bg(V_n)+\\sum_jQ_j\\xi_j$ 를 궤적"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1174,
+          "excerpt": "$q$ 로 미분해 닫힌다 — 양변을 $q$ 로 미분하면 $Q_\\cell=C_\\bg\\,\\dd V_n/\\dd q+\\sum_jQ_j\\,\\dd\\xi_j/\\dd q$ 이고,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1402,
+          "excerpt": "을, 정전류에서 성립하는 $\\dd q/\\dd t=|I|/Q_\\cell$ 로 나누면 $\\dd\\xi_j/\\dd q=(Q_\\cell k_j/|I|)(\\xi_{\\eq,j}-\\xi_j)$."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1406,
+          "excerpt": "\\frac{\\dd r_j}{\\dd q}=\\frac{\\dd\\xi_{\\eq,j}}{\\dd q}-\\frac{Q_\\cell k_j}{|I|}\\,r_j,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1412,
+          "excerpt": "\\qquad \\boxed{\\;L_{q,j}=\\frac{|I|}{Q_\\cell\\,k_j}\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1415,
+          "excerpt": "$L_{q,j}$ 는 요구($|I|/Q_\\cell$)와 공급($k_j$)의 비 그 자체다 — 근본식의 세 인자가 전부 이 한 양을 통해 꼬리로"
+        }
+      ]
+    },
+    {
+      "id": "SYM-007",
+      "symbol": "Q_j",
+      "intended_quantity": "charge/capacity assigned to transition j",
+      "unit": "same charge unit as dQ/dV integral",
+      "status": "PRESERVE_WITH_CAPACITY_BASIS",
+      "collision": "For blends and electrodes, mass/cell/component capacity bases must be distinguished.",
+      "occurrence_count": 126,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 168,
+          "excerpt": "\\node[stage,below=of n4] (n6) {N6: equilibrium peak\\\\$Q_j\\,\\xi_\\eq(1-\\xi_\\eq)/w$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 171,
+          "excerpt": "\\node[core,below=of n8] (n9) {N9: sum + interp\\\\$C_\\bg+\\sum_j Q_j[\\cdot]$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 207,
+          "excerpt": "용량 가중 $Q_j$. 박스 결과식은 $j$ 첨자를 단다. 점유율과 진행률은 $\\theta_j=1-\\xi_j$ 로 묶이며(점유 $\\theta$ 가 $1\\to0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 232,
+          "excerpt": "$Q_j$ (\\code{Q}) & C & 전이 $j$ 용량 가중 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1173,
+          "excerpt": "\\textbf{(a) 출발 — 전하 보존식.} 관측 $\\dd Q/\\dd V$ 는 전하 보존식 $Q_\\cell q=Q_\\bg(V_n)+\\sum_jQ_j\\xi_j$ 를 궤적"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1174,
+          "excerpt": "$q$ 로 미분해 닫힌다 — 양변을 $q$ 로 미분하면 $Q_\\cell=C_\\bg\\,\\dd V_n/\\dd q+\\sum_jQ_j\\,\\dd\\xi_j/\\dd q$ 이고,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1175,
+          "excerpt": "$\\dd V_n/\\dd q$ 로 나누면 $\\dd Q/\\dd V_n=C_\\bg+\\sum_jQ_j\\,\\dd\\xi_j/\\dd V_n$ 이다. \\textbf{(b) 연산 — logistic"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1191,
+          "excerpt": "=Q_j\\,\\frac{\\xi_{\\eq,j}(1-\\xi_{\\eq,j})}{w_j}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1192,
+          "excerpt": "=Q_j\\,\\Big|\\frac{\\dd\\xi_{\\eq,j}}{\\dd V}\\Big|\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1196,
+          "excerpt": "합산한 것($C_\\bg+\\sum_jQ_j\\xi_\\eq(1-\\xi_\\eq)/w$)이다. 부호 — $\\sigma_d$ 가 미분에서 한 번 들어오지만 peak 모양은"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1198,
+          "excerpt": "$U_j^{\\,d}$, 순높이 $=Q_j/(4w_j)$($\\xi=\\tfrac12$ 에서 $\\xi(1-\\xi)=\\tfrac14$), 배경 차감 면적 $=Q_j$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1205,
+          "excerpt": "평형 peak 식~\\eqref{eq:eqpeak} $Q_j\\,\\xi_\\eq(1-\\xi_\\eq)/w_j$ 는 전극을 가리지 않으므로, LCO 양극에도 그대로 적용된다 —"
+        }
+      ]
+    },
+    {
+      "id": "SYM-008",
+      "symbol": "|I| / I_abs",
+      "intended_quantity": "absolute applied current magnitude",
+      "unit": "A",
+      "status": "BLOCKED_BY_Q_CELL_UNITS",
+      "collision": "Correct when independently supplied in A; ambiguous when derived from c_rate times Q_cell.",
+      "occurrence_count": 128,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 161,
+          "excerpt": "\\node[io] (in) {input: $V_\\app$, direction $\\to\\sigma_d$, c-rate $\\to|I|$, $T$, $Q_\\cell$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 164,
+          "excerpt": "\\node[stage,below=of n0] (n1) {N1: polarization\\\\$V_n=V_\\app-\\sigma_d|I|R_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 180,
+          "excerpt": "\\caption{한 곡선을 그리는 코드 진행(spine). 외부 실험조건이 \\code{curve} facade 에서 $(\\sigma_d,|I|,T,Q_\\cell)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 196,
+          "excerpt": "C-rate 는 전류 크기 $|I|$ 로 바뀐다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 200,
+          "excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 220,
+          "excerpt": "$|I|$ (\\code{I\\_abs}) & A & 전류 크기 $=$ c\\_rate$\\cdot Q_\\cell$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 221,
+          "excerpt": "$Q_\\cell$ (\\code{Q\\_cell}) & C & 셀 용량(전하); $q=Q/Q_\\cell$ 환산$\\cdot$$|I|$ 환산 공용 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 225,
+          "excerpt": "$V_n$ & V & 내부(열역학) 전위 $=V_\\app-\\sigma_d|I|R_n$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 357,
+          "excerpt": "\\textbf{(a) 출발 — 측정 전위와 내부 전위의 차.} 전류 크기 $|I|$ 가 lumped 저항 $R_n$ 을 통과하며 만드는 전위 강하는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 358,
+          "excerpt": "크기 $|I|R_n$ 이고, 그 부호는 전류 방향이 정한다. 측정 전위는 내부 전위에 분극이 더해진 값이므로 한 방향(방전)에서"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 360,
+          "excerpt": "V_\\app\\;=\\;V_n+\\sigma_d\\,|I|\\,R_n"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 368,
+          "excerpt": "V_n\\;=\\;V_\\app-\\sigma_d\\,|I|\\,R_n,"
+        }
+      ]
+    },
+    {
+      "id": "SYM-009",
+      "symbol": "c_rate",
+      "intended_quantity": "C-rate",
+      "unit": "h^-1",
+      "status": "CORRECT_INPUT_CONVERSION",
+      "collision": "Requires an Ah capacity basis or explicit conversion from coulombs.",
+      "occurrence_count": 26,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 194,
+          "excerpt": "계산의 진입점은 facade \\code{curve}$(V_\\app,\\text{direction},\\text{c\\_rate},Q_\\cell,T)$ 이고, 그 첫 일은 실험조건을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 200,
+          "excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 220,
+          "excerpt": "$|I|$ (\\code{I\\_abs}) & A & 전류 크기 $=$ c\\_rate$\\cdot Q_\\cell$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1802,
+          "excerpt": "\\code{V\\_app},\\code{T},\\code{c\\_rate}/\\code{I\\_abs},\\code{Q\\_cell},\\code{direction} & 호출 & --- & 실험조건 (\\eqref{eq:n0map}) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1814,
+          "excerpt": "(2) 실험조건 $\\sigma_d$, $|I|=\\code{c\\_rate}\\cdot Q_\\cell$, $T$, $R_n$ 설정 → 분극 $V_n$(\\eqref{eq:n0map}\\eqref{eq:vn}), 작업 격자 $V_\\work$(\\eqref{eq:vwork})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1822,
+          "excerpt": "상위 \\code{curve} 가 실험조건을 받아 $\\sigma_d=\\code{\\_direction\\_to\\_sigma}$, $|I|=\\code{c\\_rate}\\cdot Q_\\cell$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1836,
+          "excerpt": "N0 & $\\sigma_d,|I|=\\code{c\\_rate}\\,Q_\\cell$ & \\eqref{eq:n0map} & \\code{curve},\\code{\\_direction\\_to\\_sigma} \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 199,
+          "excerpt": "계산의 진입점은 facade \\code{curve}$(V_\\app,\\text{direction},\\text{c\\_rate},Q_\\cell,T)$ 이고, 그 첫 일은 실험조건을"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 205,
+          "excerpt": "|I|=\\text{c\\_rate}\\cdot Q_\\cell\\quad(\\text{또는 }I_\\mathrm{abs}\\text{ 직접 지정})."
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 226,
+          "excerpt": "$|I|$ (\\code{I\\_abs}) & A & 전류 크기 $=$ c\\_rate$\\cdot Q_\\cell$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 480,
+          "excerpt": "$\\sigma_d=\\pm1,\\ |I|=\\code{c\\_rate}\\,Q_\\cell$ 은 삽입형 전극이면 종류를 가리지 않고, (ii) 전기화학 평형"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 2223,
+          "excerpt": "\\code{V\\_app},\\code{T},\\code{c\\_rate}/\\code{I\\_abs},\\code{Q\\_cell},\\code{direction} & 호출 & --- & 실험조건 (\\eqref{eq:n0map}) \\\\"
+        }
+      ]
+    },
+    {
+      "id": "SYM-010",
+      "symbol": "theta",
+      "intended_quantity": "Li-site occupancy/lithiation fraction",
+      "unit": "dimensionless",
+      "status": "PRESERVE_V1013_DEFINITION",
+      "collision": "Earlier derivations intermittently identify its complement with the same logistic without a stable reaction orientation.",
+      "occurrence_count": 221,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 207,
+          "excerpt": "용량 가중 $Q_j$. 박스 결과식은 $j$ 첨자를 단다. 점유율과 진행률은 $\\theta_j=1-\\xi_j$ 로 묶이며(점유 $\\theta$ 가 $1\\to0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 434,
+          "excerpt": "\\mu_\\mathrm{Li}(\\theta_\\eq)\\;=\\;\\mu^0-sF\\,(V-U),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 523,
+          "excerpt": "\\subsection{상호작용이 평형을 비트는 곳 — $\\mu(\\theta)$ 의 상호작용 몫}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 524,
+          "excerpt": "\\textbf{(a) 출발 — 격자기체 $\\mu$.} 한 전이를 ``동등한 자리에 리튬이 차고 비는'' 격자기체로 보면, 점유율 $\\theta$ 의 화학"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 525,
+          "excerpt": "퍼텐셜은 섞임 엔트로피의 로그 몫과 정규용액 상호작용 몫의 합이다. 섞임 몫은 $N$ 자리에서 $n=N\\theta$ 를 고르는 경우의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 527,
+          "excerpt": "$S_\\mathrm{mix}=-k_BN[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)]$ 로 닫히고, 상호작용 몫은 점유 이웃 쌍의 평균장 초과"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 528,
+          "excerpt": "에너지 $c\\,\\theta^2=c\\theta+\\Omega\\theta(1-\\theta)$($\\Omega\\equiv-c$, 선형 몫은 기준에 흡수)에서 온다. 자리 1몰당"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 529,
+          "excerpt": "자유에너지 $\\bar g(\\theta)=\\mu^0\\theta+RT[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)]+\\Omega\\theta(1-\\theta)$ 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 530,
+          "excerpt": "$\\theta$ 로 미분하면(로그 몫은 $RT\\ln[\\theta/(1-\\theta)]$, 상호작용 몫은 $\\Omega(1-2\\theta)$ — 상수 $\\pm1$ 상쇄)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 532,
+          "excerpt": "\\mu_\\mathrm{Li}(\\theta)=\\mu^0+RT\\ln\\frac{\\theta}{1-\\theta}+\\Omega_j\\,(1-2\\theta)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 535,
+          "excerpt": "\\textbf{(b) 연산 — 진행률 $\\xi=1-\\theta$ 로.} 자유에너지를 진행률 $\\xi=1-\\theta$ 로 옮기면, 1차(직선) 몫과 상수는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 887,
+          "excerpt": "식~\\eqref{eq:fermifn} 의 $\\langle n\\rangle$ 은 형식상 \\emph{자리 점유} $\\theta_\\eq$ 이고 본 절이 직결하는 것은 진행률"
+        }
+      ]
+    },
+    {
+      "id": "SYM-011",
+      "symbol": "xi_j",
+      "intended_quantity": "v1.0.13: delithiation progress, xi=1-theta",
+      "unit": "dimensionless",
+      "status": "CORRECT_AND_ELECTRODE_MAP",
+      "collision": "v1.0.10–12 use direction-dependent progress; peak magnitude hides complement/sign errors.",
+      "occurrence_count": 769,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 167,
+          "excerpt": "\\node[stage,below=of n3] (n4) {N4/N5: width $w$, $\\xi_\\eq$\\\\$\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 168,
+          "excerpt": "\\node[stage,below=of n4] (n6) {N6: equilibrium peak\\\\$Q_j\\,\\xi_\\eq(1-\\xi_\\eq)/w$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 170,
+          "excerpt": "\\node[stage,below=of n7] (n8) {N8: causal memory tail\\\\$(\\xi_\\eq-\\xi_\\mathrm{lag})/L_V$, charge reversal};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 206,
+          "excerpt": "\\textbf{전이 인덱스.} $j=1,\\dots,N_p$($N_p\\approx3$--$4$). 전이 $j$ 의 진행률 $\\xi_j$(방전 시 $0\\to1$ 로 증가, 곧 탈리튬화 진행),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 207,
+          "excerpt": "용량 가중 $Q_j$. 박스 결과식은 $j$ 첨자를 단다. 점유율과 진행률은 $\\theta_j=1-\\xi_j$ 로 묶이며(점유 $\\theta$ 가 $1\\to0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 208,
+          "excerpt": "줄어드는 것이 진행 $\\xi$ 가 $0\\to1$ 느는 것), 유도에서 둘은 부호 한 번 차이로 오간다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 211,
+          "excerpt": "(방전 $+1$/충전 $-1$)이 코드의 \\code{s} 인자이며, 평형 점유 $\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$ 에서 방전"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 212,
+          "excerpt": "($\\sigma_d=+1$)은 $V\\!\\uparrow\\Rightarrow\\xi_\\eq\\!\\uparrow$(전위를 올리면 탈리튬화). 분기 중심 $\\pm\\tfrac12\\sigma_d(\\cdots)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 231,
+          "excerpt": "$\\xi_{\\eq,j}$ (\\code{func\\_ksi\\_eq}) & --- & 평형 진행률(logistic) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 251,
+          "excerpt": "$\\xi_{\\mathrm{lag},j}$ (\\code{occ\\_lagged}) & --- & 인과 저역통과된 진행률 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 286,
+          "excerpt": "\\draw[{Latex[length=1.8mm]}-,thick] (0,-1.05)--(6.45,-1.05) node[pos=0.5,below,font=\\scriptsize] {delithiation (discharge): main direction, $\\xi_j:1\\to0$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 297,
+          "excerpt": "$j$, 진행률 $\\xi_j$, 평형 중심 $U_j$ 는 삽입형 전극이면 어디서나 같은 골격이다. 이 절은 같은 골격을 두 번째 사례인"
+        }
+      ]
+    },
+    {
+      "id": "SYM-012",
+      "symbol": "sigma_d",
+      "intended_quantity": "protocol/delithiation direction sign",
+      "unit": "dimensionless ±1",
+      "status": "REMOVE_FROM_EQUILIBRIUM_STATE",
+      "collision": "Acts in equilibrium logistic, hysteresis, polarization, and causal direction; a path sign cannot define equilibrium occupancy.",
+      "occurrence_count": 265,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 161,
+          "excerpt": "\\node[io] (in) {input: $V_\\app$, direction $\\to\\sigma_d$, c-rate $\\to|I|$, $T$, $Q_\\cell$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 164,
+          "excerpt": "\\node[stage,below=of n0] (n1) {N1: polarization\\\\$V_n=V_\\app-\\sigma_d|I|R_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 166,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 167,
+          "excerpt": "\\node[stage,below=of n3] (n4) {N4/N5: width $w$, $\\xi_\\eq$\\\\$\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 180,
+          "excerpt": "\\caption{한 곡선을 그리는 코드 진행(spine). 외부 실험조건이 \\code{curve} facade 에서 $(\\sigma_d,|I|,T,Q_\\cell)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 195,
+          "excerpt": "코어 \\code{dqdv} 의 모델 입력으로 환산하는 것이다 — 이것이 노드 $\\mathrm N0$ 다. 방향 문자열은 방향 부호 $\\sigma_d$ 로,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 198,
+          "excerpt": "\\sigma_d=\\begin{cases}+1 & \\text{방전(discharge)}\\\\ -1 & \\text{충전(charge)}\\end{cases},"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 210,
+          "excerpt": "\\textbf{부호 규약(★최우선 결함 클래스).} 전위는 흑연 음극 반쪽전지 전위(vs Li/Li$^+$)다. 방향 부호 $\\sigma_d=\\pm1$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 211,
+          "excerpt": "(방전 $+1$/충전 $-1$)이 코드의 \\code{s} 인자이며, 평형 점유 $\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$ 에서 방전"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 212,
+          "excerpt": "($\\sigma_d=+1$)은 $V\\!\\uparrow\\Rightarrow\\xi_\\eq\\!\\uparrow$(전위를 올리면 탈리튬화). 분기 중심 $\\pm\\tfrac12\\sigma_d(\\cdots)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 219,
+          "excerpt": "$\\sigma_d$ (\\code{s},\\,\\code{sigma\\_d}) & --- & 방향 부호 — 방전 $+1$/충전 $-1$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 225,
+          "excerpt": "$V_n$ & V & 내부(열역학) 전위 $=V_\\app-\\sigma_d|I|R_n$ \\\\"
+        }
+      ]
+    },
+    {
+      "id": "SYM-013",
+      "symbol": "s",
+      "intended_quantity": "fixed derivation/reaction-orientation sign in v1.0.13 Ch2",
+      "unit": "dimensionless",
+      "status": "PRESERVE_IF_REACTION_DEFINED",
+      "collision": "Introduced to repair sigma_d contamination but coexists with facade direction conventions.",
+      "occurrence_count": 64,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 70,
+          "excerpt": "\\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 156,
+          "excerpt": "stage/.style={draw,rounded corners=2pt,minimum height=7.4mm,inner xsep=4pt,inner ysep=2.5pt,font=\\scriptsize,align=center,fill=black!4},"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 285,
+          "excerpt": "\\draw[-{Latex[length=1.8mm]},thick] (0,4.05)--(6.45,4.05) node[pos=0.5,above,font=\\scriptsize] {lithiation (charge): $4\\to3\\to2\\mathrm L\\to2\\to1$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 286,
+          "excerpt": "\\draw[{Latex[length=1.8mm]}-,thick] (0,-1.05)--(6.45,-1.05) node[pos=0.5,below,font=\\scriptsize] {delithiation (discharge): main direction, $\\xi_j:1\\to0$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 432,
+          "excerpt": "상수이므로, 그 상수 덩이를 $sFU$ 로 정의해($s=+1$ 라 $-FV=-sFV$) 묶으면 평형 조건이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 444,
+          "excerpt": "\\textbf{(b) 연산 — 식~\\eqref{eq:eqcond} 의 $\\Delta G_j=-sFU_j$($s=+1$)에 대입.} \\textbf{(c) 중간식 — $U_j$ 로 이항.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 613,
+          "excerpt": "$\\mathrm{artanh}\\,u=\\tfrac12\\ln\\tfrac{1+u}{1-u}$ 사용). \\textbf{(d) 박스 — $s=+1$ 정리.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 666,
+          "excerpt": "\\draw[{Latex[length=1.4mm]}-{Latex[length=1.4mm]}] (1.0,-1.066) -- (1.0,1.066) node[pos=0.4,right,font=\\scriptsize] {$\\Delta U_j^\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 799,
+          "excerpt": "\\draw[<->] (2.0,0.11) -- (2.0,0.99) node[pos=0.45,left,font=\\scriptsize] {$\\Delta G_a$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 810,
+          "excerpt": "\\draw[<->] (1.7,0.11) -- (1.7,0.818) node[pos=0.5,left,font=\\scriptsize] {$\\Delta G_a-\\chi A$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 812,
+          "excerpt": "\\draw[<->] (5.95,0.1) -- (5.95,-0.25) node[pos=0.5,right,font=\\scriptsize] {$A$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1551,
+          "excerpt": "\\draw[{Latex[length=1.2mm]}-{Latex[length=1.2mm]},gray] (1.5,1.08) -- (1.5,1.62) node[pos=0.5,right,font=\\scriptsize] {$r=\\xi_\\eq-\\xi_\\mathrm{lag}$};"
+        }
+      ]
+    },
+    {
+      "id": "SYM-014",
+      "symbol": "w_j",
+      "intended_quantity": "voltage-domain transition width",
+      "unit": "V",
+      "status": "SPLIT_IDEAL_AND_EMPIRICAL_WIDTHS",
+      "collision": "Ideal single-site thermal width and empirical two-phase/ensemble width share one symbol and often one forced T law.",
+      "occurrence_count": 221,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 230,
+          "excerpt": "$w_j$ (\\code{func\\_w}) & V & 전이 폭 척도 $=n_jRT/F$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 712,
+          "excerpt": "중심이 정해지면 코드는 폭 $w_j$ 와 평형 점유 $\\xi_{\\eq,j}$ 를 평가한다. 이 둘이 평형 종(다음 절의 peak)의 모양을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 716,
+          "excerpt": "\\subsection{폭 $w_j$ — 이상 극한과 그 이중지위}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 717,
+          "excerpt": "평형 점유의 폭 척도는 이상 극한에서 $w_j=n_jRT/F$ 다($n_j$ 는 폭 다중도): 아래 \\S\\ref{sec:width} logistic 유도의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 720,
+          "excerpt": "w_j=\\frac{n_jRT}{F}\\qquad(\\text{기본 폭}),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 724,
+          "excerpt": "가 이것이고, 전이 dict 가 \\code{'w'} 를 직접 주면 $n_j=w_jF/(RT)$ 로 역산해(\\code{\\_n\\_factor}) 같은 식에 넣는다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 725,
+          "excerpt": "코드는 폭으로 항상 이 한 식 $w_j=n_jRT/F$ 를 쓴다(\\code{\\_width}; 상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 728,
+          "excerpt": "\\textbf{★폭 $w_j$ 의 이중지위 — 같은 식, 다른 지위.} 식~\\eqref{eq:wbase} 의 \\emph{값}은 한 줄이지만, 그것이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 729,
+          "excerpt": "\\emph{무엇을 뜻하는지}는 전이의 상분리 여부로 갈린다. \\emph{단상($\\Omega_j\\le2RT$, 연속 고용체)}에서는 $w_j=n_jRT/F$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 733,
+          "excerpt": "같은 $w_j$ 가 더는 평형 예측이 아니라 \\emph{broadening 이 정하는 현상학적 자유 피팅 폭}이다(\\S\\ref{sec:broadening})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 773,
+          "excerpt": "폭 척도 $w_j=n_jRT/F$(식~\\eqref{eq:wbase})로 묶고 방향 부호 $\\sigma_d$ 와 분기 중심 $U_j^{\\,d}$ 로 일반화하면"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 775,
+          "excerpt": "\\boxed{\\;\\xi_{\\eq,j}(V,T)=\\frac{1}{1+\\exp\\!\\big[-\\sigma_d(V-U_j^{\\,d})/w_j\\big]}\\;.}"
+        }
+      ]
+    },
+    {
+      "id": "SYM-015",
+      "symbol": "n_j",
+      "intended_quantity": "dimensionless width multiplier/effective degeneracy parameter",
+      "unit": "dimensionless",
+      "status": "UNVERIFIED_PARAMETER_MEANING",
+      "collision": "Multiplicity, stoichiometric electron number, and empirical width multiplier are not derived as one quantity.",
+      "occurrence_count": 112,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 6,
+          "excerpt": "% (2) 두-상 내재폭 절에 \"현재 코드 n_j=1 고정→실폭 RT/F≈25.7mV, 'w' 폴백은 'n' 제거 시 활성\" 명시 (오독 차단)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 229,
+          "excerpt": "$n_j$ (\\code{n}) & --- & 폭 다중도($w=n_jRT/F$; \\code{w} 주면 $n=wF/RT$ 역산) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 230,
+          "excerpt": "$w_j$ (\\code{func\\_w}) & V & 전이 폭 척도 $=n_jRT/F$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 243,
+          "excerpt": "$\\mathcal A$ (\\code{A}) & J/mol & 꼬리 컷점 affinity $=\\min(z_\\mathrm{cut}n_jRT,\\,A_\\mathrm{cap}RT)$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 249,
+          "excerpt": "$z_\\mathrm{cut}$ (\\code{z\\_cut}) & --- & 컷 affinity 의 $z=\\mathcal A/(n_jRT)$(기본 $4.357$) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 717,
+          "excerpt": "평형 점유의 폭 척도는 이상 극한에서 $w_j=n_jRT/F$ 다($n_j$ 는 폭 다중도): 아래 \\S\\ref{sec:width} logistic 유도의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 718,
+          "excerpt": "중심 기울기 $\\dd\\xi_\\eq/\\dd V|_{1/2}=sF/(4RT)$ 가 폭 척도 $RT/F$ 를 정의하고, 폭 다중도 $n_j$ 로 일반화하면"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 720,
+          "excerpt": "w_j=\\frac{n_jRT}{F}\\qquad(\\text{기본 폭}),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 724,
+          "excerpt": "가 이것이고, 전이 dict 가 \\code{'w'} 를 직접 주면 $n_j=w_jF/(RT)$ 로 역산해(\\code{\\_n\\_factor}) 같은 식에 넣는다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 725,
+          "excerpt": "코드는 폭으로 항상 이 한 식 $w_j=n_jRT/F$ 를 쓴다(\\code{\\_width}; 상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 729,
+          "excerpt": "\\emph{무엇을 뜻하는지}는 전이의 상분리 여부로 갈린다. \\emph{단상($\\Omega_j\\le2RT$, 연속 고용체)}에서는 $w_j=n_jRT/F$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 731,
+          "excerpt": "미분 종이고, 그 폭이 곧 $n_jRT/F$ 라($n_j\\!\\approx\\!1$ 이면 $RT/F\\!\\approx\\!25.7$ mV), 측정 폭으로 직접 검증된다."
+        }
+      ]
+    },
+    {
+      "id": "SYM-016",
+      "symbol": "Omega_j",
+      "intended_quantity": "regular-solution interaction energy",
+      "unit": "J mol^-1",
+      "status": "CORRECT_FREE_ENERGY_ROLE; REJECT_ROLE_OVERLOAD",
+      "collision": "Also drives hysteresis gap, activation-barrier reduction and dopant smear without one consistent free-energy/kinetic derivation.",
+      "occurrence_count": 373,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 223,
+          "excerpt": "$R_n$ (\\code{Rn}) & $\\Omega$ & 음극 lumped 분극 저항 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 235,
+          "excerpt": "$\\Omega_j$ (\\code{Omega}) & J/mol & 정규용액 상호작용 에너지($>2RT$ 면 상분리$\\cdot$히스) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 245,
+          "excerpt": "$\\Delta H_{a,j}^\\eff$ (\\code{func\\_dH\\_a\\_eff}) & J/mol & 유효 장벽 $=\\Delta H_a-\\chi_d\\Omega$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 344,
+          "excerpt": "흑연이 \\code{GRAPHITE\\_STAGING\\_LIT} 의 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 키를 전이별로 갖듯,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 517,
+          "excerpt": "코드는 평형 중심 $U_j$ 를 곧바로 쓰지 않고, 상호작용 $\\Omega_j$ 와 분기 인자 $\\gamma_j$ 가 있으면 방향별 분기 중심"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 528,
+          "excerpt": "에너지 $c\\,\\theta^2=c\\theta+\\Omega\\theta(1-\\theta)$($\\Omega\\equiv-c$, 선형 몫은 기준에 흡수)에서 온다. 자리 1몰당"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 529,
+          "excerpt": "자유에너지 $\\bar g(\\theta)=\\mu^0\\theta+RT[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)]+\\Omega\\theta(1-\\theta)$ 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 530,
+          "excerpt": "$\\theta$ 로 미분하면(로그 몫은 $RT\\ln[\\theta/(1-\\theta)]$, 상호작용 몫은 $\\Omega(1-2\\theta)$ — 상수 $\\pm1$ 상쇄)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 532,
+          "excerpt": "\\mu_\\mathrm{Li}(\\theta)=\\mu^0+RT\\ln\\frac{\\theta}{1-\\theta}+\\Omega_j\\,(1-2\\theta)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 538,
+          "excerpt": "g_j(\\xi)=g_j^0+RT\\big[\\xi\\ln\\xi+(1-\\xi)\\ln(1-\\xi)\\big]+\\Omega_j\\,\\xi(1-\\xi),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 541,
+          "excerpt": "($\\Omega>0$ 이면 동종 이웃 인력 — 가운데를 위로 밀어 이중웰의 씨앗). \\textbf{(c) 중간식 — 두 번 미분.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 543,
+          "excerpt": "$RT/[\\xi(1-\\xi)]$; 상호작용 몫의 2계 미분 $-2\\Omega$)"
+        }
+      ]
+    },
+    {
+      "id": "SYM-017",
+      "symbol": "gamma_j",
+      "intended_quantity": "phenomenological fraction of a computed gap",
+      "unit": "dimensionless",
+      "status": "EMPIRICAL_ONLY",
+      "collision": "Not derived from the regular-solution spinodal calculation.",
+      "occurrence_count": 54,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 166,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 236,
+          "excerpt": "$\\gamma_j$ (\\code{gamma}) & --- & 분기 축소 인자 $0\\le\\gamma_j\\le1$($0$ 이면 분기 없음) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 517,
+          "excerpt": "코드는 평형 중심 $U_j$ 를 곧바로 쓰지 않고, 상호작용 $\\Omega_j$ 와 분기 인자 $\\gamma_j$ 가 있으면 방향별 분기 중심"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 633,
+          "excerpt": "인자 $\\gamma_j$ 와 부분 cycle 인자 $h_{\\eta,j}$ 를 곱해)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 635,
+          "excerpt": "\\boxed{\\;U_j^{\\,d}\\;=\\;U_j\\;+\\;\\tfrac12\\,\\sigma_d\\,h_{\\eta,j}\\,\\gamma_j\\,\\Delta U_j^\\hys\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 641,
+          "excerpt": "$\\gamma_j=1$ 이 spinodal 상한, $\\gamma_j\\to0$ 이 히스 소멸, $h_{\\eta,j}$ 가 부분 cycle 보정(기본 $1$)이다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 644,
+          "excerpt": "$\\mathrm{hys\\_shift}=\\code{func\\_U\\_branch}(T_\\rep,0,\\Omega,\\gamma,\\sigma_d,h_\\eta)$ 을 얻고, 배열 중심 $U_j$ 에 더한다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 648,
+          "excerpt": "U_j+\\tfrac12\\sigma_d h_{\\eta,j}\\gamma_j\\Delta U_j^\\hys(T_\\rep) & \\gamma_j\\ne0 \\text{ 이고 } \\Omega_j>0\\\\[2pt]"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 675,
+          "excerpt": "\\node[font=\\scriptsize] at (0.5,0.20) {$\\gamma\\!\\to\\!0$: plateau at $U_j$ ($y=0$)};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 679,
+          "excerpt": "gap $\\Delta U_j^\\hys$(식~\\eqref{eq:dUhys}), 실측 분기는 $\\gamma_j$ 만큼 안쪽(식~\\eqref{eq:Ubranch}). $\\gamma\\to0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 698,
+          "excerpt": "MIT plateau 도 $\\Delta U_j^\\hys$ 와 $\\gamma_j$ 로 충방전 히스를 적는다. 다만 MIT 에는 격자기체 config 만으로 닫히지 않는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1889,
+          "excerpt": "\\item \\textbf{히스 분기 방향.} $\\Omega=12000$ J/mol, $\\gamma=1$ 에서 식~\\eqref{eq:dUhys} 는"
+        }
+      ]
+    },
+    {
+      "id": "SYM-018",
+      "symbol": "h_eta,j",
+      "intended_quantity": "partial-cycle/path branch scaling",
+      "unit": "dimensionless",
+      "status": "EMPIRICAL_ONLY",
+      "collision": "History dependence is reduced to one static scalar rather than an internal-state evolution.",
+      "occurrence_count": 6,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 166,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 644,
+          "excerpt": "$\\mathrm{hys\\_shift}=\\code{func\\_U\\_branch}(T_\\rep,0,\\Omega,\\gamma,\\sigma_d,h_\\eta)$ 을 얻고, 배열 중심 $U_j$ 에 더한다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 171,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 712,
+          "excerpt": "$\\mathrm{hys\\_shift}=\\code{func\\_U\\_branch}(T_\\rep,0,\\Omega,\\gamma,\\sigma_d,h_\\eta)$ 을 얻고, 배열 중심 $U_j$ 에 더한다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+          "line": 174,
+          "excerpt": "\\node[stage,below=of n2] (n3) {N3: hysteresis branch\\\\center $\\to U_j+\\tfrac12\\sigma_d h_\\eta\\gamma\\,\\Delta U_\\hys$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+          "line": 1065,
+          "excerpt": "$\\mathrm{hys\\_shift}=\\code{func\\_U\\_branch}(T_\\rep,0,\\Omega,\\gamma,\\sigma_d,h_\\eta)$ 을 얻고, 배열 중심 $U_j$ 에 더한다:"
+        }
+      ]
+    },
+    {
+      "id": "SYM-019",
+      "symbol": "Delta H_rxn",
+      "intended_quantity": "molar reaction enthalpy under an insertion reaction convention",
+      "unit": "J mol^-1",
+      "status": "PRESERVE_WITH_REFERENCE_REACTION",
+      "collision": "Differential reaction enthalpy is compared in places with cumulative formation enthalpy.",
+      "occurrence_count": 42,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 227,
+          "excerpt": "$U_j(T)$ (\\code{U},\\,\\code{func\\_U\\_j}) & V & 전이 $j$ 평형 중심 전위 $=(-\\Delta H_\\rxn+T\\Delta S_\\rxn)/F$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 344,
+          "excerpt": "흑연이 \\code{GRAPHITE\\_STAGING\\_LIT} 의 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 키를 전이별로 갖듯,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 407,
+          "excerpt": "전이 루프 안의 첫 물리량은 전이 $j$ 의 평형 중심 전위 $U_j(T)$ 다. 코드는 이를 열역학 입력 $(\\Delta H_\\rxn,\\Delta S_\\rxn)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 457,
+          "excerpt": "$\\Delta H_\\rxn<0$ 이면 분자 $-\\Delta H_\\rxn>0$ 이 중심을 \\emph{올린다}(흡열 아님에 주의). 온도 의존은 식~\\eqref{eq:Uj} 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 466,
+          "excerpt": "$\\Delta H_\\rxn=-13000$ J/mol, $\\Delta S_\\rxn=-16$ J/(mol\\,K) $\\Rightarrow$ $U(298)=(13000-298.15\\times16)/96485"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 474,
+          "excerpt": "중심($\\sim$3.9--4.2 V)은 LCO 삽입 반응의 큰 음의 $\\Delta H_\\rxn$(분자 $-\\Delta H_\\rxn$ 가 크게 양)에서 온다 — 흑연의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1671,
+          "excerpt": "폴백이자 $(\\Delta H_\\rxn,\\Delta S_\\rxn)$ 정합 목표.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1675,
+          "excerpt": "stage & $U$ [V] & $\\Delta H_\\rxn$ & $\\Delta S_\\rxn$ & $Q$ & $\\Omega$ & $\\Delta H_a$ & $|\\dd V/\\dd q|_{q_a}$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1686,
+          "excerpt": "각 전이는 폭 $w$ 폴백(0.020/0.016/0.014/0.012 V)과 $n=1$, $\\Delta S_a=0$ 을 함께 갖는다. $\\Delta H_\\rxn/\\Delta S_\\rxn$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1687,
+          "excerpt": "은 $U(298)$ 정합으로 정해졌고($U=(-\\Delta H_\\rxn+298.15\\Delta S_\\rxn)/F$ 가 표의 $U$ 와 일치), $\\Delta H_a$ 는 저SOC$\\to$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1756,
+          "excerpt": "$(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 값을 양극 영역으로. 코드의 전이 dict 키 구조는 동일하다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1807,
+          "excerpt": "표의 모든 행이 코드 입력이라 ``고정/피팅 스코프''는 자유롭게 잡을 수 있다 — 예컨대 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,w)$ 를"
+        }
+      ]
+    },
+    {
+      "id": "SYM-020",
+      "symbol": "Delta S_rxn",
+      "intended_quantity": "molar reaction entropy under the same reference reaction",
+      "unit": "J mol^-1 K^-1",
+      "status": "SPLIT_STANDARD_CENTER_FROM_COMPOSITION_FUNCTION",
+      "collision": "Used as a center constant, full partial-molar function, and a container for config/vib/electronic terms.",
+      "occurrence_count": 53,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 227,
+          "excerpt": "$U_j(T)$ (\\code{U},\\,\\code{func\\_U\\_j}) & V & 전이 $j$ 평형 중심 전위 $=(-\\Delta H_\\rxn+T\\Delta S_\\rxn)/F$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 344,
+          "excerpt": "흑연이 \\code{GRAPHITE\\_STAGING\\_LIT} 의 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 키를 전이별로 갖듯,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 407,
+          "excerpt": "전이 루프 안의 첫 물리량은 전이 $j$ 의 평형 중심 전위 $U_j(T)$ 다. 코드는 이를 열역학 입력 $(\\Delta H_\\rxn,\\Delta S_\\rxn)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 459,
+          "excerpt": "식~\\eqref{eq:eqcond} 의 $\\Delta G=-FU$ 를 잇는 것과 같다), $|\\Delta S_\\rxn|\\sim$ 수$\\sim$수십 J/(mol\\,K) 라 $30$ K"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 466,
+          "excerpt": "$\\Delta H_\\rxn=-13000$ J/mol, $\\Delta S_\\rxn=-16$ J/(mol\\,K) $\\Rightarrow$ $U(298)=(13000-298.15\\times16)/96485"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 485,
+          "excerpt": "스케일}은 $\\dd\\phi/\\dd T\\approx+0.83$ mV/K 급이고(곧 $\\Delta S_\\rxn\\approx+0.83\\,\\mathrm{mV/K}\\times F\\approx+80$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 486,
+          "excerpt": "J/(mol\\,K) 규모[tier B], 단 부호$\\cdot$크기는 $x$ 의존이라 전이별 정밀값 아님). 이는 흑연의 $\\Delta S_\\rxn$(전이별"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1009,
+          "excerpt": "가 stage $2\\!\\to\\!1$ 삽입에 $\\Delta S_\\rxn=-16$ J/(mol\\,K)$<0$ 을 넣어 $U(298)\\approx0.085$ V 를 round-trip 으로 맞추는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1045,
+          "excerpt": "삽입 반응 엔트로피 $\\Delta S_\\rxn$ 이 음의 값으로 슬롯에 들어가듯, LCO MIT 의 전자항도 삽입 기준 음의 값으로 들어가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1049,
+          "excerpt": "(상수 $\\Delta S_\\rxn$ 인 config$\\cdot$vib 와 달리). 곧 \\emph{$\\partial U_1/\\partial T$ 의 기울기 자체가 $T$ 에 비례}하며,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1671,
+          "excerpt": "폴백이자 $(\\Delta H_\\rxn,\\Delta S_\\rxn)$ 정합 목표.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1675,
+          "excerpt": "stage & $U$ [V] & $\\Delta H_\\rxn$ & $\\Delta S_\\rxn$ & $Q$ & $\\Omega$ & $\\Delta H_a$ & $|\\dd V/\\dd q|_{q_a}$ \\\\"
+        }
+      ]
+    },
+    {
+      "id": "SYM-021",
+      "symbol": "Delta H_a / Delta S_a",
+      "intended_quantity": "activation enthalpy/entropy for a specified elementary or effective kinetic process",
+      "unit": "J mol^-1 / J mol^-1 K^-1",
+      "status": "UNVERIFIED_EFFECTIVE_KINETICS",
+      "collision": "No unique elementary process or microstructural length/active-site normalization closes the Eyring rate.",
+      "occurrence_count": 60,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 169,
+          "excerpt": "\\node[stage,below=of n6] (n7) {N7: lag length $L_V$\\\\$A,\\chi_d,\\Delta H_a^\\eff,L_q,L_V$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 245,
+          "excerpt": "$\\Delta H_{a,j}^\\eff$ (\\code{func\\_dH\\_a\\_eff}) & J/mol & 유효 장벽 $=\\Delta H_a-\\chi_d\\Omega$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 344,
+          "excerpt": "흑연이 \\code{GRAPHITE\\_STAGING\\_LIT} 의 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 키를 전이별로 갖듯,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1398,
+          "excerpt": "$\\mathcal A\\to\\chi_d\\to\\Delta H_a^\\eff\\to L_q\\to L_V$ 를, 운동방정식의 보편형에서 한 단계씩 닫는다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1438,
+          "excerpt": "충$\\cdot$방전 동일($n_j>0$ 라 항상 양수)이고, 방향은 아래 $\\chi_d\\cdot\\Delta H_a^\\eff$ 가 받는다. 방향 부호 $\\sigma_d$ 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1459,
+          "excerpt": "$\\Delta H_a$ 를 그대로 쓴다(헬퍼 \\code{\\_chi\\_and\\_dH\\_eff} 가 $(\\chi_d,\\Delta H_a^\\eff)$ 를 한 곳에서 낸다)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1464,
+          "excerpt": "에 넣으면 \\textbf{(b)(c) 연산$\\cdot$중간식 — $\\Delta G_a^\\eff=\\Delta H_a^\\eff-T\\Delta S_a$ 로 갈라 적기.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1479,
+          "excerpt": "$x=\\chi_d$, $\\dd G_a=\\Delta H_a^\\eff-T\\Delta S_a$) 지수화한다. \\emph{암묵 전제 명시} — 식~\\eqref{eq:Lqfull} 의"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1480,
+          "excerpt": "$\\Delta H_a^\\eff$ 는 \\code{func\\_L\\_q} 의 \\code{dH\\_a} 인자로 들어가는 값 \\code{dH\\_a\\_use} 이고, 이것은"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1481,
+          "excerpt": "\\code{use\\_dH\\_eff=True} 일 때만 식~\\eqref{eq:dHeff} 의 $\\Delta H_a-\\chi_d\\Omega$ 와 같다 — 꺼져 있으면 그대로"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1482,
+          "excerpt": "$\\Delta H_a$ 다(\\code{\\_chi\\_and\\_dH\\_eff} 의 분기). 전압축으로 옮기면, 컷점 OCV 기울기를 곱한다 — 꼬리 진폭이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1675,
+          "excerpt": "stage & $U$ [V] & $\\Delta H_\\rxn$ & $\\Delta S_\\rxn$ & $Q$ & $\\Omega$ & $\\Delta H_a$ & $|\\dd V/\\dd q|_{q_a}$ \\\\"
+        }
+      ]
+    },
+    {
+      "id": "SYM-022",
+      "symbol": "chi_d",
+      "intended_quantity": "direction-dependent transfer coefficient split",
+      "unit": "dimensionless",
+      "status": "CORRECT_OR_REPLACE_WITH_KINETIC_MODEL",
+      "collision": "Direction split is imposed algebraically and reused in an effective barrier reduction.",
+      "occurrence_count": 58,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 169,
+          "excerpt": "\\node[stage,below=of n6] (n7) {N7: lag length $L_V$\\\\$A,\\chi_d,\\Delta H_a^\\eff,L_q,L_V$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 241,
+          "excerpt": "$\\chi$ (\\code{chi},\\,\\code{x}) & --- & 전이상태 분율 위치(전달 계수); 방향별 $\\chi_d$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 242,
+          "excerpt": "$\\chi_d$ (\\code{func\\_chi\\_d}) & --- & 방향별 전달 계수 — 방전 $\\chi$/충전 $1-\\chi$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 245,
+          "excerpt": "$\\Delta H_{a,j}^\\eff$ (\\code{func\\_dH\\_a\\_eff}) & J/mol & 유효 장벽 $=\\Delta H_a-\\chi_d\\Omega$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1398,
+          "excerpt": "$\\mathcal A\\to\\chi_d\\to\\Delta H_a^\\eff\\to L_q\\to L_V$ 를, 운동방정식의 보편형에서 한 단계씩 닫는다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1420,
+          "excerpt": "\\qquad r_j^+\\simeq k_0\\,e^{-(\\Delta G_{a,j}^\\eff-\\chi_d\\mathcal A_j)/RT}\\ (k_0=k_BT/h),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1438,
+          "excerpt": "충$\\cdot$방전 동일($n_j>0$ 라 항상 양수)이고, 방향은 아래 $\\chi_d\\cdot\\Delta H_a^\\eff$ 가 받는다. 방향 부호 $\\sigma_d$ 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1446,
+          "excerpt": "\\chi_d=\\chi_\\mathrm{split}(\\chi,\\sigma_d)="
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1455,
+          "excerpt": "\\boxed{\\;\\Delta H_{a,j}^\\eff=\\Delta H_{a,j}-\\chi_d\\,\\Omega_j\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1459,
+          "excerpt": "$\\Delta H_a$ 를 그대로 쓴다(헬퍼 \\code{\\_chi\\_and\\_dH\\_eff} 가 $(\\chi_d,\\Delta H_a^\\eff)$ 를 한 곳에서 낸다)."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1463,
+          "excerpt": "$r_j^+\\simeq k_0e^{-(\\Delta G_a^\\eff-\\chi_d\\mathcal A)/RT}$($k_0=k_BT/h$)을 식~\\eqref{eq:Lq} 의 $L_{q,j}=|I|/(Q_\\cell k_j)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1467,
+          "excerpt": "\\frac{e^{(\\Delta H_{a,j}^\\eff-T\\Delta S_{a,j}-\\chi_d\\mathcal A)/RT}}{1+e^{-\\mathcal A/RT}},"
+        }
+      ]
+    },
+    {
+      "id": "SYM-023",
+      "symbol": "A / affinity",
+      "intended_quantity": "reaction affinity/driving free energy",
+      "unit": "J mol^-1",
+      "status": "REJECT_CONSTANT_CAP_AS_PHYSICAL_AFFINITY",
+      "collision": "Local voltage/state dependence is replaced by min(z_cut nRT, A_cap RT), then frozen per transition.",
+      "occurrence_count": 107,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 243,
+          "excerpt": "$\\mathcal A$ (\\code{A}) & J/mol & 꼬리 컷점 affinity $=\\min(z_\\mathrm{cut}n_jRT,\\,A_\\mathrm{cap}RT)$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 249,
+          "excerpt": "$z_\\mathrm{cut}$ (\\code{z\\_cut}) & --- & 컷 affinity 의 $z=\\mathcal A/(n_jRT)$(기본 $4.357$) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 748,
+          "excerpt": "$k\\simeq k_0e^{-\\Delta G_a/RT}$ 다(그림~\\ref{fig:barrier})\\cite{eyring1935}. 구동력 $\\mathcal A_j=sF(V_n-U_j)$ 가 정$\\cdot$역 장벽을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 751,
+          "excerpt": "r_j^+=k_0\\,e^{-(\\Delta G_{a,j}-\\chi\\mathcal A_j)/RT},\\qquad"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 752,
+          "excerpt": "r_j^-=k_0\\,e^{-(\\Delta G_{a,j}+(1-\\chi)\\mathcal A_j)/RT}."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 756,
+          "excerpt": "$\\chi$ 가 상쇄되어($\\chi\\mathcal A+(1-\\chi)\\mathcal A=\\mathcal A$)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 758,
+          "excerpt": "\\frac{r_j^+}{r_j^-}=\\exp\\!\\Big[\\frac{\\chi\\mathcal A_j+(1-\\chi)\\mathcal A_j}{RT}\\Big]=\\exp\\!\\Big[\\frac{\\mathcal A_j}{RT}\\Big]"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 767,
+          "excerpt": "\\frac{\\xi_\\eq}{1-\\xi_\\eq}=e^{\\mathcal A_j/RT}=e^{sF(V_n-U_j)/RT}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 772,
+          "excerpt": "(둘째 식은 분모$\\cdot$분자를 $e^{\\mathcal A/RT}$ 로 나눈 것). \\textbf{(d) 박스 — 폭 다중도$\\cdot$방향 부호 일반화.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 816,
+          "excerpt": "\\caption{활성화 장벽 그림(신규). (a) 평형 — 두 골짜기 같은 높이, 속도는 Eyring 식. (b) 구동력 $\\mathcal A_j$ 가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 817,
+          "excerpt": "도착 골짜기를 내리면 정방향 장벽 $\\Delta G_a-\\chi\\mathcal A$, 역방향 $\\Delta G_a+(1-\\chi)\\mathcal A$ 로 비대칭 이동"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 846,
+          "excerpt": "$\\xi_\\eq$(식~\\eqref{eq:logisticsolve}). $\\mathcal A>0$($r^+=2r^-$, 검정)이면 $\\xi_\\eq=2/3$, $\\mathcal A=0$"
+        }
+      ]
+    },
+    {
+      "id": "SYM-024",
+      "symbol": "k_j",
+      "intended_quantity": "relaxation/rate coefficient",
+      "unit": "s^-1 only if prefactor and time basis are explicit",
+      "status": "UNVERIFIED_SCALE",
+      "collision": "Eyring molecular attempt frequency is inserted into an electrode-scale progress equation without a demonstrated coarse-graining bridge.",
+      "occurrence_count": 33,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 763,
+          "excerpt": "$\\dd\\xi/\\dd t=r^+(1-\\xi)-r^-\\xi=k_j(\\xi_\\eq-\\xi)$($k_j\\equiv r^++r^-$). \\textbf{(c) 중간식 — 정지점에서 logit.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1401,
+          "excerpt": "\\textbf{(a) 출발 — 운동방정식을 용량축으로.} \\S\\ref{sec:width} 의 운동방정식 $\\dd\\xi_j/\\dd t=k_j(\\xi_{\\eq,j}-\\xi_j)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1402,
+          "excerpt": "을, 정전류에서 성립하는 $\\dd q/\\dd t=|I|/Q_\\cell$ 로 나누면 $\\dd\\xi_j/\\dd q=(Q_\\cell k_j/|I|)(\\xi_{\\eq,j}-\\xi_j)$."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1406,
+          "excerpt": "\\frac{\\dd r_j}{\\dd q}=\\frac{\\dd\\xi_{\\eq,j}}{\\dd q}-\\frac{Q_\\cell k_j}{|I|}\\,r_j,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1412,
+          "excerpt": "\\qquad \\boxed{\\;L_{q,j}=\\frac{|I|}{Q_\\cell\\,k_j}\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1415,
+          "excerpt": "$L_{q,j}$ 는 요구($|I|/Q_\\cell$)와 공급($k_j$)의 비 그 자체다 — 근본식의 세 인자가 전부 이 한 양을 통해 꼬리로"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1416,
+          "excerpt": "들어온다. 완화 속도 $k_j$ 는 평형 근방 선형 완화에서 정$\\cdot$역 속도의 합이다 — detailed balance~\\eqref{eq:db} 로"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1419,
+          "excerpt": "k_j=r_j^++r_j^-=r_j^+\\big(1+e^{-\\mathcal A_j/RT}\\big),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1462,
+          "excerpt": "\\textbf{(a) 출발 — 정$\\cdot$역 합과 Eyring prefactor.} 식~\\eqref{eq:kuniv} 의 $k_j=r_j^+(1+e^{-\\mathcal A_j/RT})$ 와"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1463,
+          "excerpt": "$r_j^+\\simeq k_0e^{-(\\Delta G_a^\\eff-\\chi_d\\mathcal A)/RT}$($k_0=k_BT/h$)을 식~\\eqref{eq:Lq} 의 $L_{q,j}=|I|/(Q_\\cell k_j)$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch2_v1.0.10.tex",
+          "line": 425,
+          "excerpt": "동역학 꼬리의 \\emph{활성화 엔트로피} $\\Delta S_{a,j}$(Eyring 속도 $k_j\\propto\\exp[-(\\Delta H_a-T\\Delta S_a)/RT]$"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 971,
+          "excerpt": "$\\dd\\xi/\\dd t=r^+(1-\\xi)-r^-\\xi=k_j(\\xi_\\eq-\\xi)$($k_j\\equiv r^++r^-$). \\textbf{(c) 중간식 — 정지점에서 logit.}"
+        }
+      ]
+    },
+    {
+      "id": "SYM-025",
+      "symbol": "L_q",
+      "intended_quantity": "lag length in normalized charge coordinate",
+      "unit": "dimensionless q",
+      "status": "PRESERVE_KINEMATIC_IDENTITY_ONLY",
+      "collision": "Its physical value inherits the Q_cell unit ambiguity and unverified k_j scale.",
+      "occurrence_count": 69,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 169,
+          "excerpt": "\\node[stage,below=of n6] (n7) {N7: lag length $L_V$\\\\$A,\\chi_d,\\Delta H_a^\\eff,L_q,L_V$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 248,
+          "excerpt": "$|\\dd V/\\dd q|_{q_a}$ (\\code{dVdq\\_qa}) & V & 컷점 OCV 기울기($L_q\\to L_V$ 환산) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 819,
+          "excerpt": "이 그림이 식~\\eqref{eq:xieq} logistic 과 \\S\\ref{sec:lag} 의 $L_q$ 두 결과의 공통 출발점이다.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1398,
+          "excerpt": "$\\mathcal A\\to\\chi_d\\to\\Delta H_a^\\eff\\to L_q\\to L_V$ 를, 운동방정식의 보편형에서 한 단계씩 닫는다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1400,
+          "excerpt": "\\subsection{지연의 보편 방정식과 용량축 길이 $L_q$}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1424,
+          "excerpt": "아래 $L_q$ 평가식의 분모와 forward 지수를 각각 채운다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1427,
+          "excerpt": "$L_q$ 는 전이당 한 점(꼬리 컷점 $q_a$)에서 \\emph{상수로 동결}된다. \\textbf{(a) 출발 — 컷의 정의.} 컷점은 원천"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1461,
+          "excerpt": "\\subsection{$L_q$ 의 평가와 전압축 환산 $L_V$}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1483,
+          "excerpt": "용량축 $1/L_q$ 와 분모 $\\dd V_n/\\dd q$ 가 묶여 전압축 길이로 정리되는 것이다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1489,
+          "excerpt": "($\\S\\ref{sec:lag}$ 의 동결), 코드 안에서 $L_q$ 는 $V$ 의 함수로 다시 미분되지 않는다: \\emph{운영상 실현 미분은}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1490,
+          "excerpt": "$\\partial\\ln L_q/\\partial V=0$ 이다(전이당 한 스칼라). 부등식 $\\partial\\ln L_q/\\partial V<0$ 은 \\emph{물리적 동기}로 읽어야"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1492,
+          "excerpt": "\\mathcal A\\!\\uparrow\\Rightarrow$ 유효 장벽$\\downarrow\\Rightarrow L_q\\downarrow$(꼬리 짧아짐)이고, 이 단조성이 ``꼬리 컷점을"
+        }
+      ]
+    },
+    {
+      "id": "SYM-026",
+      "symbol": "L_V",
+      "intended_quantity": "lag length mapped to voltage coordinate",
+      "unit": "V",
+      "status": "EMPIRICAL_NUMERICAL_KERNEL",
+      "collision": "Mapping through a local dV/dq and switching by grid steps creates grid-dependent behavior.",
+      "occurrence_count": 147,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 15,
+          "excerpt": "% broadening 3기작 = ①유한율속 비대칭 꼬리(L_V, fly2020) ②내재 RT/F(leviaurbach1999)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 28,
+          "excerpt": "% 예시·tier C(inter-particle ρ 1차근거 아님). ①(kinetic L_V) vs ③(앙상블 η 통계평균) 분리 서술."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 169,
+          "excerpt": "\\node[stage,below=of n6] (n7) {N7: lag length $L_V$\\\\$A,\\chi_d,\\Delta H_a^\\eff,L_q,L_V$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 170,
+          "excerpt": "\\node[stage,below=of n7] (n8) {N8: causal memory tail\\\\$(\\xi_\\eq-\\xi_\\mathrm{lag})/L_V$, charge reversal};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 248,
+          "excerpt": "$|\\dd V/\\dd q|_{q_a}$ (\\code{dVdq\\_qa}) & V & 컷점 OCV 기울기($L_q\\to L_V$ 환산) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1201,
+          "excerpt": "코드의 사용 조건은 ``지연 길이가 격자에 비해 작을 때''다 — 다음 절이 그 지연 길이 $L_V$ 를 세우고, $L_V$ 가 격자"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1248,
+          "excerpt": "\\emph{소멸}한다(식~\\eqref{eq:LV} 의 $L_V\\propto|I|$; Fly 등\\cite{fly2020})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1305,
+          "excerpt": "평형 예측($n_jRT/F$)을 그대로 믿을 양이 아니라, 위 세 broadening(전류 몫 $L_V$ $+$ 평형 잔여 가장자리 폭 $+$ 앙상블"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1336,
+          "excerpt": "유효 입자 $+$ 동역학 지연 $L_V$}(N7$\\cdot$N8) 구조를 유지한다. 곧 앙상블 무질서는 현상학적 $w_j$ 한 파라미터로 흡수되며,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1344,
+          "excerpt": "출처가 정한다: ① \\emph{전류가 켜는} 유한율속 비대칭 꼬리($L_V$, $|I|\\!\\to\\!0$ 소멸) ② plateau 양끝의 \\emph{평형 잔여}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1383,
+          "excerpt": "켜는} 유한율속 비대칭 꼬리(\\emph{한 입자 안}에서 진행 중 변하는 과전압 $\\eta(t)$, \\S\\ref{sec:tail} 의 $L_V$,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1394,
+          "excerpt": "\\section{동역학 지연 길이 $L_V$ (N7)}\\label{sec:lag}"
+        }
+      ]
+    },
+    {
+      "id": "SYM-027",
+      "symbol": "R_n",
+      "intended_quantity": "lumped polarization resistance",
+      "unit": "ohm",
+      "status": "EMPIRICAL_OBSERVATION_LAYER",
+      "collision": "Ohmic, charge-transfer, and transport overpotentials are not separable in one constant.",
+      "occurrence_count": 42,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 164,
+          "excerpt": "\\node[stage,below=of n0] (n1) {N1: polarization\\\\$V_n=V_\\app-\\sigma_d|I|R_n$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 223,
+          "excerpt": "$R_n$ (\\code{Rn}) & $\\Omega$ & 음극 lumped 분극 저항 \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 225,
+          "excerpt": "$V_n$ & V & 내부(열역학) 전위 $=V_\\app-\\sigma_d|I|R_n$ \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 357,
+          "excerpt": "\\textbf{(a) 출발 — 측정 전위와 내부 전위의 차.} 전류 크기 $|I|$ 가 lumped 저항 $R_n$ 을 통과하며 만드는 전위 강하는"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 358,
+          "excerpt": "크기 $|I|R_n$ 이고, 그 부호는 전류 방향이 정한다. 측정 전위는 내부 전위에 분극이 더해진 값이므로 한 방향(방전)에서"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 360,
+          "excerpt": "V_\\app\\;=\\;V_n+\\sigma_d\\,|I|\\,R_n"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 368,
+          "excerpt": "V_n\\;=\\;V_\\app-\\sigma_d\\,|I|\\,R_n,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 373,
+          "excerpt": "\\boxed{\\;V_n\\;=\\;V_\\app\\;-\\;\\sigma_d\\,|I|\\,R_n\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 377,
+          "excerpt": "방전에서 $V_n=V_\\app-|I|R_n<V_\\app$(측정이 내부보다 높음), 충전에서 $V_n=V_\\app+|I|R_n>V_\\app$ — 이며,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 378,
+          "excerpt": "$|I|\\to0$ 또는 $R_n=0$ 에서 $V_n=V_\\app$ 로 두 전위가 일치한다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1814,
+          "excerpt": "(2) 실험조건 $\\sigma_d$, $|I|=\\code{c\\_rate}\\cdot Q_\\cell$, $T$, $R_n$ 설정 → 분극 $V_n$(\\eqref{eq:n0map}\\eqref{eq:vn}), 작업 격자 $V_\\work$(\\eqref{eq:vwork})."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1837,
+          "excerpt": "N1 & $V_n=V_\\app-\\sigma_d|I|R_n$ & \\eqref{eq:vn} & \\code{dqdv} L430 \\\\"
+        }
+      ]
+    },
+    {
+      "id": "SYM-028",
+      "symbol": "C_bg",
+      "intended_quantity": "background differential capacity",
+      "unit": "charge per volt",
+      "status": "EMPIRICAL_OBSERVATION_LAYER",
+      "collision": "Must not absorb unresolved active-material transitions without an identifiability test.",
+      "occurrence_count": 38,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 171,
+          "excerpt": "\\node[core,below=of n8] (n9) {N9: sum + interp\\\\$C_\\bg+\\sum_j Q_j[\\cdot]$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 233,
+          "excerpt": "$C_\\bg$ (\\code{Cbg}) & C/V & 배경 미분용량(상수 또는 $V$ 함수) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 393,
+          "excerpt": "$\\dd Q/\\dd V|_\\work \\leftarrow C_\\bg(V_\\work)$. 모든 전이 기여는 여기에 더해지고($\\mathrm N9$), 마지막에 $V_n$ 으로"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1174,
+          "excerpt": "$q$ 로 미분해 닫힌다 — 양변을 $q$ 로 미분하면 $Q_\\cell=C_\\bg\\,\\dd V_n/\\dd q+\\sum_jQ_j\\,\\dd\\xi_j/\\dd q$ 이고,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1175,
+          "excerpt": "$\\dd V_n/\\dd q$ 로 나누면 $\\dd Q/\\dd V_n=C_\\bg+\\sum_jQ_j\\,\\dd\\xi_j/\\dd V_n$ 이다. \\textbf{(b) 연산 — logistic"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1196,
+          "excerpt": "합산한 것($C_\\bg+\\sum_jQ_j\\xi_\\eq(1-\\xi_\\eq)/w$)이다. 부호 — $\\sigma_d$ 가 미분에서 한 번 들어오지만 peak 모양은"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1567,
+          "excerpt": "$\\dd Q/\\dd V=C_\\bg+\\sum Q_j\\,\\dd\\xi_j/\\dd V$ 에 넣은 ``평형 전환율에서 지연을 뺀 것''이다. 이산 격자에서 이 차분은"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1654,
+          "excerpt": "\\boxed{\\;\\frac{\\dd Q}{\\dd V}(V_n)\\;=\\;C_\\bg\\;+\\;\\sum_{j=1}^{N_p}Q_j\\,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1656,
+          "excerpt": "\\;=\\;C_\\bg+\\sum_jQ_j\\big[\\text{평형 peak}-\\text{지연 꼬리}\\big]\\;.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1796,
+          "excerpt": "\\code{Cbg} & 공통 & $0.0$ & 배경 $C_\\bg$ (상수 또는 $V$ 함수) \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1846,
+          "excerpt": "N9 & $C_\\bg+\\sum_jQ_j[\\cdot]$ & \\eqref{eq:sum} & \\code{dqdv\\_work},\\code{np.interp} \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+          "line": 176,
+          "excerpt": "\\node[core,below=of n8] (n9) {N9: sum + interp\\\\$C_\\bg+\\sum_j Q_j[\\cdot]$};"
+        }
+      ]
+    },
+    {
+      "id": "SYM-029",
+      "symbol": "x",
+      "intended_quantity": "material Li stoichiometry in Lix host",
+      "unit": "dimensionless",
+      "status": "SEVERE_SYMBOL_COLLISION",
+      "collision": "The same glyph/name is also used for transfer coefficient input/chi and generic SOC; separate x_host, alpha_ct, and q.",
+      "occurrence_count": 80,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 325,
+          "excerpt": "★코드 \\code{LCO\\_MSMR\\_LIT} 시연값($U{=}3.930/3.880/4.050$ V, $x_\\mathrm{MIT}{=}0.50$, 전자항을 중간 dict 에 배정)은"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 326,
+          "excerpt": "\\emph{tier-C placeholder} 로, 본 표의 물리 anchor(T1 MIT $\\sim$3.90 V$\\cdot x_\\mathrm{MIT}{\\approx}0.85\\cdot$T3 $\\sim$4.17 V)와 별개이며"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 997,
+          "excerpt": "견고하고 천이 중심에서 가장 약하다 — forward 모델이 천이를 게이트 폭 $\\Delta x_\\mathrm{MIT}$ 로 매끄럽게 보간하므로 이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1036,
+          "excerpt": "이를 대입한 게이트형 몰당 닫힌식은 $\\Delta S_{e,j}^{\\,\\mathrm{mol}}=-\\tfrac{\\pi^2}{3}R(k_BT/e_V)(g_{\\max}/\\Delta x_\\mathrm{MIT})"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1056,
+          "excerpt": "는 $T$ 무관, 전자 기울기 $a_e=-\\tfrac{\\pi^2}{3}R\\,(k_B/e_V)\\,(g_{\\max}/\\Delta x_\\mathrm{MIT})\\,\\sigma(1-\\sigma)<0$ 는 식"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1074,
+          "excerpt": "\\boxed{\\;g(E_F,x)\\;\\approx\\;g_{\\max}\\Big[\\,1-\\sigma\\!\\Big(\\frac{x-x_\\mathrm{MIT}}{\\Delta x_\\mathrm{MIT}}\\Big)\\Big],"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1075,
+          "excerpt": "\\quad g_{\\max}=13\\ \\text{e/eV},\\;x_\\mathrm{MIT}\\approx0.85,\\;\\Delta x_\\mathrm{MIT}\\approx0.05\\;}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1078,
+          "excerpt": "($\\sigma$ = logistic; $x\\!\\downarrow$ 로 $g$ 가 $0\\!\\to\\!g_{\\max}$ 켜진다). 세 초기값$(g_{\\max},x_\\mathrm{MIT},"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1079,
+          "excerpt": "\\Delta x_\\mathrm{MIT})$ 이 피팅 대상이며, 식~\\eqref{eq:dSe} 에 넣으면 삽입 기준 $\\Delta S_e(x)\\propto\\partial\\sigma/\\partial x<0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1084,
+          "excerpt": "$\\partial\\sigma/\\partial x=\\sigma'/\\Delta x_\\mathrm{MIT}$)를 써서 $\\partial g/\\partial x=-\\dfrac{g_{\\max}}{\\Delta x_\\mathrm{MIT}}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1088,
+          "excerpt": "=-\\frac{\\pi^2}{3}\\,k_B^2\\,T\\,\\frac{g_{\\max}}{\\Delta x_\\mathrm{MIT}}\\,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1089,
+          "excerpt": "\\sigma\\!\\Big(\\frac{x-x_\\mathrm{MIT}}{\\Delta x_\\mathrm{MIT}}\\Big)"
+        }
+      ]
+    },
+    {
+      "id": "SYM-030",
+      "symbol": "g",
+      "intended_quantity": "requires distinct names",
+      "unit": "J mol^-1, V^-1, or states energy^-1 atom^-1",
+      "status": "SEVERE_SYMBOL_COLLISION",
+      "collision": "Denotes free energy, dQ/dV overlap weight, and electronic DOS g(E_F).",
+      "occurrence_count": 331,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 337,
+          "excerpt": "T3 (order--disorder b)& $\\sim$4.17--4.20 & $\\approx$0.48 & monoclinic$\\to$hex & config($\\approx$1.49 J/K\\,mol) & off \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 385,
+          "excerpt": "V_\\work=\\mathrm{linspace}\\big(v_\\mathrm{lo}-p_\\mathrm{lo}\\,\\Delta v,\\;"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 393,
+          "excerpt": "$\\dd Q/\\dd V|_\\work \\leftarrow C_\\bg(V_\\work)$. 모든 전이 기여는 여기에 더해지고($\\mathrm N9$), 마지막에 $V_n$ 으로"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 529,
+          "excerpt": "자유에너지 $\\bar g(\\theta)=\\mu^0\\theta+RT[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)]+\\Omega\\theta(1-\\theta)$ 를"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 536,
+          "excerpt": "공통 접선 판정에 불변이라 떼어내고($g_j^0$ 으로 묶어) 조성 의존만 남긴다:"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 538,
+          "excerpt": "g_j(\\xi)=g_j^0+RT\\big[\\xi\\ln\\xi+(1-\\xi)\\ln(1-\\xi)\\big]+\\Omega_j\\,\\xi(1-\\xi),"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 545,
+          "excerpt": "g_j''(\\xi)=\\frac{RT}{\\xi(1-\\xi)}-2\\Omega_j."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 548,
+          "excerpt": "\\textbf{(d) spinodal — $g_j''=0$ 의 근.} $g_j''=0$ 은 $\\xi(1-\\xi)=RT/(2\\Omega_j)$, 곧 $\\xi^2-\\xi+RT/(2\\Omega_j)=0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 562,
+          "excerpt": "% double-well free energy g(xi) for Omega=3RT (qualitative shape, normalized)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 563,
+          "excerpt": "\\draw[->] (-0.02,-0.069) -- (-0.02,0.082) node[above,font=\\scriptsize] {$g_j(\\xi)/RT$ (shifted)};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 578,
+          "excerpt": "\\caption{격자기체 자유에너지 $g_j(\\xi)$ (식~\\eqref{eq:gxi}, $\\Omega_j=3RT$; 신규 그림). $\\Omega>2RT$ 면 가운데가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 586,
+          "excerpt": "($g_j'(\\xi)=RT\\ln[\\xi/(1-\\xi)]+\\Omega_j(1-2\\xi)=sF(V_\\eq-U_j)$). 이를 $V_\\eq$ 로 풀면"
+        }
+      ]
+    },
+    {
+      "id": "SYM-031",
+      "symbol": "g(E_F,x)",
+      "intended_quantity": "electronic density of states at the Fermi level versus composition",
+      "unit": "states eV^-1 atom^-1 or explicitly normalized alternative",
+      "status": "THEORY_HYPOTHESIS_UNVERIFIED",
+      "collision": "A composition logistic gate is inferred from functional resemblance to Fermi occupancy, not from electronic-structure data.",
+      "occurrence_count": 139,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 938,
+          "excerpt": "$g(E_F)$ 가 $0$ 에서 유한값으로 켜진다 — 이 전자 분포의 변화가 엔트로피에 들어온다. \\textbf{이 대비(흑연=전자항 0,"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 946,
+          "excerpt": "$\\mathrm{LiC_6}$ 모두 전도성이 좋아 충방전 동안 $g(E_F)$ 가 크게 바뀌지 않으므로, 전자 분포의 엔트로피 \\emph{변화}가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 948,
+          "excerpt": "($g(E_F)\\!\\approx\\!0$)이고, 탈리튬화로 $x$ 가 $\\sim$0.94 아래로 내려가면 Co$^{4+}$ 정공이 생겨 $t_{2g}$ 띠에 전도 전자가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 949,
+          "excerpt": "열려 \\emph{금속}이 된다($g(E_F)\\!\\to\\!$유한)\\cite{menetrier1999,motohashi2009}. 이 절연체$\\to$금속 천이(MIT)가 $x\\approx0.75$--$0.94$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 966,
+          "excerpt": "$E_F$ 근방의 \\emph{상수} $g(E_F)$ 로 동결한다($g(E)\\approx g(E_F)$). 이 동결이 정당한 까닭은, 적분에 기여하는 띠가"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 970,
+          "excerpt": "전자 \\emph{비열}을 먼저 닫는다 — 내부에너지 $U_e=\\int E\\,g(E)f\\,\\dd E$ 의 온도 미분에서 $g(E_F)$ 를 적분 밖으로 빼"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 972,
+          "excerpt": "$C_e=\\partial U_e/\\partial T=\\tfrac{\\pi^2}{3}k_B^2T\\,g(E_F)$($T$-선형 전자 비열, 금속의 표준 결과)다. 엔트로피는 이"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 973,
+          "excerpt": "비열을 $S_e=\\int_0^T (C_e/T')\\,\\dd T'$ 로 적분한 것이고, $C_e/T'=\\tfrac{\\pi^2}{3}k_B^2g(E_F)$ 가 $T'$ 무관 상수라"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 974,
+          "excerpt": "적분이 곧바로 닫혀 ($S_e=\\tfrac{\\pi^2}{3}k_B^2 g(E_F)\\int_0^T\\dd T'$)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 976,
+          "excerpt": "S_e(T,x)\\;=\\;\\frac{\\pi^2}{3}\\,k_B^2\\,T\\,g(E_F,x)"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 979,
+          "excerpt": "로 닫힌다($g(E_F,x)$ = 자리당 Fermi 준위 상태밀도). \\textbf{★직접 엔트로피 경로(교차검증).} 같은 결과를 비열을"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 983,
+          "excerpt": "$\\int_{-\\infty}^{\\infty}s(\\zeta)\\,\\dd\\zeta=\\pi^2/3$ 를 만족한다. 동결 $g\\approx g(E_F)$ 아래 $\\dd E=k_BT\\,\\dd\\zeta$ 를"
+        }
+      ]
+    },
+    {
+      "id": "SYM-032",
+      "symbol": "Delta S_e",
+      "intended_quantity": "partial-molar electronic entropy contribution",
+      "unit": "J mol^-1 K^-1",
+      "status": "BLOCKED_NORMALIZATION_AND_PHASE_RULE",
+      "collision": "DOS normalization, composition derivative, two-phase lever rule, and relation to measured total partial entropy are unresolved.",
+      "occurrence_count": 56,
+      "representative_evidence": [
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 327,
+          "excerpt": "round-trip 피팅으로 정합한다(피팅 시 전자항은 T1=MIT dict 로 재정렬). 또한 현 구현은 $\\Delta S_e$ 를 기준온도 $T_\\mathrm{ref}$ 에서"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 329,
+          "excerpt": "$\\Delta S_e{\\propto}T$ 의 다온도 $T^2$ 곡률(식~\\eqref{eq:U1T2})은 다온도 round-trip 피팅 단계의 과제로 분리한다.}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 335,
+          "excerpt": "T1 (MIT) & $\\sim$3.90 & 0.94--0.75 & insulator$\\to$metal & config $+\\,\\Delta S_e$ 게이트 ON & \\textbf{발현(핵심)} \\\\"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 346,
+          "excerpt": "흑연엔 없는 \\emph{전자 엔트로피 항} $\\Delta S_e(x,T)$ 가 더해지는 것이며(MIT 고유), 이것이 \\S\\ref{sec:lco-electronic}"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 504,
+          "excerpt": "$|\\Delta S_e|\\!\\approx\\!0.18\\,k_B$/atom $\\times N_A\\!\\approx\\!1.5$ J/(mol\\,K) 규모의 \\emph{소수 음의 보정}이라, 그보다"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1079,
+          "excerpt": "\\Delta x_\\mathrm{MIT})$ 이 피팅 대상이며, 식~\\eqref{eq:dSe} 에 넣으면 삽입 기준 $\\Delta S_e(x)\\propto\\partial\\sigma/\\partial x<0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1080,
+          "excerpt": "(탈리튬화 방출 $|\\Delta S_e|\\propto-\\partial\\sigma/\\partial x>0$)가 MIT 부근의 \\emph{국소 골}(절댓값 봉우리, 작지만 0 아님)이 된다."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1121,
+          "excerpt": "신호는 오직 $\\Delta S_e$ 게이트만 담는다. 곧 ``작지만 빠지면 MIT 를 못 그린다''."
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1137,
+          "excerpt": "\\draw[-{Latex[length=1.6mm]}] (0,-0.2) -- (0,3.3) node[above,font=\\scriptsize] {$g(E_F,x)$ \\&\\ $\\Delta S_e\\propto-\\partial g/\\partial x$};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1149,
+          "excerpt": "\\node[font=\\scriptsize] at (0.30,1.25) {$\\Delta S_e(x)$ bump};"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1155,
+          "excerpt": "파선 $=$ 탈리튬화 시 방출되는 부분몰 전자 엔트로피 $|\\Delta S_e|=-\\partial S_e/\\partial x\\propto-\\partial g/\\partial x>0$"
+        },
+        {
+          "path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+          "line": 1156,
+          "excerpt": "(식~\\eqref{eq:dSe}$\\cdot$닫힌식~\\eqref{eq:dSegate}; 삽입 기준 $\\Delta S_e=\\partial S_e/\\partial x<0$ 의 절댓값으로,"
+        }
+      ]
+    }
+  ]
+}

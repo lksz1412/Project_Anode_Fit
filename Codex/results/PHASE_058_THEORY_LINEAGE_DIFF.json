@@ -1,0 +1,1097 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "status": "PASS_P058_THEORY_EXACT_DIFF",
+  "copy_forward": [
+    {
+      "source_blob": "23aa7f49d98acf27abe47e9cff6a8b372c99d274",
+      "paths": [
+        "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+        "Claude/docs/v1.0.11/graphite_ica_ch1_v1.0.11.tex"
+      ],
+      "verdict": "CONTENT_IDENTICAL; VERSION_LABEL_NOT_NEW_VALIDATION"
+    },
+    {
+      "source_blob": "ed14b4a1f37749332dff61e0be2ac675cc36a655",
+      "paths": [
+        "Claude/docs/v1.0.10/graphite_ica_ch2_v1.0.10.tex",
+        "Claude/docs/v1.0.11/graphite_ica_ch2_v1.0.11.tex"
+      ],
+      "verdict": "CONTENT_IDENTICAL; VERSION_LABEL_NOT_NEW_VALIDATION"
+    }
+  ],
+  "comparisons": [
+    {
+      "pair_id": "ch1_v1010_to_v1012",
+      "old_path": "Claude/docs/v1.0.10/graphite_ica_ch1_v1.0.10.tex",
+      "new_path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+      "old_line_count": 1937,
+      "new_line_count": 2358,
+      "sequence_ratio": 0.8516880093131548,
+      "opcode_line_counts": {
+        "equal": 1829,
+        "replace_old": 108,
+        "replace_new": 528,
+        "delete": 0,
+        "insert": 1
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/theory_diffs/ch1_v1010_to_v1012.patch",
+      "exact_unified_diff_sha256": "395abdfd60b491b3bdc02ad651e837e404e683bf70a89dfc4e8e292a63b98067",
+      "sections": {
+        "old_count": 42,
+        "new_count": 42,
+        "added": [],
+        "removed": []
+      },
+      "labeled_equations": {
+        "old_count": 60,
+        "new_count": 86,
+        "unchanged_count": 58,
+        "changed_count": 2,
+        "added_count": 26,
+        "removed_count": 0,
+        "unchanged_labels": [
+          "eq:Acut",
+          "eq:LV",
+          "eq:Lq",
+          "eq:Lqfull",
+          "eq:Lqmid",
+          "eq:Lqmid2",
+          "eq:Se",
+          "eq:Sedirect",
+          "eq:U1T2",
+          "eq:Ubranch",
+          "eq:Uj",
+          "eq:Ujmid",
+          "eq:Veq",
+          "eq:belliden",
+          "eq:branch",
+          "eq:bv",
+          "eq:center",
+          "eq:chid",
+          "eq:dHeff",
+          "eq:dSe",
+          "eq:dSegate",
+          "eq:dSemolar",
+          "eq:dUhys",
+          "eq:db",
+          "eq:ensavg",
+          "eq:eqbalance",
+          "eq:eqcond",
+          "eq:eqpeak",
+          "eq:fd",
+          "eq:fermifn",
+          "eq:ggate",
+          "eq:gibbsdef",
+          "eq:gpp",
+          "eq:gunit",
+          "eq:gxi",
+          "eq:hysdiff",
+          "eq:hyssub",
+          "eq:hyssym",
+          "eq:intfactor",
+          "eq:kuniv",
+          "eq:logisticsolve",
+          "eq:lowpass",
+          "eq:memory",
+          "eq:msmr",
+          "eq:mu",
+          "eq:mudef",
+          "eq:n0map",
+          "eq:partfn",
+          "eq:peakshape",
+          "eq:reversal",
+          "eq:spinodal",
+          "eq:sum",
+          "eq:vapppol",
+          "eq:vn",
+          "eq:vnmid",
+          "eq:vwork",
+          "eq:wbase",
+          "eq:xieq"
+        ],
+        "changed": [
+          {
+            "label": "eq:lco-dUdT",
+            "old": {
+              "line_start": 478,
+              "line_end": 482,
+              "sha256_normalized": "06a8515e5a27410609a3b91e83f67f60629d2a0c76a1cdcb5b4b8ebd190fdf9f",
+              "excerpt": "\\begin{equation} \\frac{\\partial U_j}{\\partial T}=\\frac{\\Delta S_{\\rxn,j}^\\mathrm{cat}}{F} \\qquad(\\text{식~\\eqref{eq:Uj} 의 }T\\text{ 미분, 전극 불문}). \\label{eq:lco-dUdT} \\end{equation}"
+            },
+            "new": {
+              "line_start": 522,
+              "line_end": 529,
+              "sha256_normalized": "fce5e4947cd5eb417f2b44031d3992486a1790a4f1df52cb16e04ed2474a469f",
+              "excerpt": "\\begin{equation} \\boxed{\\; U_j^\\mathrm{cat}(T)=\\frac{-\\Delta H_{\\rxn,j}^\\mathrm{cat}+T\\Delta S_{\\rxn,j}^\\mathrm{cat}}{F}, \\qquad \\frac{\\partial U_j^\\mathrm{cat}}{\\partial T}=\\frac{\\Delta S_{\\rxn,j}^\\mathrm{cat}}{F} \\quad(j\\in\\mathcal J_\\mathrm{LCO})\\;} \\label{eq:lco-dUdT} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:lco-decomp",
+            "old": {
+              "line_start": 1694,
+              "line_end": 1699,
+              "sha256_normalized": "dc499bda13f8f56112e450931d9801404a29ba55cb19d96ad7acddda7295da08",
+              "excerpt": "\\begin{equation} \\boxed{\\;\\Delta S_{\\rxn,j}^\\mathrm{cat}(x,T)=\\underbrace{\\Delta S_j^\\mathrm{config}}_{\\text{logistic }w=RT/F\\text{ 가 담음}} +\\underbrace{\\Delta S_j^\\mathrm{vib}}_{\\text{음의 baseline}} +\\underbrace{\\Delta S_{e,j}^{\\,\\mathrm{mol}}(x,T)}_{\\text{MIT 게이트, 삽입 기준 }<0,\\ \\propto T\\ (\\text{몰당 식~\\eqref{eq:dSemolar}}"
+            },
+            "new": {
+              "line_start": 2016,
+              "line_end": 2021,
+              "sha256_normalized": "2ca50b5c478e7a6ab989d4f98cca3fb319d1ed00d99c95fc06b2c2202be682b0",
+              "excerpt": "\\begin{equation} \\boxed{\\;\\Delta S_{\\rxn,j}^\\mathrm{cat}(x,T)=\\underbrace{\\Delta S_j^\\mathrm{config}}_{\\text{중심 표준값(내부 분포는 }w\\text{ 가 담음)}} +\\underbrace{\\Delta S_j^\\mathrm{vib}}_{\\text{음의 baseline}} +\\underbrace{\\Delta S_{e,j}^{\\,\\mathrm{mol}}(x,T)}_{\\text{MIT 게이트, 삽입 기준 }<0,\\ \\propto T\\ (\\text{몰당 식~\\eqref{eq:dSemolar}"
+            }
+          }
+        ],
+        "added": [
+          {
+            "label": "eq:lco-J",
+            "line_start": 757,
+            "line_end": 761,
+            "sha256_normalized": "c7e4c92aa7f37749a3a2d6905334342964099d2b92c059c5a7c73b6dde68b692",
+            "excerpt": "\\begin{equation} \\mathcal J_\\mathrm{LCO}=\\{\\mathrm{T1},\\mathrm{T2},\\mathrm{T3}\\}\\ \\text{(식~\\eqref{eq:lco-n0sub})},\\qquad j=1\\,(\\mathrm{T1{:}\\ MIT}),\\ \\ j=2\\,(\\mathrm{T2{:}\\ OD}_a),\\ \\ j=3\\,(\\mathrm{T3{:}\\ OD}_b), \\label{eq:lco-J} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-Sadd",
+            "line_start": 1987,
+            "line_end": 1994,
+            "sha256_normalized": "784c14b38e771f55e0f5b3cf73b539dd3b3edfa2200e29cfc155fe62363e9aeb",
+            "excerpt": "\\begin{equation} S_j=S_j^\\mathrm{config}+S_j^\\mathrm{vib}+S_j^{e}\\ (+\\,S_j^{\\times}\\!\\approx\\!0) \\;\\Longrightarrow\\; \\Delta S_{\\rxn,j}^\\mathrm{cat}(x,T)=\\frac{\\partial S_j^\\mathrm{config}}{\\partial x} +\\frac{\\partial S_j^\\mathrm{vib}}{\\partial x} +\\frac{\\partial S_j^{e}}{\\partial x}. \\label{eq:lco-Sadd} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-SeV",
+            "line_start": 2147,
+            "line_end": 2153,
+            "sha256_normalized": "f0b90354036a8aafafbc56ee3e55804137d193de7ca66c26876a3fccfa61a8f6",
+            "excerpt": "\\begin{equation} \\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T) =-\\frac{\\pi^2}{3}\\,R\\,\\frac{k_BT}{e_V}\\,\\frac{g_{\\max}}{\\Delta x_\\mathrm{MIT}}\\, \\sigma\\!\\big(z_e(V)\\big)\\big[1-\\sigma\\!\\big(z_e(V)\\big)\\big], \\qquad z_e(V)=\\frac{x(\\xi_{\\eq,1}(V))-x_\\mathrm{MIT}}{\\Delta x_\\mathrm{MIT}}. \\label{eq:lco-SeV} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-U1V",
+            "line_start": 2158,
+            "line_end": 2163,
+            "sha256_normalized": "fdae201e12731d68f80cb5eb85d71b185f5caeafd96dcf83914c53fecc50d76b",
+            "excerpt": "\\begin{equation} \\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T)=\\Delta S_1^\\mathrm{config}+\\Delta S_1^\\mathrm{vib} +\\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T),\\qquad U_1(V,T)=U_1(T_\\mathrm{ref})+\\frac1F\\int_{T_\\mathrm{ref}}^{T}\\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T')\\,\\dd T'. \\label{eq:lco-U1V} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-Ubranch",
+            "line_start": 833,
+            "line_end": 838,
+            "sha256_normalized": "4a3ee85cd7d17abe5ef6fdb1acd89d3a4c0ff2b841ad5b04e9a4936f3ec9c5d5",
+            "excerpt": "\\begin{equation} \\boxed{\\; U_j^{\\,d,\\mathrm{cat}}=U_j^\\mathrm{cat} +\\tfrac12\\sigma_d h_{\\eta,j}\\gamma_j\\,\\Delta U_j^{\\hys,\\mathrm{cat}}(T)\\;} \\label{eq:lco-Ubranch} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-Veq",
+            "line_start": 804,
+            "line_end": 808,
+            "sha256_normalized": "99fc9a260a39f570e6aefd93cd942f2c7588db46c7678eb7db82d6977b800304",
+            "excerpt": "\\begin{equation} V_{\\eq,j}^\\mathrm{cat}(\\xi)=U_j^\\mathrm{cat} +\\frac{RT}{F}\\ln\\frac{\\xi}{1-\\xi}+\\frac{\\Omega_j^\\mathrm{cat}}{F}(1-2\\xi), \\label{eq:lco-Veq} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-Zfact",
+            "line_start": 1977,
+            "line_end": 1981,
+            "sha256_normalized": "dac153f4f84a15f91c616d322446c3c9f125ecae93b3aff71bc69173763dd500",
+            "excerpt": "\\begin{equation} Z_j\\;=\\;Z_j^\\mathrm{config}\\,Z_j^\\mathrm{vib}\\,Z_j^\\mathrm{elec}\\;\\times\\;e^{-F_j^{\\times}/RT}, \\qquad F_j^{\\times}\\approx0\\ \\ (\\text{선도 차수 — MIT 부근 결합 잔차는 무시}), \\label{eq:lco-Zfact} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-belliden",
+            "line_start": 1445,
+            "line_end": 1451,
+            "sha256_normalized": "afdc9aec7f9f8278bfcd9e35e8f7727f255cc24bc295f25df1e8c86383652f8c",
+            "excerpt": "\\begin{equation} \\frac{\\dd\\xi_{\\eq,j}}{\\dd V}=\\frac{\\sigma_d\\,\\xi_{\\eq,j}(1-\\xi_{\\eq,j})}{w_j} \\;\\Longrightarrow\\; \\Big|\\frac{\\dd\\xi_{\\eq,j}}{\\dd V}\\Big|=\\frac{\\xi_{\\eq,j}(1-\\xi_{\\eq,j})}{w_j} \\qquad(j\\in\\mathcal J_\\mathrm{LCO}), \\label{eq:lco-belliden} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-charge",
+            "line_start": 1419,
+            "line_end": 1424,
+            "sha256_normalized": "01802915f93620041850682349fa058288baedc4f78a51b90c9c73ef8e87b7ab",
+            "excerpt": "\\begin{equation} Q_\\cell\\,q=Q_\\bg+\\sum_{j\\in\\mathcal J_\\mathrm{LCO}}Q_j^\\mathrm{cat}\\,\\xi_j \\;\\Longrightarrow\\; \\frac{\\dd Q}{\\dd V}=C_\\bg+\\sum_{j=1}^{3}Q_j^\\mathrm{cat}\\,\\frac{\\dd\\xi_j}{\\dd V}. \\label{eq:lco-charge} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-comp",
+            "line_start": 2090,
+            "line_end": 2095,
+            "sha256_normalized": "7f3ec7feec59933aee473dc64343b171e52e55b89f7d47edf48bbc9f1a8e6d31",
+            "excerpt": "\\begin{equation} 1-\\xi_{\\eq,j}^{(\\sigma_d)}(V) =\\frac{1}{1+e^{+\\sigma_d(V-U_j^{\\,d})/w_j}} =\\xi_{\\eq,j}^{(-\\sigma_d)}(V), \\label{eq:lco-comp} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-configsplit",
+            "line_start": 1999,
+            "line_end": 2006,
+            "sha256_normalized": "6b07c0de7f51c027debe8aea4e005c076cde0f5a68f2c12487a9a8de2726820b",
+            "excerpt": "\\begin{equation} \\frac{\\partial S_j^\\mathrm{config}}{\\partial x} =\\underbrace{\\Delta S_j^{0,\\mathrm{config}}}_{\\text{중심 표준값(질서화 등)}} +\\underbrace{R\\ln\\frac{\\xi_j}{1-\\xi_j}}_{\\substack{\\text{혼합 분포항(삽입 기준)}\\\\ \\text{— }w_j(T)=n_jRT/F\\text{ 서식이 자동 생성}}}, \\qquad \\Big[R\\ln\\frac{\\xi_j}{1-\\xi_j}\\Big]_{\\xi_j=\\frac12}=0. \\label{"
+          },
+          {
+            "label": "eq:lco-dUhys",
+            "line_start": 822,
+            "line_end": 832,
+            "sha256_normalized": "679a88ec43b3a427b87ef658dc5d8e7772a21cf78d3df842d3fa2a95bc342f88",
+            "excerpt": "\\begin{equation} \\boxed{\\; \\Delta U_j^{\\hys,\\mathrm{cat}}(T)= \\begin{cases} \\dfrac{2}{F}\\big[\\Omega_j^\\mathrm{cat}u_j^\\mathrm{cat}-2RT\\,\\mathrm{artanh}\\,u_j^\\mathrm{cat}\\big], & \\Omega_j^\\mathrm{cat}>2RT,\\\\[4pt] 0, & \\Omega_j^\\mathrm{cat}\\le2RT, \\end{cases} \\quad u_j^\\mathrm{cat}=\\sqrt{1-\\dfrac{2RT}{\\Omega_j^\\mathrm{ca"
+          },
+          {
+            "label": "eq:lco-dope",
+            "line_start": 903,
+            "line_end": 908,
+            "sha256_normalized": "0c341c5db00cfe5a91c9e4e44121a7cb947c4f9e6939e1522851f7064fe09a76",
+            "excerpt": "\\begin{equation} \\Omega_j^\\mathrm{cat,dop}\\to2RT^+\\ \\Longrightarrow\\ u_j^\\mathrm{cat,dop}\\to0,\\quad \\Delta U_j^{\\hys,\\mathrm{cat,dop}}\\to\\frac{8RT}{3F}\\big(u_j^\\mathrm{cat,dop}\\big)^3\\to0, \\label{eq:lco-dope} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-eqpeak",
+            "line_start": 1464,
+            "line_end": 1470,
+            "sha256_normalized": "3a4d98006a8f4647699dc4ebae5949506712eac142dae6903697325f0f573ee5",
+            "excerpt": "\\begin{equation} \\boxed{\\;\\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_\\mathrm{LCO}(V,T) =C_\\bg+\\sum_{j=1}^{3}Q_j^\\mathrm{cat}\\, \\frac{\\xi_{\\eq,j}(1-\\xi_{\\eq,j})}{w_j}, \\qquad \\xi_{\\eq,j}=\\frac{1}{1+\\exp[-\\sigma_d(V-U_j^{\\,d,\\mathrm{cat}})/w_j]}\\;.} \\label{eq:lco-eqpeak} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-gpp",
+            "line_start": 789,
+            "line_end": 792,
+            "sha256_normalized": "650493131daa658a8a66cfc6a1d553d61afdcdd452f8c13dd6fe46af856baed8",
+            "excerpt": "\\begin{equation} \\frac{\\partial^2 g_j^\\mathrm{cat}}{\\partial\\xi_j^2}=\\frac{RT}{\\xi_j(1-\\xi_j)}-2\\Omega_j^\\mathrm{cat}. \\label{eq:lco-gpp} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-gxi",
+            "line_start": 763,
+            "line_end": 767,
+            "sha256_normalized": "0d17a1592cc7a6291d7a7297903163e160ffee0de9dad97989b44ee6ba1290d4",
+            "excerpt": "\\begin{equation} g_j^\\mathrm{cat}(\\xi_j)=g_{0,j}^\\mathrm{cat} +RT\\{\\xi_j\\ln\\xi_j+(1-\\xi_j)\\ln(1-\\xi_j)\\}+\\Omega_j^\\mathrm{cat}\\,\\xi_j(1-\\xi_j). \\label{eq:lco-gxi} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-mit",
+            "line_start": 889,
+            "line_end": 895,
+            "sha256_normalized": "a5c9e12d258872054c9218129fb7320a51edf1bed3a67ea4c913e3a01d83117f",
+            "excerpt": "\\begin{equation} \\boxed{\\; \\underbrace{\\Delta U_1^{\\hys,\\mathrm{cat}}\\ \\text{(구조적 2상역)}\\ \\Leftarrow\\ \\Omega_1^\\mathrm{cat}}_{\\text{정규용액 히스 gap (이 절)}} \\quad\\Big\\|\\quad \\underbrace{\\partial U_1^\\mathrm{cat}/\\partial T\\ \\Leftarrow\\ \\Delta S_{e,1}^\\mathrm{mol}(x,T)}_{\\text{전자 엔트로피 (\\S\\ref{sec:lco-electronic})}}\\;} \\label{"
+          },
+          {
+            "label": "eq:lco-msmrmap",
+            "line_start": 2102,
+            "line_end": 2107,
+            "sha256_normalized": "ccc6b4e14bc0e992a8f4300d4b51f93df854e082af71d1c17de0ca962f181664",
+            "excerpt": "\\begin{equation} U\\leftrightarrow V,\\qquad U_j^0\\leftrightarrow U_j^{\\,d},\\qquad \\omega_j\\leftrightarrow w_j,\\qquad X_j\\leftrightarrow Q_j,\\qquad f=+\\sigma_d \\label{eq:lco-msmrmap} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-msmrnorm",
+            "line_start": 2080,
+            "line_end": 2084,
+            "sha256_normalized": "b14c3df63016a02c95d554c79a6be797f5ff40b982d929dd10b9237fe7d2f86d",
+            "excerpt": "\\begin{equation} \\theta_j^{\\mathrm{MSMR}}\\equiv\\frac{x_j}{X_j}=\\frac{1}{1+e^{+f(U-U_j^0)/\\omega_j}},\\qquad \\xi_j^{\\mathrm{MSMR}}\\equiv1-\\frac{x_j}{X_j}=\\frac{1}{1+e^{-f(U-U_j^0)/\\omega_j}}, \\label{eq:lco-msmrnorm} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-msmrpeak",
+            "line_start": 2119,
+            "line_end": 2125,
+            "sha256_normalized": "f2a7b23e8967d8212861c6acfec9cc7b7bae99cdc403294834d33c0a1b78668a",
+            "excerpt": "\\begin{equation} \\boxed{\\;Q_j\\Big|\\frac{\\dd(x_j/X_j)}{\\dd U}\\Big| =Q_j\\,\\frac{\\theta_j^{\\mathrm{MSMR}}(1-\\theta_j^{\\mathrm{MSMR}})}{\\omega_j} \\;\\equiv\\;Q_j\\,\\frac{\\xi_{\\eq,j}(1-\\xi_{\\eq,j})}{w_j} \\quad(\\text{식~\\eqref{eq:lco-eqpeak} 의 피가수})\\;,} \\label{eq:lco-msmrpeak} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-n0sub",
+            "line_start": 486,
+            "line_end": 491,
+            "sha256_normalized": "fbe6ab0779ec38120fb8d29168ebe3d6858a642dae22cf066ea44fa6f3f4f18a",
+            "excerpt": "\\begin{equation} j\\in\\mathcal J_\\mathrm{LCO}=\\{\\mathrm{T1},\\mathrm{T2},\\mathrm{T3}\\},\\qquad (\\Delta H_{\\rxn,j},\\Delta S_{\\rxn,j})\\ \\longmapsto\\ (\\Delta H_{\\rxn,j}^\\mathrm{cat},\\Delta S_{\\rxn,j}^\\mathrm{cat}). \\label{eq:lco-n0sub} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-peakobs",
+            "line_start": 1457,
+            "line_end": 1462,
+            "sha256_normalized": "f5163aa044905f1d835a189aa1288adc15128d48b2142afd11ed9e8e1bab7620",
+            "excerpt": "\\begin{equation} V_{\\mathrm{peak},j}=U_j^{\\,d,\\mathrm{cat}}\\ (z_j{=}0),\\qquad \\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j,\\max}=\\frac{Q_j^\\mathrm{cat}}{4w_j}\\ \\Big(\\xi_\\eq(1{-}\\xi_\\eq)\\big|_{1/2}{=}\\tfrac14\\Big),\\qquad \\int\\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j}\\dd V=Q_j^\\mathrm{cat}\\ \\Big(\\textstyle\\int_0^1\\dd\\xi=1\\Big). \\"
+          },
+          {
+            "label": "eq:lco-plugin",
+            "line_start": 2174,
+            "line_end": 2180,
+            "sha256_normalized": "f80463a03d49a70181c25095c900e72ae77a4651f9bc3cf2f6fe32183e7b808c",
+            "excerpt": "\\begin{equation} \\boxed{\\;x\\big(\\xi_{\\eq,1}(V)\\big)\\ \\xrightarrow{\\eqref{eq:lco-SeV}}\\ \\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T) \\ \\xrightarrow{\\eqref{eq:lco-U1V}}\\ U_1(T)\\ \\xrightarrow{\\eqref{eq:lco-Ubranch}}\\ U_1^{\\,d,\\mathrm{cat}} \\ \\xrightarrow{\\eqref{eq:xieq}}\\ \\xi_{\\eq,1}\\ \\xrightarrow{\\eqref{eq:lco-eqpeak}}\\ \\Big(\\fr"
+          },
+          {
+            "label": "eq:lco-slots",
+            "line_start": 2008,
+            "line_end": 2014,
+            "sha256_normalized": "bdf604728f1ae9e1150ac3233e997ed056a711908ebef4595c796a47ce7009b2",
+            "excerpt": "\\begin{equation} \\Delta S_j^\\mathrm{config}\\ \\leftarrow\\ \\Delta S_j^{0,\\mathrm{config}}\\ \\text{만} \\ (\\text{혼합 분포항은 }w_j\\text{ 가 담음 — 재기입 금지}),\\quad \\Delta S_j^\\mathrm{vib}\\ \\leftarrow\\ \\text{창 내 완만 몫의 중심 흡수치},\\quad \\Delta S_{e,j}^{\\,\\mathrm{mol}}\\ \\leftarrow\\ N_A\\,\\frac{\\partial S_e}{\\partial x}\\ \\big(\\text{게이트 골, 창 밖}"
+          },
+          {
+            "label": "eq:lco-spinodal",
+            "line_start": 794,
+            "line_end": 798,
+            "sha256_normalized": "65d8e4913ff3ead0f46719d6142d0b39d250426213adacdbcc6dcc2f5c774393",
+            "excerpt": "\\begin{equation} \\xi_{s,j}^{\\pm}=\\tfrac12\\big(1\\pm u_j^\\mathrm{cat}\\big),\\qquad u_j^\\mathrm{cat}=\\sqrt{1-\\frac{2RT}{\\Omega_j^\\mathrm{cat}}}\\qquad(\\Omega_j^\\mathrm{cat}>2RT), \\label{eq:lco-spinodal} \\end{equation}"
+          },
+          {
+            "label": "eq:lco-xmap",
+            "line_start": 2137,
+            "line_end": 2140,
+            "sha256_normalized": "e35a67d8c7e9c033f1f8082153c54945ccf7da921cd91e18940290962d02ac5c",
+            "excerpt": "\\begin{equation} x\\big(\\xi_{\\eq,1}(V)\\big)=x_{\\mathrm{hi},1}-\\big(x_{\\mathrm{hi},1}-x_{\\mathrm{lo},1}\\big)\\,\\xi_{\\eq,1}(V) \\label{eq:lco-xmap} \\end{equation}"
+          }
+        ],
+        "removed": []
+      }
+    },
+    {
+      "pair_id": "ch1_v1012_to_v1013",
+      "old_path": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+      "new_path": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+      "old_line_count": 2358,
+      "new_line_count": 2934,
+      "sequence_ratio": 0.5260770975056689,
+      "opcode_line_counts": {
+        "equal": 1392,
+        "replace_old": 391,
+        "replace_new": 1536,
+        "delete": 575,
+        "insert": 6
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/theory_diffs/ch1_v1012_to_v1013.patch",
+      "exact_unified_diff_sha256": "b2ab29d2975b07530a0f605b4a1c4de73c38d6d38885a9296141a238ff26edfb",
+      "sections": {
+        "old_count": 42,
+        "new_count": 52,
+        "added": [
+          {
+            "label": "sec:dist",
+            "title": "같은 결과의 분포 관점 — $\\xi_\\eq$ 는 평형 점유 분포의 여집합"
+          },
+          {
+            "label": "sec:facade",
+            "title": "facade 와 전체 진행 한눈에"
+          },
+          {
+            "label": "sec:lco-code",
+            "title": "forward 코드의 LCO 일반화 — 파라미터 교체 + 전자항 plug-in"
+          },
+          {
+            "label": "sec:lco-direction",
+            "title": "방향 규약 --- $\\sigma_d$ 입력 슬롯의 물리 내용은 탈리튬화 여부다"
+          },
+          {
+            "label": "sec:lco-intro",
+            "title": "Part II --- LCO 양극: 전극-중립 골격에서 MSMR 통합까지"
+          },
+          {
+            "label": "sec:lco-map",
+            "title": "전극-중립 골격 --- 무엇이 전극 무관인가"
+          },
+          {
+            "label": "sec:lco-preview",
+            "title": "MSMR 예고 --- 같은 logistic, 같은 부호 규약"
+          },
+          {
+            "label": "sec:sm-ensemble",
+            "title": "앙상블과 Boltzmann·Gibbs 인자 --- 분배함수와 화학퍼텐셜 $\\mu$"
+          },
+          {
+            "label": "sec:sm-found",
+            "title": "통계역학 기초 --- 분배함수에서 Nernst 식까지 (P0)"
+          },
+          {
+            "label": "sec:sm-lattice",
+            "title": "$M$ 개의 독립 자리 --- lattice gas 와 섞임 엔트로피"
+          },
+          {
+            "label": "sec:sm-macro",
+            "title": "거시 열역학으로 --- $G\\equiv H-TS$, $\\Delta G_j=-sFU_j$, Nernst 식"
+          },
+          {
+            "label": "sec:sm-mf",
+            "title": "평균장 상호작용 --- 정규용액 $\\mu(\\theta)$·$g(\\xi)$ 와 이중웰(double-well) 문턱"
+          },
+          {
+            "label": "sec:sm-site",
+            "title": "단일 삽입 자리 --- 2-상태 점유와 그 요동"
+          },
+          {
+            "label": "sec:width",
+            "title": "폭과 평형 진행률 $\\xi_\\eq$ (N4, N5)"
+          },
+          {
+            "label": null,
+            "title": "전기화학 연결 --- $\\mu_\\mathrm{Li"
+          },
+          {
+            "label": null,
+            "title": "평형 진행률 $\\xi_\\eq$ — logistic 의 유도"
+          }
+        ],
+        "removed": [
+          {
+            "label": "sec:dist",
+            "title": "같은 결과의 분포 관점 — $\\xi_\\eq$ 는 평형 점유 확률 분포"
+          },
+          {
+            "label": "sec:lco-code",
+            "title": "forward 코드의 LCO 일반화 — 파라미터 교체 + 전자항 plug-in (H)"
+          },
+          {
+            "label": "sec:lco-map",
+            "title": "두 번째 전극 — LCO 양극으로의 일반화"
+          },
+          {
+            "label": "sec:width",
+            "title": "폭과 평형 점유 $\\xi_\\eq$ (N4, N5)"
+          },
+          {
+            "label": null,
+            "title": "facade 와 전체 진행 한눈에"
+          },
+          {
+            "label": null,
+            "title": "평형 점유 $\\xi_\\eq$ — logistic 의 유도"
+          }
+        ]
+      },
+      "labeled_equations": {
+        "old_count": 86,
+        "new_count": 111,
+        "unchanged_count": 76,
+        "changed_count": 10,
+        "added_count": 25,
+        "removed_count": 0,
+        "unchanged_labels": [
+          "eq:LV",
+          "eq:Lq",
+          "eq:Lqfull",
+          "eq:Lqmid",
+          "eq:Lqmid2",
+          "eq:Se",
+          "eq:Sedirect",
+          "eq:Ubranch",
+          "eq:Uj",
+          "eq:Ujmid",
+          "eq:Veq",
+          "eq:belliden",
+          "eq:branch",
+          "eq:bv",
+          "eq:center",
+          "eq:chid",
+          "eq:dHeff",
+          "eq:dSe",
+          "eq:dSegate",
+          "eq:dSemolar",
+          "eq:dUhys",
+          "eq:db",
+          "eq:ensavg",
+          "eq:eqbalance",
+          "eq:eqcond",
+          "eq:eqpeak",
+          "eq:fd",
+          "eq:gibbsdef",
+          "eq:gpp",
+          "eq:gunit",
+          "eq:gxi",
+          "eq:hysdiff",
+          "eq:hyssub",
+          "eq:hyssym",
+          "eq:intfactor",
+          "eq:kuniv",
+          "eq:lco-J",
+          "eq:lco-Sadd",
+          "eq:lco-SeV",
+          "eq:lco-Ubranch",
+          "eq:lco-Veq",
+          "eq:lco-Zfact",
+          "eq:lco-belliden",
+          "eq:lco-charge",
+          "eq:lco-comp",
+          "eq:lco-dUdT",
+          "eq:lco-dUhys",
+          "eq:lco-decomp",
+          "eq:lco-dope",
+          "eq:lco-eqpeak",
+          "eq:lco-gpp",
+          "eq:lco-gxi",
+          "eq:lco-mit",
+          "eq:lco-msmrmap",
+          "eq:lco-msmrnorm",
+          "eq:lco-msmrpeak",
+          "eq:lco-n0sub",
+          "eq:lco-spinodal",
+          "eq:lco-xmap",
+          "eq:logisticsolve",
+          "eq:lowpass",
+          "eq:memory",
+          "eq:msmr",
+          "eq:mu",
+          "eq:mudef",
+          "eq:n0map",
+          "eq:peakshape",
+          "eq:reversal",
+          "eq:spinodal",
+          "eq:sum",
+          "eq:vapppol",
+          "eq:vn",
+          "eq:vnmid",
+          "eq:vwork",
+          "eq:wbase",
+          "eq:xieq"
+        ],
+        "changed": [
+          {
+            "label": "eq:Acut",
+            "old": {
+              "line_start": 1708,
+              "line_end": 1712,
+              "sha256_normalized": "75608edc46895ea1c86efae6a0e5ee58bc973f923a364c303db2aed1b02e0bbc",
+              "excerpt": "\\begin{equation} \\mathcal A=\\min\\!\\big(z_\\mathrm{cut}\\,n_j\\,RT,\\;A_\\mathrm{cap}\\,RT\\big), \\qquad z_\\mathrm{cut}=4.357,\\ A_\\mathrm{cap}=4.0\\ (\\text{기본; }z_\\mathrm{cut}\\text{ 는 미분 }5\\%\\text{ 컷의 선택값}). \\label{eq:Acut} \\end{equation}"
+            },
+            "new": {
+              "line_start": 1562,
+              "line_end": 1566,
+              "sha256_normalized": "62ccdc60ab5e5590ae4b7b22d9bc37fcc388bf38aae66ed0ef769197b28c4d0d",
+              "excerpt": "\\begin{equation} \\mathcal A=\\min\\!\\big(z_\\mathrm{cut}\\,n_j\\,RT,\\;A_\\mathrm{cap}\\,RT\\big), \\qquad z_\\mathrm{cut}=4.357,\\ A_\\mathrm{cap}=4.0\\ (\\text{기본}). \\label{eq:Acut} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:U1T2",
+            "old": {
+              "line_start": 1269,
+              "line_end": 1272,
+              "sha256_normalized": "49e6cc105a4b8ef61c3cc30e696893159326dc5e2ee472fad2c2712b6b29b5a7",
+              "excerpt": "\\begin{equation} \\boxed{\\;U_1(T)=U_1(T_0)+\\frac{\\Delta S_0}{F}\\,(T-T_0)+\\frac{a_e}{2F}\\,(T^2-T_0^2)\\;.} \\label{eq:U1T2} \\end{equation}"
+            },
+            "new": {
+              "line_start": 2376,
+              "line_end": 2379,
+              "sha256_normalized": "ec2c90d2e8053bdba594d43066b7ff1be779ebfb8b0e20c2049131ffdfe16b17",
+              "excerpt": "\\begin{equation} \\boxed{\\;U_1(T)=U_1(T_\\mathrm{ref})+\\frac{\\Delta S_0}{F}\\,(T-T_\\mathrm{ref})+\\frac{a_e}{2F}\\,(T^2-T_\\mathrm{ref}^2)\\;.} \\label{eq:U1T2} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:fermifn",
+            "old": {
+              "line_start": 1083,
+              "line_end": 1087,
+              "sha256_normalized": "10fc62667afab6054c2e508f6e31ef45056e4df75e21e3189d7879095040be61",
+              "excerpt": "\\begin{equation} \\langle n\\rangle\\;=\\;\\frac{e^{-\\beta\\Delta\\mu}}{1+e^{-\\beta\\Delta\\mu}} \\;=\\;\\frac{1}{1+e^{+\\beta\\Delta\\mu}}. \\label{eq:fermifn} \\end{equation}"
+            },
+            "new": {
+              "line_start": 438,
+              "line_end": 441,
+              "sha256_normalized": "ce61bfdcbc261d58449b80cbc37b37f4f73ecbb1fa0654c33cb8db5ca797b139",
+              "excerpt": "\\begin{equation} \\boxed{\\;\\theta\\;\\equiv\\;\\langle n\\rangle\\;=\\;\\frac{1}{1+e^{+\\beta\\,\\Delta\\mu}}\\;.} \\label{eq:fermifn} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:ggate",
+            "old": {
+              "line_start": 1283,
+              "line_end": 1287,
+              "sha256_normalized": "a8eb65035039554d0e275424926452005282079158237efd4075d18aa97cda65",
+              "excerpt": "\\begin{equation} \\boxed{\\;g(E_F,x)\\;\\approx\\;g_{\\max}\\Big[\\,1-\\sigma\\!\\Big(\\frac{x-x_\\mathrm{MIT}}{\\Delta x_\\mathrm{MIT}}\\Big)\\Big], \\quad g_{\\max}=13\\ \\text{e/eV},\\;x_\\mathrm{MIT}\\approx0.85,\\;\\Delta x_\\mathrm{MIT}\\approx0.05\\;} \\label{eq:ggate} \\end{equation}"
+            },
+            "new": {
+              "line_start": 2390,
+              "line_end": 2394,
+              "sha256_normalized": "17015262546061af64f13041bd836a8cae11c214c2377b7da9fadbef1562ec6d",
+              "excerpt": "\\begin{equation} \\boxed{\\;g(E_F,x)\\;\\approx\\;g_{\\max}\\Big[\\,1-\\sigma\\!\\Big(\\frac{x-x_\\mathrm{MIT}}{\\Delta x_\\mathrm{MIT}}\\Big)\\Big], \\quad g_{\\max}=13\\ \\text{e/eV/atom},\\;x_\\mathrm{MIT}\\approx0.85,\\;\\Delta x_\\mathrm{MIT}\\approx0.05\\;} \\label{eq:ggate} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:lco-U1V",
+            "old": {
+              "line_start": 2158,
+              "line_end": 2163,
+              "sha256_normalized": "fdae201e12731d68f80cb5eb85d71b185f5caeafd96dcf83914c53fecc50d76b",
+              "excerpt": "\\begin{equation} \\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T)=\\Delta S_1^\\mathrm{config}+\\Delta S_1^\\mathrm{vib} +\\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T),\\qquad U_1(V,T)=U_1(T_\\mathrm{ref})+\\frac1F\\int_{T_\\mathrm{ref}}^{T}\\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T')\\,\\dd T'. \\label{eq:lco-U1V} \\end{equation}"
+            },
+            "new": {
+              "line_start": 2719,
+              "line_end": 2726,
+              "sha256_normalized": "2db190fd430b97ff2af678b7f39e62bb732f45eada00e1e606728412bacd096a",
+              "excerpt": "\\begin{equation} \\begin{aligned} \\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T)&=\\Delta S_1^\\mathrm{config}+\\Delta S_1^\\mathrm{vib} +\\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T),\\\\ U_1(V,T)&=U_1(T_\\mathrm{ref})+\\frac1F\\int_{T_\\mathrm{ref}}^{T}\\Delta S_{\\rxn,1}^\\mathrm{cat}(V,T')\\,\\dd T'. \\end{aligned} \\label{eq:lco-U1V} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:lco-configsplit",
+            "old": {
+              "line_start": 1999,
+              "line_end": 2006,
+              "sha256_normalized": "6b07c0de7f51c027debe8aea4e005c076cde0f5a68f2c12487a9a8de2726820b",
+              "excerpt": "\\begin{equation} \\frac{\\partial S_j^\\mathrm{config}}{\\partial x} =\\underbrace{\\Delta S_j^{0,\\mathrm{config}}}_{\\text{중심 표준값(질서화 등)}} +\\underbrace{R\\ln\\frac{\\xi_j}{1-\\xi_j}}_{\\substack{\\text{혼합 분포항(삽입 기준)}\\\\ \\text{— }w_j(T)=n_jRT/F\\text{ 서식이 자동 생성}}}, \\qquad \\Big[R\\ln\\frac{\\xi_j}{1-\\xi_j}\\Big]_{\\xi_j=\\frac12}=0. \\label{"
+            },
+            "new": {
+              "line_start": 2573,
+              "line_end": 2580,
+              "sha256_normalized": "61cd0fa3cccfe2a1b9cca7db6233acb95b8702c95f467fe6815cf4da9a6885a8",
+              "excerpt": "\\begin{equation} \\frac{\\partial S_j^\\mathrm{config}}{\\partial x} =\\underbrace{\\Delta S_j^{0,\\mathrm{config}}}_{\\text{중심 표준값(질서화 등)}} +\\underbrace{R\\ln\\frac{\\xi_j}{1-\\xi_j}}_{\\substack{\\text{혼합 분포항(삽입 기준; 자리당 }n_j{=}1\\text{)}\\\\ \\text{— }w_j{=}n_jRT/F\\text{ 서식의 일반형은 }n_jR\\ln[\\cdot]}}, \\qquad \\Big[R\\ln\\frac{\\xi_j}{1-\\xi_j"
+            }
+          },
+          {
+            "label": "eq:lco-peakobs",
+            "old": {
+              "line_start": 1457,
+              "line_end": 1462,
+              "sha256_normalized": "f5163aa044905f1d835a189aa1288adc15128d48b2142afd11ed9e8e1bab7620",
+              "excerpt": "\\begin{equation} V_{\\mathrm{peak},j}=U_j^{\\,d,\\mathrm{cat}}\\ (z_j{=}0),\\qquad \\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j,\\max}=\\frac{Q_j^\\mathrm{cat}}{4w_j}\\ \\Big(\\xi_\\eq(1{-}\\xi_\\eq)\\big|_{1/2}{=}\\tfrac14\\Big),\\qquad \\int\\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j}\\dd V=Q_j^\\mathrm{cat}\\ \\Big(\\textstyle\\int_0^1\\dd\\xi=1\\Big). \\"
+            },
+            "new": {
+              "line_start": 2515,
+              "line_end": 2522,
+              "sha256_normalized": "c6ed3d4ccf833a25e36493defd6a07cb5cb9ee1a81a7dd19353993d9d96647e7",
+              "excerpt": "\\begin{equation} \\begin{aligned} &V_{\\mathrm{peak},j}=U_j^{\\,d,\\mathrm{cat}}\\ (z_j{=}0),\\qquad \\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j,\\max}=\\frac{Q_j^\\mathrm{cat}}{4w_j}\\ \\Big(\\xi_\\eq(1{-}\\xi_\\eq)\\big|_{1/2}{=}\\tfrac14\\Big),\\\\ &\\int\\Big(\\frac{\\dd Q}{\\dd V}\\Big)^{\\eq}_{j}\\dd V=Q_j^\\mathrm{cat}\\ \\Big(\\textstyle\\int_0^1\\d"
+            }
+          },
+          {
+            "label": "eq:lco-plugin",
+            "old": {
+              "line_start": 2174,
+              "line_end": 2180,
+              "sha256_normalized": "f80463a03d49a70181c25095c900e72ae77a4651f9bc3cf2f6fe32183e7b808c",
+              "excerpt": "\\begin{equation} \\boxed{\\;x\\big(\\xi_{\\eq,1}(V)\\big)\\ \\xrightarrow{\\eqref{eq:lco-SeV}}\\ \\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T) \\ \\xrightarrow{\\eqref{eq:lco-U1V}}\\ U_1(T)\\ \\xrightarrow{\\eqref{eq:lco-Ubranch}}\\ U_1^{\\,d,\\mathrm{cat}} \\ \\xrightarrow{\\eqref{eq:xieq}}\\ \\xi_{\\eq,1}\\ \\xrightarrow{\\eqref{eq:lco-eqpeak}}\\ \\Big(\\fr"
+            },
+            "new": {
+              "line_start": 2737,
+              "line_end": 2745,
+              "sha256_normalized": "69c3969ad5646b9f688c56be03acac7bc35ee61807151e35b9dcf8e5cae58116",
+              "excerpt": "\\begin{equation} \\boxed{\\;\\begin{aligned} x\\big(\\xi_{\\eq,1}(V)\\big)\\ &\\xrightarrow{\\eqref{eq:lco-SeV}}\\ \\Delta S_{e,1}^{\\,\\mathrm{mol}}(V,T) \\ \\xrightarrow{\\eqref{eq:lco-U1V}}\\ U_1(T)\\ \\xrightarrow{\\eqref{eq:lco-Ubranch}}\\ U_1^{\\,d,\\mathrm{cat}}\\\\[2pt] &\\xrightarrow{\\eqref{eq:xieq}}\\ \\xi_{\\eq,1}\\ \\xrightarrow{\\eqref{eq"
+            }
+          },
+          {
+            "label": "eq:lco-slots",
+            "old": {
+              "line_start": 2008,
+              "line_end": 2014,
+              "sha256_normalized": "bdf604728f1ae9e1150ac3233e997ed056a711908ebef4595c796a47ce7009b2",
+              "excerpt": "\\begin{equation} \\Delta S_j^\\mathrm{config}\\ \\leftarrow\\ \\Delta S_j^{0,\\mathrm{config}}\\ \\text{만} \\ (\\text{혼합 분포항은 }w_j\\text{ 가 담음 — 재기입 금지}),\\quad \\Delta S_j^\\mathrm{vib}\\ \\leftarrow\\ \\text{창 내 완만 몫의 중심 흡수치},\\quad \\Delta S_{e,j}^{\\,\\mathrm{mol}}\\ \\leftarrow\\ N_A\\,\\frac{\\partial S_e}{\\partial x}\\ \\big(\\text{게이트 골, 창 밖}"
+            },
+            "new": {
+              "line_start": 2582,
+              "line_end": 2590,
+              "sha256_normalized": "a584dcf62be9b7d3233a4f1204cce423852d9ff26a9a506c1b80af59acf60ff1",
+              "excerpt": "\\begin{equation} \\begin{aligned} \\Delta S_j^\\mathrm{config}\\ &\\leftarrow\\ \\Delta S_j^{0,\\mathrm{config}}\\ \\text{만} \\ (\\text{혼합 분포항은 }w_j\\text{ 가 담음 — 재기입 금지}),\\\\ \\Delta S_j^\\mathrm{vib}\\ &\\leftarrow\\ \\text{창 내 완만 몫의 중심 흡수치},\\\\ \\Delta S_{e,j}^{\\,\\mathrm{mol}}\\ &\\leftarrow\\ N_A\\,\\frac{\\partial S_e}{\\partial x}\\ \\big(\\tex"
+            }
+          },
+          {
+            "label": "eq:partfn",
+            "old": {
+              "line_start": 1076,
+              "line_end": 1080,
+              "sha256_normalized": "ce33fcadf519e293e003e0740a220454a81b588a5a831caf74b68fb3a5eaa224",
+              "excerpt": "\\begin{equation} Z\\;=\\;1+e^{-\\beta\\,\\Delta\\mu},\\qquad \\beta\\equiv\\frac{1}{k_BT},\\quad \\Delta\\mu\\equiv\\varepsilon_\\mathrm{occ}-\\mu_\\mathrm{Li} \\label{eq:partfn} \\end{equation}"
+            },
+            "new": {
+              "line_start": 421,
+              "line_end": 424,
+              "sha256_normalized": "c83839c867d7f9ac2e46ec18bada10cd04472cfd4676ba528016692d92f16eb1",
+              "excerpt": "\\begin{equation} Z\\;=\\;\\sum_{n=0,1}e^{-\\beta\\,\\Delta\\mu\\,n}\\;=\\;1+e^{-\\beta\\,\\Delta\\mu} \\label{eq:partfn} \\end{equation}"
+            }
+          }
+        ],
+        "added": [
+          {
+            "label": "eq:lco-sigmaslot",
+            "line_start": 1917,
+            "line_end": 1923,
+            "sha256_normalized": "5ffb8ec29febd09806a5b4d3c3a5117e91cd000389ba5da108d1c017225202e2",
+            "excerpt": "\\begin{equation} \\boxed{\\;\\begin{aligned} &\\sigma_d=+1\\ \\Leftrightarrow\\ \\text{탈리튬화(산화, $\\xi:0\\!\\to\\!1$, 전위 상승 진행)}:\\\\ &\\quad\\text{흑연 하프셀 --- 방전}\\mapsto+1,\\qquad \\text{LCO 하프셀 --- 충전}\\mapsto+1\\;. \\end{aligned}} \\label{eq:lco-sigmaslot} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-S",
+            "line_start": 336,
+            "line_end": 339,
+            "sha256_normalized": "e59e2146fd462259fd77394863d14b1d9539ac076d28a0b921318bc99771ac14",
+            "excerpt": "\\begin{equation} S\\;=\\;k_B\\ln W. \\label{eq:sm-S} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-Smix",
+            "line_start": 476,
+            "line_end": 479,
+            "sha256_normalized": "644b7813bf0da69a6d9d456134a656721e9b91df3391e10adf4d26d4e141580a",
+            "excerpt": "\\begin{equation} S_\\mathrm{mix}=k_B\\ln W\\simeq-k_BM\\big[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)\\big], \\label{eq:sm-Smix} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-emu",
+            "line_start": 634,
+            "line_end": 637,
+            "sha256_normalized": "788881bd6bc29d5a94e55240fd79bcd4cd31186805519b4f4c88384f49603ecc",
+            "excerpt": "\\begin{equation} \\tilde\\mu\\;\\equiv\\;\\mu+zF\\phi \\label{eq:sm-emu} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-eqcond",
+            "line_start": 667,
+            "line_end": 672,
+            "sha256_normalized": "0e33625baf5871ff7264f9607bc445d68fd75f0115724c7435580546099209b0",
+            "excerpt": "\\begin{equation} \\mu_\\mathrm{Li}(\\theta_\\eq)=\\mu^0-sF\\,(V-U), \\qquad \\Delta G_j\\equiv\\mu^0-\\mu_\\mathrm{Li}^\\mathrm{metal}=-sF\\,U_j \\label{eq:sm-eqcond} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-factor",
+            "line_start": 465,
+            "line_end": 469,
+            "sha256_normalized": "61603726c7e74e20d86c5349e6699776b5b13d57bef7ee3e66627444f541927b",
+            "excerpt": "\\begin{equation} \\Xi_M=\\sum_{n_1=0,1}\\!\\cdots\\!\\sum_{n_M=0,1}\\prod_{k=1}^{M}e^{-\\beta\\,\\Delta\\mu\\,n_k} =\\prod_{k=1}^{M}\\Big[\\sum_{n_k=0,1}e^{-\\beta\\,\\Delta\\mu\\,n_k}\\Big]=Z^{\\,M}, \\label{eq:sm-factor} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-flucres",
+            "line_start": 449,
+            "line_end": 454,
+            "sha256_normalized": "c5a1bc3ec3148bbe415a19c9047b1f4f249031c746b132e637945c1c0fcfbd2c",
+            "excerpt": "\\begin{equation} \\mathrm{var}(n)=\\langle n^2\\rangle-\\langle n\\rangle^2=\\theta(1-\\theta), \\qquad \\frac{\\partial\\theta}{\\partial(\\beta\\mu)}=\\theta(1-\\theta) \\label{eq:sm-flucres} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-fund",
+            "line_start": 341,
+            "line_end": 347,
+            "sha256_normalized": "3c3ca7739f596b74115d4e1747d4dfffc79526e91de05c0a95c4ab9405ae02df",
+            "excerpt": "\\begin{equation} \\dd S=\\frac{1}{T}\\,\\dd E+\\frac{P}{T}\\,\\dd V-\\frac{\\mu}{T}\\,\\dd N \\quad\\Longrightarrow\\quad \\frac{\\partial S}{\\partial E}\\Big|_{V,N}=\\frac1T,\\qquad \\frac{\\partial S}{\\partial N}\\Big|_{E,V}=-\\frac{\\mu}{T}. \\label{eq:sm-fund} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-gc",
+            "line_start": 385,
+            "line_end": 390,
+            "sha256_normalized": "4335c9d67973f6390390373c987b36ebd89f76f874a066e953476f6c2b851657",
+            "excerpt": "\\begin{equation} \\boxed{\\;\\Xi=\\sum_i e^{-\\beta(E_i-\\mu N_i)},\\qquad P_i=\\frac{e^{-\\beta(E_i-\\mu N_i)}}{\\Xi},\\qquad \\langle N\\rangle=k_BT\\,\\frac{\\partial\\ln\\Xi}{\\partial\\mu}\\;} \\label{eq:sm-gc} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-gibbsfactor",
+            "line_start": 369,
+            "line_end": 372,
+            "sha256_normalized": "a4d377bf089c1b0f3c8cb309de9084f87a2967787e463a840b990b81f58f2408",
+            "excerpt": "\\begin{equation} P_i\\;\\propto\\;e^{-\\beta(E_i-\\mu N_i)},\\qquad \\beta\\equiv\\frac{1}{k_BT} \\label{eq:sm-gibbsfactor} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-gtheta",
+            "line_start": 529,
+            "line_end": 532,
+            "sha256_normalized": "7087157ff12e5464dfac140e0645eec4415bbaa804d60a4afbe19403afce6712",
+            "excerpt": "\\begin{equation} g(\\theta)=\\mu^0\\theta+RT\\big[\\theta\\ln\\theta+(1-\\theta)\\ln(1-\\theta)\\big]+\\Omega_j\\,\\theta(1-\\theta), \\label{eq:sm-gtheta} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-logistic",
+            "line_start": 679,
+            "line_end": 684,
+            "sha256_normalized": "4afa040acf4c3b25532cf8d014bc9eab1d0ed7889488d26b057b66596e95d9d1",
+            "excerpt": "\\begin{equation} \\boxed{\\;\\theta_\\eq(V,T)=\\frac{1}{1+e^{+sF(V-U)/RT}},\\qquad \\xi_\\eq(V,T)=1-\\theta_\\eq=\\frac{1}{1+e^{-sF(V-U)/RT}},\\qquad w\\equiv\\frac{RT}{F}\\;.} \\label{eq:sm-logistic} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-mf",
+            "line_start": 506,
+            "line_end": 509,
+            "sha256_normalized": "d074b9a89d1ac5754d24610e70a4d2ecd4b1c82b98cef45b3190237ce8eaf8e2",
+            "excerpt": "\\begin{equation} E_\\mathrm{int}\\;\\simeq\\;\\frac{Mz}{2}\\,u\\,\\theta^2 \\label{eq:sm-mf} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-muV",
+            "line_start": 658,
+            "line_end": 661,
+            "sha256_normalized": "b20d28ff1d6117d6da30a8505c71e8ca0b436e3f01c8e63cccd1b6ca0a978d13",
+            "excerpt": "\\begin{equation} \\mu_\\mathrm{Li}(\\theta_\\eq)-\\mu_\\mathrm{Li}^\\mathrm{metal}=-F\\,V. \\label{eq:sm-muV} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-mubridge",
+            "line_start": 776,
+            "line_end": 780,
+            "sha256_normalized": "3f67662556ebe1ff79b039b0774ce8bd5aa5b0a2c03f6fe25b6696ed10cd051f",
+            "excerpt": "\\begin{equation} \\mu=\\frac{\\partial G}{\\partial n}\\Big|_{T,P}\\;\\simeq\\;\\frac{\\partial F}{\\partial n}\\Big|_{T,V} \\qquad(\\text{삽입 고체: }P\\Delta v\\ll RT,\\;F\\,V) \\label{eq:sm-mubridge} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-mucount",
+            "line_start": 481,
+            "line_end": 485,
+            "sha256_normalized": "9b159798482e2fcdd5ece29ff0c1c1ce535abeca71c30dbd8efc0e98bb7756a5",
+            "excerpt": "\\begin{equation} \\mu=\\frac{\\partial F}{\\partial n} =\\varepsilon+k_BT\\ln\\frac{\\theta}{1-\\theta}. \\label{eq:sm-mucount} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-muideal",
+            "line_start": 493,
+            "line_end": 496,
+            "sha256_normalized": "1da797a57858487c84612843c46e1490f9d6a8a89954f23db8bc08932d1e05eb",
+            "excerpt": "\\begin{equation} \\boxed{\\;\\mu(\\theta)=\\mu^0+RT\\ln\\frac{\\theta}{1-\\theta}\\qquad(\\text{이상 lattice gas})\\;.} \\label{eq:sm-muideal} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-nernst",
+            "line_start": 793,
+            "line_end": 800,
+            "sha256_normalized": "2d93de8cf274a4be7e29aa1ea53859b5c350f4ee872bca9c57f8c14c7dbea951",
+            "excerpt": "\\begin{equation} \\boxed{\\; \\Delta G_j=-sF\\,U_j, \\qquad V_\\eq(\\xi)=U_j+\\frac{RT}{sF}\\,\\ln\\frac{\\xi}{1-\\xi} \\qquad(\\Omega_j=0,\\ s=+1)\\;.} \\label{eq:sm-nernst} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-occmid",
+            "line_start": 430,
+            "line_end": 434,
+            "sha256_normalized": "c152a2ddd9f65f7cdc088aa835d596c96222a9672e520f0acbfefb087a361ac0",
+            "excerpt": "\\begin{equation} \\langle n\\rangle=0\\cdot P_0+1\\cdot P_1 =\\frac{e^{-\\beta\\Delta\\mu}}{1+e^{-\\beta\\Delta\\mu}}, \\label{eq:sm-occmid} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-omega",
+            "line_start": 514,
+            "line_end": 521,
+            "sha256_normalized": "520e8fbc94e92b1c812ad2f71862cec215f1e4f47d214817d798ab349f0e55c9",
+            "excerpt": "\\begin{equation} \\frac{z}{2}N_Au\\,\\theta^2 =\\underbrace{\\frac{z}{2}N_Au\\,\\theta}_{\\text{선형 --- }\\mu^0\\text{ 에 흡수}} +\\;\\Omega\\,\\theta(1-\\theta), \\qquad \\Omega\\;\\equiv\\;-\\frac{z}{2}N_A\\,u, \\label{eq:sm-omega} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-refbal",
+            "line_start": 650,
+            "line_end": 653,
+            "sha256_normalized": "ab1544f4b357f2804f658f34d38f5a8cd2b2a70889b315343fe0e582b00b38c8",
+            "excerpt": "\\begin{equation} \\big(\\mu_{\\mathrm{Li}^+}+F\\phi_S\\big)+\\big(\\mu_{e^-}-F\\phi_\\mathrm{ref}\\big)=\\mu_\\mathrm{Li}^\\mathrm{metal}. \\label{eq:sm-refbal} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-resv",
+            "line_start": 356,
+            "line_end": 360,
+            "sha256_normalized": "ea11546be783e57271cae0394a40f7ad4d40e99ed2b956915f9d628bb08a7daf",
+            "excerpt": "\\begin{equation} P_i\\;\\propto\\;W_R(E_\\mathrm{tot}-E_i,\\,N_\\mathrm{tot}-N_i) \\;=\\;\\exp\\!\\Big[\\frac{S_R(E_\\mathrm{tot}-E_i,\\,N_\\mathrm{tot}-N_i)}{k_B}\\Big]. \\label{eq:sm-resv} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-taylor",
+            "line_start": 362,
+            "line_end": 366,
+            "sha256_normalized": "97e01022fce8fdcabf0cd577b22c49bfc929b57704b07fa33d350d5b01f1c808",
+            "excerpt": "\\begin{equation} S_R(E_\\mathrm{tot}-E_i,\\,N_\\mathrm{tot}-N_i) = S_R(E_\\mathrm{tot},N_\\mathrm{tot})-\\frac{E_i}{T}+\\frac{\\mu N_i}{T}+\\mathcal O(E_i^2,N_i^2). \\label{eq:sm-taylor} \\end{equation}"
+          },
+          {
+            "label": "eq:sm-thresh",
+            "line_start": 551,
+            "line_end": 558,
+            "sha256_normalized": "45b424e20e4b2a841ef3f3812bd691be591198a3bd1083f8b670e38d9691ff24",
+            "excerpt": "\\begin{equation} \\boxed{\\; \\begin{aligned} &g_j''(\\xi)\\ge0\\ \\ \\forall\\xi\\ \\Longleftrightarrow\\ \\Omega_j\\le2RT\\ \\ (\\text{단상·연속 고용체; 등호는 }\\Omega_j{=}2RT,\\ \\xi{=}\\tfrac12\\ \\text{한 점}),\\\\ &\\Omega_j>2RT\\ \\Longleftrightarrow\\ \\text{이중웰}\\ \\ \\Big(T_c=\\frac{\\Omega_j}{2R}\\Big)\\;. \\end{aligned}} \\label{eq:sm-thresh} \\end{equation"
+          },
+          {
+            "label": "eq:sm-workbal",
+            "line_start": 642,
+            "line_end": 645,
+            "sha256_normalized": "ae4e080fe4cbb8a82517bc840f8b6d4766c01e805553e43ac7577c2a4dec003f",
+            "excerpt": "\\begin{equation} \\big(\\mu_{\\mathrm{Li}^+}+F\\phi_S\\big)+\\big(\\mu_{e^-}-F\\phi_M\\big)=\\mu_\\mathrm{Li}(\\theta) \\label{eq:sm-workbal} \\end{equation}"
+          }
+        ],
+        "removed": []
+      }
+    },
+    {
+      "pair_id": "ch2_v1010_to_v1012",
+      "old_path": "Claude/docs/v1.0.10/graphite_ica_ch2_v1.0.10.tex",
+      "new_path": "Claude/docs/v1.0.12/graphite_ica_ch2_v1.0.12.tex",
+      "old_line_count": 750,
+      "new_line_count": 777,
+      "sequence_ratio": 0.9639816633922724,
+      "opcode_line_counts": {
+        "equal": 736,
+        "replace_old": 14,
+        "replace_new": 27,
+        "delete": 0,
+        "insert": 14
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/theory_diffs/ch2_v1010_to_v1012.patch",
+      "exact_unified_diff_sha256": "7779ee899901c6df987140806c391ae8629168c36cc72f02035eb8e839b5107c",
+      "sections": {
+        "old_count": 20,
+        "new_count": 20,
+        "added": [],
+        "removed": []
+      },
+      "labeled_equations": {
+        "old_count": 22,
+        "new_count": 22,
+        "unchanged_count": 20,
+        "changed_count": 2,
+        "added_count": 0,
+        "removed_count": 0,
+        "unchanged_labels": [
+          "eq:BW",
+          "eq:Sconfig",
+          "eq:Se",
+          "eq:Svib_mode",
+          "eq:Vxi",
+          "eq:Z1",
+          "eq:dSconfig",
+          "eq:dVdT_config",
+          "eq:dxidT",
+          "eq:gj",
+          "eq:hys_branch",
+          "eq:hys_rev",
+          "eq:implicit",
+          "eq:implicit_diff",
+          "eq:logistic",
+          "eq:muV",
+          "eq:occ",
+          "eq:qrev",
+          "eq:single_config",
+          "eq:weighted"
+        ],
+        "changed": [
+          {
+            "label": "eq:Veq_BW",
+            "old": {
+              "line_start": 189,
+              "line_end": 192,
+              "sha256_normalized": "f1f6ab4e25e54cd70362e48f4adbe52db57a0cb29290f3418eb290cc859cd8a4",
+              "excerpt": "\\begin{equation} V_\\eq(\\theta) \\;=\\; U_j \\;+\\; \\frac{RT}{F}\\ln\\!\\frac{\\theta}{1-\\theta} \\;+\\; \\frac{\\Omega}{F}\\,(1-2\\theta), \\label{eq:Veq_BW} \\end{equation}"
+            },
+            "new": {
+              "line_start": 202,
+              "line_end": 205,
+              "sha256_normalized": "ea6c6911292994000298e292b7d9a752432ec73f82cd23d6e6f3afda60f0800a",
+              "excerpt": "\\begin{equation} V_\\eq(\\theta) \\;=\\; U_j \\;-\\; \\frac{RT}{F}\\ln\\!\\frac{\\theta}{1-\\theta} \\;-\\; \\frac{\\Omega}{F}\\,(1-2\\theta), \\label{eq:Veq_BW} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:slope_BW",
+            "old": {
+              "line_start": 196,
+              "line_end": 201,
+              "sha256_normalized": "01be5b781d072748308880701b6c088390c7ebb702eb3cf1f645af413559caba",
+              "excerpt": "\\begin{equation} \\frac{\\dd V_\\eq}{\\dd\\theta} \\;=\\; \\frac{RT}{F}\\frac{1}{\\theta(1-\\theta)} \\;-\\; \\frac{2\\Omega}{F}, \\qquad \\theta=\\tfrac12\\text{ 에서 }\\;\\frac{\\dd V_\\eq}{\\dd\\theta}\\Big|_{1/2}=\\frac{4RT-2\\Omega}{F}, \\label{eq:slope_BW} \\end{equation}"
+            },
+            "new": {
+              "line_start": 209,
+              "line_end": 214,
+              "sha256_normalized": "e2333b921b3e7a9e2d7ad9bae4145edead6fe4b86bc4ffc6d7defeb3fdf10f54",
+              "excerpt": "\\begin{equation} \\frac{\\dd V_\\eq}{\\dd\\theta} \\;=\\; -\\frac{RT}{F}\\frac{1}{\\theta(1-\\theta)} \\;+\\; \\frac{2\\Omega}{F}, \\qquad \\theta=\\tfrac12\\text{ 에서 }\\;\\frac{\\dd V_\\eq}{\\dd\\theta}\\Big|_{1/2}=\\frac{2\\Omega-4RT}{F}, \\label{eq:slope_BW} \\end{equation}"
+            }
+          }
+        ],
+        "added": [],
+        "removed": []
+      }
+    },
+    {
+      "pair_id": "ch2_v1012_to_v1013",
+      "old_path": "Claude/docs/v1.0.12/graphite_ica_ch2_v1.0.12.tex",
+      "new_path": "Claude/docs/v1.0.13/graphite_ica_ch2_v1.0.13.tex",
+      "old_line_count": 777,
+      "new_line_count": 776,
+      "sequence_ratio": 0.7907276239536382,
+      "opcode_line_counts": {
+        "equal": 614,
+        "replace_old": 162,
+        "replace_new": 162,
+        "delete": 1,
+        "insert": 0
+      },
+      "exact_unified_diff": "Codex/work/v1010_v1013_phase058/theory_diffs/ch2_v1012_to_v1013.patch",
+      "exact_unified_diff_sha256": "84f068e99881b62812f0e79d78e10ab4e2ecc0690e1eb92b7271d06187d5b6ad",
+      "sections": {
+        "old_count": 20,
+        "new_count": 20,
+        "added": [
+          {
+            "label": "ssec:weff",
+            "title": "파생 C — 폭 $w$ 의 이중지위: 단상 평형 예측 vs.\\ 두-상 현상학적 피팅 폭"
+          },
+          {
+            "label": null,
+            "title": "극한과 코너(corner case) — 분포 검산과 ``$\\Delta S_{\\rxn,j"
+          }
+        ],
+        "removed": [
+          {
+            "label": "ssec:weff",
+            "title": "파생 C — 폭 $w$ 의 지위: 단상 평형 예측 vs.\\ 두-상 현상학적 피팅 폭"
+          },
+          {
+            "label": null,
+            "title": "극한과 코너 — 분포 검산과 ``$\\Delta S_{\\rxn,j"
+          }
+        ]
+      },
+      "labeled_equations": {
+        "old_count": 22,
+        "new_count": 22,
+        "unchanged_count": 17,
+        "changed_count": 5,
+        "added_count": 0,
+        "removed_count": 0,
+        "unchanged_labels": [
+          "eq:BW",
+          "eq:Sconfig",
+          "eq:Se",
+          "eq:Svib_mode",
+          "eq:Veq_BW",
+          "eq:Vxi",
+          "eq:Z1",
+          "eq:dSconfig",
+          "eq:dVdT_config",
+          "eq:hys_branch",
+          "eq:hys_rev",
+          "eq:implicit_diff",
+          "eq:logistic",
+          "eq:occ",
+          "eq:qrev",
+          "eq:slope_BW",
+          "eq:weighted"
+        ],
+        "changed": [
+          {
+            "label": "eq:dxidT",
+            "old": {
+              "line_start": 473,
+              "line_end": 479,
+              "sha256_normalized": "545f9951961526769073d7623fd742e03d2a5a21724c756adce8eea15c1ca5db",
+              "excerpt": "\\begin{equation} \\frac{\\partial\\xi_j}{\\partial T}\\Big|_U \\;=\\; -\\,g_j(x)\\,\\frac{\\partial U_j}{\\partial T} \\;\\underbrace{-\\,g_j(x)\\,\\frac{R}{F}\\,z_j}_{w(T)\\text{ 조각}}, \\qquad z_j=\\ln\\frac{\\xi_j}{1-\\xi_j}. \\label{eq:dxidT} \\end{equation}"
+            },
+            "new": {
+              "line_start": 472,
+              "line_end": 478,
+              "sha256_normalized": "b4fe460eb70745f14cd4fa3a4339835fdce2081c9e0776f3e8714e6b59b013c7",
+              "excerpt": "\\begin{equation} \\frac{\\partial\\xi_j}{\\partial T}\\Big|_U \\;=\\; -\\,g_j(x)\\,\\frac{\\partial U_j}{\\partial T} \\;\\underbrace{-\\,g_j(x)\\,\\frac{n_jR}{F}\\,z_j}_{w_j(T)\\text{ 조각}}, \\qquad z_j=\\ln\\frac{\\xi_j}{1-\\xi_j}. \\label{eq:dxidT} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:gj",
+            "old": {
+              "line_start": 466,
+              "line_end": 469,
+              "sha256_normalized": "d5c4597aba04e690546ec10b39de9e0ca5089f693fba047270d037835f2a5c08",
+              "excerpt": "\\begin{equation} \\frac{\\partial\\xi_j}{\\partial U}\\Big|_T \\;=\\; \\frac{\\xi_j(1-\\xi_j)}{w_j} \\;\\equiv\\; g_j(x), \\label{eq:gj} \\end{equation}"
+            },
+            "new": {
+              "line_start": 463,
+              "line_end": 466,
+              "sha256_normalized": "8ddbfa19229e7b370bb5dcb357990bf46f182afeb8d1c872c5b68001cf91bb35",
+              "excerpt": "\\begin{equation} \\frac{\\partial\\xi_j}{\\partial U}\\Big|_T \\;=\\; \\frac{\\xi_j(1-\\xi_j)}{w_j} \\;\\equiv\\; g_j(x). \\label{eq:gj} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:implicit",
+            "old": {
+              "line_start": 454,
+              "line_end": 457,
+              "sha256_normalized": "4489a659a2340afb653b0899a7f3f6192181b4d35251f074344a2ac53cea9be9",
+              "excerpt": "\\begin{equation} \\sum_j Q_j\\,\\xi_{\\eq,j}(U_\\oc,T) \\;=\\; Q\\,x, \\label{eq:implicit} \\end{equation}"
+            },
+            "new": {
+              "line_start": 450,
+              "line_end": 453,
+              "sha256_normalized": "682b479349b54535705ea93b9e6390384f188d7c257311584892d6ff57c72443",
+              "excerpt": "\\begin{equation} \\sum_j Q_j\\,\\xi_{\\eq,j}(U_\\oc,T) \\;=\\; Q\\,\\bar x, \\label{eq:implicit} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:muV",
+            "old": {
+              "line_start": 142,
+              "line_end": 145,
+              "sha256_normalized": "94ecbf679b1bd90aa1a281d3b95f446026461eedc7dc9ea4b67b60cb60f51222",
+              "excerpt": "\\begin{equation} \\mu \\;=\\; \\mu^0 \\;-\\; \\sigma_d\\,F\\,(V-U_j), \\label{eq:muV} \\end{equation}"
+            },
+            "new": {
+              "line_start": 145,
+              "line_end": 148,
+              "sha256_normalized": "a47390c230e197dbb4499ecfc1bf6c646176e760c7f9e7f4620e03c9883796d4",
+              "excerpt": "\\begin{equation} \\mu \\;=\\; \\mu^0 \\;-\\; s\\,F\\,(V-U_j), \\label{eq:muV} \\end{equation}"
+            }
+          },
+          {
+            "label": "eq:single_config",
+            "old": {
+              "line_start": 550,
+              "line_end": 554,
+              "sha256_normalized": "568578e8c12ac2b5b3d12c70815ad661da59ddb07d276853702c718dfa6594de",
+              "excerpt": "\\begin{equation} \\frac{\\partial U_\\oc}{\\partial T}(x)\\;\\approx\\;\\frac{\\Delta S_{\\rxn,j}}{F}\\;+\\;\\frac{R}{F}\\ln\\!\\frac{\\xi_j}{1-\\xi_j} \\qquad(\\text{단일 전이 지배}). \\label{eq:single_config} \\end{equation}"
+            },
+            "new": {
+              "line_start": 552,
+              "line_end": 556,
+              "sha256_normalized": "cd73ef67865e118005f1366f07e3642861581d8d4b75ad0cc4287a992bfb58fc",
+              "excerpt": "\\begin{equation} \\frac{\\partial U_\\oc}{\\partial T}(x)\\;\\approx\\;\\frac{\\Delta S_{\\rxn,j}}{F}\\;+\\;\\frac{n_jR}{F}\\ln\\!\\frac{\\xi_j}{1-\\xi_j} \\qquad(\\text{단일 전이 지배}). \\label{eq:single_config} \\end{equation}"
+            }
+          }
+        ],
+        "added": [],
+        "removed": []
+      }
+    }
+  ]
+}
