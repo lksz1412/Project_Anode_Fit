@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "probe_method": "Independent logistic formula and numerical identities evaluated against imported frozen modules; no source mutation.",
+  "source_sha256_before": {
+    "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b",
+    "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py": "050a558fd25934886cc059c0890df40e073782e3b71fcb5bf7342a609edfca62",
+    "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py": "492d1cce1e59c3ff89c8c35dfd0cc462408689b55536aeabcf4d5052c66d071c"
+  },
+  "source_sha256_after": {
+    "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b",
+    "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py": "050a558fd25934886cc059c0890df40e073782e3b71fcb5bf7342a609edfca62",
+    "Claude/docs/v1.0.13/Anode_Fit_v1.0.13.py": "492d1cce1e59c3ff89c8c35dfd0cc462408689b55536aeabcf4d5052c66d071c"
+  },
+  "sources_unchanged": true,
+  "versions": [
+    {
+      "version": "v1.0.10",
+      "equilibrium_kernel": {
+        "area_numeric": 0.4999999999999992,
+        "area_expected": 0.5,
+        "area_abs_error": 7.771561172376096e-16,
+        "max_abs_error_vs_independent_formula": 3.2291182938291516e-15,
+        "peak_numeric": 4.8654720306132875,
+        "peak_expected": 4.8654720306132875,
+        "fwhm_numeric_V": 0.09055999999999997,
+        "fwhm_expected_V": 0.09057431442149787
+      },
+      "temperature_scaling": [
+        {
+          "T_K": 258.15,
+          "peak": 5.619370466501459,
+          "fwhm_V": 0.07841999999999999,
+          "expected_fwhm_V": 0.07842280485631284,
+          "area": 0.49999943451889534
+        },
+        {
+          "T_K": 298.15,
+          "peak": 4.8654720306132875,
+          "fwhm_V": 0.09056999999999998,
+          "expected_fwhm_V": 0.09057431442149787,
+          "area": 0.49999610420304963
+        },
+        {
+          "T_K": 318.15,
+          "peak": 4.559611774091942,
+          "fwhm_V": 0.09664,
+          "expected_fwhm_V": 0.09665006920409037,
+          "area": 0.49999147591321924
+        }
+      ],
+      "n_precedence": {
+        "both_vs_n_only_max_abs_298K": 0.0,
+        "w_only_fwhm_258K_V": 0.017620000000000025,
+        "w_only_fwhm_318K_V": 0.017620000000000025
+      },
+      "default_graphite_current": {
+        "current_A": [
+          0.0,
+          0.02,
+          0.2,
+          1.0
+        ],
+        "lag_lengths_V": {
+          "0.0": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "0.02": [
+            9.829137113819398e-09,
+            2.9302784256460817e-09,
+            8.73579394851918e-10,
+            9.499274867198356e-11
+          ],
+          "0.2": [
+            9.829137113819374e-08,
+            2.930278425646074e-08,
+            8.735793948519159e-09,
+            9.499274867198333e-10
+          ],
+          "1.0": [
+            4.914568556909682e-07,
+            1.4651392128230358e-07,
+            4.3678969742595754e-08,
+            4.749637433599163e-09
+          ]
+        },
+        "max_abs_vs_I0": {
+          "0.0": 0.0,
+          "0.02": 0.0,
+          "0.2": 0.0,
+          "1.0": 0.0
+        },
+        "peaks": {
+          "0.0": 7.300066543487385,
+          "0.02": 7.300066543487385,
+          "0.2": 7.300066543487385,
+          "1.0": 7.300066543487385
+        }
+      },
+      "direct_lag_behavior": {
+        "I0_vs_I1_max_abs": 0.0,
+        "I0_vs_equilibrium_max_abs": 15.903014938002816,
+        "I0_peak": 12.718901844824984,
+        "I1_peak": 12.718901844824984,
+        "equilibrium_peak": 24.327360153066437,
+        "I0_fwhm_V": 0.032735000000000014,
+        "equilibrium_fwhm_V": 0.018110000000000015
+      },
+      "c_rate_contract": {
+        "Q_cell_input": 3600.0,
+        "c_rate_per_h": 0.2,
+        "code_implied_I": 720.0,
+        "c_rate_curve_vs_I720_max_abs": 0.0,
+        "c_rate_curve_vs_I0p2_max_abs": 4.865472028662563,
+        "dimensional_note": "If Q_cell is coulombs, the physically converted current is c_rate*Q_cell/3600."
+      },
+      "hysteresis": {
+        "predicted_gap_V": 0.08668563502772399,
+        "discharge_peak_V": 0.16334500000000002,
+        "charge_peak_V": 0.07665500000000003,
+        "numeric_peak_gap_V": 0.08668999999999999,
+        "repeat_after_opposite_call_max_abs": 0.0,
+        "cross_call_state_detected": false
+      },
+      "heat": {
+        "entropy_coefficient_center_V_per_K": 0.00020728610664870188,
+        "expected_dS_over_F_V_per_K": 0.00020728610664870188,
+        "finite_difference_center_V_per_K": 0.00020728610662656966,
+        "reversible_heat_W": -0.12360470539462093,
+        "reversible_heat_expected_W": -0.12360470539462093,
+        "irreversible_heat_positive_case_W": 0.09999999999999964,
+        "irreversible_heat_negative_case_W": -0.09999999999999964
+      },
+      "lco_scope": {
+        "all_default_transitions_have_no_Omega": true,
+        "all_default_transitions_have_no_dH_a": true,
+        "I0_vs_I1_Rn0_max_abs": 0.0,
+        "I0_peak": 6.870012676628653,
+        "I1_peak": 6.870012676628653,
+        "high_level_charge_vs_low_level_plus_max_abs": 0.360880972428121,
+        "high_level_charge_vs_low_level_minus_max_abs": 0.0,
+        "electronic_effective_dS_J_per_molK": -49.678261885287384,
+        "same_transition_without_electronic_dS_J_per_molK": -4.0,
+        "electronic_delta_dS_J_per_molK": -45.678261885287384
+      }
+    },
+    {
+      "version": "v1.0.12",
+      "equilibrium_kernel": {
+        "area_numeric": 0.4999999999999992,
+        "area_expected": 0.5,
+        "area_abs_error": 7.771561172376096e-16,
+        "max_abs_error_vs_independent_formula": 3.2291182938291516e-15,
+        "peak_numeric": 4.8654720306132875,
+        "peak_expected": 4.8654720306132875,
+        "fwhm_numeric_V": 0.09055999999999997,
+        "fwhm_expected_V": 0.09057431442149787
+      },
+      "temperature_scaling": [
+        {
+          "T_K": 258.15,
+          "peak": 5.619370466501459,
+          "fwhm_V": 0.07841999999999999,
+          "expected_fwhm_V": 0.07842280485631284,
+          "area": 0.49999943451889534
+        },
+        {
+          "T_K": 298.15,
+          "peak": 4.8654720306132875,
+          "fwhm_V": 0.09056999999999998,
+          "expected_fwhm_V": 0.09057431442149787,
+          "area": 0.49999610420304963
+        },
+        {
+          "T_K": 318.15,
+          "peak": 4.559611774091942,
+          "fwhm_V": 0.09664,
+          "expected_fwhm_V": 0.09665006920409037,
+          "area": 0.49999147591321924
+        }
+      ],
+      "n_precedence": {
+        "both_vs_n_only_max_abs_298K": 0.0,
+        "w_only_fwhm_258K_V": 0.017620000000000025,
+        "w_only_fwhm_318K_V": 0.017620000000000025
+      },
+      "default_graphite_current": {
+        "current_A": [
+          0.0,
+          0.02,
+          0.2,
+          1.0
+        ],
+        "lag_lengths_V": {
+          "0.0": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "0.02": [
+            9.829137113819398e-09,
+            2.9302784256460817e-09,
+            8.73579394851918e-10,
+            9.499274867198356e-11
+          ],
+          "0.2": [
+            9.829137113819374e-08,
+            2.930278425646074e-08,
+            8.735793948519159e-09,
+            9.499274867198333e-10
+          ],
+          "1.0": [
+            4.914568556909682e-07,
+            1.4651392128230358e-07,
+            4.3678969742595754e-08,
+            4.749637433599163e-09
+          ]
+        },
+        "max_abs_vs_I0": {
+          "0.0": 0.0,
+          "0.02": 0.0,
+          "0.2": 0.0,
+          "1.0": 0.0
+        },
+        "peaks": {
+          "0.0": 7.300066543487385,
+          "0.02": 7.300066543487385,
+          "0.2": 7.300066543487385,
+          "1.0": 7.300066543487385
+        }
+      },
+      "direct_lag_behavior": {
+        "I0_vs_I1_max_abs": 0.0,
+        "I0_vs_equilibrium_max_abs": 15.903014938002816,
+        "I0_peak": 12.718901844824984,
+        "I1_peak": 12.718901844824984,
+        "equilibrium_peak": 24.327360153066437,
+        "I0_fwhm_V": 0.032735000000000014,
+        "equilibrium_fwhm_V": 0.018110000000000015
+      },
+      "c_rate_contract": {
+        "Q_cell_input": 3600.0,
+        "c_rate_per_h": 0.2,
+        "code_implied_I": 720.0,
+        "c_rate_curve_vs_I720_max_abs": 0.0,
+        "c_rate_curve_vs_I0p2_max_abs": 4.865472028662563,
+        "dimensional_note": "If Q_cell is coulombs, the physically converted current is c_rate*Q_cell/3600."
+      },
+      "hysteresis": {
+        "predicted_gap_V": 0.08668563502772399,
+        "discharge_peak_V": 0.16334500000000002,
+        "charge_peak_V": 0.07665500000000003,
+        "numeric_peak_gap_V": 0.08668999999999999,
+        "repeat_after_opposite_call_max_abs": 0.0,
+        "cross_call_state_detected": false
+      },
+      "heat": {
+        "entropy_coefficient_center_V_per_K": 0.00020728610664870188,
+        "expected_dS_over_F_V_per_K": 0.00020728610664870188,
+        "finite_difference_center_V_per_K": 0.00020728610662656966,
+        "reversible_heat_W": -0.12360470539462093,
+        "reversible_heat_expected_W": -0.12360470539462093,
+        "irreversible_heat_positive_case_W": 0.09999999999999964,
+        "irreversible_heat_negative_case_W": -0.09999999999999964
+      },
+      "lco_scope": {
+        "all_default_transitions_have_no_Omega": true,
+        "all_default_transitions_have_no_dH_a": true,
+        "I0_vs_I1_Rn0_max_abs": 0.0,
+        "I0_peak": 6.870012676628653,
+        "I1_peak": 6.870012676628653,
+        "high_level_charge_vs_low_level_plus_max_abs": 0.360880972428121,
+        "high_level_charge_vs_low_level_minus_max_abs": 0.0,
+        "electronic_effective_dS_J_per_molK": -49.678261885287384,
+        "same_transition_without_electronic_dS_J_per_molK": -4.0,
+        "electronic_delta_dS_J_per_molK": -45.678261885287384
+      }
+    },
+    {
+      "version": "v1.0.13",
+      "equilibrium_kernel": {
+        "area_numeric": 0.4999999999999992,
+        "area_expected": 0.5,
+        "area_abs_error": 7.771561172376096e-16,
+        "max_abs_error_vs_independent_formula": 3.2291182938291516e-15,
+        "peak_numeric": 4.8654720306132875,
+        "peak_expected": 4.8654720306132875,
+        "fwhm_numeric_V": 0.09055999999999997,
+        "fwhm_expected_V": 0.09057431442149787
+      },
+      "temperature_scaling": [
+        {
+          "T_K": 258.15,
+          "peak": 5.619370466501459,
+          "fwhm_V": 0.07841999999999999,
+          "expected_fwhm_V": 0.07842280485631284,
+          "area": 0.49999943451889534
+        },
+        {
+          "T_K": 298.15,
+          "peak": 4.8654720306132875,
+          "fwhm_V": 0.09056999999999998,
+          "expected_fwhm_V": 0.09057431442149787,
+          "area": 0.49999610420304963
+        },
+        {
+          "T_K": 318.15,
+          "peak": 4.559611774091942,
+          "fwhm_V": 0.09664,
+          "expected_fwhm_V": 0.09665006920409037,
+          "area": 0.49999147591321924
+        }
+      ],
+      "n_precedence": {
+        "both_vs_n_only_max_abs_298K": 0.0,
+        "w_only_fwhm_258K_V": 0.017620000000000025,
+        "w_only_fwhm_318K_V": 0.017620000000000025
+      },
+      "default_graphite_current": {
+        "current_A": [
+          0.0,
+          0.02,
+          0.2,
+          1.0
+        ],
+        "lag_lengths_V": {
+          "0.0": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "0.02": [
+            9.829137113819398e-09,
+            2.9302784256460817e-09,
+            8.73579394851918e-10,
+            9.499274867198356e-11
+          ],
+          "0.2": [
+            9.829137113819374e-08,
+            2.930278425646074e-08,
+            8.735793948519159e-09,
+            9.499274867198333e-10
+          ],
+          "1.0": [
+            4.914568556909682e-07,
+            1.4651392128230358e-07,
+            4.3678969742595754e-08,
+            4.749637433599163e-09
+          ]
+        },
+        "max_abs_vs_I0": {
+          "0.0": 0.0,
+          "0.02": 0.0,
+          "0.2": 0.0,
+          "1.0": 0.0
+        },
+        "peaks": {
+          "0.0": 7.300066543487385,
+          "0.02": 7.300066543487385,
+          "0.2": 7.300066543487385,
+          "1.0": 7.300066543487385
+        }
+      },
+      "direct_lag_behavior": {
+        "I0_vs_I1_max_abs": 0.0,
+        "I0_vs_equilibrium_max_abs": 15.903014938002816,
+        "I0_peak": 12.718901844824984,
+        "I1_peak": 12.718901844824984,
+        "equilibrium_peak": 24.327360153066437,
+        "I0_fwhm_V": 0.032735000000000014,
+        "equilibrium_fwhm_V": 0.018110000000000015
+      },
+      "c_rate_contract": {
+        "Q_cell_input": 3600.0,
+        "c_rate_per_h": 0.2,
+        "code_implied_I": 720.0,
+        "c_rate_curve_vs_I720_max_abs": 0.0,
+        "c_rate_curve_vs_I0p2_max_abs": 4.865472028662563,
+        "dimensional_note": "If Q_cell is coulombs, the physically converted current is c_rate*Q_cell/3600."
+      },
+      "hysteresis": {
+        "predicted_gap_V": 0.08668563502772399,
+        "discharge_peak_V": 0.16334500000000002,
+        "charge_peak_V": 0.07665500000000003,
+        "numeric_peak_gap_V": 0.08668999999999999,
+        "repeat_after_opposite_call_max_abs": 0.0,
+        "cross_call_state_detected": false
+      },
+      "heat": {
+        "entropy_coefficient_center_V_per_K": 0.00020728610664870188,
+        "expected_dS_over_F_V_per_K": 0.00020728610664870188,
+        "finite_difference_center_V_per_K": 0.00020728610662656966,
+        "reversible_heat_W": -0.12360470539462093,
+        "reversible_heat_expected_W": -0.12360470539462093,
+        "irreversible_heat_positive_case_W": 0.09999999999999964,
+        "irreversible_heat_negative_case_W": -0.09999999999999964
+      },
+      "lco_scope": {
+        "all_default_transitions_have_no_Omega": true,
+        "all_default_transitions_have_no_dH_a": true,
+        "I0_vs_I1_Rn0_max_abs": 0.0,
+        "I0_peak": 6.870970914614401,
+        "I1_peak": 6.870970914614401,
+        "high_level_charge_vs_low_level_plus_max_abs": 0.0,
+        "high_level_charge_vs_low_level_minus_max_abs": 0.36095740997807546,
+        "electronic_effective_dS_J_per_molK": -39.678261885287384,
+        "same_transition_without_electronic_dS_J_per_molK": 6.0,
+        "electronic_delta_dS_J_per_molK": -45.678261885287384
+      }
+    }
+  ],
+  "cross_version_summary": {
+    "equilibrium_formula_max_error": 3.2291182938291516e-15,
+    "direct_LV_I0_equals_I1": true,
+    "negative_irreversible_heat_returned": true,
+    "lco_default_rate_invariant_Rn0": true,
+    "lco_charge_maps_to_delithiation_plus": {
+      "v1.0.10": false,
+      "v1.0.12": false,
+      "v1.0.13": true
+    }
+  }
+}

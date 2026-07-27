@@ -324,3 +324,25 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_LEGACY_EXECUTION_REVIEW.md`.
 - 다음은 Step 27.4 독립 conservation/sign/limit/current/temperature
   probe다.
+
+### 2026-07-28 — Step 27.4
+
+- v1.0.10, v1.0.12, v1.0.13에 independent logistic derivative,
+  analytic FWHM, finite difference와 sign/unit identity probe를 실행했다.
+- equilibrium kernel의 면적·peak·FWHM, entropy center,
+  reversible-heat identity와 hysteresis closed-form branch gap은
+  독립 계산과 일치했다.
+- 세 version의 default graphite는 `Rn=0`에서 0–1 A curve가
+  정확히 동일했다. 사용자 핵심인 finite-current broadening이
+  default에서 비활성임을 확인했다.
+- direct `L_V`는 0 A와 1 A curve가 동일하고 0 A에서도
+  equilibrium보다 넓어 \(I\to0\) limit를 위반했다.
+- C-rate에 coulomb capacity를 넣을 때 3600 환산 누락,
+  호출 간 hysteresis state 부재, irreversible heat 음수 반환 가능성을
+  확인했다.
+- LCO facade 방향은 v1.0.13에서 고쳐졌으나, 세 version 모두
+  default LCO에 `Omega`/`dH_a`가 없고 rate-invariant였다.
+- 근거:
+  `Codex/results/PHASE_058_INDEPENDENT_PROBES.json`,
+  `Codex/results/PHASE_058_INDEPENDENT_PROBE_REVIEW.md`.
+- 다음은 Step 27.5 golden NPZ 13 arrays 전수 처분이다.

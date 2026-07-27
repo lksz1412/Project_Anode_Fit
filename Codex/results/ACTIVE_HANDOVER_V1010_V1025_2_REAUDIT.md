@@ -94,6 +94,15 @@
 - Phase 058 execution review:
   `Codex/results/PHASE_058_LEGACY_EXECUTION_REVIEW.md`,
   `Codex/results/PHASE_058_LEGACY_ISOLATED_EXECUTION.json`.
+- Phase 058 independent probes:
+  all three production versions checked against independent logistic/FWHM,
+  finite-difference, sign and unit identities. Equilibrium kernel and internal
+  heat identities match; default current broadening is absent, direct `L_V`
+  violates \(I\to0\), C-rate capacity has a 3600 unit blocker, hysteresis is
+  cross-call stateless, and default LCO is rate-invariant.
+- Phase 058 probe review:
+  `Codex/results/PHASE_058_INDEPENDENT_PROBE_REVIEW.md`,
+  `Codex/results/PHASE_058_INDEPENDENT_PROBES.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -116,11 +125,11 @@
 
 ## Next Exact Step
 
-Phase 058 Step 27.4:
-독립 probe로 dQ/dV 면적·부호·온도 폭·전류 극한·히스테리시스 기억,
-entropy/reversible heat 부호와 LCO toggle/placeholder를 검산한다.
+Phase 058 Step 27.5:
+v1.0.13 `golden_graphite_ref.npz`의 13개 array를 전수 inventory하고
+현재 code 재생성 결과와 bitwise/tolerance/physical-validity 층으로 분리한다.
 완료:
-Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.3.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -128,6 +137,8 @@ AST API/call/default 및 exact diff와 초기 code review 작성. Test 5개,
 demo 6개, guide 3개, result/handover 4개를 추가 전문 검독해 Phase 058
 text coverage 27/27 blobs, 13,757/13,757 lines.
 Legacy test/demo 11개 byte-identical 격리 실행과 source hash 보존 확인.
+Production 3개 version 독립 conservation/sign/limit/current/temperature
+probe와 판정 저장.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
