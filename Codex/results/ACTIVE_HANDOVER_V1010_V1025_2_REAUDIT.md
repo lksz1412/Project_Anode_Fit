@@ -12,7 +12,7 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_057A_USER_INTENT_READ_QUEUE_RESULT.md`
+   `Codex/results/PHASE_057BC_COMPLETION_AUTHORITY_CLAIM_EXTRACTION_RESULT.md`
 
 ## Current State
 
@@ -33,6 +33,10 @@
   `PASS_P057_GIT_GENEALOGY`.
 - Commit patch matrix gate:
   `PASS_P057_COMMIT_PATCH_MATRIX`.
+- Completion/authority claim extraction gate:
+  `PASS_P057_COMPLETION_CLAIM_EXTRACTION`.
+- 완료·권위·불변·정합 후보:
+  243문건 3,487개 위치, 아직 전건 `UNADJUDICATED`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -42,16 +46,18 @@
 
 ## Next Exact Step
 
-Phase 057 Step 20.3:
-271문건의 completion/authority/invariance claim을 줄 번호,
-문맥, blob, commit과 함께 추출한다.
-완료 Step 18.1–20.2:
+Phase 057 Step 20.4:
+3,487개 completion/authority/invariance/conformance 후보를
+실제 patch, 시험·machine evidence 및 후속 수정과 대조해
+`CONFIRMED`, `OVERCLAIMED`, `PARTIAL`, `UNVERIFIED`로 판정한다.
+완료 Step 18.1–20.3:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
-2,381 changed-file event의 claim–patch matrix `PASS`.
+2,381 changed-file event의 claim–patch matrix `PASS`;
+243문건 3,487개 완료·권위·정합 후보의 위치 추출 `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BB_COMMIT_CLAIM_MATRIX_RESULT.md`.
+`Codex/results/PHASE_057BC_COMPLETION_AUTHORITY_CLAIM_EXTRACTION_RESULT.md`.
 
 ## Resume Gate
 
