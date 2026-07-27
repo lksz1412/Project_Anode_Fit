@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "source_findings": "Codex/results/PHASE_057_PROVISIONAL_FINDING_LEDGER.json",
+  "entry_count": 20,
+  "entries": [
+    {
+      "id": "REJ-001",
+      "category": "ARBITRARY_NUMERICAL_GUARD",
+      "item": "hard cap, clip, clamp and fixed truncation used to shape a physical response",
+      "evidence_claim_ids": ["INTENT-PROV-0286", "INTENT-PROV-0319"],
+      "current_disposition": "REJECT_UNLESS_DERIVED"
+    },
+    {
+      "id": "REJ-002",
+      "category": "GRID_DEPENDENT_BRANCH",
+      "item": "fixed voltage-grid resolution guard that silently returns the equilibrium curve",
+      "evidence_claim_ids": ["INTENT-PROV-0219", "INTENT-PROV-0286"],
+      "current_disposition": "CORRECT_WITH_ADAPTIVE_ERROR_CONTROL"
+    },
+    {
+      "id": "REJ-003",
+      "category": "UNIT_ERROR",
+      "item": "C-rate time conversion missing a factor of 3600 and the resulting old barrier gauge",
+      "evidence_claim_ids": ["INTENT-PROV-0157", "INTENT-PROV-0207", "INTENT-PROV-0230", "INTENT-PROV-0266", "INTENT-PROV-0280"],
+      "current_disposition": "REJECT_OLD_GAUGE_AND_REFIT"
+    },
+    {
+      "id": "REJ-004",
+      "category": "COMPOSITION_COORDINATE_CONFUSION",
+      "item": "Si mass fraction, capacity fraction and blend-capacity denominator used interchangeably",
+      "evidence_claim_ids": ["INTENT-PROV-0101", "INTENT-PROV-0127", "INTENT-PROV-0136", "INTENT-PROV-0169", "INTENT-PROV-0288", "INTENT-PROV-0384"],
+      "current_disposition": "CORRECT"
+    },
+    {
+      "id": "REJ-005",
+      "category": "DATA_FREE_DEFAULT",
+      "item": "LCO, Si and graphite constants or transition sets promoted from placeholders, literature cases or fit seeds into material defaults",
+      "evidence_claim_ids": ["INTENT-PROV-0024", "INTENT-PROV-0053", "INTENT-PROV-0074", "INTENT-PROV-0121", "INTENT-PROV-0130", "INTENT-PROV-0133", "INTENT-PROV-0241", "INTENT-PROV-0257", "INTENT-PROV-0263", "INTENT-PROV-0287"],
+      "current_disposition": "DATASET_SEED_ONLY"
+    },
+    {
+      "id": "REJ-006",
+      "category": "EMPIRICAL_THERMODYNAMIC_CONTAMINATION",
+      "item": "skew alpha used as equilibrium susceptibility, entropy or reversible-heat physics",
+      "evidence_claim_ids": ["INTENT-PROV-0296", "INTENT-PROV-0317", "INTENT-PROV-0318", "INTENT-PROV-0336", "INTENT-PROV-0337", "INTENT-PROV-0338"],
+      "current_disposition": "EMPIRICAL_ONLY"
+    },
+    {
+      "id": "REJ-007",
+      "category": "FIT_TO_PHASE_OVERREACH",
+      "item": "regular-solution fit Omega or curve-basis component promoted to phase identity",
+      "evidence_claim_ids": ["INTENT-PROV-0239", "INTENT-PROV-0245", "INTENT-PROV-0252", "INTENT-PROV-0306", "INTENT-PROV-0339", "INTENT-PROV-0369", "INTENT-PROV-0401"],
+      "current_disposition": "THEORY_ONLY_PENDING_INDEPENDENT_PHASE_EVIDENCE"
+    },
+    {
+      "id": "REJ-008",
+      "category": "OMEGA_ROLE_DISCONNECTION",
+      "item": "Omega removed from equilibrium fitting while retained inconsistently in barrier, hysteresis and phase prose",
+      "evidence_claim_ids": ["INTENT-PROV-0145", "INTENT-PROV-0158", "INTENT-PROV-0167", "INTENT-PROV-0204", "INTENT-PROV-0300", "INTENT-PROV-0301", "INTENT-PROV-0306"],
+      "current_disposition": "CORRECT_WITH_ONE_FREE_ENERGY_ACCOUNTING"
+    },
+    {
+      "id": "REJ-009",
+      "category": "BACKGROUND_ATTRIBUTION",
+      "item": "nonconstant fitted background attributed directly to material behavior or crystallization mechanism",
+      "evidence_claim_ids": ["INTENT-PROV-0307", "INTENT-PROV-0344", "INTENT-PROV-0399"],
+      "current_disposition": "UNVERIFIED"
+    },
+    {
+      "id": "REJ-010",
+      "category": "THEORY_CODE_BOUNDARY",
+      "item": "function names, keys, gates, bit-exact contracts and code maps inside the theory manuscript lineage",
+      "evidence_claim_ids": ["INTENT-PROV-0051", "INTENT-PROV-0076", "INTENT-PROV-0103", "INTENT-PROV-0139", "INTENT-PROV-0155", "INTENT-PROV-0163", "INTENT-PROV-0203", "INTENT-PROV-0225", "INTENT-PROV-0258", "INTENT-PROV-0291", "INTENT-PROV-0315", "INTENT-PROV-0331", "INTENT-PROV-0343", "INTENT-PROV-0380", "INTENT-PROV-0394"],
+      "current_disposition": "MOVE_TO_IMPLEMENTATION_COMPANION"
+    },
+    {
+      "id": "REJ-011",
+      "category": "AUTHORITY_ORDER",
+      "item": "code-first implementation followed by document cascade",
+      "evidence_claim_ids": ["INTENT-PROV-0277", "INTENT-PROV-0314"],
+      "current_disposition": "SUPERSEDE_WITH_THEORY_FIRST"
+    },
+    {
+      "id": "REJ-012",
+      "category": "LEGACY_AUTHORITY",
+      "item": "bit-exact legacy preservation used to block SI defaults or to validate a new default that the gate does not execute",
+      "evidence_claim_ids": ["INTENT-PROV-0201", "INTENT-PROV-0230", "INTENT-PROV-0320", "INTENT-PROV-0359", "INTENT-PROV-0366"],
+      "current_disposition": "SUPERSEDE_WITH_SEPARATE_LEGACY_AND_PHYSICS_GATES"
+    },
+    {
+      "id": "REJ-013",
+      "category": "POSTHOC_SMOOTHING",
+      "item": "voltage-domain transfer function or smoothing treated as instrument or kinetic physics without a measurement model",
+      "evidence_claim_ids": ["INTENT-PROV-0202"],
+      "current_disposition": "EMPIRICAL_ONLY"
+    },
+    {
+      "id": "REJ-014",
+      "category": "DEFERRED_CATHODE_PHYSICS",
+      "item": "doped high-voltage LCO defect chemistry, oxygen stability, phase degradation and cutoff dependence",
+      "evidence_claim_ids": ["INTENT-PROV-0053", "INTENT-PROV-0074", "INTENT-PROV-0091", "INTENT-PROV-0119", "INTENT-PROV-0121", "INTENT-PROV-0166", "INTENT-PROV-0167", "INTENT-PROV-0241", "INTENT-PROV-0257", "INTENT-PROV-0377"],
+      "current_disposition": "DEFERRED_REQUIRED_WORKSTREAM"
+    },
+    {
+      "id": "REJ-015",
+      "category": "DEFERRED_SILICON_PHYSICS",
+      "item": "Si chemo-mechanics, stress-coupled chemical potential, hysteresis and SiOx/Si-C host effects",
+      "evidence_claim_ids": ["INTENT-PROV-0137", "INTENT-PROV-0168", "INTENT-PROV-0184", "INTENT-PROV-0239", "INTENT-PROV-0290"],
+      "current_disposition": "DEFERRED_REQUIRED_WORKSTREAM"
+    },
+    {
+      "id": "REJ-016",
+      "category": "DEFERRED_IDENTIFICATION_DATA",
+      "item": "multi-temperature, multi-rate, equilibrium/rest and independent-cell data",
+      "evidence_claim_ids": ["INTENT-PROV-0015", "INTENT-PROV-0042", "INTENT-PROV-0115", "INTENT-PROV-0174", "INTENT-PROV-0219", "INTENT-PROV-0253", "INTENT-PROV-0351", "INTENT-PROV-0377", "INTENT-PROV-0403"],
+      "current_disposition": "DEFERRED_REQUIRED_ACCEPTANCE_DATA"
+    },
+    {
+      "id": "REJ-017",
+      "category": "MODEL_LAYER_CONFUSION",
+      "item": "equilibrium, hysteresis, polarization, transport and observation effects collapsed into one width or lag parameter",
+      "evidence_claim_ids": ["INTENT-PROV-0081", "INTENT-PROV-0115", "INTENT-PROV-0137", "INTENT-PROV-0170", "INTENT-PROV-0174", "INTENT-PROV-0202"],
+      "current_disposition": "CORRECT_WITH_LAYERED_MODEL"
+    },
+    {
+      "id": "REJ-018",
+      "category": "WITHDRAWN_DEFAULT",
+      "item": "seven-gallery skew promoted to the v1.0.25.2 default",
+      "evidence_claim_ids": ["INTENT-PROV-0232", "INTENT-PROV-0359", "INTENT-PROV-0364", "INTENT-PROV-0365", "INTENT-PROV-0366"],
+      "current_disposition": "WITHDRAWN_EMPIRICAL_OPT_IN_ONLY"
+    },
+    {
+      "id": "REJ-019",
+      "category": "DATA_PROVENANCE_CONFOUNDING",
+      "item": "pOCV, pOCV-hold, specimen and unverified blend protocol treated as controlled equivalents",
+      "evidence_claim_ids": ["INTENT-PROV-0303", "INTENT-PROV-0400"],
+      "current_disposition": "CORRECT_REQUIRED"
+    },
+    {
+      "id": "REJ-020",
+      "category": "CALIBRATION_AS_VALIDATION",
+      "item": "in-sample R2/BIC and processed-curve peak/valley scores used as mechanism or endgame validation",
+      "evidence_claim_ids": ["INTENT-PROV-0308", "INTENT-PROV-0322", "INTENT-PROV-0342", "INTENT-PROV-0347", "INTENT-PROV-0397", "INTENT-PROV-0398", "INTENT-PROV-0399", "INTENT-PROV-0400", "INTENT-PROV-0401", "INTENT-PROV-0403"],
+      "current_disposition": "CALIBRATION_SIGNAL_ONLY"
+    }
+  ],
+  "validation": {
+    "ids_unique": true,
+    "all_entries_have_evidence": true,
+    "withdrawn_deferred_rejected_and_empirical_states_distinguished": true
+  }
+}
