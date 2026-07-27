@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  221 documents, 48,124 lines.
+  223 documents, 48,340 lines.
 - Latest observation:
-  `Codex/results/PHASE_057AB_V1023_CONDITION_P1_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057AC_V1023_P2_P3_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,14 +36,14 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.7C:
-v1.0.23 P2 부록 E·P3 코드 적용 결과 2문건 216행을 전문 검독한다.
+Phase 057 Step 19.7D:
+v1.0.23 P5 마감 결과·독립 AUD 2문건 160행을 전문 검독한다.
 활성 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1023-read-map.md`.
-완료 Step 19.7A–B:
-P0·조건감사·P1 4문건 442행 전량 `READ`.
+완료 Step 19.7A–C:
+P0·조건감사·P1·P2·P3 6문건 658행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057AB_V1023_CONDITION_P1_OBSERVATIONS.md`.
+`Codex/results/PHASE_057AC_V1023_P2_P3_OBSERVATIONS.md`.
 
 ## Resume Gate
 
