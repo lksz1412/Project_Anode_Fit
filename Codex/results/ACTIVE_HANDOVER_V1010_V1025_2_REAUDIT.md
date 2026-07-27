@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_057_USER_INTENT_RECOVERY_RESULT.md`
+   `Codex/results/PHASE_058A_AUDIT_QUEUE_RESULT.md`
 
 ## Current State
 
@@ -55,6 +55,8 @@
 - Phase 058 frozen scope:
   56 paths, 45 unique blobs, 27 full-text blobs/13,757 lines,
   8 PDFs/215 pages, 8 images, 1 NPZ, 1 generated pyc.
+- Phase 058 queue gate:
+  `PASS_P058_AUDIT_QUEUE`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -77,12 +79,11 @@
 
 ## Next Exact Step
 
-Phase 058 Step 26.1:
-Phase 056 manifest에서 v1.0.10–v1.0.13의 56 path/45 blob을
-content-addressed audit queue로 추출하고 version occurrence,
-role, review mode와 extent를 보존한다.
+Phase 058 Step 26.2:
+6개 unique theory blob의 모든 행을 연속 chunk로 검독하고
+section/equation/label/claim index와 coverage를 작성한다.
 완료:
-Phase 057 Steps 18.1–25.8 및 Phase 058 detailed plan.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Step 26.1.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
