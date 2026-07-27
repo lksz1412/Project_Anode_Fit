@@ -1,0 +1,614 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Phase 059 Step 34.4 independent physics/numerics probes over the v1.0.14-v1.0.18.2 production-code lineage",
+  "method": "Read-only imports of frozen release modules; independent analytic identities, finite differences, asymptotes, limit tests, permutation tests, and material-scope checks; no release test/demo invocation.",
+  "authority_boundary": "Execution PASS means the probes completed and their evidence is internally validated. BLOCKER_CONFIRMED is not a scientific PASS and the probes do not establish experimental validity.",
+  "status": "CONDITIONAL_P059_CODE_CONFORMANCE",
+  "execution_gate": "PASS_P059_INDEPENDENT_CODE_PROBE_EXECUTION",
+  "source_sha256_before": {
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+    "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6"
+  },
+  "source_sha256_after": {
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+    "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6"
+  },
+  "sources_unchanged": true,
+  "feature_lineage": [
+    {
+      "version": "v1.0.14",
+      "source_path": "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py",
+      "source_sha256": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+      "has_pointwise_memory": false,
+      "has_grid_lowpass": true,
+      "has_dwdT": false,
+      "has_vib_theta": false,
+      "has_vib_entropy": false
+    },
+    {
+      "version": "v1.0.15",
+      "source_path": "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py",
+      "source_sha256": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+      "has_pointwise_memory": true,
+      "has_grid_lowpass": false,
+      "has_dwdT": false,
+      "has_vib_theta": false,
+      "has_vib_entropy": false
+    },
+    {
+      "version": "v1.0.16",
+      "source_path": "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+      "source_sha256": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+      "has_pointwise_memory": true,
+      "has_grid_lowpass": false,
+      "has_dwdT": true,
+      "has_vib_theta": false,
+      "has_vib_entropy": false
+    },
+    {
+      "version": "v1.0.18.2",
+      "source_path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+      "source_sha256": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6",
+      "has_pointwise_memory": true,
+      "has_grid_lowpass": false,
+      "has_dwdT": true,
+      "has_vib_theta": true,
+      "has_vib_entropy": true
+    }
+  ],
+  "probe_count": 22,
+  "verdict_counts": {
+    "BLOCKER_CONFIRMED": 8,
+    "IDENTIFIABILITY_CAUTION": 1,
+    "PASS_GUARD": 1,
+    "PASS_IDENTITY": 10,
+    "SCOPE_ABSENT_CONFIRMED": 2
+  },
+  "probes": [
+    {
+      "probe_id": "MEM-001",
+      "category": "memory",
+      "title": "pointwise recurrence normalization and linear-source exactness",
+      "verdict": "PASS_IDENTITY",
+      "contract": "A normalized exponential memory preserves a constant source and exactly integrates a linear source on each segment.",
+      "measurements": {
+        "constant_source_max_abs_error": 5.551115123125783e-17,
+        "linear_source_max_abs_error": 2.7755575615628914e-17,
+        "irregular_path_point_count": 7,
+        "lag_length_V": 0.017
+      },
+      "acceptance": "both maximum errors < 1e-12",
+      "interpretation": "The v1.0.15 pointwise recurrence itself satisfies its local normalization/exact-integration contract."
+    },
+    {
+      "probe_id": "MEM-002",
+      "category": "memory",
+      "title": "wide-window capacity conservation with peak suppression/broadening",
+      "verdict": "PASS_IDENTITY",
+      "contract": "For a resolved causal lag on a sufficiently wide voltage window, integral(dQ/dV)dV approaches Q while peak height falls and FWHM grows.",
+      "measurements": {
+        "equilibrium_area": 0.9999999999998128,
+        "lagged_area": 0.9999999999971023,
+        "expected_capacity": 1.0,
+        "equilibrium_peak": 12.499999999999998,
+        "lagged_peak": 10.810829592936408,
+        "equilibrium_fwhm_V": 0.07047999999999999,
+        "lagged_fwhm_V": 0.08204,
+        "voltage_window_V": [
+          -0.6,
+          0.6
+        ]
+      },
+      "acceptance": "area error < 1e-8; lagged peak lower; lagged FWHM larger",
+      "interpretation": "The direct-LV mathematical kernel can produce the user's qualitative suppression/broadening observation without losing transition capacity on a wide window."
+    },
+    {
+      "probe_id": "MEM-003",
+      "category": "memory",
+      "title": "resolved small-LV continuity toward equilibrium",
+      "verdict": "PASS_IDENTITY",
+      "contract": "At fixed adequate resolution, the causal peak converges continuously to the equilibrium derivative as L_V decreases.",
+      "measurements": {
+        "sweep": [
+          {
+            "L_V": 0.01,
+            "max_abs_vs_equilibrium": 2.2241958165686144,
+            "area": 0.9999999999997231,
+            "peak": 11.890275138484412
+          },
+          {
+            "L_V": 0.003,
+            "max_abs_vs_equilibrium": 0.7146162767279165,
+            "area": 0.9999999999998133,
+            "peak": 12.431880788836928
+          },
+          {
+            "L_V": 0.001,
+            "max_abs_vs_equilibrium": 0.24028214456380326,
+            "area": 0.9999999999998233,
+            "peak": 12.492216497623332
+          },
+          {
+            "L_V": 0.0003,
+            "max_abs_vs_equilibrium": 0.07218748422872956,
+            "area": 0.9999999999998264,
+            "peak": 12.499297112006
+          },
+          {
+            "L_V": 0.0001,
+            "max_abs_vs_equilibrium": 0.024136094802596375,
+            "area": 0.9999999999998086,
+            "peak": 12.499921876550912
+          }
+        ],
+        "difference_strictly_decreases": true,
+        "grid_spacing_V": 2.0000000000020002e-05
+      },
+      "acceptance": "max-error sequence strictly decreases and all areas remain within 1e-8 of Q",
+      "interpretation": "The resolved branch has the correct L_V->0 trend; this does not validate the provenance of L_V."
+    },
+    {
+      "probe_id": "ORD-001",
+      "category": "direction",
+      "title": "charge/discharge mirror identity",
+      "verdict": "PASS_IDENTITY",
+      "contract": "With zero polarization/hysteresis and symmetric parameters, reversing both direction and voltage about U must mirror the same positive peak.",
+      "measurements": {
+        "mirror_max_abs_error": 0.0,
+        "discharge_area": 0.9999957461456672,
+        "charge_area_in_progress_coordinate": 0.9999957461456672
+      },
+      "acceptance": "mirror max error < 1e-12 and both progress-coordinate areas approach Q",
+      "interpretation": "The fixed-direction mirror convention is internally coherent."
+    },
+    {
+      "probe_id": "ORD-002",
+      "category": "direction",
+      "title": "input chronology is erased by voltage sorting",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "A history-dependent model must distinguish different acquisition orders of the same voltage coordinates unless the API explicitly declares an unordered curve.",
+      "measurements": {
+        "sorted_vs_shuffled_then_restored_max_abs": 0.0,
+        "model_shuffled_vs_true_input_order_memory_max_abs": 21.329615245953715,
+        "point_count": 4001,
+        "permutation_seed": 20260728
+      },
+      "acceptance": "defect is confirmed when restored model output is invariant while an order-following recurrence differs materially",
+      "interpretation": "dqdv sorts voltage before evolving memory. It therefore cannot represent pulses, reversals, loops, pauses, or measurement chronology from the supplied order."
+    },
+    {
+      "probe_id": "CUR-001",
+      "category": "current",
+      "title": "derived kinetic path has an equilibrium zero-current branch",
+      "verdict": "PASS_IDENTITY",
+      "contract": "A rate-derived lag must vanish at I=0 and the observable must equal equilibrium.",
+      "measurements": {
+        "I0_vs_equilibrium_max_abs": 0.0,
+        "resolved_lag_lengths_V": {
+          "0.0": 0.0,
+          "1e-06": 4.383876150493524e-13,
+          "0.0001": 4.383876150493503e-11,
+          "0.01": 4.3838761504935125e-09,
+          "1.0": 4.3838761504935145e-07
+        }
+      },
+      "acceptance": "I=0 difference = 0 and resolved lag length = 0",
+      "interpretation": "The derived path implements the formal zero-current branch, although its units and barrier closure remain separate issues."
+    },
+    {
+      "probe_id": "CUR-002",
+      "category": "current",
+      "title": "direct LV override bypasses the zero-current limit",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "Any physical finite-current lag must disappear when I approaches zero; a fit convenience parameter cannot silently override that limit.",
+      "measurements": {
+        "direct_LV_V": 0.02,
+        "I0_vs_I1_max_abs": 0.0,
+        "I0_vs_equilibrium_max_abs": 3.9033886535324918,
+        "I0_peak": 10.810829592936408,
+        "equilibrium_peak": 12.499999999999998
+      },
+      "acceptance": "defect is confirmed when I0 equals I1 but differs from equilibrium",
+      "interpretation": "The override is useful as a diagnostic kernel but is not a valid physical current law in its present unconditional precedence."
+    },
+    {
+      "probe_id": "UNT-001",
+      "category": "units",
+      "title": "C-rate per hour is passed to a per-second attempt-frequency law",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "For Q_cell=3600 C, 1C means 1 A; c_rate[1/h] must be divided by 3600 before entering I/Q in an SI-second kinetic law.",
+      "measurements": {
+        "Q_cell_C": 3600.0,
+        "c_rate_per_h": 1.0,
+        "code_implied_current_A": 3600.0,
+        "physical_current_A": 1.0,
+        "func_Lq_code_to_SI_ratio": 3599.999999999992,
+        "curve_max_abs_difference": 12.499999999999998
+      },
+      "acceptance": "defect is confirmed when kinetic ratio is 3600 and code-implied current is 3600 A",
+      "interpretation": "The curve facade and func_L_q use incompatible hour/second contracts unless Q_cell is redefined away from the documented charge unit."
+    },
+    {
+      "probe_id": "WID-001",
+      "category": "width_entropy",
+      "title": "constant-n thermal width derivative",
+      "verdict": "PASS_IDENTITY",
+      "contract": "For w=nRT/F with constant n, dw/dT=nR/F.",
+      "measurements": {
+        "finite_difference_V_per_K": 0.00014648701870262348,
+        "code_dwdT_V_per_K": 0.00014648701870757113,
+        "expected_nR_over_F": 0.0001464870187075711,
+        "abs_error": 4.947648193920351e-15
+      },
+      "acceptance": "finite-difference/code error < 1e-12",
+      "interpretation": "The explicit constant-n branch propagates the thermal width derivative correctly."
+    },
+    {
+      "probe_id": "WID-002",
+      "category": "width_entropy",
+      "title": "n(T) width derivative and fixed-state entropy chain",
+      "verdict": "PASS_IDENTITY",
+      "contract": "For n(T)=n0+n1(T-Tref), dw/dT=(R/F)(n(T)+T n1), and dU(x)/dT=dS/F+(dw/dT)logit(x).",
+      "measurements": {
+        "width_finite_difference_V_per_K": 0.00016431147296935844,
+        "width_code_dwdT_V_per_K": 0.00016431147297507384,
+        "width_abs_error": 5.715398857311649e-15,
+        "state_fraction": 0.31,
+        "state_voltage_V": 0.14812518624910448,
+        "entropy_code_V_per_K": 4.4724409894190124e-05,
+        "state_voltage_finite_difference_V_per_K": 4.472440989777837e-05,
+        "entropy_abs_error": 3.588248405003713e-15
+      },
+      "acceptance": "both finite-difference errors < 1e-10",
+      "interpretation": "The v1.0.16 n(T) algebra and its configurational entropy propagation are internally consistent for one transition."
+    },
+    {
+      "probe_id": "WID-003",
+      "category": "width_entropy",
+      "title": "w-only empirical width remains temperature-frozen",
+      "verdict": "PASS_IDENTITY",
+      "contract": "A direct empirical w without n is constant in temperature and has dw/dT=0.",
+      "measurements": {
+        "width_258K_V": 0.012999999999999998,
+        "width_318K_V": 0.012999999999999998,
+        "finite_difference_V_per_K": 1.734723475976807e-15,
+        "code_dwdT_V_per_K": 0.0
+      },
+      "acceptance": "both derivative magnitudes < 1e-12 and widths equal",
+      "interpretation": "The w-only branch is a clearly empirical, temperature-frozen width law."
+    },
+    {
+      "probe_id": "WID-004",
+      "category": "width_entropy",
+      "title": "implicit default width and entropy derivative disagree",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "If missing n/w defaults to n=1 and w=RT/F, the same branch must use dw/dT=R/F rather than zero.",
+      "measurements": {
+        "default_width_V": 0.025691238016271958,
+        "finite_difference_V_per_K": 8.616883453126112e-05,
+        "code_dwdT_V_per_K": 0.0,
+        "expected_R_over_F": 8.616883453386537e-05,
+        "mismatch_V_per_K": 8.616883453126112e-05
+      },
+      "acceptance": "defect is confirmed when finite difference equals R/F but code returns zero",
+      "interpretation": "The observable and entropy paths assign different temperature laws to the same implicit default transition."
+    },
+    {
+      "probe_id": "WID-005",
+      "category": "width_entropy",
+      "title": "n(T) positivity guard",
+      "verdict": "PASS_GUARD",
+      "contract": "Any parameterized transition width must remain strictly positive over the evaluated temperature range.",
+      "measurements": {
+        "exception": "ValueError: width w=n(T)·RT/F must be > 0 (n(T)≤0 at some T — check n/n_T1/n_T_ref)."
+      },
+      "acceptance": "a ValueError is raised for n(T)<=0",
+      "interpretation": "The v1.0.16 fail-fast guard prevents negative or zero peak widths at evaluated points."
+    },
+    {
+      "probe_id": "WID-006",
+      "category": "identifiability",
+      "title": "n shadows w when both are supplied",
+      "verdict": "IDENTIFIABILITY_CAUTION",
+      "contract": "Two exposed fit parameters must not be presented as simultaneously identifiable when one has exact precedence and the other is inert.",
+      "measurements": {
+        "w_values_compared_V": [
+          0.003,
+          0.09
+        ],
+        "curve_max_abs_difference": 0.0,
+        "effective_width_V": 0.030829485619526344
+      },
+      "acceptance": "caution is confirmed when changing w produces exactly zero curve change",
+      "interpretation": "The n/w API is a mutually exclusive parameterization, not two independently estimable width controls."
+    },
+    {
+      "probe_id": "VIB-001",
+      "category": "vibration",
+      "title": "Einstein voltage-shift derivative equals entropy difference over F",
+      "verdict": "PASS_IDENTITY",
+      "contract": "The reference-subtracted free-energy voltage shift must satisfy d(Delta U_vib)/dT=Delta S_vib/F.",
+      "measurements": {
+        "theta_E_K": 430.0,
+        "T_ref_K": 298.15,
+        "rows": [
+          {
+            "T_K": 120.0,
+            "dDeltaU_dT_numeric_V_per_K": -5.046311309922155e-05,
+            "DeltaS_over_F_V_per_K": -5.046311309891499e-05,
+            "abs_error": 3.065581642702764e-16
+          },
+          {
+            "T_K": 200.0,
+            "dDeltaU_dT_numeric_V_per_K": -2.661771028773536e-05,
+            "DeltaS_over_F_V_per_K": -2.6617710286792537e-05,
+            "abs_error": 9.428222091933947e-16
+          },
+          {
+            "T_K": 258.15,
+            "dDeltaU_dT_numeric_V_per_K": -1.0195131155531917e-05,
+            "DeltaS_over_F_V_per_K": -1.01951311551275e-05,
+            "abs_error": 4.044175747324602e-16
+          },
+          {
+            "T_K": 298.15,
+            "dDeltaU_dT_numeric_V_per_K": 7.669029369330715e-17,
+            "DeltaS_over_F_V_per_K": 0.0,
+            "abs_error": 7.669029369330715e-17
+          },
+          {
+            "T_K": 350.0,
+            "dDeltaU_dT_numeric_V_per_K": 1.193866742336784e-05,
+            "DeltaS_over_F_V_per_K": 1.1938667424046394e-05,
+            "abs_error": 6.785530118477365e-16
+          },
+          {
+            "T_K": 500.0,
+            "dDeltaU_dT_numeric_V_per_K": 4.005759333004094e-05,
+            "DeltaS_over_F_V_per_K": 4.0057593333454376e-05,
+            "abs_error": 3.413434357217582e-15
+          },
+          {
+            "T_K": 900.0,
+            "dDeltaU_dT_numeric_V_per_K": 8.891413559412864e-05,
+            "DeltaS_over_F_V_per_K": 8.891413559015658e-05,
+            "abs_error": 3.972055974063582e-15
+          }
+        ],
+        "max_abs_error": 3.972055974063582e-15,
+        "DeltaU_at_reference_V": -0.0,
+        "DeltaS_at_reference_J_per_molK": 0.0
+      },
+      "acceptance": "maximum derivative error < 1e-10 and both reference-subtracted quantities equal zero",
+      "interpretation": "The additive v1.0.18.2 Einstein free-energy/entropy pair is thermodynamically self-consistent."
+    },
+    {
+      "probe_id": "VIB-002",
+      "category": "vibration",
+      "title": "Einstein F, S, internal-energy identity and asymptotes",
+      "verdict": "PASS_IDENTITY",
+      "contract": "For one thermal Einstein oscillator without zero-point energy, U=F+TS, S->0 at low T, and S~R[1+ln(T/theta)] at high T.",
+      "measurements": {
+        "rows": [
+          {
+            "T_K": 0.1,
+            "F_J_per_mol": -0.0,
+            "S_J_per_molK": 0.0,
+            "U_J_per_mol": 0.0,
+            "F_plus_TS_J_per_mol": 0.0,
+            "code_entropy_J_per_molK": 0.0,
+            "U_minus_F_plus_TS_J_per_mol": 0.0,
+            "all_finite": true
+          },
+          {
+            "T_K": 1.0,
+            "F_J_per_mol": -1.4899881065181754e-186,
+            "S_J_per_molK": 6.421848739093335e-184,
+            "U_J_per_mol": 6.406948858028154e-184,
+            "F_plus_TS_J_per_mol": 6.406948858028154e-184,
+            "code_entropy_J_per_molK": 6.421848739093335e-184,
+            "U_minus_F_plus_TS_J_per_mol": 0.0,
+            "all_finite": true
+          },
+          {
+            "T_K": 10.0,
+            "F_J_per_mol": -1.7585199446532244e-17,
+            "S_J_per_molK": 7.737487756474187e-17,
+            "U_J_per_mol": 7.561635762008865e-16,
+            "F_plus_TS_J_per_mol": 7.561635762008865e-16,
+            "code_entropy_J_per_molK": 7.737487756474187e-17,
+            "U_minus_F_plus_TS_J_per_mol": 0.0,
+            "all_finite": true
+          },
+          {
+            "T_K": 120.0,
+            "F_J_per_mol": -28.110811737725246,
+            "S_J_per_molK": 1.0856145186075492,
+            "U_J_per_mol": 102.16293049518066,
+            "F_plus_TS_J_per_mol": 102.16293049518066,
+            "code_entropy_J_per_molK": 1.0856145186075492,
+            "U_minus_F_plus_TS_J_per_mol": 0.0,
+            "all_finite": true
+          },
+          {
+            "T_K": 298.15,
+            "F_J_per_mol": -668.5674879958432,
+            "S_J_per_molK": 5.954547985956363,
+            "U_J_per_mol": 1106.7809940170464,
+            "F_plus_TS_J_per_mol": 1106.7809940170464,
+            "code_entropy_J_per_molK": 5.954547985956363,
+            "U_minus_F_plus_TS_J_per_mol": 0.0,
+            "all_finite": true
+          },
+          {
+            "T_K": 1000.0,
+            "F_J_per_mol": -8740.323128240265,
+            "S_J_per_molK": 15.394524964985182,
+            "U_J_per_mol": 6654.201836744918,
+            "F_plus_TS_J_per_mol": 6654.201836744916,
+            "code_entropy_J_per_molK": 15.394524964985182,
+            "U_minus_F_plus_TS_J_per_mol": 1.8189894035458565e-12,
+            "all_finite": true
+          },
+          {
+            "T_K": 1000000.0,
+            "F_J_per_mol": -64449631.99983289,
+            "S_J_per_molK": 72.76184461793777,
+            "U_J_per_mol": 8312212.6181048835,
+            "F_plus_TS_J_per_mol": 8312212.618104883,
+            "code_entropy_J_per_molK": 72.76184461793777,
+            "U_minus_F_plus_TS_J_per_mol": 9.313225746154785e-10,
+            "all_finite": true
+          }
+        ],
+        "max_U_identity_abs_error_J_per_mol": 9.313225746154785e-10,
+        "low_T_entropy_J_per_molK": 0.0,
+        "high_T_entropy_J_per_molK": 72.76184461793777,
+        "high_T_asymptote_J_per_molK": 72.76184455388619,
+        "high_T_relative_error": 8.802907193990896e-10
+      },
+      "acceptance": "all values finite; identity error < 1e-8 J/mol; low entropy < 1e-10; high-T relative error < 1e-6",
+      "interpretation": "The stated single-oscillator thermodynamic identities are numerically satisfied over a wide positive-temperature range."
+    },
+    {
+      "probe_id": "VIB-003",
+      "category": "vibration",
+      "title": "nonpositive Einstein reference temperature is not rejected",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "The Einstein reference temperature must be finite and strictly positive before any theta/T or thermal free-energy evaluation.",
+      "measurements": {
+        "cases": [
+          {
+            "theta_E_Tref_K": 0.0,
+            "exception": null,
+            "returned_value": null,
+            "returned_value_repr": "nan",
+            "returned_is_nan": true,
+            "returned_finite": false,
+            "warnings": []
+          },
+          {
+            "theta_E_Tref_K": -10.0,
+            "exception": null,
+            "returned_value": null,
+            "returned_value_repr": "nan",
+            "returned_is_nan": true,
+            "returned_finite": false,
+            "warnings": []
+          }
+        ]
+      },
+      "acceptance": "defect is confirmed when no ValueError is raised before non-finite arithmetic",
+      "interpretation": "theta_E is guarded positive, but theta_E_Tref uses only a finite-value guard."
+    },
+    {
+      "probe_id": "VIB-004",
+      "category": "vibration",
+      "title": "Einstein capability is dormant in all shipped defaults",
+      "verdict": "SCOPE_ABSENT_CONFIRMED",
+      "contract": "An additive capability with no populated material parameter does not validate any released graphite or LCO prediction.",
+      "measurements": {
+        "default_transition_count": 7,
+        "theta_E_key_count": 0,
+        "theta_E_Tref_key_count": 0
+      },
+      "acceptance": "scope absence is confirmed when key counts are zero",
+      "interpretation": "v1.0.18.2 adds a mathematically consistent option but no material-specific vibrational calibration or validation."
+    },
+    {
+      "probe_id": "LCO-001",
+      "category": "lco",
+      "title": "LCO electronic entropy is frozen at 298.15 K",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "If the theory claims Sommerfeld electronic entropy proportional to temperature, the effective entropy and integrated center shift cannot be temperature-constant.",
+      "measurements": {
+        "temperatures_K": [
+          240.0,
+          298.15,
+          360.0
+        ],
+        "effective_dS_J_per_molK": [
+          -39.678261885287384,
+          -39.678261885287384,
+          -39.678261885287384
+        ],
+        "range_J_per_molK": 0.0
+      },
+      "acceptance": "defect is confirmed when all effective entropy values are exactly equal",
+      "interpretation": "The seam is internally shared, but it implements a single-reference constant offset rather than the document's T-dependent electronic law."
+    },
+    {
+      "probe_id": "LCO-002",
+      "category": "lco",
+      "title": "default LCO has no rate-dependent kinetic broadening",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "A model intended to explain current-induced LCO peak suppression/broadening must have an active rate path beyond optional ohmic translation.",
+      "measurements": {
+        "I0_vs_I1_Rn0_max_abs": 0.0,
+        "all_transitions_missing_dH_a": true,
+        "all_transitions_missing_L_V": true,
+        "all_transitions_missing_Omega": true
+      },
+      "acceptance": "defect is confirmed when I=0 and I=1 curves are identical at Rn=0",
+      "interpretation": "The released LCO defaults cannot test the founding current-broadening hypothesis."
+    },
+    {
+      "probe_id": "LCO-003",
+      "category": "lco",
+      "title": "doped high-voltage LCO state is absent from defaults",
+      "verdict": "SCOPE_ABSENT_CONFIRMED",
+      "contract": "Explaining doped high-voltage LCO requires explicit composition/surface/oxygen-loss state and data-supported transitions above the present placeholder range.",
+      "measurements": {
+        "transition_count": 3,
+        "maximum_literal_U_V": 4.05,
+        "present_transition_keys": [
+          "dh_rxn",
+          "ds_rxn",
+          "dx_mit",
+          "electronic",
+          "g_max_ev",
+          "n",
+          "q",
+          "u",
+          "w",
+          "x_center",
+          "x_mit"
+        ],
+        "recognized_dopant_or_degradation_keys": [],
+        "theta_E_key_count": 0
+      },
+      "acceptance": "scope absence is confirmed when maximum U is 4.05 V and no dopant/degradation key is present",
+      "interpretation": "The shipped three-transition LCO set is a tier-C demonstration placeholder, not a high-voltage doped-LCO fit model."
+    },
+    {
+      "probe_id": "KIN-001",
+      "category": "kinetics",
+      "title": "lag/barrier closure is independent of local voltage or affinity",
+      "verdict": "BLOCKER_CONFIRMED",
+      "contract": "A transition barrier hypothesized to depend on electrode potential and local thermodynamic driving force must receive/evaluate a local state variable rather than one frozen cutoff value per transition.",
+      "measurements": {
+        "resolver_parameters": [
+          "transition",
+          "T",
+          "I",
+          "Q_cell",
+          "n_j",
+          "sigma_d"
+        ],
+        "lag_for_U_0p08_V": 1.427179218689537e-08,
+        "lag_for_U_0p28_V": 1.427179218689537e-08,
+        "absolute_difference_V": 0.0,
+        "voltage_or_affinity_parameter_present": false
+      },
+      "acceptance": "defect is confirmed when the signature has no local voltage/affinity and changing U leaves lag unchanged",
+      "interpretation": "The current closure cannot express the user's central hypothesis that temperature, current, and electrode potential jointly modify the activation barrier."
+    }
+  ],
+  "next_step": "34.5"
+}

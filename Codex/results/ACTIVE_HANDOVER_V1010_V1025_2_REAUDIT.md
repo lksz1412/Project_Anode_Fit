@@ -10,11 +10,11 @@
 3. 활성 마스터 계획:
    `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
 4. 활성 phase 세부 계획:
-   `Codex/plans/2026-07-28-phase058-v1010-v1013-lineage-detailed-plan.md`
+   `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_058A_AUDIT_QUEUE_RESULT.md`
+   `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBE_REVIEW.md`
 
 ## Current State
 
@@ -421,6 +421,28 @@
   `Codex/work/v1014_v1018_2_phase059/runtime_logs/`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_isolated_runtime.py`
   (`CONDITIONAL_P059_ISOLATED_RUNTIME_VALIDATED`, 29/29 checks).
+- Phase 059 independent code probes:
+  release test/demo와 분리한 22건을 실행했다. pointwise memory
+  normalization/capacity/small-\(L_V\), direction mirror,
+  explicit \(n\)/\(n(T)\)/`w`-only derivative와 Einstein
+  free-energy/entropy identities는 보존됐다.
+- Independent-probe blockers:
+  voltage sorting의 chronology 소실, direct `L_V`의 \(I=0\)
+  위반, C-rate 3600배, implicit-default `_dwdT` 불일치,
+  Einstein reference-temperature guard 부재, LCO electronic
+  entropy 동결, default LCO rate 불변과 local-affinity 없는
+  barrier closure 8건을 수치로 확인했다. dormant Einstein과
+  doped high-voltage LCO 부재 2건, n/w exact shadowing 1건도
+  분리했다.
+- Phase 059 independent-probe evidence:
+  `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBES.json`,
+  `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_independent_code_probes.py`
+  (`PASS_P059_INDEPENDENT_CODE_PROBES`, 45/45 checks).
+- Independent-probe authority boundary:
+  probe 실행 gate만 PASS다. production code 물리 정합은
+  `CONDITIONAL_P059_CODE_CONFORMANCE`이고 실험 타당성은 확립되지
+  않았다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -443,16 +465,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 34.4:
-독립 probe로 pointwise memory/conservation/order/history,
-current/unit/zero-current, width/entropy, Einstein numerical limits와
-LCO electronic/barrier path를 검산한다.
+Phase 059 Step 34.5:
+두 golden NPZ의 모든 key/shape/dtype/array를 해당 code로
+재생성해 bit-exact와 tolerance match를 분리하고, v1.0.15
+rebaseline이 고정한 architecture와 미검사 결함을 판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–34.3.
+Phase 059 Steps 33.1–34.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

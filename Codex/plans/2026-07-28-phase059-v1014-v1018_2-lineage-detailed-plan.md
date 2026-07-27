@@ -637,3 +637,57 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 34.4 독립 probe로 memory, conservation, order/history,
   current/unit, width/entropy, Einstein과 LCO electronic/barrier
   contract를 직접 검산한다.
+
+### 2026-07-28 — Step 34.4
+
+- frozen v1.0.14/15/16/18.2 production module을 read-only import하고
+  기존 release test/demo를 호출하지 않은 독립 물리·수치 probe
+  22건을 실행했다. source SHA는 실행 전후 동일하고 `Claude/`
+  working tree는 clean이다.
+- v1.0.15 pointwise recurrence는 불규칙 격자 상수·선형 source를
+  \(5.56\times10^{-17}\), \(2.78\times10^{-17}\) 최대오차로
+  재현했다. 넓은 전압창에서 평형/지연 면적은 모두 \(Q=1\)을
+  \(3\times10^{-12}\) 이내로 보존했고, 지연 peak suppression과
+  FWHM broadening 및 resolved \(L_V\to0\) 단조 수렴을 확인했다.
+- 대칭 단일전이 charge/discharge mirror는 0 오차로 일치했다.
+  반면 입력 전압을 임의 순열해도 원위치 복구 출력은 0 오차로
+  동일하고, 실제 입력 순서를 따라 memory를 전개한 결과와는
+  최대 21.33 차이가 났다. production `dqdv`의 voltage sorting이
+  pulse/reversal/rest chronology를 제거한다.
+- derived kinetics는 \(I=0\)에서 평형으로 환원되지만 direct
+  `L_V`는 \(I=0\)과 \(I=1\) 출력이 같고 평형과 최대 3.903
+  차이가 났다. \(Q_\mathrm{cell}=3600\) C, 1C 환산은
+  SI-consistent 1 A에 비해 `func_L_q`가 정확히 3600배다.
+- explicit constant \(n\), \(n(T)\), `w`-only의
+  \(\partial w/\partial T\)와 entropy chain은 finite difference와
+  일치했다. 그러나 `n`/`w` 부재 시 observable은 \(w=RT/F\)인데
+  `_dwdT`는 0을 반환해 \(R/F=8.6169\times10^{-5}\) V/K가
+  누락된다. `n`과 `w`를 함께 주면 `w`는 exact inert다.
+- v1.0.18.2 Einstein pair는
+  \(\partial\Delta U_\mathrm{vib}/\partial T
+  =\Delta S_\mathrm{vib}/F\), \(U=F+TS\), low/high-\(T\)
+  asymptote를 만족했다. 하지만 `theta_E_Tref<=0`은 fail-fast
+  되지 않고 NaN으로 진행하며, shipped graphite/LCO 7개 기본
+  전이에 `theta_E`는 하나도 없다.
+- LCO electronic entropy는 240–360 K에서 완전히 동결되고,
+  기본 LCO는 \(R_n=0\)에서 \(I=0\)과 \(I=1\) 곡선이 exact
+  identical이다. 최대 중심은 4.05 V이고 dopant/oxygen-loss/
+  surface state가 없다. lag resolver에도 local voltage/affinity
+  인자가 없고 U를 0.08→0.28 V로 바꿔도 lag가 동일하다.
+- verdict는 PASS identity 10, PASS guard 1, blocker confirmed 8,
+  scope absent 2, identifiability caution 1이다. 45/45 validation과
+  반복 생성 hash 동일성을 통과했다.
+- 근거:
+  `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBES.json`,
+  `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/run_phase059_independent_code_probes.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_independent_code_probes.py`.
+- gate:
+  `PASS_P059_INDEPENDENT_CODE_PROBE_EXECUTION`,
+  `PASS_P059_INDEPENDENT_CODE_PROBES`.
+- 위 PASS는 probe 실행·evidence validation만 뜻한다. release
+  물리 정합 상태는 `CONDITIONAL_P059_CODE_CONFORMANCE`이며,
+  blocker나 실험 타당성을 PASS로 승격하지 않는다.
+- 다음은 Step 34.5 두 golden NPZ의 모든 key/shape/dtype/array를
+  재생성해 bit-exact와 tolerance match를 분리하고 v1.0.15
+  rebaseline의 검증 범위와 결함 은폐 가능성을 판정한다.
