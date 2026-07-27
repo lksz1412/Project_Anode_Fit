@@ -1,0 +1,243 @@
+{
+  "schema_version": "phase058-v1012-patch-adjudication-v1",
+  "audit_boundary": "PATCH_CLASSIFICATION_NOT_THEORY_CANON",
+  "baseline": "v1.0.11_byte_identical_v1.0.10_copy",
+  "file_pairs": [
+    {
+      "role": "production_code",
+      "old": "Claude/docs/v1.0.11/Anode_Fit_v1.0.11.py",
+      "new": "Claude/docs/v1.0.12/Anode_Fit_v1.0.12.py",
+      "added_lines": 16,
+      "deleted_lines": 7,
+      "classification": "COMMENTS_DOCSTRING_AND_VERSION_ONLY",
+      "execution_change": false
+    },
+    {
+      "role": "fitting_guide",
+      "old": "Claude/docs/v1.0.11/FITTING_GUIDE.md",
+      "new": "Claude/docs/v1.0.12/FITTING_GUIDE.md",
+      "added_lines": 67,
+      "deleted_lines": 15,
+      "classification": "SUBSTANTIVE_WORKFLOW_DOCUMENTATION",
+      "execution_change": false
+    },
+    {
+      "role": "lco_heat_demo",
+      "old": "Claude/docs/v1.0.11/demo_lco_heat.py",
+      "new": "Claude/docs/v1.0.12/demo_lco_heat.py",
+      "added_lines": 0,
+      "deleted_lines": 0,
+      "classification": "BYTE_IDENTICAL",
+      "execution_change": false
+    },
+    {
+      "role": "chapter_1",
+      "old": "Claude/docs/v1.0.11/graphite_ica_ch1_v1.0.11.tex",
+      "new": "Claude/docs/v1.0.12/graphite_ica_ch1_v1.0.12.tex",
+      "added_lines": 533,
+      "deleted_lines": 112,
+      "classification": "SUBSTANTIVE_THEORY_AND_EXPLANATION_PATCH",
+      "execution_change": false
+    },
+    {
+      "role": "chapter_2",
+      "old": "Claude/docs/v1.0.11/graphite_ica_ch2_v1.0.11.tex",
+      "new": "Claude/docs/v1.0.12/graphite_ica_ch2_v1.0.12.tex",
+      "added_lines": 41,
+      "deleted_lines": 14,
+      "classification": "THERMODYNAMIC_SIGN_AND_LIMIT_CORRECTION",
+      "execution_change": false
+    },
+    {
+      "role": "dqdv_plot",
+      "old": "Claude/docs/v1.0.11/plot_dqdv.py",
+      "new": "Claude/docs/v1.0.12/plot_dqdv.py",
+      "added_lines": 0,
+      "deleted_lines": 0,
+      "classification": "BYTE_IDENTICAL",
+      "execution_change": false
+    },
+    {
+      "role": "sample_test",
+      "old": "Claude/docs/v1.0.11/sample_test_v1011.py",
+      "new": "Claude/docs/v1.0.12/sample_test_v1012.py",
+      "added_lines": 82,
+      "deleted_lines": 53,
+      "classification": "REPORT_AND_FIGURE_REWRITE_WITHOUT_PHYSICS_ASSERTIONS",
+      "execution_change": false
+    },
+    {
+      "role": "regression_test",
+      "old": "Claude/docs/v1.0.11/test_regression_graphite.py",
+      "new": "Claude/docs/v1.0.12/test_regression_graphite.py",
+      "added_lines": 0,
+      "deleted_lines": 0,
+      "classification": "BYTE_IDENTICAL",
+      "execution_change": false
+    }
+  ],
+  "executable_code_equivalence": {
+    "docstring_stripped_ast_sha256": "94f8a7f4bc2e04d4bf80bb224e3f20ff297eab5a8a78021248aa33df89e4068d",
+    "representative_cases": [
+      "graphite_curve",
+      "graphite_entropy_coefficient",
+      "lco_curve",
+      "lco_entropy_coefficient"
+    ],
+    "bit_identical_case_count": 4,
+    "maximum_absolute_difference": 0.0,
+    "verdict": "NO_EXECUTABLE_PRODUCTION_PHYSICS_CHANGE"
+  },
+  "theory_diff": {
+    "chapter_1": {
+      "old_equations": 60,
+      "new_equations": 86,
+      "unchanged_equations": 58,
+      "changed_equations": 2,
+      "added_equations": 26,
+      "removed_equations": 0
+    },
+    "chapter_2": {
+      "old_equations": 22,
+      "new_equations": 22,
+      "unchanged_equations": 20,
+      "changed_equations": 2,
+      "added_equations": 0,
+      "removed_equations": 0
+    }
+  },
+  "change_claims": [
+    {
+      "id": "V12-C01",
+      "change": "Bragg-Williams voltage and slope signs are reversed into the occupancy-consistent convention.",
+      "decision": "CORRECT",
+      "implementation_effect": "NONE",
+      "reason": "The new Omega=0 limit agrees with the previously declared occupancy/Nernst convention and the critical condition remains Omega=2RT."
+    },
+    {
+      "id": "V12-C02",
+      "change": "MSMR mapping is changed from f=-sigma_d to f=+sigma_d with occupancy-to-occupancy or progress-to-progress pairing.",
+      "decision": "CORRECT",
+      "implementation_effect": "COMMENTS_ONLY",
+      "reason": "The pairing correction is conceptually sound, but the equilibrium peak is complement-invariant and the production facade is unchanged."
+    },
+    {
+      "id": "V12-C03",
+      "change": "LCO data should map charge to the positive delithiation slot rather than reuse electrode-neutral cell labels.",
+      "decision": "CORRECT",
+      "implementation_effect": "THEORY_ONLY",
+      "reason": "The guide correctly exposes the semantic error, while _direction_to_sigma remains electrode-unaware until v1.0.13."
+    },
+    {
+      "id": "V12-C04",
+      "change": "Twenty-six labeled LCO equations instantiate the graphite regular-solution/logistic structure for T1-T3.",
+      "decision": "EMPIRICAL_ONLY",
+      "implementation_effect": "NONE",
+      "reason": "The expansion improves traceability but substitutes labels into the same scalar model; it does not establish phase-specific LCO free energies or parameter values."
+    },
+    {
+      "id": "V12-C05",
+      "change": "LCO Omega and activation enthalpy are explicitly left unassigned and conditional.",
+      "decision": "PRESERVE",
+      "implementation_effect": "NONE",
+      "reason": "This is honest scope control and confirms that default LCO hysteresis and kinetics are inactive."
+    },
+    {
+      "id": "V12-C06",
+      "change": "Doping is represented by pushing an LCO interaction parameter toward 2RT to suppress a static gap.",
+      "decision": "EMPIRICAL_ONLY",
+      "implementation_effect": "NONE",
+      "reason": "The asymptotic regular-solution statement is mathematically valid but insufficient for dopant, oxygen, defect, surface and high-voltage stability chemistry."
+    },
+    {
+      "id": "V12-C07",
+      "change": "Finite-rate causal broadening is separated from symmetric equilibrium/ensemble width in the prose.",
+      "decision": "CORRECT",
+      "implementation_effect": "NONE",
+      "reason": "This repairs a double-attribution, but direct L_V still survives at zero current and the default kinetic path remains inactive."
+    },
+    {
+      "id": "V12-C08",
+      "change": "The grid handoff is disclosed as an approximately 23 percent jump at the default threshold and nu around 8-10 is recommended.",
+      "decision": "PRESERVE",
+      "implementation_effect": "NONE",
+      "reason": "The diagnosis is useful; changing a numerical threshold is not a continuum physical closure and the default remains unchanged."
+    },
+    {
+      "id": "V12-C09",
+      "change": "The entropy configurational term is written as plus R log(xi/(1-xi)) under an insertion convention.",
+      "decision": "CORRECT",
+      "implementation_effect": "NONE",
+      "reason": "The sign is corrected for the ideal n=1 contract, but the manuscript says imposed w=nRT/F generates it while arbitrary n requires nR and constant empirical w gives no such term."
+    },
+    {
+      "id": "V12-C10",
+      "change": "The branch-average reversible entropy is labeled as a small-gap linearization.",
+      "decision": "CORRECT",
+      "implementation_effect": "NONE",
+      "reason": "This properly limits the earlier exact-looking statement; no history-dependent equilibrium reconstruction is implemented."
+    },
+    {
+      "id": "V12-C11",
+      "change": "The Sommerfeld electronic-entropy expression is limited to the degenerate regime.",
+      "decision": "CORRECT",
+      "implementation_effect": "NONE",
+      "reason": "The validity-domain warning is appropriate, but normalization, composition mapping and experimental calibration remain open."
+    },
+    {
+      "id": "V12-C12",
+      "change": "The electronic gate integral near 1.1 kB and the cited total partial-molar anchor near 0.18 kB are declared different quantities.",
+      "decision": "UNVERIFIED",
+      "implementation_effect": "NONE",
+      "reason": "Distinguishing definitions is preferable to calling them equal, but cancellation, normalization and phase-fraction evidence are not supplied."
+    },
+    {
+      "id": "V12-C13",
+      "change": "The documented electronic entropy is inserted into a voltage-dependent, temperature-integrated U1 expression.",
+      "decision": "THEORY_ONLY",
+      "implementation_effect": "NONE",
+      "reason": "Production code still evaluates the gate at x_center and T_ref, so composition locality and T-squared curvature are absent."
+    },
+    {
+      "id": "V12-C14",
+      "change": "The S0-S5 GITT, AIC, staged fitting, residual and holdout workflow is restored in the guide.",
+      "decision": "THEORY_ONLY",
+      "implementation_effect": "NONE",
+      "reason": "It is a useful future identification plan, but this lineage has no data ingest, objective, optimizer, uncertainty, AIC or holdout pipeline."
+    },
+    {
+      "id": "V12-C15",
+      "change": "The sample script is expanded and a new PNG is stored as a release demonstration.",
+      "decision": "EMPIRICAL_ONLY",
+      "implementation_effect": "DEMO_ONLY",
+      "reason": "It has no physical assertions, uses the still-wrong LCO discharge facade label and shows generated curves without public data or uncertainty."
+    },
+    {
+      "id": "V12-C16",
+      "change": "The release reports successful builds, regressions and final gates.",
+      "decision": "UNVERIFIED",
+      "implementation_effect": "NONE",
+      "reason": "Build/source checks are useful provenance, but PDF inspection found two v1.0.12 clipping defects and the regression is not external scientific validation."
+    },
+    {
+      "id": "V12-C17",
+      "change": "The production model is declared physically unchanged with zero audit defects.",
+      "decision": "REJECT",
+      "implementation_effect": "NONE",
+      "reason": "Executable equivalence is confirmed, so all material v1.0.10 unit, kinetic, entropy, heat and LCO closure defects are inherited rather than solved."
+    }
+  ],
+  "summary": {
+    "file_pair_count": 8,
+    "changed_file_pair_count": 5,
+    "byte_identical_file_pair_count": 3,
+    "added_lines": 739,
+    "deleted_lines": 201,
+    "production_execution_changes": 0,
+    "physical_theory_corrections_to_preserve": 7,
+    "new_public_experimental_datasets": 0,
+    "new_fitting_pipeline": false,
+    "new_high_voltage_doped_lco_closure": false,
+    "global_verdict": "V1012_CONTAINS_REAL_THEORY_CORRECTIONS_BUT_NO_EXECUTABLE_PHYSICS_ADVANCE"
+  }
+}

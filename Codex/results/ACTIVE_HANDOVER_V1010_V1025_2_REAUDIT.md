@@ -181,6 +181,16 @@
   `Codex/results/PHASE_058_V1011_COPY_LINEAGE_REVIEW.md`,
   `Codex/results/PHASE_058_V1011_COPY_LINEAGE_MATRIX.json`
   (`PASS_P058_V1011_COPY_LINEAGE`).
+- Phase 058 v1.0.12 patch:
+  739 additions/201 deletions contain seven theory corrections worth
+  preserving, including Bragg-Williams and MSMR sign/pairing fixes.
+  Production executable AST and four representative outputs remain
+  identical to v1.0.11; public-data and high-voltage material closure
+  were not added.
+- Phase 058 v1.0.12 evidence:
+  `Codex/results/PHASE_058_V1012_PATCH_REVIEW.md`,
+  `Codex/results/PHASE_058_V1012_PATCH_ADJUDICATION.json`
+  (`PASS_P058_V1012_PATCH_ADJUDICATION`).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -203,12 +213,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 30.2:
-v1.0.12의 LCO 수식화, width/default, guide와 sample 변화가
-물리 변화인지 설명 변화인지 patch로 판정한다.
+Phase 058 Step 30.3:
+R1 철회가 source, code, tests와 figure에서 실제로 일관적인지
+확인한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -234,6 +244,8 @@ v1.0.10 과거 problem/integrity report 31개 claim을 actual
 source/output에 재연결하고 전역 integrity PASS 기각.
 v1.0.11 text 8개 3,965행과 PDF 48쪽 copy-lineage를 닫고
 scientific source/code/test 변화 0으로 판정.
+v1.0.12 exact patch 739+/201−와 labeled equation 변화를 처분하고
+실행 AST·대표 4 outputs가 v1.0.11과 동일함을 판정.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

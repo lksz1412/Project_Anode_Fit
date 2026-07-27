@@ -580,3 +580,37 @@ lineage report를 기계 검증한다.
   `V1011_IS_A_BYTE_IDENTICAL_TEXT_BASELINE_COPY_AND_RENDER_IDENTICAL_PDF_REBUILD`.
 - 다음은 Step 30.2 v1.0.12의 LCO 수식화, width/default, guide와
   sample 변화가 물리 변화인지 설명 변화인지 patch로 판정한다.
+
+### 2026-07-28 — Step 30.2
+
+- v1.0.11→v1.0.12 대응 8개 파일의 exact patch는 739행 추가,
+  201행 삭제였다. 5개가 변경됐고 demo/plot/regression 3개는
+  byte-identical이다.
+- Ch1은 labeled equation 60→86개(26 추가, 2 변경), Ch2는
+  22개 유지(2 변경)다.
+- 점유 convention의 Bragg–Williams 전위/기울기 부호,
+  MSMR same-quantity pairing의 \(f=+\sigma_d\), finite-rate tail과
+  symmetric width 분리, branch-average small-gap 한정,
+  Sommerfeld 적용범위와 LCO parameter 미배정 표시는 보존했다.
+- production diff 16+/7−는 header/comment/docstring뿐이다.
+  docstring-stripped executable AST hash는 두 version이 같고,
+  graphite/LCO curve와 entropy 대표 4 case가 전부 bit-identical,
+  최대 차이 0이었다.
+- 새 LCO equation은 추적성을 높였지만 같은 scalar
+  regular-solution/logistic 식의 label 치환이며 phase-specific
+  free energy, dopant/oxygen/surface/high-voltage state를 만들지 않았다.
+- entropy-width 일반화, electronic composition/\(T^2\),
+  LCO direction facade, \(I\to0\), grid handoff와 barrier closure는
+  theory-only 또는 미해결이다.
+- S0–S5/GITT/AIC/holdout은 유용한 계획이지만 data/fitting/
+  uncertainty pipeline은 추가되지 않았다. sample은 report-only이며
+  public experiment가 없다.
+- 근거:
+  `Codex/results/PHASE_058_V1012_PATCH_REVIEW.md`,
+  `Codex/results/PHASE_058_V1012_PATCH_ADJUDICATION.json`.
+- 기계 gate:
+  `PASS_P058_V1012_PATCH_ADJUDICATION` (40 checks).
+- 판정:
+  `V1012_CONTAINS_REAL_THEORY_CORRECTIONS_BUT_NO_EXECUTABLE_PHYSICS_ADVANCE`.
+- 다음은 Step 30.3 R1 철회가 source, code, tests와 figure에서 실제로
+  일관적인지 확인한다.
