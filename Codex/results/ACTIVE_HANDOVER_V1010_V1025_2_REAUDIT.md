@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  123 documents, 31,304 lines.
+  124 documents, 32,695 lines.
 - Latest observation:
-  `Codex/results/PHASE_057P_V1022_R1_CONTROL_AND_LINEAGE_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057Q_V1022_R1_SNAPSHOT_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,17 +36,17 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.6B:
-v1.0.22 R1 구조 snapshot 1문건 1,391행을 최대 400행 연속 구간으로
-나누어 첫 행부터 끝 행까지 전문 검독하고 v1.0.21 Q7 snapshot과 대조한다.
+Phase 057 Step 19.6C:
+v1.0.22 R2 Ch1 completion 경쟁 brief·seam·bridge·removal
+12문건 811행을 첫 행부터 끝 행까지 전문 검독한다.
 활성 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1022-read-map.md`.
 현재 batch:
-19.6B, R1 구조 snapshot 1문건 1,391행.
-완료 Step 19.6A:
-R1 재편 계획·통제 원장·계보 감사·sweep 7문건 477행 전량 `READ`.
+19.6C, R2 Ch1 completion 12문건 811행.
+완료 Step 19.6B:
+R1 구조 snapshot 1문건 1,391행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057P_V1022_R1_CONTROL_AND_LINEAGE_OBSERVATIONS.md`.
+`Codex/results/PHASE_057Q_V1022_R1_SNAPSHOT_OBSERVATIONS.md`.
 
 ## Resume Gate
 
