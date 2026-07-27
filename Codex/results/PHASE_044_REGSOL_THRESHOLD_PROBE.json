@@ -1,0 +1,87 @@
+{
+  "source_equation": "Claude/docs/v1.0.25.2/_sections/ch3v22_sec02b_sifr.tex:200-220",
+  "constants": {
+    "R_J_per_mol_K": 8.314,
+    "T_K": 298.15,
+    "F_C_per_mol": 96485.0,
+    "RT_over_F_V": 0.025691238016271958,
+    "U0_V": 0.0,
+    "logistic_width_V": 0.01,
+    "voltage_min_V": -0.12,
+    "voltage_max_V": 0.12,
+    "voltage_points": 1201,
+    "gauss_legendre_points_per_interval": 1600,
+    "curve_units_for_Q_equal_1": "1/V"
+  },
+  "reference_at_interaction_over_rt_2": {
+    "finite_window_area": 0.9966587418855096,
+    "maximum": 20.08104663053633
+  },
+  "rows": [
+    {
+      "epsilon": 0.01,
+      "gap_weight": 0.12192611348882632,
+      "max_abs_difference": 0.058694209857161894,
+      "max_abs_difference_over_epsilon": 5.869420985716189,
+      "max_abs_difference_over_sqrt_epsilon": 0.5869420985716189,
+      "rms_difference_over_epsilon": 1.7102005313038189
+    },
+    {
+      "epsilon": 0.003,
+      "gap_weight": 0.06699161517827057,
+      "max_abs_difference": 0.017670806389393334,
+      "max_abs_difference_over_epsilon": 5.8902687964644445,
+      "max_abs_difference_over_sqrt_epsilon": 0.32262330895923824,
+      "rms_difference_over_epsilon": 1.7162591274202343
+    },
+    {
+      "epsilon": 0.001,
+      "gap_weight": 0.038712413809084856,
+      "max_abs_difference": 0.005896187704866662,
+      "max_abs_difference_over_epsilon": 5.896187704866662,
+      "max_abs_difference_over_sqrt_epsilon": 0.18645382659259316,
+      "rms_difference_over_epsilon": 1.717982191399871
+    },
+    {
+      "epsilon": 0.0003,
+      "gap_weight": 0.021210340085727752,
+      "max_abs_difference": 0.0017694764331643853,
+      "max_abs_difference_over_epsilon": 5.8982547772146185,
+      "max_abs_difference_over_sqrt_epsilon": 0.10216076950121566,
+      "rms_difference_over_epsilon": 1.7185842940660525
+    },
+    {
+      "epsilon": 0.0001,
+      "gap_weight": 0.012246897606524199,
+      "max_abs_difference": 0.0005898844896385924,
+      "max_abs_difference_over_epsilon": 5.898844896385924,
+      "max_abs_difference_over_sqrt_epsilon": 0.05898844896385924,
+      "rms_difference_over_epsilon": 1.7187562218678574
+    },
+    {
+      "epsilon": 3e-05,
+      "gap_weight": 0.006708113373034008,
+      "max_abs_difference": 0.00017697154063256448,
+      "max_abs_difference_over_epsilon": 5.899051354418816,
+      "max_abs_difference_over_sqrt_epsilon": 0.03231043494696588,
+      "rms_difference_over_epsilon": 1.7188163774102363
+    },
+    {
+      "epsilon": 1e-05,
+      "gap_weight": 0.0038729659183631693,
+      "max_abs_difference": 5.899110243134942e-05,
+      "max_abs_difference_over_epsilon": 5.899110243134941,
+      "max_abs_difference_over_sqrt_epsilon": 0.018654624536736084,
+      "rms_difference_over_epsilon": 1.7188335397895902
+    },
+    {
+      "epsilon": 3e-06,
+      "gap_weight": 0.002121317480464624,
+      "max_abs_difference": 1.7697391559323705e-05,
+      "max_abs_difference_over_epsilon": 5.899130519774568,
+      "max_abs_difference_over_sqrt_epsilon": 0.010217593780729752,
+      "rms_difference_over_epsilon": 1.7188394630768906
+    }
+  ],
+  "judgment": "max_abs_difference/epsilon converges to a finite value while max_abs_difference/sqrt(epsilon) tends to zero; the leading sqrt gap-mass term cancels the removed central-branch mass."
+}

@@ -1,0 +1,81 @@
+\section{재료 적용 I: 흑연 음극}\label{MAT-GR-000}
+
+흑연의 여러 plateau와 ICA peak는 staging과 연관된다는 강한
+문헌 근거가 있지만, 관측 peak 하나를 곧 상 하나 또는 미시 전이
+하나로 세는 것은 허용되지 않는다. 유한입자, disorder, strain,
+입자분포와 관측 변환이 peak 수와 폭을 바꿀 수 있기 때문이다
+\cite{dahn,funabiki,reynier}.
+
+\paragraph{\physid{MAT-GR-001} 상태와 전하수지.}
+흑연의 물리적 전이는 고정된 반응 orientation의
+$\xi_{\mathrm{Gr},j}\in[0,1]$로 나타내며
+\[
+ Q_\mathrm{Gr}
+ =Q_{\mathrm{Gr},0}
+ +Q_{\mathrm{Gr},\bg}^\chem(V_n,T)
+ +\sum_j a_{\mathrm{Gr},j}
+   (\xi_{\mathrm{Gr},j}-\xi_{\mathrm{Gr},j,0})
+ \tag{6.1}
+\]
+로 둔다. $a_{\mathrm{Gr},j}$는 signed C이고, 양의 면적을 가진
+경험 peak의 $A_j$와 동일한 양이 아니다.
+
+\paragraph{\physid{MAT-GR-002} 평형 전이의 최소형.}
+상세한 free-energy 자료가 없을 때 각 전이의 equilibrium occupancy는
+Chapter~\ref{EQ-CH1}의 ideal 또는 regular-solution closure로
+제한적으로 나타낼 수 있다. ideal형의 전압 폭은
+\[
+ w_{\mathrm{th},j}=\frac{RT}{z_jF}
+ \tag{6.2}
+\]
+이며 $z_j$는 균형 반응식의 전자 화학양론이다. 관측된 폭을 식
+(6.2)에 대입해 ``유효 전자수''를 정의하는 것은 물리 해석이 아니라
+shape reparameterization이다.
+
+\paragraph{\physid{MAT-GR-003} staging 해석의 등급.}
+plateau 위치와 온도의존성, diffraction/Raman/NMR과 같은 독립
+구조자료가 함께 대응할 때만 특정 staging 전이에 대한 귀속을
+강화한다. ICA peak의 위치만 맞는 경우에는 ``staging-compatible
+feature''로 제한한다. 관측 peak의 분할ㆍ병합은 전이 개수의 증감으로
+해석하지 않는다.
+
+\paragraph{\physid{MAT-GR-004} 평형 폭과 유한속도 꼬리.}
+평형 free-energy curvature, 입자ㆍ조성 분포가 만드는 static
+broadening과 causal relaxation이 만드는 dynamic tail을 별도 항으로
+둔다. 전류 제거 후에도 남는 폭은 정적 이질성의 후보이며,
+rate 및 휴지시간에 따라 사라지는 비대칭은 동역학의 후보지만,
+두 효과가 동시에 존재할 수 있다.
+
+\paragraph{\physid{MAT-GR-005} 열 관계.}
+흑연 반쪽전지의 국소 가역열은
+\[
+ \dot Q_{\rev,\mathrm{Gr}}
+ =-I_{\mathrm{Gr}}T
+ \left(\frac{\partial U_{\eq,\mathrm{Gr}}}{\partial T}\right)_q
+ \tag{6.3}
+\]
+로 쓴다. 측정된 전지 전체 열을 이 항에 배정하려면 counter
+electrode와 전해질의 기여를 제거해야 한다.
+
+\begin{openitem}
+\physid{MAT-GR-OPEN-01}
+각 흑연 전이 폭의 온도의존성이 식 (6.2), 비이상 상호작용,
+입자분포와 strain 중 어느 항에서 유래하는지는 다온도 평형 OCV와
+독립 구조자료 없이는 닫히지 않는다.
+\end{openitem}
+
+\begin{openitem}
+\physid{MAT-GR-OPEN-02}
+관측 전압간격보다 좁은 보정 폭이나 허용 경계에 붙은 비대칭
+형상계수는 numerical identifiability 경고다. 더 촘촘한 원자료,
+다른 smoothing scale과 독립 구조자료에서 안정성이 확인되기 전에는
+intrinsic transition width 또는 포화된 미시 비대칭으로 해석하지
+않는다.
+\end{openitem}
+
+\begin{identifiability}
+단일 ICA 곡선은 흑연 transition capacity, chemical background,
+static broadening와 relaxation time 분포를 동시에 고유하게
+분리하지 못한다. peak 면적 합은 전하 적분과 맞아야 하지만 그
+분배는 추가 제약을 요구한다.
+\end{identifiability}

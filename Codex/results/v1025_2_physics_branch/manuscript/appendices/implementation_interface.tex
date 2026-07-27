@@ -1,0 +1,114 @@
+\section{구현 인터페이스와 물리 계약}\label{ASM-IMPLEMENTATION}
+
+이 부록만 실제 구현 기호를 언급한다. 물리 본문은 이 기호들에
+의존하지 않으며, 실제 경로와 세부 추적 정보는 원고
+밖의 추적 기록에 둔다.
+
+\subsection{현재 기호와 물리 의미의 대응}
+
+\small
+\begin{longtable}{p{0.23\textwidth}p{0.15\textwidth}p{0.52\textwidth}}
+\toprule
+구현 기호 & 정합 상태 & 물리 계약과 남은 차이\\
+\midrule\endhead
+\texttt{func\_ksi\_eq}
+& \status{PARTIAL}
+& equilibrium occupancy를 반환하지만 이상 열역학 폭과 자유 유효폭을
+명시적으로 분리해야 한다. $z$는 반응 화학양론에서만 받아야 한다.\\
+\texttt{func\_dxi\_eq}
+& \status{EMPIRICAL}
+& 비대칭 관측형상의 도함수로는 유효하다. physical occupancy
+derivative나 chemical capacitance에 자동 재사용하면 안 된다.\\
+\texttt{solve\_U\_oc}
+& \status{PARTIAL}
+& 대수 전하수지를 푸는 역할은 맞지만 $Q_\bg^\chem$와
+$B_\obs$를 분리하고 경험형상 대신 선택한 physical host closure를
+받아야 한다. 존재ㆍ유일성 및 허용 전압구간을 확인해야 한다.\\
+\texttt{dqdv}
+& \status{DIVERGENT}
+& 관측축 정렬이 trajectory의 시간순서와 반응 orientation을
+지울 수 있다. monotonic branch 계약, signed 결과와 magnitude
+변환을 분리해야 한다.\\
+\texttt{\_causal\_pad}
+& \status{PARTIAL}
+& 유한 prehistory를 구현하지만 그 길이 이전의 상태를 가정한다.
+초기 memory와 남는 $e^{-t/\tau}$ 오차를 결과와 함께 전달해야 한다.\\
+\texttt{\_resolve\_lag\_length}
+& \status{DIVERGENT}
+& 비유한 relaxation 값을 즉시 평형으로 바꾸면 무한지연과
+무지연을 혼동한다. $\tau=0$, 유한 $\tau$, $\tau\to\infty$를
+별도 상태로 다뤄야 한다.\\
+\path{entropy_coefficient_x}
+& \status{PARTIAL}
+& 경험형상 $\alpha$를 entropy에 넣지 말고, fixed-state 또는
+fixed-charge OCV 온도미분의 basis를 명시해 반환해야 한다.\\
+\texttt{reversible\_heat}
+& \status{PARTIAL}
+& $\dot Q_\rev=-IT\,\partial_TU_\eq$의 반응ㆍ전류ㆍ생성열 부호
+계약을 입력과 결과에 고정해야 한다.\\
+\texttt{irreversible\_heat}
+& \status{PARTIAL}
+& terminal lumped 식을 쓸 수 있으나 $I(U_\mathrm{oc}-V)\ge0$인
+domain과 hidden storage 제외를 명시해야 한다.\\
+\texttt{BlendedAnodeDQDV}
+& \status{PARTIAL}
+& physical common-potential blend와 empirical curve assembly를
+서로 다른 공개 계약으로 분리해야 한다.\\
+\texttt{\seqsplit{GraphiteAnodeDischargeDQDV}}
+& \status{PARTIAL}
+& 방전 이름이 상태 orientation을 뒤집지 않도록 동일 reaction
+coordinate와 signed-current convention을 유지해야 한다.\\
+\path{use_legacy_4transition}
+& \status{DIVERGENT}
+& mutable 전역 선택은 같은 입력의 물리 의미를 바꿀 수 있다.
+명시적인 profile 객체와 불변 configuration으로 교체한다.\\
+\texttt{use\_si\_constants}
+& \status{DIVERGENT}
+& host 상수를 전역 교환하지 말고 각 host 상태와 전하 basis에
+소유시킨다.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{권장 경계}
+
+\paragraph{\physid{ASM-IMP-01} 물리 host 계약.}
+\texttt{PhysicalHostBlend}는 동일한 $V_n$, $T$, signed 전하 basis에서
+$Q_\mathrm{Gr}$와 $Q_\mathrm{Si}$ 및 필요 상태미분을 제공하고
+식~(8.1)의 balance를 푼다. 경험 peak 배열을 입력으로 요구하지 않는다.
+
+\paragraph{\physid{ASM-IMP-02} 경험 관측 계약.}
+\texttt{EmpiricalSkewProfile}은
+$\{U_j,w_j,A_j^\obs,\alpha_j,B_\obs\}$, 관측창, 단위,
+전처리 식별지문을 소유한다. physical host, reaction entropy,
+rate constant와 heat source를 노출하지 않는다.
+
+\paragraph{\physid{ASM-IMP-03} 호환 경계.}
+\texttt{LegacyCompatibleProfile}은 과거 수치 재현이 필요한 경우에만
+관측층 바깥 경계에 둔다. 이것의 결과를 새 물리 기본값으로
+승격하지 않고, 선택 사실과 부호ㆍ정상화 규약을 명시한다.
+
+\subsection{필수 불변조건}
+
+\begin{enumerate}[label=\textsf{I\arabic*.},leftmargin=3.2em]
+\item 모든 physical transition에 $0\le\xi_j\le1$과 고정 $z_j>0$를
+보장한다.
+\item equilibrium에서 $J_j^+=J_j^-$이고
+$\mathcal A_j^\chem=0$이어야 한다.
+\item 전하수지 잔차의 단위는 C이며 선언한 허용오차 안에서 0이다.
+\item 시간률의 내부 단위는 s$^{-1}$이고 h$^{-1}$ 입력은 경계에서만
+변환한다.
+\item empirical skew 성분의 전 실수축 면적은 $A_j^\obs$이고
+physical signed coefficient $a_j$와 자료형ㆍ이름을 공유하지 않는다.
+\item $I\to0$, $\tau\to0$, host fraction의 끝점과 온도고정 극한이
+Appendix~\ref{ASM-CHECKS}의 관계로 환원된다.
+\item 전역 mutable switch 없이 같은 상태ㆍ입력은 같은 물리
+계약을 선택한다.
+\end{enumerate}
+
+\begin{openitem}
+\physid{ASM-IMP-OPEN-01}
+구현 변경의 승인에는 symbol-level 대응뿐 아니라 단위, 부호,
+초기ㆍ경계조건, 제한극한과 식별성 경계의 동시 검토가 필요하다.
+경로별 차이와 실행 근거는 외부 conformance 기록에서 관리한다.
+\end{openitem}

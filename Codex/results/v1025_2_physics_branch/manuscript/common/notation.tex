@@ -1,0 +1,50 @@
+\section{공통 기호와 물리량의 소유권}\label{ASM-NOTATION}
+
+같은 기호가 물리 상태, 관측 좌표와 경험적 형상 사이를 오가면 높은
+적합도가 곧 메커니즘의 증거인 것처럼 보이는 오류가 생긴다. 따라서
+본 원고는 먼저 물리량의 소유권을 고정한다.
+
+\begin{longtable}{p{0.16\textwidth}p{0.13\textwidth}p{0.61\textwidth}}
+\toprule
+기호 & SI 단위 & 정의와 소유권\\
+\midrule\endhead
+$T,R,F,k_B,h$ & K, J mol$^{-1}$ K$^{-1}$, C mol$^{-1}$, J K$^{-1}$, J s
+& 절대온도와 보편상수\\
+$I$ & A & 하나의 written forward reaction에 대해 정의한 signed 전류\\
+$q$ & 1 & 기준 전하로 정규화한 외부 누적전하 좌표\\
+$V_{\app}$ & V & 단자 또는 기준전극에서 관측한 전위\\
+$V_n$ & V & 전하 보존식의 대수 해인 내부 음극 전위\\
+$V_{\drive}$ & V & 반응속도론에 들어가는 구동 전위; $V_{\drive}=V_n$은 제한된 closure\\
+$U_{\eq,j}$ & V & 현재 상태를 평형으로 만드는 전이 $j$의 평형 전위\\
+$\xi_j$ & 1 & 고정된 forward reaction에 대한 chemical progress\\
+$\bm h,\bm X$ & 다양함 & 물리적 이력변수와
+$\bm X=(\bm\xi,\bm h,T)^{\mathsf T}$인 전체 lumped 상태\\
+$a_j$ & C & $a_j=(\partial Q_\chem/\partial\xi_j)_{T,\ldots}$인 signed 저장계수\\
+$s_j$ & 1 & 전위가 증가할 때 평형 진행률이 증가하는지 나타내는 고정 orientation, $\pm1$\\
+$z_j$ & 1 & 균형 반응식이 정하는 전자 화학양론\\
+$Q_\bg^\chem$ & C & 명시적인 배경 chemical-storage 상태함수\\
+$C_\bg^\chem$ & C V$^{-1}$ & $(\partial Q_\bg^\chem/\partial V_n)_T$\\
+$B_\obs$ & C V$^{-1}$ & 관측곡선에 더해지는 baseline; chemical storage와 별개\\
+$y_\mathrm{signed}$ & C V$^{-1}$ & 선언된 전하부호를 유지한 ICA 관측량\\
+$y_\mathrm{fit}$ & C V$^{-1}$ & dataset 전체의 부호변환 또는 magnitude 처리를 거친 피팅량\\
+$r_j^\pm$ & s$^{-1}$ & 점유 인자를 곱하기 전의 forward/backward rate\\
+$J_j^\pm$ & s$^{-1}$ & $J_j^+=r_j^+(1-\xi_j)$, $J_j^-=r_j^-\xi_j$인 occupancy flux\\
+$\mathcal A_j^\chem$ & J mol$^{-1}$ & chemical affinity; 평형에서 0\\
+$\kappa_j$ & 1 & 전이상태 전송계수; 일반적으로 미지\\
+$C_\mathrm{th}$ & J K$^{-1}$ & 선택한 control volume의 열용량\\
+$A_j,U_j,w_j,\alpha_j$ & C, V, V, 1 & 경험적 성분의 양의 면적, 위치, 폭, 비대칭 형상계수\\
+\bottomrule
+\end{longtable}
+
+\paragraph{\physid{OBS-000} 세 좌표의 분리.}
+chemical progress $\xi_j$, 외부 전하좌표 $q$, 경험적 누적형상
+$q_{\mathrm{shape},j}$는 서로 다른 양이다. 별도의 미시적 mapping이
+입증되지 않으면 어느 둘도 동일시하지 않는다.
+
+\paragraph{\physid{BAL-000} 단위 기준.}
+전하 보존과 열률을 함께 사용할 때 모든 전하는 C로 환산한다.
+\[
+1\ {\rm mAh}=3.6\ {\rm C},\qquad 1\ {\rm Ah}=3600\ {\rm C}.
+\]
+시간률은 s$^{-1}$를 기본으로 한다. C-rate가 h$^{-1}$로 주어지면
+물리 속도식에 들어가기 전에 $1/3600$을 곱한다.

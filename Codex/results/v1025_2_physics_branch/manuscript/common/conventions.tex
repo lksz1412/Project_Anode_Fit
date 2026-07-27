@@ -1,0 +1,45 @@
+\section{부호, 경계 및 미분 규약}\label{ASM-CONVENTIONS}
+
+\paragraph{\physid{ASM-001} 하나의 reaction orientation.}
+각 전이에 대해 forward reaction을 한 번 적고, $\xi_j$, $a_j$, $z_j$,
+$I_j=z_jF\dot n_j$의 부호를 그 반응에 맞춰 고정한다. 충전과 방전은
+같은 상태축에서 $\dot\xi_j$와 $I_j$의 부호가 바뀌는 과정이다.
+branch가 바뀌었다고 $\xi_j\mapsto1-\xi_j$로 다시 정의하지 않는다.
+
+\paragraph{\physid{ASM-002} 열의 부호.}
+control volume에 남는 열을 양으로 센다. 같은 written forward
+reaction에서
+\[
+U_{\eq}=-\frac{\Delta_rG}{zF},\qquad
+I_{\rm rxn}=zF\dot n_{\rm rxn},\qquad
+I_{\rm rxn}>0\Longleftrightarrow\dot n_{\rm rxn}>0
+\]
+를 사용한다. 이 정의와 맞지 않는 별도 ``충전용'' 부호를 추가하지
+않는다.
+
+\paragraph{\physid{ASM-003} 미분의 독립변수.}
+다음 세 미분을 구분한다.
+\[
+\left.\partial_T U\right|_{\xi},\qquad
+\left.\partial_T U_{\rm OCV}\right|_q,\qquad
+\frac{\dd V_{\app}}{\dd T}\bigg|_{\rm trajectory}.
+\]
+첫째는 고정상태 열역학 계수, 둘째는 전하 보존을 따른 고정전하
+평형계수, 셋째는 분극과 동역학까지 섞인 경로미분이다.
+
+\paragraph{\physid{ASM-004} 해의 허용영역.}
+$0\le\xi_j\le1$, $T>0$, $z_j>0$, 그리고 필요한 logarithm의 두
+인수는 양수여야 한다. inverse ICA 식의 분모가 0에 가까워지는 것은
+좌표 특이점이고, 음수가 되는 것은 선택한 monotonic inverse
+모형의 부적합성이다. 이를 관측점 삭제 규칙으로 바꾸지 않는다.
+
+\paragraph{\physid{ASM-005} 관측 부호.}
+dataset마다 하나의 $\epsilon_\obs\in\{-1,+1\}$를 선언하여
+$y_\mathrm{fit}=\epsilon_\obs y_\mathrm{signed}$를 만들 수 있다.
+절대값 또는 magnitude 전처리는 signed chemical information을
+버리므로, 그 결과에서 reaction orientation을 역추론하지 않는다.
+
+\paragraph{\physid{ASM-006} 적용범위 표기.}
+각 closure는 평형/준평형, monotonic curve, time trajectory,
+half-cell/full-cell, isothermal/nonisothermal 중 어느 영역인지
+명시한다. 영역을 넘어선 사용은 별도 모형이지 자동 외삽이 아니다.

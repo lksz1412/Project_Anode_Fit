@@ -1,0 +1,120 @@
+\section{히스테리시스와 branch 선택}\label{HYS-CH5}
+
+히스테리시스는 같은 외부 좌표에서 둘 이상의 장기상태가 가능하고
+경로가 그중 하나를 선택할 때 나타난다. 단순히 충전곡선과 방전곡선에
+서로 다른 부호의 sigmoid를 쓰는 것은 상태 orientation을 바꾸므로
+물리적 설명이 아니다.
+
+\subsection{고정된 상태 orientation과 branch}
+
+\paragraph{\physid{HYS-001} 하나의 progress 정의.}
+충전과 방전 모두 동일한 균형 반응과 $\xi_j$를 사용한다.
+\[
+ \dot Q_{\chem,j}=a_j\dot\xi_j,\qquad
+ I_j=z_jF\dot n_j
+ \tag{5.1}
+\]
+에서 부호는 처음 선언한 forward reaction과 전류 convention으로
+결정한다. branch가 바뀌어도 $z_j$, $a_j$, $\xi_j$의 의미는
+뒤집지 않는다.
+
+\paragraph{\physid{HYS-002} branch별 폐쇄.}
+branch $b$의 free-energy landscape, stationary target와 mobility를
+\[
+ G_b(\xi,T,\bm h),\qquad
+ \xi_{\tar,b}(V_{\drive},T,\bm h),\qquad
+ M_b(\xi,T,\bm h)\ge0
+ \tag{5.2}
+\]
+로 둔다. 예를 들면 gradient-flow 범주에서
+\[
+ \dot\xi=-M_b\frac{\partial G_b^\mathrm{eff}}{\partial\xi}
+ \tag{5.3}
+\]
+이다. 이는 가능한 열역학적 구조이지, 특정 재료의 유일한
+미시 메커니즘을 뜻하지 않는다.
+
+\paragraph{\physid{HYS-003} metastability와 전환.}
+현재 branch는 국소 안정성, nucleation condition 또는 선언된
+전환면
+\[
+ \Phi_{b\to b'}(\bm X,V_{\drive},I)=0
+ \tag{5.4}
+\]
+을 만날 때까지 유지될 수 있다. 전환 뒤에도 $\bm X$와 전하수지는
+연속이어야 하며, 불연속 jump를 허용하면 그에 따른 잠열ㆍ방출열과
+전하 변화의 적분조건을 따로 제시한다.
+
+\subsection{상세균형의 범위}
+
+\paragraph{\physid{KIN-050} 국소 상세균형.}
+하나의 고정된 landscape와 열 reservoir 안에서 미시 가역 flux는
+\[
+ \ln\frac{J^+}{J^-}=\frac{\mathcal A^\chem}{RT}
+ \tag{5.5}
+\]
+와 양립해야 한다. 평형에서 $\mathcal A^\chem=0$이고 순 flux가
+사라진다. 외부 구동, 서로 다른 metastable basin 또는 소거된
+내부변수가 있으면 관측된 두 branch의 유효률을 서로 나눈 값이
+식 (5.5)를 만족한다고 곧바로 요구할 수 없다.
+
+\paragraph{\physid{HYS-004} 전역 상세균형 주장 금지.}
+충전용 경험률과 방전용 경험률이 다르다는 사실만으로
+thermodynamic affinity를 정하거나 위반을 판정하지 않는다.
+그 유효률들은 서로 다른 내부상태 또는 coarse-graining을 포함할 수
+있다. 동일한 state space와 전이쌍이 입증된 뒤에만 상세균형
+검증이 가능하다.
+
+\subsection{관측 가능한 gap과 loop}
+
+\paragraph{\physid{HYS-005} 전압 gap의 분해.}
+같은 $(q,T)$에서 얻은 branch 간 gap은 개념적으로
+\[
+ \Delta V_\mathrm{branch}
+ =\Delta V_\mathrm{meta}
+ +\Delta\eta_\mathrm{ct}
+ +\Delta\eta_\mathrm{transport}
+ +\Delta(IR)
+ +\Delta V_\mathrm{mech}
+ +\Delta V_\mathrm{protocol}
+ \tag{5.6}
+\]
+로 나눈다. 우변 항의 개별 식별에는 휴지, rate sweep,
+current interruption, 온도 및 응력 정보가 필요하다.
+
+\paragraph{\physid{HYS-006} loop area의 조건.}
+\[
+ W_{\mathrm{loop}}=\oint V_\app\,\dd Q
+ \tag{5.7}
+\]
+를 소산에너지로 해석하려면 경로가 같은 온도ㆍ환경에서 시작하여
+모든 관련 내부상태까지 같은 값으로 닫혀야 한다. 충전과 방전의
+종단 SOC만 같고 $\bm h$ 또는 $T$가 다르면 식 (5.7)은 저장에너지
+변화도 포함한다.
+
+\paragraph{\physid{HYS-007} 휴지와 reversal.}
+전류가 0이 되는 순간에도 상태는 이전 값에서 연속이며,
+동역학이 허용하는 경우에만 relax한다. reversal은 외부 구동의
+부호 변화이지 상태의 재초기화가 아니다. 따라서 branch 전환조건을
+만나지 않은 작은 reversal에서는 return-point memory 또는
+minor loop의 별도 규칙이 필요하다.
+
+\paragraph{\physid{THM-050} 히스테리시스에서의 열.}
+가역열의 부호는 branch 이름이 아니라 같은 균형 반응에 대한
+$\dot Q_\rev=-IT(\partial U_\eq/\partial T)_q$로 정한다.
+히스테리시스 손실은 닫힌 주기에서 상태 저장 변화가 0임을 확인한
+뒤 비가역열과 비교한다.
+
+\begin{openitem}
+\physid{HYS-OPEN-01}
+구동률을 0으로 보낼 때 branch gap이 남는지, 무한대기에서
+nucleation이 이를 제거하는지는 observation window만으로 결정되지
+않는다. dwell-time series와 독립적인 구조ㆍ응력 probe가 필요하다.
+\end{openitem}
+
+\begin{identifiability}
+major loop 하나는 branch landscape, 전환장벽, mobility와 수송
+과전압을 고유하게 분리하지 못한다. rate-independent memory를
+주장하려면 여러 rate의 극한, minor loop, reversal와 충분한
+휴지 실험을 함께 제시해야 한다.
+\end{identifiability}

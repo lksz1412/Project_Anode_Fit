@@ -1,0 +1,174 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Noto Serif CJK KR}
+  {\setmainfont{Noto Serif CJK KR}}
+  {\IfFontExistsTF{NanumGothic}
+    {\setmainfont{NanumGothic}}
+    {\PackageError{anode-physics}{A Korean-capable main font is required}{}}}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{seqsplit}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\parskip}{0.42em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{4em}
+\setlength{\headheight}{14pt}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  urlcolor=blue!55!black,
+  citecolor=blue!55!black,
+  pdftitle={삽입전극 ICA/DVA 물리 정합 원고}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{삽입전극 ICA/DVA 물리 정합 원고}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheoremstyle{anodeblock}
+  {0.45em}{0.45em}{\normalfont}{}{\bfseries}{.}{0.5em}{}
+\theoremstyle{anodeblock}
+\newtheorem*{validity}{적용범위}
+\newtheorem*{identifiability}{식별성 경계}
+\newtheorem*{openitem}{OPEN}
+\newtheorem*{derivationcheck}{유도 점검}
+\newtheorem*{evidencebox}{근거 등급}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\chem}{\mathrm{chem}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\eqm}{\mathrm{eq}}
+\newcommand{\app}{\mathrm{app}}
+\newcommand{\drive}{\mathrm{drive}}
+\newcommand{\cell}{\mathrm{cell}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\tar}{\mathrm{tar}}
+\newcommand{\fit}{\mathrm{fit}}
+\newcommand{\mix}{\mathrm{mix}}
+\newcommand{\mech}{\mathrm{mech}}
+\newcommand{\loss}{\mathrm{loss}}
+\DeclareRobustCommand{\physid}[1]{\hypertarget{#1}{\textsf{[#1]}}}
+\DeclareRobustCommand{\physref}[1]{\hyperlink{#1}{\textsf{[#1]}}}
+\newcommand{\status}[1]{\textsf{\MakeUppercase{#1}}}
+
+\title{\textbf{삽입전극 ICA/DVA의 물리 정합 구조}\\[0.35em]
+\large 상태와 보존법칙에서 평형, 동역학, 열, 히스테리시스 및 관측식까지}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+본 원고는 삽입전극의 incremental-capacity analysis(ICA)와
+differential-voltage analysis(DVA)를 하나의 인과 순서로 정리한다.
+물리 상태와 전하 보존을 먼저 정의하고, 평형 관계, 반응속도론,
+열수지와 히스테리시스를 차례로 쌓은 뒤 마지막에 관측 변환을 적용한다.
+물리적 host 혼합과 고정된 경험적 14-성분 곡선 표현은 서로 다른
+모형으로 유지한다. 높은 곡선 적합도는 host, 상, 열 또는 동역학
+메커니즘의 식별로 승격하지 않는다. 각 주요 명제에는 안정 식별자를
+부여하고 차원, 부호, 경계조건, 적용범위와 식별성 한계를 함께 기록한다.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\input{common/notation}
+\input{common/conventions}
+\input{common/evidence_grades}
+
+\input{chapters/ch01_equilibrium_observation}
+\input{chapters/ch02_thermodynamics_heat}
+\input{chapters/ch03_kinetics}
+\input{chapters/ch04_integrated_eos}
+\input{chapters/ch05_hysteresis}
+
+\input{materials/graphite_application}
+\input{materials/lco_application}
+\input{materials/si_blend_application}
+
+\input{empirical/skew14_profile}
+
+\appendix
+\input{appendices/assumption_register}
+\input{appendices/derivation_checks}
+\input{appendices/implementation_interface}
+
+\begin{thebibliography}{99}
+\bibitem{newman}
+J. Newman and K. E. Thomas-Alyea,
+Electrochemical Systems, 3rd ed., Wiley (2004).
+\bibitem{bard}
+A. J. Bard and L. R. Faulkner,
+Electrochemical Methods, 2nd ed., Wiley (2001).
+\bibitem{doyle}
+M. Doyle, T. F. Fuller, and J. Newman,
+J. Electrochem. Soc. \textbf{140}, 1526 (1993),
+DOI: 10.1149/1.2221597.
+\bibitem{bazant}
+M. Z. Bazant, Acc. Chem. Res. \textbf{46}, 1144 (2013),
+DOI: 10.1021/ar300145c.
+\bibitem{eyring}
+H. Eyring, J. Chem. Phys. \textbf{3}, 107 (1935),
+DOI: 10.1063/1.1749604.
+\bibitem{onsager}
+L. Onsager, Phys. Rev. \textbf{37}, 405 (1931),
+DOI: 10.1103/PhysRev.37.405.
+\bibitem{schnakenberg}
+J. Schnakenberg, Rev. Mod. Phys. \textbf{48}, 571 (1976),
+DOI: 10.1103/RevModPhys.48.571.
+\bibitem{bernardi}
+D. Bernardi, E. Pawlikowski, and J. Newman,
+J. Electrochem. Soc. \textbf{132}, 5 (1985),
+DOI: 10.1149/1.2113792.
+\bibitem{rao}
+L. Rao and J. Newman, J. Electrochem. Soc. \textbf{144}, 2697 (1997),
+DOI: 10.1149/1.1837884.
+\bibitem{dahn}
+J. R. Dahn, Phys. Rev. B \textbf{44}, 9170 (1991),
+DOI: 10.1103/PhysRevB.44.9170.
+\bibitem{funabiki}
+A. Funabiki, M. Inaba, T. Abe, and Z. Ogumi,
+Electrochim. Acta \textbf{45}, 865 (1999),
+DOI: 10.1016/S0013-4686(99)00290-X.
+\bibitem{reynier}
+Y. Reynier, R. Yazami, and B. Fultz,
+J. Electrochem. Soc. \textbf{151}, A422 (2004),
+DOI: 10.1149/1.1646152.
+\bibitem{dreyer}
+W. Dreyer et al., Nature Materials \textbf{9}, 448 (2010),
+DOI: 10.1038/nmat2730.
+\bibitem{sethna}
+J. P. Sethna et al., Phys. Rev. Lett. \textbf{70}, 3347 (1993),
+DOI: 10.1103/PhysRevLett.70.3347.
+\bibitem{larche}
+F. C. Larche and J. W. Cahn,
+Acta Metall. \textbf{21}, 1051 (1973),
+DOI: 10.1016/0001-6160(73)90021-7.
+\bibitem{reimersLCO}
+J. N. Reimers and J. R. Dahn,
+J. Electrochem. Soc. \textbf{139}, 2091 (1992),
+DOI: 10.1149/1.2221184.
+\bibitem{vandervenLCO}
+A. Van der Ven, M. K. Aydinol, G. Ceder, G. Kresse, and J. Hafner,
+Phys. Rev. B \textbf{58}, 2975 (1998),
+DOI: 10.1103/PhysRevB.58.2975.
+\bibitem{reynierLCO}
+Y. Reynier, J. Graetz, T. Swan-Wood, P. Rez, R. Yazami, and B. Fultz,
+Phys. Rev. B \textbf{70}, 174304 (2004),
+DOI: 10.1103/PhysRevB.70.174304.
+\end{thebibliography}
+
+\end{document}

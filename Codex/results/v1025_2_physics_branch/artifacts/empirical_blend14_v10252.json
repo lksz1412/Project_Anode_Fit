@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "empirical_blend14_v10252",
+  "classification": "EMPIRICAL CURVE REFERENCE — NOT A HOST OR MECHANISM ASSIGNMENT",
+  "evidence_grade": "calibrated empirical; surviving stored-8dp reference",
+  "authority_note": "The comp_v26_data directory name grants no v1.0.26 scientific authority. This artifact is used only because the accepted v1.0.25.2 handover identifies its C_skew/blend entry as the surviving fit source.",
+  "observation_contract": {
+    "mode": "magnitude",
+    "provenance": "Active preprocessing applies an absolute Savitzky-Golay ensemble after selecting the positive longest contiguous derivative segment; signed storage and reaction orientation are not recoverable.",
+    "background_field_in_source": "Cbg",
+    "background_interpretation": "constant observation baseline B_obs in mAh/V; not C_bg^chem"
+  },
+  "source_data": {
+    "path": "Claude/results/comp_v24/sintef_data/sigr.csv",
+    "sha256": "e571a66fb9574c4aa7bfdec7acada2eb732029232e7ab83dc7d9645e39fb01e6",
+    "label": "blend",
+    "experimental_protocol": "UNKNOWN"
+  },
+  "source_artifacts": [
+    {
+      "path": "Claude/results/comp_v26_data/build_two_versions.py",
+      "sha256": "70c50cadfe4c8b170612e275fccfbf7714cef42d9889588cf8316629f9db16ab",
+      "role": "fit builder"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/test_gallery_vs_regsol.py",
+      "sha256": "3ee4e41b8e6881529e36f4fddeb9d0130605f55955f8ef268ee578f3dd54a574",
+      "role": "seed and bound helper imported by the builder"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/test_skew_regsol_v2.py",
+      "sha256": "90ee96c2717d4b12bc94647da58b715c3974c2336bf03907b77c693adebb0c0c",
+      "role": "active preprocessing and skew-logistic kernel dependency imported by the builder"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/bdd_dqdv.py",
+      "sha256": "d3441b15b276ac87c4925c77146a24cdb2e16f1184057f9a17d9d6952daebf2c",
+      "role": "preprocessing dependency imported through test_skew_regsol_v2.py"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/regsol_kernel.py",
+      "sha256": "ed10c8fc2029e874803ff3b9d208817fb735b75ca71f8e8fd2fe3631870c455e",
+      "role": "A_regsol dependency executed before the later C_skew/blend fit in the builder process"
+    },
+    {
+      "path": "Claude/results/comp_v24/sintef_data/gr.csv",
+      "sha256": "0deb5d1222ca944eaf128c39ca5b35f59929219a6d9445771088baf2222c39d9",
+      "role": "earlier graphite fit input that advances the builder-global RNG before C_skew/blend"
+    },
+    {
+      "path": "Claude/results/comp_v24/sintef_data/si.csv",
+      "sha256": "8b02c776bc34e8410d86fead875d485905b78b28351ca6b295e433b78ff43ac6",
+      "role": "earlier silicon fit input that advances the builder-global RNG before C_skew/blend"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/out_versions/summary_versions.json",
+      "sha256": "edcafd90b91b6515ca12dca3743678055bc021a52cff3a86a2355467afe8dedc",
+      "entry": "C_skew/blend",
+      "role": "most precise surviving 8-decimal parameter source"
+    },
+    {
+      "path": "Claude/results/comp_v26_data/out_versions/C_skew/params_blend.json",
+      "sha256": "c4ba2e46d515eddbbdc4c5d8f3310a9ab90fc8b777e0def0177a22ad127f125e",
+      "role": "six-decimal presentation artifact; noncanonical"
+    }
+  ],
+  "builder_dependency_chain_note": "These dependency and earlier-material hashes freeze the provenance of the single-process builder sequence: its one global RNG is advanced by preceding A_regsol, B_gallery, material, seed, and restart work before C_skew/blend. This record grants no v1.0.26 scientific authority and does not restore optimizer reproducibility; the selected seed/restart state, full-precision vector, original prediction, termination metadata, package environment, and active-set state remain unavailable.",
+  "processed_data_contract": {
+    "voltage_window_v": [
+      0.06,
+      0.7
+    ],
+    "voltage_bin_width_v": 0.0005,
+    "processed_points": 1280,
+    "residual": "unweighted linear dQ/dV",
+    "curve_and_background_units": "mAh/V",
+    "active_preprocessing": [
+      "finite rows",
+      "stable capacity sort and duplicate-capacity collapse",
+      "increasing isotonic regression of V(Q)",
+      "cumulative-capacity rebinning on uniform voltage edges",
+      "positive longest contiguous derivative segment",
+      "absolute Savitzky-Golay ensemble"
+    ],
+    "named_but_not_executed": [
+      "dMSMCD",
+      "wavelet"
+    ]
+  },
+  "parameter_contract": {
+    "component_count": 14,
+    "parameter_count": 57,
+    "stored_decimal_places": 8,
+    "parameter_order": [
+      "U[0:14] in V",
+      "w[0:14] in V",
+      "A[0:14] in mAh",
+      "alpha[0:14] dimensionless",
+      "B_obs in mAh/V"
+    ],
+    "parameters_stored_8dp": [
+      0.4212532,
+      0.10484727,
+      0.13744975,
+      0.44335135,
+      0.42646335,
+      0.13365257,
+      0.24071171,
+      0.24107478,
+      0.45793338,
+      0.09491259,
+      0.10822395,
+      0.22222188,
+      0.25839692,
+      0.07588778,
+      0.00206653,
+      0.00194054,
+      0.00464374,
+      0.00789142,
+      0.00454727,
+      0.03077895,
+      0.02857158,
+      0.00904066,
+      0.0220838,
+      0.00214388,
+      0.00660107,
+      0.00232577,
+      0.12,
+      0.00708886,
+      0.25568341,
+      0.10716757,
+      0.21425996,
+      0.60835955,
+      0.3210018,
+      0.21457046,
+      0.0831564,
+      0.01785024,
+      0.0985293,
+      0.06058917,
+      0.13238761,
+      0.03620768,
+      1.11411164,
+      0.04449435,
+      1.9443992,
+      0.26823409,
+      0.95972191,
+      0.23351425,
+      1.00682164,
+      4.28978259,
+      7.3820494,
+      7.41078157,
+      7.70072936,
+      1.59295075,
+      0.71102353,
+      2.11601435,
+      6.27653482,
+      0.15400039,
+      0.5169124
+    ]
+  },
+  "optimizer_evidence": {
+    "full_precision_vector_available": false,
+    "original_prediction_available": false,
+    "termination_metadata_available": false,
+    "evaluation_count_available": false,
+    "jacobian_available": false,
+    "active_set_status_available": false,
+    "selected_seed_and_restart_available": false,
+    "global_optimality_established": false,
+    "builder_required_optimizer_success": false,
+    "declared_search_contract": [
+      "numpy default_rng initial seed 23 at builder module initialization",
+      "three U seed strategies from seed_sets",
+      "four restarts per seed strategy",
+      "restart 0 uses p0; later restarts multiply p0 by uniform[0.75,1.25] then clip",
+      "scipy.optimize.least_squares with bounded default trf method and max_nfev=6000",
+      "the builder selects the lowest returned cost even when r.success is false"
+    ],
+    "declared_bounds": {
+      "U_v": "[min(processed V), max(processed V)]",
+      "w_v": "[0.0001, 0.12]",
+      "A_mAh": "[1e-9, 10*trapz(observed, V)]",
+      "alpha": "[0.15, 8.0]",
+      "B_obs_mAh_per_v": "[min(0,min(observed)), max(max(observed),1e-9)]"
+    },
+    "original_package_versions": "UNAVAILABLE",
+    "original_dtype_metadata": "not explicitly persisted; source operations and surviving reconstruction use float64"
+  },
+  "reconstruction": {
+    "evaluation_contract": "v1.0.25.2-release-reconstruction",
+    "evaluation_note": "The clean preset reproduces the release operation order and the legacy R=8.314, F=96485.0 width round-trip solely for the frozen empirical prediction hash. Physical models use immutable SI constants.",
+    "r2_recomputed": 0.99964941790404,
+    "bic_57_parameters_recomputed": -4760.653827485789,
+    "bic_interpretation": "i.i.d.-Gaussian working-likelihood statistic on smoothed correlated residuals; compare only within the same preprocessing and objective",
+    "release_kernel_vs_independent_direct_formula_max_abs_mAh_per_v": 1.4210854715202004e-14,
+    "stored_8dp_vs_presentation_6dp_max_abs_mAh_per_v": 0.006974421543937126
+  },
+  "identification_diagnostics": {
+    "alpha_range": [
+      0.15400039,
+      7.70072936
+    ],
+    "minimum_width_v": 0.00194054,
+    "maximum_width_v": 0.12,
+    "maximum_stored_width_equals_declared_upper_bound": true,
+    "optimizer_active_set_interpretation": "UNAVAILABLE; stored-value equality is not proof of an optimizer bound hit"
+  },
+  "sha256_le_f64_no_header": {
+    "processed_voltage": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+    "processed_observation": "da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e",
+    "stored_8dp_parameters": "08216da1095a02bcb789a60f577f4afd1d581ad659a8129edaba7dc0dc5910d5",
+    "stored_8dp_reconstructed_prediction": "53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800",
+    "stored_8dp_reconstructed_residual": "1b874701ac72403f2836b352386e3c3a4f658c49238fd2fcf0a4931fd79398ec"
+  }
+}

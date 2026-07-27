@@ -1,0 +1,30 @@
+\section{근거 등급과 주장 승격 규칙}\label{ASM-EVIDENCE}
+
+\begin{longtable}{p{0.32\textwidth}p{0.56\textwidth}}
+\toprule
+등급 & 허용되는 주장\\
+\midrule\endhead
+\status{direct measurement} & 선언된 protocol과 단위를 가진 직접 관측\\
+\status{literature anchored} & 해당 물질과 물리량을 다룬 문헌에 직접 고정된 관계\\
+\status{independently derived} & 명시된 가정에서 차원과 부호를 포함해 유도된 결과\\
+\status{calibrated empirical} & 특정 dataset과 목적함수에서 곡선을 표현하는 보정값\\
+\status{seed/\allowbreak placeholder} & 초기 탐색용 값; 물질 정본이나 검증값이 아님\\
+\status{not identified} & 현재 자료로 다른 파라미터와 분리할 수 없음\\
+\status{not implemented} & 물리식은 있으나 계산 가능한 closure가 아직 없음\\
+\bottomrule
+\end{longtable}
+
+\paragraph{\physid{ASM-007} 등급의 보존.}
+파라미터가 장 또는 물질 모듈 사이를 이동해도 근거 등급은 올라가지
+않는다. 경험적 면적이 상태함수의 계수로 이동하거나, 초기값이
+문헌 확정값으로 바뀌려면 독립적인 연결 증거가 필요하다.
+
+\paragraph{\physid{ASM-008} 적합도와 메커니즘.}
+$R^2$, residual norm과 정보기준은 비교한 관측모형 군 안의 곡선
+표현력을 말한다. 이 값만으로 host, phase, 반응 전자수, 활성화
+엔탈피, 가역열 또는 히스테리시스 메커니즘을 배정하지 않는다.
+
+\paragraph{\physid{ASM-009} OPEN의 의미.}
+OPEN은 결함을 숨기는 표시가 아니라 필요한 실험 또는 수학적 closure가
+아직 없다는 명시적 상태다. OPEN 항을 silent fallback이나 자유
+파라미터로 닫은 것처럼 취급하지 않는다.

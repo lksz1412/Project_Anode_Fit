@@ -1,0 +1,136 @@
+{
+  "source": "Claude/docs/v1.0.25.2/Anode_Fit_v1.0.24.py",
+  "fit_summary": "Claude/results/comp_v26_data/out_versions/summary_versions.json",
+  "blend_data": "Claude/results/comp_v24/sintef_data/sigr.csv",
+  "blend_data_label": "blend",
+  "blend_experimental_protocol": "UNKNOWN",
+  "environment": {
+    "role": "Phase 044 reconstruction environment; original optimizer environment is unavailable",
+    "python": "3.12.13",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "array_hash_contract": "C-contiguous little-endian float64 payload; no header"
+  },
+  "current_default": {
+    "graphite_transition_count": 7,
+    "silicon_transition_count": 7,
+    "graphite_Cbg": 0.0,
+    "silicon_Cbg": 0.0,
+    "declared_DEFAULT_CBG_GRAPHITE": 0.55,
+    "declared_DEFAULT_CBG_SI": 0.051
+  },
+  "si_case_validation": {
+    "invalid_case_accepted": true,
+    "error": null
+  },
+  "keyless_temperature_roundtrip": {
+    "width_fd_V_per_K": 8.616883453126112e-05,
+    "width_reported_V_per_K": 0.0,
+    "Uoc_fd_V_per_K": -9.46661405376581e-05,
+    "entropy_reported_V_per_K": 0.0
+  },
+  "logistic_warning_probe": {
+    "warning_count": 3,
+    "warnings": [
+      "RuntimeWarning: overflow encountered in exp",
+      "RuntimeWarning: overflow encountered in exp",
+      "RuntimeWarning: invalid value encountered in divide"
+    ]
+  },
+  "rate_and_causal_contract": {
+    "same_physical_C_rate_hour_vs_second_Lq_ratio": 3599.9999999999914,
+    "activation_entropy_offset_physical_minus_legacy_at_fixed_enthalpy_J_per_mol_K": -68.08076138062908,
+    "single_temperature_apparent_activation_enthalpy_offset_if_entropy_fixed_J_per_mol": 20298.27900563456,
+    "duplicate_first_step_pad_points": 0,
+    "five_L_residual_fraction": 0.006737946999085467
+  },
+  "accepted_empirical_fit": {
+    "points": 1280,
+    "parameter_count": 57,
+    "curve_and_background_units": "mAh/V",
+    "bic_interpretation": "i.i.d.-Gaussian working-likelihood statistic on smoothed, correlated residuals; compare only within this preprocessing and objective",
+    "optimizer_full_precision_available": false,
+    "optimizer_prediction_available": false,
+    "optimizer_termination_metadata_available": false,
+    "optimizer_active_set_status_available": false,
+    "builder_required_optimizer_success": false,
+    "stored_8dp_background": 0.5169124,
+    "presentation_6dp_background": 0.516912,
+    "stored_8dp_metrics_recomputed": {
+      "R2": 0.99964941790404,
+      "BIC": -4760.653827485789
+    },
+    "presentation_6dp_metrics_recomputed": {
+      "R2": 0.9996494106423718,
+      "BIC": -4760.627314896314
+    },
+    "stored_8dp_release_kernel_vs_direct_max_abs": 1.4210854715202004e-14,
+    "stored_8dp_vs_presentation_6dp_max_abs": 0.006974421543937126,
+    "builder_from_best_rounded_R2": 0.99965,
+    "builder_from_best_rounded_BIC": -4760.7,
+    "stored_8dp_profile_diagnostics": {
+      "graphite": {
+        "grid_step_V": 0.00025,
+        "min_width_V": 0.00015824,
+        "max_width_V": 0.02847263,
+        "min_width_below_grid_step": true,
+        "min_alpha": 3.13194799,
+        "max_alpha": 7.99623012,
+        "stored_8dp_alpha_equals_lower_bound": false,
+        "stored_8dp_alpha_equals_upper_bound": false,
+        "stored_8dp_width_equals_upper_bound": false
+      },
+      "silicon": {
+        "grid_step_V": 0.001,
+        "min_width_V": 0.00245875,
+        "max_width_V": 0.05822931,
+        "min_width_below_grid_step": false,
+        "min_alpha": 0.15,
+        "max_alpha": 8.0,
+        "stored_8dp_alpha_equals_lower_bound": true,
+        "stored_8dp_alpha_equals_upper_bound": true,
+        "stored_8dp_width_equals_upper_bound": false
+      },
+      "blend": {
+        "grid_step_V": 0.0005,
+        "min_width_V": 0.00194054,
+        "max_width_V": 0.12,
+        "min_width_below_grid_step": false,
+        "min_alpha": 0.15400039,
+        "max_alpha": 7.70072936,
+        "stored_8dp_alpha_equals_lower_bound": false,
+        "stored_8dp_alpha_equals_upper_bound": false,
+        "stored_8dp_width_equals_upper_bound": true
+      }
+    },
+    "sha256_le_f64": {
+      "voltage": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+      "observed": "da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e",
+      "stored_8dp_parameters": "08216da1095a02bcb789a60f577f4afd1d581ad659a8129edaba7dc0dc5910d5",
+      "stored_8dp_prediction": "53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800",
+      "stored_8dp_residual": "1b874701ac72403f2836b352386e3c3a4f658c49238fd2fcf0a4931fd79398ec"
+    }
+  },
+  "default_vs_accepted_blend_preset": {
+    "same_parameter_array_dimensions": true,
+    "serialized_order_array_equal": false,
+    "distance_not_reported": "The generic blend-fit components and host-specific default components lack a common label/order/scaling contract."
+  },
+  "shipped_default_7plus7_on_blend_data": {
+    "optimization": "unweighted least_squares over f_Si and Cbg only; bounds f_Si=[0,0.99], Cbg=[0,max(observed)]",
+    "optimized_f_Si": 0.5812256533860571,
+    "optimized_Cbg": 4.257113345766098e-21,
+    "optimized_metrics_two_parameters": {
+      "R2": -1.6132166646788586,
+      "BIC": 6258.959197922917
+    },
+    "Cbg_zero_R2_sweep": {
+      "0.1": -1.8915057122807344,
+      "0.3": -1.7703243323541105,
+      "0.5": -1.638904648299654,
+      "0.75": -2.0568421022203958
+    },
+    "comparison_scope": "Tests default wiring, not host-model superiority: standalone host profiles and the direct blend fit had different objectives."
+  }
+}

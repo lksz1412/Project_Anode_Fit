@@ -1,0 +1,197 @@
+\section{열역학, 온도미분과 열수지}\label{THM-CH2}
+
+Chapter~\ref{EQ-CH1}의 평형해가 온도에 따라 이동하면 그 이동은
+가역열과 연결된다. 반면 평형에서 벗어나 생긴 flux와 affinity의
+곱은 비가역 entropy production이다. 두 항을 같은 경험적 온도보정으로
+합치지 않는 것이 이 장의 핵심이다.
+
+\subsection{고정상태, 고정전하와 경로미분}\label{THM-CH2-DERIVATIVES}
+
+\paragraph{\physid{THM-001} 세 온도미분.}
+\[
+\left.\partial_T U_{\eq,j}\right|_{\xi_j},\qquad
+\left.\partial_T V_{n,\mathrm{OCV}}\right|_q,\qquad
+\left.\frac{\dd V_{\app}}{\dd T}\right|_{\rm path}
+\]
+를 분리한다. 마지막 항에는 상태변화, 분극, 저항과 속도론이 섞일
+수 있으므로 reaction entropy coefficient가 아니다.
+
+\paragraph{\physid{THM-002} 고정전하 OCV 미분.}
+평형에서 식~\eqref{BAL-001-EQUATION}에
+$\xi_j=\xi_{\eq,j}(V_n,T)$를 넣고 $q$를 고정해 미분한다.
+$Q_\cell$, $a_j$와 기준량이 온도에 무관하다는 제한에서
+\begin{equation}
+\boxed{
+\left.\frac{\partial V_{n,\mathrm{OCV}}}{\partial T}\right|_q
+=-
+\frac{
+\left.\partial_T Q_\bg^\chem\right|_{V_n}
++\displaystyle\sum_j a_j
+\left.\partial_T\xi_{\eq,j}\right|_{V_n}
+}{
+C_\bg^\chem
++\displaystyle\sum_j a_j
+\left.\partial_{V_n}\xi_{\eq,j}\right|_T
+}.
+}
+\label{THM-002-EQUATION}
+\end{equation}
+분자의 단위는 C K$^{-1}$, 분모의 단위는 C V$^{-1}$이므로
+결과는 V K$^{-1}$이다. $a_j(T)$ 또는 기준용량의 온도의존을
+허용하면 곱미분 항
+$(\partial_Ta_j)(\xi_{\eq,j}-\xi_{j,0})$ 등을 분자에 추가한다.
+
+\begin{validity}
+식~\eqref{THM-002-EQUATION}의 분모가 0이 아니어야 implicit
+function theorem을 적용할 수 있다. signed $a_j$를 쓰므로
+$C_\bg^\chem>0$만으로 전체 분모 양수를 자동 보장하지 않는다.
+선택한 평형 branch에서 total differential capacitance의 부호를
+별도로 확인한다.
+\end{validity}
+
+\subsection{reaction entropy와 가역열}\label{THM-CH2-REVERSIBLE}
+
+\paragraph{\physid{THM-003} 하나의 반응에서의 부호 유도.}
+written forward reaction 하나에 대해
+\begin{equation}
+U_{\eq}=-\frac{\Delta_rG}{zF},\qquad
+I_{\rm rxn}=zF\dot n_{\rm rxn}
+\label{THM-003-CONVENTION}
+\end{equation}
+로 정의한다. $(\partial\Delta_rG/\partial T)_{\rm state}=-\Delta_rS$
+이므로
+\begin{equation}
+\boxed{
+\Delta_rS=zF
+\left.\frac{\partial U_{\eq}}{\partial T}\right|_{\rm state}.
+}
+\label{THM-003-ENTROPY}
+\end{equation}
+control volume에 남는 열이 양인 규약에서는 가역 heat generation이
+$-T\Delta_rS\dot n_{\rm rxn}$이므로
+\begin{equation}
+\boxed{
+\dot Q_{\rev,\mathrm{gen}}
+=-I_{\rm rxn}T
+\left.\frac{\partial U_{\eq}}{\partial T}\right|_{\rm state}.
+}
+\label{THM-003-HEAT}
+\end{equation}
+이 부호는 충전/방전 명칭이 아니라 식~\eqref{THM-003-CONVENTION}의
+같은 forward reaction에서 따라온다.
+
+\paragraph{\physid{THM-004} full-cell 식.}
+forward cell reaction의 진행을 양으로 세어
+$I_\cell=zF\dot n_\cell>0$로 고정하면
+\begin{equation}
+U_\cell=U_p-U_n,\qquad
+\dot Q_{\rev,\mathrm{gen}}
+=-I_\cell T\frac{\partial U_\cell}{\partial T}.
+\label{THM-004-EQUATION}
+\end{equation}
+half-cell entropy coefficient를 어느 전극, 전해질 또는 계면의
+local heat로 배정할지는 control volume과 reference reaction을
+명시하기 전까지 열린 문제다.
+
+\paragraph{\physid{THM-005} entropy basis의 택일.}
+가역열은 다음 둘 중 하나의 basis로 계산한다.
+\begin{enumerate}[label=(\Alph*)]
+\item 측정되거나 유도된 fixed-state/fixed-charge OCV coefficient,
+\item standard reaction entropy, configurational/partial-molar
+entropy와 background-storage entropy를 모두 정의한 분해.
+\end{enumerate}
+두 basis를 독립 열원처럼 더하지 않는다. B를 택하면 그 합이
+식~\eqref{THM-003-ENTROPY} 또는
+식~\eqref{THM-002-EQUATION}와 같음을 유도해야 한다.
+경험적 비대칭 형상계수는 이 entropy basis에 들어가지 않는다.
+
+\subsection{비가역 entropy production}\label{THM-CH2-IRREVERSIBLE}
+
+\paragraph{\physid{THM-006} local flux--affinity 법칙.}
+반응 $j$의 molar flux와 chemical affinity가 공액이면
+\begin{equation}
+T\dot S_{\irr,j}
+=\dot n_j\mathcal A_j^\chem\ge0.
+\label{THM-006-LOCAL}
+\end{equation}
+두 상태 network에서는 $J_j^\pm>0$인 영역에서
+\begin{equation}
+\boxed{
+T\dot S_{\irr,j}
+=\frac{Q_j^{\rm SI}}{z_jF}RT
+(J_j^+-J_j^-)
+\ln\frac{J_j^+}{J_j^-}\ge0.
+}
+\label{THM-006-NETWORK}
+\end{equation}
+$Q_j^{\rm SI}$는 transition 전체의 C 단위 전하다. 따라서
+$Q_j^{\rm SI}/(z_jF)$는 mol, $RT$는 J mol$^{-1}$,
+$J_j^\pm$는 s$^{-1}$이어서 식의 단위는 W다.
+
+비음성은 두 양수 $x,y$에 대해
+$(x-y)\ln(x/y)\ge0$인 사실에서 직접 따른다. 식에 들어가는
+$z_j$는 반응 화학양론이고 관측 폭의 함수가 아니다.
+
+\paragraph{\physid{THM-007} terminal lumped approximation.}
+하나의 signed terminal path에서 convention이
+$I(U_{\rm oc}-V)\ge0$를 보장한다면
+\begin{equation}
+\dot Q_{\irr,\rm terminal}=I(U_{\rm oc}-V)
+\label{THM-007-EQUATION}
+\end{equation}
+를 단자 손실의 lumped 근사로 쓸 수 있다. 이 식은 terminal
+voltage gap에 포함된 소산만 세며, 휴지 중 내부 relaxation,
+숨은 상태에너지 저장과 여러 local pathway를 포함하지 않는다.
+식~\eqref{THM-006-NETWORK}의 일반 대체식이 아니다.
+
+\paragraph{\physid{THM-008} transport 소산.}
+물질 flux $\bm N_\ell$과 electrochemical-potential gradient가
+공액이면 transport contribution은
+\[
+T\dot S_{\irr,\mathrm{tr}}
+=\sum_\ell \bm N_\ell\boldsymbol{\cdot}
+(-\nabla\widetilde\mu_\ell)\ge0
+\]
+로 둔다. 선형응답의 $I^2R$은 이 식의 제한된 축약이다. 관측
+전압축의 이동계수를 곧바로 heat-generation resistance로
+동일시하지 않는다.
+
+\subsection{에너지 balance와 중복 계상}\label{THM-CH2-ENERGY}
+
+\paragraph{\physid{BAL-005} control-volume 열수지.}
+\begin{equation}
+\boxed{
+C_{\rm th}\dot T
+=\dot Q_{\rev,\rm gen}
++T\dot S_{\irr,\rm rxn}
++T\dot S_{\irr,\rm tr}
+-\dot Q_{\rm loss}
+-\frac{\dd E_{\rm hidden}}{\dd t}.
+}
+\label{BAL-005-EQUATION}
+\end{equation}
+$E_{\rm hidden}$는 모형에 명시된 내부에너지 저장항이다.
+이를 0으로 놓을 때만 모든 free-energy decrease를 즉시 열원으로
+동일시할 수 있다.
+
+\paragraph{\physid{THM-009} relaxation heat 중복 금지.}
+같은 free-energy decrease를
+$T\dot S_\irr$와 별도 ``relaxation heat''로 두 번 더하지 않는다.
+가역 state-energy 변화, 저장되는 부분과 소산되는 부분을
+식~\eqref{BAL-005-EQUATION} 하나에서 분해한다. 특정 tail
+잔차가 $e^{-2t/\tau}$로 보인다는 사실만으로 power의 진폭이나
+$1/\tau$ 계수를 정하지 않는다.
+
+\begin{identifiability}
+$\partial_TU$, heat loss, transport heat, reaction heat와 hidden
+energy storage는 표면온도 한 신호에서 서로 보상할 수 있다.
+준평형 entropy 측정, calorimetry, 전류차단과 공간적으로 정의된
+control volume이 없으면 local heat allocation을 고유하게
+식별하지 않는다.
+\end{identifiability}
+
+\begin{openitem}
+\physid{THM-OPEN-01}
+half-cell entropy heat의 전극/전해질/계면 공간 배분은 full
+control-volume model과 calorimetry가 필요하다.
+\end{openitem}

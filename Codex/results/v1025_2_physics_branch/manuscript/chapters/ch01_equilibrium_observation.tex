@@ -1,0 +1,235 @@
+\section{평형, 전하 보존과 관측식}\label{EQ-CH1}
+
+이 장의 순서는 ``관측 peak를 먼저 고르고 물리량을 붙이는'' 방향이
+아니다. 먼저 chemical state와 전하 보존을 정의하고, 그 평형해를
+미분해 ICA/DVA를 얻은 뒤, 마지막에 계측 baseline과 경험적 형상을
+더한다. 이 순서를 지켜야 chemical storage와 curve representation이
+분리된다.
+
+\subsection{전위와 상태}\label{EQ-CH1-STATE}
+
+\paragraph{\physid{EQ-001} 전위의 계층.}
+\[
+V_{\app},\qquad V_n,\qquad V_{\drive},\qquad
+U_{\eq,j}(\xi_j,T)
+\]
+는 다른 양이다. $V_n$은 내부 전하 보존식이 정하는 상태전위이고,
+$V_{\app}$에는 저항, 농도분극과 계면 손실이 포함될 수 있다.
+$V_{\drive}=V_n$은 국소 구동전위를 별도로 분해하지 않는 제한된
+closure다. chemical affinity는 $U_{\eq,j}$와 비교해 정의하며
+평형에서 0이어야 한다.
+
+\paragraph{\physid{EQ-002} 고정된 진행방향.}
+전이 $j$의 평형 진행률은 같은 $\xi_j$ 축에서 정의한다. 완전한
+monotonic 전위 sweep에 대해
+\[
+s_j=\xi_{\eq,j}(+\infty)-\xi_{\eq,j}(-\infty)\in\{-1,+1\}
+\]
+이며 $s_j$는 반응/전위 convention이 정한 고정값이다. 충전과 방전이
+바뀌어도 이 값을 뒤집어 같은 상태를 다른 뜻으로 만들지 않는다.
+
+\subsection{chemical charge balance}\label{BAL-CH1}
+
+\paragraph{\physid{BAL-001} 일차 결합식.}
+선택한 기준상태로부터의 signed 전하를 쓰면
+\begin{equation}
+\boxed{
+Q_{\cell}(q-q_0)
+=Q_\bg^\chem(V_n,T)-Q_{\bg,0}^\chem
++\sum_{j=1}^{N}a_j(\xi_j-\xi_{j,0}) .
+}
+\label{BAL-001-EQUATION}
+\end{equation}
+$a_j$는 signed chemical-storage coefficient다. 관측 peak의 양의
+면적과는 다르며, 반응을 어떻게 썼는지에 따라 음수일 수도 있다.
+식~\eqref{BAL-001-EQUATION}가 $V_n$을 정하는 대수 제약이고, OCV는
+$\xi_j=\xi_{\eq,j}$인 특수해다 \cite{doyle,newman}.
+
+\paragraph{\physid{BAL-002} 존재성과 유일성.}
+주어진 $(q,T,\bm\xi)$에서
+\[
+Q_{\cell}(q-q_0)-\sum_j a_j(\xi_j-\xi_{j,0})+Q_{\bg,0}^\chem
+\in {\rm Range}\big[Q_\bg^\chem(\,\cdot\,,T)\big]
+\]
+이고
+\[
+C_\bg^\chem(V_n,T)
+\equiv\left.\frac{\partial Q_\bg^\chem}{\partial V_n}\right|_T
+\ge \epsilon_Q>0
+\]
+이면 $V_n$ 해는 해당 구간에서 존재하고 유일하다. 이 조건은
+물리적 양의 chemical capacitance와 inverse coordinate의
+well-posedness를 동시에 표시한다.
+
+\begin{validity}
+$C_\bg^\chem>0$은 배경 저장상태를 채택했을 때의 조건이다.
+배경항이 실제로 상태함수인지 확인되지 않은 경우에는
+$Q_\bg^\chem$를 만들지 말고 관측 baseline만 둔다.
+\end{validity}
+
+\subsection{평형 closure}\label{EQ-CH1-CLOSURE}
+
+\paragraph{\physid{EQ-003} 이상 격자기체 기준형.}
+독립 site와 균형 반응식의 $z_j$를 전제로 하면
+\begin{equation}
+\boxed{
+\xi_{\eq,j}(V_n,T)
+=\left[
+1+\exp\!\left(
+-s_j\frac{z_jF[V_n-U_j(T)]}{RT}
+\right)
+\right]^{-1}.
+}
+\label{EQ-003-EQUATION}
+\end{equation}
+따라서
+\begin{equation}
+\left.\frac{\partial\xi_{\eq,j}}{\partial V_n}\right|_T
+=s_j\frac{z_jF}{RT}\xi_{\eq,j}(1-\xi_{\eq,j}).
+\label{EQ-003-DERIVATIVE}
+\end{equation}
+$z_j$는 반응 화학양론이 정한다. 관측 폭에서 역산하거나
+$RT/(Fw_j)$로 정의하지 않는다. 이상극한에서
+$w_{\rm th}=RT/(z_jF)$가 수치적으로 나타나는 것은 이 반응식과
+독립-site 가정의 결과이지, 임의의 유효폭이 새 전자수를 만드는
+근거가 아니다.
+
+\paragraph{\physid{EQ-004} 자유폭 logistic의 지위.}
+\[
+\xi_{\rm eff}
+=\left[1+\exp\!\left(-\frac{V-U}{w}\right)\right]^{-1}
+\]
+는 $w>0$인 유효 점유/관측 ansatz로 쓸 수 있다. $w$가 정적
+불균일, 입자크기 분포 또는 계측 broadening을 흡수하면
+식~\eqref{EQ-003-EQUATION}의 이상 열역학적 폭으로 해석하지 않는다.
+
+\paragraph{\physid{EQ-005} 정규용액의 제한된 지위.}
+\begin{align}
+g(\xi,T)
+&=g^0+RT[\xi\ln\xi+(1-\xi)\ln(1-\xi)]
++\Omega\xi(1-\xi),\\
+\partial_\xi g
+&=RT\ln\frac{\xi}{1-\xi}+\Omega(1-2\xi)
+\end{align}
+는 비이상 평형을 설명하는 이론 기준이다. $\Omega\ne0$이면 평형
+관계는 implicit이고, $\Omega>2RT$에서는 nonconvex branch,
+spinodal, common tangent 및 metastability 선택이 필요하다. 안정
+branch 선택 없이 불안정 곡률의 절대값을 양의 평형 peak로 바꾸지
+않는다.
+
+\begin{validity}
+임계점 부근에서 broadened 전체 곡선의 regularity는 gap delta
+질량 하나만으로 판정하지 않는다. 추가되는 gap 질량과 빠지는 중앙
+single-phase 질량의 leading 항이 상쇄될 수 있으므로 전체 measure의
+점근전개 또는 수렴 검토가 필요하다. gap 질량의
+$O(\sqrt{\Omega/(RT)-2})$만으로 $\partial_\Omega$ 발산을 주장하지
+않는다.
+\end{validity}
+
+\subsection{보존식의 미분과 ICA/DVA}\label{BAL-CH1-ICA}
+
+\paragraph{\physid{BAL-003} 등온 monotonic 경로의 미분.}
+식~\eqref{BAL-001-EQUATION}을 외부 전하 $Q=Q_\cell q$로 미분하면
+\[
+1=C_\bg^\chem\frac{\dd V_n}{\dd Q}
++\sum_j a_j\frac{\dd\xi_j}{\dd Q}.
+\]
+따라서
+\begin{equation}
+\boxed{
+\frac{\dd Q}{\dd V_n}
+=\frac{C_\bg^\chem}
+{1-\displaystyle\sum_j a_j\,\dd\xi_j/\dd Q}.
+}
+\label{BAL-003-EQUATION}
+\end{equation}
+분모가 0에 접근하면 inverse coordinate가 특이해지고, 음수가 되면
+선택한 monotonic inverse branch의 admissibility가 깨진다.
+
+\paragraph{\physid{BAL-004} 작은 tail의 계수.}
+$\sum_j a_j\xi_j=Q_p\Theta$이고, 한 tail mode가
+\[
+\frac{\dd\Theta}{\dd q}
+\simeq\frac{\Theta_0}{L}\exp[-(q-q_a)/L]
+\]
+를 이룬다고 하자. $x=(Q_p/Q_\cell)\dd\Theta/\dd q$가 작을 때
+$1/(1-x)=1+x+O(x^2)$이므로, chemical baseline 위 ICA 증분은
+\begin{equation}
+\boxed{
+\Delta\!\left(\frac{\dd Q}{\dd V_n}\right)
+\simeq
+C_\bg^\chem\frac{Q_p}{Q_\cell}
+\frac{\Theta_0}{L}
+\exp[-(q-q_a)/L].
+}
+\label{BAL-004-EQUATION}
+\end{equation}
+즉 $C_\bg^\chem$가 분모가 아니라 곱으로 남는다. 차원은
+$(\mathrm{C/V})\times1\times1=\mathrm{C/V}$다.
+
+\paragraph{\physid{OBS-001} apparent-axis 변환.}
+$V_{\app}=V_n+\Delta V_{\rm pol}$이면
+\[
+\frac{\dd Q}{\dd V_{\app}}
+=
+\frac{\dd Q/\dd V_n}
+{1+(\dd\Delta V_{\rm pol}/\dd V_n)} ,
+\qquad
+\frac{\dd V_{\app}}{\dd Q}
+=\left(\frac{\dd Q}{\dd V_{\app}}\right)^{-1},
+\]
+단 각 derivative는 같은 monotonic branch와 같은 독립변수에서
+평가한다. nonmonotonic data는 정렬해서 이 식에 넣지 않고 시간순서
+trajectory로 다룬다.
+
+\subsection{관측층과 경험적 skew 형상}\label{OBS-CH1}
+
+\paragraph{\physid{OBS-002} chemical background와 측정 baseline.}
+\begin{equation}
+y_\mathrm{signed}(V_{\app})
+=C_{\rm meas}(V_{\app})
++\frac{\dd Q_\chem}{\dd V_{\app}}.
+\label{OBS-002-EQUATION}
+\end{equation}
+$C_{\rm meas}$는 double-layer, 계측과 미분처리 baseline을 포함할 수
+있다. 자유에너지와 상태정의가 따로 없으면
+$C_{\rm meas}\ne C_\bg^\chem$이다.
+
+\paragraph{\physid{OBS-003} 면적보존 skew-logistic.}
+경험적 누적형상과 도함수를
+\begin{align}
+\sigma_j(V)&=[1+\exp(-(V-U_j)/w_j)]^{-1},\\
+q_{\mathrm{shape},j}(V)&=\sigma_j(V)^{\alpha_j},\\
+\frac{\dd q_{\mathrm{shape},j}}{\dd V}
+&=\frac{\alpha_j}{w_j}\sigma_j^{\alpha_j}(1-\sigma_j)
+\end{align}
+로 둔다. $w_j>0$, $\alpha_j>0$, $V\in\mathbb R$이면 도함수는
+비음이고 전 실수축 적분은 1이다. 따라서
+\begin{equation}
+y_\mathrm{fit}(V)
+=B_\obs+\sum_j A_j\frac{\alpha_j}{w_j}
+\sigma_j^{\alpha_j}(1-\sigma_j),\qquad A_j\ge0
+\label{OBS-003-EQUATION}
+\end{equation}
+는 양의 관측면적을 보존한다.
+
+\begin{validity}
+$q_{\mathrm{shape}}$는 chemical reaction coordinate가 아니다.
+$\alpha$는 phase 수, activity, 전자수, entropy 또는 heat state가
+아니다. 별도의 상태 mapping 없이 식~\eqref{BAL-001-EQUATION},
+가역열 또는 detailed-balance 식에 재사용하지 않는다.
+\end{validity}
+
+\subsection{식별성 경계와 다음 장으로의 전달}\label{EQ-CH1-IDENT}
+
+\begin{identifiability}
+단일 ICA 곡선에서는 $C_\bg^\chem$, $C_{\rm meas}$, 서로 겹치는
+$A_j,U_j,w_j,\alpha_j$, 분극축 이동과 동역학 lag가 강하게
+상관될 수 있다. quasi-equilibrium OCV, 전류차단, rate series와
+온도 series 없이 이들을 모두 독립적으로 해석하지 않는다.
+\end{identifiability}
+
+이 장이 다음 장들에 넘기는 것은
+$\{V_n,\bm\xi,T\}$, 전하 보존식~\eqref{BAL-001-EQUATION}, 명시적 평형
+closure와 관측 map이다. 경험적 식~\eqref{OBS-003-EQUATION}은
+관측층에 남고 chemical state의 입력이 되지 않는다.

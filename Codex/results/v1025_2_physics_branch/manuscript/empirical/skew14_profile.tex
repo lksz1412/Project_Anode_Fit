@@ -1,0 +1,132 @@
+\section{고정 경험모듈: 비대칭 14-성분 관측형상}
+\label{EMP-SKEW14}
+
+이 절의 목적은 정해진 관측 처리 아래 얻은 blend
+$\dd Q/\dd V$ 곡선을 재현하는 것이다. 이 모듈은 host 귀속, 상
+identity, 평형 occupancy, 활성화 장벽, entropy 또는 열 상태를
+정의하지 않는다.
+
+\subsection{관측 계약과 형상식}
+
+\paragraph{\physid{EMP-001} 고정 관측영역.}
+원자료의 SHA-256은
+\[
+\texttt{e571a66fb9574c4aa7bfdec7acada2eb732029232e7ab83dc7d9645e39fb01e6}
+\]
+이다. 사용 전압창은 $0.060\le V\le0.700$ V, bin 폭은
+$0.5$ mV이며 처리된 점은 1,280개다. 남아 있는 provenance에서
+실험 protocol은 \status{UNKNOWN}이다.
+
+\paragraph{\physid{EMP-002} 관측 전처리.}
+관측 계약은 유한 행 선택, 안정적인 capacity 정렬과 중복 capacity
+축약, 증가 isotonic $V(Q)$, 균일 전압 bin의 누적전하 재분배,
+양의 최장 연속 미분구간 선택, 여러 국소 다항 평활창의 절댓값
+ensemble 순서다. 마지막 절댓값 단계 때문에 결과 성분 면적은
+signed chemical-storage coefficient 또는 반응 orientation을
+식별하지 않는다.
+
+\paragraph{\physid{EMP-003} 단위면적 비대칭 성분.}
+\[
+\begin{split}
+\sigma_j(V)&=\left[1+
+ \exp\left(-\frac{V-U_j}{w_j}\right)\right]^{-1},\\
+y_\fit(V)&=B_\obs+\sum_{j=1}^{14}
+A_j^\obs\frac{\alpha_j}{w_j}
+\sigma_j(V)^{\alpha_j}\,[1-\sigma_j(V)] .
+\end{split}
+\tag{9.1}
+\]
+$w_j>0$, $\alpha_j>0$이고
+$q_{\mathrm{shape},j}=\sigma_j^{\alpha_j}$이므로
+\[
+\int_{-\infty}^{\infty}
+\frac{\alpha_j}{w_j}\sigma_j^{\alpha_j}(1-\sigma_j)\,\dd V=1.
+\tag{9.2}
+\]
+따라서 $A_j^\obs$는 양의 관측 면적(mAh), $B_\obs$는 mAh V$^{-1}$
+이다. $A_j^\obs$는 signed $a_j=\partial Q_\chem/\partial\xi_j$가
+아니다.
+
+\subsection{보존된 수치 기준}
+
+\paragraph{\physid{EMP-004} canonical 수치 순서.}
+가장 정밀하게 남은 수치 기준은
+\[
+[U_1\ldots U_{14},\,w_1\ldots w_{14},\,
+A_1^\obs\ldots A_{14}^\obs,\,
+\alpha_1\ldots\alpha_{14},\,B_\obs]
+\tag{9.3}
+\]
+순서의 57개 값이며 소수점 아래 여덟 자리로 보존되어 있다.
+
+\begin{longtable}{rrrrr}
+\toprule
+$j$ & {$U_j$ (V)} & {$w_j$ (V)} &
+{$A_j^\obs$ (mAh)} & {$\alpha_j$}\\
+\midrule\endhead
+1  & 0.42125320 & 0.00206653 & 0.25568341 & 1.94439920\\
+2  & 0.10484727 & 0.00194054 & 0.10716757 & 0.26823409\\
+3  & 0.13744975 & 0.00464374 & 0.21425996 & 0.95972191\\
+4  & 0.44335135 & 0.00789142 & 0.60835955 & 0.23351425\\
+5  & 0.42646335 & 0.00454727 & 0.32100180 & 1.00682164\\
+6  & 0.13365257 & 0.03077895 & 0.21457046 & 4.28978259\\
+7  & 0.24071171 & 0.02857158 & 0.08315640 & 7.38204940\\
+8  & 0.24107478 & 0.00904066 & 0.01785024 & 7.41078157\\
+9  & 0.45793338 & 0.02208380 & 0.09852930 & 7.70072936\\
+10 & 0.09491259 & 0.00214388 & 0.06058917 & 1.59295075\\
+11 & 0.10822395 & 0.00660107 & 0.13238761 & 0.71102353\\
+12 & 0.22222188 & 0.00232577 & 0.03620768 & 2.11601435\\
+13 & 0.25839692 & 0.12000000 & 1.11411164 & 6.27653482\\
+14 & 0.07588778 & 0.00708886 & 0.04449435 & 0.15400039\\
+\bottomrule
+\end{longtable}
+\[
+B_\obs=0.51691240\ {\rm mAh\,V^{-1}}.
+\tag{9.4}
+\]
+
+\paragraph{\physid{EMP-005} 수치 지문.}
+little-endian float64 배열의 SHA-256은 다음과 같다.
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.25\textwidth}X}
+\toprule
+배열 & SHA-256\\
+\midrule
+처리 전압 &
+\texttt{6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4}\\
+처리 관측값 &
+\texttt{da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e}\\
+57개 매개변수 &
+\texttt{08216da1095a02bcb789a60f577f4afd1d581ad659a8129edaba7dc0dc5910d5}\\
+재구성 예측값 &
+\texttt{53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800}\\
+재구성 잔차 &
+\texttt{1b874701ac72403f2836b352386e3c3a4f658c49238fd2fcf0a4931fd79398ec}\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{\physid{EMP-006} 재구성 지표의 의미.}
+보존된 여덟 자리 수치로 독립 재구성하면
+\[
+R^2=0.99964941790404,\qquad
+\mathrm{BIC}_{57}=-4760.653827485789 .
+\tag{9.5}
+\]
+BIC는 smoothing으로 이웃 잔차가 상관될 수 있음에도 독립
+Gaussian 잔차를 가정한 working-likelihood 비교량이다. 절대적인
+독립-noise evidence로 해석하지 않는다.
+
+\paragraph{\physid{EMP-007} 경계와 손실된 정보.}
+$w_{13}=0.12$ V가 당시의 수치 상한과 같지만, 더 높은 정밀도의
+해와 active constraint 상태가 남아 있지 않으므로 bound-active였다고
+단정하지 않는다. 원래의 고정밀 매개변수, 그 예측ㆍ잔차,
+종료상태와 전역 최적성도 확정할 수 없다. 따라서 식 (9.3)의
+보존 수치만 재현 가능한 기준이다.
+
+\begin{identifiability}
+높은 $R^2$는 이 관측형상이 지정된 처리 곡선을 잘 압축한다는
+뜻이다. 14개 성분의 흑연/Si 귀속, 상의 수, 반응 전자수,
+평형 폭, relaxation spectrum 또는 열 발생률을 식별하지 않는다.
+\end{identifiability}

@@ -1,0 +1,101 @@
+\section{재료 적용 II: LCO 양극}\label{MAT-LCO-000}
+
+LCO는 흑연 음극의 매개변수 교체가 아니라 별도의 host
+thermodynamics를 가진다. 반쪽전지 전위와 흑연--LCO 전지의 단자
+전압을 구분하고, 양극 반응 orientation을 독립적으로 선언해야 한다.
+
+\paragraph{\physid{MAT-LCO-001} 전위 기준과 full-cell 결합.}
+각 전극 전위를 같은 기준전극에 대해 $U_p$, $U_n$이라 하면
+평형 전지전압은
+\[
+ U_\cell=U_p-U_n .
+ \tag{7.1}
+\]
+양극 ICA 자료의 전압축을 곧 $U_\cell$로 사용하지 않는다.
+전지에서는 lithium inventory 제약이 양극과 음극의 조성을 함께
+결정한다.
+
+\paragraph{\physid{MAT-LCO-002} 양극 전하수지.}
+고정된 delithiation 또는 lithiation 반응 중 하나를 forward로
+선언하고
+\[
+ Q_\mathrm{LCO}
+ =Q_{\mathrm{LCO},0}+Q_{\mathrm{LCO},\bg}^\chem(U_p,T)
+ +\sum_k a_{\mathrm{LCO},k}
+ (\xi_{\mathrm{LCO},k}-\xi_{\mathrm{LCO},k,0})
+ \tag{7.2}
+\]
+를 쓴다. 음극의 부호를 그대로 복사하지 않고 $a_{\mathrm{LCO},k}$를
+그 선언에서 다시 유도한다.
+
+\paragraph{\physid{MAT-LCO-003} entropy의 분해.}
+평형 반응 entropy는 개념적으로
+\[
+ \Delta_rS
+ =\Delta S_\mathrm{conf}
+ +\Delta S_\mathrm{vib}
+ +\Delta S_\mathrm{el}
+ +\Delta S_\mathrm{other}
+ =zF\left(\frac{\partial U_\eq}{\partial T}\right)_q .
+ \tag{7.3}
+\]
+평형전위 온도의존, phonon 관측과 전자구조 계산을 결합한 LCO
+연구가 이 삼분해의 문헌 anchor를 제공하지만, 전이별 중심값으로
+나눌 때는 혼합 entropy를 폭과 표준 entropy 양쪽에 중복해서 넣지
+않는다 \cite{reynierLCO}.
+metallic electronic contribution이 Sommerfeld 범주에 있으면
+molar density of states에 대해
+\[
+ S_\mathrm{el}\simeq
+ \frac{\pi^2}{3}k_B^2T\,g_m(E_F)
+ \tag{7.4}
+\]
+를 후보로 둘 수 있다. 이는 band calculation 또는 열용량 자료
+없이 전체 $\Delta_rS$를 정하는 식이 아니다.
+
+\paragraph{\physid{MAT-LCO-004} 비이상 혼합의 범위.}
+한 조성변수 $x$에 대한 regular-solution 자유에너지
+\[
+ g(x,T)=g_0+x\Delta g^0
+ +RT[x\ln x+(1-x)\ln(1-x)]
+ +\Omega x(1-x)
+ \tag{7.5}
+\]
+는 비볼록성, spinodal과 common-tangent construction을 논의하는
+최소 이론이다. 특정 ordered phase 또는 실제 LCO 전이의 존재를
+$\Omega$ 하나로 증명하지 않는다. 불안정한 음의 curvature를
+절댓값으로 바꾸어 stable response로 사용하지 않는다.
+
+\paragraph{\physid{MAT-LCO-005} 질서화 근거의 경계.}
+in-situ 회절과 제일원리 상안정성 연구는
+$\mathrm{Li}_x\mathrm{CoO_2}$의 상전이와 $x=1/2$ 부근 질서상의
+독립 근거를 제공한다 \cite{reimersLCO,vandervenLCO}. 그러므로
+고전압의 좁은 미분곡선 특징은 질서화와 문헌 정합적인 후보라고
+말할 수 있다. 그러나 특징 하나를 특정 질서상 하나로 등치하거나 그 수를
+상 개수로 세려면 같은 시료ㆍ조건의 구조 probe가 필요하다.
+
+\paragraph{\physid{THM-LCO-001} 가역열.}
+선택한 forward reaction과 전류부호에 대해
+\[
+ \dot Q_{\rev,\mathrm{LCO}}
+ =-I_{\mathrm{LCO}}T
+ \left(\frac{\partial U_{\eq,\mathrm{LCO}}}{\partial T}\right)_q .
+ \tag{7.6}
+\]
+full-cell에서는 두 전극 entropy coefficient의 차이가
+$(\partial U_\cell/\partial T)_q$를 이룬다. 기준전극을 포함한
+반쪽전지 calorimetry의 열을 LCO 단독 항으로 배분하는 것은 별도
+control-volume 분석이 필요하다.
+
+\begin{openitem}
+\physid{MAT-LCO-OPEN-01}
+보존된 곡선 자료만으로는 구성, 진동, 전자 entropy의 분할과
+counter-electrode 열 기여를 결정할 수 없다. 다온도 평형 전위,
+열용량 및 독립 전자구조 근거가 필요하다.
+\end{openitem}
+
+\begin{identifiability}
+하나의 전압창에서 얻은 양극 미분곡선은 ordering, 두상공존,
+surface reconstruction와 수송편극을 고유하게 구별하지 못한다.
+상 귀속은 diffraction 또는 spectroscopy와 결합되어야 한다.
+\end{identifiability}

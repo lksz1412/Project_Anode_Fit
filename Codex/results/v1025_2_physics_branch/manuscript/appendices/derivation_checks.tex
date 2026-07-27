@@ -1,0 +1,120 @@
+\section{차원ㆍ부호ㆍ극한 유도 점검}\label{ASM-CHECKS}
+
+\begin{derivationcheck}
+\physid{BAL-D01} 전하수지의 차원.
+식~\eqref{BAL-001-EQUATION}의 각 항은 C다:
+$[Q_\cell q]=[Q_\bg^\chem]=[a_j\xi_j]=\mathrm C$.
+이를 V로 미분한 ICA의 단위는 C V$^{-1}$이고,
+$C_\bg^\chem$와 $a_j\partial_{V_n}\xi_j$가 같은 단위를 갖는다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{EQ-D01} ideal logistic의 면적과 orientation.
+식~\eqref{EQ-003-EQUATION}에서
+\[
+\partial_{V_n}\xi_{\eq,j}
+=s_j\frac{z_jF}{RT}\xi_{\eq,j}(1-\xi_{\eq,j}),
+\qquad
+\int_{-\infty}^{\infty}\partial_{V_n}\xi_{\eq,j}\,\dd V_n=s_j .
+\]
+$z_jF/(RT)$의 단위는 V$^{-1}$이다. 전하 기여의 전 실수축
+signed 면적은 $a_js_j$이며 관측에서 임의로 양수화하지 않는다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{OBS-D01} 경험적 skew 면적.
+$u=\sigma^\alpha$이면
+$\dd u=(\alpha/w)\sigma^\alpha(1-\sigma)\dd V$다.
+$V:-\infty\to\infty$에서 $u:0\to1$이므로 식~(9.2)의 적분은 1이다.
+따라서 $A^\obs$만 면적 단위를 갖고 $\alpha$는 무차원이다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{THM-D01} fixed-charge 온도미분.
+평형 전하수지의 total differential에서 $\dd q=0$을 두면
+\[
+0=\left[
+C_\bg^\chem+\sum_j a_j\partial_{V_n}\xi_{\eq,j}
+\right]\dd V_n
++\left[
+\partial_TQ_\bg^\chem+\sum_j a_j\partial_T\xi_{\eq,j}
+\right]\dd T .
+\]
+따라서 식~\eqref{THM-002-EQUATION}의 선행 음수가 생긴다.
+분자 C K$^{-1}$를 분모 C V$^{-1}$로 나눈 결과는 V K$^{-1}$다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{THM-D02} 가역열 부호.
+$U_\eq=-\Delta_rG/(zF)$,
+$\partial_T\Delta_rG=-\Delta_rS$이므로
+$\Delta_rS=zF\partial_TU_\eq$다. forward reaction rate가
+$\dot n=I/(zF)$이면 control volume의 reversible generation은
+$-T\Delta_rS\dot n=-IT\partial_TU_\eq$이다. 단위는
+$\mathrm A\,K\,V\,K^{-1}=\mathrm W$다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{KIN-D01} 두 상태 network의 비가역 생성.
+$Q_j^{\rm SI}/(z_jF)$는 mol,
+$RT$는 J mol$^{-1}$, $(J^+-J^-)$는 s$^{-1}$이므로
+식~\eqref{THM-006-NETWORK}은 W다.
+$x,y>0$에서 $\ln$의 단조성 때문에
+$(x-y)(\ln x-\ln y)\ge0$여서 생성률은 비음이 아니다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{KIN-D02} 시간단위 변환.
+전이상태 형식의 SI prefactor가 s$^{-1}$일 때 시간률을 h$^{-1}$로
+표현하면 수치가 3600배다. 반대로 h$^{-1}$ 자료를 SI 동역학에
+넣을 때 $1/3600$을 곱한다. Arrhenius/Eyring의 logarithmic
+intercept 변환에는 이에 대응하는 $-\!R\ln3600$ 항이 생긴다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{BAL-D02} 작은-tail 전개.
+$x=(Q_p/Q_\cell)\dd\Theta/\dd q$는 무차원이고
+$(1-x)^{-1}=1+x+O(x^2)$다. 따라서
+$C_\bg^\chem x$의 단위는 C V$^{-1}$이며
+식~\eqref{BAL-004-EQUATION}처럼 $C_\bg^\chem$는 곱에 남는다.
+\end{derivationcheck}
+
+\begin{derivationcheck}
+\physid{HYS-D01} 닫힌 주기.
+식~(5.7)의 단위는 V C=J다. 완전한 내부상태가 돌아오지 않으면
+$\oint V\dd Q$에는 $\Delta E_\mathrm{stored}$가 남을 수 있으므로
+전부를 열로 두지 않는다.
+\end{derivationcheck}
+
+\subsection{부호 추적표}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{p{0.18\textwidth}p{0.31\textwidth}X}
+\toprule
+선언 & 양의 방향 & 따라오는 관계\\
+\midrule
+reaction progress & written forward reaction & $\dot n>0$\\
+reaction current & 같은 forward reaction & $I=zF\dot n$\\
+chemical charge & 기준상태에서 저장 증가 방향 & $\dot Q_{\chem,j}=a_j\dot\xi_j$\\
+affinity & forward reaction을 구동 & $\dot n\mathcal A^\chem\ge0$\\
+heat & control volume 내부 생성 & $\dot Q_\rev=-IT\,\partial_TU_\eq$\\
+empirical ordinate & 전체 관측계약이 정한 양의 magnitude & physical sign을 보존하지 않음\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{필수 제한극한}
+
+\[
+\begin{array}{lll}
+\alpha\to1 &:& \text{대칭 logistic derivative},\\
+w\to0^+ &:& \text{고정면적의 distributional sharp limit},\\
+\tau\to0^+ &:& \xi\to\xi_\tar\text{인 준평형},\\
+I\to0 &:& \text{단자 저항손실 소멸; memory 소멸은 별도 조건},\\
+\Omega\to0 &:& \text{regular solution이 ideal mixing으로 환원},\\
+w_\mathrm{Si}\to0 &:& Q_\mathrm{blend}\to Q_\mathrm{Gr},\\
+w_\mathrm{Si}\to1 &:& Q_\mathrm{blend}\to Q_\mathrm{Si}.
+\end{array}
+\]
+각 극한은 식의 수학적 일관성을 점검하지만, 실제 재료가 그
+극한에 도달한다는 관측 근거는 아니다.

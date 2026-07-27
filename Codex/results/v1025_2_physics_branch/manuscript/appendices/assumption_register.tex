@@ -1,0 +1,72 @@
+\section{가정 등록부}\label{ASM-REGISTER}
+
+이 등록부는 무엇이 정의, 제한된 이론, 경험표현 또는 열린 문제인지
+구분한다. \status{ADOPTED}는 현재 원고 전체의 규약,
+\status{BOUNDED}는 명시한 적용범위에서만 쓰는 closure,
+\status{EMPIRICAL}은 관측표현, \status{THEORY}는 후보 이론,
+\status{OPEN}은 필요한 근거가 없는 항이다.
+
+\begin{longtable}{p{0.16\textwidth}p{0.15\textwidth}p{0.59\textwidth}}
+\toprule
+식별자 & 상태 & 가정, 범위와 해제조건\\
+\midrule\endhead
+\physid{ASM-REG-001} & \status{ADOPTED}
+& 모든 전이에서 하나의 written forward reaction, signed current,
+progress orientation과 electron stoichiometry를 먼저 고정한다.\\
+\physid{ASM-REG-002} & \status{ADOPTED}
+& $V_\app$, $V_n$, $V_\drive$, $U_\eq$를 서로 다른 양으로 둔다.
+둘의 등치는 별도 제한으로만 허용한다.\\
+\physid{ASM-REG-003} & \status{ADOPTED}
+& physical host 혼합과 경험적 곡선분해는 별도 모형이다. 관측 성분을
+host나 phase에 자동 배정하지 않는다.\\
+\physid{ASM-REG-004} & \status{BOUNDED}
+& lumped, 등온ㆍ공간균일 상태는 구배와 분극이 작은 범위에만 쓴다.
+큰 구배에서는 field balance와 경계조건으로 교체한다.\\
+\physid{ASM-REG-005} & \status{BOUNDED}
+& ideal lattice-gas logistic은 독립 site와 고정 $z$를 가정한다.
+자유폭 logistic은 열역학식이 아니라 유효형상일 수 있다.\\
+\physid{ASM-REG-006} & \status{THEORY}
+& regular-solution 자유에너지는 비이상성의 최소 후보이다. 실제
+ordered phase나 물질별 상도를 확정하지 않는다.\\
+\physid{ASM-REG-007} & \status{BOUNDED}
+& terminal $I(U_\mathrm{oc}-V)$는 그 곱이 비음이 되지 않는 signed
+경로에서 단자 소산만 나타낸다.\\
+\physid{ASM-REG-008} & \status{EMPIRICAL}
+& 비대칭 14-성분은 지정된 전압창과 관측 처리에서의 양의
+$\dd Q/\dd V$ 표현이다. 물리상태와 열 관계에 전달하지 않는다.\\
+\physid{ASM-REG-009} & \status{BOUNDED}
+& 두 host ICA의 평형 가산은 공통 내부전위와 같은 capacity basis를
+요구한다. 유한속도에서는 host별 전류분배 폐쇄가 추가된다.\\
+\physid{ASM-REG-010} & \status{ADOPTED}
+& 생성열을 양으로 두고
+$\dot Q_\rev=-IT(\partial U_\eq/\partial T)$를 같은 반응ㆍ전류
+규약에서 유도한다.\\
+\physid{ASM-OPEN-01} & \status{OPEN}
+& 흑연 평형 폭의 온도의존성을 이상 entropy, 비이상성, 입자분포와
+strain으로 분해할 근거가 부족하다.\\
+\physid{ASM-OPEN-02} & \status{OPEN}
+& 경험적 $\alpha_j$와 microscopic mechanism 사이의 mapping이
+없다. 독립 근거 전에는 관측 shape parameter로만 남긴다.\\
+\physid{ASM-OPEN-03} & \status{OPEN}
+& blend 관측 성분의 흑연/Si host 귀속이 닫히지 않았다. 독립 host
+자료와 공동 제약이 필요하다.\\
+\physid{ASM-OPEN-04} & \status{OPEN}
+& half-cell 가역열의 전극, 전해질, 계면별 공간 배정이 닫히지
+않았다. control-volume calorimetry가 필요하다.\\
+\physid{ASM-OPEN-05} & \status{OPEN}
+& 실제 재료에 대한 regular-solution 매개변수와 branch
+construction이 확정되지 않았다.\\
+\physid{ASM-OPEN-06} & \status{OPEN}
+& rate를 0으로 보낸 뒤에도 남는 hysteresis와 nucleation
+시간척도의 관계가 확정되지 않았다.\\
+\physid{ASM-OPEN-07} & \status{OPEN}
+& 경험적 기준 자료의 온도, C-rate, 전극 구성, 전류방향과 휴지
+조건을 포함한 실험 protocol이 알려져 있지 않다.\\
+\bottomrule
+\end{longtable}
+
+\paragraph{\physid{ASM-011} 갱신 규칙.}
+\status{OPEN} 항은 독립 자료나 완전한 유도가 생길 때만
+\status{BOUNDED} 또는 \status{ADOPTED}로 이동한다. 곡선 적합도의
+상승만으로 상태를 승격하지 않는다. 가정을 바꾸면 영향을 받는
+식별자, 단위, 부호, 경계조건과 식별성 결론을 함께 재검토한다.

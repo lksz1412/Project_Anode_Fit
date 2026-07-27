@@ -1,0 +1,99 @@
+\section{재료 적용 III: 흑연--Si 혼합 음극}\label{MAT-SI-000}
+
+흑연과 Si가 전기적으로 병렬인 혼합 음극에서는 두 host가 같은
+고체상 전위를 공유한다. 따라서 물리적 blend는 두 ICA 곡선의
+임의 가중합보다 먼저 공통전위와 총전하 보존을 만족해야 한다.
+
+\paragraph{\physid{MAT-SI-001} 공통전위 평형.}
+수송손실이 사라진 평형에서
+\[
+ V_{n,\mathrm{Gr}}=V_{n,\mathrm{Si}}=V_n,\qquad
+ Q_\mathrm{blend}(V_n,T,\bm h)
+ =Q_\mathrm{Gr}(V_n,T)+Q_\mathrm{Si}(V_n,T,\bm h).
+ \tag{8.1}
+\]
+따라서
+\[
+ \frac{\partial Q_\mathrm{blend}}{\partial V_n}
+ =\frac{\partial Q_\mathrm{Gr}}{\partial V_n}
+ +\frac{\partial Q_\mathrm{Si}}{\partial V_n}
+ \tag{8.2}
+\]
+은 동일한 전위와 정상화 기준에서만 성립한다.
+
+\paragraph{\physid{MAT-SI-002} 질량분율과 용량분율.}
+활물질 질량기준 Si 분율을 $w_\mathrm{Si}$, 각 host의 사용가능한
+비용량을 $c_\mathrm{Si}$와 $c_\mathrm{Gr}$로 선언하면 capacity
+fraction은
+\[
+ f_\mathrm{Si}^{Q}
+ =\frac{w_\mathrm{Si}c_\mathrm{Si}}
+ {w_\mathrm{Si}c_\mathrm{Si}+(1-w_\mathrm{Si})c_\mathrm{Gr}} .
+ \tag{8.3}
+\]
+$w_\mathrm{Si}$와 $f_\mathrm{Si}^{Q}$는 같지 않다. binder와
+conductive additive 포함 여부, 초기 비가역용량과 사용 SOC 창도
+분모의 basis와 함께 명시해야 한다.
+
+\paragraph{\physid{MAT-SI-003} 기계화학 전위.}
+Si의 큰 체적변화가 만드는 응력은 Larche--Cahn 형식에서
+\[
+ \mu_\mathrm{Si}
+ =\mu_\mathrm{Si}^{\chem}
+ +\bar\Omega\,\sigma_h
+ \tag{8.4}
+\]
+처럼 chemical potential을 이동시킬 수 있다 \cite{larche}.
+$\sigma_h$의 인장ㆍ압축 부호와 partial molar volume
+$\bar\Omega$의 정의에 따라 두 번째 항의 표기가 달라질 수 있으므로,
+전위 이동의 부호는 해당 convention에서 다시 유도한다.
+
+\paragraph{\physid{MAT-SI-004} 유한속도 전류분배.}
+유한속도에서는
+\[
+ I=I_\mathrm{Gr}+I_\mathrm{Si},\qquad
+ V_{\drive,\mathrm{Gr}}\ne V_{\drive,\mathrm{Si}}
+ \quad\text{일 수 있다}
+ \tag{8.5}
+\]
+이며, 두 구동전위의 차이는 host별 charge-transfer와 transport
+loss에서 생길 수 있다.
+평형의 식 (8.2)을 유한속도 ICA에 그대로 적용하려면 두 host의
+과전압이 무시 가능하다는 1차 근사를 명시해야 한다.
+
+\paragraph{\physid{MAT-SI-006} 비가산 gap.}
+식 (8.2)에서 벗어나는 항은 적어도 stress-history,
+host별 과전압ㆍ전류분배, 계면 상호작용과 관측 protocol의 gap으로
+분리한다. 이 항들을 host 평형곡선의 면적이나 임의의 조성분율에
+흡수하면 mass basis와 energy accounting이 동시에 흐려진다.
+
+\paragraph{\physid{HYS-SI-001} Si 이력의 물리 범위.}
+Si의 hysteresis는 metastability, plasticity, fracture, contact
+loss와 stress-coupled chemistry의 후보를 포함한다. 이를 하나의
+고정 voltage offset이나 충ㆍ방전별 독립 sigmoid로 대체하면
+state continuity와 energy accounting이 사라진다. 최소한 응력 또는
+구조 이력변수와 그 초기조건이 필요하다.
+
+\paragraph{\physid{MAT-SI-005} 경험형상과 host 분리.}
+고정된 14-성분 관측형상은 blend curve의 압축 표현일 뿐이다.
+독립적인 host 자료와 공동 제약이 없으면 그 성분을 흑연 또는 Si에
+배정하지 않으며, 성분 면적으로 $w_\mathrm{Si}$를 역산하지 않는다.
+
+\paragraph{\physid{MAT-SI-007} transition seed의 지위.}
+독립적인 Si 구조ㆍ전기화학 근거로 고정되지 않은 transition 위치,
+폭과 용량 목록은 \status{seed/placeholder}다. blend 계산이
+가능하다는 이유만으로 이를 기본 물질상수나 확정 물리값으로
+승격하지 않는다.
+
+\begin{openitem}
+\physid{MAT-SI-OPEN-01}
+현재의 최소 구조에는 plastic flow, particle fracture, contact
+evolution와 host별 유한속도 전류분배의 constitutive law가 닫혀 있지
+않다. 이들은 응력ㆍ두께ㆍimpedance와 rate-series 자료를 요구한다.
+\end{openitem}
+
+\begin{identifiability}
+blend ICA 하나에서는 $w_\mathrm{Si}$, 두 host의 utilization,
+inventory loss, 응력 이동과 분극을 고유하게 분리할 수 없다.
+독립 전극자료와 질량ㆍ조성 정보가 우선 제약이어야 한다.
+\end{identifiability}

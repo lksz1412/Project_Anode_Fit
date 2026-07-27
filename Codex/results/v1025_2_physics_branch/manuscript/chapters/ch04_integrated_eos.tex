@@ -1,0 +1,146 @@
+\section{결합 상태방정식과 관측 폐쇄}\label{BAL-CH4}
+
+앞 장들의 관계는 하나의 거대한 곡선식이 아니라, 미분 상태와
+대수 제약을 가진 결합계로 모인다. 이 구분은 평형곡선, 유한속도
+경로와 측정 변환을 서로 대체하지 않게 한다.
+
+\subsection{상태, 대수 제약과 입출력}
+
+\paragraph{\physid{EQ-040} 최소 상태벡터.}
+전이 진행률, 필요한 내부 이력변수와 온도를
+\[
+ \bm X=(\xi_1,\ldots,\xi_N,\bm h,T)^{\mathsf T}
+\]
+로 둔다. $\bm h$는 독립적인 물리적 기억이 제안되고 폐쇄된 경우에만
+포함한다. 평형 전압이나 경험적 peak 위치는 그 자체로 상태변수가
+아니다.
+
+\paragraph{\physid{BAL-040} 전하의 대수 제약.}
+내부 전위 $V_n$는 주어진 $(q,\bm X)$에서
+\[
+ \mathcal G(\bm X,V_n,q)
+ =Q_\cell(q-q_0)-Q_\bg^\chem(V_n,T)
+ +Q_{\bg,0}^\chem
+ -\sum_{j=1}^{N}a_j(\xi_j-\xi_{j,0})=0
+ \tag{4.1}
+\]
+을 만족하는 대수 미지수다. $Q_\cell$, $Q_\bg^\chem$, $a_j$는 모두
+C 기준이며, $q$와 $\xi_j$는 무차원이다. $a_j$의 부호는
+Chapter~\ref{ASM-CONVENTIONS}에서 고정한 반응 orientation에 따른다.
+
+\paragraph{\physid{KIN-040} 상태 진화.}
+유한속도 경로는
+\[
+ \dot{\bm\xi}=\bm f_\xi(\bm\xi,\bm h,V_{\drive},T,I),\qquad
+ \dot{\bm h}=\bm f_h(\bm\xi,\bm h,V_{\drive},T,I)
+ \tag{4.2}
+\]
+로 적는다. $V_{\drive}=V_n$은 전해질ㆍ고체 수송 손실과 계면
+과전압을 무시하거나 별도로 제거한 경우의 제한된 closure다.
+전류 reversal이나 휴지에서도 시간식은 연속적으로 유지한다.
+
+\paragraph{\physid{THM-040} 열 상태.}
+선택한 control volume에 대해
+\[
+ C_\mathrm{th}\dot T
+ =\dot Q_\irr+\dot Q_\rev+\dot Q_\mix+\dot Q_\mech
+ -\dot Q_\loss
+ \tag{4.3}
+\]
+를 쓴다. 각 항을 채택할 때 저장 자유에너지와의 중복을 점검한다.
+특히 $I(U_\mathrm{oc}-V_\app)$를 총 비가역열로 쓰면서 같은
+과전압ㆍ저항 항을 다시 더하지 않는다.
+
+\paragraph{\physid{OBS-040} 단자 및 관측 mapping.}
+단자 전압과 ICA/DVA 출력은 마지막 단계에서
+\[
+ V_\app=\mathcal V(V_n,\bm X,I),\qquad
+ y_\obs=\mathcal H(V_\app,q;\mathcal P)
+ \tag{4.4}
+\]
+로 정의한다. $\mathcal P$는 표본화, smoothing, 기준축 및 부호
+규약을 포함한 측정 protocol이다. 관측용 baseline이나 비대칭
+peak는 별도 물리적 피드백을 선언하지 않는 한 식 (4.1)--(4.3)에
+들어가지 않는다.
+
+\subsection{해의 조건과 민감도}
+
+\paragraph{\physid{EQ-041} 국소 대수해.}
+$\mathcal G=0$인 점에서 동적 상태 $\bm X$를 고정한 대수
+Jacobian은
+\[
+ \left.\mathcal G_{V_n}\right|_{\bm X,q}
+ =-C_\bg^\chem(V_n,T)\ne0
+ \tag{4.5}
+\]
+이면 implicit-function theorem에 따라 국소적으로 유일한
+$V_n(\bm X,q)$를 둘 수 있다. 이 조건은 전역 유일성을 보장하지
+않는다. 다중 안정 branch가 있는 구간은 Chapter~\ref{HYS-CH5}의
+branch 선택규칙을 함께 요구한다. $C_\bg^\chem=0$이면 전하수지
+하나만으로 동적 상태에서 $V_n$를 정할 수 없으므로 current
+allocation 또는 계면 구동력에 대한 독립 대수 폐쇄가 필요하다.
+평형축으로 먼저 축약하여 $\xi_j=\xi_{\eq,j}(V_n,T)$를 넣은
+경우의 Jacobian은
+$-[C_\bg^\chem+\sum_j a_j\partial_{V_n}\xi_{\eq,j}]$이며,
+그 전체가 0이 아니어야 한다.
+
+\paragraph{\physid{BAL-041} 평형 민감도.}
+평형 manifold에서 온도를 고정하고 식 (4.1)을 미분하면
+\[
+ \left.\frac{\dd q}{\dd V_n}\right|_{T,\eqm}
+ =\frac{1}{Q_\cell}\left[
+ C_\bg^\chem+\sum_j a_j
+ \left.\frac{\partial\xi_{\eq,j}}{\partial V_n}\right|_T
+ \right].
+ \tag{4.6}
+\]
+이 식의 부호는 $a_j$와 $\xi_j$ orientation의 결합 결과다.
+절댓값 관측은 식 (4.6)을 얻은 뒤 전체 dataset에 일관되게
+적용하며, 개별 성분의 부호를 따로 뒤집지 않는다.
+
+\begin{validity}
+식 (4.1)--(4.6)은 lumped, spatially uniform control volume에
+대한 최소 구조다. 큰 농도구배, 전해질 전위강하, 입자 크기분포 또는
+열구배가 지배적이면 각각의 field equation과 경계조건이 필요하다.
+\end{validity}
+
+\subsection{초기ㆍ경계조건과 검증 가능한 극한}
+
+\paragraph{\physid{KIN-041} 초기조건.}
+$q(t_0)$, $T(t_0)$, $\bm\xi(t_0)$와 채택한 모든 $\bm h(t_0)$를
+제시하고 식 (4.1)을 만족하는 $V_n(t_0)$를 택한다. causal memory를
+사용하면 $t<t_0$의 prehistory 또는 그에 상응하는 초기 내부상태도
+필수다. 알려지지 않은 prehistory를 평형으로 두는 것은 자료가 아니라
+가정이다.
+
+\paragraph{\physid{EQ-042} 허용영역.}
+\[
+ 0\le \xi_j\le1,\qquad T>0,\qquad
+ V_n\in[V_{\min},V_{\max}]
+ \tag{4.7}
+\]
+를 기본 허용영역으로 둔다. 재료 고유의 조성범위와 전압범위가 더
+좁으면 재료 모듈이 우선한다. 경계에서 flux는 영역 밖으로 향하지
+않아야 한다.
+
+\paragraph{\physid{EQ-043} 제한극한.}
+결합계는 적어도 다음 극한을 만족해야 한다.
+\[
+\begin{array}{ll}
+I\to0,\ \tau_j\to0 &: \xi_j\to\xi_{\eq,j},\\
+a_j\to0 &: \text{전이 }j\text{가 전하수지에서 사라짐},\\
+C_\mathrm{th}\to\infty &: T\text{가 주어진 시간창에서 거의 일정},\\
+\mathcal V\to V_n &: \text{단자손실이 없는 평형 관측},\\
+\bm h\to\varnothing &: \text{단일 branch의 memory-free 계}.
+\end{array}
+\tag{4.8}
+\]
+이들은 서로 다른 물리 항을 구별하는 구조 점검이며, 특정 자료에
+대한 적합도 기준은 아니다.
+
+\begin{identifiability}
+하나의 $y_\obs(V)$만으로는 $Q_\bg^\chem$, 여러 $a_j$, 분포 폭,
+rate spectrum, 단자손실과 smoothing kernel을 동시에 고유하게
+정할 수 없다. 전하 적분, 휴지 OCV, 다온도ㆍ다율 자료와 독립적인
+열 측정이 있어야 블록 간 식별이 가능하다.
+\end{identifiability}
