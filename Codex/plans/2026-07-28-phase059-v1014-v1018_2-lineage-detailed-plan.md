@@ -691,3 +691,53 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 34.5 두 golden NPZ의 모든 key/shape/dtype/array를
   재생성해 bit-exact와 tolerance match를 분리하고 v1.0.15
   rebaseline의 검증 범위와 결함 은폐 가능성을 판정한다.
+
+### 2026-07-28 — Step 34.5
+
+- 6개 release의 golden NPZ occurrence를 file/member/array SHA,
+  key order, shape, dtype, finite 값으로 전수 감사했다. 내용 기준
+  unique golden은 v1.0.14 1개와 v1.0.15–18.2 공통 1개, 합계
+  2개다. 각 archive는 float64 `(1000,)` 배열 13개이며 NaN/Inf는
+  없다.
+- 두 golden은 key/order/shape/dtype 13/13이 동일하다. `V`와
+  `equilibrium_298` 2개는 exact same이고, 유한전류·온도·T(V)·
+  facade 11개 배열은 전 원소가 바뀌었다. 최대 변화는
+  \(3.9111\times10^{-5}\)다.
+- Git commit `03dab9221d9b017501a1a9d391ce8825dd440106`에서
+  v1.0.15 pointwise-memory code와 golden만 함께 변경됐고
+  regression harness blob은 변경되지 않았다. commit 전 golden은
+  v1.0.14 golden과 같고 commit 후 golden은 현재 v1.0.15–18.2
+  golden과 같다.
+- 저장된 golden delta와 현 runtime에서 직접 생성한 v1.0.14→15
+  code output delta의 최대 불일치는 \(4.33\times10^{-15}\)다.
+  따라서 rebaseline은 새 architecture의 의도된 내부 snapshot을
+  다시 잡은 기록으로 보존한다.
+- 현 runtime에서 각 version의 regenerated 13 arrays 중 bit-exact는
+  1개지만 `rtol=0, atol=1e-12`는 13개 모두 통과하고 최대차는
+  \(4.33\times10^{-15}\)다. bit-exact 이식성은 REJECT한다.
+- v1.0.15와 v1.0.16/17/18.1/18.2의 13 legacy outputs는
+  version별 exact 13/13 동일하다. 후속 additive feature가 default
+  off라는 뜻이며 새 feature validation이 아니다.
+- 6개 regression harness는 version/path 정규화 후 하나의 동일
+  logic family다. `n_T1`, `theta_E`, LCO, direct `L_V`,
+  nonmonotone/reversal/pulse, entropy/heat, SI 3600 case와
+  measured/experimental token은 모두 0이다.
+- NPZ는 공개 실험, optimizer state, covariance/uncertainty를
+  포함하지 않는 `DERIVED_MODEL_OUTPUT_SNAPSHOT`이다. capture와
+  verify가 같은 harness를 쓰므로 independent physical oracle이
+  아니다.
+- 46/46 source/hash/array/Git/rebaseline/coverage/determinism
+  validation을 통과했다. status는
+  `CONDITIONAL_P059_GOLDEN_NPZ`다.
+- 근거:
+  `Codex/results/PHASE_059_GOLDEN_NPZ_AUDIT.json`,
+  `Codex/results/PHASE_059_GOLDEN_NPZ_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_golden_npz.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_golden_npz.py`.
+- gates:
+  `PASS_P059_GOLDEN_NPZ_AUDIT_EXECUTION`,
+  `PASS_P059_GOLDEN_NPZ`.
+- Step 34 code/test/demo/golden 감사는 완료됐다. 다음은 Step 35.1
+  18 PDF 492 pages를 전 페이지 render해 blank, glyph, font,
+  overfull, crop, clipped equation/table/figure와 label-page 관계를
+  기계·시각 검독한다.

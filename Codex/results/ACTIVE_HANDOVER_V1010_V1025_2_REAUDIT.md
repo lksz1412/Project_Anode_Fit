@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_059_INDEPENDENT_CODE_PROBE_REVIEW.md`
+   `Codex/results/PHASE_059_GOLDEN_NPZ_REVIEW.md`
 
 ## Current State
 
@@ -443,6 +443,27 @@
   probe 실행 gate만 PASS다. production code 물리 정합은
   `CONDITIONAL_P059_CODE_CONFORMANCE`이고 실험 타당성은 확립되지
   않았다.
+- Phase 059 golden NPZ audit:
+  6 occurrences는 v1.0.14 1개와 v1.0.15–18.2 공통 1개,
+  unique contents 2개다. key/order/shape/dtype은 13/13 같고,
+  v1.0.15 rebaseline에서 V/평형 2개는 보존, 유한전류·온도·
+  facade 11개 array는 변경됐다.
+- Rebaseline genealogy:
+  commit `03dab9221d9b017501a1a9d391ce8825dd440106`에서
+  pointwise-memory code와 golden만 변경됐고 harness는 그대로다.
+  저장 delta와 현 code delta는 \(4.33\times10^{-15}\) 이내로
+  일치한다.
+- Golden runtime/authority:
+  각 version bit-exact 1/13, `rtol=0, atol=1e-12` 13/13이다.
+  `n_T1`, Einstein, LCO, direct-LV, order/history, entropy/heat,
+  SI 3600, experimental/optimizer coverage는 없다. evidence class는
+  `DERIVED_MODEL_OUTPUT_SNAPSHOT`, status는
+  `CONDITIONAL_P059_GOLDEN_NPZ`다.
+- Phase 059 golden evidence:
+  `Codex/results/PHASE_059_GOLDEN_NPZ_AUDIT.json`,
+  `Codex/results/PHASE_059_GOLDEN_NPZ_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_golden_npz.py`
+  (`PASS_P059_GOLDEN_NPZ`, 46/46 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -465,16 +486,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 34.5:
-두 golden NPZ의 모든 key/shape/dtype/array를 해당 code로
-재생성해 bit-exact와 tolerance match를 분리하고, v1.0.15
-rebaseline이 고정한 architecture와 미검사 결함을 판정한다.
+Phase 059 Step 35.1:
+18 PDF 492 pages를 전 페이지 render하고 blank, glyph, font,
+overfull, crop, clipped equation/table/figure와 label-page 관계를
+기계·시각 검독한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–34.4.
+Phase 059 Steps 33.1–34.5.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
