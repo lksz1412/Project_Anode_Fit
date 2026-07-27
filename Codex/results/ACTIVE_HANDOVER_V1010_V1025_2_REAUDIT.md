@@ -315,10 +315,13 @@
 
 ## Next Exact Step
 
-Phase 059 진입 전 상세 계획서 작성:
-v1.0.14–v1.0.18.2의 source/blob/version 경계, 전문 검독 chunk,
-독립 probe, artifact lineage, claim disposition과 gate를 세부
-substep으로 고정한다. 계획 승인 후 첫 실행은 Step 33.1이다.
+Phase 059 Step 33.1:
+Phase 056 manifest에서 v1.0.14, v1.0.15, v1.0.16, v1.0.17,
+v1.0.18.1, v1.0.18.2의 117 paths/93 unique blobs를
+content-addressed queue로 추출한다. 독립 `v1.0.18` directory는
+없으므로 추정하지 않는다.
+세부 계획:
+`Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5.
