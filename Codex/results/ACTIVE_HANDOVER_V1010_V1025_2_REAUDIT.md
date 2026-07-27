@@ -371,6 +371,25 @@
   `Codex/results/PHASE_059_COMPLETION_AUTHORITY_REVIEW.md`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_completion_claims.py`
   (`PASS_P059_COMPLETION_CLAIMS`, 26/26 checks).
+- Phase 059 production-code lineage:
+  4 unique blobs/6 occurrence paths/3,704행을 AST/API/default/call/key/
+  literal-dataset index로 고정하고 3 exact code patch를 생성했다.
+  v1.0.16=v1.0.17=v1.0.18.1은 동일 blob이다.
+- Production-code static findings:
+  13건 중 CRITICAL 5건이다. voltage sorting이 chronology를
+  제거하고, direct `L_V`가 zero-current limit를 우회하며,
+  affinity가 cutoff 값 하나로 동결되고, C-rate/Q-cell 단위가
+  3600배 모호하며, doped high-voltage LCO scope가 없다.
+  추가로 finite-window initial state, `_dwdT` fallback, mean-\(T\)
+  kinetics, Einstein Tref guard, frozen LCO electronic term과
+  dormant Einstein capability가 OPEN이다.
+- Phase 059 code-index evidence:
+  `Codex/results/PHASE_059_PRODUCTION_CODE_INDEX.json`,
+  `Codex/results/PHASE_059_PRODUCTION_CODE_DIFF.json`,
+  `Codex/results/PHASE_059_PRODUCTION_CODE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/code_diffs/`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_code_index.py`
+  (`PASS_P059_PRODUCTION_CODE_INDEX_AND_DIFF`, 31/31 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -393,17 +412,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 34.1:
-production code 4 unique blob을 전문 재검독하고 public API, state,
-default, call graph와 AST exact diff를 만든다. v1.0.16,
-v1.0.17, v1.0.18.1의 동일 blob/copy-forward를 별도 진전으로
-세지 않는다.
+Phase 059 Step 34.2:
+test 12개와 demo 18개 unique blob의 모든 assertion, tolerance,
+printed-only check, golden path, import path와 미검사 branch를
+claim matrix에 기록한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–33.5.
+Phase 059 Steps 33.1–34.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

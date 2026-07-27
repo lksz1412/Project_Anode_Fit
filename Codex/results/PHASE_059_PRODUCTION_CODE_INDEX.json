@@ -1,0 +1,3862 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Phase 059 Step 34.1 production code AST/API/default/call inventory",
+  "status": "PASS_P059_PRODUCTION_CODE_INDEX",
+  "authority_boundary": "Static source inventory only; it does not certify runtime behavior, test adequacy, theory conformance, or experimental validity.",
+  "unique_blob_count": 4,
+  "occurrence_path_count": 6,
+  "total_line_count": 3704,
+  "modules": [
+    {
+      "representative_path": "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py",
+      "occurrence_paths": [
+        "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py"
+      ],
+      "git_blob_sha": "a4d8ccca50dac3c42e410dfa872e9433140d748a",
+      "sha256": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+      "byte_count": 53022,
+      "line_count": 904,
+      "imports": [
+        "from __future__ import annotations",
+        "import numpy as np",
+        "from typing import Dict, Any, List, Union, Callable, Optional, Tuple"
+      ],
+      "module_constants": {
+        "R": 8.314,
+        "F": 96485.0,
+        "EV_TO_J": 1.602176634e-19
+      },
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 218,
+          "line_end": 648,
+          "bases": [],
+          "methods": [
+            "GraphiteAnodeDischargeDQDV.__init__",
+            "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+            "GraphiteAnodeDischargeDQDV._n_factor",
+            "GraphiteAnodeDischargeDQDV._width",
+            "GraphiteAnodeDischargeDQDV._chi_d",
+            "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+            "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+            "GraphiteAnodeDischargeDQDV.equilibrium",
+            "GraphiteAnodeDischargeDQDV.dqdv",
+            "GraphiteAnodeDischargeDQDV.curve",
+            "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+            "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+            "GraphiteAnodeDischargeDQDV.reversible_heat",
+            "GraphiteAnodeDischargeDQDV.irreversible_heat",
+            "GraphiteAnodeDischargeDQDV._direction_to_sigma"
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 683,
+          "line_end": 726,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "methods": [
+            "LCOCathodeDQDV._effective_dS_rxn"
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 75,
+          "line_end": 76,
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)",
+          "source_sha256": "6a2ec6d75765e36a2f8d5ffa7253d29ee62593c6337da1ac2835d723846a0b3b",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 79,
+          "line_end": 80,
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)",
+          "source_sha256": "e6ccfaca72742e557262ca2bf1dd355d17a2fb79947f5be0fc85bfbbfbf7d8c8",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "name": "func_U_j_hys",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 83,
+          "line_end": 94,
+          "signature": "def func_U_j_hys(T: float, U_j: float, Omega: float, gamma: float, s: int=1, last_eta: float=1.0, last_rest: int=600)",
+          "source_sha256": "2746731cc7ec849477fdd22511baffecee7f498880cebcff413ef30f5e5a15db",
+          "calls": [
+            "np.arctanh",
+            "np.sqrt"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 97,
+          "line_end": 100,
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)",
+          "source_sha256": "61fe3aa282921181ab746da409bad6bd52c1587d452e891c0a6a56bc715ce100",
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 103,
+          "line_end": 110,
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)",
+          "source_sha256": "d3f928c7044f2f66733c9c961574db32d47fadfbd53588721c09ddc7ba41d6de",
+          "calls": [
+            "np.exp",
+            "np.log"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_causal_lowpass",
+          "name": "_causal_lowpass",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 113,
+          "line_end": 131,
+          "signature": "def _causal_lowpass(source_signal: np.ndarray, grid_step: float, lag_length: float)",
+          "source_sha256": "23faf726b937c2d457b8fcb7e167811f44a2cda66aaec4080dd61de43f887258",
+          "calls": [
+            "float",
+            "lfilter",
+            "np.array",
+            "np.empty_like",
+            "np.exp",
+            "np.isfinite",
+            "range",
+            "source_signal.copy"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 136,
+          "line_end": 143,
+          "signature": "def func_dU_hys(T: float, Omega: float)",
+          "source_sha256": "5272eb529cc577c8dc02695d87bddcf57a90ffecc23ded46c2b8cc602c36d839",
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 146,
+          "line_end": 151,
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)",
+          "source_sha256": "59b1511e0fed2f2c338963067a8f1bce08d588d9acc3e6e6bcdec9c73e67cf43",
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 155,
+          "line_end": 158,
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)",
+          "source_sha256": "2f8816c867117e41c0557172ac0ecace4df9b8b51081be1988f80502a0bdd790",
+          "calls": [
+            "float"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 161,
+          "line_end": 166,
+          "signature": "def func_chi_d(chi: float, sigma_d: int)",
+          "source_sha256": "c0c6d39734de3f0d28bb01bf90cf56d5ce4a967fd16669c62a8373859a7bf174",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 173,
+          "line_end": 189,
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)",
+          "source_sha256": "e7f21503d1d34208962fb5c090a8501a3e542181495460c45e00524372bc0274",
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 193,
+          "line_end": 198,
+          "signature": "def _finite(name: str, value: float)",
+          "source_sha256": "8a32d3f392762c1ef779202481f378f05a8d2d3771eec16e07eef07b8bc00e8e",
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 201,
+          "line_end": 206,
+          "signature": "def _finite_pos(name: str, value: float)",
+          "source_sha256": "f1efb9db7b04779e8c0c04a209c92a6ea979da712f19a8c39606e1e89ed1c3b8",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 209,
+          "line_end": 214,
+          "signature": "def _finite_nonneg(name: str, value: float)",
+          "source_sha256": "bc2ce80d012bb8bbaa643d45f7a29643f50899e023e3c343fc5c868e52e6d820",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "SPECIAL",
+          "line_start": 251,
+          "line_end": 289,
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, grid_pad_lo: float=0.15, grid_pad_hi: float=0.15, n_work_min: int=2048, min_lag_grid_steps: float=2.0, v_span_floor: float=1e-06, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)",
+          "source_sha256": "3ca8d763fe36be722a4079a8158ec65e752eda0f3a8d0ba59bd9658a2a2f02af",
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "int",
+            "self._build_seed_L_V"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 292,
+          "line_end": 299,
+          "signature": "def _build_seed_L_V(self, T: float, I: float, Q_cell: float)",
+          "source_sha256": "d163a03b04075b0ee7a5f4bb3dde07152deb382f1880bd0830517f29c2bb56aa",
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 302,
+          "line_end": 308,
+          "signature": "def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "e505fe8a914a8b0d4ffcffb699a9cbccd31f6c73a1ed89d5658f8c766d22a734",
+          "calls": [
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "w"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 311,
+          "line_end": 314,
+          "signature": "def _width(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "a3844cd85c8926f05b8ec72ba9195715e1b115b89f4937d970aa1e09e3520e2d",
+          "calls": [
+            "func_w",
+            "self._n_factor"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 317,
+          "line_end": 320,
+          "signature": "def _chi_d(self, sigma_d: int)",
+          "source_sha256": "6be3b11741ecb315ddbbb970f3e646382ef0d6be9555aa7750b2cf02f1c958d4",
+          "calls": [
+            "float",
+            "self.chi_split"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 323,
+          "line_end": 330,
+          "signature": "def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int, use_dH_eff: Optional[bool]=None)",
+          "source_sha256": "bdeb2533a6d7f4d55d60d0c5581027aca3c89a43736c95eb880ef1262b3257f4",
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 333,
+          "line_end": 377,
+          "signature": "def _resolve_lag_length(self, transition: Dict[str, Any], T: float, I: float, Q_cell: float, n_j: float, sigma_d: int=+1)",
+          "source_sha256": "e54b365b6d3bf0e89bd631171510031d4e4e805eb1f0aba9b538e14b5c8a635f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ],
+          "transition_keys": [
+            "A_cap_RT",
+            "L_V",
+            "Omega",
+            "dH_a",
+            "dS_a",
+            "dVdq_qa",
+            "use_dH_eff",
+            "z_cut"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 380,
+          "line_end": 397,
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "d7370360cc095130143eb3bd18821484bf290054bf44567969033748c86fc3c5",
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 400,
+          "line_end": 518,
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)",
+          "source_sha256": "2de3761648d79bae6ac657e440b8d1c5b0abf5902207d50791600b01f13f3c4e",
+          "calls": [
+            "ValueError",
+            "_causal_lowpass",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "max",
+            "np.all",
+            "np.any",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.full_like",
+            "np.interp",
+            "np.isfinite",
+            "np.linspace",
+            "np.max",
+            "np.mean",
+            "np.min",
+            "np.ones",
+            "np.ones_like",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Omega",
+            "Q",
+            "U",
+            "dH_rxn",
+            "gamma",
+            "h_eta"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 521,
+          "line_end": 551,
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)",
+          "source_sha256": "6441140e852b66962a102c98d19a9f55c472fe844fe74c2e55c8bb4eb1f7dda8",
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 554,
+          "line_end": 563,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "d0b64c7b8d6bf1b0481c97ba5e50e59f5f66dde7653f0a895a7b9c3c3a4f2892",
+          "calls": [],
+          "transition_keys": [
+            "dS_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 565,
+          "line_end": 609,
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "20a77b42afdeed6c7404110bd7fa1c2db9d379742c83096a29c02f443487f9c6",
+          "calls": [
+            "_finite_pos",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn",
+            "n"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 611,
+          "line_end": 622,
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)",
+          "source_sha256": "c09d5556608895a67c5bbebe6c9102ebb78fa6ab2a577b97446cc9a4ff592998",
+          "calls": [
+            "_finite_pos",
+            "float",
+            "self.entropy_coefficient"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 624,
+          "line_end": 632,
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)",
+          "source_sha256": "cb34ba291dfbb380f94849f1561fc9a01b59772a81fd8bb0c8232ecd487ef0de",
+          "calls": [
+            "np.asarray"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 635,
+          "line_end": 648,
+          "signature": "def _direction_to_sigma(direction: Union[int, str])",
+          "source_sha256": "7f706563f27f13e66f2ff702a1fdca9de0511ffc87d5058822f218d5042b077f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 709,
+          "line_end": 726,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "93594a07b85985ba1f207dc7b069f5a76daffebfd021e935494b1f5970b2398e",
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "dS_rxn",
+            "dx_MIT",
+            "electronic",
+            "g_max_eV",
+            "x_MIT",
+            "x_center"
+          ]
+        }
+      ],
+      "public_api": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "signature": "def func_U_j_hys(T: float, U_j: float, Omega: float, gamma: float, s: int=1, last_eta: float=1.0, last_rest: int=600)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, grid_pad_lo: float=0.15, grid_pad_hi: float=0.15, n_work_min: int=2048, min_lag_grid_steps: float=2.0, v_span_floor: float=1e-06, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "datasets": {
+        "LCO_MSMR_LIT": {
+          "transition_count": 3,
+          "transition_key_sets": [
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "dx_MIT",
+              "electronic",
+              "g_max_eV",
+              "n",
+              "w",
+              "x_MIT",
+              "x_center"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+          "values": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -391016.1,
+              "dS_rxn": 6.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.85,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.85,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -375554.4,
+              "dS_rxn": -4.0,
+              "n": 1.0
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        "GRAPHITE_STAGING_LIT": {
+          "transition_count": 4,
+          "transition_key_sets": [
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+          "values": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "representative_path": "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py",
+      "occurrence_paths": [
+        "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py"
+      ],
+      "git_blob_sha": "28079e37e954a605378e3c110206da31be331ddd",
+      "sha256": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+      "byte_count": 52723,
+      "line_count": 895,
+      "imports": [
+        "from __future__ import annotations",
+        "import numpy as np",
+        "from typing import Dict, Any, List, Union, Callable, Optional, Tuple"
+      ],
+      "module_constants": {
+        "R": 8.314,
+        "F": 96485.0,
+        "_LAG_RESOLVE_DECAY_CAP": 40.0,
+        "EV_TO_J": 1.602176634e-19
+      },
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 219,
+          "line_end": 639,
+          "bases": [],
+          "methods": [
+            "GraphiteAnodeDischargeDQDV.__init__",
+            "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+            "GraphiteAnodeDischargeDQDV._n_factor",
+            "GraphiteAnodeDischargeDQDV._width",
+            "GraphiteAnodeDischargeDQDV._chi_d",
+            "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+            "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+            "GraphiteAnodeDischargeDQDV.equilibrium",
+            "GraphiteAnodeDischargeDQDV.dqdv",
+            "GraphiteAnodeDischargeDQDV.curve",
+            "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+            "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+            "GraphiteAnodeDischargeDQDV.reversible_heat",
+            "GraphiteAnodeDischargeDQDV.irreversible_heat",
+            "GraphiteAnodeDischargeDQDV._direction_to_sigma"
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 674,
+          "line_end": 717,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "methods": [
+            "LCOCathodeDQDV._effective_dS_rxn"
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 81,
+          "line_end": 82,
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)",
+          "source_sha256": "6a2ec6d75765e36a2f8d5ffa7253d29ee62593c6337da1ac2835d723846a0b3b",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 85,
+          "line_end": 86,
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)",
+          "source_sha256": "e6ccfaca72742e557262ca2bf1dd355d17a2fb79947f5be0fc85bfbbfbf7d8c8",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 89,
+          "line_end": 92,
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)",
+          "source_sha256": "61fe3aa282921181ab746da409bad6bd52c1587d452e891c0a6a56bc715ce100",
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 95,
+          "line_end": 102,
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)",
+          "source_sha256": "d3f928c7044f2f66733c9c961574db32d47fadfbd53588721c09ddc7ba41d6de",
+          "calls": [
+            "np.exp",
+            "np.log"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_causal_memory_pointwise",
+          "name": "_causal_memory_pointwise",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 105,
+          "line_end": 133,
+          "signature": "def _causal_memory_pointwise(V_prog: np.ndarray, ksi_eq: np.ndarray, lag_length: float)",
+          "source_sha256": "5e6a817655888082a4df3fc38b1bc6e412960a61417a15a34f47a33f6b54373c",
+          "calls": [
+            "abs",
+            "float",
+            "np.empty",
+            "np.exp",
+            "range"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 138,
+          "line_end": 145,
+          "signature": "def func_dU_hys(T: float, Omega: float)",
+          "source_sha256": "8d5a19612e27f3720332b3df42d5e917b8d6b2308e2aeb02224ecedcfafe4814",
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 148,
+          "line_end": 152,
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)",
+          "source_sha256": "2fe53659cb16cdaa50f2410db9f5742c518fe47586dd509cd98d226b254fd6f6",
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 156,
+          "line_end": 159,
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)",
+          "source_sha256": "2f8816c867117e41c0557172ac0ecace4df9b8b51081be1988f80502a0bdd790",
+          "calls": [
+            "float"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 162,
+          "line_end": 167,
+          "signature": "def func_chi_d(chi: float, sigma_d: int)",
+          "source_sha256": "c0c6d39734de3f0d28bb01bf90cf56d5ce4a967fd16669c62a8373859a7bf174",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 174,
+          "line_end": 190,
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)",
+          "source_sha256": "e7f21503d1d34208962fb5c090a8501a3e542181495460c45e00524372bc0274",
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 194,
+          "line_end": 199,
+          "signature": "def _finite(name: str, value: float)",
+          "source_sha256": "8a32d3f392762c1ef779202481f378f05a8d2d3771eec16e07eef07b8bc00e8e",
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 202,
+          "line_end": 207,
+          "signature": "def _finite_pos(name: str, value: float)",
+          "source_sha256": "f1efb9db7b04779e8c0c04a209c92a6ea979da712f19a8c39606e1e89ed1c3b8",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 210,
+          "line_end": 215,
+          "signature": "def _finite_nonneg(name: str, value: float)",
+          "source_sha256": "bc2ce80d012bb8bbaa643d45f7a29643f50899e023e3c343fc5c868e52e6d820",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "SPECIAL",
+          "line_start": 252,
+          "line_end": 282,
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)",
+          "source_sha256": "dd9e13705c4ccfa67c8b3aa9718bab41f0bb38a5b23fa16e9f0956d05ab18cb5",
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "self._build_seed_L_V"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 285,
+          "line_end": 292,
+          "signature": "def _build_seed_L_V(self, T: float, I: float, Q_cell: float)",
+          "source_sha256": "d163a03b04075b0ee7a5f4bb3dde07152deb382f1880bd0830517f29c2bb56aa",
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 295,
+          "line_end": 301,
+          "signature": "def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "e505fe8a914a8b0d4ffcffb699a9cbccd31f6c73a1ed89d5658f8c766d22a734",
+          "calls": [
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "w"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 304,
+          "line_end": 307,
+          "signature": "def _width(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "a3844cd85c8926f05b8ec72ba9195715e1b115b89f4937d970aa1e09e3520e2d",
+          "calls": [
+            "func_w",
+            "self._n_factor"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 310,
+          "line_end": 313,
+          "signature": "def _chi_d(self, sigma_d: int)",
+          "source_sha256": "6be3b11741ecb315ddbbb970f3e646382ef0d6be9555aa7750b2cf02f1c958d4",
+          "calls": [
+            "float",
+            "self.chi_split"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 316,
+          "line_end": 323,
+          "signature": "def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int, use_dH_eff: Optional[bool]=None)",
+          "source_sha256": "bdeb2533a6d7f4d55d60d0c5581027aca3c89a43736c95eb880ef1262b3257f4",
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 326,
+          "line_end": 370,
+          "signature": "def _resolve_lag_length(self, transition: Dict[str, Any], T: float, I: float, Q_cell: float, n_j: float, sigma_d: int=+1)",
+          "source_sha256": "e54b365b6d3bf0e89bd631171510031d4e4e805eb1f0aba9b538e14b5c8a635f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ],
+          "transition_keys": [
+            "A_cap_RT",
+            "L_V",
+            "Omega",
+            "dH_a",
+            "dS_a",
+            "dVdq_qa",
+            "use_dH_eff",
+            "z_cut"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 373,
+          "line_end": 390,
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "d7370360cc095130143eb3bd18821484bf290054bf44567969033748c86fc3c5",
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 393,
+          "line_end": 509,
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)",
+          "source_sha256": "89f70a2ca3f07e5bea36e50798eecacbc30dd64ced44ec8a6982813fb928ec6b",
+          "calls": [
+            "ValueError",
+            "_causal_memory_pointwise",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.abs",
+            "np.all",
+            "np.any",
+            "np.arange",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.diff",
+            "np.empty",
+            "np.full",
+            "np.full_like",
+            "np.isfinite",
+            "np.mean",
+            "np.median",
+            "np.ones_like",
+            "np.zeros",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Omega",
+            "Q",
+            "U",
+            "dH_rxn",
+            "gamma",
+            "h_eta"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 512,
+          "line_end": 542,
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)",
+          "source_sha256": "6441140e852b66962a102c98d19a9f55c472fe844fe74c2e55c8bb4eb1f7dda8",
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 545,
+          "line_end": 554,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "d0b64c7b8d6bf1b0481c97ba5e50e59f5f66dde7653f0a895a7b9c3c3a4f2892",
+          "calls": [],
+          "transition_keys": [
+            "dS_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 556,
+          "line_end": 600,
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "20a77b42afdeed6c7404110bd7fa1c2db9d379742c83096a29c02f443487f9c6",
+          "calls": [
+            "_finite_pos",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn",
+            "n"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 602,
+          "line_end": 613,
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)",
+          "source_sha256": "c09d5556608895a67c5bbebe6c9102ebb78fa6ab2a577b97446cc9a4ff592998",
+          "calls": [
+            "_finite_pos",
+            "float",
+            "self.entropy_coefficient"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 615,
+          "line_end": 623,
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)",
+          "source_sha256": "cb34ba291dfbb380f94849f1561fc9a01b59772a81fd8bb0c8232ecd487ef0de",
+          "calls": [
+            "np.asarray"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 626,
+          "line_end": 639,
+          "signature": "def _direction_to_sigma(direction: Union[int, str])",
+          "source_sha256": "7f706563f27f13e66f2ff702a1fdca9de0511ffc87d5058822f218d5042b077f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 700,
+          "line_end": 717,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "93594a07b85985ba1f207dc7b069f5a76daffebfd021e935494b1f5970b2398e",
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "dS_rxn",
+            "dx_MIT",
+            "electronic",
+            "g_max_eV",
+            "x_MIT",
+            "x_center"
+          ]
+        }
+      ],
+      "public_api": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "datasets": {
+        "LCO_MSMR_LIT": {
+          "transition_count": 3,
+          "transition_key_sets": [
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "dx_MIT",
+              "electronic",
+              "g_max_eV",
+              "n",
+              "w",
+              "x_MIT",
+              "x_center"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+          "values": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -391016.1,
+              "dS_rxn": 6.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.85,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.85,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -375554.4,
+              "dS_rxn": -4.0,
+              "n": 1.0
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        "GRAPHITE_STAGING_LIT": {
+          "transition_count": 4,
+          "transition_key_sets": [
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+          "values": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "representative_path": "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+      "occurrence_paths": [
+        "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+        "Claude/docs/v1.0.17/Anode_Fit_v1.0.17.py",
+        "Claude/docs/v1.0.18.1/Anode_Fit_v1.0.18.1.py"
+      ],
+      "git_blob_sha": "45fdfcb6d55f3f65fb9bf004b81b6faae5ccc8b3",
+      "sha256": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+      "byte_count": 55421,
+      "line_count": 930,
+      "imports": [
+        "from __future__ import annotations",
+        "import numpy as np",
+        "from typing import Dict, Any, List, Union, Callable, Optional, Tuple"
+      ],
+      "module_constants": {
+        "R": 8.314,
+        "F": 96485.0,
+        "_LAG_RESOLVE_DECAY_CAP": 40.0,
+        "EV_TO_J": 1.602176634e-19
+      },
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 219,
+          "line_end": 674,
+          "bases": [],
+          "methods": [
+            "GraphiteAnodeDischargeDQDV.__init__",
+            "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+            "GraphiteAnodeDischargeDQDV._n_factor",
+            "GraphiteAnodeDischargeDQDV._width",
+            "GraphiteAnodeDischargeDQDV._dwdT",
+            "GraphiteAnodeDischargeDQDV._chi_d",
+            "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+            "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+            "GraphiteAnodeDischargeDQDV.equilibrium",
+            "GraphiteAnodeDischargeDQDV.dqdv",
+            "GraphiteAnodeDischargeDQDV.curve",
+            "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+            "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+            "GraphiteAnodeDischargeDQDV.reversible_heat",
+            "GraphiteAnodeDischargeDQDV.irreversible_heat",
+            "GraphiteAnodeDischargeDQDV._direction_to_sigma"
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 709,
+          "line_end": 752,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "methods": [
+            "LCOCathodeDQDV._effective_dS_rxn"
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 81,
+          "line_end": 82,
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)",
+          "source_sha256": "6a2ec6d75765e36a2f8d5ffa7253d29ee62593c6337da1ac2835d723846a0b3b",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 85,
+          "line_end": 86,
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)",
+          "source_sha256": "e6ccfaca72742e557262ca2bf1dd355d17a2fb79947f5be0fc85bfbbfbf7d8c8",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 89,
+          "line_end": 92,
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)",
+          "source_sha256": "61fe3aa282921181ab746da409bad6bd52c1587d452e891c0a6a56bc715ce100",
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 95,
+          "line_end": 102,
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)",
+          "source_sha256": "d3f928c7044f2f66733c9c961574db32d47fadfbd53588721c09ddc7ba41d6de",
+          "calls": [
+            "np.exp",
+            "np.log"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_causal_memory_pointwise",
+          "name": "_causal_memory_pointwise",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 105,
+          "line_end": 133,
+          "signature": "def _causal_memory_pointwise(V_prog: np.ndarray, ksi_eq: np.ndarray, lag_length: float)",
+          "source_sha256": "5e6a817655888082a4df3fc38b1bc6e412960a61417a15a34f47a33f6b54373c",
+          "calls": [
+            "abs",
+            "float",
+            "np.empty",
+            "np.exp",
+            "range"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 138,
+          "line_end": 145,
+          "signature": "def func_dU_hys(T: float, Omega: float)",
+          "source_sha256": "8d5a19612e27f3720332b3df42d5e917b8d6b2308e2aeb02224ecedcfafe4814",
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 148,
+          "line_end": 152,
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)",
+          "source_sha256": "2fe53659cb16cdaa50f2410db9f5742c518fe47586dd509cd98d226b254fd6f6",
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 156,
+          "line_end": 159,
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)",
+          "source_sha256": "2f8816c867117e41c0557172ac0ecace4df9b8b51081be1988f80502a0bdd790",
+          "calls": [
+            "float"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 162,
+          "line_end": 167,
+          "signature": "def func_chi_d(chi: float, sigma_d: int)",
+          "source_sha256": "c0c6d39734de3f0d28bb01bf90cf56d5ce4a967fd16669c62a8373859a7bf174",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 174,
+          "line_end": 190,
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)",
+          "source_sha256": "e7f21503d1d34208962fb5c090a8501a3e542181495460c45e00524372bc0274",
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 194,
+          "line_end": 199,
+          "signature": "def _finite(name: str, value: float)",
+          "source_sha256": "8a32d3f392762c1ef779202481f378f05a8d2d3771eec16e07eef07b8bc00e8e",
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 202,
+          "line_end": 207,
+          "signature": "def _finite_pos(name: str, value: float)",
+          "source_sha256": "f1efb9db7b04779e8c0c04a209c92a6ea979da712f19a8c39606e1e89ed1c3b8",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 210,
+          "line_end": 215,
+          "signature": "def _finite_nonneg(name: str, value: float)",
+          "source_sha256": "bc2ce80d012bb8bbaa643d45f7a29643f50899e023e3c343fc5c868e52e6d820",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "SPECIAL",
+          "line_start": 252,
+          "line_end": 282,
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)",
+          "source_sha256": "dd9e13705c4ccfa67c8b3aa9718bab41f0bb38a5b23fa16e9f0956d05ab18cb5",
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "self._build_seed_L_V"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 285,
+          "line_end": 292,
+          "signature": "def _build_seed_L_V(self, T: float, I: float, Q_cell: float)",
+          "source_sha256": "d163a03b04075b0ee7a5f4bb3dde07152deb382f1880bd0830517f29c2bb56aa",
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 295,
+          "line_end": 314,
+          "signature": "def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "b72827e38ab795fa24efa5cba1c2e115488497e8ed2457dc8181a1f2e39a2617",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "np.asarray",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "n_T1",
+            "n_T_ref",
+            "w"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 317,
+          "line_end": 324,
+          "signature": "def _width(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "fce20335aca916de90768ada7d8911759e9470b2a75fca56522e40749c1d4ca5",
+          "calls": [
+            "ValueError",
+            "func_w",
+            "np.all",
+            "np.asarray",
+            "self._n_factor"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._dwdT",
+          "name": "_dwdT",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 327,
+          "line_end": 339,
+          "signature": "def _dwdT(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "363bf711c3b5eb41e2a398786d06cd74ec18cfd84d7d94a75bb2bc884e4a362a",
+          "calls": [
+            "_finite",
+            "np.asarray",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "n_T1",
+            "n_T_ref"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 342,
+          "line_end": 345,
+          "signature": "def _chi_d(self, sigma_d: int)",
+          "source_sha256": "6be3b11741ecb315ddbbb970f3e646382ef0d6be9555aa7750b2cf02f1c958d4",
+          "calls": [
+            "float",
+            "self.chi_split"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 348,
+          "line_end": 355,
+          "signature": "def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int, use_dH_eff: Optional[bool]=None)",
+          "source_sha256": "bdeb2533a6d7f4d55d60d0c5581027aca3c89a43736c95eb880ef1262b3257f4",
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 358,
+          "line_end": 402,
+          "signature": "def _resolve_lag_length(self, transition: Dict[str, Any], T: float, I: float, Q_cell: float, n_j: float, sigma_d: int=+1)",
+          "source_sha256": "e54b365b6d3bf0e89bd631171510031d4e4e805eb1f0aba9b538e14b5c8a635f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ],
+          "transition_keys": [
+            "A_cap_RT",
+            "L_V",
+            "Omega",
+            "dH_a",
+            "dS_a",
+            "dVdq_qa",
+            "use_dH_eff",
+            "z_cut"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 405,
+          "line_end": 422,
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "d7370360cc095130143eb3bd18821484bf290054bf44567969033748c86fc3c5",
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 425,
+          "line_end": 541,
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)",
+          "source_sha256": "89f70a2ca3f07e5bea36e50798eecacbc30dd64ced44ec8a6982813fb928ec6b",
+          "calls": [
+            "ValueError",
+            "_causal_memory_pointwise",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.abs",
+            "np.all",
+            "np.any",
+            "np.arange",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.diff",
+            "np.empty",
+            "np.full",
+            "np.full_like",
+            "np.isfinite",
+            "np.mean",
+            "np.median",
+            "np.ones_like",
+            "np.zeros",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Omega",
+            "Q",
+            "U",
+            "dH_rxn",
+            "gamma",
+            "h_eta"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 544,
+          "line_end": 574,
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)",
+          "source_sha256": "6441140e852b66962a102c98d19a9f55c472fe844fe74c2e55c8bb4eb1f7dda8",
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 577,
+          "line_end": 586,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "d0b64c7b8d6bf1b0481c97ba5e50e59f5f66dde7653f0a895a7b9c3c3a4f2892",
+          "calls": [],
+          "transition_keys": [
+            "dS_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 588,
+          "line_end": 635,
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)",
+          "source_sha256": "38553e7253d6b6543b256aeaa2331e515a1d2e9480e2b2cc52cffb18e00b14b7",
+          "calls": [
+            "ValueError",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.all",
+            "np.any",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.isfinite",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._dwdT",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 637,
+          "line_end": 648,
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)",
+          "source_sha256": "bc706323ba723cc62a1e4531e57ad22b18c026422dce5d96ced5304ad9bed321",
+          "calls": [
+            "float",
+            "np.asarray",
+            "self.entropy_coefficient"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 650,
+          "line_end": 658,
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)",
+          "source_sha256": "cb34ba291dfbb380f94849f1561fc9a01b59772a81fd8bb0c8232ecd487ef0de",
+          "calls": [
+            "np.asarray"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 661,
+          "line_end": 674,
+          "signature": "def _direction_to_sigma(direction: Union[int, str])",
+          "source_sha256": "7f706563f27f13e66f2ff702a1fdca9de0511ffc87d5058822f218d5042b077f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 735,
+          "line_end": 752,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "93594a07b85985ba1f207dc7b069f5a76daffebfd021e935494b1f5970b2398e",
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "dS_rxn",
+            "dx_MIT",
+            "electronic",
+            "g_max_eV",
+            "x_MIT",
+            "x_center"
+          ]
+        }
+      ],
+      "public_api": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "datasets": {
+        "LCO_MSMR_LIT": {
+          "transition_count": 3,
+          "transition_key_sets": [
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "dx_MIT",
+              "electronic",
+              "g_max_eV",
+              "n",
+              "w",
+              "x_MIT",
+              "x_center"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+          "values": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -391016.1,
+              "dS_rxn": 6.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.85,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.85,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -375554.4,
+              "dS_rxn": -4.0,
+              "n": 1.0
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        "GRAPHITE_STAGING_LIT": {
+          "transition_count": 4,
+          "transition_key_sets": [
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+          "values": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "representative_path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+      "occurrence_paths": [
+        "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py"
+      ],
+      "git_blob_sha": "ff07fff819ca074894cfe00dcc95c3912103caf9",
+      "sha256": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6",
+      "byte_count": 58042,
+      "line_count": 975,
+      "imports": [
+        "from __future__ import annotations",
+        "import numpy as np",
+        "from typing import Dict, Any, List, Union, Callable, Optional, Tuple"
+      ],
+      "module_constants": {
+        "R": 8.314,
+        "F": 96485.0,
+        "_LAG_RESOLVE_DECAY_CAP": 40.0,
+        "EV_TO_J": 1.602176634e-19
+      },
+      "classes": [
+        {
+          "name": "GraphiteAnodeDischargeDQDV",
+          "line_start": 219,
+          "line_end": 719,
+          "bases": [],
+          "methods": [
+            "GraphiteAnodeDischargeDQDV.__init__",
+            "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+            "GraphiteAnodeDischargeDQDV._n_factor",
+            "GraphiteAnodeDischargeDQDV._width",
+            "GraphiteAnodeDischargeDQDV._dwdT",
+            "GraphiteAnodeDischargeDQDV._vib_theta",
+            "GraphiteAnodeDischargeDQDV._S_vib",
+            "GraphiteAnodeDischargeDQDV._vib_dU",
+            "GraphiteAnodeDischargeDQDV._vib_dS",
+            "GraphiteAnodeDischargeDQDV._chi_d",
+            "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+            "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+            "GraphiteAnodeDischargeDQDV.equilibrium",
+            "GraphiteAnodeDischargeDQDV.dqdv",
+            "GraphiteAnodeDischargeDQDV.curve",
+            "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+            "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+            "GraphiteAnodeDischargeDQDV.reversible_heat",
+            "GraphiteAnodeDischargeDQDV.irreversible_heat",
+            "GraphiteAnodeDischargeDQDV._direction_to_sigma"
+          ]
+        },
+        {
+          "name": "LCOCathodeDQDV",
+          "line_start": 754,
+          "line_end": 797,
+          "bases": [
+            "GraphiteAnodeDischargeDQDV"
+          ],
+          "methods": [
+            "LCOCathodeDQDV._effective_dS_rxn"
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "qualified_name": "func_w",
+          "name": "func_w",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 81,
+          "line_end": 82,
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)",
+          "source_sha256": "6a2ec6d75765e36a2f8d5ffa7253d29ee62593c6337da1ac2835d723846a0b3b",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_j",
+          "name": "func_U_j",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 85,
+          "line_end": 86,
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)",
+          "source_sha256": "e6ccfaca72742e557262ca2bf1dd355d17a2fb79947f5be0fc85bfbbfbf7d8c8",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "name": "func_ksi_eq",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 89,
+          "line_end": 92,
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)",
+          "source_sha256": "61fe3aa282921181ab746da409bad6bd52c1587d452e891c0a6a56bc715ce100",
+          "calls": [
+            "func_w",
+            "np.exp",
+            "np.where"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_L_q",
+          "name": "func_L_q",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 95,
+          "line_end": 102,
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)",
+          "source_sha256": "d3f928c7044f2f66733c9c961574db32d47fadfbd53588721c09ddc7ba41d6de",
+          "calls": [
+            "np.exp",
+            "np.log"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_causal_memory_pointwise",
+          "name": "_causal_memory_pointwise",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 105,
+          "line_end": 133,
+          "signature": "def _causal_memory_pointwise(V_prog: np.ndarray, ksi_eq: np.ndarray, lag_length: float)",
+          "source_sha256": "5e6a817655888082a4df3fc38b1bc6e412960a61417a15a34f47a33f6b54373c",
+          "calls": [
+            "abs",
+            "float",
+            "np.empty",
+            "np.exp",
+            "range"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "name": "func_dU_hys",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 138,
+          "line_end": 145,
+          "signature": "def func_dU_hys(T: float, Omega: float)",
+          "source_sha256": "8d5a19612e27f3720332b3df42d5e917b8d6b2308e2aeb02224ecedcfafe4814",
+          "calls": [
+            "float",
+            "np.arctanh",
+            "np.sqrt"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "name": "func_U_branch",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 148,
+          "line_end": 152,
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)",
+          "source_sha256": "2fe53659cb16cdaa50f2410db9f5742c518fe47586dd509cd98d226b254fd6f6",
+          "calls": [
+            "float",
+            "func_dU_hys"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "name": "func_dH_a_eff",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 156,
+          "line_end": 159,
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)",
+          "source_sha256": "2f8816c867117e41c0557172ac0ecace4df9b8b51081be1988f80502a0bdd790",
+          "calls": [
+            "float"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "name": "func_chi_d",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 162,
+          "line_end": 167,
+          "signature": "def func_chi_d(chi: float, sigma_d: int)",
+          "source_sha256": "c0c6d39734de3f0d28bb01bf90cf56d5ce4a967fd16669c62a8373859a7bf174",
+          "calls": [],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "name": "func_dSe_molar",
+          "owner": null,
+          "visibility": "PUBLIC",
+          "line_start": 174,
+          "line_end": 190,
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)",
+          "source_sha256": "e7f21503d1d34208962fb5c090a8501a3e542181495460c45e00524372bc0274",
+          "calls": [
+            "np.asarray",
+            "np.exp"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite",
+          "name": "_finite",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 194,
+          "line_end": 199,
+          "signature": "def _finite(name: str, value: float)",
+          "source_sha256": "8a32d3f392762c1ef779202481f378f05a8d2d3771eec16e07eef07b8bc00e8e",
+          "calls": [
+            "ValueError",
+            "float",
+            "np.isfinite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_pos",
+          "name": "_finite_pos",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 202,
+          "line_end": 207,
+          "signature": "def _finite_pos(name: str, value: float)",
+          "source_sha256": "f1efb9db7b04779e8c0c04a209c92a6ea979da712f19a8c39606e1e89ed1c3b8",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "_finite_nonneg",
+          "name": "_finite_nonneg",
+          "owner": null,
+          "visibility": "PRIVATE",
+          "line_start": 210,
+          "line_end": 215,
+          "signature": "def _finite_nonneg(name: str, value: float)",
+          "source_sha256": "bc2ce80d012bb8bbaa643d45f7a29643f50899e023e3c343fc5c868e52e6d820",
+          "calls": [
+            "ValueError",
+            "_finite"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "name": "__init__",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "SPECIAL",
+          "line_start": 252,
+          "line_end": 282,
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)",
+          "source_sha256": "dd9e13705c4ccfa67c8b3aa9718bab41f0bb38a5b23fa16e9f0956d05ab18cb5",
+          "calls": [
+            "TypeError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "bool",
+            "callable",
+            "self._build_seed_L_V"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._build_seed_L_V",
+          "name": "_build_seed_L_V",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 285,
+          "line_end": 292,
+          "signature": "def _build_seed_L_V(self, T: float, I: float, Q_cell: float)",
+          "source_sha256": "d163a03b04075b0ee7a5f4bb3dde07152deb382f1880bd0830517f29c2bb56aa",
+          "calls": [
+            "float",
+            "np.asarray",
+            "reshape",
+            "seeds.append",
+            "self._n_factor",
+            "self._resolve_lag_length"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._n_factor",
+          "name": "_n_factor",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 295,
+          "line_end": 314,
+          "signature": "def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "b72827e38ab795fa24efa5cba1c2e115488497e8ed2457dc8181a1f2e39a2617",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "np.asarray",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "n_T1",
+            "n_T_ref",
+            "w"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._width",
+          "name": "_width",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 317,
+          "line_end": 324,
+          "signature": "def _width(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "fce20335aca916de90768ada7d8911759e9470b2a75fca56522e40749c1d4ca5",
+          "calls": [
+            "ValueError",
+            "func_w",
+            "np.all",
+            "np.asarray",
+            "self._n_factor"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._dwdT",
+          "name": "_dwdT",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 327,
+          "line_end": 339,
+          "signature": "def _dwdT(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "363bf711c3b5eb41e2a398786d06cd74ec18cfd84d7d94a75bb2bc884e4a362a",
+          "calls": [
+            "_finite",
+            "np.asarray",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "n",
+            "n_T1",
+            "n_T_ref"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._vib_theta",
+          "name": "_vib_theta",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 342,
+          "line_end": 350,
+          "signature": "def _vib_theta(self, tr: Dict[str, Any])",
+          "source_sha256": "46deff780d7b5144d7b196c2dff4ba3585478e3a61137a85407646628dab241d",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "theta_E"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._S_vib",
+          "name": "_S_vib",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 352,
+          "line_end": 358,
+          "signature": "def _S_vib(self, T: ScalarOrArray, theta_E: float)",
+          "source_sha256": "5f4e461600b07530e59314341ffbf374b03f9683d0b4d376764c83732f9e3d6a",
+          "calls": [
+            "np.asarray",
+            "np.exp",
+            "np.expm1",
+            "np.log1p"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._vib_dU",
+          "name": "_vib_dU",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 360,
+          "line_end": 373,
+          "signature": "def _vib_dU(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "9bf715bd91dc7e9b430c7837e4ce9a1ed4c5933339bd76b0c1dfa178f43f62e3",
+          "calls": [
+            "_finite",
+            "dF",
+            "float",
+            "np.asarray",
+            "np.exp",
+            "np.log1p",
+            "self._S_vib",
+            "self._vib_theta",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "theta_E_Tref"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._vib_dS",
+          "name": "_vib_dS",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 375,
+          "line_end": 383,
+          "signature": "def _vib_dS(self, tr: Dict[str, Any], T: ScalarOrArray)",
+          "source_sha256": "fc0f825c344b6f2a7bef9b48fded71863bc3b0f6b4c82a2208850dc3623114ee",
+          "calls": [
+            "_finite",
+            "float",
+            "self._S_vib",
+            "self._vib_theta",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "theta_E_Tref"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_d",
+          "name": "_chi_d",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 386,
+          "line_end": 389,
+          "signature": "def _chi_d(self, sigma_d: int)",
+          "source_sha256": "6be3b11741ecb315ddbbb970f3e646382ef0d6be9555aa7750b2cf02f1c958d4",
+          "calls": [
+            "float",
+            "self.chi_split"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._chi_and_dH_eff",
+          "name": "_chi_and_dH_eff",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 392,
+          "line_end": 399,
+          "signature": "def _chi_and_dH_eff(self, dH_a: float, Omega: float, sigma_d: int, use_dH_eff: Optional[bool]=None)",
+          "source_sha256": "bdeb2533a6d7f4d55d60d0c5581027aca3c89a43736c95eb880ef1262b3257f4",
+          "calls": [
+            "bool",
+            "float",
+            "func_dH_a_eff",
+            "self._chi_d"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+          "name": "_resolve_lag_length",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 402,
+          "line_end": 446,
+          "signature": "def _resolve_lag_length(self, transition: Dict[str, Any], T: float, I: float, Q_cell: float, n_j: float, sigma_d: int=+1)",
+          "source_sha256": "e54b365b6d3bf0e89bd631171510031d4e4e805eb1f0aba9b538e14b5c8a635f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "_finite_nonneg",
+            "_finite_pos",
+            "abs",
+            "float",
+            "func_L_q",
+            "min",
+            "np.isfinite",
+            "self._chi_and_dH_eff",
+            "transition.get"
+          ],
+          "transition_keys": [
+            "A_cap_RT",
+            "L_V",
+            "Omega",
+            "dH_a",
+            "dS_a",
+            "dVdq_qa",
+            "use_dH_eff",
+            "z_cut"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "name": "equilibrium",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 449,
+          "line_end": 466,
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)",
+          "source_sha256": "73dfd0b3ba2c320fe8a59947e147a994af50b38970338a501ed566534a41510f",
+          "calls": [
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.asarray",
+            "np.full_like",
+            "np.ones_like",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._vib_dU",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "name": "dqdv",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 469,
+          "line_end": 585,
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)",
+          "source_sha256": "c1318080543ca2563664bdd4011d58e2ef2e635895e4ace5eeceb177cac5b0e3",
+          "calls": [
+            "ValueError",
+            "_causal_memory_pointwise",
+            "_finite_nonneg",
+            "_finite_pos",
+            "callable",
+            "float",
+            "func_U_branch",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.abs",
+            "np.all",
+            "np.any",
+            "np.arange",
+            "np.argsort",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.diff",
+            "np.empty",
+            "np.full",
+            "np.full_like",
+            "np.isfinite",
+            "np.mean",
+            "np.median",
+            "np.ones_like",
+            "np.zeros",
+            "reshape",
+            "self.Cbg",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._resolve_lag_length",
+            "self._vib_dU",
+            "self._width",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "Omega",
+            "Q",
+            "U",
+            "dH_rxn",
+            "gamma",
+            "h_eta"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "name": "curve",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 588,
+          "line_end": 618,
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)",
+          "source_sha256": "6441140e852b66962a102c98d19a9f55c472fe844fe74c2e55c8bb4eb1f7dda8",
+          "calls": [
+            "_finite_nonneg",
+            "_finite_pos",
+            "self._direction_to_sigma",
+            "self.dqdv"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 621,
+          "line_end": 630,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "d0b64c7b8d6bf1b0481c97ba5e50e59f5f66dde7653f0a895a7b9c3c3a4f2892",
+          "calls": [],
+          "transition_keys": [
+            "dS_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "name": "entropy_coefficient",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 632,
+          "line_end": 680,
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)",
+          "source_sha256": "2076a9573614ce6dff451148633076c3059efe03b4deb69b27ca1e5d7d528aef",
+          "calls": [
+            "ValueError",
+            "float",
+            "func_U_j",
+            "func_ksi_eq",
+            "np.all",
+            "np.any",
+            "np.asarray",
+            "np.atleast_1d",
+            "np.clip",
+            "np.isfinite",
+            "np.log",
+            "np.maximum",
+            "np.where",
+            "np.zeros_like",
+            "self._dwdT",
+            "self._effective_dS_rxn",
+            "self._n_factor",
+            "self._vib_dS",
+            "self._vib_dU",
+            "self._width"
+          ],
+          "transition_keys": [
+            "Q",
+            "U",
+            "dH_rxn"
+          ]
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "name": "reversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 682,
+          "line_end": 693,
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)",
+          "source_sha256": "bc706323ba723cc62a1e4531e57ad22b18c026422dce5d96ced5304ad9bed321",
+          "calls": [
+            "float",
+            "np.asarray",
+            "self.entropy_coefficient"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "name": "irreversible_heat",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PUBLIC",
+          "line_start": 695,
+          "line_end": 703,
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)",
+          "source_sha256": "cb34ba291dfbb380f94849f1561fc9a01b59772a81fd8bb0c8232ecd487ef0de",
+          "calls": [
+            "np.asarray"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV._direction_to_sigma",
+          "name": "_direction_to_sigma",
+          "owner": "GraphiteAnodeDischargeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 706,
+          "line_end": 719,
+          "signature": "def _direction_to_sigma(direction: Union[int, str])",
+          "source_sha256": "7f706563f27f13e66f2ff702a1fdca9de0511ffc87d5058822f218d5042b077f",
+          "calls": [
+            "ValueError",
+            "_finite",
+            "direction.strip",
+            "isinstance",
+            "lower"
+          ],
+          "transition_keys": []
+        },
+        {
+          "qualified_name": "LCOCathodeDQDV._effective_dS_rxn",
+          "name": "_effective_dS_rxn",
+          "owner": "LCOCathodeDQDV",
+          "visibility": "PRIVATE",
+          "line_start": 780,
+          "line_end": 797,
+          "signature": "def _effective_dS_rxn(self, tr: Dict[str, Any], T: Union[float, np.ndarray])",
+          "source_sha256": "93594a07b85985ba1f207dc7b069f5a76daffebfd021e935494b1f5970b2398e",
+          "calls": [
+            "func_dSe_molar",
+            "tr.get"
+          ],
+          "transition_keys": [
+            "dS_rxn",
+            "dx_MIT",
+            "electronic",
+            "g_max_eV",
+            "x_MIT",
+            "x_center"
+          ]
+        }
+      ],
+      "public_api": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "datasets": {
+        "LCO_MSMR_LIT": {
+          "transition_count": 3,
+          "transition_key_sets": [
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "dx_MIT",
+              "electronic",
+              "g_max_eV",
+              "n",
+              "w",
+              "x_MIT",
+              "x_center"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ],
+            [
+              "Q",
+              "U",
+              "dH_rxn",
+              "dS_rxn",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+          "values": [
+            {
+              "U": 3.93,
+              "w": 0.03,
+              "Q": 0.55,
+              "dH_rxn": -391016.1,
+              "dS_rxn": 6.0,
+              "n": 1.0,
+              "electronic": true,
+              "x_center": 0.85,
+              "g_max_eV": 13.0,
+              "x_MIT": 0.85,
+              "dx_MIT": 0.05
+            },
+            {
+              "U": 3.88,
+              "w": 0.024,
+              "Q": 0.3,
+              "dH_rxn": -375554.4,
+              "dS_rxn": -4.0,
+              "n": 1.0
+            },
+            {
+              "U": 4.05,
+              "w": 0.028,
+              "Q": 0.15,
+              "dH_rxn": -391360.0,
+              "dS_rxn": -2.0,
+              "n": 1.0
+            }
+          ]
+        },
+        "GRAPHITE_STAGING_LIT": {
+          "transition_count": 4,
+          "transition_key_sets": [
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ],
+            [
+              "Omega",
+              "Q",
+              "U",
+              "dH_a",
+              "dH_rxn",
+              "dS_a",
+              "dS_rxn",
+              "dVdq_qa",
+              "n",
+              "w"
+            ]
+          ],
+          "literal_sha256": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+          "values": [
+            {
+              "U": 0.21,
+              "w": 0.02,
+              "Q": 0.1,
+              "Omega": 6000.0,
+              "dH_rxn": -11700.0,
+              "dS_rxn": 29.0,
+              "n": 1.0,
+              "dH_a": 48000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.14,
+              "w": 0.016,
+              "Q": 0.12,
+              "Omega": 8000.0,
+              "dH_rxn": -13500.0,
+              "dS_rxn": 0.0,
+              "n": 1.0,
+              "dH_a": 46000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.12,
+              "w": 0.014,
+              "Q": 0.25,
+              "Omega": 10000.0,
+              "dH_rxn": -13100.0,
+              "dS_rxn": -5.0,
+              "n": 1.0,
+              "dH_a": 44000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            },
+            {
+              "U": 0.085,
+              "w": 0.012,
+              "Q": 0.5,
+              "Omega": 13000.0,
+              "dH_rxn": -13000.0,
+              "dS_rxn": -16.0,
+              "n": 1.0,
+              "dH_a": 40000.0,
+              "dS_a": 0.0,
+              "dVdq_qa": 0.3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "review": {
+    "finding_count": 13,
+    "disposition_counts": {
+      "COPY_FORWARD": 1,
+      "CORRECT": 8,
+      "EMPIRICAL_ONLY": 1,
+      "INTERNAL_CAPABILITY_ONLY": 1,
+      "PRESERVE": 1,
+      "REJECT": 1
+    },
+    "severity_counts": {
+      "CRITICAL": 5,
+      "HIGH": 5,
+      "INFO": 2,
+      "MEDIUM": 1
+    },
+    "findings": [
+      {
+        "id": "P059-CODE-001",
+        "title": "Pointwise grid removal is source-confirmed",
+        "disposition": "PRESERVE",
+        "severity": "INFO",
+        "claim": "v1.0.15 removes the work-grid constructor parameters and replaces the low-pass helper with pointwise causal memory.",
+        "consequence": "This satisfies the user's grid-removal architecture direction at source level.",
+        "required_action": "Preserve pointwise evaluation while repairing its trajectory-state contract.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py",
+            "line": 105,
+            "needle": "_causal_memory_pointwise",
+            "source_line": "def _causal_memory_pointwise(V_prog: np.ndarray,"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-018"
+        ]
+      },
+      {
+        "id": "P059-CODE-002",
+        "title": "Voltage sorting destroys supplied trajectory order",
+        "disposition": "CORRECT",
+        "severity": "CRITICAL",
+        "claim": "dqdv sorts V_n by voltage and reconstructs the result, so the memory state depends on the set of voltages rather than the supplied chronological trajectory.",
+        "consequence": "Repeated, reversal, pulse, and nonmonotone protocols cannot carry their actual history.",
+        "required_action": "Accept an explicit monotone segment/time order and evolve a persistent state without sorting away protocol history.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 517,
+            "needle": "order = np.argsort",
+            "source_line": "        order = np.argsort(V_n, kind=\"stable\")"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-017",
+          "P059-CON-018"
+        ]
+      },
+      {
+        "id": "P059-CODE-003",
+        "title": "Finite-window initial state is forced to equilibrium",
+        "disposition": "CORRECT",
+        "severity": "HIGH",
+        "claim": "The first lagged occupancy is set equal to the first equilibrium occupancy.",
+        "consequence": "Prehistory and preparation state are erased at every call.",
+        "required_action": "Expose initial internal state or prehistory and test finite-window sensitivity.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 122,
+            "needle": "out[0] =",
+            "source_line": "    out[0] = float(ksi_eq[0])  # 진행 시작 이전 ξ_eq 상수 근사(하한 자연경계 −∞)"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-019"
+        ]
+      },
+      {
+        "id": "P059-CODE-004",
+        "title": "Direct L_V override has no zero-current limit",
+        "disposition": "CORRECT",
+        "severity": "CRITICAL",
+        "claim": "A transition-level L_V override is returned before the I <= 0 equilibrium condition.",
+        "consequence": "A fitted nonzero lag can survive when current is zero, contradicting the equilibrium limit.",
+        "required_action": "Interpret direct input as a rate coefficient/state timescale or force L_V(I=0)=0.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 412,
+            "needle": "L_V_override",
+            "source_line": "        L_V_override = transition.get('L_V')"
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 418,
+            "needle": "if I <= 0",
+            "source_line": "        if I <= 0 or transition.get('dH_a') is None:"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-021"
+        ]
+      },
+      {
+        "id": "P059-CODE-005",
+        "title": "Local voltage-dependent barrier is frozen at one cutoff affinity",
+        "disposition": "REJECT",
+        "severity": "CRITICAL",
+        "claim": "The affinity A is computed once from z_cut, n, R, and T and is constant across the voltage trace.",
+        "consequence": "The realized barrier and lag do not respond locally to electrode potential as required by the originating experiment.",
+        "required_action": "Derive and evaluate a local electrochemical driving-force/barrier relation at each state.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 430,
+            "needle": "A = float(min",
+            "source_line": "        A = float(min(z_cut * n_safe * R * T, A_cap * R * T))"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-020"
+        ]
+      },
+      {
+        "id": "P059-CODE-006",
+        "title": "C-rate and Q_cell unit contract is ambiguous",
+        "disposition": "CORRECT",
+        "severity": "CRITICAL",
+        "claim": "curve computes I = c_rate * Q_cell while Q_cell is also accepted as generic charge.",
+        "consequence": "If Q_cell is coulombs rather than ampere-hours, current is wrong by a factor of 3600.",
+        "required_action": "Use distinct Q_cell_Ah and Q_cell_C inputs or an explicit unit conversion.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 599,
+            "needle": "C-rate [1/h]",
+            "source_line": "        c_rate    : C-rate [1/h]. |I| = c_rate · Q_cell 로 환산(I_abs 미지정 시)."
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 615,
+            "needle": "I_use = c * Q_cell",
+            "source_line": "            I_use = c * Q_cell          # |I| = C-rate · Q_cell (전류 = 율 × 용량)"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-003",
+          "P059-CON-016"
+        ]
+      },
+      {
+        "id": "P059-CODE-007",
+        "title": "Default thermal width and default dwdT disagree",
+        "disposition": "CORRECT",
+        "severity": "HIGH",
+        "claim": "_n_factor returns default n=1 when neither n nor w exists, but _dwdT returns zero whenever n is absent.",
+        "consequence": "The same transition is thermal in dQ/dV and temperature-frozen in reversible heat.",
+        "required_action": "Make the fallback role explicit and use a single width object for w and its derivative.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 314,
+            "needle": "return 1.0",
+            "source_line": "        return 1.0"
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 332,
+            "needle": "if tr.get('n') is None",
+            "source_line": "        if tr.get('n') is None:"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-011",
+          "P059-CON-023"
+        ]
+      },
+      {
+        "id": "P059-CODE-008",
+        "title": "Lag kinetics collapses local T(V) to one mean temperature",
+        "disposition": "CORRECT",
+        "severity": "HIGH",
+        "claim": "The array temperature is averaged to T_rep and the lag length is resolved once per transition.",
+        "consequence": "Nonisothermal local barrier and relaxation dependence are lost even though peak width remains pointwise in T.",
+        "required_action": "Evaluate the state rate locally in time/charge with T(t) rather than one trace-mean lag length.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 525,
+            "needle": "T_rep = float(np.mean",
+            "source_line": "        T_rep = float(np.mean(T_prog))"
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 565,
+            "needle": "_resolve_lag_length",
+            "source_line": "            lag_len_V = self._resolve_lag_length("
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-016",
+          "P059-CON-020"
+        ]
+      },
+      {
+        "id": "P059-CODE-009",
+        "title": "Einstein reference temperature is finite but not positive",
+        "disposition": "CORRECT",
+        "severity": "MEDIUM",
+        "claim": "theta_E is checked positive, but theta_E_Tref is checked only for finiteness.",
+        "consequence": "Zero or negative reference temperature can enter exponential/logarithmic thermodynamic formulas.",
+        "required_action": "Validate theta_E_Tref with the positive-temperature guard.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 369,
+            "needle": "Tref = _finite(\"theta_E_Tref\"",
+            "source_line": "        Tref = _finite(\"theta_E_Tref\", tr.get('theta_E_Tref', 298.15))"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-030",
+          "P059-CON-031"
+        ]
+      },
+      {
+        "id": "P059-CODE-010",
+        "title": "LCO electronic entropy is frozen at 298.15 K",
+        "disposition": "EMPIRICAL_ONLY",
+        "severity": "HIGH",
+        "claim": "The LCO subclass evaluates the electronic entropy only at a hard-coded reference temperature.",
+        "consequence": "The claimed Sommerfeld temperature scale, implicit composition feedback, and T-squared center shift are absent.",
+        "required_action": "Implement the reaction-specific electronic free energy with explicit x(V,T) coupling and derivatives.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 794,
+            "needle": "T_ref = 298.15",
+            "source_line": "            T_ref = 298.15"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-036",
+          "P059-CON-038"
+        ]
+      },
+      {
+        "id": "P059-CODE-011",
+        "title": "High-voltage doped LCO scope is absent from defaults",
+        "disposition": "CORRECT",
+        "severity": "CRITICAL",
+        "claim": "The LCO dataset has only three generic transitions ending near 4.05 V and no dopant/state descriptors.",
+        "consequence": "It cannot represent the requested doped high-voltage LCO materials or their degradation/phase constraints.",
+        "required_action": "Build literature/data-backed material-specific LCO parameter/state models through the target voltage window.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 730,
+            "needle": "LCO_MSMR_LIT =",
+            "source_line": "LCO_MSMR_LIT = ["
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 748,
+            "needle": "'U': 4.050",
+            "source_line": "        'U': 4.050, 'w': 0.028, 'Q': 0.15,"
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-033",
+          "P059-CON-037"
+        ]
+      },
+      {
+        "id": "P059-CODE-012",
+        "title": "v1.0.16 through v1.0.18.1 is one code blob",
+        "disposition": "COPY_FORWARD",
+        "severity": "INFO",
+        "claim": "The frozen queue maps three version paths to one Git blob.",
+        "consequence": "v1.0.17 and v1.0.18.1 cannot constitute independent production-code progress.",
+        "required_action": "Count them as documentation lineage only.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+            "line": 1,
+            "needle": "# -*- coding: utf-8 -*-",
+            "source_line": "# -*- coding: utf-8 -*-"
+          }
+        ],
+        "contract_ids": []
+      },
+      {
+        "id": "P059-CODE-013",
+        "title": "Einstein capability is inactive in shipped defaults",
+        "disposition": "INTERNAL_CAPABILITY_ONLY",
+        "severity": "HIGH",
+        "claim": "The v1.0.18.2 helpers require theta_E, but neither shipped graphite nor LCO transition dictionaries provide it.",
+        "consequence": "Regression preservation is expected because the new path is dormant; it does not validate material vibrational physics.",
+        "required_action": "Define reaction-specific phonon quantities and validate them on multi-temperature data before activation.",
+        "source_evidence": [
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 344,
+            "needle": "te = tr.get('theta_E')",
+            "source_line": "        te = tr.get('theta_E')"
+          },
+          {
+            "path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+            "line": 804,
+            "needle": "GRAPHITE_STAGING_LIT =",
+            "source_line": "GRAPHITE_STAGING_LIT = ["
+          }
+        ],
+        "contract_ids": [
+          "P059-CON-030",
+          "P059-CON-032"
+        ]
+      }
+    ]
+  }
+}

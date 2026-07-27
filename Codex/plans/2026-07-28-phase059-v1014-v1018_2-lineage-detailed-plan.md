@@ -522,3 +522,46 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   `PASS_P059_COMPLETION_CLAIMS`.
 - 다음은 Step 34.1 production code 4 unique blob의 AST/public
   API/default/call graph와 exact diff를 감사한다.
+
+### 2026-07-28 — Step 34.1
+
+- production code 4 unique blob/6 occurrence path/3,704행을 AST로
+  인덱싱했다. module constants, classes, function/method signature,
+  public API, call set, transition-key access와 literal dataset을
+  source hash와 함께 저장했다.
+- v1.0.14→15, v1.0.15→16, v1.0.16→18.2의 3 exact code diff를
+  endpoint Git blob SHA와 patch SHA-256으로 고정했다.
+- v1.0.16, v1.0.17, v1.0.18.1이 하나의 동일 production-code
+  blob임을 copy-forward로 분리했다.
+- v1.0.15 grid removal/pointwise helper, v1.0.16 `_dwdT`,
+  v1.0.18.2 Einstein helper 4개의 함수 계보를 AST/source hash로
+  확인했다. 세 비교에서 graphite/LCO literal dataset hash는
+  변하지 않았다.
+- 정적 finding 13건을 기록했다. CRITICAL 5건은 input voltage
+  sorting에 의한 chronology 소실, direct `L_V` zero-current 위반,
+  cutoff affinity 동결, C-rate/Q-cell unit ambiguity,
+  doped high-voltage LCO scope 부재다.
+- HIGH/MEDIUM finding에는 finite-window 평형 초기화,
+  default width와 `_dwdT` fallback 불일치, 비등온 kinetics의
+  mean-\(T\) 축약, Einstein reference temperature 양수 guard 부재,
+  LCO electronic entropy의 298.15 K 동결과 dormant Einstein
+  capability가 포함된다.
+- 31/31 source/AST/queue/diff/dataset/copy-lineage/finding validation을
+  통과했고 두 번 생성한 모든 JSON, summary와 patch SHA-256이
+  동일했다.
+- 근거:
+  `Codex/results/PHASE_059_PRODUCTION_CODE_INDEX.json`,
+  `Codex/results/PHASE_059_PRODUCTION_CODE_DIFF.json`,
+  `Codex/results/PHASE_059_PRODUCTION_CODE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/code_diffs/`,
+  `Codex/work/v1014_v1018_2_phase059/generate_phase059_code_index.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_code_index.py`.
+- gates:
+  `PASS_P059_PRODUCTION_CODE_INDEX`,
+  `PASS_P059_PRODUCTION_CODE_EXACT_DIFF`,
+  `PASS_P059_PRODUCTION_CODE_INDEX_AND_DIFF`.
+- 이 gate는 static code lineage를 닫을 뿐 runtime, test adequacy,
+  theory conformance나 experimental validity를 부여하지 않는다.
+- 다음은 Step 34.2 test 12개/demo 18개 unique blob의 assertion,
+  tolerance, printed-only check, import/golden path와 미검사 branch를
+  claim matrix에 기록한다.

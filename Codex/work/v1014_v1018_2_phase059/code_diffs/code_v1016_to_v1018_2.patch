@@ -1,0 +1,83 @@
+--- Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py
++++ Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py
+@@ -338,6 +338,50 @@
+         nT = n0 + n_T1 * (Tv - T_ref)
+         return (R / F) * (nT + Tv * n_T1)
+ 
++    # ---- 제안 1: vib 엔트로피 Einstein 양자 보정 (v1.0.18.2, additive) ----
++    def _vib_theta(self, tr: Dict[str, Any]) -> Optional[float]:
++        """전이의 Einstein 온도 θ_E [K](키 'theta_E'), 부재=None."""
++        te = tr.get('theta_E')
++        if te is None:
++            return None
++        te = _finite("theta_E", te)
++        if te <= 0.0:
++            raise ValueError("transition 'theta_E' (Einstein 온도) must be > 0 K.")
++        return te
++
++    def _S_vib(self, T: ScalarOrArray, theta_E: float) -> ScalarOrArray:
++        """단일 모드 Einstein 진동 엔트로피 [J/(mol·K)]
++           S_vib(T) = R[−ln(1−e^{−x}) + x/(e^x−1)], x=θ_E/T.
++           고온극한(kT≫ℏω): →R[1+ln(T/θ_E)](고전값·현 동결과 정합), 저온: →0."""
++        Tv = np.asarray(T, dtype=float)
++        x = theta_E / Tv
++        return R * (-np.log1p(-np.exp(-x)) + x / np.expm1(x))
++
++    def _vib_dU(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
++        """vib 양자 보정의 평형 중심 U_j 이동 [V] — Helmholtz 자유에너지 편차.
++           ΔU_vib(T) = −(1/F)[ΔF_vib(T) − ΔF_vib(T_ref) + S_vib(T_ref)·(T−T_ref)],
++           ΔF_vib(T)=R·T·ln(1−e^{−θ_E/T}), T_ref='theta_E_Tref'(기본 298.15).
++           θ_E 부재 → 0(additive·bit-exact). ∂ΔU_vib/∂T = [S_vib(T)−S_vib(T_ref)]/F
++           = _vib_dS/F 이므로 entropy_coefficient 와 round-trip 정합(∂U/∂T=ΔS(T)/F)."""
++        te = self._vib_theta(tr)
++        if te is None:
++            return 0.0
++        Tref = _finite("theta_E_Tref", tr.get('theta_E_Tref', 298.15))
++        Tv = np.asarray(T, dtype=float)
++        dF = lambda t: R * np.asarray(t, dtype=float) * np.log1p(-np.exp(-te / np.asarray(t, dtype=float)))
++        Sref = float(self._S_vib(Tref, te))
++        return -(dF(Tv) - float(dF(Tref)) + Sref * (Tv - Tref)) / F
++
++    def _vib_dS(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
++        """vib 양자 보정의 표준엔트로피 편차 S_vib(T)−S_vib(T_ref) [J/(mol·K)] —
++           entropy_coefficient dS_eff 에 가산(가역열 ∂U/∂T 의 vib T-signature,
++           전자항 ∝T 와 분리 식별용). θ_E 부재 → 0(bit-exact)."""
++        te = self._vib_theta(tr)
++        if te is None:
++            return 0.0
++        Tref = _finite("theta_E_Tref", tr.get('theta_E_Tref', 298.15))
++        return self._S_vib(T, te) - float(self._S_vib(Tref, te))
++
+     # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chid) -----------
+     def _chi_d(self, sigma_d: int) -> float:
+         """전달계수 χ_d = chi_split(χ, σ_d). 기본 func_chi_d(방전 χ / 충전 1−χ).
+@@ -412,7 +456,7 @@
+         dqdv = baseline
+         for tr in self.transitions:
+             if 'dH_rxn' in tr and 'dS_rxn' in tr:
+-                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)))
++                U_j = float(func_U_j(T, tr['dH_rxn'], self._effective_dS_rxn(tr, T)) + self._vib_dU(tr, T))
+             else:
+                 U_j = tr['U']
+             n_j = self._n_factor(tr, T)
+@@ -498,7 +542,7 @@
+         for tr in self.transitions:
+             # 평형 중심 U_j(T) — 배열 T 대응
+             if 'dH_rxn' in tr and 'dS_rxn' in tr:
+-                U_j = func_U_j(T_prog, tr['dH_rxn'], self._effective_dS_rxn(tr, T_prog))
++                U_j = func_U_j(T_prog, tr['dH_rxn'], self._effective_dS_rxn(tr, T_prog)) + self._vib_dU(tr, T_prog)
+             else:
+                 U_j = float(tr['U'])
+ 
+@@ -614,8 +658,9 @@
+         eps = 1e-12
+         for tr in self.transitions:
+             if 'dH_rxn' in tr and 'dS_rxn' in tr:
+-                dS_eff = self._effective_dS_rxn(tr, T)
+-                U_j = func_U_j(T, tr['dH_rxn'], dS_eff)
++                dS0 = self._effective_dS_rxn(tr, T)
++                dS_eff = dS0 + self._vib_dS(tr, T)   # 제안1: vib Einstein 편차(θ_E 부재=0=bit-exact)
++                U_j = func_U_j(T, tr['dH_rxn'], dS0) + self._vib_dU(tr, T)
+             else:
+                 dS_eff = 0.0
+                 U_j = float(tr['U'])

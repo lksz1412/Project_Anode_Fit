@@ -1,0 +1,539 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Phase 059 Step 34.1 exact production-code lineage",
+  "status": "PASS_P059_PRODUCTION_CODE_EXACT_DIFF",
+  "authority_boundary": "Exact source/AST lineage only; changed code does not imply correct physics, adequate tests, or external validity.",
+  "comparison_count": 3,
+  "copy_forward": [
+    {
+      "git_blob_sha": "45fdfcb6d55f3f65fb9bf004b81b6faae5ccc8b3",
+      "occurrence_paths": [
+        "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+        "Claude/docs/v1.0.17/Anode_Fit_v1.0.17.py",
+        "Claude/docs/v1.0.18.1/Anode_Fit_v1.0.18.1.py"
+      ],
+      "meaning": "v1.0.16, v1.0.17, and v1.0.18.1 are one identical production-code blob."
+    }
+  ],
+  "comparisons": [
+    {
+      "pair_id": "code_v1014_to_v1015",
+      "old_path": "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py",
+      "new_path": "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py",
+      "old_blob_sha": "a4d8ccca50dac3c42e410dfa872e9433140d748a",
+      "new_blob_sha": "28079e37e954a605378e3c110206da31be331ddd",
+      "old_line_count": 904,
+      "new_line_count": 895,
+      "content_identical": false,
+      "opcode_line_counts": {
+        "delete": 22,
+        "equal": 796,
+        "insert": 10,
+        "replace_new": 89,
+        "replace_old": 86
+      },
+      "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/code_diffs/code_v1014_to_v1015.patch",
+      "exact_unified_diff_sha256": "cf3b349a894f53ce4c821b97ef604483d7f0bbd30e02722ac002d681f4771156",
+      "functions_added": [
+        "_causal_memory_pointwise"
+      ],
+      "functions_removed": [
+        "_causal_lowpass",
+        "func_U_j_hys"
+      ],
+      "functions_source_changed": [
+        "GraphiteAnodeDischargeDQDV.__init__",
+        "GraphiteAnodeDischargeDQDV.dqdv",
+        "func_U_branch",
+        "func_dU_hys"
+      ],
+      "public_api_old": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_U_j_hys",
+          "signature": "def func_U_j_hys(T: float, U_j: float, Omega: float, gamma: float, s: int=1, last_eta: float=1.0, last_rest: int=600)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, grid_pad_lo: float=0.15, grid_pad_hi: float=0.15, n_work_min: int=2048, min_lag_grid_steps: float=2.0, v_span_floor: float=1e-06, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_new": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_changed": true,
+      "dataset_hashes_old": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      },
+      "dataset_hashes_new": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      }
+    },
+    {
+      "pair_id": "code_v1015_to_v1016",
+      "old_path": "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py",
+      "new_path": "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+      "old_blob_sha": "28079e37e954a605378e3c110206da31be331ddd",
+      "new_blob_sha": "45fdfcb6d55f3f65fb9bf004b81b6faae5ccc8b3",
+      "old_line_count": 895,
+      "new_line_count": 930,
+      "content_identical": false,
+      "opcode_line_counts": {
+        "equal": 875,
+        "insert": 2,
+        "replace_new": 53,
+        "replace_old": 20
+      },
+      "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/code_diffs/code_v1015_to_v1016.patch",
+      "exact_unified_diff_sha256": "2882bfe6b81dd26f8318fc37bb359d34e3d3b8e810d302e044e4005d191a1221",
+      "functions_added": [
+        "GraphiteAnodeDischargeDQDV._dwdT"
+      ],
+      "functions_removed": [],
+      "functions_source_changed": [
+        "GraphiteAnodeDischargeDQDV._n_factor",
+        "GraphiteAnodeDischargeDQDV._width",
+        "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+        "GraphiteAnodeDischargeDQDV.reversible_heat"
+      ],
+      "public_api_old": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: float=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_new": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_changed": true,
+      "dataset_hashes_old": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      },
+      "dataset_hashes_new": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      }
+    },
+    {
+      "pair_id": "code_v1016_to_v1018_2",
+      "old_path": "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py",
+      "new_path": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+      "old_blob_sha": "45fdfcb6d55f3f65fb9bf004b81b6faae5ccc8b3",
+      "new_blob_sha": "ff07fff819ca074894cfe00dcc95c3912103caf9",
+      "old_line_count": 930,
+      "new_line_count": 975,
+      "content_identical": false,
+      "opcode_line_counts": {
+        "equal": 926,
+        "insert": 44,
+        "replace_new": 5,
+        "replace_old": 4
+      },
+      "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/code_diffs/code_v1016_to_v1018_2.patch",
+      "exact_unified_diff_sha256": "6898570901ec78ec0167dc5f4114f2ef2f28eb5df84d3fed4d731c435a58128d",
+      "functions_added": [
+        "GraphiteAnodeDischargeDQDV._S_vib",
+        "GraphiteAnodeDischargeDQDV._vib_dS",
+        "GraphiteAnodeDischargeDQDV._vib_dU",
+        "GraphiteAnodeDischargeDQDV._vib_theta"
+      ],
+      "functions_removed": [],
+      "functions_source_changed": [
+        "GraphiteAnodeDischargeDQDV.dqdv",
+        "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+        "GraphiteAnodeDischargeDQDV.equilibrium"
+      ],
+      "public_api_old": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_new": [
+        {
+          "qualified_name": "func_w",
+          "signature": "def func_w(T: ScalarOrArray, n: float=1.0)"
+        },
+        {
+          "qualified_name": "func_U_j",
+          "signature": "def func_U_j(T: ScalarOrArray, dH_rxn: float, dS_rxn: float)"
+        },
+        {
+          "qualified_name": "func_ksi_eq",
+          "signature": "def func_ksi_eq(T: ScalarOrArray, V_n: ScalarOrArray, U: ScalarOrArray, n: float=1.0, s: int=1)"
+        },
+        {
+          "qualified_name": "func_L_q",
+          "signature": "def func_L_q(T: float, I: float, Q_cell: float, dH_a: float, dS_a: float, x: float, A: float)"
+        },
+        {
+          "qualified_name": "func_dU_hys",
+          "signature": "def func_dU_hys(T: float, Omega: float)"
+        },
+        {
+          "qualified_name": "func_U_branch",
+          "signature": "def func_U_branch(T: float, U_j: float, Omega: float, gamma: float, sigma_d: int, h_eta: float=1.0)"
+        },
+        {
+          "qualified_name": "func_dH_a_eff",
+          "signature": "def func_dH_a_eff(dH_a: float, Omega: float, chi_d: float)"
+        },
+        {
+          "qualified_name": "func_chi_d",
+          "signature": "def func_chi_d(chi: float, sigma_d: int)"
+        },
+        {
+          "qualified_name": "func_dSe_molar",
+          "signature": "def func_dSe_molar(x: ScalarOrArray, T: float, g_max_eV: float, x_MIT: float, dx_MIT: float)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.__init__",
+          "signature": "def __init__(self, transitions: List[Dict[str, Any]], x: float=0.5, Rn: float=0.0, Cbg: Union[float, Callable]=0.0, chi: Optional[float]=None, chi_split: Callable[[float, int], float]=func_chi_d, use_dH_eff: bool=True, z_cut: float=4.357, A_cap_RT: float=4.0, seed_T: float=298.15, seed_I: float=0.1, seed_Q_cell: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.equilibrium",
+          "signature": "def equilibrium(self, V_n: ScalarOrArray, T: float=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.dqdv",
+          "signature": "def dqdv(self, V_app: ScalarOrArray, T: Union[float, np.ndarray], I_abs: float, Q_cell: float, s: int=+1)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.curve",
+          "signature": "def curve(self, V_app: ScalarOrArray, direction: Union[int, str]='discharge', c_rate: float=0.0, Q_cell: float=1.0, T: Union[float, np.ndarray]=298.15, I_abs: Optional[float]=None)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+          "signature": "def entropy_coefficient(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.reversible_heat",
+          "signature": "def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray]=298.15, I: float=1.0)"
+        },
+        {
+          "qualified_name": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+          "signature": "def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray, I: float)"
+        }
+      ],
+      "public_api_changed": false,
+      "dataset_hashes_old": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      },
+      "dataset_hashes_new": {
+        "LCO_MSMR_LIT": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+        "GRAPHITE_STAGING_LIT": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22"
+      }
+    }
+  ]
+}

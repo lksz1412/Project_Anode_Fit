@@ -1,0 +1,142 @@
+--- Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py
++++ Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py
+@@ -1,10 +1,10 @@
+ # -*- coding: utf-8 -*-
+ # ============================================================================
+-# ★ Anode_Fit  release 버전 = 1.0.15  — 문건 Ch1/Ch2 1.0.15 와 동일 버전·matched
+-#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15. 코드·문건 버전 통일.
+-#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처[P5 코드개정 대상, 증판 시점 v1.0.14 승계].)
++# ★ Anode_Fit  release 버전 = 1.0.16  — 문건 Ch1/Ch2 1.0.16 와 동일 버전·matched
++#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15 → 1.0.16. 코드·문건 버전 통일.
++#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처. 1.0.16 = 폭 다중도 n 의 온도 함수 n(T) 피팅 지원·가역열 config 항 ∂w/∂T 전파[증판 시점 v1.0.15 승계].)
+ # ----------------------------------------------------------------------------
+-# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.15 (v11_final 기반 계보, 2026-07-04)
++# Anode_Fit 흑연 음극 dQ/dV 물리 구현 — 1.0.16 (v11_final 기반 계보, 2026-07-06)
+ #   [1.0.10 변경] use_w_eff 경로 제거: ξ_eq 폭·분모 w 불일치로 면적보존 깨짐(버그) — w=자유 피팅 파라미터만.
+ #   [폭 정합 주의] 전이 폭 w=nRT/F (_n_factor: 'n' 우선 → 없으면 'w' 역산 → 없으면 n=1).
+ #     GRAPHITE_STAGING_LIT 는 'n':1.0 보유 → 기본 폭=RT/F≈25.7mV(298K); 'w' 폴백(0.012 등)은
+@@ -35,7 +35,7 @@
+ #   [보존] 사용자 원형 함수 그대로(보완·노출만):
+ #     func_w · func_U_j · func_ksi_eq · func_L_q · GRAPHITE_STAGING_LIT.
+ #
+-#   [근거 문건] graphite_ica_ch1_v1.0.15.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
++#   [근거 문건] graphite_ica_ch1_v1.0.16.tex(+ch2) — 커브식 명세(계보 원천 Opus_v6). 본 구현이 따르는 식:
+ #     · 분극        V_n = V_app − σ_d|I|R_n                         (eq:vn)
+ #     · 평형 중심   U_j(T) = (−ΔH_rxn + TΔS_rxn)/F                  (eq:Uj/func_U_j)
+ #     · 히스 gap    ΔU_hys = (2/F)[Ωu − 2RT·artanh u], u=√(1−2RT/Ω) (eq:dUhys)
+@@ -291,11 +291,24 @@
+                 tr, T, I, Q_cell, n_j, sigma_d=+1))
+         return seeds
+ 
+-    # ---- 폭 다중도 n -----------------------------------------------------
++    # ---- 폭 다중도 n (선택적 온도 함수 n(T)) -----------------------------
+     def _n_factor(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+-        """폭 다중도 n (eq:wbase 의 n_j). 'n' 직접, 또는 'w' 에서 n=w·F/(RT) 역산, 없으면 1."""
++        """폭 다중도 n (eq:wbase 의 n_j). 'n' 직접, 또는 'w' 에서 n=w·F/(RT) 역산, 없으면 1.
++
++        ★1.0.16 — 'n' 경로에 선형 온도 함수 n(T) 지원(폭 T-의존 피팅). 전이 dict 에
++        'n_T1'(계수 [1/K], 기본 부재=0=상수 n)·'n_T_ref'(기준온도 [K], 기본 298.15)가 있으면
++        n(T) = n + n_T1·(T − n_T_ref). 폭 w=n(T)·RT/F 가 되어 열적 스케일 위에 잔여 T-의존을
++        얹는다(가역열 config 항은 _dwdT 가 ∂w/∂T 를 정합 전파). 'w'-단독은 T-동결 폭이라 n(T) 미적용."""
++        if tr.get('n_T1') is not None and tr.get('n') is None:
++            raise ValueError("transition 'n_T1' requires 'n' (n(T)=n+n_T1·(T−n_T_ref)).")
+         if tr.get('n') is not None:
+-            return tr['n']
++            n0 = _finite("n", tr['n'])
++            n_T1 = tr.get('n_T1')
++            if n_T1 is None:
++                return n0
++            n_T1 = _finite("n_T1", n_T1)
++            T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
++            return n0 + n_T1 * (np.asarray(T, dtype=float) - T_ref)
+         if tr.get('w') is not None:
+             return tr['w'] * F / (R * T)
+         return 1.0
+@@ -303,8 +316,27 @@
+     # ---- 폭 w (자유 피팅 파라미터: w|n 직접 지정, 없으면 n=1) ----------------
+     def _width(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
+         """전이 폭 w [V] = nRT/F(=func_w, eq:wbase). w|n 직접 지정 우선, 없으면 n=1.
+-        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)"""
+-        return func_w(T, self._n_factor(tr, T))
++        (use_w_eff 경로는 ξ_eq 폭·분모 불일치로 면적보존 깨지는 버그 — 1.0.10에서 제거.)
++        ★1.0.16 — n(T) 도입으로 폭이 음/영이 될 수 있어(n(T)≤0) w>0 fail-fast 가드."""
++        w = func_w(T, self._n_factor(tr, T))
++        if not np.all(np.asarray(w, dtype=float) > 0.0):
++            raise ValueError("width w=n(T)·RT/F must be > 0 (n(T)≤0 at some T — check n/n_T1/n_T_ref).")
++        return w
++
++    # ---- ∂w/∂T (가역열 config 항 계수; n(T) 정합 전파) -------------------
++    def _dwdT(self, tr: Dict[str, Any], T: ScalarOrArray) -> ScalarOrArray:
++        """봉우리 폭의 온도 미분 ∂w_j/∂T [V/K] — 가역열 config 항 계수(Ch2 eq:dxidT 둘째 조각).
++
++        열적 폭 w=n(T)·RT/F 이므로 ∂w/∂T = (R/F)·d[n(T)·T]/dT = (R/F)·(n(T) + T·n_T1).
++        상수 n(n_T1=0): (R/F)·n = n·R/F (1.0.15 형과 bit-exact). 'w'-단독·기본 = T-동결 → 0."""
++        if tr.get('n') is None:
++            return 0.0  # 'w'-단독 또는 기본 = T-동결 폭 취급(단순식 경로)
++        n0 = _finite("n", tr['n'])
++        n_T1 = _finite("n_T1", tr.get('n_T1', 0.0))
++        T_ref = _finite("n_T_ref", tr.get('n_T_ref', 298.15))
++        Tv = np.asarray(T, dtype=float)
++        nT = n0 + n_T1 * (Tv - T_ref)
++        return (R / F) * (nT + Tv * n_T1)
+ 
+     # ---- 방향별 χ_d (주입 callable; 기본 충전 χ→1−χ, eq:chid) -----------
+     def _chi_d(self, sigma_d: int) -> float:
+@@ -554,7 +586,7 @@
+         return tr['dS_rxn']
+ 
+     def entropy_coefficient(self, V_n: ScalarOrArray,
+-                            T: float = 298.15) -> ScalarOrArray:
++                            T: Union[float, np.ndarray] = 298.15) -> ScalarOrArray:
+         """가역 엔트로피 계수 ∂U_oc/∂T(x) [V/K] — Ch2 가중식 eq:weighted 의 완전식 확장(§2.6 keybox 종합식).
+ 
+         관측 ∂U_oc/∂T = Σ_j [Q_j g_j / Σ_k Q_k g_k]·(ΔS_eff,j/F + (n_j·R/F)·ln[ξ_j/(1−ξ_j)]).
+@@ -570,8 +602,13 @@
+         (Ch2 eq:hys_rev)은 평형 중심 U_j(히스 shift 無)를 써서 자동 근사 달성한다 — γ 대칭
+         전제이며, 비대칭 분기별 ∂U/∂T 는 미구현(Ch2 범위 밖 선언, 후속 과제).
+         """
+-        T = _finite_pos("T", T)
++        # T: 스칼라(등온) 또는 V_n 길이 배열 T(V)(비등온 — dqdv 와 동일). 각 점 실측 온도.
++        T = np.asarray(T, dtype=float)
++        if not np.all(np.isfinite(T)) or np.any(T <= 0.0):
++            raise ValueError("T must be finite and > 0 (K).")
+         V = np.atleast_1d(np.asarray(V_n, dtype=float))
++        if T.ndim >= 1 and T.size > 1 and T.size != V.size:
++            raise ValueError("T array length must match V_n (per-point T(V)).")
+         num = np.zeros_like(V)
+         den = np.zeros_like(V)
+         eps = 1e-12
+@@ -587,19 +624,17 @@
+             xi = np.asarray(func_ksi_eq(T, V, U_j, n_j), dtype=float)
+             g = xi * (1.0 - xi) / w
+             xi_c = np.clip(xi, eps, 1.0 - eps)
+-            if tr.get('n') is not None:
+-                # 열적 폭 w=nRT/F: ∂w/∂T = n·R/F → config 항 가산 (Ch2 eq:dxidT 둘째 조각)
+-                config = (n_j * R / F) * np.log(xi_c / (1.0 - xi_c))
+-            else:
+-                # 'w'-단독 = T-동결 폭: ∂w/∂T = 0 → config 항 없음 (단순식)
+-                config = 0.0
++            # config 항 = ∂w_j/∂T · ln[ξ/(1−ξ)] (Ch2 eq:dxidT 둘째 조각). _dwdT 가 열적/n(T)/
++            #   T-동결('w'-단독·기본)을 정합 처리: 상수 n → n·R/F(1.0.15 bit-exact),
++            #   n(T) → (R/F)(n(T)+T·n_T1), 'w'-단독·기본 → 0(단순식).
++            config = self._dwdT(tr, T) * np.log(xi_c / (1.0 - xi_c))
+             Qg = tr['Q'] * g
+             num = num + Qg * (dS_eff / F + config)
+             den = den + Qg
+         dUdT = np.where(den > 0.0, num / np.maximum(den, eps), 0.0)
+         return dUdT
+ 
+-    def reversible_heat(self, V_n: ScalarOrArray, T: float = 298.15,
++    def reversible_heat(self, V_n: ScalarOrArray, T: Union[float, np.ndarray] = 298.15,
+                         I: float = 1.0) -> ScalarOrArray:
+         """가역 발열 q_rev = −I·T·∂U_oc/∂T [W] (Ch2 eq:qrev, ★T 한 번).
+ 
+@@ -609,7 +644,7 @@
+           curve() 의 direction='discharge'(σ_d=+1, 탈리튬화)와 반대 화학 방향이다 —
+           부호는 라벨이 아니라 전류 부호 I 로 읽는다(Ch2 eq:qrev 라벨 층위 주의).
+         """
+-        T = _finite_pos("T", T)
++        T = np.asarray(T, dtype=float)  # 스칼라/배열 — 유한·양수·길이 검증은 entropy_coefficient 가 수행
+         return -float(I) * T * self.entropy_coefficient(V_n, T)
+ 
+     def irreversible_heat(self, U_oc: ScalarOrArray, V: ScalarOrArray,
