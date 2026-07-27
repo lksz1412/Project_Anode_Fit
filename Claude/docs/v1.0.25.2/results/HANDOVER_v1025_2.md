@@ -43,6 +43,8 @@ v1.0.25.1 위에 **v1.0.26 regsol 재검증의 채택분을 반영**하고 **두
 | `ab196b2` | 마감 인계 · 리포트 정위치 · 코드 release 1.0.25.2 |
 | `eb6b88b` | Codex 감사 대조(U11) |
 | `7b342dd` | **기본값 역전 철회(U12)** — 온도 의존 소거 발견 |
+| `3b5fd05` | 마감 핸드오버 재작성(이력·문제점·개선할 점) |
+| `2802395` | **문턱 스케일링 각주 오류 정정(U13)** — Codex 교차검증 수용 |
 
 ### 실측 (본 세션에서 직접 실행)
 
@@ -60,7 +62,29 @@ v1.0.25.1 위에 **v1.0.26 regsol 재검증의 채택분을 반영**하고 **두
 
 ## 3. ★문제점 (심각도 순)
 
-### P1 — 확정 구성 시드가 열역학 입력을 결여한다 (**미해소 · 최우선**)
+### P0 — Codex 대조 브랜치 신규 산출물 **미검토** (**최우선 · 차단성**)
+
+`origin/codex/v1025_2-physics-conformance` (tip **`11f9054`**, 2026-07-27)가 본 브랜치 최신
+`3b5fd05`(U11·U12 포함)을 **머지 완료**했고, 신규 문건 4종 + 프로브 3종을 냈다. **이 중 검토한 것은
+regsol 교차검증 하나뿐이다.**
+
+| 산출물 | 상태 |
+|---|---|
+| `PHASE_054_V1025_2_REGSOL_CROSSCHECK.json` + `phase054_regsol_crosscheck.py` | ✅ 검토 → **U13 정정 유발**(아래) |
+| `PHASE_054_V1025_2_LATEST_LINEAGE_REVIEW_ADDENDUM.md` (372행) | ⬜ **미검토** |
+| `V1025_2_LATEST_RELEASE_ALIGNMENT_MATRIX.md` | ⬜ **미검토** --- P1 배정 판정이 들어 있을 수 있다 |
+| `HANDOVER_V1025_3_CONFORMANCE_BRANCH_CORRECTION_20260727.md` | ⬜ 미검토 |
+| `PHASE_054_..._EXECUTION_LEDGER.md` · `..._SOURCE_PROBES.json` · `..._SOURCE_FREEZE_MANIFEST.json` | ⬜ 미검토 |
+| 이전 푸시분 `conformance_model/` 패키지 · 자체 원고 · PDF (26,385행) | ⬜ **미검토** |
+
+**다음 세션 첫 작업.** 특히 alignment matrix 는 P1(군집→staging 배정)에 직접 답을 줄 수 있다.
+
+**대조 브랜치에 대한 기제출 지적 4건**(`2abf019` 기준): ①베이스라인이 결함 커밋 → **해소**(머지 완료)
+②handover 자기보고 불일치 → **해소**(정정 문건 발행) ③`eq:sifr-twophase` 대조 부재 → **해소**(위 교차검증)
+④**"conformance" 명칭이 규모를 감춘다** --- 이는 정합성 *검사* 가 아니라 **물리 구현 병행 재작성 + 별도 원고 +
+별도 PDF** 다. 계보가 하나 더 생겼다는 사실이 브랜치명에 드러나지 않는다. **미해소 --- 계보 결정은 사용자 몫.**
+
+### P1 — 확정 구성 시드가 열역학 입력을 결여한다 (**미해소**)
 
 `GRAPHITE_MSMR7_LIT` · `SI_MSMR7_SKEW_LIT` 는 `U`·`w`·`Q`·`alpha` **네 키뿐**이다.
 레거시가 가진 `dH_rxn`·`dS_rxn`(중심 $U_j(T)$) · `n`(폭 $w(T)$) · `Omega`(히스테리시스) ·
@@ -95,6 +119,20 @@ $n_j = w_jF/(RT_0)$, $\Delta H_{\rxn,j} = -FU_j + T_0\Delta S_{\rxn,j}$ (적합 
 - **P0-2~P0-5 는 대조하지 않았다 — 미검토.** 특히 **P0-4(블렌드 정규화·용량 분모)** 는 본 리비전의 블렌드 14 구성과
   직결되므로 다음 순번 1 순위.
 
+### P4' — ★해소된 문건 오류: 문턱 근방 스케일링 (U13, 기록 보존)
+
+`eq:sifr-twophase` 각주에 "문턱 접근이 매끄럽지 않다 --- $\Omega$-도함수 발산" 이라 적었으나 **틀렸다.**
+Codex 교차검증: $\max|\Delta|/\varepsilon = 5.90$ 이 $\varepsilon=10^{-3}$--$10^{-5}$ 에서 **불변**
+$\Rightarrow$ 차이는 $\varepsilon$ 에 **선형** $\Rightarrow$ **도함수 유한**. 갭 무게가 $\sqrt\varepsilon$ 로
+열릴 때 고용체 두 가지가 **같은 무게를 동시에 잃어** 선행 차수가 상쇄된다. 곧 $\dd Q/\dd V$ 는
+$\Omega$ 에 대해 **$C^1$** 이다. 각주 정정 완료.
+
+교차검증은 나머지 두 주장을 **더 높은 정밀도로 확인**했다: 면적 오차 $7.8\times10^{-16}$(자체 검산은
+$10^{-4}$ --- 유한 창·성긴 격자) · 아임계 갭 무게 정확히 $0$.
+
+**교훈(§4 와 같은 뿌리)**: 자체 검산 표(U9)에 이미 $57.6/57.0/54.9$ 로 선형 스케일링이 찍혀 있었는데,
+옆 열의 갭 무게($\sqrt\varepsilon$)를 곡선 차이에 잘못 전이해 읽었다. **수치를 냈지만 읽지 않았다.**
+
 ### P4 — 서술 정합 잔여 (경미)
 
 §5b 가 앵커로 병기한 2-sublattice 면내 $\Omega_a\approx3.4RT$ 는 **모델 계열이 다른 양**이다
@@ -116,7 +154,10 @@ $n_j = w_jF/(RT_0)$, $\Delta H_{\rxn,j} = -FU_j + T_0\Delta S_{\rxn,j}$ (적합 
 | 5 | Ω 구간을 실측이 아닌 README 기억으로 적었다가 정정(1.9–2.5 → 1.9–2.6) | **수치는 원자료에서 읽는다** |
 | 6 | "게이트 전건 GREEN" 을 정당성 근거로 보고했으나 **검사 대상이 아닌 경로**였다 | **GREEN 은 '검사한 것' 에 대해서만 유효하다.** 무엇을 재지 않았는지 함께 적는다 |
 
+| 7 | 자체 검산 표에 **선형 스케일링이 이미 찍혀 있었는데** 옆 열(갭 무게 $\sqrt\varepsilon$)을 곡선 차이에 전이해 읽고 "도함수 발산" 이라 적었다(U13) | **낸 수치는 끝까지 읽는다.** 스케일링 주장은 비($\Delta/\varepsilon$, $\Delta/\sqrt\varepsilon$)를 **직접 표로 만들어** 어느 쪽이 불변인지 보고 쓴다. 복합 항은 **상쇄되는 짝을 함께 센다** |
+
 **공통 원인 = 확인 가능한 것을 확인하지 않고 진행.** 자기 검증 없이 결론을 문서에 쓰지 말 것.
+**그리고 검증했더라도 그 출력을 끝까지 읽지 않으면 같은 결과다(7).**
 
 ---
 
@@ -154,12 +195,14 @@ $n_j = w_jF/(RT_0)$, $\Delta H_{\rxn,j} = -FU_j + T_0\Delta S_{\rxn,j}$ (적합 
 
 ## 6. 다음 세션 착수 순서
 
-1. **P2** — XeLaTeX 3-pass → PDF 3종 커밋 (마감)
-2. **P1** — gallery 군집 → staging 전이 배정 **사용자 확정** → 시드에 `dH_rxn`·`dS_rxn`·`n` 채움 →
+1. **P0** — Codex `11f9054` 신규 산출물 검토. 순서: `V1025_2_LATEST_RELEASE_ALIGNMENT_MATRIX.md`
+   (P1 배정 답 가능) → `PHASE_054_..._ADDENDUM.md`(372행) → `conformance_model/` 패키지
+2. **P2** — XeLaTeX 3-pass → PDF 3종 커밋 (마감). **U13 정정으로 각주가 길어졌으니 그 조판도 확인**
+3. **P1** — gallery 군집 → staging 전이 배정 **사용자 확정** → 시드에 `dH_rxn`·`dS_rxn`·`n` 채움 →
    기본을 7-skew 로 되뒤집고, **기본 경로 T-의존을 재는 게이트 신설**
-3. **P3** — Codex P0-4(블렌드 정규화) 대조, 이어 P0-2·P0-3·P0-5
-4. **P4** — Ω 앵커 모델 계열 단서 1 문장
-5. 잔여: N7(skew-regsol N=7) · N8(평형 데이터 GITT/pOCV+hold) · N9(bootstrap CI) ·
+4. **P3** — Codex P0-4(블렌드 정규화) 대조, 이어 P0-2·P0-3·P0-5
+5. **P4** — Ω 앵커 모델 계열 단서 1 문장
+6. 잔여: N7(skew-regsol N=7) · N8(평형 데이터 GITT/pOCV+hold) · N9(bootstrap CI) ·
    C-4(서지→M4 해소) · D(함정 기록 Ch2 부록 A)
 
 ---
@@ -172,4 +215,5 @@ $n_j = w_jF/(RT_0)$, $\Delta H_{\rxn,j} = -FU_j + T_0\Delta S_{\rxn,j}$ (적합 
 | 동결 아카이브(PDF 보유) | `Claude/docs/v1.0.25.1/` |
 | 결과 리포트(이미지 9종) | `results/KERNEL_COMPARISON_REPORT_v1025_2.html` |
 | 적합 스크립트·산출물 | `Claude/results/comp_v26_data/` |
-| Codex 감사 | `origin/codex-local-audit-20260720` : `Codex/results/PHASE_010_STRENGTHENING_ROADMAP.md` |
+| Codex 과학감사(v1.0.10–23) | `origin/codex-local-audit-20260720` : `Codex/results/PHASE_010_STRENGTHENING_ROADMAP.md` |
+| **Codex 대조 브랜치(현행)** | **`origin/codex/v1025_2-physics-conformance`** tip **`11f9054`** --- `3b5fd05` 머지 완료. `Codex/results/PHASE_054_*` · `Codex/work/v1025_2_physics_branch/` |
