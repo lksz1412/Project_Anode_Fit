@@ -197,9 +197,38 @@ $U^\circ$ 에 평형 near-delta 를 세운 뒤, 그 위에 유한 폭 $\delta{=}
 ``커널의 두-상 델타 $\to$ 관측 폭 $w_j$'' 서술과 정합)이라, 두-상도 \emph{같은} 커널이 binodal 로 처리한다.
 a-Si 는 상성격이 단일상($\Omega<2RT$)이라 이 공존 분기를 타지 않을 뿐이며(이 때문에 위 (a)$\cdot$(c)는 단일상
 가지만 쓴다), 유일 두-상 $c$-Li$_{15}$Si$_4$ 는 $\Omega>2RT$ 시드로 이 binodal 분기가 담을 수 있다(순환 a-Si 엔 부재).
-\emph{구현 주의(v1.0.25)} --- 이 (v) 의 binodal 구성은 커널을 \emph{수식으로} 어떻게 닫는지에 대한 서술이며,
-현재 구현에는 대응 경로가 \emph{없다}(위 지위 상자 --- 커널 코드 삭제). 곧 (v) 는 재구현 시의 명세로 읽되
-현행 코드 거동으로 읽지 말 것.
+\emph{닫힌 형태(v1.0.25.2 신설).} 위 구성을 말이 아니라 식으로 닫으면 다음과 같다. 공존 조성 $\theta_a$ 는
+$\ln[\theta/(1-\theta)]+(\Omega/RT)(1-2\theta)=0$ 의 근이고($\Omega\!\le\!2RT$ 면 $\theta_a{=}\tfrac12$),
+평형 종을 유한 폭으로 펴는 broadening 핵을 $\kappa(\cdot;w_j)$($\int\kappa\,\dd V=1$ --- $\alpha_j{=}1$ 이면
+식~\eqref{eq:eqpeak} 의 로지스틱 미분, $\alpha_j\ne1$ 이면 식~\eqref{eq:skewpeak} 의 비대칭 종)라 두면
+\begin{equation}
+\boxed{\;\frac{\dd Q}{\dd V}\bigg|_{j}
+=Q_j\Big[\underbrace{(1-2\theta_a)\,\kappa\big(V-U^\circ_j;w_j\big)}_{\text{혼화갭 --- 공존 평탄}}
++\underbrace{\int \rho_j(V')\,\kappa\big(V-V';w_j\big)\,\dd V'}_{\text{갭 밖 고용체 두 가지}}\Big]\;,}
+\label{eq:sifr-twophase}
+\end{equation}
+여기서 $\rho_j$ 는 $\theta\!\in\!(0,\theta_a)\cup(1-\theta_a,1)$ 의 조성을 등온선~\eqref{eq:sifr-V} 로 전위축에
+사상한 밀도(총 무게 $2\theta_a$)다. \emph{두 항의 무게가 $ (1-2\theta_a)+2\theta_a=1$ 로 닫히므로 면적은
+$\alpha_j\cdot\Omega$ 에 무관하게 $Q_j$ 로 보존}되고, $\Omega\!\to\!2RT^+$ 에서 $\theta_a\!\to\!\tfrac12$ 라
+갭 항이 사라져 단일상 형태로 연속 접속한다. $\Omega\!<\!2RT$ 에서는 갭 항이 항등적으로 0 이므로
+식~\eqref{eq:sifr-twophase} 는 식~\eqref{eq:sifr-kernel} 의 broadening 판을 그대로 회수한다 --- 곧 이 한 식이
+단일상$\cdot$두-상 두 갈래를 모두 담는다.
+
+\emph{왜 합성곱인가(근사가 아님).} $\kappa$ 가 $(V-V')$ 만의 함수라 병진불변이므로, ``조성마다 핵을 얹어
+더한다''는 조작은 정의상 밀도와 핵의 합성곱이다. 곧 위 분해는 수치 편의가 아니라 \emph{항등}이다.
+
+\emph{구현 주의(v1.0.25.2) --- 명세를 곧이곧대로 격자합으로 옮기면 틀린다.} (1) 둘째 항을 조성격자에 대한
+단순 합으로 계산하면, 폭 $w_j$ 가 이웃 격자점의 전위 간격보다 좁을 때 곡선이 매끄러운 종이 아니라 빗살로
+깨진다 --- 흑연 최급준 전이의 관측 폭이 정확히 그 영역이다. 격자를 키우는 것이 아니라 위처럼 \emph{적분을
+분해}하는 것이 해법이다. (2) 첫째 항(갭)은 반드시 닫힌 형태로 더한다 --- 이를 전위 빈에 넣으면 중심
+$U^\circ_j$ 가 빈 폭의 절반까지 밀려 좁은 $w_j$ 에서 정점이 크게 틀어진다. (3) 희박 극한에서
+$U\!\sim\!-(RT/F)\ln\theta$ 로 발산하므로 조성 표본을 등간격으로 잡으면 꼬리에서 전위 간격이 벌어져 같은
+빗살이 생긴다 --- 기하 간격이어야 전위축에서 등간격이 된다. \emph{이 세 함정은 정칙용액 계열에서만 나타난다}
+--- 로지스틱 계열은 해석함수 하나라 애초에 격자를 쓰지 않는다. 곧 과거 이 커널에서만 관측된 꼬리 위글은
+물리가 아니라 이산화의 산물이었다.
+
+\emph{지위.} 식~\eqref{eq:sifr-twophase} 은 \emph{이론 층}의 자산이다 --- v1.0.25 계열의 피팅 커널 계통은
+로지스틱 단일계이며(위 지위 상자), 본 식에 대응하는 구현 경로는 두지 않는다. 재구현하려면 새 게이트가 필요하다.
 \end{warnbox}
 
 \begin{keybox}

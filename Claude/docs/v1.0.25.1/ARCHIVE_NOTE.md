@@ -116,3 +116,46 @@
 v1.0.24 데이터·피팅 증빙(`Claude/results/comp_v24/`)의 정정은 원본 수정이 아니라 addendum 으로 처리했다:
 **`results/V1025_DATA_ADDENDUM.md`**(A1 프로토콜 혼용 · A2 p-ocvhold 권고 · A3 독립셀 재현성 ·
 A4 @3 철회+코드 삭제 · A5 C_bg 비상수 · A6 @1~@5 조합 실측표 · A7 gallery≠상). comp_v24 원본은 무수정 보존.
+
+---
+
+# ★ v1.0.25.2 추기 (2026-07-27) — 확정 구성 반영 + v1.0.26 carryover 1차
+
+> 충돌 시 **본 절이 우선**. 상세 명세·잔여 = `Claude/results/HANDOVER_v1025_2_CARRYOVER.md`.
+
+## U1. 확정 구성 (사용자 2026-07-27)
+
+**skew-logistic 흑연 7 · 실리콘 7 · 블렌드 14 + 자유 배경**, `L_V` 동결(§18 식별 가드).
+regsol 은 **이론 층에만** 유지하고 피팅 커널 계통은 **로지스틱 단일계**(v1.0.25 판정 유지).
+α 는 신규 물리가 아니라 v1.0.25 가 도입해 둔 `eq:skewpeak` opt-in 의 **발효**다.
+
+## U2. 코드 변경 — additive opt-in 1건 (파일명 불변, DG-2)
+
+- **추가**: `GRAPHITE_MSMR7_LIT`(흑연 7-gallery 시드). `GRAPHITE_STAGING_MSMR6_LIT`·`SI_MSMR7_LIT` 와
+  동일 지위. 블렌드 14 = 흑연 7 + Si 7 조합으로 성립.
+- **기본 경로 무변경** → 골든 bit-exact 계약(G1) 보존. `'alpha'` 키 미부여(부재=1.0=대칭).
+- **tier-C seed 3중 단서**: 단일 셀·비평형 pOCV / 산출 당시 자유 배경 부재로 배경이 한 전이의 Q 를
+  겸함(N10 — 그 전이 Q 특히 신뢰 금지) / w=0.1 mV 급은 계측 분해 한계 아래.
+
+## U3. 문건 변경 (신규 식 1 · 신규 절 4 — 전부 additive, 삭제 0)
+
+| 파일 | 내용 |
+|---|---|
+| `ch3v22_sec02b_sifr.tex` | **★`eq:sifr-twophase` 신설** — Ω>2RT 두-상 정칙용액 dQ/dV 닫힌형(혼화갭 닫힌항 + 고용체 밀도⊛broadening 핵). 종전 §(v) 는 산문 명세뿐이었다. 면적 보존·단일상 연속접속·합성곱이 항등인 이유·격자합 3 함정·이론층 지위 명기. 그리고 :43 "모수 절약(AIC/BIC) 미확정" → 단일 셀 확정으로 조준 축소(N10 단서 병기) |
+| `ch1_sec05b_gr2L.tex` | 해상도 사다리에 **7-gallery** 추가(N=7 최소·N=8 포화·근축퇴 쌍 증가·**커널 무관**) / **Ω≷2RT 판정자의 실측 대응**(Ω/RT 1.9–2.5 = marginal 두-상, 독립 앵커 2.5RT·3.4RT 정합, 두 명제 분리) / **최저 전위 평탄의 계측 분해 한계**(FWHM ≲ 1 mV = RT/F 의 1/25) |
+| `ch1_sec18_inputs.tex` | 식별 가드에 **다섯째 손잡이 Ω** 추가(경계 포화 = 미식별) / "gallery+α 동시 자유화 지양" → **조건부**로 조준 정정(대가는 적합도가 아니라 점-식별성, L_V 동결은 불변) / **신규 warnbox**: 면적 보존 Δ_Q 를 적합도와 독립된 채택 전 진단으로, 실측 dQ/dV 미분 규약(전위 양자화 0-나눗셈 → 다중창 중앙값 + 평활 + 균일 재빈닝) |
+| 마스터 3본 | 표시 버전 1.0.25.1 → **1.0.25.2**(pdftitle·lhead·date). 파일명·`\input` 경로·xr 키 **전부 불변** |
+
+## U4. 검증 (본 리비전)
+
+- `results/tools_check_structure.py check .` → **STRUCTURE_CHECK: PASS**(unresolved ref 0 · cite-undef 0)
+- `eq:sifr-twophase` 정의 1회 · 참조 무결 · 기존 라벨 무변경
+- **P3-8 게이트**: 편집한 본문 3종 코드토큰 **0**
+- 코드 `ast.parse` OK
+- ⚠️ **XeLaTeX 빌드 미수행** — 본 환경에 TeX 배포판 부재. **재빌드 3-pass 0-error 확인이 잔여**다.
+- ⚠️ **피팅 재실행 미수행** — numpy 부재. `C_skew` 판 산출과 N10 수정 효과 확인이 잔여다.
+
+## U5. 잔여 (다음 예산)
+
+A-3 수치 함정의 부록 정식 등재 · D 함정 기록(Ch2 부록 A) · C-4 소재별 문헌 서지 확장(M4 해소) ·
+N7(skew-regsol N=7 스윕) · N8(평형 데이터 재검) · N9(bootstrap CI). 전부 `HANDOVER_v1025_2_CARRYOVER.md`.
