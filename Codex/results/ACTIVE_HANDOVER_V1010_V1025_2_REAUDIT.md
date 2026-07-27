@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  258 documents, 51,240 lines.
+  259 documents, 51,531 lines.
 - Latest observation:
-  `Codex/results/PHASE_057AO_V1025_ARCHIVE_TOUCHUP_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057AP_V1025_DATA_ADDENDUM_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,14 +36,15 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.8J:
-`V1025_DATA_ADDENDUM.md` 1문건 291행을 전문 검독한다.
+Phase 057 Step 19.8K:
+document cascade TODO와 change ledger 2문건 339행을 전문
+검독한다.
 활성 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1024-v1025_2-read-map.md`.
-완료 Step 19.8A–I:
-v1.0.24.1 서술과 v1.0.25 archive·touchup까지 전량 `READ`.
+완료 Step 19.8A–J:
+v1.0.24.1 서술부터 v1.0.25 data addendum까지 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057AO_V1025_ARCHIVE_TOUCHUP_OBSERVATIONS.md`.
+`Codex/results/PHASE_057AP_V1025_DATA_ADDENDUM_OBSERVATIONS.md`.
 
 ## Resume Gate
 
