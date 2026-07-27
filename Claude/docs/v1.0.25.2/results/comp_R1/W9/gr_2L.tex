@@ -1,0 +1,149 @@
+% ====================================================================
+% gr_2L.tex — [GR-2L] 흑연 stage-2L·XRD 5-feature staging (신규 subsection)
+%   삽입 위치: Chapter 1(흑연) §5 폭·이중지위(ch1_sec05_width, \label{sec:width}) 뒤.
+%   저자 sub W9 (comp_R1). 초안 — 실제 문건 편집 금지, 본 폴더 전용.
+%   강조: adversarial completeness + honest limits.
+% ====================================================================
+\subsection{XRD 5-feature staging 과 stage-2L 의 엔트로피 분리 --- 두-상/고용체 판정자와 그 온도 서명}\label{ssec:gr-2L}
+앞 소절(\S\ref{sec:width})이 폭 $w_j=n_jRT/F$(식~\eqref{eq:wbase})의 \emph{이중지위} --- 단상($\Omega_j\le2RT$)에서는
+평형 예측, 두-상($\Omega_j>2RT$)에서는 broadening 이 정하는 현상학적 폭 --- 를 세웠고, 그 지위를 가르는 것이
+전이별 $\Omega_j$ 값임을 밝혔다. 이 소절은 그 판정을 흑연 staging 의 \emph{실측 상도표}(XRD) 위에 얹어, (i)
+어떤 전이가 두-상이고 어떤 것이 고용체 shoulder 인지의 판정자를 $\mu(\theta)$ 에서 닫고, (ii) 네 두-상 전이 중
+가운데 쌍이 실은 하나의 \emph{엔트로피 안정화 중간상}(stage-2L)을 사이에 둔 분리쌍임을 온도 서명으로 보인다.
+새 물리는 넣지 않는다 --- 식~\eqref{eq:gpp}$\cdot$\eqref{eq:spinodal}$\cdot$\eqref{eq:Uj} 의 흑연 골격을 XRD
+staging 좌표에 대응시켜 읽을 뿐이다. \textbf{역사적 명칭 가드} --- 본문의 stage 번호(1$\cdot$2$\cdot$2L$\cdot$3$\cdot$4)는
+Dahn 상도표의 \emph{구조상} 명명이며, ``ver.$N$''(문건 이력) 이나 ``Chapter $N$''(문서 구조)과 무관하다.
+
+\textbf{(a) 출발 --- XRD 가 고정한 5-feature staging.} 흑연 $\mathrm{Li}_x\mathrm C_6$ 의 상도표는 in~situ X-선
+회절로 확정돼 있다\cite{dahn1991}: 리튬화가 진행하며 좌표 $x{:}0\!\to\!1$ 을 따라 다섯 개의 구별되는 등온선
+특징(feature)이 나타나고, 그 성격이 두-상 공존과 연속 고용체로 갈린다:
+\begin{equation}
+\underbrace{1'\!\to\!4}_{\text{dilute, 두-상}}\ \Big|\
+\underbrace{4\!\to\!3}_{\text{\emph{고용체 shoulder}}}\ \Big|\
+\underbrace{3\!\to\!2\mathrm L}_{\text{두-상}}\ \Big|\
+\underbrace{2\mathrm L\!\to\!2}_{\text{두-상}}\ \Big|\
+\underbrace{2\!\to\!1}_{\text{두-상(최sharp)}}
+\label{eq:gr2l-features}
+\end{equation}
+곧 \emph{두-상 4 $+$ 고용체 1} 의 다섯 특징이다. $4\!\to\!3$ 하나만 XRD 에서 회절선이 연속 이동하는
+고용체 영역(단일상 solid-solution shoulder)이고, 나머지 넷은 두 회절 집합이 공존하는 상분리(near-delta
+평형선)다\cite{dahn1991}. 이 XRD 확정이 본 소절의 \emph{판정 기준}이며, 폭$\cdot$피팅은 이 상성격을 재현할
+뿐 그것을 만들지 않는다.
+
+\textbf{(b) 연산 --- 판정자 $\dd\mu/\dd\theta|_{1/2}=4RT-2\Omega$.} 어떤 전이가 두-상인지 고용체인지는
+정칙용액 화학퍼텐셜의 부호가 정한다. 전이 창 안 자리 점유 $\theta$(리튬화 진행)에 대한 자리 화학퍼텐셜은
+평균장 정칙용액에서
+\begin{equation}
+\mu(\theta)=\mu^\circ+RT\ln\frac{\theta}{1-\theta}+\Omega\,(1-2\theta)
+\label{eq:gr2l-mu}
+\end{equation}
+이고(이는 \S\ref{sec:hys} 자유에너지 식~\eqref{eq:gxi} 의 $\mu=\partial g/\partial\theta$ 를 $\theta$-좌표로
+적은 것), 이를 한 번 더 미분하면 등온선의 국소 강성이 나온다:
+\begin{equation}
+\frac{\dd\mu}{\dd\theta}=\frac{RT}{\theta(1-\theta)}-2\Omega
+\quad\Longrightarrow\quad
+\frac{\dd\mu}{\dd\theta}\Big|_{\theta=1/2}=4RT-2\Omega
+\label{eq:gr2l-disc}
+\end{equation}
+--- 이는 흑연 곡률식~\eqref{eq:gpp}($\partial^2 g/\partial\xi^2$)를 대칭점에서 읽은 것과 \emph{같은 대수}다($\theta{=}1{-}\xi$
+대칭에서 $\theta{=}1/2$ 는 $\xi{=}1/2$). 판정은 이 한 부호다:
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item $\Omega>2RT$ $\Rightarrow$ $\dd\mu/\dd\theta|_{1/2}<0$ --- 등온선이 비단조(back-bending)라 spinodal
+gap(식~\eqref{eq:spinodal})이 열려 \emph{miscibility gap $\cdot$ 두-상 공존}(XRD 회절선 공존)이고, 평형 등온선이
+\emph{near-delta}(날카로운 plateau)라 평형 dQ/dV 가 선(델타)에 가깝다.
+\item $\Omega<2RT$ $\Rightarrow$ $\dd\mu/\dd\theta|_{1/2}>0$ --- 등온선이 단조라 gap 이 없어 \emph{연속 고용체}
+(새 상이 아니라 한 상 안의 조성 이동)이고, 평형 dQ/dV 가 유한 폭 종(shoulder)이다.
+\end{itemize}
+$2RT{\approx}4958$ J/mol$@298.15$ K 가 문턱이다(식~\eqref{eq:spinodal} 와 동일 문턱). 곧 식~\eqref{eq:gr2l-features}
+의 상성격 배치는 임의 분류가 아니라 각 전이 $\Omega_j$ 의 $2RT$ 초과 여부라는 \emph{한 부등호}의 결과다.
+
+\begin{verifybox}
+검산 --- 정칙용액 피팅 진단(regsol2)이 네 두-상 전이의 $\Omega_j/RT$ 를
+$[\,4.06,\,2.02,\,3.55,\,4.07\,]$ 로 되돌려($1'\!\to\!4,\,3\!\to\!2\mathrm L,\,2\mathrm L\!\to\!2,\,2\!\to\!1$) 전부
+$2$ 초과다 --- 판정자~\eqref{eq:gr2l-disc} 로 넷 모두 두-상(back-bending)임을 실측 재확인한 것이며, $4\!\to\!3$
+행은 이 진단에서 $\Omega$ 슬롯을 배정받지 않는(연속 고용체) 유일 예외다. 경계선 값 $2.02$($3\!\to\!2\mathrm L$)는
+문턱 바로 위라, 도핑$\cdot$시료 편차로 $2RT$ 아래로 내려가면 그 전이가 고용체 쪽으로 재분류될 수 있다는
+민감도까지 이 진단이 드러낸다(피팅 위임).
+\end{verifybox}
+
+\textbf{(c) 중간식 --- stage-2L 은 엔트로피 안정화 상, 그 온도 서명은 $\Delta(\Delta S)$.} 네 두-상 전이 중
+가운데 쌍 $3\!\to\!2\mathrm L$ 와 $2\mathrm L\!\to\!2$ 는 독립한 두 전이가 아니라, 사이에 낀 \emph{stage-2L}
+(부분 채운 중간 stage)을 각각 진입$\cdot$이탈하는 \emph{분리쌍}이다. stage-2L 은 엔트로피로 안정화되는 상이라
+(부분 채움의 배열 자유도가 $-T\Delta S$ 로 자유에너지를 낮춤) 대략 $\gtrsim10\,^\circ$C 에서 뚜렷하고, 그 아래
+온도에서는 안정성을 잃어 쌍이 하나의 $3\!\to\!2$ 처리로 합쳐진다. 두 분리 전이의 반응 엔트로피가 서로 갈리는
+것이 관측 서명이다 --- 식~\eqref{eq:Uj} 의 온도 의존 $\partial U_j/\partial T=\Delta S_{\rxn,j}/F$ 로, 두 중심의
+\emph{분리 속도}는 엔트로피 차 $\Delta(\Delta S)\equiv\Delta S_{\rxn}^{3\to2\mathrm L}-\Delta S_{\rxn}^{2\mathrm L\to2}$ 가 정한다:
+\begin{equation}
+\frac{\partial}{\partial T}\big(U^{3\to2\mathrm L}-U^{2\mathrm L\to2}\big)
+=\frac{\Delta(\Delta S)}{F},
+\qquad \Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}
+\;\Rightarrow\;
+\frac{29}{96485}\approx0.30\ \mathrm{mV/^\circ C}.
+\label{eq:gr2l-split}
+\end{equation}
+이 $\Delta(\Delta S)\approx29$ J/(mol\,K) 는 분리쌍 값 $\Delta S_{\rxn}^{3\to2\mathrm L}\approx+15$(고V 쪽)$\cdot$
+$\Delta S_{\rxn}^{2\mathrm L\to2}\approx-14$(저V 쪽)의 차이며(한 쌍의 배열-엔트로피 부호 반전 --- 진입 시 배열
+자유도 증가, 이탈 시 감소), 우리 온도 스윕 재현이 $0.271\ \mathrm{mV/^\circ C}$ 로 이 예측의 $\sim90\%$ 를 되돌린다.
+
+\begin{signbox}
+\textbf{관측 귀결(부호).} 분리 속도 $+0.30\ \mathrm{mV/^\circ C}$ 는 온도가 오를수록 두 peak 중심이 \emph{벌어짐}
+을 뜻한다. 두 중심 간격이 폭 $w_j$ 를 넘으면 dQ/dV 에 두 봉우리가 분해되고, 못 넘으면 한 봉우리로 겹쳐 보인다
+--- 그래서 고온($45\,^\circ$C)에서 2-peak 로 분해되고 상온($25\,^\circ$C)에서 병합돼 보이며, stage-2L 자체가
+불안정해지는 $\sim10\,^\circ$C 아래에서는 분리쌍이 아예 사라진다. 곧 stage-2L 의 존재는 \emph{온도로 켜지는
+peak 분해}라는 검증 가능한 예측을 낳는다(자유 곡선맞춤이 아니라 $\Delta(\Delta S)$ 한 값이 정하는 서명).
+\end{signbox}
+
+\textbf{(d) 박스 --- stage-2L 분리쌍의 온도 지도.} 위를 한 식으로 닫으면, 두 분리 전이의 중심이 온도를 따라
+서로 반대로 움직이며 그 간격이 $\Delta(\Delta S)/F$ 로 벌어진다:
+\begin{equation}
+\boxed{\;
+\begin{aligned}
+U^{3\to2\mathrm L}(T)&=U^{3\to2\mathrm L}_{\mathrm{ref}}+\frac{\Delta S_{\rxn}^{3\to2\mathrm L}}{F}\,(T-T_{\mathrm{ref}}),\\
+U^{2\mathrm L\to2}(T)&=U^{2\mathrm L\to2}_{\mathrm{ref}}+\frac{\Delta S_{\rxn}^{2\mathrm L\to2}}{F}\,(T-T_{\mathrm{ref}}),\\
+\big|\,U^{3\to2\mathrm L}-U^{2\mathrm L\to2}\,\big|&\ \text{가 }w_j\text{ 를 넘는 }T\text{ 에서만 2-peak 분해}\quad(\Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}).
+\end{aligned}\;}
+\label{eq:gr2l-box}
+\end{equation}
+이는 식~\eqref{eq:Uj} 의 $U_j(T)$ 를 분리쌍 두 전이에 각각 적용한 것뿐이며(그림~\ref{fig:UjT} 의 기울기 부호
+지도와 같은 대수), 새 항이 없다.
+
+\medskip
+\textbf{★적대적 검토 대응 --- ``stage-2L 은 실재 상인가, 곡선맞춤인가.''} 이 물음에 셋으로 답한다.
+\emph{첫째, XRD 실측 근거.} stage-2L 은 dQ/dV 를 맞추려 도입한 여분 봉우리가 아니라 Dahn 상도표\cite{dahn1991}
+가 회절로 고정한 stage 이고, 탈리튬 방향에서도 stage-2L 구조가 독립 실측된다\cite{schmitt2022} --- 곧 상 자체가
+회절 증거를 가진다. \emph{둘째, 반증 가능 예측.} 식~\eqref{eq:gr2l-split} 의 $0.30\ \mathrm{mV/^\circ C}$ 분리
+속도와 $\sim10\,^\circ$C 병합은 \emph{자유 파라미터가 아니라} $\Delta(\Delta S)$ 한 값이 정하는 온도 서명이라,
+다온도 데이터가 이를 배반하면 stage-2L 가정이 깨진다(우리 재현 $0.271\ \mathrm{mV/^\circ C}$ 는 예측과 정합).
+흑연 삽입 엔트로피의 부호$\cdot$스케일이 독립 실측과 맞는 것도 이를 받친다\cite{reynier2003}. \emph{셋째, 상한의
+규율.} 두-상 전이는 식~\eqref{eq:gr2l-features} 의 \emph{넷}이 XRD 상한이며, 기존 4-전이 모델(표~\ref{tab:staging})
+의 네 전이가 바로 이 네 두-상 특징에 1:1 대응한다($4\!\to\!3$ 행은 상도표상 두-상이 아니라 고용체 shoulder 라
+$\Omega$ 슬롯을 비워 두는 것과 정합 --- \S\ref{sec:broadening-class}). \emph{5개를 넘어 6개 이상으로 전이를
+쪼개는 것은 XRD 가 지지하지 않는 curve-fitting} 이라 폐기한다 --- 봉우리를 더 얹으면 $R^2$ 는 오르지만 그
+여분 봉우리에 대응하는 회절 상이 없다.
+
+\begin{warnbox}
+\textbf{정직한 한계.} (i) \emph{절대 $\Delta S$ vs 엔트로피 \emph{차}.} 물리를 지는 양은 분리쌍의 \emph{차}
+$\Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}$ 이지 개별 절대값이 아니다. 분리쌍 값 $+15/-14$ 는 이 차를
+재현하는 \emph{한} 배치이며, 표~\ref{tab:staging} 의 초기값($3\!\to\!2\mathrm L{:}\,0$, $2\mathrm L\!\to\!2{:}\,-5$,
+차 $=5$)은 관측 분해를 못 내는 거친 출발점이라, 본 소절의 분리 서명은 그 초기값을 $\Delta(\Delta S)$ 축으로
+갱신하는 \emph{피팅 대상}이다(표 수치를 임의 변경하지 않고, 분리쌍 차를 self-test 로 맞춘다 --- 흑연 $2\!\to\!1$
+$U(298){=}0.085$ V round-trip 과 동격). (ii) \emph{온도 규모의 등급.} $\sim10\,^\circ$C 병합 온도와
+$25/45\,^\circ$C 분해 여부는 \emph{다온도 데이터 없이는 미검증}인 정성$\cdot$자릿수 예측이다 --- 회사 다온도
+셀 데이터가 들어와야 $0.30\ \mathrm{mV/^\circ C}$ 와 병합점이 확정된다. (iii) \emph{$\Omega_j$ 초기값의 지위.}
+regsol2 의 $\Omega_j/RT$ 진단은 우리 피팅 산출이지 전이별 문헌 anchor 가 아니므로(표~\ref{tab:staging} 의
+$\Omega$ 열과 같은 tier), 두-상 확정의 최종 판정은 \emph{피팅된} $\Omega_j$ 의 $2RT$ 초과다 --- 경계값
+$2.02$($3\!\to\!2\mathrm L$)는 이 판정의 민감 지점으로 남긴다.
+\end{warnbox}
+
+\begin{keybox}
+\textbf{stage-2L 다리.} 판정자~\eqref{eq:gr2l-disc}($\dd\mu/\dd\theta|_{1/2}=4RT-2\Omega$)가 XRD 5-feature
+(식~\eqref{eq:gr2l-features})의 두-상/고용체 배치를 한 부등호로 닫고, 그 중 두-상 4 가 표~\ref{tab:staging}
+네 전이와 1:1 이다. 가운데 분리쌍은 엔트로피 안정화 stage-2L 을 사이에 둔 한 쌍이며, 그 존재의 서명이
+$\Delta(\Delta S)\approx29\ \mathrm{J/(mol\,K)}\Rightarrow0.30\ \mathrm{mV/^\circ C}$ 온도 분리
+(식~\eqref{eq:gr2l-box}, 재현 $0.271$)라는 \emph{반증 가능}한 예측이다 --- 6+ 전이는 XRD 미지원 curve-fitting 으로 폐기.
+\end{keybox}
+
+% 자산(comp_R1 W9 초안): [W9-GR2L-1 XRD 5-feature 두-상4+고용체1 eq:gr2l-features]
+%   [W9-GR2L-2 판정자 dμ/dθ|½=4RT-2Ω eq:gr2l-disc(eq:gpp 대칭점 회수)·regsol2 Ω/RT 진단]
+%   [W9-GR2L-3 stage-2L 엔트로피 분리 Δ(ΔS)=29→0.30 mV/℃ eq:gr2l-split·재현 0.271]
+%   [W9-GR2L-4 분리쌍 온도지도 boxed eq:gr2l-box] [W9-GR2L-5 적대적 대응 3점+정직 한계 warnbox(6+ 폐기·미검증 온도규모·Ω 피팅위임)]

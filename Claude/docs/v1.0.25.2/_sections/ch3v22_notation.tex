@@ -1,0 +1,46 @@
+% ====================================================================
+% ch3v22_notation.tex — Ch3 기호표 확정판 (R5 = W3 기반·채택 본문 기호 정합 — R1 초판 대체)
+% ====================================================================
+\subsection*{기호 --- 계승과 신규}
+\textbf{계승}(Chapter 1$\cdot$2 정의 그대로 --- 재정의 없음): 전하 보존 반전~\eqref{eq:sm-mc-balance}
+과 그 fluctuation 유일한 근(unique root) 논증(\eqref{eq:sm-mc-fluc})$\cdot$평형 진행률 logistic~\eqref{eq:logisticsolve}$\cdot$폭
+$w_j$(\S\ref{sec:width})$\cdot$용량 $Q_j$$\cdot$방향 부호 $\sigma_d$$\cdot$평형 중심 $U_j$$\cdot$온도 관계
+$\partial U/\partial T{=}\Delta S_\rxn/F$(\S\ref{sec:center})$\cdot$히스 gap 골격~\eqref{eq:dUhys}
+(적용 한계는 대응 지도 \S\ref{sec:si-map} 참조)$\cdot$합산식~\eqref{eq:sum}$\cdot$MSMR 대응
+(\S\ref{sec:lco-code-msmr}). 이 계승분은 본 장에서 값$\cdot$의미를 바꾸지 않는다.
+
+\textbf{신규}(본 장 도입 --- 도입 절 명시). 표~\ref{tab:si-notation} 가 전건이다.
+
+\begin{table}[h]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{Chapter 3 신규 기호 --- 도입 절과 뜻. host 첨자는 계승 기호에 얹는 한 겹이며(재정의 아님),
+응력 결합 기호군은 골격 밖 새 물리로 선언된다(\S\ref{sec:si-mech}).}
+\label{tab:si-notation}
+\begin{tabular}{@{}p{0.185\textwidth} p{0.115\textwidth} p{0.60\textwidth}@{}}
+\toprule
+기호 & 도입 절 & 뜻 \\
+\midrule
+$\mathrm{host}\in\{\mathrm{gr},\mathrm{Si}\}$ & \S\ref{ssec:si-blend-derive} & 혼합 음극의 두 활물질 첨자 --- 반전에 얹는 host 합 한 겹. \\
+$Q_j^{\mathrm{host}}$ & \S\ref{ssec:si-blend-derive} & host 의 전이 $j$ 용량 가중($=(F/N_A)M_j^{\mathrm{host}}$). \\
+$\xi_{\eq,j}^{\mathrm{host}}$ & \S\ref{ssec:si-blend-derive} & host 의 전이 $j$ 평형 진행률(\eqref{eq:logisticsolve} 의 host 판). \\
+$w_j^{\mathrm{host}},\,\theta_j^{\mathrm{host}},\,M_j^{\mathrm{host}}$ & \S\ref{ssec:si-blend-derive} & host 의 폭$\cdot$점유$\cdot$자리수(계승 기호의 host 첨자판). \\
+$Q_\mathrm{gr},\,Q_\mathrm{Si},\,Q$ & \S\ref{ssec:si-blend-derive} & host 용량과 총용량 $Q{=}Q_\mathrm{gr}{+}Q_\mathrm{Si}$. \\
+$f_\mathrm{Si}$ & \S\ref{ssec:si-blend-derive} & Si \emph{용량} 분율 $Q_\mathrm{Si}/Q$(전하 보존식 내부 변수). \\
+$m_\mathrm{Si}$ & \S\ref{ssec:si-blend-derive} & Si \emph{질량} 분율(wt\% --- 업계 배합 관행의 선언$\cdot$스윕 좌표, 기준 범위 $[0,0.30]$); 환산 $f_\mathrm{Si}=m_\mathrm{Si}q_\mathrm{Si}/[m_\mathrm{Si}q_\mathrm{Si}+(1{-}m_\mathrm{Si})q_\mathrm{gr}]$($q$ $=$ 비용량). \\
+$C_\bg$(전극 단위) & \S\ref{ssec:si-blend-derive} & 블렌드 배경 미분용량 --- host 별 아닌 전극당 1회 가산. \\
+Si 케이스 & \S\ref{ssec:code-caseset} & 세 활물질 케이스 --- 원소 Si$\cdot$SiO$_x$$\cdot$SiC. \\
+$\bar v_\mathrm{Li}$ & \S\ref{ssec:si-lc-derive} & Li 부분몰 부피 $\partial v/\partial(\text{Li 함량})$(응력--조성 결합, 골격 밖). \\
+$\sigma_h$ & \S\ref{ssec:si-lc-derive} & 정수압(평균) 응력 $\tfrac13\mathrm{tr}\,\bm\sigma$(경로 의존). \\
+$\Lambda_\sigma$ & \S\ref{ssec:si-lc-derive} & 응력--전위 결합 계수 $\bar v_\mathrm{Li}/F$($\sim100$--$120$ mV/GPa). \\
+$\Delta V^\mathrm{mech}$ & \S\ref{ssec:si-lc-derive} & 기계 히스 갈림($=\Lambda_\sigma(\sigma_\mathrm{h}^{\dis}{-}\sigma_\mathrm{h}^{\chg})$, \eqref{eq:si-coupling}). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+케이스별 파라미터 셋(표~\ref{tab:si-cases})과 블렌드 합성 기호의 세부 정의는 해당 절 도입부가 기준이며,
+응력 결합 기호군($\bar v_\mathrm{Li}$$\cdot$$\sigma_\mathrm{h}$$\cdot$$\Lambda_\sigma$$\cdot$$\Delta V^\mathrm{mech}$)은
+골격 밖 새 물리로 선언된 항이라 그 폐합은 GS-1 공백(\S\ref{ssec:si-lc-gap})으로 남는다.
+
+% 자산(comp_R5 W3): [V22-R5-25 계승 2단 규약 확정(재정의 0)]
+%   [V22-R5-26 신규 기호 전건 표 tab:si-notation(host 첨자·f_Si·응력 결합군·si_case 도입 절 명시)]

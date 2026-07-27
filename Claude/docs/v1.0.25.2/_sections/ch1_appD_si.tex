@@ -1,0 +1,91 @@
+% ====================================================================
+% 부록 (Si 예비 지도) — Si 계열 접목: 노드 생존 판정·최강 자산 실증·정직 공백 (Q7, 아키텍처 (iii))
+%   지위: 예비 부록(교두보). Si 전용 완결 유도(독립 장)는 후속 소관 — 여기서는
+%   무엇이 이월되고(전하 보존) 무엇이 새 물리인지(기계 히스테리시스)의 지도만 놓는다.
+%   근거 조사 = v1.0.20 DIRECTION_SI_LCO_REPORT(문헌 전건 웹 검증·DOI 확인).
+% ====================================================================
+\section{Si 계열 접목 예비 지도 --- 이월 요소와 신규 물리}\label{sec:appendix-si}
+본 부록은 예비 지도다: 흑연$\cdot$LCO 에 걸린 본문 골격($\mathrm{N0}$--$\mathrm{N9}$)을 실리콘 합금
+음극에 대조해, 식이 그대로 성립하는 곳$\cdot$재해석으로 유지되는 곳$\cdot$골격 밖 새 물리가 필요한 곳을
+가른다. 완결 유도는 두지 않는다 --- 아래 판정에서 ``새 물리'' 로 분류된 것의 1차원리 유도는 Si 전용
+장(후속)의 선결 과제이고, 본 부록의 전 서술은 문헌 기반이다(자체 실측 대조 없음).
+
+\subsection{Si 와 흑연의 차이 --- 확립 사실 여덟}\label{ssec:si-facts}
+(i) Si 는 삽입이 아니라 \emph{합금화}다 --- 고온 평형은 네 중간상(Li$_{12}$Si$_7$ 등)의 계단
+plateau 를 보이나\cite{wen_huggins1981}, 호스트 격자 자체가 재구성된다. (ii) 상온 첫 리튬화는
+결정질 Si 가 비정질 Li$_x$Si 로 바뀌는 \emph{전기화학적 고상 비정질화}이고, 입자 안에서 결정
+코어/비정질 껍질의 날카로운 이동 경계로 진행한다(입자 내 두-상)\cite{limthongkul2003,li_dahn2007}.
+(iii) 깊은 리튬화 끝(약 $50$ mV)에서 준안정 결정상 Li$_{15}$Si$_4$ 가 갑자기
+결정화한다\cite{obrovac_christensen2004}. (iv) 첫 사이클 이후의 비정질 경로는 plateau 없는 \emph{완만한
+경사 전위} $U(x)$ 다 --- 제일원리 계산이 이 곡선을 재현한다\cite{chevrier_dahn2009}. (v) 만충 부피
+변화는 약 $300\%$ 로\cite{beaulieu2001} 흑연($\sim10\%$)과 자릿수가 다르다. (vi) 충$\cdot$방전 전위
+갈림(히스테리시스)은 수백 mV 급이고, in~situ 응력 측정은 소성 유동(압축 $\sim-1.75$ GPa)과
+\emph{응력--전위 결합} $\sim100$--$120$ mV/GPa 를 직접 보인다\cite{sethuraman_stressevo2010,
+sethuraman_stresspot2010} --- 히스테리시스의 지배 몫이 \emph{기계적}이다. (vii) 임계 입자경
+$\sim150$ nm 아래에서만 첫 리튬화 균열이 없다 --- 입자 크기가 1차 인자다\cite{liu_sizefracture2012}.
+(viii) 이 전부의 총람은 합금 음극 리뷰\cite{obrovac_chevrier2014} 가 준다.
+
+\subsection{노드 대응 판정표}\label{ssec:si-map}
+판정 네 갈래: \textbf{이월}(식$\cdot$부호 그대로) / \textbf{재해석}(형식 유지, 변수 의미
+변경) / \textbf{새 물리}(골격에 없는 항 필요) / \textbf{부분}(일부 조건에서만).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{0.13\textwidth} p{0.10\textwidth} p{0.66\textwidth}}
+\toprule
+노드 & 판정 & 무엇이 유지되고 무엇이 깨지나 \\
+\midrule
+N0 조건 & \textbf{이월} & $\sigma_d$·$|I|$ 환산은 전극 무관 --- 저전위 음극 규약 그대로. \\
+N1 분극 & 재해석 & 옴 분극 벗기기는 성립하나, $|I|\to0$ 에서도 안 사라지는 \emph{기계(응력) 과전위 몫}이 $V_n$ 에 남는다(사실 vi). \\
+N2 중심 & 재해석 & 이산 staging 중심 $U_j$ 부재(사실 iv) --- 유효 logistic 성분의 파라미터화(MSMR-Si\cite{verbrugge_lisi2016}) 또는 연속 $U(x)$\cite{chevrier_dahn2009} 로 대체. $\partial U/\partial T=\Delta S/F$ 관계 자체는 유지된다. \\
+N3 히스 & \textbf{새 물리} & 아래 \S\ref{ssec:si-gap}. 정규용액 spinodal gap 상한($\Omega{=}4RT$ 에서 $\approx55$ mV)으로 수백 mV 를 못 담는다. \\
+N4 폭 & 재해석 & 경사 성분의 ``폭''은 합금 조성폭(수십 \%)이지 열적 $RT/F$($\sim26$ mV)가 아님 --- $n_j\gg1$ 의 현상학 폭. \\
+N5 $\xi_\eq$ & 구조 이월 & logistic 합 \emph{형식}은 유지된다(detailed balance 는 전극 무관; MSMR-Si 실증\cite{verbrugge_lisi2016}) --- 단 ``동등 격자 자리'' 미시 해석은 비정질에서 소멸, 유효 파라미터화로 재해석. \\
+N6 peak & 부분 & 날카로운 peak 문법은 Li$_{15}$Si$_4$ 탈리튬화$\cdot$1차 리튬화 두-상(사실 ii·iii)에만 --- 나머지는 넓은 hump. \\
+N7 broadening & 부분 & 두-상 broadening 틀은 부분 적용되나 기작이 다르다(입자 간 순차 전환이 아니라 \emph{입자 내} 코어--쉘). 본문이 마이크론 흑연에서 정량 \emph{배제}한 입자-크기 채널이 Si 에선 1차 인자로 \emph{역전}된다(사실 vii) --- broadening 출처 규정이 Si 에서는 재해석된다. \\
+N8 지연 & 구조 이월 & Eyring 유한율속 꼬리 구조는 전극 무관. 단 $|I|\to0$ 에서 꼬리는 소멸해도 기계 히스는 남으므로, 흑연에서처럼 ``잔여 갈림 $=$ 평형 분기'' 로 읽는 분리 논법이 약해진다. \\
+N9 합산 & \textbf{이월} & 아래 \S\ref{ssec:si-anchor}. \\
+\bottomrule
+\end{tabular}
+\caption{골격 노드의 Si 대응 판정 --- 이월 2(N0·N9)·구조 이월 2(N5·N8)·재해석 3(N1·N2·N4)·부분
+2(N6·N7)·새 물리 1(N3). 근거 문헌은 \S\ref{ssec:si-facts}.}
+\label{tab:simap}
+\end{table}
+
+\subsection{핵심 불변량 --- 전하 보존의 전극 중립성}\label{ssec:si-anchor}
+본문 중심식 --- 전하 보존 음함수~\eqref{eq:sm-mc-balance} --- 는 격자 통계가 아니라 \emph{전하
+회계}에서 왔으므로(\S\ref{sec:sm-mc}: 반응 몫의 합 $=$ 통과 전하), staging 이 무너져도 유지된다.
+합금 전극의 다중 전기화학 반응$\cdot$화학종 분화(speciation)를 정확히 이 구조 --- 반응별 logistic
+점유의 용량가중 합을 고정 전하에서 뒤집기 --- 로 세운 정식화가 Li--Si 에서
+실증되어 있고\cite{verbrugge_lisi2016}, 이는 본문 MSMR 대응(\S\ref{sec:lco-code})과 같은 저자
+계보의 Si 판이다. 곧 \emph{내부 전위를 결정하는 중심 구조는 흑연$\cdot$LCO$\cdot$Si 에 공통}이며,
+Si 접목에서 바뀌는 것은 이 구조에 들어가는 성분(전이 집합$\cdot$폭$\cdot$히스 항)이지 구조 자체가
+아니다 --- 이것이 접목의 앵커다.
+
+\subsection{미결 공백 GS-1 --- 기계 히스테리시스는 골격 밖 새 물리}\label{ssec:si-gap}
+Si 히스테리시스는 본문 N3 의 언어로 닫히지 않는다. 크기부터 다르다: 본문의 spinodal 상한
+gap 은 $\Omega_j{=}4RT$ 에서 $\approx55$ mV(그림~\ref{fig:hysgap})인데 Si 실측 갈림은 수백 mV
+다\cite{obrovac_chevrier2014}. 기원도 다르다: in~situ 측정이 보이는 것은 자유에너지 이중웰이 아니라
+소성 유동과 응력--전위 결합이며\cite{sethuraman_stressevo2010,sethuraman_stresspot2010}, 최근 모델은
+경로 의존 소산(입자$\cdot$SEI 의 점탄소성)으로 이 갈림을 재현한다\cite{koebbing2024} ---
+선행 현상학 모델은 다단 상전이$\cdot$(비)결정화 경로 분기로 같은 관측을
+담는다\cite{jiang_sihys2020}. 골격에 없는 것은 \emph{응력이 화학퍼텐셜에 들어가는 항}이다: 개방계
+고체의 응력--조성 결합 열역학(Larché--Cahn)\cite{larchecahn1973} 이 그 이론틀의 표준 출발점이나, 이를
+본문 결과-사슬 문법((a)$\to$(d) 유도$\cdot$검산$\cdot$코드 대응)으로 끌어와 닫는 일은 본 부록 범위
+밖이다. 공백의 분류(본문 공백 관행): \emph{물리 가정 충돌}(정규용액 이중웰 가정이 Si 에서 지배
+기작이 아님) $+$ \emph{유도 범위 밖}(응력 항의 1차원리 접속) --- 논리 공백이 아니라 범위 선언이다.
+
+\subsection{부분 적용 시연의 자리 --- 실제 이산 전이 둘}\label{ssec:si-partial}
+골격 문법이 Si 에서 그대로 시연 가능한 곳은 실제 이산 전이 둘뿐이다: (i) \textbf{1차 리튬화 두-상}
+(c-Si$\to$a-Li$_x$Si 이동 경계 --- 두-상 delta$\to$종 broadening 문법 부분 적용, 단 입자 내
+코어--쉘 기하로 재해석), (ii) \textbf{Li$_{15}$Si$_4$ 결정화$\cdot$탈리튬화}(날카로운 dQ/dV 특징 ---
+평형 종 문법 적용). 나머지 경사 영역은 유효 다성분 logistic(MSMR-Si)으로만 파라미터화되며, 그
+성분들은 물리 전이가 아니라 곡선 기술 성분이다 --- 흑연$\cdot$LCO 에서 성분$=$상전이였던 대응이 Si
+에서는 깨진다는 것을 성분 해석에 명시해야 한다. 위 두 시연의 실제 수치 완주(초기값 표$\cdot$계산
+예제)는 Si 실측 dQ/dV 확보 후 Si 전용 장에서 수행한다.
+
+% 자산(v1.0.21 신규): [V21-Q7-01 Si 사실 8건 문헌 지도 ssec:si-facts] [V21-Q7-02 노드 생존 판정표 tab:simap]
+%   [V21-Q7-03 전하 보존 전극 중립성 Si 실증 ssec:si-anchor(=eq:sm-mc-balance 앵커)]
+%   [V21-Q7-04 GS-1 기계 히스 공백 선언 ssec:si-gap(충돌+미착수 분류·이론틀 후보 2건 검증 등재)]
+%   [V21-Q7-05 부분 적용 시연 자리 ssec:si-partial(성분≠상전이 명시)]

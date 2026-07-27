@@ -1,0 +1,103 @@
+% ====================================================================
+% [LCO-Ω] LCO per-peak Ω(정칙용액 커널) + 전자항 on/off 토글 (신규 소절 — ch2 LCO)
+%   저자-sub W7 초안 (산업 방어력 register). 실제 파일 편집 아님.
+%   계승: eq:lco-eqpeak·eq:eqpeak·eq:lco-gxi·eq:lco-spinodal·eq:lco-dUhys·eq:lco-dUdT·
+%         eq:dSe·eq:dSegate·eq:U1T2·eq:br-vanderven1998-1·sec:lco-hys·sec:lco-electronic·
+%         sec:lco-decomp·sec:lco-peak·tab:lco-staging. 신규 라벨: ssec:lco-omega·eq:lcoom-*.
+%   #7 정정 대상(sec:lco-hys 의 "Ω>2RT ⇔ x½ 질서상 안정" 문구)을 본 소절이 명확화.
+% ====================================================================
+\subsection{LCO per-peak $\Omega$ 와 전자항 on/off 토글 --- 파라미터 물리의 방어와 다온도 위임 (N3$'\!+$N5$+$)}\label{ssec:lco-omega}
+\S\ref{sec:lco-hys} 가 LCO 세 전이를 흑연과 같은 정칙용액 틀에 넣었고 \S\ref{sec:lco-electronic} 이 MIT 전자
+엔트로피 항을 세웠다. 이 소절은 그 둘을 회사 리뷰어의 관점에서 하나로 묶는다 --- 즉 (i) LCO dQ/dV 가 흑연과
+\emph{동형 MSMR} 이라는 것, (ii) feature 별로 상 성격이 다른 것이 \emph{per-peak $\Omega$}(전이당 정칙용액 커널)로
+포착된다는 것, (iii) 그 $\Omega$ 가 \emph{무엇을 뜻하는 파라미터인가}(미시 질서구조가 아니라 유효 평균장 문턱)의
+명확화, 그리고 (iv) 전자항이 \emph{상온 커브에 불필요하고 다온도 엔트로피에서만 켜지는 토글}이라는 것이다. 넷 다
+새 물리가 아니라 파라미터의 \emph{물리적 의미와 일관성}을 방어 가능하게 고정하는 일이다.
+
+\textbf{(a) 출발 --- LCO dQ/dV 는 흑연과 같은 MSMR 이다.} 평형 peak 유도(\S\ref{sec:eqpeak})에는 host 고유 항이
+없으므로, LCO 하프셀의 세 peak 는 전이 집합만 $\mathcal J_\mathrm{LCO}$ 로 바꾼 식~\eqref{eq:lco-eqpeak} 로
+닫힌다(흑연 식~\eqref{eq:eqpeak} 와 동형). 이 동형성은 산업적으로 검증된다 --- \emph{plain MSMR}(전자항 없이,
+전이별 $U_j^\cat\cdot\Omega_j^\cat\cdot Q_j^\cat\cdot w_j$ 만) 로 LCO O3 실측을 피팅하면 $R^2=0.944$ 로, 같은
+골격의 흑연 $R^2=0.940$ 과 \emph{사실상 같다}(본 세션, tier A). 곧 회사 리뷰어가 흑연에서 신뢰한 그 곡선 클래스가
+LCO 에서 재확인되며, 뒤의 전자항은 이 상온 curve 를 바꾸지 않는다(아래 (d)).
+
+\textbf{(b) 연산 --- feature 별 상 성격은 per-peak $\Omega_j^\cat$ 가 담는다.} LCO 세 feature 는 상 성격이 균일하지
+않다 --- T1(MIT, $\sim$3.90 V)의 절연체$\to$금속 2상 공존과 T2$\cdot$T3($\sim$4.05$\cdot$4.17--4.20 V)의
+$x\!\approx\!\tfrac12$ order--disorder 한 쌍은 pure-LCO 상도표에서 모두 문턱 $\Omega_j^\cat>2RT$ 를 넘는 상분리
+후보이나\cite{reimers1992,vanderven1998,motohashi2009}, 각자의 gap 크기$\cdot$폭은 서로 다르다. 이를 담는 것이
+전이당 \emph{독립} 상호작용 파라미터, 곧 per-peak $\Omega_j^\cat$ 다 --- 단일 공유 $\Omega$ 가 아니라 전이마다
+자기 값을 갖고, 정칙용액 커널 식~\eqref{eq:lco-gxi}$\cdot$\eqref{eq:lco-spinodal} 이 그 값으로 gap
+(식~\eqref{eq:lco-dUhys})과 두-상 sharpness 를 전이별로 연다. 이 per-peak 자유도가 LCO O3 피팅에 $+1.25$\%p 를
+더한다($R^2:0.944\to0.957$, 본 세션 절제 실험, tier A) --- feature 마다 다른 상 성격을 한 파라미터로 뭉개지 않고
+전이별로 분리했기 때문이다.
+
+\textbf{(c) 중간식 --- $\Omega_j^\cat$ 이 무엇을 뜻하는가(파라미터 물리의 명확화).} 여기서 회사 리뷰어가 가장
+오독하기 쉬운 지점을 명시적으로 못박는다. $\Omega_j^\cat$ 은 \emph{미시 질서구조(어느 초격자가 안정한가)를
+직접 재는 양이 아니다} --- 그것은 전이 $j$ 창의 진행좌표 $\xi_j$ 에서 다체 상호작용을 최근접 쌍 한 항으로
+접은 \emph{유효 평균장 축약}이며(Van der Ven 클러스터 전개의 축약, 식~\eqref{eq:br-vanderven1998-1}), 그 역할은
+오직 상분리의 \emph{유효 문턱}($\Omega_j^\cat\!>\!2RT$ 면 gap 이 열림)을 정하는 것뿐이다. 따라서
+\begin{equation}
+\boxed{\;
+\underbrace{\Omega_j^\cat\ (\text{유효 평균장 문턱 [J/mol]})}_{\text{gap$\cdot$sharpness 슬롯 (이 소절)}}
+\ \ \Big\|\ \
+\underbrace{\Delta S_j^\config\ (\text{배치 엔트로피 [J/(mol\,K)]})}_{\text{$U_j^\cat(T)$ 온도 이동 슬롯 (\S\ref{sec:lco-decomp})}}\;}
+\label{eq:lcoom-slotsep}
+\end{equation}
+로 \emph{두 양은 서로 다른 슬롯에 산다}. 곧 ``$\Omega_j^\cat\!>\!2RT\ \Leftrightarrow\ x\!\approx\!\tfrac12$ 질서상
+안정''(식~\eqref{eq:br-vanderven1998-1} 의 느슨한 축약 표기)은 정확히는 ``$\Omega_j^\cat\!>\!2RT$ 면 전이의 유효
+이중웰이 열려 miscibility gap 이 생기고, pure-LCO 상도표가 그 조성창을 $x\!\approx\!\tfrac12$ order--disorder 와
+연관지을 뿐''로 읽어야 하며, 정렬의 config 엔트로피 값($\approx0.47/1.49$ J/(mol\,K), 조성$\cdot$원전 재확인
+중이라 tier C)은 $\Omega_j^\cat$ 으로 \emph{직접 연결하지 않고} 별도 config 슬롯에 둔다.\footnote{이 명확화는
+\S\ref{sec:lco-hys} 의 정칙용액 축약 문구를 파라미터 의미 층위에서 다듬은 것으로(#7), 물리는 그대로 유지하고
+표기만 정밀화한다 --- 혼동 가드(\S\ref{sec:lco-hys-od})와 동일 취지.} 이 슬롯 분리가 산업 방어의 핵이다 --- 리뷰어가
+$\Omega_j^\cat$ 을 ``측정된 질서상 에너지''로 오인하면 허위 정밀에 빠지나, ``gap 을 여는 피팅된 유효 문턱''으로
+읽으면 그 tier 와 불확실성이 정직하게 드러난다.
+
+\textbf{(d) 박스 --- 전자항은 상온 커브엔 무영향, $\partial U/\partial T$ 에만 작용하는 on/off 토글.} MIT 전자
+엔트로피 $\Delta S_{e,1}(x,T)\approx-45.7$ J/(mol\,K)(게이트 중심, 식~\eqref{eq:dSegate})는 다른 항과 결정적으로
+다르다 --- \emph{$T$ 에 비례}하므로(\S\ref{sec:lco-Se}), 기준온도 $T_\mathrm{ref}$ 에서 그 값을 동결하면 유효 $\Delta H$
+에 흡수되어 \emph{상온 중심 $U_j(T_\mathrm{ref})$ 를 바꾸지 않고}, 오직 온도 미분
+$\partial U_j/\partial T=\Delta S_{\rxn,j}^\cat(T)/F$(식~\eqref{eq:lco-dUdT})와 그 적분 곡률(식~\eqref{eq:U1T2})에만
+나타난다. 이를 코드 플래그 하나로 정직하게 노출한다:
+\begin{equation}
+\boxed{\;
+\code{include\_electronic\_entropy}=
+\begin{cases}
+\textbf{False (기본)}: & \Delta S_{e}\ \text{동결} \Rightarrow\ U_j(T_\mathrm{ref})\ \text{보존},\ \text{상온 dQ/dV 불변},\\[2pt]
+\textbf{True (옵션)}: & \Delta S_{e}(x,T)\ \text{활성} \Rightarrow\ \partial U_1/\partial T\ \text{에}\ T\text{-선형 항}\ (U_1\!\propto\!T^2\ \text{곡률}).
+\end{cases}\;}
+\label{eq:lcoom-toggle}
+\end{equation}
+기본 OFF 인 까닭은 (a)의 실측이다 --- plain MSMR 이 이미 $R^2=0.944$ 로 흑연급 상온 적합을 주므로, 전자항은
+\emph{커브 산출엔 잉여}다(단, 현 코드는 $\Delta S_e$ 상시 ON 이므로 OFF 경로는 $\Delta H$ 재기준으로
+$U_j(298)$ 불변을 보장해야 한다 --- 이는 코드층 게이트의 불변식이다). ON 은 회사가 \emph{다온도} 데이터를
+가질 때만 켠다 --- MIT 창 T1 peak 의 \emph{온도 이동률} $\partial U_1/\partial T$ 가 $T$ 에 선형으로 내려가고 위치가
+$\propto T^2$ 로 휘는 것(식~\eqref{eq:U1T2}: $U_1(T)=U_1(T_\mathrm{ref})+\tfrac{\Delta S_0}{F}(T{-}T_\mathrm{ref})
++\tfrac{a_e}{2F}(T^2{-}T_\mathrm{ref}^2)$)이 전자항의 유일한 관측 신호이기 때문이다. anchor $g_{\max}\!=\!13$
+e/eV/atom 은 완전 metal CoO$_2$ 의 측정 끝점(tier A 단일점\cite{motohashi2009})이고 MIT 조성창은
+$0.75$--$0.94$(tier A\cite{menetrier1999})이나, 그 사이 연속 곡선은 1차 문헌 부재(갭 G2)라 게이트로 피팅에
+위임한다.
+
+\begin{keybox}
+\textbf{LCO 파라미터 방어 한 줄.} LCO dQ/dV 는 흑연과 동형 MSMR 이고 plain 피팅이 이미 $R^2\!=\!0.944\!\approx\!$흑연
+$0.940$(전자항 무관)다. feature 별 상 성격은 per-peak $\Omega_j^\cat$ 이 담아 $+1.25$\%p 를 더하되, 그
+$\Omega_j^\cat$ 은 \emph{미시 질서구조가 아니라 gap 을 여는 유효 평균장 문턱}이며 config 엔트로피와 다른 슬롯에
+산다(식~\eqref{eq:lcoom-slotsep}, #7 명확화). 전자항은 상온 커브엔 잉여라 \emph{기본 OFF},
+$\partial U/\partial T$(가역열)의 다온도 신호로만 \emph{선택 ON}(식~\eqref{eq:lcoom-toggle}) --- 곧 그 켜짐 여부는
+\emph{회사가 자기 다온도 데이터로 결정}한다.
+\end{keybox}
+
+\begin{warnbox}
+\textbf{세 tier 를 뭉개지 않는다(허위 정밀 금지).} (i) 흑연 동형 MSMR$\cdot$plain $R^2=0.944$$\cdot$per-peak
+$+1.25$\%p$\cdot$전자항 상온 무영향은 tier A 산출값이다. (ii) $x_\mathrm{MIT}$ 창$\cdot$$g_{\max}$ 끝점은
+tier A 실측 anchor 이나 그 사이 $g(E_F,x)$ 연속 곡선은 부재(G2)라 게이트 피팅 위임이다. (iii) order--disorder
+config $\Delta S$ 수치($0.47/1.49$)와 T2/T3 조성 배정은 원전 재확인 중이라 tier C 이며 $\Omega_j^\cat$ 과 별개
+슬롯이다. \emph{믿을 수 있는 것}(동형성$\cdot$plain 적합$\cdot$전자항의 상온 잉여성)과 \emph{피팅에 맡기는 것}
+($\Omega_j^\cat$ 값$\cdot$$g(E_F,x)$ 곡선$\cdot$config 수치)을 이렇게 분리 표기해야 파라미터가 방어 가능하다 ---
+전자항의 골 깊이($-45.7$ J/(mol\,K))도 게이트 미분 증폭($1/\Delta x_\mathrm{MIT}$)의 산물이라 O3 부분몰 총합
+($\approx0.18\,k_B$/atom)과 \emph{척도가 다른 양}이니 서로의 검산으로 쓰지 않는다(\S\ref{sec:lco-Se-scale}).
+\end{warnbox}
+
+% [W7 초안·비편집] 자산 후보: [LCOOM-01 흑연 동형·plain R²=0.944 방어] [LCOOM-02 per-peak Ω +1.25%p]
+%   [LCOOM-03 Ω vs config ΔS 슬롯 분리 boxed eq:lcoom-slotsep(#7 명확화)] [LCOOM-04 전자항 on/off 토글 boxed eq:lcoom-toggle]
+%   [LCOOM-05 3-tier 정직 분리 warnbox]
