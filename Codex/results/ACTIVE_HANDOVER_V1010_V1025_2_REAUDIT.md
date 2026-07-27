@@ -24,7 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  0 documents, 0 lines.
+  7 documents, 445 lines.
+- Latest observation:
+  `Codex/results/PHASE_057B_V1010_V1013_INTENT_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -34,8 +36,8 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.1:
-v1.0.10–v1.0.13 queue의 각 문건을 첫 행부터 끝 행까지 전문 검독하고
+Phase 057 Step 19.2:
+v1.0.14–v1.0.18.2 queue의 각 문건을 첫 행부터 끝 행까지 전문 검독하고
 claim/evidence 관찰을 저장한다.
 
 ## Resume Gate
