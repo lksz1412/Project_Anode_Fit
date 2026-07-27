@@ -12,22 +12,27 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_055_SOURCE_FREEZE_RESULT.md`
+   `Codex/results/PHASE_056_COMPLETE_SOURCE_MANIFEST_RESULT.md`
 
 ## Current State
 
-- 계획서 저장 및 Phase 055 완료.
-- Gate: `PASS_P055_SOURCE_FREEZE`.
-- 활성 Phase: 056.
+- 계획서 저장 및 Phase 055–056 완료.
+- Gates:
+  `PASS_P055_SOURCE_FREEZE`,
+  `PASS_P056_COMPLETE_MANIFEST`.
+- 활성 Phase: 057.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
-- 최초 집계: 1,520 paths, 862 unique blobs.
+- 확정 manifest: 1,520 paths, 862 unique blobs.
+- 검독 대기열:
+  text 746, PDF 64, image 49, binary data 2, generated 1.
 
 ## Next Exact Step
 
-Phase 056 Step 9:
-기준 tree의 v1.0.10–v1.0.25.2 tracked path와 blob hash를 전부 추출한다.
+Phase 057 Step 18:
+plan, result, handover, change log와 ledger의 고유 blob을 시간순 read queue로
+정렬하고 사용자 의도 복원을 시작한다.
 
 ## Resume Gate
 
