@@ -1,0 +1,1303 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": "Phase 059 Step 33.5 guide/handover/closing/roadmap completion, authority, and carry-forward claims",
+  "status": "PASS_P059_COMPLETION_AUTHORITY_ADJUDICATION",
+  "authority_boundary": "This audit links historical claims to exact source patches and prior contracts. It does not certify code execution, primary literature, experimental validity, or final theory canon.",
+  "rules": [
+    "A source patch proves that text changed, not that the new physics is true.",
+    "A regression or round-trip proves only the property explicitly tested.",
+    "A reviewer or agent verdict is never primary scientific evidence.",
+    "Copy-forward and matched version bumps do not create new validation.",
+    "Open real-data and literature items remain blockers even when a version is called complete."
+  ],
+  "allowed_claim_classes": [
+    "CARRY_FORWARD",
+    "EXTERNAL_REVIEW",
+    "IMPLEMENTATION_CHANGE",
+    "INTERNAL_VALIDATION",
+    "PROCESS_HISTORY",
+    "SCIENTIFIC_SCOPE",
+    "THEORY_CHANGE",
+    "USER_REQUIREMENT"
+  ],
+  "allowed_dispositions": [
+    "CARRY_FORWARD_OPEN",
+    "COPY_FORWARD_NO_NEW_VALIDATION",
+    "OVERCLAIMED",
+    "PARTIAL",
+    "PATCH_CONFIRMED",
+    "PATCH_CONFIRMED_INTERNAL_ONLY",
+    "PRESERVE_REQUIREMENT",
+    "REVIEW_INPUT_NOT_AUTHORITY",
+    "SOURCE_STATEMENT_ONLY",
+    "SUPERSEDED"
+  ],
+  "record_count": 40,
+  "claim_class_counts": {
+    "CARRY_FORWARD": 6,
+    "EXTERNAL_REVIEW": 2,
+    "IMPLEMENTATION_CHANGE": 2,
+    "INTERNAL_VALIDATION": 3,
+    "PROCESS_HISTORY": 8,
+    "SCIENTIFIC_SCOPE": 7,
+    "THEORY_CHANGE": 5,
+    "USER_REQUIREMENT": 7
+  },
+  "disposition_counts": {
+    "CARRY_FORWARD_OPEN": 8,
+    "COPY_FORWARD_NO_NEW_VALIDATION": 2,
+    "OVERCLAIMED": 3,
+    "PARTIAL": 3,
+    "PATCH_CONFIRMED": 5,
+    "PATCH_CONFIRMED_INTERNAL_ONLY": 3,
+    "PRESERVE_REQUIREMENT": 10,
+    "REVIEW_INPUT_NOT_AUTHORITY": 1,
+    "SOURCE_STATEMENT_ONLY": 5
+  },
+  "actor_counts": {
+    "EXTERNAL_REVIEWER": 1,
+    "PAST_AGENT": 29,
+    "USER": 10
+  },
+  "records": [
+    {
+      "id": "P059-CLM-001",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "The manuscript must simultaneously have textbook register, review-paper depth, and equation-led exposition.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding authorial direction recovered from a user-verbatim constitution; it is not a scientific validation result.",
+      "remaining_work": "Apply this as a final-manuscript acceptance gate.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 9,
+          "needle": "교과서 register",
+          "source_line": "이 교재(graphite dQ/dV·발열)는 **세 가지를 동시에** 만족해야 한다. 물리·화학 논리 무결이 이 셋의 전제이고, 우선순위는 **①교과서 register ②논문의 깊이 ③수식-주도**다. (사용자 verbatim: \"이 문건의 제일 중요한 두가지는 교과서 수준의 문건, 논문의 깊이의 전문성이고, 세번째가 수식 주도의 문건이다. 수식만 쭉 따라가도 제대로 된 물리, 화학적 논리를 대부분 이해할 수 있는 수준의 문건.\" + \"1.0.14 버전의 어투, 어조, 구성을 보면 교과서 수준·논문 깊이 문건임을 확인할 수 있다.\")"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-002",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "The theory body must not narrate version history, work phases, or implementation identifiers.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding manuscript-boundary requirement.",
+      "remaining_work": "Keep implementation traceability in separate conformance artifacts and the controlled correspondence section only.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 13,
+          "needle": "자기 diff",
+          "source_line": "- **[D1] 자기 diff·버전-이력 서술 금지**: \"구판은/이전에는/폐지했다/이산화했었다/병리였다\" 류 자기 개정 이력을 본문·각주·캡션·주석 어디에도 쓰지 않는다. 교정판 교과서는 diff 를 말하지 않고 결과만 제시한다."
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 15,
+          "needle": "코드 함수명",
+          "source_line": "- **내부 라벨·고백조 누출 금지**: 작업단계 라벨(P5/P6/\"최종 게이트\"/\"구현 대응\"), 코드 함수명, \"정직하게 적어두면\" 류 고백조를 **렌더링 텍스트에** 넣지 않는다(그런 정보는 결과 문건·주석에)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-003",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "Derivations must expose assumptions, intermediate operations, dimensions, signs, and limits without assert-jumps.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding exposition and derivation requirement.",
+      "remaining_work": "Use independent derivations and limiting-case checks before promoting equations into the final manuscript.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 19,
+          "needle": "완결 유도",
+          "source_line": "- 간결보다 **면밀·논리적 납득** 우선. 유도는 각주 압축이 아니라 **완결 유도**로 (사용자: \"비약 없는 정당한 수식전개를 전부 진행한 뒤 확정된 수식을 먼저 구해놓고\")."
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 25,
+          "needle": "중간식",
+          "source_line": "- 각 결과 박스 = **(a)출발식/전제 → (b)적용 연산 → (c)중간식 ≥1 → (d)박스**. **[D3] \"대입하면 [박스]\" 점프 0.** (부분적분·치환·지배수렴 등 중간식을 반드시 노출.)"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-004",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "Measured validation and internal self-consistency must be reported as different evidence classes.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding evidence-language rule and the central authority boundary for this audit.",
+      "remaining_work": "Label every future gate as algebraic, numerical, literature, or experimental evidence.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 20,
+          "needle": "실측 검증 vs 자기일관성 검증",
+          "source_line": "- 코너·극한·전제·tier(신뢰 등급 A/B/C)를 정직 분리·명시. **실측 검증 vs 자기일관성 검증**을 구분(예: 완전식 수치 일치는 자기일관성 검증이지 두-상 폭 실측 검증이 아님)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-005",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "Past plans, handovers, ledgers, results, and current sources must be read before raising a new issue or starting a revision.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding workflow requirement created after earlier history-loss failures.",
+      "remaining_work": "Continue the content-addressed lineage audit and checkpoint ledger.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 39,
+          "needle": "과거 세션",
+          "source_line": "- 어떤 항목을 사용자에게 **제안**하거나 \"발견/판단 필요\"로 **플래그**하기 전, 그것과 관련해 **과거 세션·계획서·핸드오버·결과·ledger·현행 문건에 이미 논의·결정된 이력이 있는지 먼저 확인**한다."
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 44,
+          "needle": "과거 이력",
+          "source_line": "- 지침(★최우선 헌법·프로젝트 `CLAUDE.md`·메모리)과 과거 이력(`docs/INDEX.md`·`plans/`·HANDOVER·result·ledger)은 **다음 작업의 참조·근거로 저장된 것**이다. 미참조·무시 금지."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-006",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "Import, grep, or sample success cannot justify completion or a golden baseline without analytic limits, convergence, and round-trip checks.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding validation standard.",
+      "remaining_work": "Re-execute each claimed gate and classify what it actually proves.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 59,
+          "needle": "검증 없이",
+          "source_line": "### 2-6. 검증 없이 \"완료/골든\" 처리 금지"
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 60,
+          "needle": "해석적 극한",
+          "source_line": "- import·grep·샘플 통과 = 완료 아님. 골든·회귀·수치는 **실증(해석적 극한 + Δ→0 수렴 + round-trip 3경로 대조)** 후 확정. (사용자: \"무슨 검사를 안하고 그대로 가져가려고 골든이라고 처리하려고하냐.\")"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-007",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "Phase results and ledgers are recovery points against compaction loss; work should be committed frequently.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding provenance requirement; a push claim is still a repository-state fact that must be checked independently.",
+      "remaining_work": "Commit every closed substep; report local and remote state separately.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 105,
+          "needle": "컴팩션 환각",
+          "source_line": "- [ ] Phase 결과·ledger 저장(컴팩션 환각 방지 복구지점)·매 버전 자동 commit+push(Anode_Fit 규약)"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-008",
+      "version": "v1.0.14",
+      "actor": "PAST_AGENT",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "v1.0.14 was described as a completed six-phase pass with about 98 corrections and a figure competition.",
+      "patch_ids": [
+        "ch1_v1013_to_v1014",
+        "ch2_v1013_to_v1014"
+      ],
+      "contract_ids": [],
+      "disposition": "SOURCE_STATEMENT_ONLY",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The source and exact diff confirm a large revision occurred, but counts and scientific completeness are narrative process claims.",
+      "remaining_work": "Do not promote this completion wording into scientific authority.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.14.md",
+          "line": 11,
+          "needle": "누적 ~98건",
+          "source_line": "- P1.1 증판+감사 2종(어투 79·코드 언급 83)+판정 → P2.1 물리 3건(Hill 유도·PSD 배제·spinodal 부록 초안) → P2.2 재배치(부록 A/B·§1.7 폭 예산) → P3.1 어투 루핑(수식 해시 무손실 검증) → P3.2 레퍼런스(신규 bibitem 5·park2021 정정 — 전건 Crossref 검증) → P4.1 검수 R1~R7(누적 ~98건 정정·수렴 종결) → P5.1 경연(72안→8승자 편입+master 캡션 검증 정정 4건) → P6.1 마감."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1013_to_v1014",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1013_to_v1014.patch",
+          "exact_unified_diff_sha256": "a2721789a42dbe4b841bbe3cad42819cffc84b12ddc6e00641f59ea8783c7ca3",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1013_to_v1014",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1013_to_v1014.patch",
+          "exact_unified_diff_sha256": "2c4615755d0bea16826507ae98c186cb61c4f5144c72e754ecf47fb8d106c0a9",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-009",
+      "version": "v1.0.14",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "v1.0.14 established textbook/major-journal register, detailed derivation, a separate spinodal appendix, and one-way theory-to-code linkage.",
+      "patch_ids": [
+        "ch1_v1013_to_v1014",
+        "ch2_v1013_to_v1014"
+      ],
+      "contract_ids": [],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Authorial direction is confirmed; exact patches show the appendix and controlled correspondence structure, not their scientific validity.",
+      "remaining_work": "Retain the register and separation decisions while re-deriving the physics.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.14.md",
+          "line": 6,
+          "needle": "교과서·메이저 저널급",
+          "source_line": "1. 사용자 피드백 8건: F-A 어투(교과서·메이저 저널급 — \"양자역학 불요\" 류 금지) / F-B eq1.8 엄밀 유도(사전 설명 후 납득 — Hill Ch.7, \"간결보다 면밀\" GO) / F-C spinodal 사전지식 부록(별도 문건, 편입은 검토 후) / F-D §1.7 식·이미지 보강 / F-E PSD 보편식 도입 후 수치 유도로 배제 / F-F 코드 연계 = 단방향(문건 내 변수명 금지) / F-G 레퍼런스 DOI / F-H §1.13 → appendix 표."
+        },
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.14.md",
+          "line": 15,
+          "needle": "별도 문건으로 유지",
+          "source_line": "- **①spinodal 부록** — 사용자 결정: **별도 문건으로 유지**(편입 안 함 — 본문 연결 문장 삽입 불요)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1013_to_v1014",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1013_to_v1014.patch",
+          "exact_unified_diff_sha256": "a2721789a42dbe4b841bbe3cad42819cffc84b12ddc6e00641f59ea8783c7ca3",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1013_to_v1014",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1013_to_v1014.patch",
+          "exact_unified_diff_sha256": "2c4615755d0bea16826507ae98c186cb61c4f5144c72e754ecf47fb8d106c0a9",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-010",
+      "version": "v1.0.14",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "Multi-temperature T-squared behavior, LCO Omega and activation enthalpy, current-grid choices, composition mapping, and primary literature remained open.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-033",
+        "P059-CON-036",
+        "P059-CON-038"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicit unresolved scope, not a completed result.",
+      "remaining_work": "Route all surviving items into experimental, literature, code, and model-repair queues.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.14.md",
+          "line": 18,
+          "needle": "이월(실데이터 단계)",
+          "source_line": "- 이월(실데이터 단계): 다온도 T² 동결 해제·LCO Ω^cat/dH_a 배정·ν≳10 상향 재베이스라인·x-매핑 순환 수치 확인(v1.0.13 승계) + Motohashi g_max=13·ml2024·[A2]–[A5] 원문 직접 재확인."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-011",
+      "version": "v1.0.14",
+      "actor": "PAST_AGENT",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "A final code update was still judged necessary and was waiting for approval.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "SOURCE_STATEMENT_ONLY",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "This directly prevents v1.0.14 prose completion from being read as final code conformance.",
+      "remaining_work": "Audit the subsequent implementation deltas in Step 34.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.14.md",
+          "line": 17,
+          "needle": "GO 대기",
+          "source_line": "- 코드 업데이트: 필요 판정 — 계획서 `../plans/2026-07-04-v1015-code-update-plan.md`(rev.1) 작성, **GO 대기**."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-012",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "The artificial voltage work grid had to be removed completely in favor of evaluating the actual separated electrode sample voltages.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-017",
+        "P059-CON-018",
+        "P059-CON-019"
+      ],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Direct user architecture decision.",
+      "remaining_work": "Preserve pointwise evaluation but repair its trajectory/history contract for repeated or nonmonotone voltage.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.15_KICKOFF.md",
+          "line": 8,
+          "needle": "극판 성분의 전압값",
+          "source_line": "3. \"이산전압 격자를 꼭 적용해야돼? 수식으로 추세식이 나오고, 특정 V에 대한 값은 바로 산출이 가능하니, 피팅을 진행하는 샘플의 풀셀을 분리한 양음극 극판 성분의 전압값을 그냥 기입하고 처리하면 되는거 아니야? 그러면 격자 칸이니 뭐니 걱정 안해도되는거 아닌가? 이전 세션 어느 버전인가부터 묻지도 않고 그냥 도입했던건데 솔직히 실 데이터랑 비교하는 입장에서는 일을 몇배로 더 하게 되는 꼴이라 효율이 안좋거든? 한번만 구하면 되는걸 변환하고, 산출하고, 그걸 다시 재 변환해서 원데이터에 매칭 시켜야하는데 굳이....? 그리고 보이든 안보이든 그걸 끄고 쓸 이유가 있나? 안보이면 안보이는 대로 그냥 두고 쓰면 되는거지....\""
+        },
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.15_KICKOFF.md",
+          "line": 9,
+          "needle": "완전 퇴출",
+          "source_line": "4. \"이산 전압 격자는 완전 퇴출 시킨다. 어차피 이전 버전에 이력이 남아있으니 참고하려면 찾아보면 될 일이고, 이번 버전은 싹 들어낸 버전으로 만든다. 그런데 페이블을 사용할 수 있는 한도가 다 떨어졌다. 이번 작업계획서를 업데이트 하고 나면 더 이상 못 쓸것으로 생각된다. 작업계획서 업데이트와, 핸드오버 한건 총 두건의 문건으로 세션 마무리하자.\""
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-013",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "The old grid, switch, jump, and interpolation were acknowledged as implementation-derived artifacts rather than physical necessities.",
+      "patch_ids": [
+        "ch1_v1014_to_v1015"
+      ],
+      "contract_ids": [],
+      "disposition": "PATCH_CONFIRMED",
+      "evidence_boundary": "THEORY_PATCH_CONFIRMED_CODE_EXECUTION_DEFERRED",
+      "authority_meaning": "The exact Ch1 patch removes eq:vwork, eq:lowpass, and eq:branch and adds the pointwise memory derivation.",
+      "remaining_work": "Code-side deletion and runtime behavior remain Step 34 evidence.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.14/HANDOVER_v1.0.15_KICKOFF.md",
+          "line": 16,
+          "needle": "구현 편의",
+          "source_line": "- ν 설명 제공(사용자 납득) → 격자 자체의 필요성 반박(사용자) → 진단 동의: 격자는 lfilter 벡터화 구현 편의였고, ν 스위치·23% 점프·재보간은 파생물. 연속 메모리 적분 형식은 $L_V\\to0$ 에서 평형 종으로 해석적 매끈 환원(스위치 원천 불요)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1014_to_v1015",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1014_to_v1015.patch",
+          "exact_unified_diff_sha256": "a00418f81d593b107503d1e0d0be31155cb629e39a337bff28fe6b751448ce7f",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-014",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "THEORY_CHANGE",
+      "claim": "v1.0.15 replaced the grid branch with a pointwise causal-memory formulation and an explicit L_V to zero limit.",
+      "patch_ids": [
+        "ch1_v1014_to_v1015"
+      ],
+      "contract_ids": [
+        "P059-CON-017",
+        "P059-CON-018",
+        "P059-CON-019"
+      ],
+      "disposition": "PATCH_CONFIRMED",
+      "evidence_boundary": "THEORY_PATCH_CONFIRMED_PHYSICAL_CLOSURE_OPEN",
+      "authority_meaning": "The exact Ch1 diff confirms the stated equation removals/additions; this proves a source change, not physical adequacy.",
+      "remaining_work": "Resolve nonmonotone traversal, finite-window initial history, and local voltage mapping.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 15,
+          "needle": "eq:memory/lag/tail-limit",
+          "source_line": "- **P3 Ch1 격자 퇴출**(2325321): 9종 드래프트 경쟁→체리픽. §1.3·§1.9 재작성, 신설 eq:memory/lag/tail-limit/reversal·제거 eq:branch/vwork/lowpass. P2-1/3/4(Ch1). 검수 2R(물리결함 4·D1 누출 4·정합/문체 8 수정→수렴). 58p."
+        },
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 17,
+          "needle": "점별 재아키텍처",
+          "source_line": "- **P5 코드 점별 재아키텍처**(03dab92): dqdv 점별화(V_work·역보간·_causal_lowpass·ν 스위치 제거)·신설 _causal_memory_pointwise·dead 삭제(func_U_j_hys·_causal_lowpass)·격자 param 5종 제거. **골든 6종 게이트 검증 후 재캡처**. 적대 리뷰 3결함 수정. 회귀·다운스트림 PASS."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1014_to_v1015",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1014_to_v1015.patch",
+          "exact_unified_diff_sha256": "a00418f81d593b107503d1e0d0be31155cb629e39a337bff28fe6b751448ce7f",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-015",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "IMPLEMENTATION_CHANGE",
+      "claim": "The production code was reported to remove the work grid, reverse interpolation, low-pass recurrence, switching parameter, and dead functions.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "SOURCE_STATEMENT_ONLY",
+      "evidence_boundary": "CODE_DIFF_AND_EXECUTION_DEFERRED_STEP_34",
+      "authority_meaning": "A handover reports this implementation patch, but Step 33 does not independently certify code behavior.",
+      "remaining_work": "Perform AST/exact-diff/runtime review in Step 34.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 17,
+          "needle": "dead 삭제",
+          "source_line": "- **P5 코드 점별 재아키텍처**(03dab92): dqdv 점별화(V_work·역보간·_causal_lowpass·ν 스위치 제거)·신설 _causal_memory_pointwise·dead 삭제(func_U_j_hys·_causal_lowpass)·격자 param 5종 제거. **골든 6종 게이트 검증 후 재캡처**. 적대 리뷰 3결함 수정. 회귀·다운스트림 PASS."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-016",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "INTERNAL_VALIDATION",
+      "claim": "Six golden gates and downstream tests were reported to pass before the pointwise golden was recaptured.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PATCH_CONFIRMED_INTERNAL_ONLY",
+      "evidence_boundary": "REPORTED_INTERNAL_VALIDATION_NOT_EXTERNAL_VALIDITY",
+      "authority_meaning": "This is, at most, internal regression/convergence evidence; it does not establish agreement with experimental data or literature.",
+      "remaining_work": "Re-execute and inspect gate logic in Steps 34.2–34.4.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 17,
+          "needle": "골든 6종 게이트",
+          "source_line": "- **P5 코드 점별 재아키텍처**(03dab92): dqdv 점별화(V_work·역보간·_causal_lowpass·ν 스위치 제거)·신설 _causal_memory_pointwise·dead 삭제(func_U_j_hys·_causal_lowpass)·격자 param 5종 제거. **골든 6종 게이트 검증 후 재캡처**. 적대 리뷰 3결함 수정. 회귀·다운스트림 PASS."
+        },
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 23,
+          "needle": "6종 게이트",
+          "source_line": "2. **골든 = 점별 산물**: `golden_graphite_ref.npz` 는 v1.0.15 점별 코드로 재캡처됨(equilibrium bit-exact 앵커·dqdv 는 interp 아티팩트 제거로 구판 대비 ~2e-5 변화). 코드 수정 시 검증 후 재캡처(6종 게이트: 평형앵커·L→0=평형·기억적분 해석검산·Δ→0·면적보존·방충 mirror)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-017",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "The shipped defaults were already effectively equilibrium because their lag length was around 10^-8 V.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-016",
+        "P059-CON-020",
+        "P059-CON-021"
+      ],
+      "disposition": "PARTIAL",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The source openly narrows the dynamic claim: the capability exists, but defaults do not realize visible rate-dependent broadening.",
+      "remaining_work": "Calibrate kinetics against rate-series data and impose the zero-current limit.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 25,
+          "needle": "L_V~1e-8",
+          "source_line": "4. **수치 가드 `_LAG_RESOLVE_DECAY_CAP=40`**: dqdv 미해상(a>40) 시만 평형 극한(물리 분기 아님·D6). 기본 staging L_V~1e-8 이라 항상 평형(interp 없는 직접 평가)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-018",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "Multi-temperature curvature, two-phase width temperature dependence, LCO physical values, and literature checks remained outside v1.0.15.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-015",
+        "P059-CON-024",
+        "P059-CON-033",
+        "P059-CON-038"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicit non-completion statement.",
+      "remaining_work": "Preserve as evidence debt; do not treat pointwise completion as project completion.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 27,
+          "needle": "미완료/이월",
+          "source_line": "## ③ 미완료/이월 (실데이터·후속 소관, v1.0.15 범위 밖)"
+        },
+        {
+          "path": "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md",
+          "line": 28,
+          "needle": "다온도",
+          "source_line": "- 다온도 $T^2$ 실측 곡률·two-phase 폭 $T$-의존 round-trip 확정(config 몫)·LCO $\\Omega^\\mathrm{cat}$/$\\Delta H_a$ 실값·ν≳10 실측·서지 재확인. 전부 실데이터 필요(계획 §3 이월)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-019",
+      "version": "v1.0.15",
+      "actor": "USER",
+      "claim_class": "USER_REQUIREMENT",
+      "claim": "Width-temperature inference must follow constant n, per-temperature diagnosis, constant w, then minimal n(T), with matching heat propagation.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-011",
+        "P059-CON-015",
+        "P059-CON-022",
+        "P059-CON-023",
+        "P059-CON-024"
+      ],
+      "disposition": "PRESERVE_REQUIREMENT",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Binding staged-identification requirement; it does not validate the selected physical interpretation.",
+      "remaining_work": "Retain the ladder, but split homogeneous thermodynamic width from phenomenological two-phase broadening.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 88,
+          "needle": "n으로 fit",
+          "source_line": "1. **폭은 w 맨값이 아니라 n으로 fit**(w=n·RT/F, RT/F 물리 앵커 유지). n = 무차원 비이상/분산 인자. 현재 n=1 고정 → **fit 대상 개방**. `'w'` 폴백값은 초기 추정으로 존치. (자기정합: 같은 n이 폭과 가역열 config 항을 동시에 정함 = 완전식.)"
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 90,
+          "needle": "4단 사다리",
+          "source_line": "3. **폭 T-의존은 가정이 아니라 데이터로 확정** — 4단 사다리:"
+        },
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 92,
+          "needle": "가역열 config",
+          "source_line": "4. **★n(T)로 가면 가역열 config 항 동반 변경**: ∂w/∂T = (R/F)·d(nT)/dT = (R/F)(n+T·n′). 현행 코드 config 항은 n 상수 전제이므로, n(T) 채택 시 폭·발열을 한 n(T)로 묶어 코드 반영 필요."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-020",
+      "version": "v1.0.15",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "Applying the thermal configurational formula to a two-phase phenomenological width was explicitly admitted to be a model choice, not a derivation.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-010",
+        "P059-CON-013",
+        "P059-CON-015"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "This is a preserved self-identified semantic boundary, not closure.",
+      "remaining_work": "Use distinct symbols and do not automatically propagate ideal configurational entropy through empirical two-phase width.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.15/CLOSING_v1.0.15.md",
+          "line": 93,
+          "needle": "물리 유도 아닌 모델 선택",
+          "source_line": "5. **참고 이력**: w 이중지위(단상 Ω≤2RT = 평형 예측 폭 / 두-상 Ω>2RT[LiC₁₂·LiC₆] = 현상학적 자유 피팅 폭, Ω가 가름). 두-상에 열적 서식 config 적용 = \"물리 유도 아닌 모델 선택\"(Ch2 srcbox 헤지). `use_w_eff`(Ω→폭)는 narrowing 버그로 제거됨 → Ω는 히스테리시스에만, n과 축퇴 없음."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-021",
+      "version": "v1.0.16",
+      "actor": "PAST_AGENT",
+      "claim_class": "THEORY_CHANGE",
+      "claim": "v1.0.16 added a linear n(T) option and the derivative d w/dT = (R/F)(n+T n').",
+      "patch_ids": [
+        "ch1_v1015_to_v1016",
+        "ch2_v1015_to_v1016"
+      ],
+      "contract_ids": [
+        "P059-CON-022",
+        "P059-CON-023",
+        "P059-CON-024"
+      ],
+      "disposition": "PATCH_CONFIRMED",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The exact Ch1/Ch2 patches confirm the n(T) source addition and equation label.",
+      "remaining_work": "Code default/fallback consistency and identifiability remain open.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 15,
+          "needle": "_dwdT",
+          "source_line": "- **P2 코드 n(T)**: `_n_factor` 'n' 경로 선형 n(T)=n+n_T1·(T−n_T_ref)(dict 키 `'n_T1'`[1/K]·`'n_T_ref'`[K], 부재=상수 n)·신설 `_dwdT`=∂w/∂T=(R/F)(n(T)+T·n_T1)·`entropy_coefficient` config 항 전파. round-trip 정확·회귀 bit-exact."
+        },
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 17,
+          "needle": "eq:dwdT-nT",
+          "source_line": "- **P4 Ch1/Ch2**: n(T) config 일반화 수식-주도(Ch2 신설 eq:dwdT-nT·Ch1 교차참조)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1015_to_v1016",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1015_to_v1016.patch",
+          "exact_unified_diff_sha256": "a78b0b802abdfb6663b086c12b78c283829736697ab4c3511487e46ac66dce3d",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1015_to_v1016",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1015_to_v1016.patch",
+          "exact_unified_diff_sha256": "efe09b11332745f868340615ed4e6fe7604b6dd448e63c14f04d94a9cd3f19fa",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-022",
+      "version": "v1.0.16",
+      "actor": "PAST_AGENT",
+      "claim_class": "INTERNAL_VALIDATION",
+      "claim": "v1.0.16 reported exact round-trip and bit-exact regression for the additive n(T) path.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "PATCH_CONFIRMED_INTERNAL_ONLY",
+      "evidence_boundary": "REPORTED_INTERNAL_VALIDATION_NOT_EXTERNAL_VALIDITY",
+      "authority_meaning": "The claim is internal implementation consistency only; it does not establish material identifiability or data agreement.",
+      "remaining_work": "Re-run code paths, including the no-n/no-w fallback that the historical suite did not expose.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 15,
+          "needle": "round-trip 정확",
+          "source_line": "- **P2 코드 n(T)**: `_n_factor` 'n' 경로 선형 n(T)=n+n_T1·(T−n_T_ref)(dict 키 `'n_T1'`[1/K]·`'n_T_ref'`[K], 부재=상수 n)·신설 `_dwdT`=∂w/∂T=(R/F)(n(T)+T·n_T1)·`entropy_coefficient` config 항 전파. round-trip 정확·회귀 bit-exact."
+        },
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 21,
+          "needle": "bit-exact",
+          "source_line": "1. **n(T) = additive**: 전이 dict 에 `'n_T1'`(+`'n_T_ref'`) 없으면 상수 n = v1.0.15 완전 bit-exact(골든 불변). `'n_T1'` 은 반드시 `'n'` 과 함께(없으면 ValueError). n(T)≤0 이면 폭≤0 → `_width` 가 fail-fast."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-023",
+      "version": "v1.0.16",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "The four-step width ladder was not executed; real multi-temperature data were required to assign constant n, constant w, or n(T).",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-022",
+        "P059-CON-024"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicit experimental non-completion.",
+      "remaining_work": "Execute the ladder on public multi-temperature data and quantify uncertainty/identifiability.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 23,
+          "needle": "4단 사다리는 실행 대기",
+          "source_line": "3. **4단 사다리는 실행 대기**: 코드·문건은 n(T) 를 지원할 뿐, **어느 전이를 상수 n/상수 w/n(T) 로 둘지는 다온도 실데이터 per-T 진단이 정한다**(FITTING_GUIDE §1.5). 무단 배정 X."
+        },
+        {
+          "path": "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md",
+          "line": 28,
+          "needle": "다온도 실측",
+          "source_line": "- 다온도 실측으로 per-T n 상수성 진단 → two-phase 폭 T-의존 확정(4단 사다리 (2)~(4) 실행). LCO Ω/dH_a 실값·다온도 T² 실측·서지 재확인(v1.0.15 이월 유지)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-024",
+      "version": "v1.0.16",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "The guide itself still requested implementation of temperature-dependent LCO electronic terms and fixed-point convergence checks.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-036",
+        "P059-CON-038"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The fitting guide records an unimplemented or unclosed path, contradicting any broad code-complete reading.",
+      "remaining_work": "Derive the implicit composition/electronic coupling, chain rule, and convergence contract before implementation.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.16/FITTING_GUIDE.md",
+          "line": 55,
+          "needle": "Sommerfeld T-스케일 복원",
+          "source_line": "- **Phase D — 다온도·LCO 전자항**: tier-4(dS_rxn·dS_a) + LCO 전자항(g_max·x_MIT·dx) 개방. `entropy_coefficient()`·`reversible_heat()`를 다온도 엔트로피 계수에 맞춤(S4 의 다온도 Arrhenius 로 ΔH_a^eff 확정도 이 단계 데이터 소관). 전자항 dict 는 T1=MIT(x_MIT=0.85 물리 anchor)로 **재정렬 완료(v1.0.14 루프 B)** — Ch1 tab:lco-staging. ★다온도 시 `func_dSe_molar` 의 T 인자 전달로 Sommerfeld T-스케일 복원(현 T_ref 동결 근사 해제)·eq:U1T2 center-T_ref 별도적분(½=a_e/2F) 구현. (= S4; 고정점 1회 갱신은 초기 근사 — 수렴은 이 단계서 수치 확인, Ch1 §lco-code)"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-025",
+      "version": "v1.0.16",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "The guide acknowledges that visible kinetic lag requires activation enthalpy near 80 kJ/mol while shipped values produce negligible lag.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-016",
+        "P059-CON-020",
+        "P059-CON-021"
+      ],
+      "disposition": "PARTIAL",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "This is an honest scale diagnosis, not validation of the barrier model or its defaults.",
+      "remaining_work": "Replace the frozen cut-affinity closure with a local electrochemical driving-force model and fit rate/temperature data.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.16/FITTING_GUIDE.md",
+          "line": 54,
+          "needle": "80 kJ/mol",
+          "source_line": "- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 peak 폭 w 에 견줄 만큼(가시적) 자라는 dH_a ≈ **80 kJ/mol 급**(298 K·C/10·χ=0.5·dVdq_qa=0.30 표 초기값 기준, Ω_j 클수록 상승) — 표 초기값(40–48)은 꼬리가 무시할 만큼 작은 영역(대표 L_V~10⁻⁸ V)이라 그 사이 dH_a gradient 가 낮다. **점별 아키텍처(v1.0.15~)라 구판의 격자 문턱 점프(~23%)는 없고 꼬리가 매끈하다(L_V→0=평형 종, eq:tail-limit)** — 다만 초기값에서 꼬리 감도가 낮으니 dH_a 를 80 급에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것."
+        },
+        {
+          "path": "Claude/docs/v1.0.16/FITTING_GUIDE.md",
+          "line": 54,
+          "needle": "L_V~10⁻⁸",
+          "source_line": "- **Phase C — 동역학 꼬리**(rate-series): tier-3(dH_a·dVdq_qa·χ) 개방. **L_V 직접 fit 과 물리 dH_a/dVdq_qa/χ fit 동시개방 금지**(과식별) — 물리 경로 우선, L_V 직접은 초벌 우회만. (= S3) ★수치 지형 주의: k₀=k_BT/h·ΔS_a=0 전제에서 꼬리가 peak 폭 w 에 견줄 만큼(가시적) 자라는 dH_a ≈ **80 kJ/mol 급**(298 K·C/10·χ=0.5·dVdq_qa=0.30 표 초기값 기준, Ω_j 클수록 상승) — 표 초기값(40–48)은 꼬리가 무시할 만큼 작은 영역(대표 L_V~10⁻⁸ V)이라 그 사이 dH_a gradient 가 낮다. **점별 아키텍처(v1.0.15~)라 구판의 격자 문턱 점프(~23%)는 없고 꼬리가 매끈하다(L_V→0=평형 종, eq:tail-limit)** — 다만 초기값에서 꼬리 감도가 낮으니 dH_a 를 80 급에서 출발시키거나 L_V 초벌 우회로 스케일을 먼저 잡을 것(Ch1 tab:staging 하단 실현 크기 고지 참조). ★식별 주의: 등온 rate-series 에서 dVdq_qa 와 dH_a 는 L_V 의 곱으로만 진입하는 공선형 쌍이다 — dVdq_qa 는 피팅 폐쇄 대상이 아니라 S1 산출(또는 실측) OCV 의 컷점 기울기에서 유도해 **동결**하고 dH_a 만 개방할 것."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-026",
+      "version": "v1.0.17",
+      "actor": "PAST_AGENT",
+      "claim_class": "EXTERNAL_REVIEW",
+      "claim": "The title claimed complete incorporation of the external review.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "OVERCLAIMED",
+      "evidence_boundary": "REVIEW_PROCESS_CLAIM_NOT_SCIENTIFIC_AUTHORITY",
+      "authority_meaning": "The same handover documents that the first extraction omitted all Ch2 and appendix items; review incorporation is process evidence, never scientific authority.",
+      "remaining_work": "Retain only source-linked corrections after independent adjudication.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 1,
+          "needle": "완전 반영",
+          "source_line": "# HANDOVER v1.0.17 — 교재 register·정합·완결성 정련 + Ch2 서지 보강 (이규섭 리뷰 완전 반영)"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-027",
+      "version": "v1.0.17",
+      "actor": "PAST_AGENT",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "The first external-review extraction omitted Ch2 and the appendix and was later repaired from source images.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "SOURCE_STATEMENT_ONLY",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Documented recovery from a prior extraction failure; it justifies distrust of reviewer summaries without source linkage.",
+      "remaining_work": "Keep reviewer verdicts subordinate to exact source and primary literature evidence.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 11,
+          "needle": "통째 누락",
+          "source_line": "**★추출 오류 정정(핵심)**: 원 추출물 `S6_AnodeFit_review.md` 는 **Ch1 26항목만 뽑고 Ch2·Appendix 를 통째 누락**한 뒤 \"Ch2 미포착\"이라 거짓 기재. 사용자 지적으로 **원본 사진 4장(idx 481-484) master 직접 재추출** → Ch2 7·Appendix 9 복원, 실제 tex 교차검증 → `V1017_REVIEW_COMPLETE.md` 확정."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-028",
+      "version": "v1.0.17",
+      "actor": "PAST_AGENT",
+      "claim_class": "THEORY_CHANGE",
+      "claim": "v1.0.17 removed exposed implementation language from the theory body and strengthened references and appendix dimensions.",
+      "patch_ids": [
+        "ch1_v1016_to_v1017",
+        "ch2_v1016_to_v1017",
+        "appendix_v1016_to_v1017"
+      ],
+      "contract_ids": [],
+      "disposition": "PATCH_CONFIRMED",
+      "evidence_boundary": "SOURCE_PATCH_CONFIRMED_REFERENCES_NOT_YET_PRIMARY_VERIFIED",
+      "authority_meaning": "The exact Ch1/Ch2/appendix diffs confirm register, bibliography, and dimensional-source changes.",
+      "remaining_work": "Preserve this manuscript-boundary cleanup while independently checking the corrected references.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 17,
+          "needle": "본문 코드/구현",
+          "source_line": "- **P3 Ch1(~42편집)**: register 23(★제목/헤더/pdftitle \"코드 진행→계산 진행\"·버전 1.0.17·본문 코드/구현/dict/진입점/토글→물리·모델·내부라벨 삭제 2) + 수식주도 5(eq:lco-mit underbrace 전자항 명료화·(d)박스 라벨 2·(b)(c) 분리) + 기호 8(T_c→T_{c,j}·q(T) 각주·s(ζ)→ŝ(ζ)·사전→대응표 3) + 완결 4(메모리→기억·마스터표 caption/label·T_rep/T_{c,j} 행) + gap G1/G3."
+        },
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 18,
+          "needle": "DOI 2 정정",
+          "source_line": "- **P4 Ch2**: register 2·**참고문헌 7 저자 보충(CrossRef)+DOI 2 정정+vol/page**·C4 맺음 payoff 1문장·eq:complete label+(use-this)→(실전 사용식)·용어 가역열→가역 발열·박스 keybox→warnbox·derbox 삭제·헤더 v1.0.17."
+        },
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 19,
+          "needle": "차원정합",
+          "source_line": "- **P5 Appendix**: A1 date 1.0.17·A2 소스주석 이력 보존·A3 §1.7 리터럴 참조·A5 κ/M 단위+f 부피밀도 기준(CH 차원정합)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1016_to_v1017",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1016_to_v1017.patch",
+          "exact_unified_diff_sha256": "875a9eb8188a90431b594c5ce87dc36ad7b32521ec47897788d1d5aa95a96e38",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1016_to_v1017",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1016_to_v1017.patch",
+          "exact_unified_diff_sha256": "9f3d5d4bcf349da4157907d4e990358314a571288bd0ca4071d12e6d9fbfe0fc",
+          "content_identical": false
+        },
+        {
+          "pair_id": "appendix_v1016_to_v1017",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/appendix_v1016_to_v1017.patch",
+          "exact_unified_diff_sha256": "6861241716261054d3547f3116a72e527cc1a3028f6827b80522a97fbba89383",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-029",
+      "version": "v1.0.17",
+      "actor": "PAST_AGENT",
+      "claim_class": "IMPLEMENTATION_CHANGE",
+      "claim": "v1.0.17 explicitly made no physical, equation, numerical, algorithmic, or production-code change beyond a matched bump.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "COPY_FORWARD_NO_NEW_VALIDATION",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "A copy-forward version cannot add new physical validation merely by passing the old regression.",
+      "remaining_work": "Treat v1.0.17 as a document-boundary refinement, not a new model baseline.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.17/HANDOVER_v1.0.17.md",
+          "line": 25,
+          "needle": "코드 무변경",
+          "source_line": "3. **코드 무변경**: 물리·방정식·수치·알고리즘 불변 = matched version bump만. 회귀 골든 bit-exact(재캡처 불요). v1.0.16 이월(다온도 per-T n 진단·two-phase 폭 T-의존·LCO 실값) 그대로 유효."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-030",
+      "version": "v1.0.18.1",
+      "actor": "PAST_AGENT",
+      "claim_class": "THEORY_CHANGE",
+      "claim": "v1.0.18.1 was explicitly doc-only, with unchanged physics, equations, numbers, identifiers, and bit-identical code.",
+      "patch_ids": [
+        "ch1_v1017_to_v1018_1",
+        "ch2_v1017_to_v1018_1",
+        "appendix_v1017_to_v1018_1"
+      ],
+      "contract_ids": [],
+      "disposition": "COPY_FORWARD_NO_NEW_VALIDATION",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Exact source diffs confirm formatting/register work; this release provides no new scientific validation.",
+      "remaining_work": "Use it only as a presentation-lineage checkpoint.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.1/HANDOVER_v1.0.18.1.md",
+          "line": 11,
+          "needle": "doc-only",
+          "source_line": "**18.1 = v1.0.17 register/정합 이월 [선택] 완결**(doc-only·물리 무변경·matched bit-exact). Sonnet 서브세션 2(Ch1·Appendix, 자체 빌드) → master 적대검증·통합:"
+        },
+        {
+          "path": "Claude/docs/v1.0.18.1/HANDOVER_v1.0.18.1.md",
+          "line": 17,
+          "needle": "물리·코드 무변경",
+          "source_line": "1. **물리·코드 무변경**: 18.1 은 register/서식/라벨만. 방정식·수치·식별자 불변. 코드 = matched bump(bit-exact). Ch1 58p→59p 는 verifybox 박스·각주·다리·longtable 헤더 오버헤드(콘텐츠 자연 증가, 결함 아님)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1017_to_v1018_1",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1017_to_v1018_1.patch",
+          "exact_unified_diff_sha256": "7349d9ee02ae62324ab006ee5ef14fdb05fc5c2c52ed5b0ec155cb56d6526de6",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1017_to_v1018_1",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1017_to_v1018_1.patch",
+          "exact_unified_diff_sha256": "5f103098e17def65354f3f2d384d2b83e14761e1235128abe2be42fac9b6ee85",
+          "content_identical": false
+        },
+        {
+          "pair_id": "appendix_v1017_to_v1018_1",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/appendix_v1017_to_v1018_1.patch",
+          "exact_unified_diff_sha256": "7936c4e6a167c17641e1028b8e152dcad9362b1f7b8b6b19b58bd6a7f9c69900",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-031",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "THEORY_CHANGE",
+      "claim": "v1.0.18.2 added an Einstein single-oscillator entropy and paired free-energy/entropy corrections.",
+      "patch_ids": [
+        "ch1_v1018_1_to_v1018_2",
+        "ch2_v1018_1_to_v1018_2"
+      ],
+      "contract_ids": [
+        "P059-CON-030",
+        "P059-CON-031",
+        "P059-CON-032"
+      ],
+      "disposition": "PATCH_CONFIRMED",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The exact Ch2 patch adds eq:Svib-einstein, eq:dSvib, and eq:dUvib; this confirms internal theory-source addition.",
+      "remaining_work": "Define an insertion-reaction phonon spectrum with product/reactant modes and weights.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 14,
+          "needle": "S_vib",
+          "source_line": "- **P5 코드**(`Anode_Fit_v1.0.18.2.py`): 동결 ΔS_vib → **S_vib(T;θ_E)=R[−ln(1−e^{−x})+x/(e^x−1)]** Einstein. 헬퍼 `_vib_theta`·`_S_vib`·`_vib_dU`(중심 Helmholtz 편차)·`_vib_dS`(발열 엔트로피 편차). equilibrium·dqdv·entropy_coefficient 3곳 동기. **검증**: 회귀 0-DIFF PASS(θ_E 부재=골든 불변)·round-trip ∂vib_dU/∂T=vib_dS/F **diff 0.000000 µV/K**·풀경로 EC=∂U_j/∂T diff 0.0000·고온극한 고전 수렴·demo/sample OK."
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 23,
+          "needle": "같은 자유에너지",
+          "source_line": "4. **round-trip 물리**: ∂U/∂T=ΔS(T)/F 는 ΔC_p 상쇄로 T-의존 ΔS 에도 성립 → 중심 U_j 와 가역열을 **같은 자유에너지에서 짝지어** 보정(한쪽만 고치면 비물리)."
+        }
+      ],
+      "patch_evidence": [
+        {
+          "pair_id": "ch1_v1018_1_to_v1018_2",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1018_1_to_v1018_2.patch",
+          "exact_unified_diff_sha256": "ab88afc9652ea7a657a8911051f9c1a51c14f2f7c49e8dee1589469b02443a4f",
+          "content_identical": false
+        },
+        {
+          "pair_id": "ch2_v1018_1_to_v1018_2",
+          "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1018_1_to_v1018_2.patch",
+          "exact_unified_diff_sha256": "89302edbc40f5acafe4d0b801128ef48f14abf1c5ef17febaee2cb1a269b57c5",
+          "content_identical": false
+        }
+      ]
+    },
+    {
+      "id": "P059-CLM-032",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "INTERNAL_VALIDATION",
+      "claim": "Einstein round-trip, full-path derivative, high-temperature limit, regression, demo, and sample checks were reported to pass.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-031",
+        "P059-CON-032"
+      ],
+      "disposition": "PATCH_CONFIRMED_INTERNAL_ONLY",
+      "evidence_boundary": "REPORTED_INTERNAL_VALIDATION_NOT_EXTERNAL_VALIDITY",
+      "authority_meaning": "These checks establish formula/implementation self-consistency only; they do not identify a material reaction spectrum or validate experimental data.",
+      "remaining_work": "Re-execute Step 34 tests and then validate against primary thermodynamic/phonon data.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 14,
+          "needle": "0.000000 µV/K",
+          "source_line": "- **P5 코드**(`Anode_Fit_v1.0.18.2.py`): 동결 ΔS_vib → **S_vib(T;θ_E)=R[−ln(1−e^{−x})+x/(e^x−1)]** Einstein. 헬퍼 `_vib_theta`·`_S_vib`·`_vib_dU`(중심 Helmholtz 편차)·`_vib_dS`(발열 엔트로피 편차). equilibrium·dqdv·entropy_coefficient 3곳 동기. **검증**: 회귀 0-DIFF PASS(θ_E 부재=골든 불변)·round-trip ∂vib_dU/∂T=vib_dS/F **diff 0.000000 µV/K**·풀경로 EC=∂U_j/∂T diff 0.0000·고온극한 고전 수렴·demo/sample OK."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-033",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "No theta_E was assigned to the default material dataset; the Einstein term was capability-only pending multi-temperature measurements.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-030",
+        "P059-CON-032"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicitly limits the feature to an inactive capability under shipped defaults.",
+      "remaining_work": "Do not call it material physics completion until reaction-specific parameters are supported by data.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 20,
+          "needle": "capability + 검증만",
+          "source_line": "1. **제안1 = additive·bit-exact**: 전이 dict 에 `'theta_E'`([K], Einstein 온도; +선택 `'theta_E_Tref'` 기본 298.15) 부재 = 현 동결과 **완전 bit-exact**(골든 불변, v1.0.16 n(T) 방식). **기본 데이터셋(GRAPHITE_STAGING_LIT)엔 θ_E 미부여** — capability + 검증만. 실사용은 다온도 실측 후."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-034",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "Three or more temperatures spanning the quasi-quantum window were stated as sufficient to separate vibrational and electronic terms.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-024",
+        "P059-CON-032",
+        "P059-CON-038"
+      ],
+      "disposition": "PARTIAL",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Three points are a necessary design floor in the stated model, not a proof of joint identifiability with n(T), reaction entropy, and electronic terms.",
+      "remaining_work": "Require sensitivity/Fisher or profile-likelihood analysis over realistic noise and temperature windows.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 22,
+          "needle": "3온도점",
+          "source_line": "3. **★식별 조건**: vib θ_E 와 electronic ∝T 분리에는 **준양자 창 걸치는 T 점 3개 이상** 필요. 2-온도(유한차분·현 파생 A round-trip)는 축퇴(곡률·선형 합으로만) — θ_E 개방은 3온도점↑에서만(FITTING_GUIDE §1.6). \"섞일 수 있다\"는 저-온도점 진단이지 물리적 비식별성 아님."
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/FITTING_GUIDE.md",
+          "line": 57,
+          "needle": "3개 이상",
+          "source_line": "- **★식별 조건(과적합 회피)**: 분리에는 **준양자 창(kBT~ℏω)을 걸치는 실측 T 점 3개 이상** 필요. 2-온도(유한차분)는 곡률과 선형을 합으로만 보아 **축퇴**(θ_E·electronic 계수 분리 불가) — 데이터 2점뿐이면 θ_E 개방 금지."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-035",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "Calling v1.0.18.2 the completed physical version overstates the evidence.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-024",
+        "P059-CON-032",
+        "P059-CON-033",
+        "P059-CON-038"
+      ],
+      "disposition": "OVERCLAIMED",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The same handover says default theta_E is absent, proposals 2–5 are open, LCO values await data, and final review may be incomplete.",
+      "remaining_work": "Classify v1.0.18.2 as an internally consistent capability branch, not scientific canon.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 4,
+          "needle": "완결 = 물리판",
+          "source_line": "- **본 handover** = `docs/v1.0.18.2/HANDOVER_v1.0.18.2.md` (v1.0.18.2 완결 = 물리판)"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-036",
+      "version": "v1.0.18.2",
+      "actor": "EXTERNAL_REVIEWER",
+      "claim_class": "EXTERNAL_REVIEW",
+      "claim": "The roadmap inherits an external reviewer premise that the existing physics had zero errors.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "REVIEW_INPUT_NOT_AUTHORITY",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "An external reviewer verdict is a review input; it is not primary literature, derivation, code execution, or experimental evidence.",
+      "remaining_work": "Adjudicate every inherited proposal and premise independently.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 3,
+          "needle": "물리 오류 0건 전제",
+          "source_line": "> 근거 = 이규섭 발전 제안서(`S_AnodeFit_v1017_review.md`, \"물리 오류 0건 전제 하 5개 확장 제안\") + v1.0.16 물리-데이터 이월. **제안 1(vib Einstein)은 v1.0.18.2 에 구현·검증 완료**(Ch2 §sec:vibel·코드 `_S_vib`/`_vib_dU`/`_vib_dS`·round-trip 0.000000 µV/K). **제안 2~5 는 연구급/데이터 의존이라 외부 위임 과제로 문서화**(리뷰 취지). 각 과제 = 현상태·문제·개선방향·난이도·외부위임 적합성·선행 데이터 자기완결."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-037",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "Composition-dependent Omega, Cahn-Hilliard-derived hysteresis, Butler-Volmer/Nernst-Planck polarization, and PSD broadening remained roadmap items.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-008",
+        "P059-CON-009",
+        "P059-CON-010",
+        "P059-CON-035"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicit unimplemented research scope.",
+      "remaining_work": "Re-rank after independent literature review; do not inherit the roadmap order as authority.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 27,
+          "needle": "제안 2~5",
+          "source_line": "- **제안 2~5**: `ROADMAP_future_physics.md` 외부 위임 과제(차기 후보 = 제안 2 Ω(ξ)). 구현 시 additive+doc↔code+verify 패턴(제안1 선례)."
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 11,
+          "needle": "Ω(ξ)",
+          "source_line": "| 2 | Ω(ξ) 조성 의존 | staging 비등간격·LCO 비대칭 | 중 | **높음**(정규용액 코어) | ★★★ | 로드맵(차기 후보 1순위) |"
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 14,
+          "needle": "PSD",
+          "source_line": "| 5 | PSD 컨볼루션 나노 | 나노 전극 적용 확장 | 고 | 중 | ★☆☆ | 로드맵(데이터 의존) |"
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-038",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "SCIENTIFIC_SCOPE",
+      "claim": "The roadmap proposes deriving voltage-lag length directly from a linear Cahn-Hilliard growth rate.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-009",
+        "P059-CON-017",
+        "P059-CON-018"
+      ],
+      "disposition": "OVERCLAIMED",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "A spatial conserved-order-parameter growth rate does not by itself yield the measured voltage-domain causal kernel; the electrochemical driving protocol and observation map are missing.",
+      "remaining_work": "Derive the time/state-space model first, then map it to voltage under an explicit protocol.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 28,
+          "needle": "꼬리 길이 L_V 물리 근거",
+          "source_line": "- **개선 방향**: 부록 CH(∂ξ/∂t=M∇²μ, μ=f'(ξ)−2κ∇²ξ)를 본문 N3–N7 로 승격. spinodal 성장률 R(k)=−Mk²(f''+2κk²)로 꼬리 길이 L_V 물리 근거. 핵생성 장벽 ΔG*=(16πγ³)/(3(Δg)²)에서 γ_j 유도."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-039",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "CARRY_FORWARD",
+      "claim": "Multi-temperature n diagnosis, two-phase width behavior, LCO physical values, and remaining bibliography checks were still awaiting measurements or verification.",
+      "patch_ids": [],
+      "contract_ids": [
+        "P059-CON-015",
+        "P059-CON-024",
+        "P059-CON-033",
+        "P059-CON-037",
+        "P059-CON-038"
+      ],
+      "disposition": "CARRY_FORWARD_OPEN",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "Explicit unresolved evidence debt at the end of the audited range.",
+      "remaining_work": "Carry these items into literature, data, and material-validation phases without downgrading them to optional polish.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 45,
+          "needle": "실측 대기",
+          "source_line": "## v1.0.16 물리-데이터 이월 (실데이터 소관 — 외부 위임 아닌 실측 대기)"
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 46,
+          "needle": "per-T n",
+          "source_line": "- **다온도 per-T n 진단**: 여러 실측 T 에서 전이별 n fit → T-독립성 확인(폭 T-의존 4단 사다리 (2), FITTING_GUIDE §1.5). two-phase 전이 폭 T-의존 확정((3)~(4))."
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 47,
+          "needle": "LCO 실값",
+          "source_line": "- **LCO 실값**: Ω/dH_a 실측·다온도 T² 실측·전자항 g_max/x_MIT 실측 정합."
+        },
+        {
+          "path": "Claude/docs/v1.0.18.2/ROADMAP_future_physics.md",
+          "line": 48,
+          "needle": "서지 재확인",
+          "source_line": "- **서지 재확인**: (v1.0.17 P4 에서 참고문헌 7 저자·DOI 2 정정 완료 — 잔여 검토)."
+        }
+      ],
+      "patch_evidence": []
+    },
+    {
+      "id": "P059-CLM-040",
+      "version": "v1.0.18.2",
+      "actor": "PAST_AGENT",
+      "claim_class": "PROCESS_HISTORY",
+      "claim": "The final Fable review was best-effort and could remain incomplete.",
+      "patch_ids": [],
+      "contract_ids": [],
+      "disposition": "SOURCE_STATEMENT_ONLY",
+      "evidence_boundary": "SOURCE_TEXT_ONLY",
+      "authority_meaning": "The historical review process explicitly did not close its own final-review gate.",
+      "remaining_work": "Do not use the presence of an external-review label as a completion certificate.",
+      "source_evidence": [
+        {
+          "path": "Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md",
+          "line": 29,
+          "needle": "미완 가능",
+          "source_line": "- **Fable 최종검수**: 맨 끝 best-effort 1회(2% 잔량, 미완 가능) — 최종 Ch1 + 작업이력 검토."
+        }
+      ],
+      "patch_evidence": []
+    }
+  ]
+}

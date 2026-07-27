@@ -484,3 +484,41 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   입력이다.
 - 다음은 Step 33.5 guide, handover, closing과 roadmap의
   완료·권위·이월 claim을 actual source patch에 연결한다.
+
+### 2026-07-28 — Step 33.5
+
+- guide, handover, closing과 roadmap의 완료·검증·불변·이월 표현을
+  40개 source-linked claim으로 분해했다.
+- actor는 USER 10, PAST_AGENT 29, EXTERNAL_REVIEWER 1이고,
+  class는 USER_REQUIREMENT 7, PROCESS_HISTORY 8, THEORY_CHANGE 5,
+  IMPLEMENTATION_CHANGE 2, INTERNAL_VALIDATION 3,
+  SCIENTIFIC_SCOPE 7, CARRY_FORWARD 6, EXTERNAL_REVIEW 2다.
+- exact theory patch로 v1.0.15 pointwise memory, v1.0.16 \(n(T)\),
+  v1.0.17 theory-body 경계 정련과 v1.0.18.2 Einstein 식 추가를
+  확인했다. patch 확인은 물리 타당성·code conformance·실험
+  검증을 뜻하지 않는다.
+- disposition은 PRESERVE_REQUIREMENT 10, PATCH_CONFIRMED 5,
+  PATCH_CONFIRMED_INTERNAL_ONLY 3, SOURCE_STATEMENT_ONLY 5,
+  COPY_FORWARD_NO_NEW_VALIDATION 2, PARTIAL 3, OVERCLAIMED 3,
+  CARRY_FORWARD_OPEN 8, REVIEW_INPUT_NOT_AUTHORITY 1이다.
+- v1.0.18.2의 “물리판 완결”, v1.0.17의 외부 리뷰 “완전 반영”,
+  Cahn--Hilliard 성장률에서 voltage-domain \(L_V\)를 직접
+  근거화한다는 주장을 과장으로 판정했다.
+- 외부 리뷰의 “물리 오류 0건”은 review input으로만 보존하고
+  scientific authority로 승계하지 않았다.
+- v1.0.17과 v1.0.18.1은 copy-forward/no-new-validation으로
+  분리했고, golden·bit-exact·round-trip은 internal evidence로
+  한정했다.
+- 40/40 claim의 source line, frozen coverage, exact patch SHA,
+  contract link와 disposition을 확인했고 26/26 validation을
+  통과했다. 두 번 생성한 JSON/summary SHA-256도 동일했다.
+- 근거:
+  `Codex/results/PHASE_059_COMPLETION_AUTHORITY_CLAIM_MATRIX.json`,
+  `Codex/results/PHASE_059_COMPLETION_AUTHORITY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/generate_phase059_completion_claims.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_completion_claims.py`.
+- gates:
+  `PASS_P059_COMPLETION_AUTHORITY_ADJUDICATION`,
+  `PASS_P059_COMPLETION_CLAIMS`.
+- 다음은 Step 34.1 production code 4 unique blob의 AST/public
+  API/default/call graph와 exact diff를 감사한다.

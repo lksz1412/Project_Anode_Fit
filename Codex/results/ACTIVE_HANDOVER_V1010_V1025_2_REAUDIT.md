@@ -352,6 +352,25 @@
   two-phase/config 의미 충돌, direct lag의 zero-current limit,
   joint temperature-term identifiability, Einstein reaction spectrum,
   doped high-voltage LCO는 OPEN이다.
+- Phase 059 completion/authority claims:
+  guide, handover, closing과 roadmap의 완료·검증·불변·이월 표현
+  40개를 USER/PAST_AGENT/EXTERNAL_REVIEWER로 분리하고 actual
+  source line, exact theory patch와 Step 33.4 contract에 연결했다.
+- Completion/authority disposition:
+  preserve requirement 10, patch confirmed 5, internal-only 3,
+  source-statement-only 5, copy-forward/no-new-validation 2,
+  partial 3, overclaimed 3, carry-forward open 8,
+  reviewer-input-not-authority 1이다.
+- Completion/authority critical boundary:
+  v1.0.18.2의 “물리판 완결”, v1.0.17의 review “완전 반영”,
+  Cahn--Hilliard 성장률을 voltage-domain lag의 직접 근거로 쓰는
+  주장은 과장이다. golden·bit-exact·round-trip은 내부 검증이며,
+  외부 리뷰의 “물리 오류 0건”은 과학적 권위가 아니다.
+- Phase 059 completion-claim evidence:
+  `Codex/results/PHASE_059_COMPLETION_AUTHORITY_CLAIM_MATRIX.json`,
+  `Codex/results/PHASE_059_COMPLETION_AUTHORITY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_completion_claims.py`
+  (`PASS_P059_COMPLETION_CLAIMS`, 26/26 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -374,16 +393,17 @@
 
 ## Next Exact Step
 
-Phase 059 Step 33.5:
-guide, handover, closing과 roadmap의 완료·권위·이월 claim을
-actual source patch와 연결하고 과거 reviewer/agent 판정을
-과학적 근거와 분리한다.
+Phase 059 Step 34.1:
+production code 4 unique blob을 전문 재검독하고 public API, state,
+default, call graph와 AST exact diff를 만든다. v1.0.16,
+v1.0.17, v1.0.18.1의 동일 blob/copy-forward를 별도 진전으로
+세지 않는다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–33.4.
+Phase 059 Steps 33.1–33.5.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
