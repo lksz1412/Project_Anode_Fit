@@ -270,6 +270,15 @@
   `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_REVIEW.md`,
   `Codex/results/PHASE_058_FOUR_AXIS_CONFORMANCE_MATRIX.json`
   (`PASS_P058_FOUR_AXIS_CONFORMANCE`, 44/44 checks).
+- Phase 058 carry-forward routing:
+  11 carry-forward assets, 13 repair blockers, 5 new-scope blockers,
+  5 evidence debts로 분리하고 four-axis 26 rows를 전건 routing했다.
+  후속 계보를 읽기 전 새 설계가 해결로 선점되지 않도록 각 repair
+  blocker에 acceptance criterion을 저장했다.
+- Phase 058 routing evidence:
+  `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REVIEW.md`,
+  `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REGISTER.json`
+  (`PASS_P058_CARRY_FORWARD_ROUTING`, 29/29 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -292,12 +301,12 @@
 
 ## Next Exact Step
 
-Phase 058 Step 32.3:
-후속 Phase 059–069에서 사용할 carry-forward asset과 repair,
-new-scope, evidence blocker를 분리한다.
+Phase 058 Step 32.4:
+queue/coverage, equation matrix, behavior matrix, render audit,
+claim/four-axis/routing 결과와 lineage report를 통합 기계 검증한다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.2.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -345,6 +354,8 @@ Phase 058 theory equation 323/323 occurrences에 7-state disposition을
 부여하고 unassigned 0, assignment hash/32-check gate 통과.
 26개 핵심 계약을 theory/code/test/artifact 4축으로 닫아 aligned
 6/partial6/misaligned8/absent5/unverified1, 44/44 gate 통과.
+11 assets/13 repairs/5 new-scope/5 evidence debts로 routing하고
+four-axis 26 rows 전건 연결, 29/29 gate 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

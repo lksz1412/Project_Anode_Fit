@@ -867,3 +867,28 @@ lineage report를 기계 검증한다.
 - 기계 gate:
   `PASS_P058_FOUR_AXIS_CONFORMANCE`.
 - 다음은 Step 32.3 후속 phase carry-forward와 blocker를 분리한다.
+
+### 2026-07-28 — Step 32.3
+
+- 후속 Phase 059–069로 넘길 내용을 carry-forward asset 11,
+  repair blocker 13, new-scope blocker 5, evidence debt 5의
+  34개 register item으로 분리했다.
+- ideal kernel, 보존식, 방향 계약, reduced causal start,
+  entropy/heat, Sommerfeld endpoint, tiering, scalar guard와
+  감사 infrastructure를 자산으로 보존했다.
+- unit, convexification, multi-transition topology, width/entropy,
+  local barrier, \(I\to0\), numerical handoff, hysteresis state,
+  LCO electronic/default, observation, tests, artifact와 theory-code
+  separation에 acceptance criterion을 붙였다.
+- public data fit, Si/composite, doped high-voltage LCO,
+  uncertainty/holdout/ablation, systematic literature review는
+  기존식 보정이 아닌 new scope로 분리했다.
+- 4축 matrix 26 rows를 register item에 전건 routing했고
+  29/29 checks가 통과했다.
+- 근거:
+  `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REVIEW.md`,
+  `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REGISTER.json`.
+- 기계 gate:
+  `PASS_P058_CARRY_FORWARD_ROUTING`.
+- 다음은 Step 32.4 Phase 058의 queue, coverage, matrices,
+  render audit와 lineage report를 통합 기계 검증한다.
