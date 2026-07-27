@@ -12,7 +12,7 @@
 4. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 5. 현재 phase result:
-   `Codex/results/PHASE_057BE_DECISION_EFFECTIVITY_TIMELINE_RESULT.md`
+   `Codex/results/PHASE_057BF_ACTOR_AND_APPROVAL_SEPARATION_RESULT.md`
 
 ## Current State
 
@@ -39,6 +39,13 @@
   `PASS_P057_COMPLETION_CLAIM_ADJUDICATION`.
 - Decision effectivity gate:
   `PASS_P057_DECISION_EFFECTIVITY`.
+- Actor separation gate:
+  `PASS_P057_ACTOR_SEPARATION`.
+- 404 provisional findings:
+  USER_REQUIREMENT 43, MODEL_PROPOSAL 24,
+  IMPLEMENTED_STATE 45, REVIEW_FINDING 292.
+- Direct-current user direction:
+  `Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md` 17개.
 - 완료·권위·불변·정합 후보 3,487개 전건 처분:
   비긍정 문맥 407; 긍정 주장 3,080 =
   confirmed 3, overclaimed 4, partial 961, unverified 2,112.
@@ -51,20 +58,20 @@
 
 ## Next Exact Step
 
-Phase 057 Step 21.1:
-문건 속 주장을 `USER_REQUIREMENT`, `MODEL_PROPOSAL`,
-`REVIEW_FINDING`, `IMPLEMENTED_STATE`로 분리한다. 모델이 사용자
-발언이라고 요약한 문장은 실제 원문 또는 반복된 후속 승인 근거가
-없으면 사용자 요구로 자동 승격하지 않는다.
-완료 Step 18.1–20.5:
+Phase 057 Step 22.1:
+프로젝트 목표와 관측 출발점을 복원하고, 43개 repository-reported
+user topic과 17개 direct-current direction을 변수·좌표·장 구조·문체·
+코드 경계·피팅 목표의 결정 계보로 통합한다.
+완료 Step 18.1–21.5:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,
 2,381 changed-file event의 claim–patch matrix `PASS`;
 243문건 3,487개 완료·권위·정합 후보의 위치 추출 및 전건 판정,
-229 commit/673 event의 copy-forward·철회·효력 계보 `PASS`.
+229 commit/673 event의 copy-forward·철회·효력 계보,
+404 finding의 actor/approval/open/stale 분리 `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BE_DECISION_EFFECTIVITY_TIMELINE_RESULT.md`.
+`Codex/results/PHASE_057BF_ACTOR_AND_APPROVAL_SEPARATION_RESULT.md`.
 
 ## Resume Gate
 
