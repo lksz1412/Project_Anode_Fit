@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  228 documents, 48,638 lines.
+  230 documents, 48,872 lines.
 - Latest observation:
-  `Codex/results/PHASE_057AE_V1023_HANDOVER_MERGE_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,14 +36,15 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.7F:
-v1.0.23 curve QA·code guide 2문건 234행을 전문 검독한다.
-활성 상세 지도:
+Phase 057 Step 19.8A:
+v1.0.24–v1.0.25.2 서술 queue의 고유 문건·행 수를 확정하고
+시간순 batch 지도를 작성해 전문 검독을 시작한다.
+완료 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1023-read-map.md`.
-완료 Step 19.7A–E:
-P0부터 P5·독립 AUD·마감 3종까지 11문건 956행 전량 `READ`.
+완료 Step 19.7:
+v1.0.23 13문건 1,190행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057AE_V1023_HANDOVER_MERGE_OBSERVATIONS.md`.
+`Codex/results/PHASE_057AF_V1023_CURVE_CODEGUIDE_OBSERVATIONS.md`.
 
 ## Resume Gate
 
