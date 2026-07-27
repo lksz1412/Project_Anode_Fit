@@ -39,6 +39,9 @@
 Phase 057 Step 19.4:
 v1.0.20 queue의 81개 문건, 17,041행을 논리 batch로 나눠
 각 문건을 첫 행부터 끝 행까지 전문 검독하고 claim/evidence 관찰을 저장한다.
+활성 상세 지도:
+`Codex/plans/2026-07-28-phase057-v1020-read-map.md`.
+현재 batch: 19.4A, foundation/setup/reference 16문건 885행.
 
 ## Resume Gate
 
