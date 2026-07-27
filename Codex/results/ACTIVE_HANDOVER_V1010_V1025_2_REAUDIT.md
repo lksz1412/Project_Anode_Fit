@@ -390,6 +390,21 @@
   `Codex/work/v1014_v1018_2_phase059/code_diffs/`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_code_index.py`
   (`PASS_P059_PRODUCTION_CODE_INDEX_AND_DIFF`, 31/31 checks).
+- Phase 059 test/demo static evidence:
+  test 12/demo 18, 합계 30 blobs/3,372행에 Python assert가 0개다.
+  regression의 `array_equal`/exit만 internal baseline failure를
+  강제하고 area check는 출력 전용이다. 나머지 sample/demo/graph/
+  plot의 finite, parity, area, shape, expected value와 DONE banner는
+  모두 non-gating이다.
+- Test/demo copy lineage:
+  version/path 문자열을 정규화하면 30 blobs는 5 logic families
+  × 6 releases다. `n_T1`, `theta_E`, direct `L_V`, nonmonotone/
+  reversal/pulse와 measured data coverage는 0이다.
+- Phase 059 test/demo evidence:
+  `Codex/results/PHASE_059_TEST_DEMO_ASSERTION_MATRIX.json`,
+  `Codex/results/PHASE_059_TEST_DEMO_ASSERTION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_test_demo_matrix.py`
+  (`PASS_P059_TEST_DEMO_ASSERTIONS`, 34/34 checks).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -412,16 +427,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 34.2:
-test 12개와 demo 18개 unique blob의 모든 assertion, tolerance,
-printed-only check, golden path, import path와 미검사 branch를
-claim matrix에 기록한다.
+Phase 059 Step 34.3:
+capture를 금지한 격리 환경에서 version별 production self-check,
+regression verify, sample/demo/graph/plot을 실행하고 exit, stdout,
+stderr와 output hash를 저장한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–34.1.
+Phase 059 Steps 33.1–34.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

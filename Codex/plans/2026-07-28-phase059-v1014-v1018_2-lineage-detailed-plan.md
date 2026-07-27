@@ -565,3 +565,41 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 34.2 test 12개/demo 18개 unique blob의 assertion,
   tolerance, printed-only check, import/golden path와 미검사 branch를
   claim matrix에 기록한다.
+
+### 2026-07-28 — Step 34.2
+
+- test 12개와 demo 18개, 합계 30 unique blobs/3,372행의
+  assertion, comparison, exit, golden read/write, figure output,
+  dynamic import path, model call과 feature token을 AST로
+  인덱싱했다.
+- Python `assert`는 0개다. 실패를 명시적으로 강제하는 표준
+  검사는 regression verify의 current-output별 `np.array_equal`
+  6건과 final exit뿐이다.
+- regression의 area check는 출력만 하고 `all_ok`에 포함되지
+  않는다. capture는 golden을 직접 덮어쓰며, CODE만 environment
+  override가 있고 GOLD는 absolute Windows path로 고정돼 있다.
+- sample test, LCO heat demo, graph suite와 plot의 finite,
+  parity, area, shape와 expected-value 결과는 모두 print/figure
+  전용이다. false verdict가 process failure를 만들지 않는다.
+- version/path 문자열을 정규화하면 30 blobs는 sample,
+  regression, graph suite, LCO heat demo, plot의 5 logic family
+  × 6 releases다. 새 release별 test logic 진전은 없다.
+- 전체 corpus에서 `n_T1`, `theta_E`, direct `L_V`,
+  nonmonotone/reversal/pulse와 measured/experimental data token은
+  0회다. Step 34.1 critical branch와 두 headline feature를
+  표준 harness가 검사하지 않는다.
+- finding 15건과 exact source anchor를 저장하고 34/34 validation을
+  통과했다. 두 번 생성한 JSON/summary SHA-256도 동일했다.
+- 근거:
+  `Codex/results/PHASE_059_TEST_DEMO_ASSERTION_MATRIX.json`,
+  `Codex/results/PHASE_059_TEST_DEMO_ASSERTION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/generate_phase059_test_demo_matrix.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_test_demo_matrix.py`.
+- gates:
+  `PASS_P059_TEST_DEMO_ASSERTION_INVENTORY`,
+  `PASS_P059_TEST_DEMO_ASSERTIONS`.
+- 이 gate는 test evidence가 실제로 강제하는 범위를 닫을 뿐
+  runtime PASS나 물리·실험 타당성을 부여하지 않는다.
+- 다음은 Step 34.3 capture를 금지한 격리 환경에서 version별
+  production self-check, regression verify, sample/demo/graph/plot을
+  실행하고 결과·exit·output hash를 저장한다.
