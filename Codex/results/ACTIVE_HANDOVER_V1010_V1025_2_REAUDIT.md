@@ -31,6 +31,8 @@
   `PASS_P057_READ_COVERAGE`.
 - Git genealogy gate:
   `PASS_P057_GIT_GENEALOGY`.
+- Commit patch matrix gate:
+  `PASS_P057_COMMIT_PATCH_MATRIX`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -40,15 +42,16 @@
 
 ## Next Exact Step
 
-Phase 057 Step 20.2:
-229개 관련 commit의 subject claim과 실제 full patch path/stat을
-대조하는 commit claim matrix를 만든다.
-완료 Step 18.1–20.1:
+Phase 057 Step 20.3:
+271문건의 completion/authority/invariance claim을 줄 번호,
+문맥, blob, commit과 함께 추출한다.
+완료 Step 18.1–20.2:
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
-406 path, 673 event의 Git genealogy `PASS`.
+406 path, 673 event의 Git genealogy 및 229 commit,
+2,381 changed-file event의 claim–patch matrix `PASS`.
 최신 결과:
-`Codex/results/PHASE_057BA_GIT_DOCUMENT_GENEALOGY_RESULT.md`.
+`Codex/results/PHASE_057BB_COMMIT_CLAIM_MATRIX_RESULT.md`.
 
 ## Resume Gate
 
