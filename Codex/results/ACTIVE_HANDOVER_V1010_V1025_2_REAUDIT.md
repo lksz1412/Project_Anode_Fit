@@ -24,9 +24,9 @@
 - Phase 057 queue:
   271 documents, 57,795 lines, 341 contiguous chunks.
 - Phase 057 content read:
-  201 documents, 45,621 lines.
+  217 documents, 47,682 lines.
 - Latest observation:
-  `Codex/results/PHASE_057Y_V1022_FR_CONTROL_TRIAGE_EXEC_OBSERVATIONS.md`.
+  `Codex/results/PHASE_057Z_V1022_R6_R9_AUD_V23_SURVEY_OBSERVATIONS.md`.
 - 새 이론 본문 및 생산 코드 수정 없음.
 - Claude 문건과 기존 브랜치 수정 없음.
 - 최초 기준선: `3b5fd059ed09cdcdde38668c399cb35b8afbcca9`.
@@ -36,18 +36,15 @@
 
 ## Next Exact Step
 
-Phase 057 Step 19.6K:
-v1.0.22 R6–R8·handover/index/merge readiness·AUD·v23 surveys
-16문건 2,061행을 첫 행부터 끝 행까지 전문 검독한다.
-활성 상세 지도:
+Phase 057 Step 19.7A:
+v1.0.23 intent queue의 고유 문건·행 수를 확인해 batch 지도를 만들고
+시간순 전문 검독을 착수한다.
+완료 상세 지도:
 `Codex/plans/2026-07-28-phase057-v1022-read-map.md`.
-현재 batch:
-19.6K, R6–R8·handover/index/merge readiness·AUD·v23 surveys
-16문건 2,061행.
-완료 Step 19.6J:
-FR 운영 계획·resume·triage·M1–M4 8문건 284행 전량 `READ`.
+완료 Step 19.6:
+v1.0.22 101문건 16,855행 전량 `READ`.
 최신 결과:
-`Codex/results/PHASE_057Y_V1022_FR_CONTROL_TRIAGE_EXEC_OBSERVATIONS.md`.
+`Codex/results/PHASE_057Z_V1022_R6_R9_AUD_V23_SURVEY_OBSERVATIONS.md`.
 
 ## Resume Gate
 
