@@ -1436,26 +1436,38 @@ SI_MSMR7_SKEW_LIT: List[Dict[str, Any]] = [
 #       use_legacy_4transition(True)  → 기본 셋이 GRAPHITE_STAGING_LIT / SI_CASE_SETS 로 복귀(v1.0.25 거동)
 #       use_legacy_4transition(False) → 확정 구성 복귀(기본 상태)
 #   명시 인자(graphite_transitions=... / si_transitions=...)는 스위치와 무관하게 항상 우선한다.
-DEFAULT_GRAPHITE_TRANSITIONS: List[Dict[str, Any]] = GRAPHITE_MSMR7_LIT
-DEFAULT_SI_TRANSITIONS: Optional[List[Dict[str, Any]]] = SI_MSMR7_SKEW_LIT
+# ★★v1.0.25.2 정정(감사 U12): 기본을 7-gallery 로 두면 **온도 의존이 통째로 소실**된다 —
+#   두 skew 시드는 dH_rxn·dS_rxn(중심 U_j(T))·n(폭 w(T))을 결여하므로 U_j·w 가 모두 T-동결이 되고,
+#   Ch2 의 가역 발열·엔트로피 계열이 기본 경로에서 상수 곡선을 받는다(실측: 288→308 K max|Δ| 0.5252 → 0).
+#   전이 수·비대칭은 **곡선 표현**의 개선이지 열역학 입력의 대체가 아니므로, 시드가 완성되기 전까지
+#   기본은 열역학 입력을 갖춘 레거시 셋으로 둔다. 7-gallery skew 는 **명시 지정**으로 쓴다:
+#       GraphiteAnodeDischargeDQDV(GRAPHITE_MSMR7_LIT, ...)
+#       BlendedAnodeDQDV(graphite_transitions=GRAPHITE_MSMR7_LIT, si_transitions=SI_MSMR7_SKEW_LIT)
+#   또는 use_skew7_default(True) 로 일괄 전환(아래).
+DEFAULT_GRAPHITE_TRANSITIONS: List[Dict[str, Any]] = GRAPHITE_STAGING_LIT
+DEFAULT_SI_TRANSITIONS: Optional[List[Dict[str, Any]]] = None
 #   짝 배경(같은 창에서 함께 적합된 값) — 전이만 쓰고 배경을 빠뜨리면 벨리역이 어긋난다.
 DEFAULT_CBG_GRAPHITE = 0.550
 DEFAULT_CBG_SI = 0.051
 
 
-def use_legacy_4transition(enable: bool = True) -> None:
-    """[v1.0.25.2] 기본 전이 셋을 v1.0.25 레거시(흑연 4 전이 대칭 · Si 케이스셋)로 전환/복귀.
+def use_skew7_default(enable: bool = True) -> None:
+    """[v1.0.25.2] 기본 전이 셋을 7-gallery skew 확정 구성으로 전환/복귀.
 
-    enable=True  → 기본 셋 = GRAPHITE_STAGING_LIT, Si 기본 = si_case 셋(v1.0.25 거동 = 골든 bit-exact 기준).
-    enable=False → 기본 셋 = GRAPHITE_MSMR7_LIT · SI_MSMR7_SKEW_LIT (v1.0.25.2 확정 구성 = 기본 상태).
-    골든 회귀·게이트는 이 함수로 레거시를 복원한 뒤 비교한다."""
+    enable=True  → 기본 = GRAPHITE_MSMR7_LIT · SI_MSMR7_SKEW_LIT (곡선 표현 최량).
+      ⚠️ 두 시드는 dH_rxn·dS_rxn·n 을 결여하므로 **중심·폭의 온도 의존이 없다**. 정온 곡선 적합
+      전용으로 쓰고, Ch2 가역 발열·엔트로피 계열이나 다온도 해석에는 쓰지 말 것(감사 U12).
+    enable=False → 기본 = GRAPHITE_STAGING_LIT · si_case 셋 (열역학 입력 보유 = 기본 상태).
+
+    ※ 시드에 dH_rxn·dS_rxn·n 이 채워지면 이 경고는 해소되고 기본을 되뒤집을 수 있다. 남은 결정은
+      각 gallery 군집이 어느 staging 전이에 속하는가(그 전이의 dS_rxn 을 상속)이며 물리 배정이다."""
     global DEFAULT_GRAPHITE_TRANSITIONS, DEFAULT_SI_TRANSITIONS
     if enable:
-        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_STAGING_LIT
-        DEFAULT_SI_TRANSITIONS = None          # None = si_case 셋 경로(v1.0.25 거동)
-    else:
         DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_MSMR7_LIT
         DEFAULT_SI_TRANSITIONS = SI_MSMR7_SKEW_LIT
+    else:
+        DEFAULT_GRAPHITE_TRANSITIONS = GRAPHITE_STAGING_LIT
+        DEFAULT_SI_TRANSITIONS = None
 
 # ============================================================================
 # R6 블렌드 음극 확장 — Si 케이스 셋 + BlendedAnodeDQDV (문건 v1.0.24 §3.5 doc-leads 요구명세)

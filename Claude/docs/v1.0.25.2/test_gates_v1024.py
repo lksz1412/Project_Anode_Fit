@@ -71,11 +71,11 @@ def load(path, name):
     spec = importlib.util.spec_from_file_location(name, path)
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
-    # [v1.0.25.2] 본 하네스는 **v1.0.24 골든 기준**(흑연 4 전이 대칭 · Si 케이스셋)을 검증한다.
-    #   v1.0.25.2 에서 기본 전이 셋이 7-gallery skew 로 바뀌었으므로, 로드 직후 레거시를 복원해
-    #   골든 계약을 그대로 유지한다. 확정 구성(7-skew) 자체의 검증은 별도 게이트 소관이다.
-    if hasattr(m, "use_legacy_4transition"):
-        m.use_legacy_4transition(True)
+    # [v1.0.25.2] 본 하네스는 **v1.0.24 골든 기준**(흑연 4 전이 · Si 케이스셋)을 검증한다.
+    #   기본 셋은 U12 정정으로 이미 그 셋이지만, 호출자가 use_skew7_default(True) 를 켠 상태여도
+    #   골든 계약이 흔들리지 않도록 방어적으로 되돌린다.
+    if hasattr(m, "use_skew7_default"):
+        m.use_skew7_default(False)
     return m
 
 
