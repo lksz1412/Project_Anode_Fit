@@ -293,6 +293,16 @@
   audit coverage/adjudication 완료만 뜻한다. canonical model,
   external material validity, public-data fit, doped high-voltage
   LCO와 Si/composite closure는 확립되지 않았다.
+- Phase 059 queue:
+  v1.0.14, 15, 16, 17, 18.1, 18.2의 117 paths/93 unique
+  blobs를 동결했다. duplicate occurrences 24, text 63 blobs/
+  36,641행/158 chunks, PDF 18/492쪽, image 10, data 2다.
+  독립 v1.0.18 directory는 frozen manifest에 없다.
+- Phase 059 queue evidence:
+  `Codex/results/PHASE_059_AUDIT_QUEUE_RESULT.md`,
+  `Codex/results/PHASE_059_V1014_V1018_2_AUDIT_QUEUE.json`,
+  `Codex/results/PHASE_059_V1014_V1018_2_TEXT_COVERAGE.json`
+  (`PASS_P059_AUDIT_QUEUE`).
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -315,11 +325,9 @@
 
 ## Next Exact Step
 
-Phase 059 Step 33.1:
-Phase 056 manifest에서 v1.0.14, v1.0.15, v1.0.16, v1.0.17,
-v1.0.18.1, v1.0.18.2의 117 paths/93 unique blobs를
-content-addressed queue로 추출한다. 독립 `v1.0.18` directory는
-없으므로 추정하지 않는다.
+Phase 059 Step 33.2:
+63 unique text blobs 36,641행을 158개 연속 chunk로 전량 읽고
+SHA, line range, EOF와 read status를 기록한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
