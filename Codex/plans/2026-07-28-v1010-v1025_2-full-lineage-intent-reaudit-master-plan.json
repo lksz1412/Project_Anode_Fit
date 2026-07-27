@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "plan_id": "v1010-v1025_2-full-lineage-intent-reaudit",
+  "canonical_date": "2026-07-28",
+  "branch": "codex/lib-physics-endgame-v1025_2",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "scope": {
+    "first_version": "v1.0.10",
+    "last_version": "v1.0.25.2",
+    "excluded_as_authority": [
+      "v1.0.26A-regsol",
+      "v1.0.26B-gallery",
+      "main@4069cb36a8a52b1b88c29d68aa54dcbe915b1618"
+    ],
+    "initial_path_count": 1520,
+    "initial_unique_blob_count": 862
+  },
+  "comparison_lineages": [
+    {
+      "name": "claude-v1025_2-followup",
+      "tip": "e3e1a634f34b711aa4803fd190fe9120f1755f13",
+      "unique_commit_count": 2
+    },
+    {
+      "name": "codex-v1025_2-conformance",
+      "tip": "11f90544865dd179739ca5bc5062b28c1078e504",
+      "unique_commit_count": 5
+    }
+  ],
+  "phases": [
+    {"id": 55, "steps": [1, 8], "name": "source-freeze", "gate": "PASS_P055_SOURCE_FREEZE"},
+    {"id": 56, "steps": [9, 17], "name": "complete-manifest", "gate": "PASS_P056_COMPLETE_MANIFEST"},
+    {"id": 57, "steps": [18, 25], "name": "intent-recovery", "gate": "PASS_P057_INTENT_RECOVERY"},
+    {"id": 58, "steps": [26, 32], "name": "lineage-v1010-v1013", "gate": "PASS_P058_LINEAGE_A"},
+    {"id": 59, "steps": [33, 39], "name": "lineage-v1014-v10182", "gate": "PASS_P059_LINEAGE_B"},
+    {"id": 60, "steps": [40, 45], "name": "lineage-v1019", "gate": "PASS_P060_LINEAGE_C"},
+    {"id": 61, "steps": [46, 51], "name": "lineage-v1020", "gate": "PASS_P061_LINEAGE_D"},
+    {"id": 62, "steps": [52, 57], "name": "lineage-v1021", "gate": "PASS_P062_LINEAGE_E"},
+    {"id": 63, "steps": [58, 63], "name": "lineage-v1022", "gate": "PASS_P063_LINEAGE_F"},
+    {"id": 64, "steps": [64, 69], "name": "lineage-v1023", "gate": "PASS_P064_LINEAGE_G"},
+    {"id": 65, "steps": [70, 75], "name": "lineage-v1024-v10241", "gate": "PASS_P065_LINEAGE_H"},
+    {"id": 66, "steps": [76, 81], "name": "lineage-v1025-v10252", "gate": "PASS_P066_LINEAGE_I"},
+    {"id": 67, "steps": [82, 90], "name": "code-history", "gate": "PASS_P067_CODE_HISTORY"},
+    {"id": 68, "steps": [91, 98], "name": "fork-adjudication", "gate": "PASS_P068_FORK_ADJUDICATION"},
+    {"id": 69, "steps": [99, 107], "name": "canonical-synthesis", "gate": "PASS_P069_REAUDIT_COMPLETE"}
+  ],
+  "decision_states": [
+    "PRESERVE",
+    "CORRECT",
+    "SUPERSEDE",
+    "EMPIRICAL_ONLY",
+    "THEORY_ONLY",
+    "REJECT",
+    "UNVERIFIED"
+  ],
+  "recovery_entrypoint": "Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md",
+  "active_phase": 56,
+  "next_step": 9,
+  "completed_gates": [
+    "PASS_P055_SOURCE_FREEZE"
+  ],
+  "status": "PHASE_055_COMPLETE"
+}
