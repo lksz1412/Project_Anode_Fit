@@ -86,6 +86,14 @@
 - Phase 058 test/demo/guide review:
   `Codex/results/PHASE_058_TEST_DEMO_GUIDE_REVIEW.md`,
   `Codex/results/PHASE_058_TEST_DEMO_CLAIM_MATRIX.json`.
+- Phase 058 isolated execution:
+  11/11 cases disposed from byte-identical temporary copies;
+  9 report-only successes, v1.0.10 golden missing,
+  v1.0.13 bit-exact golden FAIL with max absolute drift
+  \(2.665\times10^{-15}\). Repository source hashes unchanged.
+- Phase 058 execution review:
+  `Codex/results/PHASE_058_LEGACY_EXECUTION_REVIEW.md`,
+  `Codex/results/PHASE_058_LEGACY_ISOLATED_EXECUTION.json`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -108,18 +116,18 @@
 
 ## Next Exact Step
 
-Phase 058 Step 27.3:
-원본 source를 수정하지 않고 가능한 legacy test/demo를 격리 실행한다.
-hardcoded Windows path나 frozen dependency로 실패하면 환경 실패와
-모델 실패를 분리하고, 결과를 독립 probe의 입력으로 저장한다.
+Phase 058 Step 27.4:
+독립 probe로 dQ/dV 면적·부호·온도 폭·전류 극한·히스테리시스 기억,
+entropy/reversible heat 부호와 LCO toggle/placeholder를 검산한다.
 완료:
-Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.2.
+Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5, 27.1–27.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
 AST API/call/default 및 exact diff와 초기 code review 작성. Test 5개,
 demo 6개, guide 3개, result/handover 4개를 추가 전문 검독해 Phase 058
 text coverage 27/27 blobs, 13,757/13,757 lines.
+Legacy test/demo 11개 byte-identical 격리 실행과 source hash 보존 확인.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

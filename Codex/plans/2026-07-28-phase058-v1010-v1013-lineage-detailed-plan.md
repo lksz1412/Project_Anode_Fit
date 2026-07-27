@@ -304,3 +304,23 @@ lineage report를 기계 검증한다.
   `Codex/results/PHASE_058_TEST_DEMO_GUIDE_REVIEW.md`.
 - 아직 `PASS_P058_LINEAGE_A`가 아니다. Step 27.3 격리 실행,
   Step 27.4 독립 probe, NPZ/PDF/image와 독립 유도·종합 판정이 남았다.
+
+### 2026-07-28 — Step 27.3
+
+- test/demo 11개를 대응 production module과 함께 byte-identical
+  임시 복사본으로 격리 실행했다.
+- 실행 전후 repository source와 v1.0.13 golden NPZ hash가 동일해
+  원본 무수정을 확인했다.
+- 9개 demo/report는 실행 완료, v1.0.10 regression은 repository에
+  golden이 없어 `BLOCKED_MISSING_FROZEN_GOLDEN`로 처분했다.
+- v1.0.13 regression은 보관 golden과 12개 array가 bit-exact
+  불일치했다. 최대 절대차는 \(2.665\times10^{-15}\)였으므로
+  `FAIL_BIT_EXACT_GOLDEN_FLOAT_DRIFT`로 분류했다. 수치 차이가 작다는
+  사실과 `np.array_equal` gate의 실패를 동시에 보존한다.
+- 11/11 case 처분과 source hash 보존은 완료됐지만, 이 결과를
+  external physical validation으로 승격하지 않는다.
+- 근거:
+  `Codex/results/PHASE_058_LEGACY_ISOLATED_EXECUTION.json`,
+  `Codex/results/PHASE_058_LEGACY_EXECUTION_REVIEW.md`.
+- 다음은 Step 27.4 독립 conservation/sign/limit/current/temperature
+  probe다.
