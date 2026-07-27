@@ -279,6 +279,20 @@
   `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REVIEW.md`,
   `Codex/results/PHASE_058_CARRY_FORWARD_BLOCKER_REGISTER.json`
   (`PASS_P058_CARRY_FORWARD_ROUTING`, 29/29 checks).
+- Phase 058 integrated closure:
+  queue 45/45 blobs, text 27/27 blobs/13,757행, PDF 8/215쪽,
+  image 8, golden 13, theory equations 323/323, four-axis 26/26,
+  routing 34개를 통합 대조했다. 14개 subordinate validator와
+  final 25/25 checks가 통과했다.
+- Phase 058 final evidence:
+  `Codex/results/PHASE_058_V1010_V1013_LINEAGE_REPORT_A.md`,
+  `Codex/results/PHASE_058_VALIDATION.json`,
+  `Codex/work/v1010_v1013_phase058/validate_phase058_final.py`
+  (`PASS_P058_LINEAGE_A`).
+- Phase 058 PASS boundary:
+  audit coverage/adjudication 완료만 뜻한다. canonical model,
+  external material validity, public-data fit, doped high-voltage
+  LCO와 Si/composite closure는 확립되지 않았다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -301,12 +315,13 @@
 
 ## Next Exact Step
 
-Phase 058 Step 32.4:
-queue/coverage, equation matrix, behavior matrix, render audit,
-claim/four-axis/routing 결과와 lineage report를 통합 기계 검증한다.
+Phase 059 진입 전 상세 계획서 작성:
+v1.0.14–v1.0.18.2의 source/blob/version 경계, 전문 검독 chunk,
+독립 probe, artifact lineage, claim disposition과 gate를 세부
+substep으로 고정한다. 계획 승인 후 첫 실행은 Step 33.1이다.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
-27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.3.
+27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
@@ -356,6 +371,8 @@ Phase 058 theory equation 323/323 occurrences에 7-state disposition을
 6/partial6/misaligned8/absent5/unverified1, 44/44 gate 통과.
 11 assets/13 repairs/5 new-scope/5 evidence debts로 routing하고
 four-axis 26 rows 전건 연결, 29/29 gate 통과.
+Phase 058 integrated report와 validation을 닫고 14 subordinate
+validators, 25/25 final checks, `PASS_P058_LINEAGE_A` 통과.
 전체 intent queue 271문건 57,795행 전량 `READ`, source
 blob/SHA/EOF/range/idempotence closure `PASS`; 271 blob,
 406 path, 673 event의 Git genealogy 및 229 commit,

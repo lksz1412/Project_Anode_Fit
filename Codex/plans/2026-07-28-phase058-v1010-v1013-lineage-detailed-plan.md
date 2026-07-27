@@ -892,3 +892,38 @@ lineage report를 기계 검증한다.
   `PASS_P058_CARRY_FORWARD_ROUTING`.
 - 다음은 Step 32.4 Phase 058의 queue, coverage, matrices,
   render audit와 lineage report를 통합 기계 검증한다.
+
+### 2026-07-28 — Step 32.4
+
+- queue 56 paths/45 unique blobs, text coverage 27/27 blobs와
+  13,757/13,757행을 최종 validator에서 다시 대조했다.
+- theory 6 blobs/9,532행/323 equations, production code
+  3 blobs/2,610행, tests 5, demos 6을 동결된 queue와 대조했다.
+- PDF 8개 215쪽, image 8개, golden 13 arrays와 legacy execution
+  11 cases의 disposition이 최종 수치 장부와 일치함을 확인했다.
+- theory claim 323/323, four-axis 26/26, carry-forward register
+  34개와 route 26/26의 상호 수치를 검증했다.
+- 14개 subordinate validator를 현재 source에서 재실행했고 모두
+  return code 0, stderr 0이었다.
+- queue의 56 occurrence path를 현재 Git blob hash와 다시 대조하고
+  `Claude/` working tree가 깨끗함을 확인했다.
+- 종합 보고서:
+  `Codex/results/PHASE_058_V1010_V1013_LINEAGE_REPORT_A.md`.
+- 기계 검증:
+  `Codex/results/PHASE_058_VALIDATION.json`,
+  `Codex/work/v1010_v1013_phase058/validate_phase058_final.py`.
+- 최종 validator 25/25 checks가 통과했다.
+
+### 2026-07-28 — Step 32.5
+
+- `PASS_P058_LINEAGE_A`를 부여했다.
+- PASS의 의미를 audit coverage와 adjudication closure로 제한했다.
+  v1.0.10–v1.0.13의 canonical model 선정, material external
+  validity, public-data fit, doped high-voltage LCO와 Si/composite
+  closure는 모두 거짓으로 유지했다.
+- 이 구간의 국소 최선은 v1.0.13의 ideal-statistical-mechanics
+  사슬과 targeted executable repairs지만, 버전 전체를 정본으로
+  승격하지 않았다.
+- Phase 058 Steps 26.1–32.5를 종료했다.
+- 다음은 Phase 059 상세 계획서를 먼저 작성한 뒤 v1.0.14–
+  v1.0.18.2 계보 Step 33에 진입한다.
