@@ -741,3 +741,40 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   18 PDF 492 pages를 전 페이지 render해 blank, glyph, font,
   overfull, crop, clipped equation/table/figure와 label-page 관계를
   기계·시각 검독한다.
+
+### 2026-07-28 — Step 35.1
+
+- 18 PDF 492 pages를 96 dpi PNG로 전수 render했고 manifest page
+  count와 492/492 일치했다. invalid render, blank candidate,
+  crop/media 불일치, edge-touch/near-edge candidate,
+  page-boundary 밖 char/word는 모두 0이다.
+- 37 contact sheets를 전부 육안 검독하고, 최고 밀도·최소 우측
+  여백·NUL 집중 수식·표/그림·마지막 참고문헌을 대표하는 13쪽을
+  원해상도로 재검독했다. 가시적 글리프 누락, overfull,
+  equation/table/figure clipping은 찾지 못했다.
+- 18/18 PDF의 모든 font는 embedded다. 그러나 전 PDF의 CMEX10과
+  Chapter 1의 CMSY10 일부에 ToUnicode map이 없어 pypdf text
+  extraction에서 NUL 3,117자가 발생한다. 원해상도에서는 해당
+  bracket/symbol이 보이므로 display 결함이 아니라 검색·복사·
+  접근성 evidence debt로 분류한다.
+- 등록된 named destination은 모두 유효 page를 가리키고 본문의
+  unresolved `??` marker는 0이다. 반면 각주 복귀용
+  `Hfootnote.*` GoTo link 26개는 PDF name tree에 target이 없어
+  `LINK_DEFECT`로 판정했다.
+- v1.0.16 appendix TeX는 v1.0.15와 exact-identical이고 8개
+  rendered page hash도 모두 동일하다. 표지에 `버전 1.0.15 초안`이
+  남아 있으므로 v1.0.16의 새 appendix evidence로 세지 않는다.
+- render audit 재실행 전후 metrics/visual/report SHA가 각각
+  동일했고 validator 41/41을 통과했다.
+- 근거:
+  `Codex/results/PHASE_059_PDF_RENDER_METRICS.json`,
+  `Codex/results/PHASE_059_PDF_VISUAL_REVIEW.json`,
+  `Codex/results/PHASE_059_ARTIFACT_RENDER_AUDIT.md`,
+  `Codex/work/v1014_v1018_2_phase059/render_audit_phase059_pdfs.py`,
+  `Codex/work/v1014_v1018_2_phase059/finalize_phase059_pdf_visual_review.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_pdf_render.py`.
+- status:
+  `CONDITIONAL_P059_PDF_RENDER_PASS_WITH_ACCESSIBILITY_AND_PROVENANCE_DEBTS`.
+  이 status는 조판·link·provenance 판정이며 식의 물리 타당성,
+  문헌 진실성, code conformance 또는 실험 타당성을 승인하지 않는다.
+- 다음은 Step 35.2의 10 standalone image 원해상도 감사다.

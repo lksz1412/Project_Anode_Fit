@@ -464,6 +464,28 @@
   `Codex/results/PHASE_059_GOLDEN_NPZ_REVIEW.md`,
   `Codex/work/v1014_v1018_2_phase059/validate_phase059_golden_npz.py`
   (`PASS_P059_GOLDEN_NPZ`, 46/46 checks).
+- Phase 059 PDF render audit:
+  18 PDF 492 pages와 37 contact sheets를 전수 render·육안 검독했고,
+  고밀도/최소여백/수식추출/표/그림/마지막 페이지 13쪽을 원해상도로
+  재검독했다. visible clipping, blank, out-of-bounds는 0이다.
+- PDF font/link debts:
+  모든 font는 embedded이나 18/18 PDF에 non-ToUnicode math font가
+  있어 extracted NUL 3,117자가 발생한다. 각주 복귀용
+  `Hfootnote.*` target 26개도 name tree에서 누락됐다.
+- PDF provenance defect:
+  v1.0.16 appendix는 v1.0.15 TeX와 exact-identical이고 8 rendered
+  pages도 exact-identical하며 표지에 `버전 1.0.15 초안`이 남아 있다.
+  v1.0.16의 새 appendix evidence로 세지 않는다.
+- Phase 059 PDF evidence:
+  `Codex/results/PHASE_059_PDF_RENDER_METRICS.json`,
+  `Codex/results/PHASE_059_PDF_VISUAL_REVIEW.json`,
+  `Codex/results/PHASE_059_ARTIFACT_RENDER_AUDIT.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_pdf_render.py`
+  (41/41 checks, deterministic rerun hash preserved).
+- PDF authority boundary:
+  status는
+  `CONDITIONAL_P059_PDF_RENDER_PASS_WITH_ACCESSIBILITY_AND_PROVENANCE_DEBTS`.
+  식·문헌·code·실험 타당성은 이 gate로 승인하지 않는다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -486,16 +508,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 35.1:
-18 PDF 492 pages를 전 페이지 render하고 blank, glyph, font,
-overfull, crop, clipped equation/table/figure와 label-page 관계를
-기계·시각 검독한다.
+Phase 059 Step 35.2:
+10 standalone image를 원해상도로 검독하고 축, 단위, legend,
+temperature/current, sign, peak morphology와 생성 source를 기록한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–34.5.
+Phase 059 Steps 33.1–35.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
