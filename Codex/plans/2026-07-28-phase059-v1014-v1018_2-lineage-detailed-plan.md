@@ -947,3 +947,60 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 36.3에서 v1.0.14의 LCO electronic term,
   graphite/LCO sign map, heat convention과 high-voltage/doping
   scope를 독립 재유도·검산하는 일이다.
+
+### 2026-07-28 — Step 36.3
+
+- v1.0.14 Ch1 3,445행, Ch2 794행, production code 904행의
+  LCO electronic entropy, 전위 기준, heat sign, transition map,
+  doping/high-voltage 범위를 7개 1차 문헌과 독립 대조했다.
+- 삽입 반응 좌표에서
+  \(E=-\Delta G/F\), \(\partial E/\partial T=\Delta S/F\),
+  \(\dot Q_{\mathrm{rev,gen}}=-I_{\mathrm{lith}}T\partial E/\partial T\)
+  골격은 보존한다. 단 charge/discharge 문자열 대신 반응 진행과
+  결합된 signed current가 필요하다.
+- 문건의 가장 큰 오류는 Swiderska-Mocek 등의
+  `+0.83 mV/K` intrinsic LCO single-electrode coefficient를
+  `V vs Li` half-cell 기울기로 사용한 것이다. 같은 원문이 보고한
+  isothermal Li|LCO half-cell 값은 `-0.25 mV/K`이므로,
+  문건의 `+80.083 J/(mol K)` anchor는 실제 피팅 좌표에서
+  `-24.121 J/(mol K)`로 부호까지 바뀐다.
+- Sommerfeld 선도항은 검증된 금속상에서 보존하지만,
+  Motohashi 원문의 `13 electrons/eV for CoO2`는 susceptibility
+  차이를 Pauli 성분으로 가정해 계산한 값이다. 직접 DOS 측정이나
+  `per atom` 표기가 아니며 x=0 끝점을 x≈0.85 gate에 옮기는
+  tier-A 근거가 아니다.
+- `dx_MIT=0.05` logistic gate는 298.15 K에서
+  \(-45.678\) J/(mol K)의 중심 골을 만들지만 깊이가 \(1/dx\)에
+  비례한다. 이는 선택한 폭의 model output이며 측정 anchor가
+  아니다. 0.75≤x≤0.94 two-phase MIT는 phase entropy,
+  coexistence composition, lever rule로 먼저 닫아야 한다.
+- 문건의 \(\Delta S_e=a_eT\)로부터
+  \(a_e(T^2-T_\mathrm{ref}^2)/(2F)\)를 얻는 적분 대수는 맞다.
+  그러나 코드는 `x_center`와 298.15 K에서 전자항을 동결해
+  composition dependence와 T² curvature를 모두 구현하지 않는다.
+  268.15/298.15/328.15 K 중심 second difference는 code
+  \(4.441\times10^{-16}\) V, 이론 gate 요구값
+  \(-1.429\times10^{-3}\) V다.
+- theory transition 3.90/4.05/4.17 V와 code
+  3.93/3.88/4.049994 V가 일치하지 않으며 4.15 V 초과 code
+  center는 0개다. LCO \(\Omega\), dopant variable, 실제 doped
+  high-voltage profile/fit path도 없다.
+- Er/Mg-doped LCO 1차 연구는 Co-site Mg가 약 4.2 V 전이를
+  억제하면서 >4.45 V 산소 안정성을 악화시킬 수 있고 Li-site Er이
+  산소 안정화를 담당함을 보인다. 따라서 도핑 전체를
+  \(\Omega_\mathrm{pure}\to\Omega_\mathrm{dop}\) 하나로 축약하는
+  일반화는 기각한다.
+- `ml2024` bibliography의 실제 article/DOI는 105726이며
+  v1.0.14의 105727은 오기다. 그 논문은 MIT plateau를 포착하지
+  못한다고 명시하므로 electronic gate의 검증 근거도 아니다.
+- 근거:
+  `Codex/results/PHASE_059_V1014_LCO_HEAT_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_LCO_HEAT_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1014_lco_heat.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_lco_heat.py`.
+- validator 52/52와 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1014_LCO_HEAT_ALGEBRA_PRESERVED_WITH_REFERENCE_DOS_GATE_CODE_AND_DOPING_BLOCKERS`.
+- 다음은 Step 36.4에서 kinetics/barrier/current-broadening 사슬을
+  독립 재유도하고 저온×유한전류의 peak suppression/broadening
+  joint limit를 theory-code로 판정하는 일이다.

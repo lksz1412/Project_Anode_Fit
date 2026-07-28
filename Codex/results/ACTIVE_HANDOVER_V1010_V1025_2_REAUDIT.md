@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_REVIEW.md`
+   `Codex/results/PHASE_059_V1014_LCO_HEAT_REVIEW.md`
 
 ## Current State
 
@@ -587,6 +587,39 @@
   (46/46 checks, deterministic rerun hash preserved).
 - v1.0.14 phase-separation status:
   `CONDITIONAL_P059_V1014_PHASE_SEPARATION_CORE_CORRECT_WITH_DIMENSIONAL_BOUNDARY_AND_ELASTICITY_BLOCKERS`.
+- Phase 059 v1.0.14 LCO/heat audit:
+  \(E=-\Delta G/F\), \(\partial E/\partial T=\Delta S/F\)와
+  signed lithiation current에 대한 reversible-heat 대수는 보존한다.
+  그러나 +0.83 mV/K intrinsic LCO coefficient를 Li 기준
+  half-cell \(U\)에 적용한 것은 reference conflation이다. 같은
+  원문의 Li|LCO 값 -0.25 mV/K를 쓰면 entropy anchor는
+  +80.083에서 -24.121 J/(mol K)로 부호가 바뀐다.
+- Electronic gate disposition:
+  Sommerfeld 함수형은 verified metallic regime에서만 보존한다.
+  `13 electrons/eV for CoO2`는 susceptibility 기반 추정이며
+  직접 `/atom` 측정이 아니다. x=0 endpoint와 `dx=0.05`를
+  x≈0.85 gate에 옮겨 만든 -45.678 J/(mol K) 깊이는
+  `EMPIRICAL_ONLY`다. two-phase MIT는 coexistence+lever rule로
+  우선 닫는다.
+- LCO theory/code/high-voltage boundary:
+  theory의 composition-resolved \(\Delta S_e(x,T)\)와 T² center
+  curvature는 code에서 x_center/298.15 K 상수로 동결된다.
+  theory center 3.90/4.05/4.17 V와 code
+  3.93/3.88/4.049994 V도 불일치한다. 4.15 V 초과 code center,
+  dopant variable, LCO \(\Omega\), doped high-voltage profile은
+  모두 0/부재다.
+- Doping/citation correction:
+  도핑은 site-specific oxygen/structure/electronic effects를 가지므로
+  scalar \(\Omega\) 감소 하나로 일반화하지 않는다. `ml2024`의
+  actual article/DOI는 105726이며, 해당 논문은 MIT plateau를
+  capture하지 못하므로 electronic gate의 근거가 아니다.
+- Phase 059 v1.0.14 LCO/heat evidence:
+  `Codex/results/PHASE_059_V1014_LCO_HEAT_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_LCO_HEAT_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_lco_heat.py`
+  (52/52 checks, deterministic rerun hash preserved).
+- v1.0.14 LCO/heat status:
+  `CONDITIONAL_P059_V1014_LCO_HEAT_ALGEBRA_PRESERVED_WITH_REFERENCE_DOS_GATE_CODE_AND_DOPING_BLOCKERS`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -609,15 +642,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 36.3:
-v1.0.14의 LCO electronic term, graphite/LCO sign map, heat
-convention과 high-voltage/doping scope를 독립 재유도·검산한다.
+Phase 059 Step 36.4:
+v1.0.14의 kinetics/barrier/current-broadening 사슬을 독립
+재유도하고 저온×유한전류에서 peak suppression과 broadening을
+낼 수 있는지 theory-code joint limit로 판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–36.2.
+Phase 059 Steps 33.1–36.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
