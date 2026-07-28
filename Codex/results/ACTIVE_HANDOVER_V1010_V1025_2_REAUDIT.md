@@ -837,6 +837,31 @@
   (45/45 checks, deterministic rerun hash preserved).
 - v1.0.16 joint-identifiability status:
   `FAIL_P059_V1016_JOINT_IDENTIFIABILITY_WITHOUT_MULTI_TEMPERATURE_RATE_SERIES_AND_INDEPENDENT_ELECTRONIC_VIBRATIONAL_PRIORS`.
+- Phase 059 v1.0.17 document-only boundary:
+  생산 코드와 golden은 v1.0.16과 byte-identical이다. plot, LCO heat
+  demo와 regression harness는 버전/경로 문자열만 바뀌었고 계산
+  논리와 assertion은 불변이다.
+- Citation corrections:
+  occupation2019의 정확한 article/DOI는 134774,
+  hysteresis2018은 2018.05.052와 pp. 179–184다. 두 DOI 정정은
+  보존한다.
+- Citation scope blockers:
+  Konar 2015를 formation-enthalpy calorimetry로 부른 주석은
+  오독이다. MSMR Part I은 Eyring activation entropy 분리 문장의
+  직접 근거가 아니며 Part I/II article number 023502/103505도
+  빠졌다. Hales–Bulman은 방법론이지 graphite +60.8 mW/A 검증이
+  아니다.
+- Theory-only boundary:
+  본문 register 정련은 개선이지만 지정 구현 부록 밖
+  `entropy_coefficient`와 내부 `Anode_Fit` 참고문헌 등이 남아
+  gate는 FAIL이다.
+- Phase 059 v1.0.17 evidence:
+  `Codex/results/PHASE_059_V1017_DOC_CITATION_AUDIT.json`,
+  `Codex/results/PHASE_059_V1017_DOC_CITATION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1017_doc_citations.py`
+  (38/38 checks, deterministic rerun hash preserved).
+- v1.0.17 status:
+  `CONDITIONAL_P059_V1017_BIBLIOGRAPHIC_CORRECTIONS_AND_REGISTER_CLEANUP_PASS_BUT_CITATION_SCOPE_THEORY_BODY_AND_SCIENTIFIC_AUTHORITY_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -859,15 +884,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 38.1:
-v1.0.17의 doc-only·citation 정정을 exact diff와 1차 출처로
-판정한다.
+Phase 059 Step 38.2:
+v1.0.18.1이 v1.0.17의 물리 무변경 이월판인지
+theory/code/test/PDF 전 축에서 판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–37.5.
+Phase 059 Steps 33.1–38.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

@@ -1366,3 +1366,41 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   `FAIL_P059_V1016_JOINT_IDENTIFIABILITY_WITHOUT_MULTI_TEMPERATURE_RATE_SERIES_AND_INDEPENDENT_ELECTRONIC_VIBRATIONAL_PRIORS`.
 - 다음은 Step 38.1에서 v1.0.17의 doc-only·citation 정정을 exact
   diff와 1차 출처로 판정하는 일이다.
+
+### 2026-07-28 — Step 38.1
+
+- v1.0.16→v1.0.17 Ch1/Ch2/appendix exact diff를 재검하고 생산
+  코드와 golden이 byte-identical임을 확인했다. plot, LCO heat
+  demo와 regression harness는 버전/절대경로 문자열만 달라졌고
+  계산 논리와 assertion은 불변이다.
+- `occupation2019` DOI의 135634→134774와 `hysteresis2018`의
+  2018.05.060→2018.05.052 정정은 primary/publisher record와
+  일치하므로 보존한다.
+- Konar et al. 2015는 고온 LiH/graphite 합성, PXRD/Raman과 stage
+  안정성 논문이지 문건 주석이 말하는 형성 엔탈피 calorimetry
+  논문이 아니다.
+- Garrick et al. MSMR Part I은 가역 entropy coefficient와 gallery
+  분해를 지지하지만 Eyring activation entropy와 reversible entropy
+  분리 문장의 직접 근거는 아니다. Part I/II article number
+  023502/103505도 누락되어 있다.
+- Haruyama et al.은 graphite vibrational/configurational free
+  energy 범위에 직접 적합하고, Zilberman et al.은 temperature-path
+  OCP hysteresis와 entropy 측정 불확실성 범위에 직접 적합하다.
+- Hales–Bulman은 effective full-cell entropy coefficient 추출법을
+  지지할 뿐 graphite \(+60.8\) mW/A 시연값을 검증하지 않는다.
+- 제목·본문의 `코드`→`계산/모델` 정련 방향은 맞지만 지정 구현
+  부록 밖에 `entropy_coefficient`, 내부 `Anode_Fit` 참고문헌 등
+  구현 언어가 남아 theory-only body gate는 FAIL이다.
+- handover의 “리뷰 완전 반영”과 “완결”은 process self-report로만
+  보존한다. 새 graphite/LCO/Si 또는 doped high-voltage LCO 외부
+  검증 권위는 없다.
+- 근거:
+  `Codex/results/PHASE_059_V1017_DOC_CITATION_AUDIT.json`,
+  `Codex/results/PHASE_059_V1017_DOC_CITATION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1017_doc_citations.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1017_doc_citations.py`.
+- validator 38/38과 deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1017_BIBLIOGRAPHIC_CORRECTIONS_AND_REGISTER_CLEANUP_PASS_BUT_CITATION_SCOPE_THEORY_BODY_AND_SCIENTIFIC_AUTHORITY_FAIL`.
+- 다음은 Step 38.2에서 v1.0.18.1이 v1.0.17의 물리 무변경
+  이월판인지 theory/code/test/PDF 전 축에서 판정하는 일이다.
