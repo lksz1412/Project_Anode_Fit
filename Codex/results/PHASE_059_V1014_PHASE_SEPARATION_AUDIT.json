@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "scope": "Phase 059 Step 36.2 independent regular-solution, binodal, spinodal, Maxwell, nucleation, and Cahn-Hilliard rederivation",
+  "authority_boundary": "Independent mathematical and dimensional audit of the historical appendix; not final theory or material-specific validation.",
+  "source_path": "Claude/docs/v1.0.14/appendix_phase_separation.tex",
+  "source_sha256_before": "ee98a23de960bc89241d8ae9a2ff7e23934d7006ac089f1f753ba5cf75b68b3e",
+  "source_contracts": {
+    "line_count": 492,
+    "equation_label_lines": {
+      "eq:app-fxi": 106,
+      "eq:app-ct": 185,
+      "eq:app-binodal": 214,
+      "eq:app-spinodal": 247,
+      "eq:app-maxwell": 371,
+      "eq:app-cnt": 408,
+      "eq:app-rstar": 416,
+      "eq:app-ch-F": 432,
+      "eq:app-ch-R": 443
+    },
+    "explicit_kappa_unit_count": 0,
+    "explicit_mobility_unit_count": 0,
+    "explicit_no_flux_boundary_count": 0,
+    "explicit_composition_boundary_count": 0,
+    "molar_f_definition_present": true,
+    "molar_f_integrated_over_volume_without_conversion": true,
+    "gradient_term_without_half": true,
+    "factor_two_chemical_potential": true,
+    "factor_two_growth_rate": true,
+    "elastic_energy_term_present": false,
+    "volume_symbol_collision": true
+  },
+  "primary_source_checks": [
+    {
+      "id": "CAHN_HILLIARD_1958",
+      "title": "Free Energy of a Nonuniform System. I. Interfacial Free Energy",
+      "doi": "10.1063/1.1744102",
+      "url": "https://doi.org/10.1063/1.1744102",
+      "verified_claim": "The original nonuniform-system functional carries a number-density prefactor multiplying a per-particle homogeneous free energy plus a gradient term.",
+      "relevance": "The appendix instead integrates a previously molar f directly over volume, omitting the density/molar-volume conversion."
+    },
+    {
+      "id": "CAHN_1961",
+      "title": "On spinodal decomposition",
+      "doi": "10.1016/0001-6160(61)90182-1",
+      "url": "https://doi.org/10.1016/0001-6160(61)90182-1",
+      "verified_claim": "For coherent solids, composition-dependent molar volume and elastic energy can shift the limit of metastability away from the purely chemical spinodal.",
+      "relevance": "The appendix states f''=0 without bounding it as the chemical, stress-free, constant-volume spinodal."
+    }
+  ],
+  "numerical_rederivation": {
+    "test_condition": {
+      "Omega_over_RT": 3.0
+    },
+    "regular_solution": {
+      "binodal_minus": 0.07072018167994479,
+      "binodal_plus": 0.9292798183200552,
+      "spinodal_minus": 0.21132486540518708,
+      "spinodal_plus": 0.7886751345948129,
+      "binodal_f_over_RT": -0.05834134944143998,
+      "spinodal_f_over_RT": -0.015706736463554416,
+      "critical_curvature_fpp_over_RT_at_half": -2.0,
+      "binodal_derivative_minus": 0.0,
+      "binodal_derivative_plus": 4.440892098500626e-16,
+      "common_tangent_chord_slope": -6.465613902896171e-17,
+      "maxwell_equal_area_residual": 0.0,
+      "binodal_outside_spinodal": true
+    },
+    "cahn_hilliard_factor_two_convention": {
+      "curvature_a": -2.0,
+      "kappa": 0.5,
+      "mobility": 1.0,
+      "critical_wavenumber": 1.4142135623730951,
+      "maximum_growth_wavenumber": 1.0,
+      "maximum_equals_critical_over_sqrt2": true,
+      "growth_at_zero": 0.0,
+      "growth_at_half_critical": 0.7500000000000002,
+      "growth_at_maximum": 1.0,
+      "growth_at_critical": -8.881784197001254e-16,
+      "growth_above_critical": -1.0164000000000024,
+      "maximum_growth_closed_form": 1.0
+    }
+  },
+  "canonical_repair_contract": {
+    "definitions": [
+      {
+        "symbol": "c_s",
+        "meaning": "moles of intercalation sites per volume",
+        "unit": "mol m^-3"
+      },
+      {
+        "symbol": "f_m(xi)",
+        "meaning": "homogeneous molar free energy per mole of sites",
+        "unit": "J mol^-1"
+      },
+      {
+        "symbol": "K",
+        "meaning": "molar gradient coefficient in K/2 convention",
+        "unit": "J m^2 mol^-1"
+      },
+      {
+        "symbol": "mu",
+        "meaning": "molar exchange chemical potential",
+        "unit": "J mol^-1"
+      },
+      {
+        "symbol": "L",
+        "meaning": "Onsager mobility for molar flux",
+        "unit": "mol^2 J^-1 m^-1 s^-1"
+      },
+      {
+        "symbol": "M=L/c_s",
+        "meaning": "composition mobility",
+        "unit": "mol m^2 J^-1 s^-1"
+      }
+    ],
+    "functional": "G[xi] = integral c_s [f_m(xi) + (K/2)|grad xi|^2] d^3r",
+    "chemical_potential": "mu = f_m'(xi) - K laplacian(xi)",
+    "molar_flux": "N_B = -L grad(mu)",
+    "conservation": "c_s partial_t xi = -div(N_B) = div(L grad(mu))",
+    "constant_coefficient_form": "partial_t xi = M laplacian(mu), M=L/c_s",
+    "linear_growth_rate": "R(k) = -M k^2 [f_m''(xi_bar) + K k^2]",
+    "critical_wavenumber": "k_c = sqrt(-f_m''/K)",
+    "fastest_wavenumber": "k_m = k_c/sqrt(2)",
+    "natural_boundary_conditions": [
+      "normal dot grad(xi) = 0",
+      "normal dot grad(mu) = 0"
+    ],
+    "periodic_alternative": true,
+    "mass_conservation_identity": "d/dt integral xi dV = 0 under no-flux or periodic boundaries",
+    "energy_dissipation_identity": "dG/dt = -integral L |grad(mu)|^2 dV <= 0",
+    "mapping_from_appendix_convention": "K = 2 kappa/c_s if appendix kappa multiplies |grad xi|^2 as a volumetric coefficient"
+  },
+  "findings": [
+    {
+      "id": "PS-059-01",
+      "topic": "regular_solution",
+      "disposition": "PRESERVE_WITH_UNIT_WORDING_CORRECTION",
+      "finding": "The mixing free energy, critical Omega=2RT, binodal, spinodal, common-tangent, and Maxwell equations rederive.",
+      "defect": "The prose conflates per-site and per-mole quantities; k_B and R versions must be separated explicitly."
+    },
+    {
+      "id": "PS-059-02",
+      "topic": "chemical_spinodal_scope",
+      "disposition": "CORRECT_MAJOR_SCOPE_BOUNDARY",
+      "finding": "f''=0 is the stress-free chemical spinodal for the chosen homogeneous free energy.",
+      "defect": "Cahn 1961 explicitly shows coherency elasticity and composition-dependent molar volume can shift the instability criterion; the LIB-solid appendix omits that boundary."
+    },
+    {
+      "id": "PS-059-03",
+      "topic": "gradient_functional_units",
+      "disposition": "FAIL_DIMENSIONAL_CLOSURE",
+      "finding": "The appendix integrates molar f [J/mol] directly over dV while adding an un-united kappa gradient term.",
+      "defect": "A site density/molar-volume conversion and an explicit gradient-coefficient convention are required."
+    },
+    {
+      "id": "PS-059-04",
+      "topic": "factor_two_convention",
+      "disposition": "PRESERVE_AFTER_DEFINITION",
+      "finding": "Using kappa|grad xi|^2 yields -2 kappa laplacian(xi) and the displayed factor-2 growth rate; these are internally consistent.",
+      "defect": "The convention and units are not defined, making comparison with the common (K/2)|grad xi|^2 form ambiguous."
+    },
+    {
+      "id": "PS-059-05",
+      "topic": "linear_stability",
+      "disposition": "PRESERVE_AFTER_DIMENSIONAL_REPAIR",
+      "finding": "The unstable band, critical wavenumber, and k_m=k_c/sqrt(2) follow from the stated factor-2 convention.",
+      "defect": "As printed, k_c is dimensionally undefined because f'' is molar and kappa has no declared compatible unit."
+    },
+    {
+      "id": "PS-059-06",
+      "topic": "mobility",
+      "disposition": "FAIL_UNIT_AND_STATE_CLOSURE",
+      "finding": "M>0 is sufficient for the sign of linear growth in a constant-mobility toy model.",
+      "defect": "Mobility units, flux definition, site density, possible composition/temperature dependence, and relation to diffusivity are absent."
+    },
+    {
+      "id": "PS-059-07",
+      "topic": "boundary_conditions",
+      "disposition": "FAIL_MISSING",
+      "finding": "No no-flux, natural-gradient, or periodic boundary condition is specified.",
+      "defect": "Without boundary conditions the claimed conserved dynamics does not close mass conservation or free-energy dissipation."
+    },
+    {
+      "id": "PS-059-08",
+      "topic": "classical_nucleation",
+      "disposition": "PRESERVE_WITH_ASSUMPTION_BOUNDARY",
+      "finding": "The spherical CNT critical radius and barrier rederive.",
+      "defect": "Isotropic sharp-interface gamma, negligible coherency strain, bulk reservoir, and homogeneous nucleation assumptions must be stated before use for electrode particles."
+    },
+    {
+      "id": "PS-059-09",
+      "topic": "coordinate_and_symbols",
+      "disposition": "CORRECT_TERMINOLOGY_AND_COLLISION",
+      "finding": "The xi versus 1-xi complement warning correctly anticipates the first-derivative sign reversal.",
+      "defect": "f(xi)=f(1-xi) is mirror symmetry about 1/2, not evenness about zero, and dV for volume collides with V for voltage."
+    },
+    {
+      "id": "PS-059-10",
+      "topic": "final_authority",
+      "disposition": "PRESERVE_DERIVATION_ASSET_NOT_CANON",
+      "finding": "The appendix is a useful pedagogical derivation of the stress-free regular-solution baseline.",
+      "defect": "Dimensional, boundary-condition, mobility, elasticity, and solid-electrode scope blockers prevent canonical promotion."
+    }
+  ],
+  "summary": {
+    "finding_count": 10,
+    "preserve_family_count": 5,
+    "correct_family_count": 2,
+    "fail_family_count": 3,
+    "primary_source_count": 2,
+    "regular_solution_numeric_check_count": 10,
+    "cahn_hilliard_numeric_check_count": 8,
+    "explicit_boundary_condition_count": 0,
+    "dimensional_closure_pass": false,
+    "boundary_condition_closure_pass": false,
+    "elasticity_scope_closure_pass": false
+  },
+  "source_sha256_after": "ee98a23de960bc89241d8ae9a2ff7e23934d7006ac089f1f753ba5cf75b68b3e",
+  "source_unchanged": true,
+  "status": "CONDITIONAL_P059_V1014_PHASE_SEPARATION_CORE_CORRECT_WITH_DIMENSIONAL_BOUNDARY_AND_ELASTICITY_BLOCKERS",
+  "next_action": "Run Step 36.3 LCO electronic, graphite/LCO sign-map, heat, and high-voltage/doping-scope rederivation."
+}

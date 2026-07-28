@@ -904,3 +904,46 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 36.2의 regular-solution/spinodal/Cahn–Hilliard
   독립 재유도와 unit·stability·linearization·boundary-condition
   검산이다.
+
+### 2026-07-28 — Step 36.2
+
+- v1.0.14 `appendix_phase_separation.tex` 492행을 대상으로
+  regular solution, common tangent/binodal, chemical spinodal,
+  Maxwell equal-area, CNT와 Cahn–Hilliard 선형 안정성을 독립
+  재유도했다.
+- \(\Omega/(RT)=3\) 수치 probe에서 binodal
+  0.0707202/0.9292798, spinodal 0.2113249/0.7886751,
+  \(f(\xi_b)/(RT)=-0.0583413\), equal-area residual 0,
+  common-tangent slope \(-6.466\times10^{-17}\)을 얻어 문건의
+  정규용액 수치를 재현했다.
+- 문건이 \(\kappa|\nabla\xi|^2\) convention을 택했을 때
+  \(-2\kappa\nabla^2\xi\)와
+  \(R=-Mk^2[f''+2\kappa k^2]\)의 factor 2는 내부적으로
+  일관되며 \(k_m=k_c/\sqrt2\)도 재현됐다.
+- 그러나 molar \(f\)[J/mol]를 site density 또는 molar-volume
+  환산 없이 volume integral에 넣어 자유에너지 차원이 닫히지
+  않는다. \(\kappa\), mobility, flux의 단위도 정의되지 않았다.
+- no-flux/periodic 및 composition natural boundary가 0건이어서
+  질량 보존과 자유에너지 감소를 닫을 수 없다. 최종 계약은
+  \(c_s[f_m+(K/2)|\nabla\xi|^2]\), molar chemical potential,
+  Onsager flux, \(M=\mathcal L/c_s\)와 두 경계조건을 함께
+  정의해야 한다.
+- Cahn–Hilliard(1958)와 Cahn(1961) 원 논문을 직접 대조했다.
+  후자는 coherency elasticity와 composition-dependent molar
+  volume이 metastability limit를 이동시킬 수 있음을 보이므로
+  문건의 \(f''=0\)은 일반 고체 spinodal이 아니라
+  `stress-free chemical spinodal`로 한정해야 한다.
+- 정규용액/CNT/선형 안정성의 유도 자산은 조건부 보존하지만,
+  dimensional closure, mobility/state closure, boundary condition은
+  FAIL이고 고체 적용 범위는 CORRECT 대상으로 판정했다.
+- 근거:
+  `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1014_phase_separation.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_phase_separation.py`.
+- validator 46/46과 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1014_PHASE_SEPARATION_CORE_CORRECT_WITH_DIMENSIONAL_BOUNDARY_AND_ELASTICITY_BLOCKERS`.
+- 다음은 Step 36.3에서 v1.0.14의 LCO electronic term,
+  graphite/LCO sign map, heat convention과 high-voltage/doping
+  scope를 독립 재유도·검산하는 일이다.

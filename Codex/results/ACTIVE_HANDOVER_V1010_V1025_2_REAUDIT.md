@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_059_GOLDEN_NPZ_REVIEW.md`
+   `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_REVIEW.md`
 
 ## Current State
 
@@ -569,6 +569,24 @@
   (38/38 checks, deterministic rerun hash preserved).
 - v1.0.14 register/boundary status:
   `CONDITIONAL_P059_V1014_PEDAGOGICAL_ASSET_WITH_THEORY_BOUNDARY_AND_WIDTH_ROLE_DEBTS`.
+- Phase 059 v1.0.14 phase-separation rederivation:
+  \(\Omega/(RT)=3\)의 binodal 0.0707202/0.9292798,
+  spinodal 0.2113249/0.7886751, Maxwell equal area와
+  \(k_m=k_c/\sqrt2\)를 독립 재현했다. 정규용액과
+  Cahn–Hilliard factor-2 convention의 대수는 조건부 보존한다.
+- Phase-separation blockers:
+  molar \(f\)를 밀도 환산 없이 volume integral에 넣어 차원이
+  닫히지 않고, \(\kappa\)/mobility/flux 단위와 no-flux·composition
+  boundary가 없다. 고체에서는 coherency elasticity가 instability
+  criterion을 바꿀 수 있으므로 \(f''=0\)은
+  `stress-free chemical spinodal`로만 허용한다.
+- Phase 059 v1.0.14 phase-separation evidence:
+  `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_PHASE_SEPARATION_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_phase_separation.py`
+  (46/46 checks, deterministic rerun hash preserved).
+- v1.0.14 phase-separation status:
+  `CONDITIONAL_P059_V1014_PHASE_SEPARATION_CORE_CORRECT_WITH_DIMENSIONAL_BOUNDARY_AND_ELASTICITY_BLOCKERS`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -591,17 +609,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 36.2:
-v1.0.14 phase-separation appendix의 regular solution, spinodal,
-Cahn–Hilliard, gradient coefficient와 mobility 식을 독립
-재유도해 unit, stability criterion, linearization과 boundary
-condition을 검산한다.
+Phase 059 Step 36.3:
+v1.0.14의 LCO electronic term, graphite/LCO sign map, heat
+convention과 high-voltage/doping scope를 독립 재유도·검산한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–36.1.
+Phase 059 Steps 33.1–36.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
