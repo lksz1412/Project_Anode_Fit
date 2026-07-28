@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "38.3",
+  "status": "CONDITIONAL_P059_V1018_2_EINSTEIN_THERMODYNAMIC_ALGEBRA_AND_REFERENCE_ROUNDTRIP_PASS_BUT_REACTION_SPECTRUM_AMPLITUDE_AND_IDENTIFIABILITY_SCOPE_FAIL",
+  "source_code": "Claude/docs/v1.0.18.2/Anode_Fit_v1.0.18.2.py",
+  "source_code_sha256": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6",
+  "derivation": {
+    "partition_function_excitation_only": "Z=1/(1-exp(-theta/T))",
+    "helmholtz_excitation_J_per_mol": "A=R*T*ln(1-exp(-theta/T))",
+    "internal_energy_excitation_J_per_mol": "U=R*theta/(exp(theta/T)-1)",
+    "entropy_J_per_mol_K": "S=R[-ln(1-exp(-u))+u/(exp(u)-1)]",
+    "heat_capacity_J_per_mol_K": "Cv=R*u^2*exp(u)/(exp(u)-1)^2",
+    "u": "theta/T",
+    "zero_point_J_per_mol": 2910.061916353634,
+    "zero_point_centered_voltage_max_difference_V": 3.903127820947816e-18
+  },
+  "numeric_rows": [
+    {
+      "T_K": 50.0,
+      "u": 14.0,
+      "Z_exc": 1.0000008315294104,
+      "A_exc_J_per_mol": -0.0003456858662692558,
+      "U_exc_J_per_mol": 0.004839604139905054,
+      "S_J_per_mol_K": 0.0001037058001234862,
+      "Cv_J_per_mol_K": 0.0013550902859699044,
+      "A_plus_TS_minus_U_J_per_mol": 0.0,
+      "entropy_finite_difference_error_J_per_mol_K": 1.3973942987986765e-14,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -5.770208844115281e-09,
+      "centered_voltage_V": 0.004872797427792749,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -2.543511241678148e-07,
+      "centered_entropy_J_per_mol_K": -2.8980929314552886,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": 0.00016125039722236778,
+      "voltage_derivative_uV_per_K": -30.036616627086843,
+      "entropy_over_F_uV_per_K": -30.036616631540372,
+      "roundtrip_error_uV_per_K": 4.45352983007366e-09
+    },
+    {
+      "T_K": 100.0,
+      "u": 7.0,
+      "Z_exc": 1.0009127142532217,
+      "A_exc_J_per_mol": -0.758526747493204,
+      "U_exc_J_per_mol": 5.312109977627429,
+      "S_J_per_mol_K": 0.060706367251206324,
+      "Cv_J_per_mol_K": 0.37218708912830833,
+      "A_plus_TS_minus_U_J_per_mol": -8.881784197001252e-16,
+      "entropy_finite_difference_error_J_per_mol_K": 1.8764365061763044e-12,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -3.3777128838480275e-06,
+      "centered_voltage_V": 0.0033787708474431,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -1.7636566594127212e-07,
+      "centered_entropy_J_per_mol_K": -2.8374902700042055,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": 0.00015787845454706684,
+      "voltage_derivative_uV_per_K": -29.408514310835105,
+      "entropy_over_F_uV_per_K": -29.408514306352632,
+      "roundtrip_error_uV_per_K": -4.482471251815445e-09
+    },
+    {
+      "T_K": 278.15,
+      "u": 2.516627718856732,
+      "Z_exc": 1.0878213363712435,
+      "A_exc_J_per_mol": -194.67325522438526,
+      "U_exc_J_per_mol": 511.131052834476,
+      "S_J_per_mol_K": 2.537495265356323,
+      "Cv_J_per_mol_K": 5.030715421192535,
+      "A_plus_TS_minus_U_J_per_mol": -1.1368683772161603e-13,
+      "entropy_finite_difference_error_J_per_mol_K": -1.6794254875662773e-10,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.00014118668005691504,
+      "centered_voltage_V": 3.73406490250871e-05,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -1.949113665781978e-09,
+      "centered_entropy_J_per_mol_K": -0.360701371899089,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": 2.0069487374207995e-05,
+      "voltage_derivative_uV_per_K": -3.7384062840780685,
+      "entropy_over_F_uV_per_K": -3.738406283874115,
+      "roundtrip_error_uV_per_K": -2.0395325172110033e-10
+    },
+    {
+      "T_K": 298.15,
+      "u": 2.347811504276371,
+      "Z_exc": 1.105678673174359,
+      "A_exc_J_per_mol": -249.0343630467316,
+      "U_exc_J_per_mol": 615.0629643509693,
+      "S_J_per_mol_K": 2.898196637255412,
+      "Cv_J_per_mol_K": 5.35521513573839,
+      "A_plus_TS_minus_U_J_per_mol": 1.1368683772161603e-13,
+      "entropy_finite_difference_error_J_per_mol_K": 3.565281403439258e-11,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.00016125616743112303,
+      "centered_voltage_V": -0.0,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": 0.0,
+      "centered_entropy_J_per_mol_K": 0.0,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": 0.0,
+      "voltage_derivative_uV_per_K": 1.1863241140393738e-09,
+      "entropy_over_F_uV_per_K": 0.0,
+      "roundtrip_error_uV_per_K": 1.1863241140393738e-09
+    },
+    {
+      "T_K": 318.15,
+      "u": 2.2002200220022003,
+      "Z_exc": 1.1245795530492098,
+      "A_exc_J_per_mol": -310.57634282503403,
+      "U_exc_J_per_mol": 725.068425769725,
+      "S_J_per_mol_K": 3.2552090793486066,
+      "Cv_J_per_mol_K": 5.639016447930712,
+      "A_plus_TS_minus_U_J_per_mol": 1.1368683772161603e-13,
+      "entropy_finite_difference_error_J_per_mol_K": -8.068212764555938e-12,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.00018112040210604974,
+      "centered_voltage_V": 3.708384429608554e-05,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -1.935708927782581e-09,
+      "centered_entropy_J_per_mol_K": 0.3570124420931946,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": -1.9864234674926706e-05,
+      "voltage_derivative_uV_per_K": 3.7001732207067843,
+      "entropy_over_F_uV_per_K": 3.700173220621491,
+      "roundtrip_error_uV_per_K": 8.529325317319265e-11
+    },
+    {
+      "T_K": 348.15,
+      "u": 2.010627603044665,
+      "Z_exc": 1.1546072301007277,
+      "A_exc_J_per_mol": -416.139872976184,
+      "U_exc_J_per_mol": 899.833224618102,
+      "S_J_per_mol_K": 3.7799026212675177,
+      "Cv_J_per_mol_K": 6.000142134679124,
+      "A_plus_TS_minus_U_J_per_mol": 1.1368683772161603e-13,
+      "entropy_finite_difference_error_J_per_mol_K": -2.9798874479070037e-10,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.0002103144424823178,
+      "centered_voltage_V": 0.00023004199269456563,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -1.2007771779936477e-08,
+      "centered_entropy_J_per_mol_K": 0.8817059840121058,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": -4.9058275051194755e-05,
+      "voltage_derivative_uV_per_K": 9.138238574521909,
+      "entropy_over_F_uV_per_K": 9.138238576154944,
+      "roundtrip_error_uV_per_K": -1.6330354765930338e-09
+    },
+    {
+      "T_K": 1000.0,
+      "u": 0.7,
+      "Z_exc": 1.9864338636344634,
+      "A_exc_J_per_mol": -5706.556611156127,
+      "U_exc_J_per_mol": 5741.167239128452,
+      "S_J_per_mol_K": 11.447723850284579,
+      "Cv_J_per_mol_K": 7.983114314415474,
+      "A_plus_TS_minus_U_J_per_mol": 9.094947017729282e-13,
+      "entropy_finite_difference_error_J_per_mol_K": -4.1521630578245095e-10,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.0006369533558139295,
+      "centered_voltage_V": 0.03548127848069104,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -1.8520579199501896e-06,
+      "centered_entropy_J_per_mol_K": 8.549527213029167,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": -0.0004756971883832506,
+      "voltage_derivative_uV_per_K": 88.60960547252273,
+      "entropy_over_F_uV_per_K": 88.60960547242573,
+      "roundtrip_error_uV_per_K": 9.699543685598444e-11
+    },
+    {
+      "T_K": 5000.0,
+      "u": 0.14,
+      "Z_exc": 7.654520000190344,
+      "A_exc_J_per_mol": -84611.97597446831,
+      "U_exc_J_per_mol": 38730.130448335,
+      "S_J_per_mol_K": 24.66842128456066,
+      "Cv_J_per_mol_K": 8.30089562754932,
+      "A_plus_TS_minus_U_J_per_mol": -7.275957614183426e-12,
+      "entropy_finite_difference_error_J_per_mol_K": 3.170335105551203e-10,
+      "code_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_entropy_difference_J_per_mol_K": -0.0013725552717112066,
+      "centered_voltage_V": 0.7331275562648932,
+      "code_centered_voltage_error_V": 0.0,
+      "constant_rounding_voltage_difference_V": -3.826791916905492e-05,
+      "centered_entropy_J_per_mol_K": 21.77022464730525,
+      "code_centered_entropy_error_J_per_mol_K": 0.0,
+      "constant_rounding_centered_entropy_difference_J_per_mol_K": -0.001211299104276975,
+      "voltage_derivative_uV_per_K": 225.63247873419456,
+      "entropy_over_F_uV_per_K": 225.63247872981717,
+      "roundtrip_error_uV_per_K": 4.377384956247288e-09
+    }
+  ],
+  "limits": {
+    "low_T_K": 20.0,
+    "low_T_exact_S": 1.8872516737920108e-13,
+    "low_T_asymptotic_S": 1.8872516737920098e-13,
+    "low_T_relative_error": 5.551115123125783e-16,
+    "high_T_K": 100000.0,
+    "high_T_exact_S": 49.56955544333591,
+    "high_T_asymptotic_S": 49.5695554433567,
+    "high_T_relative_error": 4.1944225870338414e-13
+  },
+  "normalization_scope": {
+    "implemented_mode_multiplicity": 1.0,
+    "one_mode_S_at_Tref_J_per_mol_K": 2.898196637255412,
+    "three_equal_axes_S_at_Tref_J_per_mol_K": 8.694589911766236,
+    "explicit_amplitude_parameter_present": false,
+    "reactant_and_product_theta_pair_present": false,
+    "phonon_DOS_integral_present": false,
+    "reaction_counterexample": {
+      "theta_lithiated_K": 500.0,
+      "theta_delithiated_K": 900.0,
+      "delta_S_reaction_at_Tref_J_per_mol_K": 3.2202170301679445,
+      "single_effective_mode_absolute_S_at_Tref_J_per_mol_K": 2.898196637255412,
+      "point": "A reaction vibrational entropy is a difference between spectra; one positive absolute oscillator entropy is not that difference."
+    }
+  },
+  "validation": {
+    "max_A_plus_TS_minus_U_J_per_mol": 7.275957614183426e-12,
+    "max_entropy_finite_difference_error_J_per_mol_K": 4.1521630578245095e-10,
+    "max_code_entropy_error_J_per_mol_K": 0.0,
+    "max_code_centered_voltage_error_V": 0.0,
+    "max_code_centered_entropy_error_J_per_mol_K": 0.0,
+    "max_roundtrip_error_uV_per_K": 4.482471251815445e-09,
+    "code_constants": {
+      "R": 8.314,
+      "F": 96485.0
+    },
+    "reference_constants": {
+      "R": 8.31446261815324,
+      "F": 96485.33212
+    },
+    "reported_four_temperature_values_match": true
+  },
+  "primary_scope_source": {
+    "citation": "Haruyama et al., J. Phys. Chem. C 125, 27891-27900 (2021)",
+    "doi": "10.1021/acs.jpcc.1c08992",
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jpcc.1c08992",
+    "supported_scope": "Graphite vibrational/configurational free energies require structure- and mode-resolved phonon calculations; does not validate theta_E=700 K."
+  },
+  "findings": [
+    {
+      "id": "EIN-001",
+      "disposition": "PRESERVE",
+      "text": "For excitation-only Z=1/(1-exp(-theta/T)), A=RT ln(1-exp(-theta/T)), U=R theta/(exp(theta/T)-1), and S=(U-A)/T reproduce the manuscript expression."
+    },
+    {
+      "id": "EIN-002",
+      "disposition": "PRESERVE",
+      "text": "Adding the zero-point R theta/2 changes A and U by the same constant, leaves S unchanged, and cancels exactly from the tangent-subtracted voltage correction."
+    },
+    {
+      "id": "EIN-003",
+      "disposition": "PRESERVE",
+      "text": "The reference subtraction makes both voltage shift and entropy correction zero at Tref and gives d(delta U)/dT=delta S/F."
+    },
+    {
+      "id": "EIN-004",
+      "disposition": "PRESERVE",
+      "text": "The independent 700 K numerical values reproduce -3.74, 0, +3.70 and +9.14 microvolt/K at the four reported temperatures."
+    },
+    {
+      "id": "EIN-005",
+      "disposition": "PRESERVE",
+      "text": "Low-T S~R(1+u)e^-u and high-T S~R[1+ln(T/theta)+u^2/24] limits are correct."
+    },
+    {
+      "id": "EIN-006",
+      "disposition": "CORRECT",
+      "text": "The implementation is one molar mode with fixed amplitude R, while Chapter 1 discusses three local axes and a real solid has a phonon DOS and mode multiplicities."
+    },
+    {
+      "id": "EIN-007",
+      "disposition": "CORRECT",
+      "text": "A reaction vibrational contribution must be a lithiated-minus-delithiated spectral free-energy difference; a single absolute S(theta) is only a constrained phenomenological residual after baseline absorption."
+    },
+    {
+      "id": "EIN-008",
+      "disposition": "CORRECT",
+      "text": "The correction has fixed positive dS/dT and no amplitude/sign parameter, so it cannot represent general spectral hardening/softening reaction curvature."
+    },
+    {
+      "id": "EIN-009",
+      "disposition": "CORRECT",
+      "text": "In the high-T limit the centered entropy tends to R ln(T/Tref), losing leading-order theta sensitivity; theta is weakly identifiable unless the data span the quantum-curvature window."
+    },
+    {
+      "id": "EIN-010",
+      "disposition": "CORRECT",
+      "text": "Three temperatures are necessary for curvature but not sufficient for practical identification with baseline, electronic slope, width and noise; replication and uncertainty are required."
+    },
+    {
+      "id": "EIN-011",
+      "disposition": "EMPIRICAL_ONLY",
+      "text": "theta_E=700 K is a demonstration capability, not a graphite or LCO fitted material constant."
+    },
+    {
+      "id": "EIN-012",
+      "disposition": "CARRY_FORWARD",
+      "text": "The formula does not repair the frozen LCO electronic gate, reference entropy, composition mapping, or joint-identifiability blockers."
+    }
+  ],
+  "summary": {
+    "finding_count": 12,
+    "algebra_pass": true,
+    "reference_roundtrip_pass": true,
+    "general_reaction_vibrational_model_pass": false,
+    "material_validation_pass": false,
+    "next_step": "38.4"
+  }
+}

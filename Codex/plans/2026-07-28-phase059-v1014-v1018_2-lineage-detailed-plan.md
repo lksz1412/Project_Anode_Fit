@@ -1437,3 +1437,43 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 38.3에서 v1.0.18.2 Einstein oscillator의 partition
   function, free/internal energy, entropy, reference subtraction와
   저·고온 극한을 독립 재유도하는 일이다.
+
+### 2026-07-28 — Step 38.3
+
+- excitation-only 단일 조화모드에서
+  \(Z=[1-e^{-\theta/T}]^{-1}\),
+  \(A=RT\ln(1-e^{-\theta/T})\),
+  \(U=R\theta/(e^{\theta/T}-1)\),
+  \(S=(U-A)/T\)를 독립 재유도해 문건·코드와 대조했다.
+- 영점에너지 \(R\theta/2\)는 \(A,U\)에 같은 상수를 더하고
+  \(S\)에는 영향이 없으며 tangent-subtracted voltage에서 exact
+  cancel한다.
+- 기준 접선 subtraction은
+  \(\Delta U(T_{\rm ref})=\Delta S(T_{\rm ref})=0\)과
+  \(\partial\Delta U/\partial T=\Delta S/F\)를 만족한다.
+  \(\theta=700\) K에서 278.15/298.15/318.15/348.15 K의 독립값
+  -3.738/0/3.700/9.138 \(\mu\)V/K가 문건 표와 일치했다.
+- 저온 \(S\sim R(1+u)e^{-u}\), 고온
+  \(S\sim R[1+\ln(T/\theta)+u^2/24]\) 극한을 수치 확인했다.
+- 그러나 구현은 mode multiplicity 1, amplitude \(R\) 고정이며
+  reactant/product \(\theta\) pair와 phonon-DOS 적분이 없다.
+  실제 반응 진동 자유에너지는 lithiated-minus-delithiated spectrum
+  차이이므로 현 항은 baseline 위 제한된 phenomenological residual이다.
+- \(dS/dT>0\) 부호와 크기가 고정돼 일반 spectral
+  hardening/softening 반응 곡률을 표현하지 못한다. 고온에서는
+  \(\Delta S\to R\ln(T/T_{\rm ref})\)라 leading-order
+  \(\theta\) 감도도 사라진다.
+- 세 온도점은 곡률에 필요한 최소 조건이지 baseline, electronic
+  slope, width와 noise 아래 practical identification 충분조건이
+  아니다. 700 K는 capability demo로만 보존한다.
+- 근거:
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_THEORY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_THEORY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1018_2_einstein_theory.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_2_einstein_theory.py`.
+- validator 32/32와 deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1018_2_EINSTEIN_THERMODYNAMIC_ALGEBRA_AND_REFERENCE_ROUNDTRIP_PASS_BUT_REACTION_SPECTRUM_AMPLITUDE_AND_IDENTIFIABILITY_SCOPE_FAIL`.
+- 다음은 Step 38.4에서 theta_E 부재 bit-exact, 활성 branch,
+  derivative round-trip과 equilibrium/dQdV/entropy full-path
+  coupling을 검사하는 일이다.

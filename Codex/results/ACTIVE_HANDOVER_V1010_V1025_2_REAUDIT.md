@@ -881,6 +881,31 @@
   (30/30 checks, deterministic rerun hash preserved).
 - v1.0.18.1 status:
   `CONDITIONAL_P059_V1018_1_PHYSICS_CODE_TEST_CARRYFORWARD_CONFIRMED_WITH_PEDAGOGICAL_REFINEMENT_BUT_NO_NEW_VALIDATION`.
+- Phase 059 v1.0.18.2 Einstein theory:
+  단일 조화모드의 \(Z,A,U,S,C_V\), 영점에너지 cancellation,
+  reference-tangent subtraction과
+  \(\partial\Delta U/\partial T=\Delta S/F\)는 독립 재유도와
+  코드값에서 닫혔다.
+- Numeric closure:
+  \(\theta=700\) K의 278.15/298.15/318.15/348.15 K에서
+  -3.738/0/3.700/9.138 \(\mu\)V/K를 재현했다. 저·고온
+  asymptote도 통과했다.
+- Reaction-spectrum boundary:
+  현 항은 one mode, amplitude \(R\) 고정이며 반응물/생성물
+  frequency pair와 phonon-DOS 적분이 없다. 일반 반응 진동
+  엔트로피가 아니라 기준 baseline 위 제한된 phenomenological
+  curvature다.
+- Identification boundary:
+  고온 leading term은 \(\theta\) 감도를 잃는다. 세 온도점은
+  필요조건이지 baseline/electronic/width/noise와의 practical
+  identification 충분조건이 아니다. 700 K는 demo다.
+- Phase 059 v1.0.18.2 Einstein evidence:
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_THEORY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_THEORY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_2_einstein_theory.py`
+  (32/32 checks, deterministic rerun hash preserved).
+- v1.0.18.2 Einstein status:
+  `CONDITIONAL_P059_V1018_2_EINSTEIN_THERMODYNAMIC_ALGEBRA_AND_REFERENCE_ROUNDTRIP_PASS_BUT_REACTION_SPECTRUM_AMPLITUDE_AND_IDENTIFIABILITY_SCOPE_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -903,16 +928,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 38.3:
-v1.0.18.2 Einstein oscillator의 partition function,
-free/internal energy, entropy, reference subtraction와 저·고온 극한을
-독립 재유도한다.
+Phase 059 Step 38.4:
+theta_E 부재 bit-exact, 활성 branch, derivative round-trip과
+equilibrium/dQdV/entropy full-path coupling을 검사한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–38.2.
+Phase 059 Steps 33.1–38.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
