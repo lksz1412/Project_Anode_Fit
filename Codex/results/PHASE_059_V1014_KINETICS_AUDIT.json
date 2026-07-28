@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "36.4",
+  "audit_date": "2026-07-28",
+  "scope": "v1.0.14 kinetics, activation barrier, causal broadening, and low-temperature x finite-current joint theory-code limit",
+  "authority_boundary": {
+    "source_version": "v1.0.14",
+    "latest_authoritative_release": "v1.0.25.2",
+    "excluded_release": "v1.0.26",
+    "source_edit_allowed": false,
+    "new_theory_or_production_code_written": false
+  },
+  "source_hashes_before": {
+    "Claude/docs/v1.0.14/graphite_ica_ch1_v1.0.14.tex": "81504418d19fede367fec601cbc36be2b23fdce7313e2125747a986df7ae8f91",
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b"
+  },
+  "source_hashes_after": {
+    "Claude/docs/v1.0.14/graphite_ica_ch1_v1.0.14.tex": "81504418d19fede367fec601cbc36be2b23fdce7313e2125747a986df7ae8f91",
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.10/Anode_Fit_v1.0.10.py": "19e9c2be56d32fb638ea3ceece3369111781bb86a5edb7bd660b2806df373a2b"
+  },
+  "source_unchanged": true,
+  "source_contracts": {
+    "line_counts": {
+      "chapter_1": 3445,
+      "production_code": 904,
+      "v1010_production_code": 851
+    },
+    "chapter_1_lines": {
+      "constant_current_transform": 1883,
+      "frozen_cut_affinity": 1905,
+      "omega_barrier": 1933,
+      "lag_voltage_transform": 1959,
+      "frozen_local_derivative": 1962,
+      "causal_memory": 1996,
+      "grid_branch": 2059,
+      "default_dormant_statement": 2192
+    },
+    "code_lines": {
+      "func_L_q": 103,
+      "causal_lowpass": 113,
+      "omega_barrier": 155,
+      "lag_resolver": 333,
+      "direct_lag_override": 343,
+      "frozen_affinity": 361,
+      "nonfinite_lag_to_equilibrium": 373,
+      "mean_temperature_lag": 462,
+      "voltage_sorting": 455,
+      "grid_switch": 499,
+      "curve_hour_rate": 532,
+      "curve_current_conversion": 548
+    },
+    "explicit_dual_capacity_unit_contract": true,
+    "frozen_affinity_is_admitted": true,
+    "grid_discontinuity_is_admitted": true,
+    "default_current_broadening_is_admitted_absent": true,
+    "code_has_current_partition_solver": false,
+    "code_has_local_affinity_state": false,
+    "code_has_time_domain_state_integrator": false
+  },
+  "lineage_contract": {
+    "core_functions": {
+      "func_L_q": {
+        "v1010_hash": "80f72f718fac0d1863d119c1b2ab0a94994fb061d4459780e5a1b48f4cba08c0",
+        "v1014_hash": "80f72f718fac0d1863d119c1b2ab0a94994fb061d4459780e5a1b48f4cba08c0",
+        "executable_ast_equal": true
+      },
+      "_causal_lowpass": {
+        "v1010_hash": "28df6f8a2c5cd895b081630d3d18d8ea50066b3901afd14c810effbab377b417",
+        "v1014_hash": "28df6f8a2c5cd895b081630d3d18d8ea50066b3901afd14c810effbab377b417",
+        "executable_ast_equal": true
+      },
+      "func_dH_a_eff": {
+        "v1010_hash": "3ddbceee43ffb4561ff099ffada8b602b26976b4116ead8663768aa9e2685aa3",
+        "v1014_hash": "3ddbceee43ffb4561ff099ffada8b602b26976b4116ead8663768aa9e2685aa3",
+        "executable_ast_equal": true
+      },
+      "GraphiteAnodeDischargeDQDV._resolve_lag_length": {
+        "v1010_hash": "59c2e312826412a3b0a3f8d86c9d6b79ad69030018ea6c2a52619a0e13624799",
+        "v1014_hash": "59c2e312826412a3b0a3f8d86c9d6b79ad69030018ea6c2a52619a0e13624799",
+        "executable_ast_equal": true
+      }
+    },
+    "all_core_functions_executable_ast_equal": true,
+    "dqdv_ast_equal": false,
+    "dqdv_change_scope": "v1.0.14 adds a degenerate-span/scalar-input equilibrium guard; the finite-array lag law and grid switch remain."
+  },
+  "primary_source_checks": [
+    {
+      "id": "EYRING_1935",
+      "title": "The Activated Complex in Chemical Reactions",
+      "doi": "10.1063/1.1749604",
+      "url": "https://doi.org/10.1063/1.1749604",
+      "verified_claim": "Transition-state theory obtains an absolute molecular reaction rate from the statistical probability of an activated state and its decomposition frequency.",
+      "audit_effect": "The kBT/h prefactor is a molecular transition-state result. Promoting it directly to an electrode-scale phase-fraction relaxation rate requires a coarse-graining derivation."
+    },
+    {
+      "id": "BAZANT_2013",
+      "title": "Theory of Chemical Kinetics and Charge Transfer based on Nonequilibrium Thermodynamics",
+      "doi": "10.1021/ar300145c",
+      "url": "https://doi.org/10.1021/ar300145c",
+      "verified_claim": "Reaction rates in concentrated and phase-separating solids depend on local activities, reaction free energy, transition-state activity, gradients, strain, and electrochemical state.",
+      "audit_effect": "It supports local thermodynamically consistent kinetics, not a voltage-independent affinity frozen at an arbitrary peak cut."
+    },
+    {
+      "id": "FLY_CHEN_2020",
+      "title": "Rate dependency of incremental capacity analysis (dQ/dV) as a diagnostic tool for lithium-ion batteries",
+      "doi": "10.1016/j.est.2020.101329",
+      "url": "https://doi.org/10.1016/j.est.2020.101329",
+      "data_url": "https://doi.org/10.17028/rd.lboro.7637921",
+      "verified_claim": "In commercial NCA/graphite and LFP/graphite full cells, increasing rate lowers, broadens, shifts, and can erase ICA peaks; resistance and diffusion effects motivate low-rate ICA.",
+      "audit_effect": "The user's finite-current target is experimentally supported, but the full-cell experiment does not identify a unique single-exponential electrode transition mechanism."
+    },
+    {
+      "id": "GISMERO_2023",
+      "title": "The Influence of Testing Conditions on State of Health Estimations of Electric Vehicle Lithium-Ion Batteries Using an Incremental Capacity Analysis",
+      "doi": "10.3390/batteries9120568",
+      "url": "https://doi.org/10.3390/batteries9120568",
+      "verified_claim": "For graphite/NMC532 cells, lower temperature or higher charge rate flattens and broadens selected IC peaks and increases polarization; features can merge or vanish.",
+      "audit_effect": "This independently confirms the joint low-temperature and finite-current target, while also showing feature-specific and full-cell behavior beyond a universal one-tail model."
+    },
+    {
+      "id": "PERSSON_PRB_2010",
+      "title": "Thermodynamic and kinetic properties of the Li-graphite system from first-principles calculations",
+      "doi": "10.1103/PhysRevB.82.125416",
+      "url": "https://doi.org/10.1103/PhysRevB.82.125416",
+      "open_record": "https://ets.lbl.gov/publications/thermodynamic-and-kinetic-properties",
+      "verified_claim": "The study calculates Li migration barriers and bulk composition-dependent diffusivity in stage-I and stage-II graphite.",
+      "audit_effect": "A bulk migration barrier is not by itself an electrode-scale phase-transition relaxation enthalpy or exchange-current law."
+    },
+    {
+      "id": "PERSSON_JPCL_2010",
+      "title": "Lithium Diffusion in Graphitic Carbon",
+      "doi": "10.1021/jz100188d",
+      "url": "https://doi.org/10.1021/jz100188d",
+      "verified_claim": "Experiment and first-principles analysis show strongly anisotropic Li transport: fast in-plane bulk diffusion and much slower grain-boundary transport.",
+      "audit_effect": "Transport pathways and geometry must be coarse-grained before a measured dQ/dV relaxation time can be assigned to one barrier."
+    },
+    {
+      "id": "DOYLE_FULLER_NEWMAN_1993",
+      "title": "Modeling of Galvanostatic Charge and Discharge of the Lithium/Polymer/Insertion Cell",
+      "doi": "10.1149/1.2221597",
+      "url": "https://doi.org/10.1149/1.2221597",
+      "open_record": "https://www.osti.gov/biblio/6108611",
+      "verified_claim": "A galvanostatic insertion-cell forward model couples concentrated-solution transport, solid diffusion, reaction, and active-material utilization under the imposed current.",
+      "audit_effect": "A prescribed voltage-grid convolution can be a reduced observation model, but it is not a closed galvanostatic electrochemical forward model without current balance and terminal-voltage closure."
+    }
+  ],
+  "numerical_rederivation": {
+    "unit_contract": {
+      "c_rate_per_hour": 0.1,
+      "code_numeric_qdot": 0.1,
+      "correct_qdot_per_second": 2.777777777777778e-05,
+      "code_to_si_ratio": 3600.0,
+      "lag_length_overestimate_if_hour_rate_enters_second_TST": 3600.0,
+      "equivalent_barrier_bias_J_per_mol_at_298p15K": 20299.408468269576,
+      "verdict": "FACTOR_3600_MIXED_HOUR_SECOND_CONTRACT"
+    },
+    "cut_affinity": {
+      "default_A_over_RT": 4.0,
+      "logistic_derivative_fraction_of_peak": 0.07065082485316443,
+      "claimed_nominal_fraction": 0.05,
+      "local_model_dlnL_dV_per_V_at_A4RT_chi0p5": -18.76081757886988,
+      "implemented_dlnL_dV_per_V": 0.0
+    },
+    "barrier_scale_for_LV_equal_width": {
+      "temperature_K": 298.15,
+      "c_rate_per_hour": 0.1,
+      "width_V": 0.02569257912196725,
+      "dVdq_V": 0.3,
+      "target_Lq": 0.0856419304065575,
+      "code_hour_as_second_barrier_J_per_mol": 77642.74200212848,
+      "dimensionally_correct_barrier_J_per_mol": 97942.15047039805,
+      "difference_J_per_mol": 20299.40846826957
+    },
+    "default_lag_lengths_V": {
+      "258.15": {
+        "0.1C_numeric": [
+          9.455370326513406e-07,
+          2.336845534249008e-07,
+          5.7753920389844694e-08,
+          4.453066214364763e-09
+        ],
+        "1.0C_numeric": [
+          9.455370326513417e-06,
+          2.3368455342490108e-06,
+          5.775392038984476e-07,
+          4.4530662143647604e-08
+        ]
+      },
+      "298.15": {
+        "0.1C_numeric": [
+          4.914568556909695e-08,
+          1.4651392128230395e-08,
+          4.367896974259586e-09,
+          4.749637433599175e-10
+        ],
+        "1.0C_numeric": [
+          4.914568556909682e-07,
+          1.4651392128230358e-07,
+          4.3678969742595754e-08,
+          4.749637433599163e-09
+        ]
+      },
+      "318.15": {
+        "0.1C_numeric": [
+          1.4711835945686765e-08,
+          4.732621745633523e-09,
+          1.5224278376900992e-09,
+          1.9032714774641714e-10
+        ],
+        "1.0C_numeric": [
+          1.4711835945686732e-07,
+          4.7326217456335205e-08,
+          1.5224278376900956e-08,
+          1.9032714774641667e-09
+        ]
+      }
+    },
+    "default_single_transition_profiles": {
+      "258.15": {
+        "low_rate_metrics": {
+          "area": 0.24768733356150985,
+          "peak_height": 2.809684732929485,
+          "peak_voltage": 0.122406,
+          "fwhm_V": 0.07842282465833247
+        },
+        "high_rate_metrics": {
+          "area": 0.24768733356150985,
+          "peak_height": 2.809684732929485,
+          "peak_voltage": 0.122406,
+          "fwhm_V": 0.07842282465833247
+        },
+        "max_abs_0p1C_vs_1C": 0.0
+      },
+      "298.15": {
+        "low_rate_metrics": {
+          "area": 0.24518719406135497,
+          "peak_height": 2.432735809175219,
+          "peak_voltage": 0.120315,
+          "fwhm_V": 0.09057432720284637
+        },
+        "high_rate_metrics": {
+          "area": 0.24518719406135497,
+          "peak_height": 2.432735809175219,
+          "peak_voltage": 0.120315,
+          "fwhm_V": 0.09057432720284637
+        },
+        "max_abs_0p1C_vs_1C": 0.0
+      },
+      "318.15": {
+        "low_rate_metrics": {
+          "area": 0.2435311094348576,
+          "peak_height": 2.27980561266163,
+          "peak_voltage": 0.119295,
+          "fwhm_V": 0.09665008805872383
+        },
+        "high_rate_metrics": {
+          "area": 0.2435311094348576,
+          "peak_height": 2.27980561266163,
+          "peak_voltage": 0.119295,
+          "fwhm_V": 0.09665008805872383
+        },
+        "max_abs_0p1C_vs_1C": 0.0
+      }
+    },
+    "default_joint_ratios": {
+      "lowT_to_roomT_peak_height": 1.1549485654515295,
+      "lowT_to_roomT_fwhm": 0.865839439057605,
+      "default_lowT_is_taller": true,
+      "default_lowT_is_narrower": true
+    },
+    "direct_lag_override": {
+      "max_abs_I0_vs_I1": 0.0,
+      "max_abs_I0_vs_equilibrium": 10.329081657236678,
+      "I0_metrics": {
+        "area": 0.9704338292831178,
+        "peak_height": 10.915788192015524,
+        "peak_voltage": 0.14045999999999997,
+        "fwhm_V": 0.07800710164924358
+      },
+      "equilibrium_metrics": {
+        "area": 0.9994249960652011,
+        "peak_height": 17.857141012208583,
+        "peak_voltage": 0.120009,
+        "fwhm_V": 0.04935693373320957
+      },
+      "violates_zero_current_limit": true
+    },
+    "overflow_contract": {
+      "raw_Lq_is_positive_infinity": true,
+      "resolved_LV_V": 0.0,
+      "physical_rate_limit": "k_to_zero_and_Lq_to_positive_infinity",
+      "implementation_limit": "nonfinite_Lq_to_LV_zero_equilibrium",
+      "physics_reversal_present": true
+    },
+    "grid_handoff": {
+      "min_lag_grid_steps": 2.0,
+      "kinetic_branch_impulse_area_fraction_at_threshold": 0.7707470412683991,
+      "equilibrium_branch_area_fraction": 1.0,
+      "jump_fraction": 0.2292529587316009,
+      "cause": "endpoint ODE derivative is summed as a rectangle instead of using the exact cell-average state increment",
+      "capacity_preserving_discrete_derivative": "(xi_lag[i]-xi_lag[i-1])/DeltaV"
+    },
+    "repair_existence_proof": {
+      "status": "REDUCED_MODEL_EXISTENCE_PROOF_NOT_MATERIAL_VALIDATION",
+      "activation_energy_J_per_mol": 30000.0,
+      "reference_k_effective_per_s": 0.0006486957415815295,
+      "reference_lag_to_width": 0.5,
+      "profiles": {
+        "258.15": {
+          "width_V": 0.02224564581699093,
+          "k_effective_per_s": 9.946403058162052e-05,
+          "lag_V": 0.0837823812749572,
+          "lag_to_width": 3.766237310627562,
+          "finite_current_metrics": {
+            "area": 0.9993638078441776,
+            "peak_height": 5.980912315608853,
+            "peak_voltage": 0.03720600000000007,
+            "fwhm_V": 0.13959899677714008
+          },
+          "zero_current_metrics": {
+            "area": 0.9999999999995896,
+            "peak_height": 11.238153011961913,
+            "peak_voltage": 0.0,
+            "fwhm_V": 0.07842691112281658
+          }
+        },
+        "298.15": {
+          "width_V": 0.02569257912196725,
+          "k_effective_per_s": 0.0006486957415815295,
+          "lag_V": 0.012846289560983624,
+          "lag_to_width": 0.5,
+          "finite_current_metrics": {
+            "area": 0.9989883759713429,
+            "peak_height": 9.246441570727315,
+            "peak_voltage": 0.011543999999999999,
+            "fwhm_V": 0.09584623690113644
+          },
+          "zero_current_metrics": {
+            "area": 0.9999999999794096,
+            "peak_height": 9.730435293331539,
+            "peak_voltage": 0.0,
+            "fwhm_V": 0.09057905258498075
+          }
+        },
+        "318.15": {
+          "width_V": 0.02741604577445541,
+          "k_effective_per_s": 0.0013881517225072379,
+          "lag_V": 0.006003186249902077,
+          "lag_to_width": 0.2189661594268083,
+          "finite_current_metrics": {
+            "area": 0.9978360463527747,
+            "peak_height": 8.996676455612052,
+            "peak_voltage": 0.005850000000000022,
+            "fwhm_V": 0.09796006285963602
+          },
+          "zero_current_metrics": {
+            "area": 0.9999999998989693,
+            "peak_height": 9.118746857948281,
+            "peak_voltage": 0.0,
+            "fwhm_V": 0.09665512476573579
+          }
+        }
+      },
+      "lowT_to_roomT_finite_current_peak_height": 0.646833949023527,
+      "lowT_to_roomT_finite_current_fwhm": 1.4564890734430582,
+      "joint_target_reproduced": true,
+      "interpretation": "A causal relaxation with a separately calibrated mesoscopic rate can reproduce the target qualitatively. This does not validate the v1.0.14 molecular prefactor, frozen affinity, constant voltage transform, or material parameters."
+    }
+  },
+  "findings": [
+    {
+      "id": "KIN-059-01",
+      "topic": "experimental_target",
+      "disposition": "PRESERVE_TARGET_NOT_UNIQUE_MECHANISM",
+      "reason": "Primary full-cell data support lower, broader, shifted or vanishing peaks at higher rate and lower temperature, but do not identify a unique single-exponential electrode tail."
+    },
+    {
+      "id": "KIN-059-02",
+      "topic": "linear_relaxation_limit",
+      "disposition": "PRESERVE_AS_REDUCED_CAUSAL_LIMIT",
+      "reason": "dξ/dt=k(ξeq-ξ) has the correct causal, area-preserving continuum limit when the equilibrium target and k are well-defined."
+    },
+    {
+      "id": "KIN-059-03",
+      "topic": "constant_current_unit_contract",
+      "disposition": "REJECT_FACTOR_3600_DUAL_UNIT_API",
+      "reason": "The facade accepts C-rate in h^-1 and Ah-like capacity while func_L_q combines I/Q numerically with a seconds-based Eyring prefactor. Lq is 3600 times too large in that path."
+    },
+    {
+      "id": "KIN-059-04",
+      "topic": "galvanostatic_forward_closure",
+      "disposition": "REJECT_AS_CLOSED_CONSTANT_CURRENT_MODEL",
+      "reason": "The code prescribes a voltage grid and filters equilibrium occupancy on it; it does not solve current balance, transition-current partition, transport, and terminal voltage under imposed current."
+    },
+    {
+      "id": "KIN-059-05",
+      "topic": "local_affinity",
+      "disposition": "REJECT_FROZEN_CUT_AFFINITY",
+      "reason": "Default n=1 always selects A=4RT, so implemented d ln Lq/dV=0. The user's potential-dependent barrier hypothesis is removed from the computation."
+    },
+    {
+      "id": "KIN-059-06",
+      "topic": "nonideal_detailed_balance",
+      "disposition": "REJECT_OMEGA_BARRIER_SHORTCUT",
+      "reason": "Subtracting χΩ from a common activation enthalpy changes the speed but leaves r+/r-=exp(Aideal/RT). It does not recover the regular-solution local chemical affinity."
+    },
+    {
+      "id": "KIN-059-07",
+      "topic": "migration_barrier_anchor",
+      "disposition": "REJECT_AS_MACRO_RELAXATION_ENTHALPY",
+      "reason": "Persson studies support bulk Li migration and diffusion physics, not the direct assignment of those barriers to electrode-scale phase-fraction relaxation."
+    },
+    {
+      "id": "KIN-059-08",
+      "topic": "eyring_prefactor",
+      "disposition": "REQUIRE_MESOSCOPIC_COARSE_GRAINING",
+      "reason": "kBT/h with a hop barrier omits active area, site density, nucleation population, phase-boundary mobility, particle geometry, diffusion, and porous-electrode transport."
+    },
+    {
+      "id": "KIN-059-09",
+      "topic": "default_current_broadening",
+      "disposition": "FAIL_DORMANT_DEFAULT_PATH",
+      "reason": "All four default lag lengths remain below the grid switch for the audited rate/temperature range, so 0.1C and 1C single-transition shapes are identical when IR shift is removed."
+    },
+    {
+      "id": "KIN-059-10",
+      "topic": "low_temperature_finite_current_joint_limit",
+      "disposition": "FAIL_USER_TARGET_ON_SHIPPED_DEFAULT",
+      "reason": "With the lag branch dormant, lower temperature only narrows the RT/F equilibrium width and raises the peak, opposite the target finite-current trend."
+    },
+    {
+      "id": "KIN-059-11",
+      "topic": "direct_lag_override",
+      "disposition": "EMPIRICAL_ONLY_REQUIRE_PROTOCOL_SCALING",
+      "reason": "A direct L_V produces the same nonequilibrium curve at I=0 and I>0. It may be a nuisance kernel only if a protocol law forces L_V to zero with current and constrains T."
+    },
+    {
+      "id": "KIN-059-12",
+      "topic": "small_lag_numerics",
+      "disposition": "REJECT_DISCONTINUOUS_GRID_HANDOFF",
+      "reason": "At the two-grid-step threshold the kinetic branch carries only 0.7707 of an impulse while the equilibrium branch carries one, causing a 22.9% fit-objective jump."
+    },
+    {
+      "id": "KIN-059-13",
+      "topic": "low_temperature_overflow",
+      "disposition": "FAIL_NONFINITE_PHYSICS_REVERSAL",
+      "reason": "An infinite Lq from a vanishing rate is converted to L_V=0, which returns the equilibrium peak instead of a frozen transition."
+    },
+    {
+      "id": "KIN-059-14",
+      "topic": "nonisothermal_rate",
+      "disposition": "REQUIRE_LOCAL_T_STATE_RATE",
+      "reason": "The lag is evaluated once at mean T and mean n; Arrhenius kinetics along a varying T(V) path is not implemented."
+    },
+    {
+      "id": "KIN-059-15",
+      "topic": "chronology",
+      "disposition": "REQUIRE_MONOTONE_SEGMENT_OR_TIME_SOLVER",
+      "reason": "Sorting/interpolation by voltage discards revisits and protocol chronology. Hysteresis and memory require an explicit monotone-segment contract or time integration."
+    },
+    {
+      "id": "KIN-059-16",
+      "topic": "ohmic_polarization",
+      "disposition": "PRESERVE_AS_SHIFT_NOT_BROADENING",
+      "reason": "For constant I and R, Vn=Vapp-sigma*IR shifts a peak but cannot change its width or height."
+    },
+    {
+      "id": "KIN-059-17",
+      "topic": "parameter_identifiability",
+      "disposition": "REQUIRE_MULTI_T_MULTI_RATE_RELAXATION_DATA",
+      "reason": "One curve cannot separate equilibrium width, heterogeneity, charge transfer, diffusion, phase motion, IR, observation smoothing, activation enthalpy, and activation entropy."
+    },
+    {
+      "id": "KIN-059-18",
+      "topic": "v1010_to_v1014_lineage",
+      "disposition": "BLOCKERS_CARRIED_FORWARD",
+      "reason": "The executable AST of func_L_q, _causal_lowpass, func_dH_a_eff, and _resolve_lag_length is unchanged from v1.0.10 to v1.0.14."
+    },
+    {
+      "id": "KIN-059-19",
+      "topic": "mechanism_existence",
+      "disposition": "PRESERVE_QUALITATIVE_EXISTENCE_PROOF",
+      "reason": "A dimensionally consistent causal reduced model with a separately calibrated mesoscopic Arrhenius rate can qualitatively reproduce low-T peak suppression/broadening."
+    },
+    {
+      "id": "KIN-059-20",
+      "topic": "repair_architecture",
+      "disposition": "REPLACE_WITH_SIGNED_TIME_DOMAIN_STATE_MODEL",
+      "reason": "Use one free-energy state definition, local affinity and transition-state law, current conservation, material/host states, transport, and a separate observation operator."
+    }
+  ],
+  "repair_contract": {
+    "theory_manuscript_physics_only": [
+      "Define the written lithiation/delithiation reaction and signed current.",
+      "Derive equilibrium chemical potentials from one host free energy.",
+      "Derive local affinity from electrochemical potentials, composition, phase fraction, stress, and temperature.",
+      "Derive forward and reverse rates from one transition-state free energy and verify detailed balance.",
+      "Separate charge transfer, solid diffusion, nucleation/phase-boundary motion, porous transport, and ohmic loss by controlled reductions.",
+      "Derive the low-current equilibrium limit and the low-temperature x finite-current competition without numerical grid language.",
+      "State that measured ICA broadening is a convolution of physical dynamics, heterogeneity, and observation response."
+    ],
+    "code_conformance_after_theory_freeze": [
+      "Use seconds, amperes, and coulombs internally; convert Ah and h^-1 once at the API boundary.",
+      "Integrate signed state evolution in time or normalized charge while enforcing sum_j I_j plus background equals applied current.",
+      "Solve terminal potential or overpotential self-consistently rather than prescribing a voltage convolution as galvanostatic closure.",
+      "Evaluate local T, composition, activity, overpotential, and phase state at every integration point.",
+      "Represent microscopic diffusion parameters and mesoscopic transformation rates as distinct typed quantities.",
+      "Use a continuous, capacity-preserving small-lag discretization and treat k->0 as a frozen-state limit.",
+      "Keep direct L_V only in the observation/nuisance layer and force it to zero at zero current."
+    ],
+    "validation_ladder": [
+      "Analytic ideal-site and regular-solution equilibrium limits.",
+      "Detailed-balance and nonnegative-entropy-production tests.",
+      "I->0, T sweeps, k->0, k->infinity, and grid-convergence tests.",
+      "Single-transition synthetic recovery before multi-transition fitting.",
+      "Graphite and LCO half-cell multi-temperature, multi-rate, GITT/rest, and impedance constraints.",
+      "Full-cell validation only after host current partition and electrode balancing are fixed.",
+      "Public-data holdout with peak position, height, FWHM, area, and voltage residual metrics."
+    ]
+  },
+  "summary": {
+    "status": "CONDITIONAL_P059_V1014_KINETIC_SKELETON_PRESERVED_BUT_CONSTANT_CURRENT_LOCAL_BARRIER_AND_JOINT_LIMIT_FAIL",
+    "primary_source_count": 7,
+    "finding_count": 20,
+    "preserve_family_count": 4,
+    "reject_family_count": 6,
+    "fail_family_count": 3,
+    "require_family_count": 4,
+    "empirical_only_count": 1,
+    "blocker_count": 1,
+    "experimental_joint_target_supported": true,
+    "linear_relaxation_continuum_skeleton_pass": true,
+    "constant_current_unit_contract_pass": false,
+    "closed_galvanostatic_forward_model_pass": false,
+    "local_potential_barrier_pass": false,
+    "nonideal_detailed_balance_pass": false,
+    "default_current_broadening_pass": false,
+    "default_lowT_finite_current_joint_limit_pass": false,
+    "zero_current_limit_all_paths_pass": false,
+    "small_lag_continuity_pass": false,
+    "frozen_rate_limit_pass": false,
+    "v1010_blockers_repaired_in_v1014": false,
+    "repair_existence_proof_pass": true,
+    "next_step": "36.5"
+  }
+}

@@ -620,6 +620,53 @@
   (52/52 checks, deterministic rerun hash preserved).
 - v1.0.14 LCO/heat status:
   `CONDITIONAL_P059_V1014_LCO_HEAT_ALGEBRA_PRESERVED_WITH_REFERENCE_DOS_GATE_CODE_AND_DOPING_BLOCKERS`.
+- Phase 059 v1.0.14 kinetics/barrier audit:
+  \(\dot\xi=k(\xi_\mathrm{eq}-\xi)\), 동일 단위계의
+  \(L_q=|I|/(Q_\mathrm{scale}k)\)와 local-linear
+  \(L_V=|dV/dq|L_q\)는 reduced causal skeleton으로 보존한다.
+  Fly--Chen과 Gismero의 full-cell 1차 자료는 고전류 또는 저온에서
+  ICA peak가 낮아지고 넓어지며 이동·소실할 수 있음을 지지하지만,
+  단일 지수 꼬리를 유일한 electrode mechanism으로 식별하지 않는다.
+- Kinetics unit/local-barrier blockers:
+  h\(^{-1}\)/Ah facade와 seconds-based Eyring prefactor를 수치 그대로
+  결합해 \(L_q\)가 3,600배 커지고 298.15 K barrier gauge가
+  20.299 kJ/mol 낮아진다. default \(n=1\)은 affinity를 항상
+  \(4RT\)에 동결해 구현
+  \(\partial\ln L_q/\partial V=0\)을 만들므로 사용자의
+  potential-dependent barrier 가설이 실제 path에서 사라진다.
+- Nonideal/coarse-graining blockers:
+  \(\Delta H_a^\mathrm{eff}=\Delta H_a-\chi\Omega\)는
+  regular-solution local chemical affinity와 detailed balance를
+  닫지 않는다. bulk migration barrier와 molecular \(k_BT/h\)를
+  active area, site density, nucleation, phase-boundary motion,
+  geometry와 transport 없이 electrode-scale relaxation으로
+  승격하지 않는다.
+- Joint-limit result:
+  대표 default single transition의 0.1C/1C shape는
+  258.15/298.15/318.15 K에서 모두 exact-identical이다.
+  저온/상온 peak-height ratio 1.154949, FWHM ratio 0.865839라
+  shipped default는 저온에서 더 높고 좁다. 반면 별도 mesoscopic
+  rate를 둔 차원 일관 causal existence probe는 각각
+  0.646834/1.456489로 사용자 target을 정성 재현했다. skeleton
+  가능성만 보존하고 현 prefactor/barrier/material parameter는
+  승인하지 않는다.
+- Numerical/limit blockers:
+  direct \(L_V\)는 \(I=0\)과 \(I>0\)가 같아 zero-current limit를
+  위반한다. two-grid-step handoff는 22.925% jump를 만들고,
+  \(L_q=+\infty\)를 \(L_V=0\) equilibrium으로 바꾸어
+  frozen-state limit를 역전한다. mean-\(T\) lag와 voltage sorting은
+  local nonisothermal rate와 protocol chronology도 보존하지 않는다.
+- v1.0.10→v1.0.14 kinetic lineage:
+  `func_L_q`, `_causal_lowpass`, `func_dH_a_eff`,
+  `_resolve_lag_length`의 docstring 제외 executable AST 4개가 모두
+  동일하다. core blocker는 수정이 아니라 copy-forward다.
+- Phase 059 v1.0.14 kinetics evidence:
+  `Codex/results/PHASE_059_V1014_KINETICS_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_KINETICS_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_kinetics.py`
+  (78/78 checks, deterministic rerun hash preserved).
+- v1.0.14 kinetics status:
+  `CONDITIONAL_P059_V1014_KINETIC_SKELETON_PRESERVED_BUT_CONSTANT_CURRENT_LOCAL_BARRIER_AND_JOINT_LIMIT_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -642,16 +689,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 36.4:
-v1.0.14의 kinetics/barrier/current-broadening 사슬을 독립
-재유도하고 저온×유한전류에서 peak suppression과 broadening을
-낼 수 있는지 theory-code joint limit로 판정한다.
+Phase 059 Step 36.5:
+v1.0.14의 다수 review round와 result/handover가 선언한
+수렴·완주·물리 오류 0 주장을 Steps 36.1--36.4의 독립 blocker와
+대조하고 v1.0.14 최종 권위 판정을 닫는다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–36.3.
+Phase 059 Steps 33.1–36.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

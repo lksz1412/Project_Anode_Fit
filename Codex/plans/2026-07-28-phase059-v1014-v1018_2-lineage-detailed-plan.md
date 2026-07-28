@@ -1004,3 +1004,78 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 36.4에서 kinetics/barrier/current-broadening 사슬을
   독립 재유도하고 저온×유한전류의 peak suppression/broadening
   joint limit를 theory-code로 판정하는 일이다.
+
+### 2026-07-28 — Step 36.4
+
+- 실행 번호의 의미를 명시한다. 원계획 36.2의 phase-separation
+  감사에서 본문 bell/transition과 appendix의 미연결까지 함께
+  판정했고, LCO/heat를 실행 36.3으로 닫았다. 따라서 실행 36.4는
+  사용자 출발 관측의 핵심인 kinetics/barrier/current-broadening
+  joint limit 전용 단계다.
+- v1.0.14 Ch1의
+  \(\mathcal A\to\chi_d\to\Delta H_a^\mathrm{eff}\to
+  L_q\to L_V\to\) causal tail 사슬과 production path를
+  Eyring, Bazant, Fly--Chen, Gismero, Persson 2건,
+  Doyle--Fuller--Newman의 7개 1차 문헌에 독립 대조했다.
+- 보존 대상은
+  \(\dot\xi=k(\xi_\mathrm{eq}-\xi)\),
+  동일 단위계의 \(L_q=|I|/(Q_\mathrm{scale}k)\),
+  국소 선형화에서 \(L_V=|dV/dq|L_q\)와 유한 \(L_V\)의
+  causal suppression/broadening 정성 결과다. 이것은 reduced
+  continuum limit이지 현 material closure의 검증이 아니다.
+- C-rate [h\(^{-1}\)]와 Ah-style capacity를 seconds-based
+  \(k_BT/h\)에 수치 그대로 결합해 \(L_q\)가 3,600배 커진다.
+  298.15 K에서 동일 broadening을 맞추는 barrier gauge는
+  \(RT\ln3600=20.299\) kJ/mol만큼 낮게 보인다.
+  \(L_V/w=1\) 예에서 현 수치계약은 77.643 kJ/mol,
+  SI 일관 계약은 97.942 kJ/mol을 요구한다.
+- default \(n=1\)에서는
+  \(\min(4.357nRT,4RT)=4RT\)가 항상 선택되고, 이 지점은
+  peak derivative의 5%가 아니라 7.065%다. affinity가 전이당
+  상수로 동결되어 구현의
+  \(\partial\ln L_q/\partial V=0\)이고, local 식이라면 같은
+  조건에서 \(-18.761\ {\rm V^{-1}}\)다. 사용자의
+  potential-dependent barrier 가설은 실제 계산에서 사라진다.
+- \(\Delta H_a^\mathrm{eff}=\Delta H_a-\chi\Omega\)는 속도만
+  바꾸고 forward/reverse ratio에 regular-solution local
+  chemical affinity를 복원하지 않는다. bulk Li migration
+  barrier와 \(k_BT/h\)를 electrode-scale phase-fraction
+  relaxation으로 승격하려면 active area, site density,
+  nucleation, phase-boundary mobility, geometry와 transport의
+  coarse graining이 필요하다.
+- 대표 single-transition default는 258.15/298.15/318.15 K
+  모두 0.1C와 1C shape가 exact-identical했다. 저온/상온
+  peak-height ratio는 1.154949, FWHM ratio는 0.865839라
+  저온에서 더 높고 좁다. shipped default는 사용자의
+  저온×유한전류 suppression/broadening을 재현하지 않는다.
+- 차원 일관 SI와 별도 mesoscopic Arrhenius rate를 둔 독립
+  existence probe는 저온/상온 peak-height 0.646834,
+  FWHM 1.456489를 얻어 target을 정성 재현했다. 이는 1차
+  causal skeleton을 보존할 근거일 뿐 v1.0.14의 prefactor,
+  barrier, frozen affinity 또는 material parameter를 승인하지 않는다.
+- direct \(L_V\)는 \(I=0\)과 \(I=1\) 출력이 exact-identical하고
+  \(I=0\)에서도 equilibrium과 최대 10.3291만큼 달라
+  zero-current limit를 위반한다. two-grid-step branch는
+  kinetic impulse area 0.770747에서 equilibrium 1로
+  22.925% 불연속 점프한다.
+- 더 큰 장벽/더 낮은 온도에서 \(L_q=+\infty\)가 되면 code는
+  nonfinite를 \(L_V=0\)으로 바꿔 frozen-state limit를 equilibrium
+  limit로 역전한다. 비등온 path도 mean \(T\)에서 lag를 한 번만
+  평가하며 voltage sorting은 revisit/rest/reversal chronology를
+  보존하지 않는다.
+- docstring을 제외한 executable AST 대조에서 `func_L_q`,
+  `_causal_lowpass`, `func_dH_a_eff`,
+  `_resolve_lag_length` 4개 모두 v1.0.10과 v1.0.14가 동일하다.
+  scalar-input guard와 설명 개선은 인정하되 core kinetic blocker는
+  copy-forward로 판정한다.
+- 근거:
+  `Codex/results/PHASE_059_V1014_KINETICS_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_KINETICS_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1014_kinetics.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_kinetics.py`.
+- validator 78/78과 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1014_KINETIC_SKELETON_PRESERVED_BUT_CONSTANT_CURRENT_LOCAL_BARRIER_AND_JOINT_LIMIT_FAIL`.
+- 다음은 Step 36.5에서 v1.0.14의 다수 review round가 선언한
+  수렴·완주·물리 오류 0 주장을 독립 blocker와 대조해 v1.0.14
+  최종 권위 판정을 닫는 일이다.
