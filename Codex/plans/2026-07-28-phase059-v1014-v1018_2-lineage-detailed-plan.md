@@ -1079,3 +1079,50 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 36.5에서 v1.0.14의 다수 review round가 선언한
   수렴·완주·물리 오류 0 주장을 독립 blocker와 대조해 v1.0.14
   최종 권위 판정을 닫는 일이다.
+
+### 2026-07-28 — Step 36.5
+
+- v1.0.14 `RESULT`, handover 2개와 `V1014_*` process 문건
+  32개를 권위 corpus로 다시 고정했다. 중복 제거 후 35개
+  source/3,412행이며, R1--R7 review 보고서는 20개다.
+- “완주”, “R2 이후 물리 실결함 0”, “코너 케이스 약 90항
+  FAIL 0”, “물리·좌표 검증 완료”, build/regression/sample PASS,
+  `g_max=13` tier A 유지와 이월 선언을 20개 claim으로 분해했다.
+- 절차적 사실과 과학적 권위를 분리했다. v1.0.14 source·artifact
+  제작, build/layout, legacy regression, review process 종료와
+  교재형 자산은 보존한다. 이들은 각각 process/internal/pedagogical
+  evidence일 뿐 external material validation은 아니다.
+- review 발견 수 `22→13→16→8→18→13→8`은 단조 감소가 아니고,
+  execution ledger는 원래의 연속 2라운드 0건 criterion을 충족하지
+  않은 채 대체 근거로 종결했음을 직접 기록한다. 따라서 review
+  종료는 보존하되 open-ended scientific convergence로 승격하지 않는다.
+- Steps 36.1--36.4의 네 독립 blocker family를 대조했다:
+  theory boundary 6 findings, phase separation 10, LCO/heat 16,
+  kinetics 20으로 합계 52다.
+- 좁은 `\code` macro 0건은 보존하지만 허용 절 밖 의미론적
+  구현 언어 24건 때문에 theory-only 본문 완성 주장은 기각한다.
+- phase-separation의 regular-solution/Cahn--Hilliard 핵심 대수와
+  1차 causal relaxation 골격은 보존한다. 차원·경계조건·탄성 범위,
+  기준전극·DOS gate·도핑 고전압, 3,600 단위계·frozen affinity·
+  영전류/동결 극한·galvanostatic closure는 미폐쇄다.
+- `13/13 bit-exact`, `ALL FINITE`, synthetic sample은 각 내부
+  속성만 증명한다. v1.0.10→v1.0.14 core kinetic AST 4개가
+  동일하므로 legacy regression은 inherited physics repair의
+  증거가 아니다.
+- v1.0.14가 직접 이월한 다온도, LCO parameter, 수치·mapping,
+  primary-source 항목과 handover의 “코드 업데이트 필요” 선언은
+  전역 scientific completion과 양립하지 않는다.
+- 근거:
+  `Codex/results/PHASE_059_V1014_COMPLETION_AUTHORITY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_COMPLETION_AUTHORITY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1014_completion_authority.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_completion_authority.py`.
+- validator 53/53과 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1014_PROCESS_COMPLETE_BUT_SCIENTIFIC_COMPLETION_AUTHORITY_REJECTED`.
+- v1.0.14의 최종 위치는 폐기본이 아니라 교육적·대수적 자산과
+  물리 폐쇄 결함을 함께 가진 중간 기준선이다. 이후 version의
+  `PASS`는 source/code/test/data에서 blocker가 실제 닫혔을 때만
+  새 권위를 얻는다.
+- 다음은 Step 37.1에서 v1.0.15 pointwise continuous-memory 식을
+  독립 유도하고 v1.0.14 grid-switch와 수치·극한 비교하는 일이다.
