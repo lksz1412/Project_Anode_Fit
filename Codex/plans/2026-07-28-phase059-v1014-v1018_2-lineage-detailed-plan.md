@@ -817,3 +817,46 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   타당성을 승인하지 않는다.
 - 다음은 Step 35.3에서 PDF/image/golden blob을 생성 code·TeX·
   Git commit과 연결하고 isolated rerender를 수행하는 일이다.
+
+### 2026-07-28 — Step 35.3
+
+- PDF 18, PNG 24 occurrence/10 unique, golden NPZ 6 occurrence/
+  2 unique, 총 48 artifact occurrence와 30 unique content의
+  current blob, 최초 도입 commit, 마지막 변경 commit, 대응
+  TeX/generator/model/test commit을 연결했다.
+- PDF 18개는 byte hash로 모두 다르지만 rendered-content signature는
+  17개다. v1.0.15와 v1.0.16 appendix만 TeX와 8 rendered pages가
+  exact-identical하며 v1.0.16 표지의 v1.0.15 label defect와
+  일치한다. PDF 뒤에 TeX가 바뀐 source-after-artifact는 0개다.
+- XeLaTeX는 설치돼 있으나 shared build probe가 `kotex.sty` 부재로
+  중단됐고 D2Coding도 DejaVu Sans로 fallback됐다. 18 PDF의 현재
+  TeX bit-exact rebuild는 `UNTESTED_DEPENDENCY_BLOCKED`이며
+  재빌드 PASS를 주장하지 않는다.
+- PNG 24 occurrence 중 14개는 이전 blob의 exact copy-forward이고
+  filename version token과 directory가 다른 경로는 11개다.
+  v1.0.16 저장 PNG 5개는 그 뒤 production model이 바뀌었으므로
+  current-source candidate로는 stale다. 후속 copy가 scientific
+  output까지 같은지는 plot-data array 부재로 `UNRESOLVED`다.
+- Step 34.3의 disposable rerender 24개와 저장 PNG의 byte hash는
+  0/24 exact다. renderer/font/backend/metadata 영향을 분리할
+  numeric plot-data hash가 없으므로 byte mismatch를 곧바로 curve
+  delta로 해석하지도, curve equality로 승인하지도 않는다.
+- golden은 v1.0.15 이후 4개 후속 path가 같은 blob의 exact
+  copy-forward다. v1.0.14와 v1.0.16 golden은 production model이
+  artifact 뒤에 바뀌었다. 현재 재계산은 전 version 13/13 arrays가
+  `rtol=0, atol=5e-15`에서 맞지만 bit-exact는 1/13뿐이다.
+- 계보 audit/보고서 재실행 hash가 동일했고 validator 35/35를
+  통과했다.
+- 근거:
+  `Codex/results/PHASE_059_ARTIFACT_GENEALOGY.json`,
+  `Codex/results/PHASE_059_ARTIFACT_GENEALOGY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_artifact_genealogy.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_artifact_genealogy.py`.
+- status:
+  `CONDITIONAL_P059_ARTIFACT_GENEALOGY_WITH_PDF_DEPENDENCY_BLOCK_AND_NON_BIT_EXACT_REGENERATIONS`.
+  이 status는 artifact 계보만 판정하고 과학·실험 authority를
+  승인하지 않는다.
+- Step 35 artifact 감사는 완료됐다. 다음은 Step 36.1에서
+  v1.0.14의 textbook register, derivation restructuring,
+  width budget와 theory-only 본문 경계를 v1.0.13과 exact diff로
+  재판정하는 일이다.

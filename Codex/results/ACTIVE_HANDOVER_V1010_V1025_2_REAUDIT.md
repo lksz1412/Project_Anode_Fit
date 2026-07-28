@@ -511,6 +511,37 @@
   status는 `CONDITIONAL_P059_SYNTHETIC_IMAGE_EVIDENCE`.
   decode·shape·metadata 검독을 물리 mechanism, material identity,
   parameter, 문헌 또는 실험 validation으로 승격하지 않는다.
+- Phase 059 artifact genealogy:
+  PDF 18, PNG 24 occurrence/10 unique, golden NPZ 6 occurrence/2 unique,
+  총 48 occurrence/30 unique content의 blob–source–Git commit
+  관계를 닫았다.
+- PDF build genealogy:
+  PDF byte content는 18 unique이나 rendered content는 17 unique다.
+  v1.0.15/v1.0.16 appendix만 TeX와 8 pages가 exact-identical하다.
+  PDF 뒤 TeX 변경은 0개다. 다만 XeLaTeX 공통 probe는 `kotex.sty`
+  부재 및 D2Coding fallback으로 실패해 18개 rebuild가
+  `UNTESTED_DEPENDENCY_BLOCKED`다.
+- Image generator genealogy:
+  14/24 occurrence가 exact blob copy-forward이고 filename version
+  mismatch는 11개다. v1.0.16 저장 PNG 5개 뒤 production model이
+  변경됐다. isolated current rerender는 저장 PNG와 0/24
+  bit-exact이고 plot-data hash가 없어 scientific curve delta/equality
+  양쪽 모두 승인하지 않는다.
+- Golden generator genealogy:
+  v1.0.15 이후 4개 후속 path는 exact blob copy-forward다.
+  v1.0.14와 v1.0.16 golden 뒤 production model이 바뀌었다.
+  현 재계산은 version마다 13/13 tolerance pass이나 array exact는
+  1/13이다.
+- Phase 059 artifact-genealogy evidence:
+  `Codex/results/PHASE_059_ARTIFACT_GENEALOGY.json`,
+  `Codex/results/PHASE_059_ARTIFACT_GENEALOGY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_artifact_genealogy.py`
+  (35/35 checks, deterministic rerun hash preserved).
+- Artifact-genealogy authority boundary:
+  status는
+  `CONDITIONAL_P059_ARTIFACT_GENEALOGY_WITH_PDF_DEPENDENCY_BLOCK_AND_NON_BIT_EXACT_REGENERATIONS`.
+  build ordering, copy lineage, regeneration만 판정하며 물리·재료·문헌·
+  실험 타당성은 승인하지 않는다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -533,16 +564,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 35.3:
-PDF/image/golden blob을 생성 code·TeX·Git commit과 연결하고
-copy-forward, stale artifact, version-label mismatch와 non-bit-exact
-isolated rerender를 현재 과학 증거에서 분리한다.
+Phase 059 Step 36.1:
+v1.0.14의 textbook register, derivation restructuring, width
+budget와 theory-only 본문 경계를 v1.0.13과 exact diff로
+재판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–35.2.
+Phase 059 Steps 33.1–35.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,
