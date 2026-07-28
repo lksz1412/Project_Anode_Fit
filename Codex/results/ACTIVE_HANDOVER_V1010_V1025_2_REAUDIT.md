@@ -815,6 +815,28 @@
   (68/68 checks, deterministic rerun hash preserved).
 - v1.0.16 n(T) status:
   `CONDITIONAL_P059_V1016_NT_DWDT_ALGEBRA_AND_OPT_IN_ROUNDTRIP_PASS_BUT_EMPIRICAL_STATUS_DEFAULT_BRANCH_POSITIVITY_AND_IDENTIFIABILITY_GAPS_REMAIN`.
+- Phase 059 v1.0.16 joint identifiability:
+  단일 온도의 \(n_0,n_1\)은 rank 1/2, 단일 온도 여러 rate의
+  activation은 rank 1/3이다. 세 온도 여러 rate도 activation
+  rank 2/3에 그치며 \(\Delta S_a\)와 prefactor/\(dV/dq\)의 정확한
+  null direction이 남는다.
+- LCO/vibrational boundary:
+  현 LCO electronic gate는 \(x_{\rm center},298.15\) K의 한
+  유효 entropy 상수로 동결되어 네 gate parameter rank가 1/4다.
+  vibrational 잔여항은 forward parameter가 없어 rank 0이다.
+- Identification contract:
+  다온도 peak와 uncertainty, 각 온도의 rate-series, 독립 OCV
+  \(dV/dq\), transport 진단, Li-reference entropy,
+  composition-resolved \(x(V,T)\), DOS/phase prior,
+  phonon/heat-capacity prior가 필요하다. synthetic round-trip은
+  statistical identifiability 증거가 아니다.
+- Phase 059 joint-identifiability evidence:
+  `Codex/results/PHASE_059_V1016_JOINT_IDENTIFIABILITY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1016_JOINT_IDENTIFIABILITY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1016_joint_identifiability.py`
+  (45/45 checks, deterministic rerun hash preserved).
+- v1.0.16 joint-identifiability status:
+  `FAIL_P059_V1016_JOINT_IDENTIFIABILITY_WITHOUT_MULTI_TEMPERATURE_RATE_SERIES_AND_INDEPENDENT_ELECTRONIC_VIBRATIONAL_PRIORS`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -837,16 +859,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 37.5:
-다온도·rate-series 없이 \(n(T)\), activation, LCO electronic와
-vibrational 항을 동시에 식별할 수 있는지 structural/practical
-identifiability로 판정한다.
+Phase 059 Step 38.1:
+v1.0.17의 doc-only·citation 정정을 exact diff와 1차 출처로
+판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–37.4.
+Phase 059 Steps 33.1–37.5.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

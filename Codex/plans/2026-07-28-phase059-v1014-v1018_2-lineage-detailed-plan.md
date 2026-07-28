@@ -1329,3 +1329,40 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 37.5에서 다온도 rate-series 없이 \(n(T)\),
   activation, LCO electronic/vibrational 항을 동시에 식별 가능한지
   structural/practical identifiability로 판정하는 일이다.
+
+### 2026-07-28 — Step 37.5
+
+- 관측식의 Jacobian을 직접 구성해 \(n(T)\), activation,
+  LCO electronic gate, vibrational 잔여항의 구조적 rank를
+  각각 판정했다.
+- 단일 온도의 \(n_0,n_1\)은 voltage point 수와 무관하게 rank
+  1/2이며, \(T_{\rm ref}\) 양쪽 다온도 자료에서만 rank 2/2가 된다.
+- activation의
+  \((\Delta H_a,\Delta S_a,\log|dV/dq|)\)는 단일 온도 여러 rate에서
+  rank 1/3, 세 온도 여러 rate에서도 rank 2/3이다. rate는 알려진
+  \(\log I\) offset만 바꾸며 \(\Delta S_a\)와 prefactor/\(dV/dq\)
+  사이의 정확한 null direction은 제거하지 못한다.
+- 현 LCO electronic gate는 \(x_{\rm center},T_{\rm ref}\)에서 한
+  상수로 동결되어
+  \((\Delta S_{\rm base},g_{\max},x_{\rm MIT},\Delta x)\) rank가
+  1/4다. composition-resolved \(x(V,T)\)와 독립 reference/DOS
+  prior 없이는 분해할 수 없다.
+- vibrational 잔여항은 생산 forward parameter가 없어 rank 0이다.
+  phonon/heat-capacity prior와 명시 식을 추가하기 전에는 electronic
+  \(T^2\) 항과 분리할 수 없다.
+- synthetic round-trip은 numerical self-consistency일 뿐 noise,
+  covariance, model discrepancy 아래 statistical identifiability
+  증거가 아니다.
+- guide의 상수-n → per-T width → n(T) 단계화는 방향만 보존한다.
+  실제 graphite/LCO/Si, 특히 doped high-voltage LCO 피팅 권위는
+  아직 없다.
+- 근거:
+  `Codex/results/PHASE_059_V1016_JOINT_IDENTIFIABILITY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1016_JOINT_IDENTIFIABILITY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1016_joint_identifiability.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1016_joint_identifiability.py`.
+- validator 45/45와 deterministic rerun을 통과했다.
+- status:
+  `FAIL_P059_V1016_JOINT_IDENTIFIABILITY_WITHOUT_MULTI_TEMPERATURE_RATE_SERIES_AND_INDEPENDENT_ELECTRONIC_VIBRATIONAL_PRIORS`.
+- 다음은 Step 38.1에서 v1.0.17의 doc-only·citation 정정을 exact
+  diff와 1차 출처로 판정하는 일이다.
