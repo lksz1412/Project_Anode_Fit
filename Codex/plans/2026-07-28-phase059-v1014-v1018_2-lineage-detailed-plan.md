@@ -1477,3 +1477,37 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 38.4에서 theta_E 부재 bit-exact, 활성 branch,
   derivative round-trip과 equilibrium/dQdV/entropy full-path
   coupling을 검사하는 일이다.
+
+### 2026-07-28 — Step 38.4
+
+- `theta_E` 부재 시 v1.0.18.1과 equilibrium, 등온/비등온 dQdV,
+  entropy coefficient, reversible heat를 독립 실행 비교해 전부
+  exact 동일함을 확인했다.
+- `theta_E=700` K 활성 branch에서 equilibrium peak center,
+  중심 전위의 온도 유한차분, entropy coefficient와
+  \(-IT\partial U/\partial T\) heat identity가 같은 자유에너지
+  경로로 닫혔다. full-path round-trip 최대 오차는
+  \(8.92\times10^{-15}\) V/K였다.
+- `dH_rxn/dS_rxn` 없는 U-only transition에 `theta_E`를 넣으면
+  private helper는 nonzero 보정을 계산하지만 public equilibrium과
+  entropy path는 이를 조용히 무시한다. parameter 조합 contract가
+  type-safe하지 않다.
+- `theta_E_Tref`는 finite만 검사하고 \(>0\)을 강제하지 않아
+  0/음수 입력이 clean fail-fast하지 않는다.
+- 배포 regression, sample, graph-suite의 `theta_E`와 `_vib`
+  occurrence는 모두 0이다. handover round-trip은 persistent release
+  test authority가 아니다.
+- capability 내부 정합은 보존하지만 U-only reject/의미 명시,
+  Tref positive guard, absent/active scalar-array/derivative/heat
+  회귀가 필요하다. material-fit validation은 아니다.
+- 근거:
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1018_2_einstein_fullpath.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_2_einstein_fullpath.py`.
+- validator 26/26과 deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1018_2_EINSTEIN_ABSENT_KEY_AND_ACTIVE_FULLPATH_CONFORMANCE_PASS_BUT_PARAMETER_CONTRACT_AND_PERSISTENT_REGRESSION_FAIL`.
+- 다음은 Step 38.5에서 `ROADMAP_future_physics.md`의 항목을
+  implemented/theory-only/new-scope와 data prerequisite로 전건
+  분류하는 일이다.

@@ -906,6 +906,23 @@
   (32/32 checks, deterministic rerun hash preserved).
 - v1.0.18.2 Einstein status:
   `CONDITIONAL_P059_V1018_2_EINSTEIN_THERMODYNAMIC_ALGEBRA_AND_REFERENCE_ROUNDTRIP_PASS_BUT_REACTION_SPECTRUM_AMPLITUDE_AND_IDENTIFIABILITY_SCOPE_FAIL`.
+- Phase 059 v1.0.18.2 Einstein full path:
+  theta_E 부재의 equilibrium/isothermal/nonisothermal dQdV/entropy/heat
+  출력은 v1.0.18.1과 exact했다. 활성 branch의 center derivative,
+  entropy와 heat round-trip 최대 오차는 \(8.92\times10^{-15}\) V/K다.
+- Parameter contract blocker:
+  U-only transition의 theta_E는 helper에서 nonzero지만 public path가
+  silently ignore한다. theta_E_Tref \(>0\) guard도 없다.
+- Persistent-test blocker:
+  배포 regression/sample/graph-suite에 theta_E와 _vib occurrence가
+  모두 0이라 handover 검증은 지속 회귀 권위가 없다.
+- Phase 059 v1.0.18.2 full-path evidence:
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_2_einstein_fullpath.py`
+  (26/26 checks, deterministic rerun hash preserved).
+- v1.0.18.2 full-path status:
+  `CONDITIONAL_P059_V1018_2_EINSTEIN_ABSENT_KEY_AND_ACTIVE_FULLPATH_CONFORMANCE_PASS_BUT_PARAMETER_CONTRACT_AND_PERSISTENT_REGRESSION_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -928,15 +945,15 @@
 
 ## Next Exact Step
 
-Phase 059 Step 38.4:
-theta_E 부재 bit-exact, 활성 branch, derivative round-trip과
-equilibrium/dQdV/entropy full-path coupling을 검사한다.
+Phase 059 Step 38.5:
+`ROADMAP_future_physics.md`의 항목을 implemented/theory-only/new-scope와
+data prerequisite로 전건 분류한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–38.3.
+Phase 059 Steps 33.1–38.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

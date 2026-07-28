@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "38.4",
+  "status": "CONDITIONAL_P059_V1018_2_EINSTEIN_ABSENT_KEY_AND_ACTIVE_FULLPATH_CONFORMANCE_PASS_BUT_PARAMETER_CONTRACT_AND_PERSISTENT_REGRESSION_FAIL",
+  "source_hashes": {
+    "v1018_1": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+    "v1018_2": "d11979540122aea8eb1c6b01053ea81916f2302ee427a87436bbfa8ea7b33da6"
+  },
+  "absent_key_comparison": {
+    "equilibrium_max_abs": 0.0,
+    "dqdv_isothermal_max_abs": 0.0,
+    "dqdv_nonisothermal_max_abs": 0.0,
+    "entropy_max_abs": 0.0,
+    "heat_max_abs": 0.0
+  },
+  "active_branch_rows": [
+    {
+      "T_K": 278.15,
+      "analytic_center_V": 0.0886480035700985,
+      "grid_peak_V": 0.08865,
+      "grid_peak_error_V": 1.9964299015073905e-06,
+      "center_finite_difference_V_per_K": -0.0001695670964682594,
+      "entropy_coefficient_at_center_V_per_K": -0.00016956709646485685,
+      "fullpath_roundtrip_error_V_per_K": 3.4025516779112586e-15,
+      "reversible_heat_at_center_W_per_A": 0.04716508788169993,
+      "heat_identity_error_W_per_A": 0.0
+    },
+    {
+      "T_K": 298.15,
+      "analytic_center_V": 0.08529408716380785,
+      "grid_peak_V": 0.0853,
+      "grid_peak_error_V": 5.912836192153992e-06,
+      "center_finite_difference_V_per_K": -0.00016582888531790907,
+      "entropy_coefficient_at_center_V_per_K": -0.0001658288853189615,
+      "fullpath_roundtrip_error_V_per_K": -1.0524350488316792e-15,
+      "reversible_heat_at_center_W_per_A": 0.049441882157848366,
+      "heat_identity_error_W_per_A": 0.0
+    },
+    {
+      "T_K": 318.15,
+      "analytic_center_V": 0.08201459136601577,
+      "grid_peak_V": 0.082,
+      "grid_peak_error_V": -1.4591366015767604e-05,
+      "center_finite_difference_V_per_K": -0.00016212890523170653,
+      "entropy_coefficient_at_center_V_per_K": -0.00016212890524062269,
+      "fullpath_roundtrip_error_V_per_K": -8.916153405869043e-15,
+      "reversible_heat_at_center_W_per_A": 0.0515813112023041,
+      "heat_identity_error_W_per_A": 0.0
+    },
+    {
+      "T_K": 348.15,
+      "analytic_center_V": 0.07723267288278256,
+      "grid_peak_V": 0.07725,
+      "grid_peak_error_V": 1.7327117217441623e-05,
+      "center_finite_difference_V_per_K": -0.00015669112373578598,
+      "entropy_coefficient_at_center_V_per_K": -0.00015669112374216661,
+      "fullpath_roundtrip_error_V_per_K": -6.380638205294442e-15,
+      "reversible_heat_at_center_W_per_A": 0.054552014730835305,
+      "heat_identity_error_W_per_A": 0.0
+    }
+  ],
+  "u_only_transition_probe": {
+    "equilibrium_difference": 0.0,
+    "entropy_difference": 0.0,
+    "helper_vib_dU_nonzero_V": 3.708190858715776e-05,
+    "silently_ignored": true
+  },
+  "theta_E_Tref_boundary": {
+    "0.0": {
+      "raised": false,
+      "all_finite": false,
+      "warning_count": 3
+    },
+    "-10.0": {
+      "raised": false,
+      "all_finite": false,
+      "warning_count": 2
+    }
+  },
+  "release_test_coverage": [
+    {
+      "path": "Claude/docs/v1.0.18.2/test_regression_graphite.py",
+      "theta_E_occurrences": 0,
+      "_vib_occurrences": 0
+    },
+    {
+      "path": "Claude/docs/v1.0.18.2/sample_test_v1018_2.py",
+      "theta_E_occurrences": 0,
+      "_vib_occurrences": 0
+    },
+    {
+      "path": "Claude/docs/v1.0.18.2/graph_suite_v1018_2.py",
+      "theta_E_occurrences": 0,
+      "_vib_occurrences": 0
+    }
+  ],
+  "validation": {
+    "absent_key_all_exact": true,
+    "active_fullpath_roundtrip_max_error_V_per_K": 8.916153405869043e-15,
+    "active_heat_identity_max_error_W_per_A": 0.0,
+    "active_peak_grid_max_error_V": 1.7327117217441623e-05,
+    "u_only_public_ignore_confirmed": true,
+    "tref_positive_failfast_pass": false,
+    "persistent_release_regression_pass": false
+  },
+  "findings": [
+    {
+      "id": "FP-001",
+      "disposition": "PRESERVE",
+      "text": "Without theta_E, equilibrium, isothermal/nonisothermal dQdV, entropy coefficient and reversible heat are exactly equal to v1.0.18.1 for the independent probe."
+    },
+    {
+      "id": "FP-002",
+      "disposition": "PRESERVE",
+      "text": "With theta_E active, equilibrium peak centers follow func_U_j plus the tangent-subtracted vibrational voltage."
+    },
+    {
+      "id": "FP-003",
+      "disposition": "PRESERVE",
+      "text": "At each active temperature, the finite-difference center derivative equals entropy_coefficient at the center."
+    },
+    {
+      "id": "FP-004",
+      "disposition": "PRESERVE",
+      "text": "reversible_heat equals -I*T*entropy_coefficient on the active branch."
+    },
+    {
+      "id": "FP-005",
+      "disposition": "PRESERVE",
+      "text": "Nonisothermal dQdV receives pointwise _vib_dU through the same equilibrium-center path."
+    },
+    {
+      "id": "FP-006",
+      "disposition": "CORRECT",
+      "text": "theta_E is silently ignored for U-only transitions although the private helper returns a nonzero correction; the public parameter contract is type-unsafe."
+    },
+    {
+      "id": "FP-007",
+      "disposition": "CORRECT",
+      "text": "theta_E_Tref is checked only for finiteness, not positivity; zero/negative values do not fail cleanly at the input boundary."
+    },
+    {
+      "id": "FP-008",
+      "disposition": "CORRECT",
+      "text": "Released regression, sample and graph-suite files contain zero theta_E and _vib occurrences, so no persistent release test exercises the feature."
+    },
+    {
+      "id": "FP-009",
+      "disposition": "CORRECT",
+      "text": "The handover's roundtrip evidence is not recoverable from the distributed regression harness."
+    },
+    {
+      "id": "FP-010",
+      "disposition": "CARRY_FORWARD",
+      "text": "The active branch does not fix the LCO frozen electronic gate or the default no-key dwdT defect."
+    },
+    {
+      "id": "FP-011",
+      "disposition": "EMPIRICAL_ONLY",
+      "text": "Full-path numerical conformance establishes a capability, not a graphite/LCO material fit."
+    },
+    {
+      "id": "FP-012",
+      "disposition": "CORRECT",
+      "text": "A durable test must cover absent-key equality, active scalar/array paths, Tref positivity, U-only rejection, and derivative/heat identities."
+    }
+  ],
+  "summary": {
+    "finding_count": 12,
+    "capability_conformance_pass": true,
+    "public_parameter_contract_pass": false,
+    "material_validation_pass": false,
+    "next_step": "38.5"
+  }
+}
