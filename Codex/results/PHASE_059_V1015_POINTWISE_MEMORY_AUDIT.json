@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "phase": 59,
+  "step": "37.1",
+  "scope": "v1.0.15 pointwise continuous-memory derivation, v1.0.14 grid-switch replacement, and independent numerical limits",
+  "status": "CONDITIONAL_P059_V1015_POINTWISE_MEMORY_CORE_PRESERVED_BUT_FINITE_WINDOW_RESOLUTION_SWITCH_AND_CHRONOLOGY_FAIL",
+  "source_contracts": {
+    "line_counts": {
+      "v14_production_code": 904,
+      "v15_production_code": 895,
+      "v15_chapter_1": 3512,
+      "v15_regression_test": 85
+    },
+    "chapter_1_lines": {
+      "finite_initial_general_solution": 1985,
+      "minus_infinity_boundary": 1996,
+      "normalized_lag_integral": 2021,
+      "peak_shape": 2064,
+      "small_lag_limit": 2098,
+      "direction_reversal": 2141,
+      "pointwise_sum": 2219
+    },
+    "code_lines": {
+      "decay_cap": 75,
+      "pointwise_recurrence": 105,
+      "small_a_branch": 126,
+      "initial_condition": 122,
+      "voltage_sorting": 441,
+      "resolution_switch": 496,
+      "nonfinite_to_zero": 366,
+      "curve_hour_rate": 523
+    }
+  },
+  "lineage_contract": {
+    "func_L_q_executable_ast_equal": true,
+    "lag_resolver_executable_ast_equal": true,
+    "dqdv_executable_ast_equal": false,
+    "v14_lowpass_removed": true,
+    "v15_pointwise_added": true
+  },
+  "independent_rederivation": {
+    "continuum_equations": {
+      "state_ode": "d xi/ds = (xi_eq-xi)/L, with signed monotone progress s",
+      "finite_initial_solution": "xi(s)=exp(-(s-s0)/L)xi(s0)+(1/L) integral_s0^s exp(-(s-u)/L)xi_eq(u)du",
+      "natural_boundary_solution": "xi_lag(s)=(1/L) integral_-infinity^s exp(-(s-u)/L)xi_eq(u)du",
+      "peak_shape": "(xi_eq-xi_lag)/L = d xi_lag/ds",
+      "small_lag_limit": "lim_L->0 peak_shape = d xi_eq/ds",
+      "capacity_identity": "integral peak_shape ds = xi_lag(s_end)-xi_lag(s_start)"
+    },
+    "assumption_boundary": "The minus-infinity convolution is equivalent to the finite initial-value problem only when prehistory or a saturated equilibrium boundary is supplied."
+  },
+  "numerical_rederivation": {
+    "recurrence_identity": {
+      "irregular_point_count": 7,
+      "lag_length_V": 0.017,
+      "constant_source_max_abs_error": 0.0,
+      "linear_source_max_abs_error": 0.0
+    },
+    "small_a_branch": [
+      {
+        "a": 9.9999e-05,
+        "release_small_a_formula": 0.2000299997,
+        "exact_linear_segment": 0.20002999853338999,
+        "small_a_formula_abs_error": 1.1666100018666128e-09,
+        "release_uses_small_a_formula": true
+      },
+      {
+        "a": 0.0001,
+        "release_small_a_formula": 0.20003,
+        "exact_linear_segment": 0.20002999883336667,
+        "small_a_formula_abs_error": 1.1666333340833195e-09,
+        "release_uses_small_a_formula": false
+      },
+      {
+        "a": 0.000100001,
+        "release_small_a_formula": 0.2000300003,
+        "exact_linear_segment": 0.20002999913334332,
+        "small_a_formula_abs_error": 1.1666566665333394e-09,
+        "release_uses_small_a_formula": false
+      }
+    ],
+    "wide_window": {
+      "voltage_window_V": [
+        -0.6,
+        0.6
+      ],
+      "equilibrium_area": 0.9999999999998128,
+      "lagged_area": 0.9999999999971994,
+      "expected_capacity": 1.0,
+      "equilibrium_peak": 12.499999999999998,
+      "lagged_peak": 10.81082969775133
+    },
+    "finite_window_initial_condition": {
+      "crop_window_V": [
+        -0.05,
+        0.2
+      ],
+      "first_point_release_peak": 0.0,
+      "first_point_infinite_history_peak": 1.847424005507682,
+      "standalone_vs_infinite_history_max_abs": 1.847424005507682,
+      "standalone_crop_area": 0.9236528970744831,
+      "infinite_history_crop_area": 0.9606012401913524,
+      "area_bias_fraction_of_Q": -0.03694834311686941,
+      "code_initial_condition": "xi_lag(V0)=xi_eq(V0)",
+      "theory_boundary": "convolution from minus infinity"
+    },
+    "sampling_dependence": {
+      "coarse_spacing_V": 0.010000000000000009,
+      "dense_spacing_V": 9.999999999998899e-05,
+      "coarse_vs_dense_at_same_coordinates_max_abs": 0.07929716283003163,
+      "coarse_area": 0.9999949314903123,
+      "dense_area": 0.9999951055456648,
+      "interpretation": "No hidden work grid remains, but piecewise-linear source integration still converges with the supplied sampling."
+    },
+    "resolution_guard": {
+      "decay_cap": 40.0,
+      "median_spacing_V": 0.010000000000000009,
+      "critical_lag_V": 0.0002500000000000002,
+      "below_lag_V": 0.00024975000000000024,
+      "above_lag_V": 0.0002502500000000002,
+      "below_branch_vs_equilibrium_max_abs": 0.0,
+      "above_vs_below_max_abs_jump": 1.1942671528473454,
+      "jump_fraction_of_equilibrium_peak": 0.09554137222778765,
+      "v14_grid_handoff_jump_fraction": 0.2292529587316009,
+      "verdict": "FINITE_SAMPLING_DEPENDENT_SWITCH_REMAINS"
+    },
+    "fixed_direction_mirror": {
+      "max_abs_error": 0.0,
+      "discharge_area": 0.9999951055456648,
+      "charge_area_in_progress_coordinate": 0.9999951055456648
+    },
+    "chronology": {
+      "sorted_vs_shuffled_then_restored_max_abs": 0.0,
+      "prior_true_input_order_memory_max_abs": 21.329615245953715,
+      "point_count": 6001,
+      "verdict": "INPUT_CHRONOLOGY_ERASED_BY_VOLTAGE_SORTING"
+    },
+    "current_limits": {
+      "direct_LV_I0_vs_I1_max_abs": 0.0,
+      "direct_LV_I0_vs_equilibrium_max_abs": 3.9033964603135773,
+      "derived_path_I0_vs_equilibrium_max_abs": 0.0
+    },
+    "nonfinite_lag": {
+      "resolved_lag_V": 0.0,
+      "mapped_to_equilibrium": true,
+      "physical_large_barrier_limit": "frozen or extremely slow state",
+      "verdict": "NONFINITE_RATE_LIMIT_REVERSED_TO_EQUILIBRIUM"
+    }
+  },
+  "test_and_golden_scope": {
+    "ast_assert_count": 0,
+    "mentions_pointwise_memory": false,
+    "mentions_direct_LV": false,
+    "mentions_nonmonotone": false,
+    "mentions_reversal": false,
+    "mentions_pulse": false,
+    "golden_rebaseline_changed_array_count": 11,
+    "golden_evidence_class": "DERIVED_MODEL_OUTPUT_SNAPSHOT"
+  },
+  "findings": [
+    {
+      "topic": "continuum_memory_derivation",
+      "disposition": "PRESERVE_NORMALIZED_CAUSAL_KERNEL",
+      "reason": "The integrating-factor solution, normalized exponential kernel, and L_V->0 derivative limit are mathematically sound for a monotone coordinate with a specified past boundary."
+    },
+    {
+      "topic": "pointwise_linear_segment_recurrence",
+      "disposition": "PRESERVE_EXACT_RESOLVED_SEGMENT_INTEGRATION",
+      "reason": "For a>=1e-4 the recurrence exactly integrates a linearly interpolated source; constant and linear independent checks are at floating-point noise."
+    },
+    {
+      "topic": "small_a_branch",
+      "disposition": "CORRECT_EXACTNESS_CLAIM_TO_ASYMPTOTIC_APPROXIMATION",
+      "reason": "The a<1e-4 branch is a first-order trapezoidal asymptote, not the exact segment integral. Its local error is tiny but nonzero."
+    },
+    {
+      "topic": "wide_window_capacity",
+      "disposition": "PRESERVE_WIDE_WINDOW_CAPACITY_LIMIT",
+      "reason": "A saturated wide starting boundary recovers Q and produces lower, broader peaks for direct finite L_V."
+    },
+    {
+      "topic": "finite_window_initial_state",
+      "disposition": "REQUIRE_EXPLICIT_INITIAL_STATE_OR_PREHISTORY",
+      "reason": "The code sets xi_lag(V0)=xi_eq(V0), while the theory integrates from minus infinity. Cropped windows therefore change the observable and its integrated area."
+    },
+    {
+      "topic": "grid_independence",
+      "disposition": "PRESERVE_NO_HIDDEN_GRID_CORRECT_SAMPLING_INDEPENDENCE",
+      "reason": "v1.0.15 removes V_work and reverse interpolation, but nonlinear source accuracy and the guard still depend on supplied spacing."
+    },
+    {
+      "topic": "resolution_guard",
+      "disposition": "REJECT_CLAIM_OF_CONTINUOUS_NONBRANCH_GUARD",
+      "reason": "Crossing char_h/L_V=40 changes between analytic equilibrium and a cell-average memory derivative with a finite jump."
+    },
+    {
+      "topic": "v14_grid_switch",
+      "disposition": "PRESERVE_V15_AS_MATERIAL_IMPROVEMENT_NOT_COMPLETE_FIX",
+      "reason": "The 22.925% v1.0.14 two-grid-step handoff is removed, but a smaller sampling-dependent cap switch remains."
+    },
+    {
+      "topic": "fixed_direction_mirror",
+      "disposition": "PRESERVE_MONOTONE_CHARGE_DISCHARGE_MIRROR",
+      "reason": "The symmetric monotone direct-LV case mirrors exactly."
+    },
+    {
+      "topic": "chronology",
+      "disposition": "REJECT_AS_TIME_HISTORY_MODEL",
+      "reason": "Stable voltage sorting makes shuffled input indistinguishable from sorted input and erases pulse, rest, loop, and reversal order."
+    },
+    {
+      "topic": "derived_zero_current",
+      "disposition": "PRESERVE_FORMAL_DERIVED_I0_BRANCH",
+      "reason": "The rate-derived path returns equilibrium at I=0."
+    },
+    {
+      "topic": "direct_lag_override",
+      "disposition": "EMPIRICAL_ONLY_REJECT_PHYSICAL_I0_LIMIT",
+      "reason": "Direct L_V precedes the current law and remains active at I=0."
+    },
+    {
+      "topic": "nonfinite_lag",
+      "disposition": "REJECT_FROZEN_LIMIT_REVERSAL",
+      "reason": "A nonfinite lag from an extremely slow transition is mapped to L_V=0 equilibrium."
+    },
+    {
+      "topic": "inherited_kinetic_closure",
+      "disposition": "CARRY_FORWARD_UNIT_LOCAL_AFFINITY_BLOCKERS",
+      "reason": "func_L_q and the resolver executable AST are unchanged, so the 3600 unit factor, frozen cut affinity, and mesoscopic coarse-graining debts remain."
+    },
+    {
+      "topic": "golden_rebaseline",
+      "disposition": "PRESERVE_INTERNAL_SNAPSHOT_ONLY",
+      "reason": "The 11 changed arrays capture the new architecture output, but the harness contains no direct-LV, nonmonotone, reversal, pulse, or 3600-unit contract."
+    },
+    {
+      "topic": "repair_contract",
+      "disposition": "REQUIRE_SIGNED_TIME_STATE_INTEGRATOR",
+      "reason": "Keep the normalized kernel as a monotone reduced limit, but use an explicit initial state and signed time/capacity evolution for real galvanostatic protocols; make the equilibrium limit numerically continuous without a sampling threshold."
+    }
+  ],
+  "summary": {
+    "status": "CONDITIONAL_P059_V1015_POINTWISE_MEMORY_CORE_PRESERVED_BUT_FINITE_WINDOW_RESOLUTION_SWITCH_AND_CHRONOLOGY_FAIL",
+    "finding_count": 16,
+    "continuum_kernel_pass": true,
+    "resolved_linear_segment_recurrence_pass": true,
+    "wide_window_capacity_pass": true,
+    "fixed_direction_mirror_pass": true,
+    "v14_grid_switch_materially_improved": true,
+    "small_a_exactness_claim_pass": false,
+    "finite_window_initial_condition_conformance_pass": false,
+    "sampling_independence_pass": false,
+    "resolution_guard_continuity_pass": false,
+    "input_chronology_pass": false,
+    "direct_lag_zero_current_pass": false,
+    "nonfinite_frozen_limit_pass": false,
+    "inherited_unit_local_barrier_repaired": false,
+    "golden_external_authority_pass": false,
+    "next_step": "37.2"
+  },
+  "source_hashes_before": {
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.15/graphite_ica_ch1_v1.0.15.tex": "0488077daaa325c6a134b3e9d94adf4d8ba93bde04fbee40ab06e86be5bac703",
+    "Claude/docs/v1.0.15/test_regression_graphite.py": "ebbd4032447ef78d7a9504c5dbacecd9bdced35dbbf814dc5b71ef874e11df72",
+    "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md": "3541defa7722f8ec3c25984132971eec92dd6f4a653b77b7820dbe4aaec8eaf7"
+  },
+  "source_hashes_after": {
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.15/graphite_ica_ch1_v1.0.15.tex": "0488077daaa325c6a134b3e9d94adf4d8ba93bde04fbee40ab06e86be5bac703",
+    "Claude/docs/v1.0.15/test_regression_graphite.py": "ebbd4032447ef78d7a9504c5dbacecd9bdced35dbbf814dc5b71ef874e11df72",
+    "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md": "3541defa7722f8ec3c25984132971eec92dd6f4a653b77b7820dbe4aaec8eaf7"
+  },
+  "source_unchanged": true
+}

@@ -696,6 +696,38 @@
   (53/53 checks, deterministic rerun hash preserved).
 - v1.0.14 completion-authority status:
   `CONDITIONAL_P059_V1014_PROCESS_COMPLETE_BUT_SCIENTIFIC_COMPLETION_AUTHORITY_REJECTED`.
+- Phase 059 v1.0.15 pointwise-memory audit:
+  normalized exponential kernel, resolved linear-segment recurrence,
+  wide-window Q conservation과 monotone charge/discharge mirror는
+  보존한다. v1.0.14 hidden work grid·역보간·22.925% handoff를
+  제거한 것은 실질적 개선이다.
+- Finite-window/sampling blockers:
+  이론의 \(-\infty\) prehistory와 달리 code는 첫 점에서
+  `xi_lag=xi_eq`를 둔다. [-0.05,0.2] V crop의 독립호출/과거유지
+  면적은 0.923653/0.960601로 Q 대비 -3.6948% 편향이다.
+  0.01/0.0001 V sampling의 같은 좌표 출력 최대 차이는 0.079297다.
+- Resolution-guard blocker:
+  `_LAG_RESOLVE_DECAY_CAP=40`은 sampling-dependent branch다.
+  0.01 V 간격의 \(L_V=0.00025\) V 경계에서 최대 1.194267,
+  equilibrium peak의 9.554% jump가 발생해 불연속 없는 가드
+  주장을 기각한다.
+- Chronology/current blockers:
+  voltage sorting으로 shuffled input과 sorted input이 exact-identical이고
+  true input-order recurrence와 최대 21.3296 차이다.
+  derived \(I=0\) 평형 branch는 보존하지만 direct `L_V`는
+  I=0에서도 활성이다. nonfinite lag도 L_V=0 평형으로 역전한다.
+- v1.0.15 lineage:
+  `func_L_q`와 lag resolver executable AST가 v1.0.14와 동일해
+  3,600 시간단위, frozen cut affinity와 mesoscopic
+  coarse-graining blocker는 수정되지 않았다. golden 11-array
+  rebaseline은 internal output snapshot일 뿐 해당 branch를 검사하지 않는다.
+- Phase 059 v1.0.15 pointwise-memory evidence:
+  `Codex/results/PHASE_059_V1015_POINTWISE_MEMORY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_POINTWISE_MEMORY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_pointwise_memory.py`
+  (76/76 checks, deterministic rerun hash preserved).
+- v1.0.15 pointwise-memory status:
+  `CONDITIONAL_P059_V1015_POINTWISE_MEMORY_CORE_PRESERVED_BUT_FINITE_WINDOW_RESOLUTION_SWITCH_AND_CHRONOLOGY_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -718,16 +750,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 37.1:
-v1.0.15 pointwise continuous-memory 식을 독립 유도하고
-v1.0.14 grid-switch와 normalization, 보존, 작은-\(L_V\),
-영전류, 방향·이력 극한을 수치 비교한다.
+Phase 059 Step 37.2:
+v1.0.15의 방향, 초기조건, 유한 전압창, integration tail,
+mirror branch, scalar/vector behavior와 golden rebaseline의
+구현 경계를 종합 판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–36.5.
+Phase 059 Steps 33.1–37.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

@@ -1126,3 +1126,62 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   새 권위를 얻는다.
 - 다음은 Step 37.1에서 v1.0.15 pointwise continuous-memory 식을
   독립 유도하고 v1.0.14 grid-switch와 수치·극한 비교하는 일이다.
+
+### 2026-07-28 — Step 37.1
+
+- v1.0.15 Ch1 3,512행과 production code 895행의 pointwise-memory
+  theory/code를 v1.0.14 code와 독립 비교했다.
+- 진행 좌표 \(s\)의
+  \(\mathrm d\xi/\mathrm ds=(\xi_\mathrm{eq}-\xi)/L\)에서
+  유한 초기점 해, \(-\infty\) 자연경계 convolution,
+  peak shape와 \(L\to0\) derivative limit를 다시 유도했다.
+- 정규화된 지수 커널과 resolved linear-segment recurrence는
+  보존한다. 불규칙 7점의 상수·선형 source 오차는 floating-point
+  noise였고, 넓은 [-0.6,0.6] V 창의 지연 면적은
+  0.999999999997로 Q=1을 보존했다.
+- v1.0.15는 v1.0.14의 hidden `V_work`, 역보간과 22.925%
+  two-grid-step handoff를 제거했다. 이는 실질적 개선이다.
+- 다만 `a<1e-4` branch는 exact linear integral이 아니라
+  1차 trapezoidal asymptote다. 오차는 작지만 “구간 exact”의
+  전역 문구는 정정해야 한다.
+- 이론은 \(-\infty\) prehistory를 적분하지만 code는 첫 점을
+  `xi_lag(V0)=xi_eq(V0)`로 둔다. 동일 [-0.05,0.2] V crop을
+  독립 호출하면 첫 peak 0, 넓은 과거를 유지하면 1.847424이며,
+  면적은 0.923653 대 0.960601로 Q 대비 -3.6948% 편향이다.
+  명시 초기 state 또는 prehistory가 필요하다.
+- hidden work grid는 제거됐지만 sampling independence는 아니다.
+  0.01 V와 0.0001 V 입력을 같은 좌표에서 비교하면 최대
+  0.079297 차이가 난다.
+- `_LAG_RESOLVE_DECAY_CAP=40`은 여전히 sampling-dependent
+  branch다. 0.01 V 간격에서 경계 \(L_V=0.00025\) V를 넘을 때
+  최대 1.194267, equilibrium peak의 9.554% jump가 발생했다.
+  “불연속 없는 수치 가드” 주장은 기각한다.
+- 단조 고정 방향의 charge/discharge mirror는 exact했다. 그러나
+  code가 voltage를 정렬하므로 shuffled input을 복원한 출력은
+  sorted output과 exact-identical이고, 실제 입력 순서 recurrence와
+  최대 21.3296 차이다. pulse/rest/loop/reversal chronology를
+  표현하지 못한다.
+- derived lag path의 \(I=0\) 평형 branch는 보존한다. direct
+  `L_V`는 \(I=0\)에서도 활성이고, nonfinite derived lag는
+  다시 \(L_V=0\) 평형으로 뒤집힌다.
+- `func_L_q`와 lag resolver executable AST는 v1.0.14와 동일하다.
+  3,600 시간 단위, frozen cut affinity와 electrode-scale
+  coarse-graining blocker는 수정되지 않았다.
+- golden rebaseline은 새 architecture의 11개 output snapshot으로
+  보존하지만 direct `L_V`, nonmonotone, reversal, pulse와
+  3,600-unit contract를 검사하지 않는다.
+- 근거:
+  `Codex/results/PHASE_059_V1015_POINTWISE_MEMORY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_POINTWISE_MEMORY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1015_pointwise_memory.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_pointwise_memory.py`.
+- validator 76/76과 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1015_POINTWISE_MEMORY_CORE_PRESERVED_BUT_FINITE_WINDOW_RESOLUTION_SWITCH_AND_CHRONOLOGY_FAIL`.
+- repair 방향은 normalized kernel을 monotone reduced limit로
+  보존하되, 실제 protocol에는 명시 초기 state와 signed
+  time/capacity integration, current/terminal-voltage closure를
+  사용하고 sampling threshold 없이 평형 극한을 닫는 것이다.
+- 다음은 Step 37.2에서 방향·초기조건·유한창·tail·mirror·
+  scalar/vector behavior와 golden rebaseline의 구현 경계를
+  종합 판정하는 일이다.
