@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "37.3",
+  "scope": "v1.0.15 Ch2 heat-detailing novelty, independent numerical round trip, thermodynamic quantity/reference/sign contract, citation authority, and theory-only manuscript boundary",
+  "release_delta": {
+    "ch2": {
+      "old_line_count": 794,
+      "new_line_count": 886,
+      "added_line_count": 99,
+      "deleted_line_count": 7,
+      "sequence_matcher_added_line_count": 99,
+      "sequence_matcher_deleted_line_count": 7,
+      "added_subsection_count": 1,
+      "added_equation_star_count": 3,
+      "added_table_count": 2,
+      "added_code_mention_lines": [
+        "끝까지 따라간다 --- 코드(\\texttt{Anode\\_Fit\\_v1.0.15})가 내는 값 그대로다. 대표점은 탈리튬화 분율 $\\bar x=0.25$",
+        "왕복 정합함을 이 한 점에서 확인한다(전 범위 검증은 파생 A). 코드 \\texttt{entropy\\_coefficient} 도 같은 $-0.204$ 를 낸다. \\textbf{(e) 유효 반응 엔트로피와 가역 발열.} 정의 $\\Delta S(\\bar x)=F\\,\\partial U_\\oc/\\partial T$ 와",
+        "\\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \\texttt{Anode\\_Fit\\_v1.0.15} 4-전이 흑연 staging 파라미터, 유한차분 vs.\\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \\S\\ref{ssec:overlap} 요지.]"
+      ],
+      "added_body_code_mention_lines": [
+        "끝까지 따라간다 --- 코드(\\texttt{Anode\\_Fit\\_v1.0.15})가 내는 값 그대로다. 대표점은 탈리튬화 분율 $\\bar x=0.25$",
+        "왕복 정합함을 이 한 점에서 확인한다(전 범위 검증은 파생 A). 코드 \\texttt{entropy\\_coefficient} 도 같은 $-0.204$ 를 낸다. \\textbf{(e) 유효 반응 엔트로피와 가역 발열.} 정의 $\\Delta S(\\bar x)=F\\,\\partial U_\\oc/\\partial T$ 와"
+      ],
+      "added_vibrational_caveat": true,
+      "added_width_model_choice_caveat": true,
+      "added_worked_example": true
+    },
+    "production_code": {
+      "old_line_count": 904,
+      "new_line_count": 895,
+      "added_line_count": 103,
+      "deleted_line_count": 112,
+      "sequence_matcher_added_line_count": 99,
+      "sequence_matcher_deleted_line_count": 108,
+      "added_subsection_count": 0,
+      "added_equation_star_count": 0,
+      "added_table_count": 0,
+      "added_code_mention_lines": [
+        "#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15. 코드·문건 버전 통일.",
+        "#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처[P5 코드개정 대상, 증판 시점 v1.0.14 승계].)"
+      ],
+      "added_body_code_mention_lines": [
+        "#   (구현 계보: v11_final → use_w_eff 제거 → 1.0.10 → 1.0.12 → 1.0.13 → 1.0.14 → 1.0.15. 코드·문건 버전 통일.",
+        "#    1.0.13 = 통계역학-first 재구조화(Part 0/I/II) 동반판. 1.0.14 = 어투·엄밀성·Appendix 개정 동반판(물리 로직 승계). 1.0.15 = 이산 격자 퇴출·점별 연속 아키텍처[P5 코드개정 대상, 증판 시점 v1.0.14 승계].)"
+      ],
+      "added_vibrational_caveat": false,
+      "added_width_model_choice_caveat": false,
+      "added_worked_example": false
+    },
+    "heat_path_ast": [
+      {
+        "symbol": "func_U_j",
+        "v1014_ast_sha256": "2e71c78c8841cc1b53500dead3552a16c5c1b30a40cd19c9749c5596a3bc165a",
+        "v1015_ast_sha256": "2e71c78c8841cc1b53500dead3552a16c5c1b30a40cd19c9749c5596a3bc165a",
+        "executable_ast_identical": true
+      },
+      {
+        "symbol": "GraphiteAnodeDischargeDQDV._effective_dS_rxn",
+        "v1014_ast_sha256": "aa87d99cbaf60e98ef8803df4e72feaa61d468b0400c3721bad55b9461e52c87",
+        "v1015_ast_sha256": "aa87d99cbaf60e98ef8803df4e72feaa61d468b0400c3721bad55b9461e52c87",
+        "executable_ast_identical": true
+      },
+      {
+        "symbol": "GraphiteAnodeDischargeDQDV.entropy_coefficient",
+        "v1014_ast_sha256": "5eca279815421bde480e0fd6dbbae55a56b25615e92accfaa73fc018d08a309d",
+        "v1015_ast_sha256": "5eca279815421bde480e0fd6dbbae55a56b25615e92accfaa73fc018d08a309d",
+        "executable_ast_identical": true
+      },
+      {
+        "symbol": "GraphiteAnodeDischargeDQDV.reversible_heat",
+        "v1014_ast_sha256": "1288f8746556988779fe437290eb7527ef433b07fcc00a43f9159a4b35c34ef0",
+        "v1015_ast_sha256": "1288f8746556988779fe437290eb7527ef433b07fcc00a43f9159a4b35c34ef0",
+        "executable_ast_identical": true
+      },
+      {
+        "symbol": "GraphiteAnodeDischargeDQDV.irreversible_heat",
+        "v1014_ast_sha256": "358dbbf2385e335b13eb37a1f9327c809a4013370d0c8d5a58338903e1108a63",
+        "v1015_ast_sha256": "358dbbf2385e335b13eb37a1f9327c809a4013370d0c8d5a58338903e1108a63",
+        "executable_ast_identical": true
+      },
+      {
+        "symbol": "LCOCathodeDQDV._effective_dS_rxn",
+        "v1014_ast_sha256": "c2f68cad32c95a089ce033e20a9b02a76964e8eef088420d5513eeeb2ac2a264",
+        "v1015_ast_sha256": "c2f68cad32c95a089ce033e20a9b02a76964e8eef088420d5513eeeb2ac2a264",
+        "executable_ast_identical": true
+      }
+    ],
+    "all_heat_path_executable_ast_identical": true,
+    "classification": "WORKED_EXPLANATION_WITH_CONCEPTUAL_CAVEATS_NOT_NEW_HEAT_CODE"
+  },
+  "independent_rederivation": {
+    "fixed_quantity": "total delithiation fraction xbar",
+    "implicit_constraint": "sum_j Q_j xi_j(U,T)=Q_total*xbar",
+    "thermal_width_assumption": "w_j=n_j*R*T/F with constant n_j",
+    "derived_identity": "dU/dT=sum_j alpha_j[dS_j/F+(n_j R/F)ln(xi_j/(1-xi_j))]",
+    "fixed_width_limit": "dw_j/dT=0 removes the configurational term"
+  },
+  "worked_example": {
+    "temperature_K": 298.15,
+    "rows": [
+      {
+        "xbar_delithiation_fraction": 0.1,
+        "U_oc_V": 0.04349979850898501,
+        "analytic_complete_V_per_K": -0.00030696847114132584,
+        "code_entropy_coefficient_V_per_K": -0.00030696847114132584,
+        "finite_difference_thermal_width_V_per_K": -0.0003069684631264863,
+        "finite_difference_fixed_width_V_per_K": -0.00014394583094382482,
+        "center_only_V_per_K": -0.0001439464763811159,
+        "config_V_per_K": -0.00016302199476020998,
+        "effective_entropy_J_per_mol_K": -29.617852938070826,
+        "qrev_per_I_V": 0.0915226496707863,
+        "analytic_code_abs_V_per_K": 0.0,
+        "analytic_fd_abs_V_per_K": 8.014839551588604e-12,
+        "fixed_width_center_abs_V_per_K": 6.454372910701806e-10
+      },
+      {
+        "xbar_delithiation_fraction": 0.25,
+        "U_oc_V": 0.07435114128633938,
+        "analytic_complete_V_per_K": -0.00020394597218325618,
+        "code_entropy_coefficient_V_per_K": -0.00020394597218325613,
+        "finite_difference_thermal_width_V_per_K": -0.00020394596079502855,
+        "finite_difference_fixed_width_V_per_K": -0.0001339575918257637,
+        "center_only_V_per_K": -0.00013395817795607652,
+        "config_V_per_K": -6.998779422717966e-05,
+        "effective_entropy_J_per_mol_K": -19.677727126101466,
+        "qrev_per_I_V": 0.06080649160643781,
+        "analytic_code_abs_V_per_K": 5.421010862427522e-20,
+        "analytic_fd_abs_V_per_K": 1.1388227627627881e-11,
+        "fixed_width_center_abs_V_per_K": 5.861303128235854e-10
+      },
+      {
+        "xbar_delithiation_fraction": 0.5,
+        "U_oc_V": 0.10896422362433458,
+        "analytic_complete_V_per_K": -8.912015788286593e-05,
+        "code_entropy_coefficient_V_per_K": -8.912015788286595e-05,
+        "finite_difference_thermal_width_V_per_K": -8.912013564184769e-05,
+        "finite_difference_fixed_width_V_per_K": -0.00010528042002953819,
+        "center_only_V_per_K": -0.00010528144264496834,
+        "config_V_per_K": 1.6161284762102404e-05,
+        "effective_entropy_J_per_mol_K": -8.598758433328321,
+        "qrev_per_I_V": 0.02657117507277648,
+        "analytic_code_abs_V_per_K": 1.3552527156068805e-20,
+        "analytic_fd_abs_V_per_K": 2.2241018244771246e-11,
+        "fixed_width_center_abs_V_per_K": 1.0226154301471021e-09
+      },
+      {
+        "xbar_delithiation_fraction": 0.75,
+        "U_oc_V": 0.1488002337971548,
+        "analytic_complete_V_per_K": 4.441694200473763e-05,
+        "code_entropy_coefficient_V_per_K": 4.441694200473764e-05,
+        "finite_difference_thermal_width_V_per_K": 4.441701436763701e-05,
+        "finite_difference_fixed_width_V_per_K": -5.125125752768652e-05,
+        "center_only_V_per_K": -5.1253103729980435e-05,
+        "config_V_per_K": 9.567004573471807e-05,
+        "effective_entropy_J_per_mol_K": 4.285568649327111,
+        "qrev_per_I_V": -0.013242911258712525,
+        "analytic_code_abs_V_per_K": 6.776263578034403e-21,
+        "analytic_fd_abs_V_per_K": 7.236289937759006e-11,
+        "fixed_width_center_abs_V_per_K": 1.8462022939138884e-09
+      },
+      {
+        "xbar_delithiation_fraction": 0.9,
+        "U_oc_V": 0.1951990401421645,
+        "analytic_complete_V_per_K": 0.0002177837071719307,
+        "code_entropy_coefficient_V_per_K": 0.00021778370717193073,
+        "finite_difference_thermal_width_V_per_K": 0.00021778361036068708,
+        "finite_difference_fixed_width_V_per_K": 9.639849702495577e-05,
+        "center_only_V_per_K": 9.640108228003421e-05,
+        "config_V_per_K": 0.00012138262489189649,
+        "effective_entropy_J_per_mol_K": 21.012860986483737,
+        "qrev_per_I_V": -0.06493221229331114,
+        "analytic_code_abs_V_per_K": 2.710505431213761e-20,
+        "analytic_fd_abs_V_per_K": 9.681124361914963e-11,
+        "fixed_width_center_abs_V_per_K": 2.58525507844051e-09
+      }
+    ],
+    "xbar_0p25_transition_terms": {
+      "rows": [
+        {
+          "xi": 0.004897822827075648,
+          "g_per_V": 0.18970803024530403,
+          "Qg": 0.018970803024530403,
+          "center_V_per_K": 0.00030056485464061773,
+          "config_V_per_K": -0.0004579058947316833,
+          "weight": 0.0030711568416931746
+        },
+        {
+          "xi": 0.0722845606857719,
+          "g_per_V": 2.610209088785976,
+          "Qg": 0.31322509065431714,
+          "center_V_per_K": 0.0,
+          "config_V_per_K": -0.00021991273084532749,
+          "weight": 0.05070757304838881
+        },
+        {
+          "xi": 0.14315217772324093,
+          "g_per_V": 4.774376059987694,
+          "Qg": 1.1935940149969235,
+          "center_V_per_K": -5.182152666217547e-05,
+          "config_V_per_K": -0.00015418638401553826,
+          "weight": 0.19322927029614062
+        },
+        {
+          "xi": 0.39509605200837916,
+          "g_per_V": 9.302594197461403,
+          "Qg": 4.651297098730701,
+          "center_V_per_K": -0.0001658288853189615,
+          "config_V_per_K": -3.6702820316848807e-05,
+          "weight": 0.7529919998137775
+        }
+      ],
+      "dqdv_weight_denominator_per_V": 6.177087007406472,
+      "center_only_V_per_K": -0.00013395817795607652,
+      "config_V_per_K": -6.998779422717966e-05,
+      "complete_V_per_K": -0.00020394597218325618
+    },
+    "maximum_analytic_code_abs_V_per_K": 5.421010862427522e-20,
+    "maximum_analytic_fd_abs_V_per_K": 9.681124361914963e-11,
+    "maximum_fixed_width_center_abs_V_per_K": 2.58525507844051e-09
+  },
+  "quantity_reference_sign_contract": {
+    "manuscript_scope": "graphite working electrode vs Li half-cell",
+    "composition_coordinate": "xbar is delithiation fraction",
+    "entropy_quantity": "reaction/half-cell entropy coefficient F*dU_oc/dT at fixed xbar",
+    "heat_current_coordinate": "I>0 in qrev is half-cell discharge/lithiation current",
+    "curve_direction_coordinate": "direction=discharge maps to graphite delithiation",
+    "labels_are_opposite_chemical_directions": true,
+    "label_difference_disclosed_in_text_and_docstring": true,
+    "api_type_enforces_reaction_coordinate": false,
+    "full_cell_voltage_identity": "U_cell=U_cathode-U_anode",
+    "full_cell_graphite_contribution": "+I_cell*T*dU_anode/dT for discharge-positive I_cell",
+    "full_cell_total_available_from_graphite_only": false,
+    "reference_guard": "Do not promote an intrinsic single-electrode coefficient to a measured Li-reference half-cell coefficient."
+  },
+  "external_source_check": {
+    "citation": "Hales and Bulman, J. Electrochem. Soc. 171 (2024) 050535",
+    "doi": "10.1149/1945-7111/ad4918",
+    "primary_repository_url": "https://research-information.bris.ac.uk/en/publications/a-standardised-potentiometric-method-for-the-effective-parameteri/",
+    "supported_scope": "standardized potentiometric extraction of a full-cell entropy coefficient and reversible-heating parameter",
+    "specific_graphite_four_transition_sign_scale_supported": false
+  },
+  "inherited_v1014_blockers": {
+    "prior_status": "CONDITIONAL_P059_V1014_LCO_HEAT_ALGEBRA_PRESERVED_WITH_REFERENCE_DOS_GATE_CODE_AND_DOPING_BLOCKERS",
+    "half_cell_reference_closure_pass": false,
+    "theory_code_electronic_conformance_pass": false,
+    "doped_high_voltage_coverage_pass": false,
+    "unchanged_heat_ast_means_repaired": false
+  },
+  "findings": [
+    {
+      "id": "HD-059-01",
+      "topic": "release_delta_class",
+      "disposition": "WORKED_EXPLANATION_NOT_NEW_HEAT_IMPLEMENTATION",
+      "finding": "The main Ch2 addition is one worked example, two tables, and caveats; all six heat-path executable ASTs are unchanged."
+    },
+    {
+      "id": "HD-059-02",
+      "topic": "implicit_derivative",
+      "disposition": "PRESERVE_FOR_CONSTANT_N_THERMAL_WIDTH",
+      "finding": "At fixed delithiation fraction, implicit differentiation gives the documented center plus configurational weighted sum."
+    },
+    {
+      "id": "HD-059-03",
+      "topic": "worked_example_numbers",
+      "disposition": "PRESERVE_NUMERIC_ROUND_TRIP",
+      "finding": "The xbar=0.25 values and all five SOC table rows reproduce with independent bisection, analytic weighting, code output, and T±3 K finite differences."
+    },
+    {
+      "id": "HD-059-04",
+      "topic": "width_temperature_model",
+      "disposition": "CONDITIONAL_MODEL_CHOICE_NOT_MATERIAL_FACT",
+      "finding": "The configurational term follows only when w=nRT/F with constant n. A T-frozen width produces the center-only result."
+    },
+    {
+      "id": "HD-059-05",
+      "topic": "graphite_half_cell_quantity",
+      "disposition": "PRESERVE_DECLARED_HALF_CELL_REACTION_QUANTITY",
+      "finding": "Within the declared graphite-vs-Li half-cell, U_oc, fixed-x dU_oc/dT, DeltaS=F dU_oc/dT, and qrev=-I_lith T dU_oc/dT are mutually consistent."
+    },
+    {
+      "id": "HD-059-06",
+      "topic": "direction_label_mapping",
+      "disposition": "DOCUMENTED_BUT_NOT_TYPE_SAFE",
+      "finding": "The text and docstring disclose that positive heat current means half-cell lithiation whereas curve discharge means graphite delithiation; the API does not encode that distinction."
+    },
+    {
+      "id": "HD-059-07",
+      "topic": "full_cell_translation",
+      "disposition": "REQUIRE_CATHODE_MINUS_ANODE_ASSEMBLY",
+      "finding": "For full-cell discharge the graphite contribution changes sign relative to a positive lithiation-current half-cell term, and total reversible heat also requires the cathode coefficient."
+    },
+    {
+      "id": "HD-059-08",
+      "topic": "reference_electrode",
+      "disposition": "PRESERVE_HALF_CELL_SCOPE_CARRY_REFERENCE_GUARD",
+      "finding": "The chapter declares graphite vs Li, so its fitted coefficient is a half-cell quantity. Intrinsic electrode and measured reference-inclusive coefficients must not be interchanged."
+    },
+    {
+      "id": "HD-059-09",
+      "topic": "lco_heat_inheritance",
+      "disposition": "CARRY_V1014_LCO_REFERENCE_AND_T_DEPENDENCE_FAIL",
+      "finding": "Unchanged LCO heat AST means the v1.0.14 reference, DOS gate, composition, and T-squared-curvature blockers remain."
+    },
+    {
+      "id": "HD-059-10",
+      "topic": "calorimetry_citation_scope",
+      "disposition": "REJECT_AS_SPECIFIC_GRAPHITE_SIGN_SCALE_VALIDATION",
+      "finding": "The cited 2024 paper validates a standardized full-cell potentiometric entropy method; it does not validate this graphite four-transition prior's +60.8 mW/A prediction."
+    },
+    {
+      "id": "HD-059-11",
+      "topic": "vibrational_caveat",
+      "disposition": "PRESERVE_AS_CONCEPTUAL_CAVEAT_NOT_IMPLEMENTED_TERM",
+      "finding": "The classical-limit/quantum-residual sentence is a useful qualification, but no oscillator spectrum or residual T term is added to the model."
+    },
+    {
+      "id": "HD-059-12",
+      "topic": "manuscript_code_boundary",
+      "disposition": "FAIL_USER_THEORY_ONLY_BODY_CONSTRAINT",
+      "finding": "The new worked section adds two direct production-code mentions inside the physics manuscript."
+    },
+    {
+      "id": "HD-059-13",
+      "topic": "experimental_authority",
+      "disposition": "INTERNAL_SELF_CONSISTENCY_ONLY",
+      "finding": "The round trip validates the algebra for demonstration priors, not graphite calorimetry or multi-temperature experimental fit."
+    }
+  ],
+  "summary": {
+    "finding_count": 13,
+    "new_heat_implementation_pass": false,
+    "worked_example_algebra_pass": true,
+    "worked_example_code_match_pass": true,
+    "constant_n_thermal_width_contract_pass": true,
+    "fixed_width_alternative_distinguished": true,
+    "graphite_half_cell_internal_quantity_pass": true,
+    "reaction_coordinate_api_safety_pass": false,
+    "full_cell_heat_authority_pass": false,
+    "specific_calorimetry_validation_pass": false,
+    "lco_heat_blockers_repaired": false,
+    "theory_only_manuscript_boundary_pass": false,
+    "external_material_validation_pass": false,
+    "next_step": "37.4"
+  },
+  "status": "CONDITIONAL_P059_V1015_HEAT_WORKED_EXAMPLE_NUMERICALLY_CLOSED_BUT_NO_NEW_HEAT_PHYSICS_AND_SIGN_API_BOUNDARY_REMAINS",
+  "next_action": "Phase 059 Step 37.4: separate v1.0.16 n(T) as an empirical width law from microscopic physics and verify dw/dT, entropy propagation, positivity, and parameter correlation.",
+  "source_hashes_before": {
+    "Claude/docs/v1.0.14/graphite_ica_ch2_v1.0.14.tex": "f6d4bdde684d620e11636786faca010b9b254bc3ef351c9f1044f6d9e2cd1929",
+    "Claude/docs/v1.0.15/graphite_ica_ch2_v1.0.15.tex": "6e5ebd10fbe53fa69fc7dbc5b89cf1b69111d2fae63432711dc0119ef2e229c1",
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md": "3541defa7722f8ec3c25984132971eec92dd6f4a653b77b7820dbe4aaec8eaf7",
+    "Claude/docs/v1.0.15/CLOSING_v1.0.15.md": "974e9e63747487766d8eda4d0eb2d9ccb7296832826b06b6e3794fe2c60482bb",
+    "Codex/results/PHASE_059_V1014_LCO_HEAT_AUDIT.json": "2b3f0a55185ec19469c07078cf24c4c4356c2d7a334f0960b0344aa0f66c42d1"
+  },
+  "source_hashes_after": {
+    "Claude/docs/v1.0.14/graphite_ica_ch2_v1.0.14.tex": "f6d4bdde684d620e11636786faca010b9b254bc3ef351c9f1044f6d9e2cd1929",
+    "Claude/docs/v1.0.15/graphite_ica_ch2_v1.0.15.tex": "6e5ebd10fbe53fa69fc7dbc5b89cf1b69111d2fae63432711dc0119ef2e229c1",
+    "Claude/docs/v1.0.14/Anode_Fit_v1.0.14.py": "9e9c82f494890b92bf5995291f947a2c59289a8c1d1b86fa913b79af7ca47866",
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.15/HANDOVER_v1.0.15.md": "3541defa7722f8ec3c25984132971eec92dd6f4a653b77b7820dbe4aaec8eaf7",
+    "Claude/docs/v1.0.15/CLOSING_v1.0.15.md": "974e9e63747487766d8eda4d0eb2d9ccb7296832826b06b6e3794fe2c60482bb",
+    "Codex/results/PHASE_059_V1014_LCO_HEAT_AUDIT.json": "2b3f0a55185ec19469c07078cf24c4c4356c2d7a334f0960b0344aa0f66c42d1"
+  },
+  "source_unchanged": true
+}

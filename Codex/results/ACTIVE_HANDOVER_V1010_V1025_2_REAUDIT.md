@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_059_V1014_LCO_HEAT_REVIEW.md`
+   `Codex/results/PHASE_059_V1015_HEAT_DETAILING_REVIEW.md`
 
 ## Current State
 
@@ -755,6 +755,40 @@
   (63/63 checks, deterministic rerun hash preserved).
 - v1.0.15 implementation status:
   `CONDITIONAL_P059_V1015_MONOTONE_CURVE_KERNEL_PRESERVED_BUT_STATE_WINDOW_PROTOCOL_AND_GOLDEN_AUTHORITY_FAIL`.
+- Phase 059 v1.0.15 Ch2 heat detailing:
+  Ch2 +99/-7은 주로 worked example과 두 표다. `func_U_j`,
+  graphite/LCO entropy seam, `entropy_coefficient`,
+  `reversible_heat`, `irreversible_heat`의 executable AST는
+  v1.0.14와 전부 동일해 새 heat 구현은 없다.
+- Worked-example closure:
+  \(\bar x=0.25\), 298.15 K에서 독립 bisection/해석 가중식/
+  production 함수/\(T\pm3\) K 유한차분은
+  \(U_{\rm oc}=74.351141\) mV,
+  \(\partial U/\partial T=-0.203946\) mV/K,
+  \(\Delta S=-19.6777\) J mol\(^{-1}\) K\(^{-1}\),
+  \(\dot Q_{\rm rev}/I=+60.8065\) mV로 닫혔다.
+- Width and authority boundary:
+  config 항은 상수 \(n\), \(w=nRT/F\) model choice에서만 생기며
+  \(T\)-동결 폭에서는 중심값 식으로 돌아간다. 다섯 SOC 표는
+  demonstration prior의 내부 self-consistency이지 실측 graphite
+  calorimetry 검증이 아니다.
+- Heat sign/reference boundary:
+  graphite-vs-Li half-cell의 lithiation-positive heat quantity는
+  내부 정합하지만 curve discharge는 delithiation이다. 차이는
+  문건에 공개됐어도 API가 reaction coordinate를 강제하지 않는다.
+  full-cell에는 cathode-minus-anode 합성과 반대 graphite 부호가
+  필요하다. v1.0.14 LCO reference/DOS/\(T^2\) blocker도 미수리다.
+- Citation/manuscript boundary:
+  Hales–Bulman 2024는 full-cell entropy 측정법이지 이 graphite
+  prior의 +60.8 mW/A 검증이 아니다. 새 worked section의 생산
+  코드명 두 번은 사용자의 theory-only 본문 제약을 위반한다.
+- Phase 059 v1.0.15 heat evidence:
+  `Codex/results/PHASE_059_V1015_HEAT_DETAILING_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_HEAT_DETAILING_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_heat_detailing.py`
+  (64/64 checks, deterministic rerun hash preserved).
+- v1.0.15 heat-detailing status:
+  `CONDITIONAL_P059_V1015_HEAT_WORKED_EXAMPLE_NUMERICALLY_CLOSED_BUT_NO_NEW_HEAT_PHYSICS_AND_SIGN_API_BOUNDARY_REMAINS`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -777,16 +811,17 @@
 
 ## Next Exact Step
 
-Phase 059 Step 37.3:
-v1.0.15 Ch2 heat 상세화가 새 물리인지 worked explanation인지,
-문건과 code가 같은 열역학 quantity·reference·sign을 사용하는지
-판정한다.
+Phase 059 Step 37.4:
+v1.0.16 \(n(T)=n_0+n_1(T-T_\mathrm{ref})\) 확장을 empirical
+width law와 microscopic physics로 분리한다.
+\(\partial w/\partial T\), entropy propagation, positivity와
+parameter correlation을 검산한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–37.2.
+Phase 059 Steps 33.1–37.3.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

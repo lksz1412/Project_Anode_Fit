@@ -1234,3 +1234,52 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 37.3에서 v1.0.15 Ch2 heat 상세화가 새 물리인지
   worked explanation인지, 문건과 code가 같은 열역학 quantity를
   쓰는지 판정하는 일이다.
+
+### 2026-07-28 — Step 37.3
+
+- v1.0.14→v1.0.15 Ch2 exact diff(+99/-7)를 분류하고
+  `func_U_j`, graphite/LCO entropy seam, `entropy_coefficient`,
+  `reversible_heat`, `irreversible_heat`의 실행 AST를 대조했다.
+  여섯 heat-path AST가 모두 동일하므로 주된 추가분은 새 열물리
+  구현이 아니라 worked explanation이다.
+- 상수 \(n\), \(w=nRT/F\)에서 전하보존 음함수를 독립 미분했다.
+  고정 탈리튬화 분율에서 중심 엔트로피와 config 항의
+  \(Q_jg_j\) 가중식이 복원되고, \(T\)-동결 폭에서는 config 항이
+  사라져 중심값 가중식으로 환원된다.
+- \(\bar x=0.25\), 298.15 K에서 독립 bisection은
+  \(U_{\rm oc}=74.351141\) mV,
+  \(\partial U/\partial T=-0.203946\) mV/K,
+  \(\Delta S=-19.6777\) J mol\(^{-1}\) K\(^{-1}\),
+  \(\dot Q_{\rm rev}/I=+60.8065\) mV를 냈다.
+  다섯 SOC 행 전체가 해석식·production 함수·\(T\pm3\) K
+  유한차분에서 일치했다.
+- 문건이 선언한 graphite-vs-Li half-cell 좌표 안에서는
+  \(F\partial U_{\rm oc}/\partial T\)와 lithiation-positive
+  \(q_{\rm rev}=-IT\partial U_{\rm oc}/\partial T\)가 내부
+  정합한다. 그러나 curve discharge는 graphite delithiation이고
+  heat의 \(I>0\)은 half-cell lithiation이라 같은 단어가 반대
+  반응을 가리킨다. 이 차이는 문건에 공개됐지만 API가 반응좌표를
+  강제하지 않는다.
+- full-cell에서는 \(U_{\rm cell}=U_{\rm cat}-U_{\rm an}\)이므로
+  graphite 몫의 부호가 바뀌고 cathode coefficient도 필요하다.
+  graphite-only 표에는 full-cell 총열 권위가 없다.
+- Hales–Bulman 2024는 full-cell entropy coefficient 추출법을
+  지지하지만 이 4-transition graphite prior의 \(+60.8\) mW/A를
+  검증하지 않는다. 해당 calorimetry 정합 주장은 구체적 외부
+  검증으로는 기각했다.
+- v1.0.14 LCO reference/DOS/composition/\(T^2\)-curvature
+  blocker는 heat AST가 동일하므로 미수리다.
+- 새 worked section은 생산 코드명을 본문에 두 번 직접 적어
+  사용자의 theory-only manuscript 제약을 통과하지 못했다.
+- 근거:
+  `Codex/results/PHASE_059_V1015_HEAT_DETAILING_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_HEAT_DETAILING_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1015_heat_detailing.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_heat_detailing.py`.
+- validator 64/64와 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1015_HEAT_WORKED_EXAMPLE_NUMERICALLY_CLOSED_BUT_NO_NEW_HEAT_PHYSICS_AND_SIGN_API_BOUNDARY_REMAINS`.
+- 다음은 Step 37.4에서 v1.0.16 \(n(T)\)를 empirical width law와
+  microscopic physics로 분리하고 \(\partial w/\partial T\),
+  entropy propagation, positivity와 parameter correlation을
+  검산하는 일이다.
