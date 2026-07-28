@@ -542,6 +542,33 @@
   `CONDITIONAL_P059_ARTIFACT_GENEALOGY_WITH_PDF_DEPENDENCY_BLOCK_AND_NON_BIT_EXACT_REGENERATIONS`.
   build ordering, copy lineage, regeneration만 판정하며 물리·재료·문헌·
   실험 타당성은 승인하지 않는다.
+- Phase 059 v1.0.14 register/boundary audit:
+  v1.0.13→14 Ch1은 +511행, equations unchanged/changed/added
+  101/10/5다. Ch2는 +18행, 20/2/0이다. Ch1의 실제 신규 유도
+  5식은 single-site internal freedom, effective site free energy,
+  width budget, PSD integral, Gibbs–Thomson shift다.
+- Textbook/review disposition:
+  v1.0.14의 single-site derivation ladder와 broadening/PSD 설명은
+  `PRESERVE_ASSET_NOT_FINAL_AUTHORITY`다. Ch2 신규식 0이므로
+  두 장 전체 review-depth 완결 주장은 PARTIAL이다.
+- Theory-only boundary:
+  rendered implementation-boundary violation은 v1.0.13의 230행에서
+  v1.0.14 24행으로 감소했고 전용 구현 부록에 97행을 모았다.
+  하지만 title/header/date/body의 코드-first/current-code/dict/
+  self-test가 남아 gate는 FAIL이다.
+- Width-budget disposition:
+  logistic variance/FWHM과 independent convolution variance
+  addition은 PRESERVE다. 같은 \(w_j\)가 intrinsic \(nRT/F\)와
+  ensemble을 흡수한 effective fitted width 두 역할을 겸하므로
+  final theory에서 \(w_\mathrm{int}\), \(\sigma_\mathrm{ens}\),
+  \(L_V\), \(w_\mathrm{obs}\) 분리가 필요하다.
+- Phase 059 v1.0.14 register evidence:
+  `Codex/results/PHASE_059_V1014_REGISTER_BOUNDARY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_REGISTER_BOUNDARY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_register_boundary.py`
+  (38/38 checks, deterministic rerun hash preserved).
+- v1.0.14 register/boundary status:
+  `CONDITIONAL_P059_V1014_PEDAGOGICAL_ASSET_WITH_THEORY_BOUNDARY_AND_WIDTH_ROLE_DEBTS`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -564,16 +591,17 @@
 
 ## Next Exact Step
 
-Phase 059 Step 36.1:
-v1.0.14의 textbook register, derivation restructuring, width
-budget와 theory-only 본문 경계를 v1.0.13과 exact diff로
-재판정한다.
+Phase 059 Step 36.2:
+v1.0.14 phase-separation appendix의 regular solution, spinodal,
+Cahn–Hilliard, gradient coefficient와 mobility 식을 독립
+재유도해 unit, stability criterion, linearization과 boundary
+condition을 검산한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–35.3.
+Phase 059 Steps 33.1–36.1.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

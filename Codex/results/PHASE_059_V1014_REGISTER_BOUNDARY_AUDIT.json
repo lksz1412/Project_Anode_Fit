@@ -1,0 +1,4051 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-07-28",
+  "scope": "Phase 059 Step 36.1 v1.0.13 to v1.0.14 textbook register, derivation restructuring, width-budget semantics, and theory-only boundary",
+  "authority_boundary": "Historical manuscript adjudication only; equations and citations are not promoted to final theory or external validation.",
+  "source_hashes_before": {
+    "ch1_v1013": "d3a7b658c2ae099694e877cfde0b7b3870f87b411b675305cf6eb3a2480a4278",
+    "ch1_v1014": "81504418d19fede367fec601cbc36be2b23fdce7313e2125747a986df7ae8f91",
+    "ch2_v1013": "3b5959220860790b8dac733e4aea57c9485af689d9cc3fe7f71bbe0b5f96120f",
+    "ch2_v1014": "f6d4bdde684d620e11636786faca010b9b254bc3ef351c9f1044f6d9e2cd1929"
+  },
+  "source_hashes_after": {
+    "ch1_v1013": "d3a7b658c2ae099694e877cfde0b7b3870f87b411b675305cf6eb3a2480a4278",
+    "ch1_v1014": "81504418d19fede367fec601cbc36be2b23fdce7313e2125747a986df7ae8f91",
+    "ch2_v1013": "3b5959220860790b8dac733e4aea57c9485af689d9cc3fe7f71bbe0b5f96120f",
+    "ch2_v1014": "f6d4bdde684d620e11636786faca010b9b254bc3ef351c9f1044f6d9e2cd1929"
+  },
+  "sources_unchanged": true,
+  "comparisons": {
+    "ch1": {
+      "pair_id": "ch1_v1013_to_v1014",
+      "old_path": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+      "new_path": "Claude/docs/v1.0.14/graphite_ica_ch1_v1.0.14.tex",
+      "old_line_count": 2934,
+      "new_line_count": 3445,
+      "net_line_change": 511,
+      "sequence_ratio": 0.7408684746825521,
+      "opcode_line_counts": {
+        "equal": 2363,
+        "replace_old": 567,
+        "replace_new": 884,
+        "delete": 4,
+        "insert": 198
+      },
+      "section_old_count": 52,
+      "section_new_count": 53,
+      "added_sections": [
+        {
+          "label": "sec:appendix-code",
+          "title": "구현 대응표"
+        },
+        {
+          "label": "sec:facade",
+          "title": "전체 진행 요약"
+        },
+        {
+          "label": "sec:lco-code",
+          "title": "LCO 로의 일반화 — 파라미터 교체 + 전자항 추가"
+        },
+        {
+          "label": "sec:lco-peak",
+          "title": "LCO dQ/dV peak — 양극 영역의 세 peak"
+        },
+        {
+          "label": "sec:lco-preview",
+          "title": "MSMR 대응 개관 --- 같은 logistic, 같은 부호 규약"
+        },
+        {
+          "label": "sec:lco-why",
+          "title": "왜 흑연에는 없고 LCO 에는 있는가 --- MIT 의 물리"
+        },
+        {
+          "label": "sec:signcheck",
+          "title": "부호 사슬 검산표"
+        },
+        {
+          "label": "sec:sm-site",
+          "title": "단일 삽입 자리 --- 점유 통계와 그 요동"
+        }
+      ],
+      "removed_sections": [
+        {
+          "label": "sec:facade",
+          "title": "facade 와 전체 진행 한눈에"
+        },
+        {
+          "label": "sec:lco-code",
+          "title": "forward 코드의 LCO 일반화 — 파라미터 교체 + 전자항 plug-in"
+        },
+        {
+          "label": "sec:lco-peak",
+          "title": "LCO dQ/dV peak — 양극 영역의 세 봉우리"
+        },
+        {
+          "label": "sec:lco-preview",
+          "title": "MSMR 예고 --- 같은 logistic, 같은 부호 규약"
+        },
+        {
+          "label": "sec:lco-why",
+          "title": "왜 흑연엔 없고 LCO엔 있나 — MIT 의 물리"
+        },
+        {
+          "label": "sec:signcheck",
+          "title": "부호 사슬 전수 검산"
+        },
+        {
+          "label": "sec:sm-site",
+          "title": "단일 삽입 자리 --- 2-상태 점유와 그 요동"
+        }
+      ],
+      "equation_old_count": 111,
+      "equation_new_count": 116,
+      "equation_unchanged_count": 101,
+      "equation_changed_count": 10,
+      "equation_added_count": 5,
+      "equation_removed_count": 0,
+      "equation_changed_labels": [
+        "eq:LV",
+        "eq:branch",
+        "eq:fermifn",
+        "eq:partfn",
+        "eq:peakshape",
+        "eq:reversal",
+        "eq:sm-factor",
+        "eq:sm-mucount",
+        "eq:sm-occmid",
+        "eq:sum"
+      ],
+      "equation_added_labels": [
+        "eq:gibbsthomson",
+        "eq:psdconv",
+        "eq:sm-epstilde",
+        "eq:sm-sint",
+        "eq:widthbudget"
+      ],
+      "equation_removed_labels": [],
+      "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1013_to_v1014.patch",
+      "exact_unified_diff_sha256": "a2721789a42dbe4b841bbe3cad42819cffc84b12ddc6e00641f59ea8783c7ca3"
+    },
+    "ch2": {
+      "pair_id": "ch2_v1013_to_v1014",
+      "old_path": "Claude/docs/v1.0.13/graphite_ica_ch2_v1.0.13.tex",
+      "new_path": "Claude/docs/v1.0.14/graphite_ica_ch2_v1.0.14.tex",
+      "old_line_count": 776,
+      "new_line_count": 794,
+      "net_line_change": 18,
+      "sequence_ratio": 0.9337579617834395,
+      "opcode_line_counts": {
+        "equal": 733,
+        "replace_old": 43,
+        "replace_new": 61,
+        "delete": 0,
+        "insert": 0
+      },
+      "section_old_count": 20,
+      "section_new_count": 20,
+      "added_sections": [],
+      "removed_sections": [],
+      "equation_old_count": 22,
+      "equation_new_count": 22,
+      "equation_unchanged_count": 20,
+      "equation_changed_count": 2,
+      "equation_added_count": 0,
+      "equation_removed_count": 0,
+      "equation_changed_labels": [
+        "eq:Z1",
+        "eq:occ"
+      ],
+      "equation_added_labels": [],
+      "equation_removed_labels": [],
+      "exact_unified_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1013_to_v1014.patch",
+      "exact_unified_diff_sha256": "2c4615755d0bea16826507ae98c186cb61c4f5144c72e754ecf47fb8d106c0a9"
+    }
+  },
+  "equation_change_dispositions": [
+    {
+      "document": "ch1",
+      "label": "eq:LV",
+      "class": "IMPLEMENTATION_BOUNDARY_OR_NOTATION_CHANGE",
+      "basis": "removed code identifier from displayed equation"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:branch",
+      "class": "IMPLEMENTATION_BOUNDARY_OR_NOTATION_CHANGE",
+      "basis": "typographic code-name cleanup only"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:fermifn",
+      "class": "PHYSICS_DERIVATION_CHANGE",
+      "basis": "explicit effective chemical-potential difference"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:partfn",
+      "class": "PHYSICS_DERIVATION_CHANGE",
+      "basis": "single-site grand partition function with internal q(T)"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:peakshape",
+      "class": "IMPLEMENTATION_BOUNDARY_OR_NOTATION_CHANGE",
+      "basis": "typographic code-name cleanup only"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:reversal",
+      "class": "IMPLEMENTATION_BOUNDARY_OR_NOTATION_CHANGE",
+      "basis": "replaced literal code call by abstract operators"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sm-factor",
+      "class": "PHYSICS_DERIVATION_CHANGE",
+      "basis": "grand-partition notation consistency"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sm-mucount",
+      "class": "PHYSICS_DERIVATION_CHANGE",
+      "basis": "effective site free energy"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sm-occmid",
+      "class": "PHYSICS_DERIVATION_CHANGE",
+      "basis": "occupation expression with internal-state contribution"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sum",
+      "class": "IMPLEMENTATION_BOUNDARY_OR_NOTATION_CHANGE",
+      "basis": "removed implementation identifier from aggregation equation"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:gibbsthomson",
+      "class": "PHYSICS_DERIVATION_ADDITION",
+      "basis": "size-induced equilibrium shift"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:psdconv",
+      "class": "PHYSICS_DERIVATION_ADDITION",
+      "basis": "particle-size ensemble response"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sm-epstilde",
+      "class": "PHYSICS_DERIVATION_ADDITION",
+      "basis": "effective site free energy"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:sm-sint",
+      "class": "PHYSICS_DERIVATION_ADDITION",
+      "basis": "internal-state entropy bridge"
+    },
+    {
+      "document": "ch1",
+      "label": "eq:widthbudget",
+      "class": "PHYSICS_DERIVATION_ADDITION",
+      "basis": "symmetric variance budget"
+    },
+    {
+      "document": "ch2",
+      "label": "eq:Z1",
+      "class": "CROSS_CHAPTER_NOTATION_AND_RIGOR_CHANGE",
+      "basis": "Z1 -> Xi1 grand-canonical notation and effective single-site free-energy bridge"
+    },
+    {
+      "document": "ch2",
+      "label": "eq:occ",
+      "class": "CROSS_CHAPTER_NOTATION_AND_RIGOR_CHANGE",
+      "basis": "Z1 -> Xi1 grand-canonical notation and effective single-site free-energy bridge"
+    }
+  ],
+  "implementation_boundary": {
+    "ch1_v1013": {
+      "path": "Claude/docs/v1.0.13/graphite_ica_ch1_v1.0.13.tex",
+      "rendered_noncomment_line_count": 2586,
+      "mention_count": 223,
+      "outside_mention_count": 223,
+      "outside_navigation_reference_count": 0,
+      "outside_boundary_violation_count": 223,
+      "outside_direct_identifier_line_count": 164,
+      "outside_generic_framing_line_count": 59,
+      "inside_allowed_section_count": 0,
+      "outside_allowed_section": [
+        {
+          "line": 76,
+          "text": "pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 코드 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.13)}}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 78,
+          "text": "\\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.13, 통계역학-first + 코드 진행)}\\rhead{\\thepage/\\pageref{LastPage}}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 103,
+          "text": "\\title{\\textbf{\\LARGE Chapter 1}\\\\[0.35em]\\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 코드 진행을 따라가는 수식-구동판 — 유도 확장}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 105,
+          "text": "\\date{\\normalsize 버전 1.0.13 \\quad(코드 \\texttt{Anode\\_Fit 1.0.13} 와 동일 버전 · matched)}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 138,
+          "text": "본 문건은 이 곡선을 \\emph{한 번 그리는 계산}을 그대로 따라간다. 계산은 구현 \\code{Anode\\_Fit\\_v1.0.13.py}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 139,
+          "text": "의 \\code{curve}(N0 실험조건 환산)$\\to$\\code{dqdv}(N1--N9) 호출이며, 전체가 $\\mathrm N0\\!\\to\\!\\mathrm N9$ 를 순서대로 밟는다",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 140,
+          "text": "(그림~\\ref{fig:spine}). 각 절은 그 한 단계에서 코드가 평가하는 물리식을, 그 단계를 이해하는 데 필요한 만큼",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 143,
+          "text": "합산식과, ``이 문건만 보고 같은 곡선을 재현하는 코드를 짤 수 있다''는 실행 가능성이다. 본론에 앞서 Part 0",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 158,
+          "text": "펼치는 일이다. 코드 진행이 이 세 갈래를 차례로 닫는다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 188,
+          "text": "\\caption{한 곡선을 그리는 코드 진행(spine). 외부 실험조건이 \\code{curve} facade 에서 $(\\sigma_d,|I|,T,Q_\\cell)$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드",
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 189,
+          "text": "로 환산($\\mathrm N0$)되어 코어 \\code{dqdv} 로 들어가고, 분극으로 내부 전위 $V_n$ 을 얻은 뒤($\\mathrm N1$),",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 193,
+          "text": "파선 상자가 코드의 전이 루프(\\code{for tr in transitions}). 그림 출처 — v7-11 의 spine 그림을 그대로 채택했다.}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 203,
+          "text": "계산의 진입점은 facade \\code{curve}$(V_\\app,\\text{direction},\\text{c\\_rate},Q_\\cell,T)$ 이고, 그 첫 일은 실험조건을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 204,
+          "text": "코어 \\code{dqdv} 의 모델 입력으로 환산하는 것이다 — 이것이 노드 $\\mathrm N0$ 다. 방향 문자열은 방향 부호 $\\sigma_d$ 로,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 212,
+          "text": "c\\_rate 는 시간 역수이므로 $Q_\\cell$ 과 시간 단위를 맞춰 대입한다([1/h]$\\cdot$[A\\,h]$\\to$[A]; 코드 규격화",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 222,
+          "text": "(방전 $+1$/충전 $-1$)이 코드의 \\code{s} 인자이며, 평형 진행률 $\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U)/w]$ 에서 방전",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 228,
+          "text": "\\toprule 기호(코드) & 단위 & 의미 \\\\ \\midrule \\endhead",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 230,
+          "text": "$\\sigma_d$ (\\code{s},\\,\\code{sigma\\_d}) & --- & 방향 부호 — 방전 $+1$/충전 $-1$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 231,
+          "text": "$s$ (코드 미대응) & --- & 유도 전용 고정 부호 — 항상 $+1$(\\S\\ref{sec:center}$\\cdot$\\S\\ref{sec:hys} 의 $U_j$ 정의 관례); 방향에 따라 $\\pm1$ 로 바뀌는 $\\sigma_d$ 와 별개, 본론 결과-사슬 boxed 식에서 $s{=}1$ 대입돼 소멸(Part 0 의 박스는 $s$ 를 명시 유지) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 232,
+          "text": "$|I|$ (\\code{I\\_abs}) & A & 전류 크기 $=$ c\\_rate$\\cdot Q_\\cell$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 233,
+          "text": "$Q_\\cell$ (\\code{Q\\_cell}) & C(또는 A\\,h) & 셀 용량(전하); $q=Q/Q_\\cell$ 환산$\\cdot$$|I|$ 환산 공용 — $|I|$ 환산 시 c\\_rate 와 시간 단위 정합 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 234,
+          "text": "$T$ (\\code{T}) & K & 온도 — 스칼라(등온) 또는 $V_\\app$ 길이 배열($T(V)$ 비등온) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 235,
+          "text": "$R_n$ (\\code{Rn}) & $\\Omega$ & 음극 lumped 분극 저항 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 236,
+          "text": "$V_\\app$ (\\code{V\\_app}) & V & 인가(측정) 전위 격자 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 239,
+          "text": "$U_j(T)$ (\\code{U},\\,\\code{func\\_U\\_j}) & V & 전이 $j$ 평형 중심 전위 $=(-\\Delta H_\\rxn+T\\Delta S_\\rxn)/F$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 240,
+          "text": "$\\Delta H_{\\rxn,j},\\Delta S_{\\rxn,j}$ (\\code{dH\\_rxn},\\code{dS\\_rxn}) & {\\footnotesize J/mol;\\,J/(mol\\,K)} & 삽입 \\emph{반응} 엔탈피$\\cdot$엔트로피(평형 — \\emph{활성화}와 다름) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 241,
+          "text": "$n_j$ (\\code{n}) & --- & 폭 다중도($w=n_jRT/F$; \\code{w} 주면 $n=wF/RT$ 역산) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 242,
+          "text": "$w_j$ (\\code{func\\_w}) & V & 전이 폭 척도 $=n_jRT/F$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 243,
+          "text": "$\\xi_{\\eq,j}$ (\\code{func\\_ksi\\_eq}) & --- & 평형 진행률(logistic) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 244,
+          "text": "$Q_j$ (\\code{Q}) & C & 전이 $j$ 용량 가중 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 245,
+          "text": "$C_\\bg$ (\\code{Cbg}) & C/V & 배경 미분용량(상수 또는 $V$ 함수) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 247,
+          "text": "$\\Omega_j$ (\\code{Omega}) & J/mol & 정규용액(regular solution) 상호작용 에너지($>2RT$ 면 상분리$\\cdot$히스) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 248,
+          "text": "$\\gamma_j$ (\\code{gamma}) & --- & 분기 축소 인자 $0\\le\\gamma_j\\le1$($0$ 이면 분기 없음) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 249,
+          "text": "$\\Delta U_j^\\hys$ (\\code{func\\_dU\\_hys}) & V & spinodal 상한 분기 gap \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 250,
+          "text": "$h_{\\eta,j}$ (\\code{h\\_eta}) & --- & 부분 cycle 인자(기본 $1$) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 251,
+          "text": "$U_j^{\\,d}$ (\\code{func\\_U\\_branch}) & V & 방향별 분기 중심 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 253,
+          "text": "$\\chi$ (\\code{chi},\\,\\code{x}) & --- & 전이상태 분율 위치(전달 계수); 방향별 $\\chi_d$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 254,
+          "text": "$\\chi_d$ (\\code{func\\_chi\\_d}) & --- & 방향별 전달 계수 — 방전 $\\chi$/충전 $1-\\chi$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 255,
+          "text": "$\\mathcal A$ (\\code{A}) & J/mol & 꼬리 컷점 affinity $=\\min(z_\\mathrm{cut}n_jRT,\\,A_\\mathrm{cap}RT)$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 256,
+          "text": "$\\Delta H_{a,j},\\Delta S_{a,j}$ (\\code{dH\\_a},\\code{dS\\_a}) & {\\footnotesize J/mol;\\,J/(mol\\,K)} & \\emph{활성화} 엔탈피$\\cdot$엔트로피(속도) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 257,
+          "text": "$\\Delta H_{a,j}^\\eff$ (\\code{func\\_dH\\_a\\_eff}) & J/mol & 유효 장벽 $=\\Delta H_a-\\chi_d\\Omega$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 258,
+          "text": "$L_{q,j}$ (\\code{func\\_L\\_q}) & --- & 용량축 지연 길이 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 259,
+          "text": "$L_{V,j}$ (\\code{lag\\_len\\_V}) & V & 전압축 지연 길이 $=|\\dd V/\\dd q|_{q_a}L_{q,j}$ \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 260,
+          "text": "$|\\dd V/\\dd q|_{q_a}$ (\\code{dVdq\\_qa}) & V & 컷점 OCV(open circuit voltage) 기울기($L_q\\to L_V$ 환산) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 261,
+          "text": "$z_\\mathrm{cut}$ (\\code{z\\_cut}) & --- & 컷 affinity 의 $z=\\mathcal A/(n_jRT)$(기본 $4.357$) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 262,
+          "text": "$A_\\mathrm{cap}$ (\\code{A\\_cap\\_RT}) & --- & 컷 affinity 상한 배수(기본 $4.0$) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 263,
+          "text": "$\\xi_{\\mathrm{lag},j}$ (\\code{occ\\_lagged}) & --- & 인과 저역통과된 진행률 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 269,
+          "text": "흑연 staging 의 갤러리 채움을 그림~\\ref{fig:staging} 에 둔다 — 각 stage 전이가 한 peak 를 남기고, 코드의 전이 리스트",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 270,
+          "text": "\\code{GRAPHITE\\_STAGING\\_LIT}(4건)이 이 네 전이의 초기값이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 302,
+          "text": "하나를 남긴다. stage $2\\mathrm L$ 은 면내 질서가 풀린 단계라 옅게 표시했다. 코드의 전이 리스트 4건이 이 전이들의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 692,
+          "text": "$U_j^{\\,d}$(\\S\\ref{sec:hys}), 폭에 다중도 $w_j=n_jRT/F$ 를 넣은 것이 코드의 평형 진행률 $\\xi_\\eq$ 다 --- 단 지수의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 812,
+          "text": "쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(코드 진행 N1--N9) 순서로",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 819,
+          "text": "코어 \\code{dqdv} 의 첫 식은 분극을 벗기는 환산이다. 관측은 유한 전류에서 이루어지므로 측정 전위 $V_\\app$ 에는 셀의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 842,
+          "text": "이것이 코드의 \\code{V\\_n = V\\_in - sigma\\_d * I\\_abs * self.Rn} 한 줄이다. 부호 약속을 식으로 확인하면 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 856,
+          "text": "패딩 $p_\\mathrm{lo}=p_\\mathrm{hi}=0.15$, 점 수 $n_\\work=\\max(2048,\\,2\\,\\mathrm{len}(V_n))$ 이다($\\mathrm{len}(\\cdot)$ 는 배열 원소 개수 — 이 문건에서 $|\\cdot|$ 는 물리량 크기 전용이라 격자 점 수엔 $\\mathrm{len}(\\cdot)$ 를 쓴다; 코드 \\code{grid\\_pad\\_lo/hi},",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 857,
+          "text": "\\code{n\\_work\\_min}). 스팬 $\\Delta v=v_\\mathrm{hi}-v_\\mathrm{lo}$ 는 하한 \\code{v\\_span\\_floor}$=10^{-6}$ V 로",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 874,
+          "text": "전이 루프 안의 첫 물리량은 전이 $j$ 의 평형 중심 전위 $U_j(T)$ 다. 코드는 이를 열역학 입력 $(\\Delta H_\\rxn,\\Delta S_\\rxn)$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 875,
+          "text": "에서 \\code{func\\_U\\_j} 로 계산하거나(없으면) \\code{'U'} 를 직접 읽는다. 이 절은 그 환산식이 어디서 오는지를, Gibbs",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 877,
+          "text": "Part 0(\\S\\ref{sec:sm-ensemble}$\\cdot$\\S\\ref{sec:sm-electro}$\\cdot$\\S\\ref{sec:sm-macro})가 세웠다 — 이 절은 그 위에서 코드 입력",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 925,
+          "text": "이것이 \\code{func\\_U\\_j(T, dH\\_rxn, dS\\_rxn)} 의 \\code{(-dH\\_rxn + T*dS\\_rxn)/F} 다. 부호 — 발열 반응",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 929,
+          "text": "창에서 수 mV 규모로 중심이 이동한다 — 다온도 피팅에서 온도마다 $U_j(T)$ 를 따로 읽어야 하는 이유다. 코드가 배열",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 933,
+          "text": "\\textbf{N2.} \\code{if 'dH\\_rxn' in tr and 'dS\\_rxn' in tr: U\\_j = func\\_U\\_j(T\\_work, dH\\_rxn, dS\\_rxn)}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 934,
+          "text": "— 배열 $T_\\work$ 대응. 없으면 \\code{U\\_j = float(tr['U'])} 직접. 실 호출의 $\\Delta S$ 인자는 seam",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 935,
+          "text": "\\code{\\_effective\\_dS\\_rxn(tr, T\\_work)} 를 경유한다(흑연 base 는 항등으로 \\code{tr['dS\\_rxn']} 그대로 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 936,
+          "text": "LCO 전자항 plug-in 자리: \\S\\ref{sec:lco-code}). \\code{GRAPHITE\\_STAGING\\_LIT} 의 stage 2$\\to$1 은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 947,
+          "text": "코드는 평형 중심 $U_j$ 를 곧바로 쓰지 않고, 상호작용 $\\Omega_j$ 와 분기 인자 $\\gamma_j$ 가 있으면 방향별 분기 중심",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 972,
+          "text": "$\\xi$ — 그림~\\ref{fig:doublewell}), $\\Omega_j\\le2RT$ 면 갈라짐이 없다. 이 문턱이 코드의 명시 분기",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 973,
+          "text": "\\code{if Omega <= 2RT: return 0.0} 이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1041,
+          "text": "이것이 \\code{func\\_dU\\_hys(T, Omega)} 의 \\code{(2/F)*(Omega*u - 2*R*T*arctanh(u))} 이며, $\\Omega\\le2RT$ 면 $0$ 을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1059,
+          "text": "이것이 \\code{func\\_U\\_branch(T, U\\_j, Omega, gamma, sigma\\_d, h\\_eta)} 의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1060,
+          "text": "\\code{U\\_j + 0.5*sigma\\_d*h\\_eta*gamma*func\\_dU\\_hys(T, Omega)} 다. \\textbf{(d) 부호.} 방전($\\sigma_d=+1$)은 중심을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1064,
+          "text": "코드는 전이당 상수인 분기 shift 만 필요하므로, 식~\\eqref{eq:Ubranch} 의 $U_j$ 자리에 $0$ 을 넣어 shift 분",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1065,
+          "text": "$\\mathrm{hys\\_shift}=\\code{func\\_U\\_branch}(T_\\rep,0,\\Omega,\\gamma,\\sigma_d,h_\\eta)$ 을 얻고, 배열 중심 $U_j$ 에 더한다:",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1074,
+          "text": "이 \\code{center} 가 다음 절 평형 진행률 $\\xi_\\eq$ 의 중심으로 들어간다. 평형 종의 \\emph{모양} 자체는 방향 불변이고,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1108,
+          "text": "중심이 정해지면 코드는 폭 $w_j$ 와 평형 진행률 $\\xi_{\\eq,j}$ 를 평가한다. 이 둘이 평형 종(다음 절의 peak)의 모양을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1120,
+          "text": "코드 \\code{func\\_w(T, n)} 의 \\code{n*R*T/F}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1121,
+          "text": "가 이것이고, 전이 dict 가 \\code{'w'} 를 직접 주면 $n_j=w_jF/(RT)$ 로 역산해(\\code{\\_n\\_factor}) 같은 식에 넣는다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1122,
+          "text": "코드는 폭으로 항상 이 한 식 $w_j=n_jRT/F$ 를 쓴다(\\code{\\_width}; 상호작용에 따라 폭을 인위로 좁히는 별도 항은 두지",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1131,
+          "text": "어느 지위인지는 코드 분기가 아니라 그 전이의 \\emph{$\\Omega_j$ 값}이 가르며, 같은 식~\\eqref{eq:wbase} 가 두 경우 모두에",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1138,
+          "text": "곧 코드 전이 리스트의 폭 폴백 값(0.020/0.016/0.014/0.012 V)도 같은 지위의 초기값이다 — 단상의 $w$ 는 평형이",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1177,
+          "text": "평형이다. 방향 부호가 logistic 인자의 부호로 들어가는 것이 \\code{func\\_ksi\\_eq(T, V\\_n, U, n, s)} 의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1178,
+          "text": "$z=\\sigma_d(V_\\work-U_j^{\\,d})/w_j$(폭은 \\code{func\\_w}$(T,n)$)이며, 코드는 오버플로 방지를 위해 $z\\ge0$ 과 $z<0$ 을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1179,
+          "text": "갈라 평가한다(\\code{np.where(z>=0, 1/(1+e\\^{-z}), e\\^{z}/(1+e\\^{z}))} — 수학적으로 동일). 여기서 평가 전위는",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1180,
+          "text": "내부 전위 $V_n$ 이 아니라 \\S\\ref{sec:pol} 의 작업 격자 $V_\\work$ 다 — 코드 호출 \\code{func\\_ksi\\_eq(T\\_work,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1181,
+          "text": "V\\_work, center, n\\_j, sigma\\_d)} 에서 함수의 \\code{V\\_n} 인자 자리에 $V_\\work$ 가 들어간다(\\S\\ref{sec:pol} 의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1183,
+          "text": "식~\\eqref{eq:center} 의 \\code{center}(분기 있으면 분기 중심, 없으면 $U_j$)다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1259,
+          "text": "이 소절은 결과식$\\cdot$부호$\\cdot$코드는 그대로 두고 $\\xi_\\eq$ 의 통계역학적 정체만 밝혀,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1320,
+          "text": "코드는 평형 진행률에서 곧바로 평형 peak 모양 $\\xi_\\eq(1-\\xi_\\eq)/w$ 를 만든다. 이것이 전류가 없을 때($|I|\\to0$)의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1321,
+          "text": "기준선이며, 동역학 꼬리가 무시될 만큼 작을 때 코드가 직접 쓰는 항이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1345,
+          "text": "이것이 코드의 \\code{peak\\_shape = ksi\\_eq * (1 - ksi\\_eq) / w} 이며, 메서드 \\code{equilibrium} 이 전이별로 이 항만",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1346,
+          "text": "합산한 것($C_\\bg+\\sum_jQ_j\\xi_\\eq(1-\\xi_\\eq)/w$)이다 --- 단 \\code{equilibrium} 은 분기 없는 \\emph{가역 기준선}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1347,
+          "text": "($U_j$ 중심)이고, \\code{dqdv} 의 $|I|\\to0$ 극한은 $\\gamma_j\\ne0$ 이면 분기 중심 $U_j^{\\,d}$ 에 남는다",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1353,
+          "text": "코드의 사용 조건은 ``지연 길이가 격자에 비해 작을 때''다 — 다음 절(\\S\\ref{sec:lag}; 그 전에 아래 소절이",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1355,
+          "text": "몇 칸보다 작으면(또는 동역학 키가 없으면) 코드는 식~\\eqref{eq:eqpeak} 의 평형 종을 직접 쓴다. 이것이 $|I|\\to0$ 환원이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1395,
+          "text": "0.014 V($2\\mathrm L\\!\\to\\!2$)$\\cdot$0.012 V($2\\!\\to\\!1$)와 모순되지 않는다. 단 \\emph{현재 코드의 staging",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1396,
+          "text": "출발값은 $n_j{=}1$ 고정}이라 실제 평가 폭은 $RT/F\\!\\approx\\!25.7$ mV 이고 \\code{'w'} 폴백은 \\code{'n'} 을",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1465,
+          "text": "\\item \\textbf{입자 \\emph{크기 분포}(PSD) 위로 합성곱하는 다입자 \\emph{기계장치}는 모델에 넣지 않는다.} 코드의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1526,
+          "text": "유한 전류에서는 평형 목표 $\\xi_\\eq$ 를 점유가 즉시 따라가지 못하고 뒤처진다 — 그 지연이 peak 의 꼬리다. 코드는 전이당",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1527,
+          "text": "하나의 지연 길이 $L_{V,j}$ 를 resolver \\code{\\_resolve\\_lag\\_length} 로 구한다. 이 절은 그 사슬",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1567,
+          "text": "이것이 코드의 \\code{A = min(z\\_cut * n\\_safe * R*T, A\\_cap * R*T)} 다. \\emph{부호의 핵심} — 컷 affinity 의 \\emph{크기}는",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1569,
+          "text": "$\\min$ 안에 넣으면 충전에서 음수 상한이 되는 버그가 생기므로, 코드는 $\\sigma_d$ 를 크기에서 빼고 방향은 전달 계수로만",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1580,
+          "text": "이것이 \\code{func\\_chi\\_d(chi, sigma\\_d)} 이며(생성자 \\code{chi\\_split} 로 다른 규칙 주입 가능). \\textbf{(d) 유효 장벽.}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1592,
+          "text": "이것이 \\code{func\\_dH\\_a\\_eff(dH\\_a, Omega, chi\\_d)} 이고, 코드는 \\code{use\\_dH\\_eff} 가 꺼져 있으면 보강 없이",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1593,
+          "text": "$\\Delta H_a$ 를 그대로 쓴다(헬퍼 \\code{\\_chi\\_and\\_dH\\_eff} 가 $(\\chi_d,\\Delta H_a^\\eff)$ 를 한 곳에서 낸다).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1611,
+          "text": "\\code{func\\_L\\_q(T, I, Q\\_cell, dH\\_a, dS\\_a, x, A)} 가 이 로그를",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1612,
+          "text": "\\code{ln\\_Lq = ln(T\\_attempt/T) - ln(1+e\\^{-A/RT}) + dG\\_a/RT - x*A/RT} 로 적고($T_\\mathrm{attempt}=(I/Q_\\cell)h/k_B=T_*$,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1614,
+          "text": "$\\Delta H_a^\\eff$ 는 \\code{func\\_L\\_q} 의 \\code{dH\\_a} 인자로 들어가는 값 \\code{dH\\_a\\_use} 이고, 이것은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1615,
+          "text": "\\code{use\\_dH\\_eff=True} 일 때만 식~\\eqref{eq:dHeff} 의 $\\Delta H_a-\\chi_d\\Omega$ 와 같다 — 꺼져 있으면 그대로",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1616,
+          "text": "$\\Delta H_a$ 다(\\code{\\_chi\\_and\\_dH\\_eff} 의 분기). 전압축으로 옮기면, 컷점 OCV 기울기를 곱한다 — 꼬리 진폭이",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1619,
+          "text": "\\boxed{\\;L_{V,j}=\\Big|\\frac{\\dd V}{\\dd q}\\Big|_{q_a}\\,L_{q,j}\\;=\\;|\\code{dVdq\\_qa}|\\cdot L_{q,j}\\;.}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1622,
+          "text": "코드의 \\code{return abs(dVdq\\_qa) * L\\_q} 다. \\emph{부호의 핵심} — 컷 affinity $\\mathcal A$ 가 전이당 컷 상수라",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1623,
+          "text": "(앞 소절의 동결), 코드 안에서 $L_q$ 는 $V$ 의 함수로 다시 미분되지 않는다: \\emph{운영상 실현 미분은}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1628,
+          "text": "에서 $L_V\\to0$, 다음 절의 꼬리가 사라지고 평형 peak 으로 환원된다. 직접 지정 \\code{'L\\_V'} 가 있으면 동역학을 우회해",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1629,
+          "text": "그 값을 쓰고, $I\\le0$ 이거나 \\code{dH\\_a} 키가 없으면 $L_V=0$ 이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1632,
+          "text": "\\textbf{N7 진행.} \\code{n\\_safe=|n\\_j|} $\\to$ $\\mathcal A$(식~\\eqref{eq:Acut}) $\\to$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1633,
+          "text": "\\code{(chi\\_d, dH\\_a\\_use)=\\_chi\\_and\\_dH\\_eff(...)} (식~\\eqref{eq:chid}$\\cdot$\\eqref{eq:dHeff}) $\\to$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1634,
+          "text": "\\code{L\\_q=func\\_L\\_q(...,x=chi\\_d,A=A)} (식~\\eqref{eq:Lqfull}) $\\to$ \\code{L\\_V=|dVdq\\_qa|*L\\_q} (식~\\eqref{eq:LV}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1641,
+          "text": "지연 길이 $L_{V,j}$ 가 충분히 크면($\\ge$ 격자 몇 칸) 코드는 평형 종 대신 \\emph{인과 기억 꼬리}를 만든다. 이 절이 그",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1667,
+          "text": "이고, 코드 \\code{\\_causal\\_lowpass} 가 이를 (가능하면) \\code{scipy.signal.lfilter} 의 계수",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1707,
+          "text": "이것이 코드의 \\code{peak\\_shape = (ksi\\_eq - occ\\_lagged) / lag\\_len\\_V} 다($\\xi_\\mathrm{lag}$ 는 점화식~\\eqref{eq:lowpass}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1713,
+          "text": "식~\\eqref{eq:peakshape} 가 종으로 매끈히 환원되지 않는다. 그 작은 $L_V$ 환원은 코드의 분기 스위치가 담당한다 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1723,
+          "text": "$\\nu=\\code{min\\_lag\\_grid\\_steps}=2$ 다(지연이 격자 두 칸보다 짧으면 평형 종 직접). 이 전환은 \\emph{매끈한 handoff 가 아니라",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1730,
+          "text": "비평활해진다. v12 코드에서 기본 $\\nu$ 상향($\\gtrsim10$) 또는 문턱 근방 blend 를 검토한다(물리 불변, 수치 처방만).}), 꼬리식 자신의 $L_V\\to0$ 소멸",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1731,
+          "text": "($0/0$)은 이미 평형 분기 영역에 들어가 코드가 꼬리식으로 평가하지 않는 구간이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1740,
+          "text": "\\code{causal\\_lowpass}(\\xi_\\eq) & \\sigma_d\\ge0\\ (\\text{방전})\\\\[2pt]",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1741,
+          "text": "\\code{causal\\_lowpass}(\\xi_\\eq[::-1])[::-1] & \\sigma_d<0\\ (\\text{충전}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1745,
+          "text": "이것이 코드의 \\code{occ\\_lagged = lowpass(ksi\\_arr[::-1])[::-1]} (충전 분기)다. 이 역전이 없으면 충전 꼬리가",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1787,
+          "text": "전이 루프가 각 전이의 peak\\_shape 를 (식~\\eqref{eq:branch} 의 두 분기로) 만들면, 코드는 용량 가중을 곱해 작업 격자 위",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1797,
+          "text": "코드는 \\code{dqdv\\_work += tr['Q'] * peak\\_shape} 로 누적하고(배경은 루프 전에 깔림), 마지막에",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1798,
+          "text": "\\code{np.interp(V\\_n, V\\_work, dqdv\\_work)} 로 작업 격자에서 내부 전위 격자로 되돌린다(\\code{dqdv\\_out}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1802,
+          "text": "4건의 전이 초기값이 \\code{GRAPHITE\\_STAGING\\_LIT} 에 박혀 있다(신뢰값 아닌 \\emph{초기값} — 사용자 피팅이 override",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1803,
+          "text": "전제). 표~\\ref{tab:staging} 가 각 인자의 의미와 출발값이다 — 이 표가 있어 ``이 문건만으로 곡선 재현 코드를 짤 수 있다''.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1808,
+          "text": "\\caption{전이 초기값 \\code{GRAPHITE\\_STAGING\\_LIT}(4건) — 출발점, 피팅으로 override. $U$ 는 \\code{'U'}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1871,
+          "text": "흑연의 \\code{GRAPHITE\\_STAGING\\_LIT}(표~\\ref{tab:staging})에 대응하는 LCO 초기값 리스트를",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1872,
+          "text": "\\code{LCO\\_MSMR\\_LIT} 로 둔다(상세 \\S\\ref{sec:lco-preview}$\\cdot$\\S\\ref{sec:lco-code}) — 표~\\ref{tab:lco-staging} 가 그 세 전이다. 흑연이 4 staging 전이를 남기듯, LCO",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1884,
+          "text": "\\caption{LCO 하프셀 전이 초기값 \\code{LCO\\_MSMR\\_LIT}(3건, vs Li metal) — 출발점, 피팅으로 override. $x$ 는",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1887,
+          "text": "★코드 \\code{LCO\\_MSMR\\_LIT} 시연값($U{=}3.930/3.880/4.050$ V; 전자항은 T1$=$MIT dict 에",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 1890,
+          "text": "별개라 round-trip 피팅으로 정합한다. 또한 현 구현은 $\\Delta S_e$ 를 기준온도 $T_\\mathrm{ref}$ 에서",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1907,
+          "text": "흑연이 \\code{GRAPHITE\\_STAGING\\_LIT} 의 $(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 키를 전이별로 갖듯,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2006,
+          "text": "$\\sigma_d=\\pm1,\\ |I|=\\code{c\\_rate}\\,Q_\\cell$ 은 삽입형 전극이면 종류를 가리지 않고, (ii) 전기화학 평형",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2123,
+          "text": "표~\\ref{tab:staging} 와 달리 초기값 미배정), 코드 \\code{LCO\\_MSMR\\_LIT} 도 같아서 미배정 시 구현은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드",
+            "구현"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2141,
+          "text": "(흑연 코드 분기 그대로).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2250,
+          "text": "같은 전이 dict 의 $U_j^\\mathrm{cat}$ 피팅값 이동으로 \\emph{따로} 들어가며, $\\Omega_j^\\mathrm{cat}$ 하나가",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2251,
+          "text": "gap$\\cdot$smear 와 중심 이동을 동시에 만든다고 쓰지 않는다(흑연 \\code{GRAPHITE\\_STAGING\\_LIT} 가 초기값이고",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2325,
+          "text": "\\code{GRAPHITE\\_STAGING\\_LIT}(표~\\ref{tab:staging})가 stage $2\\!\\to\\!1$ 삽입에 $\\Delta S_\\rxn=-16$ J/(mol\\,K)$<0$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2354,
+          "text": "$\\approx4\\times10^{37}$ 배 어긋나므로 P4(후속 코드 개정 로드맵 단계) 코드 구현은 식~\\eqref{eq:gunit} 의 \\emph{나눗셈} 형을 쓴다 — 부호는",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드",
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2388,
+          "text": "``$x\\!\\downarrow$ 로 $g$ 가 켜진다''는 정성 추세만 있음 — 이것이 갭 G2), 흑연 \\code{GRAPHITE\\_STAGING\\_LIT} 의",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2486,
+          "text": "forward 코드는 전이 파라미터를 LCO 로 갈아 끼우고 이 항 하나를 더하는 것만으로 LCO 에 적용된다(\\S\\ref{sec:lco-code}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2549,
+          "text": "흑연에서 합산식~\\eqref{eq:sum} 의 $\\Delta S_{\\rxn,j}$ 는 평형 중심 $U_j(T)$ 를 통해 한 덩이로 작용했으나, LCO 양극에서는 이 한 덩이가 세 물리 성분(config=배치$\\cdot$vib=격자진동$\\cdot$electronic=전자)의 합임을 명시한다 — 식$\\cdot$코드 경로는 그대로이고 $\\Delta S$ 의 \\emph{내부 분해}만 더하며, 그 근거부터 식으로 놓는다. \\textbf{(a) 출발 — 분배함수의 인수분해.} 전이 $j$ 창의 한 미시상태는 (리튬 자리 배열)$\\times$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2622,
+          "text": "\\textbf{★Ch2/P4 코드 구현 예고(두 설계 항목).} 본 분해를 forward 코드로 옮기는 다음 단계는 두 가지를 명시해 둔다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드",
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2623,
+          "text": "\\emph{(i) 좌표 매핑.} 전자항 $\\Delta S_{e,j}(x,T)$ 는 조성 $x$ 의 함수인데 코드는 전압 격자 위에서 돌므로,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2624,
+          "text": "$x\\!\\leftrightarrow\\!\\xi_{\\eq,1}(V)$ 매핑으로 좌표를 잇는다(구현식은 \\S\\ref{sec:lco-code} 식~\\eqref{eq:lco-xmap}). \\emph{(ii) round-trip 가드.} 식~\\eqref{eq:lco-decomp} 의 config 중심 표준값",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2627,
+          "text": "$U_1(298)\\approx3.90$ V 와 $\\partial U_1/\\partial T$ 의 부호$\\cdot$기울기(다온도 이동률)를 self-test 로 맞추어",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2630,
+          "text": "\\subsection{forward 코드의 LCO 일반화 — 파라미터 교체 + 전자항 plug-in}\\label{sec:lco-code}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2631,
+          "text": "이 통합의 실용적 결론 — ``같은 코드가 LCO 를 그린다'' — 의 근거는 \\emph{MSMR 동형}이다:",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2690,
+          "text": "(\\code{func\\_ksi\\_eq}$\\cdot$\\code{func\\_U\\_j}$\\cdot$합산~\\eqref{eq:sum})는 \\emph{구조 변경 0}으로 LCO 에",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2693,
+          "text": "\\item \\textbf{전이 파라미터 교체} — \\code{GRAPHITE\\_STAGING\\_LIT} $\\to$ \\code{LCO\\_MSMR\\_LIT}(표~\\ref{tab:lco-staging}):",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2694,
+          "text": "$(\\Delta H_\\rxn,\\Delta S_\\rxn,Q,\\Omega,\\Delta H_a,\\dots)$ 값을 양극 영역으로. 코드의 전이 dict 키 구조는 동일하다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2697,
+          "text": "\\textbf{(a) 출발 — 좌표 매핑의 닫힌 꼴.} 게이트(식~\\eqref{eq:ggate})는 조성 $x$ 의 함수인데 코드는 전압",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2727,
+          "text": "전자항이 $\\propto T'$ 라 이 적분의 닫힌형이 식~\\eqref{eq:U1T2} 의 $T^2$ 곡률이고, \\emph{현행 구현}은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2732,
+          "text": "$\\xi_{\\eq,1}$ 을, $\\xi_{\\eq,1}$ 이 $U_1$ 을 참조하는 고정점 구조이나, 동결 구현은 순환이 없고, 정밀형도",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2751,
+          "text": "코드 측 증거이자, 본 챕터가 두 전극을 한 프레임으로 통합한 까닭이다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2755,
+          "text": "또는 전이 dict 키이며, 내부 하드코딩 상수는 없다(전부 기본값$+$override). 표~\\ref{tab:inputs} 가 전 조정 인자와",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2761,
+          "text": "\\caption{전체 입력 인자(코드 식별자)와 기본값. 전이 dict 키는 전이별, 생성자 인자는 모델 공통이며 일부는 전이 dict 로",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2762,
+          "text": "per-transition override 된다($z_\\mathrm{cut}$,$A_\\mathrm{cap}$,\\code{use\\_dH\\_eff}).}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2766,
+          "text": "인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2768,
+          "text": "\\multicolumn{4}{l}{\\emph{— 전이 dict 키(전이별) —}}\\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2769,
+          "text": "\\code{U} 또는 (\\code{dH\\_rxn},\\code{dS\\_rxn}) & 전이 & --- & 평형 중심 $U_j(T)$ (\\eqref{eq:Uj}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2770,
+          "text": "\\code{w} 또는 \\code{n} & 전이 & --- / $1$ & 폭 $w_j=n_jRT/F$ (\\eqref{eq:wbase}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2771,
+          "text": "\\code{Q} & 전이 & --- & 용량 가중(면적) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2772,
+          "text": "\\code{Omega},\\code{gamma} & 전이 & $0$,\\,$0$ & 상호작용$\\cdot$분기(히스, \\eqref{eq:dUhys}\\eqref{eq:Ubranch}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2773,
+          "text": "\\code{h\\_eta} & 전이 & $1.0$ & 부분 cycle 분기 인자 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2774,
+          "text": "\\code{dH\\_a},\\code{dS\\_a} & 전이 & --- / $0$ & 활성화(꼬리, \\eqref{eq:Lqfull}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2775,
+          "text": "\\code{dVdq\\_qa} & 전이 & $0$ & 컷 OCV 기울기 $L_q\\!\\to\\!L_V$ (\\eqref{eq:LV}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2776,
+          "text": "\\code{L\\_V} & 전이 & --- & 직접 지연 길이(동역학 우회) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2777,
+          "text": "\\code{z\\_cut},\\code{A\\_cap\\_RT} & 전이/공통 & $4.357$,\\,$4.0$ & 컷 affinity (\\eqref{eq:Acut}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2778,
+          "text": "\\code{use\\_dH\\_eff} & 전이/공통 & True & 유효 장벽 토글(\\eqref{eq:dHeff}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2780,
+          "text": "\\code{x}/\\code{chi},\\,\\code{chi\\_split} & 공통 & $0.5$,\\,\\code{func\\_chi\\_d} & 전달 계수 $\\chi_d$ (\\eqref{eq:chid}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2781,
+          "text": "\\code{Rn} & 공통 & $0.0$ & 분극 저항 (\\eqref{eq:vn}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2782,
+          "text": "\\code{Cbg} & 공통 & $0.0$ & 배경 $C_\\bg$ (상수 또는 $V$ 함수) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2783,
+          "text": "\\code{grid\\_pad\\_lo/hi},\\,\\code{n\\_work\\_min} & 공통 & $0.15$,\\,$2048$ & 작업 격자 (\\eqref{eq:vwork}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2784,
+          "text": "\\code{min\\_lag\\_grid\\_steps} & 공통 & $2.0$ & 꼬리/평형 전환 문턱 (\\eqref{eq:branch}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2785,
+          "text": "\\code{v\\_span\\_floor} & 공통 & $10^{-6}$ & 격자 폭 하한(수치 안전) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2786,
+          "text": "\\code{seed\\_T/I/Q\\_cell} & 공통 & $298.15$,\\,$0.1$,\\,$1.0$ & 진단용 seed $L_V$ 대표 조건 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2787,
+          "text": "\\multicolumn{4}{l}{\\emph{— 호출 인자(\\code{curve}/\\code{dqdv}) —}}\\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2788,
+          "text": "\\code{V\\_app},\\code{T},\\code{c\\_rate}/\\code{I\\_abs},\\code{Q\\_cell},\\code{direction} & 호출 & --- & 실험조건 (\\eqref{eq:n0map}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2789,
+          "text": "\\multicolumn{4}{l}{\\emph{— LCO 추가 인자(전이 dict 키$\\cdot$서브클래스, \\S\\ref{sec:lco-code}; 게이트 3키$+$\\code{x\\_center} 는 \\code{electronic} 켤 때 필수) —}}\\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2790,
+          "text": "\\code{electronic},\\code{x\\_center} & 전이 dict & \\code{False}, — & 전자항 plug-in 스위치$\\cdot$동결 조성 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2791,
+          "text": "\\code{g\\_max\\_eV},\\code{x\\_MIT},\\code{dx\\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ & MIT 게이트 초기값 (\\eqref{eq:ggate}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2792,
+          "text": "\\code{\\_delith\\_is\\_discharge} & 클래스 & 흑연 \\code{True}/LCO \\code{False} & 셀 라벨$\\to$탈리튬화 부호 환산 (\\eqref{eq:lco-sigmaslot}) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2797,
+          "text": "표의 모든 행이 코드 입력이라 ``고정$\\cdot$피팅 스코프''는 자유롭게 잡을 수 있다 — 예컨대",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2798,
+          "text": "$\\Delta H_\\rxn$$\\cdot$$\\Delta S_\\rxn$$\\cdot$$Q$$\\cdot$$w$ 를 풀고 $\\Omega$$\\cdot$$\\Delta H_a$$\\cdot$\\code{dVdq\\_qa}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2804,
+          "text": "(1) 표~\\ref{tab:staging} 의 4 전이로 \\code{transitions} 구성.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2805,
+          "text": "(2) 실험조건 $\\sigma_d$, $|I|=\\code{c\\_rate}\\cdot Q_\\cell$, $T$, $R_n$ 설정 → 분극 $V_n$(\\eqref{eq:n0map}\\eqref{eq:vn}), 작업 격자 $V_\\work$(\\eqref{eq:vwork}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2806,
+          "text": "(3) 전이마다 $U_j(T)$(\\eqref{eq:Uj}) → 분기 중심 \\code{center}(\\eqref{eq:center}) → 폭 $w_j$(\\eqref{eq:wbase}) → 평형 진행률 $\\xi_\\eq$(\\eqref{eq:xieq}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2812,
+          "text": "\\subsection{facade 와 전체 진행 한눈에}\\label{sec:facade}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2813,
+          "text": "상위 \\code{curve} 가 실험조건을 받아 $\\sigma_d=\\code{\\_direction\\_to\\_sigma}$, $|I|=\\code{c\\_rate}\\cdot Q_\\cell$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2814,
+          "text": "(또는 \\code{I\\_abs} 우선)로 환산해 \\code{dqdv} 를 재사용한다(새 물리 없음). LCO 서브클래스는 전극 인지",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2815,
+          "text": "플래그(\\code{\\_delith\\_is\\_discharge}$=$False)로 셀 라벨을 탈리튬화 부호로 자동 환산한다 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2816,
+          "text": "\\code{'charge'}$\\mapsto\\sigma_d{=}+1$(식~\\eqref{eq:lco-sigmaslot}); 저수준 \\code{dqdv}(s$=\\cdots$) 는 물리",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2817,
+          "text": "부호를 직접 받는다. 기준선 \\code{equilibrium} 은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2819,
+          "text": "가 노드$\\cdot$식$\\cdot$코드 식별자로 닫는다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2824,
+          "text": "\\caption{노드 $\\leftrightarrow$ 식 $\\leftrightarrow$ 코드 식별자 매핑(전체 진행). 본 문건 절 순서 $=$ 이 노드 순서.}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2828,
+          "text": "노드 & 물리식 & 본 문건 식 & 코드 식별자 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2830,
+          "text": "N0 & $\\sigma_d,|I|=\\code{c\\_rate}\\,Q_\\cell$ & \\eqref{eq:n0map} & \\code{curve},\\code{\\_direction\\_to\\_sigma} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2831,
+          "text": "N1 & $V_n=V_\\app-\\sigma_d|I|R_n$ & \\eqref{eq:vn} & \\code{dqdv}(분극 환산부) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2832,
+          "text": "N2 & $U_j(T)=(-\\Delta H+T\\Delta S)/F$ & \\eqref{eq:Uj} & \\code{func\\_U\\_j} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2833,
+          "text": "N3 & $\\Delta U_j^\\hys$, $U_j^{\\,d}$ & \\eqref{eq:dUhys},\\eqref{eq:Ubranch} & \\code{func\\_dU\\_hys},\\code{func\\_U\\_branch} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2834,
+          "text": "N4 & $w_j=n_jRT/F$ (이중지위) & \\eqref{eq:wbase} & \\code{func\\_w},\\code{\\_width} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2835,
+          "text": "N5 & $\\xi_\\eq=\\mathrm{logistic}[\\sigma_d(V-U^d)/w]$ & \\eqref{eq:xieq} & \\code{func\\_ksi\\_eq} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2836,
+          "text": "N6 & $Q_j\\xi_\\eq(1-\\xi_\\eq)/w$ & \\eqref{eq:eqpeak} & \\code{equilibrium}, 인라인 \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2838,
+          "text": "N7 & $\\mathcal A,\\chi_d,\\Delta H_a^\\eff,L_q,L_V$ & \\eqref{eq:Acut}--\\eqref{eq:LV} & \\code{\\_resolve\\_lag\\_length},\\code{func\\_L\\_q} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2839,
+          "text": "N8 & $(\\xi_\\eq-\\xi_\\mathrm{lag})/L_V$, 역전 & \\eqref{eq:peakshape},\\eqref{eq:reversal} & \\code{\\_causal\\_lowpass} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2840,
+          "text": "N9 & $C_\\bg+\\sum_jQ_j[\\cdot]$ & \\eqref{eq:sum} & \\code{dqdv\\_work},\\code{np.interp} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2843,
+          "text": "N0$'$ & \\code{LCO\\_MSMR\\_LIT}(3 전이) & 표~\\ref{tab:lco-staging} & \\code{LCOCathodeDQDV}$\\cdot$전이 dict \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2844,
+          "text": "\\multicolumn{4}{l}{\\emph{\\quad(N0$'$ 보강: \\code{\\_delith\\_is\\_discharge} 셀 라벨$\\to$탈리튬화 부호 환산 = \\S\\ref{sec:facade})}}\\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2845,
+          "text": "N2$'$ & $\\partial U_j/\\partial T=\\Delta S^\\mathrm{cat}/F$ & \\eqref{eq:lco-dUdT} & \\code{func\\_U\\_j}(동일) \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2846,
+          "text": "N5$+$ & $\\Delta S_{e,j}^{\\,\\mathrm{mol}}=N_A\\tfrac{\\pi^2}{3}k_B^2T\\,\\partial g/\\partial x<0$ (삽입, 몰당) & \\eqref{eq:dSemolar},\\eqref{eq:ggate} & \\code{func\\_dSe\\_molar} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2847,
+          "text": "N9$'$ & $\\Delta S^\\mathrm{cat}=$config$+$vib$+$elec (MSMR \\eqref{eq:msmr}) & \\eqref{eq:lco-decomp} & \\code{\\_effective\\_dS\\_rxn} \\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2881,
+          "text": "\\textbf{부호 회귀 self-test (재현 가능 수치 고정).} 위 정성 검산을 falsifiable 수치에 못박아 회귀를 막는다 — 아래",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2882,
+          "text": "다섯 항 중 R1--R3 은 코드 \\code{\\_\\_main\\_\\_} self-test 와 같은 양의 수기 재산출, R4 는 컷 규칙 정의 검사,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2898,
+          "text": "\\item \\textbf{꼬리 극한의 방향(구판 감사 결함 코드 D-PEAK — 꼬리식의 잘못된 평형 환원 — 의 회귀 여부).} 한 칸 감쇠 $\\rho=e^{-\\Delta_\\mathrm{grid}/L_V}$ 의 두 극한이 반대다 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2905,
+          "text": "다섯 회귀 항이 모두 통과한다 — 부호 사슬 self-test PASS.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        }
+      ],
+      "inside_allowed_section": []
+    },
+    "ch1_v1014": {
+      "path": "Claude/docs/v1.0.14/graphite_ica_ch1_v1.0.14.tex",
+      "rendered_noncomment_line_count": 3016,
+      "mention_count": 125,
+      "outside_mention_count": 28,
+      "outside_navigation_reference_count": 5,
+      "outside_boundary_violation_count": 23,
+      "outside_direct_identifier_line_count": 5,
+      "outside_generic_framing_line_count": 18,
+      "inside_allowed_section_count": 97,
+      "outside_allowed_section": [
+        {
+          "line": 76,
+          "text": "pdftitle={흑연 음극 + LCO 양극 dQ/dV 이론: 코드 진행을 따라가는 수식-구동 (유도 확장) — Chapter 1 (v1.0.14)}}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 78,
+          "text": "\\lhead{흑연 음극 + LCO 양극 $dQ/dV$ 이론 — Ch.1 (v1.0.14, 통계역학-first + 코드 진행)}\\rhead{\\thepage/\\pageref{LastPage}}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 103,
+          "text": "\\title{\\textbf{\\LARGE Chapter 1}\\\\[0.35em]\\Large 흑연 음극 + LCO 양극 $dQ/dV$ 이론: 한 곡선을 그리는 코드 진행을 따라가는 수식-구동판 — 유도 확장}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 105,
+          "text": "\\date{\\normalsize 버전 1.0.14 \\quad(코드 \\texttt{Anode\\_Fit 1.0.14} 와 동일 버전 · matched)}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 141,
+          "text": "합산식과, ``이 문건만 보고 같은 곡선을 재현하는 코드를 짤 수 있다''는 실행 가능성이다. 본론에 앞서 Part 0",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 156,
+          "text": "펼치는 일이다. 코드 진행이 이 세 갈래를 차례로 닫는다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 230,
+          "text": "c\\_rate 는 시간 역수이므로 $Q_\\cell$ 과 시간 단위를 맞춰 대입한다([1/h]$\\cdot$[A\\,h]$\\to$[A]; 코드 규격화",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 289,
+          "text": "물리 기호와 구현 식별자의 대응은 부록~\\ref{sec:appendix-code}(표~\\ref{tab:symcode})에 정리한다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_NAVIGATIONAL_REFERENCE_ALLOWED"
+        },
+        {
+          "line": 930,
+          "text": "쓰는 평형식의 전 유도가 이 사다리에 있다 --- 이후 절은 같은 사다리를 결과 사슬(코드 진행 N1--N9) 순서로",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 994,
+          "text": "Part 0(\\S\\ref{sec:sm-ensemble}$\\cdot$\\S\\ref{sec:sm-electro}$\\cdot$\\S\\ref{sec:sm-macro})가 세웠다 — 이 절은 그 위에서 코드 입력",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1054,
+          "text": "$U(298)=(13000-298.15\\times16)/96485\\approx0.0853$ V 로 목표 $0.085$ V 와 정합한다. 구현 대응은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_NAVIGATIONAL_REFERENCE_ALLOWED"
+        },
+        {
+          "line": 1445,
+          "text": "이 소절은 결과식$\\cdot$부호$\\cdot$코드는 그대로 두고 $\\xi_\\eq$ 의 통계역학적 정체만 밝혀,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1615,
+          "text": "0.014 V($2\\mathrm L\\!\\to\\!2$)$\\cdot$0.012 V($2\\!\\to\\!1$)와 모순되지 않는다. 단 \\emph{현재 코드의 staging",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 1974,
+          "text": "\\emph{상수} 하나(대표 $T_\\rep\\cdot$대표 $n$)로 한 번만 평가된다. 구현 대응은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_NAVIGATIONAL_REFERENCE_ALLOWED"
+        },
+        {
+          "line": 2159,
+          "text": "override 하는 것이 전제) — 이 표가 있어 ``이 문건만으로 곡선 재현 코드를 짤 수 있다''.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2260,
+          "text": "★시연값($U{=}3.930/3.880/4.050$ V; 전자항은 T1$=$MIT dict 에",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2263,
+          "text": "별개라 round-trip 피팅으로 정합한다. 또한 현 구현은 $\\Delta S_e$ 를 기준온도 $T_\\mathrm{ref}$ 에서",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2624,
+          "text": "같은 전이 dict 의 $U_j^\\mathrm{cat}$ 피팅값 이동으로 \\emph{따로} 들어가며, $\\Omega_j^\\mathrm{cat}$ 하나가",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 2860,
+          "text": "forward 코드는 전이 파라미터를 LCO 값으로 치환하고 이 항 하나를 추가하는 것만으로 LCO 에 적용된다(\\S\\ref{sec:lco-code}).",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2923,
+          "text": "흑연에서 합산식~\\eqref{eq:sum} 의 $\\Delta S_{\\rxn,j}$ 는 평형 중심 $U_j(T)$ 를 통해 한 덩이로 작용했으나, LCO 양극에서는 이 한 덩이가 세 물리 성분(config=배치$\\cdot$vib=격자진동$\\cdot$electronic=전자)의 합임을 명시한다 — 식$\\cdot$코드 경로는 그대로이고 $\\Delta S$ 의 \\emph{내부 분해}만 더하며, 그 근거부터 식으로 놓는다. \\textbf{(a) 출발 — 분배함수의 인수분해.} 전이 $j$ 창의 한 미시상태는 (리튬 자리 배열)$\\times$",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 2998,
+          "text": "$x\\!\\leftrightarrow\\!\\xi_{\\eq,1}(V)$ 매핑으로 좌표를 잇는다(구현식은 \\S\\ref{sec:lco-code} 식~\\eqref{eq:lco-xmap}). \\emph{(ii) round-trip 가드.} 식~\\eqref{eq:lco-decomp} 의 config 중심 표준값",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 3002,
+          "text": "$U_1(298)\\approx3.90$ V 와 $\\partial U_1/\\partial T$ 의 부호$\\cdot$기울기(다온도 이동률)를 self-test 로 맞추어",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 3148,
+          "text": "\\subsection{전체 진행 요약}\\label{sec:facade}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 3152,
+          "text": "표~\\ref{tab:nodemap} 가 노드와 식으로 정리하고, 구현 대응(진입점$\\cdot$함수 이름)은",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_NAVIGATIONAL_REFERENCE_ALLOWED"
+        },
+        {
+          "line": 3159,
+          "text": "구현 식별자 대응은 부록~\\ref{sec:appendix-code}(표~\\ref{tab:nodecode}).}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_NAVIGATIONAL_REFERENCE_ALLOWED"
+        },
+        {
+          "line": 3179,
+          "text": "\\multicolumn{3}{l}{\\emph{\\quad(N0$'$ 보강: 셀 라벨$\\to$탈리튬화 부호 자동 환산 = 식~\\eqref{eq:lco-sigmaslot}$\\cdot$\\S\\ref{sec:facade})}}\\\\",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "\\bfacade\\b"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 3230,
+          "text": "R1--R3 은 구현 self-test 와 같은 양의 수기 재산출, R4 는 컷 규칙 정의 검사, R5 는 극한 논증,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\bself-test\\b"
+          ],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 3259,
+          "text": "R5 & 꼬리 극한의 방향(구판 감사 결함 코드 D-PEAK 의 회귀 가드): 한 칸 감쇠",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        }
+      ],
+      "inside_allowed_section": [
+        {
+          "line": 3275,
+          "text": "\\section{구현 대응표}\\label{sec:appendix-code}",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3277,
+          "text": "문건과 구현의 연계는 단방향이다 --- 구현(\\code{Anode\\_Fit\\_v1.0.14.py})의 주석$\\cdot$docstring 이 본 문건의",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3278,
+          "text": "식 번호를 참조한다. 본 부록은 그 역방향 조회, 곧 ``본문의 물리량$\\cdot$노드가 구현의 어느 식별자에",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3279,
+          "text": "대응하는가''를 표로 제공하여, 본문을 코드 언급 없이 물리로만 읽을 수 있게 하면서 재현 가능성(이 문건과",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3280,
+          "text": "구현 사이의 1:1 대조)을 보존한다. 진입점은 \\code{curve}(실험조건 facade — 방향 문자열$\\cdot$c-rate 를",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "구현",
+            "\\bfacade\\b"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3281,
+          "text": "식~\\eqref{eq:n0map} 으로 환산)와 \\code{dqdv}(물리 부호 $s$ 직접 입력)이며, LCO 서브클래스",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3282,
+          "text": "\\code{LCOCathodeDQDV} 는 전극 인지 플래그 \\code{\\_delith\\_is\\_discharge}$=$\\code{False} 로 셀 라벨을",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3283,
+          "text": "탈리튬화 부호로 환산한다(\\code{'charge'}$\\mapsto\\sigma_d{=}+1$, 식~\\eqref{eq:lco-sigmaslot}). $|I|\\to0$",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3284,
+          "text": "평형 기준선은 메서드 \\code{equilibrium}(식~\\eqref{eq:eqpeak} 만 $U_j$ 중심으로 합산 — 분기",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3286,
+          "text": "흑연 전이 초기값 리스트는 코드 변수 \\code{GRAPHITE\\_STAGING\\_LIT} 에, 표~\\ref{tab:lco-staging} 의 LCO",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3287,
+          "text": "초기값 리스트는 \\code{LCO\\_MSMR\\_LIT} 에 대응한다.",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3290,
+          "text": "\\caption{물리 기호 $\\leftrightarrow$ 구현 식별자 대응(본문 기호표의 구현 열).}\\label{tab:symcode}\\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3291,
+          "text": "\\toprule 기호 & 구현 식별자 & 비고 \\\\ \\midrule \\endfirsthead",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3292,
+          "text": "\\toprule 기호 & 구현 식별자 & 비고 \\\\ \\midrule \\endhead",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3293,
+          "text": "$\\sigma_d$ & \\code{s},\\,\\code{sigma\\_d} & 방향 부호 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3294,
+          "text": "$s$ & (코드 미대응) & 유도 전용 고정 부호(항상 $+1$ 대입 소멸) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3295,
+          "text": "$|I|$ & \\code{I\\_abs} & 전류 크기 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3296,
+          "text": "$Q_\\cell$ & \\code{Q\\_cell} & 셀 용량 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3297,
+          "text": "$T$ & \\code{T} & 온도(스칼라/배열) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3298,
+          "text": "$R_n$ & \\code{Rn} & 분극 저항 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3299,
+          "text": "$V_\\app$ & \\code{V\\_app} & 인가 전위 격자 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3300,
+          "text": "$U_j(T)$ & \\code{U},\\,\\code{func\\_U\\_j} & 평형 중심 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3301,
+          "text": "$\\Delta H_{\\rxn,j},\\Delta S_{\\rxn,j}$ & \\code{dH\\_rxn},\\,\\code{dS\\_rxn} & 반응 열역학 입력 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3302,
+          "text": "$n_j$ & \\code{n} & 폭 다중도 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3303,
+          "text": "$w_j$ & \\code{func\\_w},\\,\\code{\\_width} & 폭(직접 입력 키 \\code{w} 는 $n$ 역산 \\code{\\_n\\_factor}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3304,
+          "text": "$\\xi_{\\eq,j}$ & \\code{func\\_ksi\\_eq} & 평형 진행률 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3305,
+          "text": "$Q_j$ & \\code{Q} & 용량 가중 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3306,
+          "text": "$C_\\bg$ & \\code{Cbg} & 배경 미분용량 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3307,
+          "text": "$\\Omega_j$ & \\code{Omega} & 상호작용 에너지 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3308,
+          "text": "$\\gamma_j$ & \\code{gamma} & 분기 축소 인자 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3309,
+          "text": "$\\Delta U_j^\\hys$ & \\code{func\\_dU\\_hys} & 분기 gap \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3310,
+          "text": "$h_{\\eta,j}$ & \\code{h\\_eta} & 부분 cycle 인자 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3311,
+          "text": "$U_j^{\\,d}$ & \\code{func\\_U\\_branch} & 방향별 분기 중심 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3312,
+          "text": "$\\chi$ & \\code{chi}(생성자 인자 \\code{x}) & 전달 계수(분할 규칙 주입 \\code{chi\\_split}) — 인자명",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3313,
+          "text": "\\code{x} 는 조성 $x$(Li 함량)와 무관한 역사적 명칭 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3314,
+          "text": "$\\chi_d$ & \\code{func\\_chi\\_d} & 방향별 전달 계수 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3315,
+          "text": "$\\mathcal A$ & \\code{A} & 컷 affinity \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3316,
+          "text": "$\\Delta H_{a,j},\\Delta S_{a,j}$ & \\code{dH\\_a},\\,\\code{dS\\_a} & 활성화 열역학 입력 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3317,
+          "text": "$\\Delta H_{a,j}^\\eff$ & \\code{func\\_dH\\_a\\_eff},\\,\\code{\\_chi\\_and\\_dH\\_eff} & 유효 장벽(토글 \\code{use\\_dH\\_eff}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3318,
+          "text": "$L_{q,j}$ & \\code{func\\_L\\_q},\\,\\code{\\_resolve\\_lag\\_length} & 용량축 지연 길이 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3319,
+          "text": "$L_{V,j}$ & \\code{lag\\_len\\_V} & 전압축 지연 길이 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3320,
+          "text": "$|\\dd V/\\dd q|_{q_a}$ & \\code{dVdq\\_qa} & 컷점 OCV 기울기 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3321,
+          "text": "$z_\\mathrm{cut}$ & \\code{z\\_cut} & 컷 배수 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3322,
+          "text": "$A_\\mathrm{cap}$ & \\code{A\\_cap\\_RT} & 컷 상한 배수 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3323,
+          "text": "$\\xi_{\\mathrm{lag},j}$ & \\code{occ\\_lagged},\\,\\code{\\_causal\\_lowpass} & 인과 저역통과 진행률 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3330,
+          "text": "\\caption{전체 입력 인자(코드 식별자)와 기본값. 전이 dict 키는 전이별, 생성자 인자는 모델 공통이며 일부는 전이 dict 로",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3331,
+          "text": "per-transition override 된다($z_\\mathrm{cut}$,$A_\\mathrm{cap}$,\\code{use\\_dH\\_eff}). 사용자 실무에서 이 인자들은",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3336,
+          "text": "인자(코드) & 자리 & 기본값 & 곡선 내 역할(식) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3338,
+          "text": "\\multicolumn{4}{l}{\\emph{— 전이 dict 키(전이별) —}}\\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3339,
+          "text": "\\code{U} 또는 (\\code{dH\\_rxn},\\code{dS\\_rxn}) & 전이 & --- & 평형 중심 $U_j(T)$ (\\eqref{eq:Uj}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3340,
+          "text": "\\code{w} 또는 \\code{n} & 전이 & --- / $1$ & 폭 $w_j=n_jRT/F$ (\\eqref{eq:wbase}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3341,
+          "text": "\\code{Q} & 전이 & --- & 용량 가중(면적) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3342,
+          "text": "\\code{Omega},\\code{gamma} & 전이 & $0$,\\,$0$ & 상호작용$\\cdot$분기(히스, \\eqref{eq:dUhys}\\eqref{eq:Ubranch}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3343,
+          "text": "\\code{h\\_eta} & 전이 & $1.0$ & 부분 cycle 분기 인자 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3344,
+          "text": "\\code{dH\\_a},\\code{dS\\_a} & 전이 & --- / $0$ & 활성화(꼬리, \\eqref{eq:Lqfull}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3345,
+          "text": "\\code{dVdq\\_qa} & 전이 & $0$ & 컷 OCV 기울기 $L_q\\!\\to\\!L_V$ (\\eqref{eq:LV}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3346,
+          "text": "\\code{L\\_V} & 전이 & --- & 직접 지연 길이(동역학 우회) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3347,
+          "text": "\\code{z\\_cut},\\code{A\\_cap\\_RT} & 전이/공통 & $4.357$,\\,$4.0$ & 컷 affinity (\\eqref{eq:Acut}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3348,
+          "text": "\\code{use\\_dH\\_eff} & 전이/공통 & True & 유효 장벽 토글(\\eqref{eq:dHeff}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3350,
+          "text": "\\code{x}/\\code{chi},\\,\\code{chi\\_split} & 공통 & $0.5$,\\,\\code{func\\_chi\\_d} & 전달 계수 $\\chi_d$ (\\eqref{eq:chid}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3351,
+          "text": "\\code{Rn} & 공통 & $0.0$ & 분극 저항 (\\eqref{eq:vn}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3352,
+          "text": "\\code{Cbg} & 공통 & $0.0$ & 배경 $C_\\bg$ (상수 또는 $V$ 함수) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3353,
+          "text": "\\code{grid\\_pad\\_lo/hi},\\,\\code{n\\_work\\_min} & 공통 & $0.15$,\\,$2048$ & 작업 격자 (\\eqref{eq:vwork}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3354,
+          "text": "\\code{min\\_lag\\_grid\\_steps} & 공통 & $2.0$ & 꼬리/평형 전환 문턱 (\\eqref{eq:branch}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3355,
+          "text": "\\code{v\\_span\\_floor} & 공통 & $10^{-6}$ & 격자 폭 하한(수치 안전) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3356,
+          "text": "\\code{seed\\_T/I/Q\\_cell} & 공통 & $298.15$,\\,$0.1$,\\,$1.0$ & 진단용 seed $L_V$ 대표 조건 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3357,
+          "text": "\\multicolumn{4}{l}{\\emph{— 호출 인자(\\code{curve}/\\code{dqdv}) —}}\\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3358,
+          "text": "\\code{V\\_app},\\code{T},\\code{c\\_rate}/\\code{I\\_abs},\\code{Q\\_cell},\\code{direction} & 호출 & --- & 실험조건 (\\eqref{eq:n0map}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3359,
+          "text": "\\multicolumn{4}{l}{\\emph{— LCO 추가 인자(전이 dict 키$\\cdot$서브클래스, \\S\\ref{sec:lco-code}; 게이트 3키$+$\\code{x\\_center} 는 \\code{electronic} 켤 때 필수) —}}\\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3360,
+          "text": "\\code{electronic},\\code{x\\_center} & 전이 dict & \\code{False}, — & 전자항 plug-in 스위치$\\cdot$동결 조성 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3361,
+          "text": "\\code{g\\_max\\_eV},\\code{x\\_MIT},\\code{dx\\_MIT} & 전이 dict & 문헌 $13/0.85/0.05$ & MIT 게이트 초기값 (\\eqref{eq:ggate}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{",
+            "\\bdict\\b"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3362,
+          "text": "\\code{\\_delith\\_is\\_discharge} & 클래스 & 흑연 \\code{True}/LCO \\code{False} & 셀 라벨$\\to$탈리튬화 부호 환산 (\\eqref{eq:lco-sigmaslot}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3370,
+          "text": "\\caption{노드 $\\leftrightarrow$ 구현 식별자 대응(본문 표~\\ref{tab:nodemap} 의 구현 열).}",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3374,
+          "text": "노드 & 구현 식별자 \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3376,
+          "text": "N0 & \\code{curve},\\,\\code{\\_direction\\_to\\_sigma} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3377,
+          "text": "N1 & \\code{dqdv}(분극 환산부: \\code{V\\_n = V\\_in - sigma\\_d * I\\_abs * self.Rn}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3378,
+          "text": "N2 & \\code{func\\_U\\_j}(seam \\code{\\_effective\\_dS\\_rxn} 경유) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3379,
+          "text": "N3 & \\code{func\\_dU\\_hys},\\,\\code{func\\_U\\_branch} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3380,
+          "text": "N4 & \\code{func\\_w},\\,\\code{\\_width} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3381,
+          "text": "N5 & \\code{func\\_ksi\\_eq}(오버플로 방지 \\code{np.where} 이분 평가) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3382,
+          "text": "N6 & \\code{equilibrium}, 인라인 \\code{peak\\_shape = ksi\\_eq*(1-ksi\\_eq)/w} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3383,
+          "text": "N7 & \\code{\\_resolve\\_lag\\_length},\\,\\code{func\\_L\\_q} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3384,
+          "text": "N8 & \\code{\\_causal\\_lowpass} --- 가능하면 \\code{scipy.signal.lfilter} 계수 $[1{-}\\rho]/[1,-\\rho]$,",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3385,
+          "text": "아니면 동일 점화식 루프; 충전 분기 \\code{lowpass(ksi\\_arr[::-1])[::-1]} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3386,
+          "text": "N9 & \\code{dqdv\\_work} 누적,\\,\\code{np.interp} 역보간(\\code{dqdv\\_out}) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3387,
+          "text": "N0$'$ & \\code{LCOCathodeDQDV}$\\cdot$\\code{LCO\\_MSMR\\_LIT} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3388,
+          "text": "N2$'$ & \\code{func\\_U\\_j}(동일) \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3389,
+          "text": "N5$+$ & \\code{func\\_dSe\\_molar} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3390,
+          "text": "N9$'$ & \\code{\\_effective\\_dS\\_rxn} \\\\",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3395,
+          "text": "구현 스니펫 두 곳(본문 N2$\\cdot$N7 에서 이관)을 원문 그대로 둔다.",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "구현"
+          ],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3397,
+          "text": "\\textbf{N2.} \\code{if 'dH\\_rxn' in tr and 'dS\\_rxn' in tr: U\\_j = func\\_U\\_j(T\\_work, dH\\_rxn, dS\\_rxn)}",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3398,
+          "text": "— 배열 $T_\\work$ 대응. 없으면 \\code{U\\_j = float(tr['U'])} 직접. 실 호출의 $\\Delta S$ 인자는 seam",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3399,
+          "text": "\\code{\\_effective\\_dS\\_rxn(tr, T\\_work)} 를 경유한다(흑연 base 는 항등으로 \\code{tr['dS\\_rxn']} 그대로 —",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3400,
+          "text": "LCO 전자항 plug-in 자리: \\S\\ref{sec:lco-code}). \\code{GRAPHITE\\_STAGING\\_LIT} 의 stage 2$\\to$1 은",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3405,
+          "text": "\\textbf{N7 진행.} \\code{n\\_safe=|n\\_j|} $\\to$ $\\mathcal A$(식~\\eqref{eq:Acut}) $\\to$",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3406,
+          "text": "\\code{(chi\\_d, dH\\_a\\_use)=\\_chi\\_and\\_dH\\_eff(...)} (식~\\eqref{eq:chid}$\\cdot$\\eqref{eq:dHeff}) $\\to$",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        },
+        {
+          "line": 3407,
+          "text": "\\code{L\\_q=func\\_L\\_q(...,x=chi\\_d,A=A)} (식~\\eqref{eq:Lqfull}) $\\to$ \\code{L\\_V=|dVdq\\_qa|*L\\_q} (식~\\eqref{eq:LV}).",
+          "inside_allowed_code_section": true,
+          "direct_identifier_patterns": [
+            "\\\\code\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "ALLOWED_DEDICATED_IMPLEMENTATION_SECTION"
+        }
+      ]
+    },
+    "ch2_v1013": {
+      "path": "Claude/docs/v1.0.13/graphite_ica_ch2_v1.0.13.tex",
+      "rendered_noncomment_line_count": 667,
+      "mention_count": 7,
+      "outside_mention_count": 7,
+      "outside_navigation_reference_count": 0,
+      "outside_boundary_violation_count": 7,
+      "outside_direct_identifier_line_count": 6,
+      "outside_generic_framing_line_count": 1,
+      "inside_allowed_section_count": 0,
+      "outside_allowed_section": [
+        {
+          "line": 174,
+          "text": "코드 \\texttt{func\\_w} 의 모델 선택이라는 점은 파생 C(\\S\\ref{ssec:weff})와 파생 A 전제 명시(\\S\\ref{ssec:overlap})가",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 498,
+          "text": "★\\textbf{수치 검증(파생 A).} Chapter 1 코드(\\texttt{Anode\\_Fit\\_v1.0.13})의 4-전이 흑연 staging 파라미터로,",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 512,
+          "text": "★\\textbf{전제 명시(검증의 조건부).} 이 검증의 $w_j(T)$ 는 현행 코드(\\texttt{func\\_w}/\\texttt{\\_width})가",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 513,
+          "text": "강제하는 열적 서식 $w_j=n_jRT/F$($\\partial w_j/\\partial T=n_jR/F$) 하에서 평가된 것이다. 이 서식은 \\texttt{'n'}",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 514,
+          "text": "키 보유 전이에 적용되며 검증 데이터셋은 전 전이가 해당하고, \\texttt{'w'}-단독 전이는 $T$-동결 폭이다 —",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        },
+        {
+          "line": 520,
+          "text": "(\\S\\ref{sec:revheat} 한계 (1))과 코드 후속 과제가 확정한다.",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [],
+          "generic_implementation_patterns": [
+            "코드"
+          ],
+          "classification": "OUTSIDE_GENERIC_IMPLEMENTATION_FRAMING"
+        },
+        {
+          "line": 773,
+          "text": "\\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \\texttt{Anode\\_Fit\\_v1.0.13} 4-전이 흑연 staging 파라미터, 유한차분 vs.\\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \\S\\ref{ssec:overlap} 요지.]",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        }
+      ],
+      "inside_allowed_section": []
+    },
+    "ch2_v1014": {
+      "path": "Claude/docs/v1.0.14/graphite_ica_ch2_v1.0.14.tex",
+      "rendered_noncomment_line_count": 685,
+      "mention_count": 1,
+      "outside_mention_count": 1,
+      "outside_navigation_reference_count": 0,
+      "outside_boundary_violation_count": 1,
+      "outside_direct_identifier_line_count": 1,
+      "outside_generic_framing_line_count": 0,
+      "inside_allowed_section_count": 0,
+      "outside_allowed_section": [
+        {
+          "line": 791,
+          "text": "\\bibitem{numverif2026} 본 연구 내부 수치 검증(Derivative A), \\texttt{Anode\\_Fit\\_v1.0.14} 4-전이 흑연 staging 파라미터, 유한차분 vs.\\ 가중식 비교 (2026). [내부 자료 — 표시 정밀도 일치 PASS, 본문 \\S\\ref{ssec:overlap} 요지.]",
+          "inside_allowed_code_section": false,
+          "direct_identifier_patterns": [
+            "\\\\texttt\\{"
+          ],
+          "generic_implementation_patterns": [],
+          "classification": "OUTSIDE_DIRECT_IMPLEMENTATION_CONTENT"
+        }
+      ],
+      "inside_allowed_section": []
+    }
+  },
+  "width_budget_contract": {
+    "intrinsic_variance_identity": "sigma_int^2 = pi^2 w_int^2 / 3",
+    "symmetric_convolution_identity": "sigma_sym^2 = sigma_int^2 + sigma_ens^2",
+    "logistic_fwhm_identity": "FWHM = 2 ln(3 + 2 sqrt(2)) w_int",
+    "identity_disposition": "PRESERVE",
+    "semantic_defect": "The same w_j is used as intrinsic n_jRT/F and as an effective fitted width already absorbing ensemble broadening.",
+    "semantic_disposition": "CORRECT_ROLE_SPLIT_REQUIRED",
+    "required_final_symbols": [
+      "w_int(T,state)",
+      "sigma_ens(T,state)",
+      "L_V(T,I,state,history)",
+      "w_obs"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "V1014-36.1-01",
+      "topic": "textbook_register",
+      "disposition": "PRESERVE_ASSET_NOT_FINAL_AUTHORITY",
+      "finding": "The single-site derivation now exposes the grand partition function, internal q(T), effective site free energy, limiting cases, and the Ch1/Ch2 bridge; this is a real pedagogical gain.",
+      "final_direction": "Preserve the derivational ladder but rederive and source-audit it before the final manuscript."
+    },
+    {
+      "id": "V1014-36.1-02",
+      "topic": "review_depth",
+      "disposition": "PARTIAL",
+      "finding": "Ch1 adds broadening mechanisms, a variance budget, PSD forward integration, and Gibbs-Thomson exclusion, but Ch2 changes only 18 net lines and no new equation.",
+      "final_direction": "Treat v1.0.14 as a Ch1-rich editorial/derivational asset, not as proof that the two-chapter review-depth target was met."
+    },
+    {
+      "id": "V1014-36.1-03",
+      "topic": "theory_only_boundary",
+      "disposition": "FAIL_REQUIRES_CORRECTION",
+      "finding": "A dedicated implementation appendix was created, yet rendered title/header/date and body prose still contain code-first framing, current-code state, dict, and self-test language.",
+      "final_direction": "Allow exact identifiers only in a separately bounded conformance appendix; remove code-first framing and current implementation claims from the physics chapters."
+    },
+    {
+      "id": "V1014-36.1-04",
+      "topic": "one_way_theory_to_code",
+      "disposition": "PARTIAL",
+      "finding": "Moving identifier tables and snippets into one appendix is structurally correct, but the main text still explains itself through implementation state rather than only physical logic.",
+      "final_direction": "The final code must cite equation/contract IDs; the manuscript must not derive authority from code behavior."
+    },
+    {
+      "id": "V1014-36.1-05",
+      "topic": "width_budget",
+      "disposition": "CORRECT_ROLE_SPLIT_REQUIRED",
+      "finding": "Variance addition and the logistic variance/FWHM identities are mathematically coherent under independent convolution. However w_j is first the intrinsic nRT/F scale and later the fitted effective width that already absorbs intrinsic plus ensemble broadening, so adding sigma_eta can double count.",
+      "final_direction": "Use distinct w_int(T), sigma_ens(T,state), and observed/effective width symbols; let the observation operator combine them once."
+    },
+    {
+      "id": "V1014-36.1-06",
+      "topic": "scientific_validation",
+      "disposition": "UNVERIFIED",
+      "finding": "The source contains internal numerical-validation and measurement-grade language but this diff supplies neither external experimental overlays nor uncertainty.",
+      "final_direction": "Keep internal identities as unit tests and reserve validation language for versioned public data, residuals, uncertainty, and held-out conditions."
+    }
+  ],
+  "summary": {
+    "ch1_net_line_change": 511,
+    "ch2_net_line_change": 18,
+    "ch1_equation_changed_count": 10,
+    "ch1_equation_added_count": 5,
+    "ch2_equation_changed_count": 2,
+    "ch2_equation_added_count": 0,
+    "physics_derivation_changed_equation_count": 5,
+    "implementation_boundary_changed_equation_count": 5,
+    "physics_derivation_added_equation_count": 5,
+    "v1014_outside_allowed_implementation_line_count": 29,
+    "v1014_outside_navigation_reference_count": 5,
+    "v1014_outside_boundary_violation_count": 24,
+    "v1013_outside_boundary_violation_count": 230,
+    "v1014_inside_allowed_implementation_line_count": 97,
+    "decision_count": 6,
+    "theory_only_boundary_pass": false
+  },
+  "status": "CONDITIONAL_P059_V1014_PEDAGOGICAL_ASSET_WITH_THEORY_BOUNDARY_AND_WIDTH_ROLE_DEBTS",
+  "next_action": "Run Step 36.2 independent regular-solution, spinodal, Cahn-Hilliard, gradient, mobility, and boundary-condition rederivation."
+}

@@ -860,3 +860,47 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   v1.0.14의 textbook register, derivation restructuring,
   width budget와 theory-only 본문 경계를 v1.0.13과 exact diff로
   재판정하는 일이다.
+
+### 2026-07-28 — Step 36.1
+
+- v1.0.13→v1.0.14 exact source diff를 Ch1/Ch2 각각 재판정했다.
+  Ch1은 2,934→3,445행(+511), Ch2는 776→794행(+18)이다.
+- Ch1 displayed equation은 101 unchanged, 10 changed, 5 added다.
+  changed 10개 중 5개는 단일자리 대정준 분배함수, 내부 자유도
+  \(q(T)\), 유효 자리 자유에너지의 실제 유도 변경이고 5개는
+  code identifier를 추상 물리/연산 표기로 바꾼 경계 정리다.
+  신규 5식은 \(\tilde\varepsilon\), 내부 자유도 엔트로피,
+  symmetric width budget, PSD forward integral, Gibbs–Thomson
+  shift다.
+- Ch2는 20 equation unchanged, 2 changed, 0 added다. 두 변경은
+  \(Z_1\to\Xi_1\) 대정준 표기와 Ch1의 유효 단일자리 자유에너지
+  bridge 엄밀화다. 따라서 review-depth 증가는 Ch1에 집중됐고
+  전체 두 장의 완결 달성을 뜻하지 않는다.
+- comments와 TeX macro declaration을 제외한 rendered source에서
+  구현 관련 boundary violation은 v1.0.13 두 장 합계 230행에서
+  v1.0.14 24행으로 크게 줄었다. 전용 구현 부록 안에는 97행이
+  모였다. 그러나 title/header/date와 본문에 `코드 진행`,
+  `현재 코드`, `dict`, `self-test`, internal code artifact가
+  남아 theory-only gate는 FAIL이다.
+- width budget의 logistic variance
+  \(\sigma_\mathrm{int}^2=\pi^2w_\mathrm{int}^2/3\), independent
+  convolution variance addition, FWHM identity는 보존한다.
+  반면 같은 \(w_j\)를 내재 \(n_jRT/F\)와 ensemble broadening을
+  이미 흡수한 fitted effective width로 동시에 쓰면
+  \(\sigma_\eta\)를 이중계산할 수 있다. 최종 문건은
+  \(w_\mathrm{int}\), \(\sigma_\mathrm{ens}\), \(L_V\),
+  \(w_\mathrm{obs}\)를 분리해야 한다.
+- 판정 6건은 textbook asset PRESERVE, review depth PARTIAL,
+  theory-only boundary FAIL, one-way theory→code PARTIAL,
+  width role split CORRECT, scientific validation UNVERIFIED다.
+- validator 38/38과 audit/report deterministic rerun을 통과했다.
+- 근거:
+  `Codex/results/PHASE_059_V1014_REGISTER_BOUNDARY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1014_REGISTER_BOUNDARY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1014_register_boundary.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1014_register_boundary.py`.
+- status:
+  `CONDITIONAL_P059_V1014_PEDAGOGICAL_ASSET_WITH_THEORY_BOUNDARY_AND_WIDTH_ROLE_DEBTS`.
+- 다음은 Step 36.2의 regular-solution/spinodal/Cahn–Hilliard
+  독립 재유도와 unit·stability·linearization·boundary-condition
+  검산이다.
