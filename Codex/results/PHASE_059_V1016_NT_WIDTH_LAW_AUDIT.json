@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "37.4",
+  "scope": "v1.0.16 linear n(T) width law, dwdT propagation, code branches, positivity, parameter correlation, tests, and empirical-versus-microscopic authority",
+  "exact_delta": {
+    "production_code": {
+      "added": 55,
+      "deleted": 20
+    },
+    "chapter_1": {
+      "added": 11,
+      "deleted": 8
+    },
+    "chapter_2": {
+      "added": 18,
+      "deleted": 6
+    },
+    "fitting_guide": {
+      "added": 23,
+      "deleted": 7
+    },
+    "regression_harness": {
+      "added": 2,
+      "deleted": 2
+    },
+    "method_ast": [
+      {
+        "method": "_n_factor",
+        "v1015_ast_sha256": "a61f8968f655ad1891518462dc4fc7f570224bf7e396e3262e9a9a4b07076c00",
+        "v1016_ast_sha256": "06cd59734ae46f451f19909b6778da90d3ce016f237ebfddc071cf54524a3890",
+        "added": false,
+        "changed": true
+      },
+      {
+        "method": "_width",
+        "v1015_ast_sha256": "edb82d6fd755b1b1550c9a40f9aad81226bfe4e238cf2bcfb99cb387f48117d2",
+        "v1016_ast_sha256": "e0c3afe7549dd3b8f9c43ce263be99dc56388c71f3142e5e1d81e9f570535980",
+        "added": false,
+        "changed": true
+      },
+      {
+        "method": "_dwdT",
+        "v1015_ast_sha256": null,
+        "v1016_ast_sha256": "15b6bf2f44c571dfd9c50969639a68cb4d8f01d40087ec3ac41d304a4b96d01a",
+        "added": true,
+        "changed": true
+      },
+      {
+        "method": "entropy_coefficient",
+        "v1015_ast_sha256": "5eca279815421bde480e0fd6dbbae55a56b25615e92accfaa73fc018d08a309d",
+        "v1016_ast_sha256": "c5613a26c3670098cc35ea5c4731e670ecc20b63c79d0e43bad49d422dff0a19",
+        "added": false,
+        "changed": true
+      },
+      {
+        "method": "reversible_heat",
+        "v1015_ast_sha256": "1288f8746556988779fe437290eb7527ef433b07fcc00a43f9159a4b35c34ef0",
+        "v1016_ast_sha256": "1d7879ead676eaef752e7d0babd09ae55624b0651a6a6c594009978a706efaf1",
+        "added": false,
+        "changed": true
+      },
+      {
+        "method": "dqdv",
+        "v1015_ast_sha256": "5e3633fb2e25534223a6dc0561e273e6de937f23d91bad36e72d6938b8c65f00",
+        "v1016_ast_sha256": "5e3633fb2e25534223a6dc0561e273e6de937f23d91bad36e72d6938b8c65f00",
+        "added": false,
+        "changed": false
+      }
+    ]
+  },
+  "mathematical_contract": {
+    "n_law": "n(T)=n0+n1*(T-T_ref)",
+    "width_law": "w(T)=n(T)*R*T/F",
+    "dwdT": "(R/F)*(n(T)+T*n1)",
+    "status": "EMPIRICAL_LOCAL_WIDTH_LAW",
+    "microscopic_multiplicity_derivation_present": false
+  },
+  "opt_in_nt_roundtrip": {
+    "transition": {
+      "dH_rxn": -10000.0,
+      "dS_rxn": 10.0,
+      "Q": 1.0,
+      "n": 1.0,
+      "n_T1": 0.004,
+      "n_T_ref": 298.15
+    },
+    "fraction": 0.2,
+    "temperature_K": 298.15,
+    "voltage_V": 0.09892861128085939,
+    "code_n": 1.0,
+    "code_width_V": 0.025691238016271958,
+    "analytic_dwdT_V_per_K": 0.0001889337865989532,
+    "code_dwdT_V_per_K": 0.0001889337865989532,
+    "analytic_dUdT_V_per_K": -0.00015827478966280663,
+    "code_dUdT_V_per_K": -0.00015827478966280658,
+    "finite_difference_dUdT_V_per_K": -0.00015827478966334851,
+    "analytic_code_abs_V_per_K": 5.421010862427522e-20,
+    "analytic_fd_abs_V_per_K": 5.418842458082551e-16
+  },
+  "constant_n_v1015_comparison": {
+    "rows": [
+      {
+        "quantity": "equilibrium",
+        "array_equal": true,
+        "max_abs": 0.0
+      },
+      {
+        "quantity": "dqdv",
+        "array_equal": true,
+        "max_abs": 0.0
+      },
+      {
+        "quantity": "entropy_coefficient",
+        "array_equal": true,
+        "max_abs": 0.0
+      },
+      {
+        "quantity": "reversible_heat",
+        "array_equal": true,
+        "max_abs": 0.0
+      }
+    ],
+    "all_four_bit_exact": true
+  },
+  "fixed_w_branch": {
+    "width_V": 0.020000000000000004,
+    "dwdT_V_per_K": 0.0,
+    "code_dUdT_V_per_K": 0.00010364305332435094,
+    "expected_center_only_V_per_K": 0.00010364305332435094
+  },
+  "missing_n_and_w_default_branch": {
+    "declared_n_fallback": 1.0,
+    "width_V": 0.025691238016271958,
+    "width_is_RT_over_F": true,
+    "code_dwdT_V_per_K": 0.0,
+    "actual_dwdT_V_per_K": 8.616883453386537e-05,
+    "code_entropy_coefficient_V_per_K": 0.00010364305332435094,
+    "finite_difference_entropy_coefficient_V_per_K": -1.5812316095376033e-05,
+    "mismatch_V_per_K": 0.00011945536941972697
+  },
+  "array_temperature": {
+    "temperatures_K": [
+      273.15,
+      298.15,
+      323.15
+    ],
+    "voltages_V": [
+      0.10258684259888314,
+      0.13454422967300617,
+      0.17959750889648707
+    ],
+    "vector_output_V_per_K": [
+      -0.0001343837157790926,
+      0.00010364305332435094,
+      0.00038945197019522263
+    ],
+    "scalar_pointwise_output_V_per_K": [
+      -0.0001343837157790926,
+      0.00010364305332435094,
+      0.00038945197019522263
+    ],
+    "max_abs": 0.0
+  },
+  "guards": {
+    "n_T1_without_n": {
+      "raised": true,
+      "type": "ValueError",
+      "message": "transition 'n_T1' requires 'n' (n(T)=n+n_T1·(T−n_T_ref))."
+    },
+    "positivity": {
+      "temperature_domain_K": [
+        273.15,
+        323.15
+      ],
+      "required_constraints": [
+        "n0+n1*(T_min-T_ref)>0",
+        "n0+n1*(T_max-T_ref)>0"
+      ],
+      "example_n_at_273p15": -0.024999999999999994,
+      "example_n_at_298p15": 0.1,
+      "reference_point_constructor_accepts_profile": true,
+      "low_temperature_width_guard": {
+        "raised": true,
+        "type": "ValueError",
+        "message": "width w=n(T)·RT/F must be > 0 (n(T)≤0 at some T — check n/n_T1/n_T_ref)."
+      },
+      "domain_bound_documented_in_guide": false,
+      "fitting_schema_enforces_domain_bound": false
+    }
+  },
+  "parameter_identifiability": {
+    "width_law": "w(T)=(R/F)[(n0-n1*T_ref)T+n1*T^2], so linear n(T) is a quadratic-in-T width law",
+    "centered_symmetric_60K": {
+      "temperatures_K": [
+        268.15,
+        298.15,
+        328.15
+      ],
+      "parameterization": "[n0, b=T_ref*n1]",
+      "condition_number": 12.318391199934338,
+      "parameter_correlation": -0.16293808711405233
+    },
+    "one_sided_20K": {
+      "temperatures_K": [
+        278.15,
+        288.15,
+        298.15
+      ],
+      "parameterization": "[n0, b=T_ref*n1]",
+      "condition_number": 36.60454472871289,
+      "parameter_correlation": 0.7601074479112458
+    },
+    "single_temperature_rank": 1,
+    "two_parameter_width_model_rank_at_one_temperature": 1,
+    "n1_center_entropy_sensitivity_at_x_half": 0.0,
+    "reason": "At one T only n(T) is observed; n0 and n1 are inseparable. Even across a narrow window the dimensionless slope column is weak and can correlate with n0, while dS and n1 both affect off-center entropy slopes."
+  },
+  "persistent_test_coverage": {
+    "runnable_file_count": 5,
+    "n_T1_occurrence_count": 0,
+    "_dwdT_occurrence_count": 0,
+    "execution_ledger_claims_nt_roundtrip": true,
+    "persistent_nt_test_present": false
+  },
+  "findings": [
+    {
+      "topic": "nt_status",
+      "disposition": "EMPIRICAL_WIDTH_LAW_NOT_MICROSCOPIC_MULTIPLICITY"
+    },
+    {
+      "topic": "dwdt_algebra",
+      "disposition": "PRESERVE_PRODUCT_RULE"
+    },
+    {
+      "topic": "nt_roundtrip",
+      "disposition": "PRESERVE_OPT_IN_NUMERICAL_CONFORMANCE"
+    },
+    {
+      "topic": "constant_n",
+      "disposition": "PRESERVE_V1015_BIT_EXACT_PATH"
+    },
+    {
+      "topic": "fixed_w",
+      "disposition": "PRESERVE_T_FROZEN_CENTER_ONLY_PATH"
+    },
+    {
+      "topic": "default_branch",
+      "disposition": "FAIL_DEFAULT_N1_THERMAL_WIDTH_DWDT_MISMATCH"
+    },
+    {
+      "topic": "positivity",
+      "disposition": "REQUIRE_DOMAIN_WIDE_ENDPOINT_BOUNDS"
+    },
+    {
+      "topic": "guard_scope",
+      "disposition": "CONDITIONAL_POINTWISE_FAIL_FAST_NOT_FIT_BOUND"
+    },
+    {
+      "topic": "linear_scope",
+      "disposition": "LOCAL_EMPIRICAL_APPROXIMATION_ONLY"
+    },
+    {
+      "topic": "parameter_correlation",
+      "disposition": "REQUIRE_CENTERED_SCALED_PARAMETERIZATION"
+    },
+    {
+      "topic": "persistent_tests",
+      "disposition": "FAIL_NO_PERSISTENT_NT_REGRESSION"
+    },
+    {
+      "topic": "array_temperature",
+      "disposition": "PRESERVE_POINTWISE_ARRAY_T_CONFORMANCE"
+    },
+    {
+      "topic": "two_phase_interpretation",
+      "disposition": "DO_NOT_PROMOTE_NT_TO_PHASE_MECHANISM"
+    },
+    {
+      "topic": "inherited_kinetics",
+      "disposition": "CARRY_SAMPLE_MEAN_T_LAG_BLOCKER"
+    },
+    {
+      "topic": "lco_entropy",
+      "disposition": "CARRY_T_DEPENDENT_DSE_DERIVATIVE_BLOCKER"
+    },
+    {
+      "topic": "manuscript_boundary",
+      "disposition": "PRESERVE_NT_DERIVATION_AS_CODE_FREE_BODY"
+    }
+  ],
+  "summary": {
+    "finding_count": 16,
+    "product_rule_pass": true,
+    "opt_in_nt_roundtrip_pass": true,
+    "constant_n_bit_exact_pass": true,
+    "fixed_w_branch_pass": true,
+    "default_branch_conformance_pass": false,
+    "domain_wide_positivity_contract_pass": false,
+    "persistent_nt_regression_pass": false,
+    "microscopic_nt_authority_pass": false,
+    "single_temperature_n0_n1_identifiability_pass": false,
+    "array_temperature_pointwise_pass": true,
+    "next_step": "37.5"
+  },
+  "status": "CONDITIONAL_P059_V1016_NT_DWDT_ALGEBRA_AND_OPT_IN_ROUNDTRIP_PASS_BUT_EMPIRICAL_STATUS_DEFAULT_BRANCH_POSITIVITY_AND_IDENTIFIABILITY_GAPS_REMAIN",
+  "next_action": "Phase 059 Step 37.5: adjudicate structural and practical identifiability of n(T), activation, and LCO electronic/vibrational terms without multi-temperature rate-series data.",
+  "source_hashes_before": {
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+    "Claude/docs/v1.0.15/graphite_ica_ch1_v1.0.15.tex": "0488077daaa325c6a134b3e9d94adf4d8ba93bde04fbee40ab06e86be5bac703",
+    "Claude/docs/v1.0.16/graphite_ica_ch1_v1.0.16.tex": "6697b4f6e0f9e9aac5c6559e25d394223c20887aa3f521ef297dedb1abb91a7a",
+    "Claude/docs/v1.0.15/graphite_ica_ch2_v1.0.15.tex": "6e5ebd10fbe53fa69fc7dbc5b89cf1b69111d2fae63432711dc0119ef2e229c1",
+    "Claude/docs/v1.0.16/graphite_ica_ch2_v1.0.16.tex": "c5f93324935a752fdd05cdfc8ccb9b685be822ed18fd84213aec3354d3418fa7",
+    "Claude/docs/v1.0.15/FITTING_GUIDE.md": "2ced16e629ab578ae73814549502fc8fa7db66d58c0a5639c9f1c4884486d72c",
+    "Claude/docs/v1.0.16/FITTING_GUIDE.md": "a099b62c3f60c151ccf6ade83d50c9fbdf394d047e1bce09d61610418739b823",
+    "Claude/docs/v1.0.16/test_regression_graphite.py": "9bf851cfedb67e1c838d02a17d6369980c929bfdfea4dc0c9744d97caf3ca15a",
+    "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md": "eb4df75c9bd683121118ee1738e6295d79cc3804039210d46b00bd51966f51ab",
+    "Claude/results/process/V1016_EXECUTION_LEDGER.md": "7124166f1e45cdc35590c379a20cd360a3c5d77461a3873ab40d7f1c757e2ed8",
+    "Codex/results/PHASE_059_V1015_HEAT_DETAILING_AUDIT.json": "6cd080ece88a5fe41d28df65013f3f34161ca14324c3f73dd5a31cf95fe989fa"
+  },
+  "source_hashes_after": {
+    "Claude/docs/v1.0.15/Anode_Fit_v1.0.15.py": "774dc2334ff465c0abcedfe12027bde8e9467a2082e69b89c96aebdf3f122b7a",
+    "Claude/docs/v1.0.16/Anode_Fit_v1.0.16.py": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+    "Claude/docs/v1.0.15/graphite_ica_ch1_v1.0.15.tex": "0488077daaa325c6a134b3e9d94adf4d8ba93bde04fbee40ab06e86be5bac703",
+    "Claude/docs/v1.0.16/graphite_ica_ch1_v1.0.16.tex": "6697b4f6e0f9e9aac5c6559e25d394223c20887aa3f521ef297dedb1abb91a7a",
+    "Claude/docs/v1.0.15/graphite_ica_ch2_v1.0.15.tex": "6e5ebd10fbe53fa69fc7dbc5b89cf1b69111d2fae63432711dc0119ef2e229c1",
+    "Claude/docs/v1.0.16/graphite_ica_ch2_v1.0.16.tex": "c5f93324935a752fdd05cdfc8ccb9b685be822ed18fd84213aec3354d3418fa7",
+    "Claude/docs/v1.0.15/FITTING_GUIDE.md": "2ced16e629ab578ae73814549502fc8fa7db66d58c0a5639c9f1c4884486d72c",
+    "Claude/docs/v1.0.16/FITTING_GUIDE.md": "a099b62c3f60c151ccf6ade83d50c9fbdf394d047e1bce09d61610418739b823",
+    "Claude/docs/v1.0.16/test_regression_graphite.py": "9bf851cfedb67e1c838d02a17d6369980c929bfdfea4dc0c9744d97caf3ca15a",
+    "Claude/docs/v1.0.16/HANDOVER_v1.0.16.md": "eb4df75c9bd683121118ee1738e6295d79cc3804039210d46b00bd51966f51ab",
+    "Claude/results/process/V1016_EXECUTION_LEDGER.md": "7124166f1e45cdc35590c379a20cd360a3c5d77461a3873ab40d7f1c757e2ed8",
+    "Codex/results/PHASE_059_V1015_HEAT_DETAILING_AUDIT.json": "6cd080ece88a5fe41d28df65013f3f34161ca14324c3f73dd5a31cf95fe989fa"
+  },
+  "source_unchanged": true
+}

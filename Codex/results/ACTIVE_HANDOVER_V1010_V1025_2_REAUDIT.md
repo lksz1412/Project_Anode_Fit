@@ -14,7 +14,7 @@
 5. 실행 원장:
    `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 6. 현재 phase result:
-   `Codex/results/PHASE_059_V1015_HEAT_DETAILING_REVIEW.md`
+   `Codex/results/PHASE_059_V1016_NT_WIDTH_LAW_REVIEW.md`
 
 ## Current State
 
@@ -789,6 +789,32 @@
   (64/64 checks, deterministic rerun hash preserved).
 - v1.0.15 heat-detailing status:
   `CONDITIONAL_P059_V1015_HEAT_WORKED_EXAMPLE_NUMERICALLY_CLOSED_BUT_NO_NEW_HEAT_PHYSICS_AND_SIGN_API_BOUNDARY_REMAINS`.
+- Phase 059 v1.0.16 n(T) width law:
+  \(\partial w/\partial T=(R/F)[n(T)+Tn_1]\) product rule와 opt-in
+  entropy round-trip을 보존한다. 상수-n 네 출력은 v1.0.15와
+  bit-exact이고 w-only T-frozen branch도 맞다.
+- n(T) authority:
+  선형 n(T)은 실제 w(T)에 T² 항을 넣는 local empirical width
+  law다. microscopic multiplicity나 phase mechanism으로 승격하지
+  않는다.
+- Default branch defect:
+  n/w가 모두 없으면 실제 width=RT/F인데 `_dwdT=0`이라 x=0.2에서
+  entropy derivative가 0.119455 mV/K 어긋난다. 명시 n=1인 기본
+  staging data는 영향받지 않지만 public fallback 계약은 FAIL이다.
+- Positivity/identifiability:
+  fitting 온도창 endpoint n(T)>0 bound가 없고 한 온도에서 n0/n1
+  Jacobian rank는 1이다. 한쪽 20 K 창의 scaled condition number
+  36.60, correlation 0.760을 기록했다.
+- Test authority:
+  실행 원장의 n(T) round-trip 주장과 달리 배포 test/demo의
+  `n_T1`/`_dwdT` occurrence는 0이다. persistent regression FAIL이다.
+- Phase 059 v1.0.16 n(T) evidence:
+  `Codex/results/PHASE_059_V1016_NT_WIDTH_LAW_AUDIT.json`,
+  `Codex/results/PHASE_059_V1016_NT_WIDTH_LAW_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1016_nt_width_law.py`
+  (68/68 checks, deterministic rerun hash preserved).
+- v1.0.16 n(T) status:
+  `CONDITIONAL_P059_V1016_NT_DWDT_ALGEBRA_AND_OPT_IN_ROUNDTRIP_PASS_BUT_EMPIRICAL_STATUS_DEFAULT_BRANCH_POSITIVITY_AND_IDENTIFIABILITY_GAPS_REMAIN`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -811,17 +837,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 37.4:
-v1.0.16 \(n(T)=n_0+n_1(T-T_\mathrm{ref})\) 확장을 empirical
-width law와 microscopic physics로 분리한다.
-\(\partial w/\partial T\), entropy propagation, positivity와
-parameter correlation을 검산한다.
+Phase 059 Step 37.5:
+다온도·rate-series 없이 \(n(T)\), activation, LCO electronic와
+vibrational 항을 동시에 식별할 수 있는지 structural/practical
+identifiability로 판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–37.3.
+Phase 059 Steps 33.1–37.4.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

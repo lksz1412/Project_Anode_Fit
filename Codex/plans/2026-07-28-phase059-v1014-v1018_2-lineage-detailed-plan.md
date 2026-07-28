@@ -1283,3 +1283,49 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   microscopic physics로 분리하고 \(\partial w/\partial T\),
   entropy propagation, positivity와 parameter correlation을
   검산하는 일이다.
+
+### 2026-07-28 — Step 37.4
+
+- v1.0.15→v1.0.16 exact patch를 code +55/-20, Ch1 +11/-8,
+  Ch2 +18/-6, fitting guide +23/-7, regression harness +2/-2로
+  고정하고 `_n_factor`, `_width`, 신설 `_dwdT`,
+  `entropy_coefficient`, `reversible_heat` AST 변화를 분리했다.
+- \(n(T)=n_0+n_1(T-T_{\rm ref})\),
+  \(w=n(T)RT/F\)에서
+  \(\partial w/\partial T=(R/F)[n(T)+Tn_1]\)를 독립 유도했다.
+  \(n_1=0.004\ {\rm K}^{-1}\), \(x=0.2\) probe의 해석식–code–
+  유한차분 오차는 \(5.42\times10^{-16}\) V/K였다.
+- 상수 \(n\)의 equilibrium/dQdV/entropy/reversible-heat 네
+  경로는 v1.0.15와 bit-exact였고 `w`-only \(T\)-동결 경로도
+  중심값-only entropy에 맞았다.
+- `n`과 `w`가 모두 없는 공개 기본 경로는 `_n_factor=1`이라
+  실제 폭이 \(RT/F\)인데 `_dwdT=0`으로 처리된다. \(x=0.2\)에서
+  고정-\(x\) entropy 미분 오차가 0.119455 mV/K라 default-branch
+  theory/code conformance를 FAIL로 판정했다.
+- 평가점의 \(w>0\) fail-fast는 있으나 전체 fitting 온도창의
+  \(n(T)>0\) 제약은 없다. 선형식은 \(T_{\min},T_{\max}\) 두
+  endpoint에서 양수를 강제해야 한다.
+- 한 온도에서는 \(n_0,n_1\) Jacobian rank가 1이다.
+  278.15/288.15/298.15 K 한쪽 창에서 scaled slope
+  \(b=T_{\rm ref}n_1\) width Jacobian condition number는 36.60,
+  parameter correlation은 0.760이었다.
+- 선형 \(n(T)\)은 실제로 \(w(T)\)에 \(T^2\) 항을 넣는 국소
+  empirical width law다. microscopic multiplicity 또는
+  phase-separation mechanism 권위는 기각했다.
+- 실행 원장은 n(T) round-trip을 주장하지만 배포 test/demo의
+  `n_T1`과 `_dwdT` occurrence는 모두 0이다. persistent regression
+  authority는 FAIL이다.
+- 배열 \(T(V)\) entropy는 scalar pointwise와 exact했지만
+  Step 37.2 sample-mean-T lag와 LCO \(T\)-dependent entropy
+  derivative blocker는 미수리다.
+- 근거:
+  `Codex/results/PHASE_059_V1016_NT_WIDTH_LAW_AUDIT.json`,
+  `Codex/results/PHASE_059_V1016_NT_WIDTH_LAW_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1016_nt_width_law.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1016_nt_width_law.py`.
+- validator 68/68과 deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1016_NT_DWDT_ALGEBRA_AND_OPT_IN_ROUNDTRIP_PASS_BUT_EMPIRICAL_STATUS_DEFAULT_BRANCH_POSITIVITY_AND_IDENTIFIABILITY_GAPS_REMAIN`.
+- 다음은 Step 37.5에서 다온도 rate-series 없이 \(n(T)\),
+  activation, LCO electronic/vibrational 항을 동시에 식별 가능한지
+  structural/practical identifiability로 판정하는 일이다.
