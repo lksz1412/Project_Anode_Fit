@@ -728,6 +728,33 @@
   (76/76 checks, deterministic rerun hash preserved).
 - v1.0.15 pointwise-memory status:
   `CONDITIONAL_P059_V1015_POINTWISE_MEMORY_CORE_PRESERVED_BUT_FINITE_WINDOW_RESOLUTION_SWITCH_AND_CHRONOLOGY_FAIL`.
+- Phase 059 v1.0.15 implementation boundary:
+  direct L_V 단일 전이의 V=0에서 scalar/singleton은 평형 12.5,
+  같은 좌표의 sweep은 9.657353이다. scalar는 stateless query로만
+  허용하며 public API에 initial/time/final state가 없다.
+- Finite-tail boundary:
+  [-0.6,V_end] 면적은 V_end 0.05/0.10/0.15/0.20/0.30/0.60 V에서
+  0.788311/0.966265/0.995852/0.999546/0.999995/1.000000이다.
+  remaining tail state를 반환하지 않아 fitting window가 observed Q를 바꾼다.
+- Direction/state boundary:
+  fixed monotone mirror와 unordered ascending/descending curve 복구는
+  exact하지만 one-call reversal/rest state machine은 없다.
+- Nonisothermal sampling blocker:
+  동일 280→320 K path의 uniform/low-V-clustered sample mean은
+  300/291.674 K, lag는 0.542553/1.394176 V다. sample density가
+  kinetics를 바꾸므로 arithmetic mean-T closure를 기각한다.
+- Golden boundary:
+  rebaseline code와 11/13 golden array 동시 변경 계보는 intentional
+  snapshot으로 보존한다. unchanged harness에는 direct LV,
+  nonmonotone, reversal, pulse, SI-Coulomb와 experiment가 없어
+  independent oracle·critical coverage 권위는 없다.
+- Phase 059 v1.0.15 implementation evidence:
+  `Codex/results/PHASE_059_V1015_IMPLEMENTATION_BOUNDARY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_IMPLEMENTATION_BOUNDARY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_implementation_boundary.py`
+  (63/63 checks, deterministic rerun hash preserved).
+- v1.0.15 implementation status:
+  `CONDITIONAL_P059_V1015_MONOTONE_CURVE_KERNEL_PRESERVED_BUT_STATE_WINDOW_PROTOCOL_AND_GOLDEN_AUTHORITY_FAIL`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -750,16 +777,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 37.2:
-v1.0.15의 방향, 초기조건, 유한 전압창, integration tail,
-mirror branch, scalar/vector behavior와 golden rebaseline의
-구현 경계를 종합 판정한다.
+Phase 059 Step 37.3:
+v1.0.15 Ch2 heat 상세화가 새 물리인지 worked explanation인지,
+문건과 code가 같은 열역학 quantity·reference·sign을 사용하는지
+판정한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–37.1.
+Phase 059 Steps 33.1–37.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

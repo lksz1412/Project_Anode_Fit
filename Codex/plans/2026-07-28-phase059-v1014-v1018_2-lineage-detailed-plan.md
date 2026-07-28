@@ -1185,3 +1185,52 @@ blocker delta와 lineage report를 통합 기계 검증한다.
 - 다음은 Step 37.2에서 방향·초기조건·유한창·tail·mirror·
   scalar/vector behavior와 golden rebaseline의 구현 경계를
   종합 판정하는 일이다.
+
+### 2026-07-28 — Step 37.2
+
+- v1.0.15 pointwise kernel의 scalar/vector, state, finite-window
+  tail, 방향, nonisothermal sampling과 golden rebaseline 경계를
+  Step 37.1의 수학 판정 위에서 종합했다.
+- direct \(L_V=0.02\) 단일 전이의 V=0에서 scalar와 singleton은
+  평형값 12.5를 반환하지만 같은 좌표의 sweep 값은 9.657353이다.
+  scalar는 과거 없는 stateless query로만 허용하며 sweep과 같은
+  물리 상태라는 해석은 기각한다.
+- public `dqdv`에는 initial state나 time 입력, final state 반환이
+  없다. 호출마다 첫 state를 재초기화하므로 잘린 창과 연속 protocol
+  사이에 상태를 전달할 수 없다.
+- [-0.6,V_end] 적분 면적은 V_end=0.05/0.10/0.15/0.20/0.30/0.60 V에서
+  0.788311/0.966265/0.995852/0.999546/0.999995/1.000000으로
+  tail completion에 따라 달라진다. 창 밖 remaining state 회계가
+  없으므로 fitting window가 전이 Q의 관측 면적을 바꾼다.
+- 고정 단조 charge/discharge mirror와 같은 방향의 ascending/
+  descending coordinate 복구는 exact했다. 이는 unordered curve
+  mode의 자산이지 acquisition chronology가 아니다. 한 호출 내
+  reversal/rest state machine은 없다.
+- 같은 선형 280→320 K path도 균일 sampling은 mean T=300 K,
+  저전압 집중 sampling은 291.674 K가 된다. 전이당 한 번 계산한
+  lag는 0.542553→1.394176 V(2.570배), 보간 출력 최대 차이는
+  0.684058이다. sample arithmetic mean T를 path kinetics로 쓰는
+  closure를 기각한다.
+- rebaseline commit에서 code와 golden 11/13 arrays는 함께 바뀌고
+  test harness는 불변이었다. architecture output snapshot의
+  traceability는 보존하고 independent oracle 권위는 기각한다.
+- harness에는 direct `L_V`, nonmonotone, reversal, pulse,
+  SI-Coulomb와 experimental observation이 없다. critical state,
+  protocol, unit coverage는 FAIL이다.
+- 최종 구현 권위는 saturated boundary를 포함한 fixed monotone
+  curve의 reduced kernel로 제한한다. stateful galvanostatic
+  protocol solver 권위는 없다.
+- repair contract는 initial/final state, signed time/capacity,
+  reversal/rest segment continuity, remaining-tail capacity,
+  local T/current rate와 독립 oracle이다.
+- 근거:
+  `Codex/results/PHASE_059_V1015_IMPLEMENTATION_BOUNDARY_AUDIT.json`,
+  `Codex/results/PHASE_059_V1015_IMPLEMENTATION_BOUNDARY_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1015_implementation_boundary.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1015_implementation_boundary.py`.
+- validator 63/63과 audit/report deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1015_MONOTONE_CURVE_KERNEL_PRESERVED_BUT_STATE_WINDOW_PROTOCOL_AND_GOLDEN_AUTHORITY_FAIL`.
+- 다음은 Step 37.3에서 v1.0.15 Ch2 heat 상세화가 새 물리인지
+  worked explanation인지, 문건과 code가 같은 열역학 quantity를
+  쓰는지 판정하는 일이다.
