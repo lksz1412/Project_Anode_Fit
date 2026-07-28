@@ -486,6 +486,31 @@
   status는
   `CONDITIONAL_P059_PDF_RENDER_PASS_WITH_ACCESSIBILITY_AND_PROVENANCE_DEBTS`.
   식·문헌·code·실험 타당성은 이 gate로 승인하지 않는다.
+- Phase 059 standalone image audit:
+  24 occurrence/10 unique PNG를 원해상도로 모두 검독했다. 10/10
+  정상 decode, queue/occurrence blob mismatch 0이며 네 family는
+  전부 synthetic model output이다. experimental observation,
+  residual, uncertainty, data citation은 0/10이다.
+- Image visual/provenance defects:
+  두 unique P4 image의 panel-(c) title이 우측에서 잘리고 이 결함은
+  6 version occurrence에 전파된다. v1.0.16 title/generator
+  dQ/dV image는 `v1_0_14` filename으로 저장된 채 네 release에
+  copy-forward됐다.
+- Image scientific-scope boundary:
+  joint low-temperature/finite-current sweep, Si 또는 graphite+Si,
+  doped high-voltage LCO, 4.15 V 초과, experimental overlay는
+  모두 없다. equilibrium 저온 series는 더 높고 좁으므로 사용자의
+  finite-current 저온 peak suppression/broadening 관찰을 검증하지
+  않는다.
+- Phase 059 image evidence:
+  `Codex/results/PHASE_059_IMAGE_AUDIT.json`,
+  `Codex/results/PHASE_059_STANDALONE_IMAGE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_images.py`
+  (28/28 checks, deterministic rerun hash preserved).
+- Image authority boundary:
+  status는 `CONDITIONAL_P059_SYNTHETIC_IMAGE_EVIDENCE`.
+  decode·shape·metadata 검독을 물리 mechanism, material identity,
+  parameter, 문헌 또는 실험 validation으로 승격하지 않는다.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -508,15 +533,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 35.2:
-10 standalone image를 원해상도로 검독하고 축, 단위, legend,
-temperature/current, sign, peak morphology와 생성 source를 기록한다.
+Phase 059 Step 35.3:
+PDF/image/golden blob을 생성 code·TeX·Git commit과 연결하고
+copy-forward, stale artifact, version-label mismatch와 non-bit-exact
+isolated rerender를 현재 과학 증거에서 분리한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–35.1.
+Phase 059 Steps 33.1–35.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

@@ -778,3 +778,42 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   이 status는 조판·link·provenance 판정이며 식의 물리 타당성,
   문헌 진실성, code conformance 또는 실험 타당성을 승인하지 않는다.
 - 다음은 Step 35.2의 10 standalone image 원해상도 감사다.
+
+### 2026-07-28 — Step 35.2
+
+- Phase 059의 24 image path occurrence를 content-addressed로 묶은
+  10 unique PNG를 원해상도로 전부 육안 검독했다. 10/10이 정상
+  decode되고 queue 및 occurrence blob mismatch는 0이다.
+- 네 image family(P4 LCO/heat, graph suite, sample test,
+  dQ/dV bell shapes)는 모두 code-generated synthetic model
+  output이다. 관측값, residual, uncertainty, data citation이 있는
+  experimental evidence는 0/10이다.
+- 두 unique P4 image의 panel (c) title이 우측 canvas에서 잘리고,
+  이 결함은 6 version occurrence에 전파된다.
+- `anode_fit_v1_0_14_dqdv.png`는 보이는 title과 generator가
+  v1.0.16인데 filename만 v1.0.14이며, 같은 blob이 v1.0.16–
+  v1.0.18.2의 4개 경로에 copy-forward됐다.
+- P4/graph-suite/bell-shape의 dQ/dV 단위, graph-suite의
+  entropy-parity/charge 단위, sample figure의 `|I|` 단위가
+  불완전하다.
+- equilibrium temperature series는 저온에서 RT/F width가 작아져
+  peak가 더 높고 좁다. 저온×유한전류 joint sweep은 없으므로
+  사용자가 관찰한 저온 finite-current peak suppression/broadening을
+  입증하지 않는다.
+- Si, graphite+Si, doped high-voltage LCO, 4.15 V 초과 구간,
+  experimental overlay는 모두 없다. 자유 width로 네 peak를
+  분리한 그림과 내부 항등성 그림은 phase/material identification
+  또는 실험 validation으로 승격하지 않는다.
+- 감사 script를 재실행해 audit JSON/report hash가 동일함을 확인했고
+  validator 28/28을 통과했다.
+- 근거:
+  `Codex/results/PHASE_059_IMAGE_AUDIT.json`,
+  `Codex/results/PHASE_059_STANDALONE_IMAGE_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_images.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_images.py`.
+- status: `CONDITIONAL_P059_SYNTHETIC_IMAGE_EVIDENCE`.
+  이 status는 decode·shape·metadata·provenance 검독 결과이며
+  물리 mechanism, 재료 identity, parameter, 문헌 또는 실험
+  타당성을 승인하지 않는다.
+- 다음은 Step 35.3에서 PDF/image/golden blob을 생성 code·TeX·
+  Git commit과 연결하고 isolated rerender를 수행하는 일이다.
