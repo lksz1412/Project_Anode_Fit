@@ -862,6 +862,25 @@
   (38/38 checks, deterministic rerun hash preserved).
 - v1.0.17 status:
   `CONDITIONAL_P059_V1017_BIBLIOGRAPHIC_CORRECTIONS_AND_REGISTER_CLEANUP_PASS_BUT_CITATION_SCOPE_THEORY_BODY_AND_SCIENTIFIC_AUTHORITY_FAIL`.
+- Phase 059 v1.0.18.1 carry-forward:
+  생산 코드, golden, fitting guide와 기존 PNG 네 장은 v1.0.17과
+  byte-identical이다. test/demo/graph-suite/sample은 버전·경로
+  문자열만 바뀌었고 계산·assertion은 불변이다.
+- Theory refinement:
+  유일한 labeled-equation diff는 `eq:sm-mucount` 입자수
+  \(n\to N\) 기호 교정이다. \(\omega_i\) 축 설명, verifybox,
+  표 판정열과 appendix 단위 병기는 pedagogical/dimensional
+  refinement이며 새 fitted physics가 아니다.
+- PDF boundary:
+  두 판 6개 PDF 165쪽은 기존 전 페이지 시각 감사에 연결됐다.
+  Ch1은 58→59쪽이며 unresolved internal footnote links는 남는다.
+- Phase 059 v1.0.18.1 evidence:
+  `Codex/results/PHASE_059_V1018_1_CARRYFORWARD_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_1_CARRYFORWARD_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_1_carryforward.py`
+  (30/30 checks, deterministic rerun hash preserved).
+- v1.0.18.1 status:
+  `CONDITIONAL_P059_V1018_1_PHYSICS_CODE_TEST_CARRYFORWARD_CONFIRMED_WITH_PEDAGOGICAL_REFINEMENT_BUT_NO_NEW_VALIDATION`.
 - Current intent constitution:
   `Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md`
   (`AUDIT_CONSTITUTION_NOT_THEORY_CANON`).
@@ -884,15 +903,16 @@
 
 ## Next Exact Step
 
-Phase 059 Step 38.2:
-v1.0.18.1이 v1.0.17의 물리 무변경 이월판인지
-theory/code/test/PDF 전 축에서 판정한다.
+Phase 059 Step 38.3:
+v1.0.18.2 Einstein oscillator의 partition function,
+free/internal energy, entropy, reference subtraction와 저·고온 극한을
+독립 재유도한다.
 세부 계획:
 `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`.
 완료:
 Phase 057 Steps 18.1–25.8, Phase 058 plan과 Steps 26.1–26.5,
 27.1–27.5, 28.1–28.3, 29.1–29.4, 30.1–30.3, 31.1–31.4, 32.1–32.5,
-Phase 059 Steps 33.1–38.1.
+Phase 059 Steps 33.1–38.2.
 Theory source 6개 9,532행 전수 검독, 323 displayed equation
 environment의 source 위치와 1차 category index 작성, 32 core symbol
 contract, exact theory diff 작성. Production code 3개 2,610행 전수 검독,

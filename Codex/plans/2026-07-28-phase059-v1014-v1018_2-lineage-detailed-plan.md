@@ -1404,3 +1404,36 @@ blocker delta와 lineage report를 통합 기계 검증한다.
   `CONDITIONAL_P059_V1017_BIBLIOGRAPHIC_CORRECTIONS_AND_REGISTER_CLEANUP_PASS_BUT_CITATION_SCOPE_THEORY_BODY_AND_SCIENTIFIC_AUTHORITY_FAIL`.
 - 다음은 Step 38.2에서 v1.0.18.1이 v1.0.17의 물리 무변경
   이월판인지 theory/code/test/PDF 전 축에서 판정하는 일이다.
+
+### 2026-07-28 — Step 38.2
+
+- v1.0.17→v1.0.18.1 theory/code/test/PDF 네 축을 역할별로
+  대응했다. 생산 코드와 golden, fitting guide와 기존 PNG 네 장은
+  byte-identical이다.
+- regression/plot/LCO demo/graph suite/sample은 버전·경로 문자열만
+  바뀌었고 계산 논리와 assertion은 바뀌지 않았다.
+- Ch1의 유일한 labeled-equation diff는
+  `eq:sm-mucount`의 입자수 \(n\to N\) 기호 교정이며 결과식은
+  동일하다. 세 진동축 \(\omega_i\) 설명은 이미 있던 곱을 명시한
+  것이고 fitted vibrational forward term을 추가하지 않는다.
+- verifybox, 표 header/판정열과 조판 보강은 pedagogical refinement로
+  보존하되 새 검증 근거로 세지 않는다.
+- Appendix의 \(N_A\) 종수 주석과
+  \(\Delta g_v[\mathrm{J\,m^{-3}}]\),
+  \(v_m[\mathrm{m^3\,mol^{-1}}]\) 병기는 타당한 차원 정련이다.
+- 두 판 PDF 6개 165쪽은 기존 Phase 059 전 페이지 시각 감사에
+  연결했다. Ch1은 조판으로 58→59쪽이며 v1.0.18.1 appendix의 새
+  footnote destination을 포함한 unresolved internal links는 남는다.
+- 새 물리식, material parameter, 외부 material-fit validation은 없다.
+  Step 37.4–38.1 blocker는 전부 이월한다.
+- 근거:
+  `Codex/results/PHASE_059_V1018_1_CARRYFORWARD_AUDIT.json`,
+  `Codex/results/PHASE_059_V1018_1_CARRYFORWARD_REVIEW.md`,
+  `Codex/work/v1014_v1018_2_phase059/audit_phase059_v1018_1_carryforward.py`,
+  `Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_1_carryforward.py`.
+- validator 30/30과 deterministic rerun을 통과했다.
+- status:
+  `CONDITIONAL_P059_V1018_1_PHYSICS_CODE_TEST_CARRYFORWARD_CONFIRMED_WITH_PEDAGOGICAL_REFINEMENT_BUT_NO_NEW_VALIDATION`.
+- 다음은 Step 38.3에서 v1.0.18.2 Einstein oscillator의 partition
+  function, free/internal energy, entropy, reference subtraction와
+  저·고온 극한을 독립 재유도하는 일이다.

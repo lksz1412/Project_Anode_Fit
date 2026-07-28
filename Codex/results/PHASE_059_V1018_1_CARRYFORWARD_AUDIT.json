@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "phase": 59,
+  "step": "38.2",
+  "status": "CONDITIONAL_P059_V1018_1_PHYSICS_CODE_TEST_CARRYFORWARD_CONFIRMED_WITH_PEDAGOGICAL_REFINEMENT_BUT_NO_NEW_VALIDATION",
+  "source_version": "v1.0.17",
+  "target_version": "v1.0.18.1",
+  "theory_axis": [
+    {
+      "pair_id": "ch1_v1017_to_v1018_1",
+      "old_lines": 3520,
+      "new_lines": 3542,
+      "opcode_line_counts": {
+        "equal": 3477,
+        "replace_old": 43,
+        "replace_new": 44,
+        "delete": 0,
+        "insert": 21
+      },
+      "labeled_equations": {
+        "old_count": 121,
+        "new_count": 121,
+        "unchanged_count": 120,
+        "changed_count": 1,
+        "added_count": 0,
+        "removed_count": 0,
+        "changed": [
+          {
+            "label": "eq:sm-mucount",
+            "old": {
+              "line_start": 592,
+              "line_end": 596,
+              "sha256_normalized": "aea6f9b6300b1ca92606c63af998e3877875e314e9d2e6ce488b6c43fbb747ae",
+              "excerpt": "\\begin{equation} \\mu=\\frac{\\partial F}{\\partial n} =\\tilde\\varepsilon+k_BT\\ln\\frac{\\theta}{1-\\theta}. \\label{eq:sm-mucount} \\end{equation}"
+            },
+            "new": {
+              "line_start": 599,
+              "line_end": 603,
+              "sha256_normalized": "93082b6b3e0dff5da5c81d65f032bfc221ea95668e49baae1c3a276ca5f15707",
+              "excerpt": "\\begin{equation} \\mu=\\frac{\\partial F}{\\partial N} =\\tilde\\varepsilon+k_BT\\ln\\frac{\\theta}{1-\\theta}. \\label{eq:sm-mucount} \\end{equation}"
+            }
+          }
+        ]
+      },
+      "exact_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch1_v1017_to_v1018_1.patch"
+    },
+    {
+      "pair_id": "ch2_v1017_to_v1018_1",
+      "old_lines": 898,
+      "new_lines": 898,
+      "opcode_line_counts": {
+        "equal": 894,
+        "replace_old": 4,
+        "replace_new": 4,
+        "delete": 0,
+        "insert": 0
+      },
+      "labeled_equations": {
+        "old_count": 24,
+        "new_count": 24,
+        "unchanged_count": 24,
+        "changed_count": 0,
+        "added_count": 0,
+        "removed_count": 0,
+        "changed": []
+      },
+      "exact_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/ch2_v1017_to_v1018_1.patch"
+    },
+    {
+      "pair_id": "appendix_v1017_to_v1018_1",
+      "old_lines": 492,
+      "new_lines": 495,
+      "opcode_line_counts": {
+        "equal": 487,
+        "replace_old": 5,
+        "replace_new": 8,
+        "delete": 0,
+        "insert": 0
+      },
+      "labeled_equations": {
+        "old_count": 19,
+        "new_count": 19,
+        "unchanged_count": 19,
+        "changed_count": 0,
+        "added_count": 0,
+        "removed_count": 0,
+        "changed": []
+      },
+      "exact_diff": "Codex/work/v1014_v1018_2_phase059/theory_diffs/appendix_v1017_to_v1018_1.patch"
+    }
+  ],
+  "code_test_axis": [
+    {
+      "role": "production",
+      "old_path": "Claude/docs/v1.0.17/Anode_Fit_v1.0.17.py",
+      "new_path": "Claude/docs/v1.0.18.1/Anode_Fit_v1.0.18.1.py",
+      "old_sha256": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+      "new_sha256": "2079064eaed3572ca3962fd0c9c3aa664f19ea0d7de965ec05b512a396d50ef1",
+      "byte_identical": true,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "golden",
+      "old_path": "Claude/docs/v1.0.17/golden_graphite_ref.npz",
+      "new_path": "Claude/docs/v1.0.18.1/golden_graphite_ref.npz",
+      "old_sha256": "61b7f59b809417f46618039d1eecf5cc1aca9ed2d0202fcda7d909386c00d0c2",
+      "new_sha256": "61b7f59b809417f46618039d1eecf5cc1aca9ed2d0202fcda7d909386c00d0c2",
+      "byte_identical": true,
+      "version_literal_only": false,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "fitting_guide",
+      "old_path": "Claude/docs/v1.0.17/FITTING_GUIDE.md",
+      "new_path": "Claude/docs/v1.0.18.1/FITTING_GUIDE.md",
+      "old_sha256": "a099b62c3f60c151ccf6ade83d50c9fbdf394d047e1bce09d61610418739b823",
+      "new_sha256": "a099b62c3f60c151ccf6ade83d50c9fbdf394d047e1bce09d61610418739b823",
+      "byte_identical": true,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "regression",
+      "old_path": "Claude/docs/v1.0.17/test_regression_graphite.py",
+      "new_path": "Claude/docs/v1.0.18.1/test_regression_graphite.py",
+      "old_sha256": "44f0c2a11d734f81a07c5eb9df1d9d36c0be5b6cd253c36416c395a0ed7f0f45",
+      "new_sha256": "2a36d1fa1dd5ee857184581ed0ffdd2c7a63b03165f119f5a7f1bc782ad3f5f4",
+      "byte_identical": false,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "plot",
+      "old_path": "Claude/docs/v1.0.17/plot_dqdv.py",
+      "new_path": "Claude/docs/v1.0.18.1/plot_dqdv.py",
+      "old_sha256": "494535eb67e25d473ade4ca4afa425f505a802e4eb3325c165bf5bb698685192",
+      "new_sha256": "e64b81188120cea10812e59f4cc69296bceae3808df3a0280266a9dcb352c7d1",
+      "byte_identical": false,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "lco_demo",
+      "old_path": "Claude/docs/v1.0.17/demo_lco_heat.py",
+      "new_path": "Claude/docs/v1.0.18.1/demo_lco_heat.py",
+      "old_sha256": "89583533736b60710434c877e074f7365dfb5ed47345b51097fb80ccde148393",
+      "new_sha256": "b5494d68568934a262e3597f47704cb79d10e17c453ae759b8c40a345f411a0c",
+      "byte_identical": false,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "graph_suite",
+      "old_path": "Claude/docs/v1.0.17/graph_suite_v1017.py",
+      "new_path": "Claude/docs/v1.0.18.1/graph_suite_v1018_1.py",
+      "old_sha256": "b0a6a87ae8bfc422d0181d87f5a9f8536a6ba897184e5553d9183c5fec846795",
+      "new_sha256": "9d68f54a9d0e5df43062832e952146880a68eaf676937c9752626c59271d0398",
+      "byte_identical": false,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    },
+    {
+      "role": "sample",
+      "old_path": "Claude/docs/v1.0.17/sample_test_v1017.py",
+      "new_path": "Claude/docs/v1.0.18.1/sample_test_v1018_1.py",
+      "old_sha256": "73162fa0379ff5914e2cacd0f7171ea16675d779bc5e7f5fadbef1803533136f",
+      "new_sha256": "8e2891f53b3cf9ee0c691999b9c24b37c727beeecfc98d6472cc7f9642ff7e38",
+      "byte_identical": false,
+      "version_literal_only": true,
+      "calculation_or_assertion_changed": false
+    }
+  ],
+  "figure_axis": [
+    {
+      "name": "P4_lco_heat_validation.png",
+      "old_sha256": "d15438d592a549153c3c7726bc52ed4300c2ac1dc2ddf4ba3c69462cd1432b5c",
+      "new_sha256": "d15438d592a549153c3c7726bc52ed4300c2ac1dc2ddf4ba3c69462cd1432b5c",
+      "byte_identical": true
+    },
+    {
+      "name": "anode_fit_v1_0_14_dqdv.png",
+      "old_sha256": "230aee2ffed476fb9b9e3a4c38b364c0321da65a15da680fb9250e7dfa44d9d8",
+      "new_sha256": "230aee2ffed476fb9b9e3a4c38b364c0321da65a15da680fb9250e7dfa44d9d8",
+      "byte_identical": true
+    },
+    {
+      "name": "graph_suite_v1015.png",
+      "old_sha256": "5fff0ded45cd9ab4833ec85b5fae00916893832b4c56b032e4ba77990a279b8d",
+      "new_sha256": "5fff0ded45cd9ab4833ec85b5fae00916893832b4c56b032e4ba77990a279b8d",
+      "byte_identical": true
+    },
+    {
+      "name": "graph_suite_v1016.png",
+      "old_sha256": "0367724d90a210c912881acb52e0bb1a5c016ecbc8a4ae55f3b2fc7ab1298167",
+      "new_sha256": "0367724d90a210c912881acb52e0bb1a5c016ecbc8a4ae55f3b2fc7ab1298167",
+      "byte_identical": true
+    }
+  ],
+  "pdf_axis": [
+    {
+      "version": "v1.0.17",
+      "kind": "appendix",
+      "path": "Claude/docs/v1.0.17/appendix_phase_separation.pdf",
+      "sha256": "2fa6d995be82013488cb677439a549b586bc6b3a13059607d7897e888d829529",
+      "page_count": 8,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 0,
+      "unresolved_double_question_mark_count": 0
+    },
+    {
+      "version": "v1.0.17",
+      "kind": "chapter1",
+      "path": "Claude/docs/v1.0.17/graphite_ica_ch1_v1.0.17.pdf",
+      "sha256": "02e83b70ddf991faeaf98078b14e0dc1db6d766e02bfef73f5ae4c41a65439fa",
+      "page_count": 58,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 2,
+      "unresolved_double_question_mark_count": 0
+    },
+    {
+      "version": "v1.0.17",
+      "kind": "chapter2",
+      "path": "Claude/docs/v1.0.17/graphite_ica_ch2_v1.0.17.pdf",
+      "sha256": "e778590c3ec2467cfee417b7055f1bbd4c1831240afdfb22a971e44deda35301",
+      "page_count": 16,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 2,
+      "unresolved_double_question_mark_count": 0
+    },
+    {
+      "version": "v1.0.18.1",
+      "kind": "appendix",
+      "path": "Claude/docs/v1.0.18.1/appendix_phase_separation.pdf",
+      "sha256": "b281132c001e78b3d596ed029c6c45edc7bb37beeb0306661252f8741d99d686",
+      "page_count": 8,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 1,
+      "unresolved_double_question_mark_count": 0
+    },
+    {
+      "version": "v1.0.18.1",
+      "kind": "chapter1",
+      "path": "Claude/docs/v1.0.18.1/graphite_ica_ch1_v1.0.18.1.pdf",
+      "sha256": "3f9054eaf566192e31e2311ecdab1b52650577f90712d37437d2a8ac0dc7dc41",
+      "page_count": 59,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 3,
+      "unresolved_double_question_mark_count": 0
+    },
+    {
+      "version": "v1.0.18.1",
+      "kind": "chapter2",
+      "path": "Claude/docs/v1.0.18.1/graphite_ica_ch2_v1.0.18.1.pdf",
+      "sha256": "0b59da57b193b1d14df725184e6cfcec73e43ac532aa2f617905625c568ba700",
+      "page_count": 16,
+      "all_pages_visually_inspected_pass": true,
+      "unresolved_goto_link_count": 2,
+      "unresolved_double_question_mark_count": 0
+    }
+  ],
+  "claims": {
+    "production_code_byte_identical": true,
+    "golden_byte_identical": true,
+    "all_carried_figures_byte_identical": true,
+    "calculation_or_assertion_changed": false,
+    "new_labeled_physical_equation_added": false,
+    "new_material_parameter_added": false,
+    "new_external_validation_added": false,
+    "physics_unchanged_carryforward": true,
+    "pedagogical_refinement_present": true,
+    "all_prior_blockers_remain": true
+  },
+  "findings": [
+    {
+      "id": "CF-001",
+      "disposition": "PRESERVE",
+      "text": "Production code and golden reference are byte-identical."
+    },
+    {
+      "id": "CF-002",
+      "disposition": "PRESERVE",
+      "text": "Fitting guide is byte-identical; tests and demos change version/path literals only."
+    },
+    {
+      "id": "CF-003",
+      "disposition": "PRESERVE",
+      "text": "All four carried PNG figures are byte-identical."
+    },
+    {
+      "id": "CF-004",
+      "disposition": "PRESERVE",
+      "text": "Ch2 has no mathematical or bibliographic change beyond versioning the internal numverif item."
+    },
+    {
+      "id": "CF-005",
+      "disposition": "PRESERVE",
+      "text": "Ch1 n-to-N correction removes collision between particle count and state index without changing the lattice-gas equation."
+    },
+    {
+      "id": "CF-006",
+      "disposition": "PRESERVE",
+      "text": "Anisotropic omega_i wording makes explicit the already-present product over three oscillator axes; it adds no fitted vibrational term."
+    },
+    {
+      "id": "CF-007",
+      "disposition": "PRESERVE",
+      "text": "Verifybox wrappers, table headers and sign-check checkmarks are pedagogical/register changes, not new verification evidence."
+    },
+    {
+      "id": "CF-008",
+      "disposition": "PRESERVE",
+      "text": "Appendix N_A footnote and nucleus-driving-force units are valid dimensional clarifications."
+    },
+    {
+      "id": "CF-009",
+      "disposition": "PARTIAL",
+      "text": "All 182 pages were visually inspected in the prior render audit; Ch1 grows 58 to 59 pages due to layout changes."
+    },
+    {
+      "id": "CF-010",
+      "disposition": "CORRECT",
+      "text": "PDF link audit retains unresolved footnote destinations, including one new appendix footnote destination in v1.0.18.1."
+    },
+    {
+      "id": "CF-011",
+      "disposition": "REJECT",
+      "text": "Formatting/readability work cannot be counted as new physical validation or material-fit authority."
+    },
+    {
+      "id": "CF-012",
+      "disposition": "CARRY_FORWARD",
+      "text": "All Step 37.4, 37.5 and 38.1 physics, identifiability, citation and theory-only-body blockers remain unchanged."
+    }
+  ],
+  "summary": {
+    "theory_pair_count": 3,
+    "code_test_pair_count": 8,
+    "figure_count": 4,
+    "pdf_count": 6,
+    "pdf_page_count": 165,
+    "finding_count": 12,
+    "next_step": "38.3"
+  }
+}
