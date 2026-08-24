@@ -28,7 +28,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | 056 | 9–17 | 9–17 | manifest | PASS | parent master | `Codex/results/PHASE_056_COMPLETE_SOURCE_MANIFEST_RESULT.md` | parent evidence | `PASS_P056_COMPLETE_MANIFEST` | 18 |
 | 057 | 18–25 | 18.1–25.8 | intent recovery | PASS | parent detailed plan | `Codex/results/PHASE_057_USER_INTENT_RECOVERY_RESULT.md` | parent evidence | `PASS_P057_INTENT_RECOVERY` | 26 |
 | 058 | 26–32 | 26.1–32.5 | v1.0.10–v1.0.13 | PASS | parent detailed plan | `Codex/results/PHASE_058_V1010_V1013_LINEAGE_REPORT_A.md` | `Codex/results/PHASE_058_VALIDATION.json` | `PASS_P058_LINEAGE_A` | 33 |
-| 059 | 33–39 | 33.1–38.4 | v1.0.14–v1.0.18.2 | IN_PROGRESS | `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md` | latest `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_REVIEW.md` | latest `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_AUDIT.json` | pending `PASS/CONDITIONAL/FAIL_P059` | 38.5 |
+| 059 | 33–39 | 33.1–38.5 | v1.0.14–v1.0.18.2 | IN_PROGRESS | `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md` | latest `Codex/results/PHASE_059_STEP_038_5_FUTURE_PHYSICS_ROADMAP_DISPOSITION_RESULT.md` | latest `Codex/results/PHASE_059_STEP_038_5_FUTURE_PHYSICS_ROADMAP_DISPOSITION.json` | pending `PASS/CONDITIONAL/FAIL_P059` | 39.1 |
 | 060 | 40–45 | — | v1.0.19 reaudit | PENDING | create before Step 40 | pending | pending | `PASS_P060_LINEAGE_C` | detailed plan |
 | 061 | 46–51 | — | v1.0.20 reaudit | PENDING | create after P060 | pending | pending | `PASS_P061_LINEAGE_D` | 46 |
 | 062 | 52–57 | — | v1.0.21 reaudit | PENDING | create after P061 | pending | pending | `PASS_P062_LINEAGE_E` | 52 |
@@ -65,8 +65,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 
 | Execution Unit | Result Included | Commit | Push | Remote Verified | Notes |
 |---|---|---|---|---|---|
-| plan activation | `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md` | pending | pending | pending | branch/worktree/plan activation checkpoint |
-| Step 38.5 | pending | pending | pending | pending | exact next scientific audit unit |
+| plan activation | `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md` | `1cf955ba347218676a73bdae0a9eb8add8e1581a` | pushed | yes | local HEAD, upstream and `ls-remote` tip matched after push |
+| Step 38.5 | `Codex/results/PHASE_059_STEP_038_5_FUTURE_PHYSICS_ROADMAP_DISPOSITION_RESULT.md` | containing commit | push immediately after commit | required before Step 39.1 | 12 atomic items; `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10` |
 
 ## Known Baseline Debt
 
@@ -75,4 +75,4 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 
 ## Next Exact Step
 
-Complete plan activation validation, commit, push and remote verification. Then execute Phase 059 Step 38.5.
+Commit the Step 38.5 result, machine evidence, auditor, validator, ledger and handover as one atomic unit; push and remote-verify the containing commit. Then execute Phase 059 Step 39.1.

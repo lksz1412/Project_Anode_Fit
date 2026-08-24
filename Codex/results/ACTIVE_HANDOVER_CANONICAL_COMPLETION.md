@@ -18,8 +18,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 8. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 9. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 10. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-11. 직전 scientific result: `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_REVIEW.md`
-12. 직전 machine evidence: `Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_AUDIT.json`
+11. 직전 scientific result: `Codex/results/PHASE_059_STEP_038_5_FUTURE_PHYSICS_ROADMAP_DISPOSITION_RESULT.md`
+12. 직전 machine evidence: `Codex/results/PHASE_059_STEP_038_5_FUTURE_PHYSICS_ROADMAP_DISPOSITION.json`
 13. plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
 ## Handover Chain
@@ -29,8 +29,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | previous master plan | Phase 055–069, Steps 1–107 | Phase 059 in progress | resume Step 38.5 |
 | previous ledger | Phase 055–069 | P055–P058 PASS, P059 in progress | resume Step 38.5 |
 | previous handover | through Step 38.4 | stale top pointers, correct bottom exact-next | use bottom exact-next and new superseding handover |
-| new master plan | Phase 055–090, Steps 1–351 | approved/active | close plan activation checkpoint |
-| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | ready after activation commit | execute Step 38.5 |
+| new master plan | Phase 055–090, Steps 1–351 | approved/active; activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a` pushed and remote-verified | continue Phase 059 |
+| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | Step 38.5 scientific gate PASS; containing commit checkpoint pending | commit/push/verify, then execute Step 39.1 |
 
 ## Current State
 
@@ -39,8 +39,10 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - 격리 worktree는 사용자 프로필 아래 외부 경로에 있으며 프로젝트 `.gitignore`를 수정하지 않았다.
 - sparse checkout에 Step 38.4 재검증 입력인 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Codex`가 포함된다.
 - Phase 055–058은 기존 gate 기준 PASS다.
-- Phase 059는 Steps 33.1–38.4 완료, `IN_PROGRESS`다.
-- 정확한 다음 scientific execution unit은 Step 38.5다.
+- plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
+- Phase 059는 Steps 33.1–38.5 과학·validator 범위 완료, `IN_PROGRESS`다. Step 38.5의 containing commit push/remote checkpoint만 남아 있다.
+- Step 38.5는 roadmap proposal 5건과 carryover 7건을 12개 atomic item으로 분리했고 `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10`으로 판정했다.
+- 정확한 다음 scientific execution unit은 containing commit 검증 후 Step 39.1이다.
 - Phase 070 이후는 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다.
 
 ## Latest Claude/Codex Lineage
@@ -60,6 +62,11 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - previous active handover: 1..EOF.
 - Step 38.4 result: 1..EOF.
 - Step 38.4 validator and auditor: 1..EOF during baseline diagnosis.
+- Step 38.5 mandatory corpus: 26 files, 15,623 Git-blob lines, all `1..EOF` or full JSON parse/recursive traversal.
+- Step 38.5 auditor: 1..EOF.
+- Step 38.5 validator: 1..EOF.
+- Step 38.5 machine disposition: full JSON parse and all 12 item records traversed.
+- Step 38.5 result: 1..EOF.
 
 ## Baseline Validation
 
@@ -106,14 +113,13 @@ read master + phase plan + previous result
 
 ## Open Items
 
-- plan activation files must pass JSON parse, step-range continuity, path and Markdown checks.
-- plan activation result must be included in the activation commit.
-- activation commit must be pushed and remote-verified before Step 38.5 begins.
-- Step 38.5 must classify the entire `ROADMAP_future_physics.md` with data prerequisites.
+- Step 38.5 containing commit must include the result, machine evidence, auditor, validator, ledger and this handover.
+- That commit must be pushed and remote-verified before Step 39.1 begins.
+- Step 39.1 must build the Theory Claim Disposition with unique-claim mapping and zero unassigned claims, invalid anchors or disposition conflicts.
 
 ## Exact Next Action
 
-Validate and commit the approved plan activation package, push it to `codex/anode-fit-v1025_2-canonical-completion`, verify the remote tip, then start Phase 059 Step 38.5.
+Run the final Step 38.5 verification suite, commit its six files as one atomic unit, push `codex/anode-fit-v1025_2-canonical-completion`, verify local HEAD/upstream/remote tip equality, then start Phase 059 Step 39.1.
 
 ## Hard-stop Reminder
 
