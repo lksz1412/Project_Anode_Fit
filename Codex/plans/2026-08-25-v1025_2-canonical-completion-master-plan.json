@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "plan_id": "v1025_2-canonical-completion-2026-08-25",
+  "status": "ACTIVE_APPROVED",
+  "canonical_date": "2026-08-25",
+  "goal": "Complete the v1.0.10-v1.0.25.2 lineage reaudit, then produce a source-verified graduate-textbook and review-paper-grade canonical theory monograph, a separate implementation companion, reproducible implementation and verified PDFs.",
+  "branch": {
+    "active": "codex/anode-fit-v1025_2-canonical-completion",
+    "base_commit": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+    "protected_codex_branch": "codex/lib-physics-endgame-v1025_2",
+    "protected_codex_tip": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+    "claude_latest_branch": "claude/version-1026-regsol-review-kl88j7",
+    "claude_latest_tip": "e3e1a634f34b711aa4803fd190fe9120f1755f13",
+    "main_tip_at_activation": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618"
+  },
+  "canonical_inputs": {
+    "latest_claude_scholarly_directory": "Claude/docs/v1.0.25.2",
+    "claude_v1026_directories_role": "experimental_fit_comparison_not_canonical_latex_release",
+    "parent_master_plan": "Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md",
+    "parent_master_plan_json": "Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.json",
+    "parent_phase_plan": "Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md",
+    "parent_ledger": "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+    "parent_handover": "Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md",
+    "previous_step_result": "Codex/results/PHASE_059_V1018_2_EINSTEIN_FULLPATH_REVIEW.md"
+  },
+  "current_position": {
+    "phase": 59,
+    "step": 38,
+    "substep": "38.5",
+    "next_action": "Classify every ROADMAP_future_physics.md item as implemented, theory-only, or new-scope and record data prerequisites.",
+    "phase_status": "IN_PROGRESS"
+  },
+  "step_numbering": {
+    "mode": "CUMULATIVE_ACROSS_PHASES",
+    "existing_range": "1-107",
+    "post_audit_range": "108-351",
+    "phase_restart_forbidden": true,
+    "substeps_preserve_parent_integer": true
+  },
+  "paths": {
+    "plans": "Codex/plans",
+    "results": "Codex/results",
+    "work": "Codex/work",
+    "master_plan": "Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.md",
+    "master_plan_json": "Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.json",
+    "phase059_resume_plan": "Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md",
+    "execution_ledger": "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+    "active_handover": "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+    "activation_result": "Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md"
+  },
+  "phases": [
+    {"phase": 55, "steps": "1-8", "name": "source freeze", "status": "PASS", "gate": "PASS_P055_SOURCE_FREEZE"},
+    {"phase": 56, "steps": "9-17", "name": "complete manifest", "status": "PASS", "gate": "PASS_P056_COMPLETE_MANIFEST"},
+    {"phase": 57, "steps": "18-25", "name": "intent recovery", "status": "PASS", "gate": "PASS_P057_INTENT_RECOVERY"},
+    {"phase": 58, "steps": "26-32", "name": "v1.0.10-v1.0.13 reaudit", "status": "PASS", "gate": "PASS_P058_LINEAGE_A"},
+    {"phase": 59, "steps": "33-39", "name": "v1.0.14-v1.0.18.2 reaudit", "status": "IN_PROGRESS", "gate": "PASS_P059_LINEAGE_B"},
+    {"phase": 60, "steps": "40-45", "name": "v1.0.19 reaudit", "status": "PENDING", "gate": "PASS_P060_LINEAGE_C"},
+    {"phase": 61, "steps": "46-51", "name": "v1.0.20 reaudit", "status": "PENDING", "gate": "PASS_P061_LINEAGE_D"},
+    {"phase": 62, "steps": "52-57", "name": "v1.0.21 reaudit", "status": "PENDING", "gate": "PASS_P062_LINEAGE_E"},
+    {"phase": 63, "steps": "58-63", "name": "v1.0.22 reaudit", "status": "PENDING", "gate": "PASS_P063_LINEAGE_F"},
+    {"phase": 64, "steps": "64-69", "name": "v1.0.23 reaudit", "status": "PENDING", "gate": "PASS_P064_LINEAGE_G"},
+    {"phase": 65, "steps": "70-75", "name": "v1.0.24-v1.0.24.1 reaudit", "status": "PENDING", "gate": "PASS_P065_LINEAGE_H"},
+    {"phase": 66, "steps": "76-81", "name": "v1.0.25-v1.0.25.2 reaudit", "status": "PENDING", "gate": "PASS_P066_LINEAGE_I"},
+    {"phase": 67, "steps": "82-90", "name": "code test fitting cross-audit", "status": "PENDING", "gate": "PASS_P067_CODE_HISTORY"},
+    {"phase": 68, "steps": "91-98", "name": "Claude Codex fork adjudication", "status": "PENDING", "gate": "PASS_P068_FORK_ADJUDICATION"},
+    {"phase": 69, "steps": "99-107", "name": "canonical reaudit and launch gate", "status": "PENDING", "gate": "PASS_P069_REAUDIT_COMPLETE"},
+    {"phase": 70, "steps": "108-115", "name": "post-audit freeze", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P070_POST_AUDIT_FREEZE"},
+    {"phase": 71, "steps": "116-127", "name": "reference truth audit", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P071_REFERENCE_TRUTH"},
+    {"phase": 72, "steps": "128-139", "name": "data provenance and feasibility", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P072_DATA_FEASIBILITY"},
+    {"phase": 73, "steps": "140-149", "name": "canonical theory architecture", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P073_THEORY_ARCHITECTURE"},
+    {"phase": 74, "steps": "150-159", "name": "coordinates conservation observation", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P074_FOUNDATION"},
+    {"phase": 75, "steps": "160-173", "name": "equilibrium coexistence phase field", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P075_EQUILIBRIUM_PHASE"},
+    {"phase": 76, "steps": "174-187", "name": "nonequilibrium kinetics transport", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P076_NONEQUILIBRIUM"},
+    {"phase": 77, "steps": "188-199", "name": "graphite closure", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P077_GRAPHITE_CLOSURE"},
+    {"phase": 78, "steps": "200-211", "name": "doped high-voltage LCO closure", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P078_LCO_CLOSURE"},
+    {"phase": 79, "steps": "212-223", "name": "silicon closure", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P079_SILICON_CLOSURE"},
+    {"phase": 80, "steps": "224-233", "name": "graphite silicon blend closure", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P080_BLEND_CLOSURE"},
+    {"phase": 81, "steps": "234-245", "name": "thermal observation identifiability uncertainty", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P081_INFERENCE_UNCERTAINTY"},
+    {"phase": 82, "steps": "246-255", "name": "canonical equation freeze", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P082_EQUATION_FREEZE"},
+    {"phase": 83, "steps": "256-267", "name": "theory implementation contract", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P083_IMPLEMENTATION_CONTRACT"},
+    {"phase": 84, "steps": "268-281", "name": "alpha reference implementation", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P084_ALPHA_REFERENCE"},
+    {"phase": 85, "steps": "282-293", "name": "structure freeze", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P085_STRUCTURE_FREEZE"},
+    {"phase": 86, "steps": "294-307", "name": "real-data calibration and validation", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_OR_CONDITIONAL_P086_MATERIAL_VALIDATION"},
+    {"phase": 87, "steps": "308-319", "name": "manuscript assembly", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P087_MANUSCRIPT_ASSEMBLY"},
+    {"phase": 88, "steps": "320-331", "name": "independent scientific red-team", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P088_SCIENTIFIC_REDTEAM"},
+    {"phase": 89, "steps": "332-341", "name": "LaTeX PDF release QA", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P089_PDF_RELEASE_QA"},
+    {"phase": 90, "steps": "342-351", "name": "clean-clone release and handover", "status": "CONDITIONAL_PENDING_P069", "gate": "PASS_P090_RELEASE_COMPLETE"}
+  ],
+  "execution_policy": {
+    "before_each_step": [
+      "read master plan",
+      "read active phase plan",
+      "read previous step result",
+      "verify branch HEAD status and remote tip"
+    ],
+    "after_each_step": [
+      "write human-readable step result",
+      "write machine evidence when applicable",
+      "run validators",
+      "update ledger",
+      "update active handover",
+      "commit result with step artifacts",
+      "push active branch",
+      "verify remote tip with git ls-remote"
+    ],
+    "commit_frequency": "EVERY_COMPLETED_STEP_OR_SUBSTEP",
+    "push_frequency": "EVERY_COMPLETED_STEP_OR_SUBSTEP",
+    "push_retry_limit": 3,
+    "merge_authorized": false
+  },
+  "document_policy": {
+    "canonical_theory_code_mentions": "FORBIDDEN",
+    "canonical_theory_work_history_mentions": "FORBIDDEN",
+    "implementation_content_location": "SEPARATE_IMPLEMENTATION_COMPANION",
+    "required_style": "GRADUATE_TEXTBOOK_WITH_REVIEW_PAPER_EVIDENCE_DEPTH",
+    "required_derivation": "ASSUMPTIONS_TO_INTERMEDIATE_STEPS_TO_RESULT_WITH_UNIT_SIGN_LIMIT_CHECKS"
+  },
+  "evidence_policy": {
+    "load_bearing_source": "PRIMARY_PAPER_OR_IDENTIFIED_TEXTBOOK_LOCATION",
+    "doi_metadata_only_is_support": false,
+    "abstract_only_is_support": false,
+    "unavailable_fulltext_status": "UNVERIFIED",
+    "missing_data_status": "CONDITIONAL",
+    "fabricated_or_unresolved_citation_allowed": false,
+    "synthetic_data_external_validity": false
+  },
+  "baseline_portability_debt": {
+    "id": "KNOWN_VALIDATOR_PORTABILITY_DEBT_001",
+    "validator": "Codex/work/v1014_v1018_2_phase059/validate_phase059_v1018_2_einstein_fullpath.py",
+    "cause": [
+      "checkout-byte SHA changes under core.autocrlf",
+      "OS-native path separators are serialized"
+    ],
+    "scientific_numeric_diff_detected": false,
+    "canonical_old_artifact_overwrite_allowed": false,
+    "future_contract": "Use git blob bytes and POSIX paths in deterministic artifacts."
+  },
+  "hard_stops": [
+    "protected branch unexpectedly changes",
+    "remote active branch diverges from expected local lineage",
+    "same push failure repeats three times",
+    "new private credential or paid source authority is required for all further progress",
+    "irreconcilable user instructions cannot be represented as alternatives",
+    "canonical material choice would require unsupported scientific guessing",
+    "validator science-vs-environment failure cannot be separated after three independent investigations"
+  ],
+  "next_gate": "Complete Phase 059 Step 38.5 under the resume detailed plan."
+}
