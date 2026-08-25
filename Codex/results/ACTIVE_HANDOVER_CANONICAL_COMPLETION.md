@@ -1,6 +1,6 @@
 # Project Anode Fit Canonical Completion Active Handover
 
-최종 갱신일: 2026-08-25
+최종 갱신일: 2026-08-26
 
 활성 branch: `codex/anode-fit-v1025_2-canonical-completion`
 
@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, detailed-plan activation
-14. 현재 result: `Codex/results/PHASE_060_PLAN_ACTIVATION_RESULT.md`
-15. 현재 machine evidence: `Codex/results/PHASE_060_PLAN_ACTIVATION_VALIDATION.json`
+13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, Step 40 source/topology closure pending containing commit
+14. 현재 result: `Codex/results/PHASE_060_STEP_040_SOURCE_TOPOLOGY_RESULT.md`
+15. 현재 machine evidence: `Codex/results/PHASE_060_V1019_SOURCE_TOPOLOGY.json`; read provenance `Codex/results/PHASE_060_V1019_TEX_READ_ATTESTATION.json`
 16. 직전 Phase result: `Codex/results/PHASE_059_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_059_STEP_039_6_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
@@ -39,14 +39,15 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | previous handover | through Step 38.4 | stale top pointers, correct bottom exact-next | use bottom exact-next and new superseding handover |
 | new master plan | Phase 055–090, Steps 1–351 | approved/active; activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a` pushed and remote-verified | continue Phase 059 |
 | new Phase 059 addendum | Step 38.5 and 39.1–39.6 | `PASS_P059_LINEAGE_B`; Step 39.6 exact-five commit `e01049489bf601c433d97d4b4121cf0fdcfca085` pushed and remote-verified | superseded exact next: activate Phase 060 detailed plan |
-| Phase 060 detailed plan | Steps 40–45 | `IN_PROGRESS`; `PASS_P060_PLAN_ACTIVATION` content gate; seven-document containing checkpoint pending controller | atomic commit/push/remote verification, then Step 40 source/topology audit |
+| Phase 060 detailed plan activation | Steps 40–45 | `PASS_P060_PLAN_ACTIVATION`; exact-seven commit `8847493139708b3336f6947be13a3e77dda22e05` pushed and remote-verified | execute Step 40 |
+| Phase 060 Step 40 | Step 40 | `PASS_P060_STEP40_SOURCE_TOPOLOGY`; exact-eight containing checkpoint pending controller | atomic commit/push/remote verification, then Step 41 process-authority audit |
 
 ## Current State
 
 - 신규 branch는 보호 Codex tip `fc5f177`에서 분기했다.
 - 기존 `codex/lib-physics-endgame-v1025_2`, `main`, Claude branch는 수정하지 않았다.
 - 격리 worktree는 사용자 프로필 아래 외부 경로에 있으며 프로젝트 `.gitignore`를 수정하지 않았다.
-- sparse checkout에 Step 38.4 재검증 입력인 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Codex`가 포함된다.
+- sparse checkout에 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Claude/docs/v1.0.19`, V1019 plan/process paths와 `Codex`가 포함된다. Sparse 확장은 tracked change를 만들지 않았다.
 - Phase 055–058은 기존 gate 기준 PASS다.
 - plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
 - Phase 059 Steps 33.1–39.6 audit/validator 범위는 `PASS_P059_LINEAGE_B`로 닫혔다. 이 PASS는 audit scope와 internal routing만 닫으며 external scientific/material validity를 뜻하지 않는다.
@@ -73,10 +74,15 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 39.6은 `PASS_P059_LINEAGE_B`, `CONDITIONAL_P059`, `FAIL_P059` 중 `PASS_P059_LINEAGE_B`만 선택했다. Frozen coverage와 routing은 완전하고, 41개 open downstream obligation은 해결되지 않은 채 acceptance/authority/source/target/schedule에 명시적으로 연결되어 있다.
 - Carry-forward register 52건은 `PRESERVED_ACTIVE=11`, `OPEN=41`; horizon은 pre-freeze 28, post-gate 24이며 post-gate 24건은 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다. External material truth validated는 0이다.
 - Step 39.6 exact-five commit `e01049489bf601c433d97d4b4121cf0fdcfca085`는 push되었고 local HEAD/upstream/origin active 일치가 확인됐다.
-- Phase 060 detailed plan은 `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`에 저장됐다. Plan activation 상태는 `IN_PROGRESS`이며 seven-document containing commit/push/remote verification이 Step 40 선행 조건이다.
+- Phase 060 detailed plan은 `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`에 저장됐다. Exact-seven activation commit `8847493139708b3336f6947be13a3e77dda22e05`는 push·remote verification되었고 Step 40 선행 조건을 충족했다.
 - Phase 060 primary audit queue는 v1.0.19 release 66 paths/blobs와 V1019 process 11 paths/blobs, 합계 77/77이다. Primary text는 60 files/8,784 physical lines/8,025 nonblank lines, PDF 3/95 pages, image 13 unique, NPZ 1/13 arrays다.
 - v1.0.20 cross-version witness는 2 occurrences/1 new blob이며 primary Phase 060 count와 Phase 061 소유권을 바꾸지 않는다. Witness 포함 workload는 79 occurrences/78 unique blobs, text 61/9,904 physical lines/9,145 nonblank lines다.
 - Phase 059 carry-forward target Phase 060 row는 0이다. 이는 Phase 060 생략이 아니라 fictitious inherited item을 만들지 않는 source-boundary 사실이다.
+- Step 40은 v1.0.19 TeX 42개/5,636행을 실제 1..EOF 검독했다. Ch1 root+24 sections는 25/3,711행, Ch2 root+15 sections는 16/1,428행, standalone은 1/497행이다. 두 reader task의 담당 범위와 42개 per-path blob/coverage는 `PHASE_060_V1019_TEX_READ_ATTESTATION.json`에 별도 고정됐다.
+- Step 40 topology는 Ch1 24 + Ch2 15 = include edges 39, expansion records 42이며 missing/duplicate/unexpected/unresolved edge, unreachable source와 cycle은 0이다. `LastPage` 2건은 LaTeX build 전 package-generated 후보로 명시했고, unresolved citation과 duplicate label은 0이다.
+- Step 40 lexical index는 displayed equations 188, labels 318, refs 949, citation commands 70/citation-key occurrences 82, bibliography entries 42, actual forward label refs 270을 고정한다. 다중 행 Ch2 citation 누락을 독립 검수로 발견해 30/13에서 32/14로 보정했고 stale artifact RED를 기록했다.
+- Step 40은 Ch1 bibliography header 24 대 실제 28, Ch2 code-completed 대 future-requirement authority conflict, free-width `n_j(T)` complete-equation input gap을 source finding으로 확정했으나 `Claude/**`를 수정하지 않았다. Runtime/code/PDF visual/scientific truth는 후속 Step 권위다.
+- Step 40 validator는 frozen-byte PDF/image/NPZ extent 검사, fixed control blobs, active local/upstream/remote equality, untracked Claude와 unexpected dirt guard를 포함한다. Builder가 호출하지 않는 balanced-command cross-check가 source 79, TeX 42, edges 39, citation/label/ref/forward counts와 2,305 anchor hashes를 독립 대조한다.
 - Phase 070 이후는 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다.
 
 ## Latest Claude/Codex Lineage
@@ -121,7 +127,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Phase 060 planning controls: `Codex/AGENTS.md` 1–180, phase planning guide 1–246, previous master Phase 059–061 boundary 211–285, v1.0.19 intent observations 1–152를 직접 읽었다.
 - Phase 060 source manifest: 24,507 lines / 40,525 recursive nodes / 1,520 entries를 strict duplicate-key parse하고 v1.0.19 66 entries를 전건 추출했다.
 - Phase 060 carry-forward scheduling check: register 10,326 lines / 15,741 recursive nodes / 52 items를 strict parse·traverse하고 target Phase 060 count 0을 확인했다.
-- Phase 060 scientific source는 activation 단계에서 metadata inventory만 수행했다. Step 40–44의 전문 과학 검독·runtime·PDF/image·재유도는 아직 미실행이다.
+- Phase 060 Step 40 recovery inputs는 master 1–665, detailed plan 1–831, activation result 1–160, Phase 059 result 1–129, Step 39.6 gate 1–168, both ledgers/active handover pre-edit 1–EOF, predecessor structure index 1–35를 재독했다.
+- Phase 060 Step 40 TeX read coverage는 42/42 files, 5,636/5,636 physical lines다. Human-agent attestation은 Ch1 25/3,711과 Ch2+standalone 17/1,925를 합쳐 42/5,636이며, topology JSON은 attestation byte SHA-256을 참조한다.
+- Phase 060 non-TeX source content는 아직 scheduled authority에 따라 남아 있다: process 11 files/1,028 physical lines는 Step 41, code/runtime/PDF/image/NPZ content audit는 Step 42, doc-code는 Step 43, physics rederivation은 Step 44다.
 
 ## Baseline Validation
 
@@ -170,12 +178,12 @@ read master + phase plan + previous result
 
 - All 41 `OPEN` carry-forward obligations remain open; no Phase 059 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 Phase 070–090 targets remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`.
-- Phase 060 plan activation의 seven documents는 subject `docs(phase060): plan v1019 lineage reaudit`인 controller-owned atomic commit, push와 remote verification이 필요하다.
-- Phase 060의 77 primary source path는 아직 Step 40–42 전문 검독 전이며 activation PASS를 source audit PASS로 부르면 안 된다.
+- Step 40의 exact-eight documents는 subject `audit(phase060): freeze v1019 source topology`인 controller-owned atomic commit, push와 remote verification이 필요하다.
+- Phase 060의 11 process 문건과 non-TeX release/runtime/artifact content는 아직 Step 41–42 전문 검독 전이며 Step 40 PASS를 process/runtime/scientific PASS로 부르면 안 된다.
 
 ## Exact Next Action
 
-Controller stages exactly the seven Phase 060 plan-activation paths, commits them atomically with subject `docs(phase060): plan v1019 lineage reaudit`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, Claude diff 0, JSON parse and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 40 from the active detailed plan. Do not execute Step 41 before the Step 40 result commit is pushed and remote-verified.
+Controller stages exactly the eight Step 40 paths listed in `Codex/results/PHASE_060_STEP_040_SOURCE_TOPOLOGY_RESULT.md`, commits them atomically with subject `audit(phase060): freeze v1019 source topology`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, both JSON parses, validator PASS and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 41 from the active detailed plan. Do not execute Step 42 before the Step 41 result commit is pushed and remote-verified.
 
 ## Hard-stop Reminder
 
