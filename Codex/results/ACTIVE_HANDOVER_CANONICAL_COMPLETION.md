@@ -18,9 +18,12 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 8. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 9. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 10. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-11. 직전 scientific result: `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md`
-12. 직전 machine evidence: `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
-13. plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
+11. 현재 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
+12. 현재 Step result: `Codex/results/PHASE_059_STEP_039_5_INTEGRATED_VALIDATION_RESULT.md`
+13. 현재 machine evidence: `Codex/results/PHASE_059_VALIDATION.json`
+14. 직전 scientific result: `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md`
+15. 직전 machine evidence: `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
+16. plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
 ## Handover Chain
 
@@ -30,7 +33,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | previous ledger | Phase 055–069 | P055–P058 PASS, P059 in progress | resume Step 38.5 |
 | previous handover | through Step 38.4 | stale top pointers, correct bottom exact-next | use bottom exact-next and new superseding handover |
 | new master plan | Phase 055–090, Steps 1–351 | approved/active; activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a` pushed and remote-verified | continue Phase 059 |
-| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | Step 39.3 commit `8d7be538c586e41a373b769d0949e0c65916b4ef` pushed/verified; Step 39.4 carry-forward register, validator, final SPEC and final QUALITY gates PASS, containing checkpoint pending | commit/push/verify, then execute Step 39.5 |
+| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | Step 39.4 commit `9791b235e25653ee4f834d4d4fe0b5998ca37410` pushed/verified; Step 39.5 integrated validation, final SPEC and final QUALITY gates PASS, containing checkpoint pending | commit/push/verify, then execute Step 39.6 |
 
 ## Current State
 
@@ -40,7 +43,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - sparse checkout에 Step 38.4 재검증 입력인 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Codex`가 포함된다.
 - Phase 055–058은 기존 gate 기준 PASS다.
 - plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
-- Phase 059는 Steps 33.1–39.4 과학·validator 범위 완료, `IN_PROGRESS`다. Step 39.4의 containing commit push/remote checkpoint만 남아 있다.
+- Phase 059는 Steps 33.1–39.5 audit/validator 범위가 검증되었고 `IN_PROGRESS`다. Step 39.5 containing commit의 push/remote checkpoint과 Step 39.6 final Phase gate가 남아 있다.
 - Step 38.5는 roadmap proposal 5건과 carryover 7건을 12개 atomic item으로 분리했고 `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10`으로 판정했다.
 - Step 39.1은 displayed-equation occurrence 973건을 180 exact equation groups와 5 contract-only claims, 총 185 claims로 연결했다. 38 governing routes와 80 evidence records(`equation=51`, `prose=29`)를 분리 보존했고 unassigned occurrence, orphan contract, invalid anchor, unresolved conflict는 모두 0이다.
 - Claim disposition은 `PRESERVE=21`, `CORRECT=18`, `EMPIRICAL_ONLY=9`, `THEORY_ONLY=1`, `REJECT=1`, `UNVERIFIED=135`, `SUPERSEDE=0`이다. 134 no-contract equation groups와 모든 185 claims의 primary-literature truth는 의도적으로 미검증 상태다.
@@ -56,7 +59,11 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 39.4는 Step 38.5 roadmap 12건과 Step 39.2 old delta 34건·new blocker 6건, 합계 52개 source identity를 52개 direct carry-forward row로 무손실 route했다. Orphan/duplicate는 0이고 category는 `PRESERVED_ASSET=11`, `REPAIR_BLOCKER=15`, `NEW_SCOPE_BLOCKER=16`, `EVIDENCE_DEBT=10`이다.
 - Step 39.4는 validity domain을 internal 22, external 9, mixed 21로 분리하고 Phase 060–069 target 28건과 Phase 070+ conditional target 24건을 구분했다. Schedule reconciliation 13건, overlap 45 undirected/90 directed, Step 39.3 high-risk finding 11건/33 route memberships를 exact source object/hash와 함께 보존했다. External material truth promotion은 0이다.
 - Step 39.4 final SPEC와 final QUALITY review는 P0/P1/P2 finding 0건으로 PASS했다. Strict duplicate-key parse, exact JSON number-type comparison, actual embedded-object hash recomputation, negative mutation 89/89, malformed CLI 6/6 controlled rejection, generator byte identity, JSON/hash/Git 보호 gate가 통과했다.
-- 정확한 다음 scientific execution unit은 containing commit 검증 후 Step 39.5다.
+- Step 39.4 commit `9791b235e25653ee4f834d4d4fe0b5998ca37410`은 local/upstream/remote 일치를 확인했다.
+- Step 39.5는 frozen queue `117/117` paths, `93/93` blobs, text `63/63` blobs와 `36,641/36,641` lines, Step 36.1–39.4 human result 19건과 machine artifact 21건을 재구성했다. 31개 subordinate validator는 disposable clone에서 fresh 실행되었고 exit 분포 `7/24`, mandatory modern validator PASS, old fullpath raw `25/26` 및 exact five-leaf Windows portability boundary를 분리 보존했다.
+- Step 39.5 final validator는 normal PASS, negative probe `60/60` 거부, strict JSON 4,330 nodes/31 subordinate/40 output records, exact report integrity, clean exact-six descendant PASS, extra untracked/tracked dirty fixture FAIL을 통과했다. Final SPEC와 final QUALITY review는 모두 P0/P1/P2 0건으로 PASS했다.
+- Step 39.5 PASS는 frozen-corpus audit completeness와 internal reproducibility만 확립한다. External literature truth, material validity, public-data validation, parameter identifiability, defect repair, canonical-model status, final publication artifact는 여전히 확립하지 않았다.
+- 정확한 다음 scientific execution unit은 containing commit 검증 후 Step 39.6 final Phase gate다.
 - Phase 070 이후는 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다.
 
 ## Latest Claude/Codex Lineage
@@ -92,6 +99,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 39.3 machine artifacts: code matrix 9,210 lines / 7,866 nodes / 21 records; test/artifact matrix 26,108 lines / 22,159 nodes / 103 runtime and 152 artifact records; main matrix 291,165 lines / 233,359 nodes / 185 rows and 663 adjudications, all fully traversed.
 - Step 39.4 builder 1..717, validator 1..1,236, result 1..593.
 - Step 39.4 carry-forward register: 10,326 lines / 8,577 nodes, strict duplicate-key parse와 full recursive traversal; 52 rows, 162 evidence wrappers, 45/90 overlap memberships, 11/33 high-risk routes를 전부 확인했다.
+- Step 39.5 final validator 1..1,359, Lineage Report B 1..87, Step result 1..203을 전문 재독했다.
+- Step 39.5 validation JSON: 3,318 lines / 4,330 nodes, strict duplicate-key parse와 full recursive traversal; 31 subordinate records와 Step 36.1–39.4 output records 40건을 전부 확인했다.
 
 ## Baseline Validation
 
@@ -138,13 +147,13 @@ read master + phase plan + previous result
 
 ## Open Items
 
-- Step 39.4 containing commit must include its builder, validator, carry-forward register, result, this ledger and this handover.
-- That six-file commit must be pushed and remote-verified before Step 39.5 begins.
-- Step 39.5 must finalize the Phase 059 completeness and reproducibility gates without upgrading internal conformance evidence to external literature, material, parameter-identifiability or public-data validation.
+- Step 39.5 containing commit must include its final validator, validation JSON, Lineage Report B, Step result, this ledger and this handover.
+- That six-file commit must be pushed and remote-verified before Step 39.6 begins.
+- Step 39.6 must select exactly one of `PASS_P059_LINEAGE_B`, `CONDITIONAL_P059`, or `FAIL_P059`, while keeping audit coverage separate from external literature, material, parameter-identifiability and public-data validity.
 
 ## Exact Next Action
 
-Run the final Step 39.4 verification suite, commit its six files as one atomic unit with subject `audit(phase059): finalize carry-forward register`, push `codex/anode-fit-v1025_2-canonical-completion`, verify local HEAD/upstream/remote tip equality, then start Phase 059 Step 39.5.
+Commit the six Step 39.5 files as one atomic unit with subject `audit(phase059): integrate lineage report B`, push `codex/anode-fit-v1025_2-canonical-completion`, verify local HEAD/upstream/remote tip equality and protected/main non-change, then execute Phase 059 Step 39.6 final gate.
 
 ## Hard-stop Reminder
 

@@ -28,7 +28,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | 056 | 9–17 | 9–17 | manifest | PASS | parent master | `Codex/results/PHASE_056_COMPLETE_SOURCE_MANIFEST_RESULT.md` | parent evidence | `PASS_P056_COMPLETE_MANIFEST` | 18 |
 | 057 | 18–25 | 18.1–25.8 | intent recovery | PASS | parent detailed plan | `Codex/results/PHASE_057_USER_INTENT_RECOVERY_RESULT.md` | parent evidence | `PASS_P057_INTENT_RECOVERY` | 26 |
 | 058 | 26–32 | 26.1–32.5 | v1.0.10–v1.0.13 | PASS | parent detailed plan | `Codex/results/PHASE_058_V1010_V1013_LINEAGE_REPORT_A.md` | `Codex/results/PHASE_058_VALIDATION.json` | `PASS_P058_LINEAGE_A` | 33 |
-| 059 | 33–39 | 33.1–39.4 | v1.0.14–v1.0.18.2 | IN_PROGRESS | `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md` | latest `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md` | latest `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json` | pending `PASS/CONDITIONAL/FAIL_P059` | 39.5 |
+| 059 | 33–39 | 33.1–39.5 | v1.0.14–v1.0.18.2 | IN_PROGRESS | `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md` | latest `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`; Step result `Codex/results/PHASE_059_STEP_039_5_INTEGRATED_VALIDATION_RESULT.md` | latest `Codex/results/PHASE_059_VALIDATION.json` | Step 39.5 `PASS_P059_STEP_039_5_INTEGRATED_VALIDATION`; final Phase gate pending `PASS/CONDITIONAL/FAIL_P059` | 39.6 |
 | 060 | 40–45 | — | v1.0.19 reaudit | PENDING | create before Step 40 | pending | pending | `PASS_P060_LINEAGE_C` | detailed plan |
 | 061 | 46–51 | — | v1.0.20 reaudit | PENDING | create after P060 | pending | pending | `PASS_P061_LINEAGE_D` | 46 |
 | 062 | 52–57 | — | v1.0.21 reaudit | PENDING | create after P061 | pending | pending | `PASS_P062_LINEAGE_E` | 52 |
@@ -70,7 +70,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Step 39.1 | `Codex/results/PHASE_059_STEP_039_1_THEORY_CLAIM_DISPOSITION_RESULT.md` | `4ee5927ef8fb68bbb488b7debc1709c6f5fad8b0` | pushed | yes | local HEAD, upstream and `ls-remote` matched; 973 occurrences → 185 claims; 80 evidence records; 38 governing routes |
 | Step 39.2 | `Codex/results/PHASE_059_STEP_039_2_BLOCKER_DELTA_RESULT.md` | `b73652bb131d2772be483c4b1730aa8f3161baf5` | pushed | yes | local HEAD, upstream and `ls-remote` matched; Phase 058 old 34/34 routed; statuses `NEW_EVIDENCE=14`, `PARTIAL=4`, `UNCHANGED=15`, `REGRESSED=1`, `RESOLVED=0`; new blockers 6 |
 | Step 39.3 | `Codex/results/PHASE_059_STEP_039_3_FOUR_AXIS_CONFORMANCE_RESULT.md` | `8d7be538c586e41a373b769d0949e0c65916b4ef` | pushed | yes | local HEAD, upstream and `ls-remote` matched; 185 claims, 663 adjudications, 11 high-risk findings; final SPEC and QUALITY gates PASS |
-| Step 39.4 | `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md` | pending subject `audit(phase059): finalize carry-forward register` | push immediately after commit | required before Step 39.5 | 52 source identities routed with orphan/duplicate 0; categories `11/15/16/10`; final SPEC and QUALITY gates PASS; exact six-file atomic checkpoint pending |
+| Step 39.4 | `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md` | `9791b235e25653ee4f834d4d4fe0b5998ca37410` | pushed | yes | local HEAD, upstream and `ls-remote` matched; 52 source identities routed with orphan/duplicate 0; categories `11/15/16/10`; final SPEC and QUALITY gates PASS |
+| Step 39.5 | `Codex/results/PHASE_059_STEP_039_5_INTEGRATED_VALIDATION_RESULT.md` | containing commit subject `audit(phase059): integrate lineage report B` | push immediately after commit | verify before Step 39.6 | frozen queue `117/117`, blobs `93/93`, text `63/63` and `36,641/36,641` lines; 31 fresh validators; normal PASS; 60/60 negative probes rejected; final SPEC and QUALITY gates P0/P1/P2 0; audit/reproducibility authority only |
 
 ## Known Baseline Debt
 
@@ -79,4 +80,4 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 
 ## Next Exact Step
 
-Commit the Step 39.4 builder, validator, carry-forward register, result, this ledger and active handover as one six-file atomic unit; push and remote-verify the containing commit. Then execute Phase 059 Step 39.5.
+Commit the Step 39.5 final validator, validation JSON, Lineage Report B, Step result, this ledger and active handover as one six-file atomic unit with subject `audit(phase059): integrate lineage report B`; push and remote-verify the containing commit. Then execute Phase 059 Step 39.6 and select exactly one final Phase gate without promoting internal audit evidence to external scientific or material validity.
