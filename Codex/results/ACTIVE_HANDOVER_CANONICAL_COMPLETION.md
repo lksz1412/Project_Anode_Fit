@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, Step 44 independent-physics gate `PASS_P060_STEP44_PHYSICS_REDERIVATION`, 결과 `PASS_WITH_CONCERNS`; containing commit pending controller; exact next Step 45.1
-14. 현재 result: `Codex/results/PHASE_060_STEP_044_PHYSICS_REDERIVATION_RESULT.md`
-15. 현재 machine evidence: Step 44 `Codex/results/PHASE_060_V1019_PHYSICS_VALIDATION.json` 및 `Codex/results/PHASE_060_V1019_PHYSICS_REDERIVATION.md`; Step 43 `Codex/results/PHASE_060_V1019_DOC_CODE_TRACE_MATRIX.json`; Step 42 code/runtime `Codex/results/PHASE_060_V1019_CODE_TEST_RUNTIME_MATRIX.json`; stored-artifact/visual `Codex/results/PHASE_060_V1019_ARTIFACT_AUDIT.json`; Step 41 process authority `Codex/results/PHASE_060_V1019_PROCESS_INTENT_MATRIX.json`
+13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, Step 45.1 disposition gate `PASS_P060_STEP45_1_DISPOSITIONS`, 결과 `PASS_WITH_CONCERNS`; containing commit pending controller; exact next Step 45.2
+14. 현재 result: `Codex/results/PHASE_060_STEP_045_1_DISPOSITION_RESULT.md`
+15. 현재 machine evidence: Step 45.1 `Codex/results/PHASE_060_V1019_DISPOSITION_MATRIX.json` 및 `Codex/results/PHASE_060_V1019_CARRY_FORWARD_DELTA.json`; Step 44 `Codex/results/PHASE_060_V1019_PHYSICS_VALIDATION.json` 및 `Codex/results/PHASE_060_V1019_PHYSICS_REDERIVATION.md`; Step 43 `Codex/results/PHASE_060_V1019_DOC_CODE_TRACE_MATRIX.json`; Step 42 code/runtime `Codex/results/PHASE_060_V1019_CODE_TEST_RUNTIME_MATRIX.json`; stored-artifact/visual `Codex/results/PHASE_060_V1019_ARTIFACT_AUDIT.json`; Step 41 process authority `Codex/results/PHASE_060_V1019_PROCESS_INTENT_MATRIX.json`
 16. 직전 Phase result: `Codex/results/PHASE_059_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_059_STEP_039_6_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
@@ -44,7 +44,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 060 Step 41 | Step 41 | `PASS_P060_STEP41_PROCESS_AUTHORITY`; exact-seven commit `0f09a8d` pushed and remote-verified | execute Step 42 runtime/artifact audit |
 | Phase 060 Step 42 | Step 42 | `PASS_P060_STEP42_RUNTIME_ARTIFACTS`; exact-eight commit `229a756996bb81b4184aa2a0a4b141d002a2ceae` pushed and remote-verified | execute Step 43 document-to-reachable-code audit |
 | Phase 060 Step 43 | Step 43 | `PASS_P060_STEP43_DOC_CODE_CONFORMANCE`; `PASS_WITH_CONCERNS`; exact-seven commit `7a4c1dbea22c53abe5a8dce3c3ccf58a0915e1dc` pushed and remote-verified | execute Step 44 independent physics rederivation |
-| Phase 060 Step 44 | Step 44 | `PASS_P060_STEP44_PHYSICS_REDERIVATION`; `PASS_WITH_CONCERNS`; exact-eight containing checkpoint pending controller | atomic commit/push/remote verification, then Step 45.1 disposition |
+| Phase 060 Step 44 | Step 44 | `PASS_P060_STEP44_PHYSICS_REDERIVATION`; `PASS_WITH_CONCERNS`; exact-eight commit `70b14fd102fca40ef17bee44e924c09dde1d9eff` pushed and remote-verified | execute Step 45.1 disposition |
+| Phase 060 Step 45.1 | Step 45.1 | `PASS_P060_STEP45_1_DISPOSITIONS`; `PASS_WITH_CONCERNS`; exact-eight containing checkpoint pending controller | atomic commit/push/remote verification, then Step 45.2 integrated validation and final gate |
 
 ## Current State
 
@@ -89,8 +90,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 40 validator는 frozen-byte PDF/image/NPZ extent 검사, fixed control blobs, active local/upstream/remote equality, untracked Claude와 unexpected dirt guard를 포함한다. Builder가 호출하지 않는 balanced-command cross-check가 source 79, TeX 42, edges 39, citation/label/ref/forward counts와 2,305 anchor hashes를 독립 대조한다.
 - Step 41은 supplementary process 11개를 1..EOF, 1,028 physical/889 nonblank로 읽고 889를 경쟁 EOF 분모가 아닌 nonblank metric으로 화해했다. Independent release-source 5개도 1..EOF, 550 physical/480 nonblank로 읽었으며 Ch2 root 37행을 authority-conflict witness로 다시 읽었다.
 - Step 41 matrix는 source 17, commit chronology 16, claim 36, Ch2 CU-2..11 defect/correction obligation 10, contradiction 6, unresolved 11을 exact anchor/hash로 고정했다. Validator는 모든 material nested object의 exact key schema와 세 source group별 exact authority boundary를 독립 강제한다. Source/process 및 세 obligation family orphan, duplicate claim identity, unsupported authority promotion, unrouted contradiction은 모두 0이고 scientific/runtime promotion도 0이다. 추가 claim 필드, misleading source boundary, 독립 obligation manifest 제거와 stale `AUT-005` count 변이를 포함한 negative는 14/14 거부한다.
-- Ch2 root/HANDOVER의 code-completed 주장과 Ch2 App B의 future-requirement 주장은 보존된 채 Step 42/43으로 route했다. FITTING_GUIDE 66행의 LCO T 복원 미구현, HANDOVER 27/35행의 LCO T 복원·total heat·LCO tier-2/3 미결과 bounded continuity scan의 권위 제한도 후속 queue에 남는다. HANDOVER 36–38의 N6a/N6b, W2-2 reverse-reference wiring, 제안 2–5, v1.0.16 physics-data는 각각 독립 unresolved로 Step 45.1 또는 Phase 071/072에 route했다.
-- Ch1 severity headline `3/8/3/9/1`과 상세 열거 `3/7/3/10/1`, Ch2 headline `HIGH1+MED6+LOW`와 상세 slot `HIGH1/MED5/LOW-MED1/LOW4`의 산술·category 충돌은 양쪽 position을 보존하고 Step 45.1로 route했다. 최신·다수결·silent recount는 적용하지 않았다.
+- Ch2 root/HANDOVER의 code-completed 주장과 Ch2 App B의 future-requirement 주장은 보존된 채 Step 42/43으로 route했다. FITTING_GUIDE 66행의 LCO T 복원 미구현, HANDOVER 27/35행의 LCO T 복원·total heat·LCO tier-2/3 미결과 bounded continuity scan의 권위 제한도 후속 queue에 남는다. HANDOVER 36–38의 N6a/N6b, W2-2 reverse-reference wiring, 제안 2–5, v1.0.16 physics-data는 Step 45.1에서 각각 독립 source identity의 disposition과 downstream target에 연결됐고, Phase 071/072 외부 권위는 미검증으로 유지된다.
+- Ch1 severity headline `3/8/3/9/1`과 상세 열거 `3/7/3/10/1`, Ch2 headline `HIGH1+MED6+LOW`와 상세 slot `HIGH1/MED5/LOW-MED1/LOW4`의 산술·category 충돌은 양쪽 position을 보존한 채 Step 45.1의 독립 source disposition에 연결됐다. 최신·다수결·silent recount는 적용하지 않았다.
 - Step 41 exact-seven commit `0f09a8d`는 push되었고 local HEAD/upstream/origin active 일치와 remote ancestry를 확인했다.
 - Step 42는 frozen v1.0.19 Python 4개를 1..EOF, 합계 1,796/1,796 physical lines로 전문 검독하고 definitions 56/public entries 34/direct call edges 444/module·class state 112/bounded semantic path 8을 구조화했다. 각 definition은 signature input/default/annotation, output annotation, docstring unit, state write, error/handler/fallback, branch와 side effect를 보존한다. v1.0.20의 v1.0.19-anchored snapshot witness 1,120/1,120 lines는 strict duplicate-key parse하고 실제 frozen generator 165행과 v1.0.19 TeX 42개로 2회 재생성해 object와 normalized raw bytes가 모두 일치함을 대조했다. Witness는 Ch1 219 labels/122 equation blocks/336 unique asset anchors/28 bibitems와 Ch2 69/32/21/14만 고정하며 Phase 061 내용을 선행 판정하지 않는다.
 - Disposable runtime fixture는 frozen Git blobs에서 저장소 밖에 만들고 regression, fitting roundtrip, graph suite와 module demo를 각각 2회 실행했다. 유효 실행은 모두 exit 0, 반복 stdout과 생성물은 byte-identical이었다. Golden capture overwrite 경로는 기존 NPZ 존재 시 의도된 exit 3으로 거부됐고, 감사기 입력 5개는 실행 전후 content/size/mtime/mode 10/10 비교에서 불변이었다. 모든 임시 fixture는 증거 수집 뒤 삭제되어 `Claude/**` source와 Git 상태가 불변이다.
@@ -163,6 +164,12 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Phase 060 Step 44는 reaction sign, half-cell direction, Bernardi signed current, control volume, `x/xbar`, `xi/theta`, thermal/direct width를 분리했다. Charge residual, local ICA/DVA reciprocal, implicit thermal derivative, regular-solution gap, causal memory, Einstein free-energy roundtrip, LCO electronic `T^2` path와 reversible heat를 독립 재유도했다.
 - Phase 060 Step 44 check는 `PASS/FAIL/CONDITIONAL/UNVERIFIED/N_A=5/6/9/2/0`, finding은 `P0/P1/P2=0/12/8`, preserved source conflict는 10이다. 주요 blocker는 signed ICA/magnitude 표기, zero-current hysteresis 내부 충돌, lag timebase 3,600배, `Q_bg` primitive 부재, finite rest/reversal state 부재, default thermal-width derivative 오정렬과 LCO full electronic path 부재다.
 - Phase 060 Step 44 validator는 strict schema/Git-blob/source-slice/Step43 exact-trace/dependency topology/semantic+full-probe digest/authority/AST/Markdown gates, 독립 수치 재계산, negative controls 49/49와 deterministic builder 2/2를 통과했다. Production import/call은 false이며 external scientific/material truth는 Phase 071 이후로 유보했다.
+- Phase 060 Step 44 exact-eight commit `70b14fd102fca40ef17bee44e924c09dde1d9eff`는 subject `audit(phase060): rederive v1019 physics`로 push·remote verification됐고 local/upstream/origin-active가 일치했다. Protected branch, main, Claude는 변하지 않았다.
+- Phase 060 Step 45.1 recovery/source audit는 Step 40 `8`, Step 41 `63`, Step 42 `19`, Step 43 `53`, Step 44 `30`, 합계 `173/173` source identities를 직접 재구성했다. Disposition은 `CORRECT/PRESERVE/UNVERIFIED/THEORY_ONLY/EMPIRICAL_ONLY=71/48/38/11/5`, source orphan/duplicate/conflict와 external-validity promotion은 모두 0이다.
+- Phase 060 Step 45.1은 Phase 059 carry 52/52를 exact prior record/hash로 보존했다. Status는 `OPEN=41`, `PRESERVED_ACTIVE=11`, evidence delta는 touched 33/unchanged 19이고 acceptance satisfied/resolved는 `0/0`이다. 새 evidence를 resolution으로 잘못 승격하지 않았다.
+- Phase 060 Step 45.1 신규 blocker는 `P060-BD-NEW-001..005` 5건이다. 각각 background `Q_bg` reference, signed ICA/magnitude, reversible hysteresis branch-average heat, Graphite transition parameter authority, pointwise/representative temperature contract를 소유하며 target은 `74/67/81/71/67`이다.
+- Step 45.1 validator는 17 input fingerprints, independent 173-source reconstruction, exact semantic digests, reviewed builder digest, independent AST allowlist/subprocess policy, validator self-import boundary, immutable pre-Step45 collision baseline, canonical JSON과 generation contract를 강제한다. `subprocess`는 별칭 없는 module import와 literal `git` argv만 허용한다. Negative controls 60/60, deterministic rebuild 2/2, production import false를 통과했다.
+- Step 45.1 final SPEC와 QUALITY review는 모두 `PASS`, final quality `P0/P1/P2=0/0/0`이다. Moving-HEAD self-collision P1, generation provenance P2와 execution-import bypass P2는 최종본에서 폐쇄됐다.
 
 ## Baseline Validation
 
@@ -209,14 +216,15 @@ read master + phase plan + previous result
 
 ## Open Items
 
-- All 41 `OPEN` carry-forward obligations remain open; no Phase 059 PASS wording may present them as repaired, resolved or externally validated.
+- All 41 `OPEN` and 11 `PRESERVED_ACTIVE` inherited carry-forward obligations remain unresolved; no Phase 059/060 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 Phase 070–090 targets remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`.
-- Step 44의 exact-eight documents는 subject `audit(phase060): rederive v1019 physics`인 controller-owned atomic commit, push와 remote verification이 필요하다.
-- Phase 060 code/runtime/PDF/image/NPZ, Step 43 conformance와 Step 44 rederivation은 내부 source·호출·수식 정합만 확립했다. External scientific truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Phase 071 이후다.
+- Step 45.1의 exact-eight documents는 subject `audit(phase060): disposition v1019 lineage`인 controller-owned atomic commit, push와 remote verification이 필요하다.
+- Step 45.1에서 등록한 신규 blocker 5건은 모두 `OPEN`이며 해당 target Phase acceptance 전에는 해소로 간주할 수 없다.
+- Phase 060 code/runtime/PDF/image/NPZ, Step 43 conformance, Step 44 rederivation과 Step 45.1 disposition은 내부 source·호출·수식·routing 정합만 확립했다. External scientific truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Phase 071 이후다.
 
 ## Exact Next Action
 
-Controller rereads and stages exactly the eight Step 44 paths listed in `Codex/results/PHASE_060_STEP_044_PHYSICS_REDERIVATION_RESULT.md`, commits them atomically with subject `audit(phase060): rederive v1019 physics`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, validator `PASS_P060_STEP44_PHYSICS_REDERIVATION`, deterministic rebuild 2/2, negative controls 49/49 and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 45.1 claim/defect/carry-forward disposition from the active detailed plan.
+Controller rereads and stages exactly the eight Step 45.1 paths listed in `Codex/results/PHASE_060_STEP_045_1_DISPOSITION_RESULT.md`, commits them atomically with subject `audit(phase060): disposition v1019 lineage`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, validator `PASS_P060_STEP45_DISPOSITIONS`, deterministic rebuild 2/2, negative controls 60/60 and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 45.2 integrated validation, Lineage Report C and final gate from the active detailed plan.
 
 ## Hard-stop Reminder
 
