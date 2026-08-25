@@ -12,28 +12,30 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 2. 계획 운영 지침: `Codex/plans/phase_planning_operations_guide.md`
 3. 활성 master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.md`
 4. machine master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.json`
-5. 활성 Phase plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
-6. 이전 master plan: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
-7. 이전 Phase plan: `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
-8. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
-9. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
-10. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-11. 현재 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
-12. 현재 Step result: `Codex/results/PHASE_059_STEP_039_5_INTEGRATED_VALIDATION_RESULT.md`
-13. 현재 machine evidence: `Codex/results/PHASE_059_VALIDATION.json`
-14. 직전 scientific result: `Codex/results/PHASE_059_STEP_039_4_CARRY_FORWARD_RESULT.md`
-15. 직전 machine evidence: `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
-16. plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
+5. 완료된 Phase 059 plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
+6. 다음 plan 상태: Phase 060 detailed plan 미작성; `Codex/plans/` 아래에 Step 40 전에 생성·저장해야 함
+7. 이전 master plan: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
+8. 이전 Phase plan: `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
+9. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
+10. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
+11. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
+12. 현재 Phase result: `Codex/results/PHASE_059_RESULT.md`
+13. 현재 Step result: `Codex/results/PHASE_059_STEP_039_6_GATE_RESULT.md`
+14. 현재 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
+15. 현재 integrated machine evidence: `Codex/results/PHASE_059_VALIDATION.json`
+16. 현재 carry-forward machine evidence: `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
+17. 직전 Step result: `Codex/results/PHASE_059_STEP_039_5_INTEGRATED_VALIDATION_RESULT.md`
+18. plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
 ## Handover Chain
 
 | Record | Phase/Step Range | Gate State | Next Condition |
 |---|---|---|---|
 | previous master plan | Phase 055–069, Steps 1–107 | Phase 059 in progress | resume Step 38.5 |
-| previous ledger | Phase 055–069 | P055–P058 PASS, P059 in progress | resume Step 38.5 |
+| previous ledger | Phase 055–069 | at supersession: P055–P058 PASS, P059 in progress; current parent-ledger P059 row reconciled to PASS | historical resume Step 38.5 superseded; current next is Phase 060 detailed plan after Step 39.6 checkpoint |
 | previous handover | through Step 38.4 | stale top pointers, correct bottom exact-next | use bottom exact-next and new superseding handover |
 | new master plan | Phase 055–090, Steps 1–351 | approved/active; activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a` pushed and remote-verified | continue Phase 059 |
-| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | Step 39.4 commit `9791b235e25653ee4f834d4d4fe0b5998ca37410` pushed/verified; Step 39.5 integrated validation, final SPEC and final QUALITY gates PASS, containing checkpoint pending | commit/push/verify, then execute Step 39.6 |
+| new Phase 059 addendum | Step 38.5 and 39.1–39.6 | Step 39.5 exact-six commit `8dddfac82060e374638a4f4dc353eacf6c95e7a7` pushed/verified; Step 39.6 selects sole final gate `PASS_P059_LINEAGE_B`; five-document containing checkpoint pending controller | atomic commit/push/remote verification, then create Phase 060 detailed plan under `Codex/plans/` before Step 40 |
 
 ## Current State
 
@@ -43,7 +45,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - sparse checkout에 Step 38.4 재검증 입력인 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Codex`가 포함된다.
 - Phase 055–058은 기존 gate 기준 PASS다.
 - plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
-- Phase 059는 Steps 33.1–39.5 audit/validator 범위가 검증되었고 `IN_PROGRESS`다. Step 39.5 containing commit의 push/remote checkpoint과 Step 39.6 final Phase gate가 남아 있다.
+- Phase 059 Steps 33.1–39.6 audit/validator 범위는 `PASS_P059_LINEAGE_B`로 닫혔다. 이 PASS는 audit scope와 internal routing만 닫으며 external scientific/material validity를 뜻하지 않는다.
 - Step 38.5는 roadmap proposal 5건과 carryover 7건을 12개 atomic item으로 분리했고 `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10`으로 판정했다.
 - Step 39.1은 displayed-equation occurrence 973건을 180 exact equation groups와 5 contract-only claims, 총 185 claims로 연결했다. 38 governing routes와 80 evidence records(`equation=51`, `prose=29`)를 분리 보존했고 unassigned occurrence, orphan contract, invalid anchor, unresolved conflict는 모두 0이다.
 - Claim disposition은 `PRESERVE=21`, `CORRECT=18`, `EMPIRICAL_ONLY=9`, `THEORY_ONLY=1`, `REJECT=1`, `UNVERIFIED=135`, `SUPERSEDE=0`이다. 134 no-contract equation groups와 모든 185 claims의 primary-literature truth는 의도적으로 미검증 상태다.
@@ -63,7 +65,10 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 39.5는 frozen queue `117/117` paths, `93/93` blobs, text `63/63` blobs와 `36,641/36,641` lines, Step 36.1–39.4 human result 19건과 machine artifact 21건을 재구성했다. 31개 subordinate validator는 disposable clone에서 fresh 실행되었고 exit 분포 `7/24`, mandatory modern validator PASS, old fullpath raw `25/26` 및 exact five-leaf Windows portability boundary를 분리 보존했다.
 - Step 39.5 final validator는 normal PASS, negative probe `60/60` 거부, strict JSON 4,330 nodes/31 subordinate/40 output records, exact report integrity, clean exact-six descendant PASS, extra untracked/tracked dirty fixture FAIL을 통과했다. Final SPEC와 final QUALITY review는 모두 P0/P1/P2 0건으로 PASS했다.
 - Step 39.5 PASS는 frozen-corpus audit completeness와 internal reproducibility만 확립한다. External literature truth, material validity, public-data validation, parameter identifiability, defect repair, canonical-model status, final publication artifact는 여전히 확립하지 않았다.
-- 정확한 다음 scientific execution unit은 containing commit 검증 후 Step 39.6 final Phase gate다.
+- Step 39.5 exact-six commit `8dddfac82060e374638a4f4dc353eacf6c95e7a7`은 subject `audit(phase059): integrate lineage report B`로 push되었고 local HEAD/upstream/origin active 일치가 확인되었다.
+- Step 39.6은 `PASS_P059_LINEAGE_B`, `CONDITIONAL_P059`, `FAIL_P059` 중 `PASS_P059_LINEAGE_B`만 선택했다. Frozen coverage와 routing은 완전하고, 41개 open downstream obligation은 해결되지 않은 채 acceptance/authority/source/target/schedule에 명시적으로 연결되어 있다.
+- Carry-forward register 52건은 `PRESERVED_ACTIVE=11`, `OPEN=41`; horizon은 pre-freeze 28, post-gate 24이며 post-gate 24건은 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다. External material truth validated는 0이다.
+- Step 39.6 five-document atomic commit/push/remote verification 뒤 정확한 다음 execution unit은 `Codex/plans/` 아래 Phase 060 detailed plan을 생성·저장하는 것이다. Step 40 실행은 그 plan보다 앞설 수 없다.
 - Phase 070 이후는 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다.
 
 ## Latest Claude/Codex Lineage
@@ -74,7 +79,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - current protected Codex audit tip: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`.
 - v1.0.25.2 PDFs are byte-identical to v1.0.25.1 PDFs and are stale for v1.0.25.2 release verification.
 
-## Recovery Read Coverage Performed at Activation
+## Recovery Read Coverage (Activation and Subsequent Steps)
 
 - `Codex/AGENTS.md`: 1..EOF.
 - previous master plan: 1..EOF.
@@ -101,6 +106,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 39.4 carry-forward register: 10,326 lines / 8,577 nodes, strict duplicate-key parse와 full recursive traversal; 52 rows, 162 evidence wrappers, 45/90 overlap memberships, 11/33 high-risk routes를 전부 확인했다.
 - Step 39.5 final validator 1..1,359, Lineage Report B 1..87, Step result 1..203을 전문 재독했다.
 - Step 39.5 validation JSON: 3,318 lines / 4,330 nodes, strict duplicate-key parse와 full recursive traversal; 31 subordinate records와 Step 36.1–39.4 output records 40건을 전부 확인했다.
+- Step 39.6 plan reread: master plan `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.md` 1..665, detailed plan `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md` 1..411을 전문 재독했다.
+- Step 39.6 final-gate mandatory inputs: Step 39.5 result 1..203, Lineage Report B 1..87, active ledger 1..83, parent ledger 1..48, active handover 1..160을 전문 재독했다.
+- Step 39.6 JSON reread: validation JSON 3,318 lines / 4,330 key-plus-value nodes / 31 subordinate / 40 output records; carry-forward register 10,326 lines / 15,741 key-plus-value nodes / 52 items를 strict duplicate-key parse와 full recursive traversal로 전부 확인했다.
 
 ## Baseline Validation
 
@@ -147,13 +155,14 @@ read master + phase plan + previous result
 
 ## Open Items
 
-- Step 39.5 containing commit must include its final validator, validation JSON, Lineage Report B, Step result, this ledger and this handover.
-- That six-file commit must be pushed and remote-verified before Step 39.6 begins.
-- Step 39.6 must select exactly one of `PASS_P059_LINEAGE_B`, `CONDITIONAL_P059`, or `FAIL_P059`, while keeping audit coverage separate from external literature, material, parameter-identifiability and public-data validity.
+- All 41 `OPEN` carry-forward obligations remain open; no Phase 059 PASS wording may present them as repaired, resolved or externally validated.
+- The 24 Phase 070–090 targets remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`.
+- The five Step 39.6 control documents require one controller-owned atomic commit with subject `audit(phase059): close v1014-v1018_2 lineage gate`, push and remote verification.
+- A Phase 060 detailed plan has not yet been created; it must be written under `Codex/plans/` before Step 40.
 
 ## Exact Next Action
 
-Commit the six Step 39.5 files as one atomic unit with subject `audit(phase059): integrate lineage report B`, push `codex/anode-fit-v1025_2-canonical-completion`, verify local HEAD/upstream/remote tip equality and protected/main non-change, then execute Phase 059 Step 39.6 final gate.
+Controller stages exactly the five Step 39.6 paths, commits them atomically with subject `audit(phase059): close v1014-v1018_2 lineage gate`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, Claude diff 0, JSON parse and `git diff --check`. After that persistence checkpoint, create and save the Phase 060 detailed plan under `Codex/plans/`. Do not execute Step 40 before that plan exists and is reviewed.
 
 ## Hard-stop Reminder
 
