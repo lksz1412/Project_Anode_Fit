@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, Step 42 code/test/runtime/stored-artifact closure `PASS_P060_STEP42_RUNTIME_ARTIFACTS`, containing commit pending controller; exact next Step 43
-14. 현재 result: `Codex/results/PHASE_060_STEP_042_RUNTIME_ARTIFACT_RESULT.md`
-15. 현재 machine evidence: Step 42 code/runtime `Codex/results/PHASE_060_V1019_CODE_TEST_RUNTIME_MATRIX.json`; stored-artifact/visual `Codex/results/PHASE_060_V1019_ARTIFACT_AUDIT.json`; Step 41 process authority `Codex/results/PHASE_060_V1019_PROCESS_INTENT_MATRIX.json`
+13. 현재 Phase 상태: Phase 060 `IN_PROGRESS`, Step 43 document-to-reachable-code gate `PASS_P060_STEP43_DOC_CODE_CONFORMANCE`, 결과 `PASS_WITH_CONCERNS`; containing commit pending controller; exact next Step 44
+14. 현재 result: `Codex/results/PHASE_060_STEP_043_DOC_CODE_CONFORMANCE_RESULT.md`
+15. 현재 machine evidence: Step 43 `Codex/results/PHASE_060_V1019_DOC_CODE_TRACE_MATRIX.json`; Step 42 code/runtime `Codex/results/PHASE_060_V1019_CODE_TEST_RUNTIME_MATRIX.json`; stored-artifact/visual `Codex/results/PHASE_060_V1019_ARTIFACT_AUDIT.json`; Step 41 process authority `Codex/results/PHASE_060_V1019_PROCESS_INTENT_MATRIX.json`
 16. 직전 Phase result: `Codex/results/PHASE_059_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_059_STEP_039_6_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
@@ -42,7 +42,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 060 detailed plan activation | Steps 40–45 | `PASS_P060_PLAN_ACTIVATION`; exact-seven commit `8847493139708b3336f6947be13a3e77dda22e05` pushed and remote-verified | execute Step 40 |
 | Phase 060 Step 40 | Step 40 | `PASS_P060_STEP40_SOURCE_TOPOLOGY`; exact-eight commit `ec30b212db89656957c43b3b31109e8874f56b29` pushed and remote-verified | execute Step 41 process-authority audit |
 | Phase 060 Step 41 | Step 41 | `PASS_P060_STEP41_PROCESS_AUTHORITY`; exact-seven commit `0f09a8d` pushed and remote-verified | execute Step 42 runtime/artifact audit |
-| Phase 060 Step 42 | Step 42 | `PASS_P060_STEP42_RUNTIME_ARTIFACTS`; exact-eight containing checkpoint pending controller | atomic commit/push/remote verification, then Step 43 document-to-reachable-code audit |
+| Phase 060 Step 42 | Step 42 | `PASS_P060_STEP42_RUNTIME_ARTIFACTS`; exact-eight commit `229a756996bb81b4184aa2a0a4b141d002a2ceae` pushed and remote-verified | execute Step 43 document-to-reachable-code audit |
+| Phase 060 Step 43 | Step 43 | `PASS_P060_STEP43_DOC_CODE_CONFORMANCE`; `PASS_WITH_CONCERNS`; exact-seven containing checkpoint pending controller | atomic commit/push/remote verification, then Step 44 independent physics rederivation |
 
 ## Current State
 
@@ -96,6 +97,13 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 42 PDF/visual audit는 PDF 3/3, 95/95 pages를 렌더·검독하고 image 13/13 unique blobs를 확인했다. v1.0.20 duplicate occurrence는 별도 권위를 얻지 않으며, stored/fresh visual agreement도 scientific truth로 승격하지 않는다.
 - Step 42 code/runtime finding은 `P0=0`, `P1=6`, `P2=9`이고 visual/manual finding은 `P0=0`, `P1=0`, `P2=4`다. 주요 경계는 print-only/non-gating demo checks, finite-window area wording, inert/fallback inputs, broad figure exception, provenance/semantic figure 한계이며 모두 Step 43/44 또는 후속 repair queue로 route됐다.
 - Step 42 validator는 normal mode `PASS_P060_STEP42_RUNTIME_ARTIFACTS 42/42`, 계획서의 skipped PDF page/altered assertion/missing call edge/dirty `Claude/**`/extra runtime output/golden mismatch 6/6, 보강된 semantic index/metadata/fresh capture/snapshot regeneration/pixel-diff/finding/manual-attestation/optional-import mutation 8/8 거부를 통과했다. 이 gate는 code/read/runtime/stored-artifact coverage와 내부 재현성만 확립하고 document reachability, 독립 physics rederivation, primary-reference truth, experimental validity는 승격하지 않는다.
+- Step 42 exact-eight commit `229a756996bb81b4184aa2a0a4b141d002a2ceae`는 subject `audit(phase060): verify v1019 runtime artifacts`로 push·remote verification됐고 local/upstream/origin-active가 일치했다. Protected branch, main, Claude는 변하지 않았다.
+- Step 43은 Step 40 lexical candidate 914건을 전건 처분하고 14개 필수 family와 curated document obligation row 28개를 고정했다. overlap 376건은 curated 행 범위와 교차한다는 뜻이며 모든 load-bearing claim의 독립 열거로 승격하지 않는다. 생산 public entry는 20/20, executable support helper는 14/14 별도 제외했고 candidate/curated-row/public orphan은 `0/0/0`이다.
+- Step 43은 source AST를 독립 재생성해 실제 정의 57개와 `ast.Call` 882개를 고정했다. Step 42의 56 definitions/444 edges는 definition-body scope였고 `_ok` 및 module driver를 포함하지 않았으므로, Step 43은 이를 소급 변경하지 않고 evidence-scope correction으로 route했다.
+- Step 43 trace 분포는 relation `DIRECT=22`, `RELATED_NOT_DIRECT=6`; status `ALIGNED=5`, `PARTIAL=18`, `MISALIGNED=1`, `ABSENT=1`, `UNVERIFIED=3`; implementation disposition `IMPLEMENTED=18`, `PARTIAL=9`, `MISSING=1`이다. `MAIN-09` print-only 저전류 행은 독립 사전 커밋 검독 뒤 `ALIGNED`에서 `PARTIAL`로 낮췄다.
+- Step 43 핵심 구현 결함은 no-`n`/no-`w`에서 폭은 `RT/F`로 T-의존하지만 `_dwdT=0`인 MISALIGNED 경로다. 명시적 reversible hysteresis branch-average는 ABSENT다. LCO electronic full T 복원, broadening ensemble 계산, MSMR 물리 동일성은 partial/related/unverified 경계를 유지한다.
+- Step 43은 45개 고유 member name을 포괄하는 optional/conditional disposition group 29건을 accepted/validated/used/ignored/overwritten/bypassed/dormant/diagnostic-only로 분해했다. Findings는 `P0/P1/P2=0/12/13`이며 결함을 숨기지 않는 `PASS_WITH_CONCERNS`다.
+- Step 43 validator는 strict nested schema, source blob/line hash, frozen AST에서 독립 재생성한 57 definitions/882 calls와 LCO 상속 관계, ordered/contiguous local/dynamic-dispatch call path 28/5와 endpoint definition, DIRECT 행 non-class definition의 path 참여, production public trace semantic join, LCO public entry→override 경로, frozen `__init__`의 `chi_split=func_chi_d` default와 `self.chi_split=chi_split` assignment, strong assertion/weak gate 분리, 행별 unit/sign anchor, PDF 3개의 `DIRECT_TEX_SOURCE`를 포함한 exact artifact generator/consumer anchor, 46 source gates, artifact consumer 17, authority boundary를 대조해 `11815/11815`를 통과했다. Builder determinism 4/4와 20개 negative control도 통과했다.
 - Phase 070 이후는 Phase 069 `GO` 또는 `CONDITIONAL_GO` 전에는 비활성이다.
 
 ## Latest Claude/Codex Lineage
@@ -146,6 +154,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Phase 060 Step 42 code/runtime recovery coverage: Python 4/4 files, 1,796/1,796 physical lines, structured semantic paths 8/8; snapshot witness 1/1,120 lines strict-parsed 및 frozen generator 2/2 regeneration/object/raw-normalized identity; regression, roundtrip, graph suite와 module demo를 각각 2회 실행하고 stdout/stderr, generated path, byte hash와 semantic numeric fields를 대조했다.
 - Phase 060 Step 42 stored-artifact recovery coverage: NPZ 13/13 ordered arrays를 shape/dtype/finite/range/raw/member hash와 `allow_pickle=False`로 전수 확인했고, PDF 3/3·95/95 pages와 image 13/13 unique blobs를 전수 검독했다.
 - Phase 060 Step 42 evidence gates: validator normal `42/42`, required negative mutations `6/6`, supplemental evidence mutations `8/8`, code/runtime findings `P0/P1/P2=0/6/9`, visual/manual findings `0/0/4`. Runtime/golden/visual agreement는 internal authority에만 머물며 document-to-reachable-code는 Step 43, physics rederivation은 Step 44, primary-reference truth는 Phase 071 소유권이다.
+- Phase 060 Step 43 recovery/full-read inputs: master 1–665, detailed plan 1–831, Step 42 result 1–273, both ledgers and active handover pre-edit 1–EOF를 재독했다. Ch1 핵심 19개 TeX와 Ch2 핵심 9개 TeX·Ch2 code-map을 전문 또는 정확 bounded 범위로 검독하고, Python 4개 1,796/1,796행을 전문 검독했다.
+- Phase 060 Step 43 machine matrix: 28,424 lines / 45,861 key-plus-value nodes / maximum depth 6, strict duplicate/nonfinite parse; candidates 914, curated obligation rows 28, public production/support 20/14, definitions/calls 57/882, source gates 46, artifact consumers 17, optional disposition groups 29를 전건 순회했다. frozen AST·LCO inheritance·chi_split default/assignment 독립 재생성, ordered/contiguous local/dynamic-dispatch call path 28/5, endpoint/non-class relevance/public semantic join, 행별 unit/sign/assertion, PDF TeX-source를 포함한 artifact generator/consumer anchor를 gate하고 validator 11815/11815·determinism 4/4·negative controls 20/20를 통과했다.
+- Phase 060 Step 43 evidence gates: validator `11815/11815`, deterministic rebuild 4/4, negative controls 20/20; candidate/curated-row/public orphan 0/0/0, invalid anchor 0, missing authority boundary 0. Scientific truth는 Step 44와 Phase 071로 유보했다.
 
 ## Baseline Validation
 
@@ -194,12 +205,12 @@ read master + phase plan + previous result
 
 - All 41 `OPEN` carry-forward obligations remain open; no Phase 059 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 Phase 070–090 targets remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`.
-- Step 42의 exact-eight documents는 subject `audit(phase060): verify v1019 runtime artifacts`인 controller-owned atomic commit, push와 remote verification이 필요하다.
-- Phase 060 code/runtime/PDF/image/NPZ content는 Step 42에서 전수 감사했지만, 그 내부 회귀·합성·stored agreement를 document reachability, independent physics truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Step 43–44/Phase 071 전이다.
+- Step 43의 exact-seven documents는 subject `audit(phase060): trace doc-led implementation`인 controller-owned atomic commit, push와 remote verification이 필요하다.
+- Phase 060 code/runtime/PDF/image/NPZ 및 Step 43 conformance는 내부 source·호출·gate 정합만 확립했다. Independent physics truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Step 44/Phase 071 전이다.
 
 ## Exact Next Action
 
-Controller rereads and stages exactly the eight Step 42 paths listed in `Codex/results/PHASE_060_STEP_042_RUNTIME_ARTIFACT_RESULT.md`, commits them atomically with subject `audit(phase060): verify v1019 runtime artifacts`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse for both Step 42 machine artifacts, validator `PASS_P060_STEP42_RUNTIME_ARTIFACTS 42/42`, required negative mutation 6/6, supplemental evidence mutation 8/8 and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 43 document-to-reachable-code audit from the active detailed plan. Do not execute Step 43 before the Step 42 exact-eight result commit is pushed and remote-verified.
+Controller rereads and stages exactly the seven Step 43 paths listed in `Codex/results/PHASE_060_STEP_043_DOC_CODE_CONFORMANCE_RESULT.md`, commits them atomically with subject `audit(phase060): trace doc-led implementation`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, validator `PASS_P060_STEP43_DOC_CODE_CONFORMANCE 11815/11815`, deterministic rebuild 4/4, negative controls 20/20 and `git diff --check`. After that persistence checkpoint, execute Phase 060 Step 44 independent physics rederivation from the active detailed plan. Do not execute Step 44 before the Step 43 exact-seven result commit is pushed and remote-verified.
 
 ## Hard-stop Reminder
 
