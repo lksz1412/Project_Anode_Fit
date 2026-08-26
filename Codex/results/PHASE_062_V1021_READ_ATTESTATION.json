@@ -1,0 +1,4539 @@
+{
+  "artifact_kind": "V1021_READ_ATTESTATION",
+  "authority_boundary": "Machine reads and human coverage only; snapshots, PDFs, process documents and observations do not establish scientific or material truth.",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "counts": {
+    "human_partitions_complete": 4,
+    "human_partitions_total": 4,
+    "q1_comparison_files": 1,
+    "q1_comparison_physical_lines": 291,
+    "release_pdf_files": 5,
+    "release_pdf_pages": 214,
+    "release_text_files": 63,
+    "release_text_nonblank_lines": 20424,
+    "release_text_physical_lines": 21048,
+    "snapshot_files": 9,
+    "snapshot_mapping_keys": 6847,
+    "snapshot_nodes": 10425,
+    "snapshot_traversal_items": 17272,
+    "supplemental_files": 1,
+    "supplemental_physical_lines": 76
+  },
+  "generated_date": "2026-08-27",
+  "human_review_contract_sha256": "0012e8f9cb9259b0394fb8fa39fead5ee46f1892788e2a9a9a9e7c0f069280ac",
+  "partitions": [
+    {
+      "actual": {
+        "paths": 54,
+        "pdf": 5,
+        "pdf_pages": 214,
+        "snapshots": 0,
+        "text": 49
+      },
+      "covered_source_count": 54,
+      "covered_source_set_sha256": "d079b25a3b412f88788f7b23c4ac919ee3e3ae783b1bd40e9cacd6426af879a7",
+      "expected": {
+        "paths": 54,
+        "pdf": 5,
+        "pdf_pages": 214,
+        "snapshots": 0,
+        "text": 49
+      },
+      "findings": [
+        {
+          "authority_ceiling": "VISUAL_LAYOUT_ONLY",
+          "description": "Table 8 rightmost column is clipped at the physical right page edge in both Ch1 variants.",
+          "finding_id": "P062-VIS-001",
+          "pages": [
+            69
+          ],
+          "paths": [
+            "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.pdf",
+            "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.pdf"
+          ],
+          "severity": "P1_LAYOUT",
+          "state": "CONFIRMED_VISUAL_DEFECT"
+        }
+      ],
+      "ground_not_found": [],
+      "partition_id": "A_RELEASE_ROOT_AND_PDF",
+      "release_indices": [
+        [
+          1,
+          54
+        ]
+      ],
+      "review_contract_sha256": "58ccaa9d3873bb8b5ddc6eedc33de1f10ba2f09d502900b06cfa8cfcf82acae2",
+      "review_evidence": {
+        "controller_drilldown": "Ch1 base/nav pages 68-70 inspected at original detail",
+        "evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+        "method": "UTF8_LINE_BY_LINE_AND_POPPLER_120_DPI_FULL_PAGE_VISUAL_REVIEW",
+        "pdf": "5/5 frozen Git blobs rendered with Poppler at 120 dpi and visually inspected page 1 through EOF",
+        "pdf_page_coverage": "214/214 = 8+76+78+26+26",
+        "renderer": "Poppler pdftoppm 26.05.0",
+        "reviewer_ids": [
+          "STEP52_TEXT_PROCESS_AUDITOR",
+          "STEP52_PDF_AUDITOR",
+          "STEP52_CONTROLLER"
+        ],
+        "text": "49/49 frozen UTF-8 blobs read line 1 through EOF"
+      },
+      "status": "PASS_HUMAN_FULL_REVIEW",
+      "unverified": [
+        "independent build provenance",
+        "scientific, numerical, material and experimental truth"
+      ]
+    },
+    {
+      "actual": {
+        "paths": 14,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 9,
+        "text": 14
+      },
+      "covered_source_count": 14,
+      "covered_source_set_sha256": "6a7ac85be1383a8a2d6ef4771e115f5788cedaa532b1938970edebd916cde597",
+      "expected": {
+        "paths": 14,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 9,
+        "text": 14
+      },
+      "findings": [],
+      "ground_not_found": [
+        "Q1 snapshot",
+        "Q8 snapshot",
+        "independent per-Q plan, step-log and result artifacts"
+      ],
+      "partition_id": "B_RELEASE_PROCESS_AND_SNAPSHOTS",
+      "release_indices": [
+        [
+          55,
+          68
+        ]
+      ],
+      "review_contract_sha256": "cda0b02beef043038945fcc11a6cd4467601cd0ad10fca632190fe5725ceb0a3",
+      "review_evidence": {
+        "evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+        "method": "UTF8_LINE_BY_LINE_PLUS_STRICT_JSON_DUPLICATE_KEY_NONFINITE_REJECTION_AND_RECURSIVE_TRAVERSAL",
+        "reviewer_ids": [
+          "STEP52_TEXT_PROCESS_AUDITOR",
+          "STEP52_CONTROLLER"
+        ],
+        "snapshot_extent": "12,211/12,211 physical lines; 10,425 value/container nodes plus 6,847 mapping-key nodes",
+        "snapshots": "9/9 strict duplicate-key/nonfinite parse and recursive traversal",
+        "text": "14/14 frozen process, snapshot, tool and test blobs read line 1 through EOF"
+      },
+      "status": "PASS_HUMAN_FULL_REVIEW",
+      "unverified": [
+        "Q8 semantic/runtime equality beyond the frozen self-report",
+        "historical build and test self-reports"
+      ]
+    },
+    {
+      "actual": {
+        "paths": 1,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 0,
+        "text": 1
+      },
+      "covered_source_count": 1,
+      "covered_source_set_sha256": "8362295b0e3aa7a3532a124423ea666635907d587de1d2c2c007f23581bc4df6",
+      "expected": {
+        "paths": 1,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 0,
+        "text": 1
+      },
+      "findings": [],
+      "ground_not_found": [
+        "independently frozen first-order user transcript"
+      ],
+      "partition_id": "C_SUPPLEMENTAL_PROCESS_CONTROL",
+      "release_indices": [],
+      "review_contract_sha256": "bae5dc90a52f272695b400f4ce6b46128581290d48844916c35ee54d1fe9a88c",
+      "review_evidence": {
+        "coverage": "Claude/plans/2026-07-16-v1021-master-plan.md lines 1-76",
+        "evidence_id": "P062-REVIEW-C-SUPPLEMENTAL",
+        "extent": "76 physical / 59 nonblank lines / 10,664 Git bytes",
+        "method": "UTF8_LINE_BY_LINE",
+        "reviewer_ids": [
+          "STEP52_TEXT_PROCESS_AUDITOR",
+          "STEP52_CONTROLLER"
+        ]
+      },
+      "status": "PASS_HUMAN_FULL_REVIEW",
+      "unverified": [
+        "first-order authority of D21-1 through D21-6-prime"
+      ]
+    },
+    {
+      "actual": {
+        "paths": 1,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 0,
+        "text": 1
+      },
+      "covered_source_count": 1,
+      "covered_source_set_sha256": "ca9f4e6d5448d001e95952586e91adb71dec422328281264505971f3642743ca",
+      "expected": {
+        "paths": 1,
+        "pdf": 0,
+        "pdf_pages": 0,
+        "snapshots": 0,
+        "text": 1
+      },
+      "findings": [
+        {
+          "description": "The report physically contains sections 1-8 and REPORT COMPLETE, while the later frozen master-plan correction history says sections 7-8 were incomplete; sections 1-6 remain partial process evidence and sections 7-8 remain a chronology-conflicted draft surface.",
+          "finding_id": "P062-PROC-CONFLICT-001",
+          "state": "PARTIAL_CONFLICT"
+        }
+      ],
+      "ground_not_found": [
+        "dedicated Q1 completion plan, step log, result and snapshot"
+      ],
+      "partition_id": "D_Q1_COMPARISON_REPORT",
+      "release_indices": [],
+      "review_contract_sha256": "152bb9d87dfcf9b17daffff57da8a14d51346a8b32608d55d8918102e2405549",
+      "review_evidence": {
+        "coverage": "Claude/docs/v1.0.20/results/DIRECTION_SI_LCO_REPORT.md lines 1-291",
+        "evidence_id": "P062-REVIEW-D-Q1-COMPARISON",
+        "extent": "291 physical / 222 nonblank lines / 44,969 Git bytes",
+        "method": "UTF8_LINE_BY_LINE_WITH_CHRONOLOGY_CONFLICT_COMPARISON",
+        "reviewer_ids": [
+          "STEP52_TEXT_PROCESS_AUDITOR",
+          "STEP52_CONTROLLER"
+        ]
+      },
+      "status": "PASS_HUMAN_FULL_REVIEW",
+      "unverified": [
+        "report-internal WebSearch/DOI and scientific truth claims"
+      ]
+    }
+  ],
+  "pdf_records": [
+    {
+      "blob_sha1": "292c4c3254e6f84368ea630e3213e7b924dd1447",
+      "bytes": 243966,
+      "encrypted": false,
+      "machine_read_state": "MACHINE_METADATA_FULL",
+      "pages": [
+        {
+          "height_points": 841.89,
+          "page": 1,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 2,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 3,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 4,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 5,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 6,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 7,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 8,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        }
+      ],
+      "pages_expected": 8,
+      "pages_observed": 8,
+      "path": "Claude/docs/v1.0.21/appendix_phase_separation.pdf",
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+      "source_id": "P062-SRC-0045",
+      "visual_review_method": "POPPLER_120_DPI_FULL_PAGE",
+      "visual_review_state": "VISUAL_FULL"
+    },
+    {
+      "blob_sha1": "72b0e92dcca811ba99752a63042bbf6d9e9a72f4",
+      "bytes": 934112,
+      "encrypted": false,
+      "machine_read_state": "MACHINE_METADATA_FULL",
+      "pages": [
+        {
+          "height_points": 841.89,
+          "page": 1,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 2,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 3,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 4,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 5,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 6,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 7,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 8,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 9,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 10,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 11,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 12,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 13,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 14,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 15,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 16,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 17,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 18,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 19,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 20,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 21,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 22,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 23,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 24,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 25,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 26,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 27,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 28,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 29,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 30,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 31,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 32,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 33,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 34,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 35,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 36,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 37,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 38,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 39,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 40,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 41,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 42,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 43,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 44,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 45,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 46,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 47,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 48,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 49,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 50,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 51,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 52,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 53,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 54,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 55,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 56,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 57,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 58,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 59,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 60,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 61,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 62,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 63,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 64,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 65,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 66,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 67,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 68,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 69,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 70,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 71,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 72,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 73,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 74,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 75,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 76,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        }
+      ],
+      "pages_expected": 76,
+      "pages_observed": 76,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.pdf",
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+      "source_id": "P062-SRC-0047",
+      "visual_review_method": "POPPLER_120_DPI_FULL_PAGE",
+      "visual_review_state": "VISUAL_FULL"
+    },
+    {
+      "blob_sha1": "40859fb90ab717353035989413ea90a6e9c128c5",
+      "bytes": 960814,
+      "encrypted": false,
+      "machine_read_state": "MACHINE_METADATA_FULL",
+      "pages": [
+        {
+          "height_points": 841.89,
+          "page": 1,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 2,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 3,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 4,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 5,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 6,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 7,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 8,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 9,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 10,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 11,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 12,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 13,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 14,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 15,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 16,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 17,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 18,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 19,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 20,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 21,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 22,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 23,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 24,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 25,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 26,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 27,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 28,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 29,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 30,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 31,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 32,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 33,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 34,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 35,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 36,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 37,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 38,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 39,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 40,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 41,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 42,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 43,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 44,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 45,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 46,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 47,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 48,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 49,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 50,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 51,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 52,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 53,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 54,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 55,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 56,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 57,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 58,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 59,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 60,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 61,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 62,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 63,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 64,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 65,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 66,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 67,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 68,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 69,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 70,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 71,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 72,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 73,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 74,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 75,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 76,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 77,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 78,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        }
+      ],
+      "pages_expected": 78,
+      "pages_observed": 78,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.pdf",
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+      "source_id": "P062-SRC-0049",
+      "visual_review_method": "POPPLER_120_DPI_FULL_PAGE",
+      "visual_review_state": "VISUAL_FULL"
+    },
+    {
+      "blob_sha1": "e797c590b578f07f6fe97fff43268c301009c232",
+      "bytes": 482977,
+      "encrypted": false,
+      "machine_read_state": "MACHINE_METADATA_FULL",
+      "pages": [
+        {
+          "height_points": 841.89,
+          "page": 1,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 2,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 3,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 4,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 5,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 6,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 7,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 8,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 9,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 10,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 11,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 12,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 13,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 14,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 15,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 16,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 17,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 18,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 19,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 20,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 21,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 22,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 23,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 24,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 25,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 26,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        }
+      ],
+      "pages_expected": 26,
+      "pages_observed": 26,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21.pdf",
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+      "source_id": "P062-SRC-0051",
+      "visual_review_method": "POPPLER_120_DPI_FULL_PAGE",
+      "visual_review_state": "VISUAL_FULL"
+    },
+    {
+      "blob_sha1": "87ae4dc1fabbf54dc00abfaad0d4a6adbf147381",
+      "bytes": 484101,
+      "encrypted": false,
+      "machine_read_state": "MACHINE_METADATA_FULL",
+      "pages": [
+        {
+          "height_points": 841.89,
+          "page": 1,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 2,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 3,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 4,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 5,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 6,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 7,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 8,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 9,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 10,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 11,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 12,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 13,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 14,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 15,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 16,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 17,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 18,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 19,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 20,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 21,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 22,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 23,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 24,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 25,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        },
+        {
+          "height_points": 841.89,
+          "page": 26,
+          "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+          "source_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+          "visual_state": "VISUAL_FULL",
+          "width_points": 595.28
+        }
+      ],
+      "pages_expected": 26,
+      "pages_observed": 26,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21_nav.pdf",
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+      "source_id": "P062-SRC-0053",
+      "visual_review_method": "POPPLER_120_DPI_FULL_PAGE",
+      "visual_review_state": "VISUAL_FULL"
+    }
+  ],
+  "pdf_variant_relationships": [
+    {
+      "authority_ceiling": "VISUAL_AND_DOCUMENT_STRUCTURE_ONLY",
+      "base_annotations": 1134,
+      "base_blob_sha1": "72b0e92dcca811ba99752a63042bbf6d9e9a72f4",
+      "base_outline_nodes": 81,
+      "base_pages": 76,
+      "base_pdf_path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.pdf",
+      "base_sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+      "base_source_id": "P062-SRC-0047",
+      "build_provenance_state": "UNVERIFIED",
+      "direct_visual_difference": "navigation pages 73-74 add D.2 integrated symbol correspondence and Ch1-Ch2 relationship tables; references move from base pages 73-76 to navigation pages 75-78",
+      "exact_normalized_page_text_identity_pages": 0,
+      "navigation_annotations": 1227,
+      "navigation_blob_sha1": "40859fb90ab717353035989413ea90a6e9c128c5",
+      "navigation_outline_nodes": 85,
+      "navigation_pages": 78,
+      "navigation_pdf_path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.pdf",
+      "navigation_sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+      "navigation_source_id": "P062-SRC-0049",
+      "relationship_id": "P062-PDF-VARIANT-CH1"
+    },
+    {
+      "authority_ceiling": "VISUAL_AND_DOCUMENT_STRUCTURE_ONLY",
+      "base_annotations": 320,
+      "base_blob_sha1": "e797c590b578f07f6fe97fff43268c301009c232",
+      "base_outline_nodes": 39,
+      "base_pages": 26,
+      "base_pdf_path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21.pdf",
+      "base_sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+      "base_source_id": "P062-SRC-0051",
+      "build_provenance_state": "UNVERIFIED",
+      "direct_visual_difference": "navigation title states global navigation edition and page 3 adds three links",
+      "exact_normalized_page_text_identity_pages": 0,
+      "navigation_annotations": 323,
+      "navigation_blob_sha1": "87ae4dc1fabbf54dc00abfaad0d4a6adbf147381",
+      "navigation_outline_nodes": 39,
+      "navigation_pages": 26,
+      "navigation_pdf_path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21_nav.pdf",
+      "navigation_sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+      "navigation_source_id": "P062-SRC-0053",
+      "relationship_id": "P062-PDF-VARIANT-CH2",
+      "same_ordinal_page_text_similarity_range": [
+        0.9691,
+        0.9997
+      ]
+    }
+  ],
+  "phase": 62,
+  "q1_comparison_text_record": {
+    "authority_class": "PROCESS_EVIDENCE",
+    "blob_sha1": "3c5a20f8609b4a2cd1f9ce85d61c302b59180c50",
+    "bom": false,
+    "chronology_conflict_anchors": {
+      "master_plan_incomplete": {
+        "line_end": 76,
+        "line_start": 76,
+        "match_count": 1,
+        "path": "Claude/plans/2026-07-16-v1021-master-plan.md",
+        "token": "§7~§8 미완"
+      },
+      "origin_commit": "1e6c610f11682d87a416957b1cf65b4c8df53697",
+      "report_complete": {
+        "line_end": 285,
+        "line_start": 285,
+        "match_count": 1,
+        "path": "Claude/docs/v1.0.20/results/DIRECTION_SI_LCO_REPORT.md",
+        "token": "## REPORT COMPLETE"
+      }
+    },
+    "chronology_state": "CONFLICTING",
+    "comparison_id": "P062-COMP-Q1-001",
+    "denominator": "Q1_COMPARISON_PROCESS_EVIDENCE",
+    "encoding": "utf-8",
+    "existence_state": "PARTIAL_CONFLICT",
+    "extent": {
+      "bytes": 44969,
+      "lines": 291,
+      "nonblank_lines": 222
+    },
+    "external_material_truth_validated": false,
+    "external_scientific_truth_validated": false,
+    "git_mode": "100644",
+    "human_read_state": "READ_FULL",
+    "machine_read_state": "MACHINE_READ_FULL",
+    "manifest_member": false,
+    "newline_style": "LF",
+    "origin_commit": "1e6c610f11682d87a416957b1cf65b4c8df53697",
+    "path": "Claude/docs/v1.0.20/results/DIRECTION_SI_LCO_REPORT.md",
+    "read_state": "READ_FULL",
+    "review_evidence_id": "P062-REVIEW-D-Q1-COMPARISON",
+    "section_anchors": [
+      {
+        "heading": "## §1. Si 거동의 핵심 사실 정리 (각 사실 = 검증된 1차 문헌)",
+        "line": 32
+      },
+      {
+        "heading": "## §2. 이론 계보 조사 (전건 웹 검증 서지 — DOI 확인)",
+        "line": 55
+      },
+      {
+        "heading": "## §3. 골격 노드 매핑표 (핵심 산출)",
+        "line": 94
+      },
+      {
+        "heading": "## §4. 접목 아키텍처 옵션 비교 및 권고",
+        "line": 127
+      },
+      {
+        "heading": "## §5. LCO 심화 항목 확정",
+        "line": 149
+      },
+      {
+        "heading": "## §6. 신규 서지 원장 등재 후보 일람 (V1 후보 — 필드 완비)",
+        "line": 178
+      },
+      {
+        "heading": "## §7. v1.0.21 Q6/Q7 세부 계획 초안 (phase step 스케치)",
+        "line": 212
+      },
+      {
+        "heading": "## §8. 사용자 결정 요청",
+        "line": 242
+      }
+    ],
+    "sha256": "eb6ea800c5ef14750b09034c849c25ef5fa6d036d9cbb8e0b19205148825cb69",
+    "supplemental_member": false
+  },
+  "release_text_records": [
+    {
+      "blob_sha1": "7588fe782a027511c2407d9b7caea6ef0ca6c3bd",
+      "bom": false,
+      "bytes": 69343,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1019,
+      "path": "Claude/docs/v1.0.21/Anode_Fit_v1.0.21.py",
+      "physical_lines": 1152,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "d50612413f9f956486594ddafde37776f9592b75e2c8a2266927eaaa23267eaf",
+      "source_id": "P062-SRC-0001",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [],
+        "python_ast": {
+          "asserts": 0,
+          "classes": 2,
+          "functions": 39,
+          "imports": 3
+        }
+      }
+    },
+    {
+      "blob_sha1": "f097793b69237d6f63705cc07708f8a1adbe7192",
+      "bom": false,
+      "bytes": 24415,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 105,
+      "path": "Claude/docs/v1.0.21/FITTING_GUIDE.md",
+      "physical_lines": 137,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "f7ca9038e163cfba6313f85e0cd4f3095ac2890a9ff9eb6f8aa4a8cdf12409e1",
+      "source_id": "P062-SRC-0002",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [
+          {
+            "line": 1,
+            "text": "# Anode_Fit v1.0.20 — 피팅 추천 가이드 (모델 ↔ 데이터)"
+          },
+          {
+            "line": 7,
+            "text": "## 0. 방향 규약 (★LCO 데이터 걸기 전 필독 — Ch1 sec:lco-direction, eq:lco-sigmaslot)"
+          },
+          {
+            "line": 15,
+            "text": "## 1. 파라미터 tier 표"
+          },
+          {
+            "line": 37,
+            "text": "## 1.5 폭 피팅 규약 — fit n·실측 T·폭 T-의존 4단 사다리 (v1.0.16, 근거 CLOSING_v1.0.15 Part 4)"
+          },
+          {
+            "line": 53,
+            "text": "## 1.6 vib 엔트로피 θ_E 피팅 규약 — Einstein 양자 보정 (v1.0.18.2, 제안 1)"
+          },
+          {
+            "line": 63,
+            "text": "## 2. Round-trip 절차 (5-Phase, 과식별 회피 = tier 단계 개방)"
+          },
+          {
+            "line": 72,
+            "text": "## 3. 역방향 식별 사슬 S0–S5 (비순환)"
+          },
+          {
+            "line": 93,
+            "text": "## 4. 가정의 울타리 (유효범위 조건)"
+          },
+          {
+            "line": 97,
+            "text": "## 5. 잔차 진단표 (증상 → 의심 원인 → 처방)"
+          },
+          {
+            "line": 112,
+            "text": "## 6. 수렴·물리제약 판정"
+          },
+          {
+            "line": 119,
+            "text": "## 7. 검증 스크립트·그래프 suite (v1.0.19 동봉)"
+          }
+        ],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "3dd6475884808dfee71062e4706bf4993aa5c699",
+      "bom": false,
+      "bytes": 3945,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 18,
+      "path": "Claude/docs/v1.0.21/HANDOVER_v1.0.21.md",
+      "physical_lines": 24,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "19c86771fdf9d15199ebb52d8c851af1d83de2c2efdc39671f4068dc15a6908c",
+      "source_id": "P062-SRC-0003",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [
+          {
+            "line": 1,
+            "text": "# HANDOVER v1.0.21 — 확장판 마감 (Q0~Q8 완료; Q9/Q10 은 v1.0.22 R0 흡수 마감)"
+          },
+          {
+            "line": 3,
+            "text": "## ④ Chain 헤더"
+          },
+          {
+            "line": 7,
+            "text": "## ① 수행 요약 (전건 마스터 세션 단독 — D21-6′)"
+          },
+          {
+            "line": 10,
+            "text": "## ①′ Q9 축약 자체 검수 (마스터 스폿체크 — 전수 검수는 v1.0.22 R8 로 이월)"
+          },
+          {
+            "line": 13,
+            "text": "## ②′ 결정 이력 추가분 (2026-07-17 주간 — v1.0.22 로 이어짐)"
+          },
+          {
+            "line": 20,
+            "text": "## ③′ v1.0.22 이월 목록"
+          },
+          {
+            "line": 23,
+            "text": "## ② 다음 세션 주의"
+          }
+        ],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "5b9257da753de0dc9ba2ff0829d399281059f999",
+      "bom": false,
+      "bytes": 6549,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 84,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_appA_signcheck.tex",
+      "physical_lines": 89,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "83623700efc8d8ed0b7b09d31ed29fd9b3e875d2229d0755d401e94222a66fb3",
+      "source_id": "P062-SRC-0004",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "swiderska2019"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:signcheck",
+          "tab:signcheck-S",
+          "tab:signcheck-R"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "8c01044fc4ce9edf922e52da5f9c4a2a6186ede3",
+      "bom": false,
+      "bytes": 11137,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 152,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_appB_codemap.tex",
+      "physical_lines": 157,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "ae3bc2e6884a10c5e4072a1dfdde80fc9e8f7f248172988e1bbfb397ad76ef5e",
+      "source_id": "P062-SRC-0005",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:appendix-code",
+          "tab:symcode",
+          "tab:inputs",
+          "tab:nodecode"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "430aef2a795e3ae59d27752061ae0846c290bd34",
+      "bom": false,
+      "bytes": 11097,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 136,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_appC_navaid.tex",
+      "physical_lines": 142,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "335242dcaab2cfd6510e6a2832e359bb90b9f064c0f456b2f2792b7eabbb4a4a",
+      "source_id": "P062-SRC-0006",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:appendix-nav",
+          "ssec:nav-map",
+          "fig:navmap",
+          "ssec:nav-symbols",
+          "tab:navsymbols",
+          "ssec:nav-roadmap",
+          "tab:navroadmap"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "c658d67d6e06f0325f6165ff8f08e6eda749b6ef",
+      "bom": false,
+      "bytes": 9276,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 84,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_appD_si.tex",
+      "physical_lines": 91,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "f5117b0eeab184c25466d814cc94fe93509eb1f0496e6dc649994f8a2c91f90a",
+      "source_id": "P062-SRC-0007",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "beaulieu2001",
+          "chevrier_dahn2009",
+          "jiang_sihys2020",
+          "koebbing2024",
+          "larchecahn1973",
+          "li_dahn2007",
+          "limthongkul2003",
+          "liu_sizefracture2012",
+          "obrovac_chevrier2014",
+          "obrovac_christensen2004",
+          "sethuraman_stressevo2010",
+          "sethuraman_stresspot2010",
+          "verbrugge_lisi2016",
+          "wen_huggins1981"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:appendix-si",
+          "ssec:si-facts",
+          "ssec:si-map",
+          "tab:simap",
+          "ssec:si-anchor",
+          "ssec:si-gap",
+          "ssec:si-partial"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "dc4ca0780618d5710fd04e74ea87707738ffceba",
+      "bom": false,
+      "bytes": 17092,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 63,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_bib.tex",
+      "physical_lines": 64,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "dc58338a8abd45116d846c0053ed41265d45b0f37852fafe93b8ecd7488d651d",
+      "source_id": "P062-SRC-0008",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "a66e0c29dec8bf33217dec01d1cc827c9a57aa31",
+      "bom": false,
+      "bytes": 3036,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 73,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_preamble.tex",
+      "physical_lines": 77,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "c64c23047bfd53a024bf7b4505c4de21a7b999cc536532e1d572c323aa8ab89e",
+      "source_id": "P062-SRC-0009",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "a85bfbee2b61abb5a0dba249c4e3616225345c5e",
+      "bom": false,
+      "bytes": 7895,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 96,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec00_intro.tex",
+      "physical_lines": 105,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "cf4a6d1a132e0b70a7d505b3c8d2b9d18cb93db1d314918805bfe01126d2819f",
+      "source_id": "P062-SRC-0010",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "bloom2005",
+          "dahn1991",
+          "dubarry2012",
+          "ohzuku1993"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "fig:spine"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "43ff39f9fe0e19020adc3136444a1843bc5428c2",
+      "bom": false,
+      "bytes": 20212,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 208,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec01_n0n1.tex",
+      "physical_lines": 223,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "465b9c9a985cd6073e1dd2666157d5114b5fa675a553704f4c01a8c043d8b479",
+      "source_id": "P062-SRC-0011",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "baek_pilon2022",
+          "dahn1991",
+          "ohzuku1993",
+          "reynier2003",
+          "swiderska2019",
+          "weppner_huggins1977"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:notation",
+          "sec:n0map",
+          "eq:n0map",
+          "sec:notation-table",
+          "tab:notation",
+          "fig:staging",
+          "sec:pol",
+          "eq:vapppol",
+          "eq:vnmid",
+          "eq:vn",
+          "sec:pointwise"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "048f33f58262e02d48f9c3054b70da86d7ecc4ea",
+      "bom": false,
+      "bytes": 27726,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 342,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec02a_part0.tex",
+      "physical_lines": 365,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "194f31b1a464f1295ea72c89138d57c5dff8c1ce6a472aa339dc4a38f964fb6f",
+      "source_id": "P062-SRC-0012",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "ashcroftmermin1976",
+          "fowler1939",
+          "hill1960",
+          "mckinnon1983",
+          "mcquarrie1976"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:sm-found",
+          "sec:sm-ensemble",
+          "eq:sm-S",
+          "eq:sm-fund",
+          "eq:sm-resv",
+          "eq:sm-taylor",
+          "eq:sm-gibbsfactor",
+          "eq:sm-gc",
+          "fig:sm-reservoir",
+          "sec:sm-site",
+          "eq:sm-baresum",
+          "eq:sm-baremid",
+          "eq:sm-bare",
+          "eq:sm-exch",
+          "eq:sm-fdbe",
+          "eq:partfn",
+          "eq:sm-occmid",
+          "eq:sm-epstilde",
+          "eq:fermifn",
+          "eq:sm-flucres",
+          "eq:sm-sint",
+          "sec:sm-lattice",
+          "eq:sm-factor",
+          "eq:sm-Smix",
+          "eq:sm-mucount",
+          "eq:sm-muideal"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "8982a25beb3b58d406a684cb6a92906e06d1095e",
+      "bom": false,
+      "bytes": 36071,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 418,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec02b_part0.tex",
+      "physical_lines": 442,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "469f9de88fdedb33c6932e0b75642eab0412b6a05d0167849497cae9d60db765",
+      "source_id": "P062-SRC-0013",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "hill1960",
+          "mcquarrie1976"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:sm-mf",
+          "eq:sm-mf",
+          "eq:sm-omega",
+          "eq:sm-gtheta",
+          "eq:mu",
+          "eq:gxi",
+          "eq:sm-thresh",
+          "fig:sm-gxi",
+          "fig:sm-mu",
+          "sec:sm-electro",
+          "eq:sm-emu",
+          "eq:sm-workbal",
+          "eq:sm-refbal",
+          "eq:sm-muV",
+          "eq:sm-eqcond",
+          "eq:sm-logistic",
+          "fig:sm-occ",
+          "sec:sm-mc",
+          "eq:sm-mc-factor",
+          "eq:sm-mc-occ",
+          "eq:sm-mc-balance",
+          "eq:sm-mc-fluc",
+          "sec:sm-macro",
+          "eq:sm-mubridge",
+          "eq:sm-nernst"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "a610722f02869179bef4205b7075938fc782246d",
+      "bom": false,
+      "bytes": 8860,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 113,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec03_center.tex",
+      "physical_lines": 119,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "a22984522c5978ccb63e68eaa456ebd6c46917701cb1cf73d190027240474522",
+      "source_id": "P062-SRC-0014",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:center",
+          "sec:center-eqcond",
+          "eq:gibbsdef",
+          "eq:mudef",
+          "eq:eqbalance",
+          "eq:eqcond",
+          "sec:center-Uj",
+          "eq:Ujmid",
+          "eq:Uj",
+          "fig:UjT"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "7c1b101a82d4dc61206bbac46aaf374349610b54",
+      "bom": false,
+      "bytes": 23247,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 312,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec04_hys.tex",
+      "physical_lines": 321,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "608d0a71909ee63627be7a87a1149190a84b4e75e319bf93a36730ed7eb9ee71",
+      "source_id": "P062-SRC-0015",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "dreyer2010",
+          "dreyer2011"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:hys",
+          "sec:hys-spinodal",
+          "eq:gpp",
+          "eq:spinodal",
+          "fig:doublewell",
+          "sec:hys-gap",
+          "eq:Veq",
+          "eq:hyssub",
+          "eq:hysdiff",
+          "eq:dUhys",
+          "fig:hysgap",
+          "sec:hys-branch",
+          "eq:hyssym",
+          "eq:Ubranch",
+          "eq:center",
+          "fig:hysloop"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "e97708808c244bc114cffc570f4866419fe2b1e8",
+      "bom": false,
+      "bytes": 29816,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 357,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec05_width.tex",
+      "physical_lines": 378,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "b619a5b8fe7cabe59371c995384331ffa7d1d6e30bc33db0c3c2bd2853d73d17",
+      "source_id": "P062-SRC-0016",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "bazant2013",
+          "eyring1935",
+          "glasstone1941",
+          "laidlerking1983",
+          "mcquarrie1976"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:width",
+          "sec:width-logistic",
+          "eq:bv",
+          "eq:db",
+          "eq:logisticsolve",
+          "eq:tst-qrc",
+          "eq:tst-freq",
+          "eq:tst-rate",
+          "eq:tst-dG",
+          "eq:tst-box",
+          "fig:barrier",
+          "fig:flux",
+          "sec:width-w",
+          "eq:wbase",
+          "eq:xieq",
+          "fig:logistic",
+          "sec:dist"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "508e8a01a05cec4330d55ae46000ab7d3e1c7a54",
+      "bom": false,
+      "bytes": 3391,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 40,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec06_eqpeak.tex",
+      "physical_lines": 43,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "55b2378d72900c26efa0216e731a0e7d606d010a484f17243c47e756b4edf708",
+      "source_id": "P062-SRC-0017",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:eqpeak",
+          "eq:belliden",
+          "eq:eqpeak"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "1bf5fc4e36885aeac2e3ce7ca8e7509978ca70f9",
+      "bom": false,
+      "bytes": 29841,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 292,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec07_broadening.tex",
+      "physical_lines": 307,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "a6a2c1878cca157fa35666160ea03fd7188d11374bc6471b58413bb77ffd96fa",
+      "source_id": "P062-SRC-0018",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "cogswell2012",
+          "dahn1991",
+          "dahn1995",
+          "dreyer2010",
+          "dreyer2011",
+          "fly2020",
+          "leviaurbach1999",
+          "ohzuku1993",
+          "park2021",
+          "rsc2021"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:broadening",
+          "sec:broadening-class",
+          "sec:broadening-sources",
+          "eq:ensavg",
+          "eq:widthbudget",
+          "fig:widthbudget",
+          "sec:broadening-scope",
+          "eq:psdconv",
+          "eq:gibbsthomson",
+          "fig:broadening"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "909f6d3bce10bef59b4532a4b2b3f7570a8f0631",
+      "bom": false,
+      "bytes": 9819,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 125,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec08_lag.tex",
+      "physical_lines": 131,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "4835e52fd35de70d25054c95b0eb078947502afa19259b79c5691a53cbb2f038",
+      "source_id": "P062-SRC-0019",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lag",
+          "sec:lag-Lq",
+          "eq:Lqmid",
+          "eq:Lq",
+          "eq:kuniv",
+          "sec:lag-cut",
+          "eq:Acut",
+          "sec:lag-chid",
+          "eq:chid",
+          "eq:dHeff",
+          "sec:lag-LV",
+          "eq:Lqmid2",
+          "eq:Lqfull",
+          "eq:LV"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "eb7e1e6dc7fa1794c6822214e1bc9b11358501cd",
+      "bom": false,
+      "bytes": 18224,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 231,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec09_tail.tex",
+      "physical_lines": 244,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "078378d788205361a41c5bb9175b06035f4c9a4ee1cd57311fbad6befaa64cf3",
+      "source_id": "P062-SRC-0020",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:tail",
+          "sec:tail-memory",
+          "eq:intfactor",
+          "eq:memory",
+          "eq:memory-Vaxis",
+          "eq:lag-byparts",
+          "eq:lag-mid",
+          "eq:lag",
+          "fig:relaxode",
+          "sec:tail-peakshape",
+          "eq:peakshape",
+          "eq:tail-limit-start",
+          "eq:tail-limit-sub",
+          "eq:tail-limit-mid",
+          "eq:tail-limit",
+          "sec:tail-reversal",
+          "eq:reversal",
+          "fig:reversal"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "79900c62eef2a676c4c922df660a1eede419c691",
+      "bom": false,
+      "bytes": 15419,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 157,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec10_sum.tex",
+      "physical_lines": 169,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "8ebb7208e77f3e2a348d3cf42f7fbe7e805f72faf7ae36ebe01165475c178628",
+      "source_id": "P062-SRC-0021",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "persson2010",
+          "persson2010b",
+          "reynier2003"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:sum",
+          "eq:sum",
+          "sec:sum-staging",
+          "tab:staging",
+          "fig:sumcurve",
+          "sec:sum-worked"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "49233bc845a9e3b810a180f04e270ee467a7a2b0",
+      "bom": false,
+      "bytes": 14378,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 161,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec11_lcointro.tex",
+      "physical_lines": 172,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "0a904e4327bb906de24b517d1ea2b6f3f7b3affcdfd110da3fded3accb13081f",
+      "source_id": "P062-SRC-0022",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "motohashi2009",
+          "msmr2024",
+          "msmr_origin2017",
+          "reynier2004",
+          "xia2007"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-intro",
+          "sec:lco-map",
+          "tab:lco-staging",
+          "sec:lco-direction",
+          "eq:lco-sigmaslot",
+          "fig:lco-dirmap",
+          "sec:lco-preview"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "db3bef0185161b51263b8fa0afc6ddc1cf71c62e",
+      "bom": false,
+      "bytes": 10398,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 105,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec12_lcocenter.tex",
+      "physical_lines": 112,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "7fd8be513e94cc6c29fa948efc543266bc7dcc3ddb6a7929cb4a8e36d95b2590",
+      "source_id": "P062-SRC-0023",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "swiderska2019"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-center",
+          "sec:lco-center-deriv",
+          "eq:lco-n0sub",
+          "eq:lco-dUdT",
+          "sec:lco-center-kirchhoff",
+          "eq:lco-kirchhoff"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "f49eb5ac3a7e5b23d0852c37c0af4c24ba6da28b",
+      "bom": false,
+      "bytes": 13289,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 166,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec13_lcohys.tex",
+      "physical_lines": 176,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "4e875cd96cbf64a8a7a68505f8c4590fb00dc6b5892c8a0184a2f732221846e5",
+      "source_id": "P062-SRC-0024",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "marianetti2004",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-hys",
+          "sec:lco-hys-gxi",
+          "eq:lco-J",
+          "eq:lco-gxi",
+          "sec:lco-hys-gap",
+          "eq:lco-gpp",
+          "eq:lco-spinodal",
+          "eq:lco-Veq",
+          "eq:lco-dUhys",
+          "eq:lco-Ubranch",
+          "sec:lco-hys-od",
+          "sec:lco-hys-mit",
+          "eq:lco-mit",
+          "sec:lco-hys-dope",
+          "eq:lco-dope"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "f1ec204c1a989ef1b402a84d1cedaafc956b80ec",
+      "bom": false,
+      "bytes": 10025,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 99,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec14_lcodecomp.tex",
+      "physical_lines": 105,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "10339857f910231823aa6e2b2634f424ef91792d35ed8a815f9174240866f1f9",
+      "source_id": "P062-SRC-0025",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "motohashi2009",
+          "reynier2004"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-decomp",
+          "sec:lco-decomp-add",
+          "eq:lco-Zfact",
+          "eq:lco-Sadd",
+          "sec:lco-decomp-slots",
+          "eq:lco-configsplit",
+          "eq:lco-slots",
+          "sec:lco-decomp-box",
+          "eq:lco-decomp",
+          "sec:lco-decomp-gaps"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "aabf8002bad41b3f9267dabc1a1def7af900e791",
+      "bom": false,
+      "bytes": 33403,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 326,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec15_lcoelec.tex",
+      "physical_lines": 346,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "d312c4b0d1d4b3be20f6b597b5fc197495db08ab3c1f65376271526e97f44c42",
+      "source_id": "P062-SRC-0026",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "imada1998",
+          "marianetti2004",
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "mott1968",
+          "reimers1992",
+          "reynier2004"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-electronic",
+          "sec:lco-why",
+          "eq:lco-mottcrit",
+          "sec:lco-Se",
+          "eq:fd",
+          "eq:Se",
+          "eq:Sedirect",
+          "eq:dSe",
+          "sec:lco-Se-units",
+          "eq:dSemolar",
+          "eq:gunit",
+          "eq:U1T2",
+          "sec:lco-gate",
+          "eq:ggate",
+          "eq:dSegate",
+          "sec:lco-Se-scale",
+          "fig:lco-electronic",
+          "sec:lco-worked"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "742a1ccd58fb334856373d978ccfdee781b2f544",
+      "bom": false,
+      "bytes": 4979,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 62,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec16_lcopeak.tex",
+      "physical_lines": 68,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "5af91d815c246f90a8f44cc95000bf8e1ad639c8478e9b3d6257b6c6a454f7cf",
+      "source_id": "P062-SRC-0027",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "motohashi2009",
+          "reynier2004",
+          "xia2007"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-peak",
+          "eq:lco-charge",
+          "eq:lco-belliden",
+          "eq:lco-peakobs",
+          "eq:lco-eqpeak"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "1289d703644e3a69b8801612e351fbc29c63bb8d",
+      "bom": false,
+      "bytes": 10976,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 133,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec17_msmr.tex",
+      "physical_lines": 136,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "db3637fb03f0f78e8929defec3c752f5ed543634607027b0b9cd97804db4907c",
+      "source_id": "P062-SRC-0028",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "bakerverbrugge2018",
+          "msmr2024",
+          "msmr_origin2017"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:lco-code",
+          "sec:lco-code-msmr",
+          "eq:msmr",
+          "eq:lco-msmrnorm",
+          "eq:lco-comp",
+          "eq:lco-msmrmap",
+          "eq:lco-msmrpeak",
+          "sec:lco-code-plugin",
+          "eq:lco-xmap",
+          "eq:lco-SeV",
+          "eq:lco-U1V",
+          "eq:lco-plugin"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "d7704dde7a396620c0ea968b57a9c567591e1ef9",
+      "bom": false,
+      "bytes": 5032,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 62,
+      "path": "Claude/docs/v1.0.21/_sections/ch1_sec18_inputs.tex",
+      "physical_lines": 68,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "e8b762409420960e04c2083816228836311291a3cd4c906fc659eeb591d782a2",
+      "source_id": "P062-SRC-0029",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:inputs",
+          "sec:facade",
+          "tab:nodemap"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "fac5c53a41118f8e01bd98ff3445c196f5bb2f1a",
+      "bom": false,
+      "bytes": 4120,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 71,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_appA_traps.tex",
+      "physical_lines": 74,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "41ec139563a8107e652e28f16c0ad8db2509f9ebe0fec146df82dcc00921b8a5",
+      "source_id": "P062-SRC-0030",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "e5b3f836d054983e43b74e64b98c1a52dcf05b45",
+      "bom": false,
+      "bytes": 5605,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 68,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_appB_codemap.tex",
+      "physical_lines": 74,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "6c11234e9bf0c275299fcc845993e184e98e5c819f949bb9cb1e6d7920ecf88c",
+      "source_id": "P062-SRC-0031",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "numverif2026"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "e77d9fc503904f33072ba6cd07ce1b2cac07a79e",
+      "bom": false,
+      "bytes": 5577,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 26,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_bib.tex",
+      "physical_lines": 27,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "b8dd16824ac0029930515f0120748d07fe9395b23ac2bb0fc7b3e5634963e4ee",
+      "source_id": "P062-SRC-0032",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "151d88bea2de026b2f362a6bfecf8979f46df358",
+      "bom": false,
+      "bytes": 2627,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 56,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_preamble.tex",
+      "physical_lines": 56,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "aa02d8b576217ceb99be5f669c324defc866ae1bf288282b96eb823ee9555a74",
+      "source_id": "P062-SRC-0033",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "5944469e35ccef3da63957311aab917d022b2f75",
+      "bom": false,
+      "bytes": 7114,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 73,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec00_intro.tex",
+      "physical_lines": 80,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "2204774d661bda115966451ed1fad7a34cbd1dc67a26a553fbf0bb089f1efbf0",
+      "source_id": "P062-SRC-0034",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "221523c61d194e297d53801a50dadd449162364b",
+      "bom": false,
+      "bytes": 12508,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 136,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec01_partition.tex",
+      "physical_lines": 144,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "58547ec60393c8205d4ae9b21dbdb3c5595c2b84e9fd705dad621bf772d3cdb8",
+      "source_id": "P062-SRC-0035",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "bazant2013",
+          "huggins2009",
+          "newman"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:partition",
+          "ssec:site",
+          "eq:Z1",
+          "eq:occ",
+          "ssec:logistic",
+          "eq:muV",
+          "eq:logistic",
+          "eq:Vxi",
+          "ssec:BW",
+          "eq:BW",
+          "eq:Veq_BW",
+          "eq:slope_BW"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "28d1e6ff7766414c42d104d14a138c1ec3472a89",
+      "bom": false,
+      "bytes": 15317,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 178,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec02_config.tex",
+      "physical_lines": 190,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "9953d91110a0ad6ebdb6a26ab886077deb9969ed6a2f0792bfb18d98158f1ea3",
+      "source_id": "P062-SRC-0036",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "allart2018",
+          "chemmater2015",
+          "msmr_partII",
+          "occupation2019",
+          "reynier2003"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:config",
+          "ssec:sconfig",
+          "eq:Sconfig",
+          "eq:dSconfig",
+          "ssec:dvdt",
+          "eq:dVdT_config",
+          "fig:occ_config",
+          "ssec:decomp",
+          "ssec:litverif",
+          "tab:ds"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "f4a3cff5b1604cc853625d68bb27500e9e56fd00",
+      "bom": false,
+      "bytes": 9640,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 95,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec03_vibel.tex",
+      "physical_lines": 102,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "7f1e4517a4f43af27eeeb502077621be3ddc6f205e03024b6f108f5bcfc08c49",
+      "source_id": "P062-SRC-0037",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "jpcc2021",
+          "msmr_partI",
+          "reynier2003"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:vibel",
+          "ssec:vib",
+          "eq:Svib_mode",
+          "ssec:elec",
+          "eq:Se_start",
+          "eq:Se-ch2",
+          "ssec:threedist"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "1046318e3bd2d0ba5ddfcb7af237e75b32b7d9cf",
+      "bom": false,
+      "bytes": 16404,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 183,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec04_einstein.tex",
+      "physical_lines": 191,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "632205e52d3dfaf42696dd6138c086a2c57f884837f74fc6669073161eb632cd",
+      "source_id": "P062-SRC-0038",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "jpcc2021"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:einstein",
+          "ssec:einstein-closed",
+          "eq:Svib-einstein",
+          "ssec:einstein-roundtrip",
+          "eq:dSvib",
+          "eq:dUvib",
+          "ssec:einstein-numid",
+          "fig:svibid"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "93c444066debda6e8baf81b36fe570e7b6e36d2b",
+      "bom": false,
+      "bytes": 21735,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 232,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec05_mixing.tex",
+      "physical_lines": 243,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "a463f7070892f253e51a5bf8aa1f57ee7cf822079433a46f6a2a909fbd37432c",
+      "source_id": "P062-SRC-0039",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "dahn1991",
+          "hysteresis2018",
+          "numverif2026",
+          "ohzuku1993"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:mixing",
+          "ssec:overlap",
+          "eq:implicit",
+          "eq:implicit_diff",
+          "eq:gj",
+          "eq:dxidT",
+          "eq:dwdT-nT",
+          "ssec:blend",
+          "eq:weighted",
+          "fig:blend",
+          "ssec:derivB",
+          "eq:single_config",
+          "ssec:weff",
+          "ssec:hys",
+          "eq:hys_branch",
+          "eq:hys_rev"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "d158071b27e5c16515f23681e558e2cc323dbf1f",
+      "bom": false,
+      "bytes": 3972,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 46,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec06_limits.tex",
+      "physical_lines": 52,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "7a0a99a2bea048049ffb3aba1c2dbc2cdf84974d4e5072c43070cb21e4980042",
+      "source_id": "P062-SRC-0040",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:limits",
+          "tab:limits"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "5ab821158615de9352c56881c6a5d5a60257d06d",
+      "bom": false,
+      "bytes": 5486,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 53,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec07_revheat.tex",
+      "physical_lines": 58,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "beb07e9d6e3182a38dbfad81cc3e3cb1ec1165a57f96415d9f6f2e416375d48a",
+      "source_id": "P062-SRC-0041",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "bernardi1985",
+          "msmr_partI",
+          "newman",
+          "standardised2024"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:revheat",
+          "ssec:balance",
+          "eq:qrev",
+          "ssec:signlabel",
+          "ssec:revinterp"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "f4e5e9f6be3c676e6d2d07acd9ae2f3080b38672",
+      "bom": false,
+      "bytes": 18578,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 217,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec08_synthesis.tex",
+      "physical_lines": 231,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "a4c2c61341326811e1be72ee7a834de2b76136b873358b671740f00e759d995a",
+      "source_id": "P062-SRC-0042",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "standardised2024"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:synthesis",
+          "ssec:synth",
+          "eq:complete",
+          "ssec:worked",
+          "tab:worked",
+          "ssec:qrevtab",
+          "tab:qrev",
+          "fig:qrevsoc"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "53e0f70f873e73039d616e7d563ef0a60d341b23",
+      "bom": false,
+      "bytes": 4094,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 39,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec09_method.tex",
+      "physical_lines": 43,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "7354424f5453ea1ae24cc08a6b4fc5ebc6961993be610f6a58f89a166842edd8",
+      "source_id": "P062-SRC-0043",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [
+          "allart2018",
+          "bernardi1985",
+          "hysteresis2018",
+          "msmr_partI",
+          "msmr_partII"
+        ],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "sec:method",
+          "ssec:procedure",
+          "ssec:gaps"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "a2cdc003b28d67f5959422ebed40a6c99fa97c23",
+      "bom": false,
+      "bytes": 2492,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 23,
+      "path": "Claude/docs/v1.0.21/_sections/ch2_sec10_closing.tex",
+      "physical_lines": 25,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "21ec0c5195a0ed01298e433c90d963d83b1d448baf1be15917f958dee36a7fa4",
+      "source_id": "P062-SRC-0044",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "4e17bf01a5a1eb71476e6112d6a26b96861b17f5",
+      "bom": false,
+      "bytes": 34371,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 452,
+      "path": "Claude/docs/v1.0.21/appendix_phase_separation.tex",
+      "physical_lines": 497,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "18e6702c0cb66049a6ed1760ad0d6a2c403f7c2aa0c2c2bd9e6e4dc2a5df336e",
+      "source_id": "P062-SRC-0046",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [
+          "app:mixfe",
+          "eq:app-W",
+          "eq:app-Smix",
+          "eq:app-Umix",
+          "eq:app-fxi",
+          "app:chord",
+          "eq:app-lever",
+          "eq:app-chord",
+          "eq:app-convex",
+          "eq:app-gain",
+          "app:binodal",
+          "eq:app-statA",
+          "eq:app-ct",
+          "eq:app-mus",
+          "eq:app-binodal",
+          "app:spinodal",
+          "eq:app-fluct",
+          "eq:app-spinodal",
+          "fig:app-tangent",
+          "fig:app-phasediag",
+          "app:maxwell",
+          "eq:app-maxwell",
+          "app:kinetics",
+          "app:nucleation",
+          "eq:app-cnt",
+          "eq:app-rstar",
+          "app:spindecomp",
+          "eq:app-ch-F",
+          "eq:app-ch-R",
+          "app:link"
+        ]
+      }
+    },
+    {
+      "blob_sha1": "45ab296a335cdbf5420d2a9cf2b3f7034951c393",
+      "bom": false,
+      "bytes": 2085,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 45,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.tex",
+      "physical_lines": 48,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "d9e7afde76a438836cc898c7a3d15910a01d40297ae4e3128f54c007bac2e0b8",
+      "source_id": "P062-SRC-0048",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [
+          "_sections/...",
+          "_sections/ch1_preamble",
+          "_sections/ch1_sec00_intro",
+          "_sections/ch1_sec01_n0n1",
+          "_sections/ch1_sec02a_part0",
+          "_sections/ch1_sec02b_part0",
+          "_sections/ch1_sec03_center",
+          "_sections/ch1_sec04_hys",
+          "_sections/ch1_sec05_width",
+          "_sections/ch1_sec06_eqpeak",
+          "_sections/ch1_sec07_broadening",
+          "_sections/ch1_sec08_lag",
+          "_sections/ch1_sec09_tail",
+          "_sections/ch1_sec10_sum",
+          "_sections/ch1_sec11_lcointro",
+          "_sections/ch1_sec12_lcocenter",
+          "_sections/ch1_sec13_lcohys",
+          "_sections/ch1_sec14_lcodecomp",
+          "_sections/ch1_sec15_lcoelec",
+          "_sections/ch1_sec16_lcopeak",
+          "_sections/ch1_sec17_msmr",
+          "_sections/ch1_sec18_inputs",
+          "_sections/ch1_appA_signcheck",
+          "_sections/ch1_appB_codemap",
+          "_sections/ch1_appD_si",
+          "_sections/ch1_appC_navaid",
+          "_sections/ch1_bib"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "fcb91c795e13a5f12cf8683ca7d73b708a915c6d",
+      "bom": false,
+      "bytes": 584,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 8,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.tex",
+      "physical_lines": 8,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "cc39dde71001eea7dfff944742f2252440d73dfcc12189b757cecb6e05192a73",
+      "source_id": "P062-SRC-0050",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [
+          "graphite_ica_ch1_v1.0.21.tex"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "357e3d06f78c3f980eba0524611feb580039ab50",
+      "bom": false,
+      "bytes": 2120,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 35,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21.tex",
+      "physical_lines": 38,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "cb66a58fc409dd19e6ab07dbc51086719701c9aceae91d588d9457b72655abef",
+      "source_id": "P062-SRC-0052",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [
+          "_sections/...",
+          "_sections/ch2_preamble",
+          "_sections/ch2_sec00_intro",
+          "_sections/ch2_sec01_partition",
+          "_sections/ch2_sec02_config",
+          "_sections/ch2_sec03_vibel",
+          "_sections/ch2_sec04_einstein",
+          "_sections/ch2_sec05_mixing",
+          "_sections/ch2_sec06_limits",
+          "_sections/ch2_sec07_revheat",
+          "_sections/ch2_sec08_synthesis",
+          "_sections/ch2_sec09_method",
+          "_sections/ch2_sec10_closing",
+          "_sections/ch2_appA_traps",
+          "_sections/ch2_appB_codemap",
+          "_sections/ch2_bib"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "d605eb0c9bda14be5677f32b7fab75c4a534ab3d",
+      "bom": false,
+      "bytes": 593,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 8,
+      "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21_nav.tex",
+      "physical_lines": 8,
+      "review_evidence_id": "P062-REVIEW-A-RELEASE-PDF-214",
+      "sha256": "4f9aade46ada8fb83e11d876a0cf4363af07000bf2bde12a82fe001217cafa45",
+      "source_id": "P062-SRC-0054",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [
+          "graphite_ica_ch2_v1.0.21.tex"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "2d23088e094d93a28b687788b9ac03fa0ab5520c",
+      "bom": false,
+      "bytes": 9402,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 35,
+      "path": "Claude/docs/v1.0.21/results/V1021_CHANGE_LOG.md",
+      "physical_lines": 37,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "b0092e4313ecd228904e865cd93bc00215b7a3740bdc65a3353f05e333f686de",
+      "source_id": "P062-SRC-0055",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [
+          {
+            "line": 1,
+            "text": "# V1021 CHANGE LOG — 변경 통제 대장 (구조 diff 와 1:1)"
+          }
+        ],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "ee86e4a8e74dea13cd01dc8fb8de36bb7119bf12",
+      "bom": false,
+      "bytes": 5666,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 17,
+      "path": "Claude/docs/v1.0.21/results/V1021_EXECUTION_LEDGER.md",
+      "physical_lines": 19,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "b67870551a414f991badf85309da31cca208c77cc85b7399badead1fc1048472",
+      "source_id": "P062-SRC-0056",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [
+          {
+            "line": 1,
+            "text": "# V1021 EXECUTION LEDGER (12-col)"
+          }
+        ],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "64bdca8830a491e10d45c30fe9d992bb334afe03",
+      "bom": false,
+      "bytes": 3538,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 28,
+      "path": "Claude/docs/v1.0.21/results/V1021_REFERENCE_LEDGER.md",
+      "physical_lines": 37,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "a61856800cf5fa0247ef794c559337ff6c48f1801105ef13647ce625edd2b838",
+      "source_id": "P062-SRC-0057",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [
+          {
+            "line": 1,
+            "text": "# V1021 REFERENCE LEDGER — 인용 가능 키 원장 (Q0 승계, 2026-07-17)"
+          },
+          {
+            "line": 6,
+            "text": "## A. 승계 요약"
+          },
+          {
+            "line": 11,
+            "text": "## B. v1.0.21 신규 키 (검증 후 추가 — 현재 0)"
+          },
+          {
+            "line": 17,
+            "text": "## C. 운용 메모"
+          },
+          {
+            "line": 21,
+            "text": "## B′. Q5 등재분 (2026-07-17 — 검증 근거 = v1.0.20 DIRECTION_GENERAL_REPORT §(v-1) WebSearch+CrossRef 전건 대조)"
+          },
+          {
+            "line": 28,
+            "text": "## B″. Q7 등재분 — Si 계열 14건 (검증: 12건 = v1.0.20 DIRECTION_SI_LCO_REPORT §6(WebSearch·DOI 전건) 승계 / 2건 = 본 세션 WebSearch 신규 검증 2026-07-17)"
+          }
+        ],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "a7dd780692802ccfe0aaf6d24e64a26d1d7edccd",
+      "bom": false,
+      "bytes": 26887,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1299,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q0.json",
+      "physical_lines": 1299,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "c219c20e1e536b3df8788ec22db391ff4348cce8582b66f536f2895f86f0db98",
+      "source_id": "P062-SRC-0058",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 731,
+        "max_depth": 8,
+        "nodes": 1108,
+        "objects": 186,
+        "scalars": 916
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "84282a715ba0d7c8bd1f331944d1d0762b43b87a",
+      "bom": false,
+      "bytes": 27434,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1324,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q2.json",
+      "physical_lines": 1324,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "8c09d2e5c097ce33b00d503e9fccd8e352f51663ffe10b5b5da5cbb977ea5169",
+      "source_id": "P062-SRC-0059",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 747,
+        "max_depth": 8,
+        "nodes": 1129,
+        "objects": 190,
+        "scalars": 933
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "925ea0832d6c610374e0202e608cc179bafeef5b",
+      "bom": false,
+      "bytes": 28097,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1356,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q3.json",
+      "physical_lines": 1356,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "de6bf2e7e56817c876fb6bfd81b3105637e764bee420a8b777627b1e588ab26f",
+      "source_id": "P062-SRC-0060",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1156,
+        "objects": 195,
+        "scalars": 955
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "2dec26cb9a8f9468c317c14c4f58f9a1d339af0f",
+      "bom": false,
+      "bytes": 28182,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1361,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q4.json",
+      "physical_lines": 1361,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "569f083acefdcc39bb136777ba5764206322e76a4faf4b306b4e206038ba6db0",
+      "source_id": "P062-SRC-0061",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1161,
+        "objects": 195,
+        "scalars": 960
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "c66525c071cfb411fa4dfb27eafc868d0e06d708",
+      "bom": false,
+      "bytes": 28350,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1369,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5.json",
+      "physical_lines": 1369,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "48d40f3b667fd85fe3ab7fbe1828dd397d9caa76bb73f77d68bcddd5d78b3e7f",
+      "source_id": "P062-SRC-0062",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1169,
+        "objects": 195,
+        "scalars": 968
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "c599d477dab02ae2fe8cc9bae83ce9a0261f89f1",
+      "bom": false,
+      "bytes": 28397,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1371,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5b.json",
+      "physical_lines": 1371,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "3be56e553dc6cb833b4b3d0467c73365bf03669108948315ab6c7d795c6418cf",
+      "source_id": "P062-SRC-0063",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1171,
+        "objects": 195,
+        "scalars": 970
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "e0b1d47f16f75b73bb7455e551f55abaa91f0386",
+      "bom": false,
+      "bytes": 28285,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1366,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5nav.json",
+      "physical_lines": 1366,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "73740b9552e56c12760c901bed9a4dbc1a963e5ae6e8d9c0dae79d8371bb3511",
+      "source_id": "P062-SRC-0064",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1166,
+        "objects": 195,
+        "scalars": 965
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "87b9ebd79c49ed90f2f82fa9c90befc5ce5d9ef0",
+      "bom": false,
+      "bytes": 28418,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1372,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q6.json",
+      "physical_lines": 1372,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "640814e0630e5ef72fccdfbd2688a10110d3f75ba74559a34db2601097223e66",
+      "source_id": "P062-SRC-0065",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1172,
+        "objects": 195,
+        "scalars": 971
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "84f227db3fb70eb8607c39158633040ef3d40fd2",
+      "bom": false,
+      "bytes": 28893,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 1393,
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q7.json",
+      "physical_lines": 1393,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "765412e3602c07965c3e1affe17dd1e75776fdcace824325897a377d21585115",
+      "source_id": "P062-SRC-0066",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1193,
+        "objects": 195,
+        "scalars": 992
+      },
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": []
+      }
+    },
+    {
+      "blob_sha1": "c929b7502f67e8799843744da729e15ee391a473",
+      "bom": false,
+      "bytes": 8313,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 157,
+      "path": "Claude/docs/v1.0.21/results/tools_check_structure.py",
+      "physical_lines": 165,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "7389bfce4c204e1d57801d84d43bb464c5bc918a9e9ad678f353f7880cd670b3",
+      "source_id": "P062-SRC-0067",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [],
+        "python_ast": {
+          "asserts": 0,
+          "classes": 0,
+          "functions": 7,
+          "imports": 1
+        }
+      }
+    },
+    {
+      "blob_sha1": "742506b061d872afdd094781ea2157faae800943",
+      "bom": false,
+      "bytes": 22050,
+      "encoding": "utf-8",
+      "human_read_state": "READ_FULL",
+      "machine_read_state": "MACHINE_READ_FULL",
+      "newline_style": "LF",
+      "nonblank_lines": 393,
+      "path": "Claude/docs/v1.0.21/test_gates_v1021.py",
+      "physical_lines": 427,
+      "review_evidence_id": "P062-REVIEW-B-PROCESS-SNAPSHOT",
+      "sha256": "a8de4944ea304b0106a7cfe0c495f2d7939f9cda74c2eae131fba55dd7e67d36",
+      "source_id": "P062-SRC-0068",
+      "strict_json_traversal": null,
+      "structure": {
+        "citation_keys": [],
+        "graphics": [],
+        "headings": [],
+        "inputs": [],
+        "labels": [],
+        "python_ast": {
+          "asserts": 1,
+          "classes": 0,
+          "functions": 10,
+          "imports": 2
+        }
+      }
+    }
+  ],
+  "schema_version": 1,
+  "snapshot_records": [
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "a7dd780692802ccfe0aaf6d24e64a26d1d7edccd",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q0.json",
+      "physical_lines": 1299,
+      "raw_sha256": "c219c20e1e536b3df8788ec22db391ff4348cce8582b66f536f2895f86f0db98",
+      "source_id": "P062-SRC-0058",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 731,
+        "max_depth": 8,
+        "nodes": 1108,
+        "objects": 186,
+        "scalars": 916
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "84282a715ba0d7c8bd1f331944d1d0762b43b87a",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q2.json",
+      "physical_lines": 1324,
+      "raw_sha256": "8c09d2e5c097ce33b00d503e9fccd8e352f51663ffe10b5b5da5cbb977ea5169",
+      "source_id": "P062-SRC-0059",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 747,
+        "max_depth": 8,
+        "nodes": 1129,
+        "objects": 190,
+        "scalars": 933
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "925ea0832d6c610374e0202e608cc179bafeef5b",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q3.json",
+      "physical_lines": 1356,
+      "raw_sha256": "de6bf2e7e56817c876fb6bfd81b3105637e764bee420a8b777627b1e588ab26f",
+      "source_id": "P062-SRC-0060",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1156,
+        "objects": 195,
+        "scalars": 955
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "2dec26cb9a8f9468c317c14c4f58f9a1d339af0f",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q4.json",
+      "physical_lines": 1361,
+      "raw_sha256": "569f083acefdcc39bb136777ba5764206322e76a4faf4b306b4e206038ba6db0",
+      "source_id": "P062-SRC-0061",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1161,
+        "objects": 195,
+        "scalars": 960
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "c66525c071cfb411fa4dfb27eafc868d0e06d708",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5.json",
+      "physical_lines": 1369,
+      "raw_sha256": "48d40f3b667fd85fe3ab7fbe1828dd397d9caa76bb73f77d68bcddd5d78b3e7f",
+      "source_id": "P062-SRC-0062",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1169,
+        "objects": 195,
+        "scalars": 968
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "c599d477dab02ae2fe8cc9bae83ce9a0261f89f1",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5b.json",
+      "physical_lines": 1371,
+      "raw_sha256": "3be56e553dc6cb833b4b3d0467c73365bf03669108948315ab6c7d795c6418cf",
+      "source_id": "P062-SRC-0063",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1171,
+        "objects": 195,
+        "scalars": 970
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "e0b1d47f16f75b73bb7455e551f55abaa91f0386",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5nav.json",
+      "physical_lines": 1366,
+      "raw_sha256": "73740b9552e56c12760c901bed9a4dbc1a963e5ae6e8d9c0dae79d8371bb3511",
+      "source_id": "P062-SRC-0064",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1166,
+        "objects": 195,
+        "scalars": 965
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "87b9ebd79c49ed90f2f82fa9c90befc5ce5d9ef0",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q6.json",
+      "physical_lines": 1372,
+      "raw_sha256": "640814e0630e5ef72fccdfbd2688a10110d3f75ba74559a34db2601097223e66",
+      "source_id": "P062-SRC-0065",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1172,
+        "objects": 195,
+        "scalars": 971
+      }
+    },
+    {
+      "authority_class": "PROCESS_EVIDENCE_NOT_SCIENTIFIC_TRUTH",
+      "blob_sha1": "84f227db3fb70eb8607c39158633040ef3d40fd2",
+      "parse_state": "STRICT_FULL_TRAVERSAL",
+      "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q7.json",
+      "physical_lines": 1393,
+      "raw_sha256": "765412e3602c07965c3e1affe17dd1e75776fdcace824325897a377d21585115",
+      "source_id": "P062-SRC-0066",
+      "strict_json_traversal": {
+        "arrays": 6,
+        "mapping_keys": 767,
+        "max_depth": 8,
+        "nodes": 1193,
+        "objects": 195,
+        "scalars": 992
+      }
+    }
+  ],
+  "source_topology_semantic_sha256": "5c2275a9022e5c520a564dc96fec27641d582e163c38732f094603f5efb485d4",
+  "status": "PASS_FULL_READ_ATTESTATION",
+  "step": "52",
+  "supplemental_text_record": {
+    "authority_class": "RECORDED_SECOND_ORDER_REQUIREMENT",
+    "blob_sha1": "de26c03b53bedbe1cc4363bb07f66e9ca9da77f7",
+    "bom": false,
+    "denominator": "SUPPLEMENTAL_PROCESS_CONTROL",
+    "encoding": "utf-8",
+    "extent": {
+      "bytes": 10664,
+      "lines": 76,
+      "nonblank_lines": 59
+    },
+    "external_material_truth_validated": false,
+    "external_scientific_truth_validated": false,
+    "first_order_user_transcript_state": "GROUND_NOT_FOUND",
+    "git_mode": "100644",
+    "human_read_state": "READ_FULL",
+    "machine_read_state": "MACHINE_READ_FULL",
+    "manifest_member": false,
+    "newline_style": "LF",
+    "path": "Claude/plans/2026-07-16-v1021-master-plan.md",
+    "process_id": "P062-PROC-SUP-001",
+    "read_state": "READ_FULL",
+    "review_evidence_id": "P062-REVIEW-C-SUPPLEMENTAL",
+    "sha256": "dfc4715483cca4ac814f56af6d112b89bc7427ca5c8b3f48c2a746efca844a0d"
+  }
+}
