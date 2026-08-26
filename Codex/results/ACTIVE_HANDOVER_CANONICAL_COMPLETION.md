@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Step 47 process-authority adjudication
-14. 현재 result: `Codex/results/PHASE_061_STEP_047_PROCESS_AUTHORITY_RESULT.md`
-15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_PROCESS_AUTHORITY_MATRIX.json`
+13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Step 48 v1.0.19↔v1.0.20 lineage delta and snapshot genealogy
+14. 현재 result: `Codex/results/PHASE_061_STEP_048_LINEAGE_DIFF_RESULT.md`
+15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_LINEAGE_DIFF_MATRIX.json`; `Codex/results/PHASE_061_V1020_SNAPSHOT_GENEALOGY.json`
 16. 직전 Phase result: `Codex/results/PHASE_060_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_060_V1019_LINEAGE_REPORT_C.md`
@@ -49,7 +49,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 060 Step 45.2 | Step 45.2 | `PASS_P060_LINEAGE_C`; exact-eight commit `136a73804d714706bad1be6d58c99351e606fe0e` pushed and remote-verified; `PASS_P060_STEP45_2_PERSISTENCE` | activate Phase 061 detailed plan before Step 46 |
 | Phase 061 detailed plan activation | Steps 46–51 planning boundary | `PASS_P061_PLAN_ACTIVATION`; exact-seven commit `0c18bb48401675bd5154649baa2d6a151d272d9c` pushed and remote-verified | execute Step 46 |
 | Phase 061 Step 46 | Step 46 | `PASS_P061_STEP46_SOURCE_TOPOLOGY`; exact-eight commit `4c951f390c63f11f1c5a03cc47c7e3bce32926de` pushed and remote-verified; `PASS_P061_STEP46_PERSISTENCE` | execute Step 47 |
-| Phase 061 Step 47 | Step 47 | `PASS_P061_STEP47_PROCESS_AUTHORITY`; `PASS_WITH_CONCERNS`; counts `232/40/10/9/6/7/11`; negative `78/78`; boundary `17/17`; determinism `2/2`; exact-seven containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | Step 48 is blocked until `PASS_P061_STEP47_PERSISTENCE` |
+| Phase 061 Step 47 | Step 47 | `PASS_P061_STEP47_PROCESS_AUTHORITY`; `PASS_WITH_CONCERNS`; exact-seven commit `46f17a9863b5a2ce0708524b09601930000e233f` pushed and remote-verified; `PASS_P061_STEP47_PERSISTENCE` | execute Step 48 lineage delta and snapshot genealogy |
+| Phase 061 Step 48 | Step 48 | `PASS_P061_STEP48_LINEAGE_DIFF`; `PASS_WITH_CONCERNS`; endpoints `232/66`, paired/deleted `54/12`, classes `178/29/18/7/0`, snapshots `10/9`; exact-eight containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | Step 49 remains pending until persistence gate `PASS_P061_STEP48_PERSISTENCE` |
 
 ## Current State
 
@@ -182,6 +183,10 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Phase 061 Step 47은 frozen source 232/232를 단일 authority route로 분류하고 Phase 057 E–I의 40 claim, contradiction 10, P0–P8 phase rows 9, snapshot comparison 6, `GROUND_NOT_FOUND` 7, `UNVERIFIED` queue 11을 exact source anchor와 Git genealogy로 재판정했다. Source authority distribution은 adopted 43, competing 82, external-unverified 7, internal-review 16, plan 13, process 22, structural 49이며 scientific/external truth promotion은 0이다.
 - Step 47은 P5/P6 snapshot byte identity와 실제 TeX 3-path source delta를 분리했다. P8 dedicated result/log는 찾지 못했지만 handover/ledger와 7-commit parent chain으로 internal substitute closure만 확인했다. Standalone appendix, packaged PNG와 competitive asset의 adopted-release edge는 만들지 않고 Phase 062로 route했다.
 - Step 47 validator는 matrix negative 78/78 isolated, boundary 17/17, control Markdown subfixtures per document 26/26, AST attacks 31/31와 deterministic builder 2/2를 통과했다. Builder import/production execution은 없으며 full normalized security AST는 Python 3.12.10과 3.14.4에서 같은 SHA를 재현한다.
+- Phase 061 Step 48은 v1.0.20 232 occurrence를 각각 정확히 한 번 분류하고 v1.0.19 release 66개를 paired 54 + old-only 12로 무손실 대조했다. Comparison class는 `ADDED/MODIFIED/UNCHANGED/RENAMED/COPIED=178/29/18/7/0`이며 basename-only pairing과 old-source reuse는 0이다.
+- Step 48 adopted source 43개는 정확히 TeX 41 + Python 1 + Markdown 1이다. Ch1 snapshot delta는 labels/equation blocks/bibliography `+6/+6/+8`, Ch2는 substantive equation projection 불변과 bibliography `+2`다. Ch2 actual TeX text는 1,428→1,447행, `-23/+42`이므로 bibliography-only 주장은 snapshot equation projection에만 제한한다.
+- Step 48 snapshot genealogy는 10 occurrences/9 unique blobs/9 edges다. P5/P6는 distinct occurrence·동일 blob이나 실제 source tree TeX 3-path를 포함해 동일하지 않다. Standalone appendix root는 pre-final 8회에 0, final에 1이나 adopted Ch1/Ch2 include edge는 근거 미발견으로 Phase 062에 남겼다.
+- Step 48 독립 QUALITY에서 `\\[4pt]` row-spacing을 bracket display로 오인한 P1을 발견해 backslash-parity lexer로 수정했다. 최종 artifact full-read/strict traversal과 Python 3.12/3.14 byte identity는 PASS, `P0/P1/P2=0/0/0`이다. Final validator negative `66/66`, strict negative `2/2`, boundary `29/29`, determinism `2/2`를 gate한다.
 
 ## Baseline Validation
 
@@ -234,10 +239,11 @@ read master + phase plan + previous result
 - Step 45.1에서 등록한 신규 blocker 5건은 모두 `OPEN`이며 해당 target Phase acceptance 전에는 해소로 간주할 수 없다.
 - Phase 060 code/runtime/PDF/image/NPZ, Step 43 conformance, Step 44 rederivation과 Step 45.1 disposition은 내부 source·호출·수식·routing 정합만 확립했다. External scientific truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Phase 071 이후다.
 - Phase 061 Step 47의 `PASS_WITH_CONCERNS`는 process/source routing 완결성만 뜻한다. P8 dedicated files 2건과 adoption/transcript ground 5건, external/runtime/adoption queue 11건은 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다.
+- Phase 061 Step 48의 `PASS_WITH_CONCERNS`는 frozen lineage·structure 완결성만 뜻한다. Ground-not-found 5건과 runtime/reference/science/PDF/deletion-rationale/snapshot-risk/adoption unverified queue 8건은 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다.
 
 ## Exact Next Action
 
-Controller rereads and stages exactly the seven Phase 061 Step 47 paths, commits them atomically with subject `audit(phase061): adjudicate v1020 process authority`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `4c951f390c63f11f1c5a03cc47c7e3bce32926de`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, authority-matrix linkage, negative controls, boundary controls, determinism and `git diff --check`. Step 48 is blocked until `PASS_P061_STEP47_PERSISTENCE`.
+Controller rereads and stages exactly the eight Phase 061 Step 48 paths, commits them atomically with subject `audit(phase061): trace v1019-v1020 lineage delta`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `46f17a9863b5a2ce0708524b09601930000e233f`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, lineage/snapshot linkage, negative controls, boundary controls, determinism and `git diff --check`. Step 49 remains pending until `PASS_P061_STEP48_PERSISTENCE`.
 
 ## Hard-stop Reminder
 
