@@ -21,9 +21,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 11. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 12. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 13. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-14. 현재 Phase 상태: Phase 062 `IN_PROGRESS`, Current checkpoint: Step 52 precommit Gate
-15. 현재 result: `Codex/results/PHASE_062_STEP_052_SOURCE_PROCESS_TOPOLOGY_RESULT.md`
-16. 현재 machine evidence: `Codex/results/PHASE_062_V1021_SOURCE_PROCESS_TOPOLOGY.json`; `Codex/results/PHASE_062_V1021_READ_ATTESTATION.json`
+14. 현재 Phase 상태: Phase 062 `IN_PROGRESS`, Current checkpoint: Step 53 precommit Gate
+15. 현재 result: `Codex/results/PHASE_062_STEP_053_STATMECH_TST_REDERIVATION_RESULT.md`
+16. 현재 machine evidence: `Codex/results/PHASE_062_V1021_STATMECH_TST_REDERIVATION.json`
 17. 직전 Phase result: `Codex/results/PHASE_061_RESULT.md`
 18. 직전 final Step result: `Codex/results/PHASE_061_STEP_051_2_GATE_RESULT.md`
 19. 직전 scientific result: `Codex/results/PHASE_061_V1020_LINEAGE_REPORT_D.md`
@@ -57,7 +57,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 061 Step 51.1 | Step 51.1 | `PASS_P061_STEP51_1_DISPOSITIONS`; exact-eight commit `fe3433e63ccb6255a75a51dda3fd6a4eb747c0a7` pushed and remote-verified; `PASS_P061_STEP51_1_PERSISTENCE` | execute Step 51.2 integrated validation and final Gate |
 | Phase 061 Step 51.2 | Step 51.2 | `PASS_P061_LINEAGE_D`; exact-eight commit `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2` pushed and remote-verified; `PASS_P061_STEP51_2_PERSISTENCE` | activate Phase 062 detailed plan before Step 52 |
 | Phase 062 detailed plan activation | Steps 52–57 planning boundary | `PASS_P062_PLAN_ACTIVATION`; exact-seven commit `76dccbaee0efdd16a4d22c25527a1a8ab3108559` pushed and remote-verified; `PASS_P062_PLAN_ACTIVATION_PERSISTENCE` | execute Step 52 |
-| Phase 062 Step 52 | Step 52 | precommit `PASS_P062_STEP52_PROCESS_SOURCE_TOPOLOGY`; exact-eight containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; release 68/68, text 63·21,048, PDF 5·214, snapshot 9·10,425 nodes | commit/push/`PASS_P062_STEP52_PERSISTENCE`, then execute Step 53 |
+| Phase 062 Step 52 | Step 52 | `PASS_P062_STEP52_PROCESS_SOURCE_TOPOLOGY`; exact-eight commit `51ccba6c248a3e710e1a4ddd6017c18043f8a7a2` pushed and remote-verified; `PASS_P062_STEP52_PERSISTENCE`; release 68/68, text 63·21,048, PDF 5·214, snapshot 9·10,425 nodes | execute Step 53 |
+| Phase 062 Step 53 | Step 53 | precommit `PASS_P062_STEP53_STATMECH_TST_REDERIVATION`; `PASS_WITH_CONCERNS`; P0/P1/P2 `0/5/5`; exact-seven containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN` | commit/push/`PASS_P062_STEP53_PERSISTENCE`, then execute Step 54 |
 
 ## Current State
 
@@ -220,6 +221,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Phase 062 Step 52는 release 68/68 occurrences/blobs, text 63/63·21,048/21,048 physical·20,424/20,424 nonblank, PDF 5/5·214/214 pages를 전수 읽고, snapshot 9개를 10,425 value/container + 6,847 mapping-key nodes로 strict traverse했다. Supplemental plan 76/59 lines와 Q1 report 291/222 lines는 release 분모 밖에서 독립 보존했다.
 - Step 52 process genealogy는 direct Q0–Q8 commit chain 10, supporting chronology 3, process rows 53, GNF 37, Q5NAV/Q5B subphase alias 2와 Phase 057 observation `0066`–`0095` 30행을 고정했다. Q1 report line 285 complete claim과 master-plan line 76 incomplete claim은 `PARTIAL_CONFLICT`로 함께 보존한다.
 - Step 52 PDF visual audit는 214/214 pages를 확인했고 `P062-VIS-001`로 Ch1 base/navigation page 69 Table 8 right-edge clipping을 기록했다. Build provenance와 scientific/material/numerical truth는 승격하지 않았다. Validator는 frozen PDF bytes에서 variant page/outline/annotation/text evidence를 독립 재계산하고, control Markdown을 H1/section/exact-row 구조로 검증한다. Python 3.12/3.14에서 negative 50/50, Markdown negative 11/11, determinism 2/2, strict traversal topology/attestation `9785/7129`를 통과했다.
+- Step 52 exact-eight commit `51ccba6c248a3e710e1a4ddd6017c18043f8a7a2`은 parent `76dccbaee0efdd16a4d22c25527a1a8ab3108559`, subject `audit(phase062): freeze v1021 source process topology`로 push·remote verification됐고 local/upstream/live-origin equality, protected/main/Claude non-change와 `PASS_P062_STEP52_PERSISTENCE`를 확인했다.
+- Phase 062 Step 53은 frozen Q2/Q3의 대정준 전하 보존과 TST를 독립 재유도했다. 독립 logistic product/balance와 `k_BT/h` flux factor는 제한 조건 아래 보존하지만, self-consistent mean-field에 대한 Bernoulli proof 확장, blanket unique-root solver 조건, 일반식으로 제시된 `Delta S=R ln(q-dagger/qR)`는 `CORRECT`다. Standard state/`kappa`, capacity basis, equation-of-state inversion/Legendre 구분과 equilibrium TST의 electrode/peak-width 권위 경계를 고정했다. 또한 source의 `sqrt(kBT/(2*pi*m))`는 조건부 양의 속도 평균이 아니라 one-sided flux moment이며, classical high-T partition-ratio와 `K_dagger=1` pure-Arrhenius 서술은 모드수에 따른 T 거듭제곱을 누락했음을 분리 라우팅했다.
+- Step 53은 `PASS_WITH_CONCERNS`, P0/P1/P2 `0/5/5`다. Claim 27건 전부 `external_support_state=UNVERIFIED_EXTERNAL`이며 external scientific/material truth flags는 false다. Q2 added display denominator는 labeled 4개+unnumbered capacity identity 1개=5개이고, Q3 core는 5개다. Step 53 exact-seven commit/push와 `PASS_P062_STEP53_PERSISTENCE` 전에는 Step 54를 시작하지 않는다.
 
 ## Baseline Validation
 
@@ -278,11 +282,12 @@ read master + phase plan + previous result
 - Phase 061 Step 51.1의 `PASS_P061_STEP51_1_DISPOSITIONS`는 source/carry/debt identity와 lossless routing만 뜻한다. OPEN-family 84건, inherited `52+5`, 신규 ALL_OF blocker 5건은 각 acceptance component가 persistent evidence로 통과하기 전까지 해결되지 않는다. Primary literature, material/experimental validity, fresh runtime, actual adoption/build는 후속 target Phase의 권위다. Containing commit `fe3433e63ccb6255a75a51dda3fd6a4eb747c0a7`의 persistence를 완료했다.
 - Phase 061 Step 51.2의 `PASS_P061_LINEAGE_D`는 frozen coverage, internal authority separation, genealogy와 routing만 뜻한다. Process GNF/UNVERIFIED `7/11`, citation `2/3`, review `11/7`, inherited resolution 0, canonical OPEN-family 84와 신규 blocker 5를 그대로 유지한다. Step 51.2 commit `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`의 `PASS_P061_STEP51_2_PERSISTENCE`는 완료됐다.
 - Phase 062 activation content PASS는 v1.0.21 과학 truth나 execution 완료가 아니다. Q1/Q8 dedicated artifacts, first-order user transcript, external scientific/material truth, A06/A07와 ALL_OF parent는 열린 상태이며 Step 52 이후 exact evidence로만 판정한다.
-- Phase 062 Step 52 `PASS_WITH_CONCERNS`는 source/process/read/page/genealogy completeness만 뜻한다. `P062-VIS-001`, Q1 chronology conflict, dedicated per-Q artifact/snapshot GNF, build/runtime/DOI/scientific/material truth unverified는 열린 상태다. Step 52 containing commit은 `PENDING_AT_PRECOMMIT_BY_DESIGN`이며 `PASS_P062_STEP52_PERSISTENCE` 전에는 Step 53을 시작하지 않는다.
+- Phase 062 Step 52 `PASS_WITH_CONCERNS`는 source/process/read/page/genealogy completeness만 뜻하며 containing commit `51ccba6c248a3e710e1a4ddd6017c18043f8a7a2`의 persistence는 완료됐다. `P062-VIS-001`, Q1 chronology conflict, dedicated per-Q artifact/snapshot GNF, build/runtime/DOI/scientific/material truth unverified는 열린 상태다.
+- Phase 062 Step 53 `PASS_WITH_CONCERNS`는 frozen 내부 유도와 조건/교정 routing만 뜻한다. Q2 mean-field·unique-root·capacity/Legendre/snapshot-denominator 교정, Q3 entropy derivative·standard-state/`kappa` 교정과 electrode/peak-width 미유도 경계는 후속 canonical theory/manuscript owner가 닫아야 한다. External proposition/material/experimental truth와 runtime implementation은 승격하지 않았다.
 
 ## Exact Next Action
 
-Controller completes the final Step 52 re-review, stages exactly the declared eight files, commits atomically with subject `audit(phase062): freeze v1021 source process topology` and parent `76dccbaee0efdd16a4d22c25527a1a8ab3108559`, pushes the active branch, and verifies exact commit files, local HEAD/upstream/live-origin equality including live protected/main tips, protected/main stability, tracked/untracked Claude diff 0, strict JSON traversal, negative 50/50, Markdown negative 11/11, determinism 2/2, `git diff --check` and cached diff check. Only after `PASS_P062_STEP52_PERSISTENCE` may Step 53 begin by re-reading the active plan, Step 52 result, both machine artifacts, both ledgers and this handover.
+Controller completes the final Step 53 re-review, stages exactly the declared exact-seven files, commits atomically with subject `audit(phase062): rederive v1021 statmech tst` and parent `51ccba6c248a3e710e1a4ddd6017c18043f8a7a2`, pushes the active branch, and verifies exact commit files, local HEAD/upstream/live-origin equality including live protected/main tips, protected/main stability, tracked/untracked Claude diff 0, strict JSON traversal, required negative controls, determinism, `git diff --check` and cached diff check. Only after `PASS_P062_STEP53_PERSISTENCE` may Step 54 begin by re-reading the active plan, Step 53 result and machine artifact, both ledgers and this handover.
 
 ## Hard-stop Reminder
 
