@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Step 46 source topology/full-read attestation
-14. 현재 result: `Codex/results/PHASE_061_STEP_046_SOURCE_TOPOLOGY_RESULT.md`
-15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_SOURCE_TOPOLOGY.json`; `Codex/results/PHASE_061_V1020_READ_ATTESTATION.json`
+13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Step 47 process-authority adjudication
+14. 현재 result: `Codex/results/PHASE_061_STEP_047_PROCESS_AUTHORITY_RESULT.md`
+15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_PROCESS_AUTHORITY_MATRIX.json`
 16. 직전 Phase result: `Codex/results/PHASE_060_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_060_V1019_LINEAGE_REPORT_C.md`
@@ -48,7 +48,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 060 Step 45.1 | Step 45.1 | `PASS_P060_STEP45_1_DISPOSITIONS`; `PASS_WITH_CONCERNS`; exact-eight commit `6a468ee6b9ec3b5f16d0a528c7f1766ad86af4b5` pushed and remote-verified | execute Step 45.2 integrated validation and final gate |
 | Phase 060 Step 45.2 | Step 45.2 | `PASS_P060_LINEAGE_C`; exact-eight commit `136a73804d714706bad1be6d58c99351e606fe0e` pushed and remote-verified; `PASS_P060_STEP45_2_PERSISTENCE` | activate Phase 061 detailed plan before Step 46 |
 | Phase 061 detailed plan activation | Steps 46–51 planning boundary | `PASS_P061_PLAN_ACTIVATION`; exact-seven commit `0c18bb48401675bd5154649baa2d6a151d272d9c` pushed and remote-verified | execute Step 46 |
-| Phase 061 Step 46 | Step 46 | `PASS_P061_STEP46_SOURCE_TOPOLOGY`; exact-eight containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | commit/push/remote persistence, then Step 47 |
+| Phase 061 Step 46 | Step 46 | `PASS_P061_STEP46_SOURCE_TOPOLOGY`; exact-eight commit `4c951f390c63f11f1c5a03cc47c7e3bce32926de` pushed and remote-verified; `PASS_P061_STEP46_PERSISTENCE` | execute Step 47 |
+| Phase 061 Step 47 | Step 47 | `PASS_P061_STEP47_PROCESS_AUTHORITY`; `PASS_WITH_CONCERNS`; counts `232/40/10/9/6/7/11`; negative `78/78`; boundary `17/17`; determinism `2/2`; exact-seven containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | Step 48 is blocked until `PASS_P061_STEP47_PERSISTENCE` |
 
 ## Current State
 
@@ -178,6 +179,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 45.2 final validator는 원격 동기화 disposable clone에서 subordinate validators 6개를 fresh 실행하고 stored controls 167/167을 재확인한다. 별도 clean exact-eight descendant에서 fixture validator를 실행하고 tracked/untracked dirty states를 각 고유 diagnostic으로 거부하며, strict JSON/nonfinite rejection, 계약별 의도 diagnostic의 final negative controls 36/36 및 environment-dependent raw field를 분리한 deterministic projection 2/2를 강제한다. 이 PASS는 internal lineage와 routing consistency만 뜻하며 primary literature, external scientific truth, experimental/material validity, canonical 최종 문서 또는 final LaTeX/PDF 완성을 뜻하지 않는다.
 - Phase 061 Step 46은 frozen v1.0.20 source 232/232 occurrences·231 blobs를 Git object로 해소하고 text 195/195·31,553/31,553 physical lines, PDF 14/14·130/130 pages, image 23/23 occurrences를 세 read-only partition으로 전수 검독했다. Source/read topology는 human partitions 3/3, strict identity/extent/orphan guard, negative 48/48와 deterministic reconstruction 2/2를 통과했다.
 - Step 46 confirmed surface findings는 release PNG title clipping/version mismatch, competitive dummy scaffold 3쪽과 광범위한 unresolved `??` references다. P8 dedicated result/log, standalone appendix/packaged PNG/competitive draft의 final adoption edge와 load-bearing primary-reference/material authority는 `GROUND_NOT_FOUND` 또는 `UNVERIFIED`로 보존한다.
+- Phase 061 Step 47은 frozen source 232/232를 단일 authority route로 분류하고 Phase 057 E–I의 40 claim, contradiction 10, P0–P8 phase rows 9, snapshot comparison 6, `GROUND_NOT_FOUND` 7, `UNVERIFIED` queue 11을 exact source anchor와 Git genealogy로 재판정했다. Source authority distribution은 adopted 43, competing 82, external-unverified 7, internal-review 16, plan 13, process 22, structural 49이며 scientific/external truth promotion은 0이다.
+- Step 47은 P5/P6 snapshot byte identity와 실제 TeX 3-path source delta를 분리했다. P8 dedicated result/log는 찾지 못했지만 handover/ledger와 7-commit parent chain으로 internal substitute closure만 확인했다. Standalone appendix, packaged PNG와 competitive asset의 adopted-release edge는 만들지 않고 Phase 062로 route했다.
+- Step 47 validator는 matrix negative 78/78 isolated, boundary 17/17, control Markdown subfixtures per document 26/26, AST attacks 31/31와 deterministic builder 2/2를 통과했다. Builder import/production execution은 없으며 full normalized security AST는 Python 3.12.10과 3.14.4에서 같은 SHA를 재현한다.
 
 ## Baseline Validation
 
@@ -229,10 +233,11 @@ read master + phase plan + previous result
 - Step 45.2 exact-eight는 commit `136a73804d714706bad1be6d58c99351e606fe0e`에 포함되어 push·remote verification과 `PASS_P060_STEP45_2_PERSISTENCE`를 완료했다.
 - Step 45.1에서 등록한 신규 blocker 5건은 모두 `OPEN`이며 해당 target Phase acceptance 전에는 해소로 간주할 수 없다.
 - Phase 060 code/runtime/PDF/image/NPZ, Step 43 conformance, Step 44 rederivation과 Step 45.1 disposition은 내부 source·호출·수식·routing 정합만 확립했다. External scientific truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Phase 071 이후다.
+- Phase 061 Step 47의 `PASS_WITH_CONCERNS`는 process/source routing 완결성만 뜻한다. P8 dedicated files 2건과 adoption/transcript ground 5건, external/runtime/adoption queue 11건은 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다.
 
 ## Exact Next Action
 
-Controller rereads and stages exactly the eight Phase 061 Step 46 paths, commits them atomically with subject `audit(phase061): freeze v1020 source topology`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `0c18bb48401675bd5154649baa2d6a151d272d9c`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, topology/attestation linkage, negative controls, determinism and `git diff --check`. Step 47 is blocked until Step 46 commit/push/remote verification passes; no Step 47 work starts before that checkpoint.
+Controller rereads and stages exactly the seven Phase 061 Step 47 paths, commits them atomically with subject `audit(phase061): adjudicate v1020 process authority`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `4c951f390c63f11f1c5a03cc47c7e3bce32926de`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, authority-matrix linkage, negative controls, boundary controls, determinism and `git diff --check`. Step 48 is blocked until `PASS_P061_STEP47_PERSISTENCE`.
 
 ## Hard-stop Reminder
 
