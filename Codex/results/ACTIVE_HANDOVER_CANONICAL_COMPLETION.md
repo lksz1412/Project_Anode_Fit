@@ -20,9 +20,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Step 50 figure competition/multi-review/artifact audit
-14. 현재 result: `Codex/results/PHASE_061_STEP_050_REVIEW_ARTIFACT_RESULT.md`
-15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_REVIEW_ARTIFACT_MATRIX.json`; `Codex/results/PHASE_061_V1020_VISUAL_READ_ATTESTATION.json`
+13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, Current checkpoint: Phase 061 Step 51.1 source disposition/carry-forward delta
+14. 현재 result: `Codex/results/PHASE_061_STEP_051_1_DISPOSITION_RESULT.md`
+15. 현재 machine evidence: `Codex/results/PHASE_061_V1020_DISPOSITION_MATRIX.json`; `Codex/results/PHASE_061_V1020_CARRY_FORWARD_DELTA.json`
 16. 직전 Phase result: `Codex/results/PHASE_060_RESULT.md`
 17. 직전 final Step result: `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`
 18. 직전 scientific result: `Codex/results/PHASE_060_V1019_LINEAGE_REPORT_C.md`
@@ -52,7 +52,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 061 Step 47 | Step 47 | `PASS_P061_STEP47_PROCESS_AUTHORITY`; `PASS_WITH_CONCERNS`; exact-seven commit `46f17a9863b5a2ce0708524b09601930000e233f` pushed and remote-verified; `PASS_P061_STEP47_PERSISTENCE` | execute Step 48 lineage delta and snapshot genealogy |
 | Phase 061 Step 48 | Step 48 | `PASS_P061_STEP48_LINEAGE_DIFF`; `PASS_WITH_CONCERNS`; exact-eight commit `5cf75ba2fd4e5707c53b164d361f1526c3d31f06` pushed and remote-verified; `PASS_P061_STEP48_PERSISTENCE` | execute Step 49 citation/background/equation-authority audit |
 | Phase 061 Step 49 | Step 49 | `PASS_WITH_CONCERNS_P061_STEP49_CITATION_AUTHORITY`; exact-seven commit `b52435504b527d911b51470268e3879824bd6362` pushed and remote-verified; `PASS_P061_STEP49_PERSISTENCE` | execute Step 50 figure competition/multi-review/artifact audit |
-| Phase 061 Step 50 | Step 50 | `PASS_WITH_CONCERNS_P061_STEP50_REVIEW_ARTIFACTS`; competitive/full-read `126/104`, figure candidate/render/genealogy `31/31/31`, PNG `23/23`, PDF `14/14·130/130`, P1/P2 `3/11`, GNF/UNVERIFIED `11/7`, promotion 0; exact-eight `PENDING_AT_PRECOMMIT_BY_DESIGN` | Step 51.1 remains blocked until persistence gate `PASS_P061_STEP50_PERSISTENCE`; subject `audit(phase061): adjudicate v1020 review artifacts` |
+| Phase 061 Step 50 | Step 50 | `PASS_WITH_CONCERNS_P061_STEP50_REVIEW_ARTIFACTS`; exact-eight commit `a90c6e8659f4fcd24945af81e50c712bbc71ef30` pushed and remote-verified; `PASS_P061_STEP50_PERSISTENCE` | execute Step 51.1 source disposition and carry-forward delta |
+| Phase 061 Step 51.1 | Step 51.1 | `PASS_P061_STEP51_1_DISPOSITIONS`; source/disposition `232/232`, inherited `52+5`, debt 91 with OPEN-family 84 and resolved informational 7, new ALL_OF blockers 5, orphan OPEN 0, negative `55/55`, determinism `2/2`; exact-eight `PENDING_AT_PRECOMMIT_BY_DESIGN` | Step 51.2 remains blocked until `PASS_P061_STEP51_1_PERSISTENCE`; subject `audit(phase061): disposition v1020 lineage` |
 
 ## Current State
 
@@ -202,6 +203,11 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Visual attestation은 PNG `23/23` original-resolution occurrence, PDF `14/14·130/130` pages다. Blank/render failure 0/0, dummy FF1 page 3, visible-defect page/image 24/16이다. FF2 unresolved marker는 30개, FF3/FO1/FO2/FO3는 17쪽 모두 보이며 aggregate human count 65이나 per-page 분포는 미보존이다. Numeric/material/experimental validity promotion은 0이다.
 - Step 50 finding은 P1/P2 `3/11`, GNF/UNVERIFIED `11/7`이다. P1은 review-count 의미, FF1 coordinate persistence, FF3 nucleation formula-to-render mismatch다. 초기 Q2 충돌 판정은 조건부 평균장 문맥과 양립하므로 오판으로 삭제했다. 주요 P2는 경쟁 수 drift, unresolved refs, missing coordinate provenance, FO layout, PNG clip/version/near-duplicate, Q3 internal candidate inconsistency다.
 - 최초 Step 50 validator는 independent review에서 full genealogy 누락, semantic mutation false-pass, exact staged-set 미검사, no-op AST gate를 발견해 FAIL로 되돌렸다. 보강본은 top-level section identity pin, input/builder provenance, canonical builder AST, frozen binary blob identity, candidate-specific provenance state, candidate basename collision, subprocess timeout, exact staged/cached diff, branch/upstream/live protected/main gate를 추가했다. Content negative `16/16`, strict JSON `2/2`, determinism `2/2`를 Python 3.12/3.14에서 gate한다. 최종 독립 SPEC/QUALITY/validator re-review는 모두 PASS이고 `P0/P1/P2/P3=0/0/0/0`이다.
+- Phase 061 Step 50 exact-eight commit `a90c6e8659f4fcd24945af81e50c712bbc71ef30`은 parent `b52435504b527d911b51470268e3879824bd6362`, subject `audit(phase061): adjudicate v1020 review artifacts`로 push·remote verification됐고 local/upstream/live-origin equality와 `PASS_P061_STEP50_PERSISTENCE`를 확인했다.
+- Phase 061 Step 51.1은 frozen source 232/232를 `PRESERVE/CORRECT/COMPETING_ONLY/UNVERIFIED=92/16/116/8`로 disposition했다. Competitive/adopted identity overlap, source orphan/duplicate, external scientific/material promotion은 0이다.
+- Step 51.1은 inherited carry 52와 Phase 060 blocker 5를 exact prior identity/status/target/acceptance/authority로 보존했다. `OPEN/PRESERVED_ACTIVE=46/11`, resolution 0, delta는 `REFINED/TOUCHED/UNCHANGED=12/6/39`다.
+- Canonical debt 91건은 `OPEN/OPEN_DUPLICATE_ALIAS/OPEN_REFINEMENT/RESOLVED_INFORMATIONAL=53/12/19/7`이며 OPEN-family 84/84가 하나의 primary owner를 갖고 orphan은 0이다. 기존 단일 owner가 닫지 못한 adoption/build/derivation 및 복합 과학 acceptance를 위해 ALL_OF 신규 blocker `P061-BD-NEW-001..005`를 등록하고 18개 debt를 중복 없이 소유시켰다.
+- Step 51.1 builder/validator는 13 input pin, topology/process/lineage 232 exact identity, evidence route bijection, builder raw+Python 3.12/3.14 AST와 disposition/carry/debt semantic pin, 간접 subprocess 우회 거부, result·parent/active ledger·active-handover current-gate 구조와 상충 terminal token 부재 검사, exact staged/working bytes와 protected-tip boundary를 gate한다. Python 3.12/3.14에서 negative `55/55`, determinism `2/2`, production import/execution false를 통과했다.
 
 ## Baseline Validation
 
@@ -256,11 +262,12 @@ read master + phase plan + previous result
 - Phase 061 Step 47의 `PASS_WITH_CONCERNS`는 process/source routing 완결성만 뜻한다. P8 dedicated files 2건과 adoption/transcript ground 5건, external/runtime/adoption queue 11건은 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다.
 - Phase 061 Step 48의 `PASS_WITH_CONCERNS`는 frozen lineage·structure 완결성만 뜻한다. Ground-not-found 5건과 runtime/reference/science/PDF/deletion-rationale/snapshot-risk/adoption unverified queue 8건은 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다.
 - Phase 061 Step 49의 `PASS_WITH_CONCERNS`는 citation/bibliography/equation/background/source-attribution inventory와 internal authority ceiling만 뜻한다. Primary DOI/proposition support, equation derivation/material validity와 genuinely new source identity 8개는 Phase 071까지 `UNVERIFIED_EXTERNAL`이고, existing-identity alias 2개는 별도 신규 debt가 아니다. Code-free baseline violation 14개는 Phase 072까지 열린 상태다. Step 49 persistence는 commit `b52435504b527d911b51470268e3879824bd6362`에서 완료했다.
-- Phase 061 Step 50의 `PASS_WITH_CONCERNS`는 frozen competitive/review/visual genealogy와 appearance/readability 판정만 뜻한다. P1/P2 `3/11`, GNF/UNVERIFIED `11/7`, v1.0.20 figure adoption 0을 유지한다. Numeric reproduction, material/experimental validity, primary-reference truth와 v1.0.21 actual adoption/build는 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다. `PASS_WITH_CONCERNS_P061_STEP50_REVIEW_ARTIFACTS`와 commit `PENDING_AT_PRECOMMIT_BY_DESIGN`는 persistence 전에는 Step 51.1 권한을 열지 않는다.
+- Phase 061 Step 50의 `PASS_WITH_CONCERNS`는 frozen competitive/review/visual genealogy와 appearance/readability 판정만 뜻한다. P1/P2 `3/11`, GNF/UNVERIFIED `11/7`, v1.0.20 figure adoption 0을 유지한다. Numeric reproduction, material/experimental validity, primary-reference truth와 v1.0.21 actual adoption/build는 후속 owner가 직접 근거를 확보하기 전까지 열린 상태다. Step 50 persistence는 commit `a90c6e8659f4fcd24945af81e50c712bbc71ef30`에서 완료했다.
+- Phase 061 Step 51.1의 `PASS_P061_STEP51_1_DISPOSITIONS`는 source/carry/debt identity와 lossless routing만 뜻한다. OPEN-family 84건, inherited `52+5`, 신규 ALL_OF blocker 5건은 각 acceptance component가 persistent evidence로 통과하기 전까지 해결되지 않는다. Primary literature, material/experimental validity, fresh runtime, actual adoption/build는 후속 target Phase의 권위다. Containing commit은 `PENDING_AT_PRECOMMIT_BY_DESIGN`이다.
 
 ## Exact Next Action
 
-Controller completes final independent re-review, validates and stages exactly the eight Phase 061 Step 50 paths, commits them atomically with subject `audit(phase061): adjudicate v1020 review artifacts`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `b52435504b527d911b51470268e3879824bd6362`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, semantic section identity, negative controls, determinism, `git diff --check` and cached diff check. Step 51.1 remains blocked until `PASS_P061_STEP50_PERSISTENCE`.
+Controller completes final independent re-review, validates and stages exactly the eight Phase 061 Step 51.1 paths, commits them atomically with subject `audit(phase061): disposition v1020 lineage`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `a90c6e8659f4fcd24945af81e50c712bbc71ef30`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, semantic identity, negative controls `55/55`, determinism `2/2`, `git diff --check` and cached diff check. Step 51.2 remains blocked until `PASS_P061_STEP51_1_PERSISTENCE`.
 
 ## Hard-stop Reminder
 
