@@ -1,0 +1,4704 @@
+{
+  "artifact_hashes_nonself": {
+    "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md": {
+      "exists": true,
+      "normalized_bytes": 60609,
+      "normalized_sha256": "e393e488c374cbaba90bdcd2bc5fe74f90a8ca08c2266ec5a2b424a6f7816db4"
+    },
+    "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md": {
+      "exists": true,
+      "normalized_bytes": 55944,
+      "normalized_sha256": "54fde6b62f80935472288cc5838d18748d3ed838302e1ba4bf36246a2d378a69"
+    },
+    "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md": {
+      "exists": true,
+      "normalized_bytes": 10208,
+      "normalized_sha256": "d5c4d3e91083b61f6143fb1427f7c6edb84c8b4df5a7f7b1ec76df27e6182cab"
+    },
+    "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md": {
+      "exists": true,
+      "normalized_bytes": 19008,
+      "normalized_sha256": "140b117856a08c8bbb2701ce0e83bb945b168740d5fa0a6c181e86a568cc7728"
+    },
+    "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md": {
+      "exists": true,
+      "normalized_bytes": 8893,
+      "normalized_sha256": "98b030c2a99ac53b4b9fd3ea2f0ae403560ab45aaf3b8327e6f62ce64c571aa8"
+    },
+    "Codex/work/v1021_phase062/validate_phase062_plan.py": {
+      "exists": true,
+      "normalized_bytes": 78766,
+      "normalized_sha256": "59c309ab3859ad49dae6f389eb17c978f3e42e6f8041e86955f0517f3a018dfa"
+    }
+  },
+  "checks": [
+    {
+      "code": "PLAN_EXISTS",
+      "evidence": "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+      "passed": true
+    },
+    {
+      "code": "PLAN_UTF8_EOL",
+      "evidence": {
+        "bare_cr": 0,
+        "eol": "LF",
+        "normalized_bytes": 60609,
+        "normalized_lines": 762,
+        "normalized_sha256": "e393e488c374cbaba90bdcd2bc5fe74f90a8ca08c2266ec5a2b424a6f7816db4",
+        "utf8": true
+      },
+      "passed": true
+    },
+    {
+      "code": "PLAN_NORMALIZED_SHA",
+      "evidence": "e393e488c374cbaba90bdcd2bc5fe74f90a8ca08c2266ec5a2b424a6f7816db4",
+      "passed": true
+    },
+    {
+      "code": "PLAN_LINE_COUNT",
+      "evidence": 762,
+      "passed": true
+    },
+    {
+      "code": "PLAN_SECTION_ORDER",
+      "evidence": {
+        "## Assumptions": 56148,
+        "## Correction History": 56991,
+        "## Current Ground Truth": 2402,
+        "## Exact Read Inputs": 9774,
+        "## Implementation Changes": 15946,
+        "## Implementation Interfaces": 43415,
+        "## Non-goals and Scope Guards": 13891,
+        "## Phase 062 — v1.0.21 Reaudit": 22340,
+        "## Phase Gate": 40999,
+        "## Phase Range": 9332,
+        "## Plan Activation Unit — Save Before Step 52": 19536,
+        "## Stop Conditions": 54943,
+        "## Summary": 1732,
+        "## Test and Validation Plan": 49603
+      },
+      "passed": true
+    },
+    {
+      "code": "PLAN_CUMULATIVE_STEPS",
+      "evidence": [
+        "### Step 52 — Q0–Q8 Source/Process Topology and Full-read Attestation",
+        "### Step 53 — Grand-canonical Charge Balance and TST Rederivation",
+        "### Step 54 — LCO and Si Literature, Unit and Scope Audit",
+        "### Step 55 — v1.0.21↔v1.0.20/19 Code and Runtime Delta",
+        "### Step 56 — Added Narrative versus New Physics Closure and Adoption/Build Audit",
+        "### Step 57.1 — Source Disposition and Carry-forward Delta",
+        "### Step 57.2 — Integrated Validation, Lineage Report E and Final Gate"
+      ],
+      "passed": true
+    },
+    {
+      "code": "PLAN_NO_STEP_RESTART",
+      "evidence": "52..57.2 only",
+      "passed": true
+    },
+    {
+      "code": "PLAN_OUTPUTS",
+      "evidence": [],
+      "passed": true
+    },
+    {
+      "code": "PLAN_SUBJECTS",
+      "evidence": [],
+      "passed": true
+    },
+    {
+      "code": "PLAN_GATES",
+      "evidence": [],
+      "passed": true
+    },
+    {
+      "code": "PLAN_RELEASE_DENOMINATOR",
+      "evidence": "68 path occurrences / 68 unique paths / 68 unique Git blobs / 4,071,795 bytes",
+      "passed": true
+    },
+    {
+      "code": "PLAN_TEXT_DENOMINATOR",
+      "evidence": "21,048 physical lines, 20,424 nonblank lines",
+      "passed": true
+    },
+    {
+      "code": "PLAN_PDF_DENOMINATOR",
+      "evidence": "5 files / 214 pages",
+      "passed": true
+    },
+    {
+      "code": "PLAN_SUPPLEMENTAL_DENOMINATOR",
+      "evidence": "68 release occurrences + 1 supplemental process-control occurrence",
+      "passed": true
+    },
+    {
+      "code": "PLAN_ROUTE_DENOMINATOR",
+      "evidence": "target Phase 062인 evidence route는 149건",
+      "passed": true
+    },
+    {
+      "code": "PLAN_DEBT_DENOMINATOR",
+      "evidence": "origin target Phase 062는 15, effective target Phase 062는 4",
+      "passed": true
+    },
+    {
+      "code": "PLAN_AUTHORITY_BOUNDARY",
+      "evidence": "Do not treat plan, change log, execution ledger, handover, snapshot, build success, test exit, code-match self-report or generated PDF as primary scientific authority",
+      "passed": true
+    },
+    {
+      "code": "PLAN_CODE_FREE_BOUNDARY",
+      "evidence": "Do not introduce code discussion into a future scholarly main body",
+      "passed": true
+    },
+    {
+      "code": "PLAN_STEP58_BLOCK",
+      "evidence": "Phase 063 Step 58 may not begin before `PASS_P062_STEP57_2_PERSISTENCE` and a new Phase 063 detailed plan is saved, reviewed, validated, atomically committed, pushed and remote-verified",
+      "passed": true
+    },
+    {
+      "code": "PLAN_ALL_OF_BOUNDARY",
+      "evidence": "A01–A05를 모두 충족해도 `P061-BD-NEW-001` 전체 status는 `OPEN`으로 유지",
+      "passed": true
+    },
+    {
+      "code": "PLAN_FIRST_ORDER_AUTHORITY",
+      "evidence": "이 파일만으로 first-order `USER_REQUIREMENT`를 복원하지 않는다",
+      "passed": true
+    },
+    {
+      "code": "PLAN_Q1_PARTIAL_REPORT",
+      "evidence": "Claude/docs/v1.0.20/results/DIRECTION_SI_LCO_REPORT.md` 1–291",
+      "passed": true
+    },
+    {
+      "code": "PLAN_SNAPSHOT_STRICT",
+      "evidence": "Strict-parse all nine snapshot JSON files with duplicate-key/non-finite rejection",
+      "passed": true
+    },
+    {
+      "code": "PLAN_DERIVATION_AXES",
+      "evidence": "derivation_state = CONFIRMED_INTERNAL_DERIVATION | CONDITIONAL_ASSUMPTIONS | CONFLICTING | NOT_DERIVED",
+      "passed": true
+    },
+    {
+      "code": "PLAN_SOURCE_DISPOSITION_AXIS",
+      "evidence": "source_disposition = PRESERVE | CORRECT | UNVERIFIED | REJECT",
+      "passed": true
+    },
+    {
+      "code": "PLAN_RUNTIME_EXACT_QUEUE",
+      "evidence": "Claude/docs/v1.0.19/Anode_Fit_v1.0.19.py",
+      "passed": true
+    },
+    {
+      "code": "PLAN_RUNTIME_EXACT_QUEUE_LAST",
+      "evidence": "Claude/docs/v1.0.21/FITTING_GUIDE.md",
+      "passed": true
+    },
+    {
+      "code": "PLAN_A05_REQUIRED",
+      "evidence": "A05 is mandatory",
+      "passed": true
+    },
+    {
+      "code": "PLAN_A07_CORROBORATING",
+      "evidence": "as `corroborating_route` only",
+      "passed": true
+    },
+    {
+      "code": "PLAN_CARRY_MEMBERSHIP",
+      "evidence": "`P059-CFR-CF-11=141`",
+      "passed": true
+    },
+    {
+      "code": "PLAN_PERSISTENCE_SPLIT",
+      "evidence": "`PASS_P062_STEP52_PERSISTENCE`, `PASS_P062_STEP53_PERSISTENCE`",
+      "passed": true
+    },
+    {
+      "code": "PLAN_CODE_ALLOWLIST",
+      "evidence": "`_sections/ch1_appB_codemap.tex` and `_sections/ch2_appB_codemap.tex`",
+      "passed": true
+    },
+    {
+      "code": "PLAN_SUPPLEMENTAL_DISPOSITION",
+      "evidence": "### Supplemental process disposition row",
+      "passed": true
+    },
+    {
+      "code": "PLAN_PROCESS_ARTIFACT_SCHEMA",
+      "evidence": "### Q-phase process artifact row",
+      "passed": true
+    },
+    {
+      "code": "PLAN_SUPPLEMENTAL_RECOVERY_FIELDS",
+      "evidence": "Empty or missing source/evidence/reason/owner/acceptance fields are invalid",
+      "passed": true
+    },
+    {
+      "code": "PLAN_PHASE057_INPUTS",
+      "evidence": [
+        {
+          "expected_lines": 85,
+          "lines": 85,
+          "listed": true,
+          "path": "Codex/plans/2026-07-28-phase057-v1021-read-map.md"
+        },
+        {
+          "expected_lines": 197,
+          "lines": 197,
+          "listed": true,
+          "path": "Codex/results/PHASE_057J_V1021_CONTROL_DOCUMENT_INTENT_OBSERVATIONS.md"
+        },
+        {
+          "expected_lines": 79,
+          "lines": 79,
+          "listed": true,
+          "path": "Codex/results/PHASE_057K_V1021_Q0_BASELINE_OBSERVATIONS.md"
+        },
+        {
+          "expected_lines": 126,
+          "lines": 126,
+          "listed": true,
+          "path": "Codex/results/PHASE_057L_V1021_Q2_Q3_SNAPSHOT_OBSERVATIONS.md"
+        },
+        {
+          "expected_lines": 97,
+          "lines": 97,
+          "listed": true,
+          "path": "Codex/results/PHASE_057M_V1021_Q4_Q5NAV_SNAPSHOT_OBSERVATIONS.md"
+        },
+        {
+          "expected_lines": 101,
+          "lines": 101,
+          "listed": true,
+          "path": "Codex/results/PHASE_057N_V1021_Q5_Q5B_SNAPSHOT_OBSERVATIONS.md"
+        },
+        {
+          "expected_lines": 134,
+          "lines": 134,
+          "listed": true,
+          "path": "Codex/results/PHASE_057O_V1021_Q6_Q7_AND_VERSION_CLOSE_OBSERVATIONS.md"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_NORMALIZED_SHA",
+      "evidence": "60f6fbaa356bbba1c1fbc1e718496880ad2ca3930c481384d18ca404f52ceaef",
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_TOP_SCHEMA",
+      "evidence": [
+        "baseline_commit",
+        "counts",
+        "entries",
+        "generated_date",
+        "path_count",
+        "schema_version",
+        "unique_blob_count",
+        "validation",
+        "version_scope"
+      ],
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_BASELINE",
+      "evidence": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_FULL_ROW_COUNT",
+      "evidence": 1520,
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_FULL_SCHEMA",
+      "evidence": [],
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_RELEASE_COUNT",
+      "evidence": {
+        "actual": 68,
+        "expected": 68
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_UNIQUE_PATHS",
+      "evidence": {
+        "actual": 68,
+        "expected": 68
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_UNIQUE_BLOBS",
+      "evidence": {
+        "actual": 68,
+        "expected": 68
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_TOTAL_BYTES",
+      "evidence": {
+        "actual": 4071795,
+        "expected": 4071795
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_INDEX_RANGE",
+      "evidence": {
+        "actual": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485,
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496,
+          497,
+          498,
+          499,
+          500,
+          501,
+          502,
+          503,
+          504,
+          505,
+          506,
+          507,
+          508,
+          509,
+          510,
+          511,
+          512,
+          513,
+          514,
+          515,
+          516,
+          517,
+          518,
+          519,
+          520,
+          521,
+          522,
+          523,
+          524,
+          525,
+          526,
+          527,
+          528,
+          529,
+          530,
+          531,
+          532,
+          533,
+          534,
+          535,
+          536,
+          537,
+          538,
+          539
+        ],
+        "expected": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485,
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496,
+          497,
+          498,
+          499,
+          500,
+          501,
+          502,
+          503,
+          504,
+          505,
+          506,
+          507,
+          508,
+          509,
+          510,
+          511,
+          512,
+          513,
+          514,
+          515,
+          516,
+          517,
+          518,
+          519,
+          520,
+          521,
+          522,
+          523,
+          524,
+          525,
+          526,
+          527,
+          528,
+          529,
+          530,
+          531,
+          532,
+          533,
+          534,
+          535,
+          536,
+          537,
+          538,
+          539
+        ]
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_MODE_COUNTS",
+      "evidence": {
+        "actual": {
+          "FULL_PDF": 5,
+          "FULL_TEXT": 63
+        },
+        "expected": {
+          "FULL_PDF": 5,
+          "FULL_TEXT": 63
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_ROLE_COUNTS",
+      "evidence": {
+        "actual": {
+          "code": 1,
+          "generated_document": 5,
+          "implementation_guide": 1,
+          "result": 15,
+          "test": 1,
+          "theory": 45
+        },
+        "expected": {
+          "code": 1,
+          "generated_document": 5,
+          "implementation_guide": 1,
+          "result": 15,
+          "test": 1,
+          "theory": 45
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_EXTENSION_COUNTS",
+      "evidence": {
+        "actual": {
+          "json": 9,
+          "md": 5,
+          "pdf": 5,
+          "py": 3,
+          "tex": 46
+        },
+        "expected": {
+          "json": 9,
+          "md": 5,
+          "pdf": 5,
+          "py": 3,
+          "tex": 46
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_TEXT_FILES",
+      "evidence": {
+        "actual": 63,
+        "expected": 63
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_TEXT_LINES",
+      "evidence": {
+        "actual": 21048,
+        "expected": 21048
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_NONBLANK_LINES",
+      "evidence": {
+        "actual": 20424,
+        "expected": 20424
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_PDF_FILES",
+      "evidence": {
+        "actual": 5,
+        "expected": 5
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_PDF_PAGES",
+      "evidence": {
+        "actual": 214,
+        "expected": 214
+      },
+      "passed": true
+    },
+    {
+      "code": "MANIFEST_DUPLICATES",
+      "evidence": {
+        "actual": [],
+        "expected": []
+      },
+      "passed": true
+    },
+    {
+      "code": "V1021_GIT_IDENTITIES",
+      "evidence": [],
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_PATH",
+      "evidence": {
+        "actual": "Claude/plans/2026-07-16-v1021-master-plan.md",
+        "expected": "Claude/plans/2026-07-16-v1021-master-plan.md"
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_DENOMINATOR_SEPARATE",
+      "evidence": {
+        "actual": false,
+        "expected": false
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_MODE",
+      "evidence": {
+        "actual": "100644",
+        "expected": "100644"
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_BLOB",
+      "evidence": {
+        "actual": "de26c03b53bedbe1cc4363bb07f66e9ca9da77f7",
+        "expected": "de26c03b53bedbe1cc4363bb07f66e9ca9da77f7"
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_BYTES",
+      "evidence": {
+        "actual": 10664,
+        "expected": 10664
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_LINES",
+      "evidence": {
+        "actual": 76,
+        "expected": 76
+      },
+      "passed": true
+    },
+    {
+      "code": "SUPPLEMENTAL_NONBLANK",
+      "evidence": {
+        "actual": 59,
+        "expected": 59
+      },
+      "passed": true
+    },
+    {
+      "code": "DISPOSITION_TOP_SCHEMA",
+      "evidence": [
+        "artifact_kind",
+        "authority_boundary",
+        "baseline_commit",
+        "dispositions",
+        "gate_summary",
+        "generation",
+        "input_artifact_commit",
+        "inputs",
+        "phase",
+        "schema_version",
+        "source_commit",
+        "source_manifest_sha256",
+        "step"
+      ],
+      "passed": true
+    },
+    {
+      "code": "CARRY_TOP_SCHEMA",
+      "evidence": [
+        "artifact_kind",
+        "authority_boundary",
+        "baseline_commit",
+        "debt_routing",
+        "gate_summary",
+        "generation",
+        "inherited_carry_items",
+        "inherited_phase060_blockers",
+        "input_artifact_commit",
+        "inputs",
+        "new_blockers",
+        "phase",
+        "schema_version",
+        "source_commit",
+        "step"
+      ],
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DISPOSITION_ROWS",
+      "evidence": {
+        "actual": 232,
+        "expected": 232
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_COUNT",
+      "evidence": {
+        "actual": 149,
+        "expected": 149
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_DISTRIBUTION",
+      "evidence": {
+        "actual": {
+          "COMPETING_ONLY": 116,
+          "CORRECT": 2,
+          "PRESERVE": 28,
+          "UNVERIFIED": 3
+        },
+        "expected": {
+          "COMPETING_ONLY": 116,
+          "CORRECT": 2,
+          "PRESERVE": 28,
+          "UNVERIFIED": 3
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_STATUS",
+      "evidence": {
+        "actual": {
+          "OPEN": 121,
+          "PRESERVED_ACTIVE": 28
+        },
+        "expected": {
+          "OPEN": 121,
+          "PRESERVED_ACTIVE": 28
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_IDENTITY",
+      "evidence": {
+        "actual": 149,
+        "expected": 149
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_INHERITED_DIRECT_ZERO",
+      "evidence": {
+        "actual": 0,
+        "expected": 0
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_ID_SET",
+      "evidence": {
+        "actual": "68267522dbda5c3a47fccfaad0babb2617331f2208831f36f91ec2ea284f11a5",
+        "expected": "68267522dbda5c3a47fccfaad0babb2617331f2208831f36f91ec2ea284f11a5"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_CARRY_LINKS",
+      "evidence": {
+        "actual": {
+          "P059-CFR-CF-08": 5,
+          "P059-CFR-CF-11": 141,
+          "P059-CFR-ED-03": 3,
+          "P059-CFR-NS-05": 3,
+          "P059-CFR-RB-11": 5,
+          "P059-CFR-RB-12": 93,
+          "P059-CFR-RM-011": 3
+        },
+        "expected": {
+          "P059-CFR-CF-08": 5,
+          "P059-CFR-CF-11": 141,
+          "P059-CFR-ED-03": 3,
+          "P059-CFR-NS-05": 3,
+          "P059-CFR-RB-11": 5,
+          "P059-CFR-RB-12": 93,
+          "P059-CFR-RM-011": 3
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_TARGET62_FULL_BIJECTION",
+      "evidence": {
+        "actual": "91b4c9c04e6419e23dfa40dc32ec21ac876d2b756866ce5bf5ba4343b6bdca79",
+        "expected": "91b4c9c04e6419e23dfa40dc32ec21ac876d2b756866ce5bf5ba4343b6bdca79"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_BLOCKER_DIRECT_ZERO",
+      "evidence": {
+        "actual": 0,
+        "expected": 0
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DEBT_ROWS",
+      "evidence": {
+        "actual": 91,
+        "expected": 91
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DEBT_ORIGIN62",
+      "evidence": {
+        "actual": 15,
+        "expected": 15
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DEBT_EFFECTIVE62",
+      "evidence": {
+        "actual": 4,
+        "expected": 4
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DEBT_IDENTITY",
+      "evidence": {
+        "actual": "d373830b0f9e2dbea982f2ee50ac8153985b2d7e7889c0ab5dba8e457cb1807d",
+        "expected": "d373830b0f9e2dbea982f2ee50ac8153985b2d7e7889c0ab5dba8e457cb1807d"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_DEBT_ALIAS_OWNER",
+      "evidence": {
+        "actual": {
+          "P061-GNF-004": {
+            "duplicate_or_refinement_of": null,
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN"
+          },
+          "P061-STEP48-GNF-005": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          },
+          "P061-STEP48-UNV-008": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          },
+          "P061-UNV-008": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          }
+        },
+        "expected": {
+          "P061-GNF-004": {
+            "duplicate_or_refinement_of": null,
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN"
+          },
+          "P061-STEP48-GNF-005": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          },
+          "P061-STEP48-UNV-008": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          },
+          "P061-UNV-008": {
+            "duplicate_or_refinement_of": "P061-GNF-004",
+            "owner_target_phase": 62,
+            "primary_owner_id": "P061-DISP-0044",
+            "primary_owner_type": "SOURCE_DISPOSITION",
+            "route_state": "OPEN_DUPLICATE_ALIAS"
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_INHERITED52_FULL_BIJECTION",
+      "evidence": {
+        "actual": "a732fca7fd937977bd98521a22ff9cc8631041c8e4f1359ae7a56a243555bc28",
+        "expected": "a732fca7fd937977bd98521a22ff9cc8631041c8e4f1359ae7a56a243555bc28"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION",
+      "evidence": {
+        "actual": "92558bb8c0383184c296054a20597d35237e231aec3f2bdbe4906edbaf6b4c23",
+        "expected": "92558bb8c0383184c296054a20597d35237e231aec3f2bdbe4906edbaf6b4c23"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_NEW_BLOCKER5_FULL_BIJECTION",
+      "evidence": {
+        "actual": "836d9c05a379b1d101344068173f388a8fa2ffdb498c61d3cc5d524a13dc61e0",
+        "expected": "836d9c05a379b1d101344068173f388a8fa2ffdb498c61d3cc5d524a13dc61e0"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_CARRY_AUTHORITY_PROMOTION",
+      "evidence": {
+        "actual": 0,
+        "expected": 0
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_COMPONENT_IDS",
+      "evidence": {
+        "actual": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A05",
+          "A06",
+          "A07"
+        ],
+        "expected": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A05",
+          "A06",
+          "A07"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_COMPONENT_OWNERS",
+      "evidence": {
+        "actual": {
+          "A01": 62,
+          "A02": 62,
+          "A03": 62,
+          "A04": 62,
+          "A05": 62,
+          "A06": 82,
+          "A07": 82
+        },
+        "expected": {
+          "A01": 62,
+          "A02": 62,
+          "A03": 62,
+          "A04": 62,
+          "A05": 62,
+          "A06": 82,
+          "A07": 82
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_COMPONENT_STATUS",
+      "evidence": {
+        "actual": {
+          "A01": "OPEN",
+          "A02": "OPEN",
+          "A03": "OPEN",
+          "A04": "OPEN",
+          "A05": "OPEN",
+          "A06": "OPEN",
+          "A07": "OPEN"
+        },
+        "expected": {
+          "A01": "OPEN",
+          "A02": "OPEN",
+          "A03": "OPEN",
+          "A04": "OPEN",
+          "A05": "OPEN",
+          "A06": "OPEN",
+          "A07": "OPEN"
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_PARENT_OPERATOR",
+      "evidence": {
+        "actual": "ALL_OF",
+        "expected": "ALL_OF"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_PARENT_TARGET",
+      "evidence": {
+        "actual": 82,
+        "expected": 82
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_PARENT_STATUS",
+      "evidence": {
+        "actual": "OPEN",
+        "expected": "OPEN"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_BLOCKER_DEBT_MEMBERS",
+      "evidence": {
+        "actual": [
+          "P061-GNF-005",
+          "P061-GNF-006",
+          "P061-STEP50-GNF-001",
+          "P061-STEP50-GNF-002",
+          "P061-STEP50-GNF-008",
+          "P061-STEP50-GNF-009",
+          "P061-STEP50-GNF-011",
+          "P061-STEP50-UNV-004",
+          "P061-UNV-007",
+          "P061-UNV-009",
+          "P061-UNV-010"
+        ],
+        "expected": [
+          "P061-GNF-005",
+          "P061-GNF-006",
+          "P061-STEP50-GNF-001",
+          "P061-STEP50-GNF-002",
+          "P061-STEP50-GNF-008",
+          "P061-STEP50-GNF-009",
+          "P061-STEP50-GNF-011",
+          "P061-STEP50-UNV-004",
+          "P061-UNV-007",
+          "P061-UNV-009",
+          "P061-UNV-010"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_BLOCKER_DEBT_ID_SET",
+      "evidence": {
+        "actual": "e3d9f0e1e91b98eccf8f248dc934db701792f72d90cfa65996ca53f72de544a0",
+        "expected": "e3d9f0e1e91b98eccf8f248dc934db701792f72d90cfa65996ca53f72de544a0"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_BLOCKER_IDENTITY",
+      "evidence": {
+        "actual": "5b3a03166d5e9a6733920c12cad187999f043160e9fc551e68fb04f7f5918e35",
+        "expected": "5b3a03166d5e9a6733920c12cad187999f043160e9fc551e68fb04f7f5918e35"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_AUTHORITY_PROMOTION",
+      "evidence": {
+        "actual": 0,
+        "expected": 0
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_BASELINES",
+      "evidence": {
+        "carry": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+        "disposition": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9"
+      },
+      "passed": true
+    },
+    {
+      "code": "ROUTING_SOURCE_IDENTITIES",
+      "evidence": 232,
+      "passed": true
+    },
+    {
+      "code": "NEGATIVE_CONTROLS",
+      "evidence": {
+        "cases": [
+          {
+            "case_id": "NEG_JSON_DUPLICATE",
+            "expected_codes": [
+              "NEG_JSON_DUPLICATE"
+            ],
+            "observed_codes": [
+              "NEG_JSON_DUPLICATE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_JSON_NAN",
+            "expected_codes": [
+              "NEG_JSON_NAN"
+            ],
+            "observed_codes": [
+              "NEG_JSON_NAN"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_JSON_POSITIVE_OVERFLOW",
+            "expected_codes": [
+              "NEG_JSON_POSITIVE_OVERFLOW"
+            ],
+            "observed_codes": [
+              "NEG_JSON_POSITIVE_OVERFLOW"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_JSON_NEGATIVE_OVERFLOW",
+            "expected_codes": [
+              "NEG_JSON_NEGATIVE_OVERFLOW"
+            ],
+            "observed_codes": [
+              "NEG_JSON_NEGATIVE_OVERFLOW"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_RELEASE_COUNT",
+            "expected_codes": [
+              "MANIFEST_RELEASE_COUNT"
+            ],
+            "observed_codes": [
+              "MANIFEST_RELEASE_COUNT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_UNIQUE_PATHS",
+            "expected_codes": [
+              "MANIFEST_UNIQUE_PATHS"
+            ],
+            "observed_codes": [
+              "MANIFEST_UNIQUE_PATHS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_UNIQUE_BLOBS",
+            "expected_codes": [
+              "MANIFEST_UNIQUE_BLOBS"
+            ],
+            "observed_codes": [
+              "MANIFEST_UNIQUE_BLOBS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_TOTAL_BYTES",
+            "expected_codes": [
+              "MANIFEST_TOTAL_BYTES"
+            ],
+            "observed_codes": [
+              "MANIFEST_TOTAL_BYTES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_INDEX_RANGE",
+            "expected_codes": [
+              "MANIFEST_INDEX_RANGE"
+            ],
+            "observed_codes": [
+              "MANIFEST_INDEX_RANGE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_MODE_COUNTS",
+            "expected_codes": [
+              "MANIFEST_MODE_COUNTS"
+            ],
+            "observed_codes": [
+              "MANIFEST_MODE_COUNTS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_ROLE_COUNTS",
+            "expected_codes": [
+              "MANIFEST_ROLE_COUNTS"
+            ],
+            "observed_codes": [
+              "MANIFEST_ROLE_COUNTS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_EXTENSION_COUNTS",
+            "expected_codes": [
+              "MANIFEST_EXTENSION_COUNTS"
+            ],
+            "observed_codes": [
+              "MANIFEST_EXTENSION_COUNTS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_TEXT_FILES",
+            "expected_codes": [
+              "MANIFEST_TEXT_FILES"
+            ],
+            "observed_codes": [
+              "MANIFEST_TEXT_FILES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_TEXT_LINES",
+            "expected_codes": [
+              "MANIFEST_TEXT_LINES"
+            ],
+            "observed_codes": [
+              "MANIFEST_TEXT_LINES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_NONBLANK_LINES",
+            "expected_codes": [
+              "MANIFEST_NONBLANK_LINES"
+            ],
+            "observed_codes": [
+              "MANIFEST_NONBLANK_LINES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_PDF_FILES",
+            "expected_codes": [
+              "MANIFEST_PDF_FILES"
+            ],
+            "observed_codes": [
+              "MANIFEST_PDF_FILES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_PDF_PAGES",
+            "expected_codes": [
+              "MANIFEST_PDF_PAGES"
+            ],
+            "observed_codes": [
+              "MANIFEST_PDF_PAGES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_MANIFEST_DUPLICATES",
+            "expected_codes": [
+              "MANIFEST_DUPLICATES"
+            ],
+            "observed_codes": [
+              "MANIFEST_DUPLICATES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DISPOSITION_ROWS",
+            "expected_codes": [
+              "ROUTING_DISPOSITION_ROWS"
+            ],
+            "observed_codes": [
+              "ROUTING_DISPOSITION_ROWS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_COUNT",
+            "expected_codes": [
+              "ROUTING_TARGET62_COUNT"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_COUNT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_DISTRIBUTION",
+            "expected_codes": [
+              "ROUTING_TARGET62_DISTRIBUTION"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_DISTRIBUTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_STATUS",
+            "expected_codes": [
+              "ROUTING_TARGET62_STATUS"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_STATUS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_IDENTITY",
+            "expected_codes": [
+              "ROUTING_TARGET62_IDENTITY"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_IDENTITY"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_INHERITED_DIRECT_ZERO",
+            "expected_codes": [
+              "ROUTING_INHERITED_DIRECT_ZERO"
+            ],
+            "observed_codes": [
+              "ROUTING_INHERITED_DIRECT_ZERO"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_ID_SET",
+            "expected_codes": [
+              "ROUTING_TARGET62_ID_SET"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_ID_SET"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_CARRY_LINKS",
+            "expected_codes": [
+              "ROUTING_TARGET62_CARRY_LINKS"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_CARRY_LINKS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_TARGET62_FULL_BIJECTION",
+            "expected_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_BLOCKER_DIRECT_ZERO",
+            "expected_codes": [
+              "ROUTING_BLOCKER_DIRECT_ZERO"
+            ],
+            "observed_codes": [
+              "ROUTING_BLOCKER_DIRECT_ZERO"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DEBT_ROWS",
+            "expected_codes": [
+              "ROUTING_DEBT_ROWS"
+            ],
+            "observed_codes": [
+              "ROUTING_DEBT_ROWS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DEBT_ORIGIN62",
+            "expected_codes": [
+              "ROUTING_DEBT_ORIGIN62"
+            ],
+            "observed_codes": [
+              "ROUTING_DEBT_ORIGIN62"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DEBT_EFFECTIVE62",
+            "expected_codes": [
+              "ROUTING_DEBT_EFFECTIVE62"
+            ],
+            "observed_codes": [
+              "ROUTING_DEBT_EFFECTIVE62"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DEBT_IDENTITY",
+            "expected_codes": [
+              "ROUTING_DEBT_IDENTITY"
+            ],
+            "observed_codes": [
+              "ROUTING_DEBT_IDENTITY"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_DEBT_ALIAS_OWNER",
+            "expected_codes": [
+              "ROUTING_DEBT_ALIAS_OWNER"
+            ],
+            "observed_codes": [
+              "ROUTING_DEBT_ALIAS_OWNER"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_INHERITED52_FULL_BIJECTION",
+            "expected_codes": [
+              "ROUTING_INHERITED52_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_INHERITED52_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION",
+            "expected_codes": [
+              "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_NEW_BLOCKER5_FULL_BIJECTION",
+            "expected_codes": [
+              "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_CARRY_AUTHORITY_PROMOTION",
+            "expected_codes": [
+              "ROUTING_CARRY_AUTHORITY_PROMOTION"
+            ],
+            "observed_codes": [
+              "ROUTING_CARRY_AUTHORITY_PROMOTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_COMPONENT_IDS",
+            "expected_codes": [
+              "ROUTING_COMPONENT_IDS"
+            ],
+            "observed_codes": [
+              "ROUTING_COMPONENT_IDS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_COMPONENT_OWNERS",
+            "expected_codes": [
+              "ROUTING_COMPONENT_OWNERS"
+            ],
+            "observed_codes": [
+              "ROUTING_COMPONENT_OWNERS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_COMPONENT_STATUS",
+            "expected_codes": [
+              "ROUTING_COMPONENT_STATUS"
+            ],
+            "observed_codes": [
+              "ROUTING_COMPONENT_STATUS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_PARENT_OPERATOR",
+            "expected_codes": [
+              "ROUTING_PARENT_OPERATOR"
+            ],
+            "observed_codes": [
+              "ROUTING_PARENT_OPERATOR"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_PARENT_TARGET",
+            "expected_codes": [
+              "ROUTING_PARENT_TARGET"
+            ],
+            "observed_codes": [
+              "ROUTING_PARENT_TARGET"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_PARENT_STATUS",
+            "expected_codes": [
+              "ROUTING_PARENT_STATUS"
+            ],
+            "observed_codes": [
+              "ROUTING_PARENT_STATUS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_BLOCKER_DEBT_MEMBERS",
+            "expected_codes": [
+              "ROUTING_BLOCKER_DEBT_MEMBERS"
+            ],
+            "observed_codes": [
+              "ROUTING_BLOCKER_DEBT_MEMBERS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_BLOCKER_DEBT_ID_SET",
+            "expected_codes": [
+              "ROUTING_BLOCKER_DEBT_ID_SET"
+            ],
+            "observed_codes": [
+              "ROUTING_BLOCKER_DEBT_ID_SET"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_BLOCKER_IDENTITY",
+            "expected_codes": [
+              "ROUTING_BLOCKER_IDENTITY"
+            ],
+            "observed_codes": [
+              "ROUTING_BLOCKER_IDENTITY"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ROUTING_AUTHORITY_PROMOTION",
+            "expected_codes": [
+              "ROUTING_AUTHORITY_PROMOTION"
+            ],
+            "observed_codes": [
+              "ROUTING_AUTHORITY_PROMOTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_SECTIONS",
+            "expected_codes": [
+              "NEG_PLAN_SECTIONS"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_SECTIONS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_STEPS",
+            "expected_codes": [
+              "NEG_PLAN_STEPS"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_STEPS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_OUTPUTS",
+            "expected_codes": [
+              "NEG_PLAN_OUTPUTS"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_OUTPUTS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_SUBJECTS",
+            "expected_codes": [
+              "NEG_PLAN_SUBJECTS"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_SUBJECTS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_GATES",
+            "expected_codes": [
+              "NEG_PLAN_GATES"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_GATES"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_STEP58",
+            "expected_codes": [
+              "NEG_PLAN_STEP58"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_STEP58"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PLAN_AUTHORITY",
+            "expected_codes": [
+              "NEG_PLAN_AUTHORITY"
+            ],
+            "observed_codes": [
+              "NEG_PLAN_AUTHORITY"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "USER_TRANSCRIPT_FALSE_PRESENT",
+            "expected_codes": [
+              "USER_TRANSCRIPT_FALSE_PRESENT"
+            ],
+            "observed_codes": [
+              "USER_TRANSCRIPT_FALSE_PRESENT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_Q1_PARTIAL_PROMOTION",
+            "expected_codes": [
+              "NEG_Q1_PARTIAL_PROMOTION"
+            ],
+            "observed_codes": [
+              "NEG_Q1_PARTIAL_PROMOTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_SNAPSHOT_STRICT_TRAVERSAL",
+            "expected_codes": [
+              "NEG_SNAPSHOT_STRICT_TRAVERSAL"
+            ],
+            "observed_codes": [
+              "NEG_SNAPSHOT_STRICT_TRAVERSAL"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_DERIVATION_AXIS_COLLAPSE",
+            "expected_codes": [
+              "NEG_DERIVATION_AXIS_COLLAPSE"
+            ],
+            "observed_codes": [
+              "NEG_DERIVATION_AXIS_COLLAPSE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_RUNTIME_DENOMINATOR",
+            "expected_codes": [
+              "NEG_RUNTIME_DENOMINATOR"
+            ],
+            "observed_codes": [
+              "NEG_RUNTIME_DENOMINATOR"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_A05_MISSING_BUILD",
+            "expected_codes": [
+              "NEG_A05_MISSING_BUILD"
+            ],
+            "observed_codes": [
+              "NEG_A05_MISSING_BUILD"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_A07_OWNER_PROMOTION",
+            "expected_codes": [
+              "NEG_A07_OWNER_PROMOTION"
+            ],
+            "observed_codes": [
+              "NEG_A07_OWNER_PROMOTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_CARRY_COUNT_ONLY",
+            "expected_codes": [
+              "NEG_CARRY_COUNT_ONLY"
+            ],
+            "observed_codes": [
+              "NEG_CARRY_COUNT_ONLY"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PERSISTENCE_SELF_REFERENCE",
+            "expected_codes": [
+              "NEG_PERSISTENCE_SELF_REFERENCE"
+            ],
+            "observed_codes": [
+              "NEG_PERSISTENCE_SELF_REFERENCE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_CODE_ALLOWLIST_BASENAME",
+            "expected_codes": [
+              "NEG_CODE_ALLOWLIST_BASENAME"
+            ],
+            "observed_codes": [
+              "NEG_CODE_ALLOWLIST_BASENAME"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_SUPPLEMENTAL_DISPOSITION_FUSION",
+            "expected_codes": [
+              "NEG_SUPPLEMENTAL_DISPOSITION_FUSION"
+            ],
+            "observed_codes": [
+              "NEG_SUPPLEMENTAL_DISPOSITION_FUSION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_PROCESS_ARTIFACT_SCHEMA",
+            "expected_codes": [
+              "NEG_PROCESS_ARTIFACT_SCHEMA"
+            ],
+            "observed_codes": [
+              "NEG_PROCESS_ARTIFACT_SCHEMA"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_SUPPLEMENTAL_RECOVERY_FIELDS",
+            "expected_codes": [
+              "NEG_SUPPLEMENTAL_RECOVERY_FIELDS"
+            ],
+            "observed_codes": [
+              "NEG_SUPPLEMENTAL_RECOVERY_FIELDS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_DIRTY_MISSING",
+            "expected_codes": [
+              "NEG_DIRTY_EXACT_SEVEN"
+            ],
+            "observed_codes": [
+              "NEG_DIRTY_EXACT_SEVEN"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_DIRTY_EXTRA",
+            "expected_codes": [
+              "NEG_DIRTY_EXACT_SEVEN"
+            ],
+            "observed_codes": [
+              "NEG_DIRTY_EXACT_SEVEN"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_GIT_PARENT",
+            "expected_codes": [
+              "NEG_GIT_PARENT"
+            ],
+            "observed_codes": [
+              "NEG_GIT_PARENT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_GIT_SUBJECT",
+            "expected_codes": [
+              "NEG_GIT_SUBJECT"
+            ],
+            "observed_codes": [
+              "NEG_GIT_SUBJECT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_GIT_BRANCH",
+            "expected_codes": [
+              "NEG_GIT_BRANCH"
+            ],
+            "observed_codes": [
+              "NEG_GIT_BRANCH"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_GIT_PROTECTED",
+            "expected_codes": [
+              "NEG_GIT_PROTECTED"
+            ],
+            "observed_codes": [
+              "NEG_GIT_PROTECTED"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_GIT_MAIN",
+            "expected_codes": [
+              "NEG_GIT_MAIN"
+            ],
+            "observed_codes": [
+              "NEG_GIT_MAIN"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_MANIFEST_OBJECT",
+            "expected_codes": [
+              "NEG_ACTUAL_MANIFEST_OBJECT"
+            ],
+            "observed_codes": [
+              "NEG_ACTUAL_MANIFEST_OBJECT"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_PER_SOURCE_LINK_SWAP",
+            "expected_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_PER_SOURCE_DISPOSITION_SWAP",
+            "expected_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_TARGET62_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_INHERITED_TRUTH_PROMOTION",
+            "expected_codes": [
+              "ROUTING_CARRY_AUTHORITY_PROMOTION",
+              "ROUTING_INHERITED52_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_CARRY_AUTHORITY_PROMOTION",
+              "ROUTING_INHERITED52_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_INHERITED_BLOCKER_TARGET",
+            "expected_codes": [
+              "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_NEW_BLOCKER_TRUTH",
+            "expected_codes": [
+              "ROUTING_BLOCKER_IDENTITY",
+              "ROUTING_CARRY_AUTHORITY_PROMOTION",
+              "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+            ],
+            "observed_codes": [
+              "ROUTING_BLOCKER_IDENTITY",
+              "ROUTING_CARRY_AUTHORITY_PROMOTION",
+              "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL",
+            "expected_codes": [
+              "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL"
+            ],
+            "observed_codes": [
+              "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_RESULT_GATE",
+            "expected_codes": [
+              "NEG_ACTUAL_RESULT_GATE"
+            ],
+            "observed_codes": [
+              "NEG_ACTUAL_RESULT_GATE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_ACTIVE_STATUS",
+            "expected_codes": [
+              "NEG_ACTUAL_ACTIVE_STATUS"
+            ],
+            "observed_codes": [
+              "NEG_ACTUAL_ACTIVE_STATUS"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "NEG_ACTUAL_HANDOVER_STATE",
+            "expected_codes": [
+              "NEG_ACTUAL_HANDOVER_STATE"
+            ],
+            "observed_codes": [
+              "NEG_ACTUAL_HANDOVER_STATE"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "RESULT_OVERALL_FAIL",
+            "expected_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "observed_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "ACTIVE_PHASE062_FAIL",
+            "expected_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "observed_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "PARENT_PHASE062_STATUS_FAIL",
+            "expected_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "observed_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "passed": true
+          },
+          {
+            "case_id": "HANDOVER_OVERALL_FAIL",
+            "expected_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "observed_codes": [
+              "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+            ],
+            "passed": true
+          }
+        ],
+        "failed": [],
+        "passed": 88,
+        "total": 88
+      },
+      "passed": true
+    },
+    {
+      "code": "CONTROL_CURRENT_TERMINAL_CONTRADICTION",
+      "evidence": {
+        "active": [],
+        "handover": [],
+        "parent": [],
+        "result": []
+      },
+      "passed": true
+    },
+    {
+      "code": "ACTIVATION_RESULT_MISSING",
+      "evidence": "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+      "passed": true
+    },
+    {
+      "code": "ACTIVATION_RESULT_STRUCTURE",
+      "evidence": {
+        "commit": [
+          "Containing commit: `PENDING_AT_PRECOMMIT_BY_DESIGN`"
+        ],
+        "gate": [
+          "Gate: `PASS_P062_PLAN_ACTIVATION`"
+        ],
+        "h1": [
+          "# Phase 062 v1.0.21 Lineage Reaudit Plan Activation Result"
+        ],
+        "outcome_sections": [
+          "## 1. Outcome"
+        ],
+        "persistence": [
+          "Postcommit persistence: `PENDING`"
+        ],
+        "status": [
+          "상태: precommit content Gate 준비 완료; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "code": "ACTIVATION_RESULT_CONTRACT",
+      "evidence": {
+        "149": true,
+        "15": true,
+        "4": true,
+        "68": true,
+        "A01": true,
+        "A07": true,
+        "Claude": true,
+        "Step 52": true,
+        "docs(phase062): plan v1021 lineage reaudit": true
+      },
+      "passed": true
+    },
+    {
+      "code": "CONTROL_ACTIVE_LEDGER_STRUCTURE",
+      "evidence": [
+        [
+          "062",
+          "52–57",
+          "plan activation; Steps 52–57.2 pending",
+          "v1.0.21 reaudit",
+          "IN_PROGRESS",
+          "`Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`",
+          "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`; Phase result pending",
+          "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json`; Step evidence pending",
+          "precommit `PASS_P062_PLAN_ACTIVATION`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; final Gate `PASS_P062_LINEAGE_E` pending",
+          "exact-seven activation commit/push and `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then Step 52"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "code": "CONTROL_PARENT_LEDGER_STRUCTURE",
+      "evidence": [
+        [
+          "062",
+          "52–57",
+          "plan activation; Steps 52–57.2 pending",
+          "lineage E",
+          "v1.0.21 재감사",
+          "IN_PROGRESS",
+          "`Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`",
+          "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`; phase result pending",
+          "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json`; Step evidence pending",
+          "precommit `PASS_P062_PLAN_ACTIVATION`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; Step 52 blocked until postcommit persistence",
+          "`PASS_P062_LINEAGE_E` pending",
+          "exact-seven activation commit/push and `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then Step 52"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "code": "CONTROL_COMMIT_LEDGER_STRUCTURE",
+      "evidence": [
+        [
+          "Phase 062 plan activation",
+          "`Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`",
+          "`PENDING_AT_PRECOMMIT_BY_DESIGN`",
+          "exact-seven checkpoint prepared",
+          "verify after atomic commit",
+          "precommit `PASS_P062_PLAN_ACTIVATION`; subject `docs(phase062): plan v1021 lineage reaudit`; parent `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`; Step 52 blocked until `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "code": "CONTROL_PHASE061_PERSISTENCE",
+      "evidence": [
+        "| 061 | 46–51 | plan activation; Steps 46–51.2 | v1.0.20 reaudit | PASS | `Codex/plans/2026-08-26-phase061-v1020-lineage-detailed-plan.md` | Lineage Report D `Codex/results/PHASE_061_V1020_LINEAGE_REPORT_D.md`; final Step gate `Codex/results/PHASE_061_STEP_051_2_GATE_RESULT.md`; Phase result `Codex/results/PHASE_061_RESULT.md` | Phase 061 machine evidence 10개; integrated `Codex/results/PHASE_061_VALIDATION.json` | Step 51.2 exact-eight `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`, parent `fe3433e63ccb6255a75a51dda3fd6a4eb747c0a7`, pushed/remote-verified with `PASS_P061_STEP51_2_PERSISTENCE`; source `232/232`, blobs `231/231`, text `195/195`·`31,553/31,553`·`29,335/29,335`, PDF `14/14`·`130/130`, image `23/23`; lineage `178/29/18/7/0`, snapshot `10/10`·`9/9`; authority `782/782`; dispositions `92/16/116/8`; inherited `52+5`, debt `91/91`, OPEN-family `84/84`, new blockers 5; `PASS_P061_LINEAGE_D` excludes external scientific/material/experimental/primary-literature truth, canonical selection and final artifact readiness | Phase 062 detailed-plan activation exact-seven commit/push/persistence before Step 52 |",
+        "| 061 | 46–51 | plan activation; Steps 46–51.2 | lineage D | v1.0.20 재감사 | PASS | `Codex/plans/2026-08-26-phase061-v1020-lineage-detailed-plan.md` | Lineage Report D `Codex/results/PHASE_061_V1020_LINEAGE_REPORT_D.md`; Step 51.2 gate `Codex/results/PHASE_061_STEP_051_2_GATE_RESULT.md`; Phase result `Codex/results/PHASE_061_RESULT.md` | Phase 061 machine evidence 10개; integrated `Codex/results/PHASE_061_VALIDATION.json` | Step 51.2 exact-eight commit `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`, parent `fe3433e63ccb6255a75a51dda3fd6a4eb747c0a7`, push/remote verification and `PASS_P061_STEP51_2_PERSISTENCE`; source `232/232`, blobs `231/231`, text `195/195`·`31,553/31,553`·`29,335/29,335`, PDF `14/14`·`130/130`, image `23/23`; lineage `178/29/18/7/0`, snapshot `10/10`·`9/9`; authority `782/782`; disposition `92/16/116/8`; inherited `52+5`, debt `91/91`, OPEN-family `84/84`, new ALL_OF blockers 5; external scientific/material/experimental/primary-literature truth와 canonical selection은 승격하지 않음 | `PASS_P061_LINEAGE_D`; `PASS_P061_STEP51_2_PERSISTENCE` | Phase 062 detailed-plan activation exact-seven commit/push/persistence 뒤 Step 52 |"
+      ],
+      "passed": true
+    },
+    {
+      "code": "CONTROL_HANDOVER_STRUCTURE",
+      "evidence": {
+        "chain": [
+          [
+            "Phase 062 detailed plan activation",
+            "Steps 52–57 planning boundary",
+            "precommit `PASS_P062_PLAN_ACTIVATION`; exact-seven containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`",
+            "commit/push/`PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then execute Step 52"
+          ]
+        ],
+        "current_state": [
+          "14. 현재 Phase 상태: Phase 062 `IN_PROGRESS`, Current checkpoint: detailed-plan activation precommit Gate"
+        ],
+        "exact_next": "\nController completes the final independent re-review, generates and strict-validates `Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json`, stages exactly the seven Phase 062 activation paths, commits them atomically with subject `docs(phase062): plan v1021 lineage reaudit` and parent `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`, pushes the active branch, and verifies exact commit files, local HEAD/upstream/live-origin equality, protected/main stability, tracked/untracked Claude diff 0, strict JSON semantic identity, negative controls, determinism, `git diff --check` and cached diff check. Only after `PASS_P062_PLAN_ACTIVATION_PERSISTENCE` may Step 52 begin.\n\n## Hard-stop Reminder\n\nStop only for protected-branch drift, unexpected active-branch divergence, three repeated push failures, required new credentials/paid-source authority, irreconcilable user instructions or a scientific choice that cannot safely remain `UNVERIFIED` or as alternatives."
+      },
+      "passed": true
+    },
+    {
+      "code": "REPOSITORY_BRANCH",
+      "evidence": "codex/anode-fit-v1025_2-canonical-completion",
+      "passed": true
+    },
+    {
+      "code": "REPOSITORY_ACTIVE_PARENT",
+      "evidence": {
+        "branch": "codex/anode-fit-v1025_2-canonical-completion",
+        "claude_tracked": [],
+        "claude_untracked": [],
+        "dirty_paths": [
+          "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+          "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+          "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+          "Codex/work/v1021_phase062/validate_phase062_plan.py"
+        ],
+        "head": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "live_active": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "main_live": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "main_tracking": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "origin_tracking": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "protected_live": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "protected_tracking": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "upstream": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2"
+      },
+      "passed": true
+    },
+    {
+      "code": "REPOSITORY_PROTECTED",
+      "evidence": {
+        "branch": "codex/anode-fit-v1025_2-canonical-completion",
+        "claude_tracked": [],
+        "claude_untracked": [],
+        "dirty_paths": [
+          "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+          "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+          "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+          "Codex/work/v1021_phase062/validate_phase062_plan.py"
+        ],
+        "head": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "live_active": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "main_live": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "main_tracking": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "origin_tracking": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "protected_live": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "protected_tracking": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "upstream": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2"
+      },
+      "passed": true
+    },
+    {
+      "code": "REPOSITORY_MAIN",
+      "evidence": {
+        "branch": "codex/anode-fit-v1025_2-canonical-completion",
+        "claude_tracked": [],
+        "claude_untracked": [],
+        "dirty_paths": [
+          "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+          "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+          "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+          "Codex/work/v1021_phase062/validate_phase062_plan.py"
+        ],
+        "head": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "live_active": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "main_live": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "main_tracking": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+        "origin_tracking": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+        "protected_live": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "protected_tracking": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+        "upstream": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2"
+      },
+      "passed": true
+    },
+    {
+      "code": "REPOSITORY_CLAUDE_UNCHANGED",
+      "evidence": {
+        "tracked": [],
+        "untracked": []
+      },
+      "passed": true
+    },
+    {
+      "code": "DIRTY_EXACT_SEVEN",
+      "evidence": {
+        "actual": [
+          "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+          "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+          "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+          "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+          "Codex/work/v1021_phase062/validate_phase062_plan.py"
+        ],
+        "extra": [],
+        "missing": []
+      },
+      "passed": true
+    },
+    {
+      "code": "DIFF_CHECK",
+      "evidence": "working and cached",
+      "passed": true
+    },
+    {
+      "code": "NONSELF_SURFACES",
+      "evidence": {
+        "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md": {
+          "exists": true,
+          "normalized_bytes": 60609,
+          "normalized_sha256": "e393e488c374cbaba90bdcd2bc5fe74f90a8ca08c2266ec5a2b424a6f7816db4"
+        },
+        "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md": {
+          "exists": true,
+          "normalized_bytes": 55944,
+          "normalized_sha256": "54fde6b62f80935472288cc5838d18748d3ed838302e1ba4bf36246a2d378a69"
+        },
+        "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md": {
+          "exists": true,
+          "normalized_bytes": 10208,
+          "normalized_sha256": "d5c4d3e91083b61f6143fb1427f7c6edb84c8b4df5a7f7b1ec76df27e6182cab"
+        },
+        "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md": {
+          "exists": true,
+          "normalized_bytes": 19008,
+          "normalized_sha256": "140b117856a08c8bbb2701ce0e83bb945b168740d5fa0a6c181e86a568cc7728"
+        },
+        "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md": {
+          "exists": true,
+          "normalized_bytes": 8893,
+          "normalized_sha256": "98b030c2a99ac53b4b9fd3ea2f0ae403560ab45aaf3b8327e6f62ce64c571aa8"
+        },
+        "Codex/work/v1021_phase062/validate_phase062_plan.py": {
+          "exists": true,
+          "normalized_bytes": 78766,
+          "normalized_sha256": "59c309ab3859ad49dae6f389eb17c978f3e42e6f8041e86955f0517f3a018dfa"
+        }
+      },
+      "passed": true
+    },
+    {
+      "code": "DETERMINISM_2_OF_2",
+      "evidence": {
+        "byte_identical": true,
+        "runs": 2,
+        "scope": "FULL_SEMANTIC_PAYLOAD_EXCLUDING_SELF_REFERENTIAL_DETERMINISM_AND_SUMMARY",
+        "second_run_failed_codes": [],
+        "sha256_run1": "be57b4ecb7b546381b8d8b52045063b78e2a11fd75a5fced0c756f42a55c55c7",
+        "sha256_run2": "be57b4ecb7b546381b8d8b52045063b78e2a11fd75a5fced0c756f42a55c55c7"
+      },
+      "passed": true
+    }
+  ],
+  "content_projection_sha256": "b45dd4d7c444bc257dbd3e096472e3857a280d26ca4a03d03a0cddda332879ad",
+  "control_contract": {
+    "active_rows": [
+      [
+        "062",
+        "52–57",
+        "plan activation; Steps 52–57.2 pending",
+        "v1.0.21 reaudit",
+        "IN_PROGRESS",
+        "`Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`",
+        "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`; Phase result pending",
+        "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json`; Step evidence pending",
+        "precommit `PASS_P062_PLAN_ACTIVATION`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; final Gate `PASS_P062_LINEAGE_E` pending",
+        "exact-seven activation commit/push and `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then Step 52"
+      ]
+    ],
+    "commit_rows": [
+      [
+        "Phase 062 plan activation",
+        "`Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`",
+        "`PENDING_AT_PRECOMMIT_BY_DESIGN`",
+        "exact-seven checkpoint prepared",
+        "verify after atomic commit",
+        "precommit `PASS_P062_PLAN_ACTIVATION`; subject `docs(phase062): plan v1021 lineage reaudit`; parent `86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2`; Step 52 blocked until `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`"
+      ]
+    ],
+    "handover_chain": [
+      [
+        "Phase 062 detailed plan activation",
+        "Steps 52–57 planning boundary",
+        "precommit `PASS_P062_PLAN_ACTIVATION`; exact-seven containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`",
+        "commit/push/`PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then execute Step 52"
+      ]
+    ],
+    "handover_current_state": [
+      "14. 현재 Phase 상태: Phase 062 `IN_PROGRESS`, Current checkpoint: detailed-plan activation precommit Gate"
+    ],
+    "parent_rows": [
+      [
+        "062",
+        "52–57",
+        "plan activation; Steps 52–57.2 pending",
+        "lineage E",
+        "v1.0.21 재감사",
+        "IN_PROGRESS",
+        "`Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`",
+        "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md`; phase result pending",
+        "activation `Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json`; Step evidence pending",
+        "precommit `PASS_P062_PLAN_ACTIVATION`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; Step 52 blocked until postcommit persistence",
+        "`PASS_P062_LINEAGE_E` pending",
+        "exact-seven activation commit/push and `PASS_P062_PLAN_ACTIVATION_PERSISTENCE`, then Step 52"
+      ]
+    ],
+    "result_exists": true,
+    "result_metadata": {
+      "commit": [
+        "Containing commit: `PENDING_AT_PRECOMMIT_BY_DESIGN`"
+      ],
+      "gate": [
+        "Gate: `PASS_P062_PLAN_ACTIVATION`"
+      ],
+      "h1": [
+        "# Phase 062 v1.0.21 Lineage Reaudit Plan Activation Result"
+      ],
+      "outcome_sections": [
+        "## 1. Outcome"
+      ],
+      "persistence": [
+        "Postcommit persistence: `PENDING`"
+      ],
+      "status": [
+        "상태: precommit content Gate 준비 완료; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`"
+      ]
+    }
+  },
+  "determinism": {
+    "byte_identical": true,
+    "runs": 2,
+    "scope": "FULL_SEMANTIC_PAYLOAD_EXCLUDING_SELF_REFERENTIAL_DETERMINISM_AND_SUMMARY",
+    "second_run_failed_codes": [],
+    "sha256_run1": "be57b4ecb7b546381b8d8b52045063b78e2a11fd75a5fced0c756f42a55c55c7",
+    "sha256_run2": "be57b4ecb7b546381b8d8b52045063b78e2a11fd75a5fced0c756f42a55c55c7"
+  },
+  "deterministic_projection_sha256": "be57b4ecb7b546381b8d8b52045063b78e2a11fd75a5fced0c756f42a55c55c7",
+  "exact_allowlist": [
+    "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+    "Codex/work/v1021_phase062/validate_phase062_plan.py",
+    "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+    "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+    "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+    "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+    "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md"
+  ],
+  "expected_parent": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+  "expected_subject": "docs(phase062): plan v1021 lineage reaudit",
+  "gate": "PASS_P062_PLAN_ACTIVATION",
+  "generated_date": "2026-08-27",
+  "manifest_contract": {
+    "normalized_sha256": "60f6fbaa356bbba1c1fbc1e718496880ad2ca3930c481384d18ca404f52ceaef",
+    "path": "Codex/results/PHASE_056_V1010_V1025_2_SOURCE_MANIFEST.json",
+    "path_blob_set_sha256": "ee3a902c130cd4ef1985bd880638e3fa73f40c617709d55d1e7415ec3d76649c",
+    "path_set_sha256": "58ed386971e05e6d46c1f56d771e859aa5b61f27d6db5c4afed81ce849b14878",
+    "records": [
+      {
+        "blob_sha1": "7588fe782a027511c2407d9b7caea6ef0ca6c3bd",
+        "extension": "py",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1152
+        },
+        "git_mode": "100644",
+        "manifest_index": 472,
+        "path": "Claude/docs/v1.0.21/Anode_Fit_v1.0.21.py",
+        "review_mode": "FULL_TEXT",
+        "role": "code",
+        "sha256": "d50612413f9f956486594ddafde37776f9592b75e2c8a2266927eaaa23267eaf",
+        "size_bytes": 69343
+      },
+      {
+        "blob_sha1": "f097793b69237d6f63705cc07708f8a1adbe7192",
+        "extension": "md",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 137
+        },
+        "git_mode": "100644",
+        "manifest_index": 473,
+        "path": "Claude/docs/v1.0.21/FITTING_GUIDE.md",
+        "review_mode": "FULL_TEXT",
+        "role": "implementation_guide",
+        "sha256": "f7ca9038e163cfba6313f85e0cd4f3095ac2890a9ff9eb6f8aa4a8cdf12409e1",
+        "size_bytes": 24415
+      },
+      {
+        "blob_sha1": "3dd6475884808dfee71062e4706bf4993aa5c699",
+        "extension": "md",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 24
+        },
+        "git_mode": "100644",
+        "manifest_index": 474,
+        "path": "Claude/docs/v1.0.21/HANDOVER_v1.0.21.md",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "19c86771fdf9d15199ebb52d8c851af1d83de2c2efdc39671f4068dc15a6908c",
+        "size_bytes": 3945
+      },
+      {
+        "blob_sha1": "5b9257da753de0dc9ba2ff0829d399281059f999",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 89
+        },
+        "git_mode": "100644",
+        "manifest_index": 475,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_appA_signcheck.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "83623700efc8d8ed0b7b09d31ed29fd9b3e875d2229d0755d401e94222a66fb3",
+        "size_bytes": 6549
+      },
+      {
+        "blob_sha1": "8c01044fc4ce9edf922e52da5f9c4a2a6186ede3",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 157
+        },
+        "git_mode": "100644",
+        "manifest_index": 476,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_appB_codemap.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "ae3bc2e6884a10c5e4072a1dfdde80fc9e8f7f248172988e1bbfb397ad76ef5e",
+        "size_bytes": 11137
+      },
+      {
+        "blob_sha1": "430aef2a795e3ae59d27752061ae0846c290bd34",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 142
+        },
+        "git_mode": "100644",
+        "manifest_index": 477,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_appC_navaid.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "335242dcaab2cfd6510e6a2832e359bb90b9f064c0f456b2f2792b7eabbb4a4a",
+        "size_bytes": 11097
+      },
+      {
+        "blob_sha1": "c658d67d6e06f0325f6165ff8f08e6eda749b6ef",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 91
+        },
+        "git_mode": "100644",
+        "manifest_index": 478,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_appD_si.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "f5117b0eeab184c25466d814cc94fe93509eb1f0496e6dc649994f8a2c91f90a",
+        "size_bytes": 9276
+      },
+      {
+        "blob_sha1": "dc4ca0780618d5710fd04e74ea87707738ffceba",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 64
+        },
+        "git_mode": "100644",
+        "manifest_index": 479,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_bib.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "dc58338a8abd45116d846c0053ed41265d45b0f37852fafe93b8ecd7488d651d",
+        "size_bytes": 17092
+      },
+      {
+        "blob_sha1": "a66e0c29dec8bf33217dec01d1cc827c9a57aa31",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 77
+        },
+        "git_mode": "100644",
+        "manifest_index": 480,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_preamble.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "c64c23047bfd53a024bf7b4505c4de21a7b999cc536532e1d572c323aa8ab89e",
+        "size_bytes": 3036
+      },
+      {
+        "blob_sha1": "a85bfbee2b61abb5a0dba249c4e3616225345c5e",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 105
+        },
+        "git_mode": "100644",
+        "manifest_index": 481,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec00_intro.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "cf4a6d1a132e0b70a7d505b3c8d2b9d18cb93db1d314918805bfe01126d2819f",
+        "size_bytes": 7895
+      },
+      {
+        "blob_sha1": "43ff39f9fe0e19020adc3136444a1843bc5428c2",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 223
+        },
+        "git_mode": "100644",
+        "manifest_index": 482,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec01_n0n1.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "465b9c9a985cd6073e1dd2666157d5114b5fa675a553704f4c01a8c043d8b479",
+        "size_bytes": 20212
+      },
+      {
+        "blob_sha1": "048f33f58262e02d48f9c3054b70da86d7ecc4ea",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 365
+        },
+        "git_mode": "100644",
+        "manifest_index": 483,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec02a_part0.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "194f31b1a464f1295ea72c89138d57c5dff8c1ce6a472aa339dc4a38f964fb6f",
+        "size_bytes": 27726
+      },
+      {
+        "blob_sha1": "8982a25beb3b58d406a684cb6a92906e06d1095e",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 442
+        },
+        "git_mode": "100644",
+        "manifest_index": 484,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec02b_part0.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "469f9de88fdedb33c6932e0b75642eab0412b6a05d0167849497cae9d60db765",
+        "size_bytes": 36071
+      },
+      {
+        "blob_sha1": "a610722f02869179bef4205b7075938fc782246d",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 119
+        },
+        "git_mode": "100644",
+        "manifest_index": 485,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec03_center.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "a22984522c5978ccb63e68eaa456ebd6c46917701cb1cf73d190027240474522",
+        "size_bytes": 8860
+      },
+      {
+        "blob_sha1": "7c1b101a82d4dc61206bbac46aaf374349610b54",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 321
+        },
+        "git_mode": "100644",
+        "manifest_index": 486,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec04_hys.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "608d0a71909ee63627be7a87a1149190a84b4e75e319bf93a36730ed7eb9ee71",
+        "size_bytes": 23247
+      },
+      {
+        "blob_sha1": "e97708808c244bc114cffc570f4866419fe2b1e8",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 378
+        },
+        "git_mode": "100644",
+        "manifest_index": 487,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec05_width.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "b619a5b8fe7cabe59371c995384331ffa7d1d6e30bc33db0c3c2bd2853d73d17",
+        "size_bytes": 29816
+      },
+      {
+        "blob_sha1": "508e8a01a05cec4330d55ae46000ab7d3e1c7a54",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 43
+        },
+        "git_mode": "100644",
+        "manifest_index": 488,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec06_eqpeak.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "55b2378d72900c26efa0216e731a0e7d606d010a484f17243c47e756b4edf708",
+        "size_bytes": 3391
+      },
+      {
+        "blob_sha1": "1bf5fc4e36885aeac2e3ce7ca8e7509978ca70f9",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 307
+        },
+        "git_mode": "100644",
+        "manifest_index": 489,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec07_broadening.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "a6a2c1878cca157fa35666160ea03fd7188d11374bc6471b58413bb77ffd96fa",
+        "size_bytes": 29841
+      },
+      {
+        "blob_sha1": "909f6d3bce10bef59b4532a4b2b3f7570a8f0631",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 131
+        },
+        "git_mode": "100644",
+        "manifest_index": 490,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec08_lag.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "4835e52fd35de70d25054c95b0eb078947502afa19259b79c5691a53cbb2f038",
+        "size_bytes": 9819
+      },
+      {
+        "blob_sha1": "eb7e1e6dc7fa1794c6822214e1bc9b11358501cd",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 244
+        },
+        "git_mode": "100644",
+        "manifest_index": 491,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec09_tail.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "078378d788205361a41c5bb9175b06035f4c9a4ee1cd57311fbad6befaa64cf3",
+        "size_bytes": 18224
+      },
+      {
+        "blob_sha1": "79900c62eef2a676c4c922df660a1eede419c691",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 169
+        },
+        "git_mode": "100644",
+        "manifest_index": 492,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec10_sum.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "8ebb7208e77f3e2a348d3cf42f7fbe7e805f72faf7ae36ebe01165475c178628",
+        "size_bytes": 15419
+      },
+      {
+        "blob_sha1": "49233bc845a9e3b810a180f04e270ee467a7a2b0",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 172
+        },
+        "git_mode": "100644",
+        "manifest_index": 493,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec11_lcointro.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "0a904e4327bb906de24b517d1ea2b6f3f7b3affcdfd110da3fded3accb13081f",
+        "size_bytes": 14378
+      },
+      {
+        "blob_sha1": "db3bef0185161b51263b8fa0afc6ddc1cf71c62e",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 112
+        },
+        "git_mode": "100644",
+        "manifest_index": 494,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec12_lcocenter.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "7fd8be513e94cc6c29fa948efc543266bc7dcc3ddb6a7929cb4a8e36d95b2590",
+        "size_bytes": 10398
+      },
+      {
+        "blob_sha1": "f49eb5ac3a7e5b23d0852c37c0af4c24ba6da28b",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 176
+        },
+        "git_mode": "100644",
+        "manifest_index": 495,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec13_lcohys.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "4e875cd96cbf64a8a7a68505f8c4590fb00dc6b5892c8a0184a2f732221846e5",
+        "size_bytes": 13289
+      },
+      {
+        "blob_sha1": "f1ec204c1a989ef1b402a84d1cedaafc956b80ec",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 105
+        },
+        "git_mode": "100644",
+        "manifest_index": 496,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec14_lcodecomp.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "10339857f910231823aa6e2b2634f424ef91792d35ed8a815f9174240866f1f9",
+        "size_bytes": 10025
+      },
+      {
+        "blob_sha1": "aabf8002bad41b3f9267dabc1a1def7af900e791",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 346
+        },
+        "git_mode": "100644",
+        "manifest_index": 497,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec15_lcoelec.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "d312c4b0d1d4b3be20f6b597b5fc197495db08ab3c1f65376271526e97f44c42",
+        "size_bytes": 33403
+      },
+      {
+        "blob_sha1": "742a1ccd58fb334856373d978ccfdee781b2f544",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 68
+        },
+        "git_mode": "100644",
+        "manifest_index": 498,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec16_lcopeak.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "5af91d815c246f90a8f44cc95000bf8e1ad639c8478e9b3d6257b6c6a454f7cf",
+        "size_bytes": 4979
+      },
+      {
+        "blob_sha1": "1289d703644e3a69b8801612e351fbc29c63bb8d",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 136
+        },
+        "git_mode": "100644",
+        "manifest_index": 499,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec17_msmr.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "db3637fb03f0f78e8929defec3c752f5ed543634607027b0b9cd97804db4907c",
+        "size_bytes": 10976
+      },
+      {
+        "blob_sha1": "d7704dde7a396620c0ea968b57a9c567591e1ef9",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 68
+        },
+        "git_mode": "100644",
+        "manifest_index": 500,
+        "path": "Claude/docs/v1.0.21/_sections/ch1_sec18_inputs.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "e8b762409420960e04c2083816228836311291a3cd4c906fc659eeb591d782a2",
+        "size_bytes": 5032
+      },
+      {
+        "blob_sha1": "fac5c53a41118f8e01bd98ff3445c196f5bb2f1a",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 74
+        },
+        "git_mode": "100644",
+        "manifest_index": 501,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_appA_traps.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "41ec139563a8107e652e28f16c0ad8db2509f9ebe0fec146df82dcc00921b8a5",
+        "size_bytes": 4120
+      },
+      {
+        "blob_sha1": "e5b3f836d054983e43b74e64b98c1a52dcf05b45",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 74
+        },
+        "git_mode": "100644",
+        "manifest_index": 502,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_appB_codemap.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "6c11234e9bf0c275299fcc845993e184e98e5c819f949bb9cb1e6d7920ecf88c",
+        "size_bytes": 5605
+      },
+      {
+        "blob_sha1": "e77d9fc503904f33072ba6cd07ce1b2cac07a79e",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 27
+        },
+        "git_mode": "100644",
+        "manifest_index": 503,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_bib.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "b8dd16824ac0029930515f0120748d07fe9395b23ac2bb0fc7b3e5634963e4ee",
+        "size_bytes": 5577
+      },
+      {
+        "blob_sha1": "151d88bea2de026b2f362a6bfecf8979f46df358",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 56
+        },
+        "git_mode": "100644",
+        "manifest_index": 504,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_preamble.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "aa02d8b576217ceb99be5f669c324defc866ae1bf288282b96eb823ee9555a74",
+        "size_bytes": 2627
+      },
+      {
+        "blob_sha1": "5944469e35ccef3da63957311aab917d022b2f75",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 80
+        },
+        "git_mode": "100644",
+        "manifest_index": 505,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec00_intro.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "2204774d661bda115966451ed1fad7a34cbd1dc67a26a553fbf0bb089f1efbf0",
+        "size_bytes": 7114
+      },
+      {
+        "blob_sha1": "221523c61d194e297d53801a50dadd449162364b",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 144
+        },
+        "git_mode": "100644",
+        "manifest_index": 506,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec01_partition.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "58547ec60393c8205d4ae9b21dbdb3c5595c2b84e9fd705dad621bf772d3cdb8",
+        "size_bytes": 12508
+      },
+      {
+        "blob_sha1": "28d1e6ff7766414c42d104d14a138c1ec3472a89",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 190
+        },
+        "git_mode": "100644",
+        "manifest_index": 507,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec02_config.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "9953d91110a0ad6ebdb6a26ab886077deb9969ed6a2f0792bfb18d98158f1ea3",
+        "size_bytes": 15317
+      },
+      {
+        "blob_sha1": "f4a3cff5b1604cc853625d68bb27500e9e56fd00",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 102
+        },
+        "git_mode": "100644",
+        "manifest_index": 508,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec03_vibel.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "7f1e4517a4f43af27eeeb502077621be3ddc6f205e03024b6f108f5bcfc08c49",
+        "size_bytes": 9640
+      },
+      {
+        "blob_sha1": "1046318e3bd2d0ba5ddfcb7af237e75b32b7d9cf",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 191
+        },
+        "git_mode": "100644",
+        "manifest_index": 509,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec04_einstein.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "632205e52d3dfaf42696dd6138c086a2c57f884837f74fc6669073161eb632cd",
+        "size_bytes": 16404
+      },
+      {
+        "blob_sha1": "93c444066debda6e8baf81b36fe570e7b6e36d2b",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 243
+        },
+        "git_mode": "100644",
+        "manifest_index": 510,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec05_mixing.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "a463f7070892f253e51a5bf8aa1f57ee7cf822079433a46f6a2a909fbd37432c",
+        "size_bytes": 21735
+      },
+      {
+        "blob_sha1": "d158071b27e5c16515f23681e558e2cc323dbf1f",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 52
+        },
+        "git_mode": "100644",
+        "manifest_index": 511,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec06_limits.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "7a0a99a2bea048049ffb3aba1c2dbc2cdf84974d4e5072c43070cb21e4980042",
+        "size_bytes": 3972
+      },
+      {
+        "blob_sha1": "5ab821158615de9352c56881c6a5d5a60257d06d",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 58
+        },
+        "git_mode": "100644",
+        "manifest_index": 512,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec07_revheat.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "beb07e9d6e3182a38dbfad81cc3e3cb1ec1165a57f96415d9f6f2e416375d48a",
+        "size_bytes": 5486
+      },
+      {
+        "blob_sha1": "f4e5e9f6be3c676e6d2d07acd9ae2f3080b38672",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 231
+        },
+        "git_mode": "100644",
+        "manifest_index": 513,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec08_synthesis.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "a4c2c61341326811e1be72ee7a834de2b76136b873358b671740f00e759d995a",
+        "size_bytes": 18578
+      },
+      {
+        "blob_sha1": "53e0f70f873e73039d616e7d563ef0a60d341b23",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 43
+        },
+        "git_mode": "100644",
+        "manifest_index": 514,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec09_method.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "7354424f5453ea1ae24cc08a6b4fc5ebc6961993be610f6a58f89a166842edd8",
+        "size_bytes": 4094
+      },
+      {
+        "blob_sha1": "a2cdc003b28d67f5959422ebed40a6c99fa97c23",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 25
+        },
+        "git_mode": "100644",
+        "manifest_index": 515,
+        "path": "Claude/docs/v1.0.21/_sections/ch2_sec10_closing.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "21ec0c5195a0ed01298e433c90d963d83b1d448baf1be15917f958dee36a7fa4",
+        "size_bytes": 2492
+      },
+      {
+        "blob_sha1": "292c4c3254e6f84368ea630e3213e7b924dd1447",
+        "extension": "pdf",
+        "extent": {
+          "encrypted": false,
+          "pages": 8
+        },
+        "git_mode": "100644",
+        "manifest_index": 516,
+        "path": "Claude/docs/v1.0.21/appendix_phase_separation.pdf",
+        "review_mode": "FULL_PDF",
+        "role": "generated_document",
+        "sha256": "33da6e5ca5d37217ceac2271302955d28f431e7c89d7b0bb4153570d5f766123",
+        "size_bytes": 243966
+      },
+      {
+        "blob_sha1": "4e17bf01a5a1eb71476e6112d6a26b96861b17f5",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 497
+        },
+        "git_mode": "100644",
+        "manifest_index": 517,
+        "path": "Claude/docs/v1.0.21/appendix_phase_separation.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "18e6702c0cb66049a6ed1760ad0d6a2c403f7c2aa0c2c2bd9e6e4dc2a5df336e",
+        "size_bytes": 34371
+      },
+      {
+        "blob_sha1": "72b0e92dcca811ba99752a63042bbf6d9e9a72f4",
+        "extension": "pdf",
+        "extent": {
+          "encrypted": false,
+          "pages": 76
+        },
+        "git_mode": "100644",
+        "manifest_index": 518,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.pdf",
+        "review_mode": "FULL_PDF",
+        "role": "generated_document",
+        "sha256": "50746ba4d978e03ed78282903e5c7ebb0f968d3f4fb98d50c01197c93b03507d",
+        "size_bytes": 934112
+      },
+      {
+        "blob_sha1": "45ab296a335cdbf5420d2a9cf2b3f7034951c393",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 48
+        },
+        "git_mode": "100644",
+        "manifest_index": 519,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "d9e7afde76a438836cc898c7a3d15910a01d40297ae4e3128f54c007bac2e0b8",
+        "size_bytes": 2085
+      },
+      {
+        "blob_sha1": "40859fb90ab717353035989413ea90a6e9c128c5",
+        "extension": "pdf",
+        "extent": {
+          "encrypted": false,
+          "pages": 78
+        },
+        "git_mode": "100644",
+        "manifest_index": 520,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.pdf",
+        "review_mode": "FULL_PDF",
+        "role": "generated_document",
+        "sha256": "fe544e407995fa1351c0a66171a2edcb04a420fe9d394085e568e7f390f6f0ae",
+        "size_bytes": 960814
+      },
+      {
+        "blob_sha1": "fcb91c795e13a5f12cf8683ca7d73b708a915c6d",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 8
+        },
+        "git_mode": "100644",
+        "manifest_index": 521,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch1_v1.0.21_nav.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "cc39dde71001eea7dfff944742f2252440d73dfcc12189b757cecb6e05192a73",
+        "size_bytes": 584
+      },
+      {
+        "blob_sha1": "e797c590b578f07f6fe97fff43268c301009c232",
+        "extension": "pdf",
+        "extent": {
+          "encrypted": false,
+          "pages": 26
+        },
+        "git_mode": "100644",
+        "manifest_index": 522,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21.pdf",
+        "review_mode": "FULL_PDF",
+        "role": "generated_document",
+        "sha256": "08a1b8bdd7b454fe259ef847d8b211db68ac71b0a36f8cad06e4a9dbf43e44ab",
+        "size_bytes": 482977
+      },
+      {
+        "blob_sha1": "357e3d06f78c3f980eba0524611feb580039ab50",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 38
+        },
+        "git_mode": "100644",
+        "manifest_index": 523,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "cb66a58fc409dd19e6ab07dbc51086719701c9aceae91d588d9457b72655abef",
+        "size_bytes": 2120
+      },
+      {
+        "blob_sha1": "87ae4dc1fabbf54dc00abfaad0d4a6adbf147381",
+        "extension": "pdf",
+        "extent": {
+          "encrypted": false,
+          "pages": 26
+        },
+        "git_mode": "100644",
+        "manifest_index": 524,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21_nav.pdf",
+        "review_mode": "FULL_PDF",
+        "role": "generated_document",
+        "sha256": "ff316312d0b341563970b0a4b40318a22c1b2ddf3cd9dc0908ca694581de1a04",
+        "size_bytes": 484101
+      },
+      {
+        "blob_sha1": "d605eb0c9bda14be5677f32b7fab75c4a534ab3d",
+        "extension": "tex",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 8
+        },
+        "git_mode": "100644",
+        "manifest_index": 525,
+        "path": "Claude/docs/v1.0.21/graphite_ica_ch2_v1.0.21_nav.tex",
+        "review_mode": "FULL_TEXT",
+        "role": "theory",
+        "sha256": "4f9aade46ada8fb83e11d876a0cf4363af07000bf2bde12a82fe001217cafa45",
+        "size_bytes": 593
+      },
+      {
+        "blob_sha1": "2d23088e094d93a28b687788b9ac03fa0ab5520c",
+        "extension": "md",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 37
+        },
+        "git_mode": "100644",
+        "manifest_index": 526,
+        "path": "Claude/docs/v1.0.21/results/V1021_CHANGE_LOG.md",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "b0092e4313ecd228904e865cd93bc00215b7a3740bdc65a3353f05e333f686de",
+        "size_bytes": 9402
+      },
+      {
+        "blob_sha1": "ee86e4a8e74dea13cd01dc8fb8de36bb7119bf12",
+        "extension": "md",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 19
+        },
+        "git_mode": "100644",
+        "manifest_index": 527,
+        "path": "Claude/docs/v1.0.21/results/V1021_EXECUTION_LEDGER.md",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "b67870551a414f991badf85309da31cca208c77cc85b7399badead1fc1048472",
+        "size_bytes": 5666
+      },
+      {
+        "blob_sha1": "64bdca8830a491e10d45c30fe9d992bb334afe03",
+        "extension": "md",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 37
+        },
+        "git_mode": "100644",
+        "manifest_index": 528,
+        "path": "Claude/docs/v1.0.21/results/V1021_REFERENCE_LEDGER.md",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "a61856800cf5fa0247ef794c559337ff6c48f1801105ef13647ce625edd2b838",
+        "size_bytes": 3538
+      },
+      {
+        "blob_sha1": "a7dd780692802ccfe0aaf6d24e64a26d1d7edccd",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1299
+        },
+        "git_mode": "100644",
+        "manifest_index": 529,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q0.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "c219c20e1e536b3df8788ec22db391ff4348cce8582b66f536f2895f86f0db98",
+        "size_bytes": 26887
+      },
+      {
+        "blob_sha1": "84282a715ba0d7c8bd1f331944d1d0762b43b87a",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1324
+        },
+        "git_mode": "100644",
+        "manifest_index": 530,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q2.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "8c09d2e5c097ce33b00d503e9fccd8e352f51663ffe10b5b5da5cbb977ea5169",
+        "size_bytes": 27434
+      },
+      {
+        "blob_sha1": "925ea0832d6c610374e0202e608cc179bafeef5b",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1356
+        },
+        "git_mode": "100644",
+        "manifest_index": 531,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q3.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "de6bf2e7e56817c876fb6bfd81b3105637e764bee420a8b777627b1e588ab26f",
+        "size_bytes": 28097
+      },
+      {
+        "blob_sha1": "2dec26cb9a8f9468c317c14c4f58f9a1d339af0f",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1361
+        },
+        "git_mode": "100644",
+        "manifest_index": 532,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q4.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "569f083acefdcc39bb136777ba5764206322e76a4faf4b306b4e206038ba6db0",
+        "size_bytes": 28182
+      },
+      {
+        "blob_sha1": "c66525c071cfb411fa4dfb27eafc868d0e06d708",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1369
+        },
+        "git_mode": "100644",
+        "manifest_index": 533,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "48d40f3b667fd85fe3ab7fbe1828dd397d9caa76bb73f77d68bcddd5d78b3e7f",
+        "size_bytes": 28350
+      },
+      {
+        "blob_sha1": "c599d477dab02ae2fe8cc9bae83ce9a0261f89f1",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1371
+        },
+        "git_mode": "100644",
+        "manifest_index": 534,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5b.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "3be56e553dc6cb833b4b3d0467c73365bf03669108948315ab6c7d795c6418cf",
+        "size_bytes": 28397
+      },
+      {
+        "blob_sha1": "e0b1d47f16f75b73bb7455e551f55abaa91f0386",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1366
+        },
+        "git_mode": "100644",
+        "manifest_index": 535,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q5nav.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "73740b9552e56c12760c901bed9a4dbc1a963e5ae6e8d9c0dae79d8371bb3511",
+        "size_bytes": 28285
+      },
+      {
+        "blob_sha1": "87b9ebd79c49ed90f2f82fa9c90befc5ce5d9ef0",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1372
+        },
+        "git_mode": "100644",
+        "manifest_index": 536,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q6.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "640814e0630e5ef72fccdfbd2688a10110d3f75ba74559a34db2601097223e66",
+        "size_bytes": 28418
+      },
+      {
+        "blob_sha1": "84f227db3fb70eb8607c39158633040ef3d40fd2",
+        "extension": "json",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 1393
+        },
+        "git_mode": "100644",
+        "manifest_index": 537,
+        "path": "Claude/docs/v1.0.21/results/snapshot_v1021_q7.json",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "765412e3602c07965c3e1affe17dd1e75776fdcace824325897a377d21585115",
+        "size_bytes": 28893
+      },
+      {
+        "blob_sha1": "c929b7502f67e8799843744da729e15ee391a473",
+        "extension": "py",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 165
+        },
+        "git_mode": "100644",
+        "manifest_index": 538,
+        "path": "Claude/docs/v1.0.21/results/tools_check_structure.py",
+        "review_mode": "FULL_TEXT",
+        "role": "result",
+        "sha256": "7389bfce4c204e1d57801d84d43bb464c5bc918a9e9ad678f353f7880cd670b3",
+        "size_bytes": 8313
+      },
+      {
+        "blob_sha1": "742506b061d872afdd094781ea2157faae800943",
+        "extension": "py",
+        "extent": {
+          "encoding_check": "utf-8",
+          "lines": 427
+        },
+        "git_mode": "100644",
+        "manifest_index": 539,
+        "path": "Claude/docs/v1.0.21/test_gates_v1021.py",
+        "review_mode": "FULL_TEXT",
+        "role": "test",
+        "sha256": "a8de4944ea304b0106a7cfe0c495f2d7939f9cda74c2eae131fba55dd7e67d36",
+        "size_bytes": 22050
+      }
+    ],
+    "summary": {
+      "duplicate_groups": [],
+      "extension_counts": {
+        "json": 9,
+        "md": 5,
+        "pdf": 5,
+        "py": 3,
+        "tex": 46
+      },
+      "indices": [
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539
+      ],
+      "mode_counts": {
+        "FULL_PDF": 5,
+        "FULL_TEXT": 63
+      },
+      "paths": 68,
+      "pdf_files": 5,
+      "pdf_pages": 214,
+      "role_counts": {
+        "code": 1,
+        "generated_document": 5,
+        "implementation_guide": 1,
+        "result": 15,
+        "test": 1,
+        "theory": 45
+      },
+      "text_files": 63,
+      "text_lines": 21048,
+      "text_nonblank_lines": 20424,
+      "total_bytes": 4071795,
+      "unique_blobs": 68,
+      "unique_paths": 68
+    },
+    "traversal": {
+      "arrays": 185,
+      "max_depth": 7,
+      "nodes": 21172,
+      "objects": 3151,
+      "scalars": 17836
+    }
+  },
+  "negative_controls": {
+    "cases": [
+      {
+        "case_id": "NEG_JSON_DUPLICATE",
+        "expected_codes": [
+          "NEG_JSON_DUPLICATE"
+        ],
+        "observed_codes": [
+          "NEG_JSON_DUPLICATE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_JSON_NAN",
+        "expected_codes": [
+          "NEG_JSON_NAN"
+        ],
+        "observed_codes": [
+          "NEG_JSON_NAN"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_JSON_POSITIVE_OVERFLOW",
+        "expected_codes": [
+          "NEG_JSON_POSITIVE_OVERFLOW"
+        ],
+        "observed_codes": [
+          "NEG_JSON_POSITIVE_OVERFLOW"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_JSON_NEGATIVE_OVERFLOW",
+        "expected_codes": [
+          "NEG_JSON_NEGATIVE_OVERFLOW"
+        ],
+        "observed_codes": [
+          "NEG_JSON_NEGATIVE_OVERFLOW"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_RELEASE_COUNT",
+        "expected_codes": [
+          "MANIFEST_RELEASE_COUNT"
+        ],
+        "observed_codes": [
+          "MANIFEST_RELEASE_COUNT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_UNIQUE_PATHS",
+        "expected_codes": [
+          "MANIFEST_UNIQUE_PATHS"
+        ],
+        "observed_codes": [
+          "MANIFEST_UNIQUE_PATHS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_UNIQUE_BLOBS",
+        "expected_codes": [
+          "MANIFEST_UNIQUE_BLOBS"
+        ],
+        "observed_codes": [
+          "MANIFEST_UNIQUE_BLOBS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_TOTAL_BYTES",
+        "expected_codes": [
+          "MANIFEST_TOTAL_BYTES"
+        ],
+        "observed_codes": [
+          "MANIFEST_TOTAL_BYTES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_INDEX_RANGE",
+        "expected_codes": [
+          "MANIFEST_INDEX_RANGE"
+        ],
+        "observed_codes": [
+          "MANIFEST_INDEX_RANGE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_MODE_COUNTS",
+        "expected_codes": [
+          "MANIFEST_MODE_COUNTS"
+        ],
+        "observed_codes": [
+          "MANIFEST_MODE_COUNTS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_ROLE_COUNTS",
+        "expected_codes": [
+          "MANIFEST_ROLE_COUNTS"
+        ],
+        "observed_codes": [
+          "MANIFEST_ROLE_COUNTS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_EXTENSION_COUNTS",
+        "expected_codes": [
+          "MANIFEST_EXTENSION_COUNTS"
+        ],
+        "observed_codes": [
+          "MANIFEST_EXTENSION_COUNTS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_TEXT_FILES",
+        "expected_codes": [
+          "MANIFEST_TEXT_FILES"
+        ],
+        "observed_codes": [
+          "MANIFEST_TEXT_FILES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_TEXT_LINES",
+        "expected_codes": [
+          "MANIFEST_TEXT_LINES"
+        ],
+        "observed_codes": [
+          "MANIFEST_TEXT_LINES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_NONBLANK_LINES",
+        "expected_codes": [
+          "MANIFEST_NONBLANK_LINES"
+        ],
+        "observed_codes": [
+          "MANIFEST_NONBLANK_LINES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_PDF_FILES",
+        "expected_codes": [
+          "MANIFEST_PDF_FILES"
+        ],
+        "observed_codes": [
+          "MANIFEST_PDF_FILES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_PDF_PAGES",
+        "expected_codes": [
+          "MANIFEST_PDF_PAGES"
+        ],
+        "observed_codes": [
+          "MANIFEST_PDF_PAGES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_MANIFEST_DUPLICATES",
+        "expected_codes": [
+          "MANIFEST_DUPLICATES"
+        ],
+        "observed_codes": [
+          "MANIFEST_DUPLICATES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DISPOSITION_ROWS",
+        "expected_codes": [
+          "ROUTING_DISPOSITION_ROWS"
+        ],
+        "observed_codes": [
+          "ROUTING_DISPOSITION_ROWS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_COUNT",
+        "expected_codes": [
+          "ROUTING_TARGET62_COUNT"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_COUNT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_DISTRIBUTION",
+        "expected_codes": [
+          "ROUTING_TARGET62_DISTRIBUTION"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_DISTRIBUTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_STATUS",
+        "expected_codes": [
+          "ROUTING_TARGET62_STATUS"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_STATUS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_IDENTITY",
+        "expected_codes": [
+          "ROUTING_TARGET62_IDENTITY"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_IDENTITY"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_INHERITED_DIRECT_ZERO",
+        "expected_codes": [
+          "ROUTING_INHERITED_DIRECT_ZERO"
+        ],
+        "observed_codes": [
+          "ROUTING_INHERITED_DIRECT_ZERO"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_ID_SET",
+        "expected_codes": [
+          "ROUTING_TARGET62_ID_SET"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_ID_SET"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_CARRY_LINKS",
+        "expected_codes": [
+          "ROUTING_TARGET62_CARRY_LINKS"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_CARRY_LINKS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_TARGET62_FULL_BIJECTION",
+        "expected_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_BLOCKER_DIRECT_ZERO",
+        "expected_codes": [
+          "ROUTING_BLOCKER_DIRECT_ZERO"
+        ],
+        "observed_codes": [
+          "ROUTING_BLOCKER_DIRECT_ZERO"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DEBT_ROWS",
+        "expected_codes": [
+          "ROUTING_DEBT_ROWS"
+        ],
+        "observed_codes": [
+          "ROUTING_DEBT_ROWS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DEBT_ORIGIN62",
+        "expected_codes": [
+          "ROUTING_DEBT_ORIGIN62"
+        ],
+        "observed_codes": [
+          "ROUTING_DEBT_ORIGIN62"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DEBT_EFFECTIVE62",
+        "expected_codes": [
+          "ROUTING_DEBT_EFFECTIVE62"
+        ],
+        "observed_codes": [
+          "ROUTING_DEBT_EFFECTIVE62"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DEBT_IDENTITY",
+        "expected_codes": [
+          "ROUTING_DEBT_IDENTITY"
+        ],
+        "observed_codes": [
+          "ROUTING_DEBT_IDENTITY"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_DEBT_ALIAS_OWNER",
+        "expected_codes": [
+          "ROUTING_DEBT_ALIAS_OWNER"
+        ],
+        "observed_codes": [
+          "ROUTING_DEBT_ALIAS_OWNER"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_INHERITED52_FULL_BIJECTION",
+        "expected_codes": [
+          "ROUTING_INHERITED52_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_INHERITED52_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION",
+        "expected_codes": [
+          "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_NEW_BLOCKER5_FULL_BIJECTION",
+        "expected_codes": [
+          "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_CARRY_AUTHORITY_PROMOTION",
+        "expected_codes": [
+          "ROUTING_CARRY_AUTHORITY_PROMOTION"
+        ],
+        "observed_codes": [
+          "ROUTING_CARRY_AUTHORITY_PROMOTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_COMPONENT_IDS",
+        "expected_codes": [
+          "ROUTING_COMPONENT_IDS"
+        ],
+        "observed_codes": [
+          "ROUTING_COMPONENT_IDS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_COMPONENT_OWNERS",
+        "expected_codes": [
+          "ROUTING_COMPONENT_OWNERS"
+        ],
+        "observed_codes": [
+          "ROUTING_COMPONENT_OWNERS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_COMPONENT_STATUS",
+        "expected_codes": [
+          "ROUTING_COMPONENT_STATUS"
+        ],
+        "observed_codes": [
+          "ROUTING_COMPONENT_STATUS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_PARENT_OPERATOR",
+        "expected_codes": [
+          "ROUTING_PARENT_OPERATOR"
+        ],
+        "observed_codes": [
+          "ROUTING_PARENT_OPERATOR"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_PARENT_TARGET",
+        "expected_codes": [
+          "ROUTING_PARENT_TARGET"
+        ],
+        "observed_codes": [
+          "ROUTING_PARENT_TARGET"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_PARENT_STATUS",
+        "expected_codes": [
+          "ROUTING_PARENT_STATUS"
+        ],
+        "observed_codes": [
+          "ROUTING_PARENT_STATUS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_BLOCKER_DEBT_MEMBERS",
+        "expected_codes": [
+          "ROUTING_BLOCKER_DEBT_MEMBERS"
+        ],
+        "observed_codes": [
+          "ROUTING_BLOCKER_DEBT_MEMBERS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_BLOCKER_DEBT_ID_SET",
+        "expected_codes": [
+          "ROUTING_BLOCKER_DEBT_ID_SET"
+        ],
+        "observed_codes": [
+          "ROUTING_BLOCKER_DEBT_ID_SET"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_BLOCKER_IDENTITY",
+        "expected_codes": [
+          "ROUTING_BLOCKER_IDENTITY"
+        ],
+        "observed_codes": [
+          "ROUTING_BLOCKER_IDENTITY"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ROUTING_AUTHORITY_PROMOTION",
+        "expected_codes": [
+          "ROUTING_AUTHORITY_PROMOTION"
+        ],
+        "observed_codes": [
+          "ROUTING_AUTHORITY_PROMOTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_SECTIONS",
+        "expected_codes": [
+          "NEG_PLAN_SECTIONS"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_SECTIONS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_STEPS",
+        "expected_codes": [
+          "NEG_PLAN_STEPS"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_STEPS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_OUTPUTS",
+        "expected_codes": [
+          "NEG_PLAN_OUTPUTS"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_OUTPUTS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_SUBJECTS",
+        "expected_codes": [
+          "NEG_PLAN_SUBJECTS"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_SUBJECTS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_GATES",
+        "expected_codes": [
+          "NEG_PLAN_GATES"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_GATES"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_STEP58",
+        "expected_codes": [
+          "NEG_PLAN_STEP58"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_STEP58"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PLAN_AUTHORITY",
+        "expected_codes": [
+          "NEG_PLAN_AUTHORITY"
+        ],
+        "observed_codes": [
+          "NEG_PLAN_AUTHORITY"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "USER_TRANSCRIPT_FALSE_PRESENT",
+        "expected_codes": [
+          "USER_TRANSCRIPT_FALSE_PRESENT"
+        ],
+        "observed_codes": [
+          "USER_TRANSCRIPT_FALSE_PRESENT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_Q1_PARTIAL_PROMOTION",
+        "expected_codes": [
+          "NEG_Q1_PARTIAL_PROMOTION"
+        ],
+        "observed_codes": [
+          "NEG_Q1_PARTIAL_PROMOTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_SNAPSHOT_STRICT_TRAVERSAL",
+        "expected_codes": [
+          "NEG_SNAPSHOT_STRICT_TRAVERSAL"
+        ],
+        "observed_codes": [
+          "NEG_SNAPSHOT_STRICT_TRAVERSAL"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_DERIVATION_AXIS_COLLAPSE",
+        "expected_codes": [
+          "NEG_DERIVATION_AXIS_COLLAPSE"
+        ],
+        "observed_codes": [
+          "NEG_DERIVATION_AXIS_COLLAPSE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_RUNTIME_DENOMINATOR",
+        "expected_codes": [
+          "NEG_RUNTIME_DENOMINATOR"
+        ],
+        "observed_codes": [
+          "NEG_RUNTIME_DENOMINATOR"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_A05_MISSING_BUILD",
+        "expected_codes": [
+          "NEG_A05_MISSING_BUILD"
+        ],
+        "observed_codes": [
+          "NEG_A05_MISSING_BUILD"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_A07_OWNER_PROMOTION",
+        "expected_codes": [
+          "NEG_A07_OWNER_PROMOTION"
+        ],
+        "observed_codes": [
+          "NEG_A07_OWNER_PROMOTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_CARRY_COUNT_ONLY",
+        "expected_codes": [
+          "NEG_CARRY_COUNT_ONLY"
+        ],
+        "observed_codes": [
+          "NEG_CARRY_COUNT_ONLY"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PERSISTENCE_SELF_REFERENCE",
+        "expected_codes": [
+          "NEG_PERSISTENCE_SELF_REFERENCE"
+        ],
+        "observed_codes": [
+          "NEG_PERSISTENCE_SELF_REFERENCE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_CODE_ALLOWLIST_BASENAME",
+        "expected_codes": [
+          "NEG_CODE_ALLOWLIST_BASENAME"
+        ],
+        "observed_codes": [
+          "NEG_CODE_ALLOWLIST_BASENAME"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_SUPPLEMENTAL_DISPOSITION_FUSION",
+        "expected_codes": [
+          "NEG_SUPPLEMENTAL_DISPOSITION_FUSION"
+        ],
+        "observed_codes": [
+          "NEG_SUPPLEMENTAL_DISPOSITION_FUSION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_PROCESS_ARTIFACT_SCHEMA",
+        "expected_codes": [
+          "NEG_PROCESS_ARTIFACT_SCHEMA"
+        ],
+        "observed_codes": [
+          "NEG_PROCESS_ARTIFACT_SCHEMA"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_SUPPLEMENTAL_RECOVERY_FIELDS",
+        "expected_codes": [
+          "NEG_SUPPLEMENTAL_RECOVERY_FIELDS"
+        ],
+        "observed_codes": [
+          "NEG_SUPPLEMENTAL_RECOVERY_FIELDS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_DIRTY_MISSING",
+        "expected_codes": [
+          "NEG_DIRTY_EXACT_SEVEN"
+        ],
+        "observed_codes": [
+          "NEG_DIRTY_EXACT_SEVEN"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_DIRTY_EXTRA",
+        "expected_codes": [
+          "NEG_DIRTY_EXACT_SEVEN"
+        ],
+        "observed_codes": [
+          "NEG_DIRTY_EXACT_SEVEN"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_GIT_PARENT",
+        "expected_codes": [
+          "NEG_GIT_PARENT"
+        ],
+        "observed_codes": [
+          "NEG_GIT_PARENT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_GIT_SUBJECT",
+        "expected_codes": [
+          "NEG_GIT_SUBJECT"
+        ],
+        "observed_codes": [
+          "NEG_GIT_SUBJECT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_GIT_BRANCH",
+        "expected_codes": [
+          "NEG_GIT_BRANCH"
+        ],
+        "observed_codes": [
+          "NEG_GIT_BRANCH"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_GIT_PROTECTED",
+        "expected_codes": [
+          "NEG_GIT_PROTECTED"
+        ],
+        "observed_codes": [
+          "NEG_GIT_PROTECTED"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_GIT_MAIN",
+        "expected_codes": [
+          "NEG_GIT_MAIN"
+        ],
+        "observed_codes": [
+          "NEG_GIT_MAIN"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_MANIFEST_OBJECT",
+        "expected_codes": [
+          "NEG_ACTUAL_MANIFEST_OBJECT"
+        ],
+        "observed_codes": [
+          "NEG_ACTUAL_MANIFEST_OBJECT"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_PER_SOURCE_LINK_SWAP",
+        "expected_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_PER_SOURCE_DISPOSITION_SWAP",
+        "expected_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_TARGET62_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_INHERITED_TRUTH_PROMOTION",
+        "expected_codes": [
+          "ROUTING_CARRY_AUTHORITY_PROMOTION",
+          "ROUTING_INHERITED52_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_CARRY_AUTHORITY_PROMOTION",
+          "ROUTING_INHERITED52_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_INHERITED_BLOCKER_TARGET",
+        "expected_codes": [
+          "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_INHERITED_BLOCKER5_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_NEW_BLOCKER_TRUTH",
+        "expected_codes": [
+          "ROUTING_BLOCKER_IDENTITY",
+          "ROUTING_CARRY_AUTHORITY_PROMOTION",
+          "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+        ],
+        "observed_codes": [
+          "ROUTING_BLOCKER_IDENTITY",
+          "ROUTING_CARRY_AUTHORITY_PROMOTION",
+          "ROUTING_NEW_BLOCKER5_FULL_BIJECTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL",
+        "expected_codes": [
+          "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL"
+        ],
+        "observed_codes": [
+          "USER_TRANSCRIPT_FALSE_PRESENT_ACTUAL"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_RESULT_GATE",
+        "expected_codes": [
+          "NEG_ACTUAL_RESULT_GATE"
+        ],
+        "observed_codes": [
+          "NEG_ACTUAL_RESULT_GATE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_ACTIVE_STATUS",
+        "expected_codes": [
+          "NEG_ACTUAL_ACTIVE_STATUS"
+        ],
+        "observed_codes": [
+          "NEG_ACTUAL_ACTIVE_STATUS"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "NEG_ACTUAL_HANDOVER_STATE",
+        "expected_codes": [
+          "NEG_ACTUAL_HANDOVER_STATE"
+        ],
+        "observed_codes": [
+          "NEG_ACTUAL_HANDOVER_STATE"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "RESULT_OVERALL_FAIL",
+        "expected_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "observed_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "ACTIVE_PHASE062_FAIL",
+        "expected_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "observed_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "PARENT_PHASE062_STATUS_FAIL",
+        "expected_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "observed_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "HANDOVER_OVERALL_FAIL",
+        "expected_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "observed_codes": [
+          "CONTROL_CURRENT_TERMINAL_CONTRADICTION"
+        ],
+        "passed": true
+      }
+    ],
+    "failed": [],
+    "passed": 88,
+    "total": 88
+  },
+  "phase": 62,
+  "plan_contract": {
+    "gates": [
+      "PASS_P062_PLAN_ACTIVATION",
+      "PASS_P062_PLAN_ACTIVATION_PERSISTENCE",
+      "PASS_P062_STEP52_PROCESS_SOURCE_TOPOLOGY",
+      "PASS_P062_STEP52_PERSISTENCE",
+      "PASS_P062_STEP53_STATMECH_TST_REDERIVATION",
+      "PASS_P062_STEP54_LCO_SI_SCOPE",
+      "PASS_P062_STEP55_CODE_RUNTIME_DELTA",
+      "PASS_P062_STEP56_PHYSICS_CLOSURE",
+      "PASS_P062_STEP57_1_DISPOSITIONS",
+      "PASS_P062_STEP53_PERSISTENCE",
+      "PASS_P062_STEP54_PERSISTENCE",
+      "PASS_P062_STEP55_PERSISTENCE",
+      "PASS_P062_STEP56_PERSISTENCE",
+      "PASS_P062_STEP57_1_PERSISTENCE",
+      "PASS_P062_STEP57_2_PERSISTENCE",
+      "PASS_P062_LINEAGE_E",
+      "CONDITIONAL_P062",
+      "FAIL_P062"
+    ],
+    "lines": 762,
+    "normalized_bytes": 60609,
+    "normalized_sha256": "e393e488c374cbaba90bdcd2bc5fe74f90a8ca08c2266ec5a2b424a6f7816db4",
+    "outputs": [
+      "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+      "Codex/work/v1021_phase062/validate_phase062_plan.py",
+      "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+      "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+      "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+      "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+      "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+      "Codex/work/v1021_phase062/build_phase062_step52_source_process_topology.py",
+      "Codex/work/v1021_phase062/validate_phase062_step52.py",
+      "Codex/results/PHASE_062_V1021_SOURCE_PROCESS_TOPOLOGY.json",
+      "Codex/results/PHASE_062_V1021_READ_ATTESTATION.json",
+      "Codex/results/PHASE_062_STEP_052_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "Codex/work/v1021_phase062/build_phase062_step53_statmech_tst.py",
+      "Codex/work/v1021_phase062/validate_phase062_step53.py",
+      "Codex/results/PHASE_062_V1021_STATMECH_TST_REDERIVATION.json",
+      "Codex/results/PHASE_062_STEP_053_STATMECH_TST_REDERIVATION_RESULT.md",
+      "Codex/work/v1021_phase062/build_phase062_step54_lco_si_scope.py",
+      "Codex/work/v1021_phase062/validate_phase062_step54.py",
+      "Codex/results/PHASE_062_V1021_LCO_SI_SCOPE_MATRIX.json",
+      "Codex/results/PHASE_062_STEP_054_LCO_SI_SCOPE_RESULT.md",
+      "Codex/work/v1021_phase062/build_phase062_step55_code_runtime_delta.py",
+      "Codex/work/v1021_phase062/validate_phase062_step55.py",
+      "Codex/results/PHASE_062_V1021_CODE_DELTA_MATRIX.json",
+      "Codex/results/PHASE_062_V1021_RUNTIME_ATTESTATION.json",
+      "Codex/results/PHASE_062_STEP_055_CODE_RUNTIME_DELTA_RESULT.md",
+      "Codex/work/v1021_phase062/build_phase062_step56_physics_closure.py",
+      "Codex/work/v1021_phase062/validate_phase062_step56.py",
+      "Codex/results/PHASE_062_V1021_PHYSICS_CLOSURE_MATRIX.json",
+      "Codex/results/PHASE_062_STEP_056_PHYSICS_CLOSURE_RESULT.md",
+      "Codex/work/v1021_phase062/build_phase062_step57_dispositions.py",
+      "Codex/work/v1021_phase062/validate_phase062_step57_dispositions.py",
+      "Codex/results/PHASE_062_V1021_DISPOSITION_MATRIX.json",
+      "Codex/results/PHASE_062_V1021_CARRY_FORWARD_DELTA.json",
+      "Codex/results/PHASE_062_STEP_057_1_DISPOSITION_RESULT.md",
+      "Codex/work/v1021_phase062/validate_phase062_final.py",
+      "Codex/results/PHASE_062_VALIDATION.json",
+      "Codex/results/PHASE_062_V1021_LINEAGE_REPORT_E.md",
+      "Codex/results/PHASE_062_STEP_057_2_GATE_RESULT.md",
+      "Codex/results/PHASE_062_RESULT.md"
+    ],
+    "path": "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+    "sections": [
+      "## Summary",
+      "## Current Ground Truth",
+      "## Phase Range",
+      "## Exact Read Inputs",
+      "## Non-goals and Scope Guards",
+      "## Implementation Changes",
+      "## Plan Activation Unit — Save Before Step 52",
+      "## Phase 062 — v1.0.21 Reaudit",
+      "## Phase Gate",
+      "## Implementation Interfaces",
+      "## Test and Validation Plan",
+      "## Stop Conditions",
+      "## Assumptions",
+      "## Correction History"
+    ],
+    "step_headings": [
+      "### Step 52 — Q0–Q8 Source/Process Topology and Full-read Attestation",
+      "### Step 53 — Grand-canonical Charge Balance and TST Rederivation",
+      "### Step 54 — LCO and Si Literature, Unit and Scope Audit",
+      "### Step 55 — v1.0.21↔v1.0.20/19 Code and Runtime Delta",
+      "### Step 56 — Added Narrative versus New Physics Closure and Adoption/Build Audit",
+      "### Step 57.1 — Source Disposition and Carry-forward Delta",
+      "### Step 57.2 — Integrated Validation, Lineage Report E and Final Gate"
+    ],
+    "subjects": [
+      "docs(phase062): plan v1021 lineage reaudit",
+      "audit(phase062): freeze v1021 source process topology",
+      "audit(phase062): rederive v1021 statmech tst",
+      "audit(phase062): bound v1021 lco si scope",
+      "audit(phase062): compare v1021 code runtime",
+      "audit(phase062): adjudicate v1021 physics closure",
+      "audit(phase062): disposition v1021 lineage",
+      "audit(phase062): close v1021 lineage gate"
+    ]
+  },
+  "repository_state": {
+    "branch": "codex/anode-fit-v1025_2-canonical-completion",
+    "claude_tracked": [],
+    "claude_untracked": [],
+    "dirty_paths": [
+      "Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md",
+      "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+      "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+      "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+      "Codex/results/PHASE_062_PLAN_ACTIVATION_RESULT.md",
+      "Codex/results/PHASE_062_PLAN_ACTIVATION_VALIDATION.json",
+      "Codex/work/v1021_phase062/validate_phase062_plan.py"
+    ],
+    "head": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+    "live_active": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+    "main_live": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+    "main_tracking": "4069cb36a8a52b1b88c29d68aa54dcbe915b1618",
+    "origin_tracking": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2",
+    "protected_live": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+    "protected_tracking": "fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71",
+    "upstream": "86b4acbf9ed41ae12bd5ae95c4d2a5c2adb0dfe2"
+  },
+  "routing_contract": {
+    "carry_path": "Codex/results/PHASE_061_V1020_CARRY_FORWARD_DELTA.json",
+    "carry_traversal": {
+      "arrays": 874,
+      "max_depth": 10,
+      "nodes": 12855,
+      "objects": 1583,
+      "scalars": 10398
+    },
+    "disposition_path": "Codex/results/PHASE_061_V1020_DISPOSITION_MATRIX.json",
+    "disposition_traversal": {
+      "arrays": 2000,
+      "max_depth": 6,
+      "nodes": 17394,
+      "objects": 2015,
+      "scalars": 13379
+    },
+    "summary": {
+      "blocker_source_debt_id_sha256": "e3d9f0e1e91b98eccf8f248dc934db701792f72d90cfa65996ca53f72de544a0",
+      "blocker_source_debt_ids": [
+        "P061-GNF-005",
+        "P061-GNF-006",
+        "P061-STEP50-GNF-001",
+        "P061-STEP50-GNF-002",
+        "P061-STEP50-GNF-008",
+        "P061-STEP50-GNF-009",
+        "P061-STEP50-GNF-011",
+        "P061-STEP50-UNV-004",
+        "P061-UNV-007",
+        "P061-UNV-009",
+        "P061-UNV-010"
+      ],
+      "carry_external_promotion_count": 0,
+      "component_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07"
+      ],
+      "component_statuses": {
+        "A01": "OPEN",
+        "A02": "OPEN",
+        "A03": "OPEN",
+        "A04": "OPEN",
+        "A05": "OPEN",
+        "A06": "OPEN",
+        "A07": "OPEN"
+      },
+      "component_targets": {
+        "A01": 62,
+        "A02": 62,
+        "A03": 62,
+        "A04": 62,
+        "A05": 62,
+        "A06": 82,
+        "A07": 82
+      },
+      "debt_effective_target62": 4,
+      "debt_identity_sha256": "d373830b0f9e2dbea982f2ee50ac8153985b2d7e7889c0ab5dba8e457cb1807d",
+      "debt_origin_target62": 15,
+      "debt_rows": 91,
+      "direct_blocker_target62": 0,
+      "direct_inherited_target62": 0,
+      "disposition_rows": 232,
+      "effective_debt_projection": {
+        "P061-GNF-004": {
+          "duplicate_or_refinement_of": null,
+          "owner_target_phase": 62,
+          "primary_owner_id": "P061-DISP-0044",
+          "primary_owner_type": "SOURCE_DISPOSITION",
+          "route_state": "OPEN"
+        },
+        "P061-STEP48-GNF-005": {
+          "duplicate_or_refinement_of": "P061-GNF-004",
+          "owner_target_phase": 62,
+          "primary_owner_id": "P061-DISP-0044",
+          "primary_owner_type": "SOURCE_DISPOSITION",
+          "route_state": "OPEN_DUPLICATE_ALIAS"
+        },
+        "P061-STEP48-UNV-008": {
+          "duplicate_or_refinement_of": "P061-GNF-004",
+          "owner_target_phase": 62,
+          "primary_owner_id": "P061-DISP-0044",
+          "primary_owner_type": "SOURCE_DISPOSITION",
+          "route_state": "OPEN_DUPLICATE_ALIAS"
+        },
+        "P061-UNV-008": {
+          "duplicate_or_refinement_of": "P061-GNF-004",
+          "owner_target_phase": 62,
+          "primary_owner_id": "P061-DISP-0044",
+          "primary_owner_type": "SOURCE_DISPOSITION",
+          "route_state": "OPEN_DUPLICATE_ALIAS"
+        }
+      },
+      "external_promotion_count": 0,
+      "inherited52_full_projection_sha256": "a732fca7fd937977bd98521a22ff9cc8631041c8e4f1359ae7a56a243555bc28",
+      "inherited_blocker5_full_projection_sha256": "92558bb8c0383184c296054a20597d35237e231aec3f2bdbe4906edbaf6b4c23",
+      "new_blocker5_full_projection_sha256": "836d9c05a379b1d101344068173f388a8fa2ffdb498c61d3cc5d524a13dc61e0",
+      "parent_operator": "ALL_OF",
+      "parent_sha256": "5b3a03166d5e9a6733920c12cad187999f043160e9fc551e68fb04f7f5918e35",
+      "parent_status": "OPEN",
+      "parent_target": 82,
+      "target62_carry_link_counts": {
+        "P059-CFR-CF-08": 5,
+        "P059-CFR-CF-11": 141,
+        "P059-CFR-ED-03": 3,
+        "P059-CFR-NS-05": 3,
+        "P059-CFR-RB-11": 5,
+        "P059-CFR-RB-12": 93,
+        "P059-CFR-RM-011": 3
+      },
+      "target62_count": 149,
+      "target62_dispositions": {
+        "COMPETING_ONLY": 116,
+        "CORRECT": 2,
+        "PRESERVE": 28,
+        "UNVERIFIED": 3
+      },
+      "target62_full_projection_sha256": "91b4c9c04e6419e23dfa40dc32ec21ac876d2b756866ce5bf5ba4343b6bdca79",
+      "target62_id_set_sha256": "68267522dbda5c3a47fccfaad0babb2617331f2208831f36f91ec2ea284f11a5",
+      "target62_statuses": {
+        "OPEN": 121,
+        "PRESERVED_ACTIVE": 28
+      },
+      "target62_unique_sources": 149
+    }
+  },
+  "schema_version": 1,
+  "semantic_sha256": "885d73093cdcde6907c65ff8f7444f029d9ebd391f795fd99d09a551f0465b67",
+  "summary": {
+    "checks_failed": 0,
+    "checks_passed": 115,
+    "checks_total": 115,
+    "failed_codes": []
+  },
+  "supplemental_contract": {
+    "blob_sha1": "de26c03b53bedbe1cc4363bb07f66e9ca9da77f7",
+    "bytes": 10664,
+    "git_mode": "100644",
+    "lines": 76,
+    "manifest_member": false,
+    "nonblank_lines": 59,
+    "path": "Claude/plans/2026-07-16-v1021-master-plan.md",
+    "sha256": "dfc4715483cca4ac814f56af6d112b89bc7427ca5c8b3f48c2a746efca844a0d"
+  },
+  "unit": "PLAN_ACTIVATION"
+}
