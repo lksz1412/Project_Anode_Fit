@@ -12,22 +12,22 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 2. 계획 운영 지침: `Codex/plans/phase_planning_operations_guide.md`
 3. 활성 master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.md`
 4. machine master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.json`
-5. 활성 Phase 060 plan: `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`
-6. 완료된 Phase 059 plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
-7. 다음 plan 상태: Phase 061 detailed plan은 Phase 060 final gate 뒤 생성; Step 46 전 원격 activation checkpoint 필요
+5. 활성 Phase 061 plan: `Codex/plans/2026-08-26-phase061-v1020-lineage-detailed-plan.md`
+6. 완료된 Phase 060 plan: `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`
+7. 완료된 Phase 059 plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
 8. 이전 master plan: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
 9. 이전 Phase plan: `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
 10. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 11. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 12. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-13. 현재 Phase 상태: Phase 060 `PASS`, final gate `PASS_P060_LINEAGE_C`; Step 45.2 exact-eight checkpoint는 `PENDING_AT_PRECOMMIT_BY_DESIGN`; exact next는 해당 commit/push/remote verification 뒤 Phase 061 detailed plan activation
-14. 현재 result: `Codex/results/PHASE_060_RESULT.md`; final Step gate `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`; Lineage Report C `Codex/results/PHASE_060_V1019_LINEAGE_REPORT_C.md`
-15. 현재 machine evidence: integrated `Codex/results/PHASE_060_VALIDATION.json`; Step 45.1 `Codex/results/PHASE_060_V1019_DISPOSITION_MATRIX.json` 및 `Codex/results/PHASE_060_V1019_CARRY_FORWARD_DELTA.json`; Step 44 `Codex/results/PHASE_060_V1019_PHYSICS_VALIDATION.json` 및 `Codex/results/PHASE_060_V1019_PHYSICS_REDERIVATION.md`; Step 43 `Codex/results/PHASE_060_V1019_DOC_CODE_TRACE_MATRIX.json`; Step 42 code/runtime `Codex/results/PHASE_060_V1019_CODE_TEST_RUNTIME_MATRIX.json`; stored-artifact/visual `Codex/results/PHASE_060_V1019_ARTIFACT_AUDIT.json`; Step 41 process authority `Codex/results/PHASE_060_V1019_PROCESS_INTENT_MATRIX.json`
-16. 직전 Phase result: `Codex/results/PHASE_059_RESULT.md`
-17. 직전 final Step result: `Codex/results/PHASE_059_STEP_039_6_GATE_RESULT.md`
-18. 직전 scientific result: `Codex/results/PHASE_059_V1014_V1018_2_LINEAGE_REPORT_B.md`
-19. 직전 integrated machine evidence: `Codex/results/PHASE_059_VALIDATION.json`
-20. carry-forward machine evidence: `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
+13. 현재 Phase 상태: Phase 061 `IN_PROGRESS`, detailed-plan activation; `PASS_P061_PLAN_ACTIVATION`은 계획 권위만 뜻하며 Step 46은 아직 미실행
+14. 현재 result: `Codex/results/PHASE_061_PLAN_ACTIVATION_RESULT.md`
+15. 현재 machine evidence: `Codex/results/PHASE_061_PLAN_ACTIVATION_VALIDATION.json`
+16. 직전 Phase result: `Codex/results/PHASE_060_RESULT.md`
+17. 직전 final Step result: `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`
+18. 직전 scientific result: `Codex/results/PHASE_060_V1019_LINEAGE_REPORT_C.md`
+19. 직전 integrated machine evidence: `Codex/results/PHASE_060_VALIDATION.json`
+20. carry-forward machine evidence: `Codex/results/PHASE_060_V1019_CARRY_FORWARD_DELTA.json`; inherited parent `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
 21. master-plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
 ## Handover Chain
@@ -46,7 +46,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 060 Step 43 | Step 43 | `PASS_P060_STEP43_DOC_CODE_CONFORMANCE`; `PASS_WITH_CONCERNS`; exact-seven commit `7a4c1dbea22c53abe5a8dce3c3ccf58a0915e1dc` pushed and remote-verified | execute Step 44 independent physics rederivation |
 | Phase 060 Step 44 | Step 44 | `PASS_P060_STEP44_PHYSICS_REDERIVATION`; `PASS_WITH_CONCERNS`; exact-eight commit `70b14fd102fca40ef17bee44e924c09dde1d9eff` pushed and remote-verified | execute Step 45.1 disposition |
 | Phase 060 Step 45.1 | Step 45.1 | `PASS_P060_STEP45_1_DISPOSITIONS`; `PASS_WITH_CONCERNS`; exact-eight commit `6a468ee6b9ec3b5f16d0a528c7f1766ad86af4b5` pushed and remote-verified | execute Step 45.2 integrated validation and final gate |
-| Phase 060 Step 45.2 | Step 45.2 | `PASS_P060_LINEAGE_C`; exact-eight containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | atomic commit/push/remote verification, then Phase 061 detailed plan activation before Step 46 |
+| Phase 060 Step 45.2 | Step 45.2 | `PASS_P060_LINEAGE_C`; exact-eight commit `136a73804d714706bad1be6d58c99351e606fe0e` pushed and remote-verified; `PASS_P060_STEP45_2_PERSISTENCE` | activate Phase 061 detailed plan before Step 46 |
+| Phase 061 detailed plan activation | Steps 46–51 planning boundary | `PASS_P061_PLAN_ACTIVATION`; exact-seven containing checkpoint `PENDING_AT_PRECOMMIT_BY_DESIGN` | commit/push/remote persistence, then Step 46 |
 
 ## Current State
 
@@ -222,13 +223,13 @@ read master + phase plan + previous result
 
 - All 41 `OPEN` and 11 `PRESERVED_ACTIVE` inherited carry-forward obligations remain unresolved; no Phase 059/060 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 inherited carry-forward targets assigned to Phase 070–090 remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`; this count is not the Phase 060 source-disposition target-row count.
-- Step 45.2의 exact-eight documents는 subject `audit(phase060): close v1019 lineage gate`인 atomic commit, push와 remote verification 및 post-commit persistence validation이 필요하다.
+- Step 45.2 exact-eight는 commit `136a73804d714706bad1be6d58c99351e606fe0e`에 포함되어 push·remote verification과 `PASS_P060_STEP45_2_PERSISTENCE`를 완료했다.
 - Step 45.1에서 등록한 신규 blocker 5건은 모두 `OPEN`이며 해당 target Phase acceptance 전에는 해소로 간주할 수 없다.
 - Phase 060 code/runtime/PDF/image/NPZ, Step 43 conformance, Step 44 rederivation과 Step 45.1 disposition은 내부 source·호출·수식·routing 정합만 확립했다. External scientific truth, experimental/material validity 또는 primary-reference truth로 부르면 안 된다. 해당 권위는 Phase 071 이후다.
 
 ## Exact Next Action
 
-Controller rereads and stages exactly the eight Step 45.2 paths listed in `Codex/results/PHASE_060_STEP_045_2_GATE_RESULT.md`, commits them atomically with subject `audit(phase060): close v1019 lineage gate`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, local HEAD/upstream/origin-active equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, validator `PASS_P060_LINEAGE_C`, deterministic rebuild 2/2, negative controls 36/36, persistence validation and `git diff --check`. After that checkpoint, create and atomically activate the Phase 061 detailed plan under `Codex/plans/` before Step 46.
+Controller rereads and stages exactly the seven Phase 061 plan-activation paths, commits them atomically with subject `docs(phase061): plan v1020 lineage reaudit`, pushes `codex/anode-fit-v1025_2-canonical-completion`, and verifies exact commit files, parent `136a73804d714706bad1be6d58c99351e606fe0e`, local HEAD/upstream/live-origin equality, remote ancestry, protected/main stability, tracked/untracked Claude diff 0, strict JSON parse, semantic hash, negative controls, determinism and `git diff --check`. Step 46 is blocked until activation commit/push/remote verification passes.
 
 ## Hard-stop Reminder
 
