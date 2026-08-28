@@ -1,0 +1,1241 @@
+{
+  "artifact_kind": "PHASE_063_V1022_RUNTIME_ATTESTATION",
+  "authority_boundary": {
+    "canonical_adoption": false,
+    "experimental_truth": false,
+    "material_truth": false,
+    "primary_literature_truth": false,
+    "publication_readiness": false,
+    "scientific_truth": false,
+    "static_or_runtime_internal_pass": true
+  },
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "counts": {
+    "official_expectations_met": 12,
+    "official_runs": 12,
+    "probe_runtime_sets": 2,
+    "runtimes": 2
+  },
+  "expected_parent": "4088f48ca191fdb8abe52e8f4fb10de10f2eeba3",
+  "generated_date": "2026-08-29",
+  "independent_probes": [
+    {
+      "probe_program_sha256": "197fbfefbe43f7589838e46e3ab726b6ff9efa82ab42c4a288bacdee202789ab",
+      "results": {
+        "cross_version": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "external_science": false,
+          "pass": true,
+          "probe_id": "P063-RUN-CROSS-VERSION",
+          "v22_v23_default_array_equal": true,
+          "v23_ratio_liveness_max_abs_diff": 0.9300366353210621
+        },
+        "v1.0.22": {
+          "background": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-BACKGROUND-22",
+            "si_host_background": 0.0,
+            "single_background_max_abs_error": 7.216449660063518e-16
+          },
+          "capacity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "expected_Q": 1.3857142857142857,
+            "external_science": false,
+            "integral": 1.385714284779672,
+            "pass": true,
+            "probe_id": "P063-RUN-CAPACITY-22",
+            "relative_error": 6.744635090977053e-10
+          },
+          "continuity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "coarse_max_step": 0.5818373275688629,
+            "external_science": false,
+            "fine_max_step": 0.29298191671907503,
+            "pass": true,
+            "probe_id": "P063-RUN-CONTINUITY-22",
+            "refinement_ratio": 0.503546099290784
+          },
+          "current_partition": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "host_calls": [
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "graphite",
+                "s": 1
+              },
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "silicon",
+                "s": 1
+              }
+            ],
+            "host_partition_solver_present": false,
+            "pass": true,
+            "probe_id": "P063-RUN-CURRENT-PARTITION-22",
+            "same_full_current_to_both_hosts": true
+          },
+          "f_si_zero": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "checks": {
+              "curve": true,
+              "dqdv_chg": true,
+              "dqdv_dis": true,
+              "equilibrium": true,
+              "solve_U_oc": true
+            },
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-FSI0-22"
+          },
+          "from_wt": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "capacity_ratio": 0.7821831869510665,
+            "expected_f_si": 0.7821831869510665,
+            "external_science": false,
+            "invalid_capacity_raises": true,
+            "invalid_negative_mass_raises": true,
+            "invalid_unit_mass_raises": true,
+            "observed_f_si": 0.7821831869510665,
+            "pass": true,
+            "probe_id": "P063-RUN-FROM-WT-22"
+          },
+          "missing_kinetics": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "missing_dH_a_lag_V": 0.0,
+            "missing_dVdq_lag_V": 0.0,
+            "pass": true,
+            "probe_id": "P063-RUN-MISSING-KINETICS-22",
+            "silent_equilibrium_fallback_observed": true
+          },
+          "root_domain_guards": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "negative_Q_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": -0.021972245773355326,
+              "selected_root_abs_residual": 1.2889689315898067e-13
+            },
+            "negative_Q_constructor_raises": false,
+            "negative_n_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": 2.0067294447324286,
+              "selected_root_abs_residual": 3.197442310920451e-14
+            },
+            "negative_n_constructor_raises": false,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-DOMAIN-22"
+          },
+          "root_solver": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "finite": true,
+            "invalid_control_guard_pass": false,
+            "max_abs_balance_residual": 1.262323578998803e-13,
+            "max_iter_zero_abs_balance_residual": 0.8764920318708564,
+            "max_iter_zero_raises": false,
+            "max_iter_zero_returned_U_V": 0.25264704358190393,
+            "narrow_bracket_raises": true,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-22",
+            "reversed_bracket_raises": true,
+            "strictly_increasing": true,
+            "tol_infinite_abs_balance_residual": 0.8764920318708564,
+            "tol_infinite_raises": false,
+            "tol_infinite_returned_U_V": 0.25264704358190393,
+            "valid_path_pass": true,
+            "x_one_raises": true,
+            "x_zero_raises": true
+          },
+          "scope_boundaries": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "invalid_case_raises": true,
+            "nonadditive_not_implemented": true,
+            "pass": true,
+            "plastic_not_implemented": true,
+            "probe_id": "P063-RUN-SCOPE-22",
+            "siox_warning": true
+          },
+          "si_time": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "captured_I_abs": 2.0,
+            "curve_equals_raw_hour_number": true,
+            "curve_vs_si_corrected_max_abs_diff": 12.395915718050627,
+            "expected_si_I_abs": 0.0005555555555555556,
+            "external_science": false,
+            "lag_raw_over_corrected": 3599.999999999992,
+            "pass": true,
+            "probe_id": "P063-RUN-SI-TIME-22"
+          }
+        },
+        "v1.0.23": {
+          "background": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-BACKGROUND-23",
+            "si_host_background": 0.0,
+            "single_background_max_abs_error": 7.216449660063518e-16
+          },
+          "capacity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "expected_Q": 1.3857142857142857,
+            "external_science": false,
+            "integral": 1.385714284779672,
+            "pass": true,
+            "probe_id": "P063-RUN-CAPACITY-23",
+            "relative_error": 6.744635090977053e-10
+          },
+          "continuity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "coarse_max_step": 0.5818373275688629,
+            "external_science": false,
+            "fine_max_step": 0.29298191671907503,
+            "pass": true,
+            "probe_id": "P063-RUN-CONTINUITY-23",
+            "refinement_ratio": 0.503546099290784
+          },
+          "current_partition": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "host_calls": [
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "graphite",
+                "s": 1
+              },
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "silicon",
+                "s": 1
+              }
+            ],
+            "host_partition_solver_present": false,
+            "pass": true,
+            "probe_id": "P063-RUN-CURRENT-PARTITION-23",
+            "same_full_current_to_both_hosts": true
+          },
+          "f_si_zero": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "checks": {
+              "curve": true,
+              "dqdv_chg": true,
+              "dqdv_dis": true,
+              "equilibrium": true,
+              "solve_U_oc": true
+            },
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-FSI0-23"
+          },
+          "from_wt": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "capacity_ratio": 0.7821831869510665,
+            "expected_f_si": 0.7821831869510665,
+            "external_science": false,
+            "invalid_capacity_raises": true,
+            "invalid_negative_mass_raises": true,
+            "invalid_unit_mass_raises": true,
+            "observed_f_si": 0.7821831869510665,
+            "pass": true,
+            "probe_id": "P063-RUN-FROM-WT-23"
+          },
+          "missing_kinetics": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "missing_dH_a_lag_V": 0.0,
+            "missing_dVdq_lag_V": 0.0,
+            "pass": true,
+            "probe_id": "P063-RUN-MISSING-KINETICS-23",
+            "silent_equilibrium_fallback_observed": true
+          },
+          "root_domain_guards": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "negative_Q_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": -0.021972245773355326,
+              "selected_root_abs_residual": 1.2889689315898067e-13
+            },
+            "negative_Q_constructor_raises": false,
+            "negative_n_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": 2.0067294447324286,
+              "selected_root_abs_residual": 3.197442310920451e-14
+            },
+            "negative_n_constructor_raises": false,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-DOMAIN-23"
+          },
+          "root_solver": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "finite": true,
+            "invalid_control_guard_pass": false,
+            "max_abs_balance_residual": 1.262323578998803e-13,
+            "max_iter_zero_abs_balance_residual": 0.8764920318708564,
+            "max_iter_zero_raises": false,
+            "max_iter_zero_returned_U_V": 0.25264704358190393,
+            "narrow_bracket_raises": true,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-23",
+            "reversed_bracket_raises": true,
+            "strictly_increasing": true,
+            "tol_infinite_abs_balance_residual": 0.8764920318708564,
+            "tol_infinite_raises": false,
+            "tol_infinite_returned_U_V": 0.25264704358190393,
+            "valid_path_pass": true,
+            "x_one_raises": true,
+            "x_zero_raises": true
+          },
+          "scope_boundaries": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "invalid_case_raises": true,
+            "nonadditive_not_implemented": true,
+            "pass": true,
+            "plastic_not_implemented": true,
+            "probe_id": "P063-RUN-SCOPE-23",
+            "siox_warning": true
+          },
+          "si_time": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "captured_I_abs": 2.0,
+            "curve_equals_raw_hour_number": true,
+            "curve_vs_si_corrected_max_abs_diff": 12.395915718050627,
+            "expected_si_I_abs": 0.0005555555555555556,
+            "external_science": false,
+            "lag_raw_over_corrected": 3599.999999999992,
+            "pass": true,
+            "probe_id": "P063-RUN-SI-TIME-23"
+          }
+        }
+      },
+      "runtime": "3.12"
+    },
+    {
+      "probe_program_sha256": "197fbfefbe43f7589838e46e3ab726b6ff9efa82ab42c4a288bacdee202789ab",
+      "results": {
+        "cross_version": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "external_science": false,
+          "pass": true,
+          "probe_id": "P063-RUN-CROSS-VERSION",
+          "v22_v23_default_array_equal": true,
+          "v23_ratio_liveness_max_abs_diff": 0.9300366353210621
+        },
+        "v1.0.22": {
+          "background": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-BACKGROUND-22",
+            "si_host_background": 0.0,
+            "single_background_max_abs_error": 7.216449660063518e-16
+          },
+          "capacity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "expected_Q": 1.3857142857142857,
+            "external_science": false,
+            "integral": 1.385714284779672,
+            "pass": true,
+            "probe_id": "P063-RUN-CAPACITY-22",
+            "relative_error": 6.744635090977053e-10
+          },
+          "continuity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "coarse_max_step": 0.5818373275688629,
+            "external_science": false,
+            "fine_max_step": 0.29298191671907503,
+            "pass": true,
+            "probe_id": "P063-RUN-CONTINUITY-22",
+            "refinement_ratio": 0.503546099290784
+          },
+          "current_partition": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "host_calls": [
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "graphite",
+                "s": 1
+              },
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "silicon",
+                "s": 1
+              }
+            ],
+            "host_partition_solver_present": false,
+            "pass": true,
+            "probe_id": "P063-RUN-CURRENT-PARTITION-22",
+            "same_full_current_to_both_hosts": true
+          },
+          "f_si_zero": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "checks": {
+              "curve": true,
+              "dqdv_chg": true,
+              "dqdv_dis": true,
+              "equilibrium": true,
+              "solve_U_oc": true
+            },
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-FSI0-22"
+          },
+          "from_wt": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "capacity_ratio": 0.7821831869510665,
+            "expected_f_si": 0.7821831869510665,
+            "external_science": false,
+            "invalid_capacity_raises": true,
+            "invalid_negative_mass_raises": true,
+            "invalid_unit_mass_raises": true,
+            "observed_f_si": 0.7821831869510665,
+            "pass": true,
+            "probe_id": "P063-RUN-FROM-WT-22"
+          },
+          "missing_kinetics": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "missing_dH_a_lag_V": 0.0,
+            "missing_dVdq_lag_V": 0.0,
+            "pass": true,
+            "probe_id": "P063-RUN-MISSING-KINETICS-22",
+            "silent_equilibrium_fallback_observed": true
+          },
+          "root_domain_guards": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "negative_Q_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": -0.021972245773355326,
+              "selected_root_abs_residual": 1.2889689315898067e-13
+            },
+            "negative_Q_constructor_raises": false,
+            "negative_n_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": 2.0067294447324286,
+              "selected_root_abs_residual": 3.197442310920451e-14
+            },
+            "negative_n_constructor_raises": false,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-DOMAIN-22"
+          },
+          "root_solver": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "finite": true,
+            "invalid_control_guard_pass": false,
+            "max_abs_balance_residual": 1.262323578998803e-13,
+            "max_iter_zero_abs_balance_residual": 0.8764920318708564,
+            "max_iter_zero_raises": false,
+            "max_iter_zero_returned_U_V": 0.25264704358190393,
+            "narrow_bracket_raises": true,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-22",
+            "reversed_bracket_raises": true,
+            "strictly_increasing": true,
+            "tol_infinite_abs_balance_residual": 0.8764920318708564,
+            "tol_infinite_raises": false,
+            "tol_infinite_returned_U_V": 0.25264704358190393,
+            "valid_path_pass": true,
+            "x_one_raises": true,
+            "x_zero_raises": true
+          },
+          "scope_boundaries": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "invalid_case_raises": true,
+            "nonadditive_not_implemented": true,
+            "pass": true,
+            "plastic_not_implemented": true,
+            "probe_id": "P063-RUN-SCOPE-22",
+            "siox_warning": true
+          },
+          "si_time": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "captured_I_abs": 2.0,
+            "curve_equals_raw_hour_number": true,
+            "curve_vs_si_corrected_max_abs_diff": 12.395915718050627,
+            "expected_si_I_abs": 0.0005555555555555556,
+            "external_science": false,
+            "lag_raw_over_corrected": 3599.999999999992,
+            "pass": true,
+            "probe_id": "P063-RUN-SI-TIME-22"
+          }
+        },
+        "v1.0.23": {
+          "background": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-BACKGROUND-23",
+            "si_host_background": 0.0,
+            "single_background_max_abs_error": 7.216449660063518e-16
+          },
+          "capacity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "expected_Q": 1.3857142857142857,
+            "external_science": false,
+            "integral": 1.385714284779672,
+            "pass": true,
+            "probe_id": "P063-RUN-CAPACITY-23",
+            "relative_error": 6.744635090977053e-10
+          },
+          "continuity": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "coarse_max_step": 0.5818373275688629,
+            "external_science": false,
+            "fine_max_step": 0.29298191671907503,
+            "pass": true,
+            "probe_id": "P063-RUN-CONTINUITY-23",
+            "refinement_ratio": 0.503546099290784
+          },
+          "current_partition": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "host_calls": [
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "graphite",
+                "s": 1
+              },
+              {
+                "I_abs": 0.8,
+                "Q_cell": 2.0,
+                "host": "silicon",
+                "s": 1
+              }
+            ],
+            "host_partition_solver_present": false,
+            "pass": true,
+            "probe_id": "P063-RUN-CURRENT-PARTITION-23",
+            "same_full_current_to_both_hosts": true
+          },
+          "f_si_zero": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "checks": {
+              "curve": true,
+              "dqdv_chg": true,
+              "dqdv_dis": true,
+              "equilibrium": true,
+              "solve_U_oc": true
+            },
+            "external_science": false,
+            "pass": true,
+            "probe_id": "P063-RUN-FSI0-23"
+          },
+          "from_wt": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "capacity_ratio": 0.7821831869510665,
+            "expected_f_si": 0.7821831869510665,
+            "external_science": false,
+            "invalid_capacity_raises": true,
+            "invalid_negative_mass_raises": true,
+            "invalid_unit_mass_raises": true,
+            "observed_f_si": 0.7821831869510665,
+            "pass": true,
+            "probe_id": "P063-RUN-FROM-WT-23"
+          },
+          "missing_kinetics": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "missing_dH_a_lag_V": 0.0,
+            "missing_dVdq_lag_V": 0.0,
+            "pass": true,
+            "probe_id": "P063-RUN-MISSING-KINETICS-23",
+            "silent_equilibrium_fallback_observed": true
+          },
+          "root_domain_guards": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "negative_Q_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": -0.021972245773355326,
+              "selected_root_abs_residual": 1.2889689315898067e-13
+            },
+            "negative_Q_constructor_raises": false,
+            "negative_n_case": {
+              "root_count_lower_bound": 3,
+              "selected_root_U_V": 2.0067294447324286,
+              "selected_root_abs_residual": 3.197442310920451e-14
+            },
+            "negative_n_constructor_raises": false,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-DOMAIN-23"
+          },
+          "root_solver": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "finding_reproduced": true,
+            "finite": true,
+            "invalid_control_guard_pass": false,
+            "max_abs_balance_residual": 1.262323578998803e-13,
+            "max_iter_zero_abs_balance_residual": 0.8764920318708564,
+            "max_iter_zero_raises": false,
+            "max_iter_zero_returned_U_V": 0.25264704358190393,
+            "narrow_bracket_raises": true,
+            "pass": true,
+            "probe_id": "P063-RUN-ROOT-23",
+            "reversed_bracket_raises": true,
+            "strictly_increasing": true,
+            "tol_infinite_abs_balance_residual": 0.8764920318708564,
+            "tol_infinite_raises": false,
+            "tol_infinite_returned_U_V": 0.25264704358190393,
+            "valid_path_pass": true,
+            "x_one_raises": true,
+            "x_zero_raises": true
+          },
+          "scope_boundaries": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "external_science": false,
+            "invalid_case_raises": true,
+            "nonadditive_not_implemented": true,
+            "pass": true,
+            "plastic_not_implemented": true,
+            "probe_id": "P063-RUN-SCOPE-23",
+            "siox_warning": true
+          },
+          "si_time": {
+            "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+            "captured_I_abs": 2.0,
+            "curve_equals_raw_hour_number": true,
+            "curve_vs_si_corrected_max_abs_diff": 12.395915718050627,
+            "expected_si_I_abs": 0.0005555555555555556,
+            "external_science": false,
+            "lag_raw_over_corrected": 3599.999999999992,
+            "pass": true,
+            "probe_id": "P063-RUN-SI-TIME-23"
+          }
+        }
+      },
+      "runtime": "3.14"
+    }
+  ],
+  "isolation": {
+    "bytecode_disabled": true,
+    "copied_blob_manifest": [
+      {
+        "bytes": 68896,
+        "git_blob": "115b2e60e79ef8e26f20960b8841b37cef55c415",
+        "path": "Claude/docs/v1.0.19/Anode_Fit_v1.0.19.py",
+        "sha256": "7de32d7bcd276687b2350b150559e00c1181dca953aba116760828b0bdff5193"
+      },
+      {
+        "bytes": 107324,
+        "git_blob": "8932d9dbfc165eeb39ec5cab23337d4582ba0ae8",
+        "path": "Claude/docs/v1.0.19/golden_graphite_ref.npz",
+        "sha256": "61b7f59b809417f46618039d1eecf5cc1aca9ed2d0202fcda7d909386c00d0c2"
+      },
+      {
+        "bytes": 69343,
+        "git_blob": "7588fe782a027511c2407d9b7caea6ef0ca6c3bd",
+        "path": "Claude/docs/v1.0.21/Anode_Fit_v1.0.21.py",
+        "sha256": "d50612413f9f956486594ddafde37776f9592b75e2c8a2266927eaaa23267eaf"
+      },
+      {
+        "bytes": 22050,
+        "git_blob": "742506b061d872afdd094781ea2157faae800943",
+        "path": "Claude/docs/v1.0.21/test_gates_v1021.py",
+        "sha256": "a8de4944ea304b0106a7cfe0c495f2d7939f9cda74c2eae131fba55dd7e67d36"
+      },
+      {
+        "bytes": 92292,
+        "git_blob": "c822c4e7ef9b8676e3a9bde675a718169ce79d5b",
+        "path": "Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py",
+        "sha256": "a08378b555ca79f92d31bbad506e8c78551a93721cc90d705bf9390b93434783"
+      },
+      {
+        "bytes": 33361,
+        "git_blob": "5683f9f6701792f8603ce311a3d1702b341ad150",
+        "path": "Claude/docs/v1.0.22/test_gates_v1022.py",
+        "sha256": "b8e501e93eaa2dd2a6c85b1b8f5d5861169ef4e6834e9f5ca8c022caa15e44a1"
+      },
+      {
+        "bytes": 97860,
+        "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+        "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+        "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf"
+      },
+      {
+        "bytes": 2866,
+        "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+        "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+        "sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc"
+      },
+      {
+        "bytes": 8523,
+        "git_blob": "07a07aebd981b4f57bed352165bdd236c6b0a408",
+        "path": "Claude/docs/v1.0.23/results/qa_images/curve_qa.py",
+        "sha256": "2f00abff807425d6aa24a8caed83475f332c3365af3723d2a159455c6e37df85"
+      },
+      {
+        "bytes": 33361,
+        "git_blob": "a636c6f21d97f8a1af57b61a6e4afda974b86dca",
+        "path": "Claude/docs/v1.0.23/test_gates_v1023.py",
+        "sha256": "78205fed4f6ed9ff731e11eddf14f1e871ef15759cb75344f098b8d014173832"
+      },
+      {
+        "bytes": 6502,
+        "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+        "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+        "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4"
+      }
+    ],
+    "copied_git_blobs_only": true,
+    "disposable_external_directories": true,
+    "external_temp_root_verified": true,
+    "materialized_paths_contained": true,
+    "network_used": false,
+    "source_imported": false
+  },
+  "official_runs": [
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1021.py"
+      ],
+      "cwd": "v1.0.21",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1021-312",
+      "runtime": "3.12",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK",
+        "    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK",
+        "    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)",
+        "  G2 RESULT: PASS",
+        "==========================================================================",
+        "G3: theta_E bit-exact  (unspecified path == pre-correction code)",
+        "  v1.0.21(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK",
+        "  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK",
+        "    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK",
+        "    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK",
+        "    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK",
+        "    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK",
+        "  G3 RESULT: PASS",
+        "==========================================================================",
+        "APPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)",
+        "  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True",
+        "  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True",
+        "  n_T1=0.0 == absent (value bit-exact) entropy_V: True",
+        "  n_T1=0.0 == absent (value bit-exact) Uoc_x: True",
+        "  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK",
+        "  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK",
+        "  n(T) RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1022.py"
+      ],
+      "cwd": "v1.0.22",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1022-312",
+      "runtime": "3.12",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "R6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)",
+        "  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)",
+        "  finite curves: True",
+        "  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True",
+        "  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True",
+        "  R6-G2 RESULT: PASS",
+        "==========================================================================",
+        "R6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si",
+        "  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  R6-G3 RESULT: PASS",
+        "==========================================================================",
+        "R6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)",
+        "  si_case=elemental finite=True gaps=[] warned=False(expect False) OK",
+        "  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK",
+        "  si_case=sic       finite=True gaps=[] warned=False(expect False) OK",
+        "  boundary plastic_hysteresis_loop() -> NotImplementedError: True",
+        "  boundary nonadditive_correction() -> NotImplementedError: True",
+        "  R6 coverage RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS",
+        ">>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-312",
+      "runtime": "3.12",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "R6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)",
+        "  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)",
+        "  finite curves: True",
+        "  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True",
+        "  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True",
+        "  R6-G2 RESULT: PASS",
+        "==========================================================================",
+        "R6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si",
+        "  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  R6-G3 RESULT: PASS",
+        "==========================================================================",
+        "R6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)",
+        "  si_case=elemental finite=True gaps=[] warned=False(expect False) OK",
+        "  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK",
+        "  si_case=sic       finite=True gaps=[] warned=False(expect False) OK",
+        "  boundary plastic_hysteresis_loop() -> NotImplementedError: True",
+        "  boundary nonadditive_correction() -> NotImplementedError: True",
+        "  R6 coverage RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS",
+        ">>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-SC-312",
+      "runtime": "3.12",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "==========================================================================",
+        "G-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS",
+        "G-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS",
+        "G-E3 차수이득(코드 Picard·참=고정점):",
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23/results/comp_v23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-P1-312",
+      "runtime": "3.12",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "  Ω/RT          ε        err_0        err_1  err1/err0     err0/ε",
+        "  0.00 0.0000e+00   0.0000e+00   0.0000e+00     0.0000 0.0000e+00",
+        "  0.25 3.1250e-02   1.8475e-02   5.6061e-04     0.0303 5.9120e-01",
+        "  0.50 6.2500e-02   4.0686e-02   2.7750e-03     0.0682 6.5098e-01",
+        "  1.00 1.2500e-01   9.9361e-02   1.6794e-02     0.1690 7.9489e-01",
+        "  2.00 2.5000e-01   2.9023e-01   1.3527e-01     0.4661 1.1609e+00",
+        "[차수 스케일링: L0 를 반씩 줄여 ε↓, 오차 차수 관찰]",
+        "         ε        err_0        err_1      e0비      e1비",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707",
+        "(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "curve_qa.py"
+      ],
+      "cwd": "v1.0.23/results/qa_images",
+      "diagnostic_matched": true,
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_failure_kind": "FILE_NOT_FOUND_HARDCODED_PROJECT_PATH",
+      "expected_state": "EXPECTED_FAIL_NONPORTABLE_PATH_OR_OPTIONAL_DEPENDENCY",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-CURVE-QA-312",
+      "runtime": "3.12",
+      "stderr_tail": [
+        "Traceback (most recent call last):",
+        "  File \"<TMP>\\v1.0.23\\results\\qa_images\\curve_qa.py\", line 15, in <module>",
+        "    v22 = load(f\"{BASE}/v1.0.22/Anode_Fit_v1.0.22.py\", \"af22\")",
+        "          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"<TMP>\\v1.0.23\\results\\qa_images\\curve_qa.py\", line 12, in load",
+        "    s = importlib.util.spec_from_file_location(name, path); m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m",
+        "                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module",
+        "  File \"<frozen importlib._bootstrap_external>\", line 1132, in get_code",
+        "  File \"<frozen importlib._bootstrap_external>\", line 1190, in get_data",
+        "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\home/user/Project_Anode_Fit/Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py'"
+      ],
+      "stdout_tail": []
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1021.py"
+      ],
+      "cwd": "v1.0.21",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1021-314",
+      "runtime": "3.14",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK",
+        "    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK",
+        "    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)",
+        "  G2 RESULT: PASS",
+        "==========================================================================",
+        "G3: theta_E bit-exact  (unspecified path == pre-correction code)",
+        "  v1.0.21(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK",
+        "  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK",
+        "    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK",
+        "    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK",
+        "    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK",
+        "    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK",
+        "  G3 RESULT: PASS",
+        "==========================================================================",
+        "APPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)",
+        "  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True",
+        "  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True",
+        "  n_T1=0.0 == absent (value bit-exact) entropy_V: True",
+        "  n_T1=0.0 == absent (value bit-exact) Uoc_x: True",
+        "  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK",
+        "  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK",
+        "  n(T) RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1022.py"
+      ],
+      "cwd": "v1.0.22",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1022-314",
+      "runtime": "3.14",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "R6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)",
+        "  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)",
+        "  finite curves: True",
+        "  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True",
+        "  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True",
+        "  R6-G2 RESULT: PASS",
+        "==========================================================================",
+        "R6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si",
+        "  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  R6-G3 RESULT: PASS",
+        "==========================================================================",
+        "R6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)",
+        "  si_case=elemental finite=True gaps=[] warned=False(expect False) OK",
+        "  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK",
+        "  si_case=sic       finite=True gaps=[] warned=False(expect False) OK",
+        "  boundary plastic_hysteresis_loop() -> NotImplementedError: True",
+        "  boundary nonadditive_correction() -> NotImplementedError: True",
+        "  R6 coverage RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS",
+        ">>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-314",
+      "runtime": "3.14",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "R6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)",
+        "  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)",
+        "  finite curves: True",
+        "  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True",
+        "  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True",
+        "  R6-G2 RESULT: PASS",
+        "==========================================================================",
+        "R6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si",
+        "  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK",
+        "  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK",
+        "  R6-G3 RESULT: PASS",
+        "==========================================================================",
+        "R6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)",
+        "  si_case=elemental finite=True gaps=[] warned=False(expect False) OK",
+        "  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK",
+        "  si_case=sic       finite=True gaps=[] warned=False(expect False) OK",
+        "  boundary plastic_hysteresis_loop() -> NotImplementedError: True",
+        "  boundary nonadditive_correction() -> NotImplementedError: True",
+        "  R6 coverage RESULT: PASS",
+        "==========================================================================",
+        ">>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS",
+        ">>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-SC-314",
+      "runtime": "3.14",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "==========================================================================",
+        "G-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS",
+        "G-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS",
+        "G-E3 차수이득(코드 Picard·참=고정점):",
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23/results/comp_v23",
+      "diagnostic_matched": true,
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_failure_kind": null,
+      "expected_state": "PASS",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-P1-314",
+      "runtime": "3.14",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "  Ω/RT          ε        err_0        err_1  err1/err0     err0/ε",
+        "  0.00 0.0000e+00   0.0000e+00   0.0000e+00     0.0000 0.0000e+00",
+        "  0.25 3.1250e-02   1.8475e-02   5.6061e-04     0.0303 5.9120e-01",
+        "  0.50 6.2500e-02   4.0686e-02   2.7750e-03     0.0682 6.5098e-01",
+        "  1.00 1.2500e-01   9.9361e-02   1.6794e-02     0.1690 7.9489e-01",
+        "  2.00 2.5000e-01   2.9023e-01   1.3527e-01     0.4661 1.1609e+00",
+        "[차수 스케일링: L0 를 반씩 줄여 ε↓, 오차 차수 관찰]",
+        "         ε        err_0        err_1      e0비      e1비",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707",
+        "(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)"
+      ]
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "curve_qa.py"
+      ],
+      "cwd": "v1.0.23/results/qa_images",
+      "diagnostic_matched": true,
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_failure_kind": "OPTIONAL_DEPENDENCY_MATPLOTLIB_MISSING",
+      "expected_state": "EXPECTED_FAIL_NONPORTABLE_PATH_OR_OPTIONAL_DEPENDENCY",
+      "external_science": false,
+      "run_id": "P063-OFFICIAL-V1023-CURVE-QA-314",
+      "runtime": "3.14",
+      "stderr_tail": [
+        "Traceback (most recent call last):",
+        "  File \"<TMP>\\v1.0.23\\results\\qa_images\\curve_qa.py\", line 8, in <module>",
+        "    import matplotlib; matplotlib.use('Agg')",
+        "    ^^^^^^^^^^^^^^^^^",
+        "ModuleNotFoundError: No module named 'matplotlib'"
+      ],
+      "stdout_tail": []
+    }
+  ],
+  "phase": 63,
+  "result_first_contract": {
+    "containing_commit": "PENDING_AT_PRECOMMIT_BY_DESIGN",
+    "gate": "PASS_P063_STEP61_CODE_RUNTIME_DELTA_WITH_CONCERNS",
+    "postcommit_terminal": "PENDING_AT_PRECOMMIT_BY_DESIGN"
+  },
+  "runtimes": [
+    {
+      "launcher": [
+        "py",
+        "-3.12"
+      ],
+      "numpy_version": "2.3.5",
+      "python_version": "3.12.10",
+      "runtime": "3.12"
+    },
+    {
+      "launcher": [
+        "py",
+        "-3.14"
+      ],
+      "numpy_version": "2.5.0",
+      "python_version": "3.14.4",
+      "runtime": "3.14"
+    }
+  ],
+  "schema_version": 1,
+  "semantic_sha256": "f504db6d5477f4a15df2d7d59368675bd9d77f0ec79e2daa515b5d2d65daf30d",
+  "step": 61
+}
