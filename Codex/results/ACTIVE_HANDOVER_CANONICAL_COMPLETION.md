@@ -1,6 +1,6 @@
 # Project Anode Fit Canonical Completion Active Handover
 
-최종 갱신일: 2026-08-28
+최종 갱신일: 2026-08-29
 
 활성 branch: `codex/anode-fit-v1025_2-canonical-completion`
 
@@ -22,9 +22,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 12. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 13. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 14. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-15. 현재 Phase 상태: Phase 063 `IN_PROGRESS`, Current checkpoint: plan activation precommit `PASS_P063_PLAN_ACTIVATION`
-16. 현재 result: `Codex/results/PHASE_063_PLAN_ACTIVATION_RESULT.md`
-17. 현재 machine evidence: `Codex/results/PHASE_063_PLAN_ACTIVATION_VALIDATION.json`; JSON-last, content `150/150`, exact-diagnostic negative `69/69`, fresh determinism `2/2`
+15. 현재 Phase 상태: Phase 063 `IN_PROGRESS`, Current checkpoint: Step 58 precommit `PASS_P063_STEP58_SOURCE_PROCESS_TOPOLOGY`
+16. 현재 result: `Codex/results/PHASE_063_STEP_058_SOURCE_PROCESS_TOPOLOGY_RESULT.md`
+17. 현재 machine evidence: `Codex/results/PHASE_063_V1022_SOURCE_PROCESS_TOPOLOGY.json`; `Codex/results/PHASE_063_V1022_READ_ATTESTATION.json`
 18. 직전 Phase result: `Codex/results/PHASE_062_RESULT.md`
 19. 직전 final Step result: `Codex/results/PHASE_062_STEP_057_2_GATE_RESULT.md`
 20. 직전 scientific result: `Codex/results/PHASE_062_V1021_LINEAGE_REPORT_E.md`
@@ -65,7 +65,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 062 Step 56 | Step 56 | `PASS_P062_STEP56_PHYSICS_CLOSURE_WITH_CONCERNS`; exact-seven commit `1c8541fdea2cd69aa09e6b99d2f371c41a0bb727` pushed and remote-verified; `PASS_P062_STEP56_PERSISTENCE`; A01–A05 PASS, A06/A07/parent OPEN | execute Step 57.1 |
 | Phase 062 Step 57.1 | Step 57.1 | exact-eight commit `247e9b0b28d185604753f40ee0244cfe0bf068cf`, parent `1c8541fdea2cd69aa09e6b99d2f371c41a0bb727`; `PASS_P062_STEP57_1_DISPOSITIONS`; `PASS_P062_STEP57_1_PERSISTENCE`; release `68/68`, distribution `30/16/13/9`, status `OPEN/PRESERVED_ACTIVE=39/29`, supplemental `1/1`, target-62 routes `149/149`, inherited `52+5`, debt `91/91`, Phase 061 blockers `5`, new Phase 062 blockers `0`, open findings `59/59`; A01–A05 PASS, A06/A07/parent OPEN; negative `73/73`, determinism `2/2` | execute Step 57.2 |
 | Phase 062 Step 57.2 | Step 57.2 | sole Gate `PASS_P062_LINEAGE_E`; exact-eight commit `69d938da0f5649d6342364c96bf612488879a8f8`, parent `247e9b0b28d185604753f40ee0244cfe0bf068cf`; pushed/remote-verified; historical `15/15`, negative `24/24`, strict JSON `5/5`, Git controls `13/13`, determinism `2/2`; `PASS_P062_STEP57_2_PERSISTENCE` | activate Phase 063 detailed plan before Step 58 |
-| Phase 063 detailed plan activation | Steps 58–63 planning boundary | `PASS_P063_PLAN_ACTIVATION` precommit; exact-seven containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; v1.0.22 manifest `204`, text `200`·`30,219/26,137`, PDF `4/133`, partitions `63/6/10/125`, supplemental `1`; postcommit persistence pending | commit/push/verify activation, then execute Step 58 |
+| Phase 063 detailed plan activation | Steps 58–63 planning boundary | exact-seven commit `4e7686ec623a2e82a0ef5433e60a8565b0ad039f`, parent `69d938da0f5649d6342364c96bf612488879a8f8`; pushed/remote-verified; `PASS_P063_PLAN_ACTIVATION`; Python 3.12/3.14 `PASS_P063_PLAN_ACTIVATION_PERSISTENCE` | execute Step 58 |
+| Phase 063 Step 58 | Step 58 | `PASS_P063_STEP58_SOURCE_PROCESS_TOPOLOGY`; exact-eight containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; frozen source `204/204`, supplemental `1/1`, text `200/200`·`30,219/26,137`, PDF `4/4`·`133/133`, 100-commit genealogy; cross-version primary `42+2+4+20=68` / `42+2+6+154=204`; citation source-line/command/key-edge/bibitem `199/210/258/88`; content-addressed human evidence, semantic in-bounds anchor negative 포함 `47/47`; competing authority `T/C/R/D/S=8/58/46/9/4`, process/release/competing findings `7/10/21`; postcommit persistence pending | commit/push/verify Step 58, then execute Step 59 |
 
 ## Current State
 
@@ -306,10 +307,13 @@ read master + phase plan + previous result
 - Phase 062 Step 57.2는 Step 52–57.1 machine evidence 9개를 strict parse/full traversal하고 activation과 Steps 52–57.1 실행 단위 7개의 historical staged precommit context를 fresh reconstruction한다. Release `68/68` 및 supplemental `1/1` 분리, text `63/63`·`21,048/21,048`·`20,424/20,424`, PDF `5/5`·`214/214`, Step 53–57.1 domain counts, 독립 GC/TST/LCO 재계산, A01–A05 PASS와 A06/A07/parent OPEN, lossless carry/debt routing을 통합 gate한다. Sole Gate `PASS_P062_LINEAGE_E`는 internal lineage-audit completeness만 뜻하며 external scientific/material/experimental/primary-literature truth, canonical selection, 결함 수리, held-out fitting, final LaTeX/PDF, publication readiness를 뜻하지 않는다.
 - Phase 062 Step 57.2 exact-eight commit `69d938da0f5649d6342364c96bf612488879a8f8`은 parent `247e9b0b28d185604753f40ee0244cfe0bf068cf`, subject `audit(phase062): close v1021 lineage gate`로 push·remote verification됐다. Historical `15/15`, negative `24/24`, strict JSON `5/5`, Git controls `13/13`, determinism `2/2`와 `PASS_P062_STEP57_2_PERSISTENCE`를 확인했고 protected/main/Claude는 불변이다.
 - Phase 063 activation은 v1.0.22 manifest 204 occurrence와 supplemental process-control 1을 분리한다. Manifest는 unique path/blob `204/204`, bytes `4,974,148`, text `200`·`30,219/26,137`, PDF `4/133`, partitions `63/6/10/125`다. Phase 057 P–Z 11문건과 provisional findings `0096–0191` 96건은 routing input이며 과학 truth나 실제 채택 상태로 승격하지 않는다.
+- Phase 063 activation exact-seven commit `4e7686ec623a2e82a0ef5433e60a8565b0ad039f`은 parent `69d938da0f5649d6342364c96bf612488879a8f8`, subject `docs(phase063): plan v1022 lineage reaudit`로 push·remote verification됐고 Python 3.12/3.14 `PASS_P063_PLAN_ACTIVATION_PERSISTENCE`를 통과했다.
+- Step 58은 manifest 204 source와 supplemental 1을 Git blob으로 재구성하고 text 200개 1–EOF, PDF 4개 133/133쪽, Phase 057 observation 11개 1–EOF를 result-first human evidence block과 연결한다. 100-commit genealogy는 A/M `204/290`, filtered adjacent true-parent `97/99`와 gap 2개다. v1.0.21→v1.0.22 primary relation은 `42 same + 2 rename + 4 split-source + 20 not-carried = 68`과 `42 same + 2 rename-target + 6 split-target + 154 new = 204`; shared blobs `5`는 secondary다.
+- Step 58 competing 125개는 `T/C/R/D/S=8/58/46/9/4`이며 final-adoption authority는 0이다. Human findings `process/release/competing=7/10/21`는 per-source ID/path/blob/line evidence와 downstream owner를 가지며 status/external truth를 승격하지 않는다. TeX dependencies `55`, unique input target `49`, unresolved edge `0`, orphan TeX `3`; citation source-line/command/key-resolution/bibitem `199/210/258/88`과 closure Ch1/Ch2/Ch3 `39/39`, `15/15`, `34/34`는 구조 evidence만 뜻한다. Exact source/citation/bibitem→PDF page는 sidecar 부재로 GNF이며 Step 62 Task 62B owner다.
 
 ## Exact Next Action
 
-Controller completes the Phase 063 activation validator-first RED/GREEN cycle, writes validation JSON last, stages exactly the declared seven paths, commits atomically with subject `docs(phase063): plan v1022 lineage reaudit` and parent `69d938da0f5649d6342364c96bf612488879a8f8`, pushes the active branch, and verifies exact commit files, local HEAD/upstream/live-origin equality including live protected/main tips, protected/main stability, tracked/untracked Claude diff 0, strict JSON traversal, named negative controls, determinism `2/2`, `git diff --check` and cached worktree/index equality. Only after `PASS_P063_PLAN_ACTIVATION_PERSISTENCE` may Step 58 begin.
+Controller completes Step 58 content/negative/determinism review, stages exactly the declared eight paths, commits atomically with subject `audit(phase063): freeze v1022 source process topology` and parent `4e7686ec623a2e82a0ef5433e60a8565b0ad039f`, pushes the active branch, and verifies exact commit files/blob bytes, local HEAD/upstream/live-origin equality including live protected/main tips, protected/main stability, tracked/untracked Claude diff 0, strict JSON traversal, named negative controls, determinism `2/2`, `git diff --check` and cached worktree/index equality. Only after `PASS_P063_STEP58_PERSISTENCE` may Step 59 begin.
 
 ## Hard-stop Reminder
 
