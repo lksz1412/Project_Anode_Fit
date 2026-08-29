@@ -1,0 +1,483 @@
+{
+  "authority": {
+    "canonical_model_selection": false,
+    "external_experimental_validation": false,
+    "external_material_validation": false,
+    "internal_mathematical_rederivation": true,
+    "internal_synthetic_numerical_behavior": true,
+    "production_repair": false,
+    "ref7_method_content": false
+  },
+  "authority_ceiling": "CONDITIONAL_P064_REF7_GNF_AND_FROZEN_DEFECTS_OPEN",
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "contraction": {
+    "assumptions": [
+      "kappa>=kappa_min>0",
+      "abs(partial_kappa/partial_xi)<=K_kappa",
+      "sigma_bounded"
+    ],
+    "dimension": "DIMENSIONLESS",
+    "local_authority": "LEADING_ORDER_HEURISTIC_NOT_GLOBAL_THEOREM",
+    "local_indicator": "epsilon_local=g*L0/(4*w)",
+    "scope": "REMOTE_PAST_OR_ZERO_INITIAL_TERM",
+    "sufficient_bound": "q=norm_sigma_infinity*K_kappa/kappa_min^2",
+    "sufficient_condition": "q<1"
+  },
+  "correction_register": [
+    {
+      "disposition": "CORRECT_DERIVATION_AND_ROUTE_RUNTIME",
+      "finding": "C-rate h^-1 and Eyring s^-1 are mixed; current and normalized rate contracts conflict",
+      "id": "P064-S66-CORR-001",
+      "owner": "Phase 064 Step 67",
+      "severity": "P0"
+    },
+    {
+      "disposition": "SUPERSEDE_SEMANTIC_PROJECTION_KEEP_PDF_CROP",
+      "finding": "Step65 Eq38 semantic projection wrote exp(K*r*mu), original is exp(K*sigma*mu)",
+      "id": "P064-S66-CORR-002",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "DEMOTE_TO_REDUCED_FEEDBACK_HYPOTHESIS",
+      "finding": "selected kappa(xi) was called the true full kinetics",
+      "id": "P064-S66-CORR-003",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "REPLACE_WITH_GLOBAL_SUFFICIENT_BOUND_AND_LOCAL_HEURISTIC",
+      "finding": "epsilon_local was promoted to a rigorous safety proof and universal threshold",
+      "id": "P064-S66-CORR-004",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "DEMOTE_TO_INTERNAL_ANALOGY",
+      "finding": "JCP applicability conditions were mapped 1:1 to graphite without primary-source authority",
+      "id": "P064-S66-CORR-005",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "BOUND_TO_DIRECTED_VOLTAGE_COORDINATE",
+      "finding": "voltage-coordinate omega was promoted to time EIS or instrument response",
+      "id": "P064-S66-CORR-006",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "ROUTE_CODE_RUNTIME_BOUNDARY",
+      "finding": "unpadded FFT is circular and uniform-grid contract is not enforced",
+      "id": "P064-S66-CORR-007",
+      "owner": "Phase 064 Step 67",
+      "severity": "P1"
+    },
+    {
+      "disposition": "RETAIN_DIMENSIONLESS_REJECT_CURRENT_LABEL",
+      "finding": "dimensionless L0/w window was labeled a physical middle-current window",
+      "id": "P064-S66-CORR-008",
+      "owner": "Phase 064 Step 66",
+      "severity": "P1"
+    },
+    {
+      "disposition": "GROUND_NOT_FOUND_ROUTE_VALIDATION_AUTHORITY",
+      "finding": "declared scratchpad cond_audit_verify.py is absent from frozen evidence",
+      "id": "P064-S66-CORR-009",
+      "owner": "Phase 064 Step 68",
+      "severity": "P2"
+    },
+    {
+      "disposition": "REQUIRE_UTF8_INVOCATION",
+      "finding": "p1_ratio_check default CP949 output exits after numeric work",
+      "id": "P064-S66-CORR-010",
+      "owner": "Phase 064 Step 67",
+      "severity": "P2"
+    },
+    {
+      "disposition": "ROUTE_SOURCE_DISPOSITION",
+      "finding": "tail illustration plots xi up to 2 despite normalized 0 to 1 state",
+      "id": "P064-S66-CORR-011",
+      "owner": "Phase 064 Step 69.1",
+      "severity": "P2"
+    }
+  ],
+  "deterministic_benchmark": {
+    "authority": "DETERMINISTIC_INTERNAL_DISCRETIZATION_ONLY",
+    "complexity": "ALL_ROUTES_O_N_FOR_FIXED_ITERATION_COUNT",
+    "grid": {
+      "L0_V": 0.006,
+      "N": 2401,
+      "center_V": 0.1,
+      "domain_V": [
+        -0.15,
+        0.35
+      ],
+      "scheme": "BACKWARD_EULER",
+      "w_V": 0.02
+    },
+    "reference": "CONVERGED_PICARD_FIXED_POINT_NOT_EXTERNAL_TRUTH",
+    "rows": [
+      {
+        "epsilon_local": 0.0,
+        "final_sup_delta": 0.0,
+        "frozen_max_abs_vs_fixed_point": 0.0,
+        "frozen_relative_l2_vs_fixed_point": 0.0,
+        "g_eff": 0.0,
+        "picard_iterations_to_1e-13": 1,
+        "q_sufficient_global_bound": 0.0,
+        "ratio_equals_picard1": true,
+        "ratio_max_abs_vs_fixed_point": 0.0,
+        "ratio_relative_l2_vs_fixed_point": 0.0,
+        "workload_passes": {
+          "converged_picard": 2,
+          "frozen": 1,
+          "ratio": 2
+        }
+      },
+      {
+        "epsilon_local": 0.0375,
+        "final_sup_delta": 3.9968028886506e-15,
+        "frozen_max_abs_vs_fixed_point": 0.02580014722316,
+        "frozen_relative_l2_vs_fixed_point": 0.011819041186583,
+        "g_eff": 0.5,
+        "picard_iterations_to_1e-13": 10,
+        "q_sufficient_global_bound": 0.10193556856721,
+        "ratio_equals_picard1": true,
+        "ratio_max_abs_vs_fixed_point": 0.0011603189754387,
+        "ratio_relative_l2_vs_fixed_point": 0.00046034423737357,
+        "workload_passes": {
+          "converged_picard": 11,
+          "frozen": 1,
+          "ratio": 2
+        }
+      },
+      {
+        "epsilon_local": 0.075,
+        "final_sup_delta": 9.3924867883288e-14,
+        "frozen_max_abs_vs_fixed_point": 0.063796801001013,
+        "frozen_relative_l2_vs_fixed_point": 0.02899368059584,
+        "g_eff": 1.0,
+        "picard_iterations_to_1e-13": 12,
+        "q_sufficient_global_bound": 0.5541792074198,
+        "ratio_equals_picard1": true,
+        "ratio_max_abs_vs_fixed_point": 0.0074599511390505,
+        "ratio_relative_l2_vs_fixed_point": 0.0029150970271205,
+        "workload_passes": {
+          "converged_picard": 13,
+          "frozen": 1,
+          "ratio": 2
+        }
+      },
+      {
+        "epsilon_local": 0.15,
+        "final_sup_delta": 2.4202861936828e-14,
+        "frozen_max_abs_vs_fixed_point": 0.19986264254245,
+        "frozen_relative_l2_vs_fixed_point": 0.091600514000563,
+        "g_eff": 2.0,
+        "picard_iterations_to_1e-13": 18,
+        "q_sufficient_global_bound": 8.1897225049716,
+        "ratio_equals_picard1": true,
+        "ratio_max_abs_vs_fixed_point": 0.072810943686155,
+        "ratio_relative_l2_vs_fixed_point": 0.028104608949097,
+        "workload_passes": {
+          "converged_picard": 19,
+          "frozen": 1,
+          "ratio": 2
+        }
+      }
+    ]
+  },
+  "expected_parent": "5fb19384e3df7a73c96fcf26e8f599b42c331ae7",
+  "expected_subject": "audit(phase064): rederive v1023 ratio transfer closure",
+  "fredholm_rederivation": {
+    "boundary_conditions": [
+      "Wbar_u(r)->1 as r->infinity",
+      "radial_derivative_at_sigma=0"
+    ],
+    "domain": {
+      "mu": [
+        -1,
+        1
+      ],
+      "r": [
+        "sigma",
+        "infinity"
+      ]
+    },
+    "eq32_domains": [
+      [
+        "sigma",
+        "r"
+      ],
+      [
+        "r",
+        "infinity"
+      ]
+    ],
+    "eq33": "EXACT_REARRANGEMENT_WITHIN_APPROXIMATED_SYSTEM_REQUIRES_W_NONZERO",
+    "eq34": "REFERENCE_RATIO_APPROXIMATION",
+    "eq38_angular_factor": "exp(K*sigma*mu)",
+    "eq39": "APPROXIMATE_CLOSED_RESULT",
+    "literal_graphite_identity": false,
+    "problem_class": "FREDHOLM_SECOND_KIND_FIXED_SEMI_INFINITE_DOMAIN",
+    "transferable_principle": "REFERENCE_SUBSTITUTION_DESIGN_MOTIVATION_ONLY",
+    "upstream_status": "EQS19_20_ORIENTATION_AVERAGING_APPROXIMATIONS"
+  },
+  "gate": "PASS_P064_STEP66_REDERIVATION",
+  "generated_by": "build_phase064_step66_ratio_transfer_rederivation.py",
+  "ground_not_found": [
+    "Ref7 original full text and equation chain",
+    "scratchpad/cond_audit_verify.py",
+    "primary-source proof of JCP-to-graphite variable mapping"
+  ],
+  "human_evidence_semantic_sha256": "3468a3706862525b625949fedae0e86b696d8f288799addab2b8dadcb197abbc",
+  "independent_timing_observation": {
+    "authority": "INTERNAL_SYNTHETIC_RUNTIME_OBSERVATION_ONLY",
+    "comparator_conclusion": {
+      "ratio_vs_converged_picard": "POSITIVE_WITH_APPROXIMATION_ERROR",
+      "ratio_vs_first_picard": "ZERO_IDENTICAL_OUTPUT",
+      "ratio_vs_frozen": "NEGATIVE_SLOWER"
+    },
+    "environment": {
+      "architecture": "AMD64",
+      "numpy": "2.5.0",
+      "os": "Windows 11 build 26200",
+      "python": "3.14.4"
+    },
+    "input": {
+      "L0_V": 0.006,
+      "N": 8000,
+      "center_V": 0.1,
+      "convergence_sup_delta": 1e-13,
+      "domain_V": [
+        -0.15,
+        0.35
+      ],
+      "w_V": 0.02
+    },
+    "rows": [
+      {
+        "frozen_ms": 4.0579,
+        "g_eff": 0.5,
+        "lag_relative_l2_frozen": 0.0118446,
+        "lag_relative_l2_ratio": 0.000462266,
+        "peak_relative_l2_frozen": 0.0502759,
+        "peak_relative_l2_ratio": 0.00263474,
+        "picard_iterations": 10,
+        "picard_ms": 50.3639,
+        "picard_over_ratio": 5.628,
+        "ratio_equals_picard1": true,
+        "ratio_ms": 8.9484,
+        "ratio_over_frozen": 2.205
+      },
+      {
+        "frozen_ms": 4.0579,
+        "g_eff": 1.0,
+        "lag_relative_l2_frozen": 0.0290647,
+        "lag_relative_l2_ratio": 0.00292961,
+        "peak_relative_l2_frozen": 0.124001,
+        "peak_relative_l2_ratio": 0.0169777,
+        "picard_iterations": 12,
+        "picard_ms": 59.6905,
+        "picard_over_ratio": 6.787,
+        "ratio_equals_picard1": true,
+        "ratio_ms": 8.7944,
+        "ratio_over_frozen": 2.167
+      },
+      {
+        "frozen_ms": 4.0579,
+        "g_eff": 2.0,
+        "lag_relative_l2_frozen": 0.0918681,
+        "lag_relative_l2_ratio": 0.0282658,
+        "peak_relative_l2_frozen": 0.379598,
+        "peak_relative_l2_ratio": 0.162313,
+        "picard_iterations": 18,
+        "picard_ms": 87.6683,
+        "picard_over_ratio": 10.087,
+        "ratio_equals_picard1": true,
+        "ratio_ms": 8.6916,
+        "ratio_over_frozen": 2.142
+      }
+    ]
+  },
+  "non_applicable_targets": [
+    "ALGEBRAIC_CHARGE_BALANCE_ROOT",
+    "BACKGROUND_ALGEBRAIC_SELF_CONSISTENCY",
+    "LITERAL_JCP_KERNEL_VARIABLE_TRANSFER",
+    "REF7_INFERRED_METHOD_CONTENT"
+  ],
+  "prior_literature_binding": {
+    "attestation_raw_sha256": "273fa6eb35000b013b48eeb63154b098bd8d0ab3dc89a8634d478d75c4106fc4",
+    "correction_scope": "SEMANTIC_PROJECTION_SUPERSEDED_PDF_CROP_PRESERVED",
+    "eq38_pdf_crop_raw_pixel_sha256": "63946340028fd9d4dac21dd6f8853aa536a0291923b02e2c774fba3a90771978",
+    "matrix_raw_sha256": "db67fc40d9fba6d03547325061b16d03da87ddf59e0985fd6d7b471d092d453a",
+    "step65_eq38_stale_projection": "EQ38|definition=Lambda_rx|integral=4*pi*exp(U1(sigma))*integral_0_infinity[r^2*exp(-U1(r))*angular_average(exp(K*r*mu)*S_R(r,mu))dr]",
+    "step66_corrected_projection": "EQ38|definition=Lambda_rx|integral=4*pi*exp(U1(sigma))*integral_0_infinity[r^2*exp(-U1(r))*angular_average(exp(K*sigma*mu)*S_R(r,mu))dr]"
+  },
+  "schema": "phase064.step66.ratio_transfer_rederivation.v1",
+  "semantic_sha256": "6313d876c49f1830e0b7f647766f1fffc2616388466f01eed9df5eed49ff2de9",
+  "source_contracts": [
+    {
+      "bytes": 20203,
+      "git_blob": "ce4b17399f8d7318b4053134959ab77f9038d313",
+      "path": "Claude/plans/2026-07-18-v1023-ratio-and-advanced-methods-plan.md",
+      "physical_lines": 225,
+      "raw_sha256": "4c3aedabac00ac657f12bf2dffe6f696017654b883f2798c2d824ee70665b228",
+      "read_interval": [
+        1,
+        225
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 20019,
+      "git_blob": "b0e246c7bd31c63134137066d31a6032d4d190d7",
+      "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+      "physical_lines": 212,
+      "raw_sha256": "26c1546fcc701d8dec6847f1ad60cbf0ea2222808fe2aaa396265a7f8641c51c",
+      "read_interval": [
+        1,
+        212
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 10884,
+      "git_blob": "15cd3c78f37dea9a1b942108d01df3db62101a6f",
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec08_lag.tex",
+      "physical_lines": 145,
+      "raw_sha256": "a01c5394781f3674fb167846d1acc05a49c7ec2f4c419c7480a128b1c0747723",
+      "read_interval": [
+        1,
+        145
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 18372,
+      "git_blob": "490139d35601c8d83da6d567bcdcf2ac97619d1c",
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec09_tail.tex",
+      "physical_lines": 245,
+      "raw_sha256": "7fed61f947f974c21f58361519ae9cc3511ac633c3869503243a70f9cf0eef49",
+      "read_interval": [
+        1,
+        245
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 15794,
+      "git_blob": "10ab70e2e4a99cc72b122c75922bc178041b1923",
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec10_sum.tex",
+      "physical_lines": 170,
+      "raw_sha256": "5edccc997672641f6722cf9eae80cb93c83345f5cc9cfaa205f500a57c16de6e",
+      "read_interval": [
+        1,
+        170
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 21845,
+      "git_blob": "3c840b4a67b9c8b134c76c984efe34fba9271915",
+      "path": "Claude/docs/v1.0.23/results/comp_v23/COND_AUDIT.md",
+      "physical_lines": 301,
+      "raw_sha256": "289b59fe109318a9d42a6daa29d30e43815a45e3729baed3366688444c767cd2",
+      "read_interval": [
+        1,
+        301
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 2866,
+      "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+      "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+      "physical_lines": 68,
+      "raw_sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc",
+      "read_interval": [
+        1,
+        68
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 6502,
+      "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+      "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+      "physical_lines": 128,
+      "raw_sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4",
+      "read_interval": [
+        1,
+        128
+      ],
+      "read_kind": "READ_FULL_STEP66"
+    },
+    {
+      "bytes": 97860,
+      "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+      "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+      "physical_lines": 1585,
+      "raw_sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+      "read_interval": [
+        [
+          105,
+          210
+        ],
+        [
+          450,
+          535
+        ],
+        [
+          630,
+          710
+        ]
+      ],
+      "read_kind": "TARGETED_CONTROLLER_PLUS_INDEPENDENT_EXPANSION"
+    }
+  ],
+  "source_mutation_count": 0,
+  "status": "PASS_PENDING_PERSISTENCE_WITH_CORRECTIONS",
+  "timebase": {
+    "Ah_contract": "dq/dt_s=I_A/(3600*Q_Ah)=C_h/3600",
+    "coulomb_contract": "dq/dt_s=I_A/Q_C",
+    "dimensionless_L0_over_w_tests_retained": true,
+    "kinetic_length": "L_q=(dq/dt_s)/k_s; L_V=abs(dV/dq)*L_q",
+    "legacy_overestimate_factor": 3600,
+    "physical_current_regime_approved": false,
+    "required_separation": [
+      "current_A_for_IR",
+      "normalized_rate_s^-1_for_kinetics"
+    ]
+  },
+  "transfer": {
+    "coordinate": "DIRECTED_VOLTAGE_X",
+    "external_authority": {
+      "EIS": false,
+      "instrument_response": false,
+      "time_without_sweep_rate": false
+    },
+    "finite_dft_caveat": "UNPADDED_DFT_IS_CIRCULAR_NOT_CAUSAL",
+    "formula": "H=1/(1+i*omega_x*L0)",
+    "fourier_convention": "fhat=integral f(x)*exp(-i*omega_x*x)dx",
+    "time_mapping": "REQUIRES_EXPLICIT_SWEEP_RATE_NU_AND_TAU=L0/abs(nu)",
+    "units": {
+      "H": "1",
+      "L0": "V",
+      "omega_x": "V^-1"
+    }
+  },
+  "volterra_rederivation": {
+    "coordinate": "DIRECTED_VOLTAGE_X_INCREASES_ALONG_PROTOCOL",
+    "first_picard": "r1=T[r0]; r1_prime=sigma_x-kappa(xi0)*r1",
+    "frozen_limit": "g=0 => r=r1=r0 for identical initial condition",
+    "frozen_reference": "r0_prime=sigma_x-kappa0*r0",
+    "initial_condition_contract": "FINITE_X0_TERM_OR_PROVED_REMOTE_PAST_DECAY",
+    "jcp_solution_ratio_identity": false,
+    "local_equivalent": "FIRST_ORDER_NONLINEAR_ODE",
+    "problem_class": "NONLINEAR_CAUSAL_VOLTERRA_SECOND_KIND",
+    "selected_law": "kappa(xi)=kappa0*exp[-g*(1-xi)]",
+    "selected_law_authority": "REDUCED_FEEDBACK_HYPOTHESIS"
+  }
+}
