@@ -1,0 +1,1005 @@
+{
+  "artifact_kind": "PHASE_064_V1023_PROBLEM_CODE_DELTA",
+  "authority": {
+    "canonical_adoption": false,
+    "experimental_truth": false,
+    "external_primary_literature_truth": false,
+    "material_truth": false,
+    "publication_readiness": false,
+    "runtime_internal_concordance": false,
+    "static_internal_concordance": true
+  },
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "call_edges": [
+    {
+      "callee": "GraphiteAnodeDischargeDQDV.dqdv",
+      "caller": "GraphiteAnodeDischargeDQDV.curve",
+      "class": "CAUSAL_LAG_VOLTERRA_ODE"
+    },
+    {
+      "callee": "GraphiteAnodeDischargeDQDV._resolve_lag_length",
+      "caller": "GraphiteAnodeDischargeDQDV.dqdv",
+      "class": "CAUSAL_LAG_VOLTERRA_ODE"
+    },
+    {
+      "callee": "_causal_memory_pointwise",
+      "caller": "GraphiteAnodeDischargeDQDV.dqdv",
+      "condition": "lag_ratio_correction=False"
+    },
+    {
+      "callee": "_causal_memory_ratio",
+      "caller": "GraphiteAnodeDischargeDQDV.dqdv",
+      "condition": "lag_ratio_correction=True"
+    },
+    {
+      "callee": "GraphiteAnodeDischargeDQDV.solve_U_oc",
+      "caller": "BlendedAnodeDQDV.solve_U_oc",
+      "condition": "pooled transitions"
+    }
+  ],
+  "counts": {
+    "P0": 1,
+    "P1": 5,
+    "P2": 3,
+    "algebraic": 2,
+    "problem_classes": 3,
+    "ratio_applicable": 1
+  },
+  "equation_code_map": [
+    {
+      "boundary_initial_condition": "ALGEBRAIC_BRACKET_ENDPOINTS_NO_CAUSAL_INITIAL_STATE",
+      "code_symbol": "GraphiteAnodeDischargeDQDV.solve_U_oc",
+      "dimension_unit": "BOTH_BALANCE_SIDES_CAPACITY_U_OC_VOLT",
+      "directionality": "EQUILIBRIUM_DIRECTION_INVARIANT",
+      "domain": "x_bar_IN_[0,1]_FINITE_POSITIVE_CAPACITIES_BRACKETED_VOLTAGE",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 874,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "58dd2d4eecbf23d84710b5955ebc0c93b589fab1922a29c14cb2d31c2e336318",
+            "start": 796
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 385,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_sec02b_part0.tex",
+            "sha256": "99a6e01dfa1ce6e28ad7fc746d1cbf0ec6fcb1e8f9c9594c421331dd4a3d6852",
+            "start": 320
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-001",
+      "limiting_recovery": "N_P_EQ_1_SINGLE_TRANSITION_LIMIT",
+      "non_applicable_target": [
+        "CAUSAL_LAG_VOLTERRA_ODE",
+        "BACKGROUND_ALGEBRAIC_SELF_CONSISTENCY"
+      ],
+      "operation": "EXACT_MONOTONE_NUMERICAL_ROOT_FOR_IMPLEMENTED_LOGISTIC_SUM",
+      "problem_class": "CHARGE_BALANCE_ALGEBRAIC_ROOT",
+      "source_equation": "eq:sm-mc-balance",
+      "status": "STATIC_CONCORDANT_WITH_EXISTING_DOMAIN_GUARD_GAPS",
+      "variable_map": {
+        "Q_j": "transition capacity",
+        "U_oc": "root voltage V",
+        "xi_eq_j": "implemented logistic occupancy complement"
+      }
+    },
+    {
+      "boundary_initial_condition": "ALGEBRAIC_BRACKET_ENDPOINTS_NO_CAUSAL_INITIAL_STATE",
+      "code_symbol": "BlendedAnodeDQDV.solve_U_oc",
+      "dimension_unit": "BOTH_BALANCE_SIDES_CAPACITY_U_OC_VOLT",
+      "directionality": "EQUILIBRIUM_DIRECTION_INVARIANT",
+      "domain": "x_bar_IN_[0,1]_FINITE_POSITIVE_HOST_CAPACITIES_BRACKETED_VOLTAGE",
+      "evidence": {
+        "applicability_sources": [
+          {
+            "end": 278,
+            "path": "Claude/docs/v1.0.23/_sections/ch3v22_sec03_blend.tex",
+            "sha256": "dafb140d51597b2410635e7b3b774fe8c92162484c9de735ceda3d9099866a8a",
+            "start": 229
+          }
+        ],
+        "code_sources": [
+          {
+            "end": 1365,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "504f344558f2d9bd569d4d877927997bbd9ad705732de25a3b1b6af1ad761e0d",
+            "start": 1354
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 115,
+            "path": "Claude/docs/v1.0.23/_sections/ch3v22_sec03_blend.tex",
+            "sha256": "a632560bdf72a6b0b8e1e92b8982cb14996754a192a328ec3d8fb6a8395cf9c1",
+            "start": 60
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-002",
+      "limiting_recovery": "F_SI_TO_0_RECOVERS_GRAPHITE_HOST_ROOT",
+      "non_applicable_target": [
+        "CAUSAL_LAG_VOLTERRA_ODE",
+        "FINITE_RATE_NONADDITIVE_HOST_PARTITION"
+      ],
+      "operation": "EXACT_POOLED_HOST_NUMERICAL_ROOT_FOR_IMPLEMENTED_LOGISTIC_SUM",
+      "problem_class": "CHARGE_BALANCE_ALGEBRAIC_ROOT",
+      "source_equation": "eq:blend-balance",
+      "status": "POOLED_DELEGATE_STATIC_CONCORDANCE",
+      "variable_map": {
+        "Q_host_j": "host transition capacity",
+        "U_oc": "shared host root voltage V",
+        "f_Si": "capacity fraction"
+      }
+    },
+    {
+      "boundary_initial_condition": "ALGEBRAIC_ROOT_NO_CAUSAL_INITIAL_STATE",
+      "code_symbol": null,
+      "dimension_unit": "Q_BG_AND_Q_J_CAPACITY_CBG_CAPACITY_PER_VOLT",
+      "directionality": "ALGEBRAIC_NO_CAUSAL_DIRECTION",
+      "domain": "DOCUMENTED_BACKGROUND_CAPACITY_FUNCTION_PLUS_TRANSITIONS",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 545,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "73dfd0b3ba2c320fe8a59947e147a994af50b38970338a501ed566534a41510f",
+            "start": 528
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 27,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+            "sha256": "05041613c7809131e89cb38bff475d92efe065410b7804282e7a8aef0931eeae",
+            "start": 19
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-003",
+      "limiting_recovery": "C_BG_TO_0_WOULD_RECOVER_TRANSITION_ONLY_BALANCE",
+      "non_applicable_target": [
+        "RATIO_REFERENCE_ROUTE",
+        "VOLTERRA_KERNEL"
+      ],
+      "operation": "DOCUMENTED_ALGEBRAIC_ROOT_IMPLEMENTATION_ABSENT",
+      "problem_class": "BACKGROUND_ALGEBRAIC_SELF_CONSISTENCY",
+      "source_equation": "Q_cell*q=Q_bg(V_n)+sum_j Q_j*xi_j",
+      "status": "IMPLEMENTATION_GROUND_NOT_FOUND_CBG_DERIVATIVE_ONLY",
+      "variable_map": {
+        "Cbg": "implemented derivative-only background",
+        "Q_bg": "integral background capacity"
+      }
+    },
+    {
+      "boundary_initial_condition": "REMOTE_PAST_EQUILIBRIUM_APPROXIMATED_BY_FIRST_SAMPLE_XI_EQ",
+      "code_symbol": "_causal_memory_pointwise",
+      "dimension_unit": "VOLTAGE_COORDINATE_KERNEL_L_V_IN_VOLT",
+      "directionality": "DISCHARGE_ASCENDING_CHARGE_DESCENDING_PROGRESS_COORDINATE",
+      "domain": "MONOTONE_PROGRESS_VOLTAGE_FINITE_POSITIVE_L_V",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 145,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "6bb31cab7319ce123570911f46d8b7003d1e08410cc55ed0a793ffe9f2ff4651",
+            "start": 115
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 45,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+            "sha256": "fdb2fab65bba31bf1b2a1e0ac0526a1a7521a0a596134f0d64c07ace24b2f04f",
+            "start": 29
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-004",
+      "limiting_recovery": "L_V_TO_0_RECOVERS_LOCAL_EQUILIBRIUM_NUMERICALLY",
+      "non_applicable_target": [
+        "CHARGE_BALANCE_ALGEBRAIC_ROOT",
+        "BACKGROUND_ALGEBRAIC_SELF_CONSISTENCY"
+      ],
+      "operation": "PIECEWISE_LINEAR_EXACT_INTERVAL_RECURRENCE_FOR_CONSTANT_L",
+      "problem_class": "CAUSAL_LAG_VOLTERRA_ODE",
+      "source_equation": "eq:sc-ref",
+      "status": "CONDITIONAL_STATIC_CONCORDANCE_IMPLICIT_REMOTE_PAST_INITIALIZATION",
+      "variable_map": {
+        "V_prog": "progress voltage V",
+        "lag_length": "L_V V",
+        "xi_eq": "equilibrium progress"
+      }
+    },
+    {
+      "boundary_initial_condition": "REMOTE_PAST_EQUILIBRIUM_APPROXIMATED_BY_FIRST_SAMPLE_XI_EQ",
+      "code_symbol": "_causal_memory_ratio",
+      "dimension_unit": "G_EFF_DIMENSIONLESS_L_LOC_VOLTAGE",
+      "directionality": "DISCHARGE_ASCENDING_CHARGE_DESCENDING_PROGRESS_COORDINATE",
+      "domain": "MONOTONE_PROGRESS_VOLTAGE_FINITE_POSITIVE_L_LOC",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 177,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "74821e9e0cd4d95e3649fc1ab64d0e03757cedd87a36a4625d151135aaa83b9e",
+            "start": 146
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 96,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+            "sha256": "e0143efc689441f160dd43ffce553843bf3ae600bfde8cf2cc1d166d40399310",
+            "start": 72
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-005",
+      "limiting_recovery": "G_EFF_EQ_0_BIT_EXACT_FROZEN_PATH",
+      "non_applicable_target": [
+        "GENERAL_EXACT_NONLINEAR_SOLUTION",
+        "ALGEBRAIC_ROOT_CLASSES"
+      ],
+      "operation": "FIRST_PICARD_ITERATE_WITH_FROZEN_REFERENCE_TRAJECTORY",
+      "problem_class": "CAUSAL_LAG_VOLTERRA_ODE",
+      "source_equation": "eq:sc-ratio-local",
+      "status": "FIRST_PICARD_STATIC_CONCORDANCE",
+      "variable_map": {
+        "L_loc": "state-dependent voltage lag V",
+        "g_eff": "dimensionless feedback",
+        "xi_lag0": "frozen reference trajectory"
+      }
+    },
+    {
+      "boundary_initial_condition": "CIRCULAR_PERIODIC_BOUNDARY_NO_FINITE_INITIAL_STATE",
+      "code_symbol": "transfer_apparent_from_equilibrium",
+      "dimension_unit": "OMEGA_V_TIMES_L_V_DIMENSIONLESS",
+      "directionality": "FFT_PERIODIC_COORDINATE_NOT_CAUSAL_TIME_DIRECTION",
+      "domain": "IMPLEMENTATION_ACCEPTS_ARRAY_WITHOUT_UNIFORMITY_OR_LENGTH_GUARD",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 195,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "8ddac3a5c6fe4abad3cffbd5a9b7fe03b00e443269727642a9bd98d61b88f574",
+            "start": 180
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 198,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+            "sha256": "0320aeec9a0ee6a9ed99d5d825f00a5ede3b5dda56f54a794fcdc54e6882f6b0",
+            "start": 162
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-006",
+      "limiting_recovery": "L_V_EQ_0_IDENTITY_TRANSFER",
+      "non_applicable_target": [
+        "TIME_DOMAIN_EIS",
+        "INSTRUMENT_RESPONSE",
+        "NONUNIFORM_GRID_IDENTITY"
+      ],
+      "operation": "UNPADDED_DISCRETE_FOURIER_VOLTAGE_COORDINATE_TRANSFER",
+      "problem_class": "CAUSAL_LAG_VOLTERRA_ODE",
+      "source_equation": "eq:sc-transfer",
+      "status": "VOLTAGE_COORDINATE_CIRCULAR_DFT_UNIFORMITY_UNENFORCED",
+      "variable_map": {
+        "H": "dimensionless transfer",
+        "L_V": "voltage lag V",
+        "omega_V": "voltage angular frequency V^-1"
+      }
+    },
+    {
+      "boundary_initial_condition": "NOT_APPLICABLE_TIMEBASE_PROJECTION",
+      "code_symbol": "GraphiteAnodeDischargeDQDV.curve_AND_func_L_q",
+      "dimension_unit": "IR_CURRENT_A_UNCHANGED_KINETIC_I_OVER_Q_MUST_BE_S^-1",
+      "directionality": "CURRENT_MAGNITUDE_WITH_SEPARATE_DIRECTION_SIGN",
+      "domain": "C_RATE_PER_HOUR_Q_CELL_AMPERE_HOUR_EYRING_RATE_PER_SECOND",
+      "evidence": {
+        "code_sources": [
+          {
+            "end": 112,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "bbe3daef4c05b39c590dc08517c4d4f1d9cf347dd7d4d71a02fa6135610196d0",
+            "start": 99
+          },
+          {
+            "end": 705,
+            "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+            "sha256": "6441140e852b66962a102c98d19a9f55c472fe844fe74c2e55c8bb4eb1f7dda8",
+            "start": 675
+          }
+        ],
+        "equation_sources": [
+          {
+            "end": 22,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_sec01_n0n1.tex",
+            "sha256": "27ccd343876366ae4a5ac467cd0062299b869f524a1c5673397694078b5c6604",
+            "start": 9
+          },
+          {
+            "end": 25,
+            "path": "Claude/docs/v1.0.23/_sections/ch1_sec08_lag.tex",
+            "sha256": "10f782a723cc6a0b1e54ebe0bc4adccfb2bfcd5e615e7bbb096598a0cd6911cc",
+            "start": 1
+          }
+        ]
+      },
+      "id": "P064-S67-MAP-007",
+      "limiting_recovery": "C_RATE_TO_0_ZERO_CURRENT_EQUILIBRIUM_LIMIT",
+      "non_applicable_target": [
+        "DIVIDE_IR_CURRENT_BY_3600"
+      ],
+      "operation": "C_RATE_TO_CURRENT_THEN_NORMALIZED_KINETIC_RATE",
+      "problem_class": "CAUSAL_LAG_VOLTERRA_ODE",
+      "source_equation": "eq:n0map_AND_eq:Lq",
+      "status": "CONFLICT_HOUR_TO_SECOND_CONVERSION_MISSING",
+      "variable_map": {
+        "I_abs": "current A",
+        "Q_cell": "capacity Ah at curve boundary but C required for I/Q in s^-1",
+        "c_rate": "h^-1"
+      }
+    }
+  ],
+  "expected_parent": "0be2e45e56081e141fbd2f58be7a01b023ca16a3",
+  "expected_subject": "audit(phase064): bound v1023 algebraic volterra runtime",
+  "findings": [
+    {
+      "external_truth_validated": false,
+      "finding": "C-rate h^-1 enters second-based kinetics without /3600; lag is 3600 times the SI-corrected route.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F001",
+      "owner": "Phase 076/081",
+      "priority": "P0",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Documented background algebraic root has no production solver; Cbg is derivative-only.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F002",
+      "owner": "Phase 081",
+      "priority": "P1",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Transfer silently accepts nonuniform grids and uses an unpadded circular DFT.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F003",
+      "owner": "Phase 081",
+      "priority": "P1",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Lag functions hard-code xi_lag[0]=xi_eq[0] and expose no finite initial-state contract.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F004",
+      "owner": "Phase 076/081",
+      "priority": "P1",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Self-consistency gate loads production from cwd and does not pin path/blob/version identity.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F005",
+      "owner": "Phase 081",
+      "priority": "P1",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Transfer prose promotes a voltage-coordinate identity to instrument response.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F006",
+      "owner": "Phase 068/081",
+      "priority": "P1",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "P1 observation requires UTF-8 on Windows CP949 and has no assertions/nonzero scientific failure.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F007",
+      "owner": "Phase 081",
+      "priority": "P2",
+      "status": "OPEN_ROUTED"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Referenced scratchpad cond_audit_verify.py is absent from the frozen tree.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F008",
+      "owner": "Phase 068",
+      "priority": "P2",
+      "status": "GROUND_NOT_FOUND"
+    },
+    {
+      "external_truth_validated": false,
+      "finding": "Internal self-referential regressions do not establish units, material, experimental, or external literature truth.",
+      "frozen_source_modified": false,
+      "id": "P064-S67-F009",
+      "owner": "Phase 068",
+      "priority": "P2",
+      "status": "OPEN_ROUTED"
+    }
+  ],
+  "gate": "PASS_P064_STEP67_PROBLEM_RUNTIME_BOUNDARY_WITH_CONCERNS",
+  "generated_by": "build_phase064_step67_problem_runtime_boundary.py",
+  "generated_date": "2026-08-29",
+  "human_evidence": {
+    "algebraic_problem_classes": 2,
+    "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+    "finding_summary": {
+      "P0": 1,
+      "P1": 5,
+      "P2": 3
+    },
+    "gate": "PASS_P064_STEP67_PROBLEM_RUNTIME_BOUNDARY_WITH_CONCERNS",
+    "phase_ceiling": "CONDITIONAL_P064",
+    "problem_classes": 3,
+    "ratio_applicable_classes": 1,
+    "runtime_sets": 2
+  },
+  "human_evidence_semantic_sha256": "8787504f251626aa05a5c99af59d5aabd91d83cc654885b2639243a980f689a4",
+  "inherited_joins": [
+    {
+      "current": "P064-S67-F001",
+      "duplicate_new_finding": false,
+      "prior": [
+        "P063-S61-F001",
+        "P064-S66-CORR-001"
+      ]
+    },
+    {
+      "current": "P064-S67-F003",
+      "duplicate_new_finding": false,
+      "prior": [
+        "P064-S66-CORR-007"
+      ]
+    },
+    {
+      "current": "P064-S67-F007",
+      "duplicate_new_finding": false,
+      "prior": [
+        "P063-S61-F011",
+        "P064-S66-CORR-010"
+      ]
+    },
+    {
+      "current": "P064-S67-F008",
+      "duplicate_new_finding": false,
+      "prior": [
+        "P064-S66-CORR-009"
+      ]
+    }
+  ],
+  "non_double_count": {
+    "baseline": "dH_eff=dH_a-chi_d*Omega at xi_to_1",
+    "classification": "BASELINE_PLUS_STATE_DEVIATION_NOT_DUPLICATE_TOTAL_TERM",
+    "external_physical_truth": false,
+    "modulation": "L_loc=L0*exp(2*chi_d*Omega*(1-xi0)/(R*T))",
+    "scope": "INTERNAL_REDUCED_FEEDBACK_HYPOTHESIS_ONLY"
+  },
+  "omega_consumer_partition": [
+    {
+      "consumer": "hysteresis_center",
+      "separate_role": true,
+      "spans": [
+        [
+          200,
+          214
+        ],
+        [
+          628,
+          635
+        ]
+      ],
+      "symbols": [
+        "func_dU_hys",
+        "func_U_branch",
+        "dqdv"
+      ]
+    },
+    {
+      "consumer": "lag_baseline",
+      "separate_role": true,
+      "spans": [
+        [
+          218,
+          221
+        ],
+        [
+          511,
+          525
+        ]
+      ],
+      "symbols": [
+        "func_dH_a_eff",
+        "_resolve_lag_length"
+      ]
+    },
+    {
+      "consumer": "lag_state_deviation",
+      "separate_role": true,
+      "spans": [
+        [
+          146,
+          177
+        ],
+        [
+          466,
+          478
+        ]
+      ],
+      "symbols": [
+        "_lag_ratio_geff",
+        "_causal_memory_ratio"
+      ]
+    }
+  ],
+  "phase": 64,
+  "phase_ceiling": "CONDITIONAL_P064",
+  "problem_classes": [
+    {
+      "boundary": "NO_INTEGRAL_KERNEL_NO_CAUSAL_MEMORY",
+      "code_symbols": [
+        "GraphiteAnodeDischargeDQDV.solve_U_oc",
+        "BlendedAnodeDQDV.solve_U_oc"
+      ],
+      "id": "P064-S67-CLASS-001",
+      "mathematical_class": "MONOTONE_ALGEBRAIC_ROOT_UNDER_POSITIVE_DOMAIN",
+      "name": "CHARGE_BALANCE_ALGEBRAIC_ROOT",
+      "ratio_reference_applicable": false,
+      "source_equations": [
+        "eq:sm-mc-balance",
+        "eq:blend-balance"
+      ]
+    },
+    {
+      "boundary": "NO_INTEGRAL_KERNEL_RATIO_ROUTE_PROHIBITED",
+      "code_symbols": [
+        "GraphiteAnodeDischargeDQDV.equilibrium",
+        "GraphiteAnodeDischargeDQDV.dqdv"
+      ],
+      "id": "P064-S67-CLASS-002",
+      "implementation_state": "DOCUMENTED_ROOT_NOT_IMPLEMENTED_CBG_DERIVATIVE_ONLY",
+      "mathematical_class": "ALGEBRAIC_ROOT",
+      "name": "BACKGROUND_ALGEBRAIC_SELF_CONSISTENCY",
+      "ratio_reference_applicable": false,
+      "solver_symbol": null,
+      "source_equations": [
+        "Q_cell*q=Q_bg(V_n)+sum_j Q_j*xi_j"
+      ]
+    },
+    {
+      "boundary": "FIRST_PICARD_ITERATE_ONLY_NOT_GENERAL_EXACT_SOLUTION",
+      "code_symbols": [
+        "_causal_memory_pointwise",
+        "_causal_memory_ratio",
+        "GraphiteAnodeDischargeDQDV._lag_ratio_geff",
+        "GraphiteAnodeDischargeDQDV.dqdv"
+      ],
+      "id": "P064-S67-CLASS-003",
+      "mathematical_class": "NONLINEAR_CAUSAL_VOLTERRA_EQUIVALENT_FIRST_ORDER_ODE",
+      "name": "CAUSAL_LAG_VOLTERRA_ODE",
+      "ratio_reference_applicable": true,
+      "source_equations": [
+        "eq:sc-frozen",
+        "eq:sc-true",
+        "eq:sc-volterra-eq",
+        "eq:sc-ratio-local"
+      ]
+    }
+  ],
+  "regular_solution_occupancy": {
+    "checked_symbols": [
+      "func_ksi_eq",
+      "GraphiteAnodeDischargeDQDV.solve_U_oc"
+    ],
+    "implicit_omega_nonzero_equilibrium_implemented": false,
+    "status": "GROUND_NOT_FOUND_DO_NOT_PROMOTE_LAG_IDENTITY_TO_EQUILIBRIUM_IMPLEMENTATION"
+  },
+  "schema": 1,
+  "semantic_sha256": "8639b12dc5d0521d9d7f0f5ba42aa77bb63694b2b7feff3a04ac7ecc68bc74c2",
+  "source_contracts": [
+    {
+      "bytes": 20203,
+      "git_blob": "ce4b17399f8d7318b4053134959ab77f9038d313",
+      "lines": 225,
+      "path": "Claude/plans/2026-07-18-v1023-ratio-and-advanced-methods-plan.md",
+      "read_coverage": [
+        1,
+        225
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "4c3aedabac00ac657f12bf2dffe6f696017654b883f2798c2d824ee70665b228",
+      "source_spans": [
+        {
+          "end": 20,
+          "sha256": "3d20e0a82a08bb5b16c5d342ced756d75d49dabfa0ffe5eb1cfe9c8c867ade69",
+          "start": 13
+        },
+        {
+          "end": 113,
+          "sha256": "a400fabf4c37f30c24f7f94e27c82ad5f153c3954cc00b9b8544ec4b7b72b96c",
+          "start": 90
+        },
+        {
+          "end": 176,
+          "sha256": "86388f4dd78506e086434ab571f9da5f5b543f35e147f163a838533b10586037",
+          "start": 145
+        }
+      ]
+    },
+    {
+      "bytes": 92292,
+      "git_blob": "c822c4e7ef9b8676e3a9bde675a718169ce79d5b",
+      "lines": 1500,
+      "path": "Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py",
+      "read_coverage": [
+        1,
+        1500
+      ],
+      "read_status": "READ_FULL_INHERITED_STEP61_REVALIDATED_RUNTIME_STEP67",
+      "sha256": "a08378b555ca79f92d31bbad506e8c78551a93721cc90d705bf9390b93434783",
+      "source_spans": [
+        {
+          "end": 177,
+          "sha256": "fba9da77da85db5d9fcd60102bd71b2792c1089fa79fd22bd01a91111814b9fe",
+          "start": 105
+        },
+        {
+          "end": 525,
+          "sha256": "3a6ac2e66f50dd9615f9cb377e3e9cfd0b3ad6d6c117be032efe1ee50405e2af",
+          "start": 481
+        },
+        {
+          "end": 705,
+          "sha256": "53253e69bf4b9537eac89a30d3922704bf5dc0f4784889ca3e83b89fa7c179a3",
+          "start": 548
+        }
+      ]
+    },
+    {
+      "bytes": 97860,
+      "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+      "lines": 1585,
+      "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+      "read_coverage": [
+        1,
+        1585
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+      "source_spans": [
+        {
+          "end": 195,
+          "sha256": "4da72594ab58f86efb965eb22dbb92eba750eb52fc09ace90fa1ec07d5a6f35c",
+          "start": 99
+        },
+        {
+          "end": 525,
+          "sha256": "aed78c6246fd7cfa08da2f3f662700562de21fb0608866eb1b990af3c6431e9d",
+          "start": 456
+        },
+        {
+          "end": 545,
+          "sha256": "73dfd0b3ba2c320fe8a59947e147a994af50b38970338a501ed566534a41510f",
+          "start": 528
+        },
+        {
+          "end": 705,
+          "sha256": "b769959471b4ea4439f758e0c0ac459a23f036ed54e4ed5994e09f12389524a8",
+          "start": 548
+        },
+        {
+          "end": 874,
+          "sha256": "58dd2d4eecbf23d84710b5955ebc0c93b589fab1922a29c14cb2d31c2e336318",
+          "start": 796
+        },
+        {
+          "end": 1284,
+          "sha256": "c462eb73edb646244bd6d9dfa7ab46611faaa7e9c9951ff3a4128e2a08358e6b",
+          "start": 1273
+        },
+        {
+          "end": 1365,
+          "sha256": "875cb147698042fa4f52310994ddfe98e234bb5535b02e1bbc78c42683bbe441",
+          "start": 1322
+        }
+      ]
+    },
+    {
+      "bytes": 33361,
+      "git_blob": "a636c6f21d97f8a1af57b61a6e4afda974b86dca",
+      "lines": 626,
+      "path": "Claude/docs/v1.0.23/test_gates_v1023.py",
+      "read_coverage": [
+        1,
+        626
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "78205fed4f6ed9ff731e11eddf14f1e871ef15759cb75344f098b8d014173832",
+      "source_spans": [
+        {
+          "end": 25,
+          "sha256": "92f5fc7a1f559b6886786803184d72dd3c790ac005b5bc31b38cfb6fecace7b8",
+          "start": 1
+        },
+        {
+          "end": 626,
+          "sha256": "b4ea8ccebf7a0174d04f0d55ead3b5e3d91950e3fd66ac115ff6ea460fd649bb",
+          "start": 482
+        }
+      ]
+    },
+    {
+      "bytes": 6502,
+      "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+      "lines": 128,
+      "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+      "read_coverage": [
+        1,
+        128
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4",
+      "source_spans": [
+        {
+          "end": 17,
+          "sha256": "f043689c9a70481587a02c87e66b7484245e4e6af78190c0aa85fed52498ea30",
+          "start": 1
+        },
+        {
+          "end": 128,
+          "sha256": "be4100a28479598d6c8e726d1b7c3611a89656e82ba46f58e0b3551c144a6b98",
+          "start": 26
+        }
+      ]
+    },
+    {
+      "bytes": 2866,
+      "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+      "lines": 68,
+      "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+      "read_coverage": [
+        1,
+        68
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc",
+      "source_spans": [
+        {
+          "end": 18,
+          "sha256": "0e4673c3bf6c7d78021daf2b93c0a5f98909b0a7315dfaaf825a1c3c26cfe862",
+          "start": 1
+        },
+        {
+          "end": 68,
+          "sha256": "470e107bb210fe204be17273b5ba555a54d40ee2831916e6441f763ab8998c94",
+          "start": 45
+        }
+      ]
+    },
+    {
+      "bytes": 21845,
+      "git_blob": "3c840b4a67b9c8b134c76c984efe34fba9271915",
+      "lines": 301,
+      "path": "Claude/docs/v1.0.23/results/comp_v23/COND_AUDIT.md",
+      "read_coverage": [
+        1,
+        301
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "289b59fe109318a9d42a6daa29d30e43815a45e3729baed3366688444c767cd2",
+      "source_spans": [
+        {
+          "end": 25,
+          "sha256": "a706aabdf9157ebb717a4cbef45af0715c66d8f7cf28bb362e6b8020ca6b61ac",
+          "start": 1
+        },
+        {
+          "end": 221,
+          "sha256": "0c9d6295cc7a706de4c544bce0cc61c90085ab2954c53e8bffd3638f534d2a46",
+          "start": 191
+        },
+        {
+          "end": 301,
+          "sha256": "db06aa9e4deef8c8f717006b408008f9c2655d7035f91bf1ef3e11ff11bcdec5",
+          "start": 269
+        }
+      ]
+    },
+    {
+      "bytes": 20019,
+      "git_blob": "b0e246c7bd31c63134137066d31a6032d4d190d7",
+      "lines": 212,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_appE_selfconsistent.tex",
+      "read_coverage": [
+        1,
+        212
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "26c1546fcc701d8dec6847f1ad60cbf0ea2222808fe2aaa396265a7f8641c51c",
+      "source_spans": [
+        {
+          "end": 27,
+          "sha256": "05041613c7809131e89cb38bff475d92efe065410b7804282e7a8aef0931eeae",
+          "start": 19
+        },
+        {
+          "end": 70,
+          "sha256": "ba760b6c379f2017be1f60eeb9756e23c83b4b11615da28e60516936417fc315",
+          "start": 29
+        },
+        {
+          "end": 135,
+          "sha256": "03d331c256e7f5595a91053ab64102f44e42ed5f13c97ceaaf1fff328010a92c",
+          "start": 72
+        },
+        {
+          "end": 198,
+          "sha256": "0320aeec9a0ee6a9ed99d5d825f00a5ede3b5dda56f54a794fcdc54e6882f6b0",
+          "start": 162
+        }
+      ]
+    },
+    {
+      "bytes": 23690,
+      "git_blob": "9648c33e724f4bb762924ff20ba775ec568d4bf0",
+      "lines": 257,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec01_n0n1.tex",
+      "read_coverage": [
+        1,
+        257
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "e040962075e33f1222128e4f86f4d474ca24e970f5285392fafa904d3c33075d",
+      "source_spans": [
+        {
+          "end": 22,
+          "sha256": "27ccd343876366ae4a5ac467cd0062299b869f524a1c5673397694078b5c6604",
+          "start": 9
+        }
+      ]
+    },
+    {
+      "bytes": 39502,
+      "git_blob": "e9c17ce0e2b23e85843f70bfc8e6132e5154ae69",
+      "lines": 474,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec02b_part0.tex",
+      "read_coverage": [
+        [
+          188,
+          217
+        ],
+        [
+          282,
+          418
+        ]
+      ],
+      "read_status": "READ_BOUNDED_STEP67_FULL_INHERITED_STEP64",
+      "sha256": "e1d4db7c30581d70f91c38ebd72433699fc54a0e4883345ebbe55e31073e000d",
+      "source_spans": [
+        {
+          "end": 385,
+          "sha256": "99a6e01dfa1ce6e28ad7fc746d1cbf0ec6fcb1e8f9c9594c421331dd4a3d6852",
+          "start": 320
+        }
+      ]
+    },
+    {
+      "bytes": 7092,
+      "git_blob": "4f96ebdd20e80601086c4aa0ddb8c3a653a9095f",
+      "lines": 89,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec06_eqpeak.tex",
+      "read_coverage": [
+        1,
+        89
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "98537969a8a86f323b312489ca33c2b8c6e4549392a8ad2ea7b23456d87f0726",
+      "source_spans": [
+        {
+          "end": 45,
+          "sha256": "63dade214e170d50dd5664c16a5bf4ea41e1c75d0bb1a2af8b8870e942bd938b",
+          "start": 1
+        }
+      ]
+    },
+    {
+      "bytes": 10884,
+      "git_blob": "15cd3c78f37dea9a1b942108d01df3db62101a6f",
+      "lines": 145,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec08_lag.tex",
+      "read_coverage": [
+        1,
+        145
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "a01c5394781f3674fb167846d1acc05a49c7ec2f4c419c7480a128b1c0747723",
+      "source_spans": [
+        {
+          "end": 96,
+          "sha256": "8431172f6b852077b452b36b423c452f2867dce39fb7586cf7cb9dd0247439fc",
+          "start": 1
+        },
+        {
+          "end": 145,
+          "sha256": "49951b7fb6f52459901ec239cf4c85313d4575292fdd5c0c415405dba36dd0a0",
+          "start": 107
+        }
+      ]
+    },
+    {
+      "bytes": 18372,
+      "git_blob": "490139d35601c8d83da6d567bcdcf2ac97619d1c",
+      "lines": 245,
+      "path": "Claude/docs/v1.0.23/_sections/ch1_sec09_tail.tex",
+      "read_coverage": [
+        1,
+        245
+      ],
+      "read_status": "READ_FULL_STEP67",
+      "sha256": "7fed61f947f974c21f58361519ae9cc3511ac633c3869503243a70f9cf0eef49",
+      "source_spans": [
+        {
+          "end": 65,
+          "sha256": "ad8b1164543ae1dc4891e41afac03417311496f7caeca985a9c3d8f6189ea46a",
+          "start": 1
+        },
+        {
+          "end": 190,
+          "sha256": "8e17d2de0be353c0d7d9f30377873ae6d39e60d4725fa7a2bfc9de316d6b43e0",
+          "start": 91
+        },
+        {
+          "end": 245,
+          "sha256": "b4752651538ff5e6ea7b3a55114e103e6576dde501f16aa644a2824191209342",
+          "start": 229
+        }
+      ]
+    },
+    {
+      "bytes": 29787,
+      "git_blob": "4966fa1ffbe31364b3b87ba387cd4d439cf658a5",
+      "lines": 278,
+      "path": "Claude/docs/v1.0.23/_sections/ch3v22_sec03_blend.tex",
+      "read_coverage": [
+        [
+          1,
+          133
+        ],
+        [
+          229,
+          278
+        ]
+      ],
+      "read_status": "READ_BOUNDED_STEP67_FULL_INHERITED_STEP64",
+      "sha256": "231c7a2ba10c06ba2493cc812c9cc75500b3e297fa00534e5900112b7366d7a7",
+      "source_spans": [
+        {
+          "end": 115,
+          "sha256": "ca5f92347dc1bab3c3176f47f0cdf9426d77ab70e94f467e8ef8075d5194d989",
+          "start": 69
+        },
+        {
+          "end": 278,
+          "sha256": "dafb140d51597b2410635e7b3b774fe8c92162484c9de735ceda3d9099866a8a",
+          "start": 229
+        }
+      ]
+    }
+  ],
+  "source_mutation_count": 0,
+  "status": "RESULT_FIRST_PRECOMMIT_EVIDENCE",
+  "step": 67
+}

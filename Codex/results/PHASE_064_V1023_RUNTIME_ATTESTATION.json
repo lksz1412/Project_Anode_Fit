@@ -1,0 +1,746 @@
+{
+  "artifact_kind": "PHASE_064_V1023_RUNTIME_ATTESTATION",
+  "authority": {
+    "canonical_adoption": false,
+    "experimental_validation": false,
+    "external_primary_literature_validation": false,
+    "implementation_regression": true,
+    "material_validation": false,
+    "picard_iteration": true,
+    "publication_readiness": false,
+    "synthetic_numerical": true,
+    "voltage_transfer_identity": true
+  },
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "counts": {
+    "probe_runtime_sets": 2,
+    "probe_sections_per_runtime": 5,
+    "run_expectations_met": 10,
+    "runs": 10,
+    "runtime_evidence_rows": 2,
+    "runtimes": 2
+  },
+  "expected_parent": "0be2e45e56081e141fbd2f58be7a01b023ca16a3",
+  "expected_subject": "audit(phase064): bound v1023 algebraic volterra runtime",
+  "gate": "PASS_P064_STEP67_PROBLEM_RUNTIME_BOUNDARY_WITH_CONCERNS",
+  "generated_by": "build_phase064_step67_problem_runtime_boundary.py",
+  "generated_date": "2026-08-29",
+  "independent_probes": [
+    {
+      "probe_sha256": "d80a76c3949ab7215ae6ae8692bed62723336b22c49bcfd778896b24c5f34cff",
+      "results": {
+        "initial_condition": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "experimental_truth": false,
+          "finite_initial_state_parameter_present": false,
+          "finite_window_restart_after_100_abs_gap": 0.006846120348205774,
+          "finite_window_restart_start_abs_gap": 0.01449867559376263,
+          "material_truth": false,
+          "pass": true,
+          "pointwise_first_equals_equilibrium_first": true,
+          "ratio_first_equals_equilibrium_first": true
+        },
+        "option_boundary": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "experimental_truth": false,
+          "g_eff_zero_on_equals_off": true,
+          "material_truth": false,
+          "pass": true,
+          "ratio_liveness_max_abs_diff": 0.9368234388674352,
+          "v22_default_equals_v23_default": true,
+          "v23_default_equals_explicit_false": true
+        },
+        "picard_identity": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "claim_ceiling": "FIRST_PICARD_ITERATE_ONLY",
+          "experimental_truth": false,
+          "g_eff": 3.227343213548742,
+          "material_truth": false,
+          "pass": true,
+          "ratio_vs_manual_first_picard_max_abs_diff": 4.440892098500626e-16
+        },
+        "timebase": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "captured_curve_capacity_Ah": 2.0,
+          "captured_curve_current_A": 2.0,
+          "experimental_truth": false,
+          "lag_raw_V": 5.006937174012688,
+          "lag_raw_over_corrected": 3599.999999999992,
+          "lag_si_corrected_V": 0.0013908158816701942,
+          "material_truth": false,
+          "normalized_rate_raw_per_h_numeric": 1.0,
+          "normalized_rate_si_per_s": 0.0002777777777777778,
+          "pass": true,
+          "si_capacity_C": 7200.0,
+          "si_current_A_unchanged": 2.0
+        },
+        "transfer": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "circular_wrap_first_value_abs": 0.09741669081543047,
+          "coordinate": "VOLTAGE_ONLY",
+          "experimental_truth": false,
+          "manual_fft_max_abs_diff": 3.3306690738754696e-16,
+          "material_truth": false,
+          "nonuniform_grid_rejected": false,
+          "nonuniform_output_finite": true,
+          "pass": true
+        }
+      },
+      "runtime": "3.12"
+    },
+    {
+      "probe_sha256": "d80a76c3949ab7215ae6ae8692bed62723336b22c49bcfd778896b24c5f34cff",
+      "results": {
+        "initial_condition": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "experimental_truth": false,
+          "finite_initial_state_parameter_present": false,
+          "finite_window_restart_after_100_abs_gap": 0.006846120348205774,
+          "finite_window_restart_start_abs_gap": 0.01449867559376263,
+          "material_truth": false,
+          "pass": true,
+          "pointwise_first_equals_equilibrium_first": true,
+          "ratio_first_equals_equilibrium_first": true
+        },
+        "option_boundary": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "experimental_truth": false,
+          "g_eff_zero_on_equals_off": true,
+          "material_truth": false,
+          "pass": true,
+          "ratio_liveness_max_abs_diff": 0.9368234388674352,
+          "v22_default_equals_v23_default": true,
+          "v23_default_equals_explicit_false": true
+        },
+        "picard_identity": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "claim_ceiling": "FIRST_PICARD_ITERATE_ONLY",
+          "experimental_truth": false,
+          "g_eff": 3.227343213548742,
+          "material_truth": false,
+          "pass": true,
+          "ratio_vs_manual_first_picard_max_abs_diff": 4.440892098500626e-16
+        },
+        "timebase": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "captured_curve_capacity_Ah": 2.0,
+          "captured_curve_current_A": 2.0,
+          "experimental_truth": false,
+          "lag_raw_V": 5.006937174012688,
+          "lag_raw_over_corrected": 3599.999999999992,
+          "lag_si_corrected_V": 0.0013908158816701942,
+          "material_truth": false,
+          "normalized_rate_raw_per_h_numeric": 1.0,
+          "normalized_rate_si_per_s": 0.0002777777777777778,
+          "pass": true,
+          "si_capacity_C": 7200.0,
+          "si_current_A_unchanged": 2.0
+        },
+        "transfer": {
+          "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+          "circular_wrap_first_value_abs": 0.09741669081543047,
+          "coordinate": "VOLTAGE_ONLY",
+          "experimental_truth": false,
+          "manual_fft_max_abs_diff": 3.3306690738754696e-16,
+          "material_truth": false,
+          "nonuniform_grid_rejected": false,
+          "nonuniform_output_finite": true,
+          "pass": true
+        }
+      },
+      "runtime": "3.14"
+    }
+  ],
+  "isolation": {
+    "baseline_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f",
+    "branch": "codex/anode-fit-v1025_2-canonical-completion",
+    "bytecode_disabled": true,
+    "claude_clean_before_after": true,
+    "copied_git_blobs_only": true,
+    "copy_manifest": [
+      {
+        "bytes": 92292,
+        "git_blob": "c822c4e7ef9b8676e3a9bde675a718169ce79d5b",
+        "lines": 1500,
+        "path": "Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py",
+        "sha256": "a08378b555ca79f92d31bbad506e8c78551a93721cc90d705bf9390b93434783"
+      },
+      {
+        "bytes": 97860,
+        "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+        "lines": 1585,
+        "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+        "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf"
+      },
+      {
+        "bytes": 6502,
+        "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+        "lines": 128,
+        "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+        "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4"
+      },
+      {
+        "bytes": 2866,
+        "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+        "lines": 68,
+        "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+        "sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc"
+      }
+    ],
+    "disposable_cleanup_verified": true,
+    "disposable_external_directories": true,
+    "head": "0be2e45e56081e141fbd2f58be7a01b023ca16a3",
+    "head_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f",
+    "network_used": false,
+    "production_imported_by_builder": false,
+    "production_imported_by_validator": false,
+    "production_imported_only_by_child_subprocess": true,
+    "repository_projection_after_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+    "repository_projection_before_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+    "repository_projection_equal_before_after": true,
+    "repository_projection_hash_scope": "HEAD_BRANCH_CLAUDE_TREE_CLAUDE_DIFF_STATUS"
+  },
+  "official_and_mutation_runs": [
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-UTF8-3.12",
+      "runtime": "3.12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "stdout_tail": [
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": ".",
+      "diagnostic": "FILE_NOT_FOUND_CWD_RELATIVE_LOAD",
+      "encoding": "utf-8",
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_state": "FAIL_WRONG_CWD",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-WRONG-CWD-3.12",
+      "runtime": "3.12",
+      "stderr_sha256": "61bd7f09e46539667cb5fe00d9163893f3dc4eb71e5f21ccb1489301a38f6087",
+      "stderr_tail": [
+        "Traceback (most recent call last):",
+        "  File \"<TMP>\\v1.0.23\\test_gates_v1023_selfconsistent.py\", line 17, in <module>",
+        "    af = importlib.util.module_from_spec(_s); _s.loader.exec_module(af)",
+        "                                              ^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module",
+        "  File \"<frozen importlib._bootstrap_external>\", line 1132, in get_code",
+        "  File \"<frozen importlib._bootstrap_external>\", line 1190, in get_data",
+        "FileNotFoundError: [Errno 2] No such file or directory: '<TMP>\\\\Anode_Fit_v1.0.23.py'"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": []
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\results\\comp_v23\\p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23\\results\\comp_v23",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-P1-UTF8-3.12",
+      "runtime": "3.12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "7c12f6971953aee25aae9a47418ff1b0f22c14c7cb66fe8c6035cf38cfeeb7b3",
+      "stdout_tail": [
+        "",
+        "[차수 스케일링: L0 를 반씩 줄여 ε↓, 오차 차수 관찰]",
+        "         ε        err_0        err_1      e0비      e1비",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707",
+        "(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "-c",
+        "import runpy,sys;sys.stdout.reconfigure(encoding='cp949');runpy.run_path(sys.argv[1],run_name='__main__')",
+        "v1.0.23\\results\\comp_v23\\p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23\\results\\comp_v23",
+      "diagnostic": "UNICODE_ENCODE_ERROR_CP949",
+      "encoding": "cp949",
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_state": "FAIL_CP949",
+      "external_truth": false,
+      "run_id": "P064-S67-P1-CP949-3.12",
+      "runtime": "3.12",
+      "stderr_sha256": "6d63b6bb47cbbdd5582587f250f7e78fc2e248e44426d46e14012362927de148",
+      "stderr_tail": [
+        "Traceback (most recent call last):",
+        "  File \"<string>\", line 1, in <module>",
+        "  File \"<frozen runpy>\", line 287, in run_path",
+        "  File \"<frozen runpy>\", line 98, in _run_module_code",
+        "  File \"<frozen runpy>\", line 88, in _run_code",
+        "  File \"<TMP>\\v1.0.23\\results\\comp_v23\\p1_ratio_check.py\", line 68, in <module>",
+        "    print(\"(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)\")",
+        "UnicodeEncodeError: 'cp949' codec can't encode character '\\u2248' in position 13: illegal multibyte sequence"
+      ],
+      "stdout_sha256": "f438af461a6cbf5e06bfed98b624fa27f0484153f369f4cd83103ea7e5a82198",
+      "stdout_tail": [
+        "  2.00 2.5000e-01   2.9023e-01   1.3527e-01     0.4661 1.1609e+00",
+        "",
+        "[���� �����ϸ�: L0 �� �ݾ� �ٿ� ���, ���� ���� ����]",
+        "         ��        err_0        err_1      e0��      e1��",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "version_mutation\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "version_mutation",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-VERSION-MUTATION-3.12",
+      "runtime": "3.12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "stdout_tail": [
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-UTF8-3.14",
+      "runtime": "3.14",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "stdout_tail": [
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": ".",
+      "diagnostic": "FILE_NOT_FOUND_CWD_RELATIVE_LOAD",
+      "encoding": "utf-8",
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_state": "FAIL_WRONG_CWD",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-WRONG-CWD-3.14",
+      "runtime": "3.14",
+      "stderr_sha256": "45fa2dafff6f94cb15ceeba9acc213ce1bf810f7b6b8dea4f57a50919f214bc4",
+      "stderr_tail": [
+        "Traceback (most recent call last):",
+        "  File \"<TMP>\\v1.0.23\\test_gates_v1023_selfconsistent.py\", line 17, in <module>",
+        "    af = importlib.util.module_from_spec(_s); _s.loader.exec_module(af)",
+        "                                              ~~~~~~~~~~~~~~~~~~~~~^^^^",
+        "  File \"<frozen importlib._bootstrap_external>\", line 755, in exec_module",
+        "  File \"<frozen importlib._bootstrap_external>\", line 892, in get_code",
+        "  File \"<frozen importlib._bootstrap_external>\", line 950, in get_data",
+        "FileNotFoundError: [Errno 2] No such file or directory: '<TMP>\\\\Anode_Fit_v1.0.23.py'"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": []
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "v1.0.23\\results\\comp_v23\\p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23\\results\\comp_v23",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-P1-UTF8-3.14",
+      "runtime": "3.14",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "7c12f6971953aee25aae9a47418ff1b0f22c14c7cb66fe8c6035cf38cfeeb7b3",
+      "stdout_tail": [
+        "",
+        "[차수 스케일링: L0 를 반씩 줄여 ε↓, 오차 차수 관찰]",
+        "         ε        err_0        err_1      e0비      e1비",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707",
+        "(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "-c",
+        "import runpy,sys;sys.stdout.reconfigure(encoding='cp949');runpy.run_path(sys.argv[1],run_name='__main__')",
+        "v1.0.23\\results\\comp_v23\\p1_ratio_check.py"
+      ],
+      "cwd": "v1.0.23\\results\\comp_v23",
+      "diagnostic": "UNICODE_ENCODE_ERROR_CP949",
+      "encoding": "cp949",
+      "exit_code": 1,
+      "expectation_met": true,
+      "expected_state": "FAIL_CP949",
+      "external_truth": false,
+      "run_id": "P064-S67-P1-CP949-3.14",
+      "runtime": "3.14",
+      "stderr_sha256": "cd29e3b2d0ec31040b58ba90a3d55cf96537aa9f8358a0a2a538ffc1305f1d1a",
+      "stderr_tail": [
+        "                                                              ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"<frozen runpy>\", line 287, in run_path",
+        "  File \"<frozen runpy>\", line 98, in _run_module_code",
+        "  File \"<frozen runpy>\", line 88, in _run_code",
+        "  File \"<TMP>\\v1.0.23\\results\\comp_v23\\p1_ratio_check.py\", line 68, in <module>",
+        "    print(\"(ε 반감→ err_0비≈2[1차], err_1비≈4[2차] 이면 닫힘 차수 확증)\")",
+        "    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "UnicodeEncodeError: 'cp949' codec can't encode character '\\u2248' in position 13: illegal multibyte sequence"
+      ],
+      "stdout_sha256": "f438af461a6cbf5e06bfed98b624fa27f0484153f369f4cd83103ea7e5a82198",
+      "stdout_tail": [
+        "  2.00 2.5000e-01   2.9023e-01   1.3527e-01     0.4661 1.1609e+00",
+        "",
+        "[���� �����ϸ�: L0 �� �ݾ� �ٿ� ���, ���� ���� ����]",
+        "         ��        err_0        err_1      e0��      e1��",
+        "2.5000e-01   1.6030e-01   3.8358e-02    0.000    0.000",
+        "1.2500e-01   9.9361e-02   1.6794e-02    1.613    2.284",
+        "6.2500e-02   5.3975e-02   5.4501e-03    1.841    3.081",
+        "3.1250e-02   2.7349e-02   1.4702e-03    1.974    3.707"
+      ]
+    },
+    {
+      "authority": "INTERNAL_EXECUTION_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "version_mutation\\test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "version_mutation",
+      "diagnostic": null,
+      "encoding": "utf-8",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_state": "PASS",
+      "external_truth": false,
+      "run_id": "P064-S67-SC-VERSION-MUTATION-3.14",
+      "runtime": "3.14",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": [],
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "stdout_tail": [
+        "   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000",
+        "   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117",
+        "   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366",
+        "   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS",
+        "G-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS",
+        "G-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS",
+        "==========================================================================",
+        ">>> SELF-CONSISTENT GATES: ALL PASS  (5/5)"
+      ]
+    }
+  ],
+  "phase": 64,
+  "phase_ceiling": "CONDITIONAL_P064",
+  "runtime_evidence_rows": [
+    {
+      "authority_ceiling": "INTERNAL_SYNTHETIC_IMPLEMENTATION_ONLY",
+      "cleanup_state": "VERIFIED_EXTERNAL_TEMP_REMOVED",
+      "complexity_observation": "LAG_RECURRENCES_O_N_TRANSFER_FFT_O_N_LOG_N_ANALYTICAL_NOT_BENCHMARKED",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "isolated_mode": true,
+        "network_used": false,
+        "numpy_version": "2.3.5",
+        "python_version": "3.12.10"
+      },
+      "frozen_blobs": [
+        {
+          "git_blob": "c822c4e7ef9b8676e3a9bde675a718169ce79d5b",
+          "path": "Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py",
+          "sha256": "a08378b555ca79f92d31bbad506e8c78551a93721cc90d705bf9390b93434783"
+        },
+        {
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf"
+        },
+        {
+          "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+          "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+          "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4"
+        },
+        {
+          "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+          "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+          "sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc"
+        }
+      ],
+      "input_sha256": "afa9eb4c11add8b98478f234f6dc344474c5fb560d73170bcca9da66afc82202",
+      "invocation": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<EXTERNAL>/step67_probe.py",
+        "<EXTERNAL>/v1.0.22/Anode_Fit_v1.0.22.py",
+        "<EXTERNAL>/v1.0.23/Anode_Fit_v1.0.23.py"
+      ],
+      "metric": {
+        "finite_window_restart_start_abs_gap": 0.01449867559376263,
+        "lag_raw_over_corrected": 3599.999999999992,
+        "manual_fft_max_abs_diff": 3.3306690738754696e-16,
+        "ratio_liveness_max_abs_diff": 0.9368234388674352,
+        "ratio_vs_manual_first_picard_max_abs_diff": 4.440892098500626e-16
+      },
+      "output_sha256": "07952eac0c8b666a7d257a33caf0ee1dd5ef53ee9c116e99e01736a44b3cccb5",
+      "repository_before_after_projection": {
+        "after_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+        "baseline_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f",
+        "before_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+        "branch": "codex/anode-fit-v1025_2-canonical-completion",
+        "claude_clean_before_after": true,
+        "equal": true,
+        "full_worktree_projection_compared": true,
+        "hash_scope": "HEAD_BRANCH_CLAUDE_TREE_CLAUDE_DIFF_STATUS",
+        "head": "0be2e45e56081e141fbd2f58be7a01b023ca16a3",
+        "head_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f"
+      },
+      "runtime": "3.12",
+      "tolerance": {
+        "picard_identity_max_abs": 1e-13,
+        "ratio_liveness_min": 1e-09,
+        "restart_gap_min": 0.001,
+        "timebase_ratio_abs_from_3600_max": 1e-08,
+        "transfer_identity_max_abs": 1e-13
+      }
+    },
+    {
+      "authority_ceiling": "INTERNAL_SYNTHETIC_IMPLEMENTATION_ONLY",
+      "cleanup_state": "VERIFIED_EXTERNAL_TEMP_REMOVED",
+      "complexity_observation": "LAG_RECURRENCES_O_N_TRANSFER_FFT_O_N_LOG_N_ANALYTICAL_NOT_BENCHMARKED",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "isolated_mode": true,
+        "network_used": false,
+        "numpy_version": "2.5.0",
+        "python_version": "3.14.4"
+      },
+      "frozen_blobs": [
+        {
+          "git_blob": "c822c4e7ef9b8676e3a9bde675a718169ce79d5b",
+          "path": "Claude/docs/v1.0.22/Anode_Fit_v1.0.22.py",
+          "sha256": "a08378b555ca79f92d31bbad506e8c78551a93721cc90d705bf9390b93434783"
+        },
+        {
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf"
+        },
+        {
+          "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+          "path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+          "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4"
+        },
+        {
+          "git_blob": "b3b62159919fce6d4c4665b234d74456fa0fcf10",
+          "path": "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+          "sha256": "279b711ef3c33b046136f7b962c76f65ccacbaca369f571ab8f3ed50524f86dc"
+        }
+      ],
+      "input_sha256": "afa9eb4c11add8b98478f234f6dc344474c5fb560d73170bcca9da66afc82202",
+      "invocation": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<EXTERNAL>/step67_probe.py",
+        "<EXTERNAL>/v1.0.22/Anode_Fit_v1.0.22.py",
+        "<EXTERNAL>/v1.0.23/Anode_Fit_v1.0.23.py"
+      ],
+      "metric": {
+        "finite_window_restart_start_abs_gap": 0.01449867559376263,
+        "lag_raw_over_corrected": 3599.999999999992,
+        "manual_fft_max_abs_diff": 3.3306690738754696e-16,
+        "ratio_liveness_max_abs_diff": 0.9368234388674352,
+        "ratio_vs_manual_first_picard_max_abs_diff": 4.440892098500626e-16
+      },
+      "output_sha256": "07952eac0c8b666a7d257a33caf0ee1dd5ef53ee9c116e99e01736a44b3cccb5",
+      "repository_before_after_projection": {
+        "after_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+        "baseline_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f",
+        "before_sha256": "0f2a4589d68830bfd104f970a366eafffb8152f1a9f6385382d64f73083d1c64",
+        "branch": "codex/anode-fit-v1025_2-canonical-completion",
+        "claude_clean_before_after": true,
+        "equal": true,
+        "full_worktree_projection_compared": true,
+        "hash_scope": "HEAD_BRANCH_CLAUDE_TREE_CLAUDE_DIFF_STATUS",
+        "head": "0be2e45e56081e141fbd2f58be7a01b023ca16a3",
+        "head_claude_tree": "86662815caa78e3045f215f47b3379c214dccd1f"
+      },
+      "runtime": "3.14",
+      "tolerance": {
+        "picard_identity_max_abs": 1e-13,
+        "ratio_liveness_min": 1e-09,
+        "restart_gap_min": 0.001,
+        "timebase_ratio_abs_from_3600_max": 1e-08,
+        "transfer_identity_max_abs": 1e-13
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "launcher": [
+        "py",
+        "-3.12"
+      ],
+      "numpy_version": "2.3.5",
+      "python_version": "3.12.10",
+      "runtime": "3.12"
+    },
+    {
+      "launcher": [
+        "py",
+        "-3.14"
+      ],
+      "numpy_version": "2.5.0",
+      "python_version": "3.14.4",
+      "runtime": "3.14"
+    }
+  ],
+  "schema": 1,
+  "semantic_sha256": "c3830781f4ad2b6e5888840c3d1ebcb33116847361aaf37eba0c27e0c08d6e37",
+  "source_mutation_count": 0,
+  "status": "RESULT_FIRST_PRECOMMIT_EVIDENCE",
+  "step": 67
+}
