@@ -1,0 +1,4081 @@
+{
+  "artifact_kind": "skew-material-authority-matrix",
+  "authority": {
+    "canonical_manuscript_ready": false,
+    "ceiling": "Internal frozen-source genealogy and algebra only; controller metadata observations are not reproducible external authority in this artifact.",
+    "controller_metadata_observation_recorded": true,
+    "experimental_truth": false,
+    "external_bibliographic_metadata_verified": false,
+    "external_primary_literature_truth": false,
+    "external_proposition_support": false,
+    "internal_derivation": true,
+    "internal_source_genealogy": true,
+    "material_truth": false,
+    "publication_ready": false,
+    "runtime_truth": false,
+    "v1024_1_independent_corroboration": false
+  },
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "bibliographic_conflicts": [
+    {
+      "id": "B72-C01",
+      "issue": "The same DOI/article is bound to two incompatible titles.",
+      "locations": [
+        "Claude/docs/v1.0.24/_sections/ch1v22_bib.tex:49",
+        "Claude/docs/v1.0.24/_sections/ch2v22_bib.tex:17",
+        "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex:43"
+      ],
+      "normalized_doi": "10.1149/2.0341708jes",
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "status": "INTERNAL_BIBLIOGRAPHIC_IDENTITY_CONFLICT"
+    },
+    {
+      "adopted_value": "050539",
+      "historical_value": "050520",
+      "id": "B72-C02",
+      "normalized_doi": "10.1149/1945-7111/ad4823",
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "status": "ARCHIVAL_ARTICLE_NUMBER_CONFLICT"
+    }
+  ],
+  "branch": "codex/anode-fit-v1025_2-canonical-completion",
+  "consumed_parent_evidence": {
+    "step70_commit": "d6f680b26fb59c24098f44ed633873a2c6419a4e",
+    "step70_content_gate": "PASS_P065_STEP70_PRECOMMIT",
+    "step70_findings_routed": 26,
+    "step70_persistence_terminal": "PASS_P065_STEP70_PERSISTENCE",
+    "step71_commit": "5978da8626406879609b0dd5792f79143015e67f",
+    "step71_findings_routed": 13,
+    "step71_gate": "PASS_P065_STEP71_STATIC_WITH_CONCERNS",
+    "step71_persistence_terminal": "PASS_P065_STEP71_PERSISTENCE",
+    "total_routes": 39
+  },
+  "control_source_bindings": [
+    {
+      "index_blob": "9b6be7566840cbbdd0e70d76cb142af35bbbe799",
+      "path": "Codex/work/v1024_phase065/build_phase065_step72.py",
+      "role": "JSON_LAST_BUILDER",
+      "sha256": "c102110b325abb9d95f8cbd96ed915c8aa76824d9a1319dd820af56a3d3ab557",
+      "size_bytes": 41128
+    },
+    {
+      "index_blob": "959393e13ff18686c77ae4ebed9972c721f0265f",
+      "path": "Codex/work/v1024_phase065/validate_phase065_step72.py",
+      "role": "INDEPENDENT_VALIDATOR",
+      "sha256": "3de181d55fa46611821c5e53187c24dc40b8e64d75b6883d6bfb8f3572f0ae83",
+      "size_bytes": 104888
+    },
+    {
+      "index_blob": "1fbd286439dc91999497875b2f7ace20c1cf80df",
+      "path": "Codex/results/PHASE_065_STEP_072_SKEW_MATERIAL_AUTHORITY_RESULT.md",
+      "role": "RESULT_FIRST_RESULT",
+      "sha256": "5775360484fbec34b5327001187ea4f66e249bef426ed7ab218650b68c9ea8fc",
+      "size_bytes": 22632
+    },
+    {
+      "index_blob": "a723403bda87ee7a538bf7e167a8d0b4d99da37e",
+      "path": "Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md",
+      "role": "PARENT_EXECUTION_LEDGER",
+      "sha256": "e58e6379f2724f72abd6be79e5b8717a8044399ecbdb493b8eeb994d25d3bb73",
+      "size_bytes": 14832
+    },
+    {
+      "index_blob": "debcd1da4d8b11ef1371943dcf7cc0fed65da147",
+      "path": "Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md",
+      "role": "CANONICAL_EXECUTION_LEDGER",
+      "sha256": "7e28baaf515c8abca3a5b659aa32dbe23776e34f8e7a7cfc47e5f99133e5cbc8",
+      "size_bytes": 36840
+    },
+    {
+      "index_blob": "36844860c5617d723fa44a7e9f1f9b216b3b3a5d",
+      "path": "Codex/results/ACTIVE_HANDOVER_CANONICAL_COMPLETION.md",
+      "role": "ACTIVE_HANDOVER",
+      "sha256": "2a449eacc6f1302484b20977fd7f3d7f98b408a5ed096afc35f0add5d6ff4383",
+      "size_bytes": 110781
+    }
+  ],
+  "derivations": [
+    {
+      "center_voltage": "U0",
+      "convention_note": "For an explicit n-electron exponent replace F by nF; v1.0.24 w=nRT/F instead uses n as a phenomenological broadening multiplier.",
+      "coordinate": "x is inserted fraction; Q_insert=Q*x; V=U0+(RT/F)ln[(1-x)/x]",
+      "dimensionless_fwhm": 3.525494348078172,
+      "fwhm": "4(RT/F) arcosh(sqrt(2))",
+      "id": "D72-B1",
+      "magnitude_area": "Q",
+      "name": "ideal lattice gas / logistic peak",
+      "reported_magnitude": "-dQ_insert/dV=QF/(4RT) sech^2(F(V-U0)/(2RT))",
+      "signed_area_over_increasing_V": "-Q",
+      "signed_derivative": "dQ_insert/dV=-(QF/RT)x(1-x)",
+      "test_fwhm_V": 0.09057904248204679,
+      "test_temperature_K": 298.15
+    },
+    {
+      "binodal_common_tangent": "mu(xa)=mu(xb)=[g(xb)-g(xa)]/(xb-xa)=0",
+      "chemical_potential": "mu=RT ln[x/(1-x)]+Omega(1-2x)",
+      "critical_composition": 0.5,
+      "critical_omega_over_rt": 2.0,
+      "curvature": "g''=RT/[x(1-x)]-2Omega",
+      "free_energy": "g=RT[x ln x+(1-x)ln(1-x)]+Omega x(1-x)",
+      "homogeneous_branch_limit": "QF/|g''| is valid only on a stable monotone homogeneous branch, diverges at spinodal, and cannot replace common-tangent/Maxwell convexification.",
+      "id": "D72-B2",
+      "name": "symmetric regular solution",
+      "nontrivial_binodal_equation": "RT ln[xa/(1-xa)]+Omega(1-2xa)=0 with 0<xa<1/2",
+      "spinodal": "x_sp,+/-=(1 +/- sqrt(1-2RT/Omega))/2",
+      "spinodal_domain": "Omega>=2RT",
+      "spinodal_test_endpoints": [
+        0.21132486540518708,
+        0.7886751345948129
+      ],
+      "spinodal_test_omega_over_rt": 3.0,
+      "strictness": "Omega=2RT has zero finite gap; finite coexistence requires Omega>2RT",
+      "symmetric_binodal_constraints": "Omega>2RT; 0<xa<1/2; xb=1-xa>1/2",
+      "trivial_root_excluded": "x=1/2 is stationary but is not a coexistence endpoint for Omega>2RT"
+    },
+    {
+      "barrier_closure_example": "A=exp[-DeltaG_dagger(x,V)/(RT)] only after direction/rate/history and observable closure are declared",
+      "base_response": "p0(V)=|dx/dV| is symmetric about U0 along the physical monotone path x=x(V)",
+      "claim_ceiling": "A fitted two-sided width is phenomenological until normalization, path, mechanism, rate/history, identifiability and independent validation are supplied.",
+      "id": "D72-B3",
+      "name": "asymmetry requirements",
+      "required_separation": [
+        "equilibrium free-energy asymmetry",
+        "state-dependent observation weight or barrier",
+        "finite-rate lag/overpotential",
+        "overlapping symmetric transitions or heterogeneity convolution"
+      ],
+      "symmetry_break_condition": "The pathwise equality fails on a set of nonzero measure",
+      "symmetry_preserving_condition": "A(x(V),V)=A(1-x(V),2U0-V) almost everywhere in V",
+      "weight_conditions": [
+        "A is measurable along x(V)",
+        "A>=0 almost everywhere",
+        "0<integral A(x(V),V)p0(V)dV<infinity"
+      ],
+      "weighted_response": "p_hat(V)=Q A(x(V),V)p0(V)/integral[A(x(V),V)p0(V)dV]"
+    },
+    {
+      "basis_constraints": "m_gr+m_Si=1; q*_gr and q*_Si must use the same reversible/accessible capacity kind, cycle and voltage window",
+      "capacity_fraction_si": "f_Si=m_Si q*_Si/[m_Si q*_Si+m_gr q*_gr]",
+      "equilibrium_derivative": "dq/dV=sum_i m_i q*_i dtheta_i/dV",
+      "equilibrium_specific_capacity": "q(V)=m_gr q*_gr theta_gr(V)+m_Si q*_Si theta_Si(V)",
+      "finite_rate_current_balance": "I=I_gr+I_Si",
+      "finite_rate_requirement": "separate current-partition, exchange-current, transport, overpotential and state closures",
+      "id": "D72-B4",
+      "name": "shared-voltage material sum",
+      "non_implications": [
+        "phase identity",
+        "material identity from curve shape alone",
+        "independent current partition",
+        "finite-rate additivity",
+        "absence of mechanical/interfacial coupling"
+      ],
+      "selected_basis": "1 g total active solids",
+      "single_declared_basis_required": true
+    }
+  ],
+  "expected_parent": "5978da8626406879609b0dd5792f79143015e67f",
+  "findings": [
+    {
+      "finding": "Static equilibrium alpha-skew is absent from v1.0.24 and first appears downstream; no backward import is allowed.",
+      "id": "S72-F01",
+      "owner": "P066-LINEAGE",
+      "severity": "P1"
+    },
+    {
+      "finding": "LCO per-peak Omega prose exceeds the executable v1.0.24 route found in Step 71.",
+      "id": "S72-F02",
+      "owner": "P065-STEP74-CONFORMANCE",
+      "severity": "P1"
+    },
+    {
+      "finding": "Several material conclusions are in-sample or bound-induced and do not establish external material truth.",
+      "id": "S72-F03",
+      "owner": "P071-PRIMARY-SOURCE-ACQUISITION",
+      "severity": "P1"
+    },
+    {
+      "finding": "Blend additivity lacks one consistently declared denominator and finite-rate current-partition evidence.",
+      "id": "S72-F04",
+      "owner": "P067-CODE-HISTORY",
+      "severity": "P1"
+    },
+    {
+      "finding": "Two undefined citation keys are isolated to a rejected W1 candidate and were explicitly not grafted.",
+      "id": "S72-F05",
+      "owner": "P065-STEP74-CONFORMANCE",
+      "severity": "P1"
+    },
+    {
+      "finding": "Bibliographic metadata verification does not establish proposition/page/equation support; missing primary text remains GROUND_NOT_FOUND.",
+      "id": "S72-F06",
+      "owner": "P071-PRIMARY-SOURCE-ACQUISITION",
+      "severity": "P1"
+    }
+  ],
+  "gate": "PASS_P065_STEP72_AUTHORITY_WITH_CONCERNS",
+  "genealogy": [
+    {
+      "back_imported": false,
+      "first_later_commit": "edbc4a2c68cda0dd21662cb6dd68ba8bed699a76",
+      "first_later_parent": "2147abfac3fb6c82279aefb2b21c749a521112dc",
+      "first_later_source": "Claude/docs/v1.0.25/Anode_Fit_v1.0.24.py",
+      "id": "G72-01",
+      "later_state": "INTRODUCED_IN_V1025",
+      "topic": "equilibrium static skew",
+      "v1024_state": "ABSENT_IN_FROZEN_SOURCE",
+      "v1025_1_role": "LATER_TOUCH_UP_NOT_FIRST_IMPLEMENTATION"
+    },
+    {
+      "authority": "STATIC_SOURCE_ONLY_RUNTIME_PENDING_STEP73",
+      "default_state": "PROFILE_DEPENDENT_OR_ZERO",
+      "id": "G72-02",
+      "topic": "causal-memory tail asymmetry",
+      "v1024_state": "IMPLEMENTED_OPT_IN"
+    },
+    {
+      "adopted_in_final_v1024": false,
+      "externally_validated": false,
+      "id": "G72-03",
+      "topic": "two-sided-width skew experiment",
+      "v1024_state": "PROPOSED_AND_IN_SAMPLE_FIT"
+    },
+    {
+      "id": "G72-04",
+      "lco_document_claim": "OVERSTATES_EXECUTABLE_COVERAGE",
+      "runtime_pending": "STEP73",
+      "topic": "regular-solution kernel",
+      "v1024_state": "GRAPHITE_CUSTOM_ROUTE_ONLY"
+    },
+    {
+      "calibration_state": "IN_SAMPLE",
+      "finite_rate_independence_proven": false,
+      "id": "G72-05",
+      "phase_identity_proven": false,
+      "topic": "material decomposition",
+      "v1024_state": "SHARED_VOLTAGE_ADDITIVE_MODEL"
+    },
+    {
+      "id": "G72-06",
+      "independent_corroboration": false,
+      "topic": "v1.0.24.1",
+      "v1024_1_state": "MIRROR_ARCHIVE_ONLY"
+    }
+  ],
+  "generated_date": "2026-08-31",
+  "input_routes": [
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 74",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F06",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F06",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The generalized silicon regular-solution denominator and critical threshold are not derived.",
+        "target_steps": [
+          "Step 72",
+          "Step 74",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F06",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F07",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F07",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Finite fitted width is not independent single-phase evidence.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F07",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 74"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F08",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F08",
+        "owner": "PHASE-073-RUNTIME-BOUNDARY",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Regular-solution applicability conflicts across seed, derivative, entropy, solver, and guide surfaces.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 74"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-073-RUNTIME-BOUNDARY",
+      "route_id": "P065-S70-F08",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 73",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F12",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F12",
+        "owner": "PHASE-073-RUNTIME-BOUNDARY",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The cross-rate example independently refits both currents and is not held out.",
+        "target_steps": [
+          "Step 72",
+          "Step 73",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-073-RUNTIME-BOUNDARY",
+      "route_id": "P065-S70-F12",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F13",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F13",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The reported two-phase confirmation is constrained by the optimizer lower bound and misstates the critical point.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F13",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 74",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F14",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F14",
+        "owner": "PHASE-074-DOCUMENT-REPAIR",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "An analytic LCO curve is mislabeled as a real-data fit despite absent LCO-specific raw data.",
+        "target_steps": [
+          "Step 72",
+          "Step 74",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-074-DOCUMENT-REPAIR",
+      "route_id": "P065-S70-F14",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F15",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F15",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The anode ablation reuses in-sample anchors and cannot diagnose overfitting.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F15",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F16",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F16",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "A width-only silicon phase assignment lacks structural evidence and conflicts with the lineage.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F16",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F17",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F17",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The claimed data-quality cause is confounded across chemistry and acquisition route.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F17",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F18",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F18",
+        "owner": "PHASE-075-AUTHORITY-DISPOSITION",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "Two-cell in-sample consistency does not establish industrial generality or no-refit usability.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-075-AUTHORITY-DISPOSITION",
+      "route_id": "P065-S70-F18",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F19",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F19",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The temperature example reproduces inserted calibration targets and provides no held-out prediction.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F19",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F20",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F20",
+        "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "Two DOI identities conflict on article numbers and require primary metadata resolution.",
+        "target_steps": [
+          "Step 72"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "route_id": "P065-S70-F20",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F23",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F23",
+        "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Six numerical seeds lack a closed primary-source route.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "route_id": "P065-S70-F23",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 73"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F25",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F25",
+        "owner": "PHASE-073-RUNTIME-BOUNDARY",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The reflect check neither proves a single peak nor tests the regular-solution limit.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 73"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-073-RUNTIME-BOUNDARY",
+      "route_id": "P065-S70-F25",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 73",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F27",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F27",
+        "owner": "PHASE-073-RUNTIME-BOUNDARY",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The G-E3 comparison uses a same-family fixed-point result rather than independent truth.",
+        "target_steps": [
+          "Step 72",
+          "Step 73",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-073-RUNTIME-BOUNDARY",
+      "route_id": "P065-S70-F27",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F28",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F28",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Target-window peak selection is circular and cannot validate the assignment independently.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F28",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F29",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F29",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "An in-sample O2 fit cannot establish the O3 model or an absence cause.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F29",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F30",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F30",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The denoising comparison changes its target and lacks held-out support.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F30",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F31",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F31",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Reciprocal transformation of the same fitted derivative is not independent validation.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F31",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F32",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F32",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "Flexible blend peaks do not establish component identity or fraction without a material model and capacity basis.",
+        "target_steps": [
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F32",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F33",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F33",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P1",
+        "status": "OPEN_ROUTED",
+        "summary": "The rate script fits position rather than full width at half maximum and cannot support the broadening claim.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F33",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 74"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F35",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F35",
+        "owner": "PHASE-074-DOCUMENT-REPAIR",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "The graphite first-look capacity label conflicts with a factor-1000 conversion.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 74"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-074-DOCUMENT-REPAIR",
+      "route_id": "P065-S70-F35",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 74"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F36",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F36",
+        "owner": "PHASE-074-DOCUMENT-REPAIR",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "Resistance divided by current in mA is reported without a coherent derived unit.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 74"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-074-DOCUMENT-REPAIR",
+      "route_id": "P065-S70-F36",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 71",
+        "Step 72",
+        "Step 75"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F38",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F38",
+        "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "The asymmetric peak is unnormalized and its precise source route remains unresolved.",
+        "target_steps": [
+          "Step 71",
+          "Step 72",
+          "Step 75"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-072-SCIENTIFIC-REDERIVATION",
+      "route_id": "P065-S70-F38",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 74"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F41",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F41",
+        "owner": "PHASE-074-DOCUMENT-REPAIR",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "Seventeen PNGs contain missing-glyph boxes and require verified-font regeneration.",
+        "target_steps": [
+          "Step 72",
+          "Step 74"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-074-DOCUMENT-REPAIR",
+      "route_id": "P065-S70-F41",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        "Step 72",
+        "Step 74"
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_STEP_070_SOURCE_PROCESS_TOPOLOGY_RESULT.md",
+      "origin_finding": "F42",
+      "origin_record": {
+        "authority_promoted": false,
+        "id": "P065-S70-F42",
+        "owner": "PHASE-074-DOCUMENT-REPAIR",
+        "severity": "P2",
+        "status": "OPEN_ROUTED",
+        "summary": "Four visual artifacts contain clipping, scalar-representation, or label-overlap defects.",
+        "target_steps": [
+          "Step 72",
+          "Step 74"
+        ]
+      },
+      "origin_step": 70,
+      "owner": "PHASE-074-DOCUMENT-REPAIR",
+      "route_id": "P065-S70-F42",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73,
+        74
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F01",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F01",
+        "next_steps": [
+          72,
+          73,
+          74
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:597-602",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:679-726",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:813-834",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:884-910"
+        ],
+        "step70_routes": [
+          "P065-S70-F08",
+          "P065-S70-F25"
+        ],
+        "title": "Regular-solution activation is limited to equilibrium and absent from named profiles"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F01",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F02",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F02",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:1401-1419",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:1480-1501"
+        ],
+        "step70_routes": [
+          "P065-S70-F35",
+          "P065-S70-F36"
+        ],
+        "title": "Blend current partition and capacity closure are absent"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F02",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F03",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F03",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:854-932"
+        ],
+        "step70_routes": [],
+        "title": "Root validation is incomplete and iteration exhaustion is silent"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F03",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73,
+        75
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F04",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F04",
+        "next_steps": [
+          72,
+          73,
+          75
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:148-164",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:733-763"
+        ],
+        "step70_routes": [
+          "P065-S70-F22"
+        ],
+        "title": "Seconds/hour correction is commentary, not executable migration"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F04",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F05",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F05",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:421-458"
+        ],
+        "step70_routes": [],
+        "title": "Width fallback and temperature derivative use inconsistent absent/None semantics"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F05",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73,
+        74
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F06",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F06",
+        "next_steps": [
+          72,
+          73,
+          74
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:1061-1105"
+        ],
+        "step70_routes": [
+          "P065-S70-F34"
+        ],
+        "title": "LCO electronic entropy default changed and remains a fixed-center term"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F06",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F07",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F07",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P1",
+        "source_anchors": [
+          "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+          "Claude/docs/v1.0.23/test_gates_v1023.py",
+          "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+          "Claude/docs/v1.0.23/results/comp_v23/p1_ratio_check.py",
+          "Claude/docs/v1.0.23/results/qa_images/curve_qa.py",
+          "Claude/docs/v1.0.23/results/tools_check_structure.py",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py",
+          "Claude/docs/v1.0.24/test_gates_v1024.py",
+          "Claude/docs/v1.0.24/test_gates_v1024_selfconsistent.py",
+          "Claude/docs/v1.0.24/test_gates_v1024_reflect.py",
+          "Claude/docs/v1.0.24/results/tools_check_structure.py",
+          "Claude/docs/v1.0.24/results/v1024_final_sample.py",
+          "Claude/docs/v1.0.24/results/v1024_reflect_curves.py",
+          "Claude/docs/v1.0.24.1/Anode_Fit_v1.0.24.py",
+          "Claude/docs/v1.0.24.1/test_gates_v1024.py",
+          "Claude/docs/v1.0.24.1/test_gates_v1024_selfconsistent.py",
+          "Claude/docs/v1.0.24.1/test_gates_v1024_reflect.py",
+          "Claude/docs/v1.0.24.1/results/tools_check_structure.py",
+          "Claude/docs/v1.0.24.1/results/v1024_final_sample.py",
+          "Claude/docs/v1.0.24.1/results/v1024_reflect_curves.py"
+        ],
+        "step70_routes": [],
+        "title": "No saved-state restoration or migration contract exists"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F07",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F08",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F08",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P2",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:1157-1183",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:597-602"
+        ],
+        "step70_routes": [],
+        "title": "Graphite five-feature Omega fields do not select regular-solution routing"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F08",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73,
+        75
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F09",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F09",
+        "next_steps": [
+          72,
+          73,
+          75
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P2",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:1187-1205"
+        ],
+        "step70_routes": [
+          "P065-S70-F23"
+        ],
+        "title": "Six-gallery profile has documentation references but no Python endpoint activation reference"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F09",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F10",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F10",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P2",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:132-145",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:597-602"
+        ],
+        "step70_routes": [],
+        "title": "Kernel typo, None, or false silently selects logistic; nonpositive delta is clamped"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F10",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        73
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F11",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F11",
+        "next_steps": [
+          72,
+          73
+        ],
+        "runtime_conclusion": "WITHHELD_TO_STEP_73",
+        "severity": "P2",
+        "source_anchors": [
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:733-763",
+          "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py:982-1001"
+        ],
+        "step70_routes": [],
+        "title": "Explicit zero current overrides c-rate while numeric direction zero maps positive"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP73-RUNTIME",
+      "route_id": "P065-S71-F11",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72,
+        75
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F12",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F12",
+        "next_steps": [
+          72,
+          75
+        ],
+        "runtime_conclusion": "NOT_A_RUNTIME_CLAIM",
+        "severity": "P2",
+        "source_anchors": [
+          "Codex/results/PHASE_065_SOURCE_PROCESS_TOPOLOGY.json"
+        ],
+        "step70_routes": [
+          "P065-S70-F19",
+          "P065-S70-F33",
+          "P065-S70-F37",
+          "P065-S70-F38",
+          "P065-S70-F39",
+          "P065-S70-F40"
+        ],
+        "title": "Process fit outputs cannot promote static defaults or held-out authority"
+      },
+      "origin_step": 71,
+      "owner": "P065-STEP75-DISPOSITION",
+      "route_id": "P065-S71-F12",
+      "status": "OPEN_CARRIED"
+    },
+    {
+      "disposition": "PRESERVE_EXACT_ORIGIN_RECORD",
+      "followup_targets": [
+        72
+      ],
+      "origin_artifact": "Codex/results/PHASE_065_CODE_PROFILE_DEFAULT_MATRIX.json",
+      "origin_finding": "F13",
+      "origin_record": {
+        "authority_promoted": false,
+        "finding_id": "P065-S71-F13",
+        "next_steps": [
+          72
+        ],
+        "runtime_conclusion": "NOT_A_RUNTIME_CLAIM",
+        "severity": "P2",
+        "source_anchors": [
+          "Codex/results/PHASE_065_SOURCE_PROCESS_TOPOLOGY.json"
+        ],
+        "step70_routes": [
+          "P065-S70-F09",
+          "P065-S70-F24"
+        ],
+        "title": "Ref. 7 authority remains outside the frozen source and requires Step 72 binding"
+      },
+      "origin_step": 71,
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "route_id": "P065-S71-F13",
+      "status": "OPEN_CARRIED"
+    }
+  ],
+  "material_claims": [
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Fitting starts only.",
+      "claim_id": "M72-GR-01",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "1108-1141",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "16-59",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec10_sum.tex"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "graphite",
+      "proposition": "Default four-transition U,Q,Omega,DeltaH,DeltaS,activation and width values are material constants.",
+      "source_refs": [
+        {
+          "lines": "1108-1141",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "16-59",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec10_sum.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "IMPLEMENTATION_FACT_PLACEHOLDER_NOT_MATERIAL_CONSTANT",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Local bibliography identity only; primary proposition not read here.",
+      "claim_id": "M72-GR-02",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "6-7,29",
+          "path": "Claude/docs/v1.0.24/_sections/ch1v22_bib.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Literature-linked 0.085/0.120/0.210 V and entropy anchors have proposition support.",
+      "source_refs": [
+        {
+          "lines": "6-7,29",
+          "path": "Claude/docs/v1.0.24/_sections/ch1v22_bib.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "UNVERIFIED_EXTERNAL",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Implementation seed/gallery count is not phase identity.",
+      "claim_id": "M72-GR-03",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1145-1183",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "41-50",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "graphite",
+      "proposition": "XRD5 implementation proves a five-phase physical assignment.",
+      "source_refs": [
+        {
+          "lines": "1145-1183",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "41-50",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "IMPLEMENTED_OPT_IN_PHASE_IDENTITY_UNVERIFIED",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Final record delegates phase character to structural/plateau evidence and refuses gallery=phase inference.",
+      "claim_id": "M72-GR-04",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "25-27",
+          "path": "Claude/docs/v1.0.24/results/comp_R1/CHERRYPICK_R1.md"
+        },
+        {
+          "lines": "41-50",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Four two-phase plus one solid-solution assignment from competition drafts is canonical.",
+      "source_refs": [
+        {
+          "lines": "25-27",
+          "path": "Claude/docs/v1.0.24/results/comp_R1/CHERRYPICK_R1.md"
+        },
+        {
+          "lines": "41-50",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "SUPERSEDED",
+      "supersession": "SUPERSEDED_BY_FINAL_V1024_RECORD",
+      "validation_state": "SUPERSEDED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Not independent phase validation.",
+      "claim_id": "M72-GR-05",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "22-31",
+          "path": "Claude/results/comp_v24/TAKE_VS_DISCARD.md"
+        },
+        {
+          "lines": "61-68",
+          "path": "Claude/results/comp_v24/VALIDATION_SYNTHESIS.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Fitted Omega>2RT independently confirms two-phase character when lower bound is 2.02RT.",
+      "source_refs": [
+        {
+          "lines": "22-31",
+          "path": "Claude/results/comp_v24/TAKE_VS_DISCARD.md"
+        },
+        {
+          "lines": "61-68",
+          "path": "Claude/results/comp_v24/VALIDATION_SYNTHESIS.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "TAUTOLOGICAL_BOUND_INDUCED",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Algebra is valid; numerical premise and multi-temperature validation are not closed.",
+      "claim_id": "M72-GR-06",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "53-65",
+          "path": "Claude/results/comp_v24/FIT_CHECK_v1024.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Stage split 29 J mol^-1 K^-1 implies about 0.30 mV K^-1 and is externally validated.",
+      "source_refs": [
+        {
+          "lines": "53-65",
+          "path": "Claude/results/comp_v24/FIT_CHECK_v1024.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "INTERNAL_DERIVATION_WITH_UNVERIFIED_PREMISE",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Code has an ad2061 suffix and tier-C seeds; primary table and X_j support not acquired.",
+      "claim_id": "M72-GR-07",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1187-1205",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "38-45",
+          "path": "Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "graphite",
+      "proposition": "MSMR6 U0,omega,Q values are primary-source grounded material parameters.",
+      "source_refs": [
+        {
+          "lines": "1187-1205",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "38-45",
+          "path": "Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "GROUND_NOT_FOUND",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "About one-point in-sample improvement is not independent mechanism validation.",
+      "claim_id": "M72-GR-08",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B3",
+      "exact_anchor": [
+        {
+          "lines": "1-58",
+          "path": "Claude/results/comp_v24/v24_graphite_asym.py"
+        },
+        {
+          "lines": "46-68",
+          "path": "Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Two-sided widths improve the same two-cell fit and establish a transferable skew mechanism.",
+      "source_refs": [
+        {
+          "lines": "1-58",
+          "path": "Claude/results/comp_v24/v24_graphite_asym.py"
+        },
+        {
+          "lines": "46-68",
+          "path": "Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "INTERNAL_CALIBRATION_ONLY",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::graphite",
+      "ceiling": "Conditional internal calculation only; density, expansion, size and surface-energy ranges need exact anchors.",
+      "claim_id": "M72-GR-09",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "231-286",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec07_broadening.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "graphite",
+      "proposition": "Micron-particle size contribution is universally negligible.",
+      "source_refs": [
+        {
+          "lines": "231-286",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec07_broadening.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "GROUND_NOT_FOUND_FOR_INPUT_RANGE",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Local citations exist; primary text was not acquired here.",
+      "claim_id": "M72-LCO-01",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "40-75",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec11_lcointro.tex"
+        },
+        {
+          "lines": "6-15",
+          "path": "Claude/docs/v1.0.24/_sections/ch2v22_bib.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "Ordinary/pristine LCO transition windows have primary proposition support in this audit.",
+      "source_refs": [
+        {
+          "lines": "40-75",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec11_lcointro.tex"
+        },
+        {
+          "lines": "6-15",
+          "path": "Claude/docs/v1.0.24/_sections/ch2v22_bib.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "UNVERIFIED_EXTERNAL",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Executable demo values, not 1:1 phase mapping or measurement.",
+      "claim_id": "M72-LCO-02",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1009-1032",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "LCO",
+      "proposition": "Named 3.930/3.880/4.050 V, Q 0.55/0.30/0.15, gmax 13 and MIT gate are measured material constants.",
+      "source_refs": [
+        {
+          "lines": "1009-1032",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_CODE",
+      "status": "IMPLEMENTATION_FACT_TIER_C_DEMO",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "No named-profile Omega or LCO regular-solution dispatch was found.",
+      "claim_id": "M72-LCO-03",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "1-160",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec16b_lcoomega.tex"
+        },
+        {
+          "lines": "1009-1105",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "Per-peak regular-solution/Omega behavior is executable for the named LCO profile.",
+      "source_refs": [
+        {
+          "lines": "1-160",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec16b_lcoomega.tex"
+        },
+        {
+          "lines": "1009-1105",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "CONTRADICTED_BY_STATIC_ROUTE_AUDIT",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "CONTRADICTED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Dopant chemistry/site/concentration and high-voltage specimen evidence are absent; owner PHASE-071-PRIMARY-SOURCE-ACQUISITION.",
+      "claim_id": "M72-LCO-04",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "204-221",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec13_lcohys.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "Ordinary/pristine or O2 evidence supports doped high-voltage O3 LCO.",
+      "source_refs": [
+        {
+          "lines": "204-221",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec13_lcohys.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "GROUND_NOT_FOUND_REJECTED_SCOPE_TRANSFER",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Sommerfeld algebra is conditional; scalar DOS premise and logistic gate are not composition-resolved validation.",
+      "claim_id": "M72-LCO-05",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "113-179,236-283",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "g(EF)=13 and continuous electronic entropy gate are externally validated across composition.",
+      "source_refs": [
+        {
+          "lines": "113-179,236-283",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "UNVERIFIED_EXTERNAL_MODEL_ASSUMPTION",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Not measured evidence.",
+      "claim_id": "M72-LCO-06",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "285-390",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "-45.7 J mol^-1 K^-1, -0.411 mV K^-1 and sign shifts are measurements.",
+      "source_refs": [
+        {
+          "lines": "285-390",
+          "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "INTERNAL_DEMO_CALCULATION",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Analytic proxies and O2 data do not close real O3; owner PHASE-071-PRIMARY-SOURCE-ACQUISITION.",
+      "claim_id": "M72-LCO-07",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "61-78",
+          "path": "Claude/results/comp_v24/TAKE_VS_DISCARD.md"
+        },
+        {
+          "lines": "73-78",
+          "path": "Claude/results/comp_v24/VALIDATION_SYNTHESIS.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "LCO",
+      "proposition": "Clean real O3 multi-temperature phase-shape validation exists.",
+      "source_refs": [
+        {
+          "lines": "61-78",
+          "path": "Claude/results/comp_v24/TAKE_VS_DISCARD.md"
+        },
+        {
+          "lines": "73-78",
+          "path": "Claude/results/comp_v24/VALIDATION_SYNTHESIS.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "GROUND_NOT_FOUND",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::LCO",
+      "ceiling": "Frozen implementation fact only; runtime pending Step 73.",
+      "claim_id": "M72-LCO-08",
+      "default_state": "DISABLED",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1061-1084",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "43-48",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "LCO",
+      "proposition": "Electronic entropy is enabled by default.",
+      "source_refs": [
+        {
+          "lines": "1061-1084",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "43-48",
+          "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "SUPERSEDED_FINAL_DEFAULT_OFF",
+      "supersession": "SUPERSEDED_BY_FINAL_V1024_RECORD",
+      "validation_state": "SUPERSEDED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "Exact local citation keys only; no primary full-text proposition audit here.",
+      "claim_id": "M72-SI-01",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "12-97",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02_cases.tex"
+        },
+        {
+          "lines": "6-43",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "Si",
+      "proposition": "Elemental Si/SiO/Si-C capacities, ICE, voltages, stress and entropy numbers have verified primary proposition support.",
+      "source_refs": [
+        {
+          "lines": "12-97",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02_cases.tex"
+        },
+        {
+          "lines": "6-43",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "UNVERIFIED_EXTERNAL",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "Frozen code retains warned placeholders.",
+      "claim_id": "M72-SI-02",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1242-1251,1273-1280",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "Si",
+      "proposition": "SiO absolute mean voltage and hysteresis are grounded.",
+      "source_refs": [
+        {
+          "lines": "1242-1251,1273-1280",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_CODE",
+      "status": "GROUND_NOT_FOUND",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "Demo components only.",
+      "claim_id": "M72-SI-03",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "1223-1264",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "Si",
+      "proposition": "Frozen Si component centers, widths and Q fractions identify phases.",
+      "source_refs": [
+        {
+          "lines": "1223-1264",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_CODE",
+      "status": "IMPLEMENTATION_FACT_TIER_C_DEMO",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "0.2RT lower seed is an internal choice.",
+      "claim_id": "M72-SI-04",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B2",
+      "exact_anchor": [
+        {
+          "lines": "101-129",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        },
+        {
+          "lines": "41-55",
+          "path": "Claude/results/comp_v24/FIT_CHECK_v1024.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "Si",
+      "proposition": "Omega_Si point values are uniquely identified by static single-temperature data.",
+      "source_refs": [
+        {
+          "lines": "101-129",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        },
+        {
+          "lines": "41-55",
+          "path": "Claude/results/comp_v24/FIT_CHECK_v1024.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "GROUND_NOT_FOUND_NONIDENTIFIABLE",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "GROUND_NOT_FOUND"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "Kinetics, heterogeneity, overlap, processing and instrument convolution remain alternatives.",
+      "claim_id": "M72-SI-05",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B1",
+      "exact_anchor": [
+        {
+          "lines": "27-41,116-120",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "Si",
+      "proposition": "Width ratios [1.45,2.74,1.09] alone prove single-phase solid solution.",
+      "source_refs": [
+        {
+          "lines": "27-41,116-120",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "INTERNAL_FIT_PHASE_INFERENCE_UNVERIFIED",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::Si",
+      "ceiling": "Skew needs multiple components or an explicit asymmetric mechanism.",
+      "claim_id": "M72-SI-06",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B3",
+      "exact_anchor": [
+        {
+          "lines": "82-100,121-129",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "Si",
+      "proposition": "One symmetric Frumkin component intrinsically creates skew.",
+      "source_refs": [
+        {
+          "lines": "82-100,121-129",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "REJECTED_BY_INTERNAL_SYMMETRY",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "CONTRADICTED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::blend",
+      "ceiling": "Requires independent host free energies, common equilibrium voltage and one basis.",
+      "claim_id": "M72-BLEND-01",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B4",
+      "exact_anchor": [
+        {
+          "lines": "17-133",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "blend",
+      "proposition": "Common-voltage equilibrium sum and mass-to-capacity conversion are valid without assumptions.",
+      "source_refs": [
+        {
+          "lines": "17-133",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "INTERNAL_DERIVATION_CONDITIONAL",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::blend",
+      "ceiling": "372 theoretical, 1000 first-reversible, 1710 theoretical and 3117 first-charge cannot be mixed without a declared conversion.",
+      "claim_id": "M72-BLEND-02",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B4",
+      "exact_anchor": [
+        {
+          "lines": "1283-1292",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "blend",
+      "proposition": "Frozen graphite/Si capacity inputs share one reversible capacity kind.",
+      "source_refs": [
+        {
+          "lines": "1283-1292",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_CODE",
+      "status": "UNVERIFIED_INCOMPATIBLE_KINDS",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::blend",
+      "ceiling": "Adopted 050539 conflicts with archival 050520; primary metadata owner must resolve.",
+      "claim_id": "M72-BLEND-03",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B4",
+      "exact_anchor": [
+        {
+          "lines": "40-43",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex"
+        },
+        {
+          "lines": "70-76",
+          "path": "Claude/docs/v1.0.24/results/comp_R1/W5/NOTES.md"
+        }
+      ],
+      "implementation_state": "DOCUMENTED_ONLY",
+      "material": "blend",
+      "proposition": "Tu article number is internally conflict-free.",
+      "source_refs": [
+        {
+          "lines": "40-43",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex"
+        },
+        {
+          "lines": "70-76",
+          "path": "Claude/docs/v1.0.24/results/comp_R1/W5/NOTES.md"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_DOCUMENT",
+      "status": "INTERNAL_BIBLIOGRAPHIC_IDENTITY_CONFLICT",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    },
+    {
+      "applicability": "frozen-v1.0.24::blend",
+      "ceiling": "Frozen route passes the same full I_abs and Q_cell to both hosts rather than enforcing I=I_gr+I_Si.",
+      "claim_id": "M72-BLEND-04",
+      "default_state": "PROFILE_DEPENDENT",
+      "derivation_id": "D72-B4",
+      "exact_anchor": [
+        {
+          "lines": "1479-1501",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "229-273",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex"
+        }
+      ],
+      "implementation_state": "IMPLEMENTED",
+      "material": "blend",
+      "proposition": "Equilibrium additivity proves finite-rate host independence.",
+      "source_refs": [
+        {
+          "lines": "1479-1501",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        },
+        {
+          "lines": "229-273",
+          "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_MIXED",
+      "status": "UNVERIFIED_CONTRADICTED_BY_ROUTE_SHAPE",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "EXTERNAL_UNVERIFIED"
+    },
+    {
+      "applicability": "frozen-v1.0.24::blend",
+      "ceiling": "No finite-rate nonadditive validation.",
+      "claim_id": "M72-BLEND-05",
+      "default_state": "NOT_APPLICABLE",
+      "derivation_id": "D72-B4",
+      "exact_anchor": [
+        {
+          "lines": "1543-1553",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "implementation_state": "ABSENT",
+      "material": "blend",
+      "proposition": "Nonadditive correction is implemented.",
+      "source_refs": [
+        {
+          "lines": "1543-1553",
+          "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "source_tier": "FROZEN_INTERNAL_CODE",
+      "status": "ABSENT_UNIMPLEMENTED_STUB",
+      "supersession": "ACTIVE_AUDIT_BOUNDARY",
+      "validation_state": "INTERNAL_ONLY"
+    }
+  ],
+  "metadata_verifications": [
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "MSMR Part 1 MCMB graphite; ECS Advances 3(4), 042501 (2024)",
+      "doi": "10.1149/2754-2734/ad7d1c",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "MSMR Part II entropy coefficient; JES 171(10), 103505",
+      "doi": "10.1149/1945-7111/ad70d9",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "Quantifying Entropy and Enthalpy; JES 171(2), 023502",
+      "doi": "10.1149/1945-7111/ad1d27",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "SiO/graphite reduced-order model; JES 171(5), 050539",
+      "doi": "10.1149/1945-7111/ad4823",
+      "historical_article_number": "050520",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "Limthongkul et al.; Acta Materialia 51(4), 1103-1113",
+      "doi": "10.1016/S1359-6454(02)00514-1",
+      "historical_nearby_doi": "10.1016/S1359-6454(02)00515-4",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "diffusion-influenced bimolecular-reaction article",
+      "doi": "10.1063/1.4802584",
+      "owner": "PHASE-071-PRIMARY-SOURCE-ACQUISITION",
+      "primary_text": "GROUND_NOT_FOUND",
+      "source_label": "Crossref REST"
+    },
+    {
+      "artifact_authority": "UNVERIFIED_EXTERNAL_NO_RAW_RESPONSE",
+      "controller_observation": "hard-helices article; apparently unrelated to asserted Ref. 7 method",
+      "doi": "10.1063/1.4802005",
+      "source_label": "Crossref REST"
+    }
+  ],
+  "next_gate": "Step 73 must test fresh-import, explicit-profile, and legacy-restoration routes independently under Python 3.12 and 3.14.",
+  "non_graft": {
+    "authority_effect": "Non-blocking for adopted closures; still blocks any claim that all 90 TeX files are self-contained.",
+    "candidate": "Claude/docs/v1.0.24/results/comp_R1/W1/gr_2L.tex",
+    "decision": "REJECTED_SOURCE_NOT_GRAFTED",
+    "decision_source": "Claude/docs/v1.0.24/results/comp_R1/CHERRYPICK_R1.md",
+    "replacement_existing_key": "persson2010b",
+    "undefined_keys": [
+      "fergusonbazant2014",
+      "guo2016"
+    ]
+  },
+  "schema_version": "phase065-step72-v1",
+  "semantic_sha256": "c3518b8aa690c480aad40df07d92d65b2570f2ba79dc6c0e4b15eee8b09de401",
+  "source_bindings": [
+    {
+      "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+      "lines": 1734,
+      "path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py",
+      "read_status": "READ_FULL",
+      "role": "production implementation and profile values",
+      "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680"
+    },
+    {
+      "git_blob": "5e86cee47fd0f211732f83ac44eba8cafa9c8dfb",
+      "lines": 374,
+      "path": "Claude/docs/v1.0.24/CODE_GUIDE_v24.md",
+      "read_status": "READ_FULL",
+      "role": "published route/default guide",
+      "sha256": "098c00cf7424b723c35ddde5dcd26109889f919129d7595eb7df0e687d20537d"
+    },
+    {
+      "git_blob": "66e00096bab7356a01f32824fec90b1e85157416",
+      "lines": 89,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec06_eqpeak.tex",
+      "read_status": "READ_FULL",
+      "role": "ideal logistic derivation",
+      "sha256": "844fda1002cb9b8a30d0da2a41fa325d97dbe02a413d22b2c6a417dda1bb4aa9"
+    },
+    {
+      "git_blob": "ec557453a3749c264b13731b43ae78969900e436",
+      "lines": 357,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec07_broadening.tex",
+      "read_status": "READ_FULL",
+      "role": "graphite broadening claims",
+      "sha256": "6c91d4927748acd8309ddf2a0d3236d4781a75fa90cce04004bb3622f65ec7c9"
+    },
+    {
+      "git_blob": "f9ae673fc3e9904cc7a1765a48a32fe802f6f1e6",
+      "lines": 170,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec10_sum.tex",
+      "read_status": "READ_FULL",
+      "role": "graphite seed status",
+      "sha256": "172a8a6327660204bf0d04e25bad7b7286b8e95be77888d12adb88c262f30640"
+    },
+    {
+      "git_blob": "324cd1d7d29cffd8060e4c64fede000d2332e027",
+      "lines": 175,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec11_lcointro.tex",
+      "read_status": "READ_FULL",
+      "role": "ordinary LCO literature claims",
+      "sha256": "a1b8eca6340b4b6928b129eabe510bfd32b62887f2392ede26875a0d1087e5c9"
+    },
+    {
+      "git_blob": "eb042ed981e477455327932b92ffc731c2151263",
+      "lines": 223,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec13_lcohys.tex",
+      "read_status": "READ_FULL",
+      "role": "LCO interaction and doping claims",
+      "sha256": "4786d337c57db7883c1dc973d3538461fa9dfefca4501eb0715483645523a70a"
+    },
+    {
+      "git_blob": "718e90dc17bf5fa04e113807088c2c6b1d0a98bf",
+      "lines": 396,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex",
+      "read_status": "READ_FULL",
+      "role": "LCO electronic entropy claims",
+      "sha256": "42973b0019740f820a02f29996d40824eccb2ad9f2ef2d95bfe5b6b93b403499"
+    },
+    {
+      "git_blob": "dfe9babaca8a268a0ee4ff62b5cdb9f93c146ef3",
+      "lines": 160,
+      "path": "Claude/docs/v1.0.24/_sections/ch1_sec16b_lcoomega.tex",
+      "read_status": "READ_FULL",
+      "role": "LCO per-peak Omega claim",
+      "sha256": "5b2b00ba8521992211d2beb90e7890428c84168ec88ba8eafdb44d4b63856683"
+    },
+    {
+      "git_blob": "3b842796315caaf52bb9cc0d2783550242770bed",
+      "lines": 162,
+      "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02_cases.tex",
+      "read_status": "READ_FULL",
+      "role": "Si material numerical claims",
+      "sha256": "0b4c41676b6bfc1b3c4eb3d2e4574aa059dc129f01b07cb01e73a37242ec2cea"
+    },
+    {
+      "git_blob": "660b1b47cfb0a02b64a66ce9b2d3516a720cca7f",
+      "lines": 176,
+      "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex",
+      "read_status": "READ_FULL",
+      "role": "Si Frumkin and width claims",
+      "sha256": "4f46c83e6dffd1c8b9f44933421c475b6c03988f830e697c2280bc76af227b89"
+    },
+    {
+      "git_blob": "8719e0a4ca9f020561e1be1f7ead457f4b5c1610",
+      "lines": 278,
+      "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex",
+      "read_status": "READ_FULL",
+      "role": "shared-voltage blend derivation",
+      "sha256": "e468be71867600e1941d3690faa716999a364fcb9032045205dfa6947197cffd"
+    },
+    {
+      "git_blob": "6ae9741f56af2ec2f4eb7bd117f4eb0bbc3164ec",
+      "lines": 245,
+      "path": "Claude/docs/v1.0.24/_sections/ch2_sec05_mixing.tex",
+      "read_status": "READ_FULL",
+      "role": "regular-solution and entropy derivation",
+      "sha256": "6bec8f512f471a35d219cbe7d490370e1d2916455d44215ac361c0c4bd454b36"
+    },
+    {
+      "git_blob": "f42ab7516f8157a1b6a48c7c60d63ed23d392a0d",
+      "lines": 58,
+      "path": "Claude/results/comp_v24/v24_graphite_asym.py",
+      "read_status": "READ_FULL",
+      "role": "two-sided-width proposal experiment",
+      "sha256": "a82fd0742ac528efd42de3c5beaf624ec1da21f88df4956f692e8ae20b49a740"
+    },
+    {
+      "git_blob": "af14293aa403c85f614576e62ca839950e4d0cac",
+      "lines": 86,
+      "path": "Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md",
+      "read_status": "READ_FULL",
+      "role": "proposal chronology",
+      "sha256": "3fd72bd08cc7aa17fe4465c3021808e2c5673604bd4ec52c241208bc0ca2f413"
+    },
+    {
+      "git_blob": "a8bc5158acbe214763f50b310533a94dcb12fd4a",
+      "lines": 85,
+      "path": "Claude/results/comp_v24/TAKE_VS_DISCARD.md",
+      "read_status": "READ_FULL",
+      "role": "later disposition and supersession",
+      "sha256": "51762e59203fa7c015b8f89681a4b3843121db248d421204cac082da2d0e3424"
+    },
+    {
+      "git_blob": "ab27749e675434f89c89f098363d976ae5fcd4f8",
+      "lines": 81,
+      "path": "Claude/results/comp_v24/VALIDATION_SYNTHESIS.md",
+      "read_status": "READ_FULL",
+      "role": "calibration claims and limitations",
+      "sha256": "4810e316cea4decb71703425527452cb2742e62b8ed0419e2468c3e8e69d402e"
+    },
+    {
+      "git_blob": "e701bcde4233d82d95ae36f8ce67381afa05a2d6",
+      "lines": 87,
+      "path": "Claude/results/comp_v24/FIT_CHECK_v1024.md",
+      "read_status": "READ_FULL",
+      "role": "in-sample and identifiability record",
+      "sha256": "694c5d30c1a41bc1ae750a96eed78d284dd57df6c7177bb8ece9f7b46594a446"
+    },
+    {
+      "git_blob": "6fd818e7c119f9e465a831cd30e4e53048186b23",
+      "lines": 53,
+      "path": "Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md",
+      "read_status": "READ_FULL",
+      "role": "competition adoption result",
+      "sha256": "aaa62316a1a7abca751806fc13a96eaf22b65e73da7b2150afeb81a027452b68"
+    },
+    {
+      "git_blob": "a6d878dcc4401293dbfd0bea803034a4d1b2d941",
+      "lines": 41,
+      "path": "Claude/docs/v1.0.24/results/comp_R1/CHERRYPICK_R1.md",
+      "read_status": "READ_FULL",
+      "role": "graft and non-graft decision",
+      "sha256": "fa040afb8adb6fec724a97be79ba04b7e63fc81f901bb61b6ddef765f6d7dde1"
+    },
+    {
+      "git_blob": "375f68984879069bf3a96199e96079c74fce1880",
+      "lines": 178,
+      "path": "Claude/docs/v1.0.24/results/comp_R1/W1/gr_2L.tex",
+      "read_status": "READ_FULL",
+      "role": "rejected candidate with undefined keys",
+      "sha256": "ee3c162a89fa1901556c5adbf00fe4c2785324ff4faaa6fe012cab2c20d540bb"
+    },
+    {
+      "git_blob": "dac81be3fad3f84c52a6cf9a180e0f7e57721300",
+      "lines": 94,
+      "path": "Claude/docs/v1.0.24/results/comp_R1/W5/NOTES.md",
+      "read_status": "READ_FULL",
+      "role": "blend article-number conflict",
+      "sha256": "f7c8a1c0279af79f261953fc429caf1c18ff58a903432a5a225def9f4623a3f7"
+    },
+    {
+      "git_blob": "dc264d23a245cfc8dfc5b7a0f81a821cf7443fb2",
+      "lines": 88,
+      "path": "Claude/docs/v1.0.24/results/HANDOVER_v24.md",
+      "read_status": "READ_FULL",
+      "role": "final v1024 supersession record",
+      "sha256": "66d384822d16a0b77e18e63a59a12905d6abb5f1e9869126f19b5184133c49ee"
+    },
+    {
+      "git_blob": "e91ede07864735bd3c9c0f9437eb94cdd80e9cfd",
+      "lines": 56,
+      "path": "Claude/docs/v1.0.24/_sections/ch1v22_bib.tex",
+      "read_status": "READ_FULL",
+      "role": "graphite bibliography",
+      "sha256": "4a3c6e87e1ac067efaaa87441ac0ff08b83f285524368ef9968ad62244871aca"
+    },
+    {
+      "git_blob": "9884af52a4be61c8695371c8a1c91d68669e7a34",
+      "lines": 21,
+      "path": "Claude/docs/v1.0.24/_sections/ch2v22_bib.tex",
+      "read_status": "READ_FULL",
+      "role": "LCO bibliography",
+      "sha256": "01b51db2009adcff8b0440d2129e25cb4a7bc5555bb54a85314b6170653a0e40"
+    },
+    {
+      "git_blob": "240d9f4fb99930b5f9801eccd31d6a4148153bc9",
+      "lines": 44,
+      "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex",
+      "read_status": "READ_FULL",
+      "role": "Si/blend bibliography",
+      "sha256": "7ebbf08b40cbcb623cd531300f3b3c851b4a289e4aa0c9d22a7d3260a29212e2"
+    },
+    {
+      "git_blob": "934117f6d1ea7c60cafe5931ae210fe859128049",
+      "lines": 1917,
+      "path": "Claude/docs/v1.0.25/Anode_Fit_v1.0.24.py",
+      "read_status": "READ_FULL",
+      "role": "first downstream static-skew implementation boundary",
+      "sha256": "36b21a1c52af776417ffb1129a94a9987f1f7cea39433569c75b0111f74a8116"
+    },
+    {
+      "git_blob": "e61fa044aa7209773b714c87da965fe8e8a0f0cf",
+      "lines": 118,
+      "path": "Claude/docs/v1.0.25.1/ARCHIVE_NOTE.md",
+      "read_status": "READ_FULL",
+      "role": "later v1.0.25.1 touch-up boundary",
+      "sha256": "91e0a0b17130445aa918ab712a5b039ca75eade278d1c0aab51a56db8616b66e"
+    }
+  ],
+  "source_policy": {
+    "child_process_allowlist": [
+      "git"
+    ],
+    "claude_tree_written": false,
+    "frozen_source_execution": false,
+    "network_used_by_builder": false,
+    "rules": [
+      "Read immutable Git blobs at the pinned baseline and expected parent.",
+      "Never import or execute frozen Python sources.",
+      "Never write Claude/**.",
+      "Do not back-import v1.0.25 skew behavior into v1.0.24.",
+      "Bibliographic identity does not prove proposition, page, or equation support.",
+      "Unavailable primary text remains GROUND_NOT_FOUND with an acquisition owner.",
+      "Generate the machine JSON after the human result and controls are staged."
+    ]
+  },
+  "tex_census": {
+    "closures": {
+      "adopted_union": {
+        "bibitem_occurrences": 95,
+        "citation_occurrences": 301,
+        "doi_occurrences": 89,
+        "files": 56,
+        "unique_bibitem_keys": 93,
+        "unique_citation_keys": 93,
+        "unique_doi_strings": 83
+      },
+      "graphite": {
+        "bibitem_occurrences": 44,
+        "citation_occurrences": 138,
+        "doi_occurrences": 37,
+        "files": 34,
+        "unique_bibitem_keys": 44,
+        "unique_citation_keys": 44,
+        "unique_doi_strings": 36
+      },
+      "lco": {
+        "bibitem_occurrences": 15,
+        "citation_occurrences": 77,
+        "doi_occurrences": 16,
+        "files": 13,
+        "unique_bibitem_keys": 15,
+        "unique_citation_keys": 15,
+        "unique_doi_strings": 16
+      },
+      "non_master": {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 260,
+        "doi_occurrences": 2,
+        "files": 34,
+        "unique_bibitem_keys": 0,
+        "unique_citation_keys": 41,
+        "unique_doi_strings": 2
+      },
+      "si_blend": {
+        "bibitem_occurrences": 36,
+        "citation_occurrences": 86,
+        "doi_occurrences": 36,
+        "files": 11,
+        "unique_bibitem_keys": 36,
+        "unique_citation_keys": 36,
+        "unique_doi_strings": 36
+      }
+    },
+    "files": [
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "4583cf94bb25c118702a5a9235562bcc6bbf3db9",
+        "lines": 89,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_appA_signcheck.tex",
+        "sha256": "9f2e73c6bb7c791026c0a138f294e6140cdbaa6020f0579a2e3f8e9cc6e322c1",
+        "undefined_keys": [
+          "swiderska2019"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "d60ccb5d99bb81d15ce931d23bb105290cee62df",
+        "lines": 155,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_appB_codemap.tex",
+        "sha256": "fe8d1c3a139352f3ca2c2c6651ea32caf58049f67e66a2f0aab8d2bc89c140f9",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 20,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "8a64e3b893b1507caed9953c7582ace633475bcf",
+        "lines": 91,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_appD_si.tex",
+        "sha256": "963e62d35c0325d540649ff45f1e42bca17a1fc52305c076c7597c474db7c19a",
+        "undefined_keys": [
+          "beaulieu2001",
+          "chevrier_dahn2009",
+          "jiang_sihys2020",
+          "koebbing2024",
+          "larchecahn1973",
+          "li_dahn2007",
+          "limthongkul2003",
+          "liu_sizefracture2012",
+          "obrovac_chevrier2014",
+          "obrovac_christensen2004",
+          "sethuraman_stressevo2010",
+          "sethuraman_stresspot2010",
+          "verbrugge_lisi2016",
+          "wen_huggins1981"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "7363da82938c1a85524488380a0f4031e1354c41",
+        "lines": 212,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_appE_selfconsistent.tex",
+        "sha256": "26b6e0348598b1ac88ab240d415b4b69e20904f56bcd808298e2ff677344afd5",
+        "undefined_keys": [
+          "lee2011jcp",
+          "lee2017jcp",
+          "son2013jcp"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "a66e0c29dec8bf33217dec01d1cc827c9a57aa31",
+        "lines": 77,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_preamble.tex",
+        "sha256": "c64c23047bfd53a024bf7b4505c4de21a7b999cc536532e1d572c323aa8ab89e",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 4,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "fc8e2fbf86f91b5154adb38fd12df39ce2f9c77a",
+        "lines": 94,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec00_intro.tex",
+        "sha256": "ef5477499a17f43104054434711ca85e8b6a5f684631c14790dfc99c2392b850",
+        "undefined_keys": [
+          "bloom2005",
+          "dahn1991",
+          "dubarry2012",
+          "ohzuku1993"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "8f417f0cb7464b62d8260139a1cc347de851a6a0",
+        "lines": 244,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec01_n0n1.tex",
+        "sha256": "1b4ece0217a15b8a9ea5bcb8da6aa798ec5aea35910e7f6f4a2af6447698840e",
+        "undefined_keys": [
+          "allart2018",
+          "baek_pilon2022",
+          "dahn1991",
+          "ohzuku1993",
+          "reynier2003",
+          "swiderska2019",
+          "weppner_huggins1977"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "9a48ba20d12f1b435f1f69077b42da7488d2ef2e",
+        "lines": 390,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec02a_part0.tex",
+        "sha256": "cd361bdb9c7e2847aaa5d62ee66569f9caa9cc6141139b4afd480081dadc2bde",
+        "undefined_keys": [
+          "ashcroftmermin1976",
+          "fowler1939",
+          "hill1960",
+          "mckinnon1983",
+          "mcquarrie1976"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 5,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "d045075e8b9f62da359f162606f7c1f7d6aad1f7",
+        "lines": 474,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec02b_part0.tex",
+        "sha256": "74033b6e64c0a4860dc2c2a0aec51a44de2c60efc23610696075cfe251af637c",
+        "undefined_keys": [
+          "hill1960",
+          "mcquarrie1976"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "4519f04e58a3e878ee7f6b968782b93863c2925a",
+        "lines": 121,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec03_center.tex",
+        "sha256": "7b5b7f9c650454c83e2d25a0435ebe54f1165a078f9c68b503898750400b337f",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 4,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "e8b751a1fe9d7dde42bfc50b3967774e3a7e2f4e",
+        "lines": 336,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec04_hys.tex",
+        "sha256": "e89e8825269d0304f16c5621aa978dc45c1deb52c5c723ed20d0cebe4a2b3ff9",
+        "undefined_keys": [
+          "dreyer2010",
+          "dreyer2011"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "0f37606b4b7c9f0c0b00cf5bebd820909e0c48b2",
+        "lines": 415,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec05_width.tex",
+        "sha256": "22d1731d3a019a1377a5b4ad1c4387ed980faefd8474ddacb606d18ebfc48ccc",
+        "undefined_keys": [
+          "bazant2013",
+          "eyring1935",
+          "glasstone1941",
+          "laidlerking1983",
+          "mcquarrie1976"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 12,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "46ea479e037a59ca20488a8ce5143d47f216e0d1",
+        "lines": 196,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec05b_gr2L.tex",
+        "sha256": "deaf0714cac15de6616bcae6201fb59d2e26b318c6266b84f0e137a79eeb11c9",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "persson2010b",
+          "reynier2003",
+          "schmitt2022",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "66e00096bab7356a01f32824fec90b1e85157416",
+        "lines": 89,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec06_eqpeak.tex",
+        "sha256": "844fda1002cb9b8a30d0da2a41fa325d97dbe02a413d22b2c6a417dda1bb4aa9",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 20,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "ec557453a3749c264b13731b43ae78969900e436",
+        "lines": 357,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec07_broadening.tex",
+        "sha256": "6c91d4927748acd8309ddf2a0d3236d4781a75fa90cce04004bb3622f65ec7c9",
+        "undefined_keys": [
+          "cogswell2012",
+          "dahn1991",
+          "dahn1995",
+          "dreyer2010",
+          "dreyer2011",
+          "fly2020",
+          "leviaurbach1999",
+          "ohzuku1993",
+          "park2021",
+          "rsc2021"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "bde3aff883222f731ff0bd7700d683fe7a83cfc9",
+        "lines": 145,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec08_lag.tex",
+        "sha256": "4b0842495b411d2c36cec2d0c4b5b010f1b912bcc45745fa8ea92ac8dff804de",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "dc73aafa9ab082d7bba3ee7f21d3922631b491b6",
+        "lines": 245,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec09_tail.tex",
+        "sha256": "6c743b847645f253bcd6aa1a5c3e42964bcddbf607fed86f908d4f0e9cf14281",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "f9ae673fc3e9904cc7a1765a48a32fe802f6f1e6",
+        "lines": 170,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec10_sum.tex",
+        "sha256": "172a8a6327660204bf0d04e25bad7b7286b8e95be77888d12adb88c262f30640",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "persson2010",
+          "persson2010b",
+          "reynier2003"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "324cd1d7d29cffd8060e4c64fede000d2332e027",
+        "lines": 175,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec11_lcointro.tex",
+        "sha256": "a1b8eca6340b4b6928b129eabe510bfd32b62887f2392ede26875a0d1087e5c9",
+        "undefined_keys": [
+          "kim_entropymetry2020",
+          "menetrier1999",
+          "motohashi2009",
+          "msmr2024",
+          "msmr_origin2017",
+          "reynier2004",
+          "xia2007"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 2,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "1b5436d798dc1a964795bd70b4e637ffbb730d1d",
+        "lines": 112,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec12_lcocenter.tex",
+        "sha256": "4596a70bece22147491afa95ed1c4d6390a1fb89c02d040488ceae210781c5b3",
+        "undefined_keys": [
+          "swiderska2019"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 16,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "eb042ed981e477455327932b92ffc731c2151263",
+        "lines": 223,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec13_lcohys.tex",
+        "sha256": "4786d337c57db7883c1dc973d3538461fa9dfefca4501eb0715483645523a70a",
+        "undefined_keys": [
+          "marianetti2004",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "reynier2004",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 3,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "033bf4fbc6b81d036d2d28d216526145e99df29c",
+        "lines": 143,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec14_lcodecomp.tex",
+        "sha256": "75feb501ba30065864d86852c41761abf40c404bbec09c3502460f4e20d28bf5",
+        "undefined_keys": [
+          "reynier2004"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 28,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "718e90dc17bf5fa04e113807088c2c6b1d0a98bf",
+        "lines": 396,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec15_lcoelec.tex",
+        "sha256": "42973b0019740f820a02f29996d40824eccb2ad9f2ef2d95bfe5b6b93b403499",
+        "undefined_keys": [
+          "imada1998",
+          "marianetti2004",
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "mott1968",
+          "reimers1992",
+          "reynier2004"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 3,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "9e6625f1cca1ac7ab5083fbef746bec29855ee8d",
+        "lines": 70,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec16_lcopeak.tex",
+        "sha256": "857e7f22280f5fa90d0e69117a2d1694149b0a2088cfd137454e5d1fbb24dfec",
+        "undefined_keys": [
+          "motohashi2009",
+          "reynier2004",
+          "xia2007"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "dfe9babaca8a268a0ee4ff62b5cdb9f93c146ef3",
+        "lines": 160,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec16b_lcoomega.tex",
+        "sha256": "5b2b00ba8521992211d2beb90e7890428c84168ec88ba8eafdb44d4b63856683",
+        "undefined_keys": [
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "0e5881896f7c551b33187b90ef4c4591f9d7e7db",
+        "lines": 176,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec17_msmr.tex",
+        "sha256": "ce5ab34988e7312617215733d07162ddbf90446010d3becacfef4e3bd264bc3c",
+        "undefined_keys": [
+          "bakerverbrugge2018",
+          "msmr2024",
+          "msmr_origin2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "2c4e61dd04a4fd81ee56d0f9d4a6649d39f9a955",
+        "lines": 70,
+        "path": "Claude/docs/v1.0.24/_sections/ch1_sec18_inputs.tex",
+        "sha256": "abf93e7cd03e20d1a7c2e6bbfffe297d4a42ca325ea0a34a7c98b4db12736fcb",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 44,
+        "citation_occurrences": 3,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 37,
+        "git_blob": "e91ede07864735bd3c9c0f9437eb94cdd80e9cfd",
+        "lines": 56,
+        "path": "Claude/docs/v1.0.24/_sections/ch1v22_bib.tex",
+        "sha256": "4a3c6e87e1ac067efaaa87441ac0ff08b83f285524368ef9968ad62244871aca",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "5fe8b52e1acc800638375513c62d2bb863d05687",
+        "lines": 14,
+        "path": "Claude/docs/v1.0.24/_sections/ch1v22_partT_divider.tex",
+        "sha256": "1113e3f0288d5697ffdb1f394ecd1b8da6f40cbd7ba519ff81821d4846f2741c",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "7a0c943d8cabc9eaa4c2a99b9164b342d00cbd52",
+        "lines": 75,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_appA_traps.tex",
+        "sha256": "8ad6625c9a4cd51fa09b7a1ee8490ae4b5b89d043578f0ed61e6376d5e3f1fe8",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "d266ef62c2b39614ce802dfbcb6f5e44ba6cfd78",
+        "lines": 75,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_appB_codemap.tex",
+        "sha256": "a7f8a2ddefe20020eb427bee0c445cad1ce871bc5c024b01ffaaa179d9f231a5",
+        "undefined_keys": [
+          "numverif2026"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "151d88bea2de026b2f362a6bfecf8979f46df358",
+        "lines": 56,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_preamble.tex",
+        "sha256": "aa02d8b576217ceb99be5f669c324defc866ae1bf288282b96eb823ee9555a74",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "68ba6a623a71b5074ce5cc8ffc378f2919fbf2e4",
+        "lines": 71,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec00_intro.tex",
+        "sha256": "c9d74f21c6ed64f47415b4b84d8da9511fae512ac9dcbeb60f9e0d6069c7ef41",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 6,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "d9bc975fde0f82d7c0beb7fc70943bb87dc6d6d1",
+        "lines": 149,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec01_partition.tex",
+        "sha256": "e38d6dec81d43daa97084994f627ff8367753e3488bbab20de9ca0f014a53fc5",
+        "undefined_keys": [
+          "bazant2013",
+          "dahn1991",
+          "huggins2009",
+          "newman",
+          "ohzuku1993"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 8,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "d36ac0859ede68138d3190ba57e18444e7719a14",
+        "lines": 190,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec02_config.tex",
+        "sha256": "eb09b6ac6ee9035b264057840c1601fef016fadf329045c32789838a4a83bdce",
+        "undefined_keys": [
+          "allart2018",
+          "chemmater2015",
+          "msmr_partII",
+          "occupation2019",
+          "reynier2003"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 5,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "5a33954c02cc6c5a8728a847807fed766ab1fd36",
+        "lines": 118,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec03_vibel.tex",
+        "sha256": "456e5d088aae01b4fb39f6c16db2a9b107da68d5d34a017309005d7722cb2432",
+        "undefined_keys": [
+          "jpcc2021",
+          "msmr_partI",
+          "reynier2003"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "c9f1ee6e35d800f258ed4cf85ef899958cddb740",
+        "lines": 207,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec04_einstein.tex",
+        "sha256": "20c009045d9212f84d5b499070f75b070e4f6ebada99801ec17c0bca9dfd4c41",
+        "undefined_keys": [
+          "jpcc2021"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "6ae9741f56af2ec2f4eb7bd117f4eb0bbc3164ec",
+        "lines": 245,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec05_mixing.tex",
+        "sha256": "6bec8f512f471a35d219cbe7d490370e1d2916455d44215ac361c0c4bd454b36",
+        "undefined_keys": [
+          "dahn1991",
+          "hysteresis2018",
+          "numverif2026",
+          "ohzuku1993"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "62162a7032a44455cadfd8ae27798e05608b1c8e",
+        "lines": 53,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec06_limits.tex",
+        "sha256": "036bff8c828b41713d93f339faa4517d269e353f67e4436b46a44b9c3004fc9b",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 6,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "9a47e0b21121b17fc0167a608a1e381410b2fcce",
+        "lines": 102,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec07_revheat.tex",
+        "sha256": "ca951ed1fcec6febd43d6c19d6235277da8968e4ec1dfd75f4e77057cca78c96",
+        "undefined_keys": [
+          "bernardi1985",
+          "msmr_partI",
+          "newman",
+          "standardised2024"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "4e13bdf7c05b5f991456b21f0384dbb3cda3c32d",
+        "lines": 231,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec08_synthesis.tex",
+        "sha256": "81d9c5e94d1c02151433d7d1e4718868182e7ef93a1aa724d50f9190d3c06d19",
+        "undefined_keys": [
+          "standardised2024"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "013024df14a653f92ca705840bab4b7ad48e9450",
+        "lines": 64,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec09_method.tex",
+        "sha256": "557278eacdc47605335238a714436d8adb78cd448f807b04ba5350f2bd9088cb",
+        "undefined_keys": [
+          "allart2018",
+          "bernardi1985",
+          "hysteresis2018",
+          "msmr_partI",
+          "msmr_partII"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "e1d3c264ab8ad31a8022936d733f4aacd13da4e2",
+        "lines": 29,
+        "path": "Claude/docs/v1.0.24/_sections/ch2_sec10_closing.tex",
+        "sha256": "f04921f6dd1682066a901bd9594efc6dd8a9d65c72311e718b6b9e4bebbbdf17",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 15,
+        "citation_occurrences": 0,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 16,
+        "git_blob": "9884af52a4be61c8695371c8a1c91d68669e7a34",
+        "lines": 21,
+        "path": "Claude/docs/v1.0.24/_sections/ch2v22_bib.tex",
+        "sha256": "01b51db2009adcff8b0440d2129e25cb4a7bc5555bb54a85314b6170653a0e40",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "18502b8022951395cf9534a62552503780a9c59b",
+        "lines": 14,
+        "path": "Claude/docs/v1.0.24/_sections/ch2v22_notation.tex",
+        "sha256": "c27fbaa7352cebac26adc3c88766d1810309fc8d3f285d190377561afb82978c",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "7c096456677dfb38253aa4e8399fbf1bfed9459f",
+        "lines": 12,
+        "path": "Claude/docs/v1.0.24/_sections/ch2v22_sec00_intro.tex",
+        "sha256": "1529be737423d8a80c5e584825a6813be06b6f1654c82a48296ae6c4eca6afe7",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 36,
+        "citation_occurrences": 0,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 36,
+        "git_blob": "240d9f4fb99930b5f9801eccd31d6a4148153bc9",
+        "lines": 44,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_bib.tex",
+        "sha256": "7ebbf08b40cbcb623cd531300f3b3c851b4a289e4aa0c9d22a7d3260a29212e2",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "0058c1bce004a421337c20edc6cf6c2ed137ea1f",
+        "lines": 46,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_notation.tex",
+        "sha256": "8a5f72927844a187fb3f81d8539838ba78b621d4c71e59c99d3c0a6f9e2d76ea",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "e75967a809dcf7203d9e1da0519af46bd303336e",
+        "lines": 12,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec00_intro.tex",
+        "sha256": "0e015695998a29db9d2a845ba93e7ee81dc4a8bfb4bfc31d76ce0335f3c55a5b",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 17,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "e70047e69c78054711e1189158c2eea2b39ff235",
+        "lines": 129,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec01_map.tex",
+        "sha256": "68ba9888081464f48131229cb46549fe6a62f7fda6294a287cce2776ad66e9ea",
+        "undefined_keys": [
+          "beaulieu2001",
+          "chevrier_dahn2009",
+          "jiang_sihys2020",
+          "koebbing2024",
+          "li_dahn2007",
+          "limthongkul2003",
+          "liu_sizefracture2012",
+          "obrovac_chevrier2014",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "sethuraman_stressevo2010",
+          "sethuraman_stresspot2010",
+          "verbrugge_lisi2016",
+          "wen_huggins1981"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 36,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "3b842796315caaf52bb9cc0d2783550242770bed",
+        "lines": 162,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02_cases.tex",
+        "sha256": "0b4c41676b6bfc1b3c4eb3d2e4574aa059dc129f01b07cb01e73a37242ec2cea",
+        "undefined_keys": [
+          "andersen_sic2019",
+          "arnot_calorimetry2021",
+          "bohm_entropy2024",
+          "bohm_thermal2025",
+          "chevrier_dahn2009",
+          "gautam_blend2024",
+          "kitada_sio2019",
+          "lee_sic2025",
+          "li_dahn2007",
+          "limthongkul2003",
+          "mcdowell_coreshell2013",
+          "miyachi_sio2005",
+          "naboka_sic2021",
+          "obrovac_chevrier2014",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "sethuraman_stressevo2010",
+          "sethuraman_stresspot2010",
+          "wang_asi2013",
+          "wen_huggins1981",
+          "wojtala_entropy2022",
+          "yom_sio2016",
+          "zhang_sio2018"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "660b1b47cfb0a02b64a66ce9b2d3516a720cca7f",
+        "lines": 176,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec02b_sifr.tex",
+        "sha256": "4f46c83e6dffd1c8b9f44933421c475b6c03988f830e697c2280bc76af227b89",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "tu_blend2024",
+          "verbrugge2017",
+          "verbrugge_lisi2016"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "8719e0a4ca9f020561e1be1f7ead457f4b5c1610",
+        "lines": 278,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec03_blend.tex",
+        "sha256": "e468be71867600e1941d3690faa716999a364fcb9032045205dfa6947197cffd",
+        "undefined_keys": [
+          "ai_composite2022",
+          "chatzogiannakis_blend2025",
+          "limthongkul2003",
+          "naboka_sic2021",
+          "obrovac_chevrier2014",
+          "tu_blend2024",
+          "zhan_siox2026"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "54ed834821bbffeeafb6986033b16aeb1486ab07",
+        "lines": 110,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec04_mech.tex",
+        "sha256": "3b6e979d3a599c59b1f372130967663a16b83eb2297d8600c3fae1f2fa2bc348",
+        "undefined_keys": [
+          "arnot_calorimetry2021",
+          "beaulieu2001",
+          "jiang_sihys2020",
+          "koebbing2024",
+          "larchecahn1973",
+          "obrovac_chevrier2014",
+          "sethuraman_stressevo2010",
+          "sethuraman_stresspot2010"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 3,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "82de028442ef7f48642926fa51aa0ba3b380459f",
+        "lines": 70,
+        "path": "Claude/docs/v1.0.24/_sections/ch3v22_sec05_code.tex",
+        "sha256": "60985557e53090217e130b244a145e9fe541165e9404630f81088ddf2853493e",
+        "undefined_keys": [
+          "chatzogiannakis_blend2025",
+          "gautam_blend2024",
+          "moyassari_blend2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite",
+          "lco",
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "08c99adcdc18a39fb5728efd2effdfee94e11587",
+        "lines": 84,
+        "path": "Claude/docs/v1.0.24/_sections/common_preamble_v1024.tex",
+        "sha256": "ab343e0fd8dd1b8b39bf1eb923d8c7fc953bf38744a36269090ea39200881eb9",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [],
+        "doi_occurrences": 2,
+        "git_blob": "4e17bf01a5a1eb71476e6112d6a26b96861b17f5",
+        "lines": 497,
+        "path": "Claude/docs/v1.0.24/appendix_phase_separation.tex",
+        "sha256": "18e6702c0cb66049a6ed1760ad0d6a2c403f7c2aa0c2c2bd9e6e4dc2a5df336e",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "graphite"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "f021adb5727f3a09515e2116e4b4c3d87bba6b49",
+        "lines": 60,
+        "path": "Claude/docs/v1.0.24/ch1_graphite_v1.0.24.tex",
+        "sha256": "4194958ee9774bdbd617955fe78fc02b0ebb5ab537129b594b2fe75e4c9877c3",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "lco"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "7b553fa88bd1e4fa97cbc031516b6fb0bc9a8377",
+        "lines": 32,
+        "path": "Claude/docs/v1.0.24/ch2_lco_v1.0.24.tex",
+        "sha256": "aaddcaf2954e306d0311f65edd34043249a98f223001340992766b3faaaf3e19",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [
+          "si_blend"
+        ],
+        "doi_occurrences": 0,
+        "git_blob": "817693a38f6185fdd23f4348b0a4cc874a3a8f17",
+        "lines": 32,
+        "path": "Claude/docs/v1.0.24/ch3_si_v1.0.24.tex",
+        "sha256": "39c4474e91a986e35dafbc79e425b8f7794126803edd1077b8503542990ea0a2",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "375f68984879069bf3a96199e96079c74fce1880",
+        "lines": 178,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W1/gr_2L.tex",
+        "sha256": "ee3c162a89fa1901556c5adbf00fe4c2785324ff4faaa6fe012cab2c20d540bb",
+        "undefined_keys": [
+          "dahn1991",
+          "fergusonbazant2014",
+          "guo2016",
+          "persson2010b",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "a239e6faec552e403d86d96440fd3c13c2d158aa",
+        "lines": 141,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W1/lco_omega.tex",
+        "sha256": "eb7a599e3e3eec47159b5f3ed5b73aae7377d64764d3519c6ad87efd50f4b464",
+        "undefined_keys": [
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "9bc0dd1f38eb753374a301fad1b742020b4a9095",
+        "lines": 134,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W1/si_fr.tex",
+        "sha256": "6bb6a3cf891cfb865709ffc56f4fd577990371cc71560c16686aac6eb437cf31",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "obrovac_christensen2004",
+          "tu_blend2024",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 6,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "b5a6d751c6f45e8b2c24d7048ab8215f97f5034f",
+        "lines": 142,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W2/gr_2L.tex",
+        "sha256": "8abe8054217a40e4a310939660e8a0d404c0a6944ad01af6c4a4176111ac3f0f",
+        "undefined_keys": [
+          "dahn1991",
+          "dahn1995",
+          "ohzuku1993",
+          "persson2010",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 3,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "106829d36ebe880984519935847319f7ccd4a942",
+        "lines": 121,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W2/lco_omega.tex",
+        "sha256": "758a09c62722f580715bcac29b0a91c037687671268d63763ea04fa72722009c",
+        "undefined_keys": [
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "676f789c1b5dc26302155a63bbb22405ea4312a6",
+        "lines": 119,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W2/si_fr.tex",
+        "sha256": "3801d862a4de18b7722dc2918a85672b208b80b76e15cc1cdceb9b5824988196",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "limthongkul2003",
+          "naboka_sic2021",
+          "obrovac_christensen2004",
+          "tu_blend2024",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "ef29ed886d121482988590ec7cf6e4e7d928bf83",
+        "lines": 137,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W3/gr_2L.tex",
+        "sha256": "42347172e41acd7f524e3de50a3b7a6a99cad037582ffefbfde85364276d8360",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "rsc2021",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 0,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "1126a9f51152204f4f33ae2381863dd7bfb93579",
+        "lines": 119,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W3/lco_omega.tex",
+        "sha256": "d21918d3584af90dc9b860d5c7c83d10c26d4c3a52b543b9fb913140a990b518",
+        "undefined_keys": []
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "2d4f0810c74c1ad3fd2d72717e0b370158010ebe",
+        "lines": 95,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W3/si_fr.tex",
+        "sha256": "eb24a463ac38a18dd4cf56d63e85b3804eb43e7ea2c2283f6908a4075ddf1b56",
+        "undefined_keys": [
+          "chevrier_dahn2009",
+          "leviaurbach1999",
+          "limthongkul2003",
+          "mcdowell_coreshell2013",
+          "msmr_origin2017",
+          "obrovac_christensen2004",
+          "tu_blend2024",
+          "verbrugge_lisi2016",
+          "wang_asi2013"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 6,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "f2d7a19ed6c4d8a4ce099b0f77e42618f396b843",
+        "lines": 82,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W4/gr_2L.tex",
+        "sha256": "a3f07198816543d9810036e398cb73cd89663a77107735a2131051b272b9f57c",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 1,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "bed4fba774987cf4378d941ecd1fbaa4caf60c8d",
+        "lines": 67,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W4/lco_omega.tex",
+        "sha256": "0b32eaa768a821abd2fff43fb91dc3172ccaba97ad4887b0e41f60387fdb5be8",
+        "undefined_keys": [
+          "motohashi2009"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 8,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "52289351c0023d33dd93bcb95777d668c5becf8a",
+        "lines": 62,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W4/si_fr.tex",
+        "sha256": "0540eec82b80065957e73d8c130f955f2c1dc264a182e51584d7b9fa9c4aec19",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "limthongkul2003",
+          "obrovac_christensen2004",
+          "tu_blend2024"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "53244542db7a52ccfd59b6a31821c2a225ae7c40",
+        "lines": 157,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W5/gr_2L.tex",
+        "sha256": "6e13c49c9d873687bcb46d0a165f00ea2c681bd9da682e01c12d5d9060f73de6",
+        "undefined_keys": [
+          "dahn1991",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "7f6ba9a1e86ec067494c106018c08aa400f35863",
+        "lines": 111,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W5/lco_omega.tex",
+        "sha256": "39330b028bedcb54044669d9783a048dcec8fa100815ecc907c53826c7497bf1",
+        "undefined_keys": [
+          "menetrier1999",
+          "ml2024",
+          "reimers1992",
+          "reynier2004",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 12,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "5a023de6610388fd0ef30f09567e064ab53d1f04",
+        "lines": 107,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W5/si_fr.tex",
+        "sha256": "c5b5794ef451e77bfa3fe4531e9c5ce22ad7ecf0cce1a263b410bf5f9916cec2",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "leviaurbach1999",
+          "limthongkul2003",
+          "mcdowell_coreshell2013",
+          "msmr_origin2017",
+          "naboka_sic2021",
+          "obrovac_christensen2004",
+          "tu_blend2024",
+          "verbrugge_lisi2016",
+          "wang_asi2013"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "c01e2d7bf4ae7cef6ac8da8b6ddbfe4d027f7ebf",
+        "lines": 172,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W6/gr_2L.tex",
+        "sha256": "abf616b14554e1172805fb5cda9ae2c791e01d4ca5893f6f416002156f3fab95",
+        "undefined_keys": [
+          "dahn1991",
+          "leviaurbach1999",
+          "msmr_partII",
+          "ohzuku1993",
+          "schmitt2022",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "d37d1c3733ea1675cb3cfeffb07272d3062b9796",
+        "lines": 116,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W6/lco_omega.tex",
+        "sha256": "383f1cc63c370dd5e56f49a4d7f2a3e2b07ad45cb218cfdbd7ada0c0f0fb6443",
+        "undefined_keys": [
+          "marianetti2004",
+          "menetrier1999",
+          "motohashi2009",
+          "msmr_origin2017",
+          "reimers1992",
+          "reynier2004",
+          "vanderven1998",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "47e7be052be86007db80f26f47ff620c978a13ce",
+        "lines": 103,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W6/si_fr.tex",
+        "sha256": "d78bffd22fe863b454d7d018459954f5bc57c09874fd6851e46240ebdcb61b98",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "leviaurbach1999",
+          "naboka_sic2021",
+          "obrovac_christensen2004",
+          "tu_blend2024",
+          "verbrugge2017"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 12,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "2e5402fad7cfb74ed1cf69526769b395ed949f58",
+        "lines": 144,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W7/gr_2L.tex",
+        "sha256": "0eaf41b7c017164579e6bcfc6f461d743924644a074b2763a58ab287c58cc63f",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "persson2010",
+          "persson2010b",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 5,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "87eabf40aa906e76a4fe12fef571246795202da8",
+        "lines": 103,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W7/lco_omega.tex",
+        "sha256": "d98f7dee41f9f350ce9b3246ddb46cb84fd742182bcf608d83a8c16b109d5ddc",
+        "undefined_keys": [
+          "menetrier1999",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "9b6c6a93f40a7a7109c2090b0ec3b2baab18806a",
+        "lines": 97,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W7/si_fr.tex",
+        "sha256": "4ecc114315fcbf45ce85b9088f633c356b1ac3087fdf305ba46a84d079651f5f",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "leviaurbach1999",
+          "msmr_origin2017",
+          "tu_blend2024"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 14,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "355ee71dfd951c743321eaee1aba5d535e51f15c",
+        "lines": 152,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W8/gr_2L.tex",
+        "sha256": "422775e01b8c384762c95dd61ac0757cba0fa075c03efc5b9bc8de020b7ff2c7",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 7,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "203f89deff6510c153702cabb8f717d50e644609",
+        "lines": 100,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W8/lco_omega.tex",
+        "sha256": "90d359d752f46ce54ec5f41a5d0c7ac4745522884cb5f32cd6a68b4d426345b4",
+        "undefined_keys": [
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "8eb135ce3843d523974a1334f2a48b304c29efa3",
+        "lines": 97,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W8/si_fr.tex",
+        "sha256": "4332d087656132daff1994832a0af927b899b449bd695caaa795f961331e83be",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "limthongkul2003",
+          "mcdowell_coreshell2013",
+          "msmr_origin2017",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "tu_blend2024",
+          "wang_asi2013"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 5,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "5fa66b93942751a1efa2bddfecf5e1a2b16959ec",
+        "lines": 149,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W9/gr_2L.tex",
+        "sha256": "daec92414ec05135e37ec596e2d78df847f17477d937125579af31fa2386ea3c",
+        "undefined_keys": [
+          "dahn1991",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "e49ea086cad2be8eb754c485ff41c986c1428ff7",
+        "lines": 125,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W9/lco_omega.tex",
+        "sha256": "8e551cb969823e2ef1c5fe975cd2c25c551a5a37d75b83893e62bef75ab9afe6",
+        "undefined_keys": [
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "e081e35736923d1209c9f15ca923d34b95feb482",
+        "lines": 119,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/W9/si_fr.tex",
+        "sha256": "fb0bffab9ec9a4e2adb173a1853d35d6f2d782211f2a4c36caffd07ee6c4715f",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "tu_blend2024",
+          "verbrugge2017",
+          "verbrugge_lisi2016"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 11,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "fb5c928913b09a49e3a3f4970aa865baf23c8c4f",
+        "lines": 185,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/refine_b/gr_2L_b.tex",
+        "sha256": "d2c6d7af8a7ae7958e1ca87e16b5ae899969e8124bf36cbbe5e3d878df96d053",
+        "undefined_keys": [
+          "dahn1991",
+          "ohzuku1993",
+          "persson2010b",
+          "reynier2003",
+          "schmitt2022"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 9,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "695a676fdf34bcdeacdab53610dcf047d8364ee8",
+        "lines": 164,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/refine_b/lco_omega_b.tex",
+        "sha256": "637efc46c32596f2f739f964b3551e7109a9e460ec1d0766ce78ea3aebc9fc3d",
+        "undefined_keys": [
+          "menetrier1999",
+          "ml2024",
+          "motohashi2009",
+          "reimers1992",
+          "vanderven1998"
+        ]
+      },
+      {
+        "bibitem_occurrences": 0,
+        "citation_occurrences": 10,
+        "closures": [],
+        "doi_occurrences": 0,
+        "git_blob": "8e610df01dce2500ee094a2b4864e571f3fd082b",
+        "lines": 170,
+        "path": "Claude/docs/v1.0.24/results/comp_R1/refine_b/si_fr_b.tex",
+        "sha256": "8165491d0c5af0422a153de73293c9a1aec990cde64d98309bc66db9507d59b8",
+        "undefined_keys": [
+          "artrith2018",
+          "chevrier_dahn2009",
+          "obrovac_christensen2004",
+          "ogata_nmr2014",
+          "tu_blend2024",
+          "verbrugge2017",
+          "verbrugge_lisi2016"
+        ]
+      }
+    ],
+    "summary": {
+      "bibitem_occurrences": 95,
+      "citation_occurrences": 561,
+      "doi_occurrences": 91,
+      "files": 90,
+      "globally_undefined_keys": [
+        "fergusonbazant2014",
+        "guo2016"
+      ],
+      "globally_unused_bibitem_keys": [],
+      "unique_bibitem_keys": 93,
+      "unique_citation_keys": 95,
+      "unique_doi_strings": 85
+    }
+  }
+}
