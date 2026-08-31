@@ -24,12 +24,12 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 14. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 15. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 16. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-17. 현재 Phase 상태: Phase 065 `IN_PROGRESS`, Current checkpoint: Step 73 `PASS_PENDING_PERSISTENCE`
-18. 현재 result: `Codex/results/PHASE_065_STEP_073_INITIALIZATION_RUNTIME_RESULT.md`
-19. 현재 machine evidence: `Codex/results/PHASE_065_INITIALIZATION_ROUTE_MATRIX.json`, `Codex/results/PHASE_065_RUNTIME_ATTESTATION.json`; Step 73 human/control 문서를 먼저 고정한 뒤 JSON-last 규칙으로 수집
+17. 현재 Phase 상태: Phase 065 `IN_PROGRESS`, Current checkpoint: Step 74 `PASS_PENDING_PERSISTENCE`
+18. 현재 result: `Codex/results/PHASE_065_STEP_074_DOC_CODE_GUIDE_RESULT.md`
+19. 현재 machine evidence: `Codex/results/PHASE_065_DOC_CODE_GUIDE_CONFORMANCE_MATRIX.json`; Step 74 human/control 문서를 먼저 고정한 뒤 JSON-last 규칙으로 수집
 20. 직전 Phase result: `Codex/results/PHASE_064_RESULT.md`; gate result `Codex/results/PHASE_064_STEP_069_2_GATE_RESULT.md`; Lineage Report G `Codex/results/PHASE_064_V1023_LINEAGE_REPORT_G.md`
 21. 직전 integrated machine evidence: `Codex/results/PHASE_064_VALIDATION.json`; Steps 64–69.1 evidence remains binding
-22. 직전 final persistence: Step 72 commit `272b8d331c55448182e96c75363a56061adf58f2`; `PASS_P065_STEP72_PERSISTENCE`
+22. 직전 final persistence: Step 73 commit `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`; `PASS_P065_STEP73_PERSISTENCE`
 23. carry-forward machine evidence: `Codex/results/PHASE_064_V1023_CARRY_FORWARD_DELTA.json`; inherited parent `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
 24. master-plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
@@ -86,7 +86,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 065 Step 70 | Step 70 | exact-eight commit `d6f680b26fb59c24098f44ed633873a2c6419a4e`, parent `83323ebfff1c468e4ada5e695ced10c69e24fb32`, subject `audit(phase065): freeze v1024 source process topology`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP70_PERSISTENCE`; protected/main/Claude unchanged | execute Step 71 |
 | Phase 065 Step 71 | Step 71 | v35 `PASS_P065_STEP71_STATIC_WITH_CONCERNS`; exact-eight commit `5978da8626406879609b0dd5792f79143015e67f`, parent `d6f680b26fb59c24098f44ed633873a2c6419a4e`, subject `audit(phase065): trace v1024 code profile defaults`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP71_PERSISTENCE`; protected/main/Claude unchanged | execute Step 72 |
 | Phase 065 Step 72 | Step 72 | `PASS_P065_STEP72_AUTHORITY_WITH_CONCERNS`; exact-seven commit `272b8d331c55448182e96c75363a56061adf58f2`, parent `5978da8626406879609b0dd5792f79143015e67f`, subject `audit(phase065): bound v1024 skew material authority`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP72_PERSISTENCE`; protected/main/Claude unchanged | execute Step 73 |
-| Phase 065 Step 73 | Step 73 | `PASS_P065_STEP73_INITIALIZATION_RUNTIME_WITH_CONCERNS`; `PASS_PENDING_PERSISTENCE`; official `10/10`; implemented route processes `8/8`; absence corroborations `4/4`; mutations `6/6`; order controls `6/6`; 11 profile surfaces; legacy restoration `ABSENT_IN_FROZEN_SOURCE`, not behavior PASS; external scientific/material/experimental/proposition/canonical/publication authority false | exact-eight commit/push/persistence, then Step 74 |
+| Phase 065 Step 73 | Step 73 | exact-eight commit `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`, parent `272b8d331c55448182e96c75363a56061adf58f2`, subject `audit(phase065): separate v1024 initialization routes`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP73_PERSISTENCE`; official `10/10`; implemented route processes `8/8`; absence corroborations `4/4`; mutations `6/6`; order controls `6/6`; legacy restoration `ABSENT_IN_FROZEN_SOURCE`, not behavior PASS | execute Step 74 |
+| Phase 065 Step 74 | Step 74 | `PASS_P065_STEP74_CONFORMANCE_WITH_CONCERNS`; `PASS_PENDING_PERSISTENCE`; exact-seven; 41 conformance rows; 17 exact prior routes; 56 source bindings; Ref. 7 proposition `GROUND_NOT_FOUND`; external scientific/material/experimental/proposition/canonical/publication authority false | exact-seven commit/push/persistence, then Step 75.1 |
 
 ## Current State
 
@@ -382,10 +383,12 @@ read master + phase plan + previous result
 - Step 72 exact-seven commit `272b8d331c55448182e96c75363a56061adf58f2`은 parent `5978da8626406879609b0dd5792f79143015e67f`, subject `audit(phase065): bound v1024 skew material authority`로 push·live-remote verification됐고 Python 3.12/3.14 `PASS_P065_STEP72_PERSISTENCE`를 통과했다. Protected/main/Claude는 불변이고 worktree는 clean이었다.
 - Step 73은 frozen baseline blob을 저장소 밖 disposable root에 materialize하고 Python 3.12/3.14 `-B -I -X utf8` child process에서 fresh/default와 explicit profile을 분리했다. Fresh behavior는 profile override 없는 `BlendedAnodeDQDV(0.0)`에 한정되며 Graphite/LCO 무인수 default constructor는 없다. Step 71의 11 profile surface는 public constructor/from_wt 경로로 관찰됐다. Legacy/current saved-state schema/key/loader는 `ABSENT_IN_FROZEN_SOURCE`이고 absence corroboration은 behavior PASS가 아니다.
 - Step 73 official gates `10/10`, implemented route processes `8/8`, absence corroborations `4/4`, route mutations `6/6`, changed-order controls `6/6`을 요구한다. F01–F11은 equilibrium-only regsol, blend 두 host에 full current/capacity가 전달되는 runtime call과 Step 71 static partition-solver 부재, silent root iteration exhaustion, seconds/hour factor 3600, width/derivative None inconsistency, LCO OFF/ON default change, XRD Omega logistic route, direct MSMR6 injection, kernel/delta fallbacks와 zero-current/direction behavior로 구체화했다. 각 route run은 고유 materialized fixture와 fresh process를 쓰며, same-process Graphite transition alias mutation도 별도 경계로 관찰한다. External scientific/material/experimental/proposition/canonical/publication authority는 false다.
+- Step 73 exact-eight는 commit `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`로 pushed/live-remote verified됐고 Python 3.12/3.14에서 `PASS_P065_STEP73_PERSISTENCE`를 통과했다.
+- Step 74는 Markdown/HTML/TeX/results/tests와 Step 73 runtime을 41개 claim row로 대조하고 Step 70–72의 17개 exact origin record를 보존한다. Bound-enforced `Omega>2RT`, Si width의 phase-authority 초과, asymmetric prototype의 in-sample flexibility, broad prose-level main-body implementation/history 위반을 별도 P1로 고정한다. Ref. 7 proposition은 `GROUND_NOT_FOUND`이며 external truth/canonical/publication authority는 false다.
 
 ## Exact Next Action
 
-Controller must validate, commit, and push the exact-eight Step 73 set with subject `audit(phase065): separate v1024 initialization routes` and parent `272b8d331c55448182e96c75363a56061adf58f2`, fetch origin, and run Python 3.12/3.14 `--persistence --expected-commit <new HEAD>`. Require local HEAD, upstream, tracking ref, and live remote to equal that commit; require protected/main/Claude pins unchanged and a clean worktree. `PASS_P065_STEP73_PERSISTENCE` on both runtimes alone releases Step 74.
+Controller must recreate external `matrix-step74-one.json`, `matrix-step74-two.json`, and byte-exact `P065_STEP74_SENTINEL\n` in `not-a-matrix-name.json`, independently SHA-256 pin the builder/validator/matrix Git blob bytes from the index, and pass their exact paths with `--determinism-one`, `--determinism-two`, `--output-sentinel`, `--expected-builder-sha256`, `--expected-validator-sha256`, and `--expected-matrix-sha256` to Python 3.12/3.14 precommit validators. It then commits and pushes the exact-seven Step 74 set with subject `audit(phase065): adjudicate v1024 doc code guide` and parent `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`, fetches origin, recomputes the three pins from `<new HEAD>:<path>` Git blob bytes, and runs both validators with those same six required arguments plus `--persistence --expected-commit <new HEAD>`. Require local HEAD, upstream, tracking ref, and live remote to equal that commit; require protected/main/Claude pins unchanged and a clean worktree. `PASS_P065_STEP74_PERSISTENCE` on both runtimes alone releases Step 75.1.
 
 ## Hard-stop Reminder
 
