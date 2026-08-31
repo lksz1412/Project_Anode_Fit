@@ -1,0 +1,3275 @@
+{
+  "artifact_kind": "PHASE_065_RUNTIME_ATTESTATION",
+  "authority_boundary": {
+    "canonical_adoption": false,
+    "experimental_truth": false,
+    "internal_runtime_behavior": true,
+    "material_truth": false,
+    "proposition_support": false,
+    "publication_readiness": false,
+    "scientific_truth": false
+  },
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "branch": "codex/anode-fit-v1025_2-canonical-completion",
+  "changed_order_controls": [
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "a42ee02e7ee145887918968dd871458b7580df983f0e53f194bcb7cc931e8180",
+      "order_B_output_sha256": "a42ee02e7ee145887918968dd871458b7580df983f0e53f194bcb7cc931e8180",
+      "route": "fresh",
+      "runtime": "3.12"
+    },
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "e22eaeba2e9f353d417bafbece7fae2628a6a9543932cbc7b91d0ce626e939d1",
+      "order_B_output_sha256": "e22eaeba2e9f353d417bafbece7fae2628a6a9543932cbc7b91d0ce626e939d1",
+      "route": "explicit",
+      "runtime": "3.12"
+    },
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "a2b2b40f93654925e5cf003393886bc72441b47670805c8f7dbf1b81ce52417b",
+      "order_B_output_sha256": "a2b2b40f93654925e5cf003393886bc72441b47670805c8f7dbf1b81ce52417b",
+      "route": "legacy",
+      "runtime": "3.12"
+    },
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "a42ee02e7ee145887918968dd871458b7580df983f0e53f194bcb7cc931e8180",
+      "order_B_output_sha256": "a42ee02e7ee145887918968dd871458b7580df983f0e53f194bcb7cc931e8180",
+      "route": "fresh",
+      "runtime": "3.14"
+    },
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "e22eaeba2e9f353d417bafbece7fae2628a6a9543932cbc7b91d0ce626e939d1",
+      "order_B_output_sha256": "e22eaeba2e9f353d417bafbece7fae2628a6a9543932cbc7b91d0ce626e939d1",
+      "route": "explicit",
+      "runtime": "3.14"
+    },
+    {
+      "normalized_observations_equal": true,
+      "order_A_output_sha256": "a2b2b40f93654925e5cf003393886bc72441b47670805c8f7dbf1b81ce52417b",
+      "order_B_output_sha256": "a2b2b40f93654925e5cf003393886bc72441b47670805c8f7dbf1b81ce52417b",
+      "route": "legacy",
+      "runtime": "3.14"
+    }
+  ],
+  "counts": {
+    "absence_corroboration_expectations_met": 4,
+    "absence_corroboration_runs": 4,
+    "changed_order_checks": 6,
+    "changed_order_equal": 6,
+    "implemented_behavior_route_expectations_met": 8,
+    "implemented_behavior_route_runs": 8,
+    "mutation_runs": 6,
+    "mutations_detected": 6,
+    "official_expectations_met": 10,
+    "official_runs": 10,
+    "runtimes": 2
+  },
+  "expected_parent": "272b8d331c55448182e96c75363a56061adf58f2",
+  "expected_subject": "audit(phase065): separate v1024 initialization routes",
+  "gate": "PASS_P065_STEP73_INITIALIZATION_RUNTIME_WITH_CONCERNS",
+  "generated_date": "2026-08-31",
+  "isolation": {
+    "base_fixture_scan_excluded_top_level": [
+      "route_fixtures"
+    ],
+    "bytecode_disabled": true,
+    "cleanup_verified_after_context": true,
+    "disposable_external_directory": true,
+    "each_route_run_has_own_fixture": true,
+    "exact_git_blobs_materialized": true,
+    "fixture_files_after": [
+      "v1.0.19/Anode_Fit_v1.0.19.py",
+      "v1.0.19/golden_graphite_ref.npz",
+      "v1.0.23/Anode_Fit_v1.0.23.py",
+      "v1.0.23/test_gates_v1023.py",
+      "v1.0.23/test_gates_v1023_selfconsistent.py",
+      "v1.0.24/Anode_Fit_v1.0.24.py",
+      "v1.0.24/test_gates_v1024.py",
+      "v1.0.24/test_gates_v1024_reflect.py",
+      "v1.0.24/test_gates_v1024_selfconsistent.py"
+    ],
+    "fixture_files_before": [
+      "v1.0.19/Anode_Fit_v1.0.19.py",
+      "v1.0.19/golden_graphite_ref.npz",
+      "v1.0.23/Anode_Fit_v1.0.23.py",
+      "v1.0.23/test_gates_v1023.py",
+      "v1.0.23/test_gates_v1023_selfconsistent.py",
+      "v1.0.24/Anode_Fit_v1.0.24.py",
+      "v1.0.24/test_gates_v1024.py",
+      "v1.0.24/test_gates_v1024_reflect.py",
+      "v1.0.24/test_gates_v1024_selfconsistent.py"
+    ],
+    "isolated_mode": true,
+    "materialized_manifest": [
+      {
+        "bytes": 68896,
+        "git_blob": "115b2e60e79ef8e26f20960b8841b37cef55c415",
+        "materialized_relative_path": "v1.0.19/Anode_Fit_v1.0.19.py",
+        "sha256": "7de32d7bcd276687b2350b150559e00c1181dca953aba116760828b0bdff5193",
+        "source_path": "Claude/docs/v1.0.19/Anode_Fit_v1.0.19.py"
+      },
+      {
+        "bytes": 107324,
+        "git_blob": "8932d9dbfc165eeb39ec5cab23337d4582ba0ae8",
+        "materialized_relative_path": "v1.0.19/golden_graphite_ref.npz",
+        "sha256": "61b7f59b809417f46618039d1eecf5cc1aca9ed2d0202fcda7d909386c00d0c2",
+        "source_path": "Claude/docs/v1.0.19/golden_graphite_ref.npz"
+      },
+      {
+        "bytes": 97860,
+        "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+        "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+        "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+        "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+      },
+      {
+        "bytes": 33361,
+        "git_blob": "a636c6f21d97f8a1af57b61a6e4afda974b86dca",
+        "materialized_relative_path": "v1.0.23/test_gates_v1023.py",
+        "sha256": "78205fed4f6ed9ff731e11eddf14f1e871ef15759cb75344f098b8d014173832",
+        "source_path": "Claude/docs/v1.0.23/test_gates_v1023.py"
+      },
+      {
+        "bytes": 6502,
+        "git_blob": "cf330bfc14e0291474ea9490a5b206c2f060a319",
+        "materialized_relative_path": "v1.0.23/test_gates_v1023_selfconsistent.py",
+        "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4",
+        "source_path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py"
+      },
+      {
+        "bytes": 110089,
+        "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+        "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+        "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+        "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+      },
+      {
+        "bytes": 33825,
+        "git_blob": "8ef4ab235a86d623bfc277fb8ba04f30b238b10a",
+        "materialized_relative_path": "v1.0.24/test_gates_v1024.py",
+        "sha256": "71c198640bc2ef860c4e7fbe29a84b7b2dae667ca91c567e3cfb1dbfe7fa1184",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024.py"
+      },
+      {
+        "bytes": 6502,
+        "git_blob": "5404cb4a4e5811591486f12504eb376e3359fe19",
+        "materialized_relative_path": "v1.0.24/test_gates_v1024_selfconsistent.py",
+        "sha256": "aa013f44c6d063e337f3d6c9a2aaef0d8000f77036756f616e825371d851e7fe",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024_selfconsistent.py"
+      },
+      {
+        "bytes": 4309,
+        "git_blob": "7147b20af0a7da761d5208c0e45a00ae31f1afd2",
+        "materialized_relative_path": "v1.0.24/test_gates_v1024_reflect.py",
+        "sha256": "b3bf35fb2becb5b49aa89c6627ca963af00772f8817b0a8bfea96285a7e3b8e1",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024_reflect.py"
+      }
+    ],
+    "materialized_manifest_after": [
+      {
+        "bytes": 68896,
+        "sha256": "7de32d7bcd276687b2350b150559e00c1181dca953aba116760828b0bdff5193",
+        "source_path": "Claude/docs/v1.0.19/Anode_Fit_v1.0.19.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 107324,
+        "sha256": "61b7f59b809417f46618039d1eecf5cc1aca9ed2d0202fcda7d909386c00d0c2",
+        "source_path": "Claude/docs/v1.0.19/golden_graphite_ref.npz",
+        "unchanged": true
+      },
+      {
+        "bytes": 97860,
+        "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+        "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 33361,
+        "sha256": "78205fed4f6ed9ff731e11eddf14f1e871ef15759cb75344f098b8d014173832",
+        "source_path": "Claude/docs/v1.0.23/test_gates_v1023.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 6502,
+        "sha256": "1417277231ea795515037f470ec160e5077e04d8ab351df7e85c6467671fcef4",
+        "source_path": "Claude/docs/v1.0.23/test_gates_v1023_selfconsistent.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 110089,
+        "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+        "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 33825,
+        "sha256": "71c198640bc2ef860c4e7fbe29a84b7b2dae667ca91c567e3cfb1dbfe7fa1184",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 6502,
+        "sha256": "aa013f44c6d063e337f3d6c9a2aaef0d8000f77036756f616e825371d851e7fe",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024_selfconsistent.py",
+        "unchanged": true
+      },
+      {
+        "bytes": 4309,
+        "sha256": "b3bf35fb2becb5b49aa89c6627ca963af00772f8817b0a8bfea96285a7e3b8e1",
+        "source_path": "Claude/docs/v1.0.24/test_gates_v1024_reflect.py",
+        "unchanged": true
+      }
+    ],
+    "materialized_manifest_sha256": "1968a453352f895d0fb64f4b3516099f40c1424693b7701c1645b9598e106b70",
+    "materialized_path_containment_verified": true,
+    "network_requested": false,
+    "probe_program_sha256": "77f5010c21203045d69c07aa50d6252973963e1ba842f1d73a71183edb24d4d1",
+    "probe_program_unchanged": true,
+    "route_fixture_count": 18,
+    "route_fixture_ids_unique": true,
+    "source_blobs_unchanged": true,
+    "unexpected_fixture_files": [],
+    "utf8_mode": true,
+    "working_checkout_source_imported": false
+  },
+  "official_runs": [
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023.py"
+      ],
+      "cwd": "v1.0.23",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.12",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "79131cb52812d3397f85d21923b41fc4d106f2b5f1e57068418138481723e219",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1023-main"
+      },
+      "output_sha256": "18dceaebbe688afb9f17590494b465c7ed8ee4571c732b164de20ef63c85f386",
+      "run_id": "P065-OFFICIAL-V1023-MAIN-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "v1.0.19: <TMP>\\v1.0.19\\Anode_Fit_v1.0.19.py\nv1.0.23: <TMP>\\v1.0.23\\Anode_Fit_v1.0.23.py\nnumpy 2.3.5, python 3.12.10\n==========================================================================\nG1: backward-compat  v1.0.23 vs v1.0.19  (new features all unspecified)\n  compared arrays: 30  bit-exact(np.array_equal): True  max|diff|: 0.000e+00\n  [aux] golden npz (13 arrays, other-machine capture): max|diff|=0.000e+00  bit-exact 13/13 (P0 env-noise ref 4.33e-15)\n  G1 RESULT: PASS  (module-vs-module 0.000e+00 <= 1e-12; golden 0.000e+00 <= 1e-12)\n==========================================================================\nG2: regression reference values (ch2_appB B.2, display-precision match)\n  U_oc [mV]                  value=+74.351141  display=74.4  doc=74.4  OK\n  dU/dT complete [mV/K]      value=-0.203946  display=-0.204  doc=-0.204  OK\n  dU/dT simple  [mV/K]       value=-0.133958  display=-0.134  doc=-0.134  OK\n  dU/dT config  [mV/K]       value=-0.069988  display=-0.070  doc=-0.070  OK\n  dS = F*dU/dT [J/mol/K]     value=-19.677727  display=-19.7  doc=-19.7  OK\n  Qrev/I = -T*dU/dT [mV]     value=+60.806492  display=+60.8  doc=+60.8  OK\n  round-trip [U(T+3)-U(T-3)]/6K = -0.203946 mV/K (display -0.204, doc -0.204); |FD-analytic| = 1.139e-05 uV/K (< 0.001) OK\n  --- tab:worked per-transition intermediates (x=0.25, 298.15 K) ---\n    sum Q_j g_j = 6.1771 /V (display 6.18, doc 6.18) OK\n    j=0: xi=0.005(0.005) g=0.19(0.19) share=0.003(0.003) dS/F=+0.301(+0.301) config=-0.458(-0.458) OK\n    j=1: xi=0.072(0.072) g=2.61(2.61) share=0.051(0.051) dS/F=+0.000(+0.000) config=-0.220(-0.220) OK\n    j=2: xi=0.143(0.143) g=4.77(4.77) share=0.193(0.193) dS/F=-0.052(-0.052) config=-0.154(-0.154) OK\n    j=3: xi=0.395(0.395) g=9.30(9.30) share=0.753(0.753) dS/F=-0.166(-0.166) config=-0.037(-0.037) OK\n  --- tab:qrev 5-point (298.15 K, full columns) ---\n    x=0.10: U_oc=43.5(43.5)  dU/dT=-0.307(-0.307)  dS=-29.6(-29.6)  Qrev/I=+91.5(+91.5)  OK\n    x=0.25: U_oc=74.4(74.4)  dU/dT=-0.204(-0.204)  dS=-19.7(-19.7)  Qrev/I=+60.8(+60.8)  OK\n    x=0.50: U_oc=109.0(109.0)  dU/dT=-0.089(-0.089)  dS=-8.6(-8.6)  Qrev/I=+26.6(+26.6)  OK\n    x=0.75: U_oc=148.8(148.8)  dU/dT=+0.044(+0.044)  dS=+4.3(+4.3)  Qrev/I=-13.2(-13.2)  OK\n    x=0.90: U_oc=195.2(195.2)  dU/dT=+0.218(+0.218)  dS=+21.0(+21.0)  Qrev/I=-64.9(-64.9)  OK\n  --- derived A: 175-pt full-range complete vs FD + 3-boundary continuity ---\n    complete vs FD: max=2.948e-07 mV/K  mean=4.290e-08 (gate <= 0.01 mV/K, display precision) OK\n    [ref] simple vs FD: max=0.2273 mV/K (doc grid-max ~0.18; span-dep)\n    [ref] config span: [-0.227, +0.139] mV/K (doc ~[-0.21,+0.14]; span-dep)\n    boundary 1: x_mid=0.453  dU/dT=-0.1100 mV/K in (-0.166,-0.052)? True  local max step=2.3 uV/K (< 25.0) OK\n    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK\n    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK\n    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)\n  G2 RESULT: PASS\n==========================================================================\nG3: theta_E bit-exact  (unspecified path == pre-correction code)\n  v1.0.23(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK\n  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK\n    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK\n    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK\n    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK\n    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK\n  G3 RESULT: PASS\n==========================================================================\nAPPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)\n  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True\n  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True\n  n_T1=0.0 == absent (value bit-exact) entropy_V: True\n  n_T1=0.0 == absent (value bit-exact) Uoc_x: True\n  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK\n  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK\n  n(T) RESULT: PASS\n==========================================================================\nR6-G1 (blend): f_Si=0 bit-exact vs graphite-only  (eq:si-code-bitexact)\n  equilibrium      array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I1.0    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I1.0    array_equal=True  max|diff|=0.000e+00\n  curve_dis_0.2C   array_equal=True  max|diff|=0.000e+00\n  solve_U_oc       array_equal=True  max|diff|=0.000e+00\n  effectiveness: f_Si=0.3 changes equilibrium (max|diff|=1.479e+00>0) & Q_Si/Q=0.300000(=0.3): True\n  R6-G1 RESULT: PASS  (worst bit-diff=0.000e+00)\n==========================================================================\nR6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)\n  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)\n  finite curves: True\n  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True\n  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True\n  R6-G2 RESULT: PASS\n==========================================================================\nR6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si\n  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK\n  R6-G3 RESULT: PASS\n==========================================================================\nR6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)\n  si_case=elemental finite=True gaps=[] warned=False(expect False) OK\n  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK\n  si_case=sic       finite=True gaps=[] warned=False(expect False) OK\n  boundary plastic_hysteresis_loop() -> NotImplementedError: True\n  boundary nonadditive_correction() -> NotImplementedError: True\n  R6 coverage RESULT: PASS\n==========================================================================\n>>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS\n>>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS\n",
+      "stdout_sha256": "615e368c8b62437c2f65e2553d633274aaf836db608e8738125cfa41cbc0d12a",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.12",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "8cade6f147f20e2b37f4f6c06a6f1f8bd93b6ea5e92614ac63d02c3a945bd913",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1023-selfconsistent"
+      },
+      "output_sha256": "008e52bedcbbe420af93ce86990558ce3fc4dcc61f742422df152ed199ab11e3",
+      "run_id": "P065-OFFICIAL-V1023-SELFCONSISTENT-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS\nG-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS\nG-E3 차수이득(코드 Picard·참=고정점):\n   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000\n   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117\n   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366\n   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS\nG-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS\nG-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS\n==========================================================================\n>>> SELF-CONSISTENT GATES: ALL PASS  (5/5)\n",
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.12",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "29ab0cbfb29d66a8e8939b06941f75cec613de3ea4cc22544a2c8f29cbb559b7",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-main"
+      },
+      "output_sha256": "6dd02d79e2fd59ced926b2a8fcd8a1ef728ac7100bad59b65bba3d229e277261",
+      "run_id": "P065-OFFICIAL-V1024-MAIN-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "v1.0.19: <TMP>\\v1.0.19\\Anode_Fit_v1.0.19.py\nv1.0.24: <TMP>\\v1.0.24\\Anode_Fit_v1.0.24.py\nnumpy 2.3.5, python 3.12.10\n==========================================================================\nG1: backward-compat  v1.0.24 vs v1.0.19  (new features all unspecified)\n  compared arrays: 30  bit-exact(np.array_equal): True  max|diff|: 0.000e+00\n  [aux] golden npz (13 arrays, other-machine capture): max|diff|=0.000e+00  bit-exact 13/13 (P0 env-noise ref 4.33e-15)\n  G1 RESULT: PASS  (module-vs-module 0.000e+00 <= 1e-12; golden 0.000e+00 <= 1e-12)\n==========================================================================\nG2: regression reference values (ch2_appB B.2, display-precision match)\n  U_oc [mV]                  value=+74.351141  display=74.4  doc=74.4  OK\n  dU/dT complete [mV/K]      value=-0.203946  display=-0.204  doc=-0.204  OK\n  dU/dT simple  [mV/K]       value=-0.133958  display=-0.134  doc=-0.134  OK\n  dU/dT config  [mV/K]       value=-0.069988  display=-0.070  doc=-0.070  OK\n  dS = F*dU/dT [J/mol/K]     value=-19.677727  display=-19.7  doc=-19.7  OK\n  Qrev/I = -T*dU/dT [mV]     value=+60.806492  display=+60.8  doc=+60.8  OK\n  round-trip [U(T+3)-U(T-3)]/6K = -0.203946 mV/K (display -0.204, doc -0.204); |FD-analytic| = 1.139e-05 uV/K (< 0.001) OK\n  --- tab:worked per-transition intermediates (x=0.25, 298.15 K) ---\n    sum Q_j g_j = 6.1771 /V (display 6.18, doc 6.18) OK\n    j=0: xi=0.005(0.005) g=0.19(0.19) share=0.003(0.003) dS/F=+0.301(+0.301) config=-0.458(-0.458) OK\n    j=1: xi=0.072(0.072) g=2.61(2.61) share=0.051(0.051) dS/F=+0.000(+0.000) config=-0.220(-0.220) OK\n    j=2: xi=0.143(0.143) g=4.77(4.77) share=0.193(0.193) dS/F=-0.052(-0.052) config=-0.154(-0.154) OK\n    j=3: xi=0.395(0.395) g=9.30(9.30) share=0.753(0.753) dS/F=-0.166(-0.166) config=-0.037(-0.037) OK\n  --- tab:qrev 5-point (298.15 K, full columns) ---\n    x=0.10: U_oc=43.5(43.5)  dU/dT=-0.307(-0.307)  dS=-29.6(-29.6)  Qrev/I=+91.5(+91.5)  OK\n    x=0.25: U_oc=74.4(74.4)  dU/dT=-0.204(-0.204)  dS=-19.7(-19.7)  Qrev/I=+60.8(+60.8)  OK\n    x=0.50: U_oc=109.0(109.0)  dU/dT=-0.089(-0.089)  dS=-8.6(-8.6)  Qrev/I=+26.6(+26.6)  OK\n    x=0.75: U_oc=148.8(148.8)  dU/dT=+0.044(+0.044)  dS=+4.3(+4.3)  Qrev/I=-13.2(-13.2)  OK\n    x=0.90: U_oc=195.2(195.2)  dU/dT=+0.218(+0.218)  dS=+21.0(+21.0)  Qrev/I=-64.9(-64.9)  OK\n  --- derived A: 175-pt full-range complete vs FD + 3-boundary continuity ---\n    complete vs FD: max=2.948e-07 mV/K  mean=4.290e-08 (gate <= 0.01 mV/K, display precision) OK\n    [ref] simple vs FD: max=0.2273 mV/K (doc grid-max ~0.18; span-dep)\n    [ref] config span: [-0.227, +0.139] mV/K (doc ~[-0.21,+0.14]; span-dep)\n    boundary 1: x_mid=0.453  dU/dT=-0.1100 mV/K in (-0.166,-0.052)? True  local max step=2.3 uV/K (< 25.0) OK\n    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK\n    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK\n    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)\n  G2 RESULT: PASS\n==========================================================================\nG3: theta_E bit-exact  (unspecified path == pre-correction code)\n  v1.0.24(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK\n  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK\n    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK\n    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK\n    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK\n    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK\n  G3 RESULT: PASS\n==========================================================================\nAPPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)\n  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True\n  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True\n  n_T1=0.0 == absent (value bit-exact) entropy_V: True\n  n_T1=0.0 == absent (value bit-exact) Uoc_x: True\n  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK\n  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK\n  n(T) RESULT: PASS\n==========================================================================\nR6-G1 (blend): f_Si=0 bit-exact vs graphite-only  (eq:si-code-bitexact)\n  equilibrium      array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I1.0    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I1.0    array_equal=True  max|diff|=0.000e+00\n  curve_dis_0.2C   array_equal=True  max|diff|=0.000e+00\n  solve_U_oc       array_equal=True  max|diff|=0.000e+00\n  effectiveness: f_Si=0.3 changes equilibrium (max|diff|=1.479e+00>0) & Q_Si/Q=0.300000(=0.3): True\n  R6-G1 RESULT: PASS  (worst bit-diff=0.000e+00)\n==========================================================================\nR6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)\n  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)\n  finite curves: True\n  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True\n  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True\n  R6-G2 RESULT: PASS\n==========================================================================\nR6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si\n  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK\n  R6-G3 RESULT: PASS\n==========================================================================\nR6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)\n  si_case=elemental finite=True gaps=[] warned=False(expect False) OK\n  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK\n  si_case=sic       finite=True gaps=[] warned=False(expect False) OK\n  boundary plastic_hysteresis_loop() -> NotImplementedError: True\n  boundary nonadditive_correction() -> NotImplementedError: True\n  R6 coverage RESULT: PASS\n==========================================================================\n>>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS\n>>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS\n",
+      "stdout_sha256": "7aaab130a2a0639e0567c8793281c2fcc5d934ab03afbba0908e6e8c8c87adf5",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024_selfconsistent.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.12",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "f141cde4444ccdb65edb24781654c53ff283c1d37f3699af625ae8ef8b20a90b",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-selfconsistent"
+      },
+      "output_sha256": "008e52bedcbbe420af93ce86990558ce3fc4dcc61f742422df152ed199ab11e3",
+      "run_id": "P065-OFFICIAL-V1024-SELFCONSISTENT-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS\nG-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS\nG-E3 차수이득(코드 Picard·참=고정점):\n   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000\n   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117\n   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366\n   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS\nG-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS\nG-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS\n==========================================================================\n>>> SELF-CONSISTENT GATES: ALL PASS  (5/5)\n",
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024_reflect.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.12",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "14a0b2281a7bd7391d6f337f4c4081e04a5b5a2770880eea650c7a2404e60c01",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-reflect"
+      },
+      "output_sha256": "e29edf8b8e1214daaa61c26f081a21e8a7f45076364b0e5074f2369d35f202d2",
+      "run_id": "P065-OFFICIAL-V1024-REFLECT-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-R1 @5 5-feature: 전이수=5 유한·비음=True | stage-2L 분리 25℃=16.0mV·45℃=22.0mV·기울기=0.301mV/℃(Dahn 0.30) → PASS\nG-R2 LCO 토글: 기본=OFF(def=off@318 max|Δ|=0.0e+00=0·def≠on 6.63e-01>0) | 상온 U(T_ref)보존 ON=OFF@298 max|Δ|=0.0e+00(<1e-9) | ∂U/∂T차@318 6.63e-01(>0) → PASS\nG-R3 @3 regsol: 유한·비음=True 면적=1.000 국소최대=10(단일봉) | 로지스틱 대조 면적=1.000 → PASS\nG-R4 #1 단위계약: func_L_q 정상 동작 lq=1.845e-06(값 무변경·주석만) → PASS\n==========================================================================\n>>> v1.0.24 REFLECT GATES: ALL PASS (4/4)\n",
+      "stdout_sha256": "f755d6ae1ac2cb920a282d85c92154da6ec572fbae3609f021a6cf0288297582",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023.py"
+      ],
+      "cwd": "v1.0.23",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.14",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "244d341e9b6dc7b5780f092792575a57936376355a58bc0479d3cb692f6e50ce",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1023-main"
+      },
+      "output_sha256": "90e50a12793c1dd004724f98ab01cf183d2403309d094b187532d26fb719f33f",
+      "run_id": "P065-OFFICIAL-V1023-MAIN-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "v1.0.19: <TMP>\\v1.0.19\\Anode_Fit_v1.0.19.py\nv1.0.23: <TMP>\\v1.0.23\\Anode_Fit_v1.0.23.py\nnumpy 2.5.0, python 3.14.4\n==========================================================================\nG1: backward-compat  v1.0.23 vs v1.0.19  (new features all unspecified)\n  compared arrays: 30  bit-exact(np.array_equal): True  max|diff|: 0.000e+00\n  [aux] golden npz (13 arrays, other-machine capture): max|diff|=0.000e+00  bit-exact 13/13 (P0 env-noise ref 4.33e-15)\n  G1 RESULT: PASS  (module-vs-module 0.000e+00 <= 1e-12; golden 0.000e+00 <= 1e-12)\n==========================================================================\nG2: regression reference values (ch2_appB B.2, display-precision match)\n  U_oc [mV]                  value=+74.351141  display=74.4  doc=74.4  OK\n  dU/dT complete [mV/K]      value=-0.203946  display=-0.204  doc=-0.204  OK\n  dU/dT simple  [mV/K]       value=-0.133958  display=-0.134  doc=-0.134  OK\n  dU/dT config  [mV/K]       value=-0.069988  display=-0.070  doc=-0.070  OK\n  dS = F*dU/dT [J/mol/K]     value=-19.677727  display=-19.7  doc=-19.7  OK\n  Qrev/I = -T*dU/dT [mV]     value=+60.806492  display=+60.8  doc=+60.8  OK\n  round-trip [U(T+3)-U(T-3)]/6K = -0.203946 mV/K (display -0.204, doc -0.204); |FD-analytic| = 1.139e-05 uV/K (< 0.001) OK\n  --- tab:worked per-transition intermediates (x=0.25, 298.15 K) ---\n    sum Q_j g_j = 6.1771 /V (display 6.18, doc 6.18) OK\n    j=0: xi=0.005(0.005) g=0.19(0.19) share=0.003(0.003) dS/F=+0.301(+0.301) config=-0.458(-0.458) OK\n    j=1: xi=0.072(0.072) g=2.61(2.61) share=0.051(0.051) dS/F=+0.000(+0.000) config=-0.220(-0.220) OK\n    j=2: xi=0.143(0.143) g=4.77(4.77) share=0.193(0.193) dS/F=-0.052(-0.052) config=-0.154(-0.154) OK\n    j=3: xi=0.395(0.395) g=9.30(9.30) share=0.753(0.753) dS/F=-0.166(-0.166) config=-0.037(-0.037) OK\n  --- tab:qrev 5-point (298.15 K, full columns) ---\n    x=0.10: U_oc=43.5(43.5)  dU/dT=-0.307(-0.307)  dS=-29.6(-29.6)  Qrev/I=+91.5(+91.5)  OK\n    x=0.25: U_oc=74.4(74.4)  dU/dT=-0.204(-0.204)  dS=-19.7(-19.7)  Qrev/I=+60.8(+60.8)  OK\n    x=0.50: U_oc=109.0(109.0)  dU/dT=-0.089(-0.089)  dS=-8.6(-8.6)  Qrev/I=+26.6(+26.6)  OK\n    x=0.75: U_oc=148.8(148.8)  dU/dT=+0.044(+0.044)  dS=+4.3(+4.3)  Qrev/I=-13.2(-13.2)  OK\n    x=0.90: U_oc=195.2(195.2)  dU/dT=+0.218(+0.218)  dS=+21.0(+21.0)  Qrev/I=-64.9(-64.9)  OK\n  --- derived A: 175-pt full-range complete vs FD + 3-boundary continuity ---\n    complete vs FD: max=2.948e-07 mV/K  mean=4.290e-08 (gate <= 0.01 mV/K, display precision) OK\n    [ref] simple vs FD: max=0.2273 mV/K (doc grid-max ~0.18; span-dep)\n    [ref] config span: [-0.227, +0.139] mV/K (doc ~[-0.21,+0.14]; span-dep)\n    boundary 1: x_mid=0.453  dU/dT=-0.1100 mV/K in (-0.166,-0.052)? True  local max step=2.3 uV/K (< 25.0) OK\n    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK\n    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK\n    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)\n  G2 RESULT: PASS\n==========================================================================\nG3: theta_E bit-exact  (unspecified path == pre-correction code)\n  v1.0.23(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK\n  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK\n    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK\n    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK\n    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK\n    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK\n  G3 RESULT: PASS\n==========================================================================\nAPPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)\n  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True\n  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True\n  n_T1=0.0 == absent (value bit-exact) entropy_V: True\n  n_T1=0.0 == absent (value bit-exact) Uoc_x: True\n  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK\n  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK\n  n(T) RESULT: PASS\n==========================================================================\nR6-G1 (blend): f_Si=0 bit-exact vs graphite-only  (eq:si-code-bitexact)\n  equilibrium      array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I1.0    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I1.0    array_equal=True  max|diff|=0.000e+00\n  curve_dis_0.2C   array_equal=True  max|diff|=0.000e+00\n  solve_U_oc       array_equal=True  max|diff|=0.000e+00\n  effectiveness: f_Si=0.3 changes equilibrium (max|diff|=1.479e+00>0) & Q_Si/Q=0.300000(=0.3): True\n  R6-G1 RESULT: PASS  (worst bit-diff=0.000e+00)\n==========================================================================\nR6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)\n  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)\n  finite curves: True\n  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True\n  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True\n  R6-G2 RESULT: PASS\n==========================================================================\nR6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si\n  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK\n  R6-G3 RESULT: PASS\n==========================================================================\nR6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)\n  si_case=elemental finite=True gaps=[] warned=False(expect False) OK\n  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK\n  si_case=sic       finite=True gaps=[] warned=False(expect False) OK\n  boundary plastic_hysteresis_loop() -> NotImplementedError: True\n  boundary nonadditive_correction() -> NotImplementedError: True\n  R6 coverage RESULT: PASS\n==========================================================================\n>>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS\n>>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS\n",
+      "stdout_sha256": "a788336181e7c964d80ae3b7d9c3e52f4e0c46743fdc52d4eac41be5897f475b",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1023_selfconsistent.py"
+      ],
+      "cwd": "v1.0.23",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.14",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "cd9da0df93de7635a01c0be9fe73f7c9f87653cd86e02c0a2ffbf1da0d0c81c1",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1023-selfconsistent"
+      },
+      "output_sha256": "008e52bedcbbe420af93ce86990558ce3fc4dcc61f742422df152ed199ab11e3",
+      "run_id": "P065-OFFICIAL-V1023-SELFCONSISTENT-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS\nG-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS\nG-E3 차수이득(코드 Picard·참=고정점):\n   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000\n   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117\n   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366\n   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS\nG-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS\nG-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS\n==========================================================================\n>>> SELF-CONSISTENT GATES: ALL PASS  (5/5)\n",
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.14",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "bf30e9873e3309ffaeb22fa0ac8140b2bd3cf3b512febb09684caecadb778f95",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-main"
+      },
+      "output_sha256": "f56e9892dbf8bd9c019722dc3fb17250780e61e94e15367715767c1e1225e336",
+      "run_id": "P065-OFFICIAL-V1024-MAIN-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "v1.0.19: <TMP>\\v1.0.19\\Anode_Fit_v1.0.19.py\nv1.0.24: <TMP>\\v1.0.24\\Anode_Fit_v1.0.24.py\nnumpy 2.5.0, python 3.14.4\n==========================================================================\nG1: backward-compat  v1.0.24 vs v1.0.19  (new features all unspecified)\n  compared arrays: 30  bit-exact(np.array_equal): True  max|diff|: 0.000e+00\n  [aux] golden npz (13 arrays, other-machine capture): max|diff|=0.000e+00  bit-exact 13/13 (P0 env-noise ref 4.33e-15)\n  G1 RESULT: PASS  (module-vs-module 0.000e+00 <= 1e-12; golden 0.000e+00 <= 1e-12)\n==========================================================================\nG2: regression reference values (ch2_appB B.2, display-precision match)\n  U_oc [mV]                  value=+74.351141  display=74.4  doc=74.4  OK\n  dU/dT complete [mV/K]      value=-0.203946  display=-0.204  doc=-0.204  OK\n  dU/dT simple  [mV/K]       value=-0.133958  display=-0.134  doc=-0.134  OK\n  dU/dT config  [mV/K]       value=-0.069988  display=-0.070  doc=-0.070  OK\n  dS = F*dU/dT [J/mol/K]     value=-19.677727  display=-19.7  doc=-19.7  OK\n  Qrev/I = -T*dU/dT [mV]     value=+60.806492  display=+60.8  doc=+60.8  OK\n  round-trip [U(T+3)-U(T-3)]/6K = -0.203946 mV/K (display -0.204, doc -0.204); |FD-analytic| = 1.139e-05 uV/K (< 0.001) OK\n  --- tab:worked per-transition intermediates (x=0.25, 298.15 K) ---\n    sum Q_j g_j = 6.1771 /V (display 6.18, doc 6.18) OK\n    j=0: xi=0.005(0.005) g=0.19(0.19) share=0.003(0.003) dS/F=+0.301(+0.301) config=-0.458(-0.458) OK\n    j=1: xi=0.072(0.072) g=2.61(2.61) share=0.051(0.051) dS/F=+0.000(+0.000) config=-0.220(-0.220) OK\n    j=2: xi=0.143(0.143) g=4.77(4.77) share=0.193(0.193) dS/F=-0.052(-0.052) config=-0.154(-0.154) OK\n    j=3: xi=0.395(0.395) g=9.30(9.30) share=0.753(0.753) dS/F=-0.166(-0.166) config=-0.037(-0.037) OK\n  --- tab:qrev 5-point (298.15 K, full columns) ---\n    x=0.10: U_oc=43.5(43.5)  dU/dT=-0.307(-0.307)  dS=-29.6(-29.6)  Qrev/I=+91.5(+91.5)  OK\n    x=0.25: U_oc=74.4(74.4)  dU/dT=-0.204(-0.204)  dS=-19.7(-19.7)  Qrev/I=+60.8(+60.8)  OK\n    x=0.50: U_oc=109.0(109.0)  dU/dT=-0.089(-0.089)  dS=-8.6(-8.6)  Qrev/I=+26.6(+26.6)  OK\n    x=0.75: U_oc=148.8(148.8)  dU/dT=+0.044(+0.044)  dS=+4.3(+4.3)  Qrev/I=-13.2(-13.2)  OK\n    x=0.90: U_oc=195.2(195.2)  dU/dT=+0.218(+0.218)  dS=+21.0(+21.0)  Qrev/I=-64.9(-64.9)  OK\n  --- derived A: 175-pt full-range complete vs FD + 3-boundary continuity ---\n    complete vs FD: max=2.948e-07 mV/K  mean=4.290e-08 (gate <= 0.01 mV/K, display precision) OK\n    [ref] simple vs FD: max=0.2273 mV/K (doc grid-max ~0.18; span-dep)\n    [ref] config span: [-0.227, +0.139] mV/K (doc ~[-0.21,+0.14]; span-dep)\n    boundary 1: x_mid=0.453  dU/dT=-0.1100 mV/K in (-0.166,-0.052)? True  local max step=2.3 uV/K (< 25.0) OK\n    boundary 2: x_mid=0.643  dU/dT=-0.0207 mV/K in (-0.052,+0.000)? True  local max step=2.9 uV/K (< 25.0) OK\n    boundary 3: x_mid=0.817  dU/dT=+0.1018 mV/K in (+0.000,+0.301)? True  local max step=6.2 uV/K (< 25.0) OK\n    [ref] global max per-step change: 13.5 uV/K (175-pt grid; original 181-pt verification: max 13 uV/K/step)\n  G2 RESULT: PASS\n==========================================================================\nG3: theta_E bit-exact  (unspecified path == pre-correction code)\n  v1.0.24(no theta_E) vs pre-correction variant: arrays=30  bit-exact=True  max|diff|=0.000e+00  OK\n  effectiveness: theta_E=700K on tr[3] -> T_ref outputs equal: True; T=318.15K max|diff|=2.374e-03 (>0) OK\n    C-62 dDU_vib/dT @T=278.15: -3.7382 uV/K (display -3.74, doc -3.74) OK\n    C-62 dDU_vib/dT @T=298.15: +0.0000 uV/K (display +0.00, doc +0.00) OK\n    C-62 dDU_vib/dT @T=318.15: +3.7000 uV/K (display +3.70, doc +3.70) OK\n    C-62 dDU_vib/dT @T=348.15: +9.1378 uV/K (display +9.14, doc +9.14) OK\n  G3 RESULT: PASS\n==========================================================================\nAPPENDIX: n(T)=n+n_T1*(T-T_ref) propagation evidence (ch1_appB)\n  n_T1=0.0 == absent (value bit-exact) equilibrium_298: True\n  n_T1=0.0 == absent (value bit-exact) dqdv_dis_0.2: True\n  n_T1=0.0 == absent (value bit-exact) entropy_V: True\n  n_T1=0.0 == absent (value bit-exact) Uoc_x: True\n  n_T1=5e-4: dw/dT analytic=9.901445354e-05 V/K  centered-FD=9.901445354e-05  rel-diff=2.67e-14 (<1e-9) OK\n  n_T1=5e-4 round-trip @x=0.25: FD=-0.214379 analytic=-0.214379 mV/K  |diff|=1.670e-05 uV/K (<1e-2) OK\n  n(T) RESULT: PASS\n==========================================================================\nR6-G1 (blend): f_Si=0 bit-exact vs graphite-only  (eq:si-code-bitexact)\n  equilibrium      array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_dis_I1.0    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.02   array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I0.2    array_equal=True  max|diff|=0.000e+00\n  dqdv_chg_I1.0    array_equal=True  max|diff|=0.000e+00\n  curve_dis_0.2C   array_equal=True  max|diff|=0.000e+00\n  solve_U_oc       array_equal=True  max|diff|=0.000e+00\n  effectiveness: f_Si=0.3 changes equilibrium (max|diff|=1.479e+00>0) & Q_Si/Q=0.300000(=0.3): True\n  R6-G1 RESULT: PASS  (worst bit-diff=0.000e+00)\n==========================================================================\nR6-G2 (blend): m_Si sweep continuity on (0,0.30] wt%  (f_Si via C-052)\n  f_Si range over m_Si∈(0,0.30]: [0.0404, 0.7822] (doc: wt%→f_Si≈0–0.7)\n  finite curves: True\n  adjacent sup-diff: max=2.9298e-01 mean=2.0759e-01 max/mean=1.41 (<5.0 no-jump): True\n  refinement max-step: n=60:2.9298e-01 2n:1.4701e-01 4n:7.3637e-02  ratios=0.502,0.501 (~0.5 Lipschitz): True\n  R6-G2 RESULT: PASS\n==========================================================================\nR6-G3 (blend): capacity conservation  int(dQ/dV - Cbg) dV = Q_gr + Q_Si\n  f_Si=0.00: int=0.969999999 Q=0.970000000 (Q_gr=0.9700,Q_Si=0.0000) rel=1.48e-09 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.10: int=1.077777778 Q=1.077777778 (Q_gr=0.9700,Q_Si=0.1078) rel=2.25e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.30: int=1.385714285 Q=1.385714286 (Q_gr=0.9700,Q_Si=0.4157) rel=6.74e-10 (<=1e-06; trunc<=2.1e-09) OK\n  f_Si=0.50: int=1.939999998 Q=1.940000000 (Q_gr=0.9700,Q_Si=0.9700) rel=1.12e-09 (<=1e-06; trunc<=2.1e-09) OK\n  R6-G3 RESULT: PASS\n==========================================================================\nR6 coverage: 3 si_case build/run + SiOx gap warning (no silent fabrication)\n  si_case=elemental finite=True gaps=[] warned=False(expect False) OK\n  si_case=siox      finite=True gaps=['평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)', '히스테리시스 절대 mV (미확보 — 표 각주 f)'] warned=True(expect True) OK\n  si_case=sic       finite=True gaps=[] warned=False(expect False) OK\n  boundary plastic_hysteresis_loop() -> NotImplementedError: True\n  boundary nonadditive_correction() -> NotImplementedError: True\n  R6 coverage RESULT: PASS\n==========================================================================\n>>> SUMMARY: G1 PASS (module max|d|=0.0e+00, golden max|d|=0.0e+00, bit-exact=True) | G2 PASS | G3 PASS | n(T) PASS\n>>> R6 BLEND (§3.5): R6-G1 PASS | R6-G2 PASS | R6-G3 PASS | coverage PASS\n",
+      "stdout_sha256": "14ca65bd00caf5d60ef83cd8648997ab61d1ab5cdaed9245a35f590d03d25b48",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024_selfconsistent.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.14",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "c2da3f2552ea7183be78c264b91a9e1290e75940c5e55833cfe4ca88a94d1b83",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-selfconsistent"
+      },
+      "output_sha256": "008e52bedcbbe420af93ce86990558ce3fc4dcc61f742422df152ed199ab11e3",
+      "run_id": "P065-OFFICIAL-V1024-SELFCONSISTENT-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-E1 동결회수(g_eff=0): max|x1-x0|=0.00e+00 (<1e-14), max|Lloc-L0|=0.0e+00  PASS\nG-E2 dqdv bit-exact(g_eff=0): Ω부재 array_equal=True, use_dH_eff=False array_equal=True  PASS\nG-E3 차수이득(코드 Picard·참=고정점):\n   Ω/RT=0.0 ε=0.000e+00 err0=0.000e+00 err1=0.000e+00 err1/err0=0.000\n   Ω/RT=1.0 ε=7.500e-02 err0=6.398e-02 err1=7.505e-03 err1/err0=0.117\n   Ω/RT=2.0 ε=1.500e-01 err0=2.005e-01 err1=7.330e-02 err1/err0=0.366\n   → err1≤err0 전부 & g=0 정확회수 & g=2 개선  PASS\nG-E4 전달함수 H=1/(1+iωL_V) vs 동결합성곱: rel RMS=3.96e-06 (<1e-4)  PASS\nG-E5 liveness(Ω>0·use_dH_eff): max|on-off|=9.400e-01 (>1e-6) finite=True  PASS\n==========================================================================\n>>> SELF-CONSISTENT GATES: ALL PASS  (5/5)\n",
+      "stdout_sha256": "f4a6a30568b6666bfcc895079e4b3449c4519e33fc1a6d4295323f40e5fac5b1",
+      "timed_out": false
+    },
+    {
+      "authority": "EXACT_COPIED_OFFICIAL_GATE_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "test_gates_v1024_reflect.py"
+      ],
+      "cwd": "v1.0.24",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "official-shared-3.14",
+      "gate": "PASS_OFFICIAL_GATE",
+      "input_sha256": "654faecc2445c3578860114f2a5bb393672423956b75d6a2d8fcd9e23cb1773e",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "exit_zero": true,
+        "official_gate": "v1024-reflect"
+      },
+      "output_sha256": "e29edf8b8e1214daaa61c26f081a21e8a7f45076364b0e5074f2369d35f202d2",
+      "run_id": "P065-OFFICIAL-V1024-REFLECT-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "==========================================================================\nG-R1 @5 5-feature: 전이수=5 유한·비음=True | stage-2L 분리 25℃=16.0mV·45℃=22.0mV·기울기=0.301mV/℃(Dahn 0.30) → PASS\nG-R2 LCO 토글: 기본=OFF(def=off@318 max|Δ|=0.0e+00=0·def≠on 6.63e-01>0) | 상온 U(T_ref)보존 ON=OFF@298 max|Δ|=0.0e+00(<1e-9) | ∂U/∂T차@318 6.63e-01(>0) → PASS\nG-R3 @3 regsol: 유한·비음=True 면적=1.000 국소최대=10(단일봉) | 로지스틱 대조 면적=1.000 → PASS\nG-R4 #1 단위계약: func_L_q 정상 동작 lq=1.845e-06(값 무변경·주석만) → PASS\n==========================================================================\n>>> v1.0.24 REFLECT GATES: ALL PASS (4/4)\n",
+      "stdout_sha256": "f755d6ae1ac2cb920a282d85c92154da6ec572fbae3609f021a6cf0288297582",
+      "timed_out": false
+    }
+  ],
+  "phase": 65,
+  "result_first_contract": {
+    "containing_commit": "PENDING_AT_PRECOMMIT_BY_DESIGN",
+    "gate": "PASS_P065_STEP73_INITIALIZATION_RUNTIME_WITH_CONCERNS",
+    "postcommit_terminal": "PENDING_AT_PRECOMMIT_BY_DESIGN"
+  },
+  "route_runs": [
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "fresh",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-fresh-a-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-fresh-a-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "43cb9782a53c507703d6dcead379df741be4e7d427b99335249372ed904938ae",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "Q_Si": 0.0,
+        "Q_gr": 0.97,
+        "constructor": "BlendedAnodeDQDV(0.0)",
+        "explicit_profile_override": false,
+        "gaps": [],
+        "graphite_constructor_requires_transitions": true,
+        "graphite_profile_entries": 4,
+        "graphite_profile_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "lag_ratio_correction": false,
+        "lco_constructor_requires_transitions": true,
+        "observed_graphite_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "pass": true,
+        "saved_state_supplied": false,
+        "si_case": "sic",
+        "si_profile_entries": 2,
+        "si_profile_source_entries": 2,
+        "use_dH_eff": true
+      },
+      "order_id": "A",
+      "output_sha256": "7d8345d2de715768f87f22137f205a2f1196bd7c843198bf8f23a5959e107758",
+      "position": 1,
+      "route": "fresh",
+      "run_id": "P065-ROUTE-FRESH-A-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-fresh-a-312",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"Q_Si\":0.0,\"Q_gr\":0.97,\"constructor\":\"BlendedAnodeDQDV(0.0)\",\"explicit_profile_override\":false,\"gaps\":[],\"graphite_constructor_requires_transitions\":true,\"graphite_profile_entries\":4,\"graphite_profile_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"lag_ratio_correction\":false,\"lco_constructor_requires_transitions\":true,\"observed_graphite_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"pass\":true,\"saved_state_supplied\":false,\"si_case\":\"sic\",\"si_profile_entries\":2,\"si_profile_source_entries\":2,\"use_dH_eff\":true},\"route\":\"fresh\"}\n",
+      "stdout_sha256": "6bddfa3cd71c92ab2d0c6ea0c6fde4de09d9893e91678224a6a1d9f8f7685802",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-explicit-a-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-explicit-a-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "38a5c5686dde46da556c3ef12d3e8354cee34e0326c2a6fb58c31af03f076930",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "blend_current_capacity": {
+          "capacity_fraction_closure": 0.30000000000000004,
+          "external_Q_cell": 2.0,
+          "external_Q_cell_independent_of_internal_Q": true,
+          "host_calls": [
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "graphite",
+              "s": 1
+            },
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "silicon",
+              "s": 1
+            }
+          ],
+          "internal_capacity_Q": 1.3857142857142857,
+          "requested_capacity_fraction": 0.3,
+          "runtime_claim_scope": "observed argument forwarding only; solver absence remains Step71 static authority",
+          "same_full_current_and_external_capacity_to_both_hosts": true
+        },
+        "checks": {
+          "blend_full_argument_forwarding": true,
+          "boundaries": true,
+          "direction_zero_and_false_current": true,
+          "fallback_routes": true,
+          "kernel_exact_key": true,
+          "lag_ratio_gate": true,
+          "lco_default_off": true,
+          "lco_enabled_predecessor": true,
+          "mutable_alias_boundary": true,
+          "profiles_11": true,
+          "root_exhaustion_preserved": true,
+          "seconds_hour_direct": true,
+          "use_dH_eff_gate": true,
+          "width_absence_inconsistency_preserved": true
+        },
+        "kernel": {
+          "absent_none_false_typo_bit_exact": true,
+          "delta": {
+            "None_raises_TypeError": true,
+            "absent_uses_width_finite": true,
+            "nonpositive_clamp_finite": true,
+            "zero_false_negative_clamp_bit_exact": true
+          },
+          "dqdv_ignores_regsol_bit_exact": true,
+          "entropy_ignores_regsol_bit_exact": true,
+          "named_profiles_select_regsol": false,
+          "regsol_vs_logistic_max_abs_diff": 0.8084241749031733,
+          "root_ignores_regsol_bit_exact": true,
+          "xrd_Omega_ignored_without_kernel_bit_exact": true
+        },
+        "lag_ratio_correction": {
+          "default_false_zero_none_bit_exact": true,
+          "max_abs_diff": 0.6575562517976834
+        },
+        "lco_electronic_entropy": {
+          "electronic_transition_x_centers": [
+            0.85
+          ],
+          "false_zero_none_match_default_bit_exact": true,
+          "tolerance_Tref": 1e-10,
+          "v23_equals_v24_enabled_T318_bit_exact": true,
+          "v23_equals_v24_enabled_Tref_bit_exact": true,
+          "v24_default_vs_enabled_T318_max_abs_diff": 0.6634246503408368,
+          "v24_default_vs_enabled_Tref_max_abs_diff": 0.0
+        },
+        "mutable_profile_alias": {
+          "new_process_required_for_canonical_route_independence": true,
+          "normal_routes_preserve_registry_hashes": true,
+          "registry_restored_after_probe": true,
+          "same_process_graphite_reference_alias_mutates_registry": true
+        },
+        "other_fallbacks": {
+          "chi_None_uses_x": true,
+          "chi_zero_retained": true,
+          "explicit_qSi_bypasses_unknown_capacity_registry": true,
+          "stress_None_vs_zero_si_transitions_bit_exact": true
+        },
+        "pass": true,
+        "profiles": [
+          {
+            "entries": 4,
+            "observed_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+            "profile_id": "GRAPHITE_STAGING_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 5,
+            "observed_hash": "bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73",
+            "profile_id": "GRAPHITE_STAGING_XRD_v1024",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 6,
+            "observed_hash": "75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291",
+            "profile_id": "GRAPHITE_STAGING_MSMR6_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 3,
+            "input_hash": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+            "profile_id": "LCO_MSMR_LIT",
+            "public_path": "LCOCathodeDQDV(transitions)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SI_ELEMENTAL_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 1,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIOX_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIC_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "entries": 2,
+                "gaps": []
+              },
+              "sic": {
+                "entries": 2,
+                "gaps": []
+              },
+              "siox": {
+                "entries": 1,
+                "gaps": [
+                  "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                  "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+                ]
+              }
+            },
+            "profile_id": "SI_CASE_SETS",
+            "public_path": "BlendedAnodeDQDV(si_case=...,si_transitions=None)"
+          },
+          {
+            "cases": {
+              "elemental": [],
+              "sic": [],
+              "siox": [
+                "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+              ]
+            },
+            "profile_id": "SI_CASE_GAPS",
+            "public_path": "BlendedAnodeDQDV.gaps via si_case"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "f_Si": 0.22999080036798528,
+                "q_Si": 1000.0
+              },
+              "sic": {
+                "f_Si": 0.4821345707656613,
+                "q_Si": 3117.0
+              },
+              "siox": {
+                "f_Si": 0.3380782918149466,
+                "q_Si": 1710.0
+              }
+            },
+            "profile_id": "SI_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_Si=None)"
+          },
+          {
+            "expected_f_Si": 0.22999080036798528,
+            "f_Si": 0.22999080036798528,
+            "profile_id": "GRAPHITE_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_gr default)",
+            "q_gr": 372.0
+          }
+        ],
+        "root_validation": {
+          "converged_U": 0.08328958088831882,
+          "negative_iter_midpoint_U": 0.1480849354821993,
+          "nonbracketing_interval_raises": true,
+          "reversed_bracket_raises": true,
+          "silent_midpoint_differs_from_converged": true,
+          "zero_and_negative_silent_midpoint_equal": true,
+          "zero_iter_midpoint_U": 0.1480849354821993
+        },
+        "scope_boundaries": {
+          "empty_graphite_raises": true,
+          "invalid_si_case_raises": true,
+          "missing_qSi_case_raises": true,
+          "nonadditive_GS2_not_implemented": true,
+          "plastic_GS1_not_implemented": true
+        },
+        "seconds_hour": {
+          "None_I_abs_capture": 2.0,
+          "curve_equals_direct_hour_number_bit_exact": true,
+          "curve_vs_seconds_corrected_max_abs_diff": 12.131869486157822,
+          "direction_zero_false_I_abs_capture": {
+            "I_abs": 0.0,
+            "Q_cell": 2.0,
+            "s": 1
+          },
+          "expected_hour_corrected_I_abs": 0.0005555555555555556,
+          "explicit_zero_capture": 0.0,
+          "lag_raw_over_hour_corrected": 3599.999999999992
+        },
+        "use_dH_eff": {
+          "default_lag": 0.9971568283538539,
+          "disabled_lag": 5.006937174012688,
+          "enabled_lag": 0.9971568283538539,
+          "false_zero_none_lags": [
+            5.006937174012688,
+            5.006937174012688,
+            5.006937174012688
+          ]
+        },
+        "width_fallback": {
+          "missing_n_dwdT": 0.0,
+          "missing_n_factor": 1.0,
+          "n_T1_None_dwdT_raises": true,
+          "n_T1_None_n_factor": 1.0,
+          "n_zero_width_raises": true,
+          "w_only_dwdT": 0.0
+        }
+      },
+      "order_id": "A",
+      "output_sha256": "05961a07741912255d7976fa6a86c259af6d961bc6c73ef6067af77bd252b00c",
+      "position": 2,
+      "route": "explicit",
+      "run_id": "P065-ROUTE-EXPLICIT-A-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-explicit-a-312",
+      "source_unchanged": true,
+      "stderr": "<TMP>\\route_fixtures\\p065-route-explicit-a-312\\step73_route_probe.py:79: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  obj=m24.BlendedAnodeDQDV(0.1,si_case=case)\n<TMP>\\route_fixtures\\p065-route-explicit-a-312\\v1.0.24\\Anode_Fit_v1.0.24.py:1468: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  return cls(f_Si, si_case=si_case, **kwargs)\n",
+      "stderr_sha256": "e6957ac69a5ee5c481576f5110ee60e214b1c957940d50f52008dd8a4ea5210a",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"blend_current_capacity\":{\"capacity_fraction_closure\":0.30000000000000004,\"external_Q_cell\":2.0,\"external_Q_cell_independent_of_internal_Q\":true,\"host_calls\":[{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"graphite\",\"s\":1},{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"silicon\",\"s\":1}],\"internal_capacity_Q\":1.3857142857142857,\"requested_capacity_fraction\":0.3,\"runtime_claim_scope\":\"observed argument forwarding only; solver absence remains Step71 static authority\",\"same_full_current_and_external_capacity_to_both_hosts\":true},\"checks\":{\"blend_full_argument_forwarding\":true,\"boundaries\":true,\"direction_zero_and_false_current\":true,\"fallback_routes\":true,\"kernel_exact_key\":true,\"lag_ratio_gate\":true,\"lco_default_off\":true,\"lco_enabled_predecessor\":true,\"mutable_alias_boundary\":true,\"profiles_11\":true,\"root_exhaustion_preserved\":true,\"seconds_hour_direct\":true,\"use_dH_eff_gate\":true,\"width_absence_inconsistency_preserved\":true},\"kernel\":{\"absent_none_false_typo_bit_exact\":true,\"delta\":{\"None_raises_TypeError\":true,\"absent_uses_width_finite\":true,\"nonpositive_clamp_finite\":true,\"zero_false_negative_clamp_bit_exact\":true},\"dqdv_ignores_regsol_bit_exact\":true,\"entropy_ignores_regsol_bit_exact\":true,\"named_profiles_select_regsol\":false,\"regsol_vs_logistic_max_abs_diff\":0.8084241749031733,\"root_ignores_regsol_bit_exact\":true,\"xrd_Omega_ignored_without_kernel_bit_exact\":true},\"lag_ratio_correction\":{\"default_false_zero_none_bit_exact\":true,\"max_abs_diff\":0.6575562517976834},\"lco_electronic_entropy\":{\"electronic_transition_x_centers\":[0.85],\"false_zero_none_match_default_bit_exact\":true,\"tolerance_Tref\":1e-10,\"v23_equals_v24_enabled_T318_bit_exact\":true,\"v23_equals_v24_enabled_Tref_bit_exact\":true,\"v24_default_vs_enabled_T318_max_abs_diff\":0.6634246503408368,\"v24_default_vs_enabled_Tref_max_abs_diff\":0.0},\"mutable_profile_alias\":{\"new_process_required_for_canonical_route_independence\":true,\"normal_routes_preserve_registry_hashes\":true,\"registry_restored_after_probe\":true,\"same_process_graphite_reference_alias_mutates_registry\":true},\"other_fallbacks\":{\"chi_None_uses_x\":true,\"chi_zero_retained\":true,\"explicit_qSi_bypasses_unknown_capacity_registry\":true,\"stress_None_vs_zero_si_transitions_bit_exact\":true},\"pass\":true,\"profiles\":[{\"entries\":4,\"observed_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"profile_id\":\"GRAPHITE_STAGING_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":5,\"observed_hash\":\"bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73\",\"profile_id\":\"GRAPHITE_STAGING_XRD_v1024\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":6,\"observed_hash\":\"75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291\",\"profile_id\":\"GRAPHITE_STAGING_MSMR6_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":3,\"input_hash\":\"099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40\",\"profile_id\":\"LCO_MSMR_LIT\",\"public_path\":\"LCOCathodeDQDV(transitions)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SI_ELEMENTAL_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":1,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIOX_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIC_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"cases\":{\"elemental\":{\"entries\":2,\"gaps\":[]},\"sic\":{\"entries\":2,\"gaps\":[]},\"siox\":{\"entries\":1,\"gaps\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]}},\"profile_id\":\"SI_CASE_SETS\",\"public_path\":\"BlendedAnodeDQDV(si_case=...,si_transitions=None)\"},{\"cases\":{\"elemental\":[],\"sic\":[],\"siox\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]},\"profile_id\":\"SI_CASE_GAPS\",\"public_path\":\"BlendedAnodeDQDV.gaps via si_case\"},{\"cases\":{\"elemental\":{\"f_Si\":0.22999080036798528,\"q_Si\":1000.0},\"sic\":{\"f_Si\":0.4821345707656613,\"q_Si\":3117.0},\"siox\":{\"f_Si\":0.3380782918149466,\"q_Si\":1710.0}},\"profile_id\":\"SI_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_Si=None)\"},{\"expected_f_Si\":0.22999080036798528,\"f_Si\":0.22999080036798528,\"profile_id\":\"GRAPHITE_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_gr default)\",\"q_gr\":372.0}],\"root_validation\":{\"converged_U\":0.08328958088831882,\"negative_iter_midpoint_U\":0.1480849354821993,\"nonbracketing_interval_raises\":true,\"reversed_bracket_raises\":true,\"silent_midpoint_differs_from_converged\":true,\"zero_and_negative_silent_midpoint_equal\":true,\"zero_iter_midpoint_U\":0.1480849354821993},\"scope_boundaries\":{\"empty_graphite_raises\":true,\"invalid_si_case_raises\":true,\"missing_qSi_case_raises\":true,\"nonadditive_GS2_not_implemented\":true,\"plastic_GS1_not_implemented\":true},\"seconds_hour\":{\"None_I_abs_capture\":2.0,\"curve_equals_direct_hour_number_bit_exact\":true,\"curve_vs_seconds_corrected_max_abs_diff\":12.131869486157822,\"direction_zero_false_I_abs_capture\":{\"I_abs\":0.0,\"Q_cell\":2.0,\"s\":1},\"expected_hour_corrected_I_abs\":0.0005555555555555556,\"explicit_zero_capture\":0.0,\"lag_raw_over_hour_corrected\":3599.999999999992},\"use_dH_eff\":{\"default_lag\":0.9971568283538539,\"disabled_lag\":5.006937174012688,\"enabled_lag\":0.9971568283538539,\"false_zero_none_lags\":[5.006937174012688,5.006937174012688,5.006937174012688]},\"width_fallback\":{\"missing_n_dwdT\":0.0,\"missing_n_factor\":1.0,\"n_T1_None_dwdT_raises\":true,\"n_T1_None_n_factor\":1.0,\"n_zero_width_raises\":true,\"w_only_dwdT\":0.0}},\"route\":\"explicit\"}\n",
+      "stdout_sha256": "bc6e964b018e72b467d10701b71bd26b6b0c415837116b435c4838d0c9a9ccbc",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-legacy-a-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-legacy-a-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_ABSENCE_CORROBORATION",
+      "input_sha256": "a8e02abb745ac8583f803545278e58ebeb8481420dec9d1ef285b0aa3197c5c9",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "actual_restoration_path": "ABSENT_IN_FROZEN_SOURCE",
+        "candidate_surface_observation": {
+          "from_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "from_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_saved_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_state_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "restore": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          }
+        },
+        "pass": true,
+        "predecessor_schema_fixture": "ABSENT_IN_FROZEN_SOURCE",
+        "restore_key": "ABSENT_IN_FROZEN_SOURCE",
+        "runtime_observation_is_corroboration_not_a_restoration_execution": true,
+        "runtime_observation_is_not_exhaustive_static_proof": true
+      },
+      "order_id": "A",
+      "output_sha256": "4df9dc4338d3b0fa2309ff2c22224022ba91683d806ab880dc01c53daa8014b4",
+      "position": 3,
+      "route": "legacy",
+      "run_id": "P065-ROUTE-LEGACY-A-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-legacy-a-312",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"actual_restoration_path\":\"ABSENT_IN_FROZEN_SOURCE\",\"candidate_surface_observation\":{\"from_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"from_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_saved_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_state_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"restore\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false}},\"pass\":true,\"predecessor_schema_fixture\":\"ABSENT_IN_FROZEN_SOURCE\",\"restore_key\":\"ABSENT_IN_FROZEN_SOURCE\",\"runtime_observation_is_corroboration_not_a_restoration_execution\":true,\"runtime_observation_is_not_exhaustive_static_proof\":true},\"route\":\"legacy\"}\n",
+      "stdout_sha256": "70470b8fd940b3e4266b101a46b878044586cc3f14ffcfb45a58dda85b6a37ef",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-legacy-b-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-legacy-b-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_ABSENCE_CORROBORATION",
+      "input_sha256": "21c42d1a7c3654970c82b211c9ead05bb944eff5dceb24cd93aeb0d7d107fd99",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "actual_restoration_path": "ABSENT_IN_FROZEN_SOURCE",
+        "candidate_surface_observation": {
+          "from_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "from_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_saved_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_state_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "restore": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          }
+        },
+        "pass": true,
+        "predecessor_schema_fixture": "ABSENT_IN_FROZEN_SOURCE",
+        "restore_key": "ABSENT_IN_FROZEN_SOURCE",
+        "runtime_observation_is_corroboration_not_a_restoration_execution": true,
+        "runtime_observation_is_not_exhaustive_static_proof": true
+      },
+      "order_id": "B",
+      "output_sha256": "4df9dc4338d3b0fa2309ff2c22224022ba91683d806ab880dc01c53daa8014b4",
+      "position": 1,
+      "route": "legacy",
+      "run_id": "P065-ROUTE-LEGACY-B-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-legacy-b-312",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"actual_restoration_path\":\"ABSENT_IN_FROZEN_SOURCE\",\"candidate_surface_observation\":{\"from_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"from_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_saved_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_state_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"restore\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false}},\"pass\":true,\"predecessor_schema_fixture\":\"ABSENT_IN_FROZEN_SOURCE\",\"restore_key\":\"ABSENT_IN_FROZEN_SOURCE\",\"runtime_observation_is_corroboration_not_a_restoration_execution\":true,\"runtime_observation_is_not_exhaustive_static_proof\":true},\"route\":\"legacy\"}\n",
+      "stdout_sha256": "70470b8fd940b3e4266b101a46b878044586cc3f14ffcfb45a58dda85b6a37ef",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-explicit-b-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-explicit-b-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "2235c6b6ce72b601db53d78323fccbbf392b7c2280ad08a08b2fec2c56309d85",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "blend_current_capacity": {
+          "capacity_fraction_closure": 0.30000000000000004,
+          "external_Q_cell": 2.0,
+          "external_Q_cell_independent_of_internal_Q": true,
+          "host_calls": [
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "graphite",
+              "s": 1
+            },
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "silicon",
+              "s": 1
+            }
+          ],
+          "internal_capacity_Q": 1.3857142857142857,
+          "requested_capacity_fraction": 0.3,
+          "runtime_claim_scope": "observed argument forwarding only; solver absence remains Step71 static authority",
+          "same_full_current_and_external_capacity_to_both_hosts": true
+        },
+        "checks": {
+          "blend_full_argument_forwarding": true,
+          "boundaries": true,
+          "direction_zero_and_false_current": true,
+          "fallback_routes": true,
+          "kernel_exact_key": true,
+          "lag_ratio_gate": true,
+          "lco_default_off": true,
+          "lco_enabled_predecessor": true,
+          "mutable_alias_boundary": true,
+          "profiles_11": true,
+          "root_exhaustion_preserved": true,
+          "seconds_hour_direct": true,
+          "use_dH_eff_gate": true,
+          "width_absence_inconsistency_preserved": true
+        },
+        "kernel": {
+          "absent_none_false_typo_bit_exact": true,
+          "delta": {
+            "None_raises_TypeError": true,
+            "absent_uses_width_finite": true,
+            "nonpositive_clamp_finite": true,
+            "zero_false_negative_clamp_bit_exact": true
+          },
+          "dqdv_ignores_regsol_bit_exact": true,
+          "entropy_ignores_regsol_bit_exact": true,
+          "named_profiles_select_regsol": false,
+          "regsol_vs_logistic_max_abs_diff": 0.8084241749031733,
+          "root_ignores_regsol_bit_exact": true,
+          "xrd_Omega_ignored_without_kernel_bit_exact": true
+        },
+        "lag_ratio_correction": {
+          "default_false_zero_none_bit_exact": true,
+          "max_abs_diff": 0.6575562517976834
+        },
+        "lco_electronic_entropy": {
+          "electronic_transition_x_centers": [
+            0.85
+          ],
+          "false_zero_none_match_default_bit_exact": true,
+          "tolerance_Tref": 1e-10,
+          "v23_equals_v24_enabled_T318_bit_exact": true,
+          "v23_equals_v24_enabled_Tref_bit_exact": true,
+          "v24_default_vs_enabled_T318_max_abs_diff": 0.6634246503408368,
+          "v24_default_vs_enabled_Tref_max_abs_diff": 0.0
+        },
+        "mutable_profile_alias": {
+          "new_process_required_for_canonical_route_independence": true,
+          "normal_routes_preserve_registry_hashes": true,
+          "registry_restored_after_probe": true,
+          "same_process_graphite_reference_alias_mutates_registry": true
+        },
+        "other_fallbacks": {
+          "chi_None_uses_x": true,
+          "chi_zero_retained": true,
+          "explicit_qSi_bypasses_unknown_capacity_registry": true,
+          "stress_None_vs_zero_si_transitions_bit_exact": true
+        },
+        "pass": true,
+        "profiles": [
+          {
+            "entries": 4,
+            "observed_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+            "profile_id": "GRAPHITE_STAGING_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 5,
+            "observed_hash": "bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73",
+            "profile_id": "GRAPHITE_STAGING_XRD_v1024",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 6,
+            "observed_hash": "75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291",
+            "profile_id": "GRAPHITE_STAGING_MSMR6_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 3,
+            "input_hash": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+            "profile_id": "LCO_MSMR_LIT",
+            "public_path": "LCOCathodeDQDV(transitions)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SI_ELEMENTAL_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 1,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIOX_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIC_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "entries": 2,
+                "gaps": []
+              },
+              "sic": {
+                "entries": 2,
+                "gaps": []
+              },
+              "siox": {
+                "entries": 1,
+                "gaps": [
+                  "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                  "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+                ]
+              }
+            },
+            "profile_id": "SI_CASE_SETS",
+            "public_path": "BlendedAnodeDQDV(si_case=...,si_transitions=None)"
+          },
+          {
+            "cases": {
+              "elemental": [],
+              "sic": [],
+              "siox": [
+                "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+              ]
+            },
+            "profile_id": "SI_CASE_GAPS",
+            "public_path": "BlendedAnodeDQDV.gaps via si_case"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "f_Si": 0.22999080036798528,
+                "q_Si": 1000.0
+              },
+              "sic": {
+                "f_Si": 0.4821345707656613,
+                "q_Si": 3117.0
+              },
+              "siox": {
+                "f_Si": 0.3380782918149466,
+                "q_Si": 1710.0
+              }
+            },
+            "profile_id": "SI_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_Si=None)"
+          },
+          {
+            "expected_f_Si": 0.22999080036798528,
+            "f_Si": 0.22999080036798528,
+            "profile_id": "GRAPHITE_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_gr default)",
+            "q_gr": 372.0
+          }
+        ],
+        "root_validation": {
+          "converged_U": 0.08328958088831882,
+          "negative_iter_midpoint_U": 0.1480849354821993,
+          "nonbracketing_interval_raises": true,
+          "reversed_bracket_raises": true,
+          "silent_midpoint_differs_from_converged": true,
+          "zero_and_negative_silent_midpoint_equal": true,
+          "zero_iter_midpoint_U": 0.1480849354821993
+        },
+        "scope_boundaries": {
+          "empty_graphite_raises": true,
+          "invalid_si_case_raises": true,
+          "missing_qSi_case_raises": true,
+          "nonadditive_GS2_not_implemented": true,
+          "plastic_GS1_not_implemented": true
+        },
+        "seconds_hour": {
+          "None_I_abs_capture": 2.0,
+          "curve_equals_direct_hour_number_bit_exact": true,
+          "curve_vs_seconds_corrected_max_abs_diff": 12.131869486157822,
+          "direction_zero_false_I_abs_capture": {
+            "I_abs": 0.0,
+            "Q_cell": 2.0,
+            "s": 1
+          },
+          "expected_hour_corrected_I_abs": 0.0005555555555555556,
+          "explicit_zero_capture": 0.0,
+          "lag_raw_over_hour_corrected": 3599.999999999992
+        },
+        "use_dH_eff": {
+          "default_lag": 0.9971568283538539,
+          "disabled_lag": 5.006937174012688,
+          "enabled_lag": 0.9971568283538539,
+          "false_zero_none_lags": [
+            5.006937174012688,
+            5.006937174012688,
+            5.006937174012688
+          ]
+        },
+        "width_fallback": {
+          "missing_n_dwdT": 0.0,
+          "missing_n_factor": 1.0,
+          "n_T1_None_dwdT_raises": true,
+          "n_T1_None_n_factor": 1.0,
+          "n_zero_width_raises": true,
+          "w_only_dwdT": 0.0
+        }
+      },
+      "order_id": "B",
+      "output_sha256": "a87f0bcbd5daed3c47420aa3c4051e97f1eb73963f1a2e9e9a07cff1374d14cf",
+      "position": 2,
+      "route": "explicit",
+      "run_id": "P065-ROUTE-EXPLICIT-B-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-explicit-b-312",
+      "source_unchanged": true,
+      "stderr": "<TMP>\\route_fixtures\\p065-route-explicit-b-312\\step73_route_probe.py:79: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  obj=m24.BlendedAnodeDQDV(0.1,si_case=case)\n<TMP>\\route_fixtures\\p065-route-explicit-b-312\\v1.0.24\\Anode_Fit_v1.0.24.py:1468: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  return cls(f_Si, si_case=si_case, **kwargs)\n",
+      "stderr_sha256": "bb7550b6df69964bcdcceebc98b7edd3eb92533221f7bddcba0f0a1f70326ce1",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"blend_current_capacity\":{\"capacity_fraction_closure\":0.30000000000000004,\"external_Q_cell\":2.0,\"external_Q_cell_independent_of_internal_Q\":true,\"host_calls\":[{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"graphite\",\"s\":1},{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"silicon\",\"s\":1}],\"internal_capacity_Q\":1.3857142857142857,\"requested_capacity_fraction\":0.3,\"runtime_claim_scope\":\"observed argument forwarding only; solver absence remains Step71 static authority\",\"same_full_current_and_external_capacity_to_both_hosts\":true},\"checks\":{\"blend_full_argument_forwarding\":true,\"boundaries\":true,\"direction_zero_and_false_current\":true,\"fallback_routes\":true,\"kernel_exact_key\":true,\"lag_ratio_gate\":true,\"lco_default_off\":true,\"lco_enabled_predecessor\":true,\"mutable_alias_boundary\":true,\"profiles_11\":true,\"root_exhaustion_preserved\":true,\"seconds_hour_direct\":true,\"use_dH_eff_gate\":true,\"width_absence_inconsistency_preserved\":true},\"kernel\":{\"absent_none_false_typo_bit_exact\":true,\"delta\":{\"None_raises_TypeError\":true,\"absent_uses_width_finite\":true,\"nonpositive_clamp_finite\":true,\"zero_false_negative_clamp_bit_exact\":true},\"dqdv_ignores_regsol_bit_exact\":true,\"entropy_ignores_regsol_bit_exact\":true,\"named_profiles_select_regsol\":false,\"regsol_vs_logistic_max_abs_diff\":0.8084241749031733,\"root_ignores_regsol_bit_exact\":true,\"xrd_Omega_ignored_without_kernel_bit_exact\":true},\"lag_ratio_correction\":{\"default_false_zero_none_bit_exact\":true,\"max_abs_diff\":0.6575562517976834},\"lco_electronic_entropy\":{\"electronic_transition_x_centers\":[0.85],\"false_zero_none_match_default_bit_exact\":true,\"tolerance_Tref\":1e-10,\"v23_equals_v24_enabled_T318_bit_exact\":true,\"v23_equals_v24_enabled_Tref_bit_exact\":true,\"v24_default_vs_enabled_T318_max_abs_diff\":0.6634246503408368,\"v24_default_vs_enabled_Tref_max_abs_diff\":0.0},\"mutable_profile_alias\":{\"new_process_required_for_canonical_route_independence\":true,\"normal_routes_preserve_registry_hashes\":true,\"registry_restored_after_probe\":true,\"same_process_graphite_reference_alias_mutates_registry\":true},\"other_fallbacks\":{\"chi_None_uses_x\":true,\"chi_zero_retained\":true,\"explicit_qSi_bypasses_unknown_capacity_registry\":true,\"stress_None_vs_zero_si_transitions_bit_exact\":true},\"pass\":true,\"profiles\":[{\"entries\":4,\"observed_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"profile_id\":\"GRAPHITE_STAGING_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":5,\"observed_hash\":\"bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73\",\"profile_id\":\"GRAPHITE_STAGING_XRD_v1024\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":6,\"observed_hash\":\"75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291\",\"profile_id\":\"GRAPHITE_STAGING_MSMR6_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":3,\"input_hash\":\"099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40\",\"profile_id\":\"LCO_MSMR_LIT\",\"public_path\":\"LCOCathodeDQDV(transitions)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SI_ELEMENTAL_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":1,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIOX_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIC_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"cases\":{\"elemental\":{\"entries\":2,\"gaps\":[]},\"sic\":{\"entries\":2,\"gaps\":[]},\"siox\":{\"entries\":1,\"gaps\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]}},\"profile_id\":\"SI_CASE_SETS\",\"public_path\":\"BlendedAnodeDQDV(si_case=...,si_transitions=None)\"},{\"cases\":{\"elemental\":[],\"sic\":[],\"siox\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]},\"profile_id\":\"SI_CASE_GAPS\",\"public_path\":\"BlendedAnodeDQDV.gaps via si_case\"},{\"cases\":{\"elemental\":{\"f_Si\":0.22999080036798528,\"q_Si\":1000.0},\"sic\":{\"f_Si\":0.4821345707656613,\"q_Si\":3117.0},\"siox\":{\"f_Si\":0.3380782918149466,\"q_Si\":1710.0}},\"profile_id\":\"SI_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_Si=None)\"},{\"expected_f_Si\":0.22999080036798528,\"f_Si\":0.22999080036798528,\"profile_id\":\"GRAPHITE_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_gr default)\",\"q_gr\":372.0}],\"root_validation\":{\"converged_U\":0.08328958088831882,\"negative_iter_midpoint_U\":0.1480849354821993,\"nonbracketing_interval_raises\":true,\"reversed_bracket_raises\":true,\"silent_midpoint_differs_from_converged\":true,\"zero_and_negative_silent_midpoint_equal\":true,\"zero_iter_midpoint_U\":0.1480849354821993},\"scope_boundaries\":{\"empty_graphite_raises\":true,\"invalid_si_case_raises\":true,\"missing_qSi_case_raises\":true,\"nonadditive_GS2_not_implemented\":true,\"plastic_GS1_not_implemented\":true},\"seconds_hour\":{\"None_I_abs_capture\":2.0,\"curve_equals_direct_hour_number_bit_exact\":true,\"curve_vs_seconds_corrected_max_abs_diff\":12.131869486157822,\"direction_zero_false_I_abs_capture\":{\"I_abs\":0.0,\"Q_cell\":2.0,\"s\":1},\"expected_hour_corrected_I_abs\":0.0005555555555555556,\"explicit_zero_capture\":0.0,\"lag_raw_over_hour_corrected\":3599.999999999992},\"use_dH_eff\":{\"default_lag\":0.9971568283538539,\"disabled_lag\":5.006937174012688,\"enabled_lag\":0.9971568283538539,\"false_zero_none_lags\":[5.006937174012688,5.006937174012688,5.006937174012688]},\"width_fallback\":{\"missing_n_dwdT\":0.0,\"missing_n_factor\":1.0,\"n_T1_None_dwdT_raises\":true,\"n_T1_None_n_factor\":1.0,\"n_zero_width_raises\":true,\"w_only_dwdT\":0.0}},\"route\":\"explicit\"}\n",
+      "stdout_sha256": "bc6e964b018e72b467d10701b71bd26b6b0c415837116b435c4838d0c9a9ccbc",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "fresh",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-fresh-b-312",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-fresh-b-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "577a2562a54218003d775570226cdf936847f48e06e0329d670d0f3363ccd56c",
+      "interpreter": "3.12.10",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "Q_Si": 0.0,
+        "Q_gr": 0.97,
+        "constructor": "BlendedAnodeDQDV(0.0)",
+        "explicit_profile_override": false,
+        "gaps": [],
+        "graphite_constructor_requires_transitions": true,
+        "graphite_profile_entries": 4,
+        "graphite_profile_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "lag_ratio_correction": false,
+        "lco_constructor_requires_transitions": true,
+        "observed_graphite_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "pass": true,
+        "saved_state_supplied": false,
+        "si_case": "sic",
+        "si_profile_entries": 2,
+        "si_profile_source_entries": 2,
+        "use_dH_eff": true
+      },
+      "order_id": "B",
+      "output_sha256": "7d8345d2de715768f87f22137f205a2f1196bd7c843198bf8f23a5959e107758",
+      "position": 3,
+      "route": "fresh",
+      "run_id": "P065-ROUTE-FRESH-B-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-fresh-b-312",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"Q_Si\":0.0,\"Q_gr\":0.97,\"constructor\":\"BlendedAnodeDQDV(0.0)\",\"explicit_profile_override\":false,\"gaps\":[],\"graphite_constructor_requires_transitions\":true,\"graphite_profile_entries\":4,\"graphite_profile_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"lag_ratio_correction\":false,\"lco_constructor_requires_transitions\":true,\"observed_graphite_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"pass\":true,\"saved_state_supplied\":false,\"si_case\":\"sic\",\"si_profile_entries\":2,\"si_profile_source_entries\":2,\"use_dH_eff\":true},\"route\":\"fresh\"}\n",
+      "stdout_sha256": "6bddfa3cd71c92ab2d0c6ea0c6fde4de09d9893e91678224a6a1d9f8f7685802",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "fresh",
+        "fresh"
+      ],
+      "cwd": "route_fixtures/p065-mutation-fresh-312",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-fresh-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "b4635acc798cd1a9c73e2579393a0ec95eb4489454a539da95188c6cee94c1e8",
+      "interpreter": "3.12.10",
+      "mutation": "fresh",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "fresh"
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "6ab5c9c0d30f54c4d179a0581506fcd49d3f2e43251fa838c545a66b54e48a65",
+      "position": null,
+      "route": "fresh",
+      "run_id": "P065-MUTATION-FRESH-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-fresh-312",
+      "source_unchanged": true,
+      "stderr": "AssertionError: fresh required symbols missing:GRAPHITE_STAGING_XRD_v1024,GRAPHITE_STAGING_MSMR6_LIT\n",
+      "stderr_sha256": "521d8a1af1990eac441c4c91231c8961a182a540ada866c9b6228a6b3d4af85a",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "explicit"
+      ],
+      "cwd": "route_fixtures/p065-mutation-explicit-312",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-explicit-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "d45904d989e8a3a21a80c395d1362399b145464d38f219a62d9899b7d366af3f",
+      "interpreter": "3.12.10",
+      "mutation": "explicit",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "explicit"
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "3dafcfd108e90de04abc761bb142cfcd98c1defd7676e47222f7ae1ecbd0b220",
+      "position": null,
+      "route": "explicit",
+      "run_id": "P065-MUTATION-EXPLICIT-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-explicit-312",
+      "source_unchanged": true,
+      "stderr": "AssertionError: profile redirect detected:GRAPHITE_STAGING_XRD_v1024\n",
+      "stderr_sha256": "c7f6bb41465a0a1ced93f56e963d4af66033f2113e971ccb00cf642c3ffd328f",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-312\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-312\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-312\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "legacy"
+      ],
+      "cwd": "route_fixtures/p065-mutation-legacy-312",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-legacy-312",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "3b08a6e46e6e9cc78d7f5373fa26806d7647a2688b921f99e38e79476d183539",
+      "interpreter": "3.12.10",
+      "mutation": "legacy",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "legacy"
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "bcdb7a75154d7f84677c96179dcafe19a7e2f7401701dfe5c028cc23d3a8d5d1",
+      "position": null,
+      "route": "legacy",
+      "run_id": "P065-MUTATION-LEGACY-312",
+      "runtime": "3.12",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-legacy-312",
+      "source_unchanged": true,
+      "stderr": "AssertionError: false implemented-restoration claim rejected\n",
+      "stderr_sha256": "52a8f1715bd83170629c3a75d7904948963c9288b14e9e634b12273d42cca854",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-a-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "fresh",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-fresh-a-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-fresh-a-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "764ae672183242ed5ec5d22ddecb8d4f4e9dbd9ed8ef2e26a0a65d8851bcf989",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "Q_Si": 0.0,
+        "Q_gr": 0.97,
+        "constructor": "BlendedAnodeDQDV(0.0)",
+        "explicit_profile_override": false,
+        "gaps": [],
+        "graphite_constructor_requires_transitions": true,
+        "graphite_profile_entries": 4,
+        "graphite_profile_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "lag_ratio_correction": false,
+        "lco_constructor_requires_transitions": true,
+        "observed_graphite_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "pass": true,
+        "saved_state_supplied": false,
+        "si_case": "sic",
+        "si_profile_entries": 2,
+        "si_profile_source_entries": 2,
+        "use_dH_eff": true
+      },
+      "order_id": "A",
+      "output_sha256": "7d8345d2de715768f87f22137f205a2f1196bd7c843198bf8f23a5959e107758",
+      "position": 1,
+      "route": "fresh",
+      "run_id": "P065-ROUTE-FRESH-A-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-fresh-a-314",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"Q_Si\":0.0,\"Q_gr\":0.97,\"constructor\":\"BlendedAnodeDQDV(0.0)\",\"explicit_profile_override\":false,\"gaps\":[],\"graphite_constructor_requires_transitions\":true,\"graphite_profile_entries\":4,\"graphite_profile_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"lag_ratio_correction\":false,\"lco_constructor_requires_transitions\":true,\"observed_graphite_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"pass\":true,\"saved_state_supplied\":false,\"si_case\":\"sic\",\"si_profile_entries\":2,\"si_profile_source_entries\":2,\"use_dH_eff\":true},\"route\":\"fresh\"}\n",
+      "stdout_sha256": "6bddfa3cd71c92ab2d0c6ea0c6fde4de09d9893e91678224a6a1d9f8f7685802",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-a-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-explicit-a-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-explicit-a-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "8a6824fa08e962652cbf78afbe633a3aa101de1307f2d581e83bb7f6cf3f1b71",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "blend_current_capacity": {
+          "capacity_fraction_closure": 0.30000000000000004,
+          "external_Q_cell": 2.0,
+          "external_Q_cell_independent_of_internal_Q": true,
+          "host_calls": [
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "graphite",
+              "s": 1
+            },
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "silicon",
+              "s": 1
+            }
+          ],
+          "internal_capacity_Q": 1.3857142857142857,
+          "requested_capacity_fraction": 0.3,
+          "runtime_claim_scope": "observed argument forwarding only; solver absence remains Step71 static authority",
+          "same_full_current_and_external_capacity_to_both_hosts": true
+        },
+        "checks": {
+          "blend_full_argument_forwarding": true,
+          "boundaries": true,
+          "direction_zero_and_false_current": true,
+          "fallback_routes": true,
+          "kernel_exact_key": true,
+          "lag_ratio_gate": true,
+          "lco_default_off": true,
+          "lco_enabled_predecessor": true,
+          "mutable_alias_boundary": true,
+          "profiles_11": true,
+          "root_exhaustion_preserved": true,
+          "seconds_hour_direct": true,
+          "use_dH_eff_gate": true,
+          "width_absence_inconsistency_preserved": true
+        },
+        "kernel": {
+          "absent_none_false_typo_bit_exact": true,
+          "delta": {
+            "None_raises_TypeError": true,
+            "absent_uses_width_finite": true,
+            "nonpositive_clamp_finite": true,
+            "zero_false_negative_clamp_bit_exact": true
+          },
+          "dqdv_ignores_regsol_bit_exact": true,
+          "entropy_ignores_regsol_bit_exact": true,
+          "named_profiles_select_regsol": false,
+          "regsol_vs_logistic_max_abs_diff": 0.8084241749031733,
+          "root_ignores_regsol_bit_exact": true,
+          "xrd_Omega_ignored_without_kernel_bit_exact": true
+        },
+        "lag_ratio_correction": {
+          "default_false_zero_none_bit_exact": true,
+          "max_abs_diff": 0.6575562517976834
+        },
+        "lco_electronic_entropy": {
+          "electronic_transition_x_centers": [
+            0.85
+          ],
+          "false_zero_none_match_default_bit_exact": true,
+          "tolerance_Tref": 1e-10,
+          "v23_equals_v24_enabled_T318_bit_exact": true,
+          "v23_equals_v24_enabled_Tref_bit_exact": true,
+          "v24_default_vs_enabled_T318_max_abs_diff": 0.6634246503408368,
+          "v24_default_vs_enabled_Tref_max_abs_diff": 0.0
+        },
+        "mutable_profile_alias": {
+          "new_process_required_for_canonical_route_independence": true,
+          "normal_routes_preserve_registry_hashes": true,
+          "registry_restored_after_probe": true,
+          "same_process_graphite_reference_alias_mutates_registry": true
+        },
+        "other_fallbacks": {
+          "chi_None_uses_x": true,
+          "chi_zero_retained": true,
+          "explicit_qSi_bypasses_unknown_capacity_registry": true,
+          "stress_None_vs_zero_si_transitions_bit_exact": true
+        },
+        "pass": true,
+        "profiles": [
+          {
+            "entries": 4,
+            "observed_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+            "profile_id": "GRAPHITE_STAGING_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 5,
+            "observed_hash": "bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73",
+            "profile_id": "GRAPHITE_STAGING_XRD_v1024",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 6,
+            "observed_hash": "75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291",
+            "profile_id": "GRAPHITE_STAGING_MSMR6_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 3,
+            "input_hash": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+            "profile_id": "LCO_MSMR_LIT",
+            "public_path": "LCOCathodeDQDV(transitions)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SI_ELEMENTAL_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 1,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIOX_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIC_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "entries": 2,
+                "gaps": []
+              },
+              "sic": {
+                "entries": 2,
+                "gaps": []
+              },
+              "siox": {
+                "entries": 1,
+                "gaps": [
+                  "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                  "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+                ]
+              }
+            },
+            "profile_id": "SI_CASE_SETS",
+            "public_path": "BlendedAnodeDQDV(si_case=...,si_transitions=None)"
+          },
+          {
+            "cases": {
+              "elemental": [],
+              "sic": [],
+              "siox": [
+                "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+              ]
+            },
+            "profile_id": "SI_CASE_GAPS",
+            "public_path": "BlendedAnodeDQDV.gaps via si_case"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "f_Si": 0.22999080036798528,
+                "q_Si": 1000.0
+              },
+              "sic": {
+                "f_Si": 0.4821345707656613,
+                "q_Si": 3117.0
+              },
+              "siox": {
+                "f_Si": 0.3380782918149466,
+                "q_Si": 1710.0
+              }
+            },
+            "profile_id": "SI_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_Si=None)"
+          },
+          {
+            "expected_f_Si": 0.22999080036798528,
+            "f_Si": 0.22999080036798528,
+            "profile_id": "GRAPHITE_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_gr default)",
+            "q_gr": 372.0
+          }
+        ],
+        "root_validation": {
+          "converged_U": 0.08328958088831882,
+          "negative_iter_midpoint_U": 0.1480849354821993,
+          "nonbracketing_interval_raises": true,
+          "reversed_bracket_raises": true,
+          "silent_midpoint_differs_from_converged": true,
+          "zero_and_negative_silent_midpoint_equal": true,
+          "zero_iter_midpoint_U": 0.1480849354821993
+        },
+        "scope_boundaries": {
+          "empty_graphite_raises": true,
+          "invalid_si_case_raises": true,
+          "missing_qSi_case_raises": true,
+          "nonadditive_GS2_not_implemented": true,
+          "plastic_GS1_not_implemented": true
+        },
+        "seconds_hour": {
+          "None_I_abs_capture": 2.0,
+          "curve_equals_direct_hour_number_bit_exact": true,
+          "curve_vs_seconds_corrected_max_abs_diff": 12.131869486157822,
+          "direction_zero_false_I_abs_capture": {
+            "I_abs": 0.0,
+            "Q_cell": 2.0,
+            "s": 1
+          },
+          "expected_hour_corrected_I_abs": 0.0005555555555555556,
+          "explicit_zero_capture": 0.0,
+          "lag_raw_over_hour_corrected": 3599.999999999992
+        },
+        "use_dH_eff": {
+          "default_lag": 0.9971568283538539,
+          "disabled_lag": 5.006937174012688,
+          "enabled_lag": 0.9971568283538539,
+          "false_zero_none_lags": [
+            5.006937174012688,
+            5.006937174012688,
+            5.006937174012688
+          ]
+        },
+        "width_fallback": {
+          "missing_n_dwdT": 0.0,
+          "missing_n_factor": 1.0,
+          "n_T1_None_dwdT_raises": true,
+          "n_T1_None_n_factor": 1.0,
+          "n_zero_width_raises": true,
+          "w_only_dwdT": 0.0
+        }
+      },
+      "order_id": "A",
+      "output_sha256": "78043f280cc1873cc26b935968f33eaf829dd55040e1d42d86cc718d2d43bb8b",
+      "position": 2,
+      "route": "explicit",
+      "run_id": "P065-ROUTE-EXPLICIT-A-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-explicit-a-314",
+      "source_unchanged": true,
+      "stderr": "<TMP>\\route_fixtures\\p065-route-explicit-a-314\\step73_route_probe.py:79: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  obj=m24.BlendedAnodeDQDV(0.1,si_case=case)\n<TMP>\\route_fixtures\\p065-route-explicit-a-314\\v1.0.24\\Anode_Fit_v1.0.24.py:1468: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  return cls(f_Si, si_case=si_case, **kwargs)\n",
+      "stderr_sha256": "44ec12eb7c828407a44756c44201a797f4518900a937e69f1ae00603160d3e5d",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"blend_current_capacity\":{\"capacity_fraction_closure\":0.30000000000000004,\"external_Q_cell\":2.0,\"external_Q_cell_independent_of_internal_Q\":true,\"host_calls\":[{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"graphite\",\"s\":1},{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"silicon\",\"s\":1}],\"internal_capacity_Q\":1.3857142857142857,\"requested_capacity_fraction\":0.3,\"runtime_claim_scope\":\"observed argument forwarding only; solver absence remains Step71 static authority\",\"same_full_current_and_external_capacity_to_both_hosts\":true},\"checks\":{\"blend_full_argument_forwarding\":true,\"boundaries\":true,\"direction_zero_and_false_current\":true,\"fallback_routes\":true,\"kernel_exact_key\":true,\"lag_ratio_gate\":true,\"lco_default_off\":true,\"lco_enabled_predecessor\":true,\"mutable_alias_boundary\":true,\"profiles_11\":true,\"root_exhaustion_preserved\":true,\"seconds_hour_direct\":true,\"use_dH_eff_gate\":true,\"width_absence_inconsistency_preserved\":true},\"kernel\":{\"absent_none_false_typo_bit_exact\":true,\"delta\":{\"None_raises_TypeError\":true,\"absent_uses_width_finite\":true,\"nonpositive_clamp_finite\":true,\"zero_false_negative_clamp_bit_exact\":true},\"dqdv_ignores_regsol_bit_exact\":true,\"entropy_ignores_regsol_bit_exact\":true,\"named_profiles_select_regsol\":false,\"regsol_vs_logistic_max_abs_diff\":0.8084241749031733,\"root_ignores_regsol_bit_exact\":true,\"xrd_Omega_ignored_without_kernel_bit_exact\":true},\"lag_ratio_correction\":{\"default_false_zero_none_bit_exact\":true,\"max_abs_diff\":0.6575562517976834},\"lco_electronic_entropy\":{\"electronic_transition_x_centers\":[0.85],\"false_zero_none_match_default_bit_exact\":true,\"tolerance_Tref\":1e-10,\"v23_equals_v24_enabled_T318_bit_exact\":true,\"v23_equals_v24_enabled_Tref_bit_exact\":true,\"v24_default_vs_enabled_T318_max_abs_diff\":0.6634246503408368,\"v24_default_vs_enabled_Tref_max_abs_diff\":0.0},\"mutable_profile_alias\":{\"new_process_required_for_canonical_route_independence\":true,\"normal_routes_preserve_registry_hashes\":true,\"registry_restored_after_probe\":true,\"same_process_graphite_reference_alias_mutates_registry\":true},\"other_fallbacks\":{\"chi_None_uses_x\":true,\"chi_zero_retained\":true,\"explicit_qSi_bypasses_unknown_capacity_registry\":true,\"stress_None_vs_zero_si_transitions_bit_exact\":true},\"pass\":true,\"profiles\":[{\"entries\":4,\"observed_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"profile_id\":\"GRAPHITE_STAGING_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":5,\"observed_hash\":\"bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73\",\"profile_id\":\"GRAPHITE_STAGING_XRD_v1024\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":6,\"observed_hash\":\"75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291\",\"profile_id\":\"GRAPHITE_STAGING_MSMR6_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":3,\"input_hash\":\"099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40\",\"profile_id\":\"LCO_MSMR_LIT\",\"public_path\":\"LCOCathodeDQDV(transitions)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SI_ELEMENTAL_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":1,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIOX_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIC_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"cases\":{\"elemental\":{\"entries\":2,\"gaps\":[]},\"sic\":{\"entries\":2,\"gaps\":[]},\"siox\":{\"entries\":1,\"gaps\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]}},\"profile_id\":\"SI_CASE_SETS\",\"public_path\":\"BlendedAnodeDQDV(si_case=...,si_transitions=None)\"},{\"cases\":{\"elemental\":[],\"sic\":[],\"siox\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]},\"profile_id\":\"SI_CASE_GAPS\",\"public_path\":\"BlendedAnodeDQDV.gaps via si_case\"},{\"cases\":{\"elemental\":{\"f_Si\":0.22999080036798528,\"q_Si\":1000.0},\"sic\":{\"f_Si\":0.4821345707656613,\"q_Si\":3117.0},\"siox\":{\"f_Si\":0.3380782918149466,\"q_Si\":1710.0}},\"profile_id\":\"SI_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_Si=None)\"},{\"expected_f_Si\":0.22999080036798528,\"f_Si\":0.22999080036798528,\"profile_id\":\"GRAPHITE_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_gr default)\",\"q_gr\":372.0}],\"root_validation\":{\"converged_U\":0.08328958088831882,\"negative_iter_midpoint_U\":0.1480849354821993,\"nonbracketing_interval_raises\":true,\"reversed_bracket_raises\":true,\"silent_midpoint_differs_from_converged\":true,\"zero_and_negative_silent_midpoint_equal\":true,\"zero_iter_midpoint_U\":0.1480849354821993},\"scope_boundaries\":{\"empty_graphite_raises\":true,\"invalid_si_case_raises\":true,\"missing_qSi_case_raises\":true,\"nonadditive_GS2_not_implemented\":true,\"plastic_GS1_not_implemented\":true},\"seconds_hour\":{\"None_I_abs_capture\":2.0,\"curve_equals_direct_hour_number_bit_exact\":true,\"curve_vs_seconds_corrected_max_abs_diff\":12.131869486157822,\"direction_zero_false_I_abs_capture\":{\"I_abs\":0.0,\"Q_cell\":2.0,\"s\":1},\"expected_hour_corrected_I_abs\":0.0005555555555555556,\"explicit_zero_capture\":0.0,\"lag_raw_over_hour_corrected\":3599.999999999992},\"use_dH_eff\":{\"default_lag\":0.9971568283538539,\"disabled_lag\":5.006937174012688,\"enabled_lag\":0.9971568283538539,\"false_zero_none_lags\":[5.006937174012688,5.006937174012688,5.006937174012688]},\"width_fallback\":{\"missing_n_dwdT\":0.0,\"missing_n_factor\":1.0,\"n_T1_None_dwdT_raises\":true,\"n_T1_None_n_factor\":1.0,\"n_zero_width_raises\":true,\"w_only_dwdT\":0.0}},\"route\":\"explicit\"}\n",
+      "stdout_sha256": "bc6e964b018e72b467d10701b71bd26b6b0c415837116b435c4838d0c9a9ccbc",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-a-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-legacy-a-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-legacy-a-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_ABSENCE_CORROBORATION",
+      "input_sha256": "d57792b9a2f36e3d1d0d298347325b4f30dbef5f31d02cba9719cb9db71e0a4f",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "actual_restoration_path": "ABSENT_IN_FROZEN_SOURCE",
+        "candidate_surface_observation": {
+          "from_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "from_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_saved_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_state_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "restore": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          }
+        },
+        "pass": true,
+        "predecessor_schema_fixture": "ABSENT_IN_FROZEN_SOURCE",
+        "restore_key": "ABSENT_IN_FROZEN_SOURCE",
+        "runtime_observation_is_corroboration_not_a_restoration_execution": true,
+        "runtime_observation_is_not_exhaustive_static_proof": true
+      },
+      "order_id": "A",
+      "output_sha256": "4df9dc4338d3b0fa2309ff2c22224022ba91683d806ab880dc01c53daa8014b4",
+      "position": 3,
+      "route": "legacy",
+      "run_id": "P065-ROUTE-LEGACY-A-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-legacy-a-314",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"actual_restoration_path\":\"ABSENT_IN_FROZEN_SOURCE\",\"candidate_surface_observation\":{\"from_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"from_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_saved_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_state_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"restore\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false}},\"pass\":true,\"predecessor_schema_fixture\":\"ABSENT_IN_FROZEN_SOURCE\",\"restore_key\":\"ABSENT_IN_FROZEN_SOURCE\",\"runtime_observation_is_corroboration_not_a_restoration_execution\":true,\"runtime_observation_is_not_exhaustive_static_proof\":true},\"route\":\"legacy\"}\n",
+      "stdout_sha256": "70470b8fd940b3e4266b101a46b878044586cc3f14ffcfb45a58dda85b6a37ef",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-legacy-b-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-legacy-b-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-legacy-b-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_ABSENCE_CORROBORATION",
+      "input_sha256": "9ecffe666dc84bce968dd4e77afc12f6c6dbc1e4fdc6dfd8ac3f12eec545a24c",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "actual_restoration_path": "ABSENT_IN_FROZEN_SOURCE",
+        "candidate_surface_observation": {
+          "from_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "from_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_saved_state": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "load_state_dict": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          },
+          "restore": {
+            "BlendedAnodeDQDV": false,
+            "GraphiteAnodeDischargeDQDV": false,
+            "LCOCathodeDQDV": false,
+            "module": false
+          }
+        },
+        "pass": true,
+        "predecessor_schema_fixture": "ABSENT_IN_FROZEN_SOURCE",
+        "restore_key": "ABSENT_IN_FROZEN_SOURCE",
+        "runtime_observation_is_corroboration_not_a_restoration_execution": true,
+        "runtime_observation_is_not_exhaustive_static_proof": true
+      },
+      "order_id": "B",
+      "output_sha256": "4df9dc4338d3b0fa2309ff2c22224022ba91683d806ab880dc01c53daa8014b4",
+      "position": 1,
+      "route": "legacy",
+      "run_id": "P065-ROUTE-LEGACY-B-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-legacy-b-314",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"actual_restoration_path\":\"ABSENT_IN_FROZEN_SOURCE\",\"candidate_surface_observation\":{\"from_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"from_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_saved_state\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"load_state_dict\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false},\"restore\":{\"BlendedAnodeDQDV\":false,\"GraphiteAnodeDischargeDQDV\":false,\"LCOCathodeDQDV\":false,\"module\":false}},\"pass\":true,\"predecessor_schema_fixture\":\"ABSENT_IN_FROZEN_SOURCE\",\"restore_key\":\"ABSENT_IN_FROZEN_SOURCE\",\"runtime_observation_is_corroboration_not_a_restoration_execution\":true,\"runtime_observation_is_not_exhaustive_static_proof\":true},\"route\":\"legacy\"}\n",
+      "stdout_sha256": "70470b8fd940b3e4266b101a46b878044586cc3f14ffcfb45a58dda85b6a37ef",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-explicit-b-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-explicit-b-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-explicit-b-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "f19759914349c7eebd6f26ebbc9713a65edbd1fd958932de87d49a4c6ca47453",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "blend_current_capacity": {
+          "capacity_fraction_closure": 0.30000000000000004,
+          "external_Q_cell": 2.0,
+          "external_Q_cell_independent_of_internal_Q": true,
+          "host_calls": [
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "graphite",
+              "s": 1
+            },
+            {
+              "I_abs": 0.8,
+              "Q_cell": 2.0,
+              "host": "silicon",
+              "s": 1
+            }
+          ],
+          "internal_capacity_Q": 1.3857142857142857,
+          "requested_capacity_fraction": 0.3,
+          "runtime_claim_scope": "observed argument forwarding only; solver absence remains Step71 static authority",
+          "same_full_current_and_external_capacity_to_both_hosts": true
+        },
+        "checks": {
+          "blend_full_argument_forwarding": true,
+          "boundaries": true,
+          "direction_zero_and_false_current": true,
+          "fallback_routes": true,
+          "kernel_exact_key": true,
+          "lag_ratio_gate": true,
+          "lco_default_off": true,
+          "lco_enabled_predecessor": true,
+          "mutable_alias_boundary": true,
+          "profiles_11": true,
+          "root_exhaustion_preserved": true,
+          "seconds_hour_direct": true,
+          "use_dH_eff_gate": true,
+          "width_absence_inconsistency_preserved": true
+        },
+        "kernel": {
+          "absent_none_false_typo_bit_exact": true,
+          "delta": {
+            "None_raises_TypeError": true,
+            "absent_uses_width_finite": true,
+            "nonpositive_clamp_finite": true,
+            "zero_false_negative_clamp_bit_exact": true
+          },
+          "dqdv_ignores_regsol_bit_exact": true,
+          "entropy_ignores_regsol_bit_exact": true,
+          "named_profiles_select_regsol": false,
+          "regsol_vs_logistic_max_abs_diff": 0.8084241749031733,
+          "root_ignores_regsol_bit_exact": true,
+          "xrd_Omega_ignored_without_kernel_bit_exact": true
+        },
+        "lag_ratio_correction": {
+          "default_false_zero_none_bit_exact": true,
+          "max_abs_diff": 0.6575562517976834
+        },
+        "lco_electronic_entropy": {
+          "electronic_transition_x_centers": [
+            0.85
+          ],
+          "false_zero_none_match_default_bit_exact": true,
+          "tolerance_Tref": 1e-10,
+          "v23_equals_v24_enabled_T318_bit_exact": true,
+          "v23_equals_v24_enabled_Tref_bit_exact": true,
+          "v24_default_vs_enabled_T318_max_abs_diff": 0.6634246503408368,
+          "v24_default_vs_enabled_Tref_max_abs_diff": 0.0
+        },
+        "mutable_profile_alias": {
+          "new_process_required_for_canonical_route_independence": true,
+          "normal_routes_preserve_registry_hashes": true,
+          "registry_restored_after_probe": true,
+          "same_process_graphite_reference_alias_mutates_registry": true
+        },
+        "other_fallbacks": {
+          "chi_None_uses_x": true,
+          "chi_zero_retained": true,
+          "explicit_qSi_bypasses_unknown_capacity_registry": true,
+          "stress_None_vs_zero_si_transitions_bit_exact": true
+        },
+        "pass": true,
+        "profiles": [
+          {
+            "entries": 4,
+            "observed_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+            "profile_id": "GRAPHITE_STAGING_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 5,
+            "observed_hash": "bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73",
+            "profile_id": "GRAPHITE_STAGING_XRD_v1024",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 6,
+            "observed_hash": "75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291",
+            "profile_id": "GRAPHITE_STAGING_MSMR6_LIT",
+            "public_path": "GraphiteAnodeDischargeDQDV(transitions)"
+          },
+          {
+            "entries": 3,
+            "input_hash": "099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40",
+            "profile_id": "LCO_MSMR_LIT",
+            "public_path": "LCOCathodeDQDV(transitions)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SI_ELEMENTAL_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 1,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIOX_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "entries": 2,
+            "normalized_weight_sum": 0.10777777777777778,
+            "profile_id": "SIC_LIT",
+            "public_path": "BlendedAnodeDQDV(si_transitions=...)"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "entries": 2,
+                "gaps": []
+              },
+              "sic": {
+                "entries": 2,
+                "gaps": []
+              },
+              "siox": {
+                "entries": 1,
+                "gaps": [
+                  "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                  "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+                ]
+              }
+            },
+            "profile_id": "SI_CASE_SETS",
+            "public_path": "BlendedAnodeDQDV(si_case=...,si_transitions=None)"
+          },
+          {
+            "cases": {
+              "elemental": [],
+              "sic": [],
+              "siox": [
+                "평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)",
+                "히스테리시스 절대 mV (미확보 — 표 각주 f)"
+              ]
+            },
+            "profile_id": "SI_CASE_GAPS",
+            "public_path": "BlendedAnodeDQDV.gaps via si_case"
+          },
+          {
+            "cases": {
+              "elemental": {
+                "f_Si": 0.22999080036798528,
+                "q_Si": 1000.0
+              },
+              "sic": {
+                "f_Si": 0.4821345707656613,
+                "q_Si": 3117.0
+              },
+              "siox": {
+                "f_Si": 0.3380782918149466,
+                "q_Si": 1710.0
+              }
+            },
+            "profile_id": "SI_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_Si=None)"
+          },
+          {
+            "expected_f_Si": 0.22999080036798528,
+            "f_Si": 0.22999080036798528,
+            "profile_id": "GRAPHITE_SPECIFIC_CAPACITY",
+            "public_path": "BlendedAnodeDQDV.from_wt(q_gr default)",
+            "q_gr": 372.0
+          }
+        ],
+        "root_validation": {
+          "converged_U": 0.08328958088831882,
+          "negative_iter_midpoint_U": 0.1480849354821993,
+          "nonbracketing_interval_raises": true,
+          "reversed_bracket_raises": true,
+          "silent_midpoint_differs_from_converged": true,
+          "zero_and_negative_silent_midpoint_equal": true,
+          "zero_iter_midpoint_U": 0.1480849354821993
+        },
+        "scope_boundaries": {
+          "empty_graphite_raises": true,
+          "invalid_si_case_raises": true,
+          "missing_qSi_case_raises": true,
+          "nonadditive_GS2_not_implemented": true,
+          "plastic_GS1_not_implemented": true
+        },
+        "seconds_hour": {
+          "None_I_abs_capture": 2.0,
+          "curve_equals_direct_hour_number_bit_exact": true,
+          "curve_vs_seconds_corrected_max_abs_diff": 12.131869486157822,
+          "direction_zero_false_I_abs_capture": {
+            "I_abs": 0.0,
+            "Q_cell": 2.0,
+            "s": 1
+          },
+          "expected_hour_corrected_I_abs": 0.0005555555555555556,
+          "explicit_zero_capture": 0.0,
+          "lag_raw_over_hour_corrected": 3599.999999999992
+        },
+        "use_dH_eff": {
+          "default_lag": 0.9971568283538539,
+          "disabled_lag": 5.006937174012688,
+          "enabled_lag": 0.9971568283538539,
+          "false_zero_none_lags": [
+            5.006937174012688,
+            5.006937174012688,
+            5.006937174012688
+          ]
+        },
+        "width_fallback": {
+          "missing_n_dwdT": 0.0,
+          "missing_n_factor": 1.0,
+          "n_T1_None_dwdT_raises": true,
+          "n_T1_None_n_factor": 1.0,
+          "n_zero_width_raises": true,
+          "w_only_dwdT": 0.0
+        }
+      },
+      "order_id": "B",
+      "output_sha256": "43e06dc097e7b8bd9bdf22fe5d9c97b0118715d942664154f8b5b53dffd88385",
+      "position": 2,
+      "route": "explicit",
+      "run_id": "P065-ROUTE-EXPLICIT-B-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-explicit-b-314",
+      "source_unchanged": true,
+      "stderr": "<TMP>\\route_fixtures\\p065-route-explicit-b-314\\step73_route_probe.py:79: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  obj=m24.BlendedAnodeDQDV(0.1,si_case=case)\n<TMP>\\route_fixtures\\p065-route-explicit-b-314\\v1.0.24\\Anode_Fit_v1.0.24.py:1468: UserWarning: [BlendedAnodeDQDV] si_case='siox' 은(는) 확인 필요 공백 보유: 평균 전위 U_avg (절대 mV 미확보 — 표 각주 c); 히스테리시스 절대 mV (미확보 — 표 각주 f) — 시연 placeholder 사용 중(신뢰값 아님, 피팅 override 전제).\n  return cls(f_Si, si_case=si_case, **kwargs)\n",
+      "stderr_sha256": "a8e97c2f4518483287b30770014d81bccbbb083ff5f1991bfe2973a357aeb18e",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"blend_current_capacity\":{\"capacity_fraction_closure\":0.30000000000000004,\"external_Q_cell\":2.0,\"external_Q_cell_independent_of_internal_Q\":true,\"host_calls\":[{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"graphite\",\"s\":1},{\"I_abs\":0.8,\"Q_cell\":2.0,\"host\":\"silicon\",\"s\":1}],\"internal_capacity_Q\":1.3857142857142857,\"requested_capacity_fraction\":0.3,\"runtime_claim_scope\":\"observed argument forwarding only; solver absence remains Step71 static authority\",\"same_full_current_and_external_capacity_to_both_hosts\":true},\"checks\":{\"blend_full_argument_forwarding\":true,\"boundaries\":true,\"direction_zero_and_false_current\":true,\"fallback_routes\":true,\"kernel_exact_key\":true,\"lag_ratio_gate\":true,\"lco_default_off\":true,\"lco_enabled_predecessor\":true,\"mutable_alias_boundary\":true,\"profiles_11\":true,\"root_exhaustion_preserved\":true,\"seconds_hour_direct\":true,\"use_dH_eff_gate\":true,\"width_absence_inconsistency_preserved\":true},\"kernel\":{\"absent_none_false_typo_bit_exact\":true,\"delta\":{\"None_raises_TypeError\":true,\"absent_uses_width_finite\":true,\"nonpositive_clamp_finite\":true,\"zero_false_negative_clamp_bit_exact\":true},\"dqdv_ignores_regsol_bit_exact\":true,\"entropy_ignores_regsol_bit_exact\":true,\"named_profiles_select_regsol\":false,\"regsol_vs_logistic_max_abs_diff\":0.8084241749031733,\"root_ignores_regsol_bit_exact\":true,\"xrd_Omega_ignored_without_kernel_bit_exact\":true},\"lag_ratio_correction\":{\"default_false_zero_none_bit_exact\":true,\"max_abs_diff\":0.6575562517976834},\"lco_electronic_entropy\":{\"electronic_transition_x_centers\":[0.85],\"false_zero_none_match_default_bit_exact\":true,\"tolerance_Tref\":1e-10,\"v23_equals_v24_enabled_T318_bit_exact\":true,\"v23_equals_v24_enabled_Tref_bit_exact\":true,\"v24_default_vs_enabled_T318_max_abs_diff\":0.6634246503408368,\"v24_default_vs_enabled_Tref_max_abs_diff\":0.0},\"mutable_profile_alias\":{\"new_process_required_for_canonical_route_independence\":true,\"normal_routes_preserve_registry_hashes\":true,\"registry_restored_after_probe\":true,\"same_process_graphite_reference_alias_mutates_registry\":true},\"other_fallbacks\":{\"chi_None_uses_x\":true,\"chi_zero_retained\":true,\"explicit_qSi_bypasses_unknown_capacity_registry\":true,\"stress_None_vs_zero_si_transitions_bit_exact\":true},\"pass\":true,\"profiles\":[{\"entries\":4,\"observed_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"profile_id\":\"GRAPHITE_STAGING_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":5,\"observed_hash\":\"bf1c2fe8a84377053db602f9392e4b2d5c23db04dd0f382d19ea83e9d76f7a73\",\"profile_id\":\"GRAPHITE_STAGING_XRD_v1024\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":6,\"observed_hash\":\"75e8205f144cb1acec1eef2355f12cbb116352e387a4f0d00c7b20b874b82291\",\"profile_id\":\"GRAPHITE_STAGING_MSMR6_LIT\",\"public_path\":\"GraphiteAnodeDischargeDQDV(transitions)\"},{\"entries\":3,\"input_hash\":\"099b9d58141b00904f333d8c741b5d864fe834bffc268bed7ccf68ad0c827d40\",\"profile_id\":\"LCO_MSMR_LIT\",\"public_path\":\"LCOCathodeDQDV(transitions)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SI_ELEMENTAL_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":1,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIOX_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"entries\":2,\"normalized_weight_sum\":0.10777777777777778,\"profile_id\":\"SIC_LIT\",\"public_path\":\"BlendedAnodeDQDV(si_transitions=...)\"},{\"cases\":{\"elemental\":{\"entries\":2,\"gaps\":[]},\"sic\":{\"entries\":2,\"gaps\":[]},\"siox\":{\"entries\":1,\"gaps\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]}},\"profile_id\":\"SI_CASE_SETS\",\"public_path\":\"BlendedAnodeDQDV(si_case=...,si_transitions=None)\"},{\"cases\":{\"elemental\":[],\"sic\":[],\"siox\":[\"평균 전위 U_avg (절대 mV 미확보 — 표 각주 c)\",\"히스테리시스 절대 mV (미확보 — 표 각주 f)\"]},\"profile_id\":\"SI_CASE_GAPS\",\"public_path\":\"BlendedAnodeDQDV.gaps via si_case\"},{\"cases\":{\"elemental\":{\"f_Si\":0.22999080036798528,\"q_Si\":1000.0},\"sic\":{\"f_Si\":0.4821345707656613,\"q_Si\":3117.0},\"siox\":{\"f_Si\":0.3380782918149466,\"q_Si\":1710.0}},\"profile_id\":\"SI_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_Si=None)\"},{\"expected_f_Si\":0.22999080036798528,\"f_Si\":0.22999080036798528,\"profile_id\":\"GRAPHITE_SPECIFIC_CAPACITY\",\"public_path\":\"BlendedAnodeDQDV.from_wt(q_gr default)\",\"q_gr\":372.0}],\"root_validation\":{\"converged_U\":0.08328958088831882,\"negative_iter_midpoint_U\":0.1480849354821993,\"nonbracketing_interval_raises\":true,\"reversed_bracket_raises\":true,\"silent_midpoint_differs_from_converged\":true,\"zero_and_negative_silent_midpoint_equal\":true,\"zero_iter_midpoint_U\":0.1480849354821993},\"scope_boundaries\":{\"empty_graphite_raises\":true,\"invalid_si_case_raises\":true,\"missing_qSi_case_raises\":true,\"nonadditive_GS2_not_implemented\":true,\"plastic_GS1_not_implemented\":true},\"seconds_hour\":{\"None_I_abs_capture\":2.0,\"curve_equals_direct_hour_number_bit_exact\":true,\"curve_vs_seconds_corrected_max_abs_diff\":12.131869486157822,\"direction_zero_false_I_abs_capture\":{\"I_abs\":0.0,\"Q_cell\":2.0,\"s\":1},\"expected_hour_corrected_I_abs\":0.0005555555555555556,\"explicit_zero_capture\":0.0,\"lag_raw_over_hour_corrected\":3599.999999999992},\"use_dH_eff\":{\"default_lag\":0.9971568283538539,\"disabled_lag\":5.006937174012688,\"enabled_lag\":0.9971568283538539,\"false_zero_none_lags\":[5.006937174012688,5.006937174012688,5.006937174012688]},\"width_fallback\":{\"missing_n_dwdT\":0.0,\"missing_n_factor\":1.0,\"n_T1_None_dwdT_raises\":true,\"n_T1_None_n_factor\":1.0,\"n_zero_width_raises\":true,\"w_only_dwdT\":0.0}},\"route\":\"explicit\"}\n",
+      "stdout_sha256": "bc6e964b018e72b467d10701b71bd26b6b0c415837116b435c4838d0c9a9ccbc",
+      "timed_out": false
+    },
+    {
+      "authority": "ISOLATED_INTERNAL_RUNTIME_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-route-fresh-b-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "fresh",
+        "none"
+      ],
+      "cwd": "route_fixtures/p065-route-fresh-b-314",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-route-fresh-b-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_IMPLEMENTED_ROUTE",
+      "input_sha256": "83357827c92011a92d379d0249b003864fccfa46965da69b3a20fdd55b9097a5",
+      "interpreter": "3.14.4",
+      "mutation": "none",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "Q_Si": 0.0,
+        "Q_gr": 0.97,
+        "constructor": "BlendedAnodeDQDV(0.0)",
+        "explicit_profile_override": false,
+        "gaps": [],
+        "graphite_constructor_requires_transitions": true,
+        "graphite_profile_entries": 4,
+        "graphite_profile_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "lag_ratio_correction": false,
+        "lco_constructor_requires_transitions": true,
+        "observed_graphite_hash": "db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22",
+        "pass": true,
+        "saved_state_supplied": false,
+        "si_case": "sic",
+        "si_profile_entries": 2,
+        "si_profile_source_entries": 2,
+        "use_dH_eff": true
+      },
+      "order_id": "B",
+      "output_sha256": "7d8345d2de715768f87f22137f205a2f1196bd7c843198bf8f23a5959e107758",
+      "position": 3,
+      "route": "fresh",
+      "run_id": "P065-ROUTE-FRESH-B-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-route-fresh-b-314",
+      "source_unchanged": true,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"mutation\":\"none\",\"result\":{\"Q_Si\":0.0,\"Q_gr\":0.97,\"constructor\":\"BlendedAnodeDQDV(0.0)\",\"explicit_profile_override\":false,\"gaps\":[],\"graphite_constructor_requires_transitions\":true,\"graphite_profile_entries\":4,\"graphite_profile_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"lag_ratio_correction\":false,\"lco_constructor_requires_transitions\":true,\"observed_graphite_hash\":\"db1d82865185442643b4dd302d3642e5bd4c03db407228f4bda03f25386f8c22\",\"pass\":true,\"saved_state_supplied\":false,\"si_case\":\"sic\",\"si_profile_entries\":2,\"si_profile_source_entries\":2,\"use_dH_eff\":true},\"route\":\"fresh\"}\n",
+      "stdout_sha256": "6bddfa3cd71c92ab2d0c6ea0c6fde4de09d9893e91678224a6a1d9f8f7685802",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-fresh-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "fresh",
+        "fresh"
+      ],
+      "cwd": "route_fixtures/p065-mutation-fresh-314",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-fresh-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "3a5735ea1232b9c56def5668d61fe0d580d7685e97ccd478d6281ed6ae3a1345",
+      "interpreter": "3.14.4",
+      "mutation": "fresh",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "fresh"
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "6ab5c9c0d30f54c4d179a0581506fcd49d3f2e43251fa838c545a66b54e48a65",
+      "position": null,
+      "route": "fresh",
+      "run_id": "P065-MUTATION-FRESH-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-fresh-314",
+      "source_unchanged": true,
+      "stderr": "AssertionError: fresh required symbols missing:GRAPHITE_STAGING_XRD_v1024,GRAPHITE_STAGING_MSMR6_LIT\n",
+      "stderr_sha256": "521d8a1af1990eac441c4c91231c8961a182a540ada866c9b6228a6b3d4af85a",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-explicit-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "explicit",
+        "explicit"
+      ],
+      "cwd": "route_fixtures/p065-mutation-explicit-314",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-explicit-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "bef32868f96b647934e981134bcaee9d95d73a7c6ee309982c53db5e739649ae",
+      "interpreter": "3.14.4",
+      "mutation": "explicit",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "explicit"
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "3dafcfd108e90de04abc761bb142cfcd98c1defd7676e47222f7ae1ecbd0b220",
+      "position": null,
+      "route": "explicit",
+      "run_id": "P065-MUTATION-EXPLICIT-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-explicit-314",
+      "source_unchanged": true,
+      "stderr": "AssertionError: profile redirect detected:GRAPHITE_STAGING_XRD_v1024\n",
+      "stderr_sha256": "c7f6bb41465a0a1ced93f56e963d4af66033f2113e971ccb00cf642c3ffd328f",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "authority": "ROUTE_MUTATION_NEGATIVE_CONTROL",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-314\\step73_route_probe.py",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-314\\v1.0.23\\Anode_Fit_v1.0.23.py",
+        "<TMP>\\route_fixtures\\p065-mutation-legacy-314\\v1.0.24\\Anode_Fit_v1.0.24.py",
+        "legacy",
+        "legacy"
+      ],
+      "cwd": "route_fixtures/p065-mutation-legacy-314",
+      "exit_code": 7,
+      "expectation_met": true,
+      "expected_exit_code": 7,
+      "external_scientific_truth": false,
+      "fixture_files_after": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_files_before": [
+        "step73_route_probe.py",
+        "v1.0.23/Anode_Fit_v1.0.23.py",
+        "v1.0.24/Anode_Fit_v1.0.24.py"
+      ],
+      "fixture_id": "p065-mutation-legacy-314",
+      "fixture_input_manifest_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "fixture_manifest": [
+        {
+          "bytes": 97860,
+          "git_blob": "554425dd566c20314357eddfcf4261517df907ee",
+          "materialized_relative_path": "v1.0.23/Anode_Fit_v1.0.23.py",
+          "sha256": "0298bb5fdf47ed5faf2f8301b6d84dc88fd580a69c8e616daa3942d35ceae7cf",
+          "source_path": "Claude/docs/v1.0.23/Anode_Fit_v1.0.23.py"
+        },
+        {
+          "bytes": 110089,
+          "git_blob": "daad1d0a8bcdacda5283b0692382262a7d85d5af",
+          "materialized_relative_path": "v1.0.24/Anode_Fit_v1.0.24.py",
+          "sha256": "f230f59bb10bcc49cdce9047c196530f857d2eda4d3b1be819ceb36ee6aaf680",
+          "source_path": "Claude/docs/v1.0.24/Anode_Fit_v1.0.24.py"
+        }
+      ],
+      "gate": "PASS_MUTATION_REJECTED",
+      "input_sha256": "8a7514e99cd2fb95ce235bc3e5ebba5764c66e3398b4c6c7742424e1dcf2d815",
+      "interpreter": "3.14.4",
+      "mutation": "legacy",
+      "mutation_detected": true,
+      "mutation_probe": {
+        "detected": true,
+        "enabled": true,
+        "mutation_id": "legacy"
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "actual_exit": 7,
+        "expected_failure_exit": 7,
+        "mutation_detected": true
+      },
+      "order_id": "MUTATION",
+      "output_sha256": "bcdb7a75154d7f84677c96179dcafe19a7e2f7401701dfe5c028cc23d3a8d5d1",
+      "position": null,
+      "route": "legacy",
+      "run_id": "P065-MUTATION-LEGACY-314",
+      "runtime": "3.14",
+      "source_after_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_before_sha256": "9be096ea137229a58b44082b357838b8632aa5d1d06a21f14cd28b76b6c1a1a6",
+      "source_root": "<TMP>/route_fixtures/p065-mutation-legacy-314",
+      "source_unchanged": true,
+      "stderr": "AssertionError: false implemented-restoration claim rejected\n",
+      "stderr_sha256": "52a8f1715bd83170629c3a75d7904948963c9288b14e9e634b12273d42cca854",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    }
+  ],
+  "runtime_environments": [
+    {
+      "authority": "RUNTIME_ENVIRONMENT_ONLY",
+      "command": [
+        "py",
+        "-3.12",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "-c",
+        "import sys,numpy;print(sys.version.split()[0]);print(numpy.__version__)"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "environment-3.12",
+      "gate": "PASS_RUNTIME_ENVIRONMENT",
+      "input_sha256": "a63eada7605acb226bcc37fbc484ee9c68491488da0dad5ca898ded8592df906",
+      "interpreter": "3.12.10",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.3.5",
+      "observations": {
+        "numpy_version": "2.3.5",
+        "python_version": "3.12.10"
+      },
+      "output_sha256": "1f0d31a51646aea7e75fa9312a76abdb75d06c3e73f95f62141c40a20ba86468",
+      "python_version": "3.12.10",
+      "run_id": "P065-RUNTIME-312",
+      "runtime": "3.12",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "3.12.10\n2.3.5\n",
+      "stdout_sha256": "5bd2b51ee090ccaf649d7ef7aefa45085299f6ea25da617ec70339c8bb573129",
+      "timed_out": false
+    },
+    {
+      "authority": "RUNTIME_ENVIRONMENT_ONLY",
+      "command": [
+        "py",
+        "-3.14",
+        "-B",
+        "-I",
+        "-X",
+        "utf8",
+        "-c",
+        "import sys,numpy;print(sys.version.split()[0]);print(numpy.__version__)"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "expectation_met": true,
+      "expected_exit_code": 0,
+      "external_scientific_truth": false,
+      "fixture_id": "environment-3.14",
+      "gate": "PASS_RUNTIME_ENVIRONMENT",
+      "input_sha256": "e43a213cb11ea616f37c98bf08308ebe998e83bef4d4d570d686b232174c3abb",
+      "interpreter": "3.14.4",
+      "mutation_probe": {
+        "detected": null,
+        "enabled": false,
+        "mutation_id": null
+      },
+      "numpy_version": "2.5.0",
+      "observations": {
+        "numpy_version": "2.5.0",
+        "python_version": "3.14.4"
+      },
+      "output_sha256": "67e8828ef0f5cceefc601faf4df0454dbb4c19875920dc80ef8ef8dba9692355",
+      "python_version": "3.14.4",
+      "run_id": "P065-RUNTIME-314",
+      "runtime": "3.14",
+      "source_root": "<TMP>",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "3.14.4\n2.5.0\n",
+      "stdout_sha256": "9ed278f0e9b3c181161b20ccee957fec17574a0a421f2c7f8d524f81c5315dbf",
+      "timed_out": false
+    }
+  ],
+  "schema_version": 1,
+  "semantic_sha256": "dd44f629520c2f5568a47e63d566af3a1fd669117b4b3553267517a957c8367c",
+  "step": 73
+}
