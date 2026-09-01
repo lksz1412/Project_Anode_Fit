@@ -1,0 +1,224 @@
+{
+  "baseline_commit": "3b5fd059ed09cdcdde38668c399cb35b8afbcca9",
+  "generator_identity": {
+    "path": "Codex/work/v1025_phase066/build_phase066_step77.py",
+    "raw_sha256": "b8800294b269e5301e9eaa6c23171787b6b100f7bc0345899700f56b53e11c20"
+  },
+  "optimizer_contract": {
+    "bounds": {
+      "Q": [
+        1e-09,
+        34.45146242132288
+      ],
+      "U": [
+        0.06025,
+        0.6997500000000006
+      ],
+      "alpha": [
+        0.15,
+        8.0
+      ],
+      "bg": [
+        0.0,
+        64.63984103367427
+      ],
+      "w": [
+        0.0001,
+        0.12
+      ]
+    },
+    "bounds_sha256": {
+      "lower": "56a35d64e713853ca0fb0a72dfc1c787f0ea36790b08d406a5faa0df5545e796",
+      "upper": "0bea5037639ce74c22f20f45e0def0a2d57bca053467ab04cef671d839ad7517"
+    },
+    "components": 14,
+    "free_mask": "implicit_all_57_parameters_free; no persisted explicit mask",
+    "historical_resolved_defaults_and_scipy_version": "GROUND_NOT_FOUND",
+    "initial_vectors_sha256": [
+      "61c0f3aaae7be3a38c98c77125af7355eb370231af2fa9f93975de5976468927",
+      "a37b855d79fc6475035438f14452a4212b3a33dbd4541344dbdf4b32e50234f7",
+      "43e3780672d904141dcce013b047ed5b0f253d79e27df8595b26724a9efdb797",
+      "903cdee2dbc4603156d61bbd71fe1de6a8e797e4b639ea9814769eac527245f5",
+      "6ef20a7130538c40f938b85da2db86032d4fa47c224a02fabc4592856314e353",
+      "ca643b94cd8973c9ab1be40932b4a6d005e0ab9e31bfaf5f8b7b1bfefa934947",
+      "313caa11ec3be9412658b19696070731b64658ae540382197eaef65ad024d057",
+      "1426d21e8583a206328ae2ed4279b638cd2f0785145e8d1589b16673cf163409",
+      "357951f88b738ae763ba0a840c649cb9586f9b38a0adfa1fc0aaa3dec50c661d",
+      "c45dfe05b80aeda332921d57529470009a7a3f1b4a8627cd847700b82c9ce364",
+      "9a3f5bc9fe7e6800c0caed9dc7dc851ac10a383affa1944bdde42efadbcb77c4",
+      "cde545a919273bff368532a63232558cab4dd21bb409cdbab3f98204f5f22e91"
+    ],
+    "kernel": "skew-logistic",
+    "max_nfev": 6000,
+    "objective": "source_explicit_unweighted_residual=model(V)-D",
+    "parameter_order": [
+      "U[14]",
+      "w[14]",
+      "Q[14]",
+      "alpha[14]",
+      "bg"
+    ],
+    "replay_runtime_resolved_defaults": {
+      "loss": "linear",
+      "method": "trf",
+      "note": "observed defaults of the recorded replay runtimes; not historical source-pinned values"
+    },
+    "restarts_per_strategy": 4,
+    "rng_draws_before_direct14": 1908,
+    "rng_draws_within_direct14": 513,
+    "rng_seed": 23,
+    "seed_strategies": 3,
+    "solver": "scipy.optimize.least_squares",
+    "source_explicit_options": [
+      "bounds",
+      "max_nfev"
+    ],
+    "start_matrix_sha256": "3d5c9a7b04cfbd4a6773d9d45d64f46cb342b9adadc790960cc9264d71122ead"
+  },
+  "preprocessing": {
+    "grid_step_V": 0.0005,
+    "savgol_polyorder": 3,
+    "savgol_ratios": [
+      0.01,
+      0.02,
+      0.03
+    ],
+    "steps": [
+      "finite rows",
+      "stable ascending Q sort",
+      "unique Q retaining first V",
+      "increasing isotonic regression V(Q)",
+      "uniform V grid and right-continuous cumulative Q",
+      "forward Q difference divided by dV",
+      "positive finite bins",
+      "longest contiguous interval",
+      "absolute Savitzky-Golay direct/reciprocal median ensemble"
+    ],
+    "wavelet_or_bdd_dmsmcd_used": false,
+    "weighting": "unit_weight_per_retained_grid_point",
+    "window_V": [
+      0.06,
+      0.7
+    ]
+  },
+  "processed_input": {
+    "D_max": 64.63984103367427,
+    "D_min": 1.2570889754755898,
+    "D_sha256": "713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce",
+    "V_max": 0.6997500000000006,
+    "V_min": 0.06025,
+    "V_sha256": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+    "area_data": 3.4451462421322883,
+    "dtype_serialization": "little-endian float64 C-order",
+    "finite_input_rows": 16735,
+    "grid_points_before_difference": 1281,
+    "longest_contiguous_bins": 1280,
+    "points": 1280,
+    "positive_finite_bins": 1280,
+    "unique_Q_rows": 16735
+  },
+  "raw_input": {
+    "bounded_dataset_claim": "SINTEF/EU IntelLiGent Zenodo 20086298, CC-BY-4.0, half-cell versus Li; exact blend protocol unbound",
+    "bytes": 286471,
+    "capacity_basis": "absolute_mAh_not_mass_normalized",
+    "column_units": {
+      "Q_mAh": "mAh",
+      "V_vs_Li": "V versus Li/Li+"
+    },
+    "columns": [
+      "V_vs_Li",
+      "Q_mAh"
+    ],
+    "data_rows": 16735,
+    "git_blob_sha1": "4b06fefa1bb81de842386c95fbba5bdd431602d4",
+    "ground_not_found": [
+      "exact original Zenodo parquet key and checksum",
+      "specimen UUID and composition binding for sigr.csv",
+      "extraction script-to-parquet cryptographic binding"
+    ],
+    "lines": 16736,
+    "path": "Claude/results/comp_v24/sintef_data/sigr.csv",
+    "raw_sha256": "e571a66fb9574c4aa7bfdec7acada2eb732029232e7ab83dc7d9645e39fb01e6",
+    "source_declaration_path": "Claude/results/comp_v24/sintef_data/SOURCES.md",
+    "source_declared_protocol": "pOCV, C/50, room temperature approximately 25 C",
+    "source_declared_specimen": "graphite+Si blend half-cell",
+    "source_kind": "repository-derived CSV consumed by Direct14; not original experimental parquet",
+    "specimen_protocol_status": "SOURCE_DECLARED_BUT_EXACT_BINDING_GROUND_NOT_FOUND"
+  },
+  "runtime_input_identity": {
+    "python3.12": {
+      "D_sha256": "713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce",
+      "V_sha256": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+      "numpy_version": "2.3.5",
+      "python_version": "3.12.10",
+      "scipy_version": "1.17.1"
+    },
+    "python3.14": {
+      "D_sha256": "713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce",
+      "V_sha256": "6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4",
+      "numpy_version": "2.5.2",
+      "python_version": "3.14.4",
+      "scipy_version": "1.17.1"
+    }
+  },
+  "schema_version": "phase066-step77-fit-input-provenance-v1",
+  "semantic_sha256": "e56db8c1eb226596d5bee98147444125d030fe969422dd542241eb64692b5a4e",
+  "source_code": [
+    {
+      "bytes": 1581,
+      "git_blob_sha1": "876e4a675812557dcacbac416ed74ff3c2ad858d",
+      "lines": 25,
+      "path": "Claude/results/comp_v24/sintef_data/SOURCES.md",
+      "raw_sha256": "4fa8bc00535d31fe90cd066af895285341c69938c2e259eaa7609950de2a6649"
+    },
+    {
+      "bytes": 10662,
+      "git_blob_sha1": "d14f98564d1f4723bfcd32c921a3dc9c69149ac9",
+      "lines": 223,
+      "path": "Claude/results/comp_v26_data/build_two_versions.py",
+      "raw_sha256": "70c50cadfe4c8b170612e275fccfbf7714cef42d9889588cf8316629f9db16ab"
+    },
+    {
+      "bytes": 14621,
+      "git_blob_sha1": "c064a11241c07195a11ad12878fa7a3914c1f15b",
+      "lines": 300,
+      "path": "Claude/results/comp_v26_data/test_skew_regsol_v2.py",
+      "raw_sha256": "90ee96c2717d4b12bc94647da58b715c3974c2336bf03907b77c693adebb0c0c"
+    },
+    {
+      "bytes": 7539,
+      "git_blob_sha1": "c4fc6b997bad2a15617f1c7255708bf736b9e37a",
+      "lines": 177,
+      "path": "Claude/results/comp_v26_data/bdd_dqdv.py",
+      "raw_sha256": "d3441b15b276ac87c4925c77146a24cdb2e16f1184057f9a17d9d6952daebf2c"
+    },
+    {
+      "bytes": 12145,
+      "git_blob_sha1": "2a826e4b27ddcde3584daaf1e6a8c557011c773a",
+      "lines": 251,
+      "path": "Claude/results/comp_v26_data/test_gallery_vs_regsol.py",
+      "raw_sha256": "3ee4e41b8e6881529e36f4fddeb9d0130605f55955f8ef268ee578f3dd54a574"
+    },
+    {
+      "bytes": 17754,
+      "git_blob_sha1": "c0a475352abe2f2df145442d8ed722d132ab5d03",
+      "lines": 873,
+      "path": "Claude/results/comp_v26_data/out_versions/summary_versions.json",
+      "raw_sha256": "edcafd90b91b6515ca12dca3743678055bc021a52cff3a86a2355467afe8dedc"
+    },
+    {
+      "bytes": 1669,
+      "git_blob_sha1": "c327a56b22a0f2c2c2910b90283088fb7f2c8f13",
+      "lines": 101,
+      "path": "Claude/results/comp_v26_data/out_versions/C_skew/params_blend.json",
+      "raw_sha256": "c4ba2e46d515eddbbdc4c5d8f3310a9ab90fc8b777e0def0177a22ad127f125e"
+    },
+    {
+      "bytes": 131823,
+      "git_blob_sha1": "62b67e12724d8e1a8bbdd9f9432e4fcff864f0be",
+      "lines": 2024,
+      "path": "Claude/docs/v1.0.25.2/Anode_Fit_v1.0.24.py",
+      "raw_sha256": "c28101568b1b57f7dcb1e20c19fcdaa997fb5022d6230f839657216e1872ae44"
+    }
+  ]
+}
