@@ -25,9 +25,9 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 15. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
 16. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
 17. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-18. 현재 Phase 상태: Phase 066 `PASS_PENDING_PERSISTENCE`, current checkpoint `PASS_P066_STEP79_EMPIRICAL_PHYSICAL_SEPARATION`; cumulative Step 80 blocked
-19. 현재 result: `Codex/results/PHASE_066_STEP_079_AUTHORITY_RESULT.md`
-20. 현재 machine evidence: `Codex/results/PHASE_066_EMPIRICAL_PHYSICAL_AUTHORITY_MATRIX.json`; validator `Codex/work/v1025_phase066/validate_phase066_step79.py`; exact-seven `PASS_P066_STEP79_PERSISTENCE` pending
+18. 현재 Phase 상태: Phase 066 `PASS_PENDING_PERSISTENCE`, current checkpoint `PASS_P066_STEP80_PROFILE_DEFAULT_TEMPERATURE_VERIFICATION`; cumulative Step 81.1 blocked
+19. 현재 result: `Codex/results/PHASE_066_STEP_080_PROFILE_TEMPERATURE_RESULT.md`
+20. 현재 machine evidence: `Codex/results/PHASE_066_PROFILE_DEFAULT_TEMPERATURE_MATRIX.json`, `Codex/results/PHASE_066_RUNTIME_ATTESTATION.json`; validator `Codex/work/v1025_phase066/validate_phase066_step80.py`; exact-eight `PASS_P066_STEP80_PERSISTENCE` pending
 21. 직전 Phase result: `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md`
 22. 직전 integrated machine evidence: `Codex/results/PHASE_065_VALIDATION.json` JSON-last; prior Phase 065 machine artifacts 11개와 result documents 7개가 binding input
 23. 직전 final persistence: Step 75.2 commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`
@@ -95,7 +95,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 066 Step 76 | Step 76 | `PASS_P066_STEP76_SOURCE_PROCESS`; exact-eight commit `38e00020906e3a024e493c214c1a99a6f8ab07d2`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP76_PERSISTENCE`; source `433/167`, text `158/30,597`, PDF `6/308`, image `3`, narrative `42/9,674`, routed process `20`, routes `105` | execute Step 77 |
 | Phase 066 Step 77 | Step 77 | `CONDITIONAL_P066_STEP77_FIT_REPLAY_WITH_NONCONVERGED_SELECTED_TRIAL_AND_UNSEALED_PROCESS_LOGS`; exact-eight commit `5d26e0746864cea7a8bd37a22874093b73c1a12f`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP77_PERSISTENCE`; `runtime_success=false`; external caller process logs `GROUND_NOT_FOUND` | execute Step 78 |
 | Phase 066 Step 78 | Step 78 | `CONDITIONAL_P066_STEP78_VECTOR_BOUND_WITH_ORIGINAL_STATE_GROUND_NOT_FOUND`; exact-seven commit `fedb2031fbfabeaba84f86427c35334526234d73`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP78_PERSISTENCE`; stored↔replay `NOT_EQUIVALENT`; curve/objective `TOLERANCE_EQUIVALENT`; original state `GROUND_NOT_FOUND` | execute Step 79 |
-| Phase 066 Step 79 | Step 79 | `PASS_P066_STEP79_EMPIRICAL_PHYSICAL_SEPARATION`; `PASS_PENDING_PERSISTENCE`; 8 closed-schema rows; Direct14 only `empirical_pass=true`; all external/phase/proposition/physical authority false; Ref. 7 primary text `GROUND_NOT_FOUND`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN` | exact-seven commit/push and `PASS_P066_STEP79_PERSISTENCE`, then Step 80 |
+| Phase 066 Step 79 | Step 79 | `PASS_P066_STEP79_EMPIRICAL_PHYSICAL_SEPARATION`; exact-seven commit `d091e7881f9f22d5dfe9511427afdf4ef22e3280`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP79_PERSISTENCE`; 8 closed-schema rows; Direct14 only `empirical_pass=true`; all external/phase/proposition/physical authority false | execute Step 80 |
+| Phase 066 Step 80 | Step 80 | `PASS_P066_STEP80_PROFILE_DEFAULT_TEMPERATURE_VERIFICATION`; `PASS_PENDING_PERSISTENCE`; exact-eight; fresh default `4+2`, explicit/toggle skew `7+7`; 16 routes and 36/36 isolated processes; temperature dependent/independent `9/7`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN` | exact-eight commit/push and `PASS_P066_STEP80_PERSISTENCE`, then Step 81.1 |
 
 ## Current State
 
@@ -109,7 +110,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - Step 76은 exact-eight commit `38e00020906e3a024e493c214c1a99a6f8ab07d2`로 push·live-remote verification됐고 Python 3.12/3.14 `PASS_P066_STEP76_PERSISTENCE`를 통과했다.
 - Step 77 exact-eight commit `5d26e0746864cea7a8bd37a22874093b73c1a12f`은 push/live-remote와 Python 3.12/3.14 `PASS_P066_STEP77_PERSISTENCE`를 통과했다.
 - Step 78은 exact-seven commit `fedb2031fbfabeaba84f86427c35334526234d73`으로 push/live-remote와 Python 3.12/3.14 `PASS_P066_STEP78_PERSISTENCE`를 통과했다. Stored↔replay는 `NOT_EQUIVALENT`, replay cross-runtime은 `IDENTICAL`, curve/objective는 `TOLERANCE_EQUIVALENT`, original state는 `GROUND_NOT_FOUND`다.
-- Step 79는 Direct14, competing profile, graphite, LCO, Si, blend fraction, blend finite-rate, Ref. 7의 8개 권위 행을 동일한 closed schema로 분리했다. Direct14만 bounded `empirical_pass=true`이고 모든 external/phase/proposition/physical authority는 false다. 현재 containing commit은 `PENDING_AT_PRECOMMIT_BY_DESIGN`, expected parent는 `fedb2031fbfabeaba84f86427c35334526234d73`, expected subject는 `audit(phase066): separate fit and material authority`, postcommit terminal은 `PASS_P066_STEP79_PERSISTENCE`다. Step 80은 그 terminal 전에 시작하지 않는다.
+- Step 79는 exact-seven commit `d091e7881f9f22d5dfe9511427afdf4ef22e3280`으로 push/live-remote와 Python 3.12/3.14 `PASS_P066_STEP79_PERSISTENCE`를 완료했다. Direct14만 bounded `empirical_pass=true`이고 모든 external/phase/proposition/physical authority는 false다.
+- Step 80은 fresh default `4+2`, explicit/toggle skew `7+7` 및 대안·저장 profile을 16개 route로 분리하고 Python 3.12/3.14의 36/36 격리 process를 일치시켰다. 온도 의존/비의존은 `9/7`이고 외부 재료·profile 선택·다중 온도 실험 authority는 전부 false다. 현재 containing commit은 `PENDING_AT_PRECOMMIT_BY_DESIGN`, expected parent는 `d091e7881f9f22d5dfe9511427afdf4ef22e3280`, expected subject는 `audit(phase066): verify profile default temperature routes`, postcommit terminal은 `PASS_P066_STEP80_PERSISTENCE`다. Step 81.1은 그 terminal 전에 시작하지 않는다.
 - plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
 - Phase 059 Steps 33.1–39.6 audit/validator 범위는 `PASS_P059_LINEAGE_B`로 닫혔다. 이 PASS는 audit scope와 internal routing만 닫으며 external scientific/material validity를 뜻하지 않는다.
 - Step 38.5는 roadmap proposal 5건과 carryover 7건을 12개 atomic item으로 분리했고 `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10`으로 판정했다.
@@ -327,7 +329,7 @@ read master + phase plan + previous result
 
 - Phase 066 v1.0.25.2 PDFs are byte-identical to the v1.0.25.1 PDF blobs and therefore stale; they are inventory/genealogy evidence, not proof of a v1.0.25.2 LaTeX rebuild or publication-ready artifact.
 - The Direct14 fitting driver retains only an 8-decimal parameter vector and 6-decimal transition values in stored output. The transient full-precision optimizer state is not persisted, so stored metrics/vector support bounded calibration genealogy only, not exact optimizer-state reconstruction, identifiability, or material/experimental validity.
-- Phase 066 activation and Steps 76–78 have persisted. Step 79 empirical/physical authority separation is current at `PASS_PENDING_PERSISTENCE`; Phase 068 retains the Claude/Codex fork-adjudication owners.
+- Phase 066 activation and Steps 76–79 have persisted. Step 80 profile/default/temperature verification is current at `PASS_PENDING_PERSISTENCE`; Phase 068 retains the Claude/Codex fork-adjudication owners.
 - All 41 `OPEN` and 11 `PRESERVED_ACTIVE` inherited carry-forward obligations remain unresolved; no Phase 059/060 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 inherited carry-forward targets assigned to Phase 070–090 remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`; this count is not the Phase 060 source-disposition target-row count.
 - Step 45.2 exact-eight는 commit `136a73804d714706bad1be6d58c99351e606fe0e`에 포함되어 push·remote verification과 `PASS_P060_STEP45_2_PERSISTENCE`를 완료했다.
@@ -414,11 +416,11 @@ read master + phase plan + previous result
 - Step 75.1 repaired freeze는 Python 3.12/3.14에서 `PASS_P065_STEP75_1_DISPOSITION_WITH_CONCERNS`를 반환했다. Source/carry traversal `17,151/11,021`, semantic/source-policy negatives `35/41`, output/transaction `7/4`, persistence-argument negatives `5/5`, deterministic pairs `2/2`이며, Python 3.14의 empty-AST-field 출력 차이는 runtime-neutral explicit-field serialization으로 교정했다. Arbitrary callback, duplicate writer, file-handle/tempfile/dunder-dict escape는 builder module 전체와 유일한 `atomic_write` AST seal 및 회귀 probe로 차단했다. Persistence `expected_commit`은 어떤 Git 호출보다 먼저 exact lowercase 40-hex로 검증해 option injection을 차단하며 공격 payload는 실행하지 않았다. Exact-eight commit `26e2ce9559220d5782e1303d68b4449a36309e94`는 pushed/live-remote verified됐고 Python 3.12/3.14 `PASS_P065_STEP75_1_PERSISTENCE`를 통과했다.
 - Step 75.2는 Phase 065 machine artifacts `11`, prior results `7`, strict traversal `87,180` nodes/depth `10`을 통합한다. Internal audit는 complete지만 Ref. 7 primary text는 `GROUND_NOT_FOUND`이므로 `CONDITIONAL_P065`를 선택한다. `PASS_P065_LINEAGE_H`는 Phase 071 원천 요구가 남아 있어 거부하고 `FAIL_P065`는 내부 audit failure가 없어 거부한다.
 
-- Step 75.2, Phase 066 activation and Steps 76–78 persisted. Step 78 exact-seven commit is `fedb2031fbfabeaba84f86427c35334526234d73` with dual-runtime `PASS_P066_STEP78_PERSISTENCE`. Step 79 selected `PASS_P066_STEP79_EMPIRICAL_PHYSICAL_SEPARATION`; exact-seven persistence is pending and Step 80 is blocked.
+- Step 75.2, Phase 066 activation and Steps 76–79 persisted. Step 79 exact-seven commit is `d091e7881f9f22d5dfe9511427afdf4ef22e3280` with dual-runtime `PASS_P066_STEP79_PERSISTENCE`. Step 80 selected `PASS_P066_STEP80_PROFILE_DEFAULT_TEMPERATURE_VERIFICATION`; exact-eight persistence is pending and Step 81.1 is blocked.
 
 ## Exact Next Action
 
-Run Step 79 content validation, stage exactly the seven declared paths, run Python 3.12/3.14 staged validation and independent review, commit with subject `audit(phase066): separate fit and material authority` and parent `fedb2031fbfabeaba84f86427c35334526234d73`, push, and verify persistence. Step 80 starts only after Python 3.12/3.14 return `PASS_P066_STEP79_PERSISTENCE`.
+Run Step 80 content validation, stage exactly the eight declared paths, run Python 3.12/3.14 staged validation and independent review, commit with subject `audit(phase066): verify profile default temperature routes` and parent `d091e7881f9f22d5dfe9511427afdf4ef22e3280`, push, and verify persistence. Step 81.1 starts only after Python 3.12/3.14 return `PASS_P066_STEP80_PERSISTENCE`.
 
 ## Hard-stop Reminder
 
