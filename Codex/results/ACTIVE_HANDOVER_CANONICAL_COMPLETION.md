@@ -1,6 +1,6 @@
 # Project Anode Fit Canonical Completion Active Handover
 
-최종 갱신일: 2026-08-31
+최종 갱신일: 2026-09-01
 
 활성 branch: `codex/anode-fit-v1025_2-canonical-completion`
 
@@ -12,26 +12,27 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 2. 계획 운영 지침: `Codex/plans/phase_planning_operations_guide.md`
 3. 활성 master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.md`
 4. machine master plan: `Codex/plans/2026-08-25-v1025_2-canonical-completion-master-plan.json`
-5. 활성 Phase 065 plan: `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md`
-6. 완료된 Phase 064 plan: `Codex/plans/2026-08-29-phase064-v1023-lineage-detailed-plan.md`
-7. 완료된 Phase 063 plan: `Codex/plans/2026-08-28-phase063-v1022-lineage-detailed-plan.md`
-8. 완료된 Phase 062 plan: `Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`
-9. 완료된 Phase 061 plan: `Codex/plans/2026-08-26-phase061-v1020-lineage-detailed-plan.md`
-10. 완료된 Phase 060 plan: `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`
-11. 완료된 Phase 059 plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
-12. 이전 master plan: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
-13. 이전 Phase plan: `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
-14. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
-15. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
-16. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
-17. 현재 Phase 상태: Phase 065 `CONDITIONAL_PENDING_PERSISTENCE`, Current checkpoint: Step 75.2 precommit `CONDITIONAL_P065`
-18. 현재 result: `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md`
-19. 현재 machine evidence: `Codex/results/PHASE_065_VALIDATION.json` JSON-last; prior Phase 065 machine artifacts 11개와 result documents 7개가 binding input
-20. 직전 Phase result: `Codex/results/PHASE_064_RESULT.md`; gate result `Codex/results/PHASE_064_STEP_069_2_GATE_RESULT.md`; Lineage Report G `Codex/results/PHASE_064_V1023_LINEAGE_REPORT_G.md`
-21. 직전 integrated machine evidence: `Codex/results/PHASE_064_VALIDATION.json`; Steps 64–69.1 evidence remains binding
-22. 직전 final persistence: Step 75.1 commit `26e2ce9559220d5782e1303d68b4449a36309e94`, parent `a04bca9c73941e1a4fbc0ab6e4f4e49514dcce12`, subject `audit(phase065): disposition v1024 lineage`; Python 3.12/3.14 `PASS_P065_STEP75_1_PERSISTENCE`
-23. carry-forward machine evidence: `Codex/results/PHASE_064_V1023_CARRY_FORWARD_DELTA.json`; inherited parent `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
-24. master-plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
+5. 활성 Phase 066 plan: `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md`
+6. 완료된 Phase 065 plan: `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md`
+7. 완료된 Phase 064 plan: `Codex/plans/2026-08-29-phase064-v1023-lineage-detailed-plan.md`
+8. 완료된 Phase 063 plan: `Codex/plans/2026-08-28-phase063-v1022-lineage-detailed-plan.md`
+9. 완료된 Phase 062 plan: `Codex/plans/2026-08-27-phase062-v1021-lineage-detailed-plan.md`
+10. 완료된 Phase 061 plan: `Codex/plans/2026-08-26-phase061-v1020-lineage-detailed-plan.md`
+11. 완료된 Phase 060 plan: `Codex/plans/2026-08-25-phase060-v1019-lineage-detailed-plan.md`
+12. 완료된 Phase 059 plan: `Codex/plans/2026-08-25-phase059-resume-closure-detailed-plan.md`
+13. 이전 master plan: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
+14. 이전 Phase plan: `Codex/plans/2026-07-28-phase059-v1014-v1018_2-lineage-detailed-plan.md`
+15. 활성 execution ledger: `Codex/results/PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`
+16. 이전 execution ledger: `Codex/results/PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`
+17. 이전 handover: `Codex/results/ACTIVE_HANDOVER_V1010_V1025_2_REAUDIT.md`
+18. 현재 Phase 상태: Phase 066 `PASS_PENDING_PERSISTENCE`, current checkpoint `PASS_P066_PLAN_ACTIVATION`; cumulative Step 76 blocked
+19. 현재 result: `Codex/results/PHASE_066_PLAN_ACTIVATION_RESULT.md`
+20. 현재 machine evidence: `Codex/results/PHASE_066_PLAN_ACTIVATION_VALIDATION.json`; validator `Codex/work/v1025_phase066/validate_phase066_plan.py`; execution and staged dual-runtime validation are not yet claimed
+21. 직전 Phase result: `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md`
+22. 직전 integrated machine evidence: `Codex/results/PHASE_065_VALIDATION.json` JSON-last; prior Phase 065 machine artifacts 11개와 result documents 7개가 binding input
+23. 직전 final persistence: Step 75.2 commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`
+24. carry-forward machine evidence: `Codex/results/PHASE_064_V1023_CARRY_FORWARD_DELTA.json`; inherited parent `Codex/results/PHASE_059_CARRY_FORWARD_REGISTER.json`
+25. master-plan activation result: `Codex/results/PLAN_ACTIVATION_CANONICAL_COMPLETION_RESULT.md`
 
 ## Handover Chain
 
@@ -89,7 +90,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | Phase 065 Step 73 | Step 73 | exact-eight commit `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`, parent `272b8d331c55448182e96c75363a56061adf58f2`, subject `audit(phase065): separate v1024 initialization routes`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP73_PERSISTENCE`; official `10/10`; implemented route processes `8/8`; absence corroborations `4/4`; mutations `6/6`; order controls `6/6`; legacy restoration `ABSENT_IN_FROZEN_SOURCE`, not behavior PASS | execute Step 74 |
 | Phase 065 Step 74 | Step 74 | `PASS_P065_STEP74_CONFORMANCE_WITH_CONCERNS`; exact-seven commit `a04bca9c73941e1a4fbc0ab6e4f4e49514dcce12`, parent `5c5c555462f1dbf0603eedda6a1d5b62684cffdf`, subject `audit(phase065): adjudicate v1024 doc code guide`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP74_PERSISTENCE`; 41 conformance rows; 17 exact prior routes; 56 source bindings; protected/main/Claude unchanged | execute Step 75.1 |
 | Phase 065 Step 75.1 | Step 75.1 | `PASS_P065_STEP75_1_DISPOSITION_WITH_CONCERNS`; exact-eight commit `26e2ce9559220d5782e1303d68b4449a36309e94`, parent `a04bca9c73941e1a4fbc0ab6e4f4e49514dcce12`, subject `audit(phase065): disposition v1024 lineage`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_1_PERSISTENCE`; protected/main/Claude unchanged | execute Step 75.2 |
-| Phase 065 Step 75.2 | Step 75.2 | selected `CONDITIONAL_P065`; `PENDING_AT_PRECOMMIT_BY_DESIGN`; expected parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`; exact-eight; postcommit `PASS_P065_STEP75_2_PERSISTENCE`; Ref. 7 `GROUND_NOT_FOUND` under `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | exact-eight commit/push/persistence, then Phase 066 detailed-plan activation before cumulative Step 76 |
+| Phase 065 Step 75.2 | Step 75.2 | selected `CONDITIONAL_P065`; exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`; pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`; Ref. 7 `GROUND_NOT_FOUND` under `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | activate and persist Phase 066 detailed plan before cumulative Step 76 |
+| Phase 066 detailed plan activation | Steps 76–81 planning boundary | `PASS_P066_PLAN_ACTIVATION`; `PASS_PENDING_PERSISTENCE`; containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`; expected parent `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, subject `docs(phase066): plan v1025 lineage reaudit`; exact-seven; postcommit `PASS_P066_PLAN_ACTIVATION_PERSISTENCE` | exact-seven commit/push/persistence, then cumulative Step 76 |
 
 ## Current State
 
@@ -98,6 +100,8 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 - 격리 worktree는 사용자 프로필 아래 외부 경로에 있으며 프로젝트 `.gitignore`를 수정하지 않았다.
 - sparse checkout에 `Claude/docs/v1.0.18.1`, `Claude/docs/v1.0.18.2`, `Claude/docs/v1.0.19`, `Claude/docs/v1.0.20`, `Claude/docs/v1.0.21`, V1019/V1021 plan-process paths와 `Codex`가 포함된다. Sparse 확장은 tracked change를 만들지 않았다.
 - Phase 055–058은 기존 gate 기준 PASS다.
+- Phase 065 Step 75.2는 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`로 push·live-remote verification과 Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`를 완료했다. 최종 Phase 065 Gate는 `CONDITIONAL_P065`이며 Ref. 7 owner는 `PHASE-071-PRIMARY-SOURCE-ACQUISITION`으로 유지된다.
+- Phase 066 detailed-plan activation content Gate는 `PASS_P066_PLAN_ACTIVATION`으로 선택됐지만 상태는 `PASS_PENDING_PERSISTENCE`다. Containing commit은 `PENDING_AT_PRECOMMIT_BY_DESIGN`, expected parent는 `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, expected subject는 `docs(phase066): plan v1025 lineage reaudit`, postcommit terminal은 `PASS_P066_PLAN_ACTIVATION_PERSISTENCE`다. Step 76은 그 terminal 전에 시작하지 않는다.
 - plan activation commit `1cf955ba347218676a73bdae0a9eb8add8e1581a`는 push와 local/upstream/`ls-remote` 일치를 확인했다.
 - Phase 059 Steps 33.1–39.6 audit/validator 범위는 `PASS_P059_LINEAGE_B`로 닫혔다. 이 PASS는 audit scope와 internal routing만 닫으며 external scientific/material validity를 뜻하지 않는다.
 - Step 38.5는 roadmap proposal 5건과 carryover 7건을 12개 atomic item으로 분리했고 `IMPLEMENTED=1`, `THEORY_ONLY=1`, `NEW_SCOPE=10`으로 판정했다.
@@ -162,6 +166,10 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 
 ## Recovery Read Coverage (Activation and Subsequent Steps)
 
+- Phase 066 activation sources: Phase 056 complete manifest/inventory result and machine artifacts, Phase 057 v1.0.25-specific read/disposition/genealogy surfaces, Claude v1.0.25–v1.0.25.2 plan/result/handover controls, and the active ledgers/handover were recovered before plan activation. The fixed source denominator is `433` path occurrences, `167` unique blobs, `158` unique text blobs with `30,597` physical lines, `6` unique PDFs with `308` pages, and `3` unique images; per-release occurrences are `143/144/146`.
+- Phase 066 narrative denominator is `40` manifest-backed documents and `9,019` physical lines, plus root `Claude/plans/2026-07-26-v1025-surgical-skew-consistency-plan.md` (`240` lines) and `Claude/results/HANDOVER_v1025_2_CARRYOVER.md` (`415` lines), for `42` documents and `9,674` lines. The two root controls remain outside the `433` manifest occurrences.
+- Phase 066 process genealogy has a `17`-commit release denominator and `20`-commit routed denominator, from first selected commit `edbc4a2c68cda0dd21662cb6dd68ba8bed699a76` through last selected commit `e3e1a634f34b711aa4803fd190fe9120f1755f13`. Supplemental/transitional evidence is genealogy input only, not release or scientific authority.
+- The Phase 066 activation result and detailed plan bind these denominators, but this handover does not claim that `Codex/work/v1025_phase066/validate_phase066_plan.py` has run or that `Codex/results/PHASE_066_PLAN_ACTIVATION_VALIDATION.json` is current staged evidence. Those checks remain part of the exact-seven persistence boundary.
 - `Codex/AGENTS.md`: 1..EOF.
 - previous master plan: 1..EOF.
 - previous Phase 059 detailed plan: 1..EOF.
@@ -308,6 +316,9 @@ read master + phase plan + previous result
 
 ## Open Items
 
+- Phase 066 v1.0.25.2 PDFs are byte-identical to the v1.0.25.1 PDF blobs and therefore stale; they are inventory/genealogy evidence, not proof of a v1.0.25.2 LaTeX rebuild or publication-ready artifact.
+- The Direct14 fitting driver retains only an 8-decimal parameter vector and 6-decimal transition values in stored output. The transient full-precision optimizer state is not persisted, so stored metrics/vector support bounded calibration genealogy only, not exact optimizer-state reconstruction, identifiability, or material/experimental validity.
+- Phase 066 activation has not persisted. No Step 76 source/genealogy output may be created until `PASS_P066_PLAN_ACTIVATION_PERSISTENCE`; Phase 068 retains the Claude/Codex fork-adjudication owners.
 - All 41 `OPEN` and 11 `PRESERVED_ACTIVE` inherited carry-forward obligations remain unresolved; no Phase 059/060 PASS wording may present them as repaired, resolved or externally validated.
 - The 24 inherited carry-forward targets assigned to Phase 070–090 remain inactive until Phase 069 returns `GO` or `CONDITIONAL_GO`; this count is not the Phase 060 source-disposition target-row count.
 - Step 45.2 exact-eight는 commit `136a73804d714706bad1be6d58c99351e606fe0e`에 포함되어 push·remote verification과 `PASS_P060_STEP45_2_PERSISTENCE`를 완료했다.
@@ -394,9 +405,11 @@ read master + phase plan + previous result
 - Step 75.1 repaired freeze는 Python 3.12/3.14에서 `PASS_P065_STEP75_1_DISPOSITION_WITH_CONCERNS`를 반환했다. Source/carry traversal `17,151/11,021`, semantic/source-policy negatives `35/41`, output/transaction `7/4`, persistence-argument negatives `5/5`, deterministic pairs `2/2`이며, Python 3.14의 empty-AST-field 출력 차이는 runtime-neutral explicit-field serialization으로 교정했다. Arbitrary callback, duplicate writer, file-handle/tempfile/dunder-dict escape는 builder module 전체와 유일한 `atomic_write` AST seal 및 회귀 probe로 차단했다. Persistence `expected_commit`은 어떤 Git 호출보다 먼저 exact lowercase 40-hex로 검증해 option injection을 차단하며 공격 payload는 실행하지 않았다. Exact-eight commit `26e2ce9559220d5782e1303d68b4449a36309e94`는 pushed/live-remote verified됐고 Python 3.12/3.14 `PASS_P065_STEP75_1_PERSISTENCE`를 통과했다.
 - Step 75.2는 Phase 065 machine artifacts `11`, prior results `7`, strict traversal `87,180` nodes/depth `10`을 통합한다. Internal audit는 complete지만 Ref. 7 primary text는 `GROUND_NOT_FOUND`이므로 `CONDITIONAL_P065`를 선택한다. `PASS_P065_LINEAGE_H`는 Phase 071 원천 요구가 남아 있어 거부하고 `FAIL_P065`는 내부 audit failure가 없어 거부한다.
 
+- Step 75.2 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5` is pushed/live-remote verified and passed Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`. Phase 066 activation selected `PASS_P066_PLAN_ACTIVATION` and remains `PASS_PENDING_PERSISTENCE`; Step 76 is blocked.
+
 ## Exact Next Action
 
-Controller validates and stages exactly the Step 75.2 eight declared paths: final validator, `PHASE_065_VALIDATION.json`, Lineage Report H, Step 75.2 Gate Result, Phase Result, both execution ledgers and active handover. Run Python 3.12/3.14 staged validation and independent science/validator/records reviews, require P0/P1/P2=`0/0/0`, commit with subject `audit(phase065): close v1024 lineage gate` and parent `26e2ce9559220d5782e1303d68b4449a36309e94`, push and verify local/upstream/tracking/live-origin equality, exact committed paths/blob bytes, protected/main/Claude non-change and clean status. Only after `PASS_P065_STEP75_2_PERSISTENCE` may the Phase 066 detailed plan be saved and activated; cumulative Step 76 begins only after that plan activation.
+Controller prepares and stages exactly the Phase 066 activation seven declared paths: `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md`, `Codex/work/v1025_phase066/validate_phase066_plan.py`, `Codex/results/PHASE_066_PLAN_ACTIVATION_VALIDATION.json`, `Codex/results/PHASE_066_PLAN_ACTIVATION_RESULT.md`, both execution ledgers and active handover. The containing commit remains `PENDING_AT_PRECOMMIT_BY_DESIGN`; no validator execution or staged dual-runtime PASS is claimed here. Run Python 3.12/3.14 staged validation and independent plan/validator/records reviews, require P0/P1/P2=`0/0/0`, commit with subject `docs(phase066): plan v1025 lineage reaudit` and parent `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, push and verify local/upstream/tracking/live-origin equality, exact committed paths/blob bytes, protected/main/Claude non-change and clean status. Cumulative Step 76 begins only after `PASS_P066_PLAN_ACTIVATION_PERSISTENCE`.
 
 ## Hard-stop Reminder
 
