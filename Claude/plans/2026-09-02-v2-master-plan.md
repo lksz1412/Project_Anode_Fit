@@ -245,7 +245,7 @@ D:\Projects\Project_Anode_Fit\
 | **4.0~4.9** | 저작 v1.0.27(Ch1 이론 집중 → 부록 D 통계역학 → Ch2/Ch3 분기 → 3장 정합) | 51– | 절 단위 루프 · 분리 빌드 게이트(xelatex 3-pass err 0·undefined 0·STRUCTURE PASS) · **전 tex 코드 토큰 0**(DR-14) · **학술 용어 영어 원어·tier 표기 0**(DR-20·21) · Phase 별 Result · (a)~(d) 사슬 · T-19/T-20/T-21 절별 · boxed 회수 합 64/64(Step 41 매핑표 기준) | 3.7 Result 후 세부화 | R5·R6 배치 열·3.3 배열안 | 대기 |
 | **5.1~5.3** | 서지 완결 | (4 에 이어 연속) | 원장 DOI 전수 검증·한 문헌 한 키·저자 전원 · **전문 리뷰 논문 서지 포맷(DR-19)** · 절별 밀도 하한 · Result | 3.7 Result 후 세부화 | R7 §5 | 대기 |
 | **6.1~6.3** | 검수·수렴·마감 | (5 에 이어 연속) | 10R + 커버리지×렌즈 6종 완주 **둘 다**(follow 변형 = 수식·박스·라벨만 노출한 청크 ≥1회) · P3 8항(현행 기호 재해석)+헌법 3종+F 게이트+T-19/T-20/T-21 · 빌드 GREEN·PDF·HANDOVER·INDEX·commit·push | 3.7 Result 후 세부화 | — | 대기 |
-| **7.1~7.3** | 코드 동기(doc-leads) — DR-4·DR-9 | (6 에 이어 연속) | 문건↔코드 대응 지도(문건 밖 OUT-CODEDOC) · 코드 개정(additive·기본 경로 bit-exact 폴백·게이트 GREEN) · 공개데이터 재현·문건 예제 = 코드 출력 · Result | 챕터 6 종료 후 세부화 | v1.0.25 코드·v1.0.26 조사 코드·현행 코드맵 | 대기 |
+| **7.1~7.3** | 코드 동기(doc-leads) — DR-4·DR-9 | (6 에 이어 연속) | 문건↔코드 대응 지도(문건 밖 OUT-CODEDOC) · 코드 개정(additive·기본 경로 bit-exact 폴백·게이트 GREEN) · 공개데이터 재현·문건 수치 검산값(verifybox) = 코드 출력 · Result | 챕터 6 종료 후 세부화 | v1.0.25 코드·v1.0.26 조사 코드·현행 코드맵 | 대기 |
 
 > Phase/step 수·범위는 **최소 기준점**이며 검토 필요 시 확장·신규 Phase 추가가 가능하다(silent 누락 금지·명시 deferral + Decision Queue 등재). 챕터 1~3 이 v1 초안(1–10 / 11–24 / 25–40) 대비 13 / 19 / 18 로 늘어난 근거는 「Correction History」v2 행.
 
@@ -264,7 +264,7 @@ D:\Projects\Project_Anode_Fit\
 - 기각군 재조사 X — R5 §1.2 12건·R6 §6 20항(Wiener–Hopf·WKB·다중척도·중심다양체·Langevin·Preisach 연산자/연속 밀도/FORC·동적 Kubo 승격·RG 장치·안장점 독립 절·LDT·볼록최적화 전역해·Bazant/Dreyer PDE 생성기·비대칭 커널 "문헌 근거" 주장·전이 6+ 증설·DFT 결합E→Ω 대입·블렌드 역학 결합·Si 소성 구성식 창작·경로의존 소산 정량·Jarzynski/Crooks·비등온 T(V) 되먹임). Preisach 는 명명·embed 노트 한정(C).
 - **S0–S5 역방향 식별 사슬·16-울타리는 두 갈래로 나눈다.** (i) 피팅 알고리즘·코드 구현(Optuna 대체 절차 등) = DR-4 별도 코드 플랜 소관 → 본 계획 Non-goal. (ii) 식별 사슬의 **본문 서술 편입**(기준 5 사다리의 역방향·G-usable) = Non-goal 이 **아니라** 1.4 명시 결정 대기 항목 → 3.3/3.4 결정 후보 → DG-B(R1 DQ-7·R3 B-1 "재개방 검토"; R6 §6 마지막 행은 카탈로그 범위 선언이지 기각 판정이 아니다). DR-16 인접.
 - 나노 PSD·Gibbs–Thomson 확장 X(마이크론 흑연 범위, `ch1_sec07_broadening.tex`:313) — Non-goal warnbox 유지(TH-5.4).
-- **예제(Example)·연습문제(Exercise) 같은 "풀어야 할 문제" X**(사용자 2026-09-03) — 교과서 형식은 정의·유도·중간식·요약·회수 표·검산으로만 구현한다.
+- **예제(Example)·연습문제(Exercise) 같은 "풀어야 할 문제" X**(사용자 2026-09-03) — 교과서 형식은 정의·유도·중간식·요약·회수 표·검산으로만 구현한다. 현행 worked example 3곳(§10 흑연·§15 LCO·Part T 발열)은 v1.0.27 에서 예제 장치가 아니라 검산(verifybox) 서술로 전환한다.
 - **tier A/B/C 표기 X**(DR-21) — 신뢰·가정 상태는 서술로 적는다(매크로·각주 정의 제거). **학술 용어의 한글 억지 번역 X**(DR-20) — 문장 골조는 한글, 학술 용어는 영어 원어(regular solution·entropy production·affinity 등); 한국 학술용어는 존중, 일본식·중국식 번역어 배제, 애매하면 영어.
 - 효율을 이유로 검수 하한을 낮추는 것 X(사용자 기준 6). 정독 범위는 **사용자 확정(DR-7)** = 핵심 문건 전문 + 그 밖(세부 계획서·ledger·result)은 토픽 한정 정독 — 축약이 아니라 범위 정의이며, 등록부 각 행의 근거 절은 반드시 원천에서 정독한다.
 
