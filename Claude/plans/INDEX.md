@@ -7,7 +7,12 @@
 > `2026-07-18-v1023-*` · `2026-07-18-v1024-completeness-validation` · `2026-07-19-v1024-si-2L-codex-reflection` ·
 > `2026-07-22-v1024-feedback-revision`). 전면 재정렬은 별도 작업으로 남긴다(v1.0.25 국소 수정 범위 밖).
 
-## ★ 현재 활성 — v1.0.25 (국소 수정: @2 비대칭 opt-in + 문건↔코드 정합)
+## ★ 현재 활성 — v2.0.0 (수식 연구 진보 마스터 플랜 — 사용자 결정·GO 대기, 2026-09-02~03)
+| 파일 | 역할 | 상태 |
+|---|---|---|
+| **`2026-09-02-v2-master-plan.md`** | ★MASTER(11-section, v4 master 최종본) — 작업 챕터 1 이력 통합(등록부 3종) → 2 v1.0.25/.1 진단(GAP REGISTER) → 3 이론 진보 설계(THEORY BLUEPRINT, ★3.7 DG-A/B/C 정지) → 4 저작 v2.0.0 → 5 서지 완결 → 6 10R 검수·마감. 챕터 1~3 = Step 1–50 세부 · 전원 Fable 5.1(사용자 명시 예외) · Codex 무접근 · 코드 동기 Non-goal · DR-1~23 사용자 결정 대기. 판독 R1~R7·감사·비평·부록 handoff = `../results/handoffs/2026-09-02-v2-master-plan/` | **GO 대기** |
+
+## 직전 활성 — v1.0.25 (국소 수정: @2 비대칭 opt-in + 문건↔코드 정합 — 집행 완료)
 | 파일 | 역할 | 상태 |
 |---|---|---|
 | **`2026-07-26-v1025-surgical-skew-consistency-plan.md`** | ★MASTER — **전문 재작성 아닌 국소 수정판**. 변경대장 C1~C9·G0 / 결정 D-A(@2 opt-in)·D-B(gallery opt-in)·D-C(커널 배제)·D-D(국소 원칙) / **DG-1 = regsol 완전 삭제**·**DG-2 = 파일명 유지** 확정. 근거 = 공개 실측(SINTEF Zenodo 20086298) 피크·벨리 개형 재검증 + @1~@5 조합 + @3 역전 규명 + gallery≠상 판정. 집행 = 코드 Fable / **문건 마스터 Opus 5.0 직접** / 기계작업 Opus 4.8 | **집행 완료 — LaTeX 빌드만 잔여** |
