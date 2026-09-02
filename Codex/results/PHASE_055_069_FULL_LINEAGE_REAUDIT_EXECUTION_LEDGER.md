@@ -31,7 +31,7 @@
 | 064 | 64–69 | plan activation; Steps 64–69.2 complete | lineage G | v1.0.23 재감사 | CONDITIONAL | `Codex/plans/2026-08-29-phase064-v1023-lineage-detailed-plan.md` | `Codex/results/PHASE_064_V1023_LINEAGE_REPORT_G.md`; `Codex/results/PHASE_064_STEP_069_2_GATE_RESULT.md`; `Codex/results/PHASE_064_RESULT.md` | `Codex/results/PHASE_064_VALIDATION.json` plus prior Phase 064 evidence | Step 69.2 exact-eight commit `60ec2d2ad08a029224b86ddc3dcf6ff718c6d310`, parent `ec1fb2eda54feb35cd6c15d2ab15f2478b26fc6d`, subject `audit(phase064): close v1023 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 historical `15/15`, negative `37/37`, strict JSON `6/6`, Git `17/17`, determinism `2/2`; Ref. 6 full text `4/4`, Ref. 7 original `GROUND_NOT_FOUND` | `CONDITIONAL_P064`; `PASS_P064_STEP69_2_PERSISTENCE` | Phase 065 detailed-plan activation before Step 70 |
 | 065 | 70–75 | Steps 70–75.2 complete | lineage H | v1.0.24–v1.0.24.1 재감사 | CONDITIONAL | `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md` | `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md` | Phase 065 machine artifacts `11`; integrated `Codex/results/PHASE_065_VALIDATION.json` JSON-last | Step 75.2 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`; source `261/131`, machine traversal `87,180` depth `10`, runtime `18`, conformance `41`, carry `192/94`; Ref. 7 original full text remains `GROUND_NOT_FOUND` under `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | `CONDITIONAL_P065`; `PASS_P065_STEP75_2_PERSISTENCE` | Phase 066 detailed-plan activation persistence before cumulative Step 76 |
 | 066 | 76–81 | Steps 76–81.2 complete and persisted | lineage I | v1.0.25–v1.0.25.2 재감사 | CONDITIONAL | `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md` | `Codex/results/PHASE_066_V1025_V1025_2_LINEAGE_REPORT_I.md`; `Codex/results/PHASE_066_STEP_081_2_GATE_RESULT.md`; `Codex/results/PHASE_066_RESULT.md` | Steps 76–81.1 machine artifacts; integrated `Codex/results/PHASE_066_VALIDATION.json` JSON-last; canonical history precommit/persistence `7/7`, total `14/14`, ordinary fresh replay `0/14` | Step 81.2 exact-eight commit `7241b331ff76bc8d43cb1bc6b69634977e0884a0`, parent `bdad7375d70c3734cc63265d94a61dd82afd143d`, subject `audit(phase066): close v1025 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP81_2_PERSISTENCE`; source `433/167`, Direct14 `14/57`, original optimizer state and Ref. 7 full text `GROUND_NOT_FOUND`, profile routes `16`, probes `36/36`, owner registry/active `355/219`; held-out/external/material authority and stale PDFs remain open | `CONDITIONAL_P066`; `PASS_P066_LINEAGE_I` not selected; `PASS_P066_STEP81_2_PERSISTENCE` | Phase 067 detailed-plan activation exact-seven commit/push/persistence before Step 82 |
-| 067 | 82–90 | Steps 82–84 persisted; Step 85 state/default/import/saved-route audit fixed pending persistence; Steps 86–90.2 pending | code | 코드·시험·피팅 계보 교차감사 | PASS_PENDING_PERSISTENCE | original `Codex/plans/2026-09-01-phase067-code-test-fitting-cross-audit-detailed-plan.md`; repair addendum retained | Step 82 source topology; Step 83 state flow; Step 84 call graph; Step 85 `Codex/results/PHASE_067_STEP_085_STATE_DEFAULT_IMPORT_RESULT.md` | Step 84 exact-seven commit `f00bf2fa8f25c85f0c62cb901912763d98c8f070` persisted; Step 85 exact-eight builder/validator plus JSON-last default/import matrix and runtime attestation; complete Python search `84/84`; isolated named cases `13×2=26`; saved routes `8/14/14` | Step 84 Python 3.12/3.14 `PASS_P067_STEP84_PERSISTENCE`; Step 85 selects `PASS_P067_STEP85_STATE_DEFAULT_IMPORT`, expected parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`, subject `audit(phase067): separate defaults state persistence`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP85_PERSISTENCE` pending; runtime/science/material/canonical/publication authority not promoted | exact-eight Step 85 independent review, staged verification, commit/push/live/clean and dual-runtime persistence before Step 86 |
+| 067 | 82–90 | Steps 82–85 persisted; Step 86 test/demo/golden/guide/tool audit fixed pending persistence; Steps 87–90.2 pending | code | 코드·시험·피팅 계보 교차감사 | PASS_PENDING_PERSISTENCE | original `Codex/plans/2026-09-01-phase067-code-test-fitting-cross-audit-detailed-plan.md`; repair addendum retained | Steps 82–85 prior results; Step 86 `Codex/results/PHASE_067_STEP_086_TEST_DEMO_GOLDEN_RESULT.md` | Step 85 exact-eight commit `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c` persisted; Step 86 exact-eight builder/validator plus JSON-last test/demo/golden and guide/tool matrices; tests `44/29/6,042`, demos `30/26/3,300`, golden `8/2`, result/tool `35/14/2,081`, guide `20/8/854` | Step 85 Python 3.12/3.14 `PASS_P067_STEP85_PERSISTENCE`; Step 86 selects `PASS_P067_STEP86_TEST_DEMO_GOLDEN`, expected parent `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, subject `audit(phase067): adjudicate test demo golden behavior`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP86_PERSISTENCE` pending; runtime/software observation only, science/material/canonical/publication authority not promoted | exact-eight Step 86 independent review, staged verification, commit/push/live/clean and dual-runtime persistence before Step 87 |
 | 068 | 91–98 | — | fork | 기존 Codex/Claude 검토 재판정 | PENDING | same master plan | pending | fork matrix | 미실행 | `PASS_P068_FORK_ADJUDICATION` | 91 |
 | 069 | 99–107 | — | synthesis | 전체 종합·새 작업 착수 gate | PENDING | same master plan | pending | canonical audit | 미실행 | `PASS_P069_REAUDIT_COMPLETE` | 99 |
 
@@ -155,14 +155,39 @@ coordinated valid-wrong C01/C06/C08 values despite valid hashes. The superseded 
 candidate then admitted equality-compatible JSON type substitutions (`true→1`, `372.0→372`,
 runtime `3→3.0`) after full resealing; recursive type-strict equality and dedicated type-swap
 controls close that class. Runtime micro versions are freshly
-exact-compared; PID authority is limited to positive trace IDs and C06/C09 inequality. It is
-`PASS_PENDING_PERSISTENCE` under
-`PASS_P067_STEP85_STATE_DEFAULT_IMPORT`, expected
-parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`, subject
-`audit(phase067): separate defaults state persistence`, containing commit
-`PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP85_PERSISTENCE`. Step 86 is blocked until
+exact-compared; PID authority is limited to positive trace IDs and C06/C09 inequality. It is persisted under
+`PASS_P067_STEP85_STATE_DEFAULT_IMPORT` as exact-eight commit
+`3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, parent
+`f00bf2fa8f25c85f0c62cb901912763d98c8f070`, subject
+`audit(phase067): separate defaults state persistence`, pushed/live/clean, and
+Python 3.12/3.14 both returned `PASS_P067_STEP85_PERSISTENCE`. Step 86 fixes test `44/29/6,042`, demo `30/26/3,300`, golden
+`8/2`, result/tool `35/14/2,081`, and FITTING_GUIDE `20/8/854`. Enforcement remains distinct from
+printed/manual observations; golden two-blob values and overwrite/refusal boundaries remain separate;
+all 854 guide lines are losslessly classified without prose-to-runtime promotion. The first full replay
+candidate was rejected because disposable Matplotlib `fontlist-v390.json` content is nondeterministic;
+the repaired projection withholds only that allowlisted third-party cache content hash while preserving
+path/presence/size/count and exact non-cache outputs. Step 86 is `PASS_PENDING_PERSISTENCE` under
+`PASS_P067_STEP86_TEST_DEMO_GOLDEN`, expected parent
+`3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, subject
+`audit(phase067): adjudicate test demo golden behavior`, containing commit
+`PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP86_PERSISTENCE`. Step 87 is blocked until
 independent P0/P1/P2=`0/0/0`, exact-eight staged/commit/push/live/clean and the same child's dual
 runtime persistence terminal. Runtime/test/science/material/canonical/publication authority is not promoted.
+The first frozen Step 86 content-PASS candidate was subsequently rejected for a one-based guide manifest
+index, guide nested-provenance and contract-map fail-open, resealed runtime transcript/filesystem acceptance,
+and an unverified full-read attestation input. The repair uses zero-based source indices, exact reconstructed
+guide rows, four exact contract maps, a pinned 110-record runtime-section digest, and fresh attestation
+raw/semantic verification; final semantic/loader controls are `54/54` and `7/7` per runtime.
+Final review then found the persistence `diff-tree` argv unreachable because the terminal empty argument
+was tested as hexadecimal. A real Git probe disproved empty-argument allowance with exit 128; the final
+call uses the exact `--` separator and gates one known Step 85 exact-eight projection plus nine malformed
+shapes as `10/10` Git-argv controls.
+An independent reviewer then rejected that frozen candidate because this ledger's bounded Step 85
+paragraph still mixed its persisted commit with pending/expected/containing-commit wording. The paragraph
+now exact-binds commit `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, its sole Git parent
+`f00bf2fa8f25c85f0c62cb901912763d98c8f070`, exact subject, pushed/live/clean, and dual
+`PASS_P067_STEP85_PERSISTENCE`. Direct `%P` verification discarded an initially proposed but incorrect
+`919af57fa44dd9ecc15d4096f2178c178a200a68` parent. Bounded stale/repaired paragraph controls pass `2/2`.
 
 ## Execution Rule
 

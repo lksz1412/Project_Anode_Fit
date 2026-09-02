@@ -39,7 +39,7 @@ branch base: `fc5f1776cfe1de5cb5d8336a74b05f35e3f95d71`
 | 064 | 64–69 | plan activation; Steps 64–69.2 complete | v1.0.23 reaudit | CONDITIONAL | `Codex/plans/2026-08-29-phase064-v1023-lineage-detailed-plan.md` | Lineage Report G `Codex/results/PHASE_064_V1023_LINEAGE_REPORT_G.md`; Step 69.2 gate `Codex/results/PHASE_064_STEP_069_2_GATE_RESULT.md`; Phase result `Codex/results/PHASE_064_RESULT.md` | integrated `Codex/results/PHASE_064_VALIDATION.json` plus prior Phase 064 evidence | Step 69.2 exact-eight commit `60ec2d2ad08a029224b86ddc3dcf6ff718c6d310`, parent `ec1fb2eda54feb35cd6c15d2ab15f2478b26fc6d`, subject `audit(phase064): close v1023 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P064_STEP69_2_PERSISTENCE`; selected `CONDITIONAL_P064`; Ref. 7 original remains `GROUND_NOT_FOUND` and owner `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | activate Phase 065 detailed plan before Step 70 |
 | 065 | 70–75 | Steps 70–75.2 complete | v1.0.24–v1.0.24.1 reaudit | CONDITIONAL | `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md` | `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md` | Phase 065 machine artifacts `11`; integrated `Codex/results/PHASE_065_VALIDATION.json` JSON-last; Step 75.2 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`; source `261/131`, machine traversal `87,180` depth `10`, runtime `18`, conformance `41`, carry `192/94` | `CONDITIONAL_P065`; Ref. 7 `GROUND_NOT_FOUND` owned by `PHASE-071-PRIMARY-SOURCE-ACQUISITION`; `PASS_P065_STEP75_2_PERSISTENCE` | Phase 066 detailed-plan activation persistence before cumulative Step 76 |
 | 066 | 76–81 | Steps 76–81.2 complete and persisted | v1.0.25–v1.0.25.2 reaudit | CONDITIONAL | `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md` | `Codex/results/PHASE_066_V1025_V1025_2_LINEAGE_REPORT_I.md`; `Codex/results/PHASE_066_STEP_081_2_GATE_RESULT.md`; `Codex/results/PHASE_066_RESULT.md` | Steps 76–81.1 machine artifacts; integrated `Codex/results/PHASE_066_VALIDATION.json` JSON-last; canonical history precommit/persistence `7/7`, total `14/14`, ordinary fresh replay `0/14` | Step 81.2 exact-eight `7241b331ff76bc8d43cb1bc6b69634977e0884a0`, parent `bdad7375d70c3734cc63265d94a61dd82afd143d`, subject `audit(phase066): close v1025 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP81_2_PERSISTENCE`; selected `CONDITIONAL_P066`, never `PASS_P066_LINEAGE_I`; Ref. 7/original optimizer `GROUND_NOT_FOUND`, held-out/external/material authority and stale PDFs remain open | activate/persist Phase 067 detailed plan before Step 82 |
-| 067 | 82–90 | Steps 82–84 persisted; Step 85 state/default/import/saved-route audit fixed pending persistence; Steps 86–90.2 pending | code/test/fitting cross-audit | PASS_PENDING_PERSISTENCE | original plan and repair addendum retained | Steps 82–84 prior results; Step 85 `Codex/results/PHASE_067_STEP_085_STATE_DEFAULT_IMPORT_RESULT.md` | Step 84 exact-seven commit `f00bf2fa8f25c85f0c62cb901912763d98c8f070` persisted; Step 85 exact-eight builder/validator, mutable-state/default/import matrix and saved-route runtime attestation; complete Python search `84/84`, bounded isolated cases `13×2=26`, saved routes `8/14/14` | Step 84 dual `PASS_P067_STEP84_PERSISTENCE`; Step 85 Gate `PASS_P067_STEP85_STATE_DEFAULT_IMPORT`, expected parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`, subject `audit(phase067): separate defaults state persistence`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP85_PERSISTENCE` pending; runtime/science/material/canonical/publication authority not promoted | exact-eight Step 85 review/staged/commit/push/live/clean and dual-runtime terminal, then Step 86 |
+| 067 | 82–90 | Steps 82–85 persisted; Step 86 test/demo/golden/guide/tool audit fixed pending persistence; Steps 87–90.2 pending | code/test/fitting cross-audit | PASS_PENDING_PERSISTENCE | original plan and repair addendum retained | Steps 82–85 prior results; Step 86 `Codex/results/PHASE_067_STEP_086_TEST_DEMO_GOLDEN_RESULT.md` | Step 85 exact-eight commit `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c` persisted; Step 86 exact-eight builder/validator, test/demo/golden matrix and guide/tool conformance matrix; tests `44/29/6,042`, demos `30/26/3,300`, golden `8/2`, result/tool `35/14/2,081`, guide `20/8/854` | Step 85 dual `PASS_P067_STEP85_PERSISTENCE`; Step 86 Gate `PASS_P067_STEP86_TEST_DEMO_GOLDEN`, expected parent `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, subject `audit(phase067): adjudicate test demo golden behavior`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP86_PERSISTENCE` pending; runtime/software observation only, science/material/canonical/publication authority not promoted | exact-eight Step 86 review/staged/commit/push/live/clean and dual-runtime terminal, then Step 87 |
 | 068 | 91–98 | — | fork adjudication | PENDING | create after P067 | pending | pending | `PASS_P068_FORK_ADJUDICATION` | 91 |
 | 069 | 99–107 | — | synthesis and launch gate | PENDING | create after P068 | pending | pending | `PASS_P069_REAUDIT_COMPLETE` | 99 |
 | 070 | 108–115 | — | post-audit freeze | CONDITIONAL_PENDING_P069 | create after P069 GO | pending | pending | `PASS_P070_POST_AUDIT_FREEZE` | 108 |
@@ -77,8 +77,8 @@ Phase 067 repair checkpoint: activation commit
 `audit(phase067): trace state quantity flows`, is pushed/live/clean and passed dual
 `PASS_P067_STEP83_PERSISTENCE`. Step 84 exact-seven commit
 `f00bf2fa8f25c85f0c62cb901912763d98c8f070` is pushed/live/clean and passed dual
-`PASS_P067_STEP84_PERSISTENCE`. Step 85 is current at
-`PASS_P067_STEP85_STATE_DEFAULT_IMPORT` / `PASS_PENDING_PERSISTENCE`: complete Python search
+`PASS_P067_STEP84_PERSISTENCE`. Step 85 completed
+`PASS_P067_STEP85_STATE_DEFAULT_IMPORT`: complete Python search
 `84/84`, lossless production `20 occurrences/15 blobs`, bounded named cases `13×2=26`, PID-paired
 fresh-process evidence, SI `R/F` and seed-cache/reload/order evidence, exact typed saved-route
 parse/dump plus constructor acceptance `8/14/14`, and named controls `203/203`, including every
@@ -88,9 +88,28 @@ superseded. The Round 2 `128/128` candidate is also superseded because Python eq
 full-resealed equal-value JSON type swaps; recursive type-strict comparison and named type-swap
 controls now bind metadata, source/writer anchors, runtime cases, saved routes, owner, authority and
 aggregate/binding surfaces. Runtime micro versions are independently exact; PID claims stop at positive trace IDs
-and same-interpreter C06/C09 inequality. Step 86 is
-blocked until the same Step 85 child passes independent review and dual
-`PASS_P067_STEP85_PERSISTENCE`.
+and same-interpreter C06/C09 inequality. Exact-eight commit
+`3f2c7635aa545bd617b6cd83b5e718683d5b2b1c` is pushed/live/clean and passed dual
+`PASS_P067_STEP85_PERSISTENCE`. Step 86 is current at
+`PASS_P067_STEP86_TEST_DEMO_GOLDEN` / `PASS_PENDING_PERSISTENCE`: tests `44/29/6,042`, demos
+`30/26/3,300`, golden `8/2`, result/tool `35/14/2,081`, guide `20/8/854`, exact static gate/manual
+separation, two distinct golden value projections, and full 854-line guide coverage. A first deterministic replay
+candidate was rejected for nondeterministic disposable Matplotlib font-cache bytes; only that allowlisted cache
+content hash is withheld while path/presence/size/count and all non-cache output hashes remain exact. Step 87 is
+blocked until the same Step 86 child passes independent review and dual `PASS_P067_STEP86_PERSISTENCE`.
+The first frozen Step 86 content-PASS candidate was also rejected by independent review: guide manifest
+indices were one-based instead of the Phase 056/Step 82 zero-based enumeration, guide nested provenance and
+the runtime/golden/guide/tool contract maps admitted valid-resealed drift, runtime transcript/filesystem rows
+were not section-pinned, and the named full-read attestation was not independently loaded. The repaired
+candidate exact-reconstructs those surfaces and gates `54/54` semantic plus `7/7` loader controls per runtime.
+Final review additionally rejected an unreachable persistence `diff-tree` allowlist. Independent Git execution
+showed that a terminal empty argument fails with exit 128, so the final validator requires the literal `--`
+separator and passes `10/10` exact-shape/reachable-persisted-fixture Git-argv controls.
+Independent review next rejected a stale bounded Step 85 paragraph in the parent ledger. It now records
+the persisted `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c` commit, actual sole parent
+`f00bf2fa8f25c85f0c62cb901912763d98c8f070`, exact subject, pushed/live/clean state, and dual
+`PASS_P067_STEP85_PERSISTENCE`; direct Git `%P` evidence rejected the initially proposed `919af57...`
+value. Named stale/repaired paragraph controls pass `2/2` without banning historical pending text globally.
 
 ## Commit and Push Ledger
 
@@ -165,7 +184,8 @@ blocked until the same Step 85 child passes independent review and dual
 | Phase 067 Step 82 | `Codex/results/PHASE_067_STEP_082_SOURCE_TOPOLOGY_RESULT.md` | `db167fdc941eafba0313b8476dfe7483108f13ff` | pushed/live-remote verified | yes | selected `PASS_P067_STEP82_SOURCE_TOPOLOGY`; exact-eight `A/A/A/A/A/M/M/M`; parent `8975d6a6cc46686e38249b7971b5535dfa414a8b`; subject `audit(phase067): freeze complete python topology`; Python `129/84/29,952`, releases `20`, `READ_FULL` `84/84`; Python 3.12/3.14 `PASS_P067_STEP82_PERSISTENCE` |
 | Phase 067 Step 83 | `Codex/results/PHASE_067_STEP_083_STATE_FLOW_RESULT.md` | `1af6c06fb5cff2918b846ed74ea213832f04f010` | pushed/live-remote verified | yes | selected `PASS_P067_STEP83_STATE_FLOW`; exact-seven `A/A/A/A/M/M/M`; parent `db167fdc941eafba0313b8476dfe7483108f13ff`; subject `audit(phase067): trace state quantity flows`; production `20/15`, excluded `109`, `100/100` release-family rows, nested identity `361/52/35`; Python 3.12/3.14 `PASS_P067_STEP83_PERSISTENCE` |
 | Phase 067 Step 84 | `Codex/results/PHASE_067_STEP_084_PHYSICS_CALL_GRAPH_RESULT.md` | `f00bf2fa8f25c85f0c62cb901912763d98c8f070` | pushed/live-remote verified | yes | selected `PASS_P067_STEP84_PHYSICS_CALL_GRAPH`; exact-seven `A/A/A/A/M/M/M`; parent `1af6c06fb5cff2918b846ed74ea213832f04f010`; subject `audit(phase067): reconstruct physics call graph`; Python 3.12/3.14 `PASS_P067_STEP84_PERSISTENCE`; Step 85 released |
-| Phase 067 Step 85 | `Codex/results/PHASE_067_STEP_085_STATE_DEFAULT_IMPORT_RESULT.md` | `PENDING_AT_PRECOMMIT_BY_DESIGN` | pending | pending | selected `PASS_P067_STEP85_STATE_DEFAULT_IMPORT`; exact-eight `A/A/A/A/A/M/M/M`; expected parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`; subject `audit(phase067): separate defaults state persistence`; complete search `84/84`, cases/processes `13/26`, saved routes `8/14/14`; Step 86 blocked until independent review and dual `PASS_P067_STEP85_PERSISTENCE` |
+| Phase 067 Step 85 | `Codex/results/PHASE_067_STEP_085_STATE_DEFAULT_IMPORT_RESULT.md` | `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c` | pushed/live-remote verified | yes | selected `PASS_P067_STEP85_STATE_DEFAULT_IMPORT`; exact-eight `A/A/A/A/A/M/M/M`; parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`; subject `audit(phase067): separate defaults state persistence`; complete search `84/84`, cases/processes `13/26`, saved routes `8/14/14`; Python 3.12/3.14 `PASS_P067_STEP85_PERSISTENCE`; Step 86 released |
+| Phase 067 Step 86 | `Codex/results/PHASE_067_STEP_086_TEST_DEMO_GOLDEN_RESULT.md` | `PENDING_AT_PRECOMMIT_BY_DESIGN` | pending | pending | selected `PASS_P067_STEP86_TEST_DEMO_GOLDEN`; exact-eight `A/A/A/A/A/M/M/M`; expected parent `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`; subject `audit(phase067): adjudicate test demo golden behavior`; test `44/29`, demo `30/26`, golden `8/2`, result/tool `35/14`, guide `20/8/854`; Step 87 blocked until independent review and dual `PASS_P067_STEP86_PERSISTENCE` |
 
 Step 71 correction history: rejected v34 and every earlier candidate/PASS are
 superseded; v33 was rejected because loader roles could collide or clobber a
@@ -195,4 +215,4 @@ closing option injection.
 
 ## Next Exact Step
 
-Freeze Step 85 JSON-last bytes and Python 3.12/3.14 content validation, close independent review at P0/P1/P2=`0/0/0`, stage only the exact-eight `A/A/A/A/A/M/M/M`, obtain dual `--verify-staged`, commit with subject `audit(phase067): separate defaults state persistence` and parent `f00bf2fa8f25c85f0c62cb901912763d98c8f070`, push, and verify the same child at local/upstream/tracking/live origin with protected/main/Claude unchanged and a clean tree. Begin Step 86 only after both runtimes return `PASS_P067_STEP85_PERSISTENCE` for that child.
+Freeze Step 86 JSON-last bytes and Python 3.12/3.14 content validation, close independent review at P0/P1/P2=`0/0/0`, stage only the exact-eight `A/A/A/A/A/M/M/M`, obtain dual `--verify-staged`, commit with subject `audit(phase067): adjudicate test demo golden behavior` and parent `3f2c7635aa545bd617b6cd83b5e718683d5b2b1c`, push, and verify the same child at local/upstream/tracking/live origin with protected/main/Claude unchanged and a clean tree. Begin Step 87 only after both runtimes return `PASS_P067_STEP86_PERSISTENCE` for that child.
