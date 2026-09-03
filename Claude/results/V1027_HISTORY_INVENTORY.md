@@ -1,6 +1,6 @@
 # V1027_HISTORY_INVENTORY — v1.0.27 작업 챕터 1 · Phase 1.1 · Step 1 인벤토리(OUT-INV)
 
-> 작성 = 작업 sub(Fable 5.1), 2026-09-03. 통제 문서 = `Claude/plans/2026-09-02-v2-master-plan.md`(v5.2) Phase 1.1 Step 1(L303–316) · 지시 = `Claude/results/handoffs/v1027-phase-1.1-inventory/brief.md`. 실측 원본 = `Claude/results/handoffs/v1027-phase-1.1-inventory/iter_1/inventory_raw.tsv`(2,651행 · 절대경로·줄수·SHA256·바이트) · 작업 기록 = 같은 폴더 `work_log.md`. 검수·확정·commit 은 master 소관. **iter_2(2026-09-03, master 정정)**: 검수 sub 라운드 1(`iter_1/audit_log.md`, AUD-01~15) 삼각검증 후 master 가 직접 반영 — 반영 내역·DQ 처분 = §10. iter_1 원문은 §10 에 적힌 변경 외 무수정.
+> 작성 = 작업 sub(Fable 5.1), 2026-09-03. 통제 문서 = `Claude/plans/2026-09-02-v2-master-plan.md`(TSV 시점 v5.2 · 현재 v5.4) Phase 1.1 Step 1(L303–316) · 지시 = `Claude/results/handoffs/v1027-phase-1.1-inventory/brief.md`. 실측 원본 = `Claude/results/handoffs/v1027-phase-1.1-inventory/iter_1/inventory_raw.tsv`(2,651행 · 절대경로·줄수·SHA256·바이트) · 작업 기록 = 같은 폴더 `work_log.md`. 검수·확정·commit 은 master 소관. **iter_2(2026-09-03, master 정정)**: 검수 sub 라운드 1(`iter_1/audit_log.md`, AUD-01~15) 삼각검증 후 master 가 직접 반영 — 반영 내역·DQ 처분 = §10. **iter_3(2026-09-03, master 정정)**: 검수 라운드 2(`iter_2/audit_log_r2.md`, AUD-R2-01~10) 반영 — 「추가 발견」 정책 단위 정의 확정 + 31본 등재 + 잔여 0 스크립트 증명(`iter_3/policy_check.txt`) = §10.4. iter_1 원문은 §10 에 적힌 변경 외 무수정.
 
 ## 0. 머리
 
@@ -129,14 +129,14 @@ $files | ForEach-Object {
 | 87 | `Claude/plans/2026-07-19-v1024-si-2L-codex-reflection-plan.md` | 215 | v1.0.24 | 세부 계획서 | — | (xiii) reflect 계획서 실물 = 이 파일(R2 DQ-3) |
 | 88 | `Claude/plans/2026-07-22-v1024-feedback-revision-plan.md` | 226 | v1.0.24 | 세부 계획서 | R2 | — |
 | 89 | `Claude/plans/2026-07-26-v1025-surgical-skew-consistency-plan.md` | 240 | v1.0.25 | 세부 계획서 | R2·R3 | plans/INDEX.md:18 ★MASTER 표기(파일명 규칙상 세부 계획서) · A8 |
-| 90 | `Claude/plans/2026-09-02-v2-master-plan.md` | 812 | 본 arc | 마스터플랜 | — | 본 arc 통제 문서(v5.2) · §2.9·brief 집계 시점엔 미존재(§2.8 L189 "신규 예정") |
+| 90 | `Claude/plans/2026-09-02-v2-master-plan.md` | 812 | 본 arc | 마스터플랜 | — | 본 arc 통제 문서(TSV 시점 v5.2 812줄 — 현재 v5.4, §3.1 주석) · §2.9·brief 집계 시점엔 미존재(§2.8 L189 "신규 예정") |
 | 91 | `Claude/plans/MASTER_ROADMAP_CH2_v1.md` | 131 | Fable v2~v10(세부: 미상 — 무날짜 파일명, 추정) | 마스터플랜 | — | plans/INDEX.md:57 "마스터/로드맵(역대)" |
 | 92 | `Claude/plans/MASTER_ROADMAP_v3.md` | 320 | Fable v2~v10(세부: 미상 — 무날짜 파일명, 추정) | 마스터플랜 | — | plans/INDEX.md:57 "마스터/로드맵(역대)" |
 
 ### (i-b) 추가 발견 — 구트랙 계획서 `old/**`(iter_2 · AUD-02 · DQ-5 를 (i)·(ii) 로 확장)
 
 - 정의: 마스터 플랜 L305 ①군 glob(`*master*`·`*MASTER*`·`MASTER_ROADMAP*`) 매치 중 (i) 폴더 밖 실물 + 같은 폴더의 형제 계획서. `old/v2/` 는 구트랙 "Chapter 1 Rebuild v2"(`old/v2/results/EXECUTION_LEDGER_v2.md`:1–7 — 검수 확정) 로 Fable v2 와 **동명이물**. glob 오매치 3본(`results/research/CH1v9_LCO/10_sources_master.md` 45 · `results/research/CH2_v3/10_sources_master.md` 60 · `results/builds/v9/v9-00_spine/review2/V2_citations_master.md` 267)은 마스터플랜이 아니므로 등재하지 않는다(§8.3 계수).
-- 실측: **12 파일 · 2899 줄**(TSV)
+- 실측: **11 파일 · 2760 줄**(TSV) — iter_3: `RB_AL_MASTER.md`(139)는 실물 헤더 L1 이 "통합 Assumption Ledger + Notation Bible + 가독 Gate" 라 계획서가 아니므로 (vii-b) 로 이동(AUD-R2-03; glob `*MASTER*` 오매치 4본째)
 
 | # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
 |---|---|---|---|---|---|---|
@@ -149,9 +149,8 @@ $files | ForEach-Object {
 | 7 | `Claude/old/plans/2026-05-27-anode-fit-situational-assessment-plan.md` | 293 | 구트랙 RB | 세부 계획서 | — | 구트랙(old/) |
 | 8 | `Claude/old/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e3-effective-transition-plan.md` | 107 | 구트랙 RB | 세부 계획서 | — | 구트랙(old/) |
 | 9 | `Claude/old/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e4-charge-balance-plan.md` | 161 | 구트랙 RB | 세부 계획서 | — | 구트랙(old/) |
-| 10 | `Claude/old/v2/plans/MASTER_ROADMAP_v2.md` | 447 | 구트랙 RB(rebuild v2 — Fable v2 와 동명이물) | 마스터플랜 | — | 구트랙(old/v2) · glob `MASTER_ROADMAP*` 매치 |
-| 11 | `Claude/old/v2/plans/PHASE_0_v2_FOUNDATION_PLAN.md` | 101 | 구트랙 RB(rebuild v2 — Fable v2 와 동명이물) | 세부 계획서 | — | 구트랙(old/v2) |
-| 12 | `Claude/old/Archive_oldtrack/RB_AL_MASTER.md` | 139 | 구트랙 RB | 마스터플랜 | — | 구트랙(Archive_oldtrack) · glob `*MASTER*` 매치 |
+| 10 | `Claude/old/v2/plans/MASTER_ROADMAP_v2.md` | 447 | 구트랙 RB | 마스터플랜 | — | 구트랙(old/v2 = 구트랙 "Chapter 1 Rebuild v2" — Fable v2 와 동명이물, `old/v2/results/EXECUTION_LEDGER_v2.md`:1–7) · glob `MASTER_ROADMAP*` 매치 |
+| 11 | `Claude/old/v2/plans/PHASE_0_v2_FOUNDATION_PLAN.md` | 101 | 구트랙 RB | 세부 계획서 | — | 구트랙(old/v2 — 동명이물 경고는 행 10 비고) |
 
 ### (ii) `Claude/docs/**/PLAN_*.md` + v1.0.20 마스터 플랜
 
@@ -251,6 +250,35 @@ $files | ForEach-Object {
 | 10 | `Claude/docs/v1.0.23/results/comp_v23/COND_AUDIT.md` | 301 | v1.0.23 | 감사 | — | (c) **동명 폴더 경고**: `docs/v1.0.23/results/comp_v23/` ≠ (ix) 의 `docs/v1.0.22/results/comp_v23/`(AUD-03) |
 | 11 | `Claude/old/results/PROJECT_AUDIT_REPORT.md` | 333 | 구트랙 RB | 감사 | — | (a) 구트랙(old/) — (vii)·(viii) old/ 등재 정책과 일관 |
 | 12 | `Claude/old/results/PROJECT_AUDIT_REPORT_v0.2.md` | 255 | 구트랙 RB | 감사 | — | (a) 구트랙(old/) |
+
+### (iv-c) 추가 발견 — 감사·점검 계열(iter_3 · AUD-R2-01·02 · 정책 (a)(b)(c) 기계 적용)
+
+- 정의(master 확정 정책 — §10.4 문안): (a) **파일명 계열** 단위 형제(같은 폴더 · `접두_핵심어` 계열 정규식 일치; 접두만 같은 것은 계열 아님) · (b) 통제 문서(프로젝트 `CLAUDE.md`·마스터 플랜·INDEX 3본)가 **이력·결정 근거로 인용**하는 md/tex 원문(가이드·코드·데이터·PDF·figs·`docs/` tex 본문 제외) · (c) 동명 폴더 안 md 전건. 적용 결과 = `iter_3/policy_check.txt`(잔여 0).
+- 실측: **21 파일 · 2537 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/results/process/V1010_INSPECT_draft_C1.md` | 105 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` — (ix) 행 86 `V1010_INSPECT_draft_C3` 형제 |
+| 2 | `Claude/results/process/V1010_INSPECT_draft_C2.md` | 89 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 3 | `Claude/results/process/V1010_INSPECT_draft_O1.md` | 96 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 4 | `Claude/results/process/V1010_INSPECT_draft_O2.md` | 98 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 5 | `Claude/results/process/V1010_INSPECT_draft_O3.md` | 113 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 6 | `Claude/results/process/V1010_INSPECT_draft_S1.md` | 209 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 7 | `Claude/results/process/V1010_INSPECT_draft_S2.md` | 265 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 8 | `Claude/results/process/V1010_INSPECT_draft_S3.md` | 320 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*` |
+| 9 | `Claude/results/process/V1010_INSPECT_UNION.md` | 55 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*`(통합) |
+| 10 | `Claude/results/process/V1010_INSPECT_verify10.md` | 31 | v1.0.10 | 감사 | — | (a) 계열 `V1010_INSPECT_*`(검증) |
+| 11 | `Claude/docs/v1.0.23/results/comp_v23/AUD_REPORT_v23.md` | 65 | v1.0.23 | 감사 | — | (c) 동명 폴더 `docs/v1.0.23/results/comp_v23/` md 전건 — (iv-b) 행 10 과 같은 폴더 |
+| 12 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_canonical_vs_CODEX_v2.md` | 93 | 구트랙 RB | 감사 | — | (b) 마스터 플랜 §2.8 L184 인용 `COMPARISON_*` · (a) (vii) `REVIEW_LEDGER_*` 형제 · 동명이물 경고(구트랙 v2~v5 ≠ Fable v2~v5) |
+| 13 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v4_vs_CODEX_REBUILT.md` | 123 | 구트랙 RB | 감사 | — | (b)(a) — 동명이물 경고 |
+| 14 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_1_vs_CODEX_v4.md` | 124 | 구트랙 RB | 감사 | — | (b)(a) — 동명이물 경고 |
+| 15 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_2_vs_CODEX_v5.md` | 74 | 구트랙 RB | 감사 | — | (b)(a) — 동명이물 경고 |
+| 16 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_vs_CODEX_v3.md` | 77 | 구트랙 RB | 감사 | — | (b)(a) — 동명이물 경고 |
+| 17 | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_vs_CODEX_CH1.md` | 149 | 구트랙 RB | 감사 | — | (b)(a) — 동명이물 경고 |
+| 18 | `Claude/results/process/V1017_REVIEW_COMPLETE.md` | 60 | v1.0.17 | 감사 | — | (b) `docs/INDEX.md` 인용(v1.0.17 절) |
+| 19 | `Claude/results/process/V1017_FIXLIST_CONSOLIDATED.md` | 122 | v1.0.17 | 감사 | — | (b) `docs/INDEX.md` 인용(v1.0.17 절) |
+| 20 | `Claude/results/MISSING_CONTENT_REVIEW.md` | 93 | 횡단 | 감사 | — | (b) `docs/INDEX.md`:193 인용 |
+| 21 | `Claude/docs/v1.0.22/results/R1B_SWEEP_LIST.md` | 176 | v1.0.22 | 감사 | — | (b) `docs/INDEX.md` 인용(v1.0.22 절) — 검수 스윕 목록 |
 
 ### (v) `CLOSING_v1.0.15.md`
 
@@ -362,7 +390,7 @@ $files | ForEach-Object {
 | 71 | `Claude/results/process/V1015_EXECUTION_LEDGER.md` | 20 | v1.0.15 | ledger | — | — |
 | 72 | `Claude/results/process/V1016_EXECUTION_LEDGER.md` | 21 | v1.0.16 | ledger | — | — |
 | 73 | `Claude/results/process/V1017_EXECUTION_LEDGER.md` | 26 | v1.0.17 | ledger | — | — |
-| 74 | `Claude/results/process/V1018_EXECUTION_LEDGER.md` | 33 | v1.0.18.1·v1.0.18.2(공통 — :30–31 두 개정 한 원장, 추정) | ledger | — | — |
+| 74 | `Claude/results/process/V1018_EXECUTION_LEDGER.md` | 33 | v1.0.18.1·v1.0.18.2(공통 — 추정) | ledger | — | `:30–31` 두 개정(18.1 증판·18.2 코드) 한 원장 |
 | 75 | `Claude/results/process/V1019_EXECUTION_LEDGER.md` | 56 | v1.0.19 | ledger | — | — |
 | 76 | `Claude/results/process/V7_9x9x1x1_LEDGER.md` | 43 | Fable v2~v10(세부: v7) | ledger | — | — |
 | 77 | `Claude/results/process/V8_LEDGER.md` | 35 | Fable v2~v10(세부: v8) | ledger | — | — |
@@ -370,6 +398,18 @@ $files | ForEach-Object {
 | 79 | `Claude/results/research/radius/RADIUS_LEDGER.md` | 39 | Fable v2~v10(세부: radius survey 06-30) | ledger | — | — |
 | 80 | `Claude/results/V1024_EXECUTION_LEDGER.md` | 14 | v1.0.24 | ledger | — | §2.8 L179 12-col 실례 |
 | 81 | `Claude/results/V1024_FEEDBACK_EXECUTION_LEDGER.md` | 24 | v1.0.24.1 | ledger | — | §2.8 L179 12-col 실례 · 귀속 근거 `docs/INDEX.md`:21(v1.0.24.1 리비전 이력) |
+
+### (vii-b) 추가 발견 — 구트랙 규약·통합 ledger(iter_3 · AUD-R2-03·AUD-R2-10)
+
+- 정의: (b′) 등재 문서가 binding·입력으로 명시 인용하는 규약(charter) 문서 + (i-b) 에서 종류 정정으로 이동한 통합 ledger. 작업 챕터 1.3(유효 결정·제약 등록부)의 구트랙 원천.
+- 실측: **4 파일 · 694 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/old/Archive_oldtrack/RB_AL_MASTER.md` | 139 | 구트랙 RB | ledger(통합 Assumption Ledger·Notation Bible) | — | (i-b) 에서 이동(AUD-R2-03) · 실물 헤더 L1 · glob `*MASTER*` 오매치 · 1.3 구트랙 원천 · `:3` 입력 = `RB_CHARTER.md` |
+| 2 | `Claude/old/Archive_oldtrack/RB_CHARTER.md` | 105 | 구트랙 RB | 기타(규약 charter) | — | (b′) 등재 문서 `RB_AL_MASTER.md`:3 가 입력으로 명시 인용 — 1.3 원천 후보 |
+| 3 | `Claude/old/Archive_oldtrack/CHARTER_v3.md` | 65 | 구트랙 RB | 기타(규약 charter) | — | (a) `CHARTER_*` 계열 — 1.3 원천 후보 |
+| 4 | `Claude/old/v2/results/CHARTER_v2.md` | 385 | 구트랙 RB | 기타(규약 charter) | — | (b′) 등재 ledger `old/v2/results/EXECUTION_LEDGER_v2.md`:4 "Charter binding" 인용 — 1.3 원천 후보 · old/v2 동명이물 경고 |
 
 ### (viii) 각 버전 MERGE_READINESS·CHANGE_LOG·PHASE_*_RESULT·AUDIT_LINEAGE·DATA_ADDENDUM·DOC_EDIT_REPORT·T13_T14·CASCADE_TODO·ARCHIVE_NOTE
 
@@ -557,6 +597,16 @@ $files | ForEach-Object {
 | 1 | `Claude/docs/v1.0.10/V1010_PROBLEM_REPORT.md` | 55 | v1.0.10 | Result(점검 보고) | — | (i) 행 74 계획서의 Result |
 | 2 | `Claude/docs/v1.0.10/V1010_HANDOVER_INTEGRITY_REPORT.md` | 45 | v1.0.10 | Result(점검 보고) | — | (i) 행 76 계획서의 Result |
 
+### (viii-c) 추가 발견 — 경쟁 저작 결정 기록 2본(iter_3b · 정책 (b) 잔여 해소)
+
+- 정의: `INDEX_v25.md` 가 v1.0.25 저작 이력으로 인용하는 `results/comp_R1/` 의 결정 기록(체리픽 결정·저자 brief). `iter_3/policy_check.txt` (b) 잔여 2 가 이 2본이었다. 경쟁 초안·검수 보고 본체는 DQ-6 대로 계수만.
+- 실측: **2 파일 · 95 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/docs/v1.0.25.1/results/comp_R1/CHERRYPICK_R1.md` | 41 | v1.0.25.1 | Result(체리픽 결정 기록) | — | (b) `INDEX_v25.md` 인용 — v1.0.25 경쟁 저작 라운드 1 의 채택 결정 기록 · hash 동일 사본 = `docs/v1.0.24/`·`v1.0.24.1/`·`v1.0.25/results/comp_R1/`(§4 규칙상 고유본 = v1.0.24 · 정독 경로 = 현행) |
+| 2 | `Claude/docs/v1.0.25.1/results/comp_R1/AUTHOR_BRIEF.md` | 54 | v1.0.25.1 | 기타(경쟁 저작 brief) | — | (b) `INDEX_v25.md` 인용 — 경쟁 저자에게 준 brief(요구 사양 기록) · hash 동일 사본 3곳(동상) · 같은 폴더의 경쟁 초안 tex·검수 md 는 DQ-6 계수만 |
+
 ### (ix) 조사 문서군
 
 - 정의: `results/comp_v24/*.md`(+lit_raw·sintef_data/SOURCES) · `results/comp_v26_data/*.md`(README → (xi) · HANDOVER → (iii)) · `docs/v1.0.22/results/comp_v23/*.md` · `comp_SM2/**` · `comp_FR/**` · `docs/v1.0.18.2/ROADMAP_future_physics.md` · `docs/v1.0.20/results/`(FIGS_PICK·DIRECTION_*·TRIAGE_P7·V1020_STYLE_RUBRIC + 추가 발견 상위 md) · `V1013_TERMS_POLICY` · `V1014_TONE_AUDIT` · (추가 발견) `V1010_INSPECT_draft_C3.md`
@@ -653,6 +703,19 @@ $files | ForEach-Object {
 | 86 | `Claude/results/process/V1010_INSPECT_draft_C3.md` | 107 | v1.0.10 | 감사 | — | 추가 발견 — §5 `C3_graph_check/`·`C3_pdf_render/` 지위 근거(L14–15·23) |
 | 87 | `Claude/results/process/V1013_TERMS_POLICY.md` | 90 | v1.0.13 | 조사 | — | brief 명시 |
 | 88 | `Claude/results/process/V1014_TONE_AUDIT.md` | 200 | v1.0.14 | 감사 | — | 종류 = 감사(brief 는 조사 문서군에 배정 — 군은 (ix) 유지) |
+
+### (ix-b) 추가 발견 — 조사 문서(iter_3 · AUD-R2-10 · 정책 (a)(b))
+
+- 정의: 등재 ledger·Result 의 계열 형제(radius 조사 판정문 3 + 보고) + 마스터 플랜이 정독 대상으로 명시한 조사 md. radius 폴더의 조사 카드(`00_`~`43_` 16본)는 계열 밖 → §8.3 계수(1.4 토픽 한정 열람 후보).
+- 실측: **5 파일 · 298 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/results/research/radius/RADIUS_VERDICT.md` | 83 | Fable v2~v10(세부: radius survey 06-30) | 조사 | — | (a) (vii) `RADIUS_LEDGER`·(viii) `PHASE_RADIUS_RESULT` 형제 · 6-30 [MODEL-1 선택] 원천(DR-15·R1 L-04) |
+| 2 | `Claude/results/research/radius/ORIGIN_VERDICT.md` | 79 | Fable v2~v10(세부: radius survey 06-30) | 조사 | — | (a) 동상 |
+| 3 | `Claude/results/research/radius/BAND_VERDICT.md` | 69 | Fable v2~v10(세부: radius survey 06-30) | 조사 | — | (a) 동상 |
+| 4 | `Claude/results/research/radius/50_report.md` | 23 | Fable v2~v10(세부: radius survey 06-30) | 조사 | — | (a) 동상 · `V1010_INSPECT_draft_C3.md`:16 인용 |
+| 5 | `Claude/results/research/broadening_w_design.md` | 44 | Fable v2~v10(세부: v10, 추정) | 조사 | — | (b) 마스터 플랜 1.2 Step 3 정독 대상 명시(L325 — L-21 ρ(U_j) 잔존 주의) |
 
 ### (x) dossier · jcp_extract(+ JCP PDF 존재)
 
@@ -842,6 +905,30 @@ $files | ForEach-Object {
 | 4 | `Claude/old/_archive/graphite_ica_ch1_Opus_v5.tex` | 1883 | Fable v2~v10(세부: v5) | 원문 tex | — | Assumptions 23 바이트 일치(153592 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
 | 5 | `Claude/old/_archive/graphite_ica_ch1_Opus_v6.tex` | 1903 | Fable v2~v10(세부: v6) | 원문 tex | — | Assumptions 23 바이트 일치(156166 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
 
+### (xvii-b) 추가 발견 — 구트랙 기준 원문 tex 2본(iter_3 · AUD-R2-01 (b)·AUD-R2-09)
+
+- 정의: 프로젝트 `CLAUDE.md` P1 이 프로젝트 목표의 기준 원문으로 인용하는 구트랙 tex — (xvii) 유실 자산 원문과 같은 성격. `docs/` 하위 tex 본문은 (xvi)·(xviii)·2.1 자산 지도 소관이라 (b) 제외 대상이지만 이 2본은 `old/` 소재·헌법 인용이라 등재.
+- 실측: **2 파일 · 2469 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/old/_archive/Archive_old/graphite_ica_charge_balance_ver1_rechecked2.tex` | 495 | 구트랙 RB | 원문 tex | — | (b) 프로젝트 `CLAUDE.md`:15 P1 "Chapter 1 = … 전하 보존식 기반 내부 전위 결정 흐름" 기준 원문 — 인용 경로 `Claude/docs/` 는 스테일(실물 = `old/_archive/Archive_old/`) → DR-13/OUT-CLAUDEMD 후보 |
+| 2 | `Claude/old/_archive/Archive_old/graphite_ica_dynamic_ver5.tex` | 1974 | 구트랙 RB | 원문 tex | — | (b) 프로젝트 `CLAUDE.md`:14 P1 "`ver.1`~`ver.5` 적층 구조" 기준 원문 · Phase Range 이름공간 "역사적 ver." 행 — 인용 경로 스테일(동상) |
+
+### (xvii-c) 추가 발견 — 계보 원문 tex 6본 `old/Ch1_v7~v10`·`Ch2_v3~v4`(iter_3b · 정책 (b) 잔여 해소)
+
+- 정의: `docs/INDEX.md` 가 각 버전 절에서 원문으로 인용하는 `old/` 소재 tex — (xvii) 유실 자산 원문 5본(v2~v6)에 이어지는 Fable v7~v10·Ch2 v3~v4 계보 원문. `iter_3/policy_check.txt` (b) 잔여 6 이 이 6본이었다. 1.2 Step 3(RB→v1.0.19 보강 정독)의 토픽 한정 원천이며 1.4 Step 11 (i) 전문 정독 대상은 아니다(계획서 Assumptions 23 = 5본 불변).
+- 실측: **6 파일 · 6621 줄**(TSV)
+
+| # | path | 줄수 | 버전 귀속 | 문서 종류 | 판독 정독(R#) | 비고 |
+|---|---|---|---|---|---|---|
+| 1 | `Claude/old/Ch1_v7/v7-11.tex` | 893 | Fable v2~v10(세부: v7) | 원문 tex | — | (b) `docs/INDEX.md` 인용(v7 절) — 계보 §2.3 v7(코드 플로우차트 절삭판 894줄·17p) 원문 · `results/builds/v7/v7-11/v7-11.tex` 동명 사본 존재(hash 미대조) |
+| 2 | `Claude/old/Ch1_v8/v8-11.tex` | 1208 | Fable v2~v10(세부: v8) | 원문 tex | — | (b) `docs/INDEX.md` 인용(v8 절) — 유도 4단 복원·G-derive 원문 |
+| 3 | `Claude/old/Ch1_v9/graphite_ica_ch1_v9.tex` | 1644 | Fable v2~v10(세부: v9) | 원문 tex | — | (b) `docs/INDEX.md` 인용(v9 절) — LCO 전자 엔트로피·산문 회귀 기원 원문 |
+| 4 | `Claude/old/Ch1_v10/graphite_ica_ch1_v10.tex` | 1852 | Fable v2~v10(세부: v10) | 원문 tex | — | (b) `docs/INDEX.md` 인용(v10 절) — broadening 복원·w 이중지위·w_eff 제거 원문 |
+| 5 | `Claude/old/Ch2_v3/graphite_ica_ch2_v3.tex` | 265 | Fable v2~v10(세부: Ch2 v3) | 원문 tex | — | (b) `docs/INDEX.md` 인용 — Ch2 트랙 v3(5p) 원문(R1 §3.1) |
+| 6 | `Claude/old/Ch2_v4/graphite_ica_ch2_v4.tex` | 759 | Fable v2~v10(세부: Ch2 v4) | 원문 tex | — | (b) `docs/INDEX.md` 인용 — Ch2 트랙 v4(13p · w_eff narrowing 오류 적대 2R 통과 사례, R1 §3.1) 원문 |
+
 ### (xviii) v1.0.25 base tex 60 — 합계 + v1.0.25.1 대비 hash 상이 파일만 행 등재
 
 - 정의: `docs/v1.0.25/*.tex` + `_sections/*.tex`(60본 전건 계수 · 행은 hash 상이 파일만)
@@ -891,11 +978,17 @@ v1.0.25 tex 60 합계 = 9207 줄(v1.0.25.1 9,214 대비 −7) · 60본 중 hash 
 | (xvii) | 5 | 11876 |  |
 | (xviii) | 60 | 9207 | 행은 hash 상이 6본만 |
 | (xix) | 1 | 88 |  |
-| (i-b) | 12 | 2899 | iter_2 추가(구트랙 계획서 · AUD-02) |
+| (i-b) | 11 | 2760 | iter_2 추가(구트랙 계획서 · AUD-02) · iter_3 `RB_AL_MASTER` → (vii-b) 이동 |
 | (iv-b) | 12 | 1674 | iter_2 추가(감사 성격 · AUD-01·03) |
 | (viii-b) | 2 | 100 | iter_2 추가(Result 성격 · AUD-01) |
+| (iv-c) | 21 | 2537 | iter_3 추가(감사·점검 계열 · AUD-R2-01·02) |
+| (vii-b) | 4 | 694 | iter_3 추가(구트랙 규약·통합 ledger · AUD-R2-03·10 — 1본은 (i-b) 이동) |
+| (ix-b) | 5 | 298 | iter_3 추가(조사 · AUD-R2-10) |
+| (xvii-b) | 2 | 2469 | iter_3 추가(구트랙 기준 원문 tex · AUD-R2-01·09) |
+| (xvii-c) | 6 | 6621 | iter_3b 추가(계보 원문 tex v7~v10·Ch2 v3~v4 · 정책 (b) 잔여) |
+| (viii-c) | 2 | 95 | iter_3b 추가(경쟁 저작 결정 기록 · 정책 (b) 잔여) |
 | (xiv) | 21(png 5 · 폴더 3 · Codex 13) | — | 모집단 밖(§5) |
-| **합계(TSV 계수)** | **691** | **97678** | iter_1 665/93,005 + iter_2 26/4,673 · TSV 2,651행 중 등재 691 · 미등재 1,960(§8.3) |
+| **합계(TSV 계수)** | **730** | **110253** | iter_1 665/93,005 + iter_2 26/4,673 + iter_3 31/5,859 + iter_3b 8/6,716 · TSV 2,651행 중 등재 730 · 미등재 1,921(§8.3) |
 
 중복 처리 규칙 적용 결과: 한 파일이 두 군 정의에 걸린 경우 = `plans/INDEX.md`((i)∩(vi) → (vi)) · `HANDOVER_regsol_investigation.md`((iii)∩(ix) → (iii)) · `comp_v26_data/README.md`((ix)∩(xi) → (xi)) · `V102N_REFERENCE_LEDGER` 4본((vii)∩(xii) → (xii)) · `V1025_CHANGE_LEDGER` ×2((vii)∩(viii) → (vii)) · `V1024_REFLECT_EXECUTION_LEDGER` ×4((vii)∩(xiii) → (vii)) · reflect 계획서((i)∩(xiii) → (i)) · `INDEX_v*`((vi)∩(viii) → (vi)) · `fix_change_log.md`((viii)∩(xv) → (xv)) · `V1014_TONE_AUDIT`(종류 감사 · 군 (ix)).
 
@@ -904,6 +997,8 @@ v1.0.25 tex 60 합계 = 9207 줄(v1.0.25.1 9,214 대비 −7) · 60본 중 hash 
 ### 3.1 plans — 실측 정본 = **93 파일 · 10,384 줄**(TSV · `Claude/plans/*.md` 직계 전건 · 하위 폴더 없음)
 
 정본 구성(실측): 날짜 계획서 90(2026-05-29 ~ 2026-09-02) + `INDEX.md` 1(69줄) + `MASTER_ROADMAP_*` 2(320·131줄) = 93.
+
+(iter_3 주석) 정본 = TSV 스냅샷(09:34:39) 정의로 고정한다. 살아 있는 합계는 계획서 v5.3(813줄)·v5.4(814줄) 행 추가로 10,385→10,386 이 되지만 정본 수치는 바꾸지 않는다(Read Coverage·배정표는 스냅샷 값 기준, 계획서는 통제 문서라 정독 모집단 밖). master 9,567 의 측정 시각은 미기록(v4 작업 중 · `plans/INDEX.md` 갱신 08:48:05 이전으로 추정) → 아래 잔여 차 1 은 측정 방식 차(추정)·미특정.
 
 | 출처 | 수치 | 실측과의 차이 | 차이를 만든 파일명·줄수 |
 |---|---|---|---|
@@ -1431,11 +1526,11 @@ v1.0.25 tex 60 합계 = 9207 줄(v1.0.25.1 9,214 대비 −7) · 60본 중 hash 
 
 ### 8.3 모집단 안이지만 OUT-INV 군 밖(미등재 — 계수만)
 
-TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅샷** — iter_2 에서 26본·4,673줄을 (i-b)·(iv-b)·(viii-b) 로 등재해 현재 미등재 = **1,960 · 617,440**; 아래 폴더별 표는 iter_1 값 그대로이며 이동분 = `old/plans` 9 · `old/v2/plans` 2 · `Archive_oldtrack` 1 · `old/results` 2 · `results/process` 9 · `docs/v1.0.10` 2 · `docs/v1.0.23` 1). 폴더별(상위 3단계):
+TSV 2,651 − 등재 730 = 미등재 **1,921 파일 · 604,865 줄**(iter_3b — 표는 현재 §1 집합 기준으로 스크립트 재계산 `iter_3/policy_check.txt`; 이력: iter_1 1,986/622,113 → iter_2 1,960/617,440 → iter_3 1,929/611,581 → iter_3b 1,921/604,865). 폴더별(상위 3단계):
 
 | 폴더 | 파일 | 줄수 | 내용(확장자 계수) |
 |---|---|---|---|
-| `Claude/docs/v1.0.10` | 13 | 6900 | .log 2 · .md 3 · .py 6 · .tex 2 |
+| `Claude/docs/v1.0.10` | 11 | 6800 | .log 2 · .md 1 · .py 6 · .tex 2 |
 | `Claude/docs/v1.0.11` | 10 | 6695 | .log 2 · .md 1 · .py 5 · .tex 2 |
 | `Claude/docs/v1.0.12` | 10 | 7286 | .log 2 · .md 1 · .py 5 · .tex 2 |
 | `Claude/docs/v1.0.13` | 11 | 8144 | .log 2 · .md 1 · .py 6 · .tex 2 |
@@ -1448,27 +1543,20 @@ TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅
 | `Claude/docs/v1.0.19` | 73 | 27831 | .log 25 · .md 1 · .py 4 · .tex 42 · .txt 1 |
 | `Claude/docs/v1.0.20` | 152 | 28424 | .json 11 · .md 26 · .py 8 · .tex 105 · .txt 2 |
 | `Claude/docs/v1.0.21` | 59 | 20931 | .json 9 · .md 1 · .py 3 · .tex 46 |
-| `Claude/docs/v1.0.22` | 146 | 18828 | .json 1 · .md 50 · .py 3 · .tex 92 |
-| `Claude/docs/v1.0.23` | 68 | 11886 | .md 5 · .py 6 · .tex 57 |
+| `Claude/docs/v1.0.22` | 145 | 18652 | .json 1 · .md 49 · .py 3 · .tex 92 |
+| `Claude/docs/v1.0.23` | 66 | 11520 | .md 3 · .py 6 · .tex 57 |
 | `Claude/docs/v1.0.24` | 114 | 17298 | .json 1 · .md 16 · .py 7 · .tex 90 |
 | `Claude/docs/v1.0.24.1` | 114 | 17298 | .json 1 · .md 16 · .py 7 · .tex 90 |
 | `Claude/docs/v1.0.25` | 58 | 9444 | .json 1 · .md 16 · .py 11 · .tex 30 |
-| `Claude/docs/v1.0.25.1` | 58 | 9444 | .json 1 · .md 16 · .py 11 · .tex 30 |
+| `Claude/docs/v1.0.25.1` | 56 | 9349 | .json 1 · .md 14 · .py 11 · .tex 30 |
 | `Claude/docs/v1.0.26A-regsol` | 3 | 192 | .json 3 |
 | `Claude/docs/v1.0.26B-gallery` | 3 | 188 | .json 3 |
-| `Claude/old/_archive` | 51 | 44015 | .log 15 · .md 1 · .tex 35 |
-| `Claude/old/Archive_oldtrack` | 14 | 1640 | .md 14 |
-| `Claude/old/Ch1_v10` | 1 | 1852 | .tex 1 |
-| `Claude/old/Ch1_v7` | 1 | 893 | .tex 1 |
-| `Claude/old/Ch1_v8` | 1 | 1208 | .tex 1 |
-| `Claude/old/Ch1_v9` | 1 | 1644 | .tex 1 |
-| `Claude/old/Ch2_v3` | 1 | 265 | .tex 1 |
-| `Claude/old/Ch2_v4` | 1 | 759 | .tex 1 |
+| `Claude/old/_archive` | 49 | 41546 | .log 15 · .md 1 · .tex 33 |
+| `Claude/old/Archive_oldtrack` | 5 | 691 | .md 5 |
 | `Claude/old/docs` | 1 | 1203 | .tex 1 |
-| `Claude/old/plans` | 9 | 2212 | .md 9 |
 | `Claude/old/pre-restructure-2026-06-07-5ch` | 5 | 3935 | .tex 5 |
-| `Claude/old/results` | 8 | 1952 | .json 5 · .md 3 |
-| `Claude/old/v2` | 20 | 3411 | .json 15 · .md 4 · .tex 1 |
+| `Claude/old/results` | 6 | 1364 | .json 5 · .md 1 |
+| `Claude/old/v2` | 17 | 2478 | .json 15 · .md 1 · .tex 1 |
 | `Claude/old/v3_single_length` | 1 | 810 | .tex 1 |
 | `Claude/old/work` | 24 | 6555 | .log 1 · .md 1 · .py 13 · .tex 8 · .txt 1 |
 | `Claude/results/_FINAL_README.md` | 1 | 25 | .md 1 |
@@ -1476,9 +1564,8 @@ TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅
 | `Claude/results/code` | 3 | 1458 | .md 1 · .py 2 |
 | `Claude/results/comp_v24` | 52 | 4753 | .json 16 · .py 29 · .txt 7 |
 | `Claude/results/comp_v26_data` | 11 | 2261 | .json 9 · .log 2 |
-| `Claude/results/MISSING_CONTENT_REVIEW.md` | 1 | 93 | .md 1 |
-| `Claude/results/process` | 424 | 66462 | .log 13 · .md 236 · .py 92 · .tex 76 · .txt 7 |
-| `Claude/results/research` | 59 | 3230 | .md 59 |
+| `Claude/results/process` | 403 | 64114 | .log 13 · .md 215 · .py 92 · .tex 76 · .txt 7 |
+| `Claude/results/research` | 54 | 2932 | .md 54 |
 | `Claude/results/Step 1 — 인벤토리 파일 생성(OUT-INV).md` | 1 | 35 | .md 1 |
 | `Claude/results/V1024_PROGRESS_SUMMARY.md` | 1 | 51 | .md 1 |
 | `Claude/skills/competition-cherrypick-authoring` | 1 | 98 | .md 1 |
@@ -1487,9 +1574,9 @@ TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅
 - `results/comp_v24/` 비-md(`.py` 29 · `.json` 16 · `.txt` 7 — lco_data provenance 등) · `results/comp_v26_data/` 비-md(json 9 · log 2 ; `.py` 8 은 (xi) 등재).
 - `docs/v1.0.22/results/` 의 `comp_AUD`(4)·`comp_R2`~`comp_R8`·`comp_RV`(3) = 경쟁 저작 초안·검수 보고 84본(md·tex) · `docs/v1.0.20/results/` 의 `comp_P2/P4/P7_figs/P7_review/Q2/Q3` 97본(md·tex·py·txt·json) 및 `snapshot_*.json`.
 - `docs/v1.0.10 ~ v1.0.24.1` 구버전 폴더의 tex·py·log·md(FITTING_GUIDE·CODE_GUIDE 등) — 현행 아님 · `docs/v1.0.25*/results/comp_R1/**`(경쟁 초안 tex·md 각 30·13) · `docs/v1.0.25*/` 의 코드·게이트·가이드(`Anode_Fit_v1.0.24.py` 1,917 · `test_gates_*.py` 4 · `tools_*.py` 4 · `CODE_GUIDE_v24.md` · `FITTING_GUIDE.md`).
-- `old/**` 잔여(구트랙 tex·md·py — ledger·Result·HANDOVER·dossier·유실 원문 5본은 등재) · `results/builds/**`·`results/research/**` 잔여(경쟁 빌드 로그·tex·조사 카드) · `results/code/Anode_Fit_v11_final.py` · `results/process/` 의 비-ledger·비-Result md(`V1017_REVIEW_COMPLETE`·`V1017_FIXLIST_CONSOLIDATED` 등) · `results/MISSING_CONTENT_REVIEW.md`.
+- `old/**` 잔여(구트랙 tex·md·py — ledger·Result·HANDOVER·dossier·유실 원문 5본은 등재) · `results/builds/**`·`results/research/**` 잔여(경쟁 빌드 로그·tex·조사 카드) · `results/code/Anode_Fit_v11_final.py` · `results/process/` 의 비-ledger·비-Result md(iter_3: `V1017_REVIEW_COMPLETE`·`V1017_FIXLIST_CONSOLIDATED`·`V1010_INSPECT_*` 는 (iv-c) 등재; 잔여 = 접두 단위 REVIEW/NOTE 계열 — `V1014_REVIEW_R*` 20 · `V1013_REVIEW_R*` 30 · `V1012_P43_review_*` 등 ≈ 82본·9,159줄 = **DQ-16 후보 풀**, 1.2 Step 3 토픽 한정 열람 대상).
 - `Claude/skills/competition-cherrypick-authoring/SKILL.md`(98줄 · 스킬 사본 — 이력 문서 아님).
-- `Claude/results/` 상위 md 4본(군 정의 밖): `Step 1 — 인벤토리 파일 생성(OUT-INV).md`(35줄 — 본 arc Step 1 이력 · master 산출 · TSV 시점 09:34 에 이미 존재; 1g A22 `Step*=0` 은 GO 직전 값) · `V1024_PROGRESS_SUMMARY.md`(51) · `_FINAL_README.md`(25) · `MISSING_CONTENT_REVIEW.md`(93 · `docs/INDEX.md`:193 참조).
+- `Claude/results/` 상위 md 4본(군 정의 밖): `Step 1 — 인벤토리 파일 생성(OUT-INV).md`(35줄 — 본 arc Step 1 이력 · master 산출 · TSV 시점 09:34 에 이미 존재; 1g A22 `Step*=0` 은 GO 직전 값) · `V1024_PROGRESS_SUMMARY.md`(51) · `_FINAL_README.md`(25) · `MISSING_CONTENT_REVIEW.md`(93 · `docs/INDEX.md`:193 참조 — iter_3 에서 (iv-c) 등재).
 
 ### 8.4 모집단 밖(확장자 밖)
 
@@ -1530,12 +1617,12 @@ TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅
 | 06 | 경미 | 인정 | (x) 행 1 · §3.5 확정 문구 |
 | 07 | 경미 | 인정 + master git 확정(811→812) | §3.1 · DQ-9 닫힘 |
 | 08 | 제안 | 채택 | §3.4 오기 확정 → 마스터 플랜 §2.0 정정(v5.3) |
-| 09 | 제안 | 채택 | (xi) 행 8 비고(work_log 는 iter_1 기록 그대로 보존 — 정정은 본 문건·Step 1 이력) |
+| 09 | 제안 | 채택 | (xi) 행 8 비고(work_log 는 iter_1 기록 그대로 보존 — 정정은 본 문건 · Step 1 이력에 완료 시 기록) |
 | 10 | 경미 | 인정 | §0 규칙 · (vii) 행 81 비고 |
 | 11 | 경미 | 인정 | 세부 표기 6종 → 3종 통일 · DQ-1 어휘 세부 3종 추가 인지(`통제(프로젝트 지침)`·`조사(원문 추출)`·`시드(판독·json)` — 토큰 + 괄호 세부 규칙 안) |
 | 12 | 제안 | 채택 | §4 규칙 ordinal 명시 · #179·#239 고유본 수동 지정 · (vii) 행 39·41 표기 교체 |
 | 13 | 제안(계획서) | 채택 — OUT-INV 무수정 | 마스터 플랜 v5.3 사실 정정(§2.2·§2.6·§2.9·2.1·2.2·2.7·T-4·T-15·Assumptions 12) |
-| 14 | 제안 | 채택 | 보존 사본 `iter_1/gen_outinv.ps1`(master 가 10:16:52 스크래치패드에서 복사 · SHA256 동일) — Step 1 이력 기록 |
+| 14 | 제안 | 채택 | 보존 사본 `iter_1/gen_outinv.ps1`(master 가 10:16:52 스크래치패드에서 복사 · SHA256 동일) — Step 1 이력에 완료 시 기록 |
 | 15 | 제안 | 채택 | §0 태그 경계 1구 |
 
 ### 10.2 DQ-1~15 처분
@@ -1563,4 +1650,26 @@ TSV 2,651 − 등재 665 = 미등재 1,986 파일 · 622,113 줄(**iter_1 스냅
 - G1: 추가 26본 전건 TSV 존재(경로·줄수는 TSV 행 전사) — 검수 라운드 2 에서 기계 재대조.
 - G3 60/60 · G4 8/8·13/13 · G6 ⊆ 131/131 · G7 259 그룹(고유본 2건 수동 지정) — 불변.
 - 합계 691 파일 · 97,678 줄.
+
+### 10.4 iter_3(검수 라운드 2 반영 · 2026-09-03) — 정책 단위 정의 확정 + 잔여 0 증명
+
+| AUD-R2 | 심각도 | master 판정 | 반영 |
+|---|---|---|---|
+| 01 | 확정결함 | 인정 | (iv-c) 21본 · (xvii-b) 2본 · (ix-b) 5본 · (vii-b) 3본(+이동 1) = 31본 신규 등재 · §2·§8.3 재생성 |
+| 02 | 경미 | 인정 — 정책 문안 확정(아래) · 접두 단위 풀은 DQ-16 | `iter_3/policy_check.txt`(스크립트) 로 (a)(c) 정규식 27종 · (b) 통제 문서 5본 인용 토큰 잔여 = 0 |
+| 03 | 경미(회귀) | 인정 | `RB_AL_MASTER` (i-b) → (vii-b) 이동 · 종류 = ledger(통합 Assumption Ledger) |
+| 04 | 경미(회귀) | 인정 | (vii) 행 74 귀속 문자열 = (i) 행 79 와 동일 · old/v2 2행 귀속 = `구트랙 RB`(동명이물 경고는 비고) |
+| 05 | 경미 | 인정 | 마스터 플랜 v5.4(§2.8 3곳 · Assumptions 11 · "지원 4본" 3곳) |
+| 06 | 경미 | 인정 | §10.1 문구 시제 정정 · Step 1 이력은 Step 완료 시 기록 |
+| 07 | 제안 | 채택 | 머리·(i) 행 90 라벨 · §3.1 주석(살아 있는 합계·9,567 측정 시각) |
+| 08 | 제안 | 채택 | §8.3 표 스크립트 재생성(현재 §1 집합 기준) |
+| 09 | 제안 | 채택 | (xvii-b) 비고 + 마스터 플랜 v5.4 OUT-CLAUDEMD 항목(DR-13 후보: P1 인용 경로 스테일) |
+| 10 | 제안 | 채택 | (vii-b) CHARTER 3 · (ix-b) radius 판정문 4 + `broadening_w_design` |
+
+**「추가 발견」 정책 문안(master 확정)** — (a) 형제 = **파일명 계열**(같은 폴더 · `접두_핵심어` 계열 정규식 일치; 접두만 같은 것은 계열이 아니다) · (b) 통제 문서(프로젝트 `CLAUDE.md` · 마스터 플랜 · INDEX 3본)가 **이력·결정 근거로 인용**하는 md/tex 원문(가이드 `FITTING_GUIDE`/`CODE_GUIDE`·코드 `.py`·데이터 `.json/.txt`·PDF·figs·`docs/` 하위 tex 본문 제외 — tex 본문은 (xvi)·(xviii)·2.1 자산 지도 소관; **`old/` 소재 인용 tex(계보 원문)는 등재** — (xvii-b)·(xvii-c)) · (b′) 등재 문서가 binding·입력으로 명시 인용하는 규약(charter) 문서 · (c) 동명 폴더 안 md 전건. 적용 = `iter_3/policy_check.txt`(정규식 27종 매치 → S 대조 · 통제 문서 5본 토큰 → TSV 해소 → S 대조) — **잔여 0**.
+
+**DQ-16(신규)** — 접두 단위 후보 풀(`results/process/` REVIEW·NOTE 계열 ≈ 82본·9,159줄: `V1014_REVIEW_R1_A~R7_B` 20 · `V1013_REVIEW_R1~R10_{A,B,C}` 30 + `V1013_CODE_MAP_ADDENDUM_R10` · `V1012_P43_review_*` 11 + `V1012_P42b_fixer_note` · `V1010_P1~P5_review1` 5 · `V1010_HANDOVER_INSPECT_*` 11 · `V1010_LCO_STYLE_REPORT` · `V1015_P2_PHYSICS_REVIEW` · `V1017_REVIEW_COMPLETE`(등재) · `V1019_FINAL_REVIEW_UNION`)은 정독 모집단 밖·**1.2 Step 3 토픽 한정 열람 후보 풀**로 §8.3 계수 유지(master 처분: 등재 X · Step 2 배정표 부록에 풀 목록 첨부).
+**DQ-17(신규)** — 프로젝트 `CLAUDE.md`:14–15 P1 인용 경로 `Claude/docs/graphite_ica_dynamic_ver5.tex`·`Claude/docs/graphite_ica_charge_balance_ver1_rechecked2.tex` = 스테일(실물 `Claude/old/_archive/Archive_old/`) → DR-13 OUT-CLAUDEMD 개정안 항목(사용자 결정 전 CLAUDE.md 무수정) · radius 조사 카드 16본·CH2_v3 조사 카드 등은 1.4 토픽 한정 열람 후보(계수만).
+
+**iter_3 후 합계** = 722 파일 · 103,537 줄 → 1차 스크립트 결과 (a)(c) 잔여 0 · (b) 잔여 8(`docs/INDEX.md` 인용 `old/` 계보 tex 6 · `INDEX_v25.md` 인용 경쟁 저작 결정 기록 2) → **iter_3b** 에서 (xvii-c)·(viii-c) 로 등재 → (b) 잔여 0. **최종 합계 = 730 파일 · 110,253 줄 · 미등재 1,921/604,865**(§8.3 재생성 · `iter_3/policy_check.txt` 최종판).
 
