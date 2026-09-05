@@ -1,4 +1,4 @@
-policy_check — iter_4 최종판(master, 2026-09-03) · S = OUT-INV §1 등재 집합 ∪ v1.0.25 tex 60 = 738 파일 · 111107 줄 · 잔여 1913/604011
+policy_check — iter_5 최종판(master, 2026-09-05) · S = OUT-INV §1 등재 집합 ∪ v1.0.25 tex 60 = 739 파일 · 111130 줄 · 잔여 1912/603988
 
 ## (a)(c) 계열·폴더 정규식(28종 · 대소문자 구분) → TSV 매치 / S 등재 / 잔여
 - `^Claude/results/process/V1010_INSPECT_.*\.md$` → 매치 11 · 등재 11 · 잔여 0
@@ -7,7 +7,7 @@ policy_check — iter_4 최종판(master, 2026-09-03) · S = OUT-INV §1 등재 
 - `^Claude/old/Archive_oldtrack/REVIEW_LEDGER_.*\.md$` → 매치 10 · 등재 10 · 잔여 0
 - `^Claude/results/process/V1014_.*AUDIT.*\.md$` → 매치 3 · 등재 3 · 잔여 0
 - `^Claude/old/results/PROJECT_AUDIT_REPORT.*\.md$` → 매치 2 · 등재 2 · 잔여 0
-- `^Claude/results/research/radius/(RADIUS_|.*_VERDICT|PHASE_RADIUS|50_report).*\.md$` → 매치 6 · 등재 6 · 잔여 0
+- `^Claude/results/research/radius/(RADIUS_|.*_VERDICT|PHASE_RADIUS|50_report|CODE_w_check).*\.md$` → 매치 7 · 등재 7 · 잔여 0
 - `^Claude/.*/HANDOVER[^/]*\.md$` → 매치 28 · 등재 28 · 잔여 0
 - `^Claude/.*LEDGER[^/]*\.md$` → 매치 77 · 등재 77 · 잔여 0
 - `^Claude/.*PHASE_[^/]*_RESULT[^/]*\.md$` → 매치 112 · 등재 112 · 잔여 0
@@ -33,13 +33,14 @@ policy_check — iter_4 최종판(master, 2026-09-03) · S = OUT-INV §1 등재 
 (a)(c) 잔여 합계 = 0
 
 ## (b) 통제 문서 인용 토큰(.md/.tex basename) → TSV 해소 → S 등재 / 제외 / 잔여
-해소 규칙: 토큰 basename 이 TSV 에 있으면 해소(동명 basename 다수면 그 경로들 중 **하나라도** S 에 있으면 등재, 전부 제외 클래스면 제외, 그 밖은 잔여). TSV 에 없는 basename = 미해소(본 arc 예정 파일·외부·경로 패턴 토큰) — 목록 첨부.
+토큰화 규칙(iter_5 AUD-R4-01 정정): 토큰 문자 집합 = `[A-Za-z0-9_.-]`, 정규식 `[A-Za-z0-9_\-.]+\.(md|tex)\b` — 괄호·꺾쇠·백틱 등 구두점은 토큰에 포함하지 않는다(iter_4 판은 `()` 를 포함해 `(CODE_w_check.md` 를 미해소로 오분류했다).
+해소 규칙: 토큰 basename 이 TSV 에 있으면 해소(동명 basename 다수면 그 경로들 중 **하나라도** S 에 있으면 등재, 전부 제외 클래스면 제외, 그 밖은 잔여). TSV 에 없는 basename = 미해소(본 arc 예정 파일·외부·경로 패턴 조각) — 목록 첨부.
 - `CLAUDE.md`: 토큰 7 · 미해소 4 · 등재 3 · 제외 0 · **잔여 0**
   미해소: -plan.md ; AGENTS.md ; _EXECUTION_LEDGER.md ; phase_planning_operations_guide.md
-- `Claude/plans/2026-09-02-v2-master-plan.md`: 토큰 129 · 미해소 34 · 등재 95 · 제외 0 · **잔여 0**
-  미해소: (PHASE_DIAG_REFS67_DOSSIER.md ; -plan.md ; A2_v5-v7.md ; A3_v7-v9.md ; A4_v9-v1011.md ; A5_ch2-code.md ; CODE_MAP_v1027.md ; HANDOVER_v1.0.27.md ; PHASE_1-7_V1027_EXECUTION_LEDGER.md ; PHASE_1_V1027_HISTORY_RESULT.md ; PHASE_2_V1027_GAP_RESULT.md ; PHASE_3_V1027_BLUEPRINT_RESULT.md ; PHASE_4_V1027_AUTHOR_RESULT.md ; PHASE_5_V1027_BIB_RESULT.md ; PHASE_6_V1027_CLOSING_RESULT.md ; PHASE_7_V1027_CODE_RESULT.md ; V1027_CLAUDE_MD_REVISION_PROPOSAL.md ; V1027_GAP_REGISTER.md ; V1027_HISTORY_INVENTORY.md ; V1027_REFERENCE_LEDGER.md ; V1027_REG1_VERSION_CHANGES.md ; V1027_REG2_BINDING_DECISIONS.md ; V1027_REG3_LOST_DIRECTIONS.md ; V1027_THEORY_BLUEPRINT.md ; _ADDENDUM.md ; _Fable_v3.tex ; _Opus_v4.tex ; _Opus_v5.tex ; _Opus_v6.tex ; _RESULT.md ; _v1.0.21.tex ; _v1.0.24.tex ; charge_balance_ver1_rechecked2.tex ; master.tex
-- `Claude/docs/INDEX.md`: 토큰 82 · 미해소 5 · 등재 55 · 제외 22 · **잔여 0**
-  미해소: (CODE_w_check.md ; 9_RESULT.md ; _RESULT.md ; _v1.0.22.tex ; graphite_ica_ch2_v5.tex
+- `Claude/plans/2026-09-02-v2-master-plan.md`: 토큰 128 · 미해소 33 · 등재 95 · 제외 0 · **잔여 0**
+  미해소: -plan.md ; A2_v5-v7.md ; A3_v7-v9.md ; A4_v9-v1011.md ; A5_ch2-code.md ; CODE_MAP_v1027.md ; HANDOVER_v1.0.27.md ; PHASE_1-7_V1027_EXECUTION_LEDGER.md ; PHASE_1_V1027_HISTORY_RESULT.md ; PHASE_2_V1027_GAP_RESULT.md ; PHASE_3_V1027_BLUEPRINT_RESULT.md ; PHASE_4_V1027_AUTHOR_RESULT.md ; PHASE_5_V1027_BIB_RESULT.md ; PHASE_6_V1027_CLOSING_RESULT.md ; PHASE_7_V1027_CODE_RESULT.md ; V1027_CLAUDE_MD_REVISION_PROPOSAL.md ; V1027_GAP_REGISTER.md ; V1027_HISTORY_INVENTORY.md ; V1027_REFERENCE_LEDGER.md ; V1027_REG1_VERSION_CHANGES.md ; V1027_REG2_BINDING_DECISIONS.md ; V1027_REG3_LOST_DIRECTIONS.md ; V1027_THEORY_BLUEPRINT.md ; _ADDENDUM.md ; _Fable_v3.tex ; _Opus_v4.tex ; _Opus_v5.tex ; _Opus_v6.tex ; _RESULT.md ; _v1.0.21.tex ; _v1.0.24.tex ; charge_balance_ver1_rechecked2.tex ; master.tex
+- `Claude/docs/INDEX.md`: 토큰 82 · 미해소 4 · 등재 56 · 제외 22 · **잔여 0**
+  미해소: 9_RESULT.md ; _RESULT.md ; _v1.0.22.tex ; graphite_ica_ch2_v5.tex
   제외: graphite_ica_ch1_v1.0.10.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.12.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.13.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.14.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.15.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.16.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.17.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.18.1.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.18.2.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.19.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.20.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch1_v1.0.21.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.12.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.13.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.14.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.15.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.16.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.17.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.18.2.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.19.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.20.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)] ; graphite_ica_ch2_v1.0.21.tex[docs/ 구버전 tex 본문(DR-7 정독 범위 밖 · §8.3 계수)]
 - `Claude/plans/INDEX.md`: 토큰 27 · 미해소 1 · 등재 26 · 제외 0 · **잔여 0**
   미해소: _RESULT.md
@@ -49,7 +50,7 @@ policy_check — iter_4 최종판(master, 2026-09-03) · S = OUT-INV §1 등재 
 (b) 잔여 합계 = 0
 
 ## 정책 문안 — OUT-INV §10.4 정본과 동일 문자열
-**「추가 발견」 정책 문안(master 확정 · 정본 — (iv-c) 정의·`policy_check.txt` 는 이 문안을 참조)** — (a) 형제 = **파일명 계열**(같은 폴더 · `접두_핵심어` 계열 정규식 일치; 접두만 같은 것은 계열이 아니다 → DQ-16 후보 풀) · (b) 통제 문서(프로젝트 `CLAUDE.md` · 마스터 플랜 · INDEX 3본)가 **이력·결정 근거로 인용**하는 md/tex 원문 — 제외 = 코드 `.py` · 데이터 `.json/.txt` · PDF · figs · `CODE_GUIDE_v24`(`INDEX_v25.md`:94 "v1.0.25 미갱신" 스테일 코드 기록 — 7.x 소관) · **`docs/` 하위 구버전 tex 본문(v1.0.10~v1.0.24.1 장 본문·부록)은 DR-7 정독 범위 밖**(§8.3 계수 · 1.2 토픽 한정 시 원천 열람 가능; 현행 v1.0.25/v1.0.25.1 tex 는 (xvi)·(xviii)·2.1 자산 지도 소관) — 등재 = **`old/` 소재 인용 tex(계보 원문)**(xvii-b)·(xvii-c)(비대칭 사유: `docs/INDEX.md` 계보 절이 직접 인용 + 유실 원문 5본의 연속) · **`FITTING_GUIDE` hash 고유 내용 8본**(가이드가 아니라 규약 기록 — `docs/INDEX.md`:62 B-006 U_j 평가 규약)(vii-c) · (b′) 등재 문서가 binding·입력으로 명시 인용하는 규약(charter) 문서 · (c) 동명 폴더 안 md 전건. 적용 = `iter_3/policy_check.txt`(정규식 28종 매치 → S 대조 · 통제 문서 5본 토큰 → TSV 해소(동명 basename 은 그중 하나라도 S 또는 제외 클래스면 통과) → S 대조) — **잔여 0**.
+**「추가 발견」 정책 문안(master 확정 · 정본 — (iv-b)·(iv-c) 정의·`policy_check.txt` 는 이 문안을 참조)** — (a) 형제 = **파일명 계열**(같은 폴더 · `접두_핵심어` 계열 정규식 일치; 접두만 같은 것은 계열이 아니다 → DQ-16 후보 풀) · (b) 통제 문서(프로젝트 `CLAUDE.md` · 마스터 플랜 · INDEX 3본 = `docs/INDEX.md`·`plans/INDEX.md`·`INDEX_v25.md` — 마스터 플랜 L307 DR-7 ①·L309 Phase 1.1 입력 지정; 그 밖의 `INDEX_v*` 는 (vi) 등재 대상이지 통제 문서가 아니며, 폴더 단위 인용(`docs/INDEX.md`:29·:32 `comp_*/`)은 basename 검사 밖 → DQ-6 처분으로 흡수 — AUD-R4-P1)가 **이력·결정 근거로 인용**하는 md/tex 원문 — 제외 = 코드 `.py` · 데이터 `.json/.txt` · PDF · figs · `CODE_GUIDE_v24`(`INDEX_v25.md`:94 "v1.0.25 미갱신" 스테일 코드 기록 — 7.x 소관) · **`docs/` 하위 구버전 tex 본문(v1.0.10~v1.0.24.1 장 본문·부록)은 DR-7 정독 범위 밖**(§8.3 계수 · 1.2 토픽 한정 시 원천 열람 가능; 현행 v1.0.25/v1.0.25.1 tex 는 (xvi)·(xviii)·2.1 자산 지도 소관) — 등재 = **`old/` 소재 인용 tex(계보 원문)**(xvii-b)·(xvii-c)(비대칭 사유: `docs/INDEX.md` 계보 절이 직접 인용 + 유실 원문 5본의 연속) · **`FITTING_GUIDE` hash 고유 내용 8본**(가이드가 아니라 규약 기록 — `docs/INDEX.md`:62 B-006 U_j 평가 규약)(vii-c) · **`CODE_w_check.md`**(`docs/INDEX.md`:181 인용 관찰 기록)(ix-b) · (b′) 등재 문서가 binding·입력으로 명시 인용하는 규약(charter) 문서 · (c) 동명 폴더 안 md 전건. 적용 = `iter_3/policy_check.txt`(정규식 28종 매치 → S 대조 · 통제 문서 5본 토큰 — **구두점 정규화: 토큰 문자 집합 `[A-Za-z0-9_.-]` 만, 괄호·꺾쇠·백틱은 토큰에 포함하지 않는다(iter_5 AUD-R4-01)** → TSV 해소(동명 basename 은 그중 하나라도 S 또는 제외 클래스면 통과) → S 대조) — **잔여 0**.
 
 ## 이력
-iter_3 1차: (a)(c) 잔여 0 · (b) 잔여 8(old/ 계보 tex 6 · INDEX_v25 인용 결정 기록 2) → iter_3b 등재(730/110,253) → iter_4: 검수 R3 반영 — (b) 제외 클래스에서 FITTING_GUIDE 를 규약 기록으로 재분류해 hash 고유 8본 등재(vii-c) · 제외 근거 문장 정정 · 동명 basename 해소 규칙·미해소 목록 첨부 → 본 최종판.
+iter_3 1차: (a)(c) 잔여 0 · (b) 잔여 8 → iter_3b 등재(730/110,253) → iter_4: FITTING_GUIDE 8본 등재·제외 근거 정정(738/111,107) → 검수 R4 가 토크나이저 결함(여는 괄호 포함 토큰 미해소)으로 `CODE_w_check.md` 잔여 1 을 드러냄 → iter_5: 토큰 문자 집합에서 괄호 제거·재실행 + `CODE_w_check.md` (ix-b) 등재 → 본 최종판(잔여 0 재성립).

@@ -3,7 +3,7 @@
 - **arc**: v1.0.27(마스터 플랜 `Claude/plans/2026-09-02-v2-master-plan.md` — 착수 시 v5.2, Step 중 사실 정정 v5.3·v5.4 · 실행 기준 정본)
 - **작업 챕터 / Phase**: 1 이력 통합 / **1.1 인벤토리·정독 배정**
 - **cumulative step**: 1(본 arc 첫 Step — 2.7 좌표대로 1 부터 단조 누적)
-- **상태**: 진행 중(2026-09-03) — 작업 sub 산출(iter_1) → 검수 R1(확정결함 1) → master iter_2 → 검수 R2(확정결함 1) → master iter_3·3b → 검수 R3(**확정결함 0**) → master iter_4 → **검수 R4 대기**(확정결함 0 이면 연속 2R 수렴)
+- **상태**: 진행 중(2026-09-03) — 작업 sub 산출(iter_1) → 검수 R1(확정결함 1) → master iter_2 → 검수 R2(확정결함 1) → master iter_3·3b → 검수 R3(**확정결함 0**) → master iter_4 → 검수 R4(Workflow · **확정결함 1** = 정책 (b) 토크나이저 결함) → master iter_5 → **검수 R5 대기**(R5·R6 연속 0 이면 수렴)
 - **모델·유닛**: master Fable 5.1 · 작업 sub Fable 5.1 · 검수 sub Fable 5.1(R1·R2 동일 sub, 문맥 유지) · 직렬(동시 산 서브 ≤1)
 
 ## [Phase 1.1 착수 — 마스터 플랜 재독]
@@ -25,14 +25,16 @@
 | 6 | 10:5x–11:0x | 검수 sub R2 | `audit_checklist_r2.md` 4렌즈(regression·완결성·usable·구조) · iter_2 수치 전건 재현 · 발견 10(확정결함 1 AUD-R2-01 정책 미기계적용 잔여 19본+ · 경미 5 · 제안 4) | `iter_2/audit_log_r2.md` |
 | 7 | 11:0x | master | 삼각검증 → 복원 지점 commit `cbc1d7c`(iter_2) → iter_3 패치: 「추가 발견」 정책 (a)(b)(b′)(c) 단위 정의 확정 + 31본 등재((iv-c) 21·(vii-b) 4(이동 1 포함)·(ix-b) 5·(xvii-b) 2) + `RB_AL_MASTER` 종류 정정 이동 + 이표기 2쌍 통일 + §8.3 표 스크립트 재생성 + 정책 잔여 스크립트 검사 → (a)(c) 0 · (b) 8 → iter_3b: (xvii-c) 계보 tex 6 · (viii-c) 결정 기록 2 등재 → **(a)(b)(c) 잔여 0**(`iter_3/policy_check.txt`) · 계획서 v5.4(§2.8 3곳·Assumptions 11·"지원 4본" 3곳·OUT-CLAUDEMD DR-13 후보) | OUT-INV 1,675행(등재 730/110,253) · 계획서 814행 |
 | 8 | 11:1x–11:2x | 검수 sub R3 | `audit_checklist_r3.md` regression·완결성·적대검산(policy_check 독립 재현 · 신규 39본 인용 근거 21건 실물 대조) · **확정결함 0**(수렴 1R) · 경미 5 · 제안 5(최약점 = FITTING_GUIDE 규약 기록이 "가이드" 제외에 묻힘) | `iter_3/audit_log_r3.md` |
-| 9 | 11:3x | master | 복원 지점 commit `731a94e`(iter_3b) → iter_4 패치: AUD-R3-01~09 전건 반영(표기 12행 · §0 규칙 · 정책 문안 정본 단일화 · (vii-c) FITTING_GUIDE 8본 등재 · §8.3·PC 재생성) + 계획서 v5.4 추기(§2.8 각주 · 합계 738/111,107) | OUT-INV(등재 738/111,107) · 계획서 815행 |
-| 10 | — | 검수 sub R4 | (대기) regression 집중 — 확정결함 0 이면 연속 2R 수렴 | `iter_4/audit_log_r4.md` |
+| 9 | 11:3x | master | 복원 지점 commit `731a94e`(iter_3b) → iter_4 패치: AUD-R3-01~09 전건 반영(표기 12행 · §0 규칙 · 정책 문안 정본 단일화 · (vii-c) FITTING_GUIDE 8본 등재 · §8.3·PC 재생성) + 계획서 v5.4 추기(§2.8 각주 · 합계 738/111,107) | OUT-INV(등재 738/111,107) · 계획서 816행 |
+| 10 | 09-04~05 | 검수 R4(Workflow) | 검수 sub 가 Fable 한도로 종료 → 사용자 "다시 시도" + workflow-authoring → Workflow(렌즈 3 병렬 · 발견 28건 × 반박 3인 · 통합 1 = 88 에이전트) → 세션 한도 1회 중단·재개 → 사용자 지적(동시 과다) → 중지 후 **동시 ≤3** 으로 재개(발견 순차·건당 반박 3인) · 결과 = **확정결함 1**(AUD-R4-01 토크나이저 여는 괄호 → `CODE_w_check.md` 잔여) · 경미 10 · 제안 4 · 약생존 1 | `iter_4/audit_log_r4.md` |
+| 11 | 09-05 | master | 삼각검증 → iter_5 패치: 토큰 문자 집합에서 괄호 제거·PC 재실행(잔여 0 재성립) · `CODE_w_check.md` (ix-b) 등재(739/111,130) · §0 규칙 텍스트(매핑 8종·07월 무토큰·추정 부기 9행) · (iv-b)·(vii-c)·(ix-b)·(xvii-b) 정의 문구 · §3.1·§8.1·§8.3·§10.4·§10.5 정정 · §10.6 · 계획서 v5.5(CH v5.4 라벨 복원 · Assumptions 11 · 병렬 상한 기록) · 본 이력 갱신 | OUT-INV(등재 739/111,130) · 계획서 817행 |
+| 12 | — | 검수 R5 | (대기) iter_5 regression + PC 재현 — 동시 ≤3 | `iter_5/audit_log_r5.md` |
 
 ## 근거·판단(master · 4-tier)
 
 1. **실측 정본(확정)** — plans 93 파일·10,384줄 · HANDOVER 25/1,612(old/ 제외)·28/1,915 · PLAN_* 15/645 + v1020 master 207 · `CLAUDE.md` 88 · 현행 tex 60/9,214(빌드 포함 = 마스터 3 + `\input` 53 = 56 · 미포함 4 = orphan `ch1_appD_si`·v1.0.21 잔재 `ch1_preamble`·`ch2_preamble` + 독립 부록 1) · v1.0.25 tex 60/9,207(v1.0.25.1 대비 hash 상이 tex 6) · 유실 원문 5본 존재 · untracked Claude 8 지위(png 5 유효·재생성 가능 / `C3_graph_check` 유효 / `C3_pdf_render` 유효·추정 상향 / `regsol_test` 폐기) · Codex 13 무접근 고정. 출처 = OUT-INV §3·§5·§6 · 검수 R1 독립 재측정 R-a~R-i 전건 일치(`iter_1/audit_log.md` §4).
 2. **brief·계획서 기대와 다른 실측 3건(확정 → 계획서 정정 v5.3)** — ① 빌드 포함 58/미포함 2 → 56/4(preamble 2본은 어느 마스터에서도 `\input` 되지 않는 v1.0.21 잔재, `common_preamble_v1024.tex`:3 이 흡수 · 빌드 실사용 박스 정의 = `common_preamble_v1024.tex`:33–41) ② brief §3-C "HANDOVER 28(old/ 제외)" = old/ 포함 건수의 오기 ③ plans +1(1g 10,383 → 10,384) = 마스터 플랜 811→812(`git show 8d9362f` 811 · HEAD `f0c381b` 812 — v5.2 Correction History 행 추가, 검수 mtime 09:26:07 일치). 부수: `CLAUDE.md` 90 은 오기(mtime 2026-07-26 이후 무변경 · LF=CRLF=`wc -l`=88), `jcp_extract.txt` 725 = 끝 개행 없음, `HANDOVER_v1.0.10`·v1.0.12 인계 = 실물 부재.
-3. **「추가 발견」 정책(master 확정 — OUT-INV §10.4)** — 검수 R1·R2 가 같은 뿌리(정책 비일관·미기계적용)를 두 번 지적했으므로 단위 정의를 문안으로 고정하고 스크립트로 증명했다: (a) 형제 = **파일명 계열**(같은 폴더 · 접두_핵심어 정규식; 접두만 같은 것은 계열 아님 → 접두 풀 ≈ 82본은 DQ-16 후보 풀·계수만) · (b) 통제 문서(프로젝트 `CLAUDE.md`·마스터 플랜·INDEX 3본)가 **이력·결정 근거로 인용**하는 md/tex 원문(가이드·코드·데이터·PDF·figs·`docs/` tex 본문 제외 — tex 본문은 2.1 자산 지도 소관; `old/` 소재 인용 tex(계보 원문)는 등재) · (b′) 등재 문서가 binding/입력으로 명시 인용하는 규약(charter) · (c) 동명 폴더 안 md 전건. 증거 = `iter_3/policy_check.txt`(정규식 28종 + FITTING_GUIDE hash 그룹 → 잔여 0 · 통제 문서 5본 인용 토큰 295건(md/tex basename 정의; 검수 R2 의 407 은 6 확장자 정의) → 잔여 0). iter_4(검수 R3 반영): (b) 제외 클래스 "가이드" 를 정정 — `FITTING_GUIDE` 는 규약 기록(`docs/INDEX.md`:62 B-006)이라 hash 고유 내용 8본을 (vii-c) 로 등재, `CODE_GUIDE_v24` 만 스테일 코드 기록으로 제외 유지 · `docs/` 구버전 tex 본문(v1.0.10~24.1) 제외 근거 = DR-7 정독 범위 밖(2.1 소관 아님 — 문장 정정).
+3. **「추가 발견」 정책(master 확정 — 정본 = OUT-INV §10.4; 아래는 iter_3 시점 요지, 이후 정정은 §10.5·§10.6)** — 검수 R1·R2 가 같은 뿌리(정책 비일관·미기계적용)를 두 번 지적했으므로 단위 정의를 문안으로 고정하고 스크립트로 증명했다: (a) 형제 = **파일명 계열**(같은 폴더 · 접두_핵심어 정규식; 접두만 같은 것은 계열 아님 → 접두 풀 ≈ 82본은 DQ-16 후보 풀·계수만) · (b) 통제 문서(프로젝트 `CLAUDE.md`·마스터 플랜·INDEX 3본)가 **이력·결정 근거로 인용**하는 md/tex 원문(가이드·코드·데이터·PDF·figs·`docs/` 구버전 tex 본문 제외 — 제외 근거 = DR-7 정독 범위 밖(iter_4 정정; 2.1 소관은 현행 두 버전만); `old/` 소재 인용 tex(계보 원문)는 등재) · (b′) 등재 문서가 binding/입력으로 명시 인용하는 규약(charter) · (c) 동명 폴더 안 md 전건. 증거 = `iter_3/policy_check.txt`(정규식 28종 + FITTING_GUIDE hash 그룹 → 잔여 0 · 통제 문서 5본 인용 토큰 295건(md/tex basename 정의; 검수 R2 의 407 은 6 확장자 정의) → 잔여 0 — 단 검수 R4 가 토크나이저 결함(여는 괄호 포함 토큰 미해소)을 드러내 iter_5 에서 규칙 정정·재실행 후 `CODE_w_check.md` 1본 등재로 잔여 0 재성립). iter_4(검수 R3 반영): (b) 제외 클래스 "가이드" 를 정정 — `FITTING_GUIDE` 는 규약 기록(`docs/INDEX.md`:62 B-006)이라 hash 고유 내용 8본을 (vii-c) 로 등재, `CODE_GUIDE_v24` 만 스테일 코드 기록으로 제외 유지 · `docs/` 구버전 tex 본문(v1.0.10~24.1) 제외 근거 = DR-7 정독 범위 밖(2.1 소관 아님 — 문장 정정).
 4. **hash 고유본 규칙(확정)** — 가장 이른 버전 폴더 · 버전 폴더 없는 구성원은 **ordinal** 경로 정렬 최상 · 같은 폴더 동명이물 2건(#179 `REVIEW_LEDGER_CH2_10ROUND`, #239 `graphite_ica_chapter2`)은 파일명 의미(base < rerun/fix)로 수동 지정 · 현행 tex 60 은 정독 경로 = `v1.0.25.1`.
 5. **DQ 처분(master)** — OUT-INV §10.2·§10.4: 닫힘 = DQ-9·11·13·14·15 · 확정 = DQ-1·3·4·5·6·10 · 유지 = DQ-2(1.2 정독에서 확정) · 이관 = DQ-12(GAP 후보 → 2.1/2.5)·DQ-17(`CLAUDE.md` P1 인용 경로 스테일 → DR-13 OUT-CLAUDEMD) · **사용자 결정 대기(nonblocking, 기본값 현상 유지)** = DQ-7(untracked png 5 의 git 처리)·DQ-8(`C3_pdf_render/` 15.7 MiB 보존) → Phase 1.1 Result Decision Queue 로 이관 · 신규 DQ-16(접두 단위 후보 풀 = 1.2 Step 3 토픽 한정 열람 후보).
 6. **검수 R1 AUD-09 관련 기록(확정)** — `out_versions/build.log` 36 은 R2 의 Read 표기 불일치(파일은 LF 36·끝 개행 True) — work_log 는 iter_1 기록으로 보존하고 OUT-INV (xi) 행 8 비고에 정정.
@@ -41,25 +43,25 @@
 
 ## 변경·생성 파일
 
-- 생성: `Claude/results/V1027_HISTORY_INVENTORY.md`(OUT-INV · 작업 sub iter_1 → master iter_2/3/3b 정정) · `Claude/results/handoffs/v1027-phase-1.1-inventory/{brief.md, audit_checklist.md, audit_checklist_r2.md, iter_1/{inventory_raw.tsv, work_log.md, audit_log.md, gen_outinv.ps1}, iter_2/audit_log_r2.md, iter_3/policy_check.txt}` · 본 Step 파일.
-- 갱신: `Claude/plans/2026-09-02-v2-master-plan.md` v5.2 → v5.3 → v5.4(Correction History 2행 — 사실 정정).
+- 생성: `Claude/results/V1027_HISTORY_INVENTORY.md`(OUT-INV · 작업 sub iter_1 → master iter_2/3/3b/4/5 정정) · `Claude/results/handoffs/v1027-phase-1.1-inventory/{brief.md, audit_checklist.md, audit_checklist_r2.md, audit_checklist_r3.md, audit_checklist_r4.md, iter_1/{inventory_raw.tsv, work_log.md, audit_log.md, gen_outinv.ps1}, iter_2/audit_log_r2.md, iter_3/{policy_check.txt, audit_log_r3.md}, iter_4/audit_log_r4.md}` · `Claude/results/handoffs/v1027-phase-1.1-reading/brief.md`(Step 2 brief 선작성) · 본 Step 파일.
+- 갱신: `Claude/plans/2026-09-02-v2-master-plan.md` v5.2 → v5.3 → v5.4 → v5.5(Correction History 3행 — 사실 정정·운용 기록).
 - 무변경: `Claude/docs/v1.0.24*`·`v1.0.25*`·`v1.0.26A/B` · `Codex/`(접근 0) · 판독 산출 R1~R7 · 작업 sub work_log(iter_1 기록 보존).
-- commit: `72a0477`(iter_1 복원 지점) · `cbc1d7c`(iter_2+v5.3 복원 지점) · (Step 종료 시 검토·정정 commit 예정).
+- commit: `72a0477`(iter_1) · `cbc1d7c`(iter_2+v5.3) · `731a94e`(iter_3b+v5.4) · `6bf32c9`(iter_4) · (iter_5 복원 지점 = R5 전 wip commit · Step 종료 시 검토·정정 commit).
 
 ## 게이트
 
 | 게이트 1.1(Step 1 몫) | 판정 | 근거 |
 |---|---|---|
-| Test-Path True 100% | O | OUT-INV §1 730 path 전건 TSV 존재(`policy_check` S=730 · 검수 R1 611/611·R2 637/637 재실행) |
-| 줄수 열 빈 셀 0 | O | 730/730 숫자(TSV 값) |
+| Test-Path True 100% | O | OUT-INV §1 + v1.0.25 tex 60 = S 739 path 전건 TSV 존재(`policy_check` iter_5 S=739 · 검수 R1 611/611·R2 637/637·R3 676/676·R4 684+54=738/738 재실행) |
+| 줄수 열 빈 셀 0 | O | 739/739 숫자(TSV 값) |
 | brief §3-C 차이 열거·정본 확정 | O | OUT-INV §3.1~3.5 |
 | 빌드 포함/미포함 60/60 | O | OUT-INV §6(56/4 — 계획서 v5.3 정정) |
 | untracked Claude 8 지위 · Codex 13 무접근 | O | OUT-INV §5 |
 | 판독 커버리지 ⊆ | O | OUT-INV §7 131/131 |
-| 정책 (a)(b)(b′)(c) 잔여 0 | O | `iter_3/policy_check.txt` |
-| 검수 수렴(연속 2R 확정결함 0) | **대기** | R1 확정결함 1 → R2 확정결함 1 → R3·R4 필요 |
+| 정책 (a)(b)(b′)(c) 잔여 0 | O(iter_5 재성립) | `iter_3/policy_check.txt` iter_5 판(토큰 정규화 후 (a)(c) 0 · (b) 0) — iter_4 판은 토크나이저 결함으로 무근거였음(R4 AUD-R4-01) |
+| 검수 수렴(연속 2R 확정결함 0) | **대기** | R1 1 → R2 1 → R3 **0** → R4 1(토크나이저) → iter_5 → R5·R6 연속 0 필요 |
 | 배정표 차집합 0 | N/A | Step 2 |
 
 ## 다음
 
-- 검수 R3(regression·완결성) → 0 이면 R4(스킴 전환) → 수렴 시 검토·정정 commit → Step 2 정독 배정표(OUT-INV 730본 계보 순 정렬 · 청크 경계 · 정독 주체 열 · ①군 전문 / ②군 토픽 한정 · DQ-16 풀 부록) → 게이트 1.1 → `PHASE_1.1_V1027_INV_RESULT.md`+`.json` → Ledger 행 → push.
+- 검수 R5(iter_5 regression + PC 재현 · 동시 ≤3) → 0 이면 R6 → 수렴 시 검토·정정 commit → Step 2 정독 배정표(OUT-INV 739본 계보 순 정렬 · 청크 경계 · 정독 주체 열 · ①군 전문 / ②군 토픽 한정 · DQ-16 풀 부록) → 게이트 1.1 → `PHASE_1.1_V1027_INV_RESULT.md`+`.json` → Ledger 행 → push.
