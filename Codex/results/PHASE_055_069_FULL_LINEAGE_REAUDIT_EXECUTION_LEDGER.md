@@ -31,7 +31,7 @@
 | 064 | 64–69 | plan activation; Steps 64–69.2 complete | lineage G | v1.0.23 재감사 | CONDITIONAL | `Codex/plans/2026-08-29-phase064-v1023-lineage-detailed-plan.md` | `Codex/results/PHASE_064_V1023_LINEAGE_REPORT_G.md`; `Codex/results/PHASE_064_STEP_069_2_GATE_RESULT.md`; `Codex/results/PHASE_064_RESULT.md` | `Codex/results/PHASE_064_VALIDATION.json` plus prior Phase 064 evidence | Step 69.2 exact-eight commit `60ec2d2ad08a029224b86ddc3dcf6ff718c6d310`, parent `ec1fb2eda54feb35cd6c15d2ab15f2478b26fc6d`, subject `audit(phase064): close v1023 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 historical `15/15`, negative `37/37`, strict JSON `6/6`, Git `17/17`, determinism `2/2`; Ref. 6 full text `4/4`, Ref. 7 original `GROUND_NOT_FOUND` | `CONDITIONAL_P064`; `PASS_P064_STEP69_2_PERSISTENCE` | Phase 065 detailed-plan activation before Step 70 |
 | 065 | 70–75 | Steps 70–75.2 complete | lineage H | v1.0.24–v1.0.24.1 재감사 | CONDITIONAL | `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md` | `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md` | Phase 065 machine artifacts `11`; integrated `Codex/results/PHASE_065_VALIDATION.json` JSON-last | Step 75.2 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`; source `261/131`, machine traversal `87,180` depth `10`, runtime `18`, conformance `41`, carry `192/94`; Ref. 7 original full text remains `GROUND_NOT_FOUND` under `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | `CONDITIONAL_P065`; `PASS_P065_STEP75_2_PERSISTENCE` | Phase 066 detailed-plan activation persistence before cumulative Step 76 |
 | 066 | 76–81 | Steps 76–81.2 complete and persisted | lineage I | v1.0.25–v1.0.25.2 재감사 | CONDITIONAL | `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md` | `Codex/results/PHASE_066_V1025_V1025_2_LINEAGE_REPORT_I.md`; `Codex/results/PHASE_066_STEP_081_2_GATE_RESULT.md`; `Codex/results/PHASE_066_RESULT.md` | Steps 76–81.1 machine artifacts; integrated `Codex/results/PHASE_066_VALIDATION.json` JSON-last; canonical history precommit/persistence `7/7`, total `14/14`, ordinary fresh replay `0/14` | Step 81.2 exact-eight commit `7241b331ff76bc8d43cb1bc6b69634977e0884a0`, parent `bdad7375d70c3734cc63265d94a61dd82afd143d`, subject `audit(phase066): close v1025 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP81_2_PERSISTENCE`; source `433/167`, Direct14 `14/57`, original optimizer state and Ref. 7 full text `GROUND_NOT_FOUND`, profile routes `16`, probes `36/36`, owner registry/active `355/219`; held-out/external/material authority and stale PDFs remain open | `CONDITIONAL_P066`; `PASS_P066_LINEAGE_I` not selected; `PASS_P066_STEP81_2_PERSISTENCE` | Phase 067 detailed-plan activation exact-seven commit/push/persistence before Step 82 |
-| 067 | 82–90 | Steps 82–87 persisted; Step 88 numerical-guard impact audit pending persistence; Steps 89–90.2 pending | code | 코드·시험·피팅 계보 교차감사 | PASS_PENDING_PERSISTENCE | original `Codex/plans/2026-09-01-phase067-code-test-fitting-cross-audit-detailed-plan.md`; repair addendum retained | Steps 82–87 prior results; Step 88 `Codex/results/PHASE_067_STEP_088_NUMERICAL_GUARD_RESULT.md` | Step 87 exact-seven commit `ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4` persisted; Step 88 exact-seven builder/validator plus JSON-last numerical guard matrix; production source `20/15`, guards `24`, probes `27`, numerical defaults `8`, candidate dispositions `84/84` | Step 87 Python 3.12/3.14 `PASS_P067_STEP87_PERSISTENCE`; Step 88 selects `PASS_P067_STEP88_NUMERICAL_GUARD`, expected parent `ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4`, subject `audit(phase067): bound numerical guard impacts`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP88_PERSISTENCE` pending; internal software/numerical impact only | exact-seven Step 88 independent review, staged verification, commit/push/live/clean and dual-runtime persistence before Step 89 |
+| 067 | 82–90 | Steps 82–88 persisted; Step 89 fitting-authority audit pending persistence; Steps 90.1–90.2 pending | code | 코드·시험·피팅 계보 교차감사 | PASS_PENDING_PERSISTENCE | original `Codex/plans/2026-09-01-phase067-code-test-fitting-cross-audit-detailed-plan.md`; repair addendum retained | Steps 82–88 prior results; Step 89 `Codex/results/PHASE_067_STEP_089_FITTING_AUTHORITY_RESULT.md` | Step 88 exact-seven commit `7b81814017ffd4207cc2a13fabbbe68281075b00` persisted; Step 89 exact-eight builder/validator plus JSON-last fitting evidence matrix and runtime attestation; supplemental objects `10/10`; provenance classes `1/6/0/0/5`; fresh fits `0` | Step 88 Python 3.12/3.14 `PASS_P067_STEP88_PERSISTENCE`; Step 89 selects `PASS_P067_STEP89_FITTING_AUTHORITY`, expected parent `7b81814017ffd4207cc2a13fabbbe68281075b00`, subject `audit(phase067): separate fitting evidence authority`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, terminal `PASS_P067_STEP89_PERSISTENCE` pending; held-out/external/material/protocol/original-optimizer authority false | exact-eight Step 89 independent review, staged verification, commit/push/live/clean and dual-runtime persistence before Step 90.1 |
 | 068 | 91–98 | — | fork | 기존 Codex/Claude 검토 재판정 | PENDING | same master plan | pending | fork matrix | 미실행 | `PASS_P068_FORK_ADJUDICATION` | 91 |
 | 069 | 99–107 | — | synthesis | 전체 종합·새 작업 착수 gate | PENDING | same master plan | pending | canonical audit | 미실행 | `PASS_P069_REAUDIT_COMPLETE` | 99 |
 
@@ -175,10 +175,14 @@ returned `PASS_P067_STEP86_PERSISTENCE`. Step 87 is persisted as exact-seven com
 `ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4`, sole parent
 `4e8769e3253e7ffc1f4550e1bee3bc2563a5cfa7`, subject
 `audit(phase067): verify units numerical invariants`, pushed/live/clean; Python 3.12/3.14 both returned
-`PASS_P067_STEP87_PERSISTENCE`. Step 88 is current under `PASS_P067_STEP88_NUMERICAL_GUARD` /
-`PASS_PENDING_PERSISTENCE`, expected parent `ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4`, subject
-`audit(phase067): bound numerical guard impacts`, and containing commit
-`PENDING_AT_PRECOMMIT_BY_DESIGN`. Step 89 is blocked until the same Step 88 child passes dual persistence.
+`PASS_P067_STEP87_PERSISTENCE`. Step 88 is persisted as exact-seven commit
+`7b81814017ffd4207cc2a13fabbbe68281075b00`, sole parent
+`ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4`, subject
+`audit(phase067): bound numerical guard impacts`, pushed/live/clean; Python 3.12/3.14 both returned
+`PASS_P067_STEP88_PERSISTENCE`. Step 89 is current under `PASS_P067_STEP89_FITTING_AUTHORITY` /
+`PASS_PENDING_PERSISTENCE`, expected parent `7b81814017ffd4207cc2a13fabbbe68281075b00`, subject
+`audit(phase067): separate fitting evidence authority`, and containing commit
+`PENDING_AT_PRECOMMIT_BY_DESIGN`. Step 90.1 is blocked until the same Step 89 child passes dual persistence.
 Runtime/test/science/material/canonical/publication authority is not promoted.
 The first frozen Step 86 content-PASS candidate was subsequently rejected for a one-based guide manifest
 index, guide nested-provenance and contract-map fail-open, resealed runtime transcript/filesystem acceptance,
@@ -204,12 +208,12 @@ positive area, `10` tolerance-precedent rows over `6` test blobs, bounded contro
 Git-object LF seals. The rejected PASS is correction history only; Step 87 subsequently persisted at
 `ba331b7ad7eb66a2e16ab494d890a15c3b5e8bd4` with dual `PASS_P067_STEP87_PERSISTENCE`.
 Step 88 RED began with `E_MATRIX_MISSING`. Its first 14-guard/16-probe preview was superseded before
-collection when independent pre-audit identified seven underrepresented boundaries. The corrected current
-projection is `24` guards, `27` probes, `8` numerical-default records, `3` optimizer routes, and `84/84` candidate dispositions; Step 88
-remains precommit.
+collection when independent pre-audit identified seven underrepresented boundaries. The corrected projection
+at that precommit checkpoint was `24` guards, `27` probes, `8` numerical-default records, `3` optimizer routes,
+and `84/84` candidate dispositions; the Step 88 candidate remained precommit at that checkpoint.
 Subsequent independent builder reviews rejected candidates that underbound repeated source/provenance and
 dual NumPy payloads, mislabeled unexecuted observations, and generalized a no-pad resolution fixture to the
-v25+ padded path. The current repair exact-binds inventory/attestation projections and runtime payloads,
+v25+ padded path. The repaired candidate exact-binds inventory/attestation projections and runtime payloads,
 labels unexecuted cases source-static/not-claimed, and scopes the I21 returned peak-shape delta to pre-v25.
 The first JSON-last content candidate then failed `E_GIT_ARGV_CONTROL`: the mismatched-child negative
 exposed that the allowlist accepted distinct `commit^` and commit OIDs. An interim uppercase-only fixture
@@ -257,6 +261,17 @@ failed dual persistence at `E_COMMIT_PARENT` because `git show --format=...` als
 the patch. Metadata reads now require `--no-patch`, the former shapes are rejected, and
 the Git control suite is `14/14`; the failed candidate is not persistence evidence and
 only an amended child with passing persistence can replace it.
+Step 89 RED began with `E_MATRIX_MISSING`. The reviewed fitting inventory pins ten supplemental
+Git objects and classifies twelve present evidence records exclusively as
+`REAL_DATA/RECONSTRUCTED/SYNTHETIC/DEMO/SAVED_ONLY=1/6/0/0/5`. The two zero classes are bounded
+inventory absences, not project-wide claims; `test_` filenames are not treated as demo evidence.
+Four Python sources are read and AST-parsed without import or execution, the `sigr.csv` header and
+all 16,735 finite numeric rows are traversed, and saved A/B/C metrics/transitions agree with the
+saved summary. No fit or optimizer is executed. Phase 066's two sealed nonconverged replay records
+are reused; all 25 historical optimizer-state fields remain `GROUND_NOT_FOUND`.
+`P065-OBL-0054/P065-S72-F04` and `P066-OBL-0120/P066-P79-07` receive
+`EXPLICITLY_BOUNDED_NOT_RESOLVED` and remain for Step 90.1 lossless disposition. Step 89 remains
+precommit under `PASS_P067_STEP89_FITTING_AUTHORITY` / `PASS_PENDING_PERSISTENCE`.
 
 ## Execution Rule
 
