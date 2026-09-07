@@ -30,8 +30,9 @@
 | 069 | 100 | PERSISTED | `PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md` | `PHASE_069_USER_REQUIREMENTS.json` | PASS_P069_STEP100_USER_REQUIREMENTS;`227384f3437b0a83eb691b68b8e71d5e8daca288`exact5/parent/result/push/live/clean;32requirements;106/107pending | 101 |
 | 069 | 101 | PERSISTED | `PHASE_069_STEP_101_BODY_COMPANION_RESULT.md` | boundaryMD selected42/69 + exactnative dualreceipts | PASS_P069_STEP101_BODY_COMPANION_BOUNDARY;`76b07667085c0d1d886b667ce2b490b40470af7a`exact4/result/parent/push/live/clean;316/655 unchanged | 102 |
 | 069 | 102 | PERSISTED | `PHASE_069_STEP_102_MODEL_HIERARCHY_RESULT.md` | hierarchyMD selected59/47semantic/38routes + dualreceipts | PASS_P069_STEP102_MODEL_AUTHORITY_HIERARCHY;`7cc3d9522c084f198b4382b5bd9dacd35f894e19`exact4/parent/result/push/live/clean;316/655 unchanged | 103 |
-| 069 | 103 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_069_STEP_103_MATERIAL_REQUIREMENTS_RESULT.md` | materialJSON/MD + native dualreceipts | PASS_P069_STEP103_MATERIAL_REQUIREMENTS;6materials14axes18claims101carry/73semantic/68targets;316/655 unchanged | 104 |
-| 069 | 104–107 | PENDING | phase069detailedplan | pending | data/coverage/launch in order | 104 |
+| 069 | 103 | PERSISTED | `PHASE_069_STEP_103_MATERIAL_REQUIREMENTS_RESULT.md` | materialJSON/MD + native dualreceipts | PASS_P069_STEP103_MATERIAL_REQUIREMENTS;7d96a55 exact5/parent/result/push/live/clean;6materials14axes18claims101carry;316/655 unchanged | 104 |
+| 069 | 104 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_069_STEP_104_PUBLIC_PRIVATE_FEASIBILITY_RESULT.md` | feasibilityJSON + native dualreceipts | PASS_P069_STEP104_ACCESS_FEASIBILITY;6sources4bounded2unverified;6materials18claims;independent0/0/0;raw/physical notvalidated | 105 |
+| 069 | 105–107 | PENDING | phase069detailedplan | pending | inputs/coverage/launch in order | 105 |
 | 070–073 | 108–149 | CONDITIONAL_PENDING_P069 | master의 해당 phase 전체 steps | pending | GO/CONDITIONAL_GO 필요 | 108 |
 | 074–081 | 150–245 | CONDITIONAL_PENDING_P069 | master의 이론·재료·열·불확도 steps | pending | 근거별 검증 후 Codex/docs에 증분 유도 | 150 |
 | 082–086 | 246–307 | CONDITIONAL_PENDING_P069 | master의 식 동결·구현·검증 steps | pending | 원래 독립 검산/held-out 경계 유지 | 246 |
@@ -39,7 +40,7 @@
 
 ## Next Exact Step
 
-Step103 content검증완료;결과포함commit/push/liveequal/clean확인후104접근성분류로이어간다.
+Step104내용검증완료; exact4A2M2/result포함commit/push/live/clean확인후105입력·문헌선행요건routing으로간다.
 655처분/316activecarry를그대로보존한다. 전체coverage106과launch107을완료하기전070을시작하지않는다.
 두 hash 실패는 보존한다. 동일 R2·bounded formula agreement로 historical bitwise reproduction을 주장하지 않는다.
 
