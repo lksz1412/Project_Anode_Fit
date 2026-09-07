@@ -26,8 +26,9 @@
 | 068 | 96 | PERSISTED | `PHASE_068_STEP_096_FORK_CONFLICT_ADJUDICATION_RESULT.md` | `PHASE_068_FORK_CONFLICT_MATRIX.json`; `PHASE_068_STEP_096_VALIDATION.json` | `f9feef379d597d320cb5692ed2eda739a336d02f` exact8paths/result/parent/push/live/clean;329typed202/8/77/42;16tests/runtimePASS; independent0/0/0 | 97 |
 | 068 | 97 | PERSISTED | `PHASE_068_STEP_097_FORK_DISPOSITION_RESULT.md` | `PHASE_068_FORK_DISPOSITION_REGISTER.json`; `PHASE_068_CARRY_FORWARD_DELTA.json`; validation receipt |655targets251REFERENCE_ONLY/106REWRITE/3REJECT/295UNVERIFIED/0ADOPT;222inherited+94new=316active;16tests/runtime;independent0/0/0;`2823501182affa6c4c0ca38c64c4d898268c97ad`exact9paths/parent/result/push/live/clean | 98 |
 | 068 | 98 | PERSISTED | `PHASE_068_STEP_098_GATE_RESULT.md`; `PHASE_068_RESULT.md` | `PHASE_068_VALIDATION.json`; file/issue plan | PASS_P068_FORK_ADJUDICATION;13predicates,dualchecksPASS,independent0/0/0;`04ed9c209794f31cde9aa41d8b94accfb56515ca`exact7/parent/result/push/live/clean | 99 |
-| 069 | 99 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md` | `PHASE_069_CANONICAL_AUDIT_INDEX.json`; `PHASE_069_STEP_099_VALIDATION.json` | PASS_P069_STEP99_AUDIT_INTEGRATION;12phases/37inputs/316carry/655routes;dualchecksPASS;independent0/0/0;106/107pending | 100 after persistence |
-| 069 | 100–107 | PENDING | phase069detailedplan | pending | requirements/authority/data/coverage/launch in order | 100 |
+| 069 | 99 | PERSISTED | `PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md` | `PHASE_069_CANONICAL_AUDIT_INDEX.json`; `PHASE_069_STEP_099_VALIDATION.json` | PASS_P069_STEP99_AUDIT_INTEGRATION;`8b27607e5d3f93bc71fee736819e2a2af90f0e85`exact7/result/parent/push/live/clean;12phases/316carry/655routes;106/107pending | 100 |
+| 069 | 100 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md` | `PHASE_069_USER_REQUIREMENTS.json` | PASS_P069_STEP100_USER_REQUIREMENTS;32requirements/17UDIR/8openconcerns/14sections;dualchecksPASS;independent0/0/0;no scienceclosure | 101 after persistence |
+| 069 | 101–107 | PENDING | phase069detailedplan | pending | body/authority/data/coverage/launch in order | 101 |
 | 070–073 | 108–149 | CONDITIONAL_PENDING_P069 | master의 해당 phase 전체 steps | pending | GO/CONDITIONAL_GO 필요 | 108 |
 | 074–081 | 150–245 | CONDITIONAL_PENDING_P069 | master의 이론·재료·열·불확도 steps | pending | 근거별 검증 후 Codex/docs에 증분 유도 | 150 |
 | 082–086 | 246–307 | CONDITIONAL_PENDING_P069 | master의 식 동결·구현·검증 steps | pending | 원래 독립 검산/held-out 경계 유지 | 246 |
@@ -35,7 +36,7 @@
 
 ## Next Exact Step
 
-Step98은04ed9c2로커밋·push·live·clean확인완료. Step99통합/dualcheck/독립검수완료, exact7결과포함commit/push/live/clean후100으로진행한다.
+Step99는8b27607로커밋·push·live·clean완료. Step100정식화/검증/독립검수완료, 결과포함정확5paths commit/push/live/clean후101로진행한다.
 655처분/316activecarry를그대로보존한다. 전체coverage106과launch107을완료하기전070을시작하지않는다.
 두 hash 실패는 보존한다. 동일 R2·bounded formula agreement로 historical bitwise reproduction을 주장하지 않는다.
 

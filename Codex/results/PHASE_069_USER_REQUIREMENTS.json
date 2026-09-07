@@ -1,0 +1,4261 @@
+{
+  "schema": "phase069.step100.user-requirements.v1",
+  "phase": 69,
+  "step": 100,
+  "state": "CONTENT_VERIFIED_AWAITING_PUSH",
+  "source_commit": "8b27607e5d3f93bc71fee736819e2a2af90f0e85",
+  "gate": "PASS_P069_STEP100_USER_REQUIREMENTS",
+  "inputs": [
+    {
+      "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+      "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+      "raw_bytes": 54183,
+      "raw_sha256": "6f26b69f8c68bda0ec5a6605b7704c4c5a248c679b48674a8da82d0fafe81da3",
+      "lf_sha256": "6f26b69f8c68bda0ec5a6605b7704c4c5a248c679b48674a8da82d0fafe81da3",
+      "physical_lines": 764
+    },
+    {
+      "path": "Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md",
+      "blob": "81620a8b58948d4823dc47e5058a65195bab9e77",
+      "raw_bytes": 18273,
+      "raw_sha256": "8316e3287e093259841d33213fed7ac63481e6c42d0e9791828f102e114f2f3d",
+      "lf_sha256": "8316e3287e093259841d33213fed7ac63481e6c42d0e9791828f102e114f2f3d",
+      "physical_lines": 245
+    },
+    {
+      "path": "Codex/results/PHASE_069_CANONICAL_AUDIT.md",
+      "blob": "bcc84bf4ea3a29fa3048e8e398ebf4fd7cab965d",
+      "raw_bytes": 17452,
+      "raw_sha256": "9e21163f657f4e4fa47b1b0bed867375fe697e7325b8640514a12a8ca82c1639",
+      "lf_sha256": "9e21163f657f4e4fa47b1b0bed867375fe697e7325b8640514a12a8ca82c1639",
+      "physical_lines": 228
+    },
+    {
+      "path": "Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json",
+      "blob": "c0e8ef979469eee14e16b0b13c9b9e2f4ea83b89",
+      "raw_bytes": 211002,
+      "raw_sha256": "59b9646b9913ed1e5a4666de824ef137e00832e6979c0545e42ee8a52203b9fc",
+      "lf_sha256": "59b9646b9913ed1e5a4666de824ef137e00832e6979c0545e42ee8a52203b9fc",
+      "physical_lines": 3861
+    },
+    {
+      "path": "Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md",
+      "blob": "c560df48b0ad0a94fd6d6106306e72a93d714078",
+      "raw_bytes": 5563,
+      "raw_sha256": "99ccea57b5b6e9b7041cacc9de900fa8f6eb898a8fe9239ebf783724f7be5d05",
+      "lf_sha256": "99ccea57b5b6e9b7041cacc9de900fa8f6eb898a8fe9239ebf783724f7be5d05",
+      "physical_lines": 76
+    },
+    {
+      "path": "Codex/results/PHASE_069_STEP_099_VALIDATION.json",
+      "blob": "54592d92cce104304f6192686732153aeb48ff45",
+      "raw_bytes": 89373,
+      "raw_sha256": "b58386fd240d568b2c4356ee756d82ab446b09dcd18f42c4b7aa49f3c29fb8f1",
+      "lf_sha256": "b58386fd240d568b2c4356ee756d82ab446b09dcd18f42c4b7aa49f3c29fb8f1",
+      "physical_lines": 600
+    },
+    {
+      "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+      "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+      "raw_bytes": 11239,
+      "raw_sha256": "9087cd85161a4a1c3797053120a3873fc6480cf45f13a923c188374417c62c31",
+      "lf_sha256": "9087cd85161a4a1c3797053120a3873fc6480cf45f13a923c188374417c62c31",
+      "physical_lines": 255
+    },
+    {
+      "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+      "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+      "raw_bytes": 6012,
+      "raw_sha256": "e7a0d7caeb9b72d8c95a31ea8ed67170cb520c32baa964a1b54f901bbc875d67",
+      "lf_sha256": "e7a0d7caeb9b72d8c95a31ea8ed67170cb520c32baa964a1b54f901bbc875d67",
+      "physical_lines": 63
+    }
+  ],
+  "requirements": [
+    {
+      "id": "P069-REQ-001",
+      "layer": "observation",
+      "title": "독립 좌표와 용량 기준",
+      "requirement": "외부 누적 용량 q, 재료·상·host 조성/점유, 평형 전위·내부 전기화학 퍼텐셜, 과전압·동적 상태, 관측 cell voltage, 충전/방전/휴지 branch, 미분 부호·정규화를 서로 구분한다.",
+      "acceptance": [
+        "몰수·전하·absolute/specific/areal capacity와 Ah/C/time 변환을 가정·단위·부호까지 유도한다.",
+        "wt%, mol fraction, active-material fraction, capacity fraction은 용량 source와 상태를 지정한 변환으로만 연결한다.",
+        "정의·독립변수·domain·extensive/intensive basis가 모든 관측식과 일치해야 한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            45,
+            63
+          ],
+          "selector": "section 3",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            371,
+            385
+          ],
+          "selector": "## Phase 074 — 좌표·보존·관측 기초",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-074-FOUNDATION",
+      "target_phases": [
+        73,
+        74,
+        80
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-002",
+      "layer": "observation",
+      "title": "측정 연산과 물리 상태의 분리",
+      "requirement": "Q(V), dQ/dV 및 dV/dQ를 상태와 관측 연산으로 연결하고 sampling·voltage quantization·differentiation·noise의 영향을 별도 계층으로 둔다.",
+      "acceptance": [
+        "Jacobians, singularities, 부호 및 적분 용량 대응을 중간식과 극한으로 확인한다.",
+        "smoothing/interpolation/differentiation의 bias·해상도·uncertainty·상관 잔차를 숨기지 않는다.",
+        "peak 높이·폭·위치·면적·비대칭·valley·background·전체 곡선을 함께 평가하고 면적 보존을 center/variance/susceptibility/entropy 보존으로 승격하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            45,
+            63
+          ],
+          "selector": "section 3",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            134,
+            147
+          ],
+          "selector": "section 7",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            30,
+            30
+          ],
+          "selector": "UDIR-10",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            32,
+            32
+          ],
+          "selector": "UDIR-12",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            490,
+            506
+          ],
+          "selector": "## Phase 081 — 열·관측·식별성·불확도",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-081-INFERENCE-UNCERTAINTY",
+      "target_phases": [
+        74,
+        81
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-003",
+      "layer": "observation",
+      "title": "저온·유한전류 관찰의 범위",
+      "requirement": "사용자가 기록한 저온 및 충분한 휴지 대비 정전류에서의 peak lowering/broadening을 설명·재현해야 할 조건부 연구 관찰로 유지한다.",
+      "acceptance": [
+        "실제 specimen/protocol/전압 구간에서 온도·rate·rest와 peak shift/asymmetry/valley/background를 대조한다.",
+        "보편적 단조 법칙, 모든 재료의 필수 반응 또는 강제 fitting constraint로 가정하지 않는다.",
+        "관찰과 상충하는 데이터·대안 기전을 감추거나 shaping으로 제거하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            30,
+            30
+          ],
+          "selector": "UDIR-10",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            405,
+            423
+          ],
+          "selector": "## Phase 076 — 비평형 Kinetics·Transport",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-076-NONEQUILIBRIUM",
+      "target_phases": [
+        72,
+        76,
+        77,
+        78,
+        79,
+        80,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-004",
+      "layer": "thermodynamics",
+      "title": "자유에너지·상공존의 독립 근거",
+      "requirement": "보존법칙/상태 변수와 재료 자유에너지, 평형, 상공존, metastability, nucleation/transition barrier의 관계를 근거 있는 식으로 유도한다.",
+      "acceptance": [
+        "원전 변수·가정·domain을 연결하고 convexification/common-tangent/binodal/spinodal/critical·희석·포화 극한을 적용범위 안에서 구분한다.",
+        "regular-solution은 후보일 뿐 역사적 구현 삭제가 이론 검토 금지는 아니며 특정 family를 지금 채택하지 않는다.",
+        "경쟁하는 정당한 이론은 대안으로 보존한다; 내부 수학 검사나 fit 승패는 재료상 선택 증거가 아니다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            7,
+            15
+          ],
+          "selector": "section 0",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            134,
+            147
+          ],
+          "selector": "section 7",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            229,
+            245
+          ],
+          "selector": "section 12",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            37,
+            37
+          ],
+          "selector": "UDIR-17",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            386,
+            404
+          ],
+          "selector": "## Phase 075 — 평형·상공존·상장",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-075-EQUILIBRIUM-PHASE",
+      "target_phases": [
+        71,
+        73,
+        75,
+        77,
+        78,
+        79,
+        82
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-005",
+      "layer": "thermodynamics",
+      "title": "엔트로피와 열의 상태함수 유도",
+      "requirement": "entropy와 reversible heat를 채택 자유에너지의 온도 미분 및 반응 좌표로부터 유도하며 물리 기여를 분리한다.",
+      "acceptance": [
+        "configurational/vibrational/electronic/elastic/mixing 기여와 적용 가능한 경우의 가정을 명시한다.",
+        "전극 entropy coefficient와 full-cell 가역열을 동일 부호·control-volume·capacity 기준으로 연결한다.",
+        "경험적 skew/gallery basis/smoothing은 상태함수로 넣지 않는다; 내부 fit width를 entropy로 해석하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            134,
+            147
+          ],
+          "selector": "section 7",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            27,
+            27
+          ],
+          "selector": "UDIR-07",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            28,
+            28
+          ],
+          "selector": "UDIR-08",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            490,
+            506
+          ],
+          "selector": "## Phase 081 — 열·관측·식별성·불확도",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-081-INFERENCE-UNCERTAINTY",
+      "target_phases": [
+        74,
+        75,
+        78,
+        81,
+        82
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-006",
+      "layer": "thermodynamics",
+      "title": "형상 모수의 물리적 권위 제한",
+      "requirement": "alpha/width/lag/gallery/background 및 regular-solution interaction 값을 곡선 형상, 상태함수, 재료상 또는 상수로 혼동하지 않는다.",
+      "acceptance": [
+        "포화·축퇴한 모수는 material constant로 보고하지 않는다.",
+        "패배한 curve fit의 interaction 값을 phase 판정으로 전이하지 않는다.",
+        "skew-logistic 면적 보존의 제한을 유지하며 물리적 지위 변경은 원문·유도·외부 자료가 함께 지지해야 한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            134,
+            147
+          ],
+          "selector": "section 7",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            36,
+            36
+          ],
+          "selector": "UDIR-16",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            507,
+            521
+          ],
+          "selector": "## Phase 082 — Canonical Equation Freeze",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-082-EQUATION-FREEZE",
+      "target_phases": [
+        75,
+        77,
+        79,
+        81,
+        82
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-007",
+      "layer": "kinetics",
+      "title": "장벽·전이율의 T/전위/조성/과전압 의존",
+      "requirement": "상전이 활성화 장벽과 전이율에 대한 온도·내부 전위·조성·과전압 의존을 반응/수송/전하 보존과 연결한다.",
+      "acceptance": [
+        "출발 반응식, affinity, detailed balance, forward/reverse rate 및 coarse-graining 가정을 유도한다.",
+        "전류를 근거 없는 독립 barrier knob로 넣지 않는다. 직접 I 의존은 이를 만드는 비평형 열역학 또는 stochastic driving 유도가 있을 때만 검토한다.",
+        "전위·온도·전류의 효과가 구분 가능한지를 데이터 요구와 연결한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            405,
+            423
+          ],
+          "selector": "## Phase 076 — 비평형 Kinetics·Transport",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-076-NONEQUILIBRIUM",
+      "target_phases": [
+        71,
+        76,
+        81
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-008",
+      "layer": "kinetics",
+      "title": "시간·휴지·반전·유한 창 상태 보존",
+      "requirement": "충방전·휴지·반전·pulse·비단조 protocol의 순서와 초기/최종 상태를 보존하는 동적 표현을 요구한다.",
+      "acceptance": [
+        "signed time/capacity evolution, state transfer, finite-window remaining capacity/tail/exhaustion을 검산한다.",
+        "I→0, frozen-state, fast-relaxation, transport-free 및 필요한 입자 크기 극한을 분리한다.",
+        "시간/길이/grid 규칙으로 물리 branch가 몰래 바뀌지 않아야 하며 C13/C14/C15 carry의 원래 acceptance를 유지한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            45,
+            63
+          ],
+          "selector": "section 3",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            177,
+            190
+          ],
+          "selector": "section 9",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            32,
+            32
+          ],
+          "selector": "UDIR-12",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            405,
+            423
+          ],
+          "selector": "## Phase 076 — 비평형 Kinetics·Transport",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-076-NONEQUILIBRIUM",
+      "target_phases": [
+        76,
+        83,
+        84,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-009",
+      "layer": "kinetics",
+      "title": "기전 및 비균질성의 분해",
+      "requirement": "charge transfer, solid/electrolyte transport, strain/disorder/particle-host heterogeneity, nucleation 및 hysteresis/dissipative internal variables를 한 latent-state 계보로 연결하되 구분한다.",
+      "acceptance": [
+        "한 개 width/lag/background/convolution이 모든 계층을 대신하지 않게 하고 기전별 characteristic scale과 필요한 증거를 제시한다.",
+        "동일 symbol을 서로 다른 자유에너지·장벽·fit-kernel 의미로 재사용하지 않는다.",
+        "단일 exponential tail 또는 reduced law의 실패 범위와 구별할 수 없는 기전은 명시한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            405,
+            423
+          ],
+          "selector": "## Phase 076 — 비평형 Kinetics·Transport",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-076-NONEQUILIBRIUM",
+      "target_phases": [
+        73,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-010",
+      "layer": "electrochemistry",
+      "title": "전하 보존과 공통 전압",
+      "requirement": "전하 보존과 공통 cell voltage 제약을 먼저 세우고 각 전극·constituent의 내부 응답과 관측 전압을 조립한다.",
+      "acceptance": [
+        "half-cell/full-cell, lithiation/delithiation, signed current 및 equilibrium/terminal voltage를 구분한다.",
+        "내부 퍼텐셜을 결정하는 보존 관계와 과전압·저항·수송 분해를 중간식으로 연결한다.",
+        "전하·용량·에너지 및 thermal 결합 단위/부호를 독립 검산한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            45,
+            63
+          ],
+          "selector": "section 3",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            371,
+            385
+          ],
+          "selector": "## Phase 074 — 좌표·보존·관측 기초",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-074-FOUNDATION",
+      "target_phases": [
+        74,
+        76,
+        80,
+        81
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-011",
+      "layer": "electrochemistry",
+      "title": "반응·수송·열을 통한 전류 영향",
+      "requirement": "전류의 영향은 보존, charge transfer, solid/electrolyte/porous transport, 열 및 protocol이 내부 상태에 전달하는 경로로 설명한다.",
+      "acceptance": [
+        "교환전류·active area·조성·온도·diffusion/charge-transfer/phase-boundary scale의 source 가정과 유도 경계를 보존한다.",
+        "electrode equilibrium과 finite-rate current sharing의 차이를 유지하며 필요한 coupling 수준은 자료 확보 후 선택한다.",
+        "정적 call graph는 실제 dynamic dispatch 또는 runtime call order 증거가 아니며 C03 원조건을 남긴다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            64,
+            83
+          ],
+          "selector": "section 4",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            84,
+            99
+          ],
+          "selector": "section 5",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            229,
+            245
+          ],
+          "selector": "section 12",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            405,
+            423
+          ],
+          "selector": "## Phase 076 — 비평형 Kinetics·Transport",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-076-NONEQUILIBRIUM",
+      "target_phases": [
+        76,
+        80,
+        81,
+        83,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-012",
+      "layer": "materials",
+      "title": "Graphite",
+      "requirement": "graphite staging/gallery occupation/phase coexistence를 ICA feature와 연결하되 curve basis/gallery/component 수를 실제 phase 수로 가정하지 않는다.",
+      "acceptance": [
+        "primary diffraction/thermodynamic 자료로 transition/조성 interval/용량 기여를 연결한다.",
+        "free-energy 후보의 convexification/critical limit/finite-width, disorder/particle size, hysteresis와 저온 kinetics를 유도·대조한다.",
+        "four-transition/seven-component 분해는 evidence tier를 부여하고 multi-T/rate/equilibrium 자료의 식별성을 따로 검증한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            424,
+            440
+          ],
+          "selector": "## Phase 077 — Graphite Material Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite"
+      ],
+      "owner": "PHASE-077-GRAPHITE-CLOSURE",
+      "target_phases": [
+        71,
+        72,
+        77,
+        81,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-013",
+      "layer": "materials",
+      "title": "Doped high-voltage LCO",
+      "requirement": "일반 LCO surrogate와 doped high-voltage LCO를 구분하고 도펀트별 화학·구조·전자·산소 및 열역학 경로를 보존한다.",
+      "acceptance": [
+        "dopant species/site/concentration, defect chemistry, oxygen stability/redox/loss, phase degradation, cutoff, high-voltage kinetics/transport 근거를 연결한다.",
+        "order–disorder/metal–insulator/coexistence, entropy·electronic contribution은 원전의 적용 범위 밖으로 일반화하지 않는다.",
+        "graphite의 소프트웨어 구조 재사용을 같은 물리의 근거로 삼지 않고 doped held-out 조건을 요구한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            441,
+            457
+          ],
+          "selector": "## Phase 078 — Doped High-voltage LCO Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "doped_high_voltage_LCO"
+      ],
+      "owner": "PHASE-078-LCO-CLOSURE",
+      "target_phases": [
+        71,
+        72,
+        78,
+        81,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-014",
+      "layer": "materials",
+      "title": "Si",
+      "requirement": "Si의 큰 변형, chemo-mechanics, stress-coupled chemical potential, amorphization/crystallization, hysteresis 및 host interaction을 독립 재료 계보로 다룬다.",
+      "acceptance": [
+        "crystalline/amorphous lithiation sequence와 조성 좌표를 원문에 연결한다.",
+        "응력·팽창·plasticity/fracture/loss of active material의 관측 영향과 rate/temperature/size 의존을 구분한다.",
+        "문헌 case 값은 dataset seed이지 보편 default가 아니며 empirical component를 상으로 고정하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            458,
+            474
+          ],
+          "selector": "## Phase 079 — Si/SiOx/Si–C Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "Si"
+      ],
+      "owner": "PHASE-079-SILICON-CLOSURE",
+      "target_phases": [
+        71,
+        72,
+        79,
+        81,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-015",
+      "layer": "materials",
+      "title": "SiOx",
+      "requirement": "SiOx를 Si에 몰래 통합하지 않고 irreversible conversion, active Si와 inactive matrix의 용량 회계를 유지한다.",
+      "acceptance": [
+        "oxide conversion의 화학·조성·비가역 용량과 이후 active phase의 가역 반응을 source/data에 연결한다.",
+        "Si와 공유하는 chemo-mechanical/hysteretic 경로와 SiOx만의 차이를 구분한다.",
+        "공개 또는 사용자 specimen/protocol 근거가 없으면 해당 claim을 conditional로 남기고 재료 범위를 삭제하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            458,
+            474
+          ],
+          "selector": "## Phase 079 — Si/SiOx/Si–C Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "SiOx"
+      ],
+      "owner": "PHASE-079-SILICON-CLOSURE",
+      "target_phases": [
+        71,
+        72,
+        79,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-016",
+      "layer": "materials",
+      "title": "Si-C",
+      "requirement": "Si–C composite의 active phases, carbon/binder/conductive matrix 및 구조·기계 효과를 구분한다.",
+      "acceptance": [
+        "active/inactive matrix와 용량 basis를 명시하고 Si 단독 값의 전이를 검증한다.",
+        "large strain/stress/phase sequence/host interaction의 필요한 근거와 held-out specimen을 지정한다.",
+        "문헌 seed나 fit component를 보편 물성 또는 phase identity로 승격하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            458,
+            474
+          ],
+          "selector": "## Phase 079 — Si/SiOx/Si–C Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "Si-C"
+      ],
+      "owner": "PHASE-079-SILICON-CLOSURE",
+      "target_phases": [
+        71,
+        72,
+        79,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-017",
+      "layer": "materials",
+      "title": "Graphite+Si blend",
+      "requirement": "각 constituent의 보존법칙·공통 전압·용량 배분과 finite-rate current sharing을 결합한다.",
+      "acceptance": [
+        "wt%→capacity fraction은 constituent별 capacity source와 lithiation state를 명시한 변환으로만 수행한다.",
+        "단순 가중합, common-potential equilibrium, porous-electrode current sharing의 성립/실패 조건을 구분한다.",
+        "단독 소재 calibration과 blend transfer/held-out composition·rate·temperature 검증을 분리한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            45,
+            63
+          ],
+          "selector": "section 3",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            100,
+            133
+          ],
+          "selector": "section 6",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            475,
+            489
+          ],
+          "selector": "## Phase 080 — Graphite+Si Blend Closure",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-080-BLEND-CLOSURE",
+      "target_phases": [
+        72,
+        80,
+        81,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-018",
+      "layer": "fitting",
+      "title": "실제 피팅 가치와 모델 계층",
+      "requirement": "기존에 데이터에서 작동한 empirical fitting 능력을 보존하되 empirical/reduced-physics/production-physics를 별개 권위로 유지한다.",
+      "acceptance": [
+        "보존할 경험적 성공분은 EMPIRICAL_ONLY와 적용 범위로 표시하거나 검증된 물리 계층에 연결한다.",
+        "R², naive BIC, in-sample figure, fit 성공만으로 phase/gallery/성분/물리상수·기전·최종 모델을 정하지 않는다.",
+        "v1.0.21–v1.0.23 Fable보다 나은 결과라는 목표는 이름/모델 명성 대신 실제 유도·자료·검증으로 판단한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            134,
+            147
+          ],
+          "selector": "section 7",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            191,
+            206
+          ],
+          "selector": "section 10",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            35,
+            35
+          ],
+          "selector": "UDIR-15",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            36,
+            36
+          ],
+          "selector": "UDIR-16",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            575,
+            593
+          ],
+          "selector": "## Phase 086 — 실제 데이터 Calibration과 Validation",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-086-MATERIAL-VALIDATION",
+      "target_phases": [
+        69,
+        81,
+        83,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-019",
+      "layer": "fitting",
+      "title": "실제 자료·provenance와 부족한 근거",
+      "requirement": "모든 재료군에 실제 공개 자료를 우선 조사하며 multi-T, multi-current/rate, rest/equilibrium, independent cell/specimen과 raw/preprocessing provenance를 요구한다.",
+      "acceptance": [
+        "현재 접근 가능·후보지만 미확인·사용자 자료 필요·unavailable·synthetic-only를 구분하고 접근을 추측하지 않는다.",
+        "specimen/chemistry/loading/capacity basis/protocol/replicate/uncertainty/license·원자료 hash를 확보한 자료만 해당 validation에 쓴다.",
+        "synthetic parameter recovery는 내부 대수/구현 시험이며 외부 재료 증거가 아니다. 부족함은 claim/material별 UNVERIFIED/CONDITIONAL로 남긴다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            331,
+            351
+          ],
+          "selector": "## Phase 072 — 데이터 Provenance와 Feasibility",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-072-DATA-FEASIBILITY",
+      "target_phases": [
+        69,
+        72,
+        81,
+        86
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-020",
+      "layer": "fitting",
+      "title": "식별성·불확도와 독립 검증",
+      "requirement": "calibration과 validation을 분리하고 보존/단위/부호/극한/모수회복/식별성/전체곡선/외부 구조 증거를 함께 요구한다.",
+      "acceptance": [
+        "structural/practical identifiability, profile/covariance 및 필요한 Jacobian/posterior/condition 검사로 모수 조합·축퇴를 확인한다.",
+        "peak/valley/area/background/full-curve residual, preprocessing uncertainty·residual correlation을 평가한다.",
+        "held-out condition/cell/material transfer와 independent structural/thermodynamic evidence를 요구한다; 공개 자료 부족은 explicit limitation이다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            148,
+            176
+          ],
+          "selector": "section 8",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            490,
+            506
+          ],
+          "selector": "## Phase 081 — 열·관측·식별성·불확도",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-081-INFERENCE-UNCERTAINTY",
+      "target_phases": [
+        72,
+        81,
+        86,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-021",
+      "layer": "fitting",
+      "title": "정당한 수치 방법과 숨은 조작 금지",
+      "requirement": "invalid domain/NaN/nonphysical input의 명시적 실패와 수치 오차 제어는 허용하되 물리값을 조용히 바꾸는 cap/clip/clamp/softplus/threshold/grid guard/사후 smoothing은 금지한다.",
+      "acceptance": [
+        "adaptive error control/event detection/conservative integration/domain-preserving parameterization을 우선 검토한다.",
+        "필요 regularization은 목적·bias·convergence·제거 극한을 기록하고 fixed grid가 물리 branch를 선택하지 않게 한다.",
+        "default 시험 전에 그 default를 다른 값으로 바꾸지 않는다. legacy bit-exact regression과 새 physics acceptance, conformance와 physical validity를 분리한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            177,
+            190
+          ],
+          "selector": "section 9",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            191,
+            206
+          ],
+          "selector": "section 10",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            32,
+            32
+          ],
+          "selector": "UDIR-12",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            522,
+            538
+          ],
+          "selector": "## Phase 083 — Theory–Implementation Contract",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-083-IMPLEMENTATION-CONTRACT",
+      "target_phases": [
+        76,
+        83,
+        84,
+        85,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-022",
+      "layer": "cross_cutting",
+      "title": "진짜 문헌과 load-bearing 근거",
+      "requirement": "사용자가 우려한 가짜 논문·DOI를 금지하고 실재성 확인과 실제 claim support를 독립 검증한다.",
+      "acceptance": [
+        "논문/교재의 저자·제목·연도·출판 정보·DOI 및 correction/retraction은 실제 record로 확인한다.",
+        "load-bearing 주장·수식·모수는 확보한 원문 hash와 page/section/equation/figure/table anchor, 변수 mapping, 불가 가정까지 기록한다.",
+        "metadata/abstract/secondary citation/internal consistency는 원문 support를 대신하지 않는다. 미확보 Ref7 및 undefined citation은 UNVERIFIED/GROUND_NOT_FOUND이지 invented repair가 아니다.",
+        "review/textbook은 배경·종합, 구체적 물리/데이터 주장은 primary source 중심으로 범위를 분리한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            28,
+            44
+          ],
+          "selector": "section 2",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            246,
+            255
+          ],
+          "selector": "section 13",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            28,
+            28
+          ],
+          "selector": "UDIR-08",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            310,
+            330
+          ],
+          "selector": "## Phase 071 — 문헌·DOI Truth Audit",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-071-REFERENCE-TRUTH",
+      "target_phases": [
+        71,
+        82,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-023",
+      "layer": "cross_cutting",
+      "title": "대학원 교재이면서 리뷰 논문 수준",
+      "requirement": "독자가 문건만으로 통계역학→열역학→상전이→반응속도→수송→열→관측량의 연결을 따라갈 수 있게 상세히 전개한다.",
+      "acceptance": [
+        "화학식·수식 중심으로 출발식→정의/가정→연산→중간식→결과→단위/부호/domain/극한/보존을 생략하지 않는다.",
+        "비유나 설명만으로 유도 다리를 대체하지 않고 경쟁 이론·적용 범위·한계를 원전 깊이로 검토한다.",
+        "load-bearing 식은 Phase082 독립 재유도와 Phase088 전체 검독을 통과해야 한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            28,
+            44
+          ],
+          "selector": "section 2",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            27,
+            27
+          ],
+          "selector": "UDIR-07",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            28,
+            28
+          ],
+          "selector": "UDIR-08",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            507,
+            521
+          ],
+          "selector": "## Phase 082 — Canonical Equation Freeze",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-082-EQUATION-FREEZE",
+      "target_phases": [
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        87,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-024",
+      "layer": "cross_cutting",
+      "title": "본문 경계와 지정 예외",
+      "requirement": "학술 본문·caption·footnote·visible heading에 코드/함수/class/key/file/API/test/branch/commit/phase/step/작업 이력 및 방어적 자기평가를 넣지 않는다.",
+      "acceptance": [
+        "구현 설명은 지정 implementation appendix OR separate companion에만 둔다. 이전057 companion-only 표현은 이 예외를 축소하지 않는다.",
+        "수식 유도 부록을 구현 설명을 숨기는 통로로 쓰지 않고 순수 유도와 지정 구현 예외의 경계를 명확히 한다.",
+        "lexical scan과 전문 의미 검독을 모두 수행하며 작업 날짜·audit·commit hash는 본문/주석 대신 별도 결과서·ledger에 둔다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            28,
+            44
+          ],
+          "selector": "section 2",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            25,
+            25
+          ],
+          "selector": "UDIR-05",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            594,
+            610
+          ],
+          "selector": "## Phase 087 — 학술 원고 조립",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            156,
+            157
+          ],
+          "selector": "designated implementation appendix OR separate companion",
+          "authority": "CURRENT_MASTER_USER_EXCEPTION"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-087-MANUSCRIPT-ASSEMBLY",
+      "target_phases": [
+        69,
+        73,
+        83,
+        87,
+        88,
+        89
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-025",
+      "layer": "cross_cutting",
+      "title": "이론에서 구현으로의 완전한 추적",
+      "requirement": "이론이 물리·화학의 권위이며 implementation companion과 code는 하류다. 코드를 맞추기 위해 이론을 사후 변경하지 않는다.",
+      "acceptance": [
+        "모든 계산 가능한 채택식에 claim/equation ID와 가정·unit/domain/limit/required data/consumer 연결을 둔다.",
+        "모든 physical branch는 채택 claim으로 역추적되고 code-only physical knob/default/branch를 금지한다.",
+        "미구현 채택식을 THEORY_ONLY로 숨겨 acceptance에 포함시키지 않는다. conformance test와 physical-validity test는 구분한다.",
+        "empirical component는 EMPIRICAL_ONLY 범위로 보존하며 arbitrary implementation default를 선택하지 않는다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            28,
+            44
+          ],
+          "selector": "section 2",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            191,
+            206
+          ],
+          "selector": "section 10",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            36,
+            36
+          ],
+          "selector": "UDIR-16",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            522,
+            538
+          ],
+          "selector": "## Phase 083 — Theory–Implementation Contract",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-083-IMPLEMENTATION-CONTRACT",
+      "target_phases": [
+        73,
+        82,
+        83,
+        84,
+        85,
+        88
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-026",
+      "layer": "cross_cutting",
+      "title": "기준선·계보·fork 보존",
+      "requirement": "v1.0.10–v1.0.25.2 이력/의도를 감사한 범위와 미검증을 보존하고 v1.0.26A/B 실험 labels를 승인된 새 학술 release로 취급하지 않는다.",
+      "acceptance": [
+        "latest filename/handover 완결/PASS commit subject/AI selfapproval/모델 명성은 채택 권위가 아니다.",
+        "historical codex/lib-physics-endgame-v1025_2는 현재 protected; 작업은 codex/anode-fit-v1025_2-canonical-completion에서만 수행한다.",
+        "Claude/main/보호·frozen refs/과거 계획·완료 결과·원문은 덮어쓰지 않으며 채택/수정은 이후 Codex-owned tree에서 file/equation별로 수행한다.",
+        "Step106에서1520paths/862 baseline 또는 증거로 정정한 denominator의 실제 전체 coverage를 판단한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            7,
+            15
+          ],
+          "selector": "section 0",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            16,
+            27
+          ],
+          "selector": "section 1",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            21,
+            21
+          ],
+          "selector": "UDIR-01",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            22,
+            22
+          ],
+          "selector": "UDIR-02",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            23,
+            23
+          ],
+          "selector": "UDIR-03",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            293,
+            309
+          ],
+          "selector": "## Phase 070 — Post-audit 기준선 동결",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-070-POST-AUDIT-FREEZE",
+      "target_phases": [
+        69,
+        70,
+        90
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-027",
+      "layer": "cross_cutting",
+      "title": "과거 국소 지시와 현재 승인 구분",
+      "requirement": "저장된 DIRECT_CURRENT는 과거 시점의 지시 해석 기록이지 이번 사용자의 축어 발언이나 새로운 승인이 아니다.",
+      "acceptance": [
+        "v1.0.25 local patch 범위·원본 파일명 유지·regsol 구현 삭제는 해당 역사로 남기며 endgame 설계의 영구 금지로 자동 승계하지 않는다.",
+        "과거 theory=regsol/fitting=logistic 승인은 현 100% 이론–구현 단일 논리의 최종 architecture 승인이 아니다.",
+        "기존 사용자 변수/함수/파일명은 임의 변경하지 않는다. 새로운 Codex-owned 설계가 필요하면 현재 허용 범위와 후속계획을 따로 적용한다.",
+        "헌법 변경은 직접 후속 지시, 원전/자료/재유도의 오류 입증, 또는 양립 불가 requirement의 사용자 선택에만 근거하고 원문을 지우지 않은 supersession 기록을 남긴다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            16,
+            27
+          ],
+          "selector": "section 1",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            229,
+            245
+          ],
+          "selector": "section 12",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            246,
+            255
+          ],
+          "selector": "section 13",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            37,
+            37
+          ],
+          "selector": "UDIR-17",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            256,
+            277
+          ],
+          "selector": "## Phase 069 — 전체 종합·새 작업 착수 게이트",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-069-LAUNCH-INTEGRATION",
+      "target_phases": [
+        69,
+        70,
+        73
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-028",
+      "layer": "cross_cutting",
+      "title": "3단 계획·누적 Step·컴팩션 복구",
+      "requirement": "작업 전 master, phase 시작 전 detailed plan, Step 완료 후 result를 저장하고 phase와 관계없이 누적 번호를 이어간다.",
+      "acceptance": [
+        "Codex/plans에는 두 계획, Codex/results에는 Step/phase result·검수·ledger·handover, Codex/docs에는 학술 LaTeX/PDF·companion을 둔다. Codex/work는 실행 보조만이다.",
+        "매 Step 입력/실제 read 범위/변경 파일/명령·runtime·exit·outputs/검증/미확인/다음 조건을 기록한다.",
+        "컴팩션·교체·중단 후 master와 current detailed plan과 직전 result를 1–EOF 재독하고 WIP/control/Git 상태를 대조한다.",
+        "읽지 않은 source/미실행 test를 PASS로 쓰지 않고 원천 변경 시 stale evidence를 final source 검증으로 갱신한다.",
+        "삭제·재배치·수정마다 원래 claim/asset, 변경 이유와 대체 위치를 기록한다. 기존 완료 계획·결과를 덮어쓰지 않고 새 addendum/supersession으로 관계를 보존한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            34,
+            34
+          ],
+          "selector": "UDIR-14",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            181,
+            232
+          ],
+          "selector": "## Execution and Compaction Recovery Protocol",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "ROOT-EXECUTION-CONTROLLER",
+      "target_phases": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-029",
+      "layer": "cross_cutting",
+      "title": "Step별 결과 포함 commit·push와 역할 유지",
+      "requirement": "각 Step 결과를 포함한 exact path commit과 active branch push 후 live origin=HEAD·단일 parent·clean tree를 확인하고 다음 Step으로 간다.",
+      "acceptance": [
+        "계획 승인/재개를 반복 질문하지 않고 현재 승인 범위는 연속 실행한다; 기존 세션/agent 역할을 임의로 섞지 않는다.",
+        "root가 최종 통합/쓰기/Git 책임을 가지며 독립 검독은 병렬화하되 source/범위/금지/실제read를 명시한다.",
+        "외부 원문/데이터 부족은 claim별 제한으로 기록하고 독립 가능한 작업을 진행한다. 아래 일곱 hard-stop 조건이 발생하면 사실과 필요한 결정을 보고한다.",
+        "큰 반복 validator/불변 자료 재검사를 새 근거 없이 늘리지 않되 필수 원전·수식·PDF·clean-clone gates를 삭제하지 않는다.",
+        "중단 조건 1: protected branch에 예상하지 못한 변경이 발생한 경우.",
+        "중단 조건 2: active remote branch가 local 예상과 다른 방향으로 이동한 경우.",
+        "중단 조건 3: 동일 원인의 push가 세 차례 연속 실패한 경우.",
+        "중단 조건 4: 비공개·유료 원문 또는 자격 증명이 전체 다음 단계의 필수 입력이 된 경우.",
+        "중단 조건 5: 상충하는 사용자 지시를 대안 병기로도 보존할 수 없는 경우.",
+        "중단 조건 6: 근거 없이 material model 또는 parameter를 정본으로 골라야만 진행 가능한 경우.",
+        "중단 조건 7: validator 실패가 과학 결과 변경인지 환경 부채인지 세 번의 독립 조사 후에도 분리되지 않는 경우."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            24,
+            24
+          ],
+          "selector": "UDIR-04",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            34,
+            34
+          ],
+          "selector": "UDIR-14",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            181,
+            232
+          ],
+          "selector": "## Execution and Compaction Recovery Protocol",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            711,
+            720
+          ],
+          "selector": "## Hard Stops",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            703,
+            710
+          ],
+          "selector": "## Autonomous Decision Policy",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "ROOT-EXECUTION-CONTROLLER",
+      "target_phases": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-030",
+      "layer": "cross_cutting",
+      "title": "LaTeX/PDF와 최종 전달",
+      "requirement": "학술 PDF는 LaTeX 원천에서 생성하고 검증된 유도를 Codex/docs에 증분 축적한다. 감사 완료와 흑연 장/전체 release 완료를 구분한다.",
+      "acceptance": [
+        "순수본문/유도 부록/구현 예외·companion 경계를 지키며 문헌·식·그림/표 cross-reference를 검사한다.",
+        "clean multi-pass build, citation/reference/glyph 오류, page별 render·전 페이지 시각검독·밀집식/페이지전환 original-resolution 검독, source/PDF hash 대응을 수행한다.",
+        "최종 clean-clone에서 시험·재현·PDF rebuild 후 source/PDF/companion/evidence·manifest·limitations를 ZIP으로 전달한다.",
+        "18–30시간 graphite/40–80시간 전체 등의 기존 추정은 조건부 과거 snapshot이지 보장 마감 또는 현재완료 선언이 아니다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            28,
+            44
+          ],
+          "selector": "section 2",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            27,
+            27
+          ],
+          "selector": "UDIR-07",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            28,
+            28
+          ],
+          "selector": "UDIR-08",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            35,
+            35
+          ],
+          "selector": "UDIR-15",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            643,
+            657
+          ],
+          "selector": "## Phase 090 — Clean-clone Release와 Handover",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            21,
+            60
+          ],
+          "selector": "## Estimated Remaining Work and Delivery Criteria",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            628,
+            642
+          ],
+          "selector": "## Phase 089 — LaTeX·PDF Release QA",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            278,
+            292
+          ],
+          "selector": "## Phase 070–090 — 단계별 원문 과제 승계와 증분 원고 작성",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-090-RELEASE-CONTROLLER",
+      "target_phases": [
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        87,
+        88,
+        89,
+        90
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-031",
+      "layer": "cross_cutting",
+      "title": "미확정 선택과 순차 착수 gate",
+      "requirement": "최종 model family·material state/closure·stochastic/deterministic kinetics·porous coupling·noise likelihood·software architecture·장 번호/분량·defaults는 필요한 증거와 승인된 단계 전에 확정하지 않는다.",
+      "acceptance": [
+        "Step106 fullcoverage와107 GO/CONDITIONAL_GO 전070–090 실행을 금지한다. NO_GO는 scoped repair addendum으로 되돌린다.",
+        "과학적으로 가능성이 여러 개면 대안군을 유지하며 사용자가 없는 동안 arbitrary canonical model/default를 택하지 않는다.",
+        "헌법상 아직 결정하지 않은 graphite/LCO/Si/kinetics/transport/observation/package/book/defaults 9영역을 모두 보존한다.",
+        "model 선택의 실질 과학 차이가 근거로 좁혀진 뒤에도 필요한 사용자 선택은 명확한 영향·이유와 함께 요청한다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            7,
+            15
+          ],
+          "selector": "section 0",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            229,
+            245
+          ],
+          "selector": "section 12",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            246,
+            255
+          ],
+          "selector": "section 13",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            35,
+            35
+          ],
+          "selector": "UDIR-15",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            37,
+            37
+          ],
+          "selector": "UDIR-17",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            256,
+            277
+          ],
+          "selector": "## Phase 069 — 전체 종합·새 작업 착수 게이트",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-069-LAUNCH-INTEGRATION",
+      "target_phases": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        82
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    },
+    {
+      "id": "P069-REQ-032",
+      "layer": "cross_cutting",
+      "title": "미해결 원조건과 사용자 우려 보존",
+      "requirement": "현재316 registered carry와 C03/C06의 별도 기존 source predicates 및 여덟 OPEN_USER_CONCERN을 완료로 승격하지 않는다.",
+      "acceptance": [
+        "222inherited+94new와655dispositions의 원 ID/type/owner/acceptance/origin/relations를 유지하고 zero inherited closure를 지킨다.",
+        "C03 실제 runtime order/dynamic dispatch는 Phase083, C06 required dual-runtime test/demo 실행 또는 owner-bound withholding은 Phase088의 원 acceptance를 유지한다.",
+        "C03/C06 exact316route NOT_FOUND를 narrower owner match로 대신하거나 새 obligation ID/318 distinct denominator로 변경하지 않는다; Step105에서 launch inputs로 명시 연결한다.",
+        "Ref7/fulltext, rawarrays/original optimizer, specimen/protocol/held-out/material authority, body/PDF, incomplete internal predicates를 분리하고 Step107까지 사용자 우려를 OPEN으로 남긴다."
+      ],
+      "source_anchors": [
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            7,
+            15
+          ],
+          "selector": "section 0",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+          "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+          "lines": [
+            207,
+            228
+          ],
+          "selector": "section 11",
+          "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            21,
+            21
+          ],
+          "selector": "UDIR-01",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            26,
+            26
+          ],
+          "selector": "UDIR-06",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            29,
+            29
+          ],
+          "selector": "UDIR-09",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            30,
+            30
+          ],
+          "selector": "UDIR-10",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            31,
+            31
+          ],
+          "selector": "UDIR-11",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            33,
+            33
+          ],
+          "selector": "UDIR-13",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+          "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+          "lines": [
+            34,
+            34
+          ],
+          "selector": "UDIR-14",
+          "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+        },
+        {
+          "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+          "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+          "lines": [
+            256,
+            277
+          ],
+          "selector": "## Phase 069 — 전체 종합·새 작업 착수 게이트",
+          "authority": "ACTIVE_USER_APPROVED_EXECUTION_MASTER_NOT_SCIENTIFIC_TRUTH"
+        }
+      ],
+      "material_scope": [
+        "graphite",
+        "doped_high_voltage_LCO",
+        "Si",
+        "SiOx",
+        "Si-C",
+        "graphite+Si_blend"
+      ],
+      "owner": "PHASE-069-LAUNCH-INTEGRATION",
+      "target_phases": [
+        69,
+        71,
+        72,
+        74,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        83,
+        86,
+        88,
+        89
+      ],
+      "status": "REQUIRED_NOT_YET_SATISFIED",
+      "authority_ceiling": "Requirement formalization only; no model adoption, source truth, material validation, scientific closure or new carry-obligation ID.",
+      "new_scientific_approval": false
+    }
+  ],
+  "coverage106": "NOT_YET_EXECUTED",
+  "launch107": "NOT_SELECTED",
+  "scientific_selection": false,
+  "inherited_closures": 0,
+  "read_coverage": [
+    {
+      "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+      "mode": "FRESH_FULL",
+      "lines": [
+        1,
+        255
+      ]
+    },
+    {
+      "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+      "mode": "FRESH_FULL",
+      "lines": [
+        1,
+        63
+      ]
+    },
+    {
+      "path": "Codex/results/PHASE_069_CANONICAL_AUDIT.md",
+      "mode": "FRESH_FULL",
+      "lines": [
+        1,
+        228
+      ]
+    },
+    {
+      "path": "Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md",
+      "mode": "FRESH_FULL",
+      "lines": [
+        1,
+        76
+      ]
+    },
+    {
+      "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+      "mode": "UNCHANGED_THIS_CONTINUOUS_SESSION_FULL_READ_REUSED",
+      "lines": [
+        1,
+        764
+      ]
+    },
+    {
+      "path": "Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md",
+      "mode": "UNCHANGED_THIS_CONTINUOUS_SESSION_FULL_READ_REUSED",
+      "lines": [
+        1,
+        245
+      ]
+    },
+    {
+      "path": "Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json",
+      "mode": "UNCHANGED_STEP99_OWNED_FULL_INTEGRATION_REUSED_PLUS_EXACTCARRYSELECTORS",
+      "selectors": [
+        "carry_pointer",
+        "disposition_pointer",
+        "unindexed_existing_conditions"
+      ]
+    },
+    {
+      "path": "Codex/results/PHASE_069_STEP_099_VALIDATION.json",
+      "mode": "OWNED_EXECUTED_FINAL_VALIDATION_REUSED_NOT_FRESH_ALL_TRANSCRIPT_READ",
+      "selectors": [
+        "gate",
+        "state",
+        "final_positive_checks",
+        "sealed_output_checks",
+        "output_bindings"
+      ]
+    }
+  ],
+  "layer_order": [
+    "observation",
+    "thermodynamics",
+    "kinetics",
+    "electrochemistry",
+    "materials",
+    "fitting",
+    "cross_cutting"
+  ],
+  "material_families": [
+    "graphite",
+    "doped_high_voltage_LCO",
+    "Si",
+    "SiOx",
+    "Si-C",
+    "graphite+Si_blend"
+  ],
+  "direction_coverage": [
+    {
+      "id": "UDIR-01",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          21,
+          21
+        ],
+        "selector": "UDIR-01",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-026",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-02",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          22,
+          22
+        ],
+        "selector": "UDIR-02",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-026"
+      ]
+    },
+    {
+      "id": "UDIR-03",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          23,
+          23
+        ],
+        "selector": "UDIR-03",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-026"
+      ]
+    },
+    {
+      "id": "UDIR-04",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          24,
+          24
+        ],
+        "selector": "UDIR-04",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-029"
+      ]
+    },
+    {
+      "id": "UDIR-05",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          25,
+          25
+        ],
+        "selector": "UDIR-05",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-024"
+      ]
+    },
+    {
+      "id": "UDIR-06",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          26,
+          26
+        ],
+        "selector": "UDIR-06",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-001",
+        "P069-REQ-004",
+        "P069-REQ-005",
+        "P069-REQ-010",
+        "P069-REQ-025",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-07",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          27,
+          27
+        ],
+        "selector": "UDIR-07",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-005",
+        "P069-REQ-023",
+        "P069-REQ-030"
+      ]
+    },
+    {
+      "id": "UDIR-08",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          28,
+          28
+        ],
+        "selector": "UDIR-08",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-005",
+        "P069-REQ-022",
+        "P069-REQ-023",
+        "P069-REQ-030"
+      ]
+    },
+    {
+      "id": "UDIR-09",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          29,
+          29
+        ],
+        "selector": "UDIR-09",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-012",
+        "P069-REQ-013",
+        "P069-REQ-014",
+        "P069-REQ-015",
+        "P069-REQ-016",
+        "P069-REQ-017",
+        "P069-REQ-019",
+        "P069-REQ-020",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-10",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          30,
+          30
+        ],
+        "selector": "UDIR-10",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-003",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-11",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          31,
+          31
+        ],
+        "selector": "UDIR-11",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-003",
+        "P069-REQ-007",
+        "P069-REQ-008",
+        "P069-REQ-009",
+        "P069-REQ-011",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-12",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          32,
+          32
+        ],
+        "selector": "UDIR-12",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-008",
+        "P069-REQ-021"
+      ]
+    },
+    {
+      "id": "UDIR-13",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          33,
+          33
+        ],
+        "selector": "UDIR-13",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-004",
+        "P069-REQ-006",
+        "P069-REQ-009",
+        "P069-REQ-012",
+        "P069-REQ-013",
+        "P069-REQ-014",
+        "P069-REQ-016",
+        "P069-REQ-017",
+        "P069-REQ-018",
+        "P069-REQ-020",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-14",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          34,
+          34
+        ],
+        "selector": "UDIR-14",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-028",
+        "P069-REQ-029",
+        "P069-REQ-032"
+      ]
+    },
+    {
+      "id": "UDIR-15",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          35,
+          35
+        ],
+        "selector": "UDIR-15",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-018",
+        "P069-REQ-030",
+        "P069-REQ-031"
+      ]
+    },
+    {
+      "id": "UDIR-16",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          36,
+          36
+        ],
+        "selector": "UDIR-16",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-006",
+        "P069-REQ-018",
+        "P069-REQ-025"
+      ]
+    },
+    {
+      "id": "UDIR-17",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          37,
+          37
+        ],
+        "selector": "UDIR-17",
+        "authority": "HISTORICAL_STORED_DIRECTION_NOT_FRESH_USER_TRANSCRIPT"
+      },
+      "requirement_ids": [
+        "P069-REQ-004",
+        "P069-REQ-027",
+        "P069-REQ-031"
+      ]
+    }
+  ],
+  "constitution_coverage": [
+    {
+      "section": 0,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          7,
+          15
+        ],
+        "selector": "section 0",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-004",
+        "P069-REQ-026",
+        "P069-REQ-031",
+        "P069-REQ-032"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 1,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          16,
+          27
+        ],
+        "selector": "section 1",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-026",
+        "P069-REQ-027"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 2,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          28,
+          44
+        ],
+        "selector": "section 2",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-022",
+        "P069-REQ-023",
+        "P069-REQ-024",
+        "P069-REQ-025",
+        "P069-REQ-030"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 3,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          45,
+          63
+        ],
+        "selector": "section 3",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-001",
+        "P069-REQ-002",
+        "P069-REQ-008",
+        "P069-REQ-010",
+        "P069-REQ-017"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 4,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          64,
+          83
+        ],
+        "selector": "section 4",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-004",
+        "P069-REQ-005",
+        "P069-REQ-007",
+        "P069-REQ-008",
+        "P069-REQ-009",
+        "P069-REQ-010",
+        "P069-REQ-011"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 5,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          84,
+          99
+        ],
+        "selector": "section 5",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-003",
+        "P069-REQ-007",
+        "P069-REQ-008",
+        "P069-REQ-009",
+        "P069-REQ-011"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 6,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          100,
+          133
+        ],
+        "selector": "section 6",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-004",
+        "P069-REQ-009",
+        "P069-REQ-010",
+        "P069-REQ-011",
+        "P069-REQ-012",
+        "P069-REQ-013",
+        "P069-REQ-014",
+        "P069-REQ-015",
+        "P069-REQ-016",
+        "P069-REQ-017"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 7,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          134,
+          147
+        ],
+        "selector": "section 7",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-004",
+        "P069-REQ-005",
+        "P069-REQ-006",
+        "P069-REQ-018"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 8,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          148,
+          176
+        ],
+        "selector": "section 8",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-002",
+        "P069-REQ-015",
+        "P069-REQ-016",
+        "P069-REQ-017",
+        "P069-REQ-018",
+        "P069-REQ-019",
+        "P069-REQ-020"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 9,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          177,
+          190
+        ],
+        "selector": "section 9",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-008",
+        "P069-REQ-021"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 10,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          191,
+          206
+        ],
+        "selector": "section 10",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-018",
+        "P069-REQ-021",
+        "P069-REQ-025"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 11,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          207,
+          228
+        ],
+        "selector": "section 11",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-024",
+        "P069-REQ-026",
+        "P069-REQ-028",
+        "P069-REQ-029",
+        "P069-REQ-030",
+        "P069-REQ-032"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 12,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          229,
+          245
+        ],
+        "selector": "section 12",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-004",
+        "P069-REQ-011",
+        "P069-REQ-027",
+        "P069-REQ-031"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    },
+    {
+      "section": 13,
+      "source": {
+        "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+        "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+        "lines": [
+          246,
+          255
+        ],
+        "selector": "section 13",
+        "authority": "HISTORICAL_CONSTITUTION_RETAINED_UNLESS_EXPLICITLY_SUPERSEDED"
+      },
+      "requirement_ids": [
+        "P069-REQ-022",
+        "P069-REQ-027",
+        "P069-REQ-031"
+      ],
+      "scope": "Complete original numbered/sub-bullet clauses remain authoritative within source-native historical/current exceptions."
+    }
+  ],
+  "concern_coverage": [
+    {
+      "id": "OPEN_USER_CONCERN-1",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          53,
+          53
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-026",
+        "P069-REQ-032"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-2",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          54,
+          54
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-018",
+        "P069-REQ-019",
+        "P069-REQ-020",
+        "P069-REQ-025"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-3",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          55,
+          55
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-003",
+        "P069-REQ-007",
+        "P069-REQ-008",
+        "P069-REQ-009"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-4",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          56,
+          56
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-007",
+        "P069-REQ-011",
+        "P069-REQ-020"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-5",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          57,
+          57
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-013",
+        "P069-REQ-019",
+        "P069-REQ-020"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-6",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          58,
+          58
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-006",
+        "P069-REQ-012",
+        "P069-REQ-014",
+        "P069-REQ-017",
+        "P069-REQ-018"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-7",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          59,
+          59
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-018",
+        "P069-REQ-020",
+        "P069-REQ-021",
+        "P069-REQ-025",
+        "P069-REQ-031"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    },
+    {
+      "id": "OPEN_USER_CONCERN-8",
+      "source": {
+        "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+        "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+        "lines": [
+          60,
+          60
+        ],
+        "authority": "HISTORICAL_OPEN_USER_CONCERN"
+      },
+      "status": "OPEN_USER_CONCERN",
+      "requirement_ids": [
+        "P069-REQ-024",
+        "P069-REQ-030"
+      ],
+      "closure_not_before": "Step107 evidence-based launch disposition; not satisfied by Step100 mapping"
+    }
+  ],
+  "current_authority_resolutions": [
+    {
+      "topic": "branch",
+      "historical": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md section1.4",
+      "current": "codex/anode-fit-v1025_2-canonical-completion only",
+      "reason": "Current master/user new-branch rule; old namedbranch protected."
+    },
+    {
+      "topic": "body_exception",
+      "historical": "UDIR-05 andconstitution2.7 separate companion wording",
+      "current": "designated implementation appendix OR separate companion",
+      "reason": "Direct user original scholarly-format request andactive master156–157; historicalrecordunchanged."
+    },
+    {
+      "topic": "current_user_attribution",
+      "historical": "DIRECT_CURRENT in057register",
+      "current": "historical interpretation; not current literaltranscript or newapproval",
+      "reason": "Step99sourceauditauthorityceiling."
+    },
+    {
+      "topic": "full_scope",
+      "current": "Steps108–351/allmaterialfamilies unchanged; no phase070execution before107positive",
+      "reason": "Active master and069plan."
+    }
+  ],
+  "carry_preservation": {
+    "registered_active": 316,
+    "inherited": 222,
+    "new": 94,
+    "closed_inherited": 0,
+    "dispositions": 655,
+    "source_index": {
+      "path": "Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json",
+      "blob": "c0e8ef979469eee14e16b0b13c9b9e2f4ea83b89",
+      "selectors": [
+        "carry_pointer",
+        "disposition_pointer",
+        "unindexed_existing_conditions"
+      ]
+    },
+    "unindexed_existing_conditions": [
+      {
+        "source": {
+          "commit": "04ed9c209794f31cde9aa41d8b94accfb56515ca",
+          "path": "Codex/results/PHASE_067_VALIDATION.json",
+          "blob": "cddf1d49c54418c29e74ab67c8b5780da077115d",
+          "selector": "conformance_rows[row_id=C03]"
+        },
+        "original_record": {
+          "acceptance_criterion": "DIRECT_RUNTIME_CALL_ORDER_AND_DYNAMIC_DISPATCH_EVIDENCE_FOR_NAMED_PHYSICS_ROUTES",
+          "authority_ceiling": "SOURCE_STATIC_GRAPH; 80 DYNAMIC EDGES AND RUNTIME ORDER UNPROVEN",
+          "axes": {
+            "code_test": "NOT_TESTED",
+            "test_data": "NOT_APPLICABLE",
+            "theory_code": "PARTIAL",
+            "theory_data": "NOT_APPLICABLE"
+          },
+          "external_authority_promoted": false,
+          "not_applicable_axis_reasons": {
+            "test_data": "OUTSIDE_THE_RECORDED_EVIDENCE_CLAIM_FOR_THIS_ROW",
+            "theory_data": "OUTSIDE_THE_RECORDED_EVIDENCE_CLAIM_FOR_THIS_ROW"
+          },
+          "obligation_ids": [],
+          "origin": {
+            "path": "Codex/results/PHASE_067_PHYSICS_CALL_GRAPH.json",
+            "pointer": "/authority/actual_runtime_order_proven",
+            "record_sha256": "2ed27c1421e6928dbe13dbfdb5c59e1045b30341fe7ebe05700006bc5ac572c0"
+          },
+          "owner": "PHASE-083-IMPLEMENTATION-CONTRACT",
+          "phase067_gate_determinant": true,
+          "required_internal_axes": [
+            "theory_code",
+            "code_test"
+          ],
+          "row_id": "C03",
+          "status": "PARTIAL",
+          "supporting_origins": [
+            {
+              "path": "Codex/results/PHASE_067_PHYSICS_CALL_GRAPH.json",
+              "pointer": "/coverage/dynamic_edges",
+              "record_sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+            }
+          ],
+          "topic": "charge/lag/kinetics/heat/observation call graph"
+        },
+        "current_carry_route": "EXACT_ROUTE_NOT_FOUND",
+        "integration_status": "PRESERVED_EXISTING_CONDITION_NOT_NEW_OBLIGATION_ID",
+        "resolution_required": "Keep exact existing owner/acceptance/authority, determine precise launch-input mapping inStep105 and gate106/107. Do not substitute narrower similarly-owned carry or close this predicate.",
+        "counting_boundary": "316registered active obligations remain exact; these are two existing source predicates without verified exactregisterroutes, not a claim of318distinct nonoverlapping obligations."
+      },
+      {
+        "source": {
+          "commit": "04ed9c209794f31cde9aa41d8b94accfb56515ca",
+          "path": "Codex/results/PHASE_067_VALIDATION.json",
+          "blob": "cddf1d49c54418c29e74ab67c8b5780da077115d",
+          "selector": "conformance_rows[row_id=C06]"
+        },
+        "original_record": {
+          "acceptance_criterion": "REQUIRED_PHASE067_TEST_AND_DEMO_RUNTIME_CELLS_EXECUTE_UNDER_BOTH_RUNTIMES_OR_REMAIN_EXPLICITLY_WITHHELD_WITH_OWNER",
+          "authority_ceiling": "33 PASS_EXIT_GATE; 5 FAIL_EXIT_GATE; 34 DEPENDENCY_MISSING; 38 MANUAL_OBSERVATION",
+          "axes": {
+            "code_test": "PARTIAL",
+            "test_data": "PARTIAL",
+            "theory_code": "NOT_APPLICABLE",
+            "theory_data": "NOT_APPLICABLE"
+          },
+          "external_authority_promoted": false,
+          "not_applicable_axis_reasons": {
+            "theory_code": "OUTSIDE_THE_RECORDED_EVIDENCE_CLAIM_FOR_THIS_ROW",
+            "theory_data": "OUTSIDE_THE_RECORDED_EVIDENCE_CLAIM_FOR_THIS_ROW"
+          },
+          "obligation_ids": [],
+          "origin": {
+            "path": "Codex/results/PHASE_067_TEST_DEMO_GOLDEN_MATRIX.json",
+            "pointer": "/runtime_records",
+            "record_sha256": "45673d528eaa826d4f1876ef67d09d8c0ec41d7e757f357b263b48a8cfd0a267"
+          },
+          "owner": "PHASE-088-SCIENTIFIC-REDTEAM",
+          "phase067_gate_determinant": true,
+          "required_internal_axes": [
+            "code_test",
+            "test_data"
+          ],
+          "row_id": "C06",
+          "status": "PARTIAL",
+          "supporting_origins": [],
+          "topic": "test-path executable enforcement and cross-runtime outcomes"
+        },
+        "current_carry_route": "EXACT_ROUTE_NOT_FOUND",
+        "integration_status": "PRESERVED_EXISTING_CONDITION_NOT_NEW_OBLIGATION_ID",
+        "resolution_required": "Keep exact existing owner/acceptance/authority, determine precise launch-input mapping inStep105 and gate106/107. Do not substitute narrower similarly-owned carry or close this predicate.",
+        "counting_boundary": "316registered active obligations remain exact; these are two existing source predicates without verified exactregisterroutes, not a claim of318distinct nonoverlapping obligations."
+      }
+    ],
+    "new_obligation_ids_created": 0,
+    "distinct318_obligations_claimed": false
+  },
+  "requirement_owner_scope": "A planning owner for this requirement, not a reassignment or replacement of existing carry source-native owner. Existing obligations/ALL_OF acceptance remain separately immutable.",
+  "current_user_message_anchors": [
+    {
+      "id": "CURRENT-USER-SCHOLARLY",
+      "source": "Current conversation user message requesting plan after Claude/Codex history review",
+      "scope": "LaTeX-to-PDF; graduate textbook/review level; explicit mathematical/chemical derivations; genuine refs and no fabricated DOI; code mentions excluded outside specifically designated appendix; newbranch",
+      "fresh_literal_transcript_file_claimed": false
+    },
+    {
+      "id": "CURRENT-USER-STORAGE",
+      "source": "Current conversation user messages naming ./Codex/plans, ./Codex/results and Codex/{plans,results,docs}",
+      "scope": "Three-stage documentation and compaction recovery, cumulative steps, result-includedstepcommit/push",
+      "fresh_literal_transcript_file_claimed": false
+    },
+    {
+      "id": "CURRENT-USER-CONTINUE",
+      "source": "Current conversation last explicit continuation and role-boundary/speed directions",
+      "scope": "Continuous approved work; preserve existing task/agent division; remove redundant work, not requiredscientificgates",
+      "fresh_literal_transcript_file_claimed": false
+    }
+  ],
+  "input_manifest_receipt": {
+    "command": "@'\nimport json,subprocess,hashlib\nbase='8b27607e5d3f93bc71fee736819e2a2af90f0e85'\npaths=[\"Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md\",\"Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md\",\"Codex/results/PHASE_069_CANONICAL_AUDIT.md\",\"Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json\",\"Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md\",\"Codex/results/PHASE_069_STEP_099_VALIDATION.json\",\"Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md\",\"Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md\"]\nrows=[]\nfor p in paths:\n b=subprocess.check_output(['git','show',base+':'+p]);lf=b.replace(b'\\r\\n',b'\\n')\n rows.append({'path':p,'blob':hashlib.sha1(('blob '+str(len(b))+'\\0').encode()+b).hexdigest(),'raw_bytes':len(b),'raw_sha256':hashlib.sha256(b).hexdigest(),'lf_sha256':hashlib.sha256(lf).hexdigest(),'physical_lines':len(b.splitlines())})\nprint(json.dumps(rows))\n'@ | py -3.12 -B -",
+    "chunk_id": "54e447",
+    "wall_time_seconds": 0.4633492,
+    "exit_code": 0,
+    "original_token_count": 655,
+    "output": "[{\"path\": \"Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md\", \"blob\": \"916fa3139df70d498f8538cdd35630ca89d020a9\", \"raw_bytes\": 54183, \"raw_sha256\": \"6f26b69f8c68bda0ec5a6605b7704c4c5a248c679b48674a8da82d0fafe81da3\", \"lf_sha256\": \"6f26b69f8c68bda0ec5a6605b7704c4c5a248c679b48674a8da82d0fafe81da3\", \"physical_lines\": 764}, {\"path\": \"Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md\", \"blob\": \"81620a8b58948d4823dc47e5058a65195bab9e77\", \"raw_bytes\": 18273, \"raw_sha256\": \"8316e3287e093259841d33213fed7ac63481e6c42d0e9791828f102e114f2f3d\", \"lf_sha256\": \"8316e3287e093259841d33213fed7ac63481e6c42d0e9791828f102e114f2f3d\", \"physical_lines\": 245}, {\"path\": \"Codex/results/PHASE_069_CANONICAL_AUDIT.md\", \"blob\": \"bcc84bf4ea3a29fa3048e8e398ebf4fd7cab965d\", \"raw_bytes\": 17452, \"raw_sha256\": \"9e21163f657f4e4fa47b1b0bed867375fe697e7325b8640514a12a8ca82c1639\", \"lf_sha256\": \"9e21163f657f4e4fa47b1b0bed867375fe697e7325b8640514a12a8ca82c1639\", \"physical_lines\": 228}, {\"path\": \"Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json\", \"blob\": \"c0e8ef979469eee14e16b0b13c9b9e2f4ea83b89\", \"raw_bytes\": 211002, \"raw_sha256\": \"59b9646b9913ed1e5a4666de824ef137e00832e6979c0545e42ee8a52203b9fc\", \"lf_sha256\": \"59b9646b9913ed1e5a4666de824ef137e00832e6979c0545e42ee8a52203b9fc\", \"physical_lines\": 3861}, {\"path\": \"Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md\", \"blob\": \"c560df48b0ad0a94fd6d6106306e72a93d714078\", \"raw_bytes\": 5563, \"raw_sha256\": \"99ccea57b5b6e9b7041cacc9de900fa8f6eb898a8fe9239ebf783724f7be5d05\", \"lf_sha256\": \"99ccea57b5b6e9b7041cacc9de900fa8f6eb898a8fe9239ebf783724f7be5d05\", \"physical_lines\": 76}, {\"path\": \"Codex/results/PHASE_069_STEP_099_VALIDATION.json\", \"blob\": \"54592d92cce104304f6192686732153aeb48ff45\", \"raw_bytes\": 89373, \"raw_sha256\": \"b58386fd240d568b2c4356ee756d82ab446b09dcd18f42c4b7aa49f3c29fb8f1\", \"lf_sha256\": \"b58386fd240d568b2c4356ee756d82ab446b09dcd18f42c4b7aa49f3c29fb8f1\", \"physical_lines\": 600}, {\"path\": \"Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md\", \"blob\": \"fd8c7220e3b7302b1cab6e9cfb81a3c50f886022\", \"raw_bytes\": 11239, \"raw_sha256\": \"9087cd85161a4a1c3797053120a3873fc6480cf45f13a923c188374417c62c31\", \"lf_sha256\": \"9087cd85161a4a1c3797053120a3873fc6480cf45f13a923c188374417c62c31\", \"physical_lines\": 255}, {\"path\": \"Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md\", \"blob\": \"6a94c2b43f702a340a57b71b96f4d33645f4d245\", \"raw_bytes\": 6012, \"raw_sha256\": \"e7a0d7caeb9b72d8c95a31ea8ed67170cb520c32baa964a1b54f901bbc875d67\", \"lf_sha256\": \"e7a0d7caeb9b72d8c95a31ea8ed67170cb520c32baa964a1b54f901bbc875d67\", \"physical_lines\": 63}]\r\n"
+  },
+  "validation": {
+    "status": "PASS_REQUIRED_CONTENT_AND_INDEPENDENT_SPEC_NOT_SCIENTIFIC_CLOSURE",
+    "independent_reviews": [
+      {
+        "schema": "phase069.step100.independent-spec-review.v1",
+        "reviewer": "astra_review_persisted_91_93",
+        "role": "Same bounded science/user-intent independent review; requirement formalization only",
+        "source_commit": "8b27607e5d3f93bc71fee736819e2a2af90f0e85",
+        "worktree": "C:/Users/lksz1/.config/superpowers/worktrees/Project_Anode_Fit/codex-anode-fit-v1025_2-canonical-completion",
+        "verdict": "PASS_BOUNDED_DOCUMENT_SPEC_NOT_STEP100_FINAL_GATE",
+        "remaining_findings": {
+          "P0": 0,
+          "P1": 0,
+          "P2": 0
+        },
+        "read_coverage": [
+          {
+            "path": "Codex/AGENTS.md",
+            "mode": "FRESH_FULL",
+            "lines": [
+              1,
+              180
+            ],
+            "raw_sha256": "a471c7cf6c5591639a3695891f6bec48164c2f7a5ac78654e71af4d0bef7a232"
+          },
+          {
+            "path": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md",
+            "mode": "FRESH_FULL_THIS_STEP",
+            "lines": [
+              1,
+              764
+            ],
+            "blob": "916fa3139df70d498f8538cdd35630ca89d020a9",
+            "raw_sha256": "6f26b69f8c68bda0ec5a6605b7704c4c5a248c679b48674a8da82d0fafe81da3",
+            "additional_focused_read": [
+              711,
+              727
+            ]
+          },
+          {
+            "path": "Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md",
+            "mode": "EXACT_BLOB_PRIOR_PERSONAL_FULL_READ_REUSED",
+            "prior_full_lines": [
+              1,
+              245
+            ],
+            "fresh_lines_this_step": [
+              168,
+              224
+            ],
+            "blob": "81620a8b58948d4823dc47e5058a65195bab9e77",
+            "raw_sha256": "8316e3287e093259841d33213fed7ac63481e6c42d0e9791828f102e114f2f3d"
+          },
+          {
+            "path": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md",
+            "mode": "EXACT_BLOB_STEP99_PERSONAL_FULL_READ_REUSED",
+            "prior_full_lines": [
+              1,
+              255
+            ],
+            "fresh_lines_this_step": [
+              207,
+              228
+            ],
+            "blob": "fd8c7220e3b7302b1cab6e9cfb81a3c50f886022",
+            "raw_sha256": "9087cd85161a4a1c3797053120a3873fc6480cf45f13a923c188374417c62c31"
+          },
+          {
+            "path": "Codex/results/PHASE_057_CURRENT_USER_DIRECTION_REGISTER.md",
+            "mode": "EXACT_BLOB_STEP99_PERSONAL_FULL_READ_REUSED_NOT_FRESH",
+            "prior_full_lines": [
+              1,
+              63
+            ],
+            "blob": "6a94c2b43f702a340a57b71b96f4d33645f4d245",
+            "raw_sha256": "e7a0d7caeb9b72d8c95a31ea8ed67170cb520c32baa964a1b54f901bbc875d67"
+          },
+          {
+            "path": "Codex/results/PHASE_069_CANONICAL_AUDIT.md",
+            "mode": "FRESH_FULL_THIS_STEP",
+            "lines": [
+              1,
+              228
+            ],
+            "blob": "bcc84bf4ea3a29fa3048e8e398ebf4fd7cab965d",
+            "raw_sha256": "9e21163f657f4e4fa47b1b0bed867375fe697e7325b8640514a12a8ca82c1639"
+          },
+          {
+            "path": "Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md",
+            "mode": "FRESH_FULL_THIS_STEP",
+            "lines": [
+              1,
+              76
+            ],
+            "blob": "c560df48b0ad0a94fd6d6106306e72a93d714078",
+            "raw_sha256": "99ccea57b5b6e9b7041cacc9de900fa8f6eb898a8fe9239ebf783724f7be5d05"
+          },
+          {
+            "path": "Codex/results/PHASE_069_USER_REQUIREMENTS.md",
+            "mode": "FRESH_FULL_CANDIDATE_PLUS_CHANGED_SCOPE_READ",
+            "initial_full_lines": [
+              1,
+              472
+            ],
+            "changed_revision_ranges": [
+              [
+                1,
+                19
+              ],
+              [
+                334,
+                432
+              ],
+              [
+                433,
+                480
+              ]
+            ],
+            "final_physical_lines": 480,
+            "raw_bytes": 45403,
+            "raw_sha256": "effb8623dcf1e0f1843415326c869c4c8e2228155bc29d9c343abcde1adf6b60",
+            "note": "Unchanged initial lines 20-333 reused; every modified/new line directly read. No raw-source science reread implied."
+          },
+          {
+            "path": "Codex/results/PHASE_069_USER_REQUIREMENTS.json",
+            "mode": "FRESH_COMPLETE_FIELD_PROJECTION_NOT_RAW_PHYSICAL_LINE_READ",
+            "final_physical_lines": 3931,
+            "raw_bytes": 153498,
+            "raw_sha256": "2bb7cbf753198d8ee3d597160b479796f7a9713c2a387059fb4d4fa8e458d617",
+            "selectors": [
+              "all top-level properties",
+              "requirements[0..31] every field and nested source anchor",
+              "direction_coverage[0..16] all fields",
+              "constitution_coverage[0..13] all fields",
+              "concern_coverage[0..7] all fields",
+              "current_authority_resolutions[*]",
+              "carry_preservation including both entire original_record objects",
+              "requirement_owner_scope",
+              "current_user_message_anchors[*]",
+              "input_manifest_receipt including command and stored output",
+              "validation including checker_template, negative checks and both candidate receipts"
+            ],
+            "changed_records_reread": [
+              "P069-REQ-026",
+              "P069-REQ-028",
+              "P069-REQ-029",
+              "P069-REQ-031"
+            ],
+            "note": "All 24 top-level properties covered by bounded full-value projections; not a claim to have freshly read the huge underlying raw histories. Candidate receipts read, not personally replayed."
+          },
+          {
+            "path": "Codex/results/PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md",
+            "mode": "FRESH_FULL_INITIAL_AND_CHANGED_CANDIDATE",
+            "initial_lines": [
+              1,
+              60
+            ],
+            "final_lines": [
+              1,
+              62
+            ],
+            "raw_bytes": 4798,
+            "raw_sha256": "3a82f849c05adeb50f81dac93fa4ab3946aa0045bc6b5d1364c0696283641454"
+          }
+        ],
+        "metadata_only_inputs": [
+          {
+            "path": "Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json",
+            "blob": "c0e8ef979469eee14e16b0b13c9b9e2f4ea83b89",
+            "raw_sha256": "59b9646b9913ed1e5a4666de824ef137e00832e6979c0545e42ee8a52203b9fc",
+            "physical_lines": 3861,
+            "scope": "Eight-input immutable identity check; prior personally reviewed source-native carry decisions reused, current complete C03/C06 projections read in requirements JSON. No fresh full index read claimed."
+          },
+          {
+            "path": "Codex/results/PHASE_069_STEP_099_VALIDATION.json",
+            "blob": "54592d92cce104304f6192686732153aeb48ff45",
+            "raw_sha256": "b58386fd240d568b2c4356ee756d82ab446b09dcd18f42c4b7aa49f3c29fb8f1",
+            "physical_lines": 600,
+            "scope": "Immutable metadata comparison only; no personal full transcript read or Step99 final validator execution claimed."
+          }
+        ],
+        "checks": [
+          {
+            "check": "Requirement denominator and fields",
+            "result": "32 sequential IDs, all requirement/acceptance/source anchors/material_scope/owner/target_phases/status/authority fields directly read. Six material families are independently retained; observation through fitting order is exposition, not premature architecture."
+          },
+          {
+            "check": "Native requirement coverage",
+            "result": "17 UDIR mappings, eight OPEN_USER_CONCERN mappings and all constitution sections 0-13 retain their explicit historical/current exceptions. Whole section mapping is not itself scientific satisfaction."
+          },
+          {
+            "check": "Authority boundaries",
+            "result": "Historical DIRECT_CURRENT is not a fresh transcript or approval; current branch operational supersession does not delete source science. Designated implementation appendix OR separate companion survives; ordinary implementation sections are not a new exception."
+          },
+          {
+            "check": "Science and data limits",
+            "result": "Low-temperature/finite-current lowering and broadening remain protocol/specimen-dependent research observations, not universal laws or forced fit constraints. Direct-current barrier dependence requires derivation. Empirical success, numerical domain failures and justified regularization are retained without phase/material authority from R2/BIC/synthetic/internal tests. Genuine source support and no fabricated DOI remain required."
+          },
+          {
+            "check": "Carry and owners",
+            "result": "316=222+94, zero inherited closures, 655 dispositions; complete C03/C06 original owner/acceptance/authority preserved separately without new IDs or a 318 distinct denominator. Step105 exact routing still required. Requirement planning owners explicitly do not reassign immutable carry owners."
+          },
+          {
+            "check": "Pending downstream work",
+            "result": "All 32 statuses REQUIRED_NOT_YET_SATISFIED; coverage106 NOT_YET_EXECUTED; launch107 NOT_SELECTED. No whole model adoption, new scientific selection, 101-107 completion or 108-351 scope reduction is asserted."
+          },
+          {
+            "check": "Historical evidence precision",
+            "result": "MD retains optimizer execution versus convergence/success distinction, actual candidate 51=49PASS+2hashFAIL and bounded C1/normalization/header versus material/DOI authority. No new proof execution claimed."
+          }
+        ],
+        "resolved_findings": [
+          {
+            "id": "SPEC100-P2-01",
+            "priority": "P2",
+            "finding": "REQ028 acceptance omitted the original claim/asset, reason and replacement-location record for deletion, relocation or modification.",
+            "source": "Codex/results/PHASE_057_USER_INTENT_CONSTITUTION.md:226",
+            "resolution": "Directly read added acceptance at requirements MD:368 and JSON requirements[id=P069-REQ-028].acceptance[4]; original claim/asset, reason, replacement location and non-overwrite/addendum relationship are explicit.",
+            "status": "RESOLVED_BY_ROOT_AND_REVIEWED"
+          },
+          {
+            "id": "SPEC100-P2-02",
+            "priority": "P2",
+            "finding": "REQ029 generalized master hard stops instead of preserving all seven triggers, including both three-attempt boundaries.",
+            "source": "Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md:713-719",
+            "resolution": "Directly read all seven explicit conditions at requirements MD:382-388 and JSON requirements[id=P069-REQ-029].acceptance[4..10]. All predicates and thresholds retained.",
+            "status": "RESOLVED_BY_ROOT_AND_REVIEWED"
+          },
+          {
+            "id": "SPEC100-NUMBERING",
+            "priority": "P2",
+            "finding": "Phase106 terminology used for cumulative Step106 in introduction and REQ026/031.",
+            "resolution": "Latest MD:16,341,411 and corresponding JSON acceptances say Step106; no phase or step renumbering performed.",
+            "status": "RESOLVED_BY_ROOT_AND_REVIEWED"
+          }
+        ],
+        "executed_readonly_checks": [
+          {
+            "command": "git rev-parse HEAD",
+            "result": "Matched 8b27607e5d3f93bc71fee736819e2a2af90f0e85; network persistence not independently checked."
+          },
+          {
+            "command": "Inline py -3.12 -B immutable git-show manifest comparison performed during source checklist",
+            "result": "exit0; all eight input blob/raw SHA/bytes/line identities matched. This was metadata validation, not eight fresh full reads."
+          },
+          {
+            "command": "PowerShell per-requirement MD section comparison of JSON title, requirement, owner, each acceptance, each material and exact formatted target_phases; exact 17 direction and eight concern table rows; status/count checks",
+            "chunk_id": "b91409",
+            "exit_code": 0,
+            "output": {
+              "rows": 32,
+              "directions": 17,
+              "concerns": 8,
+              "failures": [],
+              "record_statuses": [
+                "REQUIRED_NOT_YET_SATISFIED"
+              ],
+              "req028_acceptances": 5,
+              "req029_acceptances": 11
+            }
+          },
+          {
+            "command": "Get-Content bounded full reads and complete JSON field projections; Get-FileHash SHA256; Get-Item byte counts",
+            "result": "Coverage and reviewed candidate identities recorded above. No repository writes."
+          },
+          {
+            "command": "Test-Path C:/Users/lksz1/AppData/Local/Temp/anode-step100-spec-review.json",
+            "chunk_id": "ff2878",
+            "result": false,
+            "meaning": "Absent before the authorized apply_patch creation."
+          }
+        ],
+        "limitations": [
+          "This review passes only the bounded requirement document specification. It is not Step100 final validation, final hash sealing, native exact-path transaction, commit, push or clean/live verification.",
+          "Root runtime candidate-check receipts and their complete checker template were read; neither runtime candidate checker nor numerical science was personally rerun in this final document review.",
+          "No fresh external paper/fulltext/DOI verification, material/protocol data validation, optimizer execution, PDF visual inspection, model choice or scholarly implementation adoption occurred.",
+          "Old full-read evidence is explicitly reused only where stated; metadata-only records are not claimed as fresh full source reads. Current user-message descriptions are supplied contextual authority, not a stored fresh verbatim transcript.",
+          "Hashes identify the reviewed candidate before root final review integration and status/receipt sealing; subsequent final status bytes require root's authorized checks. No unseen later edits are approved.",
+          "No remaining assigned requirement-document ranges or concrete P0/P1/P2 defects were identified after the bounded fixes. Scientific debt, all downstream gates and open user concerns remain unresolved as recorded."
+        ]
+      }
+    ],
+    "observed_negative_checks": [
+      {
+        "runtime": "3.12",
+        "command": "@'\nimport json\nfrom pathlib import Path\nx=json.loads(Path('Codex/results/PHASE_069_USER_REQUIREMENTS.json').read_text(encoding='utf-8'))\nif not x['requirements']:raise SystemExit('E_P069_REQUIREMENTS_MISSING')\n'@ | py -3.12 -B -",
+        "chunk_id": "3a5ca5",
+        "wall_time_seconds": 0.188972,
+        "exit_code": 1,
+        "original_token_count": 8,
+        "output": "E_P069_REQUIREMENTS_MISSING\r\n"
+      },
+      {
+        "runtime": "3.14",
+        "command": "@'\nimport json\nfrom pathlib import Path\nx=json.loads(Path('Codex/results/PHASE_069_USER_REQUIREMENTS.json').read_text(encoding='utf-8'))\nif not x['requirements']:raise SystemExit('E_P069_REQUIREMENTS_MISSING')\n'@ | py -3.14 -B -",
+        "chunk_id": "a0a447",
+        "wall_time_seconds": 0.0170781,
+        "exit_code": 1,
+        "original_token_count": 8,
+        "output": "E_P069_REQUIREMENTS_MISSING\r\n"
+      }
+    ],
+    "checker_template": "@'\nimport hashlib,json,subprocess,sys\nfrom pathlib import Path\nsys.path.insert(0,'Codex/work/v1025_phase068')\nfrom reconcile_phase068_claims import strict_json\nroot=Path.cwd();jp=root/'Codex/results/PHASE_069_USER_REQUIREMENTS.json';mp=root/'Codex/results/PHASE_069_USER_REQUIREMENTS.md'\nx=strict_json(jp.read_bytes());rs=x['requirements']\nif not rs:raise SystemExit('E_P069_REQUIREMENTS_MISSING')\nassert len(rs)==32 and [r['id'] for r in rs]==['P069-REQ-%03d'%n for n in range(1,33)]\nassert x['phase']==69 and x['step']==100 and x['source_commit']=='8b27607e5d3f93bc71fee736819e2a2af90f0e85'\nassert x['coverage106']=='NOT_YET_EXECUTED' and x['launch107']=='NOT_SELECTED'\nassert x['scientific_selection'] is False and x['inherited_closures']==0\nlayers=['observation','thermodynamics','kinetics','electrochemistry','materials','fitting','cross_cutting']\nassert x['layer_order']==layers and [layers.index(r['layer']) for r in rs]==sorted(layers.index(r['layer']) for r in rs)\nassert set(r['layer'] for r in rs)==set(layers)\nmaterials={'graphite','doped_high_voltage_LCO','Si','SiOx','Si-C','graphite+Si_blend'}\nassert set(x['material_families'])==materials\nassert set(m for r in rs if r['layer']=='materials' for m in r['material_scope'])==materials\nsources={}\nassert len(x['inputs'])==8 and len({a['path'] for a in x['inputs']})==8\nfor a in x['inputs']:\n b=subprocess.check_output(['git','show',x['source_commit']+':'+a['path']]);sources[a['path']]=b\n assert hashlib.sha1(('blob '+str(len(b))+'\\0').encode()+b).hexdigest()==a['blob']\n assert len(b)==a['raw_bytes'] and len(b.splitlines())==a['physical_lines']\n assert hashlib.sha256(b).hexdigest()==a['raw_sha256']\n assert hashlib.sha256(b.replace(b'\\r\\n',b'\\n')).hexdigest()==a['lf_sha256']\nbyid={r['id']:r for r in rs};md=mp.read_text(encoding='utf-8')\nfor r in rs:\n assert r['requirement'] in md and r['title'] in md and all(a in md for a in r['acceptance'])\n assert r['owner'] and isinstance(r['owner'],str) and r['target_phases'] and all(69<=p<=90 for p in r['target_phases'])\n assert r['authority_ceiling'] and r['new_scientific_approval'] is False\n assert r['status']=='REQUIRED_NOT_YET_SATISFIED' and r['source_anchors'] and set(r['material_scope'])<=materials\n for a in r['source_anchors']:\n  raw=sources[a['path']];meta=next(z for z in x['inputs'] if z['path']==a['path']);ls=raw.decode('utf-8').splitlines()\n  assert a['blob']==meta['blob'] and 1<=a['lines'][0]<=a['lines'][1]<=len(ls)\n  s=a.get('selector','')\n  if s.startswith('## '):assert ls[a['lines'][0]-1]==s\n  if s.startswith('UDIR-'):assert ls[a['lines'][0]-1].startswith('| '+s+' |')\n  if s.startswith('section '):assert ls[a['lines'][0]-1].startswith('## '+s.split()[1]+'. ')\nassert [d['id'] for d in x['direction_coverage']]==['UDIR-%02d'%n for n in range(1,18)]\nfor d in x['direction_coverage']:\n assert d['requirement_ids'] and all(i in byid for i in d['requirement_ids'])\n assert d['requirement_ids']==[r['id'] for r in rs if any(a.get('selector')==d['id'] for a in r['source_anchors'])]\nassert [c['section'] for c in x['constitution_coverage']]==list(range(14))\nfor c in x['constitution_coverage']:\n assert c['requirement_ids']==[r['id'] for r in rs if any(a.get('selector')=='section '+str(c['section']) for a in r['source_anchors'])]\n assert c['requirement_ids']\nassert len(x['concern_coverage'])==8\nfor n,c in enumerate(x['concern_coverage'],1):\n assert c['id']=='OPEN_USER_CONCERN-'+str(n) and c['status']=='OPEN_USER_CONCERN'\n assert c['source']['lines']==[52+n,52+n] and c['requirement_ids'] and all(i in byid for i in c['requirement_ids'])\ncarry=x['carry_preservation'];prior=strict_json(sources['Codex/results/PHASE_069_CANONICAL_AUDIT_INDEX.json'])\nassert (carry['registered_active'],carry['inherited'],carry['new'],carry['closed_inherited'],carry['dispositions'])==(316,222,94,0,655)\nassert carry['new_obligation_ids_created']==0 and carry['distinct318_obligations_claimed'] is False\nassert carry['unindexed_existing_conditions']==prior['unindexed_existing_conditions']\nassert {r['original_record']['row_id'] for r in carry['unindexed_existing_conditions']}=={'C03','C06'}\nprint(json.dumps({'status':'PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE','requirements':len(rs),'layers':layers,'materials':sorted(materials),'directions':17,'concerns_open':8,'constitution_sections':14,'inputs':8,'registered_carry':316,'source_conditions':['C03','C06'],'coverage106':x['coverage106'],'launch107':x['launch107']},sort_keys=True))\n'@ | py -VERSION -B -",
+    "candidate_content_checks": [
+      {
+        "runtime": "3.12",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.12",
+        "command_identity_directly_compared": true,
+        "chunk_id": "3f00be",
+        "wall_time_seconds": 0.5050736,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      },
+      {
+        "runtime": "3.14",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.14",
+        "command_identity_directly_compared": true,
+        "chunk_id": "dd696d",
+        "wall_time_seconds": 0.515918,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      }
+    ],
+    "corrected_content_checks": [
+      {
+        "runtime": "3.12",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.12",
+        "chunk_id": "0613f6",
+        "wall_time_seconds": 0.4752846,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      },
+      {
+        "runtime": "3.14",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.14",
+        "chunk_id": "4d4781",
+        "wall_time_seconds": 0.5258367,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      }
+    ],
+    "pretransaction": {
+      "command": "@'\nimport json,subprocess\nfrom pathlib import Path\npaths=[\"Codex/results/PHASE_069_USER_REQUIREMENTS.md\",\"Codex/results/PHASE_069_USER_REQUIREMENTS.json\",\"Codex/results/PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md\",\"Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md\",\"Codex/results/ACTIVE_HANDOVER_ASTRA_CANONICAL_COMPLETION.md\"]\ndef g(*a):return subprocess.check_output(['git',*a]).decode().strip()\nassert g('rev-parse','HEAD')=='8b27607e5d3f93bc71fee736819e2a2af90f0e85'\nassert g('branch','--show-current')=='codex/anode-fit-v1025_2-canonical-completion'\nassert g('diff','--cached','--name-only')==''\nmodified=g('diff','--name-only').splitlines();new=g('ls-files','--others','--exclude-standard').splitlines()\nassert set(modified+new)==set(paths) and len(modified)==2 and len(new)==3\nprint(json.dumps({'parent':'8b27607e5d3f93bc71fee736819e2a2af90f0e85','exact_paths':paths,'modified':modified,'new':new,'scientific_source_changes':0}))\n'@ | py -3.12 -B -",
+      "chunk_id": "3531b6",
+      "wall_time_seconds": 0.364875,
+      "exit_code": 0,
+      "original_token_count": 253,
+      "output": "warning: in the working copy of 'Codex/results/ACTIVE_HANDOVER_ASTRA_CANONICAL_COMPLETION.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md', LF will be replaced by CRLF the next time Git touches it\n{\"parent\": \"8b27607e5d3f93bc71fee736819e2a2af90f0e85\", \"exact_paths\": [\"Codex/results/PHASE_069_USER_REQUIREMENTS.md\", \"Codex/results/PHASE_069_USER_REQUIREMENTS.json\", \"Codex/results/PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md\", \"Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md\", \"Codex/results/ACTIVE_HANDOVER_ASTRA_CANONICAL_COMPLETION.md\"], \"modified\": [\"Codex/results/ACTIVE_HANDOVER_ASTRA_CANONICAL_COMPLETION.md\", \"Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md\"], \"new\": [\"Codex/results/PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md\", \"Codex/results/PHASE_069_USER_REQUIREMENTS.json\", \"Codex/results/PHASE_069_USER_REQUIREMENTS.md\"], \"scientific_source_changes\": 0}\r\n"
+    },
+    "sealed_checks": [
+      {
+        "runtime": "3.12",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.12",
+        "command_identity_directly_compared": true,
+        "chunk_id": "d8cf43",
+        "wall_time_seconds": 0.4614437,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      },
+      {
+        "runtime": "3.14",
+        "command_ref": "validation.checker_template replacing -VERSION with -3.14",
+        "command_identity_directly_compared": true,
+        "chunk_id": "dee1f8",
+        "wall_time_seconds": 0.5094524,
+        "exit_code": 0,
+        "original_token_count": 125,
+        "output": "{\"concerns_open\": 8, \"constitution_sections\": 14, \"coverage106\": \"NOT_YET_EXECUTED\", \"directions\": 17, \"inputs\": 8, \"launch107\": \"NOT_SELECTED\", \"layers\": [\"observation\", \"thermodynamics\", \"kinetics\", \"electrochemistry\", \"materials\", \"fitting\", \"cross_cutting\"], \"materials\": [\"Si\", \"Si-C\", \"SiOx\", \"doped_high_voltage_LCO\", \"graphite\", \"graphite+Si_blend\"], \"registered_carry\": 316, \"requirements\": 32, \"source_conditions\": [\"C03\", \"C06\"], \"status\": \"PASS_REQUIRED_CONTENT_NOT_SCIENTIFIC_CLOSURE\"}\r\n"
+      }
+    ],
+    "root_finalization_boundary": "Only status/receipt/currentcontrols changed after candidate review; root executes final samechecker and nativeGit. No scientificrequirement satisfied/closed by this Step."
+  }
+}
