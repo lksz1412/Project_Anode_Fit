@@ -3,7 +3,7 @@
 정본일: 2026-07-28
 계획: `Codex/plans/2026-07-28-v1010-v1025_2-full-lineage-intent-reaudit-master-plan.md`
 
-Current-state marker: `P068_STEP92_CODEX_FORK_READ_PRECOMMIT`
+Current-state marker: `P068_STEP93_PRIOR_REVIEW_REAUDIT_PRECOMMIT`
 State-marker authority: this exact field is the machine-authoritative current unit; narrative references to earlier precommit states are historical.
 
 ## Status Definitions
@@ -35,7 +35,7 @@ State-marker authority: this exact field is the machine-authoritative current un
 | 065 | 70–75 | Steps 70–75.2 complete | lineage H | v1.0.24–v1.0.24.1 재감사 | CONDITIONAL | `Codex/plans/2026-08-30-phase065-v1024-v1024_1-lineage-detailed-plan.md` | `Codex/results/PHASE_065_V1024_V1024_1_LINEAGE_REPORT_H.md`; `Codex/results/PHASE_065_STEP_075_2_GATE_RESULT.md`; `Codex/results/PHASE_065_RESULT.md` | Phase 065 machine artifacts `11`; integrated `Codex/results/PHASE_065_VALIDATION.json` JSON-last | Step 75.2 exact-eight commit `a2920fba07ab9ce75191134f0d68ed3b6ffda4e5`, parent `26e2ce9559220d5782e1303d68b4449a36309e94`, subject `audit(phase065): close v1024 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P065_STEP75_2_PERSISTENCE`; source `261/131`, machine traversal `87,180` depth `10`, runtime `18`, conformance `41`, carry `192/94`; Ref. 7 original full text remains `GROUND_NOT_FOUND` under `PHASE-071-PRIMARY-SOURCE-ACQUISITION` | `CONDITIONAL_P065`; `PASS_P065_STEP75_2_PERSISTENCE` | Phase 066 detailed-plan activation persistence before cumulative Step 76 |
 | 066 | 76–81 | Steps 76–81.2 complete and persisted | lineage I | v1.0.25–v1.0.25.2 재감사 | CONDITIONAL | `Codex/plans/2026-09-01-phase066-v1025-v1025_2-lineage-detailed-plan.md` | `Codex/results/PHASE_066_V1025_V1025_2_LINEAGE_REPORT_I.md`; `Codex/results/PHASE_066_STEP_081_2_GATE_RESULT.md`; `Codex/results/PHASE_066_RESULT.md` | Steps 76–81.1 machine artifacts; integrated `Codex/results/PHASE_066_VALIDATION.json` JSON-last; canonical history precommit/persistence `7/7`, total `14/14`, ordinary fresh replay `0/14` | Step 81.2 exact-eight commit `7241b331ff76bc8d43cb1bc6b69634977e0884a0`, parent `bdad7375d70c3734cc63265d94a61dd82afd143d`, subject `audit(phase066): close v1025 lineage gate`, pushed/live-remote verified; Python 3.12/3.14 `PASS_P066_STEP81_2_PERSISTENCE`; source `433/167`, Direct14 `14/57`, original optimizer state and Ref. 7 full text `GROUND_NOT_FOUND`, profile routes `16`, probes `36/36`, owner registry/active `355/219`; held-out/external/material authority and stale PDFs remain open | `CONDITIONAL_P066`; `PASS_P066_LINEAGE_I` not selected; `PASS_P066_STEP81_2_PERSISTENCE` | Phase 067 detailed-plan activation exact-seven commit/push/persistence before Step 82 |
 | 067 | 82–90 | Steps 82–90.2 complete and persisted | code | 코드·시험·피팅 계보 교차감사 | CONDITIONAL | original `Codex/plans/2026-09-01-phase067-code-test-fitting-cross-audit-detailed-plan.md`; repair addendum retained | final report `Codex/results/PHASE_067_THEORY_CODE_TEST_DATA_CONFORMANCE_REPORT.md`; gate `Codex/results/PHASE_067_STEP_090_2_GATE_RESULT.md`; result `Codex/results/PHASE_067_RESULT.md` | final `Codex/results/PHASE_067_VALIDATION.json`; 15 machine inputs, 599,369 nodes, 22 conformance rows, seven direct determinants | selected `CONDITIONAL_P067`; Step 90.2 exact-eight commit `0371387f582fb63f5c3858d7e6905ed83eee885f`, parent `ba29277a6d6b4469e8718e025bd1c676d8c7d65e`, subject `audit(phase067): close code history gate`, pushed/live/clean; Python 3.12/3.14 `PASS_P067_STEP90_2_PERSISTENCE`; external authority false | Phase 068 detailed-plan activation |
-| 068 | 91–98 | Step 91 persisted; Step 92 read complete precommit; Steps 93–98 pending | fork | 기존 Codex/Claude 검토 재판정 | PASS_PENDING_PERSISTENCE | `Codex/plans/2026-09-07-phase068-claude-codex-fork-adjudication-detailed-plan.md` | activation `Codex/results/PHASE_068_PLAN_ACTIVATION_RESULT.md`; Step 91 `Codex/results/PHASE_068_STEP_091_CLAUDE_FORK_REVIEW_RESULT.md`; current `Codex/results/PHASE_068_STEP_092_CODEX_FORK_REVIEW_RESULT.md` | Step 91 exact-eight commit `fdcf509746c27d3bdca233b938222cb65466371a` persisted; current `Codex/work/v1025_phase068/build_phase068_step92.py`, `Codex/work/v1025_phase068/validate_phase068_step92.py`, `Codex/results/PHASE_068_CODEX_FORK_DIFF_INVENTORY.json`, `Codex/results/PHASE_068_CODEX_FORK_FULL_READ_ATTESTATION.json`; exact-eight `A/A/A/A/A/M/M/M`, all `100644` | Step 92 selected `PASS_P068_STEP92_CODEX_FORK_READ` under `P068_STEP92_CODEX_FORK_READ_PRECOMMIT`, expected parent `fdcf509746c27d3bdca233b938222cb65466371a`, subject `audit(phase068): read codex fork history`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, reserved `PASS_P068_STEP92_PERSISTENCE`; commits/edges/events/net/occurrences/blobs/text/PDF/pages `5/6/135/69/211/82/81/1/28`; source findings P0/P1/P2 `0/4/1`; scientific promotions 0 | dual Step 92 validation, commit/push/live/clean and persistence, then Step 93 |
+| 068 | 91–98 | Steps 91–92 persisted; Step 93 reaudit complete precommit; Steps 94–98 pending | fork | 기존 Codex/Claude 검토 재판정 | PASS_PENDING_PERSISTENCE | `Codex/plans/2026-09-07-phase068-claude-codex-fork-adjudication-detailed-plan.md` | activation `Codex/results/PHASE_068_PLAN_ACTIVATION_RESULT.md`; Steps 91–92 persisted; current `Codex/results/PHASE_068_STEP_093_PHASE044_054_REAUDIT_RESULT.md` | Step 92 exact-eight commit `25e3120ff0f38c5fa2bf603413034920640b3e62` persisted with dual `PASS_P068_STEP92_PERSISTENCE`; current builder/validator/matrix are `Codex/work/v1025_phase068/build_phase068_step93.py`, `Codex/work/v1025_phase068/validate_phase068_step93.py`, `Codex/results/PHASE_068_PHASE044_054_REAUDIT_MATRIX.json`; exact-seven `A/A/A/A/M/M/M` | Step 93 selected `PASS_P068_STEP93_PRIOR_REVIEW_REAUDIT` under `P068_STEP93_PRIOR_REVIEW_REAUDIT_PRECOMMIT`; source/attestation/named-topic judgment rows `21/22/142`, Phase 054 relations `20/5/3/114`, Phase 067 comparable/no-comparable `48/94`; `H44-PRES-012`; atomic denominator claimed=false; expected parent `25e3120ff0f38c5fa2bf603413034920640b3e62`, subject `audit(phase068): revalidate phase044 phase054 reviews`, containing commit `PENDING_AT_PRECOMMIT_BY_DESIGN`, reserved `PASS_P068_STEP93_PERSISTENCE`; scientific promotions 0 | dual validation, commit/push/live/clean and persistence, then Step 94 |
 | 069 | 99–107 | — | synthesis | 전체 종합·새 작업 착수 gate | PENDING | same master plan | pending | canonical audit | 미실행 | `PASS_P069_REAUDIT_COMPLETE` | 99 |
 
 Step 71 correction history: rejected v34 and every earlier candidate/PASS are
@@ -210,13 +210,27 @@ as exact-seven commit `d54d1a2b2378369cbeaef757309b3ed629491d2c`, parent
 `fdcf509746c27d3bdca233b938222cb65466371a`, parent
 `d54d1a2b2378369cbeaef757309b3ed629491d2c`, subject
 `audit(phase068): read claude fork history`, pushed/live/clean with Python 3.12/3.14
-`PASS_P068_STEP91_PERSISTENCE`. Step 92 is current under
-`PASS_P068_STEP92_CODEX_FORK_READ` / `PASS_PENDING_PERSISTENCE`, marker
-`P068_STEP92_CODEX_FORK_READ_PRECOMMIT`, expected parent
+`PASS_P068_STEP91_PERSISTENCE`. Step 92 subsequently persisted as exact-eight commit
+`25e3120ff0f38c5fa2bf603413034920640b3e62`, parent
 `fdcf509746c27d3bdca233b938222cb65466371a`, subject
-`audit(phase068): read codex fork history`, containing commit
+`audit(phase068): read codex fork history`, pushed/live/clean with Python 3.12/3.14
+`PASS_P068_STEP92_PERSISTENCE`. Step 93 is current under
+`PASS_P068_STEP93_PRIOR_REVIEW_REAUDIT` / `PASS_PENDING_PERSISTENCE`, marker
+`P068_STEP93_PRIOR_REVIEW_REAUDIT_PRECOMMIT`, expected parent
+`25e3120ff0f38c5fa2bf603413034920640b3e62`, subject
+`audit(phase068): revalidate phase044 phase054 reviews`, containing commit
 `PENDING_AT_PRECOMMIT_BY_DESIGN`, and reserved terminal
-`PASS_P068_STEP92_PERSISTENCE`. Step 93 remains blocked until dual persistence.
+`PASS_P068_STEP93_PERSISTENCE`. Step 94 remains blocked until dual persistence.
+Three pre-stage matrix candidates are correction history only: the first for
+Windows CRLF mutation, the second for the wrong Phase 067 commit binding, and
+the third after independent review of relation/atomicity/replay/validator
+boundaries. The repaired candidate uses 142 named-topic rows, Phase 054
+relations `20/5/3/114`, and Phase 067 comparable/no-comparable `48/94`, with
+non-exclusive dispositions bounded corroboration/conflict/overclaim/scope
+mismatch/still-open authority `39/3/6/23/34`; atomic denominator claimed=false,
+and `H44-PRES-012` exists. Replay provenance is enriched, while raw stdout/stderr
+transcripts were not retained. The builder uses hard-link no-clobber, and
+controls are LF-hash sealed.
 The first frozen Step 86 content-PASS candidate was subsequently rejected for a one-based guide manifest
 index, guide nested-provenance and contract-map fail-open, resealed runtime transcript/filesystem acceptance,
 and an unverified full-read attestation input. The repair uses zero-based source indices, exact reconstructed
