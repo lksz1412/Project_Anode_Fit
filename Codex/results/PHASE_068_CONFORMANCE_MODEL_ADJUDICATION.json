@@ -1,0 +1,2541 @@
+{
+  "schema": "P068-STEP95-CONFORMANCE-ADJUDICATION-1",
+  "frozen_tip": "11f90544865dd179739ca5bc5062b28c1078e504",
+  "expected_parent": "1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14",
+  "step": 95,
+  "content_gate": "PASS_P068_STEP95_ADJUDICATION_CONTENT",
+  "persistence_state": "CONTENT_VERIFIED_AWAITING_PUSH",
+  "authority": "AUDIT_COVERAGE_AND_INTERNAL_CONDITIONAL_MATHEMATICS_ONLY",
+  "read_coverage": {
+    "full_read_files": 42,
+    "full_read_lines": 6803,
+    "root": {
+      "files": 19,
+      "lines": 2503
+    },
+    "model_reviewer": {
+      "name": "astra_review_persisted_91_93",
+      "files": 18,
+      "lines": 2865
+    },
+    "contract_reviewer": {
+      "name": "p068_step94_validator_ultra",
+      "files": 5,
+      "lines": 1435
+    },
+    "runtime_only_files": 7,
+    "runtime_only_human_full_read_claimed": false
+  },
+  "source_records": [
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/README.md",
+      "blob": "62ec65b9f3d10c1271e0459fceafb514adbb1dc6",
+      "read_range": [
+        1,
+        30
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "scope boundary",
+      "scientific_authority": "No scientific authority; scope declarations",
+      "implementation_value": "Separates empirical magnitude, equilibrium storage, causal paths and heat helpers",
+      "duplicate_lineage_risk": "Same candidate description, not independent corroboration",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/__init__.py",
+      "blob": "de2cd9ec1df27934a94519087293f1b27da8e68f",
+      "read_range": [
+        1,
+        80
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "API export",
+      "scientific_authority": "No scientific authority",
+      "implementation_value": "Explicit separate public types",
+      "duplicate_lineage_risk": "Reexports do not count as independent evidence",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/constants.py",
+      "blob": "0990ad6571e09855bd18d4d0f9bb73b29cf40370",
+      "read_range": [
+        1,
+        42
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-003; KIN-006; THM-006",
+      "scientific_authority": "Declared constants and dimensional consistency; external constants source unverified",
+      "implementation_value": "Immutable SI constants separated from historical reconstruction constants",
+      "duplicate_lineage_risk": "Historical R=8.314 vs SI R must not be silently interchanged",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/dynamics.py",
+      "blob": "8a752ddd16b5020c8d278d359d446b7cbeafade0",
+      "read_range": [
+        1,
+        150
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "KIN-010; KIN-011",
+      "scientific_authority": "Conditional constant-scale first-order ODE with piecewise-linear target",
+      "implementation_value": "Chronology, initial history and monotonic curve separation",
+      "duplicate_lineage_risk": "Same equations as manuscript; finite-domain finding C95-01",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/empirical.py",
+      "blob": "0fdba1082c4758088a3fc1f0ddd52eb33bd6b744",
+      "read_range": [
+        1,
+        269
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "OBS-003; OBS-D01; EMP-003",
+      "scientific_authority": "Empirical magnitude only, no chemical state or material authority",
+      "implementation_value": "Area-normalized shape, metadata and reconstruction",
+      "duplicate_lineage_risk": "Same stored8dp lineage; finite-domain finding C95-03",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/heat.py",
+      "blob": "aa80827bc1b72ef3fd6cb79bd665e02d903fec5a",
+      "read_range": [
+        1,
+        117
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "THM-003; THM-004; THM-006; THM-007",
+      "scientific_authority": "Conditional signed heat formulas, not calorimetry or flux-generating kinetics",
+      "implementation_value": "Separates reversible, terminal lumped and local network domains",
+      "duplicate_lineage_risk": "Same formulas in text/tests; finite-domain finding C95-04",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/kinetics.py",
+      "blob": "dc0c02805cc9a667657cc5ff65e751b4f1c57525",
+      "read_range": [
+        1,
+        120
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "KIN-006; KIN-009",
+      "scientific_authority": "Conditional SI Eyring/unit formulas, not identified barrier parameters",
+      "implementation_value": "Positive rates vs signed C-rate and explicit /3600 conversion",
+      "duplicate_lineage_risk": "No independent material validation",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/numerics.py",
+      "blob": "f8a8fa11de960c6bc209e9b538735446b5da3b54",
+      "read_range": [
+        1,
+        71
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-003; OBS-003",
+      "scientific_authority": "No physical authority; numerical helper only",
+      "implementation_value": "Stable logistic evaluation and finite input checks",
+      "duplicate_lineage_risk": "Reused helper not independent theory",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/observation.py",
+      "blob": "7b318efa7cf86677b878b706f056c3c7f58ad76d",
+      "read_range": [
+        1,
+        99
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "OBS-002; OBS-003; ASM-005",
+      "scientific_authority": "Information-loss mapping under declared observation convention",
+      "implementation_value": "Explicit error for unrecoverable magnitude sign",
+      "duplicate_lineage_risk": "Provenance string is not verification",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/physical.py",
+      "blob": "e29d68e69875c1303ed23c5ea1a30336c32b8ca5",
+      "read_range": [
+        1,
+        523
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-003; BAL-001; BAL-041; MAT-SI-001",
+      "scientific_authority": "Equilibrium subset only; not full dynamic EOS or finite-rate blend",
+      "implementation_value": "Signed storage, derivative, same-sign analytic inverse certificate",
+      "duplicate_lineage_risk": "Candidate duplicate physics lineage; C95-02 remains",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/presets.py",
+      "blob": "da9ceac3afcb0d2fdd3e1ed47b4e4b69dbf944a6",
+      "read_range": [
+        1,
+        132
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EMP-003; EMP-004; ASM-IMP-02",
+      "scientific_authority": "Stored empirical artifact only; no optimizer/material authority",
+      "implementation_value": "Bytes/parameter ordering/hash load contract",
+      "duplicate_lineage_risk": "Historical fit data, not independent validation",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/README.md",
+      "blob": "f52d7a51b856fcd02283c989a8be08e41c77a251",
+      "read_range": [
+        1,
+        36
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "all candidate contracts",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Execution instructions",
+      "duplicate_lineage_risk": "Prerequisites omitted, C95-05",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/_reference.py",
+      "blob": "81b5fd88fa75a49a6d957842288bc6f4fa1fe343",
+      "read_range": [
+        1,
+        177
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "EMP-001–007; THM-006",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Independent formula/preprocessing reconstruction",
+      "duplicate_lineage_risk": "Same historical data; Pandas/SciPy eager dependency; expected bytes not portable proof",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/run_all.py",
+      "blob": "acb6c3ae94e3ca60a79590b2850f3a36f33fb0b6",
+      "read_range": [
+        1,
+        21
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "51 unit tests",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Actual unittest discovery/exit",
+      "duplicate_lineage_risk": "No scientific authority; two failures retained",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_dynamics.py",
+      "blob": "0a82ad55ea547fb4d4bd2bf87c80fabc8327676e",
+      "read_range": [
+        1,
+        145
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "KIN-010/011",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Seven ordinary state/chronology/initial tests",
+      "duplicate_lineage_risk": "No tiny-scale guarantee",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_empirical_profile.py",
+      "blob": "c71a7b821b879d4963f916f0436654865f3cfb17",
+      "read_range": [
+        1,
+        267
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "EMP-001–007; OBS-003",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Eleven empirical/API tests; actual9PASS2FAIL",
+      "duplicate_lineage_risk": "Two failed methods stop before later residual/R2 assertions; separate diagnostic executed",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_kinetics_heat.py",
+      "blob": "a91576484f918550d0895c4d7f2fc3c70b5e842d",
+      "read_range": [
+        1,
+        203
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "KIN-006/009; THM-003/004/006",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Eight SI/heat domain tests",
+      "duplicate_lineage_risk": "No external kinetics/calorimetry or all-float guarantee",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_manuscript_static.py",
+      "blob": "ec7f22f56c632c2c6dbfd12366a8bf38f0494bc7",
+      "read_range": [
+        1,
+        134
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "ASM-IMP; PHY-031",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Six verifier tests",
+      "duplicate_lineage_risk": "Lexical topology only; not full semantic/code-free proof",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_numerics_observation.py",
+      "blob": "0b94ce10159d01933d5ef73039bf477ac0552bc5",
+      "read_range": [
+        1,
+        104
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "EQ-003; OBS-002/003",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Eight logistic/sign-contract tests",
+      "duplicate_lineage_risk": "No original measurement-provenance verification",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_physical_equilibrium.py",
+      "blob": "e78561105abfc63f2108948adba6d2c979df10b2",
+      "read_range": [
+        1,
+        292
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "BAL-001; EQ-003; BAL-041; MAT-SI-001",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Eleven equilibrium/inverse/storage/blend tests",
+      "duplicate_lineage_risk": "Synthetic fixtures, no material proof or finite-rate closure",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/work/v1025_2_physics_branch/tests/verify_manuscript.py",
+      "blob": "a09da31e70a5cdd70aa69b1324fe571bb7801c0e",
+      "read_range": [
+        1,
+        440
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "183 anchors; 16 sources; 15 edges; 32 refs",
+      "scientific_authority": "INTERNAL_TEST_OR_HELPER_ONLY",
+      "implementation_value": "Include/label/regex gate",
+      "duplicate_lineage_risk": "Pass does not validate TeX rendering, DOI, macros or semantic prose",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/anode_physics_master.tex",
+      "blob": "439cbf2fbea260c91561ac3f1c298c64605ac250",
+      "read_range": [
+        1,
+        174
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "Document topology/bibliography",
+      "scientific_authority": "Conditional internal compilation structure; actual citations not externally verified",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "16-source assembly; external text/PDF QA pending",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/assumption_register.tex",
+      "blob": "8c018772eeacbb7b92d94ed8c369b4503aa9e686",
+      "read_range": [
+        1,
+        72
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "ASM-REG/ASM-OPEN",
+      "scientific_authority": "Authority/assumption registry",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Keep7OPEN; adoption words are historical",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/derivation_checks.tex",
+      "blob": "5a90f2698ab81c4fe537d7322619f8f0b2a17179",
+      "read_range": [
+        1,
+        120
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-D01; OBS-D01; THM-D02; KIN-D01",
+      "scientific_authority": "Internal conditional dimensional/sign/limit checks",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Not independent literature support",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/implementation_interface.tex",
+      "blob": "867754ff009503bc9217eef803cfb64b26d18536",
+      "read_range": [
+        1,
+        114
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "ASM-IMP",
+      "scientific_authority": "Implementation companion guidance, no science authority",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Legacy status table14–68 vs candidate API75–89 must be separated",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch01_equilibrium_observation.tex",
+      "blob": "6564bb71bda2e0b927420400e8e9e670969ff8ef",
+      "read_range": [
+        1,
+        235
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-003; BAL-001; OBS-003",
+      "scientific_authority": "Conditional independent-site/signed balance/observation theory",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "No primary source support checked here",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch02_thermodynamics_heat.tex",
+      "blob": "d2d0a3f3937552f38bf5d24ea5d21b8bece9c8c2",
+      "read_range": [
+        1,
+        197
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "THM-003/004/006/007; BAL-005",
+      "scientific_authority": "Conditional thermodynamics/heat conventions",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Hidden storage conflict C95-08",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch03_kinetics.tex",
+      "blob": "1e286bac33584b12edb803d111c1e5325db625dc",
+      "read_range": [
+        1,
+        200
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "KIN-006/009/010/011/012",
+      "scientific_authority": "Conditional rate/history theory",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Signed q conflict C95-07; constant precision C95-12",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch04_integrated_eos.tex",
+      "blob": "900a2f32d4e8ba0e590503181962e32f2dc9294b",
+      "read_range": [
+        1,
+        146
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "EQ-040/041; BAL-040/041; THM-040",
+      "scientific_authority": "Lumped DAE skeleton, not implemented full EOS",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Energy partition conflict C95-08",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch05_hysteresis.tex",
+      "blob": "f7251fd1117ac72eb9f9925fbab1d0ca0e827ed2",
+      "read_range": [
+        1,
+        120
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "astra_review_persisted_91_93",
+      "equation_mapping": "HYS-001/003/006",
+      "scientific_authority": "Conditional branch/history proposals",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "No material branch solver/long-time selection proof",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/conventions.tex",
+      "blob": "6a8d957f88fedc1096882019c361a7ee79888424",
+      "read_range": [
+        1,
+        45
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "ASM-001–006",
+      "scientific_authority": "Sign/state/control-volume definitions",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "No throughput-q redefinition found; link C95-07",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/evidence_grades.tex",
+      "blob": "fd147f69ab13dbe5b1bbd3b40e334f353fb6b329",
+      "read_range": [
+        1,
+        30
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "ASM-007–009",
+      "scientific_authority": "Internal evidence-class definitions",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Main-body implementation wording C95-11",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/notation.tex",
+      "blob": "83a0eda0d44a378c84e379f5919c0d2359d78450",
+      "read_range": [
+        1,
+        50
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "OBS-000; BAL-000",
+      "scientific_authority": "Variable/units definitions; mAh→C=3.6",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "No numerical R precision stated",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/empirical/skew14_profile.tex",
+      "blob": "20107d8f8f69ab8e4f10c3ca233d32380e919523",
+      "read_range": [
+        1,
+        132
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "EMP-001–007",
+      "scientific_authority": "Empirical positive shape; equation9.2 normalized",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Main-body array/float64/hash implementation evidence C95-11",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/graphite_application.tex",
+      "blob": "bda7825d1dc6081634b4544cc43e0221b250a41f",
+      "read_range": [
+        1,
+        81
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "MAT-GR-001–005",
+      "scientific_authority": "Conditional graphite application, source support unverified",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Not staging/source/material validation",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/lco_application.tex",
+      "blob": "b23532f83353cf8a4ef37dd17116f3c4f5176013",
+      "read_range": [
+        1,
+        101
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "MAT-LCO-001–005; THM-LCO-001",
+      "scientific_authority": "Conditional LCO application, source support unverified",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "No high-voltage dopant closure/source proof",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/si_blend_application.tex",
+      "blob": "8112e8c10c0170e67f2bec109df79343b3b02bac",
+      "read_range": [
+        1,
+        99
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "root",
+      "equation_mapping": "MAT-SI-001–007; HYS-SI-001",
+      "scientific_authority": "Equilibrium common-potential additivity only",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Stress/current sharing/host identity OPEN",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/V1025_2_PHYSICS_DECISION_LEDGER.md",
+      "blob": "e1dc03e575c68a601388bde28196bfad71774597",
+      "read_range": [
+        1,
+        745
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "p068_step94_validator_ultra",
+      "equation_mapping": "PHY-001–032",
+      "scientific_authority": "Internal decisions and conditional derivations",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Historical ADOPT not canonical adoption;7OPEN",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/V1025_2_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "blob": "c5406428dc9cf954c17c69e8fdabf0bc581b9bdb",
+      "read_range": [
+        1,
+        239
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "p068_step94_validator_ultra",
+      "equation_mapping": "PHY-001–032; C-001–008",
+      "scientific_authority": "Historical legacy implementation findings",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Do not transfer old statuses to new candidate",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/V1025_3_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "blob": "f4c9ab14bee81d3995f800fb59321b6c1eedcd84",
+      "read_range": [
+        1,
+        64
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "p068_step94_validator_ultra",
+      "equation_mapping": "PHY-001–032",
+      "scientific_authority": "Candidate self-reported conformance",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "C95-06 failures and exclusion status C95-10 qualify claims",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/EMPIRICAL_SKEW14_PROFILE.md",
+      "blob": "6c8a055628e6f133f4ad0a2bbb1eef8adbb43215",
+      "read_range": [
+        1,
+        172
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "p068_step94_validator_ultra",
+      "equation_mapping": "EMP-003/004/007",
+      "scientific_authority": "Empirical-only record",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Unit kernel/amplitude wording C95-09",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    },
+    {
+      "path": "Codex/results/v1025_2_physics_branch/artifacts/empirical_blend14_v10252.json",
+      "blob": "d76fb828bc5b49ec171ef8abedd1cd0253f6b767",
+      "read_range": [
+        1,
+        215
+      ],
+      "read_status": "FRESH_FULL_READ",
+      "unread_ranges": [],
+      "scientific_authority_promoted": false,
+      "reader": "p068_step94_validator_ultra",
+      "equation_mapping": "EMP-001–007",
+      "scientific_authority": "Stored57-parameter artifact only",
+      "implementation_value": "Retain source/equation/contract evidence for scoped reconstruction",
+      "duplicate_lineage_risk": "Not original optimizer or verified protocol",
+      "recommendation": "RETAIN_CANDIDATE_EVIDENCE_WITH_REPAIR_AND_AUTHORITY_LIMITS; final disposition at Step97"
+    }
+  ],
+  "manuscript_anchors": [
+    {
+      "anchors": [],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/anode_physics_master.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-REGISTER"
+        },
+        {
+          "line": 13,
+          "id": "ASM-REG-001"
+        },
+        {
+          "line": 16,
+          "id": "ASM-REG-002"
+        },
+        {
+          "line": 19,
+          "id": "ASM-REG-003"
+        },
+        {
+          "line": 22,
+          "id": "ASM-REG-004"
+        },
+        {
+          "line": 25,
+          "id": "ASM-REG-005"
+        },
+        {
+          "line": 28,
+          "id": "ASM-REG-006"
+        },
+        {
+          "line": 31,
+          "id": "ASM-REG-007"
+        },
+        {
+          "line": 34,
+          "id": "ASM-REG-008"
+        },
+        {
+          "line": 37,
+          "id": "ASM-REG-009"
+        },
+        {
+          "line": 40,
+          "id": "ASM-REG-010"
+        },
+        {
+          "line": 44,
+          "id": "ASM-OPEN-01"
+        },
+        {
+          "line": 47,
+          "id": "ASM-OPEN-02"
+        },
+        {
+          "line": 50,
+          "id": "ASM-OPEN-03"
+        },
+        {
+          "line": 53,
+          "id": "ASM-OPEN-04"
+        },
+        {
+          "line": 56,
+          "id": "ASM-OPEN-05"
+        },
+        {
+          "line": 59,
+          "id": "ASM-OPEN-06"
+        },
+        {
+          "line": 62,
+          "id": "ASM-OPEN-07"
+        },
+        {
+          "line": 68,
+          "id": "ASM-011"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/assumption_register.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-CHECKS"
+        },
+        {
+          "line": 4,
+          "id": "BAL-D01"
+        },
+        {
+          "line": 12,
+          "id": "EQ-D01"
+        },
+        {
+          "line": 25,
+          "id": "OBS-D01"
+        },
+        {
+          "line": 33,
+          "id": "THM-D01"
+        },
+        {
+          "line": 48,
+          "id": "THM-D02"
+        },
+        {
+          "line": 58,
+          "id": "KIN-D01"
+        },
+        {
+          "line": 67,
+          "id": "KIN-D02"
+        },
+        {
+          "line": 75,
+          "id": "BAL-D02"
+        },
+        {
+          "line": 83,
+          "id": "HYS-D01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/derivation_checks.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-IMPLEMENTATION"
+        },
+        {
+          "line": 75,
+          "id": "ASM-IMP-01"
+        },
+        {
+          "line": 80,
+          "id": "ASM-IMP-02"
+        },
+        {
+          "line": 86,
+          "id": "ASM-IMP-03"
+        },
+        {
+          "line": 110,
+          "id": "ASM-IMP-OPEN-01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/implementation_interface.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "EQ-CH1"
+        },
+        {
+          "line": 9,
+          "id": "EQ-CH1-STATE"
+        },
+        {
+          "line": 11,
+          "id": "EQ-001"
+        },
+        {
+          "line": 22,
+          "id": "EQ-002"
+        },
+        {
+          "line": 31,
+          "id": "BAL-CH1"
+        },
+        {
+          "line": 33,
+          "id": "BAL-001"
+        },
+        {
+          "line": 41,
+          "id": "BAL-001-EQUATION"
+        },
+        {
+          "line": 48,
+          "id": "BAL-002"
+        },
+        {
+          "line": 70,
+          "id": "EQ-CH1-CLOSURE"
+        },
+        {
+          "line": 72,
+          "id": "EQ-003"
+        },
+        {
+          "line": 83,
+          "id": "EQ-003-EQUATION"
+        },
+        {
+          "line": 89,
+          "id": "EQ-003-DERIVATIVE"
+        },
+        {
+          "line": 97,
+          "id": "EQ-004"
+        },
+        {
+          "line": 106,
+          "id": "EQ-005"
+        },
+        {
+          "line": 129,
+          "id": "BAL-CH1-ICA"
+        },
+        {
+          "line": 131,
+          "id": "BAL-003"
+        },
+        {
+          "line": 144,
+          "id": "BAL-003-EQUATION"
+        },
+        {
+          "line": 149,
+          "id": "BAL-004"
+        },
+        {
+          "line": 165,
+          "id": "BAL-004-EQUATION"
+        },
+        {
+          "line": 170,
+          "id": "OBS-001"
+        },
+        {
+          "line": 185,
+          "id": "OBS-CH1"
+        },
+        {
+          "line": 187,
+          "id": "OBS-002"
+        },
+        {
+          "line": 192,
+          "id": "OBS-002-EQUATION"
+        },
+        {
+          "line": 198,
+          "id": "OBS-003"
+        },
+        {
+          "line": 212,
+          "id": "OBS-003-EQUATION"
+        },
+        {
+          "line": 223,
+          "id": "EQ-CH1-IDENT"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch01_equilibrium_observation.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "THM-CH2"
+        },
+        {
+          "line": 8,
+          "id": "THM-CH2-DERIVATIVES"
+        },
+        {
+          "line": 10,
+          "id": "THM-001"
+        },
+        {
+          "line": 19,
+          "id": "THM-002"
+        },
+        {
+          "line": 37,
+          "id": "THM-002-EQUATION"
+        },
+        {
+          "line": 52,
+          "id": "THM-CH2-REVERSIBLE"
+        },
+        {
+          "line": 54,
+          "id": "THM-003"
+        },
+        {
+          "line": 59,
+          "id": "THM-003-CONVENTION"
+        },
+        {
+          "line": 68,
+          "id": "THM-003-ENTROPY"
+        },
+        {
+          "line": 78,
+          "id": "THM-003-HEAT"
+        },
+        {
+          "line": 83,
+          "id": "THM-004"
+        },
+        {
+          "line": 90,
+          "id": "THM-004-EQUATION"
+        },
+        {
+          "line": 96,
+          "id": "THM-005"
+        },
+        {
+          "line": 108,
+          "id": "THM-CH2-IRREVERSIBLE"
+        },
+        {
+          "line": 110,
+          "id": "THM-006"
+        },
+        {
+          "line": 115,
+          "id": "THM-006-LOCAL"
+        },
+        {
+          "line": 125,
+          "id": "THM-006-NETWORK"
+        },
+        {
+          "line": 135,
+          "id": "THM-007"
+        },
+        {
+          "line": 140,
+          "id": "THM-007-EQUATION"
+        },
+        {
+          "line": 147,
+          "id": "THM-008"
+        },
+        {
+          "line": 159,
+          "id": "THM-CH2-ENERGY"
+        },
+        {
+          "line": 161,
+          "id": "BAL-005"
+        },
+        {
+          "line": 171,
+          "id": "BAL-005-EQUATION"
+        },
+        {
+          "line": 177,
+          "id": "THM-009"
+        },
+        {
+          "line": 194,
+          "id": "THM-OPEN-01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch02_thermodynamics_heat.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "KIN-CH3"
+        },
+        {
+          "line": 8,
+          "id": "KIN-CH3-RATES"
+        },
+        {
+          "line": 10,
+          "id": "KIN-001"
+        },
+        {
+          "line": 19,
+          "id": "KIN-001-EQUATION"
+        },
+        {
+          "line": 24,
+          "id": "KIN-002"
+        },
+        {
+          "line": 30,
+          "id": "KIN-002-EXPLICIT"
+        },
+        {
+          "line": 41,
+          "id": "KIN-002-IMPLICIT"
+        },
+        {
+          "line": 46,
+          "id": "KIN-CH3-BALANCE"
+        },
+        {
+          "line": 48,
+          "id": "KIN-003"
+        },
+        {
+          "line": 55,
+          "id": "KIN-003-EQUATION"
+        },
+        {
+          "line": 62,
+          "id": "KIN-004"
+        },
+        {
+          "line": 73,
+          "id": "KIN-005"
+        },
+        {
+          "line": 82,
+          "id": "KIN-CH3-EYRING"
+        },
+        {
+          "line": 84,
+          "id": "KIN-006"
+        },
+        {
+          "line": 89,
+          "id": "KIN-006-EQUATION"
+        },
+        {
+          "line": 95,
+          "id": "KIN-007"
+        },
+        {
+          "line": 110,
+          "id": "KIN-008"
+        },
+        {
+          "line": 121,
+          "id": "KIN-CH3-UNITS"
+        },
+        {
+          "line": 123,
+          "id": "KIN-009"
+        },
+        {
+          "line": 135,
+          "id": "KIN-009-EQUATION"
+        },
+        {
+          "line": 141,
+          "id": "KIN-CH3-MEMORY"
+        },
+        {
+          "line": 143,
+          "id": "KIN-010"
+        },
+        {
+          "line": 146,
+          "id": "KIN-010-EQUATION"
+        },
+        {
+          "line": 152,
+          "id": "KIN-011"
+        },
+        {
+          "line": 158,
+          "id": "KIN-011-EQUATION"
+        },
+        {
+          "line": 166,
+          "id": "KIN-012"
+        },
+        {
+          "line": 177,
+          "id": "KIN-013"
+        },
+        {
+          "line": 188,
+          "id": "KIN-CH3-IDENT"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch03_kinetics.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "BAL-CH4"
+        },
+        {
+          "line": 9,
+          "id": "EQ-040"
+        },
+        {
+          "line": 18,
+          "id": "BAL-040"
+        },
+        {
+          "line": 31,
+          "id": "KIN-040"
+        },
+        {
+          "line": 42,
+          "id": "THM-040"
+        },
+        {
+          "line": 54,
+          "id": "OBS-040"
+        },
+        {
+          "line": 68,
+          "id": "EQ-041"
+        },
+        {
+          "line": 87,
+          "id": "BAL-041"
+        },
+        {
+          "line": 109,
+          "id": "KIN-041"
+        },
+        {
+          "line": 116,
+          "id": "EQ-042"
+        },
+        {
+          "line": 126,
+          "id": "EQ-043"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch04_integrated_eos.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "HYS-CH5"
+        },
+        {
+          "line": 10,
+          "id": "HYS-001"
+        },
+        {
+          "line": 21,
+          "id": "HYS-002"
+        },
+        {
+          "line": 37,
+          "id": "HYS-003"
+        },
+        {
+          "line": 50,
+          "id": "KIN-050"
+        },
+        {
+          "line": 61,
+          "id": "HYS-004"
+        },
+        {
+          "line": 70,
+          "id": "HYS-005"
+        },
+        {
+          "line": 85,
+          "id": "HYS-006"
+        },
+        {
+          "line": 95,
+          "id": "HYS-007"
+        },
+        {
+          "line": 102,
+          "id": "THM-050"
+        },
+        {
+          "line": 109,
+          "id": "HYS-OPEN-01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch05_hysteresis.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-CONVENTIONS"
+        },
+        {
+          "line": 3,
+          "id": "ASM-001"
+        },
+        {
+          "line": 9,
+          "id": "ASM-002"
+        },
+        {
+          "line": 20,
+          "id": "ASM-003"
+        },
+        {
+          "line": 30,
+          "id": "ASM-004"
+        },
+        {
+          "line": 36,
+          "id": "ASM-005"
+        },
+        {
+          "line": 42,
+          "id": "ASM-006"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/conventions.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-EVIDENCE"
+        },
+        {
+          "line": 17,
+          "id": "ASM-007"
+        },
+        {
+          "line": 22,
+          "id": "ASM-008"
+        },
+        {
+          "line": 27,
+          "id": "ASM-009"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/evidence_grades.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "ASM-NOTATION"
+        },
+        {
+          "line": 39,
+          "id": "OBS-000"
+        },
+        {
+          "line": 44,
+          "id": "BAL-000"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/notation.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 2,
+          "id": "EMP-SKEW14"
+        },
+        {
+          "line": 11,
+          "id": "EMP-001"
+        },
+        {
+          "line": 20,
+          "id": "EMP-002"
+        },
+        {
+          "line": 28,
+          "id": "EMP-003"
+        },
+        {
+          "line": 52,
+          "id": "EMP-004"
+        },
+        {
+          "line": 88,
+          "id": "EMP-005"
+        },
+        {
+          "line": 110,
+          "id": "EMP-006"
+        },
+        {
+          "line": 121,
+          "id": "EMP-007"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/empirical/skew14_profile.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "MAT-GR-000"
+        },
+        {
+          "line": 9,
+          "id": "MAT-GR-001"
+        },
+        {
+          "line": 23,
+          "id": "MAT-GR-002"
+        },
+        {
+          "line": 35,
+          "id": "MAT-GR-003"
+        },
+        {
+          "line": 42,
+          "id": "MAT-GR-004"
+        },
+        {
+          "line": 49,
+          "id": "MAT-GR-005"
+        },
+        {
+          "line": 61,
+          "id": "MAT-GR-OPEN-01"
+        },
+        {
+          "line": 68,
+          "id": "MAT-GR-OPEN-02"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/graphite_application.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "MAT-LCO-000"
+        },
+        {
+          "line": 7,
+          "id": "MAT-LCO-001"
+        },
+        {
+          "line": 18,
+          "id": "MAT-LCO-002"
+        },
+        {
+          "line": 31,
+          "id": "MAT-LCO-003"
+        },
+        {
+          "line": 56,
+          "id": "MAT-LCO-004"
+        },
+        {
+          "line": 69,
+          "id": "MAT-LCO-005"
+        },
+        {
+          "line": 77,
+          "id": "THM-LCO-001"
+        },
+        {
+          "line": 91,
+          "id": "MAT-LCO-OPEN-01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/lco_application.tex"
+    },
+    {
+      "anchors": [
+        {
+          "line": 1,
+          "id": "MAT-SI-000"
+        },
+        {
+          "line": 7,
+          "id": "MAT-SI-001"
+        },
+        {
+          "line": 24,
+          "id": "MAT-SI-002"
+        },
+        {
+          "line": 38,
+          "id": "MAT-SI-003"
+        },
+        {
+          "line": 51,
+          "id": "MAT-SI-004"
+        },
+        {
+          "line": 64,
+          "id": "MAT-SI-006"
+        },
+        {
+          "line": 70,
+          "id": "HYS-SI-001"
+        },
+        {
+          "line": 77,
+          "id": "MAT-SI-005"
+        },
+        {
+          "line": 82,
+          "id": "MAT-SI-007"
+        },
+        {
+          "line": 89,
+          "id": "MAT-SI-OPEN-01"
+        }
+      ],
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/si_blend_application.tex"
+    }
+  ],
+  "contracts": [
+    {
+      "verification_claim": "orientation and signed-storage gates",
+      "id": "PHY-001",
+      "remaining_boundary": "no branch landscape",
+      "implementation_claim": "`IdealTransition.orientation` and signed transition capacity remain immutable across charge/discharge usage",
+      "line": 24,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/static inspection",
+      "id": "PHY-002",
+      "remaining_boundary": "terminal and transport maps not implemented",
+      "implementation_claim": "physical API exposes internal equilibrium potential only; applied and drive potentials are not silently aliased",
+      "line": 25,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "reversal, duplicate-axis and acquisition-order gates",
+      "id": "PHY-003",
+      "remaining_boundary": "none for the implemented first-order closure",
+      "implementation_claim": "`relax_monotonic_curve` and `relax_time_trajectory` are separate APIs",
+      "line": 26,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "background derivative and sign-recovery gates",
+      "id": "PHY-004",
+      "remaining_boundary": "no general nonlinear background free energy",
+      "implementation_claim": "`LinearChemicalBackground`, empirical baseline and `ObservationContract` are distinct types",
+      "line": 27,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "ideal-transition gates",
+      "id": "PHY-005",
+      "remaining_boundary": "reaction assignment remains user evidence",
+      "implementation_claim": "electron stoichiometry is an explicit transition field and never derived from width",
+      "line": 28,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "derivative and limiting-domain gates",
+      "id": "PHY-006",
+      "remaining_boundary": "nonideal branch solver intentionally absent",
+      "implementation_claim": "only the ideal independent-site transition is in the production candidate",
+      "line": 29,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "area, nonnegativity and profile-hash gates",
+      "id": "PHY-007",
+      "remaining_boundary": "no physical interpretation is exposed",
+      "implementation_claim": "skew-logistic components exist only in `EmpiricalSkewProfile`",
+      "line": 30,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "HISTORICAL_HASH_FAILURES_RETAINED"
+    },
+    {
+      "verification_claim": "public-API and source inspection",
+      "id": "PHY-008",
+      "remaining_boundary": "stable/metastable/coexistence solver not implemented",
+      "implementation_claim": "regular solution is excluded from the production package and retained as theory in the manuscript",
+      "line": 31,
+      "historical_status": "CONFORMANT BY EXCLUSION",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "SOLVER_ABSENT"
+    },
+    {
+      "verification_claim": "API and cross-object immutability gates",
+      "id": "PHY-009",
+      "remaining_boundary": "physical static-disorder distribution not implemented",
+      "implementation_claim": "ideal equilibrium width, empirical skew width and causal lag are owned by different types",
+      "line": 32,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "derivative and inverse-recovery gates",
+      "id": "PHY-010",
+      "remaining_boundary": "spatial field balance absent",
+      "implementation_claim": "`PhysicalHost.chemical_capacity` is the explicit background-plus-signed-transition balance",
+      "line": 33,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "nonmonotonic and unbracketed-target gates",
+      "id": "PHY-011",
+      "remaining_boundary": "mixed-sign EOS requires a future proof",
+      "implementation_claim": "inverse use requires an analytic monotonic sign certificate and a valid bracket",
+      "line": 34,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "pooled balance and API separation gates",
+      "id": "PHY-012",
+      "remaining_boundary": "finite-rate host current allocation absent",
+      "implementation_claim": "`PhysicalHostBlend` and `EmpiricalSkewProfile` have disjoint contracts",
+      "line": 35,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "source/static inspection",
+      "id": "PHY-013",
+      "remaining_boundary": "evidence-backed material presets not implemented",
+      "implementation_claim": "no graphite/LCO/Si numerical constants are promoted to defaults; material claims remain manuscript modules",
+      "line": 36,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API inspection",
+      "id": "PHY-014",
+      "remaining_boundary": "occupancy-flux and target/mobility closure required",
+      "implementation_claim": "no forward/backward kinetic network is claimed; causal target relaxation is separate",
+      "line": 37,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "independent SI formula gate",
+      "id": "PHY-015",
+      "remaining_boundary": "temperature-dependent transmission needs a new closure",
+      "implementation_claim": "`EyringRateSI` makes the transmission factor explicit",
+      "line": 38,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "exact unit-conversion gates",
+      "id": "PHY-016",
+      "remaining_boundary": "none",
+      "implementation_claim": "physical rates are s⁻¹; hour-basis compatibility is a named immutable type with explicit `/3600` conversion",
+      "line": 39,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "missing/invalid initial-state gates",
+      "id": "PHY-017",
+      "remaining_boundary": "measured prehistory remains external input",
+      "implementation_claim": "both causal APIs require `CausalInitialState` with declared provenance",
+      "line": 40,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "manuscript static/full-read check",
+      "id": "PHY-018",
+      "remaining_boundary": "spectrum and amplitude types required",
+      "implementation_claim": "the manuscript separates normalized relaxation measure from residual amplitude",
+      "line": 41,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-019",
+      "remaining_boundary": "coupled fixed-charge OCV derivative solver absent",
+      "implementation_claim": "transition-center temperature dependence is explicit; fixed-state, fixed-charge and path derivatives are not conflated",
+      "line": 42,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "two-current-sign gates",
+      "id": "PHY-020",
+      "remaining_boundary": "half-cell spatial allocation remains open",
+      "implementation_claim": "`reversible_heat_generation_w` implements generation-positive `-I T dUeq/dT`",
+      "line": 43,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-021",
+      "remaining_boundary": "measured or fully derived entropy basis required",
+      "implementation_claim": "no entropy decomposition is inferred from empirical shape",
+      "line": 44,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "nonnegativity, symmetry and domain gates",
+      "id": "PHY-022",
+      "remaining_boundary": "general transport-field dissipation absent",
+      "implementation_claim": "local network production and terminal-lumped loss are separate helpers with separate domains",
+      "line": 45,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-023",
+      "remaining_boundary": "full hidden-energy balance not implemented",
+      "implementation_claim": "heat helpers do not add a second relaxation-heat term",
+      "line": 46,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-024",
+      "remaining_boundary": "fresh energy/power derivation required",
+      "implementation_claim": "no thermal-tail power law is shipped",
+      "line": 47,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-025",
+      "remaining_boundary": "landscape, target or mobility branch closure required",
+      "implementation_claim": "no charge/discharge state reversal or empirical branch offset is shipped",
+      "line": 48,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "local-network heat gates",
+      "id": "PHY-026",
+      "remaining_boundary": "explicit kinetic graph required",
+      "implementation_claim": "local flux-ratio production is implemented, but no global branch detailed-balance claim is made",
+      "line": 49,
+      "historical_status": "BOUNDED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "API/source inspection",
+      "id": "PHY-027",
+      "remaining_boundary": "closed-state-cycle accounting required",
+      "implementation_claim": "no loop-area-to-heat helper is shipped",
+      "line": 50,
+      "historical_status": "NOT IMPLEMENTED",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "source, artifact, array, prediction and residual hash gates",
+      "id": "PHY-028",
+      "remaining_boundary": "original optimizer state unavailable",
+      "implementation_claim": "stored-8dp direct14 artifact is immutable and hash-checked on every load",
+      "line": 51,
+      "historical_status": "FROZEN EMPIRICAL",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "HISTORICAL_HASH_FAILURES_RETAINED"
+    },
+    {
+      "verification_claim": "type and metadata gates",
+      "id": "PHY-029",
+      "remaining_boundary": "experimental protocol remains unknown",
+      "implementation_claim": "empirical metadata and API forbid host/mechanism assignment",
+      "line": 52,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "metadata/static inspection",
+      "id": "PHY-030",
+      "remaining_boundary": "future presets need the same contract",
+      "implementation_claim": "evidence grade and authority note travel with the empirical profile; material claims carry explicit grades in the manuscript",
+      "line": 53,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "BOUNDED_BY_RECORDED_SOURCE_AND_TEST_SCOPE"
+    },
+    {
+      "verification_claim": "complete include-graph verifier and adversarial self-tests",
+      "id": "PHY-031",
+      "remaining_boundary": "none",
+      "implementation_claim": "implementation language is allowed only in the implementation appendix; paths and work history remain external",
+      "line": 54,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "LEXICAL_PASS_WITH_SEMANTIC_LIMIT"
+    },
+    {
+      "verification_claim": "source inspection and 51-test suite",
+      "id": "PHY-032",
+      "remaining_boundary": "future closures must extend this matrix",
+      "implementation_claim": "public types cite physics IDs and every implemented block has unit/sign/domain/invariant tests",
+      "line": 55,
+      "historical_status": "CONFORMANT",
+      "truth_status": "SOURCE_SELF_REPORT_NOT_FRESH_GATE",
+      "scientific_truth_promoted": false,
+      "current_qualification": "HISTORICAL_HASH_FAILURES_RETAINED"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C95-01",
+      "inherited_ids": [
+        "C92-19",
+        "F92-P1-04"
+      ],
+      "domain": "FINITE_DOMAIN",
+      "severity": "P2",
+      "normalized_proposition": "Constant finite target with the smallest positive float64 relaxation time returns NaN from overflow times zero.",
+      "anchors": "dynamics.py:68–92; KIN-010/011",
+      "owner": "Phase083/084",
+      "acceptance": "Return a supported finite bounded state or explicit representability error; preserve ordinary chronology/initial-state regressions.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-02",
+      "inherited_ids": [
+        "C92-20",
+        "F92-P1-04"
+      ],
+      "domain": "FINITE_DOMAIN",
+      "severity": "P2",
+      "normalized_proposition": "Largest finite stoichiometry yields NaN dstate_dv in a saturated ideal tail.",
+      "anchors": "physical.py:116–123,146–155; EQ-003",
+      "owner": "Phase083/084",
+      "acceptance": "Test center/both tails; reject unsupported domains or stable finite calculation without changing ordinary orientation/area.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-03",
+      "inherited_ids": [
+        "C92-21",
+        "F92-P1-04"
+      ],
+      "domain": "FINITE_DOMAIN",
+      "severity": "P2",
+      "normalized_proposition": "Smallest finite positive width at the empirical center produces infinite density.",
+      "anchors": "empirical.py:146–156,249–269; EMP-003",
+      "owner": "Phase083/084",
+      "acceptance": "Distinguish unrepresentable density from valid zero-amplitude/profile result; explicit error instead of silent nonfinite output.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-04",
+      "inherited_ids": [
+        "C92-22",
+        "F92-P1-04"
+      ],
+      "domain": "FINITE_DOMAIN",
+      "severity": "P2",
+      "normalized_proposition": "All three heat helpers can return nonfinite power from finite extreme inputs.",
+      "anchors": "heat.py:17–36,39–68,101–117; THM-003/004/006/007",
+      "owner": "Phase083/084",
+      "acceptance": "Explicit representability outcome; ordinary sign, detailed-balance zero and nonnegative/symmetric dissipation retained.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-05",
+      "inherited_ids": [
+        "C92-23",
+        "C92-24",
+        "F92-P2-01"
+      ],
+      "domain": "TEST_PREREQUISITES",
+      "severity": "P2",
+      "normalized_proposition": "The documented full-suite command requires undeclared NumPy/Pandas/SciPy and seven exact fixtures; base3.14 actually fails five imports.",
+      "anchors": "tests/README:3–14; _reference:11–24; test_empirical_profile:29–40,76–103",
+      "owner": "Phase083/090",
+      "acceptance": "Explicit environment/fixture manifest and clean bootstrap; distinguish real tests, import placeholders, failures and skips.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-06",
+      "inherited_ids": [],
+      "domain": "EXACT_ARRAY_REPRODUCTION",
+      "severity": "P2",
+      "normalized_proposition": "Prepared3.12 and3.14 agree with each other but fail historical observed/prediction exact hashes; bounded R2 and independent formula agree.",
+      "anchors": "test_empirical_profile:107–163; runtime receipts empirical_diagnostics",
+      "owner": "Phase070/086/090",
+      "acceptance": "Preserve historical hashes and diagnose against original arrays/runtime if obtainable; do not infer original error bounds from hashes.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-07",
+      "inherited_ids": [],
+      "domain": "SIGNED_COORDINATE",
+      "severity": "P2",
+      "normalized_proposition": "KIN-012 uses |I| although BAL-001 q is signed charge; no separate throughput coordinate is declared.",
+      "anchors": "ch01:33–44; ch03:166–175; conventions:1–45",
+      "owner": "Phase076",
+      "acceptance": "Derive dxi/dq=Qcell/I*dxi/dt or define distinct increasing throughput coordinate; test positive/negativeI and separate rest.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-08",
+      "inherited_ids": [],
+      "domain": "ENERGY_PARTITION",
+      "severity": "P2",
+      "normalized_proposition": "THM-040 thermal state permits hidden state but does not carry BAL-005 hidden-storage term or exact equivalent allocation.",
+      "anchors": "ch04:9–16,42–52; ch02:161–175",
+      "owner": "Phase074/081",
+      "acceptance": "One control-volume partition, explicit hidden storage or restricted zero-storage assumption; avoid immediate-heat conversion of stored energy.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-09",
+      "inherited_ids": [],
+      "domain": "KERNEL_AREA",
+      "severity": "P2",
+      "normalized_proposition": "Profile prose gives areaQj for derivative of dimensionless sigma^alpha; the unit kernel has integral1 and only its weighted component has areaQj.",
+      "anchors": "EMPIRICAL_SKEW14_PROFILE:56–62; decision ledger:193; EMP-003",
+      "owner": "Phase075/081/087",
+      "acceptance": "Distinguish unit kernel, weighted amplitude, finite-window fraction and baseline; use cumulative endpoint integral.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-10",
+      "inherited_ids": [],
+      "domain": "STATUS_AUTHORITY",
+      "severity": "P2",
+      "normalized_proposition": "PHY008 uses undeclared CONFORMANT BY EXCLUSION; it means a deliberately absent solver, not implemented regular-solution physics.",
+      "anchors": "V1025_3 matrix:11–18,31",
+      "owner": "Step096/097→Phase083",
+      "acceptance": "Preserve original enum and exclusion meaning; no implemented-physics count or silent normalization.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-11",
+      "inherited_ids": [
+        "F92-P1-01"
+      ],
+      "domain": "SCHOLARLY_IMPLEMENTATION_BOUNDARY",
+      "severity": "P2",
+      "normalized_proposition": "Passing lexical verifier does not clear main-body implementation metadata such as little-endian float64 arrays and reconstruction hashes.",
+      "anchors": "manuscript/empirical/skew14_profile:86–110; common/evidence_grades; tests/verify_manuscript",
+      "owner": "Phase087/088",
+      "acceptance": "Semantic full-read separation of scientific methods from code-format/implementation evidence; relocate latter to allowed appendix/companion.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    },
+    {
+      "id": "C95-12",
+      "inherited_ids": [],
+      "domain": "CONSTANT_PRECISION",
+      "severity": "P2",
+      "normalized_proposition": "KIN009 decimal uses R≈8.314, while model SI constant yields a different -Rln3600 number; symbolic relation/sign agree.",
+      "anchors": "ch03:133–135; constants:9–42; notation/conventions",
+      "owner": "Phase074/087",
+      "acceptance": "Declare consistent constant/rounding; do not misclassify as enthalpy-slope change.",
+      "truth_status": "CONFIRMED_BOUNDED_INTERNAL",
+      "scientific_truth_promoted": false,
+      "final_disposition": "DEFERRED_TO_STEP097"
+    }
+  ],
+  "runtime_paths": [
+    "Codex/results/PHASE_068_STEP_095_RUNTIME_312.json",
+    "Codex/results/PHASE_068_STEP_095_RUNTIME_314.json"
+  ],
+  "runtime_summary": {
+    "each_prepared_runtime": {
+      "collected": 51,
+      "executed": 51,
+      "passed": 49,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "suite_exit": 1
+    },
+    "base314": {
+      "real_tests_executed": 6,
+      "passed": 6,
+      "import_error_placeholders": 5,
+      "entries": 11,
+      "skipped": 0
+    },
+    "recording_exit_is_suite_pass": false,
+    "source_files": 49,
+    "source_mutations": 0,
+    "per_file_tests": {
+      "test_dynamics": 7,
+      "test_empirical_profile": 11,
+      "test_kinetics_heat": 8,
+      "test_manuscript_static": 6,
+      "test_numerics_observation": 8,
+      "test_physical_equilibrium": 11
+    }
+  },
+  "empirical_diagnostics": {
+    "points": 1280,
+    "r2": 0.99964941790404,
+    "bic57": -4760.653827485776,
+    "max_abs_independent_prediction_difference": 8.881784197001252e-15,
+    "historical_bitwise_reproduction": false,
+    "original_array_error_bound_known": false,
+    "prepared_runtime_arrays_hashes_equal": true,
+    "raw_data_or_optimizer_authority_promoted": false
+  },
+  "independent_parameter_area": {
+    "reviewer": "p068_step94_validator_ultra",
+    "candidate_imported": false,
+    "parameter_count": 57,
+    "component_count": 14,
+    "full_line_peak_area_mAh": 3.30836914,
+    "window": [
+      0.06,
+      0.7
+    ],
+    "window_peak_area_mAh": 3.115107342549133,
+    "outside_peak_area_mAh": 0.1932617974508668,
+    "window_baseline_mAh": 0.330823936,
+    "window_total_mAh": 3.445931278549133,
+    "full_line_baseline_integral": "DIVERGENT_POSITIVE",
+    "component13_window_fraction": 0.8552534390595959,
+    "component14_window_fraction": 0.30282004295938747
+  },
+  "preserved_open": {
+    "phase067": [
+      "C03",
+      "C05",
+      "C06",
+      "C10",
+      "C13",
+      "C14",
+      "C15",
+      "C11 bounded route"
+    ],
+    "primary_reference7": "UNVERIFIED",
+    "original_optimizer": "UNAVAILABLE",
+    "protocol": "UNKNOWN",
+    "held_out": "NOT_ESTABLISHED",
+    "material_phase_mechanism": "NOT_ESTABLISHED",
+    "stale_pdf": "NOT_RELEASE_AUTHORITY",
+    "legacy_conformance_issues": "C-001–008 are historical different-source findings, not automatically current",
+    "whole_commit_adoptions": 0
+  },
+  "review": {
+    "recorder_static_p0_p1_p2": [
+      0,
+      0,
+      0
+    ],
+    "recorder_lines": 152,
+    "test_lines": 54,
+    "wrapper_tests_each_runtime": 4,
+    "absent_runner_red_assertion_failures": 4,
+    "independent_suite_reexecution_by_reviewers": false,
+    "result_review_p2_corrected": "Automatic mAh-to-C conversion statement corrected to explicit caller obligation"
+  },
+  "result_lf_sha256": "7e198aaa705ae7d1ce250f1281458cc7aea7fd177775ec6f2800ba64c4ce8113",
+  "runtime_receipts": [
+    {
+      "sha256": "e9d8dd199b1f4b20797a9836a1c0b1426a32be468a3d16c13802ee35d021e1ee",
+      "bytes": 30577,
+      "path": "Codex/results/PHASE_068_STEP_095_RUNTIME_312.json"
+    },
+    {
+      "sha256": "b8d421424590865e7b567bde21c776411c7900d0e30d932375bebef79b350e18",
+      "bytes": 65392,
+      "path": "Codex/results/PHASE_068_STEP_095_RUNTIME_314.json"
+    }
+  ],
+  "source_identities": [
+    {
+      "blob": "62ec65b9f3d10c1271e0459fceafb514adbb1dc6",
+      "bytes": 1587,
+      "lines": 30,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/README.md",
+      "sha256": "d189e66a83ce33aa26e571645755a32b8c0571cf3c76c45b22b02299abd36b49"
+    },
+    {
+      "blob": "de2cd9ec1df27934a94519087293f1b27da8e68f",
+      "bytes": 2117,
+      "lines": 80,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/__init__.py",
+      "sha256": "bd52ed720777ef5d6740a322c0eb43cff1fb5b2753576913b0373aeadf31460f"
+    },
+    {
+      "blob": "0990ad6571e09855bd18d4d0f9bb73b29cf40370",
+      "bytes": 1358,
+      "lines": 42,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/constants.py",
+      "sha256": "30f524f1a73990e5d888c222e15124adbd3cc86292ae3c886307cc337e79558f"
+    },
+    {
+      "blob": "8a752ddd16b5020c8d278d359d446b7cbeafade0",
+      "bytes": 5431,
+      "lines": 150,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/dynamics.py",
+      "sha256": "69c645463d881b41625af57d2c3e9367fb7cd7b42ae02bea2c89ffd15dc58422"
+    },
+    {
+      "blob": "0fdba1082c4758088a3fc1f0ddd52eb33bd6b744",
+      "bytes": 10402,
+      "lines": 269,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/empirical.py",
+      "sha256": "db668142fade640f23e8029e9257e02cfd9935940da7425e24a24f093779f110"
+    },
+    {
+      "blob": "aa80827bc1b72ef3fd6cb79bd665e02d903fec5a",
+      "bytes": 3779,
+      "lines": 117,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/heat.py",
+      "sha256": "9ead9ff69fa321d8ce78e012070ec539e433da2835d6375d73b82da53311a7fc"
+    },
+    {
+      "blob": "dc0c02805cc9a667657cc5ff65e751b4f1c57525",
+      "bytes": 4067,
+      "lines": 120,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/kinetics.py",
+      "sha256": "b45e1825c9c9578e47667862da85401c55909952eb906fd0cf7cbf00568e59fc"
+    },
+    {
+      "blob": "f8a8fa11de960c6bc209e9b538735446b5da3b54",
+      "bytes": 2146,
+      "lines": 71,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/numerics.py",
+      "sha256": "049022a058427f3a10b2d01f26af3fe35b0ce481023fbf3ddcac8b537d403b83"
+    },
+    {
+      "blob": "7b318efa7cf86677b878b706f056c3c7f58ad76d",
+      "bytes": 3472,
+      "lines": 99,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/observation.py",
+      "sha256": "5355134f8cc406e29bd3eb9be9b975f49e6271e00c1406e164e530d7a55a79ae"
+    },
+    {
+      "blob": "e29d68e69875c1303ed23c5ea1a30336c32b8ca5",
+      "bytes": 19848,
+      "lines": 523,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/physical.py",
+      "sha256": "80e56800d2a5ad36aa4e8cf08560d3499cc96b2b0db9cd63d53a766aa189a8c8"
+    },
+    {
+      "blob": "da9ceac3afcb0d2fdd3e1ed47b4e4b69dbf944a6",
+      "bytes": 5406,
+      "lines": 132,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/presets.py",
+      "sha256": "75b13cff42d6e2071922cf6ccf32fecb3683249d2a8b253b0c946eebca783647"
+    },
+    {
+      "blob": "f52d7a51b856fcd02283c989a8be08e41c77a251",
+      "bytes": 1385,
+      "lines": 36,
+      "path": "Codex/work/v1025_2_physics_branch/tests/README.md",
+      "sha256": "6f75a3b3ec9419ab737bd0f3dd4b3b3d91998f5ead428a2b880bd71cdd948fae"
+    },
+    {
+      "blob": "81b5fd88fa75a49a6d957842288bc6f4fa1fe343",
+      "bytes": 6339,
+      "lines": 177,
+      "path": "Codex/work/v1025_2_physics_branch/tests/_reference.py",
+      "sha256": "dc4a65ae27afa63eaf825262d12074d6960949338606257fc4945f3fecf6d7a3"
+    },
+    {
+      "blob": "acb6c3ae94e3ca60a79590b2850f3a36f33fb0b6",
+      "bytes": 545,
+      "lines": 21,
+      "path": "Codex/work/v1025_2_physics_branch/tests/run_all.py",
+      "sha256": "975c9e2332c4f0668c1318ffe12728a291754869c4990e53b4a3783c0a2c5a07"
+    },
+    {
+      "blob": "0a82ad55ea547fb4d4bd2bf87c80fabc8327676e",
+      "bytes": 5232,
+      "lines": 145,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_dynamics.py",
+      "sha256": "d3fb8b1c8e0bba30f7fd3c574703fc4c15875a08cf701be8e1de7edcc6ff3cda"
+    },
+    {
+      "blob": "c71a7b821b879d4963f916f0436654865f3cfb17",
+      "bytes": 10866,
+      "lines": 267,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_empirical_profile.py",
+      "sha256": "96de2b78aacdae7629bd47e9a60d49bb2b5221c1ae573e8dc3d0881a3428b5c3"
+    },
+    {
+      "blob": "a91576484f918550d0895c4d7f2fc3c70b5e842d",
+      "bytes": 7089,
+      "lines": 203,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_kinetics_heat.py",
+      "sha256": "ab09e8965bab0fc2e49490082a841a22daf80acbd6423a2ce84e5999f39f9fc0"
+    },
+    {
+      "blob": "ec7f22f56c632c2c6dbfd12366a8bf38f0494bc7",
+      "bytes": 5005,
+      "lines": 134,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_manuscript_static.py",
+      "sha256": "271cde8e2a071eb2e1c595dc546b91a8b3164b9de1eaf4f06d247d6119d9e2a7"
+    },
+    {
+      "blob": "0b94ce10159d01933d5ef73039bf477ac0552bc5",
+      "bytes": 4108,
+      "lines": 104,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_numerics_observation.py",
+      "sha256": "16aa91a52a119e19eae455c46f3eefb0a426ec5274109b26a3e674dea933f309"
+    },
+    {
+      "blob": "e78561105abfc63f2108948adba6d2c979df10b2",
+      "bytes": 10754,
+      "lines": 292,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_physical_equilibrium.py",
+      "sha256": "53a45052ca4bfac44b60561ed96e50db96cb796116acf41a78965b9205acca9e"
+    },
+    {
+      "blob": "a09da31e70a5cdd70aa69b1324fe571bb7801c0e",
+      "bytes": 14598,
+      "lines": 440,
+      "path": "Codex/work/v1025_2_physics_branch/tests/verify_manuscript.py",
+      "sha256": "f08ffdb5a458829a39ab98b930412036c0689bd873e26f51e1b69a38fde9dc4b"
+    },
+    {
+      "blob": "439cbf2fbea260c91561ac3f1c298c64605ac250",
+      "bytes": 5747,
+      "lines": 174,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/anode_physics_master.tex",
+      "sha256": "6adaa6e631d8f85163d76f98210314214aab9c09c2afd16d97d58fabbf470109"
+    },
+    {
+      "blob": "8c018772eeacbb7b92d94ed8c369b4503aa9e686",
+      "bytes": 3989,
+      "lines": 72,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/assumption_register.tex",
+      "sha256": "262a20a454e59a7e495d1bbc1193526e5ba70acb71799282b5eeb76b8d960029"
+    },
+    {
+      "blob": "5a90f2698ab81c4fe537d7322619f8f0b2a17179",
+      "bytes": 4580,
+      "lines": 120,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/derivation_checks.tex",
+      "sha256": "8bc1a5f44b5e6f35d728deff173ea4f259e3be95662afd84316ef6ba0b352b15"
+    },
+    {
+      "blob": "867754ff009503bc9217eef803cfb64b26d18536",
+      "bytes": 5225,
+      "lines": 114,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/implementation_interface.tex",
+      "sha256": "d3fc29795f530edf5f51cb90ba10de8f6bf4bdf175ab3e6b25c798bb42cbb9ae"
+    },
+    {
+      "blob": "6564bb71bda2e0b927420400e8e9e670969ff8ef",
+      "bytes": 8625,
+      "lines": 235,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch01_equilibrium_observation.tex",
+      "sha256": "cd7bb1b6789f49b5c3c78c3bc0d8ae56b7b6819ce392b0625376080408f742c6"
+    },
+    {
+      "blob": "d2d0a3f3937552f38bf5d24ea5d21b8bece9c8c2",
+      "bytes": 7356,
+      "lines": 197,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch02_thermodynamics_heat.tex",
+      "sha256": "bc13eca78e1839259fe95c80cfd592c8c39dddb98ebf2ca09c9a17faeda59ec8"
+    },
+    {
+      "blob": "1e286bac33584b12edb803d111c1e5325db625dc",
+      "bytes": 7481,
+      "lines": 200,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch03_kinetics.tex",
+      "sha256": "b69336052b4d46fa8099db040a7a47288854142157bbaf3084fbeed9a7b922c7"
+    },
+    {
+      "blob": "900a2f32d4e8ba0e590503181962e32f2dc9294b",
+      "bytes": 5904,
+      "lines": 146,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch04_integrated_eos.tex",
+      "sha256": "47a42e256b6045464a43cbd35b1c5846a964cac8645c48bab1ca3f6bd849d5a2"
+    },
+    {
+      "blob": "f7251fd1117ac72eb9f9925fbab1d0ca0e827ed2",
+      "bytes": 4854,
+      "lines": 120,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch05_hysteresis.tex",
+      "sha256": "1498cd7fbb4ff0942b24a913b4262b41bb8a6550990d5355be80fe35a1c22d4c"
+    },
+    {
+      "blob": "6a8d957f88fedc1096882019c361a7ee79888424",
+      "bytes": 2209,
+      "lines": 45,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/conventions.tex",
+      "sha256": "c5cc921cfacbd8cf065c82972af707b4a839400e457a5aad069bf358b5b1d5cf"
+    },
+    {
+      "blob": "fd147f69ab13dbe5b1bbd3b40e334f353fb6b329",
+      "bytes": 1784,
+      "lines": 30,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/evidence_grades.tex",
+      "sha256": "445729a74688dd741f625eece3250260a27f7ff18ffef59c28839d746e5d46bc"
+    },
+    {
+      "blob": "83a0eda0d44a378c84e379f5919c0d2359d78450",
+      "bytes": 3063,
+      "lines": 50,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/notation.tex",
+      "sha256": "077cfb5fdd88ed879fea8eb2180996d6653b3fb941ce6dfc81d7c1d581589e00"
+    },
+    {
+      "blob": "20107d8f8f69ab8e4f10c3ca233d32380e919523",
+      "bytes": 5013,
+      "lines": 132,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/empirical/skew14_profile.tex",
+      "sha256": "d67d8a38e4aded7fd13243848c8154049a79cc602ac0d117e4e5683181c24403"
+    },
+    {
+      "blob": "bda7825d1dc6081634b4544cc43e0221b250a41f",
+      "bytes": 3568,
+      "lines": 81,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/graphite_application.tex",
+      "sha256": "551a7bab327f95adc1a2c392361d3376bcbc41b958b936b369063fe23f883988"
+    },
+    {
+      "blob": "b23532f83353cf8a4ef37dd17116f3c4f5176013",
+      "bytes": 4055,
+      "lines": 101,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/lco_application.tex",
+      "sha256": "57bc1bbf15b4d12103a17e887f52f97ddf9b4747ede4ce6aa582f691b384c6db"
+    },
+    {
+      "blob": "8112e8c10c0170e67f2bec109df79343b3b02bac",
+      "bytes": 4308,
+      "lines": 99,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/si_blend_application.tex",
+      "sha256": "397b6774e06105f90e595e2e9223f661d14fbb42e2fcc62730f56cfe929cbf37"
+    },
+    {
+      "blob": "e1dc03e575c68a601388bde28196bfad71774597",
+      "bytes": 24096,
+      "lines": 745,
+      "path": "Codex/results/V1025_2_PHYSICS_DECISION_LEDGER.md",
+      "sha256": "41fa785b04171ac997d1ceb71f1c0943c079226f801edc732171b03c47651a1a"
+    },
+    {
+      "blob": "c5406428dc9cf954c17c69e8fdabf0bc581b9bdb",
+      "bytes": 19187,
+      "lines": 239,
+      "path": "Codex/results/V1025_2_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "sha256": "7286e75db035b2e49afbdd3f8abb9cf18d2287f6cd8d99db04328a4deeefd497"
+    },
+    {
+      "blob": "f4c9ab14bee81d3995f800fb59321b6c1eedcd84",
+      "bytes": 7308,
+      "lines": 64,
+      "path": "Codex/results/V1025_3_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "sha256": "cce905070a21cf1cc1e0ed7e529468253f3f8fd86166e7de4d8d96eeba707f57"
+    },
+    {
+      "blob": "6c8a055628e6f133f4ad0a2bbb1eef8adbb43215",
+      "bytes": 6696,
+      "lines": 172,
+      "path": "Codex/results/v1025_2_physics_branch/EMPIRICAL_SKEW14_PROFILE.md",
+      "sha256": "2b195bb390e6556be7b61d9a287c2c717c93946a19309b7ff19ebe7ff97c190a"
+    },
+    {
+      "blob": "d76fb828bc5b49ec171ef8abedd1cd0253f6b767",
+      "bytes": 8795,
+      "lines": 215,
+      "path": "Codex/results/v1025_2_physics_branch/artifacts/empirical_blend14_v10252.json",
+      "sha256": "5f352eb95f0fe70cf4f277d4d3073015d3f43db04cc0471d4c016bf270aaea6a"
+    },
+    {
+      "blob": "c0a475352abe2f2df145442d8ed722d132ab5d03",
+      "bytes": 17754,
+      "lines": 873,
+      "path": "Claude/results/comp_v26_data/out_versions/summary_versions.json",
+      "sha256": "edcafd90b91b6515ca12dca3743678055bc021a52cff3a86a2355467afe8dedc"
+    },
+    {
+      "blob": "4b06fefa1bb81de842386c95fbba5bdd431602d4",
+      "bytes": 286471,
+      "lines": 16736,
+      "path": "Claude/results/comp_v24/sintef_data/sigr.csv",
+      "sha256": "e571a66fb9574c4aa7bfdec7acada2eb732029232e7ab83dc7d9645e39fb01e6"
+    },
+    {
+      "blob": "c064a11241c07195a11ad12878fa7a3914c1f15b",
+      "bytes": 14621,
+      "lines": 300,
+      "path": "Claude/results/comp_v26_data/test_skew_regsol_v2.py",
+      "sha256": "90ee96c2717d4b12bc94647da58b715c3974c2336bf03907b77c693adebb0c0c"
+    },
+    {
+      "blob": "c4fc6b997bad2a15617f1c7255708bf736b9e37a",
+      "bytes": 7539,
+      "lines": 177,
+      "path": "Claude/results/comp_v26_data/bdd_dqdv.py",
+      "sha256": "d3441b15b276ac87c4925c77146a24cdb2e16f1184057f9a17d9d6952daebf2c"
+    },
+    {
+      "blob": "5bb1a3b2dafdafc29d990366d734c0d072c7092c",
+      "bytes": 5366,
+      "lines": 108,
+      "path": "Claude/results/comp_v26_data/regsol_kernel.py",
+      "sha256": "ed10c8fc2029e874803ff3b9d208817fb735b75ca71f8e8fd2fe3631870c455e"
+    },
+    {
+      "blob": "223cd9eb690d91045921eb66ed0c2187f666bafe",
+      "bytes": 290957,
+      "lines": 16828,
+      "path": "Claude/results/comp_v24/sintef_data/gr.csv",
+      "sha256": "0deb5d1222ca944eaf128c39ca5b35f59929219a6d9445771088baf2222c39d9"
+    },
+    {
+      "blob": "0d634f92b681707c57da2e75bfcb9465d9204cc1",
+      "bytes": 186935,
+      "lines": 10832,
+      "path": "Claude/results/comp_v24/sintef_data/si.csv",
+      "sha256": "8b02c776bc34e8410d86fead875d485905b78b28351ca6b295e433b78ff43ac6"
+    }
+  ],
+  "runner_lf_sha256": "ac8d293ce2eb689e56941548344acb52a360e63af9f28e7b2e1560a2973b9d8f"
+}

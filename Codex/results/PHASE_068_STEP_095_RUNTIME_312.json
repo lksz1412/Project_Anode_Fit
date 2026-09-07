@@ -1,0 +1,416 @@
+{
+  "authority": "INTERNAL_TEST_AND_BOUNDED_PROBE_ONLY",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1"
+  },
+  "executable": "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "frozen_tip": "11f90544865dd179739ca5bc5062b28c1078e504",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "result_lf_sha256": "7e198aaa705ae7d1ce250f1281458cc7aea7fd177775ec6f2800ba64c4ce8113",
+  "runner_lf_sha256": "ac8d293ce2eb689e56941548344acb52a360e63af9f28e7b2e1560a2973b9d8f",
+  "runs": {
+    "bounded_probes": {
+      "command": [
+        "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "-c",
+        "\nimport json, sys, warnings\nfrom pathlib import Path\nimport numpy as np\nsys.path.insert(0, str(Path.cwd() / \"Codex/work/v1025_2_physics_branch\"))\nimport conformance_model as m\nrows = []\ndef probe(name, inputs, call):\n    with warnings.catch_warnings(record=True) as recorded:\n        warnings.simplefilter(\"always\")\n        try:\n            value = np.asarray(call(), dtype=float)\n            outcome = {\"value_repr\": repr(value.tolist()), \"all_finite\": bool(np.isfinite(value).all())}\n        except Exception as exc:\n            outcome = {\"exception\": type(exc).__name__, \"message\": str(exc)}\n    rows.append({\"id\": name, \"inputs\": inputs, \"outcome\": outcome,\n                 \"warnings\": [str(w.message) for w in recorded]})\ninitial = m.CausalInitialState(0.0, m.InitialConditionProvenance.SUPPLIED_STATE, \"bounded probe\")\ntiny = float(np.nextafter(0.0, 1.0))\nhuge = float(np.finfo(float).max)\nprobe(\"C92-19\", {\"time\": [0,1], \"target\": [0,0], \"tau\": tiny},\n      lambda: m.relax_time_trajectory(np.array([0.,1.]), np.array([0.,0.]), tiny, initial))\nprobe(\"C92-20\", {\"V\": .2, \"T\": 298.15, \"z\": huge},\n      lambda: m.IdealTransition(.1, 1., 1, huge).dstate_dv(.2, 298.15))\nprobe(\"C92-21\", {\"center\": 0., \"V\": 0., \"width\": tiny, \"alpha\": 2.},\n      lambda: m.EmpiricalSkewComponent(0., tiny, 1., 2.).density(0.))\nprobe(\"C92-22-reversible\", {\"I\": huge, \"T\": 300., \"dU_dT\": 1.},\n      lambda: m.reversible_heat_generation_w(huge, 300., 1.))\nprobe(\"C92-22-terminal\", {\"I\": huge, \"U\": 2., \"V\": 0.},\n      lambda: m.terminal_irreversible_heat_w(huge, 2., 0.))\nprobe(\"C92-22-network\", {\"Q\": huge, \"z\": 1., \"T\": 1e308, \"Jplus\": 1e-308, \"Jminus\": 5e-309},\n      lambda: m.local_network_irreversible_heat_w(huge, 1., 1e308, 1e-308, 5e-309))\nprint(json.dumps(rows, allow_nan=False))\n"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "[{\"id\": \"C92-19\", \"inputs\": {\"time\": [0, 1], \"target\": [0, 0], \"tau\": 5e-324}, \"outcome\": {\"value_repr\": \"[0.0, nan]\", \"all_finite\": false}, \"warnings\": [\"invalid value encountered in scalar multiply\"]}, {\"id\": \"C92-20\", \"inputs\": {\"V\": 0.2, \"T\": 298.15, \"z\": 1.7976931348623157e+308}, \"outcome\": {\"value_repr\": \"nan\", \"all_finite\": false}, \"warnings\": [\"invalid value encountered in scalar multiply\"]}, {\"id\": \"C92-21\", \"inputs\": {\"center\": 0.0, \"V\": 0.0, \"width\": 5e-324, \"alpha\": 2.0}, \"outcome\": {\"value_repr\": \"inf\", \"all_finite\": false}, \"warnings\": []}, {\"id\": \"C92-22-reversible\", \"inputs\": {\"I\": 1.7976931348623157e+308, \"T\": 300.0, \"dU_dT\": 1.0}, \"outcome\": {\"value_repr\": \"-inf\", \"all_finite\": false}, \"warnings\": []}, {\"id\": \"C92-22-terminal\", \"inputs\": {\"I\": 1.7976931348623157e+308, \"U\": 2.0, \"V\": 0.0}, \"outcome\": {\"value_repr\": \"inf\", \"all_finite\": false}, \"warnings\": []}, {\"id\": \"C92-22-network\", \"inputs\": {\"Q\": 1.7976931348623157e+308, \"z\": 1.0, \"T\": 1e+308, \"Jplus\": 1e-308, \"Jminus\": 5e-309}, \"outcome\": {\"value_repr\": \"inf\", \"all_finite\": false}, \"warnings\": []}]\n"
+    },
+    "collection": {
+      "command": [
+        "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "-c",
+        "import unittest,json; s=unittest.defaultTestLoader.discover('.',pattern='test_*.py'); print(json.dumps({'collected_cases':s.countTestCases(),'loader_errors':unittest.defaultTestLoader.errors}))"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"collected_cases\": 51, \"loader_errors\": []}\n"
+    },
+    "empirical_diagnostics": {
+      "command": [
+        "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "-c",
+        "import json,math,numpy as np; from _reference import *; m=import_model(); p=m.empirical_blend14_v10252(); v,y=processed_blend_curve(); pred=p.evaluate(v); residual=y-pred; direct=canonical_release_prediction(v); print(json.dumps({'points':len(v),'hashes':{k:le_f64_sha256(a) for k,a in [('voltage',v),('observed',y),('parameters',stored_parameter_vector()),('prediction',pred),('residual',residual)]},'r2':coefficient_of_determination(y,pred),'bic57':len(v)*math.log(float(np.sum(residual**2))/len(v))+57*math.log(len(v)),'max_abs_prediction_vs_independent':float(np.max(np.abs(pred-direct))),'all_arrays_finite':bool(all(np.isfinite(a).all() for a in [v,y,pred,residual]))},allow_nan=False))"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"points\": 1280, \"hashes\": {\"voltage\": \"6c7ca15d7b9eaf80561d2d2d834856c9b3076f31f6d7e4e6ce304ddb266020b4\", \"observed\": \"713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce\", \"parameters\": \"08216da1095a02bcb789a60f577f4afd1d581ad659a8129edaba7dc0dc5910d5\", \"prediction\": \"f896d97219dca8e98bda6467445a117cc66dce088e74c33765f4dcdef2642b85\", \"residual\": \"da46b78a4975219c7c6c5ce2615ff7ab0ce7584540e062a357fdeb08949d936d\"}, \"r2\": 0.99964941790404, \"bic57\": -4760.653827485776, \"max_abs_prediction_vs_independent\": 8.881784197001252e-15, \"all_arrays_finite\": true}\n"
+    },
+    "manuscript": {
+      "command": [
+        "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "verify_manuscript.py"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "PASS: 16 sources, 15 include edges, 183 labels, 32 references\n"
+    },
+    "suite": {
+      "command": [
+        "C:\\Users\\lksz1\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "run_all.py"
+      ],
+      "exit_code": 1,
+      "stderr": "test_curve_reversal_duplicate_and_invalid_lag_fail_fast (test_dynamics.CausalRelaxationTest.test_curve_reversal_duplicate_and_invalid_lag_fail_fast) ... ok\ntest_decreasing_curve_preserves_supplied_order (test_dynamics.CausalRelaxationTest.test_decreasing_curve_preserves_supplied_order) ... ok\ntest_initial_state_is_immutable (test_dynamics.CausalRelaxationTest.test_initial_state_is_immutable) ... ok\ntest_monotonic_curve_constant_target_matches_exact_response (test_dynamics.CausalRelaxationTest.test_monotonic_curve_constant_target_matches_exact_response) ... ok\ntest_state_domain_shape_and_initial_contract_fail_fast (test_dynamics.CausalRelaxationTest.test_state_domain_shape_and_initial_contract_fail_fast) ... ok\ntest_time_trajectory_accepts_target_reversal_without_sorting (test_dynamics.CausalRelaxationTest.test_time_trajectory_accepts_target_reversal_without_sorting) ... ok\ntest_trajectory_requires_strict_acquisition_time_order (test_dynamics.CausalRelaxationTest.test_trajectory_requires_strict_acquisition_time_order) ... ok\ntest_component_density_is_unit_area_and_nonnegative (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_component_density_is_unit_area_and_nonnegative) ... ok\ntest_curve_prediction_residual_hashes_and_r2_are_exact (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_curve_prediction_residual_hashes_and_r2_are_exact) ... FAIL\ntest_immutable_artifact_freezes_full_builder_dependency_chain (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_immutable_artifact_freezes_full_builder_dependency_chain) ... ok\ntest_invalid_empirical_domains_fail_fast (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_invalid_empirical_domains_fail_fast) ... ok\ntest_processed_input_hashes_are_reproduced_independently (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_processed_input_hashes_are_reproduced_independently) ... FAIL\ntest_profile_and_metadata_are_immutable_and_call_order_independent (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_profile_and_metadata_are_immutable_and_call_order_independent) ... ok\ntest_profile_area_is_sum_of_positive_component_areas (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_profile_area_is_sum_of_positive_component_areas) ... ok\ntest_profile_is_explicitly_empirical_magnitude_only (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_profile_is_explicitly_empirical_magnitude_only) ... ok\ntest_release_reconstruction_agrees_with_independent_direct_formula (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_release_reconstruction_agrees_with_independent_direct_formula) ... ok\ntest_stored_8dp_parameter_vector_and_hash_are_exact (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_stored_8dp_parameter_vector_and_hash_are_exact) ... ok\ntest_required_symbols_are_exported_at_package_top_level (test_empirical_profile.PublicAPIContractTest.test_required_symbols_are_exported_at_package_top_level) ... ok\ntest_local_entropy_production_matches_network_law_and_is_nonnegative (test_kinetics_heat.HeatConventionTest.test_local_entropy_production_matches_network_law_and_is_nonnegative) ... ok\ntest_local_entropy_production_rejects_invalid_flux_or_charge (test_kinetics_heat.HeatConventionTest.test_local_entropy_production_rejects_invalid_flux_or_charge) ... ok\ntest_reversible_heat_uses_generation_positive_minus_sign (test_kinetics_heat.HeatConventionTest.test_reversible_heat_uses_generation_positive_minus_sign) ... ok\ntest_terminal_lumped_heat_enforces_nonnegative_domain (test_kinetics_heat.HeatConventionTest.test_terminal_lumped_heat_enforces_nonnegative_domain) ... ok\ntest_c_rate_hour_to_second_conversion_is_exact (test_kinetics_heat.RateUnitTest.test_c_rate_hour_to_second_conversion_is_exact) ... ok\ntest_eyring_invalid_or_unrepresentable_domains_fail_fast (test_kinetics_heat.RateUnitTest.test_eyring_invalid_or_unrepresentable_domains_fail_fast) ... ok\ntest_eyring_rate_matches_the_si_formula (test_kinetics_heat.RateUnitTest.test_eyring_rate_matches_the_si_formula) ... ok\ntest_legacy_hour_rate_requires_an_explicit_conversion (test_kinetics_heat.RateUnitTest.test_legacy_hour_rate_requires_an_explicit_conversion) ... ok\ntest_candidate_manuscript_passes_static_gate (test_manuscript_static.ManuscriptIntegrationTest.test_candidate_manuscript_passes_static_gate) ... ok\ntest_comments_do_not_create_false_graph_or_reference_entries (test_manuscript_static.ManuscriptVerifierSelfTest.test_comments_do_not_create_false_graph_or_reference_entries) ... ok\ntest_file_and_work_history_remain_external_even_in_appendix (test_manuscript_static.ManuscriptVerifierSelfTest.test_file_and_work_history_remain_external_even_in_appendix) ... ok\ntest_implementation_term_is_rejected_outside_appendix (test_manuscript_static.ManuscriptVerifierSelfTest.test_implementation_term_is_rejected_outside_appendix) ... ok\ntest_missing_include_duplicate_label_and_reference_are_reported (test_manuscript_static.ManuscriptVerifierSelfTest.test_missing_include_duplicate_label_and_reference_are_reported) ... ok\ntest_valid_graph_and_boundary (test_manuscript_static.ManuscriptVerifierSelfTest.test_valid_graph_and_boundary) ... ok\ntest_contract_is_immutable (test_numerics_observation.ObservationContractTest.test_contract_is_immutable) ... ok\ntest_fixed_sign_contract_round_trips (test_numerics_observation.ObservationContractTest.test_fixed_sign_contract_round_trips) ... ok\ntest_invalid_contract_domains_fail_fast (test_numerics_observation.ObservationContractTest.test_invalid_contract_domains_fail_fast) ... ok\ntest_magnitude_discards_sign_and_has_no_inverse (test_numerics_observation.ObservationContractTest.test_magnitude_discards_sign_and_has_no_inverse) ... ok\ntest_signed_contract_is_an_identity_and_round_trips (test_numerics_observation.ObservationContractTest.test_signed_contract_is_an_identity_and_round_trips) ... ok\ntest_extreme_finite_inputs_are_warning_free_and_finite (test_numerics_observation.SafeLogisticTest.test_extreme_finite_inputs_are_warning_free_and_finite) ... ok\ntest_nan_fails_fast_while_signed_infinity_is_a_valid_limit (test_numerics_observation.SafeLogisticTest.test_nan_fails_fast_while_signed_infinity_is_a_valid_limit) ... ok\ntest_scalar_and_array_contracts (test_numerics_observation.SafeLogisticTest.test_scalar_and_array_contracts) ... ok\ntest_blend_inverse_rejects_conflicting_host_directions (test_physical_equilibrium.PhysicalHostTest.test_blend_inverse_rejects_conflicting_host_directions) ... ok\ntest_blend_rejects_mixed_physical_constants_at_construction (test_physical_equilibrium.PhysicalHostTest.test_blend_rejects_mixed_physical_constants_at_construction) ... ok\ntest_charge_balance_and_analytic_derivative_match_finite_difference (test_physical_equilibrium.PhysicalHostTest.test_charge_balance_and_analytic_derivative_match_finite_difference) ... ok\ntest_ideal_transition_uses_fixed_orientation_and_independent_z (test_physical_equilibrium.PhysicalHostTest.test_ideal_transition_uses_fixed_orientation_and_independent_z) ... ok\ntest_implicit_charge_balance_inverts_increasing_and_decreasing_hosts (test_physical_equilibrium.PhysicalHostTest.test_implicit_charge_balance_inverts_increasing_and_decreasing_hosts) ... ok\ntest_nonmonotonic_charge_balance_is_rejected_as_inadmissible (test_physical_equilibrium.PhysicalHostTest.test_nonmonotonic_charge_balance_is_rejected_as_inadmissible) ... ok\ntest_objects_are_immutable_and_construction_order_has_no_effect (test_physical_equilibrium.PhysicalHostTest.test_objects_are_immutable_and_construction_order_has_no_effect) ... ok\ntest_physical_blend_is_shared_potential_capacity_sum (test_physical_equilibrium.PhysicalHostTest.test_physical_blend_is_shared_potential_capacity_sum) ... ok\ntest_scalar_potential_with_temperature_series_preserves_array_shape (test_physical_equilibrium.PhysicalHostTest.test_scalar_potential_with_temperature_series_preserves_array_shape) ... ok\ntest_signed_storage_and_observation_magnitude_are_separate (test_physical_equilibrium.PhysicalHostTest.test_signed_storage_and_observation_magnitude_are_separate) ... ok\ntest_unbracketed_target_and_invalid_domains_fail_fast (test_physical_equilibrium.PhysicalHostTest.test_unbracketed_target_and_invalid_domains_fail_fast) ... ok\n\n======================================================================\nFAIL: test_curve_prediction_residual_hashes_and_r2_are_exact (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_curve_prediction_residual_hashes_and_r2_are_exact)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\lksz1\\AppData\\Local\\Temp\\anode-step95-v0_ipyg_\\Codex\\work\\v1025_2_physics_branch\\tests\\test_empirical_profile.py\", line 131, in test_curve_prediction_residual_hashes_and_r2_are_exact\n    self.assertEqual(\nAssertionError: 'f896d97219dca8e98bda6467445a117cc66dce088e74c33765f4dcdef2642b85' != '53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800'\n- f896d97219dca8e98bda6467445a117cc66dce088e74c33765f4dcdef2642b85\n+ 53cc3c3795be327b90a5d040497074bc51f5a141d0b7629bd34a60682d71f800\n\n\n======================================================================\nFAIL: test_processed_input_hashes_are_reproduced_independently (test_empirical_profile.EmpiricalBlend14ReconstructionTest.test_processed_input_hashes_are_reproduced_independently)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\lksz1\\AppData\\Local\\Temp\\anode-step95-v0_ipyg_\\Codex\\work\\v1025_2_physics_branch\\tests\\test_empirical_profile.py\", line 118, in test_processed_input_hashes_are_reproduced_independently\n    self.assertEqual(\nAssertionError: '713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce' != 'da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e'\n- 713c1de666d84e29edd55fbaab5b6321bfe505fb25cfe03c0b727a88bce743ce\n+ da0beeb95e2eac332e870e2a342354109f611503d5641a6c3c3045871f9d791e\n\n\n----------------------------------------------------------------------\nRan 51 tests in 0.223s\n\nFAILED (failures=2)\n",
+      "stdout": ""
+    }
+  },
+  "schema": "P068-STEP95-RUNTIME-1",
+  "snapshot_directory": "C:\\Users\\lksz1\\AppData\\Local\\Temp\\anode-step95-v0_ipyg_",
+  "sources": [
+    {
+      "blob": "62ec65b9f3d10c1271e0459fceafb514adbb1dc6",
+      "bytes": 1587,
+      "lines": 30,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/README.md",
+      "sha256": "d189e66a83ce33aa26e571645755a32b8c0571cf3c76c45b22b02299abd36b49"
+    },
+    {
+      "blob": "de2cd9ec1df27934a94519087293f1b27da8e68f",
+      "bytes": 2117,
+      "lines": 80,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/__init__.py",
+      "sha256": "bd52ed720777ef5d6740a322c0eb43cff1fb5b2753576913b0373aeadf31460f"
+    },
+    {
+      "blob": "0990ad6571e09855bd18d4d0f9bb73b29cf40370",
+      "bytes": 1358,
+      "lines": 42,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/constants.py",
+      "sha256": "30f524f1a73990e5d888c222e15124adbd3cc86292ae3c886307cc337e79558f"
+    },
+    {
+      "blob": "8a752ddd16b5020c8d278d359d446b7cbeafade0",
+      "bytes": 5431,
+      "lines": 150,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/dynamics.py",
+      "sha256": "69c645463d881b41625af57d2c3e9367fb7cd7b42ae02bea2c89ffd15dc58422"
+    },
+    {
+      "blob": "0fdba1082c4758088a3fc1f0ddd52eb33bd6b744",
+      "bytes": 10402,
+      "lines": 269,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/empirical.py",
+      "sha256": "db668142fade640f23e8029e9257e02cfd9935940da7425e24a24f093779f110"
+    },
+    {
+      "blob": "aa80827bc1b72ef3fd6cb79bd665e02d903fec5a",
+      "bytes": 3779,
+      "lines": 117,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/heat.py",
+      "sha256": "9ead9ff69fa321d8ce78e012070ec539e433da2835d6375d73b82da53311a7fc"
+    },
+    {
+      "blob": "dc0c02805cc9a667657cc5ff65e751b4f1c57525",
+      "bytes": 4067,
+      "lines": 120,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/kinetics.py",
+      "sha256": "b45e1825c9c9578e47667862da85401c55909952eb906fd0cf7cbf00568e59fc"
+    },
+    {
+      "blob": "f8a8fa11de960c6bc209e9b538735446b5da3b54",
+      "bytes": 2146,
+      "lines": 71,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/numerics.py",
+      "sha256": "049022a058427f3a10b2d01f26af3fe35b0ce481023fbf3ddcac8b537d403b83"
+    },
+    {
+      "blob": "7b318efa7cf86677b878b706f056c3c7f58ad76d",
+      "bytes": 3472,
+      "lines": 99,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/observation.py",
+      "sha256": "5355134f8cc406e29bd3eb9be9b975f49e6271e00c1406e164e530d7a55a79ae"
+    },
+    {
+      "blob": "e29d68e69875c1303ed23c5ea1a30336c32b8ca5",
+      "bytes": 19848,
+      "lines": 523,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/physical.py",
+      "sha256": "80e56800d2a5ad36aa4e8cf08560d3499cc96b2b0db9cd63d53a766aa189a8c8"
+    },
+    {
+      "blob": "da9ceac3afcb0d2fdd3e1ed47b4e4b69dbf944a6",
+      "bytes": 5406,
+      "lines": 132,
+      "path": "Codex/work/v1025_2_physics_branch/conformance_model/presets.py",
+      "sha256": "75b13cff42d6e2071922cf6ccf32fecb3683249d2a8b253b0c946eebca783647"
+    },
+    {
+      "blob": "f52d7a51b856fcd02283c989a8be08e41c77a251",
+      "bytes": 1385,
+      "lines": 36,
+      "path": "Codex/work/v1025_2_physics_branch/tests/README.md",
+      "sha256": "6f75a3b3ec9419ab737bd0f3dd4b3b3d91998f5ead428a2b880bd71cdd948fae"
+    },
+    {
+      "blob": "81b5fd88fa75a49a6d957842288bc6f4fa1fe343",
+      "bytes": 6339,
+      "lines": 177,
+      "path": "Codex/work/v1025_2_physics_branch/tests/_reference.py",
+      "sha256": "dc4a65ae27afa63eaf825262d12074d6960949338606257fc4945f3fecf6d7a3"
+    },
+    {
+      "blob": "acb6c3ae94e3ca60a79590b2850f3a36f33fb0b6",
+      "bytes": 545,
+      "lines": 21,
+      "path": "Codex/work/v1025_2_physics_branch/tests/run_all.py",
+      "sha256": "975c9e2332c4f0668c1318ffe12728a291754869c4990e53b4a3783c0a2c5a07"
+    },
+    {
+      "blob": "0a82ad55ea547fb4d4bd2bf87c80fabc8327676e",
+      "bytes": 5232,
+      "lines": 145,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_dynamics.py",
+      "sha256": "d3fb8b1c8e0bba30f7fd3c574703fc4c15875a08cf701be8e1de7edcc6ff3cda"
+    },
+    {
+      "blob": "c71a7b821b879d4963f916f0436654865f3cfb17",
+      "bytes": 10866,
+      "lines": 267,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_empirical_profile.py",
+      "sha256": "96de2b78aacdae7629bd47e9a60d49bb2b5221c1ae573e8dc3d0881a3428b5c3"
+    },
+    {
+      "blob": "a91576484f918550d0895c4d7f2fc3c70b5e842d",
+      "bytes": 7089,
+      "lines": 203,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_kinetics_heat.py",
+      "sha256": "ab09e8965bab0fc2e49490082a841a22daf80acbd6423a2ce84e5999f39f9fc0"
+    },
+    {
+      "blob": "ec7f22f56c632c2c6dbfd12366a8bf38f0494bc7",
+      "bytes": 5005,
+      "lines": 134,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_manuscript_static.py",
+      "sha256": "271cde8e2a071eb2e1c595dc546b91a8b3164b9de1eaf4f06d247d6119d9e2a7"
+    },
+    {
+      "blob": "0b94ce10159d01933d5ef73039bf477ac0552bc5",
+      "bytes": 4108,
+      "lines": 104,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_numerics_observation.py",
+      "sha256": "16aa91a52a119e19eae455c46f3eefb0a426ec5274109b26a3e674dea933f309"
+    },
+    {
+      "blob": "e78561105abfc63f2108948adba6d2c979df10b2",
+      "bytes": 10754,
+      "lines": 292,
+      "path": "Codex/work/v1025_2_physics_branch/tests/test_physical_equilibrium.py",
+      "sha256": "53a45052ca4bfac44b60561ed96e50db96cb796116acf41a78965b9205acca9e"
+    },
+    {
+      "blob": "a09da31e70a5cdd70aa69b1324fe571bb7801c0e",
+      "bytes": 14598,
+      "lines": 440,
+      "path": "Codex/work/v1025_2_physics_branch/tests/verify_manuscript.py",
+      "sha256": "f08ffdb5a458829a39ab98b930412036c0689bd873e26f51e1b69a38fde9dc4b"
+    },
+    {
+      "blob": "439cbf2fbea260c91561ac3f1c298c64605ac250",
+      "bytes": 5747,
+      "lines": 174,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/anode_physics_master.tex",
+      "sha256": "6adaa6e631d8f85163d76f98210314214aab9c09c2afd16d97d58fabbf470109"
+    },
+    {
+      "blob": "8c018772eeacbb7b92d94ed8c369b4503aa9e686",
+      "bytes": 3989,
+      "lines": 72,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/assumption_register.tex",
+      "sha256": "262a20a454e59a7e495d1bbc1193526e5ba70acb71799282b5eeb76b8d960029"
+    },
+    {
+      "blob": "5a90f2698ab81c4fe537d7322619f8f0b2a17179",
+      "bytes": 4580,
+      "lines": 120,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/derivation_checks.tex",
+      "sha256": "8bc1a5f44b5e6f35d728deff173ea4f259e3be95662afd84316ef6ba0b352b15"
+    },
+    {
+      "blob": "867754ff009503bc9217eef803cfb64b26d18536",
+      "bytes": 5225,
+      "lines": 114,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/appendices/implementation_interface.tex",
+      "sha256": "d3fc29795f530edf5f51cb90ba10de8f6bf4bdf175ab3e6b25c798bb42cbb9ae"
+    },
+    {
+      "blob": "6564bb71bda2e0b927420400e8e9e670969ff8ef",
+      "bytes": 8625,
+      "lines": 235,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch01_equilibrium_observation.tex",
+      "sha256": "cd7bb1b6789f49b5c3c78c3bc0d8ae56b7b6819ce392b0625376080408f742c6"
+    },
+    {
+      "blob": "d2d0a3f3937552f38bf5d24ea5d21b8bece9c8c2",
+      "bytes": 7356,
+      "lines": 197,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch02_thermodynamics_heat.tex",
+      "sha256": "bc13eca78e1839259fe95c80cfd592c8c39dddb98ebf2ca09c9a17faeda59ec8"
+    },
+    {
+      "blob": "1e286bac33584b12edb803d111c1e5325db625dc",
+      "bytes": 7481,
+      "lines": 200,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch03_kinetics.tex",
+      "sha256": "b69336052b4d46fa8099db040a7a47288854142157bbaf3084fbeed9a7b922c7"
+    },
+    {
+      "blob": "900a2f32d4e8ba0e590503181962e32f2dc9294b",
+      "bytes": 5904,
+      "lines": 146,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch04_integrated_eos.tex",
+      "sha256": "47a42e256b6045464a43cbd35b1c5846a964cac8645c48bab1ca3f6bd849d5a2"
+    },
+    {
+      "blob": "f7251fd1117ac72eb9f9925fbab1d0ca0e827ed2",
+      "bytes": 4854,
+      "lines": 120,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/chapters/ch05_hysteresis.tex",
+      "sha256": "1498cd7fbb4ff0942b24a913b4262b41bb8a6550990d5355be80fe35a1c22d4c"
+    },
+    {
+      "blob": "6a8d957f88fedc1096882019c361a7ee79888424",
+      "bytes": 2209,
+      "lines": 45,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/conventions.tex",
+      "sha256": "c5cc921cfacbd8cf065c82972af707b4a839400e457a5aad069bf358b5b1d5cf"
+    },
+    {
+      "blob": "fd147f69ab13dbe5b1bbd3b40e334f353fb6b329",
+      "bytes": 1784,
+      "lines": 30,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/evidence_grades.tex",
+      "sha256": "445729a74688dd741f625eece3250260a27f7ff18ffef59c28839d746e5d46bc"
+    },
+    {
+      "blob": "83a0eda0d44a378c84e379f5919c0d2359d78450",
+      "bytes": 3063,
+      "lines": 50,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/common/notation.tex",
+      "sha256": "077cfb5fdd88ed879fea8eb2180996d6653b3fb941ce6dfc81d7c1d581589e00"
+    },
+    {
+      "blob": "20107d8f8f69ab8e4f10c3ca233d32380e919523",
+      "bytes": 5013,
+      "lines": 132,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/empirical/skew14_profile.tex",
+      "sha256": "d67d8a38e4aded7fd13243848c8154049a79cc602ac0d117e4e5683181c24403"
+    },
+    {
+      "blob": "bda7825d1dc6081634b4544cc43e0221b250a41f",
+      "bytes": 3568,
+      "lines": 81,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/graphite_application.tex",
+      "sha256": "551a7bab327f95adc1a2c392361d3376bcbc41b958b936b369063fe23f883988"
+    },
+    {
+      "blob": "b23532f83353cf8a4ef37dd17116f3c4f5176013",
+      "bytes": 4055,
+      "lines": 101,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/lco_application.tex",
+      "sha256": "57bc1bbf15b4d12103a17e887f52f97ddf9b4747ede4ce6aa582f691b384c6db"
+    },
+    {
+      "blob": "8112e8c10c0170e67f2bec109df79343b3b02bac",
+      "bytes": 4308,
+      "lines": 99,
+      "path": "Codex/results/v1025_2_physics_branch/manuscript/materials/si_blend_application.tex",
+      "sha256": "397b6774e06105f90e595e2e9223f661d14fbb42e2fcc62730f56cfe929cbf37"
+    },
+    {
+      "blob": "e1dc03e575c68a601388bde28196bfad71774597",
+      "bytes": 24096,
+      "lines": 745,
+      "path": "Codex/results/V1025_2_PHYSICS_DECISION_LEDGER.md",
+      "sha256": "41fa785b04171ac997d1ceb71f1c0943c079226f801edc732171b03c47651a1a"
+    },
+    {
+      "blob": "c5406428dc9cf954c17c69e8fdabf0bc581b9bdb",
+      "bytes": 19187,
+      "lines": 239,
+      "path": "Codex/results/V1025_2_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "sha256": "7286e75db035b2e49afbdd3f8abb9cf18d2287f6cd8d99db04328a4deeefd497"
+    },
+    {
+      "blob": "f4c9ab14bee81d3995f800fb59321b6c1eedcd84",
+      "bytes": 7308,
+      "lines": 64,
+      "path": "Codex/results/V1025_3_PHYSICS_IMPLEMENTATION_CONFORMANCE_MATRIX.md",
+      "sha256": "cce905070a21cf1cc1e0ed7e529468253f3f8fd86166e7de4d8d96eeba707f57"
+    },
+    {
+      "blob": "6c8a055628e6f133f4ad0a2bbb1eef8adbb43215",
+      "bytes": 6696,
+      "lines": 172,
+      "path": "Codex/results/v1025_2_physics_branch/EMPIRICAL_SKEW14_PROFILE.md",
+      "sha256": "2b195bb390e6556be7b61d9a287c2c717c93946a19309b7ff19ebe7ff97c190a"
+    },
+    {
+      "blob": "d76fb828bc5b49ec171ef8abedd1cd0253f6b767",
+      "bytes": 8795,
+      "lines": 215,
+      "path": "Codex/results/v1025_2_physics_branch/artifacts/empirical_blend14_v10252.json",
+      "sha256": "5f352eb95f0fe70cf4f277d4d3073015d3f43db04cc0471d4c016bf270aaea6a"
+    },
+    {
+      "blob": "c0a475352abe2f2df145442d8ed722d132ab5d03",
+      "bytes": 17754,
+      "lines": 873,
+      "path": "Claude/results/comp_v26_data/out_versions/summary_versions.json",
+      "sha256": "edcafd90b91b6515ca12dca3743678055bc021a52cff3a86a2355467afe8dedc"
+    },
+    {
+      "blob": "4b06fefa1bb81de842386c95fbba5bdd431602d4",
+      "bytes": 286471,
+      "lines": 16736,
+      "path": "Claude/results/comp_v24/sintef_data/sigr.csv",
+      "sha256": "e571a66fb9574c4aa7bfdec7acada2eb732029232e7ab83dc7d9645e39fb01e6"
+    },
+    {
+      "blob": "c064a11241c07195a11ad12878fa7a3914c1f15b",
+      "bytes": 14621,
+      "lines": 300,
+      "path": "Claude/results/comp_v26_data/test_skew_regsol_v2.py",
+      "sha256": "90ee96c2717d4b12bc94647da58b715c3974c2336bf03907b77c693adebb0c0c"
+    },
+    {
+      "blob": "c4fc6b997bad2a15617f1c7255708bf736b9e37a",
+      "bytes": 7539,
+      "lines": 177,
+      "path": "Claude/results/comp_v26_data/bdd_dqdv.py",
+      "sha256": "d3441b15b276ac87c4925c77146a24cdb2e16f1184057f9a17d9d6952daebf2c"
+    },
+    {
+      "blob": "5bb1a3b2dafdafc29d990366d734c0d072c7092c",
+      "bytes": 5366,
+      "lines": 108,
+      "path": "Claude/results/comp_v26_data/regsol_kernel.py",
+      "sha256": "ed10c8fc2029e874803ff3b9d208817fb735b75ca71f8e8fd2fe3631870c455e"
+    },
+    {
+      "blob": "223cd9eb690d91045921eb66ed0c2187f666bafe",
+      "bytes": 290957,
+      "lines": 16828,
+      "path": "Claude/results/comp_v24/sintef_data/gr.csv",
+      "sha256": "0deb5d1222ca944eaf128c39ca5b35f59929219a6d9445771088baf2222c39d9"
+    },
+    {
+      "blob": "0d634f92b681707c57da2e75bfcb9465d9204cc1",
+      "bytes": 186935,
+      "lines": 10832,
+      "path": "Claude/results/comp_v24/sintef_data/si.csv",
+      "sha256": "8b02c776bc34e8410d86fead875d485905b78b28351ca6b295e433b78ff43ac6"
+    }
+  ],
+  "sources_unchanged_after_execution": true
+}

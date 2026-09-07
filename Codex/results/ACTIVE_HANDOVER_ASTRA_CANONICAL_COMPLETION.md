@@ -12,30 +12,40 @@
 | `Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md` | active master, 94–351 | required full recovery read |
 | `Codex/plans/2026-09-07-phase068-astra-continuation-detailed-plan.md` | active phase detailed plan, 94–98 | required full recovery read |
 | `Codex/results/PHASE_068_ASTRA_PLAN_ACTIVATION_RESULT.md` | plan activation persisted `58d752b63b75a4e516e76f848c1e308adeca0e03` | pushed/live/clean directly verified |
-| `Codex/results/PHASE_068_STEP_094_ASTRA_VERIFICATION_RESULT.md` | Step 94 content verified, Git closeout pending | dual numerical verify/86 negatives + wrapper 10 tests each; actual receipt and native persistence checks required |
+| `Codex/results/PHASE_068_STEP_094_ASTRA_VERIFICATION_RESULT.md` | Step 94 complete/pushed `1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14` | exact paths/parent/receipts/live/clean verified |
+| `Codex/plans/2026-09-07-phase068-step095-conformance-model-manifest-addendum.md` | Step 95 active input/output manifest | 42 full-read + 7 runtime-only frozen sources |
+| `Codex/results/PHASE_068_STEP_095_CONFORMANCE_MODEL_ADJUDICATION_RESULT.md` | Step95 content verified awaiting push | exact9path native Git closeout before96 |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `58d752b63b75a4e516e76f848c1e308adeca0e03`.
-Last completed scientific execution unit: 93. First incomplete: **94**.
+Last verified pushed HEAD: `1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14`.
+Last completed scientific execution unit: 94. First incomplete: **95**.
 Current Step 94 original candidate result: `Codex/results/PHASE_068_STEP_094_U13_REGSOL_REDERIVATION_RESULT.md`.
 Matrix exists, 92357 bytes SHA `20c9f6f3d2c3e9be2ab2c61933285c7a3444135071c6e8567fd69d0e4c9bb59a`.
 Both full numerical verify commands passed. No final LaTeX/PDF/zip completion claim.
-현재 WIP에는 새 runner/tests/result 및 사용자 예상시간 요청을 반영한 master/detailed plan,
-compact ledger/이 handover 변경이 있다. 상세계획의 Step 94 allowlist는 총 10개로 명시 갱신했다.
-새 wrapper 회귀시험(3.12/3.14 각각 10 PASS), full preview/collection/dual verify는 완료됐다.
-실제 child stdout/stderr/exit를 수집한 두 runtime receipt와 native Git closeout만 마지막 확인한다.
+Step 94의 원래 candidate는 역사 입력이며 현재 WIP가 아니다.
+현재 Step95 exact9path 결과·matrix·두receipts·manifest·runner/tests·controls가 변경 중이다.
+42개 full-read 입력을 root/tests+나머지원고, model reviewer/11model+7원고,
+contract reviewer/5문건으로 분담했다. 외부 fixtures는 hash-only/actual preprocessing으로 구분한다.
+42files/6803lines 전문 완료. Python3.12와 준비된3.14 full suite는 각각51개 중49PASS,2exact-hashFAIL.
+3.14base의6realPASS+5import-error placeholders도 final314receipt에 실제 subprocess로 보존했다.
+Pandas3.0.2/SciPy1.17.1은 전용 temporary venv에만 설치했고 전역 환경은 그대로다.
+두 runtime의 processed/parameter/prediction/residual hashes는 서로 같지만 historical3개hash와 다르다.
+R2=.99964941790404/BIC57=-4760.653827485776, independent formula maxabs8.881784197001252e-15.
+이 숫자는 external source/material/heldout authority가 아니다.
+Recorder review0/0/0; result P2 caller mAh-to-C conversion 오기 및 test-file counts8/11 정정 완료.
+Final result LF SHA256 7e198aaa705ae7d1ce250f1281458cc7aea7fd177775ec6f2800ba64c4ce8113.
 
 ## Exact Next Action
 
-1. Verify current HEAD is the known plan activation and distinguish current WIP from completed content.
-2. Verify the two captured runtime receipts, frozen result/matrix identity and exact 10 paths;
-   commit/push/live/clean. Full numerical content, source equation/footnote crosscheck,
-   independent logit-coordinate quadrature and wrapper review are already recorded; do not restart them without new evidence.
-3. Do not run the old fixed-parent transaction CLI as though it applies after the WIP checkpoint.
-4. Do not enter Step 95 until actual Step 94 content and push checks complete.
+1. Confirm HEAD1c77c69 and Step95 manifest; do not restart Step94.
+2. Source/equation/test review and final actual runtime recordings are done; do not restart without a new finding.
+3. Validate42readrows/32PHY/183anchors/12findings/49source identities and actualfailed-suite evidence.
+4. Verify exact9paths/parent1c77c69, commit subject audit(phase068): adjudicate conformance model and tests,
+   push/live/clean. Then mark95persisted in the next Step's controls.
+5. Save Step96 input/output manifest and continue all-claim conflicts without another user resume request.
 
 ## Recovery Rule
 
