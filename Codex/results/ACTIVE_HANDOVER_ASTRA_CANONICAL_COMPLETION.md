@@ -23,13 +23,14 @@
 | `Codex/results/PHASE_068_STEP_098_GATE_RESULT.md` | Step98 persisted `04ed9c209794f31cde9aa41d8b94accfb56515ca`; PASS_P068_FORK_ADJUDICATION | exact7/parent/result/push/live/clean |
 | `Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md` | active detailedplan99–107 | saved beforeStep99;37inputidentitymanifest |
 | `Codex/results/PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md` | Step99persisted8b27607; auditintegrationPASS | exact7/result/parent/push/live/clean verified |
+| `Codex/results/PHASE_069_STEP_100_USER_REQUIREMENTS_RESULT.md` | Step100persisted227384f; requirementformalizationPASS | exact5/result/parent/push/live/clean |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `8b27607e5d3f93bc71fee736819e2a2af90f0e85`.
-Last completed execution unit:99. First incomplete:**100**, userrequirements formalization.
+Last verified pushed HEAD: `227384f3437b0a83eb691b68b8e71d5e8daca288`.
+Last persisted execution unit:100. Step101 content verified, persistence incomplete; next content Step102 only after push/live/clean.
 98parent2823501,exact7A5/M2,modes100644,resultincluded,push/live/clean;protectedrefsunchanged.
 All13fork predicates PASS anddualstrictchecks/independentreview0/0/0;notmonograph/graphite/PDFcompletion.
 98validation blob0317468ba71094430e3beb698df6830fce72c8ce,
@@ -40,13 +41,13 @@ Candidate51executed49PASS2historicalhashFAIL andoriginaldata/material/source/PDF
 
 ## Exact Next Action
 
-1. Aftercompaction fullreadmaster/current069detailedplan/previous99result,then100result/requirements/controls.
-2. Step99persisted8b27607,exact7A5/M2/parent04ed9c2/result/push/live/clean directlyverified.
-3. Step100content/review PASS:32requirements,17directions,8OPENconcerns,14constitutionsections,8nativeinputs.
-4. Requiredcontent checks3.12/3.14exit0; finalstatus/receiptsealedrerun precedesexact5pathcommit.
-5. Parent8b27607,subject audit(phase069): formalize user requirements;resultincludedpush/live/cleanbefore101.
-6. Existing316carry/C03/C06 andbodyappendixORcompanion exception remain;Step105route/106pending107notselected.
-7. Phase070requires107GO/CONDITIONAL_GO; no repeatedresumeapproval.
+1. Aftercompaction fullreadmaster/current069detailedplan/previous100result,then101WIP/controls.
+2. Step100persisted227384f,parent8b27607,exact5A3/M2/result/push/live/clean directlyverified.
+3. Step1018inputs frozeninPHASE_069_STEP_101_BODY_COMPANION_RESULT.md beforeexecution.
+4. Step101 boundary selects42carry/69targets;source/spec review0/0/0,actual3.12/3.14 checksPASS;no sourcepurityclosure.
+5. Full source-role selection and exactchecks are inboundary/result;appendixORcompanion,316/655/zeroclosure retained.
+6. Exact4paths=boundary/result+controls2;contentverifiedawaits resultincludedcommit/push/live/cleanbefore102.
+7. Existing316carry/C03/C06 intact;105route/106pending107notselected;070needs107positive. No repeatresumequestion.
 
 ## Recovery Rule
 
