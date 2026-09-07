@@ -14,19 +14,22 @@
 | `Codex/results/PHASE_068_ASTRA_PLAN_ACTIVATION_RESULT.md` | plan activation persisted `58d752b63b75a4e516e76f848c1e308adeca0e03` | pushed/live/clean directly verified |
 | `Codex/results/PHASE_068_STEP_094_ASTRA_VERIFICATION_RESULT.md` | Step 94 complete/pushed `1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14` | exact paths/parent/receipts/live/clean verified |
 | `Codex/plans/2026-09-07-phase068-step095-conformance-model-manifest-addendum.md` | Step 95 active input/output manifest | 42 full-read + 7 runtime-only frozen sources |
-| `Codex/results/PHASE_068_STEP_095_CONFORMANCE_MODEL_ADJUDICATION_RESULT.md` | Step95 content verified awaiting push | exact9path native Git closeout before96 |
+| `Codex/results/PHASE_068_STEP_095_CONFORMANCE_MODEL_ADJUDICATION_RESULT.md` | Step95 complete/pushed `7141da513c931282cb201ab356d189dab13f50db` | exact9paths/parent/result/live/clean verified |
+| `Codex/plans/2026-09-07-phase068-step096-fork-claim-manifest-addendum.md` | Step96 active manifest | typed329unit reconciliation, exact8repositoryoutputs |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14`.
-Last completed scientific execution unit: 94. First incomplete: **95**.
+Last verified pushed HEAD: `7141da513c931282cb201ab356d189dab13f50db`.
+Last completed scientific execution unit: 95. First incomplete: **96**.
 Current Step 94 original candidate result: `Codex/results/PHASE_068_STEP_094_U13_REGSOL_REDERIVATION_RESULT.md`.
 Matrix exists, 92357 bytes SHA `20c9f6f3d2c3e9be2ab2c61933285c7a3444135071c6e8567fd69d0e4c9bb59a`.
 Both full numerical verify commands passed. No final LaTeX/PDF/zip completion claim.
 Step 94의 원래 candidate는 역사 입력이며 현재 WIP가 아니다.
-현재 Step95 exact9path 결과·matrix·두receipts·manifest·runner/tests·controls가 변경 중이다.
+Step95 exact9path 결과·matrix·두receipts·manifest·runner/tests·controls는 위commit에 저장됐다.
+Step96 typed329union 및 perunitjudgments 내용 검증 완료:202COMPATIBLE/8CONFLICT/77OPEN/42SUPERSEDED.
+helper144lines/tests122lines 독립 검독0/0/0,16tests각runtime PASS. 현재 native commit/push 대기이며 아직PERSISTED아님.
 42개 full-read 입력을 root/tests+나머지원고, model reviewer/11model+7원고,
 contract reviewer/5문건으로 분담했다. 외부 fixtures는 hash-only/actual preprocessing으로 구분한다.
 42files/6803lines 전문 완료. Python3.12와 준비된3.14 full suite는 각각51개 중49PASS,2exact-hashFAIL.
@@ -40,12 +43,12 @@ Final result LF SHA256 7e198aaa705ae7d1ce250f1281458cc7aea7fd177775ec6f2800ba64c
 
 ## Exact Next Action
 
-1. Confirm HEAD1c77c69 and Step95 manifest; do not restart Step94.
-2. Source/equation/test review and final actual runtime recordings are done; do not restart without a new finding.
-3. Validate42readrows/32PHY/183anchors/12findings/49source identities and actualfailed-suite evidence.
-4. Verify exact9paths/parent1c77c69, commit subject audit(phase068): adjudicate conformance model and tests,
-   push/live/clean. Then mark95persisted in the next Step's controls.
-5. Save Step96 input/output manifest and continue all-claim conflicts without another user resume request.
+1. Confirm HEAD7141da5 and Step96manifest; do not restart94/95.
+2. Read active master/current detailed/Step95result full after compaction, then the Step96manifest.
+3. All329typedunit judgments integrated: reviewerA106, reviewerB142, root81; root corrected11Bfinding-status classifications andF003/owners with reviewer agreement.
+4. Identity/coverage/classification/evidence/owners passed on Python3.12/3.14; final result reseal required after status edits; code review0/0/0.
+5. Result-first/matrix-last exact8paths childof7141da5, subject audit(phase068): reconcile all fork claim conflicts.
+6. Commit/push/live/clean then97–98 without another resume approval.
 
 ## Recovery Rule
 
