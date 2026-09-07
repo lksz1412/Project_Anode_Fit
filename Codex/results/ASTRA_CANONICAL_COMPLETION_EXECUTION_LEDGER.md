@@ -23,8 +23,9 @@
 | Astra plan activation | no new step | PERSISTED | `PHASE_068_ASTRA_PLAN_ACTIVATION_RESULT.md` | numbered-action text equality check | 원 108–351 내용 일치, 94–351 단조증가 258 actions; `58d752b63b75a4e516e76f848c1e308adeca0e03` pushed/live/clean | 94 |
 | 068 | 94 | PERSISTED | `PHASE_068_STEP_094_ASTRA_VERIFICATION_RESULT.md` | `PHASE_068_U13_REGSOL_REDERIVATION.json`; actual 312/314 receipts | dual content PASS; native exact 10 paths, single parent, push/live/clean verified at `1c77c69004aa4bdb6fbfb2efe01087a25ccd5d14`; P068_STEP94_ASTRA_PERSISTED | 95 |
 | 068 | 95 | PERSISTED | `PHASE_068_STEP_095_CONFORMANCE_MODEL_ADJUDICATION_RESULT.md` | `PHASE_068_CONFORMANCE_MODEL_ADJUDICATION.json`; actual 312/314 receipts | `7141da513c931282cb201ab356d189dab13f50db` exact9paths/result/parent/push/live/clean verified;42files6803lines; actual51tests49PASS2hashFAIL each prepared runtime; not candidate adoption | 96 |
-| 068 | 96 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_068_STEP_096_FORK_CONFLICT_ADJUDICATION_RESULT.md` | `PHASE_068_FORK_CONFLICT_MATRIX.json`; `PHASE_068_STEP_096_VALIDATION.json` | typed329:202COMPATIBLE/8CONFLICT/77OPEN/42SUPERSEDED; dual content and16tests/runtime PASS; independent review0/0/0; native persistence pending | 97 |
-| 068 | 97–98 | PENDING | current detailed plan | pending | Step096 conflict coverage and persistence needed | 97 |
+| 068 | 96 | PERSISTED | `PHASE_068_STEP_096_FORK_CONFLICT_ADJUDICATION_RESULT.md` | `PHASE_068_FORK_CONFLICT_MATRIX.json`; `PHASE_068_STEP_096_VALIDATION.json` | `f9feef379d597d320cb5692ed2eda739a336d02f` exact8paths/result/parent/push/live/clean;329typed202/8/77/42;16tests/runtimePASS; independent0/0/0 | 97 |
+| 068 | 97 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_068_STEP_097_FORK_DISPOSITION_RESULT.md` | `PHASE_068_FORK_DISPOSITION_REGISTER.json`; `PHASE_068_CARRY_FORWARD_DELTA.json`; validation receipt |655targets251REFERENCE_ONLY/106REWRITE/3REJECT/295UNVERIFIED/0ADOPT;222inherited+94new=316active;16tests/runtime;independent0/0/0;native persistence pending | 97 |
+| 068 | 98 | PENDING | current detailed plan | pending | Step097 content and persistence needed | 98 |
 | 069 | 99–107 | PENDING | phase 진입 전 detailed plan 생성 | pending | fork gate 후 종합/launch | 99 |
 | 070–073 | 108–149 | CONDITIONAL_PENDING_P069 | master의 해당 phase 전체 steps | pending | GO/CONDITIONAL_GO 필요 | 108 |
 | 074–081 | 150–245 | CONDITIONAL_PENDING_P069 | master의 이론·재료·열·불확도 steps | pending | 근거별 검증 후 Codex/docs에 증분 유도 | 150 |
@@ -33,8 +34,8 @@
 
 ## Next Exact Step
 
-Step95 완료 commit/push/live/clean은 직접 확인했다. Step96 모든forkclaim/과거namedtopic/계약329typed단위 내용 검증을 완료했다.
-현재 결과 포함exact8pathcommit/push/live/clean을 확인한 후97–98로 계속한다.
+Step96 결과 포함exact8pathcommit/push/live/clean을 직접 확인했다. Step97의655typedtarget처분 및222상속carry를 대조한다.
+새manifest입출력경계와단일owner/수용조건을 유지하고95fileunits의440sourceoccurrence관계를 보존한다.
 두 hash 실패는 보존한다. 동일 R2·bounded formula agreement로 historical bitwise reproduction을 주장하지 않는다.
 
 ## Recording Boundary
