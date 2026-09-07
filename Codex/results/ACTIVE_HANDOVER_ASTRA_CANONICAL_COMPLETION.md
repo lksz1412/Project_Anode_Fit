@@ -18,40 +18,32 @@
 | `Codex/plans/2026-09-07-phase068-step096-fork-claim-manifest-addendum.md` | Step96 active manifest | typed329unit reconciliation, exact8repositoryoutputs |
 | `Codex/results/PHASE_068_STEP_096_FORK_CONFLICT_ADJUDICATION_RESULT.md` | Step96 persisted `f9feef379d597d320cb5692ed2eda739a336d02f` | exact8paths/parent/result/push/live/clean |
 | `Codex/plans/2026-09-07-phase068-step097-disposition-carry-manifest-addendum.md` | Step97 active manifest |655typedtargets,222inheritedcarry,exact9outputs|
+| `Codex/results/PHASE_068_STEP_097_FORK_DISPOSITION_RESULT.md` | Step97 persisted `2823501182affa6c4c0ca38c64c4d898268c97ad` | exact9paths/parent/result/push/live/clean verified |
+| `Codex/plans/2026-09-07-phase068-step098-final-gate-manifest-addendum.md` | current Step98manifest | original13gateconditions;exact7outputs |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `f9feef379d597d320cb5692ed2eda739a336d02f`.
-Last completed scientific execution unit: 96. First incomplete: **97**.
-Current Step 94 original candidate result: `Codex/results/PHASE_068_STEP_094_U13_REGSOL_REDERIVATION_RESULT.md`.
-Matrix exists, 92357 bytes SHA `20c9f6f3d2c3e9be2ab2c61933285c7a3444135071c6e8567fd69d0e4c9bb59a`.
-Both full numerical verify commands passed. No final LaTeX/PDF/zip completion claim.
-Step 94의 원래 candidate는 역사 입력이며 현재 WIP가 아니다.
-Step95 exact9path 결과·matrix·두receipts·manifest·runner/tests·controls는 위commit에 저장됐다.
-Step96 typed329union 및 perunitjudgments 내용 검증 완료:202COMPATIBLE/8CONFLICT/77OPEN/42SUPERSEDED.
-helper144lines/tests122lines 독립 검독0/0/0,16tests각runtime PASS. Step96은위commit에PERSISTED.
-현재Step97newmanifest먼저저장, A106claim/B142H44/root81+95files+9findings/carryreview222+358registry로범위를분리했다.
-42개 full-read 입력을 root/tests+나머지원고, model reviewer/11model+7원고,
-contract reviewer/5문건으로 분담했다. 외부 fixtures는 hash-only/actual preprocessing으로 구분한다.
-42files/6803lines 전문 완료. Python3.12와 준비된3.14 full suite는 각각51개 중49PASS,2exact-hashFAIL.
-3.14base의6realPASS+5import-error placeholders도 final314receipt에 실제 subprocess로 보존했다.
-Pandas3.0.2/SciPy1.17.1은 전용 temporary venv에만 설치했고 전역 환경은 그대로다.
-두 runtime의 processed/parameter/prediction/residual hashes는 서로 같지만 historical3개hash와 다르다.
-R2=.99964941790404/BIC57=-4760.653827485776, independent formula maxabs8.881784197001252e-15.
-이 숫자는 external source/material/heldout authority가 아니다.
-Recorder review0/0/0; result P2 caller mAh-to-C conversion 오기 및 test-file counts8/11 정정 완료.
-Final result LF SHA256 7e198aaa705ae7d1ce250f1281458cc7aea7fd177775ec6f2800ba64c4ce8113.
+Last verified pushed HEAD: `2823501182affa6c4c0ca38c64c4d898268c97ad`.
+Last persisted execution unit:97. Step98content is CONTENT_VERIFIED_AWAITING_PUSH; native persistence stillpending.
+Step97exact9paths,parentf9feef3,resultincluded,push/liveequality/cleantree verified.
+655typedtargets,95fileunits/440links,222inherited+94new=316activecarry,zero inheritedclosure.
+Step97contentPASS and16tests/runtime; Step98all13predicates/dualstructuralchecksPASS,independent0/0/0.
+Result LFsha976da4c08718e43f3c0b2d3aeec2a245c39374ba4f3ebb85d23976281107c4a4.
+Rows aa0ea766f6b6589d9c10ed33b5a8c109c5b843d92eea0447de9fd252e56beb52;
+carry8e473ca2d4f887b2e73d6918774540f95ba3db52dfc46bec5694b80088878bfb.
+Steps94/95numerics and42files6803line/candidate49PASS2FAIL/51 remain prior evidence at their result pointers.
+Original94candidate is not currentWIP. No scholarlyLaTeX/PDF/ZIP completion claim.
 
 ## Exact Next Action
 
-1. Confirm HEADf9feef3 and Step97manifest; do not restart94–96.
-2. Read active master/current detailed/Step96result full after compaction, then Step97manifest.
-3. Step97 content integrated655targets,222inherited+94new=316active,220exactoriginclauses/source,3boundedresolutions/noinheritedclosure. Final report/changedcarry independent0/0/0; seals/nativepersistence next.
-4. Shared helper217lines/tests117lines reusesimmutableStep96strict_json/digest;16tests/runtime and currentstructuralchecksPASS. Final CLI validation receipt must match resultseal.
-5. Result-first/JSON-last exact9paths childoff9feef3, subject audit(phase068): classify fork evidence.
-6. Commit/push/live/clean then98 without another resume approval.
+1. Read active master/current detailed/previousStep97result full after compaction, then Step98manifest/currentWIP.
+2. Source2/3/5,science7/8/9,history1/4/6/11+historical13,root10/12integration allreviewed;0/0/0.
+3. Reuseimmutableprevioussource/PDF/scienceattestations onlyafteridentityverification; no freshreplayinflation.
+4. Recheck final sealed JSON/receipts after result-first/JSON-last; all13predicates have evidence and ceilings.
+5. Positivegate onlyPASS_P068_FORK_ADJUDICATION; failuresNOT_ACHIEVED,no069.
+6. Exact7paths childof2823501,subject audit(phase068): close fork adjudication gate; push/live/clean thenPhase069detailedplan99–107.
 
 ## Recovery Rule
 
