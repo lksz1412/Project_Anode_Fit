@@ -20,8 +20,8 @@
 | 064–067 | 64–90 | HISTORICAL_CONDITIONAL | previous ledger의 각 phase 결과 | previous ledger | 문헌·optimizer·내부/외부 검증 부채 유지 | — |
 | 068 | 91–93 | PERSISTED | `PHASE_068_STEP_093_PHASE044_054_REAUDIT_RESULT.md` | `PHASE_068_PHASE044_054_REAUDIT_MATRIX.json` | commit `0b850ea9ffa33e04356d11b83190f9a7cfbea37c`; 과학 권위 한계 유지 | 94 |
 | 068 checkpoint | 94 WIP | PERSISTED_CHECKPOINT_ONLY | `PHASE_068_STEP_094_SOL_ASTRA_HANDOFF_CHECKPOINT.md` | matrix 없음 | `aedfd408281b97699ba7f75884e7108965ecf547` pushed/live/clean; content PASS 아님 | 94 |
-| Astra plan activation | no new step | PLAN_SAVED_AWAITING_PUSH | `PHASE_068_ASTRA_PLAN_ACTIVATION_RESULT.md` | numbered-action text equality check | 원 108–351 내용 일치, 94–351 단조증가 258 actions | 94 |
-| 068 | 94 | IN_PROGRESS | 기존 `PHASE_068_STEP_094_U13_REGSOL_REDERIVATION_RESULT.md` 후보 | 신규 matrix 생성 전 | 기존 CLI `E_MATRIX_MISSING`; 새 continuation 계약으로 검증 예정 | 94 |
+| Astra plan activation | no new step | PERSISTED | `PHASE_068_ASTRA_PLAN_ACTIVATION_RESULT.md` | numbered-action text equality check | 원 108–351 내용 일치, 94–351 단조증가 258 actions; `58d752b63b75a4e516e76f848c1e308adeca0e03` pushed/live/clean | 94 |
+| 068 | 94 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_068_STEP_094_ASTRA_VERIFICATION_RESULT.md`; 이전 candidate 보존 | `PHASE_068_U13_REGSOL_REDERIVATION.json`; `PHASE_068_STEP_094_ASTRA_RUNTIME_312.json` / `314.json` | dual actual `PASS_P068_STEP94_ASTRA_CONTENT`; 86 legacy negative + 10 wrapper tests each; 92357 bytes SHA `20c9f6f3d2c3e9be2ab2c61933285c7a3444135071c6e8567fd69d0e4c9bb59a`; native Git closeout still required | 94 closeout then 95 |
 | 068 | 95–98 | PENDING | current detailed plan | pending | Step 94 내용+push 확인 필요 | 95 |
 | 069 | 99–107 | PENDING | phase 진입 전 detailed plan 생성 | pending | fork gate 후 종합/launch | 99 |
 | 070–073 | 108–149 | CONDITIONAL_PENDING_P069 | master의 해당 phase 전체 steps | pending | GO/CONDITIONAL_GO 필요 | 108 |
@@ -31,7 +31,8 @@
 
 ## Next Exact Step
 
-개정 계획 activation을 정상 commit/push하고, Step 94 신규 runner의 실제 검산과 정정 결과를 수행한다.
+개정 계획 activation은 정상 commit/push했다. Step 94 내용 검증 후 두 실제 runtime receipt의 identity를
+대조하고 exact 10-path commit/push/live/clean을 확인한다. 그 뒤 Step 95 source/output manifest를 먼저 저장한다.
 그 다음 95–98. 데이터·원문 부채는 구체 claim/owner/수용 조건 없이 완료로 바꾸지 않는다.
 
 ## Recording Boundary

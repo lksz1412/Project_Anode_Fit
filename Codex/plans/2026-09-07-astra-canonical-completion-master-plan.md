@@ -18,9 +18,49 @@
 수식·자료 근거가 확보된 뒤에는 그 phase의 유도를 Codex/docs에 직접 축적하여,
 Phase 087에서 처음 본문을 쓰기 시작하는 지연을 없앤다.
 
+## Estimated Remaining Work and Delivery Criteria
+
+사용자의 예상시간 요청에 따른 작업량 기반 추정이다. 완료 속도의 실측 통계나 보장된 마감이 아니다.
+이 추정 작성 당시 마지막 완료 Step은 93, Step 94는 IN_PROGRESS이므로 남은 integer 범위는 94–351,
+총 258개다. Step별 난이도가 달라 이 숫자를 완료율 또는 균등 소요시간으로 환산하지 않는다.
+그 시점 Step 94 wrapper 회귀시험은 Python 3.12/3.14 각각 8개 통과했고 전체 수치 content는 미완료였다.
+이후 실제 완료 위치는 compact ledger와 직전 Step result를 따른다. 이 추정 snapshot을 현재 상태로 읽지 않는다.
+
+현재 전체 범위를 유지할 때 **순수 활성 작업 40–80시간, 계획 중심값 약 60시간**을 예상한다.
+사용자 응답 대기, 토큰/세션 중단, 원문·데이터 접근 불가에 따른 외부 대기는 포함하지 않는다.
+동시 작업은 독립 원천 검독·계산·검수에 사용하고, 동일 파일 변경과 gate 승인 책임은 섞지 않는다.
+
+| 남은 범위 | 실제 완료해야 할 내용 | 예상 활성 작업시간 |
+|---|---|---:|
+| Phase 068–069, Steps 94–107 | U13 실제 검증, conformance 모델·fork 충돌/처분, 감사 종합·launch gate | 2–4시간 |
+| Phase 070–073, Steps 108–149 | source freeze, DOI/원문 support, 데이터 provenance·feasibility, 이론 구조 | 6–12시간 |
+| Phase 074–082, Steps 150–255 | 공통 유도, 평형·비평형, graphite/LCO/Si/blend, 열·식별성·불확도, 독립 식 검수 | 16–30시간 |
+| Phase 083–086, Steps 256–307 | 이론–구현 계약, reference implementation, 구조 고정, 실제 데이터 검증 | 10–22시간 |
+| Phase 087–090, Steps 308–351 | 원고 조립, 전체 red-team, LaTeX/PDF 전 페이지 QA, clean-clone·zip | 6–12시간 |
+| 합계 | 현재 승인 범위 전체 | 40–80시간 |
+
+추정의 근거는 남아 있는 서로 다른 4개 재료군, load-bearing 수식 유도·1차 문헌 대조,
+reference implementation/held-out 검증, 전체 PDF 및 clean-clone 게이트다.
+이미 진행한 감사 commit 수나 모델/effort 이름만으로 빨라진 시간을 공제하지 않는다.
+초기 94–98 완료 때 실제 활성 시간·읽은 양·새 결함을 근거로 이 범위를 다시 평가한다.
+
+### 중간 산출물과 완성 판정
+
+- 감사 종합: 위 첫 구간 2–4시간 추정. 이것은 새 학술 원고 완성 시점이 아니다.
+- 검증된 첫 이론 section 중간본: launch와 필수 원문 접근이 순조로우면 누적 약 10–20시간을 목표로 한다.
+  단계별 LaTeX를 Codex/docs에 쌓되 일부 section의 완성을 전체 monograph/PDF 완성으로 보고하지 않는다.
+- 흑연 장 자체의 문헌 대조·유도·자체검수 및 장 단위 PDF는 위 추정 기준 약 18–30시간,
+  중심 약 24시간의 조건부 목표다. 필요 공통 기초와 graphite closure 후 장 단위 build/시각검독을 하며,
+  이후 다른 장과의 통합 검수·Phase 089 최종 release QA를 생략하거나 선행 완료 처리하지 않는다.
+- 최종 release: 전체 gate와 실제 build/시각검독/재현 결과가 갖춰져야 한다.
+  원문·held-out 자료가 없으면 해당 claim/material을 UNVERIFIED/CONDITIONAL로 명시한다.
+  범위를 숨겨 줄이거나 synthetic 자료로 대신 채워 예상시간을 맞추지 않는다.
+- 검토자가 읽을 수 있는 중간본과 코드 검증 패키지를 최종 release와 구분해 제공한다.
+  사용자가 더 짧은 deadline을 제시하면 어떤 검증/재료 범위를 보류할지 먼저 설명하고 결정받는다.
+
 ## Current Ground Truth
 
-### 직접 확인한 현재 상태
+### 계획 수립 때 직접 확인한 기준선
 
 - Step 93 저장 commit: 0b850ea9ffa33e04356d11b83190f9a7cfbea37c.
 - Sol→Astra WIP checkpoint: aedfd408281b97699ba7f75884e7108965ecf547.
@@ -720,3 +760,5 @@ Phase 069의 조건이 누락 없이 추적되고 보호 branch diff가 0이며 
 - 94–351 범위/번호, 과학 게이트, 문헌/재료 권위 경계, protected/Claude 보존은 약화하지 않는다.
 - harness-core와 프로젝트 운영지침의 기록·복구 구조를 적용했다.
   글로벌 runtime/hooks/watchers/memory/config/스킬 파일은 수정하지 않는다.
+- 2026-09-07: 사용자 예상시간 요청에 따라 활성 작업 40–80시간의 조건부 추정,
+  단계별 범위와 중간본/최종 release 구분을 추가했다. 기존 Step/과학 gate는 변경하지 않는다.

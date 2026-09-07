@@ -128,6 +128,9 @@ commit/push/live equality를 확인한다. activation은 과학 Step 완료가 �
 - `Codex/results/PHASE_068_STEP_094_ASTRA_RUNTIME_314.json`
 
 갱신: 새 compact ledger와 새 active handover 두 파일.
+추가 사용자 요청에 따른 갱신: 활성 Astra master의 예상시간/완료기준 절과 이 detailed plan의
+해당 output allowlist. 번호·과학 gate 변경 없이 Step 94 결과에 변경 이유/검증을 함께 기록한다.
+따라서 현재 Step 94의 exact 변경 파일 수는 위 신규 6개와 갱신 4개, 총 10개다.
 기존 builder/validator/result/대형 controls는 변경하지 않는다.
 subject: `audit(phase068): complete Astra U13 rederivation verification`.
 
