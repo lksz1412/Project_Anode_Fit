@@ -3,7 +3,7 @@
 ## Canonical Chain
 
 - Master: `Codex/plans/2026-09-07-astra-canonical-completion-master-plan.md`.
-- Current detailed plan: `Codex/plans/2026-09-07-phase068-astra-continuation-detailed-plan.md`.
+- Current detailed plan: `Codex/plans/2026-09-08-phase069-canonical-audit-launch-detailed-plan.md`.
 - Responsibility boundary: `PHASE_068_STEP_094_SOL_ASTRA_HANDOFF_CHECKPOINT.md`, commit `aedfd408281b97699ba7f75884e7108965ecf547`.
 - Previous ledger: `PHASE_059_090_CANONICAL_COMPLETION_EXECUTION_LEDGER.md`; older chain: `PHASE_055_069_FULL_LINEAGE_REAUDIT_EXECUTION_LEDGER.md`.
 - Previous handover: `ACTIVE_HANDOVER_CANONICAL_COMPLETION.md`; current: `ACTIVE_HANDOVER_ASTRA_CANONICAL_COMPLETION.md`.
@@ -25,8 +25,9 @@
 | 068 | 95 | PERSISTED | `PHASE_068_STEP_095_CONFORMANCE_MODEL_ADJUDICATION_RESULT.md` | `PHASE_068_CONFORMANCE_MODEL_ADJUDICATION.json`; actual 312/314 receipts | `7141da513c931282cb201ab356d189dab13f50db` exact9paths/result/parent/push/live/clean verified;42files6803lines; actual51tests49PASS2hashFAIL each prepared runtime; not candidate adoption | 96 |
 | 068 | 96 | PERSISTED | `PHASE_068_STEP_096_FORK_CONFLICT_ADJUDICATION_RESULT.md` | `PHASE_068_FORK_CONFLICT_MATRIX.json`; `PHASE_068_STEP_096_VALIDATION.json` | `f9feef379d597d320cb5692ed2eda739a336d02f` exact8paths/result/parent/push/live/clean;329typed202/8/77/42;16tests/runtimePASS; independent0/0/0 | 97 |
 | 068 | 97 | PERSISTED | `PHASE_068_STEP_097_FORK_DISPOSITION_RESULT.md` | `PHASE_068_FORK_DISPOSITION_REGISTER.json`; `PHASE_068_CARRY_FORWARD_DELTA.json`; validation receipt |655targets251REFERENCE_ONLY/106REWRITE/3REJECT/295UNVERIFIED/0ADOPT;222inherited+94new=316active;16tests/runtime;independent0/0/0;`2823501182affa6c4c0ca38c64c4d898268c97ad`exact9paths/parent/result/push/live/clean | 98 |
-| 068 | 98 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_068_STEP_098_GATE_RESULT.md`; `PHASE_068_RESULT.md` | `PHASE_068_VALIDATION.json`; file/issue plan | PASS_P068_FORK_ADJUDICATION;13predicates,dualchecksPASS,independent0/0/0; ownnativepersistence pending | 99 |
-| 069 | 99–107 | PENDING | phase 진입 전 detailed plan 생성 | pending | fork gate 후 종합/launch | 99 |
+| 068 | 98 | PERSISTED | `PHASE_068_STEP_098_GATE_RESULT.md`; `PHASE_068_RESULT.md` | `PHASE_068_VALIDATION.json`; file/issue plan | PASS_P068_FORK_ADJUDICATION;13predicates,dualchecksPASS,independent0/0/0;`04ed9c209794f31cde9aa41d8b94accfb56515ca`exact7/parent/result/push/live/clean | 99 |
+| 069 | 99 | CONTENT_VERIFIED_AWAITING_PUSH | `PHASE_069_STEP_099_AUDIT_INTEGRATION_RESULT.md` | `PHASE_069_CANONICAL_AUDIT_INDEX.json`; `PHASE_069_STEP_099_VALIDATION.json` | PASS_P069_STEP99_AUDIT_INTEGRATION;12phases/37inputs/316carry/655routes;dualchecksPASS;independent0/0/0;106/107pending | 100 after persistence |
+| 069 | 100–107 | PENDING | phase069detailedplan | pending | requirements/authority/data/coverage/launch in order | 100 |
 | 070–073 | 108–149 | CONDITIONAL_PENDING_P069 | master의 해당 phase 전체 steps | pending | GO/CONDITIONAL_GO 필요 | 108 |
 | 074–081 | 150–245 | CONDITIONAL_PENDING_P069 | master의 이론·재료·열·불확도 steps | pending | 근거별 검증 후 Codex/docs에 증분 유도 | 150 |
 | 082–086 | 246–307 | CONDITIONAL_PENDING_P069 | master의 식 동결·구현·검증 steps | pending | 원래 독립 검산/held-out 경계 유지 | 246 |
@@ -34,8 +35,8 @@
 
 ## Next Exact Step
 
-Step98의13조건 내용판정과dualchecks/독립검수를 통과했다. exact7paths/result포함commit·push·live·clean을 마친 뒤069계획99–107로 이어간다.
-Step97처분655개와222inherited+94newcarry를 보존했다. 이 감사PASS는 학술원고나재료검증 완료가 아니다.
+Step98은04ed9c2로커밋·push·live·clean확인완료. Step99통합/dualcheck/독립검수완료, exact7결과포함commit/push/live/clean후100으로진행한다.
+655처분/316activecarry를그대로보존한다. 전체coverage106과launch107을완료하기전070을시작하지않는다.
 두 hash 실패는 보존한다. 동일 R2·bounded formula agreement로 historical bitwise reproduction을 주장하지 않는다.
 
 ## Recording Boundary
