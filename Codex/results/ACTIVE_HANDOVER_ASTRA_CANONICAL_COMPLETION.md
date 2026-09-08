@@ -37,8 +37,8 @@
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `181eaf78afc1bf62b779aa09a2891ff762db1f8d`.
-Last persisted execution unit:107NO_GO/NOT_ACHIEVED. Current:**107.R1**, repairplanactivation/inputfreeze,review/persistencepending.
+Last verified pushed HEAD: `c4749c29f49e8203211ce591b024f6c0859b6c48`.
+Last persisted unit:107.R1 administrative plan/inputfreeze only. Current:**107.R2**, native source/history qualification CONTENT_VERIFIED_AWAITING_PUSH; original107NO_GO/NOT_ACHIEVED remains.
 98parent2823501,exact7A5/M2,modes100644,resultincluded,push/live/clean;protectedrefsunchanged.
 All13fork predicates PASS anddualstrictchecks/independentreview0/0/0;notmonograph/graphite/PDFcompletion.
 98validation blob0317468ba71094430e3beb698df6830fce72c8ce,
@@ -49,14 +49,20 @@ Candidate51executed49PASS2historicalhashFAIL andoriginaldata/material/source/PDF
 
 ## Exact Next Action
 
-1. Aftercompaction fullreadmaster/currentrepairaddendum/previous107result1–163,thenR1WIP/controls.
+1. Aftercompaction fullreadmaster/currentrepairaddendum/previousR1result1–110,thenR2WIP/controls.
    Readoriginal069detailedfororiginaltenpredicatecontract; no summary-onlyrecovery.
 2. Step107181eaf7,parent0bcf2b6,exact6A4M2/result/push/live/clean directlyverified80a3b8exit0.
-3. R1plan savedbeforework;85inputidentityfreeze01881c. No newsourcehumanreadclaimed.
+3. R1plan savedbeforework;85inputidentityfreeze01881c; persistedc4749c2 exact5/result/parent/push/live/clean31b8d7.
    Threegapsremain: vendoractualread, wholehistoryhunkunion, nativequalification/PDFsourcecorrespondence.
-4. Preserve Csource/Bhistory/Aspec roles; rootsolewrites. R1exact5persistence precedesR2parallelreadonlylanes.
+4. Preserve Csource/Bhistory/Aspec roles; rootsolewrites. R2parallelreadonlylanes startafterR1persisted; currentresult PHASE_069_STEP_107_R2_EVIDENCE_QUALIFICATION_RESULT.md.
 5. Existing32requirements18literature18claims316carry655routes unchanged;root2scopeoverrides precede23masterdeltas.
-6. C860labels areunverifiedmachinecandidatesonly; certifiedcountnull;29PDFsourcecandidate-only. No userexceptionapproved.
+6. R2qualifies860objects by declaredhistoricalreviewmode, notscience/fullpathcoverage.
+   Historypartition1201text/23metadata/2partial/1155unproven;29PDFrelationscandidate-only; no userexception.
+   Root058/067andC060/061/065/066qualification complete;7sourcearrays1438rows/1362uniquepaths/
+   76overlap/158residual,dual14283a/f64063exit0.060derived173records contribute0pathrows.
+   All assigned native qualifiers inspected; final A/B reviews0/0/0. Prior355/1165isinterim;
+   exact158path-evidence gaps are not158unreadbodyinstructions. R2CONTENT_VERIFIED_AWAITING_PUSH;
+   nativeexact7A5M2/result/parentc4749c2/push/live/clean confirmation must precedeR3scopefreeze.
 7. NO_GO requiresnewscopedrepairaddendum, not070execution. Preserve108–351 andqualifiedpriorreads;
    no blanketallsource/PDFre-read. Existing316/C03C06/P0005nineacceptances remainintact.
 
