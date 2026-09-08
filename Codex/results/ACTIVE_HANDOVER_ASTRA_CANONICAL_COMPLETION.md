@@ -28,13 +28,14 @@
 | `Codex/results/PHASE_069_STEP_102_MODEL_HIERARCHY_RESULT.md` | Step102persisted7cc3d95;authoritycontractPASS | exact4/parent/result/push/live/clean |
 | `Codex/results/PHASE_069_STEP_103_MATERIAL_REQUIREMENTS_RESULT.md` | Step103persisted7d96a55;6materialrequirementsPASS | exact5/parent/result/push/live/clean |
 | `Codex/results/PHASE_069_STEP_104_PUBLIC_PRIVATE_FEASIBILITY_RESULT.md` | Step104persisteda9bb128; boundedaccessfeasibilityPASS | exact4/parent/result/push/live/clean |
+| `Codex/results/PHASE_069_STEP_105_LAUNCH_INPUTS_RESULT.md` | Step105persisted48be9e5; launchinputroutingPASS | exact5/parent/result/push/live/clean |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `a9bb128d68e1cf804bc332f3e7fabd05015ca1be`.
-Last persisted execution unit:104. First incomplete:**105 persistence**, launchinputs/literature contentverified.
+Last verified pushed HEAD: `48be9e560c6ddbe56cbab898086efec148d706fc`.
+Last persisted execution unit:105. Current:**106**, negative assessment NOT_ACHIEVED; finalreview/persistence pending.
 98parent2823501,exact7A5/M2,modes100644,resultincluded,push/live/clean;protectedrefsunchanged.
 All13fork predicates PASS anddualstrictchecks/independentreview0/0/0;notmonograph/graphite/PDFcompletion.
 98validation blob0317468ba71094430e3beb698df6830fce72c8ce,
@@ -45,13 +46,16 @@ Candidate51executed49PASS2historicalhashFAIL andoriginaldata/material/source/PDF
 
 ## Exact Next Action
 
-1. Aftercompaction fullreadmaster/current069detailedplan/previous104result,then105WIP/controls.
-2. Step104persisteda9bb128d68e1cf804bc332f3e7fabd05015ca1be,parent7d96a55,exact4A2M2/result/push/live/clean directlyverified.
-3. Step105twelveinputmanifest saved beforeinterpretation; current316carry/655routes and99–104 prerequisites.
+1. Aftercompaction fullreadmaster/current069detailedplan/previous105result,then106WIP/controls.
+2. Step105persisted48be9e560c6ddbe56cbab898086efec148d706fc,parenta9bb128,exact5A3M2/result/push/live/clean directlyverified.
+3. Step106initial35inputmanifest andadditionalC36/B41/A76identitysets arebound;1520/862inventory reconciled.
+   Three requiredgaps remain: vendoractualread, wholehistoryhunkunion evidence, nativeattestationsemanticqualification/PDFsource correspondence.
 4. Preserve source/history/spec role boundaries; root owns allrepo/Git writes.
-5. Step105contentPASS:32requirements18literature18claims316carry655routes;23currentmasterdeltas and2genericscopeoverrides preserveoriginalauthority. Independent0/0/0 andcomplete3.12/3.14checksPASS.
-6. Exact5A3M2/resultincludedcommit/push/live/cleanbefore106; literature list is investigationtarget, not verifiedbibliography.
-7. Existing316carry/C03C06 intact;106pending107notselected;070needs107positive. No repeatedresumequestion.
+5. Step105routing keeps32requirements18literature18claims316carry655routes; applyroot2scopeoverrides then23currentmasterdeltas, preservingoriginalauthority.
+6. Finalreview thenexact5A3M2/resultincludedcommit/push/live/cleanbefore107. Gate106NOT_ACHIEVED;
+   C860COVEREDlabels aremachinecandidatesonly, overriddenbyroot source_review_resolution. No userexceptionapproved.
+7. Existing316carry/C03C06 intact;107notselected;070needs107positive. After106persist,107NO_GOandscopedrepairaddendum.
+   Preserve108–351;do notrestartallsource/PDFreads. Inspectnecessaryoriginalevidenceandonlygenuineuncoveredranges.
 
 ## Recovery Rule
 
