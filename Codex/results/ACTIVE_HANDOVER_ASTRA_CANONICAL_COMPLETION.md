@@ -30,13 +30,15 @@
 | `Codex/results/PHASE_069_STEP_104_PUBLIC_PRIVATE_FEASIBILITY_RESULT.md` | Step104persisteda9bb128; boundedaccessfeasibilityPASS | exact4/parent/result/push/live/clean |
 | `Codex/results/PHASE_069_STEP_105_LAUNCH_INPUTS_RESULT.md` | Step105persisted48be9e5; launchinputroutingPASS | exact5/parent/result/push/live/clean |
 | `Codex/results/PHASE_069_STEP_106_COVERAGE_GATE_RESULT.md` | Step106negativeassessment persisted0bcf2b6; NOT_ACHIEVED | exact5/parent/result/push/live/clean;3requiredgaps |
+| `Codex/results/PHASE_069_STEP_107_LAUNCH_GATE_RESULT.md` | Step107persisted181eaf7;NO_GO/NOT_ACHIEVED | exact6/parent/result/push/live/clean80a3b8 |
+| `Codex/plans/2026-09-09-phase069-coverage-repair-addendum.md` | currentdetailedrepair107.R1–R4 | original069gateunchanged; integer108–351reserved |
 | `Codex/results/ASTRA_CANONICAL_COMPLETION_EXECUTION_LEDGER.md` | current compact index | compare exact next Step |
 
 ## Current State
 
 Branch: `codex/anode-fit-v1025_2-canonical-completion`.
-Last verified pushed HEAD: `0bcf2b6935a2040cf82c693d330fbded6abcff37`.
-Last persisted execution unit:106negativeassessment, NOT_ACHIEVED. Current:**107**, NO_GO contentverified; finalseals/persistence pending.
+Last verified pushed HEAD: `181eaf78afc1bf62b779aa09a2891ff762db1f8d`.
+Last persisted execution unit:107NO_GO/NOT_ACHIEVED. Current:**107.R1**, repairplanactivation/inputfreeze,review/persistencepending.
 98parent2823501,exact7A5/M2,modes100644,resultincluded,push/live/clean;protectedrefsunchanged.
 All13fork predicates PASS anddualstrictchecks/independentreview0/0/0;notmonograph/graphite/PDFcompletion.
 98validation blob0317468ba71094430e3beb698df6830fce72c8ce,
@@ -47,11 +49,12 @@ Candidate51executed49PASS2historicalhashFAIL andoriginaldata/material/source/PDF
 
 ## Exact Next Action
 
-1. Aftercompaction fullreadmaster/current069detailedplan/previous106result1–858,then107WIP/controls.
-2. Step1060bcf2b6,parent48be9e5,exact5A3M2/result/push/live/clean directlyverified248ecbexit0.
-3. Step10716inputidentities frozen c64086; alltenpredicateassessment candidateNO_GO/NOT_ACHIEVED.
-   Three requiredgaps: vendoractualread, wholehistoryhunkunion, nativeattestationsemanticqualification/PDFsourcecorrespondence.
-4. Preserve source/history/spec roles; rootownsallrepo/Gitwrites. Finalreview/dualchecks/exact6A4M2persistence before repair.
+1. Aftercompaction fullreadmaster/currentrepairaddendum/previous107result1–163,thenR1WIP/controls.
+   Readoriginal069detailedfororiginaltenpredicatecontract; no summary-onlyrecovery.
+2. Step107181eaf7,parent0bcf2b6,exact6A4M2/result/push/live/clean directlyverified80a3b8exit0.
+3. R1plan savedbeforework;85inputidentityfreeze01881c. No newsourcehumanreadclaimed.
+   Threegapsremain: vendoractualread, wholehistoryhunkunion, nativequalification/PDFsourcecorrespondence.
+4. Preserve Csource/Bhistory/Aspec roles; rootsolewrites. R1exact5persistence precedesR2parallelreadonlylanes.
 5. Existing32requirements18literature18claims316carry655routes unchanged;root2scopeoverrides precede23masterdeltas.
 6. C860labels areunverifiedmachinecandidatesonly; certifiedcountnull;29PDFsourcecandidate-only. No userexceptionapproved.
 7. NO_GO requiresnewscopedrepairaddendum, not070execution. Preserve108–351 andqualifiedpriorreads;
