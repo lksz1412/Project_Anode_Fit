@@ -24,9 +24,9 @@ $files | ForEach-Object {
 
 - **모집단 정의**: 파일 단위 · 확장자 `.md .tex .txt .log .json .py` · `Claude/**` 재귀 + 루트 `CLAUDE.md` 1본 = 2,651행. 경로 표기는 `Claude/` 상대(루트 파일만 `CLAUDE.md`). png·pdf·html·npz·aux·csv 등 확장자 밖 파일은 모집단 밖(§5·§8 에 존재·바이트만). 본 Step 산출 3본(OUT-INV·TSV·work_log)은 TSV 생성 뒤 작성되어 TSV 에 없다.
 - **줄수 정의**: `(Get-Content -Path).Count` = 개행 분리 행 수(마지막 개행 뒤 빈 문자열은 계수하지 않음). Read 도구 행 번호(R1~R7·brief·마스터 플랜이 적은 수치)는 파일이 개행으로 끝나면 마지막 빈 행을 1행 더 표시하므로 **TSV 값 = 그 표기 − 1** 인 경우가 대부분이다(확정 근거: `CLAUDE.md` 88 ↔ R3 89 · `docs/INDEX.md` 196 ↔ 197 · `INDEX_v25.md` 138 ↔ 139 — 세 파일 모두 trailing CRLF 개행 실측 True, work_log §2). 본 문건의 모든 줄수는 TSV 값이며 타 출처 수치는 §3 에서 병기·차이 기록.
-- **마스터 플랜 행 번호 기준**(iter_6 AUD-R5-09): §0~§9 의 `Lnnn` 인용 = **v5.2(812행 · TSV 스냅샷) 기준** · §10.4 이후(iter_5~) 저작분 = 인용 시점 현행 판 기준 · v5.4 각주 추기(현행 L162–163)로 인용 구간(v5.2 L162~L632)은 현행에서 **+2**(그 이후 Correction History 추기는 인용 구간 뒤라 무영향) · 절 이름을 1차 근거로 삼고 행 번호는 보조.
+- **마스터 플랜 행 번호 기준**(iter_6 AUD-R5-09 · iter_7 AUD-R6-09 보정): §0~§9 **및 §10.1~§10.3(iter_2 저작)** 의 `Lnnn` 인용 = **v5.2(812행 · TSV 스냅샷) 기준** · §10.4 이후(iter_5~) 저작분 = 인용 시점 현행 판 기준 · v5.4 각주 추기(현행 L162–163)로 인용 구간(v5.2 L162~L632)은 현행에서 **+2**(그 이후 Correction History 추기는 인용 구간 뒤라 무영향) · 절 이름을 1차 근거로 삼고 행 번호는 보조. **OUT-INV 자기 행 번호 인용**(§10.x 표의 "§0 L28" 류)은 iter_7 이후 행 번호 대신 **bullet 이름**(「열 어휘」·「버전 귀속 규칙」·「마스터 플랜 행 번호 기준」)으로 적는다(AUD-R6-01 — §0 삽입으로 번호가 밀린다).
 - **4-tier 규약**: 확정(path:line 첨부) / 근거 미발견 / 추정 / 미검증. `[sub 판단]` = 본 작업 sub 의 판단(사용자·master 결정 아님).
-- **열 어휘**: 문서 종류 ∈ {마스터플랜 / 세부 계획서 / 인계 / 감사 / 클로징 / INDEX / ledger / Result / 조사 / 서지 원장 / 원문 tex / 시드(판독) / 통제(본 arc) / 기타} — 어휘 밖 세부는 괄호. **매핑 규칙**(파일명 패턴 → 종류, `[sub 판단]`): `HANDOVER*`→인계 · `INDEX*`→INDEX · `*REFERENCE_LEDGER*`→서지 원장(`REFLEDGER_DRAFT`→서지 원장(초안)) · `*LEDGER*`/`STEP_LOG_*`/`*CHANGE_LOG*`→ledger · `*RESULT*`→Result · `MERGE_READINESS*`→감사(머지 판정) · `*AUDIT*`/`*REVIEW*`/`*TRIAGE*`/`*INSPECT*`→감사 · `CLOSING*`→클로징 · `plans/`·`PLAN_*`→마스터플랜(파일명에 `master`/`MASTER`)·세부 계획서 · `.tex`→원문 tex · `results/handoffs/`→시드(판독)·통제(본 arc) · `DATA_ADDENDUM`→기타(데이터 정정 addendum) · `DOC_EDIT_REPORT`/`T13_T14`→Result(집행 보고) · `CASCADE_TODO`→기타(지시서) · `ARCHIVE_NOTE`→기타(폴더 지위) · `TOUCHUP_NOTE`→기타(검증 기록) · `.py`/`.log`/`.json`→기타(코드/로그/데이터) · 그 밖의 `.md`→조사. **iter_4 추가**(AUD-R3-04): `COMPARISON*`/`*FIXLIST*`/`*SWEEP_LIST*`→감사 · `*CHARTER*`→기타(규약 charter) · `FITTING_GUIDE`→기타(가이드 — 규약 기록). **iter_5 추가**(AUD-R4-11·15): `AUD_*`→감사(선순위) · `V1010_*_REPORT`→Result(점검 보고) · `CHERRYPICK*`→Result(결정 기록) · `AUTHOR_BRIEF`→기타(경쟁 저작 brief) · `RB_AL_MASTER`→ledger(통합 Assumption Ledger — 본문 판단 · glob `*MASTER*` 오매치) · `.txt`→기타(텍스트)(단 `jcp_extract.txt`→조사(원문 추출) · **폴더 규칙 `results/handoffs/`→시드 가 확장자 규칙에 우선** — `go_1g_check*.txt`→시드(판독), iter_6 AUD-R5-07) · 루트 `CLAUDE.md`→통제(프로젝트 지침) · handoffs `.json`→시드(판독·json) · `CODE_w_check`→조사(코드 실행 검증 기록) · `*INSPECT*` 는 기본 규칙에 이미 있어 iter_4 구에서 제거 · 글로브 의미론 = `*x*` 부분 일치 / `x*` 접두(`policy_check` 정규식과 동일).
+- **열 어휘**: 문서 종류 ∈ {마스터플랜 / 세부 계획서 / 인계 / 감사 / 클로징 / INDEX / ledger / Result / 조사 / 서지 원장 / 원문 tex / 시드(판독) / 통제(본 arc) / 기타} — 어휘 밖 세부는 괄호. **매핑 규칙**(파일명 패턴 → 종류, `[sub 판단]`): `HANDOVER*`→인계 · `INDEX*`→INDEX · `*REFERENCE_LEDGER*`→서지 원장(`REFLEDGER_DRAFT`→서지 원장(초안)) · `*LEDGER*`/`STEP_LOG_*`/`*CHANGE_LOG*`→ledger · `*RESULT*`→Result · `MERGE_READINESS*`→감사(머지 판정) · `*AUDIT*`/`*REVIEW*`/`*TRIAGE*`/`*INSPECT*`→감사 · `CLOSING*`→클로징 · `plans/`·`PLAN_*`→마스터플랜(파일명에 `master`/`MASTER`)·세부 계획서 · `.tex`→원문 tex · `results/handoffs/`→시드(판독)·통제(본 arc) · `DATA_ADDENDUM`→기타(데이터 정정 addendum) · `DOC_EDIT_REPORT`/`T13_T14`→Result(집행 보고) · `CASCADE_TODO`→기타(지시서) · `ARCHIVE_NOTE`→기타(폴더 지위) · `TOUCHUP_NOTE`→기타(검증 기록) · `.py`/`.log`/`.json`→기타(코드/로그/데이터) · 그 밖의 `.md`→조사. **iter_4 추가**(AUD-R3-04): `COMPARISON*`/`*FIXLIST*`/`*SWEEP_LIST*`→감사 · `*CHARTER*`→기타(규약 charter) · `FITTING_GUIDE`→기타(가이드 — 규약 기록). **iter_5 추가**(AUD-R4-11·15): `AUD_*`→감사(선순위) · `V1010_*_REPORT`→Result(점검 보고) · `CHERRYPICK*`→Result(결정 기록) · `AUTHOR_BRIEF`→기타(경쟁 저작 brief) · `RB_AL_MASTER`→ledger(통합 Assumption Ledger — 본문 판단 · glob `*MASTER*` 오매치) · `.txt`→기타(텍스트)(단 `jcp_extract.txt`→조사(원문 추출) · **폴더 규칙 `results/handoffs/`→시드 가 확장자 규칙에 우선** — `go_1g_check*.txt`→시드(판독), iter_6 AUD-R5-07) · 루트 `CLAUDE.md`→통제(프로젝트 지침) · handoffs `.json`→시드(판독·json) · `CODE_w_check`→조사(코드 실행 검증 기록) · `KNOWN_DEFECTS`→감사(결함 등록부 — iter_7 AUD-R6-02 · 본문 판단: v8 결함 등록·적용 결정) · `*INSPECT*` 는 기본 규칙에 이미 있어 iter_4 구에서 제거 · 글로브 의미론 = `*x*` 부분 일치 / `x*` 접두(`policy_check` 정규식과 동일).
 - **버전 귀속 규칙**(`[sub 판단]`): `docs/v1.0.NN(.M)/`→v1.0.NN(.M) · `docs/v1.0.26A/B`→v1.0.26 · `Claude/old/**`→구트랙 RB(단 `old/_archive/graphite_ica_ch1_{Fable,Opus}_vN.tex` 5본 = Fable v2~v10 세부 vN · `old/Ch1_v7~v10/`·`old/Ch2_v3~v4/` tex 6본 = Fable v2~v10 세부 v7~v10·Ch2 v3~v4 — iter_4 AUD-R3-04) · `results/comp_v24/`→v1.0.24 · `results/comp_v26_data/`→v1.0.26 · `V10NN_*`→v1.0.NN · `results/PHASE_FB*`·`results/V1024_FEEDBACK_*`→v1.0.24.1(`docs/INDEX.md`:21 v1.0.24.1 리비전 이력 — iter_2 AUD-10) · `results/PHASE_V0~V3*`→v1.0.24(추정) · `plans/` = 파일명 `v10NN` 우선, 없으면 날짜(2026-06-10~06-30 = Fable v2~v10 세부 vN/날짜, 06-09 이전 = "v2 이전 — 추정", **07-01 이후 무토큰 = `docs/INDEX.md` 계보 대응: `fable-reaudit*`→v1.0.12(:157 · 확정급) · `anodefit-*` 07-18→v1.0.23(추정) — iter_5 AUD-R4-10**) · `results/process/PHASE_*` 등 무버전 파일 = 계획서명·날짜 대응 추정(표에 "추정" 명기 — iter_5 AUD-R4-09 로 radius 6·rework 2·2track 2(#54·#111) = **10행** 부기(iter_6 AUD-R5-04 계수 정정 — #54 는 토큰 `ch1v9`+`2track` 계획서이나 미정독이라 추정 부기; 형제 #52·#53 은 토큰 `ch1v7/v8` 로 확정급 · 규칙: 토큰이 있어도 대응 관계를 추론한 행은 추정 부기); 단 `docs/INDEX.md` 계보 절이 직접 귀속시키는 `FABLE_REAUDIT_*`→v1.0.12(:157)는 확정급) · `results/handoffs/`·본 arc 계획서→본 arc · INDEX 2본·`Fable_점검`·`CLAUDE.md`·`jcp_extract.txt`→횡단. "추정" 이 붙은 귀속은 실물 정독 없이 이름·날짜로 추론한 것이며 Step 2 정독에서 확정 대상이다.
 - **판독 정독(R#) 열**: R1~R7 각 「Read Coverage」 절(work_log Read Coverage 표의 행 범위)에서만 채웠다. 표기 = `R#`(배정 전문) · `R#(추가)`/`R#(보조)`/`R#(보강)`(배정 밖 전문) · `R#(부분)`(행 범위 부분) · `R#(diff)`(diff 출력만) · `R#(grep)`/`R#(glob)`(매치 행·존재 확인만) · `—`(미정독). R3 의 `_sections/*.tex` 전건 grep 과 R7 의 `_sections` 53본 + 마스터 3본 기계 스캔은 파일별 태그로 붙이지 않고 §7 말미에 일괄 기록했다. 경계(iter_2 AUD-15): **행 범위가 특정된 grep 만 파일별 `R#(grep)` 태그**, 카운트·키워드 grep 은 §7 말미 일괄.
 - **중복 처리 규칙**: 한 파일은 한 군에만 계수한다. 우선순위 = (vi) > (xv) > (i) > (ii) > (iii) > (iv) > (v) > (xii) > (x) > (xi) > (xvii) > (xvi) > (xviii) > (vii) > (viii) > (ix) > (xiii) > (xix). 다른 군 정의에도 걸리는 파일은 그 군 머리에 "→ (정본 군)" 으로 참조만 적는다. hash 가 같은 사본은 각각 별개 파일로 계수하되 비고에 고유본/사본을 표시한다(§4 규칙).
@@ -1725,7 +1725,7 @@ TSV 2,651 − 등재 740 = 미등재 **1,911 파일 · 603,958 줄**(iter_6 — 
 | 06 | 경미 | 인정 | Step 1 이력 "계획서 815행" → 816 |
 | 07 | 경미 | 인정 | 마스터 플랜 Correction History v5.4 행 라벨("— iter_3")을 시점별 이력 병기로 정정 · Assumptions 11 739/111,130 — v5.5 |
 | 08 | 경미 | 인정 | (ix-b) 정의·DQ-17 "16본" → 조사 카드 14 + 보조 기록 2 분해 · `CODE_w_check` 등재 · `DOCS_say` 계수 유지 사유 |
-| 09 | 경미 | 인정 | radius 6행·rework 2행·2track 2행(#54·#111 — iter_6 AUD-R5-04 계수 정정: 9 → 10) 귀속에 ", 추정" 부기 · §0 L29 규칙 문구 |
+| 09 | 경미 | 인정 | radius 6행·rework 2행·2track 2행(#54·#111 — iter_6 AUD-R5-04 계수 정정: 9 → 10) 귀속에 ", 추정" 부기 · §0 「버전 귀속 규칙」 문구 |
 | 10 | 경미 | 인정 | §0 L29 plans 절에 07-01 이후 무토큰 규칙(`fable-reaudit*`→v1.0.12 확정급 · `anodefit-*`→v1.0.23 추정) |
 | 11 | 경미 | 인정 | §0 L28 매핑 규칙 8종 추가(AUD_·V1010_*_REPORT·CHERRYPICK·AUTHOR_BRIEF·RB_AL_MASTER·.txt·CLAUDE.md·json) · `CHARTER*` → `*CHARTER*` · 글로브 의미론 명기 |
 | 12 | 제안 | 채택 | Step 1 이력 「변경·생성 파일」 목록·commit 갱신 |
@@ -1743,15 +1743,32 @@ TSV 2,651 − 등재 740 = 미등재 **1,911 파일 · 603,958 줄**(iter_6 — 
 | AUD-R5 | 심각도 | master 판정 | 반영 |
 |---|---|---|---|
 | 01 | **확정결함** | 인정 — (b) 정의("인용하는 md/tex 원문")가 기계 규칙(확장자 토큰)보다 넓었다 | `KNOWN_DEFECTS.md`(30줄 · `docs/INDEX.md`:187 stem 인용 ×2 · v8 결함 등록부) (iv-c) 행 22 등재 · 정책 문안에 (b-1) 확장자 토큰 / (b-2) stem 스윕 이원화 명기 · PC 에 (b-2) 절 신설 — master 독립 스윕(통제 문서 5본 × TSV stem)도 잔여 1 = 이 파일뿐 → 등재 후 0 |
-| 02 | 경미 | 인정 | PC 머리에 대상 5본 스냅샷(줄수·SHA256) 기록 · PC 재실행 = 통제 문서 최종 편집 뒤 마지막 단계(계획서 v5.6 → OUT-INV iter_6 → PC 순) · Step 1 이력 "295건" → PC 머리 값 참조 |
+| 02 | 경미 | 인정 | PC 머리에 대상 5본 스냅샷(줄수·SHA256) 기록 · PC 재실행 = 통제 문서 최종 편집 뒤 마지막 단계(계획서 v5.6 → OUT-INV iter_6 → PC 순) · Step 1 이력 "295건" → PC (b-1) 절 문서별 토큰 수 참조(합계는 PC 머리에 병기 — iter_7 AUD-R6-07) |
 | 03 | 경미 | 인정 | 머리·(i) 행 90 "현재 v5.4" → "현재 판 = Correction History 최신 행"(고정 라벨 제거 — 재발 차단) · Step 1 이력 arc 줄 v5.5·v5.6 · §3.1 주석 v5.6 시점 병기 |
-| 04 | 경미 | 인정 | 추정 부기 계수 9 → 10(#54 `2track` 계획서 포함) — §0 L29 · §10.6 행 09 · Step 1 이력 |
+| 04 | 경미 | 인정 | 추정 부기 계수 9 → 10(#54 `2track` 계획서 포함) — §0 「버전 귀속 규칙」 · §10.6 행 09 · Step 1 이력 |
 | 05 | 제안(경미 2표) | 채택(경미로 계수) | 토큰 종료 경계 `\b` → `(?![A-Za-z0-9_])` · 한글 인접 자기검증 출력 · 정본 문안 명기 |
 | 06 | 제안 | 채택 | PC 정규식 #7 을 iter_4 형(4 대안)으로 복원 · CODE_w_check 는 (b) 에서만 해소 · §10.6 행 01 추기 |
-| 07 | 제안 | 채택 | §0 L28: 폴더 규칙 `results/handoffs/`→시드 가 확장자 규칙에 우선(`go_1g_check*.txt`) |
+| 07 | 제안 | 채택 | §0 「열 어휘」 매핑 규칙: 폴더 규칙 `results/handoffs/`→시드 가 확장자 규칙에 우선(`go_1g_check*.txt`) |
 | 08 | 제안(경미 1표) | 채택 | Step 1 이력 근거 7 · L3 에 v5.5·v5.6 |
 | 09 | 제안 | 채택 | §0 「마스터 플랜 행 번호 기준」 1줄(v5.2 기준 · §10.4 이후 현행 기준 · 오프셋 +2) |
 | P1 | 약생존 | 부분 채택 | 마스터 플랜 Assumptions 11 스탬프 의미 명시("지정은 v5.4 도입 · 값은 최신 iter 시점") — v5.6 |
 
 **iter_6 후 최종 합계** = 740 파일 · 111,160 줄 · 미등재 1,911/603,958 · 정책 잔여 (a)(c) 0 · (b-1) 0 · (b-2) 0(`iter_3/policy_check.txt` iter_6 최종판 · 스냅샷 기록).
 
+### 10.8 iter_7(검수 라운드 6 반영 · 2026-09-11) — **확정결함 0 → Step 1 수렴 선언**(계획서 v5.7 사용자 예외: R6 단독 0) · 경미 5 · 제안 4
+
+검수 라운드 6 = Workflow(렌즈 2 병렬 → 발견 16 순차 × 반박 3인 → 통합; 동시 ≤3 · 한도 중단 1회 후 캐시 재개) · `iter_6/audit_log_r6.md`. **수렴 규칙 명시(AUD-R6-08 표면화에 대한 master 답)**: 브리핑(audit_checklist·r6 지침)의 "연속 2R 확정결함 0" 은 통상 규칙이고, 사용자가 2026-09-11 "6라운드 문제 없으면 그냥 다음으로" 로 Step 1 에 한해 R6 단독 0 을 수렴으로 결정했다(계획서 v5.7 Interfaces · v5.9 CH). 이 규칙으로 **Step 1 수렴 성립**. 이후 Step 은 v5.8 읽기 범위 실행 규칙(1R 전문 · 2R+ 발췌 · 반박자 확정 후보만 3인)으로 돈다.
+
+| AUD-R6 | 심각도 | master 판정 | 반영 |
+|---|---|---|---|
+| 01 | 경미 | 인정(regression) | §10.6 행 09 · §10.7 행 04·07 의 "§0 L28/L29" → bullet 이름 인용 · §0 「마스터 플랜 행 번호 기준」에 자기 행 번호 인용 규칙 1구 |
+| 02 | 경미 | 인정 | §0 「열 어휘」 매핑에 `KNOWN_DEFECTS`→감사(결함 등록부) 추가(본문 판단 근거 명기) |
+| 03 | 경미 | 인정(계획서) | 마스터 플랜 v5.9 재배열 블록: 혼합 Step 20·23 = Ch1 몫 우선 경로 + Ch2/Ch3 항 이연 Addendum |
+| 04 | 경미 | 인정(계획서) | v5.9: Assumptions 9 · §2.4 모델 배정 문안 = v5.6 경계로 동기화 |
+| 05 | 경미 | 인정(계획서) | v5.9: 「기록」·OUT-HANDOVER 행·§2.8 에 인계판 진행 중 판·갱신 주기 명시 |
+| 06 | 제안(경미 2표) | 부분 채택 | (b-2) stem 정규식(`[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9.-]+)+`)은 밑줄 없는 stem(TSV md/tex 고유 stem 1,261 중 232)을 처음부터 보지 않는다 — **한계 명기**. R6 렌즈·반박·통합의 광역 스윕(소문자·하이픈·경로 조각 포함)에서 현행 통제 문서 5본 잔여 0 확인 → 정규식은 유지, 통제 문서가 바뀌면(v1.0.27 문건·INDEX 갱신) 광역 스윕을 함께 돌린다는 조건을 PC 이력에 기록 |
+| 07 | 제안 | 채택 | Step 1 이력 근거 3 의 "PC 머리 값" → "(b-1) 절 문서별 토큰 수" · PC 머리에 토큰 합계 병기 |
+| 08 | 제안(경미 2표) | 인정 | 수렴 규칙 분기 = 본 절 서두에서 master 가 명시(사용자 예외 적용) · PC 는 계획서 v5.9 최종 저장 뒤 재실행해 스냅샷 재기록 · 인계판·Step 1 이력의 "R6·R7" 잔존 정정 |
+| 09 | 제안 | 채택(regression) | §0 「마스터 플랜 행 번호 기준」 범위에 §10.1~§10.3 포함(v5.2 기준) |
+
+**Step 1 최종 상태** = OUT-INV 740 파일 · 111,160 줄 · 미등재 1,911/603,958 · 정책 잔여 (a)(c)·(b-1)·(b-2) 0(PC iter_7 판 · 스냅샷 = 계획서 v5.9) · 검수 R1~R6(확정결함 1·1·0·1·1·0) · 수렴 = R6(사용자 예외). 잔여 미검증·추정 = §8.2·DQ-2(Step 2·1.2 에서 확정).
