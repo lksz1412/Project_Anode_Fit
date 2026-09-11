@@ -1,0 +1,93 @@
+# PHASE_1.1_V1027_INV_RESULT — Phase 1.1 인벤토리·정독 배정 Result(12항목)
+
+> arc v1.0.27 · Phase 1.1(Steps 1–2) · 2026-09-11 · master Fable 5.1 · 동반 json = 같은 이름 `.json`(기계 판독 부본).
+
+## 1. Summary
+Phase 1.1 인벤토리·정독 배정 완료. Step 1 OUT-INV(740 파일·111,160줄 · 검수 R1~R6 · 수렴 = R6 확정결함 0 + 사용자 예외) · Step 2 정독 배정표(740행 · 게이트 1.1 전건 O). 통제 문서 정정 v5.3~v5.9(사실 정정 + 사용자 재결정 편입: 흑연 우선 재배열·모델 경계·발췌독 규칙·R6 단독 수렴 예외·인계판 갱신 주기).
+
+## 2. Step Range
+1–2 (cumulative · Step 1 = 인벤토리 OUT-INV · Step 2 = 정독 배정표)
+
+## 3. Inputs
+- Claude/plans/2026-09-02-v2-master-plan.md (v5.2 → v5.9)
+- Claude/docs/INDEX.md
+- Claude/plans/INDEX.md
+- Claude/docs/v1.0.25.1/results/INDEX_v25.md
+- handoffs/2026-09-02-v2-master-plan/wf/R1~R7 Read Coverage 절
+- wf/go_1g_check_2026-09-03.txt
+- docs/v1.0.25.1 마스터 tex 3본
+- git snapshot untracked 21
+- inventory_raw.tsv (2,651행 · 09-03 09:34:39)
+
+## 4. Files Created
+- Claude/results/V1027_HISTORY_INVENTORY.md (OUT-INV · 1,774행)
+- Claude/results/V1027_READING_ASSIGNMENT.md (879줄 · 740행)
+- Claude/results/handoffs/v1027-phase-1.1-inventory/** (brief · audit_checklist r1~r4 · iter_1 TSV/work_log/audit_log/gen_outinv.ps1 · iter_2~6 audit_log · iter_3 policy_check)
+- Claude/results/handoffs/v1027-phase-1.1-reading/{brief.md, iter_1/{reading_assignment.tsv, work_log.md}}
+- Claude/results/Step 1 — 인벤토리 파일 생성(OUT-INV).md
+- Claude/results/Step 2 — 정독 배정표.md
+- Claude/docs/HANDOVER_v1.0.27.md (진행 중 판)
+- Claude/results/PHASE_1.1_V1027_INV_RESULT.md + .json
+- Claude/results/PHASE_1-7_V1027_EXECUTION_LEDGER.md
+
+## 5. Files Updated
+- Claude/plans/2026-09-02-v2-master-plan.md v5.2→v5.9 (Correction History 7행 · 골격·Phase·Step·게이트 삭제 없음)
+- memory: feedback-parallel-cap.md
+
+## 6. Read Coverage(본 arc Read 만 계수 · 판독 R# 는 참조)
+
+| 파일 | 행 범위 | 정독 주체 |
+|---|---|---|
+| Claude/plans/2026-09-02-v2-master-plan.md | 1–813 전문(v5.2 · Phase 1.1 착수 재독) + 각 패치 정정 지점 | master |
+| Claude/results/V1027_HISTORY_INVENTORY.md | 작업 sub iter_1 전문 6청크 · 검수 R1 6청크 · R2 8창 · R3 역순 7창 · R4 3렌즈 전창 · R5 2렌즈 전창 · R6 2렌즈 전창 · Step 2 sub 전문 · master 발췌 + 스크립트 전 행 파싱 | 작업 sub·검수 sub(Fable)·Workflow 렌즈·master |
+| brief I-1~I-8(INDEX 3본 전문 · R1~R7 Read Coverage 절 · go_1g_check · comp_v26 README L20–35 · 마스터 tex 3본) | iter_1/work_log.md §6 표 | 작업 sub |
+| 검수 근거 원천(docs/INDEX.md 지정 행 · preamble 3본 · V1010_INSPECT_draft_C3 · RB_AL_MASTER · EXECUTION_LEDGER_v2 · CODE_w_check · KNOWN_DEFECTS 등) | 각 audit_log Read Coverage 표 | 검수 sub·반박자 |
+| 미검독(명시) | 등재 파일 본문 전부(존재·줄수·hash 만) · png/pdf/html · Codex/ 0회 | — |
+
+## 7. Execution Evidence
+- inventory_raw.tsv 2,651행(SHA E1A39374… 불변)
+- policy_check.txt iter_7: (a)(c) 0 · (b-1) 0 · (b-2) 0 · 스냅샷 = 계획서 v5.9(823행 6EE20974AF53FD91)
+- 검수 R1~R6 audit_log 6본(확정결함 1·1·0·1·1·0)
+- master 재대조 스크립트 출력(Step 2 이력 행 3)
+- commit chain 72a0477→cbc1d7c→731a94e→6bf32c9→b3a57bd→f3600f5→baccb49→81ec4e4→96d884b→fce276c→e7faaaa→fa63d40→75cee94→5ac7122→100ffdb→c44e04d
+
+## 8. Validation · Gate · Confirmed
+
+| 게이트 1.1 | 판정 |
+|---|---|
+| Test-Path 100% | O 740/740 |
+| 줄수 빈 셀 0 | O |
+| brief §3-C 차이 열거·정본 | O (plans 93/10,384 · HANDOVER 25/1,612·28/1,915 · PLAN_* 15/645 · CLAUDE.md 88) |
+| 빌드 포함/미포함 60/60 | O (56/4 — v5.3 정정) |
+| untracked Claude 8 지위 · Codex 13 무접근 | O |
+| 배정표 차집합 0 | O |
+| 판독 커버리지 ⊆ | O 131/131 |
+| 정책 잔여 0 | O (a)(c)·(b-1)·(b-2) |
+
+- 검수: Step 1 = R1 1 → R2 1 → R3 0 → R4 1 → R5 1 → R6 0 · 수렴 = R6 단독 0(사용자 예외 2026-09-11 · 계획서 v5.7) · Step 2 = A3 자체검수 + master 재대조(검수 sub 없음)
+- 확정 정정: 빌드 포함 58/2 → 56/4 (preamble 2본 orphan) · HANDOVER 28(old/ 제외) = 오기 · plans +1 = 계획서 811→812 · CLAUDE.md 90 = 오기(88) · HANDOVER_v1.0.10·v1.0.12 = 부재 · graphite_ica_ch2_v5.tex = 근거 미발견(1.2 Step 3 확인)
+
+## 9. Non-Changes
+- docs/v1.0.24*·v1.0.25*·v1.0.26A/B 무수정
+- Codex/ 0회 접근
+- 판독 산출 R1~R7 무수정
+- 작업 sub work_log(iter_1) 보존
+- untracked 8 현상 유지(DQ-7·8 사용자 대기)
+
+## 10. Open Issues
+- DQ-2 추정 귀속 → 1.2 Step 3·4 원천 정독에서 확정
+- DQ-12 common_preamble_v1024.tex:2 헤더 파일명 불일치 → 2.1 Step 15 / 2.5 GAP 후보
+- DQ-16 접두 단위 후보 풀 ≈82본 → 1.2 Step 3 토픽 한정 열람 후보
+- DQ-17 CLAUDE.md P1 인용 경로 스테일 → DR-13 OUT-CLAUDEMD
+- (b-2) stem 정규식 한계(밑줄 없는 stem 232) — 통제 문서 갱신 시 광역 스윕 동반
+- graphite_ica_ch2_v5.tex 실물 부재 — Ch2 트랙 v5 원문 소재 근거 미발견
+
+## 11. Decision Queue(사용자 · nonblocking)
+
+| ID | 항목 | 기본값 |
+|---|---|---|
+| DQ-7 | untracked png 5(docs/v1.0.17~18.2)의 git 처리(추적/무시/삭제) | 현상 유지 · nonblocking |
+| DQ-8 | results/process/C3_pdf_render/ 50장 15.7 MiB 보존/삭제 | 현상 유지 · nonblocking |
+
+## 12. Next
+Step 3 — Phase 1.2 RB→v1.0.19 보강 정독(배정표 1.2 Step 3 303본 · ① 전문/② 토픽 한정 · 흑연 우선 · 모델 = Fable 정독·판정 / 기계 산출 Sonnet) — 착수 시 마스터 플랜 재독 + Phase 1.2 절 재독 · 검수 = 1R 전문 · 2R+ 발췌(v5.8)

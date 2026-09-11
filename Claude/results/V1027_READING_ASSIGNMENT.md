@@ -1,0 +1,878 @@
+# V1027_READING_ASSIGNMENT — Phase 1.1 Step 2 정독 배정표
+
+> 산출 sub: Sonnet 4.6 · 기계 산출 등급 A3 · 2026-09-11
+> 입력 정본: OUT-INV iter_7(검수 R6 수렴본) · 740 파일 · 111,160줄
+> 통제: `Claude/plans/2026-09-02-v2-master-plan.md` v5.7 Phase 1.1 Step 2 · DR-7
+
+## §0 머리글
+
+**목적**: OUT-INV 740 파일 전건에 정독 등급·청크 경계·배정 Step 을 부여해 Phase 1.2 이후의 정독 작업 단위를 확정한다.
+
+**입력**: `V1027_HISTORY_INVENTORY.md` (OUT-INV iter_7 · 740 파일 · 111,160줄) · `2026-09-02-v2-master-plan.md` v5.7 § Phase 1.1 Step 2 · DR-7
+
+### §0.1 등급 정의
+
+| 등급 | 정의 |
+|---|---|
+| ①전문 | head→tail 전문 정독 + 검수 sub 근거 행 전건 대조 |
+| ②토픽 한정 | 구조 추출(Phase 표·게이트·결정·Correction History) → 근거 절 원천 정독 → 검수 대조 |
+| 원문 tex(절 한정) | 1.4 Step 11 (i) 해당 절만 head→tail (절 범위는 Step 11 착수 시 Grep 확정) |
+| 현행 tex(2.x) | 챕터 1 정독 대상 아님 — 2.1 Step 14(마스터 3+지원·orphan 4) · 2.2 Step 17~19(53본 청크 19) |
+| 정독 X | 사본 · 시드(판독 산출) · 통제(본 arc 계획서) · 코드/데이터/로그 |
+
+### §0.2 좌표 매핑표 (OUT-INV 버전 귀속 → 계보 좌표)
+
+| 좌표 | 버전 귀속 원문 예 |
+|---|---|
+| `00 구트랙 RB` | 구트랙 RB |
+| `01 6-07 Ch2~5 야간` | 6-07 Ch2~5 야간 |
+| `02 6-10 TBR` | 6-10 TBR |
+| `03 Fable v2` | Fable v2 |
+| `04 v3` | v3 |
+| `05 Opus v4` | Opus v4 |
+| `06 v5` | v5 |
+| `07 v6` | v6 |
+| `08 v7` | v7 |
+| `09 v8` | v8 |
+| `10 v9` | v9 |
+| `11 v10` | v10 |
+| `12 Ch2 v3~v5` | Ch2 v3~v5, Ch2 v3 |
+| `13 v1.0.10` | v1.0.10 |
+| `14 v1.0.11` | v1.0.11 |
+| `15 v1.0.12` | v1.0.12 |
+| `16 v1.0.13` | v1.0.13 |
+| `17 v1.0.14` | v1.0.14 |
+| `18 v1.0.15` | v1.0.15 |
+| `19 v1.0.16` | v1.0.16 |
+| `20 v1.0.17` | v1.0.17 |
+| `21 v1.0.18.1/.2` | v1.0.18.1, v1.0.18.2 |
+| `22 v1.0.19` | v1.0.19 |
+| `23 v1.0.20` | v1.0.20 |
+| `24 v1.0.21` | v1.0.21 |
+| `25 v1.0.22` | v1.0.22 |
+| `26 v1.0.23` | v1.0.23 |
+| `27 v1.0.24` | v1.0.24 |
+| `28 v1.0.24.1` | v1.0.24.1 |
+| `29 v1.0.25` | v1.0.25 |
+| `30 v1.0.25.1` | v1.0.25.1 |
+| `31 v1.0.26` | v1.0.26, v1.0.26 A, v1.0.26 B |
+| `90 횡단` | 횡단, — (INDEX·Fable 감사·jcp·CLAUDE.md) |
+| `95 시드(판독)` | 시드(판독) — (xv) 24본 |
+| `99 통제(본 arc)` | 통제(본 arc) — 본 arc 계획서 (i) 행 90 |
+
+### §0.3 정독 순서 규칙
+
+- `results/comp_v24/` 원본 → `docs/v1.0.25.1/results/V1025_DATA_ADDENDUM.md`(충돌 시 addendum 우선 — `HANDOVER_v25.md`:150–152).
+- 구트랙(좌표 00·`old/`) 파일은 **경로 병기 + 동명이물 경고**(구트랙 v2~v5 ≠ Fable v2~v5).
+- hash 사본은 고유본 1본만 정독(사본 행에 고유본 path 명시).
+- LCO/Si 배정(2.2 Step 18·19 · 2.3 Step 22 · 3.3 Step 43 · 4.6~4.8): **이연(Ch1 PDF 후)** 표지 — 배정은 그대로, 실행 시점만 뒤.
+
+### §0.4 청크 규칙
+
+- 줄수 < 800 → 통째 1청크 `1–N`.
+- 줄수 ≥ 800 → ≤~500행 창(최대 ~700)으로 분할, 행 번호로 명시.
+- 원문 tex(절 한정) · 정독 X 행: `—` + 사유.
+
+## §1 배정표 (740행)
+
+| # | 좌표 | path | 줄수 | 군 | 문서 종류 | 정독 등급 | 정독 주체 | 청크 경계 | 배정 Step | 재참조 | 판독 참조(R#) | 검수 대조 | 비고 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-master-roadmap.md` | 780 | (i-b) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–780 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: 구트랙(old/) · glob `*master*` 매치(L305 ①군) |
+| 2 | 00 구트랙 RB | `Claude/old/v2/plans/MASTER_ROADMAP_v2.md` | 447 | (i-b) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–447 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: 구트랙(old/v2 = 구트랙 "Chapter 1 Rebuild v2" — Fable v2 와 동명이물, `old/v2/results/EXECU |
+| 3 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-from-scratch-plan-SUPERSEDED.md` | 44 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) · 파일명 SUPERSEDED |
+| 4 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-from-scratch-plan.md` | 436 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–436 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 5 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e0-charter-plan.md` | 172 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–172 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 6 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e1-spine-plan.md` | 102 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–102 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 7 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-chapter1-rebuild-phase-e2-intro-notation-plan.md` | 117 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–117 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 8 | 00 구트랙 RB | `Claude/old/plans/2026-05-27-anode-fit-situational-assessment-plan.md` | 293 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–293 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 9 | 00 구트랙 RB | `Claude/old/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e3-effective-transition-plan.md` | 107 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–107 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 10 | 00 구트랙 RB | `Claude/old/plans/2026-05-28-anode-fit-chapter1-rebuild-phase-e4-charge-balance-plan.md` | 161 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–161 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/) |
+| 11 | 00 구트랙 RB | `Claude/old/v2/plans/PHASE_0_v2_FOUNDATION_PLAN.md` | 101 | (i-b) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–101 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/v2 — 동명이물 경고는 행 10 비고) |
+| 12 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/HANDOVER_RB_2026-05-31.md` | 90 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–90 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: 구트랙(별도 표시) |
+| 13 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/HANDOVER_RB_2026-06-02.md` | 129 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–129 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: 구트랙(별도 표시) |
+| 14 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/HANDOVER_RB_2026-06-02b.md` | 84 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–84 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: 구트랙(별도 표시) |
+| 15 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_canonical_vs_CODEX_v2.md` | 93 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–93 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) 마스터 플랜 §2.8 L184 인용 `COMPARISON_*` · (a) (vii) `REVIEW_LEDGER_*` 형제 · 동명이물 경 |
+| 16 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v4_vs_CODEX_REBUILT.md` | 123 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–123 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b)(a) — 동명이물 경고 |
+| 17 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_1_vs_CODEX_v4.md` | 124 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–124 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b)(a) — 동명이물 경고 |
+| 18 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_2_vs_CODEX_v5.md` | 74 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–74 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b)(a) — 동명이물 경고 |
+| 19 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_v5_vs_CODEX_v3.md` | 77 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–77 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b)(a) — 동명이물 경고 |
+| 20 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/COMPARISON_CLAUDE_vs_CODEX_CH1.md` | 149 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–149 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b)(a) — 동명이물 경고 |
+| 21 | 00 구트랙 RB | `Claude/old/results/PROJECT_AUDIT_REPORT.md` | 333 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–333 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 구트랙(old/) — (vii)·(viii) old/ 등재 정책과 일관 |
+| 22 | 00 구트랙 RB | `Claude/old/results/PROJECT_AUDIT_REPORT_v0.2.md` | 255 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–255 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 구트랙(old/) |
+| 23 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/ASSUMPTION_LEDGER_v3.md` | 61 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–61 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 24 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_DIAG_EXECUTION_LEDGER.md` | 24 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–24 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 25 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_DIAG_SALVAGE_LEDGER.md` | 84 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–84 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 26 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_AL_MASTER.md` | 139 | (vii-b) | ledger(통합 Assumption Ledger·Notation Bible) | ②토픽 한정 | 작업 sub(직렬) | 1–139 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (i-b) 에서 이동(AUD-R2-03) · 실물 헤더 L1 · glob `*MASTER*` 오매치 · 1.3 구트랙 원천 · `:3` 입력 = |
+| 27 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_EXECUTION_LEDGER.md` | 68 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–68 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 28 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH1.md` | 181 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–181 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 29 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH1_REWORK.md` | 60 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–60 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 30 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH2.md` | 46 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 31 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH2_FINE_REVIEW.md` | 41 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 32 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH3.md` | 43 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 33 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH3_FINE_REVIEW.md` | 40 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 34 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH4.md` | 46 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 35 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH4_FINE_REVIEW.md` | 35 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 36 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH5.md` | 42 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–42 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 37 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH5_FINE_REVIEW.md` | 33 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–33 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 38 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH6.md` | 43 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 39 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CH6_DISSOLUTION.md` | 30 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–30 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 40 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_CODEX_REVIEW_FIX_2026-06-02.md` | 44 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 41 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_LEDGER_INTEGRATION.md` | 55 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 42 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_CH2_10ROUND.md` | 85 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–85 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) ; 고유본(사본 1: Claude/old/Archive_oldt |
+| 43 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_CH2_10ROUND_CLAUDE_rerun_5-29.md` | 85 | (vii) | ledger | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/old/Archive_oldtrack/REVIEW_LEDGER_CH2_10ROUND.md — iter_2 AUD-12 · 정독 X(사본) · OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) ; 사본(고유본 = Claude/old/Archive_oldtr |
+| 44 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_CH2_10ROUND_priorpass_superseded.md` | 57 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–57 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 45 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_CHAPTER_VS_INTEGRATED.md` | 45 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 46 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_DEEP_PHYSICS.md` | 54 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 47 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_G1_G2_10PASS.md` | 99 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 48 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_G3_10PASS.md` | 34 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 49 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_v3_CH1.md` | 57 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–57 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 50 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_v4_CANONICAL_CH1.md` | 62 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–62 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 51 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/REVIEW_LEDGER_v5_3_10ROUND.md` | 55 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 52 | 00 구트랙 RB | `Claude/old/results/PHASE_A_D_EXECUTION_LEDGER.md` | 31 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 53 | 00 구트랙 RB | `Claude/old/results/PHASE_E_F_EXECUTION_LEDGER.md` | 51 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 54 | 00 구트랙 RB | `Claude/old/v2/results/EXECUTION_LEDGER_v2.md` | 58 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–58 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 마스터 플랜 정의 밖 · 패턴 매치로 등재, DQ-5) |
+| 55 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_0_foundation_RESULT.md` | 54 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 56 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_1B_ch1_noskip_audit_RESULT.md` | 99 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 57 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_1_2_ch1_grounding_RESULT.md` | 48 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–48 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 58 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_1_ch1_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 59 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_A_consolidated_adversarial_review_RESULT.md` | 82 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–82 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 60 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_B_crosschapter_build_review_RESULT.md` | 65 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 61 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_DIAG_INTENT_GAP_RESULT.md` | 160 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–160 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 62 | 00 구트랙 RB | `Claude/old/results/PHASE_A_ver5_master_structure_RESULT.md` | 319 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–319 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 63 | 00 구트랙 RB | `Claude/old/results/PHASE_B_ver1_rechecked_feedback_diagnosis_RESULT.md` | 299 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–299 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 64 | 00 구트랙 RB | `Claude/old/results/PHASE_B_ver1_rechecked_feedback_diagnosis_RESULT_ADDENDUM_1.md` | 52 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 65 | 00 구트랙 RB | `Claude/old/results/PHASE_C_chapter1_mapping_and_feedback_note_RESULT.md` | 213 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–213 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 66 | 00 구트랙 RB | `Claude/old/results/PHASE_D_jcp_ref6_7_methodology_RESULT.md` | 296 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–296 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 67 | 00 구트랙 RB | `Claude/old/results/PHASE_E0_foundation_reset_charter_RESULT.md` | 463 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–463 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 68 | 00 구트랙 RB | `Claude/old/results/PHASE_E0_foundation_reset_charter_RESULT_ADDENDUM_1.md` | 120 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–120 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 69 | 00 구트랙 RB | `Claude/old/results/PHASE_E0_foundation_reset_charter_RESULT_ADDENDUM_2.md` | 104 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–104 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 70 | 00 구트랙 RB | `Claude/old/results/PHASE_E1_spine_redesign_RESULT.md` | 399 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–399 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 71 | 00 구트랙 RB | `Claude/old/results/PHASE_E2_intro_notation_RESULT.md` | 250 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–250 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 72 | 00 구트랙 RB | `Claude/old/results/PHASE_E3_effective_transition_potential_separation_RESULT.md` | 158 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–158 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 73 | 00 구트랙 RB | `Claude/old/results/PHASE_E4_charge_balance_central_equation_RESULT.md` | 184 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–184 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 74 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_0_v2_FOUNDATION_RESULT.md` | 189 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–189 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 75 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_10_v2_ICA_TAIL_RESULT.md` | 55 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 76 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_11_v2_FITTING_EXPRESSION_RESULT.md` | 69 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–69 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 77 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_12_v2_SUMMARY_RESULT.md` | 90 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–90 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 78 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_1_v2_BODY_INTRO_RESULT.md` | 59 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–59 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 79 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_2_v2_NOTATION_RESULT.md` | 44 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 80 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_3_v2_STAGING_RESULT.md` | 38 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–38 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 81 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_4_v2_EFFECTIVE_BARRIER_RESULT.md` | 57 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–57 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 82 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_5_v2_EQUILIBRIUM_ERF_RESULT.md` | 50 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–50 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 83 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_6_v2_ARRHENIUS_RESULT.md` | 48 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–48 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 84 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_7_v2_KINETICS_RESULT.md` | 47 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–47 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 85 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_8_v2_VOLTERRA_RESULT.md` | 45 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 86 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_9_v2_RATIO_SUBSTITUTION_RESULT.md` | 62 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–62 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 87 | 00 구트랙 RB | `Claude/old/v2/results/PHASE_AUDIT_RALPH_WIGGUM_v2_RESULT.md` | 190 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–190 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 구트랙(old/ 하위 — 패턴 매치로 등재, DQ-5) |
+| 88 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/PHASE_DIAG_REFS67_DOSSIER.md` | 49 | (x) | 조사 | ①전문 | 작업 sub(직렬) | 1–49 | 1.2 Step 3 | — | R3(glob)·R6·R7 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: brief 50 → 실측 49(정의 −1) · Assumptions 5·10 |
+| 89 | 00 구트랙 RB | `Claude/old/_archive/Archive_old/graphite_ica_charge_balance_ver1_rechecked2.tex` | 495 | (xvii-b) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–495 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) 프로젝트 `CLAUDE.md`:15 P1 "Chapter 1 = … 전하 보존식 기반 내부 전위 결정 흐름" 기준 원문 — 인용 경로 ` |
+| 90 | 00 구트랙 RB | `Claude/old/_archive/Archive_old/graphite_ica_dynamic_ver5.tex` | 1974 | (xvii-b) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–500 · 501–1000 · 1001–1500 · 1501–1974 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) 프로젝트 `CLAUDE.md`:14 P1 "`ver.1`~`ver.5` 적층 구조" 기준 원문 · Phase Range 이름공간 "역사적 |
+| 91 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/CHARTER_v3.md` | 65 | (vii-b) | 기타(규약 charter) | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) `CHARTER_*` 계열 — 1.3 원천 후보 |
+| 92 | 00 구트랙 RB | `Claude/old/Archive_oldtrack/RB_CHARTER.md` | 105 | (vii-b) | 기타(규약 charter) | ②토픽 한정 | 작업 sub(직렬) | 1–105 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b′) 등재 문서 `RB_AL_MASTER.md`:3 가 입력으로 명시 인용 — 1.3 원천 후보 |
+| 93 | 00 구트랙 RB | `Claude/old/v2/results/CHARTER_v2.md` | 385 | (vii-b) | 기타(규약 charter) | ②토픽 한정 | 작업 sub(직렬) | 1–385 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b′) 등재 ledger `old/v2/results/EXECUTION_LEDGER_v2.md`:4 "Charter binding" 인용 —  |
+| 94 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v5-comprehensive-rereview-MASTER.md` | 111 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–111 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 95 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v6-flowchart-reassembly-MASTER.md` | 65 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–65 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 96 | 03 Fable v2 (추정) | `Claude/plans/MASTER_ROADMAP_CH2_v1.md` | 131 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–131 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 버전귀속 추정 · OUT-INV: plans/INDEX.md:57 "마스터/로드맵(역대)" |
+| 97 | 03 Fable v2 (추정) | `Claude/plans/MASTER_ROADMAP_v3.md` | 320 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–320 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 버전귀속 추정 · OUT-INV: plans/INDEX.md:57 "마스터/로드맵(역대)" |
+| 98 | 03 Fable v2 (추정) | `Claude/plans/2026-05-29-consolidation-roadmap.md` | 109 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–109 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 99 | 03 Fable v2 (추정) | `Claude/plans/2026-05-29-intent-gap-diagnosis-consolidation-plan.md` | 450 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–450 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 100 | 03 Fable v2 (추정) | `Claude/plans/2026-05-30-undergrad-rederivation-rebuild-plan.md` | 213 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–213 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 101 | 03 Fable v2 (추정) | `Claude/plans/2026-06-01-ch1-self-contained-rework-plan.md` | 43 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 102 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-FINAL-logical-chain-rebuild-plan.md` | 142 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–142 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 103 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-blank-page-clean-spine-rebuild-plan.md` | 125 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–125 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 104 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-from-scratch-intersection-bridge-plan.md` | 123 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–123 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 105 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-peak-physics-derivation-plan.md` | 115 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–115 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 106 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-rerevision-plan.md` | 130 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–130 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 107 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-rerevision2-foundation-first-plan.md` | 218 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–218 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 108 | 03 Fable v2 (추정) | `Claude/plans/2026-06-03-ch1-rerevision2-signs-codex-plan.md` | 63 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–63 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 109 | 03 Fable v2 (추정) | `Claude/plans/2026-06-06-ch1-register-revision-plan.md` | 87 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–87 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 110 | 03 Fable v2 (추정) | `Claude/plans/2026-06-06-ch1-sec6-statmech-accessibility-plan.md` | 176 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–176 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 111 | 03 Fable v2 (추정) | `Claude/plans/2026-06-06-ch1-sec8-10-comprehension-bridge-plan.md` | 61 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–61 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 112 | 03 Fable v2 (추정) | `Claude/plans/2026-06-06-ch1-textbook-form-plan.md` | 89 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–89 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 113 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-NEW-ch2-kinetics-build-plan.md` | 95 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–95 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 114 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch2-5-rebuild-consistent-with-ch1-plan.md` | 69 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–69 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 115 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch2-deep-revision-plan.md` | 76 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–76 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 116 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch2-recheck-ch3-direction-plan.md` | 103 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–103 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 117 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch2-textbook-quality-overhaul-plan.md` | 78 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–78 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 118 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch3-5-textbook-quality-overhaul-plan.md` | 85 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–85 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 119 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch3-content-overhaul-plan.md` | 138 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–138 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 120 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch3-faithful-to-ver3-plan.md` | 113 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–113 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 121 | 03 Fable v2 (추정) | `Claude/plans/2026-06-07-ch3-rebuild-on-ch1-plan.md` | 102 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–102 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 122 | 03 Fable v2 (추정) | `Claude/plans/2026-06-08-NEW-ch2-hysteresis-build-plan.md` | 89 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–89 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 123 | 03 Fable v2 (추정) | `Claude/plans/2026-06-08-ch1-ch2-connective-masterequation-revision-plan.md` | 169 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–169 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 · OUT-INV: 파일명 글로브 *master* 에는 걸리나(masterequation) 마스터플랜 아님 [sub 판단] |
+| 124 | 03 Fable v2 (추정) | `Claude/plans/2026-06-08-ch2-content-deepening-plan.md` | 99 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 125 | 03 Fable v2 (추정) | `Claude/plans/2026-06-08-ch2-directive-registry-revision-plan.md` | 123 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–123 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 126 | 03 Fable v2 (추정) | `Claude/plans/2026-06-09-ch1-ch2-integration-completeness-plan.md` | 96 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–96 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 127 | 03 Fable v2 (추정) | `Claude/plans/2026-06-09-ch3-heat-build-plan.md` | 121 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–121 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 128 | 03 Fable v2 (추정) | `Claude/plans/2026-06-09-ch3-volume-enhancement-plan.md` | 96 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–96 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 129 | 03 Fable v2 (추정) | `Claude/plans/2026-06-09-merge-ch1-ch2-single-chapter-plan.md` | 94 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–94 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 130 | 03 Fable v2 (추정) | `Claude/plans/2026-06-09-textbook-depth-expansion-plan.md` | 79 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–79 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 131 | 03 Fable v2 | `Claude/plans/2026-06-10-ch1-blank-rewrite-v2-plan.md` | 80 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–80 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 132 | 03 Fable v2 | `Claude/plans/2026-06-10-ch1-textbook-rewrite-plan.md` | 97 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–97 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 133 | 03 Fable v2 | `Claude/plans/2026-06-10-full-rereview-physics-pedagogy-plan.md` | 90 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–90 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 134 | 03 Fable v2 | `Claude/plans/2026-06-11-ch1-v2-code-example-plan.md` | 49 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 135 | 03 Fable v2 | `Claude/plans/2026-06-11-ch1-v2-proofread-pass-plan.md` | 65 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 136 | 03 Fable v2 | `Claude/plans/2026-06-11-ch1-v2-tone-derivation-pass-plan.md` | 68 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–68 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 137 | 03 Fable v2 | `Claude/plans/2026-06-12-ch1-v2-friendly-math-figures-pass-plan.md` | 52 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 138 | 03 Fable v2 | `Claude/plans/2026-06-12-ch1-v3-equation-selfcontained-plan.md` | 41 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 139 | 03 Fable v2 | `Claude/plans/2026-06-13-ch1-v3-w4-math-physics-figures-plan.md` | 66 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–66 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 140 | 03 Fable v2 | `Claude/plans/2026-06-13-ch1-v3-x-pass-plan.md` | 43 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 141 | 03 Fable v2 | `Claude/plans/2026-06-13-ch1-v4-stacking-section-redo-plan.md` | 64 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–64 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 142 | 03 Fable v2 | `Claude/plans/2026-06-17-ch1-v5-equation-driven-plan.md` | 208 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–208 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 143 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v5RR-phaseR0-plan.md` | 18 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–18 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 144 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v5RR-phaseR1-plan.md` | 24 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–24 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 145 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v5RR-phaseR2-plan.md` | 26 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–26 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 146 | 03 Fable v2 | `Claude/plans/2026-06-22-ch1-v5RR-phaseR3-plan.md` | 21 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–21 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 147 | 03 Fable v2 | `Claude/plans/2026-06-29-ch1-v7-codeflow-equation-driven-9x9x1x1-plan.md` | 185 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–185 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 148 | 03 Fable v2 | `Claude/plans/2026-06-29-ch1-v8-derivation-expanded-9x9x1x1-plan.md` | 161 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–161 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 149 | 03 Fable v2 (추정) | `Claude/plans/2026-06-30-ch1v9-LCO-ch2v4-mixing-2track-9x9x1x1-plan.md` | 97 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–97 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 150 | 03 Fable v2 | `Claude/plans/2026-06-30-ch2-reversible-heat-entropy-survey-plan.md` | 98 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–98 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 151 | 03 Fable v2 | `Claude/plans/2026-06-30-radius-distribution-from-dqdv-peak-shape-survey-plan.md` | 99 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) |
+| 152 | 03 Fable v2 (추정) | `Claude/plans/2026-06-30-rework-broadening-restore-weff-fix-reorg-plan.md` | 89 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–89 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 153 | 03 Fable v2 (추정) | `Claude/results/process/HANDOVER_2026-06-07_ch2-5-overnight.md` | 94 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–94 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 버전귀속 추정 |
+| 154 | 03 Fable v2 | `Claude/results/process/HANDOVER_2026-06-10_ch1-textbook-rewrite.md` | 29 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 155 | 03 Fable v2 | `Claude/results/process/HANDOVER_2026-06-11_ch1-v2-blank-rewrite.md` | 43 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 156 | 03 Fable v2 | `Claude/results/process/HANDOVER_2026-06-30_radius-dqdv-distribution-and-w-eff-bug.md` | 75 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–75 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 3(재참조) |
+| 157 | 03 Fable v2 | `Claude/results/builds/v8/v8-00_spine/KNOWN_DEFECTS.md` | 30 | (iv-c) | 감사(결함 등록부) | ②토픽 한정 | 작업 sub(직렬) | 1–30 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b-2) `docs/INDEX.md`:187 **stem 인용 ×2**(설명 열 "KNOWN_DEFECTS 6종 정정" · 키워드 열) · 등 |
+| 158 | 03 Fable v2 | `Claude/results/process/V3_W4_PHYSICS_AUDIT.md` | 34 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 형제 = (vii) `V7_9x9x1x1_LEDGER`·`V8_LEDGER` 계열 |
+| 159 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_A0-A5_EXECUTION_LEDGER.md` | 16 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–16 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 160 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_CH3_EXECUTION_LEDGER.md` | 64 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–64 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 161 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_CM_EXECUTION_LEDGER.md` | 41 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 162 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_DEEP_REVIEW_LEDGER.md` | 70 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–70 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 163 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_FRR_EXECUTION_LEDGER.md` | 32 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 164 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F_EXECUTION_LEDGER.md` | 31 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 165 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_MERGE_LEDGER.md` | 35 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 166 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R0-R5_EXECUTION_LEDGER.md` | 19 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–19 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 167 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_TBR_EXECUTION_LEDGER.md` | 72 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–72 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 168 | 03 Fable v2 | `Claude/results/process/PHASE_V2_EXECUTION_LEDGER.md` | 106 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–106 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 169 | 03 Fable v2 | `Claude/results/process/PHASE_V5RR_EXECUTION_LEDGER.md` | 22 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–22 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 170 | 03 Fable v2 | `Claude/results/process/PHASE_V5_EXECUTION_LEDGER.md` | 79 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–79 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 171 | 03 Fable v2 | `Claude/results/process/PHASE_V6_EXECUTION_LEDGER.md` | 13 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–13 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 172 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_W_EXECUTION_LEDGER.md` | 16 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–16 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 173 | 03 Fable v2 | `Claude/results/process/V7_9x9x1x1_LEDGER.md` | 43 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 174 | 03 Fable v2 | `Claude/results/process/V8_LEDGER.md` | 35 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 175 | 03 Fable v2 | `Claude/results/research/CH2_v3/CH2_v3_LEDGER.md` | 21 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–21 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 176 | 03 Fable v2 (추정) | `Claude/results/research/radius/RADIUS_LEDGER.md` | 39 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 |
+| 177 | 03 Fable v2 | `Claude/results/builds/ch1v10/PHASE_CH1v10_RESULT.md` | 33 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–33 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 178 | 03 Fable v2 (추정) | `Claude/results/process/CH3_D2B_OVERHAUL_RESULT.md` | 44 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 · OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 179 | 03 Fable v2 (추정) | `Claude/results/process/CH4_D2B_OVERHAUL_RESULT.md` | 41 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 · OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 180 | 03 Fable v2 (추정) | `Claude/results/process/CH5_D2B_OVERHAUL_RESULT.md` | 56 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–56 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 · OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 181 | 03 Fable v2 | `Claude/results/process/PHASE8_v7_FINAL_RESULT.md` | 54 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 182 | 03 Fable v2 | `Claude/results/process/PHASE8_v8_FINAL_RESULT.md` | 51 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 183 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_2TRACK_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 184 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_A0_design_RESULT.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 185 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_A1_eq-linebreak_RESULT.md` | 39 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 186 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_A3-A5_statmech-section_RESULT.md` | 38 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–38 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 187 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_CM2_ch2-deepening_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 188 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_CM_ch1_RESULT.md` | 51 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 189 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_CM_ch2_RESULT.md` | 55 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 190 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F0_inventory-design_RESULT.md` | 57 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–57 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 191 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F1-F5_form-edits_RESULT.md` | 45 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 192 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F6_crossmodel_RESULT.md` | 45 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 193 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F7_change-history-audit_RESULT.md` | 66 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–66 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 194 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F8_textbook-register-polish_RESULT.md` | 35 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 195 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_F9_content-preservation-audit_RESULT.md` | 60 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–60 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 196 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_FRR_ROUNDS_RESULT.md` | 106 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–106 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 197 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_FRR_ch1_RESULT.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 198 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_FRR_ch3_RESULT.md` | 35 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 199 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_FRR_ch4_RESULT.md` | 31 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 200 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_G_sec8-10-comprehension_RESULT.md` | 29 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 201 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_MERGE_RESULT.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 202 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R0_convention-lock_RESULT.md` | 60 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–60 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 203 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R1_thermo_RESULT.md` | 51 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 204 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R2_kinetics_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 205 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R3_synth_RESULT.md` | 39 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 206 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R4_refs_RESULT.md` | 42 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–42 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 207 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R5_verify_RESULT.md` | 52 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 208 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R6_section-convergence_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 209 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R7_iterate-until-clean_RESULT.md` | 47 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–47 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 210 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R8_final-adversarial_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 211 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_R9_codex-crossmodel_RESULT.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 212 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_REWORK_RESULT.md` | 38 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–38 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 213 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_TBR_ROUNDS_RESULT.md` | 68 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–68 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 214 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_TBR_ch1_RESULT.md` | 13 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–13 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 215 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_TXB_ch1_RESULT.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 216 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_TXB_ch2_RESULT.md` | 39 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 217 | 03 Fable v2 | `Claude/results/process/PHASE_V2_ROUNDS_RESULT.md` | 388 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–388 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 218 | 03 Fable v2 | `Claude/results/process/PHASE_V2_ch1_RESULT.md` | 51 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 219 | 03 Fable v2 | `Claude/results/process/PHASE_V5RR_ROUNDS_RESULT.md` | 175 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–175 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 220 | 03 Fable v2 | `Claude/results/process/PHASE_V5_RESULT.md` | 53 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–53 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 221 | 03 Fable v2 | `Claude/results/process/PHASE_V6_ROUNDS_RESULT.md` | 59 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–59 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 222 | 03 Fable v2 (추정) | `Claude/results/process/PHASE_W_register-revision_RESULT.md` | 43 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 223 | 03 Fable v2 | `Claude/results/research/CH2_v3/PHASE_CH2v3_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 224 | 03 Fable v2 (추정) | `Claude/results/research/radius/PHASE_RADIUS_RESULT.md` | 18 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–18 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 |
+| 225 | 03 Fable v2 (추정) | `Claude/results/research/broadening_w_design.md` | 44 | (ix-b) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (b) 마스터 플랜 1.2 Step 3 정독 대상 명시(L325 — L-21 ρ(U_j) 잔존 주의) |
+| 226 | 03 Fable v2 (추정) | `Claude/results/research/radius/50_report.md` | 23 | (ix-b) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–23 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (a) 동상 · `V1010_INSPECT_draft_C3.md`:16 인용 |
+| 227 | 03 Fable v2 (추정) | `Claude/results/research/radius/BAND_VERDICT.md` | 69 | (ix-b) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–69 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (a) 동상 |
+| 228 | 03 Fable v2 (추정) | `Claude/results/research/radius/CODE_w_check.md` | 23 | (ix-b) | 조사(코드 실행 검증 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–23 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (b) `docs/INDEX.md`:181 인용 — Ch2 v4 w_eff narrowing 오류가 적대 2R 검수를 통과하고 코드 실행 검증에 |
+| 229 | 03 Fable v2 (추정) | `Claude/results/research/radius/ORIGIN_VERDICT.md` | 79 | (ix-b) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–79 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (a) 동상 |
+| 230 | 03 Fable v2 (추정) | `Claude/results/research/radius/RADIUS_VERDICT.md` | 83 | (ix-b) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–83 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · 버전귀속 추정 · OUT-INV: (a) (vii) `RADIUS_LEDGER`·(viii) `PHASE_RADIUS_RESULT` 형제 · 6-30 radius 조사 판정문 — |
+| 231 | 03 Fable v2 | `Claude/old/Ch1_v10/graphite_ica_ch1_v10.tex` | 1852 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–500 · 501–1000 · 1001–1500 · 1501–1852 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:173 인용 — broadening 복원·w 이중지위·w_eff 제거 원문 ; 고유본(사본 1: Claude |
+| 232 | 03 Fable v2 | `Claude/old/Ch1_v7/v7-11.tex` | 893 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–500 · 501–893 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:178 인용 — 계보 §2.3 v7(코드 플로우차트 절삭판 894줄·17p) 원문 ; 고유본(사본 1: Cl |
+| 233 | 03 Fable v2 | `Claude/old/Ch1_v8/v8-11.tex` | 1208 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–500 · 501–1000 · 1001–1208 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:177 인용 — 유도 4단 복원·G-derive 원문 ; 고유본(사본 2: Claude/results/bui |
+| 234 | 03 Fable v2 | `Claude/old/Ch1_v9/graphite_ica_ch1_v9.tex` | 1644 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–500 · 501–1000 · 1001–1500 · 1501–1644 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:175 인용 — LCO 전자 엔트로피·산문 회귀 기원 원문 ; 고유본(사본 2: Claude/results/ |
+| 235 | 03 Fable v2 | `Claude/old/Ch2_v3/graphite_ica_ch2_v3.tex` | 265 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–265 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:179 인용 — Ch2 트랙 v3(5p) 원문(R1 §3.1) ; 고유본(사본 1: Claude/result |
+| 236 | 03 Fable v2 | `Claude/old/Ch2_v4/graphite_ica_ch2_v4.tex` | 759 | (xvii-c) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–759 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:176 인용 — Ch2 트랙 v4(13p · w_eff narrowing 오류 적대 2R 통과 사례, R1  |
+| 237 | 03 Fable v2 | `Claude/old/_archive/graphite_ica_ch1_Fable_v2.tex` | 2420 | (xvii) | 원문 tex | 원문 tex(절 한정) | 작업 sub(직렬) | — | 1.4 Step 10~12 | — | — | 원문 tex: 절 범위 정독 + 검수 대조 | 절 범위 미정 · Step 11 확정 · OUT-INV: Assumptions 23 바이트 일치(183693 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
+| 238 | 03 Fable v2 | `Claude/old/_archive/graphite_ica_ch1_Fable_v3.tex` | 2758 | (xvii) | 원문 tex | 원문 tex(절 한정) | 작업 sub(직렬) | — | 1.4 Step 10~12 | — | — | 원문 tex: 절 범위 정독 + 검수 대조 | 절 범위 미정 · Step 11 확정 · OUT-INV: Assumptions 23 바이트 일치(205225 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
+| 239 | 03 Fable v2 | `Claude/old/_archive/graphite_ica_ch1_Opus_v4.tex` | 2912 | (xvii) | 원문 tex | 원문 tex(절 한정) | 작업 sub(직렬) | — | 1.4 Step 10~12 | — | — | 원문 tex: 절 범위 정독 + 검수 대조 | 절 범위 미정 · Step 11 확정 · OUT-INV: Assumptions 23 바이트 일치(218389 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
+| 240 | 03 Fable v2 | `Claude/old/_archive/graphite_ica_ch1_Opus_v5.tex` | 1883 | (xvii) | 원문 tex | 원문 tex(절 한정) | 작업 sub(직렬) | — | 1.4 Step 10~12 | — | — | 원문 tex: 절 범위 정독 + 검수 대조 | 절 범위 미정 · Step 11 확정 · OUT-INV: Assumptions 23 바이트 일치(153592 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
+| 241 | 03 Fable v2 | `Claude/old/_archive/graphite_ica_ch1_Opus_v6.tex` | 1903 | (xvii) | 원문 tex | 원문 tex(절 한정) | 작업 sub(직렬) | — | 1.4 Step 10~12 | — | — | 원문 tex: 절 범위 정독 + 검수 대조 | 절 범위 미정 · Step 11 확정 · OUT-INV: Assumptions 23 바이트 일치(156166 B) · 1.4 Step 11 정독 대상 · 본 Step 내용 미검독 |
+| 242 | 13 v1.0.10 | `Claude/plans/2026-07-01-graph-verify-code-doc-unify-v1010-plan.md` | 61 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–61 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 243 | 13 v1.0.10 | `Claude/plans/2026-07-01-v1010-code-doc-sync-bdd-fitting-plan.md` | 90 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–90 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: plans/INDEX.md:51 ★MASTER 표기(파일명 규칙상 세부 계획서) |
+| 244 | 13 v1.0.10 | `Claude/plans/2026-07-02-v1010-P1-code-audit-plan.md` | 20 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–20 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 245 | 13 v1.0.10 | `Claude/plans/2026-07-02-v1010-P2-ch1-textbook-plan.md` | 21 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–21 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 246 | 13 v1.0.10 | `Claude/plans/2026-07-02-v1010-P3-ch2-heat-plan.md` | 21 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–21 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 247 | 13 v1.0.10 | `Claude/plans/2026-07-03-v1010-P4-code-revision-plan.md` | 33 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–33 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 248 | 13 v1.0.10 | `Claude/plans/2026-07-04-v1010-P5-final-check-plan.md` | 28 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–28 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 249 | 13 v1.0.10 | `Claude/plans/2026-07-05-v1010-problem-inspection-plan.md` | 35 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 250 | 13 v1.0.10 | `Claude/plans/2026-07-06-v1010-handover-integrity-inspection-plan.md` | 34 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 251 | 13 v1.0.10 | `Claude/docs/v1.0.10/HANDOVER_v1.0.11.md` | 78 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–78 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: v1.0.10 폴더에 v1.0.11 인계가 있음(파일명·폴더 불일치 — 관찰) |
+| 252 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_UNION.md` | 55 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*`(통합) |
+| 253 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_C1.md` | 105 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–105 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` — (ix) 행 86 `V1010_INSPECT_draft_C3` 형제 |
+| 254 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_C2.md` | 89 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–89 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 255 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_C3.md` | 107 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–107 | 1.2 Step 4 | (ix) 잔여 | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | (ix) 잔여 · OUT-INV: 추가 발견 — §5 `C3_graph_check/`·`C3_pdf_render/` 지위 근거(L14–15·23) |
+| 256 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_O1.md` | 96 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–96 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 257 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_O2.md` | 98 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–98 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 258 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_O3.md` | 113 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–113 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 259 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_S1.md` | 209 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–209 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 260 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_S2.md` | 265 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–265 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 261 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_draft_S3.md` | 320 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–320 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*` |
+| 262 | 13 v1.0.10 | `Claude/results/process/V1010_INSPECT_verify10.md` | 31 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 계열 `V1010_INSPECT_*`(검증) |
+| 263 | 13 v1.0.10 | `Claude/results/process/V1010_EXECUTION_LEDGER.md` | 20 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–20 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 264 | 13 v1.0.10 | `Claude/docs/v1.0.10/V1010_HANDOVER_INTEGRITY_REPORT.md` | 45 | (viii-b) | Result(점검 보고) | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (i) 행 76 계획서의 Result |
+| 265 | 13 v1.0.10 | `Claude/docs/v1.0.10/V1010_PROBLEM_REPORT.md` | 55 | (viii-b) | Result(점검 보고) | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (i) 행 74 계획서의 Result |
+| 266 | 13 v1.0.10 | `Claude/results/process/GRAPH_VERIFY_RESULT.md` | 69 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–69 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 267 | 13 v1.0.10 | `Claude/results/process/V1010_P1_code-audit_RESULT.md` | 445 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–445 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 268 | 13 v1.0.10 | `Claude/results/process/V1010_P2_ch1_RESULT.md` | 83 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–83 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 269 | 13 v1.0.10 | `Claude/results/process/V1010_P3_ch2_RESULT.md` | 54 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 270 | 13 v1.0.10 | `Claude/results/process/V1010_P4_code-revision_RESULT.md` | 58 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–58 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 271 | 13 v1.0.10 | `Claude/results/process/V1010_P5_final-check_RESULT.md` | 51 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 272 | 13 v1.0.10 | `Claude/docs/v1.0.10/FITTING_GUIDE.md` | 46 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.11/FITTING_GUIDE.md — §4 #146) · `docs/INDEX.md` 행 근거 |
+| 273 | 14 v1.0.11 | `Claude/plans/2026-07-07-v1011-lco-equation-conversion-and-consistency-plan.md` | 91 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–91 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 274 | 14 v1.0.11 | `Claude/results/process/V1011_EXECUTION_LEDGER.md` | 17 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–17 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 275 | 15 v1.0.12 | `Claude/plans/2026-07-02-fable-reaudit-v12-master-plan.md` | 92 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–92 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 276 | 15 v1.0.12 | `Claude/plans/2026-07-02-fable-reaudit-P0-P1-history-audit-plan.md` | 24 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–24 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 277 | 15 v1.0.12 | `Claude/plans/2026-07-02-fable-reaudit-P2-P3-content-code-audit-plan.md` | 29 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 278 | 15 v1.0.12 | `Claude/plans/2026-07-02-fable-reaudit-P4-v12-authoring-plan.md` | 35 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 279 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C1_note.md` | 63 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–63 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 형제 = (viii) `FABLE_REAUDIT_P*_RESULT` |
+| 280 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C2_note.md` | 65 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) |
+| 281 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C3_note.md` | 68 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–68 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) |
+| 282 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C4_note.md` | 68 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–68 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) |
+| 283 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C5_note.md` | 95 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–95 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) |
+| 284 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_C6_note.md` | 111 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–111 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) |
+| 285 | 15 v1.0.12 | `Claude/results/process/V1012_EXECUTION_LEDGER.md` | 18 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–18 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 286 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_P0_P1_RESULT.md` | 74 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–74 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 287 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_P2_P3_RESULT.md` | 23 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–23 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 288 | 15 v1.0.12 | `Claude/results/process/FABLE_REAUDIT_P4_RESULT.md` | 31 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 289 | 15 v1.0.12 | `Claude/docs/v1.0.12/FITTING_GUIDE.md` | 98 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–98 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: hash 단독 · `docs/INDEX.md`:164 — tier 표·5-Phase round-trip·★방향규약 §0·S0–S5 식별 사슬·울 |
+| 290 | 16 v1.0.13 | `Claude/plans/2026-07-02-v1013-restructure-master-plan.md` | 159 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–159 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 291 | 16 v1.0.13 | `Claude/plans/2026-07-02-v1013-P1-P2-design-part0-plan.md` | 49 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 292 | 16 v1.0.13 | `Claude/plans/2026-07-03-v1013-P3-P6-compress-terms-review-plan.md` | 37 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–37 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 293 | 16 v1.0.13 | `Claude/docs/v1.0.13/HANDOVER_v1.0.13.md` | 24 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–24 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 294 | 16 v1.0.13 | `Claude/results/process/V1013_EXECUTION_LEDGER.md` | 32 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 295 | 16 v1.0.13 | `Claude/results/V1013_RESULT.md` | 50 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–50 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 296 | 16 v1.0.13 | `Claude/results/process/V1013_TERMS_POLICY.md` | 90 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–90 | 1.3 Step 8 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · OUT-INV: brief 명시 |
+| 297 | 16 v1.0.13 | `Claude/docs/v1.0.13/FITTING_GUIDE.md` | 99 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: hash 단독 · `docs/INDEX.md`:151 — §0 전극 인지 규약·ν≳10 정정·S0–S5 승계 |
+| 298 | 17 v1.0.14 | `Claude/plans/2026-07-04-v1014-tone-rigor-appendix-figures-plan.md` | 146 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–146 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: docs/INDEX.md:130 "마스터플랜 =" 표기(파일명 규칙상 세부 계획서) |
+| 299 | 17 v1.0.14 | `Claude/docs/v1.0.14/HANDOVER_v1.0.14.md` | 26 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–26 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 300 | 17 v1.0.14 | `Claude/docs/v1.0.14/HANDOVER_v1.0.15_KICKOFF.md` | 29 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 301 | 17 v1.0.14 | `Claude/results/process/V1014_AUDIT_ADJUDICATION.md` | 27 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–27 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (a) 형제 = (ix) `V1014_TONE_AUDIT` |
+| 302 | 17 v1.0.14 | `Claude/results/process/V1014_CODE_MENTION_AUDIT.md` | 254 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–254 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) 프로젝트 `CLAUDE.md` P3 #8 "`CODE_MENTION_AUDIT` 승계" 인용 |
+| 303 | 17 v1.0.14 | `Claude/results/process/V1014_TONE_AUDIT.md` | 200 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–200 | 1.3 Step 8 | 1.2 Step 3(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · OUT-INV: 종류 = 감사(brief 는 조사 문서군에 배정 — 군은 (ix) 유지) |
+| 304 | 17 v1.0.14 | `Claude/results/process/V1014_EXECUTION_LEDGER.md` | 40 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 305 | 17 v1.0.14 | `Claude/results/V1014_RESULT.md` | 52 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 306 | 17 v1.0.14 | `Claude/docs/v1.0.14/FITTING_GUIDE.md` | 99 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.15/FITTING_GUIDE.md — §4 #132) · `docs/INDEX.md`:138  |
+| 307 | 18 v1.0.15 | `Claude/plans/2026-07-05-v1015-code-doc-sync-master-plan.md` | 164 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–164 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: docs/INDEX.md:117 마스터플랜 |
+| 308 | 18 v1.0.15 | `Claude/plans/2026-07-04-v1015-code-update-plan.md` | 97 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–97 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 309 | 18 v1.0.15 | `Claude/docs/v1.0.15/HANDOVER_v1.0.15.md` | 29 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 310 | 18 v1.0.15 | `Claude/results/process/V1015_EXECUTION_LEDGER.md` | 20 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–20 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 311 | 18 v1.0.15 | `Claude/results/process/V1015_P1_anchor_RESULT.md` | 70 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–70 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 312 | 18 v1.0.15 | `Claude/results/process/V1015_P3_RESULT.md` | 55 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 313 | 18 v1.0.15 | `Claude/results/process/V1015_P4_RESULT.md` | 49 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 314 | 18 v1.0.15 | `Claude/results/process/V1015_P5_RESULT.md` | 46 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–46 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 315 | 18 v1.0.15 | `Claude/results/process/V1015_P6_RESULT.md` | 32 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 316 | 18 v1.0.15 | `Claude/results/process/V1015_P7_RESULT.md` | 39 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_*_RESULT` 패턴 밖 Result) |
+| 317 | 18 v1.0.15 | `Claude/docs/v1.0.15/CLOSING_v1.0.15.md` | 105 | (v) | 클로징 | ①전문 | 작업 sub(직렬) | 1–105 | 1.3 Step 8 | — | R1·R3 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: A10 · docs/INDEX.md:127 "다음 버전 착수 전 필독" |
+| 318 | 19 v1.0.16 | `Claude/docs/v1.0.16/HANDOVER_v1.0.16.md` | 28 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–28 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 319 | 19 v1.0.16 | `Claude/results/process/V1016_EXECUTION_LEDGER.md` | 21 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–21 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 320 | 19 v1.0.16 | `Claude/docs/v1.0.16/FITTING_GUIDE.md` | 115 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–115 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 2: Claude/docs/v1.0.17/FITTING_GUIDE.md · Claude/docs/v1.0.18.1/FITTING_G |
+| 321 | 20 v1.0.17 | `Claude/plans/2026-07-07-v1017-register-consistency-polish-plan.md` | 117 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–117 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 322 | 20 v1.0.17 | `Claude/docs/v1.0.17/HANDOVER_v1.0.17.md` | 32 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–32 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 323 | 20 v1.0.17 | `Claude/results/process/V1017_FIXLIST_CONSOLIDATED.md` | 122 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–122 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:94 인용(v1.0.17 절 fix-list) |
+| 324 | 20 v1.0.17 | `Claude/results/process/V1017_REVIEW_COMPLETE.md` | 60 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–60 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:94·:103 인용(v1.0.17 절 — 라인별 검토 완전 복원 기록) |
+| 325 | 20 v1.0.17 | `Claude/results/process/V1017_EXECUTION_LEDGER.md` | 26 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–26 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 326 | 21 v1.0.18.1/.2 | `Claude/plans/2026-07-08-v1018-physics-extension-master-plan.md` | 106 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–106 | 1.2 Step 3 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 버전귀속 추정 |
+| 327 | 21 v1.0.18.1/.2 | `Claude/docs/v1.0.18.1/HANDOVER_v1.0.18.1.md` | 23 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–23 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 328 | 21 v1.0.18.1/.2 | `Claude/docs/v1.0.18.2/HANDOVER_v1.0.18.2.md` | 29 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–29 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 329 | 21 v1.0.18.1/.2 | `Claude/results/process/V1018_EXECUTION_LEDGER.md` | 33 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–33 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 · OUT-INV: `:30–31` 두 개정(18.1 증판·18.2 코드) 한 원장 |
+| 330 | 21 v1.0.18.1/.2 | `Claude/docs/v1.0.18.2/ROADMAP_future_physics.md` | 49 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.4 Step 10~12 | 1.2 Step 3(재참조) | R3·R5·R6 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 3(재참조) · OUT-INV: B1 |
+| 331 | 21 v1.0.18.1/.2 | `Claude/docs/v1.0.18.2/FITTING_GUIDE.md` | 125 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–125 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: hash 단독 · `docs/INDEX.md`:89 — §1.6 vib θ_E 규약 |
+| 332 | 22 v1.0.19 | `Claude/plans/2026-07-08-v1019-ch1-fable-rewrite-plan.md` | 79 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–79 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: docs/INDEX.md:67 "계획 =" · plans/INDEX.md:40 직전 완결 |
+| 333 | 22 v1.0.19 | `Claude/docs/v1.0.19/HANDOVER_v1.0.19.md` | 38 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–38 | 1.2 Step 3 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 334 | 22 v1.0.19 | `Claude/results/process/V1019_EXECUTION_LEDGER.md` | 56 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–56 | 1.2 Step 3 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 335 | 22 v1.0.19 | `Claude/docs/v1.0.19/FITTING_GUIDE.md` | 135 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–135 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: hash 단독 · `docs/INDEX.md`:75 — x̄ 진입점·return_terms·Phase D scope 정직·잔차 정규화 |
+| 336 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/2026-07-16-v1020-master-plan.md` | 207 | (ii) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–207 | 1.2 Step 4 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: v1.0.20 한정 위치 규약(docs/INDEX.md:53 · plans/INDEX.md:38) |
+| 337 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P0_setup.md` | 45 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 338 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P1_references.md` | 41 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 339 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P2_part0.md` | 50 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–50 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 340 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P3_graphite.md` | 44 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 341 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P4_lco.md` | 39 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 342 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P5_ch2.md` | 34 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 343 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P6_convention.md` | 34 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 344 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P7_review.md` | 37 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–37 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 345 | 23 v1.0.20 | `Claude/docs/v1.0.20/plans/PLAN_P8_closing.md` | 34 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 346 | 23 v1.0.20 | `Claude/docs/v1.0.20/HANDOVER_v1.0.20.md` | 74 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–74 | 1.2 Step 4 | — | R2 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 347 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/comp_P7_review/TRIAGE_P7.md` | 39 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 348 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P0.md` | 40 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 349 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P1.md` | 32 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 350 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P2.md` | 34 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–34 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 351 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P3.md` | 32 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 352 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P4.md` | 33 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–33 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 353 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P5.md` | 31 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–31 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 354 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P6.md` | 41 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 355 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/STEP_LOG_P7.md` | 66 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–66 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(스텝 이력 = ledger 성격 · v1.0.20 위치 규약) |
+| 356 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_CHANGE_LOG.md` | 43 | (viii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 357 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_EXECUTION_LEDGER.md` | 16 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–16 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 358 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P0_setup.md` | 43 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 359 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P1_references.md` | 41 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–41 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 360 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P2_part0.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 361 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P3_graphite.md` | 40 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 362 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P4_lco.md` | 42 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–42 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 363 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P5_ch2.md` | 44 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 364 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P6_convention.md` | 44 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 365 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/RESULT_P7_review.md` | 45 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(`PHASE_` 접두 없는 Result · v1.0.20 위치 규약) |
+| 366 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/CODE_IMPL_REPORT.md` | 148 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–148 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(v1.0.20 results 상위 md — brief 명시 4종 밖) |
+| 367 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/DIRECTION_GENERAL_REPORT.md` | 264 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–264 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 368 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/DIRECTION_SI_LCO_REPORT.md` | 291 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–291 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 369 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/DIRECTION_STATMECH_REPORT.md` | 359 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–359 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 370 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/FIGS_PICK_JUDGMENT.md` | 131 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–131 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 371 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/INTERCHAPTER_REPORT.md` | 174 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–174 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(v1.0.20 results 상위 md — brief 명시 4종 밖) |
+| 372 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_KICKOFF_SURVEY_history.md` | 29 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–29 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(v1.0.20 results 상위 md — brief 명시 4종 밖) |
+| 373 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_KICKOFF_SURVEY_structure_citation.md` | 97 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–97 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(v1.0.20 results 상위 md — brief 명시 4종 밖) |
+| 374 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_P1_CITATION_BASELINE.md` | 23 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–23 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(v1.0.20 results 상위 md — brief 명시 4종 밖) |
+| 375 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_STYLE_RUBRIC.md` | 50 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–50 | 1.3 Step 8 | 1.2 Step 4(재참조) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 4(재참조) |
+| 376 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_REFERENCE_LEDGER.md` | 54 | (xii) | 서지 원장 | ①전문 | 작업 sub(직렬) | 1–54 | 1.3 Step 9 | 2.4 서지 감사(재참조) | R7 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 2.4 서지 감사(재참조) · OUT-INV: brief 55 → 54(정의 −1) |
+| 377 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_REFLEDGER_DRAFT_candidates.md` | 47 | (vii) | 서지 원장(초안) | ②토픽 한정 | 작업 sub(직렬) | 1–47 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(패턴 `*LEDGER*` 매치 · 서지 원장 초안) |
+| 378 | 23 v1.0.20 | `Claude/docs/v1.0.20/results/V1020_REFLEDGER_DRAFT_existing.md` | 77 | (vii) | 서지 원장(초안) | ②토픽 한정 | 작업 sub(직렬) | 1–77 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(패턴 `*LEDGER*` 매치 · 서지 원장 초안) |
+| 379 | 23 v1.0.20 | `Claude/docs/v1.0.20/FITTING_GUIDE.md` | 137 | (vii-c) | 기타(가이드 — 규약 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–137 | 1.3 Step 8 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 7: Claude/docs/v1.0.21 · v1.0.22 · v1.0.23 · v1.0.24 · v1.0.24.1 · v1.0.2 |
+| 380 | 24 v1.0.21 | `Claude/plans/2026-07-16-v1021-master-plan.md` | 76 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–76 | 1.3 Step 9 | 1.2 Step 4(재참조) | R2 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) |
+| 381 | 24 v1.0.21 | `Claude/docs/v1.0.21/HANDOVER_v1.0.21.md` | 24 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–24 | 1.2 Step 4 | — | R2·R3(grep) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 382 | 24 v1.0.21 | `Claude/docs/v1.0.21/results/V1021_CHANGE_LOG.md` | 37 | (viii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–37 | 1.3 Step 9 | — | R3(grep) | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 383 | 24 v1.0.21 | `Claude/docs/v1.0.21/results/V1021_EXECUTION_LEDGER.md` | 19 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–19 | 1.3 Step 9 | — | R3(grep) | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 384 | 24 v1.0.21 | `Claude/docs/v1.0.21/results/V1021_REFERENCE_LEDGER.md` | 37 | (xii) | 서지 원장 | ①전문 | 작업 sub(직렬) | 1–37 | 1.3 Step 9 | 2.4 서지 감사(재참조) | R3(grep)·R7 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 2.4 서지 감사(재참조) · OUT-INV: brief 38 → 37(정의 −1) |
+| 385 | 25 v1.0.22 | `Claude/plans/2026-07-17-v1022-master-plan.md` | 99 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–99 | 1.3 Step 9 | 1.2 Step 4(재참조) | R2·R3(grep) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) |
+| 386 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_FR_deep_review.md` | 26 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–26 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 387 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_R1_reorg.md` | 98 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–98 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 388 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_R2_ch1_completion.md` | 49 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 389 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_R3_ch2_completion.md` | 30 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–30 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 390 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_R5_ch3_authoring.md` | 45 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 391 | 25 v1.0.22 | `Claude/docs/v1.0.22/plans/PLAN_RA_lineage_audit.md` | 39 | (ii) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 392 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/HANDOVER_v1.0.22.md` | 147 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–147 | 1.3 Step 9 | — | R2 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 393 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/AUDIT_LINEAGE_v19_v22.md` | 59 | (viii) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–59 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 394 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/MERGE_READINESS.md` | 204 | (viii) | 감사(머지 판정) | ②토픽 한정 | 작업 sub(직렬) | 1–204 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 395 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/R1B_SWEEP_LIST.md` | 176 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–176 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (b) `docs/INDEX.md`:39 인용(v1.0.22 절 — 구획 전환 스윕 전수 분류표 118건 · S-008 정정 근거) |
+| 396 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A01_REVIEW.md` | 479 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–479 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 397 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A02_REVIEW.md` | 460 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–460 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 398 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A03_REVIEW.md` | 346 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–346 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 399 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A04_REVIEW.md` | 353 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–353 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 400 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A05_REVIEW.md` | 323 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–323 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 401 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A06_REVIEW.md` | 398 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–398 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 402 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A07_REVIEW.md` | 311 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–311 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 403 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A08_REVIEW.md` | 383 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–383 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 404 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A09_REVIEW.md` | 531 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–531 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 405 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A10_REVIEW.md` | 150 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–150 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 406 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A11_REVIEW.md` | 412 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–412 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 407 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A12_REVIEW.md` | 404 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–404 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 408 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A13_REVIEW.md` | 480 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–480 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 409 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A14_REVIEW.md` | 201 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–201 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 410 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A15_REVIEW.md` | 330 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–330 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 411 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A16_REVIEW.md` | 136 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–136 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 412 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A17_REVIEW.md` | 191 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–191 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 413 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A18_REVIEW.md` | 456 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–456 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 414 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A19_REVIEW.md` | 613 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–613 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 415 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A20_REVIEW.md` | 506 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–506 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 416 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A21_REVIEW.md` | 360 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–360 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 417 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A22_REVIEW.md` | 686 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–686 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 418 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/A23_REVIEW.md` | 588 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–588 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 419 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/FR_T_H_TRIAGE_PREP.md` | 38 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–38 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 420 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/FR_T_ML_TRIAGE.md` | 37 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–37 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 421 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/V1022_CHANGE_LOG.md` | 49 | (viii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 422 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/V1022_EXECUTION_LEDGER.md` | 24 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–24 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 423 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/BRIEF_FR_A.md` | 20 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–20 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 424 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/EXEC_M1.md` | 35 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 425 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/EXEC_M2.md` | 36 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–36 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 426 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/EXEC_M3.md` | 32 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–32 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 427 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/EXEC_M4.md` | 26 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–26 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 428 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_FR/RESUME_FR.md` | 54 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 429 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_SM2/SM2_REMOVAL.md` | 117 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–117 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 430 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_SM2/SM2_SURVEY.md` | 135 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–135 | 1.2 Step 4 | comp 조사 (ix) | R3·R5·R7 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) · OUT-INV: B5 |
+| 431 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_v23/SURV1_integral_transform.md` | 178 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–178 | 1.2 Step 4 | comp 조사 (ix) | R6 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 432 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_v23/SURV2_asymptotic_pert.md` | 163 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–163 | 1.2 Step 4 | comp 조사 (ix) | R6 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 433 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_v23/SURV3_convex_inverse.md` | 124 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–124 | 1.2 Step 4 | comp 조사 (ix) | R6 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 434 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_v23/SURV4_bifurcation_stochastic.md` | 134 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–134 | 1.2 Step 4 | comp 조사 (ix) | R6 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) |
+| 435 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_v23/SURV_SYNTHESIS.md` | 44 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 4 | comp 조사 (ix) | R3·R5·R6·R7 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) · OUT-INV: B4 |
+| 436 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/V1022_REFERENCE_LEDGER.md` | 32 | (xii) | 서지 원장 | ①전문 | 작업 sub(직렬) | 1–32 | 1.3 Step 9 | 2.4 서지 감사(재참조) | R7 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 2.4 서지 감사(재참조) · OUT-INV: brief 33 → 32(정의 −1) ; 고유본(사본 1: Claude/docs/v1.0.23/results/V1023_REFERENCE_LED |
+| 437 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_SM2/SM2_DRAFTS/SM2A_susceptibility.tex` | 70 | (ix) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–70 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) · OUT-INV: 추가 발견(`comp_SM2/*.md` 패턴 밖 tex 초안) |
+| 438 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_SM2/SM2_DRAFTS/SM2B_ensemble_equiv.tex` | 51 | (ix) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) · OUT-INV: 추가 발견(`comp_SM2/*.md` 패턴 밖 tex 초안) |
+| 439 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/comp_SM2/SM2_DRAFTS/SM2C_two_responses.tex` | 52 | (ix) | 원문 tex | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 4 | comp 조사 (ix) | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | comp 조사 (ix) · OUT-INV: 추가 발견(`comp_SM2/*.md` 패턴 밖 tex 초안) |
+| 440 | 25 v1.0.22 | `Claude/docs/v1.0.22/results/INDEX_v1022.md` | 146 | (vi) | INDEX | ②토픽 한정 | 작업 sub(직렬) | 1–146 | 1.3 Step 9 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 441 | 26 v1.0.23 | `Claude/plans/2026-07-18-anodefit-MASTER-plan.md` | 128 | (i) | 마스터플랜 | ①전문 | 작업 sub(직렬) | 1–128 | 1.2 Step 4 | — | R2·R3 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 버전귀속 추정 · OUT-INV: B7 |
+| 442 | 26 v1.0.23 | `Claude/plans/2026-07-18-anodefit-bdd-integration-plan.md` | 191 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–191 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 443 | 26 v1.0.23 | `Claude/plans/2026-07-18-v1023-ratio-and-advanced-methods-plan.md` | 225 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–225 | 1.2 Step 4 | — | R2·R3(grep) | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: B6 |
+| 444 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/HANDOVER_v23.md` | 43 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–43 | 1.2 Step 4 | — | R2 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | — |
+| 445 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/MERGE_READINESS_v23.md` | 52 | (viii) | 감사(머지 판정) | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 446 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/comp_v23/AUD_REPORT_v23.md` | 65 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (c) 동명 폴더 `docs/v1.0.23/results/comp_v23/` md 전건 — (iv-b) 행 10 과 같은 폴더 |
+| 447 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/comp_v23/COND_AUDIT.md` | 301 | (iv-b) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–301 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (c) **동명 폴더 경고**: `docs/v1.0.23/results/comp_v23/` ≠ (ix) 의 `docs/v1.0.22/result |
+| 448 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/V1023_CHANGE_LOG.md` | 17 | (viii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–17 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 449 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/V1023_EXECUTION_LEDGER.md` | 12 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–12 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 450 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/PHASE_P1_RESULT.md` | 112 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–112 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 451 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/PHASE_P2_RESULT.md` | 114 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–114 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 452 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/PHASE_P3_RESULT.md` | 102 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–102 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 453 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/PHASE_P5_RESULT.md` | 95 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–95 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 454 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/V1023_REFERENCE_LEDGER.md` | 32 | (xii) | 서지 원장 | 정독 X | (정독 X) | — | (없음) | — | R7 | — | 사본 → 고유본: Claude/docs/v1.0.22/results/V1022_REFERENCE_LEDGER.md · 정독 X(사본) · OUT-INV: brief 33 → 32(정의 −1) · V1022 와 hash 동일(R7 md5 대조와 일치) ; 사본(고유본 = Claude/docs/v1. |
+| 455 | 26 v1.0.23 | `Claude/docs/v1.0.23/results/INDEX_v23.md` | 43 | (vi) | INDEX | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 456 | 27 v1.0.24 | `Claude/plans/2026-07-18-v1024-completeness-validation-plan.md` | 198 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–198 | 1.2 Step 4 | — | R2 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 457 | 27 v1.0.24 | `Claude/plans/2026-07-19-v1024-si-2L-codex-reflection-plan.md` | 215 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–215 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (xiii) reflect 계획서 실물 = 이 파일(R2 DQ-3) |
+| 458 | 27 v1.0.24 | `Claude/plans/2026-07-22-v1024-feedback-revision-plan.md` | 226 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–226 | 1.2 Step 4 | — | R2 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 459 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/HANDOVER_v24.md` | 88 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–88 | 1.3 Step 8 | 1.2 Step 4(재참조) | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) · OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/HANDOVER_v24.md · Claude/docs/v1.0.25/re |
+| 460 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md` | 59 | (viii) | 감사(머지 판정) | ②토픽 한정 | 작업 sub(직렬) | 1–59 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/MERGE_READINESS_v24.md · Claude/docs/v1. |
+| 461 | 27 v1.0.24 | `Claude/results/comp_v24/AUDIT_v1024_DOC_CODE.md` | 43 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–43 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 462 | 27 v1.0.24 | `Claude/results/comp_v24/CODEX_REVIEW_VERIFICATION.md` | 35 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–35 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 463 | 27 v1.0.24 | `Claude/results/comp_v24/SESSION_AUDIT_v1024.md` | 92 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–92 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 464 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md` | 14 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–14 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (xiii) 대상 · 계수는 (vii) ; 고유본(사본 3: Claude/docs/v1.0.24.1/results/V1024_REFLECT_EX |
+| 465 | 27 v1.0.24 | `Claude/results/V1024_EXECUTION_LEDGER.md` | 14 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–14 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: §2.8 L179 12-col 실례 |
+| 466 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md` | 44 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–44 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/PHASE_R0_RESULT.md · Claude/docs/v1.0.25 |
+| 467 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md` | 53 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–53 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/PHASE_R1_RESULT.md · Claude/docs/v1.0.25 |
+| 468 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md` | 49 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/PHASE_R2_RESULT.md · Claude/docs/v1.0.25 |
+| 469 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md` | 39 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/PHASE_R3_RESULT.md · Claude/docs/v1.0.25 |
+| 470 | 27 v1.0.24 | `Claude/results/PHASE_V0_RESULT.md` | 47 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–47 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 471 | 27 v1.0.24 | `Claude/results/PHASE_V1_RESULT.md` | 45 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 472 | 27 v1.0.24 | `Claude/results/PHASE_V2B_RESULT.md` | 55 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 473 | 27 v1.0.24 | `Claude/results/PHASE_V2C_RESULT.md` | 55 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–55 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 474 | 27 v1.0.24 | `Claude/results/PHASE_V2_RESULT.md` | 74 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–74 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 475 | 27 v1.0.24 | `Claude/results/PHASE_V3_RESULT.md` | 49 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 버전귀속 추정 |
+| 476 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md` | 59 | (xiii) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–59 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견 · INDEX_v25.md:83 사양 원천(승계) — addendum A4·A7 이 supersede ; 고유본(사본 3: Claud |
+| 477 | 27 v1.0.24 | `Claude/results/comp_v24/ABLATION_ANODE.md` | 23 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–23 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 478 | 27 v1.0.24 | `Claude/results/comp_v24/DATA_REGISTRY.md` | 70 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–70 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 479 | 27 v1.0.24 | `Claude/results/comp_v24/FIT_CHECK_v1024.md` | 87 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–87 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 480 | 27 v1.0.24 | `Claude/results/comp_v24/GRAPHITE_STAGING_XRD.md` | 61 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–61 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 481 | 27 v1.0.24 | `Claude/results/comp_v24/HIST_layout_versionarc.md` | 151 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–151 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 482 | 27 v1.0.24 | `Claude/results/comp_v24/HIST_notation_code.md` | 106 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–106 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 483 | 27 v1.0.24 | `Claude/results/comp_v24/HIST_register.md` | 146 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–146 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 484 | 27 v1.0.24 | `Claude/results/comp_v24/HIST_terminology.md` | 143 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–143 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 485 | 27 v1.0.24 | `Claude/results/comp_v24/IMPROVEMENT_DIRECTIONS.md` | 86 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–86 | 1.4 Step 10~12 | 1.2 Step 4(재참조) | R3·R5 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 4(재참조) · OUT-INV: B2 |
+| 486 | 27 v1.0.24 | `Claude/results/comp_v24/INV_code_in_body.md` | 39 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 487 | 27 v1.0.24 | `Claude/results/comp_v24/INV_overflow.md` | 51 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–51 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 488 | 27 v1.0.24 | `Claude/results/comp_v24/INV_register_titles_prose.md` | 142 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–142 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 489 | 27 v1.0.24 | `Claude/results/comp_v24/LCO_DIAGNOSIS.md` | 39 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–39 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 490 | 27 v1.0.24 | `Claude/results/comp_v24/LIT_ADVANCE_SYNTHESIS.md` | 129 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–129 | 1.4 Step 10~12 | 1.2 Step 4(재참조) | R3·R5·R6·R7 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 4(재참조) · OUT-INV: B3 |
+| 491 | 27 v1.0.24 | `Claude/results/comp_v24/PUBLIC_DATA_SURVEY.md` | 45 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–45 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 492 | 27 v1.0.24 | `Claude/results/comp_v24/TAKE_VS_DISCARD.md` | 85 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–85 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 493 | 27 v1.0.24 | `Claude/results/comp_v24/TERM_DECISION_TABLE.md` | 99 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–99 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 494 | 27 v1.0.24 | `Claude/results/comp_v24/T_SPLIT_FINDING.md` | 67 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–67 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 495 | 27 v1.0.24 | `Claude/results/comp_v24/USER_FEEDBACK_v1024_READING.md` | 206 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–206 | 1.3 Step 8 | 1.2 Step 4(재참조) | R2·R3 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | 1.2 Step 4(재참조) · OUT-INV: A11 |
+| 496 | 27 v1.0.24 | `Claude/results/comp_v24/VALIDATION_SYNTHESIS.md` | 81 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–81 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 497 | 27 v1.0.24 | `Claude/results/comp_v24/VERSION_COMPARISON_v19_v23_v24.md` | 80 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–80 | 1.2 Step 4 | — | R2 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: A12 · R2: L80 `</content>` 잔존 문자열 |
+| 498 | 27 v1.0.24 | `Claude/results/comp_v24/fit_registry.md` | 25 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–25 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 499 | 27 v1.0.24 | `Claude/results/comp_v24/lit_raw/01_graphite.md` | 141 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–141 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(comp_v24 하위 폴더) |
+| 500 | 27 v1.0.24 | `Claude/results/comp_v24/lit_raw/02_methodology.md` | 119 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–119 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(comp_v24 하위 폴더) |
+| 501 | 27 v1.0.24 | `Claude/results/comp_v24/lit_raw/03_graphite_si.md` | 82 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–82 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(comp_v24 하위 폴더) |
+| 502 | 27 v1.0.24 | `Claude/results/comp_v24/lit_raw/04_lco.md` | 129 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–129 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(comp_v24 하위 폴더) |
+| 503 | 27 v1.0.24 | `Claude/results/comp_v24/param_dist_stats.md` | 8 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–8 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 504 | 27 v1.0.24 | `Claude/results/comp_v24/sintef_data/SOURCES.md` | 25 | (ix) | 조사 | ②토픽 한정 | 작업 sub(직렬) | 1–25 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견(comp_v24 하위 폴더) |
+| 505 | 27 v1.0.24 | `Claude/docs/v1.0.24/results/INDEX_v24.md` | 63 | (vi) | INDEX | ②토픽 한정 | 작업 sub(직렬) | 1–63 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 3: Claude/docs/v1.0.24.1/results/INDEX_v24.md · Claude/docs/v1.0.25/resul |
+| 506 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/HANDOVER_v24.md` | 88 | (iii) | 인계 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/HANDOVER_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/HANDOVER_v24.md) |
+| 507 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/MERGE_READINESS_v24.md` | 59 | (viii) | 감사(머지 판정) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md) |
+| 508 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/V1024_REFLECT_EXECUTION_LEDGER.md` | 14 | (vii) | ledger | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md · 정독 X(사본) · OUT-INV: (xiii) 대상 · 계수는 (vii) ; 사본(고유본 = Claude/docs/v1.0.24/results/V1024_REFLECT_EXECU |
+| 509 | 28 v1.0.24.1 | `Claude/results/V1024_FEEDBACK_EXECUTION_LEDGER.md` | 24 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–24 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: §2.8 L179 12-col 실례 · 귀속 근거 `docs/INDEX.md`:21(v1.0.24.1 리비전 이력) |
+| 510 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/PHASE_R0_RESULT.md` | 44 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md) |
+| 511 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/PHASE_R1_RESULT.md` | 53 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md) |
+| 512 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/PHASE_R2_RESULT.md` | 49 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md) |
+| 513 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/PHASE_R3_RESULT.md` | 39 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md) |
+| 514 | 28 v1.0.24.1 | `Claude/results/PHASE_FB0_RESULT.md` | 67 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–67 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 515 | 28 v1.0.24.1 | `Claude/results/PHASE_FB1_RESULT.md` | 65 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–65 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 516 | 28 v1.0.24.1 | `Claude/results/PHASE_FB2_RESULT.md` | 49 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–49 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 517 | 28 v1.0.24.1 | `Claude/results/PHASE_FB3_RESULT.md` | 74 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–74 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 518 | 28 v1.0.24.1 | `Claude/results/PHASE_FB4_RESULT.md` | 53 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–53 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 519 | 28 v1.0.24.1 | `Claude/results/PHASE_FB5_RESULT.md` | 54 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–54 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 520 | 28 v1.0.24.1 | `Claude/results/PHASE_FB6_RESULT.md` | 52 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–52 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 521 | 28 v1.0.24.1 | `Claude/results/PHASE_FB7_RESULT.md` | 75 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–75 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 522 | 28 v1.0.24.1 | `Claude/results/PHASE_FB8_RESULT.md` | 81 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–81 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 523 | 28 v1.0.24.1 | `Claude/results/PHASE_FB9_RESULT.md` | 66 | (viii) | Result | ②토픽 한정 | 작업 sub(직렬) | 1–66 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 524 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/REFLECT_SEED_TABLE.md` | 59 | (xiii) | 조사 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md · 정독 X(사본) · OUT-INV: 추가 발견 ; 사본(고유본 = Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md) |
+| 525 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/ARCHIVE_NOTE.md` | 40 | (viii) | 기타(폴더 지위) | ②토픽 한정 | 작업 sub(직렬) | 1–40 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 동결 아카이브 권위 기록(docs/INDEX.md:25) |
+| 526 | 28 v1.0.24.1 | `Claude/docs/v1.0.24.1/results/INDEX_v24.md` | 63 | (vi) | INDEX | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/INDEX_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/INDEX_v24.md) |
+| 527 | 29 v1.0.25 | `Claude/plans/2026-07-26-v1025-surgical-skew-consistency-plan.md` | 240 | (i) | 세부 계획서 | ②토픽 한정 | 작업 sub(직렬) | 1–240 | 1.2 Step 4 | — | R2·R3 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: plans/INDEX.md:18 ★MASTER 표기(파일명 규칙상 세부 계획서) · A8 |
+| 528 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/HANDOVER_v24.md` | 88 | (iii) | 인계 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/HANDOVER_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/HANDOVER_v24.md) |
+| 529 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/HANDOVER_v25.md` | 170 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–170 | 1.3 Step 8 | 1.2 Step 4(재참조) | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) · OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/HANDOVER_v25.md) |
+| 530 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/MERGE_READINESS_v24.md` | 59 | (viii) | 감사(머지 판정) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md) |
+| 531 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/MERGE_READINESS_v25.md` | 204 | (viii) | 감사(머지 판정) | ②토픽 한정 | 작업 sub(직렬) | 1–204 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/MERGE_READINESS_v25.md) |
+| 532 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1024_REFLECT_EXECUTION_LEDGER.md` | 14 | (vii) | ledger | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md · 정독 X(사본) · OUT-INV: (xiii) 대상 · 계수는 (vii) ; 사본(고유본 = Claude/docs/v1.0.24/results/V1024_REFLECT_EXECU |
+| 533 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1025_CHANGE_LEDGER.md` | 157 | (vii) | ledger | ②토픽 한정 | 작업 sub(직렬) | 1–157 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: (viii) 정의에도 해당 · 계수는 (vii) ; 고유본(사본 1: Claude/docs/v1.0.25.1/results/V1025_CHANG |
+| 534 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/PHASE_R0_RESULT.md` | 44 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md) |
+| 535 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/PHASE_R1_RESULT.md` | 53 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md) |
+| 536 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/PHASE_R2_RESULT.md` | 49 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md) |
+| 537 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/PHASE_R3_RESULT.md` | 39 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md) |
+| 538 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1025_DOC_EDIT_REPORT.md` | 312 | (viii) | Result(집행 보고) | ②토픽 한정 | 작업 sub(직렬) | 1–312 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/V1025_DOC_EDIT_REPORT.md) |
+| 539 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1025_T13_T14_REPORT.md` | 487 | (viii) | Result(집행 보고) | ②토픽 한정 | 작업 sub(직렬) | 1–487 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/V1025_T13_T14_REPORT.md) |
+| 540 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/REFLECT_SEED_TABLE.md` | 59 | (xiii) | 조사 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md · 정독 X(사본) · OUT-INV: 추가 발견 ; 사본(고유본 = Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md) |
+| 541 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec05_width.tex` | 423 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–423 | 2.1 Step 15 | — | R4a(diff) | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 423 → 424 |
+| 542 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec06_eqpeak.tex` | 130 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–130 | 2.1 Step 15 | — | R4a(diff) | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 130 → 131 |
+| 543 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec02b_sifr.tex` | 215 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–215 | 2.1 Step 15 | — | R4b | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 215 → 220 |
+| 544 | 29 v1.0.25 | `Claude/docs/v1.0.25/ch1_graphite_v1.0.24.tex` | 62 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–62 | 2.1 Step 14 | — | — | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 62 → 62 |
+| 545 | 29 v1.0.25 | `Claude/docs/v1.0.25/ch2_lco_v1.0.24.tex` | 34 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–34 | 2.1 Step 14 | — | — | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 34 → 34 |
+| 546 | 29 v1.0.25 | `Claude/docs/v1.0.25/ch3_si_v1.0.24.tex` | 34 | (xviii) | 원문 tex | 현행 tex(2.x) | 작업 sub(직렬) | 1–34 | 2.1 Step 14 | — | — | 2.x: 해당 Phase 규칙 | OUT-INV: v1.0.25.1 대비 hash 상이 · 줄수 34 → 34 |
+| 547 | 29 v1.0.25 | `Claude/docs/v1.0.25/ARCHIVE_NOTE.md` | 109 | (viii) | 기타(폴더 지위) | ②토픽 한정 | 작업 sub(직렬) | 1–109 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | — |
+| 548 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1025_DATA_ADDENDUM.md` | 291 | (viii) | 기타(데이터 정정 addendum) | ②토픽 한정 | 작업 sub(직렬) | 1–291 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/V1025_DATA_ADDENDUM.md) |
+| 549 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/V1025_DOC_CASCADE_TODO.md` | 182 | (viii) | 기타(지시서) | ②토픽 한정 | 작업 sub(직렬) | 1–182 | 2.1 Step 14·15 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/V1025_DOC_CASCADE_TODO.md) |
+| 550 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_appA_signcheck.tex` | 89 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_appA_signcheck.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_appA_signcheck.tex`) |
+| 551 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_appB_codemap.tex` | 184 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_appB_codemap.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_appB_codemap.tex`) |
+| 552 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_appD_si.tex` | 91 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_appD_si.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_appD_si.tex`) |
+| 553 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_appE_selfconsistent.tex` | 217 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_appE_selfconsistent.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_appE_selfconsistent.tex`) |
+| 554 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_preamble.tex` | 77 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_preamble.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_preamble.tex`) |
+| 555 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec00_intro.tex` | 94 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec00_intro.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec00_intro.tex`) |
+| 556 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec01_n0n1.tex` | 244 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec01_n0n1.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec01_n0n1.tex`) |
+| 557 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec02a_part0.tex` | 390 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec02a_part0.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec02a_part0.tex`) |
+| 558 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec02b_part0.tex` | 474 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec02b_part0.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec02b_part0.tex`) |
+| 559 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec03_center.tex` | 121 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec03_center.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec03_center.tex`) |
+| 560 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec04_hys.tex` | 336 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec04_hys.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec04_hys.tex`) |
+| 561 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec05b_gr2L.tex` | 238 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec05b_gr2L.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec05b_gr2L.tex`) |
+| 562 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec07_broadening.tex` | 375 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec07_broadening.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec07_broadening.tex`) |
+| 563 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec08_lag.tex` | 148 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec08_lag.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec08_lag.tex`) |
+| 564 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec09_tail.tex` | 253 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec09_tail.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec09_tail.tex`) |
+| 565 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec10_sum.tex` | 187 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec10_sum.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec10_sum.tex`) |
+| 566 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec11_lcointro.tex` | 175 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec11_lcointro.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec11_lcointro.tex`) |
+| 567 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec12_lcocenter.tex` | 112 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec12_lcocenter.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec12_lcocenter.tex`) |
+| 568 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec13_lcohys.tex` | 223 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec13_lcohys.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec13_lcohys.tex`) |
+| 569 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec14_lcodecomp.tex` | 143 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec14_lcodecomp.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec14_lcodecomp.tex`) |
+| 570 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec15_lcoelec.tex` | 396 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec15_lcoelec.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec15_lcoelec.tex`) |
+| 571 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec16_lcopeak.tex` | 70 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec16_lcopeak.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec16_lcopeak.tex`) |
+| 572 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec16b_lcoomega.tex` | 160 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec16b_lcoomega.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec16b_lcoomega.tex`) |
+| 573 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec17_msmr.tex` | 176 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec17_msmr.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec17_msmr.tex`) |
+| 574 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1_sec18_inputs.tex` | 92 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1_sec18_inputs.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1_sec18_inputs.tex`) |
+| 575 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1v22_bib.tex` | 56 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1v22_bib.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1v22_bib.tex`) |
+| 576 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch1v22_partT_divider.tex` | 14 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch1v22_partT_divider.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch1v22_partT_divider.tex`) |
+| 577 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_appA_traps.tex` | 75 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_appA_traps.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_appA_traps.tex`) |
+| 578 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_appB_codemap.tex` | 77 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_appB_codemap.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_appB_codemap.tex`) |
+| 579 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_preamble.tex` | 56 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_preamble.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_preamble.tex`) |
+| 580 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec00_intro.tex` | 71 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec00_intro.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec00_intro.tex`) |
+| 581 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec01_partition.tex` | 149 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec01_partition.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec01_partition.tex`) |
+| 582 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec02_config.tex` | 190 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec02_config.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec02_config.tex`) |
+| 583 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec03_vibel.tex` | 118 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec03_vibel.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec03_vibel.tex`) |
+| 584 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec04_einstein.tex` | 207 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec04_einstein.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec04_einstein.tex`) |
+| 585 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec05_mixing.tex` | 255 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec05_mixing.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec05_mixing.tex`) |
+| 586 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec06_limits.tex` | 53 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec06_limits.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec06_limits.tex`) |
+| 587 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec07_revheat.tex` | 102 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec07_revheat.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec07_revheat.tex`) |
+| 588 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec08_synthesis.tex` | 238 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec08_synthesis.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec08_synthesis.tex`) |
+| 589 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec09_method.tex` | 64 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec09_method.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec09_method.tex`) |
+| 590 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2_sec10_closing.tex` | 29 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2_sec10_closing.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2_sec10_closing.tex`) |
+| 591 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2v22_bib.tex` | 21 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2v22_bib.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2v22_bib.tex`) |
+| 592 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2v22_notation.tex` | 14 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2v22_notation.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2v22_notation.tex`) |
+| 593 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch2v22_sec00_intro.tex` | 12 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch2v22_sec00_intro.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch2v22_sec00_intro.tex`) |
+| 594 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_bib.tex` | 44 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_bib.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_bib.tex`) |
+| 595 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_notation.tex` | 46 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_notation.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_notation.tex`) |
+| 596 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec00_intro.tex` | 12 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec00_intro.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec00_intro.tex`) |
+| 597 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec01_map.tex` | 129 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec01_map.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec01_map.tex`) |
+| 598 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec02_cases.tex` | 173 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec02_cases.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec02_cases.tex`) |
+| 599 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec03_blend.tex` | 278 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec03_blend.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec03_blend.tex`) |
+| 600 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec04_mech.tex` | 110 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec04_mech.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec04_mech.tex`) |
+| 601 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/ch3v22_sec05_code.tex` | 70 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/ch3v22_sec05_code.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/ch3v22_sec05_code.tex`) |
+| 602 | 29 v1.0.25 | `Claude/docs/v1.0.25/_sections/common_preamble_v1024.tex` | 84 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/_sections/common_preamble_v1024.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/_sections/common_preamble_v1024.tex`) |
+| 603 | 29 v1.0.25 | `Claude/docs/v1.0.25/appendix_phase_separation.tex` | 497 | (xviii) | v1.0.25.1 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25.1/appendix_phase_separation.tex · 정독 X(사본) · OUT-INV: 사본(고유본=`Claude/docs/v1.0.25.1/appendix_phase_separation.tex`) |
+| 604 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/INDEX_v24.md` | 63 | (vi) | INDEX | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/INDEX_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/INDEX_v24.md) |
+| 605 | 29 v1.0.25 | `Claude/docs/v1.0.25/results/INDEX_v25.md` | 138 | (vi) | INDEX | ②토픽 한정 | 작업 sub(직렬) | 1–138 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 고유본(사본 1: Claude/docs/v1.0.25.1/results/INDEX_v25.md) |
+| 606 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/HANDOVER_v24.md` | 88 | (iii) | 인계 | 정독 X | (정독 X) | — | (없음) | — | R2 | — | 사본 → 고유본: Claude/docs/v1.0.24/results/HANDOVER_v24.md · 정독 X(사본) · OUT-INV: A6(brief 는 v1.0.25.1 사본을 인용) ; 사본(고유본 = Claude/docs/v1.0.24/results/HANDOVER_v24 |
+| 607 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/HANDOVER_v25.md` | 170 | (iii) | 인계 | 정독 X | (정독 X) | — | (없음) | — | R2·R3 | — | 사본 → 고유본: Claude/docs/v1.0.25/results/HANDOVER_v25.md · 정독 X(사본) · OUT-INV: A5 ; 사본(고유본 = Claude/docs/v1.0.25/results/HANDOVER_v25.md) |
+| 608 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/MERGE_READINESS_v24.md` | 59 | (viii) | 감사(머지 판정) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/MERGE_READINESS_v24.md) |
+| 609 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/MERGE_READINESS_v25.md` | 204 | (viii) | 감사(머지 판정) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25/results/MERGE_READINESS_v25.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.25/results/MERGE_READINESS_v25.md) |
+| 610 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1024_REFLECT_EXECUTION_LEDGER.md` | 14 | (vii) | ledger | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/V1024_REFLECT_EXECUTION_LEDGER.md · 정독 X(사본) · OUT-INV: (xiii) 대상 · 계수는 (vii) ; 사본(고유본 = Claude/docs/v1.0.24/results/V1024_REFLECT_EXECU |
+| 611 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_CHANGE_LEDGER.md` | 157 | (vii) | ledger | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25/results/V1025_CHANGE_LEDGER.md · 정독 X(사본) · OUT-INV: (viii) 정의에도 해당 · 계수는 (vii) ; 사본(고유본 = Claude/docs/v1.0.25/results/V1025_CHANGE_L |
+| 612 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/PHASE_R0_RESULT.md` | 44 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R0_RESULT.md) |
+| 613 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/PHASE_R1_RESULT.md` | 53 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | R3(grep) | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R1_RESULT.md) |
+| 614 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/PHASE_R2_RESULT.md` | 49 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R2_RESULT.md) |
+| 615 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/PHASE_R3_RESULT.md` | 39 | (viii) | Result | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/PHASE_R3_RESULT.md) |
+| 616 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_DOC_EDIT_REPORT.md` | 312 | (viii) | Result(집행 보고) | 정독 X | (정독 X) | — | (없음) | — | R4b(부분) | — | 사본 → 고유본: Claude/docs/v1.0.25/results/V1025_DOC_EDIT_REPORT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.25/results/V1025_DOC_EDIT_REPORT.md) |
+| 617 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_T13_T14_REPORT.md` | 487 | (viii) | Result(집행 보고) | 정독 X | (정독 X) | — | (없음) | — | R4b(부분) | — | 사본 → 고유본: Claude/docs/v1.0.25/results/V1025_T13_T14_REPORT.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.25/results/V1025_T13_T14_REPORT.md) |
+| 618 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/comp_R1/CHERRYPICK_R1.md` | 41 | (viii-c) | Result(체리픽 결정 기록) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/comp_R1/CHERRYPICK_R1.md — §4 #42 · 정독 경로 = 현행 · 정독 X(사본) · OUT-INV: (b) `INDEX_v25.md`:87 인용 — v1.0.25 경쟁 저작 라운드 1 의 채택 결정 기록 ; 사본(고유본 = Claude/docs |
+| 619 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/REFLECT_SEED_TABLE.md` | 59 | (xiii) | 조사 | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md · 정독 X(사본) · OUT-INV: 추가 발견 ; 사본(고유본 = Claude/docs/v1.0.24/results/REFLECT_SEED_TABLE.md) |
+| 620 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/ARCHIVE_NOTE.md` | 118 | (viii) | 기타(폴더 지위) | ②토픽 한정 | 작업 sub(직렬) | 1–118 | 1.2 Step 4 | — | R4b(부분) | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: v1.0.25 절 S1~S6 추기본(INDEX_v25.md:93) · v1.0.25 폴더본(109)과 hash 상이 |
+| 621 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_1_TOUCHUP_NOTE.md` | 61 | (viii) | 기타(검증 기록) | ②토픽 한정 | 작업 sub(직렬) | 1–61 | 2.1 Step 14·15 | — | R2 | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: 추가 발견 — A4 · docs/INDEX.md:12 "현행 권위 기록" |
+| 622 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_DATA_ADDENDUM.md` | 291 | (viii) | 기타(데이터 정정 addendum) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25/results/V1025_DATA_ADDENDUM.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.25/results/V1025_DATA_ADDENDUM.md) |
+| 623 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/V1025_DOC_CASCADE_TODO.md` | 182 | (viii) | 기타(지시서) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.25/results/V1025_DOC_CASCADE_TODO.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.25/results/V1025_DOC_CASCADE_TODO.md) |
+| 624 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/comp_R1/AUTHOR_BRIEF.md` | 54 | (viii-c) | 기타(경쟁 저작 brief) | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/comp_R1/AUTHOR_BRIEF.md — §4 #68 · 정독 경로 = 현행 · 정독 X(사본) · OUT-INV: (b) `INDEX_v25.md`:87 인용 — 경쟁 저자에게 준 brief(요구 사양 기록) · 같은 폴더의 경쟁 초안 tex·검수 md 는  |
+| 625 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_appA_signcheck.tex` | 89 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–89 | 2.2 Step 18 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a |
+| 626 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_appB_codemap.tex` | 184 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–184 | 2.2 Step 18 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a |
+| 627 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_appE_selfconsistent.tex` | 217 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–217 | 2.2 Step 18 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4a·R6 |
+| 628 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec00_intro.tex` | 94 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–94 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R6(보강) |
+| 629 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec01_n0n1.tex` | 244 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–244 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R6 |
+| 630 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec02a_part0.tex` | 390 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–390 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4a·R5 |
+| 631 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec02b_part0.tex` | 474 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–474 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R5 |
+| 632 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec03_center.tex` | 121 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–121 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R5 |
+| 633 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec04_hys.tex` | 336 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–336 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R4b(부분)·R5·R6 |
+| 634 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec05_width.tex` | 424 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–424 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R5·R6 |
+| 635 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec05b_gr2L.tex` | 238 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–238 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R4b(부분)·R5 |
+| 636 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec06_eqpeak.tex` | 131 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–131 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R4b(부분)·R5 |
+| 637 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec07_broadening.tex` | 375 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–375 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R5 |
+| 638 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec08_lag.tex` | 148 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–148 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R6 |
+| 639 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec09_tail.tex` | 253 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–253 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R6 |
+| 640 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec10_sum.tex` | 187 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–187 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a·R5(grep) |
+| 641 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec11_lcointro.tex` | 175 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–175 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 642 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec12_lcocenter.tex` | 112 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–112 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 643 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec13_lcohys.tex` | 223 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–223 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b·R5(부분)·R6 |
+| 644 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec14_lcodecomp.tex` | 143 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–143 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 645 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec15_lcoelec.tex` | 396 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–396 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 646 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec16_lcopeak.tex` | 70 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–70 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 647 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec16b_lcoomega.tex` | 160 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–160 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4b·R5(보조) |
+| 648 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec17_msmr.tex` | 176 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–176 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 649 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1_sec18_inputs.tex` | 92 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–92 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a |
+| 650 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1v22_bib.tex` | 56 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–56 | 2.2 Step 17 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4a·R5(보조)·R6(grep)·R7 |
+| 651 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch1v22_partT_divider.tex` | 14 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–14 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | — |
+| 652 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_appA_traps.tex` | 75 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–75 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4b |
+| 653 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_appB_codemap.tex` | 77 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–77 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4b |
+| 654 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec00_intro.tex` | 71 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–71 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a |
+| 655 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec01_partition.tex` | 149 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–149 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5 |
+| 656 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec02_config.tex` | 190 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–190 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5 |
+| 657 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec03_vibel.tex` | 118 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–118 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R4b(부분)·R5(보조) |
+| 658 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec04_einstein.tex` | 207 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–207 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5(보조) |
+| 659 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec05_mixing.tex` | 255 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–255 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5·R6(부분) |
+| 660 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec06_limits.tex` | 53 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–53 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5(보조) |
+| 661 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec07_revheat.tex` | 102 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–102 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5·R6(보강) |
+| 662 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec08_synthesis.tex` | 238 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–238 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a·R5(보조) |
+| 663 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec09_method.tex` | 64 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–64 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a |
+| 664 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2_sec10_closing.tex` | 29 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–29 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4a |
+| 665 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2v22_bib.tex` | 21 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–21 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4b·R5(보조)·R6(grep)·R7 |
+| 666 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2v22_notation.tex` | 14 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–14 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4b |
+| 667 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch2v22_sec00_intro.tex` | 12 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–12 | 2.2 Step 18 | 이연(Ch1 PDF 후) — LCO/Part T | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — LCO/Part T · OUT-INV: R4b |
+| 668 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_bib.tex` | 44 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–44 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b·R5(보조)·R6(grep)·R7 · 흑연 우선: 이연(Ch1 PDF 후) |
+| 669 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_notation.tex` | 46 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–46 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 670 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec00_intro.tex` | 12 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–12 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 671 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec01_map.tex` | 129 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–129 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 672 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec02_cases.tex` | 173 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–173 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 673 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec02b_sifr.tex` | 220 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–220 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 674 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec03_blend.tex` | 278 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–278 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 675 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec04_mech.tex` | 110 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–110 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b·R6 · 흑연 우선: 이연(Ch1 PDF 후) |
+| 676 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/ch3v22_sec05_code.tex` | 70 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–70 | 2.2 Step 19 | 이연(Ch1 PDF 후) — Si/Ch3 | 원문 tex | 2.x: 해당 Phase 규칙 | 이연(Ch1 PDF 후) — Si/Ch3 · OUT-INV: R4b · 흑연 우선: 이연(Ch1 PDF 후) |
+| 677 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/_sections/common_preamble_v1024.tex` | 84 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–84 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4b(부분) |
+| 678 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/appendix_phase_separation.tex` | 497 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–497 | 2.1 Step 14 | 독립 부록 | 원문 tex | 2.x: 해당 Phase 규칙 | 독립 부록 · OUT-INV: R4b·R5(보조)·R6·R7(부분) |
+| 679 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/ch1_graphite_v1.0.24.tex` | 62 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–62 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4b(부분) |
+| 680 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/ch2_lco_v1.0.24.tex` | 34 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–34 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b(부분) |
+| 681 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/ch3_si_v1.0.24.tex` | 34 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–34 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R3(grep)·R4b(부분) |
+| 682 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/INDEX_v24.md` | 63 | (vi) | INDEX | 정독 X | (정독 X) | — | (없음) | — | — | — | 사본 → 고유본: Claude/docs/v1.0.24/results/INDEX_v24.md · 정독 X(사본) · OUT-INV: 사본(고유본 = Claude/docs/v1.0.24/results/INDEX_v24.md) |
+| 683 | 30 v1.0.25.1 | `Claude/docs/v1.0.25.1/results/INDEX_v25.md` | 138 | (vi) | INDEX | 정독 X | (정독 X) | — | (없음) | — | R2·R4b(부분) | — | 사본 → 고유본: Claude/docs/v1.0.25/results/INDEX_v25.md · 정독 X(사본) · OUT-INV: brief 139 → 실측 138(정의 −1) · I-4 전문 정독 ; 사본(고유본 = Claude/docs/v1.0.25/results/IND |
+| 684 | 31 v1.0.26 | `Claude/results/comp_v26_data/HANDOVER_regsol_investigation.md` | 55 | (iii) | 인계 | ①전문 | 작업 sub(직렬) | 1–55 | 1.3 Step 9 | — | R2·R5(보조) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: A7 · `comp_v26_data/README.md:23` "착수 시점 인계(서비스 장애로 실행 차단됐던 기록)" = stale(R2) |
+| 685 | 31 v1.0.26 | `Claude/results/comp_v26_data/MULTI_DATASET_REVIEW.md` | 58 | (ix) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–58 | 1.2 Step 4 | — | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | OUT-INV: §2.9 L202 미검독 |
+| 686 | 31 v1.0.26 | `Claude/docs/v1.0.26A-regsol/README.md` | 198 | (xi) | 조사 | ①전문 | 작업 sub(직렬) | 1–198 | 1.3 Step 9 | 1.2 Step 4(재참조) | R2(추가) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) · OUT-INV: brief 199 → 198(정의 −1) |
+| 687 | 31 v1.0.26 | `Claude/docs/v1.0.26B-gallery/README.md` | 192 | (xi) | 조사 | ①전문 | 작업 sub(직렬) | 1–192 | 1.3 Step 9 | 1.2 Step 4(재참조) | R2(추가) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) · OUT-INV: brief 193 → 192(정의 −1) |
+| 688 | 31 v1.0.26 | `Claude/results/comp_v26_data/README.md` | 49 | (xi) | 조사 | ①전문 | 작업 sub(직렬) | 1–49 | 1.3 Step 9 | 1.2 Step 4(재참조) | R2(추가) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | 1.2 Step 4(재참조) · OUT-INV: brief 50 → 49(정의 −1) · I-7 L20–35 토픽 정독 |
+| 689 | 31 v1.0.26 | `Claude/results/comp_v26_data/analyze_sintef.py` | 230 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) · OUT-INV: README.md:24 미실행(잔여 과제) |
+| 690 | 31 v1.0.26 | `Claude/results/comp_v26_data/bdd_dqdv.py` | 177 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) |
+| 691 | 31 v1.0.26 | `Claude/results/comp_v26_data/build_two_versions.py` | 202 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) · OUT-INV: README.md:20 |
+| 692 | 31 v1.0.26 | `Claude/results/comp_v26_data/make_version_docs.py` | 285 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) · OUT-INV: README.md:21 |
+| 693 | 31 v1.0.26 | `Claude/results/comp_v26_data/out_skew/summary_skew.json` | 4 | (xi) | 기타(데이터) | 정독 X | (정독 X) | — | (없음) | — | R2(추가) | — | 코드/데이터/로그(.json) · 정독 X(정독 대상 아님) · OUT-INV: 추가 발견(R2 Read Coverage +2 · README.md:30 폐기분 산출 "빈 JSON") |
+| 694 | 31 v1.0.26 | `Claude/results/comp_v26_data/out_versions/build.log` | 36 | (xi) | 기타(로그) | ①전문 | 작업 sub(직렬) | 1–36 | 1.2 Step 4 | — | R2(추가) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: brief 36 = 36 — 파일은 LF 36·끝 개행 True 라 Read 표기는 37 이어야 하므로 R2 의 표기 불일치(AUD-09) ·  |
+| 695 | 31 v1.0.26 | `Claude/results/comp_v26_data/regsol_kernel.py` | 108 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) · OUT-INV: §2.8 L181 |
+| 696 | 31 v1.0.26 | `Claude/results/comp_v26_data/skew_log.txt` | 11 | (xi) | 기타(텍스트) | 정독 X | (정독 X) | — | (없음) | — | R2(추가) | — | 코드/데이터/로그(.txt) · 정독 X(정독 대상 아님) · OUT-INV: 추가 발견(R2 Read Coverage +3) |
+| 697 | 31 v1.0.26 | `Claude/results/comp_v26_data/test_gallery_vs_regsol.py` | 242 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) |
+| 698 | 31 v1.0.26 | `Claude/results/comp_v26_data/test_skew_regsol.py` | 153 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) · OUT-INV: README.md:30 폐기(실행 금지) |
+| 699 | 31 v1.0.26 | `Claude/results/comp_v26_data/test_skew_regsol_v2.py` | 297 | (xi) | 기타(코드) | 정독 X | (정독 X) | — | (없음) | — | — | — | 코드/데이터/로그(.py) · 정독 X(정독 대상 아님) |
+| 700 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_01_history_v3-v1011.md` | 72 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–72 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1·R3·R6 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: A9 |
+| 701 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_02_ch1ch2_content.md` | 41 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–41 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: §2.9 L198 미검독(02) |
+| 702 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_03_code_fitness.md` | 24 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–24 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: §2.9 L198 미검독(03) |
+| 703 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_note_A1_v3-v5.md` | 188 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–188 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: note_A1 |
+| 704 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_note_A2_v5-v7.md` | 142 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–142 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: note_A2 |
+| 705 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_note_A3_v7-v9.md` | 159 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–159 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: note_A3 |
+| 706 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_note_A4_v9-v1011.md` | 127 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–127 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: note_A4 |
+| 707 | 90 횡단 | `Claude/docs/Fable_점검/FABLE_AUDIT_note_A5_ch2-code.md` | 132 | (iv) | 감사 | ①전문 | 작업 sub(직렬) | 1–132 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: note_A5 |
+| 708 | 90 횡단 | `Claude/results/MISSING_CONTENT_REVIEW.md` | 93 | (iv-c) | 감사 | ②토픽 한정 | 작업 sub(직렬) | 1–93 | 1.2 Step 4 | [sub 판단] 횡단 파일 — coord 90 기본값 | — | ②: 구조 추출 + 근거 절 정독 + 검수 sub 근거 행 대조 | [sub 판단] 횡단 파일 — coord 90 기본값 · OUT-INV: (b) `docs/INDEX.md`:193 인용 |
+| 709 | 90 횡단 | `Claude/jcp_extract.txt` | 725 | (x) | 조사(원문 추출) | ①전문 | 작업 sub(직렬) | 1–725 | 4.5 / S-2 | — | — | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | ①(4.5 배정) — 챕터 1에서 존재 확인만 · OUT-INV: brief 724 → 실측 725(**확정** — 파일이 개행으로 끝나지 않아 `(Get-Content).Count` = LF 724 + 1 · |
+| 710 | 90 횡단 | `CLAUDE.md` | 88 | (xix) | 통제(프로젝트 지침) | 정독 X | (정독 X) | — | (없음) | — | R3 | — | 통제(본 arc) · 정독 X(정독 대상 아님) · OUT-INV: A1 · 7,380 B · trailing CRLF 개행 True(R3 89 = Read 표기 +1) |
+| 711 | 90 횡단 | `Claude/docs/INDEX.md` | 196 | (vi) | INDEX | ①전문 | 작업 sub(직렬) | 1–196 | 2.1 Step 14·15 | — | R1·R3(grep) | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: A2 · brief 197 → 실측 196(정의 −1) |
+| 712 | 90 횡단 | `Claude/docs/v1.0.25.1/_sections/ch1_appD_si.tex` | 91 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–91 | 2.2 Step 18 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4b |
+| 713 | 90 횡단 | `Claude/docs/v1.0.25.1/_sections/ch1_preamble.tex` | 77 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–77 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a(grep) |
+| 714 | 90 횡단 | `Claude/docs/v1.0.25.1/_sections/ch2_preamble.tex` | 56 | (xvi) | v1.0.25.1 | 현행 tex(2.x) | 작업 sub(직렬) | 1–56 | 2.1 Step 14 | — | 원문 tex | 2.x: 해당 Phase 규칙 | OUT-INV: R4a(grep) |
+| 715 | 90 횡단 | `Claude/plans/INDEX.md` | 69 | (vi) | INDEX | ①전문 | 작업 sub(직렬) | 1–69 | 2.1 Step 14·15 | — | R1 | ①: 전문 정독 + 검수 sub 근거 행 전건 대조 | OUT-INV: A3 · brief 65 → 실측 69: 스테일 표기(자체 L5–8)이나 v1.0.27 행 L10–13 이 추가돼 있음(I-3 정독 확정) —  |
+| 716 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/audit_checklist.md` | 47 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 717 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/brief.md` | 218 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | R1·R2·R3·R4a·R4b·R5·R6·R7 | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 718 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/iter_1/plan_draft.md` | 575 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 719 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/iter_1/work_log.md` | 119 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 720 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R1_version_register_v3_to_v1019.md` | 205 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 721 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R2_version_register_v1020_to_v1026.md` | 299 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 722 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R3_binding_decisions_and_lost_directions.md` | 397 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 723 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R4a_diagnosis_scope_ch1_partT.md` | 362 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 724 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R4b_diagnosis_scope_ch2_ch3_appendix.md` | 430 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 725 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R5_theory_candidates_thermo_statmech.md` | 425 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 726 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R6_theory_candidates_kinetics_hys_heat.md` | 414 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 727 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R7_reference_master_map.json` | 3833 | (xv) | 시드(판독·json) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) · OUT-INV: R7 json(3,833줄) |
+| 728 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R7_reference_master_map.md` | 533 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(시드) · OUT-INV: 시드 — 정독 대상 아님(Read Coverage 절만 토픽 정독, work_log) |
+| 729 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/audit_format.md` | 83 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 730 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/audit_logic.md` | 89 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 731 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/audit_spec.md` | 161 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 732 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/critic.md` | 208 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 733 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/fix_change_log.md` | 132 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) · OUT-INV: (viii) `CHANGE_LOG` 패턴에도 매치 — 계수는 (xv) |
+| 734 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/go_1g_check_2026-09-03.txt` | 15 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) · OUT-INV: I-6 전문 정독 · 1g 실측 대조 원본 |
+| 735 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/plan_draft_v2.md` | 783 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 736 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/plan_draft_v3.md` | 859 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 737 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/plan_v3_appendix_ABC.md` | 103 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 738 | 95 시드(판독) | `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/review_master.md` | 51 | (xv) | 시드(판독) | 정독 X | (정독 X) | — | (없음) | — | — | — | 시드(판독 산출) · 정독 X(정독 대상 아님) |
+| 739 | 95 시드(판독) | `Claude/results/handoffs/v1027-phase-1.1-inventory/brief.md` | 133 | (xv) | 통제(본 arc) | 정독 X | (정독 X) | — | (없음) | — | — | — | 통제(본 arc) — 본 arc 계획서 · 정독 X(정독 대상 아님) · OUT-INV: 추가 발견 — 본 Step 지시서(brief 정의 (xv) 밖 · 통제(본 arc)) |
+| 740 | 99 통제(본 arc) | `Claude/plans/2026-09-02-v2-master-plan.md` | 812 | (i) | 마스터플랜 | 정독 X | (정독 X) | — | (없음) | — | — | — | 통제(본 arc) — 본 arc 계획서 · 정독 X(정독 대상 아님) · OUT-INV: 본 arc 통제 문서(TSV 시점 v5.2 812줄 — 현재 판 = Correction History 최신 행 · §3.1 주석) · §2.9· |
+
+## §2 배정 Step 별 집계
+
+| 배정 Step | ①전문 파일 | ②토픽 한정 파일 | 파일 수 합계 | 줄수 합계 | 청크 수 |
+|---|---|---|---|---|---|
+| (없음) | 0 | 0 | 129 | 24,949 | 0 |
+| 1.2 Step 3 | 27 | 276 | 303 | 35,278 | 315 |
+| 1.2 Step 4 | 14 | 161 | 175 | 21,224 | 175 |
+| 1.3 Step 8 | 3 | 12 | 15 | 1,763 | 15 |
+| 1.3 Step 9 | 10 | 12 | 22 | 2,347 | 22 |
+| 1.4 Step 10~12 | 1 | 12 | 18 | 12,692 | 13 |
+| 2.1 Step 14 | 0 | 0 | 11 | 988 | 11 |
+| 2.1 Step 14·15 | 2 | 9 | 11 | 2,070 | 11 |
+| 2.1 Step 15 | 0 | 0 | 3 | 768 | 3 |
+| 2.2 Step 17 | 0 | 0 | 23 | 5,018 | 23 |
+| 2.2 Step 18 | 0 | 0 | 20 | 2,256 | 20 |
+| 2.2 Step 19 | 0 | 0 | 9 | 1,082 | 9 |
+| 4.5 / S-2 | 1 | 0 | 1 | 725 | 1 |
+
+## §3 등급별 집계
+
+| 정독 등급 | 파일 수 | 줄수 합계 |
+|---|---|---|
+| ①전문 | 58 | 6,993 |
+| ②토픽 한정 | 482 | 57,230 |
+| 원문 tex(절 한정) | 5 | 11,876 |
+| 현행 tex(2.x) | 66 | 10,112 |
+| 정독 X | 129 | 24,949 |
+| **정독 대상 소계(①+②+원문 tex)** | **545** | **76,099**(원문 tex 절 한정 미정 포함) |
+| **전체 합계** | **740** | **111,160** |
+
+## §4 게이트 자체 점검
+
+| 게이트 | 기준 | 실측 | 판정 |
+|---|---|---|---|
+| 배정표 행 수 | 740 | 740 | O |
+| 줄수 합계 | 111,160 | 111,160 | O |
+| 등급 빈 셀 | 0 | 0 | O |
+| 정독 주체 빈 셀 | 0 | 0 | O |
+| 정독 대상 청크 경계 `—` 오류 | 0 | 0 | O |
+| DQ 건수 | — | 0 | — |
+
+**자체검수 스크립트 실행**: 본 스크립트가 양방향 집합 대조를 수행했음. master 재실행으로 확정.
+
+**TSV 행 수**: 740 (헤더 제외 데이터 행)
+
+## §5 부록 — DQ-16 후보 풀
+
+DQ-16 후보: `results/process/` REVIEW/NOTE 계열 — OUT-INV 미등재, 1.2 Step 3 토픽 한정 열람 후보.
+
+대상 계열: `V1014_REVIEW_R*` · `V1013_REVIEW_R*` · `V1013_CODE_MAP_ADDENDUM_R10` · `V1012_P43_review_*` · `V1012_P42b_fixer_note` · `V1010_P1~P5_review1` · `V1010_HANDOVER_INSPECT_*` · `V1010_LCO_STYLE_REPORT` · `V1015_P2_PHYSICS_REVIEW` · `V1019_FINAL_REVIEW_UNION`
+
+실측 건수·줄수: OUT-INV §10.4 DQ-16 정의 기준 약 82본·약 9,159줄 (미등재 — 파일 단위 목록은 master TSV 스캔 후 확정).
+
+**radius 조사 카드·CH2_v3 조사 카드**: (ix-b) 등재 6본 포함. 추가 card 가 있으면 master 가 TSV 에서 확인.
+
+## §6 DQ (Decision Queue)
+
+DQ 없음 (좌표 미매핑 0건).

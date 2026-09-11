@@ -1,6 +1,6 @@
 # HANDOVER_v1.0.27 — v1.0.27 arc 인계(진행 중 판 · 매 Step/Phase 종료·중단 시 갱신)
 
-> 최종 갱신 = 2026-09-11 · master Fable 5.1 · 상태 = **Phase 1.1 Step 1 — 검수 R5 확정결함 1(stem 인용 `KNOWN_DEFECTS`) 반영한 iter_6 적용 · 계획서 v5.6(흑연 우선 재배열·모델 경계)·v5.7(발췌독 원칙·R6 단독 수렴 예외)·v5.8(읽기 범위 실행 규칙) ·v5.9(R6 반영) · Step 1 수렴·검토 commit `100ffdb` · **Step 2 정독 배정표 작업 sub(Sonnet 4.6 · A3) 실행 중** — Step 파일 `Claude/results/Step 2 — 정독 배정표.md`. 후임 master·서브세션은 이 문서 → 마스터 플랜 → 최신 `Step <N>` → 최신 Result 순으로 읽고 이어받는다. "기억으로는" 금지 — 아래 path:line 을 실물로 연다.
+> 최종 갱신 = 2026-09-11 · master Fable 5.1 · 상태 = **Phase 1.1 Step 1 — 검수 R5 확정결함 1(stem 인용 `KNOWN_DEFECTS`) 반영한 iter_6 적용 · 계획서 v5.6(흑연 우선 재배열·모델 경계)·v5.7(발췌독 원칙·R6 단독 수렴 예외)·v5.8(읽기 범위 실행 규칙) ·v5.9(R6 반영) · **Phase 1.1 완료(Step 1 수렴 `100ffdb` · Step 2 배정표 게이트 O) · Result `PHASE_1.1_V1027_INV_RESULT.md`+json · Ledger 신설 · 다음 = Phase 1.2 Step 3**. 후임 master·서브세션은 이 문서 → 마스터 플랜 → 최신 `Step <N>` → 최신 Result 순으로 읽고 이어받는다. "기억으로는" 금지 — 아래 path:line 을 실물로 연다.
 
 ## 1. 사용자 지시(원문 요지 · 상세 = 마스터 플랜 §Summary·Decisions Required 확정표)
 
@@ -20,8 +20,8 @@
 
 1. (완료) R6 확정결함 0 → Step 1 수렴 · iter_7 정정 · 검토·정정 commit.
 2. (완료) 계획서 v5.6 편입 · OUT-INV iter_6(740/111,160 · §10.7) · PC iter_6 스냅샷 판.
-3. Step 2 정독 배정표(디스패치 완료 · 반환 대기) → master 기계 대조(차집합 0·합계 111,160·R# 740/740) → 게이트 1.1 → `PHASE_1.1_V1027_INV_RESULT.md`+`.json` → `PHASE_1-7_V1027_EXECUTION_LEDGER.md` 생성 → push.
-4. Phase 1.2~1.5 → 2.x(Ch1 몫) → 3.x → 4.0~4.5 → 5·6(Ch1) → **Ch1 PDF** → 이연분.
+3. (완료) Step 2 배정표 · 게이트 1.1 · Phase 1.1 Result md+json · Ledger 신설 · push.
+4. **Phase 1.2 Step 3**(RB→v1.0.19 보강 정독 · 배정표 `V1027_READING_ASSIGNMENT.md` 의 "1.2 Step 3" 303본 · ① 전문 / ② 토픽 한정 · 착수 시 마스터 플랜 재독 + Phase 1.2 절 재독 · brief 신설 `handoffs/v1027-phase-1.2-reg1/`) → 1.3~1.5 → 2.x(Ch1 몫) → 3.x → 4.0~4.5 → 5·6(Ch1) → **Ch1 PDF** → 이연분.
 
 ## 4. 주의
 
@@ -36,4 +36,4 @@
 ## 5. 인계 chain
 
 - 이전 arc 인계: `Claude/docs/v1.0.25.1/results/HANDOVER_v25.md` · 판독 시드 `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R1~R7` · `review_master.md`.
-- 본 arc 기록: Step 파일 `Claude/results/Step <N> — <제목>.md`(현재 Step 1) · Result `Claude/results/PHASE_<id>_V1027_<topic>_RESULT.md`(+json) · Ledger `Claude/results/PHASE_1-7_V1027_EXECUTION_LEDGER.md`(1.1 종료 시 생성) · commit `72a0477`→`cbc1d7c`→`731a94e`→`6bf32c9`→`b3a57bd`→`f3600f5`→`baccb49`→`81ec4e4`→`96d884b`(모두 wip 복원 지점 · push 는 Phase 종료 시).
+- 본 arc 기록: Step 파일 `Claude/results/Step <N> — <제목>.md`(현재 Step 1) · Result `Claude/results/PHASE_<id>_V1027_<topic>_RESULT.md`(+json) · Ledger `Claude/results/PHASE_1-7_V1027_EXECUTION_LEDGER.md`(1.1 행 기록) · commit `72a0477`→`cbc1d7c`→`731a94e`→`6bf32c9`→`b3a57bd`→`f3600f5`→`baccb49`→`81ec4e4`→`96d884b`(모두 wip 복원 지점 · push 는 Phase 종료 시).
