@@ -11,9 +11,9 @@
 
 ## 2. 현재까지 요약
 
-- 마스터 플랜 v5.2 GO(2026-09-03) → Phase 1.1 Step 1(OUT-INV 인벤토리) 착수. 작업 sub 산출(iter_1) → 검수 R1(확정결함 1: 등재 누락) → iter_2 → R2(확정결함 1: 정책 미기계적용) → iter_3/3b(「추가 발견」 정책 (a)(b)(b′)(c) 확정 + 잔여 0 스크립트 증명) → R3(확정결함 0) → iter_4 → R4(Workflow · 확정결함 1: 정책 (b) 토크나이저 결함) → iter_5(토큰 정규화·`CODE_w_check.md` 등재) → **R5 실행 중**(run `wf_5f60ae3f-2d2` · 캐시 39 + 재실행 9). 수렴 조건 = 연속 2R 확정결함 0 → R5·R6.
-- OUT-INV = `Claude/results/V1027_HISTORY_INVENTORY.md`(1,736행 · 등재 739 파일·111,130줄 · §10 = master 처분·정정 이력) · 증거 = `Claude/results/handoffs/v1027-phase-1.1-inventory/`(brief · audit_checklist r1~r4 · iter_1 TSV/work_log/audit_log/gen_outinv.ps1 · iter_2 audit_log_r2 · iter_3 policy_check(iter_5 최종판)/audit_log_r3 · iter_4 audit_log_r4).
-- 계획서 사실 정정 v5.3·v5.4·v5.5(Correction History) — 골격·Step·게이트 불변.
+- 마스터 플랜 v5.2 GO(2026-09-03) → Phase 1.1 Step 1(OUT-INV 인벤토리) 착수. 작업 sub 산출(iter_1) → 검수 R1(확정결함 1: 등재 누락) → iter_2 → R2(확정결함 1: 정책 미기계적용) → iter_3/3b(「추가 발견」 정책 (a)(b)(b′)(c) 확정 + 잔여 0 스크립트 증명) → R3(확정결함 0) → iter_4 → R4(Workflow · 확정결함 1: 정책 (b) 토크나이저 결함) → iter_5(토큰 정규화·`CODE_w_check.md` 등재) → R5(Workflow · 확정결함 1: (b) 정의 > 기계 규칙 — 확장자 없는 stem 인용 `KNOWN_DEFECTS`) → iter_6(`KNOWN_DEFECTS.md` 등재 · (b-1) 확장자 토큰 + (b-2) stem 스윕 이원화 · 경계 `(?![A-Za-z0-9_])` · PC 스냅샷 기록) → **R6 실행 중**(run `wf_ce3410a9-1d1` · 동시 ≤3). 수렴 조건 = 연속 2R 확정결함 0 → R6·R7.
+- OUT-INV = `Claude/results/V1027_HISTORY_INVENTORY.md`(1,757행 · 등재 740 파일·111,160줄 · §10 = master 처분·정정 이력 §10.1~10.7) · 증거 = `Claude/results/handoffs/v1027-phase-1.1-inventory/`(brief · audit_checklist r1~r4 · iter_1 TSV/work_log/audit_log/gen_outinv.ps1 · iter_2 audit_log_r2 · iter_3 policy_check(iter_6 최종판 · 스냅샷 기록)/audit_log_r3 · iter_4 audit_log_r4 · iter_5 audit_log_r5).
+- 계획서 정정 v5.3·v5.4·v5.5(사실 정정)·v5.6(사용자 재결정 편입 — 흑연 우선 재배열·모델 경계·Assumptions 11 740/111,160) — 골격·Step·게이트 삭제 없음.
 - Step 2 brief 선작성 = `Claude/results/handoffs/v1027-phase-1.1-reading/brief.md`(모델 경계 결정 반영 전 — 디스패치 전 갱신 필요: 정렬·청크 = Sonnet 4.6 기계 산출 + 자체검수, 판정 열은 OUT-INV 전사).
 
 ## 3. 미완료·다음 순서
@@ -29,9 +29,9 @@
 - 검수 sub 반환이 한도(429)로 죽으면 침묵 흡수 금지 — Workflow 는 같은 run id 로 재개(스크립트 무수정 · 캐시 prefix 유지).
 - 병렬 = 동시 ≤3. N×M 구조는 항목 순차.
 - OUT-INV·계획서 수정은 정확 일치·건수 검증 스크립트(스크래치패드 `patch_*.py` 방식)로만 — 통째 Write 금지 · 수정 전 wip commit(복원 지점).
-- policy_check 토큰화 = `[A-Za-z0-9_.-]` 만(괄호 제외) — R4 결함 재발 금지.
+- policy_check (b) 검사 = (b-1) 확장자 토큰(문자 집합 `[A-Za-z0-9_.-]` · 종료 경계 `(?![A-Za-z0-9_])`) + (b-2) 확장자 없는 stem 스윕 · 통제 문서 최종 편집 뒤 마지막에 재실행 · 머리에 5본 스냅샷 기록 — R4·R5 결함 재발 금지.
 
 ## 5. 인계 chain
 
 - 이전 arc 인계: `Claude/docs/v1.0.25.1/results/HANDOVER_v25.md` · 판독 시드 `Claude/results/handoffs/2026-09-02-v2-master-plan/wf/R1~R7` · `review_master.md`.
-- 본 arc 기록: Step 파일 `Claude/results/Step <N> — <제목>.md`(현재 Step 1) · Result `Claude/results/PHASE_<id>_V1027_<topic>_RESULT.md`(+json) · Ledger `Claude/results/PHASE_1-7_V1027_EXECUTION_LEDGER.md`(1.1 종료 시 생성) · commit `72a0477`→`cbc1d7c`→`731a94e`→`6bf32c9`→`b3a57bd`→`f3600f5`(모두 wip 복원 지점 · push 는 Phase 종료 시).
+- 본 arc 기록: Step 파일 `Claude/results/Step <N> — <제목>.md`(현재 Step 1) · Result `Claude/results/PHASE_<id>_V1027_<topic>_RESULT.md`(+json) · Ledger `Claude/results/PHASE_1-7_V1027_EXECUTION_LEDGER.md`(1.1 종료 시 생성) · commit `72a0477`→`cbc1d7c`→`731a94e`→`6bf32c9`→`b3a57bd`→`f3600f5`→`baccb49`→`81ec4e4`→`96d884b`(모두 wip 복원 지점 · push 는 Phase 종료 시).
