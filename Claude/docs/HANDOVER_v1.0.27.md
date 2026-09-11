@@ -1,13 +1,13 @@
 # HANDOVER_v1.0.27 — v1.0.27 arc 인계(진행 중 판 · 매 Step/Phase 종료·중단 시 갱신)
 
-> 최종 갱신 = 2026-09-11 · master Fable 5.1 · 상태 = **Phase 1.1 Step 1 검수 라운드 5 진행 중**. 후임 master·서브세션은 이 문서 → 마스터 플랜 → 최신 `Step <N>` → 최신 Result 순으로 읽고 이어받는다. "기억으로는" 금지 — 아래 path:line 을 실물로 연다.
+> 최종 갱신 = 2026-09-11 · master Fable 5.1 · 상태 = **Phase 1.1 Step 1 — 검수 R5 확정결함 1(stem 인용 `KNOWN_DEFECTS`) 반영한 iter_6 적용 · 계획서 v5.6(흑연 우선 재배열·모델 경계 편입) · 검수 R6 진행 중**(R6·R7 연속 0 이면 수렴). 후임 master·서브세션은 이 문서 → 마스터 플랜 → 최신 `Step <N>` → 최신 Result 순으로 읽고 이어받는다. "기억으로는" 금지 — 아래 path:line 을 실물로 연다.
 
 ## 1. 사용자 지시(원문 요지 · 상세 = 마스터 플랜 §Summary·Decisions Required 확정표)
 
 - 과제: Claude 측 전 이력(RB→v1.0.26)을 파악하고 현행 v1.0.25/.1(+v1.0.26 A/B)을 검토해 열역학·동역학 관점의 수식 연구 진보 = 새 버전 **v1.0.27** 저작. 기준 6개(수식만으로 80~90% 이해·대학원 교재 형식·리뷰 논문급 서지·타전공 석박사 청중·일반→특수 사다리·사용자 방법론 절대 준수).
 - 확정 결정 DR-1~23 + 신규 2(통계역학 전체 = Ch1 후반부 부록 D 교과서급 · 독자 참여형 섹션 X) = 마스터 플랜 `Claude/plans/2026-09-02-v2-master-plan.md` Decisions Required 확정표.
 - 2026-09-05 지적: **동시 에이전트 ≤3**(병렬 허가 ≠ 대규모 fan-out) — 계획서 v5.5 · `memory/feedback-parallel-cap.md`.
-- 2026-09-11 결정(계획서 v5.6 편입 예정 — R5 종료 후): ① **흑연 우선 완성** — Ch1 PDF 를 먼저 내놓고 LCO·Si·코드는 뒤로(2.2 Step 19 · 2.3 Step 22 · 3.3 Step 43 · 4.6~4.8 · 챕터 7 이연) ② **모델 경계** — 챕터 1·2(등록부·진단 = 기존 문서 판정) = 지금처럼 Fable(작업·검수·master) · 기계 산출(배정표 정렬·카운트)만 Sonnet 4.6 + 자체검수 · 챕터 3 설계 = Opus 5.0 작업 sub(Step 단위) + Fable 검수 · 챕터 4·5·6 = Opus 4.8 저작 + Fable 검수(확정결함 2회 연속 절만 Fable 저작 승격) ③ 기록 = Step/Phase 종료마다 Step 파일·Result·Ledger·본 인계 갱신(사용자 2026-09-11 "후임 세션이 참고할 수 있게").
+- 2026-09-11 결정(계획서 v5.6 에 편입 완료 — Phase Range 재배열 블록 · Interfaces 「모델」 · Correction History v5.6): ① **흑연 우선 완성** — Ch1 PDF 를 먼저 내놓고 LCO·Si·코드는 뒤로(2.2 Step 19 · 2.3 Step 22 · 3.3 Step 43 · 4.6~4.8 · 챕터 7 이연) ② **모델 경계** — 챕터 1·2(등록부·진단 = 기존 문서 판정) = 지금처럼 Fable(작업·검수·master) · 기계 산출(배정표 정렬·카운트)만 Sonnet 4.6 + 자체검수 · 챕터 3 설계 = Opus 5.0 작업 sub(Step 단위) + Fable 검수 · 챕터 4·5·6 = Opus 4.8 저작 + Fable 검수(확정결함 2회 연속 절만 Fable 저작 승격) ③ 기록 = Step/Phase 종료마다 Step 파일·Result·Ledger·본 인계 갱신(사용자 2026-09-11 "후임 세션이 참고할 수 있게").
 
 ## 2. 현재까지 요약
 
@@ -18,8 +18,8 @@
 
 ## 3. 미완료·다음 순서
 
-1. R5 결과 삼각검증 → 확정결함 0 이면 R6(regression 한정) → 수렴 → 검토·정정 commit → Step 1 파일 확정(상태·게이트 표 갱신).
-2. 계획서 v5.6 편입: 흑연 우선 재배열(Phase 순서 변경 · 삭제 없음) + 모델 경계 + Correction History 행.
+1. R6(iter_6 regression + PC (b-1)/(b-2) 독립 재현 · 동시 ≤3) → 0 이면 R7 → 연속 2R 수렴 → 검토·정정 commit → Step 1 파일 확정.
+2. (완료) 계획서 v5.6 편입 · OUT-INV iter_6(740/111,160 · §10.7) · PC iter_6 스냅샷 판.
 3. Step 2 정독 배정표(brief 갱신 후 디스패치) → 게이트 1.1 → `PHASE_1.1_V1027_INV_RESULT.md`+`.json` → `PHASE_1-7_V1027_EXECUTION_LEDGER.md` 생성 → push.
 4. Phase 1.2~1.5 → 2.x(Ch1 몫) → 3.x → 4.0~4.5 → 5·6(Ch1) → **Ch1 PDF** → 이연분.
 
