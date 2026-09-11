@@ -1,10 +1,10 @@
 # brief — v1.0.27 작업 챕터 1 · Phase 1.1 · Step 2 「정독 배정표」
 
-> master(Fable 5.1) → 작업 sub(Fable 5.1). 2026-09-03. 통제 문서 = `Claude/plans/2026-09-02-v2-master-plan.md`(v5.4) Phase 1.1 Step 2(L312–313) + 게이트 1.1(L315) + DR-7(L706–710). 입력 정본 = Step 1 산출 `Claude/results/V1027_HISTORY_INVENTORY.md`(OUT-INV, 검수 4R 수렴본 · 등재 738 파일·111,107줄). 유닛 = master + 작업 sub + 검수 sub, 직렬.
+> master(Fable 5.1) → 작업 sub(**Sonnet 4.6** — 기계 산출: 정렬·청크·집계 · 계획서 v5.6 모델 경계 · 자체검수 1회 + master 확인; 판정 열은 OUT-INV 값 전사만). 2026-09-11. 통제 문서 = `Claude/plans/2026-09-02-v2-master-plan.md`(v5.7) Phase 1.1 Step 2(v5.2 기준 L312–313 · 현행 +2) + 게이트 1.1 + DR-7. 입력 정본 = Step 1 산출 `Claude/results/V1027_HISTORY_INVENTORY.md`(OUT-INV iter_6 · 검수 R6 수렴본 · 등재 **740 파일·111,160줄**). 유닛 = master + 작업 sub(A3) · 검수 sub 없음(헌법 A3 규칙 — 자체검수 + master 기계 대조).
 
 ## 0. 5항목 고지
 
-1. **역할** — 너는 Phase 1.1 Step 2 의 **작업 sub** 다. 책임 = §2 산출물 A·B·C 생성뿐. 검수는 검수 sub, 확정·commit 은 master.
+1. **역할** — 너는 Phase 1.1 Step 2 의 **작업 sub(Sonnet 4.6 · 기계 산출 등급)** 다. 책임 = §2 산출물 A·B·C 생성 + 자체검수 1회(§4 게이트 전항 스크립트 대조). 확정·commit 은 master(기계 대조 재실행).
 2. **분업 경계** — 신규 파일 3본만 생성. **OUT-INV 를 포함한 모든 기존 파일 무변경**(OUT-INV 는 읽기 전용 입력 — 오류를 발견하면 work_log DQ 에 적고 표에는 "OUT-INV 표기 오류 후보" 비고). **commit 권한 없음 · git 명령 금지(읽기 포함)** · **`D:\Projects\Project_Anode_Fit\Codex\` 무접근(읽기·목록 0회)**.
 3. **범위 밖 자의 금지** — 새 문건·계획서 수정·memory 생성 X. 결정 필요 항목은 DQ 목록만.
 4. **허위 attribution 금지** — 4-tier(확정/근거 미발견/추정/미검증) + path:line. 너의 판단은 "[sub 판단]".
@@ -15,7 +15,7 @@
 | # | 파일 | 범위 |
 |---|---|---|
 | I-1 | `Claude/plans/2026-09-02-v2-master-plan.md` | L113–122(§2.3 계보 — 정렬 순서의 정본) · L191–207(§2.9) · L303–316(Phase 1.1 — Step 2 정의·게이트) · L317–357(Phase 1.2~1.5 — 배정 Step 의 정독 범위) · L359–380(2.1·2.2 — tex 정독 배정) · L706–710(DR-7) |
-| I-2 | `Claude/results/V1027_HISTORY_INVENTORY.md` | 전문(1,709행) — §1 군별 표(각 행의 path·줄수·귀속·종류·R#·비고 = 배정표 원자료) · §2 합계 · §4 hash 고유본/사본 · §6 tex · §8.3 미등재 · §10 처분(DQ-16 후보 풀 정의) |
+| I-2 | `Claude/results/V1027_HISTORY_INVENTORY.md` | 전문(1,757행 · iter_6) — §0 규칙·행 번호 기준 · §1 군별 표(각 행의 path·줄수·귀속·종류·R#·비고 = 배정표 원자료 — (i)~(xix) + (i-b)·(iv-b)·(iv-c)·(vii-b)·(vii-c)·(viii-b)·(viii-c)·(ix-b)·(xvii-b)·(xvii-c)) · §2 합계 · §4 hash 고유본/사본 · §6 tex · §8.3 미등재 · §10.1~10.7 처분(DQ-16 후보 풀 정의 · 정책 (b) 정본) |
 | I-3 | `Claude/results/handoffs/v1027-phase-1.1-inventory/iter_1/inventory_raw.tsv` | 스크립트 대조용(줄수·hash) — Read 불요, 파싱만 |
 
 ## 2. 산출물(신규 3본)
@@ -26,12 +26,12 @@
 
 ## 3. 배정 규칙(master 확정 — 그대로 적용)
 
-### 3.1 정독 등급(5값 · 빈 셀 0)
+### 3.1 정독 등급(5값 · 빈 셀 0 — 값은 OUT-INV 의 군·종류·비고에서 **기계 규칙으로만** 도출 · 판단 X · 규칙 밖 행은 DQ)
 
 | 등급 | 정의 | 해당(OUT-INV 군·조건) |
 |---|---|---|
 | **①전문** | head→tail 전문 정독 + 검수 sub 근거 행 대조 | 마스터플랜급 계획서(문서 종류 = 마스터플랜 — (i)·(i-b)·(ii) 의 v1020 master; glob 오매치는 제외) · 인계 chain 전건 (iii) 고유본 · Fable 감사 8 (iv) · CLOSING (v) · INDEX 3본(`docs/INDEX.md`·`plans/INDEX.md`·`INDEX_v25.md`; 그 밖의 `INDEX_v*` 는 ②) · 서지 원장 4 (xii)(V1023 은 사본→"사본") · v1.0.26 실물 3본 + `build.log` (xi) · dossier (x) · `jcp_extract.txt`(①이되 배정 Step = 4.5/S-2 — 챕터 1 에서는 존재 확인만; 표기 "①(4.5 배정)") |
-| **②토픽 한정** | 구조 추출(Phase 표·게이트·결정·Correction History·헤더) → 등록부 행의 근거 절만 원천에서 정독 → 검수 대조 · Read Coverage 에 행 범위 | 세부 계획서(plans 잔여·PLAN_*·old/plans·old/v2/plans) · ledger (vii)·(vii-b)·(vii-c 규약 기록) · Result (viii)·(viii-b)·(viii-c) · 조사 문서군 (ix)·(ix-b) · 감사 성격 (iv-b)·(iv-c) · 구트랙 기준 원문·계보 원문 tex (xvii-b)·(xvii-c) · `INDEX_v*` 잔여 (vi) |
+| **②토픽 한정** | 구조 추출(Phase 표·게이트·결정·Correction History·헤더) → 등록부 행의 근거 절만 원천에서 정독 → 검수 대조 · Read Coverage 에 행 범위 | 세부 계획서(plans 잔여·PLAN_*·old/plans·old/v2/plans) · ledger (vii)·(vii-b)·(vii-c 규약 기록) · Result (viii)·(viii-b)·(viii-c) · 조사 문서군 (ix)·(ix-b — `CODE_w_check` 포함) · 감사 성격 (iv-b)·(iv-c — `KNOWN_DEFECTS` 포함) · 구트랙 기준 원문·계보 원문 tex (xvii-b)·(xvii-c) · `INDEX_v*` 잔여 (vi) |
 | **원문 tex(절 한정)** | 1.4 Step 11 (i) 의 해당 절만 head→tail(절 범위는 Step 11 착수 시 Grep 으로 확정 — 배정표엔 "절 범위 미정 · Step 11 확정" 과 목표 절 이름만) | (xvii) 유실 원문 5본: Fable v2 = Eyring 근본식 배열 · Opus v5/v6 = §1.15 S0~S5·16-울타리 · Fable v3/Opus v4/Opus v5 = §1.10 KWW/장벽분포 · Opus v4 = §1.18 적층 준안정·athermal |
 | **현행 tex(2.x)** | 챕터 1 정독 대상 아님 — 2.1 Step 14(마스터 3 + 지원·orphan 4 = 361줄) · 2.2 Step 17~19(53본 8,853줄 — 청크 ≤~500) | (xvi) 60 · (xviii) v1.0.25 = hash 동일 54 "사본" + diff 6 "2.1 Step 15 diff hunk" |
 | **정독 X** | 사본(고유본이 따로 등재) · 시드(판독 산출 (xv)) · 통제(본 arc 계획서) · 코드/데이터/로그(`.py`·`.json`·`.log` — (xi) 스크립트 등) | OUT-INV 비고의 "사본(고유본 = …)" 행 전건 · (xv) 24 · (i) 행 90 · (xi) `.py`/`.json`/`.log`/`skew_log.txt` |
@@ -79,10 +79,10 @@
 ## 4. 양식(A `V1027_READING_ASSIGNMENT.md`)
 
 - §0 머리: 목적 · 입력(OUT-INV 738/111,107 · 검수 수렴본) · 등급 정의(§3.1 전사) · 좌표 매핑표(OUT-INV 귀속 값 → 좌표) · 정독 순서 규칙 · 청크 규칙.
-- §1 배정표(738행 전건 · 계보 순): `#` · `좌표` · `path` · `줄수` · `군` · `문서 종류` · `정독 등급` · `정독 주체` · `청크 경계` · `배정 Step` · `재참조` · `판독 참조(R#)` · `검수 대조` · `비고`(사본→고유본 path · 추정 · 동명이물 · 절 이름 등).
+- §1 배정표(740행 전건 · 계보 순): `#` · `좌표` · `path` · `줄수` · `군` · `문서 종류` · `정독 등급` · `정독 주체` · `청크 경계` · `배정 Step` · `재참조` · `판독 참조(R#)` · `검수 대조` · `비고`(사본→고유본 path · 추정 · 동명이물 · 절 이름 등).
 - §2 Step 별 배정 집계: 각 배정 Step 의 파일 수·줄수·청크 수(①/② 분리).
 - §3 등급별 집계: ①/②/원문 tex/현행 tex/정독 X 의 파일 수·줄수 · 정독 대상 합계(①+②+원문 tex 절 한정 미정 표시) — DR-7 비용 근거.
-- §4 게이트 자체 점검: 배정표 집합 = OUT-INV 집합(차집합 0 — 스크립트로 양방향 대조 · 수치) · 청크 경계 명시율(정독 대상 행 100%) · 줄수 합계 = 111,107 · 판독 참조 열 = OUT-INV 전사 일치 738/738 · 정독 주체 빈 셀 0 · 등급 빈 셀 0.
+- §4 게이트 자체 점검: 배정표 집합 = OUT-INV 집합(차집합 0 — 스크립트로 양방향 대조 · 수치) · 청크 경계 명시율(정독 대상 행 100%) · 줄수 합계 = 111,160 · 판독 참조 열 = OUT-INV 전사 일치 740/740 · 정독 주체 빈 셀 0 · 등급 빈 셀 0 · **자체검수 1회**(A3): 위 대조 스크립트 출력을 work_log 에 첨부 — master 가 같은 스크립트로 재실행해 확정.
 - §5 부록 — **DQ-16 후보 풀**(파일 단위 목록·줄수: OUT-INV §10.4 DQ-16 의 계열 패턴을 TSV 에 적용 — `results/process/V1014_REVIEW_R*`·`V1013_REVIEW_R*`·`V1013_CODE_MAP_ADDENDUM_R10`·`V1012_P43_review_*`·`V1012_P42b_fixer_note`·`V1010_P1~P5_review1`·`V1010_HANDOVER_INSPECT_*`·`V1010_LCO_STYLE_REPORT`·`V1015_P2_PHYSICS_REVIEW`·`V1019_FINAL_REVIEW_UNION` — 등재 X · "1.2 Step 3 토픽 한정 열람 후보") + **radius·CH2_v3 조사 카드**(계수) — 실측 건수·줄수 기재.
 - §6 DQ.
 
@@ -91,3 +91,4 @@
 - OUT-INV 밖 파일 본문을 열지 않는다(원천 정독은 Step 3 이후). 예외 = 없음(절 경계 확정은 Step 11 몫).
 - 기존 파일 수정 X · git X · Codex X · 추정 수치 X(줄수는 OUT-INV/TSV 값만).
 - 반환 = 생성 3본 경로 + §4 게이트 O/X 요약 + DQ 건수.
+- **흑연 우선 순서(계획서 v5.6)**: 배정 Step 열의 LCO·Si 몫(2.2 Step 19 · 2.3 Step 22 · 3.3 Step 43 · 4.6~4.8)은 "이연(Ch1 PDF 후)" 표지를 붙인다 — 배정은 그대로, 실행 시점만 뒤.
